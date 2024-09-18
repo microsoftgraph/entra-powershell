@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Deletes a conditional access policy in Microsoft Entra ID by ID.
+Deletes a conditional access policy in Microsoft Entra ID by Id.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraConditionalAccessPolicy
 
 ## Description
 
-This cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by ID.
+This cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by Id.
 
 Conditional access policies are custom rules that define an access scenario.
 
@@ -40,18 +40,21 @@ Conditional access policies are custom rules that define an access scenario.
 
 ### Example 1: Deletes a conditional access policy in Microsoft Entra ID by PolicyId
 
-```Powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-Remove-EntraConditionalAccessPolicy -PolicyId '3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7'
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Remove-EntraConditionalAccessPolicy -PolicyId $policy.ObjectId
 ```
 
 This command deletes a conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the Id of a conditional access policy.
 
 ## Parameters
 
 ### -PolicyId
 
-Specifies the policy ID of a conditional access policy in Microsoft Entra ID.
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

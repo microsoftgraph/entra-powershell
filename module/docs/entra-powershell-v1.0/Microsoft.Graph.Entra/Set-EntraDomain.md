@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraDomain
@@ -34,7 +35,7 @@ Set-EntraDomain
 
 ## Description
 
-The `Set-EntraDomain` cmdlet updates a domain in Microsoft Entra ID.
+The `Set-EntraDomain` cmdlet updates a verified domain in Microsoft Entra ID.
 
 The work or school account needs to belong to at least one of the following Microsoft Entra roles:
 
@@ -66,7 +67,7 @@ This example demonstrates how to set domain capabilities for new user account in
 
 ### -IsDefault
 
-Indicates whether or not this is the default domain used for user creation.
+Indicates whether or not this is the default domain that is used for user creation.
 There's only one default domain per company.
 
 ```yaml

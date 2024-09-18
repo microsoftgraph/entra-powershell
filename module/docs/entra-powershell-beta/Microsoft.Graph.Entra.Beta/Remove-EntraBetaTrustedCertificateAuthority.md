@@ -2,7 +2,6 @@
 title: Remove-EntraBetaTrustedCertificateAuthority
 description: This article provides details on the Remove-EntraBetaTrustedCertificateAuthority command.
 
-
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru
@@ -41,8 +40,8 @@ The `Remove-EntraBetaTrustedCertificateAuthority` cmdlet removes a trusted certi
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-$cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
-Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+$cer = Get-EntraBetaTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
+Remove-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
 ```Output

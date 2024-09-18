@@ -68,7 +68,7 @@ Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault 
 testingDemo1.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
-This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID. 
+This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID.
 
 ### Example 3: Create a new Domain and make if the default new user creation
 
@@ -91,7 +91,7 @@ This example demonstrates how to create a new domain in Microsoft Entra ID and m
 
 Indicates whether or not this is the default domain that is used for user creation.
 
-There's only one default domain per company.
+There is only one default domain per company.
 
 ```yaml
 Type: System.Boolean

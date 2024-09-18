@@ -9,7 +9,8 @@
     CustomScript = @'
     PROCESS {
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        
         if($null -ne $PSBoundParameters["PostalCode"])
         {
             $params["PostalCode"] = $PSBoundParameters["PostalCode"]
@@ -114,7 +115,7 @@
                 forceChangePasswordNextSignInWithMfa = $TmpValue.EnforceChangePasswordPolicy
                 password = $TmpValue.Password
             }
-            $params["PasswordProfile"] = $Value
+            $params["passwordProfile"] = $Value
         }
         if($null -ne $PSBoundParameters["UserType"])
         {
@@ -152,10 +153,13 @@
         {
             $params["CreationType"] = $PSBoundParameters["CreationType"]
         }
+    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = New-MgBetaUser @params -Headers $customHeaders
+        $params = $params | ConvertTo-Json
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
@@ -171,8 +175,7 @@
            
                 $userData = [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUser]::new()
                 $_.PSObject.Properties | ForEach-Object {
-                    $value = $_.Value | ConvertTo-Json | ConvertFrom-Json
-                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $value -Force
+                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                 }
             }
         }

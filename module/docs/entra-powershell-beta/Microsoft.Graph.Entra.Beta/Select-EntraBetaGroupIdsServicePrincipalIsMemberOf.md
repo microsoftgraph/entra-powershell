@@ -45,7 +45,11 @@ Connect-Entra -Scopes 'Application.Read.All'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 $Groups.GroupIds = (Get-EntraBetaGroup -Top 10).ObjectId
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $ServicePrincipal.ObjectId -GroupIdsForMembershipCheck $Groups
+$params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraBetaGroupIdsServicePrincipalIsMemberOf @params
 ```
 
 ```Output

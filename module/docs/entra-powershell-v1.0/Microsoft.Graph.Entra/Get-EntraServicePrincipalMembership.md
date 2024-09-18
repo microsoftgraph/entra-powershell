@@ -35,52 +35,67 @@ Get-EntraServicePrincipalMembership
 
 ## Description
 
-The Get-EntraServicePrincipalMembership cmdlet gets the memberships of a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalMembership` cmdlet gets the memberships of a service principal in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Retrieve the memberships of a service principal.
+### Example 1: Retrieve the memberships of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
+```
 
-The second command gets the memberships of a service principal identified by $ServicePrincipalId.
+This cmdlet retrieves a specified service principal memberships in Microsoft Entra ID. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ### Example 2: Retrieve all memberships of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalMembership -ObjectId '33334444-dddd-5555-eeee-6666ffff7777' -All 
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId -All 
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
+22223333-cccc-4444-dddd-5555eeee6666
 33334444-dddd-5555-eeee-6666ffff7777
 ```
 
 This command gets all memberships of a specified service principal.
 
+- `-ObjectId` parameter specifies the service principal ID.
+
 ### Example 3: Retrieve top two memberships of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalMembership -ObjectId '22223333-cccc-4444-dddd-5555eeee6666' -Top 2
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
 22223333-cccc-4444-dddd-5555eeee6666
+
 ```
 
-This command gets two memberships of a specified service principal.
+This command gets top two memberships of a specified service principal.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ## Parameters
 
@@ -99,6 +114,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
@@ -149,7 +165,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

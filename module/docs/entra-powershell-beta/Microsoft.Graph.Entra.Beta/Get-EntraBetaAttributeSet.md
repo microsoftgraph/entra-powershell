@@ -42,7 +42,16 @@ Get-EntraBetaAttributeSet
 
 ## Description
 
-Gets a list of Microsoft Entra ID attribute sets. Specify `Id` parameter to retrieve an attribute set.
+The `Get-EntraABetaAttributeSet` cmdlet gets a list of Microsoft Entra ID attribute sets.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The supported roles for this operation are:
+
+- Attribute Assignment Reader
+- Attribute Definition Reader
+- Attribute Assignment Administrator
+- Attribute Definition Administrator
+
+By default, other administrator roles cannot read, define, or assign custom security attributes.
 
 ## Examples
 
@@ -83,7 +92,9 @@ This example demonstrates how to retrieve an attribute set by Id.
 
 ### -Id
 
-Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
+Unique identifier for the attribute set within a tenant. 
+
+This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String
