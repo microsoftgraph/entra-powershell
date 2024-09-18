@@ -19,6 +19,12 @@ function Get-EntraPolicy {
         $baseUrl = "https://graph.microsoft.com/v1.0/policies/"
         $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
+        if($null -eq $Top){
+            Write-Error "Invalid page size specified: '0'. Must be between 1 and 999 inclusive.  
+Status: 400 (BadRequest) 
+ErrorCode: Request_UnsupportedQuery"
+            break
+        }
         $response = @()
         foreach ($endpoint in $endpoints) {
             $url = "${baseUrl}${endpoint}"
