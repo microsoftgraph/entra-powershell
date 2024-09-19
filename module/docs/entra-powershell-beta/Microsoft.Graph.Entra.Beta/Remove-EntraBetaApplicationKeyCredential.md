@@ -60,7 +60,7 @@ This command removes the specified key credential from the specified application
 
 ### -KeyId
 
-Specifies a custom key ID.
+Specifies a custom key ID. The unique identifier for the password.
 
 ```yaml
 Type: System.String

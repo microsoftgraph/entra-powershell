@@ -60,15 +60,15 @@ Get-EntraNamedLocationPolicy
 ```Output
 Id                                   CreatedDateTime      DisplayName    ModifiedDateTime
 --                                   ---------------      -----------    ----------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
-eeeeeeee-4444-5555-6666-ffffffffffff 3/4/2024 4:38:42 AM  NamedLocation  3/4/2024 4:38:42 AM
-ffffffff-5555-6666-7777-aaaaaaaaaaaa 3/4/2024 4:39:42 AM  NamedLocation  3/4/2024 4:39:42 AM
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 3/4/2024 4:57:03 AM  NamedLocation  3/4/2024 4:57:03 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee 31/07/2024 9:53:10   NamedLocation   31/07/2024 9:53:10 
+eeeeeeee-4444-5555-6666-ffffffffffff 31/07/2024 4:38:42   NamedLocation1  31/07/2024 4:38:42 
+ffffffff-5555-6666-7777-aaaaaaaaaaaa 01/08/2024 4:39:42   NamedLocation2  01/08/2024 4:39:42 
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 01/08/2024 4:57:03   NamedLocation3  01/08/2024 4:57:03 
 ```
 
 This command retrieves a list of all named location policies in Microsoft Entra ID.
 
-### Example 2: Retrieves a named location policy in Microsoft Entra ID with given Id
+### Example 2: Retrieves a named location policy by Id
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -81,7 +81,9 @@ Id                                   CreatedDateTime      DisplayName    Modifie
 dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
 ```
 
-This command retrieves a named location policy specified by the `-PolicyID` in Microsoft Entra ID.
+This example retrieves a specified named location policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the policy Id of a named location policy.
 
 ## Parameters
 
@@ -103,7 +105,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

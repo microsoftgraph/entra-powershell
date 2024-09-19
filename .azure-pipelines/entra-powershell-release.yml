@@ -1,50 +1,46 @@
-trigger: none
-resources:
-  repositories:
-  - repository: templates
-    type: git
-    name: OneBranch.Pipelines/GovernedTemplates
-    ref: refs/heads/main
-  pipelines:
-  - pipeline: _EntraPowerShell-Release-Build
-    trigger: none
-    source: EntraPowerShell-Release-Build
-    project: One
-extends:
-  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates
-  parameters:
-    stages:
-    - stage: PS_Gallery_Deploy
-      displayName: PS Gallery Deploy
-      dependsOn: []
-      jobs:
-      - job: ApprovalService_Job
-        displayName: 'Approval Service'
-        pool:
-          type: release
-        steps:
-          - download: _EntraPowerShell-Release-Build
-          - task: vsrm-ev2.vss-services-ev2.adm-release-task.ExpressV2Internal@1
-            inputs:
-              UseServerMonitorTask: true
-              EndpointProviderType: ApprovalService
-              ApprovalServiceEnvironment: Production
-              ServiceRootLocation: 'LinkedArtifact'
-              RolloutSpecType: ' '
-              ServiceRootPath: ' '
-              RolloutSpecPath: ' '
+trigger:
+- none
+pool:
+  name: default
 
-      - job: PsGallery_Push
-        displayName: Push to PS Gallery
-        pool:
-          type: server
-        timeoutInMinutes: 6120
-        steps:
-        - task: powershell@2
-          inputs:
-            targetType: inline
-            script: |
-              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra -Verbose
-              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra.Beta -Verbose
-            pwsh: false
-        dependsOn: ApprovalService_Job
+stages:
+- stage: PS_Gallery_Deploy
+  displayName: PS Gallery Deploy
+  jobs:
+  - job: Install_Dependencies
+    displayName: Install dependencies
+    steps:
+    - task: PowerShell@2
+      displayName: Version Check
+      inputs:
+        targetType: inline
+        pwsh: true
+        script: |
+          Write-Output $PSVersionTable
+  - job: Release_Approval
+    displayName: Agentless job
+    pool:
+      type: server
+    steps:
+    - task: ManualValidation@0
+      inputs:
+        notifyUsers: ''
+        instructions: 'Please validate the build configuration and resume'
+        onTimeout: reject
+      enabled: false
+      timeoutInMinutes: 6120
+
+  - job: PsGallery_Push
+    displayName: Push to PS Gallery
+    pool:
+      type: server
+    timeoutInMinutes: 6120
+    steps:
+    - task: powershell@2
+      inputs:
+        targetType: inline
+        script: |
+          Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra -Verbose
+          Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra.Beta -Verbose
+        pwsh: false
+    dependsOn: Release_Approval

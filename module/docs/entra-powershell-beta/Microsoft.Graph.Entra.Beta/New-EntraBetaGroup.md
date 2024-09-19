@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Creates a Microsoft Entra ID  group.
+Creates a Microsoft Entra ID group.
 
 ## Syntax
 
@@ -56,8 +56,7 @@ For information about creating dynamic groups, see: [Using attributes to create 
 ### Example 1: Create a group
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Group.Create' #Application permission
+Connect-Entra -Scopes 'Group.ReadWrite.All','Group.Create'
 $params = @{
     DisplayName = 'HelpDesk admin group2'
     MailEnabled = $False
@@ -79,8 +78,7 @@ This example demonstrates how to create the new group.
 ### Example 2: Create a group with Description parameter
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Group.Create' #Application permission
+Connect-Entra -Scopes 'Group.ReadWrite.All','Group.Create'
 $params = @{
     DisplayName = 'HelpDesk admin group'
     MailEnabled = $false
@@ -105,8 +103,7 @@ This example demonstrates how to create the new group with description parameter
 ### Example 3: Create a group with IsAssignableToRole parameter
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Group.Create' #Application permission
+Connect-Entra -Scopes 'Group.ReadWrite.All','Group.Create'
 $params = @{
     DisplayName = 'HelpDesk admin group2'
     Description = 'Group assignable to role'
@@ -130,8 +127,7 @@ This example demonstrates how to create the new group with IsAssignableToRole pa
 ### Example 4: Create a group with Visibility parameter
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Group.Create' #Application Permission
+Connect-Entra -Scopes 'Group.ReadWrite.All','Group.Create'
 $params = @{
     DisplayName = 'HelpDesk admin group2'
     Description = 'Group assignable to role'
@@ -155,8 +151,7 @@ This example demonstrates how to create the new group with Visibility parameter.
 ### Example 5: Create a group with GroupTypes parameter
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Group.Create' #Application permission
+Connect-Entra -Scopes 'Group.ReadWrite.All','Group.Create'
 $params = @{
     DisplayName = 'HelpDesk admin group3'
     Description = 'group des'
@@ -343,7 +338,7 @@ Accept wildcard characters: False
 
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
+For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (<https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership>).
 
 ```yaml
 Type: System.String
@@ -362,8 +357,8 @@ Accept wildcard characters: False
 Specifies the rule processing state.
 The acceptable values for this parameter are:
 
-* "On" - Process the group rule.
-* "Paused" - Stop processing the group rule.
+- "On" - Process the group rule.
+- "Paused" - Stop processing the group rule.
 
 Changing the value of the processing state doesn't change the members list of the group.
 
@@ -399,19 +394,20 @@ Accept wildcard characters: False
 ### -Visibility
 
 This parameter determines the visibility of the group's content and members list.
+
 This parameter can take one of the following values:
 
-* "Public" - Anyone can view the contents of the group
-* "Private" - Only members can view the content of the group
-* "HiddenMembership" - Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator and Helpdesk Administrators can view the members list of the group.
+- "Public" - Anyone can view the contents of the group
+- "Private" - Only members can view the content of the group
+- "HiddenMembership" - Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator and Helpdesk Administrators can view the members list of the group.
 
 If no value is provided, the default value is "Public".
 
 Notes:
 
-* This parameter is only valid for groups that have the groupType set to "Unified".
-* If a group has this attribute set to "HiddenMembership", it can't be changed later.
-* Anyone can join a group that has this attribute set to "Public". If the attribute is set to Private or HiddenMembership, only owners can add new members to the group and requests to join the group need approval of the owners.
+- This parameter is only valid for groups that have the groupType set to "Unified".
+- If a group has this attribute set to "HiddenMembership", it can't be changed later.
+- Anyone can join a group that has this attribute set to "Public". If the attribute is set to Private or HiddenMembership, only owners can add new members to the group and requests to join the group need approval of the owners.
 
 ```yaml
 Type: System.String
@@ -439,11 +435,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we may make changes to the cmdlet, which could have unexpected effects.
-We recommend that you don't use this cmdlet in a production environment.
-
-## Related links
+## Related Links
 
 [Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 

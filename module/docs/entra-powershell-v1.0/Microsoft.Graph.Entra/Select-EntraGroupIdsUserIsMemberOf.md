@@ -26,7 +26,7 @@ Selects the groups that a user is a member of.
 
 ```powershell
 Select-EntraGroupIdsUserIsMemberOf 
- -ObjectId <String> 
+ -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
@@ -40,7 +40,7 @@ The `Select-EntraGroupIdsUserIsMemberOf` cmdlet selects the groups that a user i
 ### Example 1: Get the group membership of a group for a user
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
+Connect-Entra -Scopes 'Application.Read.All'
 $myGroup = Get-EntraGroup -Filter "DisplayName eq '<Group-DisplayName>'"
 $UserId = 'SawyerM@contoso.com'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
@@ -53,7 +53,7 @@ Select-EntraGroupIdsUserIsMemberOf @Params
 ```
 
 ```Output
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example retrieves the group membership of a group for a user.
@@ -106,3 +106,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraGroup](Get-EntraGroup.md)

@@ -18,31 +18,29 @@ schema: 2.0.0
 
 # Set-EntraAttributeSet
 
-## SYNOPSIS
+## Synopsis
 
 Updates an existing attribute set.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraAttributeSet 
- -Id <String> 
+ -Id <String>
  [-Description <String>] 
  [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Set-EntraAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. Specify `Id` parameter to Update a Microsoft Entra ID attribute set object.
-
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
-
-Note: Only the Attribute Definition Administrator role is supported for this operation. Ensure the signed-in user is assigned this role.
+Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
 
 You can only update the `description` and `maxAttributesPerSet` properties.
 
-## EXAMPLES
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
+## Examples
 
 ### Example 1: Update an attribute set
 
@@ -50,14 +48,15 @@ You can only update the `description` and `maxAttributesPerSet` properties.
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     Id = 'Engineering'
-    Description = 'Attributes for cloud engineering team'
+    Description = 'Attributes for engineering team'
 }
 Set-EntraAttributeSet @params
 ```
 
-This example Update an attribute set.
+This example update an attribute set.
 
-- Attribute set: `Engineering`
+- `Id` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
+- `Description` parameter specifies the description for the attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
 
@@ -65,20 +64,21 @@ This example Update an attribute set.
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     Id = 'Engineering' 
-    MaxAttributesPerSet = 10    
+    MaxAttributesPerSet = 10
 }
 Set-EntraAttributeSet @params
 ```
 
-This example Update an attribute set using MaxAttributesPerSet
+This example update an attribute set using MaxAttributesPerSet.
 
-- Attribute set: `Engineering`
+- `-Id` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
+- `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
-Description of the attribute set.
+Description of the attribute set, up to 128 characters long, including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Name of the attribute set.
+Name of the attribute set. Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String
@@ -110,7 +110,7 @@ Accept wildcard characters: False
 
 ### -MaxAttributesPerSet
 
-Maximum number of custom security attributes that can be defined in the attribute set.
+Maximum number of custom security attributes that can be defined in this attribute set. The default value is null. If not specified, the administrator can add up to 500 active attributes per tenant. This setting can be changed later.
 
 ```yaml
 Type: System.Int32
@@ -128,17 +128,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraAttributeSet](New-EntraAttributeSet.md)
 

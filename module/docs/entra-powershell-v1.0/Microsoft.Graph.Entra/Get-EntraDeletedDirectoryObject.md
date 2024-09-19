@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
+Retrieves a soft deleted directory object from the directory.
 
 ## Syntax
 
@@ -33,8 +33,8 @@ Get-EntraDeletedDirectoryObject
 
 ## Description
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
-Soft delete for groups is currently only implemented for Unified Groups (also known as
+The `Get-EntraDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
+Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
 ## Examples
@@ -46,13 +46,15 @@ Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Gro
 Get-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
 ```
 
-This example shows how to retrieve the deleted directory object with `Id` `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` from the directory
+This example shows how to retrieve the deleted directory object from the directory.
+
+- `-Id` parameter specifies the Id of the directory object to retrieve.
 
 ## Parameters
 
@@ -74,7 +76,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

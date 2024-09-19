@@ -2,7 +2,6 @@
 title: Set-EntraBetaGroupLifecyclePolicy
 description: This article provides details on the Set-EntraBetaGroupLifecyclePolicy command.
 
-
 ms.topic: reference
 ms.date: 07/23/2024
 ms.author: eunicewaweru
@@ -43,8 +42,9 @@ The `Set-EntraBetaGroupLifecyclePolicy` command updates a specific group Lifecyc
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+    Id = $policy.Id
     GroupLifetimeInDays = 200 
     AlternateNotificationEmails = 'example@contoso.com' 
     ManagedGroupTypes = 'All'
@@ -55,7 +55,7 @@ Set-EntraBetaGroupLifecyclePolicy @params
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 Selected
+ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 All
 ```
 
 This example updates the specified groupLifecyclePolicy in Microsoft Entra ID.
@@ -70,7 +70,7 @@ In this case, 'All' suggests that the policy manages all types of groups.
 
 ### -AlternateNotificationEmails
 
-Notification emails for groups that have no owners will be sent to these email addresses.
+Notification emails for groups that have no owners are sent to these email addresses.
 List of email addresses separated by a ";".
 
 ```yaml
@@ -120,9 +120,10 @@ Accept wildcard characters: False
 ### -ManagedGroupTypes
 
 Allows the admin to select which office 365 groups the policy applies to.
-"None" will create the policy in a disabled state.
-"All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
+
+- "None" will create the policy in a disabled state.
+- "All" will apply the policy to every Office 365 group in the tenant.
+- "Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
 Type: System.String

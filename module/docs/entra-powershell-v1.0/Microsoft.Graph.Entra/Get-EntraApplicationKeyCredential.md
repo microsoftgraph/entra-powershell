@@ -32,7 +32,7 @@ Get-EntraApplicationKeyCredential
 
 ## Description
 
-The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for an application.
+The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for an application. Specify `ObjectId` parameter to retrieve the key credentials for an application.
 
 ## Examples
 
@@ -58,7 +58,7 @@ This command gets the key credentials for the specified application.
 
 ### -ObjectId
 
-Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials.
+Specifies a unique ID of an application in Microsoft Entra ID to retrieve key credentials. Use `Get-EntraApplication` for more details.
 
 ```yaml
 Type: System.String
