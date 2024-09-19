@@ -90,7 +90,7 @@ The ApplicationId of the application for which the logo is to be retrieved.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
