@@ -16,11 +16,11 @@
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"] -and $null -ne $PSBoundParameters["KeyId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"])
         {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["KeyId"] = $PSBoundParameters["KeyId"]
-            $URI = "$baseUri/$($params.ObjectId)/removePassword"
+            $URI = "$baseUri/$($params.ServicePrincipalId)/removePassword"
             $body = @{
                 "keyId" = $($params.KeyId)
             }

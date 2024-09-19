@@ -15,9 +15,9 @@
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["ServicePrincipalId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
         }
         if($null -ne $PSBoundParameters["All"])
         {

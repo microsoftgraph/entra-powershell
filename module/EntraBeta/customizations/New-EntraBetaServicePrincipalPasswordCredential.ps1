@@ -12,13 +12,13 @@
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
         $Method = "POST"
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["StartDate"] = $PSBoundParameters["StartDate"]
             $params["EndDate"] = $PSBoundParameters["EndDate"]
 
-            $URI = "$baseUri/$($params.ObjectId)/addPassword"
+            $URI = "$baseUri/$($params.ServicePrincipalId)/addPassword"
             $body = @{
                 passwordCredential = @{
                     startDateTime = $PSBoundParameters["StartDate"];
