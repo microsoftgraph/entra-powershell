@@ -49,7 +49,7 @@ The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `I
 
 ## Examples
 
-### Example 1: Get all policy
+### Example 1: Get all policies
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
