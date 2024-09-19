@@ -34,22 +34,21 @@ New-EntraBetaDirectoryRoleAssignment
 
 ## Description
 
-The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
+The `New-EntraBetaDirectoryRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
 ## Examples
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
- $params = @{
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
+$params = @{
     RoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
     DirectoryScopeId = '/'
  }
 
- New-EntraBetaDirectoryRoleAssignment @params
+New-EntraBetaDirectoryRoleAssignment @params
 ```
 
 ```Output
@@ -127,6 +126,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
 ## Notes
+
+`New-EntraBetaRoleAssignment` is an alias for `New-EntraBetaDirectoryRoleAssignment`.
 
 ## Related Links
 

@@ -41,15 +41,19 @@ The `Remove-EntraApplicationOwner` cmdlet removes an owner from an application i
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = $Application.ObjectId
     OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 
 Remove-EntraApplicationOwner @params
 ```
 
-This example removes the specified owner from the specified application.
+This example removes the specified owner from the specified application. You can use the command `Get-EntraApplication` to get application Id.
+
+- `-ObjectId` parameter specifies the the unique identifier of a application.
+- `-OwnerId` parameter specifies the ID of the owner.
 
 ## Parameters
 
