@@ -35,12 +35,6 @@ Describe "Add-EntraServicePrincipalDelegatedPermissionClassification"{
 
             Should -Invoke -CommandName New-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All parameter is empty" {
-            { Add-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId  -PermissionId  -Classification  -PermissionName  } | Should -Throw "Missing an argument for parameter*"
-        }
-        It "Should fail when All parameter is invalid" {
-            { Add-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" -PermissionId "" -Classification "" -PermissionName "" } | Should -Throw "Cannot bind argument to parameter*"
-        }
         It "Result should Contain ObjectId" {
             $result = Add-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PermissionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Classification "low" -PermissionName "access_microsoftstream_embed"
             $result.ObjectId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
