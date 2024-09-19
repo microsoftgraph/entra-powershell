@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaGroupMember.
+title: Add-EntraBetaGroupMember
 description: This article provides details on the Add-EntraBetaGroupMember command.
 
 ms.topic: reference
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Microsoft Entra ID object that assigned as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object that is assigned as an owner, manager, or member.
 
 ```yaml
 Type: System.String

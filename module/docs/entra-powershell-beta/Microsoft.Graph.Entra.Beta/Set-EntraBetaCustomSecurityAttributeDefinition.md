@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaCustomSecurityAttributeDefinition.
+title: Set-EntraBetaCustomSecurityAttributeDefinition
 description: This article provides details on the Set-EntraBetaCustomSecurityAttributeDefinition command.
 
 ms.topic: reference
@@ -46,8 +46,8 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Test_ProjectTest' 
-    Description = 'Target completion' 
+    Id = 'Test_ProjectTest'
+    Description = 'Target completion'
     Status = 'Available' 
 }
 Set-EntraBetaCustomSecurityAttributeDefinition @params

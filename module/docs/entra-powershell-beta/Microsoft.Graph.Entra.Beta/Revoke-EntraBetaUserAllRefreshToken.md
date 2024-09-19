@@ -1,43 +1,70 @@
 ---
+title: Revoke-EntraBetaUserAllRefreshToken
+description: This article provides details on the Revoke-EntraBetaUserAllRefreshToken command.
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Revoke-EntraBetaUserAllRefreshToken
-
 schema: 2.0.0
 ---
 
 # Revoke-EntraBetaUserAllRefreshToken
 
 ## Synopsis
+
 Invalidates the refresh tokens issued to applications for a user.
 
 ## Syntax
 
-```
-Revoke-EntraBetaUserAllRefreshToken -ObjectId <String> [<CommonParameters>]
+```powershell
+Revoke-EntraBetaUserAllRefreshToken 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Revoke-EntraBetaUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user. 
-The cmdlet also invalidates tokens issued to session cookies in a browser for the user. 
+
+The `Revoke-EntraBetaUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
+
+The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
+
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
+
+This operation is usually performed by the user or an administrator if the user's device is lost or stolen. It blocks access to the organization's data by requiring the user to sign in again to all previously authorized applications, regardless of the device.
 
 ## Examples
 
 ### Example 1: Revoke refresh tokens for a user
-```
-PS C:\> Revoke-EntraBetaUserAllRefreshToken -ObjectId "a1d91a49-70c6-4d1d-a80a-b74c820a9a33"
+
+```powershell
+Connect-Entra -Scopes 'User.RevokeSessions.All'
+Revoke-EntraBetaUserAllRefreshToken -ObjectId 'SawyerM@contoso.com'
 ```
 
-This command revokes the tokens for the specified user.
+```Output
+Value
+-----
+True
+```
+
+This example demonstrates how to revoke the tokens for the specified user.
+
+- `-ObjectId` parameter specifies the unique identifier of a user.
 
 ## Parameters
 
 ### -ObjectId
+
 Specifies the unique ID of a user.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,7 +76,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -59,7 +87,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Revoke-EntraBetaSignedInUserAllRefreshToken]()
-
-[(#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
-
+[Revoke-EntraBetaSignedInUserAllRefreshToken](Revoke-EntraBetaSignedInUserAllRefreshToken.md)

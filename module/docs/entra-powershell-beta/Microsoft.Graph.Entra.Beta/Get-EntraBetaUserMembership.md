@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserMembership.
+title: Get-EntraBetaUserMembership
 description: This article provides details on the Get-EntraBetaUserMembership command.
 
 ms.topic: reference
@@ -43,7 +43,7 @@ The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -59,11 +59,38 @@ Id                                   DeletedDateTime
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
 
-### Example 2: Get All memberships
+### Example 2: Get user memberships with additional details
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+$userMemberships = Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
+$membershipDetails = $userMemberships | ForEach-Object {
+    $membershipDetail = Get-EntraBetaObjectByObjectId -ObjectIds $_.Id
+    [PSCustomObject]@{
+        odataType   = $membershipDetail.'@odata.type'
+        displayName = $membershipDetail.displayName
+        Id          = $membershipDetail.Id
+    }
+}
+$membershipDetails | Select-Object odataType, displayName, Id
+```
+
+```Output
+odataType                      displayName                         Id
+---------                      -----------                         --
+#microsoft.graph.group         Contoso Group                       33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+#microsoft.graph.group         Helpdesk Group                      55ff55ff-aa66-bb77-cc88-99dd99dd99dd
+#microsoft.graph.directoryRole Attribute Assignment Reader         22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+#microsoft.graph.directoryRole Attribute Definition Reader         11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+```
+
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID with more lookup details.
+
+### Example 3: Get All memberships
+
+```powershell
+Connect-Entra -Scopes 'User.Read'
+Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -79,11 +106,11 @@ Id                                   DeletedDateTime
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
 
-### Example 3: Get top three memberships
+### Example 4: Get top three memberships
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraBetaUserMembership  -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output

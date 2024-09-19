@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserThumbnailPhoto.
+title: Get-EntraBetaUserThumbnailPhoto
 description: This article provides details on the Get-EntraBetaUserThumbnailPhoto command.
 
 
@@ -25,10 +25,10 @@ Retrieve the thumbnail photo of a user.
 ## Syntax
 
 ```powershell
-Get-EntraBetaUserThumbnailPhoto 
- -ObjectId <String> 
- [-FileName <String>] 
- [-FilePath <String>] 
+Get-EntraBetaUserThumbnailPhoto
+ -ObjectId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
  [-View <Boolean>]
  [<CommonParameters>]
 ```
@@ -42,9 +42,8 @@ Retrieve the thumbnail photo of a user.
 ### Example 1: Retrieve thumbnail photo by Id
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserThumbnailPhoto -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserThumbnailPhoto -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output

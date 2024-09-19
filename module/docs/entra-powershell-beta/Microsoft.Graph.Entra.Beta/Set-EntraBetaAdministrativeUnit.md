@@ -2,7 +2,6 @@
 title: Set-EntraBetaAdministrativeUnit
 description: This article provides details on the Set-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -37,14 +36,19 @@ Set-EntraBetaAdministrativeUnit
 
 The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Specify `Id` parameter to update a specific administrative unit.
 
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission.
+
+The Privileged Role Administrator is the least privileged role required for this operation.
+
 ## Examples
 
 ### Example 1: Update DisplayName
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.ObjectId
     DisplayName = 'UpdatedAU'
 }
 Set-EntraBetaAdministrativeUnit @params
@@ -52,12 +56,16 @@ Set-EntraBetaAdministrativeUnit @params
 
 This Command update DisplayName of specific administrative unit.
 
+- `-Id` parameter specifies the Id of an administrative unit.
+- `-DisplayName` parameter specifies the display name for the administrative unit.
+
 ### Example 2: Update Description
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.ObjectId
     Description = 'Updated AU Description'
 }
 Set-EntraBetaAdministrativeUnit @params
@@ -65,18 +73,25 @@ Set-EntraBetaAdministrativeUnit @params
 
 This example shows how to update the description of a specific administrative unit.
 
+- `-Id` parameter specifies the Id of an administrative unit.
+- `-Description` parameter specifies the description for the administrative unit.
+
 ### Example 3: Update IsMemberManagementRestricted
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.ObjectId
     IsMemberManagementRestricted = $true
 }
 Set-EntraBetaAdministrativeUnit @params
 ```
 
 This example shows how to update the `IsMemberManagementRestricted` setting for a specific administrative unit.
+
+- `-Id` parameter specifies the Id of an administrative unit.
+- `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
 
 ## Parameters
 
@@ -156,8 +171,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaAdministrativeUnit](Get-EntraBetaAdministrativeUnit.Md)
+[Get-EntraBetaAdministrativeUnit](Get-EntraBetaAdministrativeUnit.md)
 
-[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.Md)
+[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)
 
-[Remove-EntraBetaAdministrativeUnit](Remove-EntraBetaAdministrativeUnit.Md)
+[Remove-EntraBetaAdministrativeUnit](Remove-EntraBetaAdministrativeUnit.md)

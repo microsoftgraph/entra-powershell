@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaGroupMember.
+title: Remove-EntraBetaGroupMember
 description: This article provides details on the Remove-EntraBetaGroupMember command.
 
 
@@ -41,8 +41,9 @@ The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Micros
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    ObjectId = $group.ObjectId
     MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 }
 

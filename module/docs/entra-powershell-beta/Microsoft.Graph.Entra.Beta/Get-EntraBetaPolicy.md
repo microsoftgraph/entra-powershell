@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaPolicy.
+title: Get-EntraBetaPolicy
 description: This article provides details on the Get-EntraBetaPolicy command.
 
 
@@ -45,26 +45,59 @@ Get-EntraBetaPolicy
 
 ## Description
 
-The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get specific policy.
+The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get a specific policy.
 
 ## Examples
 
-### Example 1: Get a policy by ID
+### Example 1: Get all policies
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaPolicy
 ```
 
 ```Output
-Id                                   DisplayName Type                     IsOrganizationDefault
---                                   ----------- ----                     ---------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb PolicyName4 HomeRealmDiscoveryPolicy                 False
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
 ```
 
-This command gets the specified policy.
+This example shows how to return all policies.
 
-### Example 2: Get all policies
+### Example 2: Get policy using Display Name
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+```
+
+```Output
+DeletedDateTime Description                                                           DisplayName                               Id
+--------------- -----------                                                           -----------                               --
+                Permissions consentable based on Microsoft's current recommendations. Microsoft User Default Recommended Policy microsoft-user-default-recommended
+```
+
+This example shows how to get a specific policy using Display Name.
+
+### Example 3: Get a policy with specific ID
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+```
+
+```Output
+Id                                   Description                     DisplayName                     Feature          IsAppliedToOrganization IsEnabled
+--                                   -----------                     -----------                     -------          ----------------------- ---------
+bbbbbbbb-1111-2222-3333-cccccccccccc passwordHashSync rollout policy passwordHashSync rollout policy passwordHashSync False                   True
+```
+
+This example demonstrated how to receive policy with specific ID.
+
+- `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ID of the policy.
+
+### Example 4: Get all policies
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -72,35 +105,28 @@ Get-EntraBetaPolicy -All
 ```
 
 ```Output
-Id                                   DisplayName Type                     IsOrganizationDefault
---                                   ----------- ----                     ---------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb PolicyName4 HomeRealmDiscoveryPolicy                 False
-bbbbbbbb-1111-2222-3333-cccccccccccc PolicyName4 HomeRealmDiscoveryPolicy                 False
-cccccccc-2222-3333-4444-dddddddddddd PolicyName4 HomeRealmDiscoveryPolicy                 False
-dddddddd-3333-4444-5555-eeeeeeeeeeee Claimstest  ClaimsMappingPolicy                      False
-eeeeeeee-4444-5555-6666-ffffffffffff tokenIssuanceTokenIssuancePolicy                     False
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Custom token lifetime policy TokenLifetimePolicy     False
-authenticationFlowsPolicy            Authentication flows policy  AuthenticationFlowsPolicy
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
 ```
 
 This example demonstrates how to retrieve all policies in Microsoft Entra ID.
 
-### Example 3: Get top three policies
+### Example 5: Get the top one policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraBetaPolicy -Top 3
+Get-EntraBetaPolicy -Top 1
 ```
 
 ```Output
-Id                                   DisplayName Type                     IsOrganizationDefault
---                                   ----------- ----                     ---------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb PolicyName4 HomeRealmDiscoveryPolicy                 False
-bbbbbbbb-1111-2222-3333-cccccccccccc PolicyName4 HomeRealmDiscoveryPolicy                 False
-cccccccc-2222-3333-4444-dddddddddddd PolicyName4 HomeRealmDiscoveryPolicy                 False
+Id                                   Description                     DisplayName                     Feature          IsAppliedToOrganization IsEnabled
+--                                   -----------                     -----------                     -------          ----------------------- ---------
+bbbbbbbb-1111-2222-3333-cccccccccccc passwordHashSync rollout policy passwordHashSync rollout policy passwordHashSync False                   True
 ```
 
-This example demonstrates how to retrieve top three policies in Microsoft Entra ID.
+This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
 
 ## Parameters
 
@@ -122,7 +148,7 @@ Accept wildcard characters: False
 
 ### -All
 
-List all pages.
+List all policies.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter

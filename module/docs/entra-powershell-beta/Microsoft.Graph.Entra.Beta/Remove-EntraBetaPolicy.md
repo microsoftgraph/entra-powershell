@@ -1,7 +1,6 @@
 ---
-title: Remove-EntraBetaPolicy.
+title: Remove-EntraBetaPolicy
 description: This article provides details on the Remove-EntraBetaPolicy command.
-
 
 ms.topic: reference
 ms.date: 07/02/2024
@@ -45,6 +44,8 @@ Remove-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified policy from Microsoft Entra ID.
+
+- `-Id` - specifies the ID of the policy you want to remove.
 
 ## Parameters
 

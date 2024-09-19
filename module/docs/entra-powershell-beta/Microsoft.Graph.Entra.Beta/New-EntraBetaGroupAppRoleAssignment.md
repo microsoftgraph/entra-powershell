@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaGroupAppRoleAssignment.
+title: New-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the New-EntraBetaGroupAppRoleAssignment command.
 
 
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

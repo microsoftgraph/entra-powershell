@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationPasswordCredential.
+title: Remove-EntraApplicationPasswordCredential
 description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
 
 
@@ -26,9 +26,9 @@ Removes a password credential from an application.
 
 ```powershell
 Remove-EntraApplicationPasswordCredential 
--ObjectId <String> 
--KeyId <String>
-[<CommonParameters>]
+ -ObjectId <String> 
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -40,20 +40,22 @@ The `Remove-EntraApplicationPasswordCredential` cmdlet removes a password creden
 ### Example 1: Remove an application password credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$AppID = (Get-EntraApplication -Top 1).ObjectId
-$KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $AppId
-Remove-EntraApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk App'"
+$KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $application.Id
+Remove-EntraApplicationPasswordCredential -ObjectId $application.Id -KeyId $KeyIds[0].KeyId
 ```
 
-This example shows how to remove the application password credential for the application.
+This example demonstrates how to remove the password credential for an application.
+
+- `ObjectId` Specifies the ID of the application. Use `Get-EntraApplication` to get application ObjectId value.
+- `KeyId` Specifies the ID of the password credential. Use `Get-EntraApplicationPasswordCredential` to retrieve a specific credential details.
 
 ## Parameters
 
 ### -KeyId
 
-The unique identifier for the password.
+Specifies the ID of the password credential.
 
 ```yaml
 Type: System.String

@@ -1,14 +1,14 @@
 ---
-title: Update-EntraSignedInUserPassword.
+title: Update-EntraSignedInUserPassword
 description: This article provides details on the Update-EntraSignedInUserPassword command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Update-EntraSignedInUserPassword
@@ -26,7 +26,7 @@ Updates the password for the signed-in user.
 
 ```powershell
 Update-EntraSignedInUserPassword 
- -NewPassword <SecureString> 
+ -NewPassword <SecureString>
  -CurrentPassword <SecureString>
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Update-EntraSignedInUserPassword
 
 The `Update-EntraSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
 
-Allow users to update their own passwords. Any user can update their password without needing to be in an administrator role.
+Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
 ## Examples
 
@@ -49,11 +49,13 @@ $params = @{
     CurrentPassword = $CurrentPassword
     NewPassword = $NewPassword
 }
-
 Update-EntraSignedInUserPassword @params
 ```
 
-This command updates the password for the signed-in user.
+This example shows how to update the password for the signed-in user.
+
+- `-CurrentPassword` parameter specifies the current password of the signed-in user.
+- `-NewPassword` parameter specifies the new password for the signed-in user.
 
 ## Parameters
 
@@ -99,6 +101,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For more details see [changePassword](/graph/api/user-changepassword).
+- For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
 
-## RELATED LINKS
+## Related links

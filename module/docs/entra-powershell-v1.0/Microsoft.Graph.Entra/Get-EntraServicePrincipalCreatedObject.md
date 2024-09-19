@@ -1,7 +1,6 @@
 ---
-title: Get-EntraServicePrincipalCreatedObject.
+title: Get-EntraServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraServicePrincipalCreatedObject command.
-
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -35,41 +34,45 @@ Get-EntraServicePrincipalCreatedObject
 
 ## Description
 
-The Get-EntraServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalCreatedObject` cmdlet gets an object created by a service principal in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Retrieve the objects created by a service principal
+### Example 1: Retrieve the objects that created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
 
-The second command gets the objects created by the service principal identified by $ServicePrincipalId.
-
+- `-ObjectId` parameter specifies the service principal ID.
 
 ### Example 2: Retrieve the all objects created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -All
 ```
 
-This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.  
+This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ### Example 3: Retrieve the top two objects created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -Top 2
 ```
 
-This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.  
+This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ## Parameters
 
@@ -123,7 +126,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -139,7 +142,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

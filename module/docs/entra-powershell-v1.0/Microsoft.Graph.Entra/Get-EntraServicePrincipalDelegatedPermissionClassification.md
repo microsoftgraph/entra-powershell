@@ -46,7 +46,7 @@ Get-EntraServicePrincipalDelegatedPermissionClassification
 
 ## Description
 
-The Get-EntraServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
+The `Get-EntraServicePrincipalDelegatedPermissionClassification` cmdlet retrieves the delegated permission classifications from a service principal.
 
 ## Examples
 
@@ -54,10 +54,14 @@ The Get-EntraServicePrincipalDelegatedPermissionClassification cmdlet retrieves 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
-```output
+```Output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
 bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
@@ -66,14 +70,21 @@ cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-7777
 
 This command retrieves all delegated permission classifications from the service principal.
 
-### Example 2: Get a delegated permission classification
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraServicePrincipal` to get more details.
+
+### Example 2: Get a delegated permission classifications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee' -Id 'bbbbbbbb-7777-8888-9999-cccccccccccc'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId 
+  Id = '5XBeIKarUkypdm0tRsSAQwE'
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
-```output
+```Output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
 bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
@@ -81,20 +92,31 @@ bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffff
 
 This command retrieves the delegated permission classification by Id from the service principal.
 
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraServicePrincipal` to get more details.
+- `-Id` parameter specifies the delegated permission classification object Id.
+
 ### Example 3: Get a delegated permission classification with filter
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee -Filter "PermissionName eq 'Sites.Read.All'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId  
+  Filter = "PermissionName eq 'Sites.Read.All'"
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
-```output
+```Output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
 bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the filtered delegated permission classifications from the service principal.
+
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraServicePrincipal` to get more details.
+- `-Id` parameter specifies the delegated permission classification object Id.
 
 ## Parameters
 
@@ -116,7 +138,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of a delegated permission classification object id.
+The unique identifier of a delegated permission classification object ID.
 
 ```yaml
 Type: System.String
@@ -149,7 +171,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -34,14 +34,16 @@ Remove-EntraDevice
 
 The `Remove-EntraDevice` cmdlet removes a device from Microsoft Entra ID.
 
+The calling user must be in one of the following Microsoft Entra roles: Intune Administrator, Windows 365 Administrator, or Cloud Device Administrator.
+
 ## Examples
 
 ### Example 1: Remove a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Remove-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+$Device = Get-EntraDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Remove-EntraDevice -ObjectId $Device.ObjectId
 ```
 
 This command removes the specified device.

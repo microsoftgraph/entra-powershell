@@ -10,11 +10,17 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 ---
+
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
+[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
+[![PSGallery Platform](https://img.shields.io/powershellgallery/p/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Platform)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
+[![GitHub issues](https://img.shields.io/github/issues/microsoftgraph/entra-powershell)](https://github.com/microsoftgraph/entra-powershell/issues)
+
 # Microsoft Entra PowerShell (preview)
 
-Microsoft Entra PowerShell (preview), is a command-line tool that allows administrators to manage and automate Microsoft Entra product family resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
+[Microsoft Entra PowerShell (preview)][learn.microsoft], is a command-line tool that allows administrators to manage and automate Microsoft Entra product family resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
 
-The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining. The module builds upon and is part of the Microsoft Graph PowerShell SDK. It’s fully interoperable with all cmdlets in the Microsoft Graph PowerShell SDK.
+The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining. The module builds upon the Microsoft Graph PowerShell SDK. It’s fully interoperable with all cmdlets in the Microsoft Graph PowerShell SDK.
 
 The module also offers significant (over _98%_) compatibility  with the [deprecated AzureAD module][azureADDeprecationArticle] to accelerate migration.
 
@@ -24,10 +30,10 @@ Microsoft Entra PowerShell supports PowerShell version 5.1 and version 7+. We re
 
 The following table contains a list of the Microsoft Entra PowerShell modules.
 
-Description       | Module Name  | PowerShell Gallery Link
------------------ | ------------ | -----------------------
-v1.0 Module  | `Microsoft.Graph.Entra`         | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
-Beta Module | `Microsoft.Graph.Entra.Beta`     | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta)
+| Module                                             | Latest                          | Description |
+| -------------------------------------------------- | ------------------------------- | ----------- |
+| [`Microsoft.Graph.Entra`][entrapsgallery]          | [![mg]][entrapsgallery]         | v1.0 Module |
+| [`Microsoft.Graph.Entra.Beta`][entrapsgallerybeta] | [![mgbeta]][entrapsgallerybeta] | Beta Module |
 
 ## Learn more
 
@@ -68,5 +74,13 @@ This project adopted the [Microsoft Open Source Code of Conduct](https://opensou
 
 Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT [license](LICENSE).
 
+<!-- PS Gallery -->
+[entrapsgallery]: https://www.powershellgallery.com/packages/Microsoft.Graph.Entra/
+[entrapsgallerybeta]: https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta/
+
+[mg]: https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat-square&label=Microsoft.Graph.Entra
+[mgbeta]: https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.Beta.svg?style=flat-square&label=Microsoft.Graph.Entra.Beta
+
 [entraPowershellIssues]: https://github.com/microsoftgraph/entra-powershell/issues
 [azureADDeprecationArticle]: https://techcommunity.microsoft.com/t5/microsoft-entra-blog/important-update-deprecation-of-azure-ad-powershell-and-msonline/ba-p/4094536
+[learn.microsoft]: https://aka.ms/entra/ps

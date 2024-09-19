@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaScopedRoleMembership.
+title: Get-EntraBetaScopedRoleMembership
 description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
 
@@ -43,8 +43,9 @@ The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assign
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    ObjectId = $AdministrativeUnit.ObjectId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Get-EntraBetaScopedRoleMembership @params
@@ -56,13 +57,17 @@ Id                                                                Administrative
 dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example gets scoped role administrator.
+This example gets scoped role administrator. You cane use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit Id.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` parameter specifies the scoped role membership Id.
 
 ### Example 2: List scoped administrators for administrative unit by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaScopedRoleMembership -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 ```Output
@@ -73,11 +78,13 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 This example list scoped administrators with objectId.
 
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+
 ## Parameters
 
 ### -ObjectId
 
-Specifies the ID of an object.
+Specifies the ID of an administrative unit object.
 
 ```yaml
 Type: System.String
@@ -109,7 +116,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
