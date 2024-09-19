@@ -60,7 +60,7 @@ This example demonstrates how to get the owners of an application in Microsoft E
 
 - `-ObjectId` parameter specifies the unique identifier of an application.
 
-### Example 2: Get the owner of an application with more owner details
+### Example 2: Get the details about the owner of an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
