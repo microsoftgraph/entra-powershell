@@ -84,7 +84,7 @@ odataType                      displayName                         Id
 #microsoft.graph.directoryRole Attribute Definition Reader         11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
-This example demonstrates how to retrieve user memberships in Microsoft Entra ID with additional look up details.
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID with more lookup details.
 
 ### Example 3: Get All memberships
 
