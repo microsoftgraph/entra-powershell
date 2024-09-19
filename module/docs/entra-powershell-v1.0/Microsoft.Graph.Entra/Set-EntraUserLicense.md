@@ -126,6 +126,40 @@ This example demonstrates how to assign a license to a user by copying license f
 - `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
+### Example 3: Remove an assigned User's License
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$UserPrincipalName = 'SawyerM@contoso.com'
+$User = Get-EntraUser -ObjectId $UserPrincipalName
+$SkuId = (Get-EntraUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.RemoveLicenses = $SkuId 
+Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+```
+
+```Output
+Name                           Value
+----                           -----
+displayName                    SawyerM
+id                             cccccccc-2222-3333-4444-dddddddddddd
+jobTitle
+surname                        M
+mail
+userPrincipalName              SawyerM@contoso.com
+mobilePhone
+preferredLanguage
+@odata.context                 https://graph.microsoft.com/v1.0/$metadata#users/$entity
+businessPhones                 {}
+officeLocation
+givenName                      Sawyer
+```
+
+This example demonstrates how to remove a user's license by retrieving the user details.
+
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
+
 ## Parameters
 
 ### -AssignedLicenses
