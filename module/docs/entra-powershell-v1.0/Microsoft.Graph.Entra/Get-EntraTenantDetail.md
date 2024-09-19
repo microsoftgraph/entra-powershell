@@ -88,7 +88,7 @@ This example shows how to retrieve details of a top one tenant in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
-(Get-EntraDetail).AdditionalProperties.directorySizeQuota
+(Get-EntraTenantDetail).AdditionalProperties.directorySizeQuota
 ```
 
 ```Output
