@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Resets the strong authentication method by using a user principal name.
+Resets the strong authentication method using the User Principal Name (UPN).
 
 ## Syntax
 
@@ -33,27 +33,26 @@ Reset-EntraBetaStrongAuthenticationMethodByUpn
 
 ## Description
 
-The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using a user principal name.
+The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN).
 
 ## Examples
 
-### Example 1: Resets the strong authentication method by using a user principal name
+### Example 1: Resets the strong authentication method by using the User Principal Name
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite', 'UserAuthenticationMethod.ReadWrite.All'
-
-Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com'
+Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'SawyerM@contoso.com'
 ```
 
-This example demonstrates how to resets the strong authentication method by using a user principal name.
+This example demonstrates how to reset the strong authentication method by using the User Principal Name (UPN).
 
-- `-UserPrincipalName` Specifies the user principal name for which to reset the strong authentication method.
+- `-UserPrincipalName` parameter specifies the User Principal Name (UPN) of the user whose strong authentication method is being reset.
 
 ## Parameters
 
 ### -UserPrincipalName
 
-Specifies the user principal name for which to reset the strong authentication method.
+Specifies the User Principal Name (UPN) of the user whose strong authentication method is being reset.
 
 ```yaml
 Type: System.String
