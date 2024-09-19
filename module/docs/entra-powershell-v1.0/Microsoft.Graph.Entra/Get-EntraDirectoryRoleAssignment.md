@@ -39,7 +39,6 @@ Get-EntraDirectoryRoleAssignment
 
 ```powershell
 Get-EntraDirectoryRoleAssignment
- [-SearchString <String>]
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -237,22 +236,6 @@ Controls which objects are returned.
 ```yaml
 Type: System.String
 Parameter Sets: GetQuery
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -SearchString
-
-Specifies a search string.
-
-```yaml
-Type: System.String
-Parameter Sets: GetValue
 Aliases:
 
 Required: False
