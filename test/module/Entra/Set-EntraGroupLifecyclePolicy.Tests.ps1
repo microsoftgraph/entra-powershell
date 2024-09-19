@@ -22,7 +22,7 @@ BeforeAll {
     Mock -CommandName Update-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Set-EntraGroupLifecyclePolicy " {
+Describe "Set-EntraGroupLifecyclePolicy" {
     Context "Test for Set-EntraGroupLifecyclePolicy" {
         It "Should return updated GroupLifecyclePolicy" {
             $result = Set-EntraGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"

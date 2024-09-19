@@ -20,7 +20,7 @@ BeforeAll {
     Mock -CommandName Add-MgGroupToLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Add-EntraLifecyclePolicyGroup " {
+Describe "Add-EntraLifecyclePolicyGroup" {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
             $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff

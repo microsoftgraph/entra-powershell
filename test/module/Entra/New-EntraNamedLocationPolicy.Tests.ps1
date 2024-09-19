@@ -32,7 +32,7 @@ BeforeAll {
     Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "New-EntraNamedLocationPolicy " {
+Describe "New-EntraNamedLocationPolicy" {
     Context "Test for New-EntraNamedLocationPolicy" {
         It "Should return created NamedLocationPolicy" {
             $ipRanges1 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
