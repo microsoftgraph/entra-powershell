@@ -73,7 +73,7 @@ DisplayName         Id                                   AppId                  
 ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This example demonstrates how to retrieve specific application by providing ID. 
+This example demonstrates how to retrieve specific application by providing ID.
 
 ### Example 2: Get all applications
 
@@ -131,7 +131,7 @@ DisplayName     Id                                   AppId                      
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
-In this example, we retrieve application by userPrincipalName from Microsoft Entra ID. 
+In this example, we retrieve application by its display name from Microsoft Entra ID.
 
 ### Example 5: Search among retrieved applications
 
@@ -146,7 +146,7 @@ DisplayName          Id                                   AppId                 
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID. 
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
 
 ### Example 6: Retrieve an application by identifierUris
 

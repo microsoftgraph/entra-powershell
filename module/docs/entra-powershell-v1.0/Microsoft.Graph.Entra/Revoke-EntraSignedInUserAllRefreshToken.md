@@ -2,7 +2,6 @@
 title: Revoke-EntraSignedInUserAllRefreshToken
 description: This article provides details on the Revoke-EntraSignedInUserAllRefreshToken command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

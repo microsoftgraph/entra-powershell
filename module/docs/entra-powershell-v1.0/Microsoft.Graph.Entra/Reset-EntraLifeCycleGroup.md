@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Reset-EntraLifeCycleGroup
@@ -32,8 +33,8 @@ Reset-EntraLifeCycleGroup
 
 ## Description
 
-The Reset-EntraLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
-When a group is renewed, it extends the group expiration by the number of days defined in the policy.
+The `Reset-EntraLifeCycleGroup` renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+When a group is renewed, the group expiration is extended by the number of days defined in the policy.
 
 ## Examples
 
@@ -44,14 +45,15 @@ Connect-Entra -Scopes 'Group.ReadWrite.All'
 Reset-EntraLifeCycleGroup -Id 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 ```
 
-This example demonstrates how to renew a specified group.  
-The Reset-EntraLifeCycleGroup renews a specified group by updating the RenewedDateTime property on a group to the current DateTime.
+This example demonstrates how to renew a specified group.
+
+- `-Id` - Specifies the lifecycle policy object ID.
 
 ## Parameters
 
 ### -Id
 
-The unique identifier of group.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -67,7 +69,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

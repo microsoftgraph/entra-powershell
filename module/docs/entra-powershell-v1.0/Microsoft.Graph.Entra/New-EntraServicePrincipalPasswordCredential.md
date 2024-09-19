@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraServicePrincipalPasswordCredential
@@ -43,32 +44,62 @@ The `New-EntraServicePrincipalPasswordCredential` cmdlet creates a password cred
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
+$Params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    StartDate = '2024-04-21T14:14:14Z'
+}
+New-EntraServicePrincipalPasswordCredential @Params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------         ---- -----                                ----------                               -------------
-                                21-03-2026 12:12:13 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 14:14:14
+secretText          : A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
+@odata.type         : #microsoft.graph.servicePrincipal
+endDateTime         : 08-08-2026 10:30:00
+hint                : LY.
+customKeyIdentifier :
+startDateTime       : 08-08-2024 14:14:14
+keyId               : aaaaaaaa-0b0b-1c1c-2d2d-333333333333
+@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('00001111-aaaa-2222-bbbb-3333cccc4444')/addPassword
+displayName         :
+StartDate           : 08-08-2024 14:14:14
+EndDate             : 08-08-2026 10:30:00
 ```
 
-This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.
+This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
+
+- `-ObjectId` parameter specifies the ID of a service principal.
+- `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
 ### Example 2: Create a password credential with EndtDate
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
+$Params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    EndDate = '2030-03-21T14:14:14Z'
+}
+New-EntraServicePrincipalPasswordCredential @Params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------         ---- -----                                ----------                               -------------
-                                21-03-2030 14:14:14 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 12:15:10
+secretText          : A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
+@odata.type         : #microsoft.graph.servicePrincipal
+endDateTime         : 08-08-2026 10:30:00
+hint                : LY.
+customKeyIdentifier :
+startDateTime       : 08-08-2024 14:14:14
+keyId               : bbbbbbbb-1c1c-2d2d-3e3e-444444444444
+@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('00001111-aaaa-2222-bbbb-3333cccc4444')/addPassword
+displayName         :
+StartDate           : 08-08-2024 14:14:14
+EndDate             : 08-08-2026 10:30:00
 ```
 
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the ID of a service principal.
+- `-EndDate` parameter specifies the date and time at which the password expires represented using ISO 8601 format and is always in UTC time.
 
 ## Parameters
 
@@ -90,7 +121,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies an object ID.
+Specifies the ID of the service principal.
 
 ```yaml
 Type: System.String

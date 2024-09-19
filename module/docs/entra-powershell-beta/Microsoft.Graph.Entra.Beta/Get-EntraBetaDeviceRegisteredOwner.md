@@ -36,7 +36,7 @@ Get-EntraBetaDeviceRegisteredOwner
 
 ## Description
 
-The `Get-EntraBetaDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The `Get-EntraBetaDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID. Specify `ObjectId` parameter gets the registered owner of a device.
 
 ## Examples
 
@@ -54,7 +54,9 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
 ```
 
-This example shows how to find the registered owner of a device.
+This example shows how to find the registered owner of a device..
+
+- `-ObjectId` parameter specifies the device's ID
 
 ### Example 2: Retrieve the registered owner of a device
 
@@ -72,6 +74,8 @@ cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Mem
 
 This command gets the registered owner of a device.
 
+- `-ObjectId` parameter specifies the device's ID
+
 ### Example 3: Retrieve all the registered owners of a device
 
 ```powershell
@@ -88,6 +92,8 @@ cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Mem
 
 This command retrieves all the registered owners of a device.
 
+- `-ObjectId` parameter specifies the device's ID.
+
 ### Example 4: Retrieve top one registered owner of a device
 
 ```powershell
@@ -101,7 +107,9 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
 ```
 
-This command retrieves top one registered owner of a device.
+This command retrieves all the registered owners of a device.
+
+- `-ObjectId` parameter specifies the device's ID.
 
 ## Parameters
 
@@ -155,7 +163,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

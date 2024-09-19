@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Select-EntraGroupIdsServicePrincipalIsMemberOf
@@ -33,31 +34,34 @@ Select-EntraGroupIdsServicePrincipalIsMemberOf
 
 ## Description
 
-The Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
+The `Select-EntraGroupIdsServicePrincipalIsMemberOf` cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get the group membership of a group for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
- $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
- $SPId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
+Connect-Entra -Scopes 'Application.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 10).ObjectId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraGroupIdsServicePrincipalIsMemberOf @params
 ```
 
-```output
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
+```Output
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
+This command gets the group membership of a group for a specified service principal.  
+You can use the command `Get-EntraGroup` to get group Id.  
+You can use the command `Get-EntraServicePrincipal` to get service principal Id.
 
-The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
-
-The third command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet, and then stores it in the $SPId variable.
-
-The final command gets the group membership of a group for a service principal identified by $SPId.
+- `-ObjectId` parameter specifies the service principal Id.
+- `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.
 
 ## Parameters
 
@@ -95,7 +99,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
