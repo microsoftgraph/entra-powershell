@@ -64,9 +64,25 @@ Describe "Tests for Get-EntraAdministrativeUnit"{
     }  
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
-        $result = Get-EntraAdministrativeUnit -Top 1
-        $params = Get-Parameters -data $result.Parameters
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+        $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Get-EntraAdministrativeUnit -Top 1 -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    } 
 }
