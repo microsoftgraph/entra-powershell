@@ -15,7 +15,6 @@ Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaServicePrincipalPasswordCredential
 
 schema: 2.0.0
-
 ---
 
 # New-EntraBetaServicePrincipalPasswordCredential

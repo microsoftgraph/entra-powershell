@@ -2,13 +2,13 @@
 title: Set-EntraUserPassword
 description: This article provides details on the Set-EntraUserPassword command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserPassword
@@ -45,40 +45,51 @@ Any user can update their password without belonging to any administrator role.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-Set-EntraUserPassword -ObjectId  'bbbbbbbb-1111-2222-3333-cccccccccccc' -Password $password
+$newPassword = <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
+
+- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-Password` parameter specifies the password to set.
 
 ### Example 2: Set a user's password with EnforceChangePasswordPolicy parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$newPassword= <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-    Password = $password
     EnforceChangePasswordPolicy = $true
 }
-
-Set-EntraUserPassword @params
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
 
+- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-Password` parameter specifies the password to set.
+- `-EnforceChangePasswordPolicy` parameter force the user to change their password, if set to true.
+
 ### Example 3: Set a user's password with ForceChangePasswordNextLogin parameter
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$newPassword= <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-    Password = $password
     ForceChangePasswordNextLogin = $true
 }
-
-Set-EntraUserPassword @params
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
+
+- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-Password` parameter specifies the password to set.
+- `-ForceChangePasswordNextLogin` parameter forces a user to change their password during their next log in.
 
 ## Parameters
 

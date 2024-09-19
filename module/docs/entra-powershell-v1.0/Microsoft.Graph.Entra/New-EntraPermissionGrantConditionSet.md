@@ -27,7 +27,7 @@ Create a new Microsoft Entra ID permission grant condition set in a given policy
 
 ```powershell
 New-EntraPermissionGrantConditionSet 
- -PolicyId <String> 
+ -PolicyId <String>
  -ConditionSetType <String>
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
  [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>]
@@ -50,10 +50,11 @@ Create a new Microsoft Entra ID permission grant condition set object in an exis
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'test1'
-    ConditionSetType = 'includes'
-    PermissionType = 'delegated'
+PolicyId = $permissionGrantPolicyId
+ConditionSetType = 'includes'
+PermissionType = 'delegated'
 }
 
 New-EntraPermissionGrantConditionSet @params
@@ -65,18 +66,24 @@ Id                                   ClientApplicationIds ClientApplicationPubli
 aaaa0000-bb11-2222-33cc-444444dddddd {all}                {all}                         {all}                      False                                       all                      delegated      {all}
 ```
 
- This command creates a basic permission grant condition set in an existing policy with all build in values.
+This command creates a basic permission grant condition set in an existing policy with all build in values.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-PermissionType` parameter specifies the type of permissions (application, delegated) to scope consent operation down to.
 
 ### Example 2: Create a permission grant condition set in an existing policy that includes specific permissions for a resource application
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
+$permission = (Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles.Id
 $params = @{
-    PolicyId = 'test1'
-    ConditionSetType = 'includes'
-    PermissionType = 'delegated'
-    Permissions = @('8b590330-0eb2-45d0-baca-a00ecf7e7b87', 'dac1c8fa-e6e4-47b8-a128-599660b8cd5c', 'f6db0cc3-88cd-4c74-a374-3d8c7cc4c50b')
-    ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+PolicyId = $permissionGrantPolicyId
+ConditionSetType = 'includes'
+PermissionType = 'delegated'
+Permissions = @($permission)
+ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 }
 
 New-EntraPermissionGrantConditionSet @params
@@ -90,33 +97,90 @@ aaaa0000-bb11-2222-33cc-444444dddddd {all}                {all}                 
 
 This command creates a permission grant condition set in an existing policy that includes specific permissions for a resource application.
 
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-PermissionType` parameter specifies the type of permissions (application, delegated) to scope consent operation down to.
+- `-Permissions` parameter specifies the identifier of the resource application to scope consent operation down to. It could be @("All") or a list of permission IDs.
+- `-ResourceApplication` parameter specifies identifier of the resource application to scope consent operation down to. It could be "Any" or a specific resource application ID.
+
 ### Example 3: Create a permission grant condition set in an existing policy that is excluded
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'test1'
-    ConditionSetType = 'excludes'
-    PermissionType = 'delegated'
-    Permissions = @('8b590330-0eb2-45d0-baca-a00ecf7e7b87', 'dac1c8fa-e6e4-47b8-a128-599660b8cd5c', 'f6db0cc3-88cd-4c74-a374-3d8c7cc4c50b')
-    ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    PermissionClassification = 'low'
-    ClientApplicationsFromVerifiedPublisherOnly = $true
-    ClientApplicationIds = @('00001111-aaaa-2222-bbbb-3333cccc4444', '11112222-bbbb-3333-cccc-4444dddd5555')
-    ClientApplicationTenantIds = @('aaaabbbb-0000-cccc-1111-dddd2222eeee', 'bbbbcccc-1111-dddd-2222-eeee3333ffff', 'ccccdddd-2222-eeee-3333-ffff4444aaaa')
-    ClientApplicationPublisherIds = @('verifiedpublishermpnid')
+PolicyId = $permissionGrantPolicyId
+ConditionSetType = 'excludes'
+PermissionType = 'delegated'
+Permissions = @('All')
+ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+PermissionClassification = 'low'
+ClientApplicationsFromVerifiedPublisherOnly = $true
+ClientApplicationIds = @('All')
+ClientApplicationTenantIds = @('All')
+ClientApplicationPublisherIds = @('All')
 }
-
 New-EntraPermissionGrantConditionSet @params
 ```
 
 ```Output
-Id                                   ClientApplicationIds                                                         ClientApplicationPublisherIds ClientApplicationTenantIds
---                                   --------------------                                                         ----------------------------- --------------------------
-aaaa0000-bb11-2222-33cc-444444dddddd {00001111-aaaa-2222-bbbb-3333cccc4444, 11112222-bbbb-3333-cccc-4444dddd5555} {verifiedpublishermpnid}      {aaaabbbb-0000-cccc-1111-dddd2222eeee, bbbbcccc-1111-dddd-2222-eeee3333ffff...
+Id                                   CertifiedClientApplicationsOnly ClientApplicationIds ClientApplicationPublisherIds ClientApplicationTenantIds ClientApplicationsFromVerifiedPublisherOnly PermissionClassification
+--                                   ------------------------------- -------------------- ----------------------------- -------------------------- ------------------------------------------- -------------------
+dddd3333-ee44-5555-66ff-777777aaaaaa False                           {all}                {all}                         {all}                      True                                        low
 ```
 
 This command creates a permission grant condition set in an existing policy that is excluded.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-PermissionType` parameter specifies the type of permissions (application, delegated) to scope consent operation down to.
+- `-Permissions` parameter specifies the identifier of the resource application to scope consent operation down to. It could be @("All") or a list of permission IDs.
+- `-ResourceApplication` parameter specifies identifier of the resource application to scope consent operation down to. It could be "Any" or a specific resource application ID.
+- `-PermissionClassification` parameter specifies the specific classification (all, low, medium, high) to scope consent operation down to.
+- `-ClientApplicationsFromVerifiedPublisherOnly` parameter indicates whether to only includes client applications from verified publishers.
+- `-ClientApplicationIds` parameter specifies the set of client application IDs to scope consent operation down to. It could be @("All") or a list of client application IDs.
+- `-ClientApplicationTenantIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
+- `-ClientApplicationPublisherIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
+
+### Example 4: Create a permission grant condition set in an existing policy that is excluded
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
+$permission = (Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayname>'").AppRoles.Id
+$params = @{
+PolicyId = $permissionGrantPolicyId
+ConditionSetType = 'excludes'
+PermissionType = 'delegated'
+Permissions = @($permission)
+ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+PermissionClassification = 'low'
+ClientApplicationsFromVerifiedPublisherOnly = $true
+ClientApplicationIds = @('00001111-aaaa-2222-bbbb-3333cccc4444', '11112222-bbbb-3333-cccc-4444dddd5555')
+ClientApplicationTenantIds = @('aaaabbbb-0000-cccc-1111-dddd2222eeee', 'bbbbcccc-1111-dddd-2222-eeee3333ffff', 'ccccdddd-2222-eeee-3333-ffff4444aaaa')
+ClientApplicationPublisherIds = @('33334444-dddd-5555-eeee-6666ffff7777')
+}
+New-EntraPermissionGrantConditionSet @params
+```
+
+```Output
+Id                                   CertifiedClientApplicationsOnly ClientApplicationIds                                                         ClientApplicationPublisherIds          ClientApplicationTenantIds
+--                                   ------------------------------- --------------------                                                         -----------------------------          --------------------
+cccccccc-2222-3333-4444-dddddddddddd False                           {33334444-dddd-5555-eeee-6666ffff7777} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {aaaabbbb-0000-cccc-1111-dddd2222eeee}
+```
+
+This command creates a permission grant condition set in an existing policy that is excluded.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-PermissionType` parameter specifies the type of permissions (application, delegated) to scope consent operation down to.
+- `-Permissions` parameter specifies the identifier of the resource application to scope consent operation down to. It could be @("All") or a list of permission IDs.
+- `-ResourceApplication` parameter specifies identifier of the resource application to scope consent operation down to. It could be "Any" or a specific resource application ID.
+- `-PermissionClassification` parameter specifies the specific classification (all, low, medium, high) to scope consent operation down to.
+- `-ClientApplicationsFromVerifiedPublisherOnly` parameter indicates whether to only includes client applications from verified publishers.
+- `-ClientApplicationIds` parameter specifies the set of client application IDs to scope consent operation down to. It could be @("All") or a list of client application IDs.
+- `-ClientApplicationTenantIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
+- `-ClientApplicationPublisherIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
 
 ## Parameters
 
@@ -204,7 +268,7 @@ Accept wildcard characters: False
 ### -ClientApplicationIds
 
 The set of client application IDs to scope consent operation down to.
-It could be @("All") or a list of client application Ids.
+It could be @("All") or a list of client application IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]

@@ -47,7 +47,9 @@ Get-EntraDeletedApplication
 
 ## Description
 
-Retrieves the list of previously deleted applications.
+The `Get-EntraDeletedApplication` cmdlet Retrieves the list of previously deleted applications.
+
+Note: Deleted security groups are permanently removed and cannot be retrieved.
 
 ## Examples
 
@@ -58,7 +60,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraDeletedApplication
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -76,7 +78,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraDeletedApplication -All
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -94,7 +96,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraDeletedApplication -Top 2
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -110,7 +112,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraDeletedApplication -SearchString 'TestApp1'
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -122,10 +124,10 @@ This cmdlet retrieves deleted applications using SearchString parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraDeletedApplication -Filter "DisplayName contains 'TestApp1'"
+Get-EntraDeletedApplication -Filter "DisplayName eq 'TestApp1'"
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -139,8 +141,7 @@ This cmdlet retrieves deleted applications having specified display name.
 
 List all pages.
 
-```
-
+```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
@@ -234,3 +235,5 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 ## Notes
 
 ## Related Links
+
+[Get-EntraApplication](Get-EntraApplication.md)

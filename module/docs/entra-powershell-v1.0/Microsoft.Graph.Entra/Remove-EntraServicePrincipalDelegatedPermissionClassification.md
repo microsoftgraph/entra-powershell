@@ -33,7 +33,7 @@ Remove-EntraServicePrincipalDelegatedPermissionClassification
 
 ## Description
 
-The Remove-EntraServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by ID from service principal.
+The `Remove-EntraServicePrincipalDelegatedPermissionClassification` cmdlet deletes the given delegated permission classification by Id from service principal.
 
 ## Examples
 
@@ -41,10 +41,18 @@ The Remove-EntraServicePrincipalDelegatedPermissionClassification cmdlet deletes
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-Remove-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId '11112222-bbbb-3333-cccc-4444dddd5555' -Id '3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+    ServicePrincipalId = $ServicePrincipal.ObjectId
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+}
+Remove-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
-This command deletes the delegated permission classification by ID from the service principal.
+This command deletes the delegated permission classification by Id from the service principal.
+
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+- `-Id` parameter specifies the unique identifier of a delegated permission classification object Id.
 
 ## Parameters
 
@@ -66,7 +74,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of a delegated permission classification object ID.
+The unique identifier of a delegated permission classification object Id.
 
 ```yaml
 Type: System.String
@@ -82,7 +90,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraAdministrativeUnit
@@ -33,45 +34,47 @@ Set-EntraAdministrativeUnit
 
 ## Description
 
-The `Set-EntraAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Use the `ObjectId` parameter to specify the unit to update.
+The `Set-EntraAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Specify `Id` parameter to update a specific administrative unit.
 
-In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with `microsoft.directory/administrativeUnits/allProperties/allTasks permission`. The least privileged role for this operation is Privileged Role Administrator
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission.
+
+The Privileged Role Administrator is the least privileged role required for this operation.
 
 ## Examples
 
-### Example 1: Update Description
+### Example 1: Update DisplayName
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    Description = 'Updated AU Description'
-}
-Set-EntraAdministrativeUnit @params
-```
-
-This Command update Description of specific administrative unit.
-
-- `-ObjectId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
-
-- `-Description` - Specifies a description, which you want to update.
-
-### Example 2: Update DisplayName
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = $AdministrativeUnit.ObjectId
     DisplayName = 'UpdatedAU'
 }
 Set-EntraAdministrativeUnit @params
 ```
 
-This Command update DisplayName specific administrative unit.
+This Command update DisplayName of specific administrative unit.
 
-- `-ObjectId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
+- `-ObjectId` parameter specifies the Id of an administrative unit.
+- `-DisplayName` parameter specifies the display name for the administrative unit.
 
-- `-DisplayName` - Specifies a display name, which you want to update.
+### Example 2: Update Description
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
+$params = @{
+    ObjectId = $AdministrativeUnit.ObjectId
+    Description = 'Updated AU Description'
+}
+Set-EntraAdministrativeUnit @params
+```
+
+This example shows how to update the description of a specific administrative unit.
+
+- `-ObjectId` parameter specifies the Id of an administrative unit.
+- `-Description` parameter specifies the description for the administrative unit.
 
 ## Parameters
 
@@ -109,7 +112,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of an administrative unit in Microsoft Entra ID
+Specifies the Id of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
