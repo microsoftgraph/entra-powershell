@@ -263,6 +263,10 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
+## Notes
+
+`Get-EntraBetaRoleDefinition` is an alias for `Get-EntraBetaDirectoryRoleDefinition`.
+
 ## Related Links
 
 [New-EntraBetaDirectoryRoleDefinition](New-EntraBetaDirectoryRoleDefinition.md)

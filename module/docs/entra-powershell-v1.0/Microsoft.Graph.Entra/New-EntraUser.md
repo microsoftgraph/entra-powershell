@@ -28,7 +28,7 @@ Creates a Microsoft Entra ID user.
 ```powershell
 New-EntraUser 
  -DisplayName <String>
- -AccountEnabled <Boolean> 
+ -AccountEnabled <Boolean>
  -PasswordProfile <PasswordProfile>
  [-City <String>] 
  [-UserStateChangedOn <String>] 
@@ -66,7 +66,7 @@ New-EntraUser
 
 ## Description
 
-The New-EntraUser cmdlet creates a user in Microsoft Entra ID.
+The `New-EntraUser` cmdlet creates a user in Microsoft Entra ID. Specify the `DisplayName`,`AccountEnabled`, and `PasswordProfile` parameter to create a user.
 
 ## Examples
 
@@ -76,7 +76,6 @@ The New-EntraUser cmdlet creates a user in Microsoft Entra ID.
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
-
 $userParams = @{
     DisplayName       = 'Avery Iona'
     PasswordProfile   = $PasswordProfile
@@ -142,7 +141,7 @@ $userParams = @{
 New-EntraUser @userParams
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 cccccccc-2222-3333-4444-dddddddddddd Blake Martin    BlakeM@contoso.com             Member
@@ -156,7 +155,6 @@ This command creates a new user.
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
-
 $userParams = @{
     DisplayName       = 'Parker Jones'
     PasswordProfile   = $PasswordProfile
@@ -259,9 +257,8 @@ Accept wildcard characters: False
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
 
-- When creating a local account, the property is required and you must set it to "LocalAccount".
-
-- When creating a work or school account, don't specify the property or set it to null.
+- When user creating a local account, the property is required and you must set it to "LocalAccount".
+- When user creating a work or school account, don't specify the property or set it to null.
 
 ```yaml
 Type: System.String
@@ -424,7 +421,7 @@ Accept wildcard characters: False
 
 ### -OtherMails
 
-A list of other email addresses for the user; for example: 'bob@contoso.com', 'robert@fabrikam.com'.
+A list of other email addresses for the user; for example: "<bob@contoso.com>", "<Robert@fabrikam.com>".
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -477,9 +474,9 @@ New-EntraUser -PasswordProfile $PasswordProfile ...
 
 Other attributes that can be set in the PasswordProfile are
 
-$PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.
+- $PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.
 
-ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
+- ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
 
 ```yaml
 Type: PasswordProfile
@@ -665,11 +662,12 @@ Accept wildcard characters: False
 
 The user principal name (UPN) of the user.
 
-The UPN is an Internet-style login name for the user based on the Internet standard RFC 822.
+The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822.
 
-By convention, this should map to the user's email name.
+By convention, this UPN should map to the user's email name.
 
 The general format is "alias@domain".
+
 For work or school accounts, the domain must be present in the tenant's collection of verified domains.
 
 This property is required when a work or school account is created; it's optional for local accounts.
@@ -704,7 +702,7 @@ Accept wildcard characters: False
 
 ### -FacsimileTelephoneNumber
 
-This specifies the user's telephone number.
+Specifies the user's telephone number.
 
 ```yaml
 Type: System.String
@@ -720,7 +718,7 @@ Accept wildcard characters: False
 
 ### -AgeGroup
 
-This specifies the user's age group.
+Specifies the user's age group.
 
 ```yaml
 Type: System.String
@@ -736,7 +734,7 @@ Accept wildcard characters: False
 
 ### -CompanyName
 
-This specifies the user's company name.
+Specifies the user's company name.
 
 ```yaml
 Type: System.String
@@ -768,7 +766,8 @@ Accept wildcard characters: False
 
 ### -UserState
 
-For an external user invited to the tenant using the invitation API, this property represents the invited user's invitation status.
+For an external user invited to the tenant using the invitation API, this property represents the invited user's
+invitation status.
 
 ```yaml
 Type: System.String

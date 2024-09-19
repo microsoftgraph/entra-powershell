@@ -51,15 +51,14 @@ New-EntraApplication
 
 ## Description
 
-Creates (registers) a new application object.
+Creates (registers) a new application object. Specify the `DisplayName` parameter to create a new application.
 
 ## Examples
 
 ### Example 1: Create an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 New-EntraApplication -DisplayName 'My new application'
 ```
 
@@ -74,8 +73,7 @@ This command creates an application in Microsoft Entra ID.
 ### Example 2: Create an application using IdentifierUris parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 New-EntraApplication -DisplayName 'My new application' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
@@ -90,9 +88,7 @@ This command creates an application in Microsoft Entra ID.
 ### Example 3: Create an application using AddIns parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $addin = New-Object Microsoft.Open.MSGraph.Model.AddIn
 $addin.Type = 'testtype'
 $addinproperties = New-Object System.collections.Generic.List[Microsoft.Open.MSGraph.Model.KeyValue]
@@ -115,9 +111,9 @@ This command creates an application in Microsoft Entra ID.
 
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
 
-For example, applications that can render file streams might set the addIns property for its "FileHandler" functionality.
+For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
 
-This lets services like Office 365 call the application in the context of a document the user is working on.
+This will let services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
@@ -198,7 +194,7 @@ Accept wildcard characters: False
 
 ### -IdentifierUris
 
-User-defined URIs that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multitenant.
+User-defined URI(s) that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
 
 The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
 
@@ -343,9 +339,6 @@ Accept wildcard characters: False
 Specifies whether this application is a public client (such as an installed application running on a mobile device).
 Default is false.
 
-Specifies whether this application is a public client (such as an installed application running on a mobile device).
-Default is false.
-
 ```yaml
 Type: PublicClientApplication
 Parameter Sets: (All)
@@ -362,7 +355,7 @@ Accept wildcard characters: False
 
 Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
 
-This preconfiguration of required resource access drives the consent experience.
+This pre-configuration of required resource access drives the consent experience.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]

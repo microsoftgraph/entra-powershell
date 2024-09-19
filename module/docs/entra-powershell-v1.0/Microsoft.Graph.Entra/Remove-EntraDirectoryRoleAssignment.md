@@ -39,12 +39,13 @@ The `Remove-EntraDirectoryRoleAssignment` cmdlet removes a role assignment from 
 ### Example 1: Remove a role assignment
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
- Remove-EntraDirectoryRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
+Remove-EntraDirectoryRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
 ```
 
-Removes the specified role assignment from Microsoft Entra ID.
+This example removes the specified role assignment from Microsoft Entra ID.
+
+- `-Id` parameter specifies the role assignment ID.
 
 ## Parameters
 
@@ -58,7 +59,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -70,9 +71,15 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
+### System.String
+
 ## Outputs
 
+### System.Object
+
 ## Notes
+
+`Remove-EntraRoleAssignment` is an alias for `Remove-EntraDirectoryRoleAssignment`.
 
 ## Related Links
 
