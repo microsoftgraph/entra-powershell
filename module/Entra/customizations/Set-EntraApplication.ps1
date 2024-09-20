@@ -21,6 +21,7 @@
     [System.String] $DisplayName,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ApplicationId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
