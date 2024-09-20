@@ -99,7 +99,7 @@ This identifier can be up to 32 characters long and may include Unicode characte
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

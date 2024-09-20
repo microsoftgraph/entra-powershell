@@ -83,7 +83,7 @@ The Id of the directory object to retrieve.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

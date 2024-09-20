@@ -132,7 +132,7 @@ The Object ID of the user for which the user thumbnail photo is set.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: False
 Position: Named
