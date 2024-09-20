@@ -429,6 +429,8 @@ public $($object.GetType().Name)()
             GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
+            CmdletsToExport=@()
+            AliasesToExport=@()
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files

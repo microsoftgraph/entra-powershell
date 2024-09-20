@@ -50,7 +50,6 @@ Get-EntraBetaDirectoryRoleAssignment
 ```powershell
 Get-EntraBetaDirectoryRoleAssignment
  [-All]
- [-SearchString <String>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -224,22 +223,6 @@ Parameter Sets: GetById
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -SearchString
-
-Specifies a search string.
-
-```yaml
-Type: System.String
-Parameter Sets: GetValue
-Aliases:
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
