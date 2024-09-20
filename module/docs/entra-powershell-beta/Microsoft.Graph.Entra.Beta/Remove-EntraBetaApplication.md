@@ -25,13 +25,13 @@ Deletes an application object.
 
 ```powershell
 Remove-EntraBetaApplication 
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaApplication` cmdlet deletes an application object identified by ObjectId. Specify the `ObjectId` parameter to delete an application object.
+The `Remove-EntraBetaApplication` cmdlet deletes an application object identified by ApplicationId. Specify the `ApplicationId` parameter to delete an application object.
 
 ## Examples
 
@@ -40,14 +40,14 @@ The `Remove-EntraBetaApplication` cmdlet deletes an application object identifie
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Remove-EntraBetaApplication -ObjectId $Application.ObjectId
+Remove-EntraBetaApplication -ApplicationId $Application.ObjectId
 ```
 
 This example demonstrates how to delete an application object.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 

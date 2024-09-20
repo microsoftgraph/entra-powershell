@@ -26,7 +26,7 @@ This cmdlet is used to delete an identity provider in the directory.
 
 ```powershell
 Remove-EntraIdentityProvider 
- -Id <String> 
+ -IdentityProviderBaseId <String> 
  [<CommonParameters>]
 ```
 
@@ -44,16 +44,16 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-Remove-EntraIdentityProvider -Id 'LinkedIn-OAUTH'
+Remove-EntraIdentityProvider -IdentityProviderBaseId 'LinkedIn-OAUTH'
 ```
 
 This command demonstrates how to remove the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 
 ## Parameters
 
-### -Id
+### -IdentityProviderBaseId
 
 The unique identifier for an identity provider.
 

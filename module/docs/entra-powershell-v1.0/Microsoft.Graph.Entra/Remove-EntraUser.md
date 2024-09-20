@@ -26,7 +26,7 @@ Removes a user.
 
 ```powershell
 Remove-EntraUser 
- -ObjectId <String>
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -46,16 +46,16 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraUser -ObjectId 'SawyerM@Contoso.com'
+Remove-EntraUser -UserId 'SawyerM@Contoso.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
