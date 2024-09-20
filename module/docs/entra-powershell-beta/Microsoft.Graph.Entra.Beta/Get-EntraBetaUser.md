@@ -219,6 +219,24 @@ Sales & Marketing              1
 
 This example demonstrates how to retrieve user count in each department.
 
+### Example 10: List disabled users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$disabledUsersWithLicenses = Get-EntraBetaUser -Filter "accountEnabled eq false" -All | Where-Object {
+    $_.AssignedLicenses -ne $null -and $_.AssignedLicenses.Count -gt 0
+}
+$disabledUsersWithLicenses | Select-Object Id, DisplayName, UserPrincipalName, AccountEnabled | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName           AccountEnabled
+--                                   -----------  -----------------           --------------
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com          False
+```
+
+This example demonstrates how to retrieve disabled users with active licenses.
+
 ## Parameters
 
 ### -All
