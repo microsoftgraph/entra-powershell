@@ -55,5 +55,28 @@ Describe "Get-EntraDirSyncFeature" {
         It "Should fail when invalid paramter is passed"{
             { Get-EntraDirSyncFeature -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
         }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirSyncFeature"
+            $result = Get-EntraDirSyncFeature -Feature PasswordSync
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirSyncFeature"
+            Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraDirSyncFeature -Feature PasswordSync -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
