@@ -66,7 +66,7 @@ You can also find ApplicationId in the Microsoft Portal by navigating to Microso
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

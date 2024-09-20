@@ -108,7 +108,7 @@ Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
