@@ -190,6 +190,34 @@ cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/
 
 This example demonstrates how to retrieve all users based in India.
 
+### Example 9: List user count per department
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$departmentCounts = Get-EntraUser -All | Group-Object -Property Department | Select-Object Name, @{Name="MemberCount"; Expression={$_.Count}}
+$departmentCounts | Format-Table Name, MemberCount -AutoSize
+```
+
+```Output
+Name                 MemberCount
+----                 -----------
+                               7
+Engineering                    2
+Executive Management           1
+Finance                        1
+HR                             1
+Legal                          1
+Manufacturing                  1
+Marketing                      2
+Operations                     1
+R&D                            2
+Retail                         2
+Sales                          1
+Sales & Marketing              1
+```
+
+This example demonstrates how to retrieve user count in each department.
+
 ## Parameters
 
 ### -All
