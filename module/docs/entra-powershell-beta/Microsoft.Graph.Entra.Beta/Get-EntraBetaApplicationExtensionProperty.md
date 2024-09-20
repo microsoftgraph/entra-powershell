@@ -26,7 +26,7 @@ Gets application extension properties.
 
 ```powershell
 Get-EntraBetaApplicationExtensionProperty
- -ObjectId <String>
+ -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -42,7 +42,7 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationExtensionProperty -ObjectId $Application.ObjectId
+Get-EntraBetaApplicationExtensionProperty -ApplicationId $Application.ObjectId
 ```
 
 ```Output
@@ -53,11 +53,11 @@ DeletedDateTime Id                                   AppDisplayName DataType IsM
 
 This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraBetaApplication` to get application Id.
 
-- `-ObjectId` parameter specifies the the unique identifier of a application.
+- `-ApplicationId` parameter specifies the the unique identifier of a application.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
