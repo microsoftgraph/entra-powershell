@@ -19,6 +19,12 @@ Describe "Remove-EntraGroup" {
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific user with Alias" {
+            $result = Remove-EntraGroup -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when GroupId is invalid" {
             { Remove-EntraGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }

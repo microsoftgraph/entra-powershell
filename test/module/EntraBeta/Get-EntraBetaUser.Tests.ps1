@@ -169,5 +169,13 @@ Describe "Get-EntraBetaUser" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
+        It "Should return specific user with Alias" {
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
     }
 }

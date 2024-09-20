@@ -2,7 +2,6 @@
 title: Remove-EntraServicePrincipalPasswordCredential
 description: This article provides details on the Remove-EntraServicePrincipalPasswordCredential command.
 
-
 ms.topic: reference
 ms.date: 08/20/2024
 ms.author: eunicewaweru
@@ -37,7 +36,7 @@ The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password c
 
 ## Examples
 
-### Example 1: Remove a password credential from a service principal
+### Example 1: Remove a password credential from a service principal in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
@@ -46,7 +45,6 @@ $Params = @{
     ServicePrincipalId = $ServicePrincipal.ObjectId
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
-
 Remove-EntraServicePrincipalPasswordCredential @Params
 ```
 
