@@ -38,6 +38,12 @@ Describe "Tests for Add-EntraScopedRoleMembership"{
         $result.Id | should -Be @('NewDummyId')
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
+    It "Result should not be empty with ObjectId"{
+        $result = Add-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $result | Should -Not -BeNullOrEmpty
+        $result.Id | should -Be @('NewDummyId')
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
     It "Should fail when AdministrativeUnitId is invalid" {
         { Add-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }

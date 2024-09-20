@@ -4,6 +4,7 @@
 function Get-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
+    [Alias("ObjectId")]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

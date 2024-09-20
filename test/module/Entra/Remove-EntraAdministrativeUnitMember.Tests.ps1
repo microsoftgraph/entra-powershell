@@ -19,6 +19,11 @@ Describe "Test for Remove-EntraAdministrativeUnitMember" {
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
+    It "Should return empty object with ObjectId" {
+        $result = Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
     It "Should fail when AdministrativeUnitId is empty" {
         { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }

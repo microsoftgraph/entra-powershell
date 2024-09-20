@@ -29,6 +29,11 @@ Describe "Tests for Get-EntraAdministrativeUnitMember"{
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
+    It "Result should not be empty objectId"{
+        $result = Get-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
     It "Should fail when AdministrativeUnitId is empty" {
         { Get-EntraAdministrativeUnitMember -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }

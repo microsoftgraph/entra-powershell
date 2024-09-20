@@ -6,6 +6,7 @@ function Add-EntraAdministrativeUnitMember {
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $RefObjectId,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId
     )

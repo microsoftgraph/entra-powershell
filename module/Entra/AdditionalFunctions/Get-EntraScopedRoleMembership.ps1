@@ -4,6 +4,7 @@
 function Get-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

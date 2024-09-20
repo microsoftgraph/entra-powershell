@@ -4,6 +4,7 @@
 function Remove-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

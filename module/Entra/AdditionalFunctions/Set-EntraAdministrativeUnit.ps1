@@ -4,6 +4,7 @@
 function Set-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
