@@ -2,7 +2,6 @@
 title: Set-EntraBetaUserPassword
 description: This article provides details on the Set-EntraBetaUserPassword command.
 
-
 ms.topic: reference
 ms.date: 07/24/2024
 ms.author: eunicewaweru
@@ -61,11 +60,10 @@ This command sets the specified user's password.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= <Password>
-$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
- 
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
 $params = @{
     EnforceChangePasswordPolicy = $true
- }
+}
 Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
@@ -81,7 +79,6 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= <Password>
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-
 $params = @{
     ForceChangePasswordNextLogin = $true
 }
@@ -114,7 +111,7 @@ Accept wildcard characters: False
 
 ### -ForceChangePasswordNextLogin
 
-Forces a user to change their password during their next log in.
+Forces a user to change their password during their next sign in.
 
 ```yaml
 Type: System.Boolean

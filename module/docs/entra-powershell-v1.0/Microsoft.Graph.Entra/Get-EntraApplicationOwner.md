@@ -61,7 +61,35 @@ This example demonstrates how to get the owners of an application in Microsoft E
 
 - `-ObjectId` parameter specifies the unique identifier of an application.
 
-### Example 2: Get all owners of an application
+### Example 2: Get the details about the owner of an application
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -SearchString '<application-name>'
+$applicationOwners = Get-EntraApplicationOwner -ObjectId $application.ObjectId
+$ownerDetails = $applicationOwners | ForEach-Object {
+    $ownerDetail = Get-EntraObjectByObjectId -ObjectIds $_.Id
+    [PSCustomObject]@{
+        displayName      = $ownerDetail.displayName
+        Id               = $ownerDetail.Id
+        UserPrincipalName = $ownerDetail.UserPrincipalName
+        UserType         = $ownerDetail.UserType
+        accountEnabled   = $ownerDetail.accountEnabled
+    }
+}
+$ownerDetails | Format-Table -Property displayName, Id, UserPrincipalName, UserType, accountEnabled -AutoSize
+```
+
+```Output
+displayName    Id                                   UserPrincipalName             UserType accountEnabled
+-----------    --                                   -----------------             -------- --------------
+Sawyer Miller  bbbbbbbb-1111-2222-3333-cccccccccccc SawyerM@contoso.com           Member   True
+Adele Vance    ec5813fb-346e-4a33-a014-b55ffee3662b AdeleV@contoso.com            Member   True
+```
+
+This example demonstrates how to get the owners of an application in Microsoft Entra ID with more owner lookup details.
+
+### Example 3: Get all owners of an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
@@ -82,7 +110,7 @@ This example demonstrates how to get the all owners of a specified application i
 
 - `-ObjectId` parameter specifies the unique identifier of an application.
 
-### Example 3: Get top two owners of an application
+### Example 4: Get top two owners of an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'

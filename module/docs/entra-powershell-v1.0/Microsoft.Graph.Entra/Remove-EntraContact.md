@@ -26,7 +26,7 @@ Removes a contact.
 
 ```powershell
 Remove-EntraContact 
- -ObjectId <String> 
+ -OrgContactId <String> 
  [<CommonParameters>]
 ```
 
@@ -41,21 +41,21 @@ The `Remove-EntraContact` removes a contact from Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Remove-EntraContact -ObjectId $Contact.ObjectId
+Remove-EntraContact -OrgContactId $Contact.ObjectId
 ```
 
 The example shows how to remove a contact.
 
 ## Parameters
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -180,4 +180,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
+## Notes
+
+`Get-EntraBetaAuditSignInLogs` is an alias for `Get-EntraBetaAuditSignInLog`.
+
+
 ## Related Links
