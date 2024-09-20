@@ -171,6 +171,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Get-EntraServiceAppRoleAssignment` is an alias for `Get-EntraServicePrincipalAppRoleAssignment`.
+
 ## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

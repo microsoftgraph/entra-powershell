@@ -14,7 +14,7 @@ BeforeAll{
 
 Describe "Connect-Entra Mock"{
     It "should return empty object"{
-        $result = Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
+        $result = Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -83,4 +83,18 @@ Describe "Connect-Entra ParameterSets"{
         $AccessTokenParameterSet | Should -Not -BeNull
         @('AccessToken', 'Environment', 'ClientTimeout') | Should -BeIn $AccessTokenParameterSet.Parameters.Name
     }
+
+    It "Should execute successfully without throwing an error" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+        
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            {  Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    } 
 }

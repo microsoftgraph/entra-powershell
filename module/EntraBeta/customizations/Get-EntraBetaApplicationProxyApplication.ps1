@@ -7,14 +7,23 @@
     Parameters   = $null
     Outputs      = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias("ObjectId")]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
+
     PROCESS {        
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
         }
-        if ($null -ne $PSBoundParameters["ObjectId"]) {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["ApplicationId"]) {
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
             $params["Select"] = "onPremisesPublishing"
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {

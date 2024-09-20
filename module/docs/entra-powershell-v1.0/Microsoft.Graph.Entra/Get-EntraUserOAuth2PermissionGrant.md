@@ -145,7 +145,7 @@ Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft E
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

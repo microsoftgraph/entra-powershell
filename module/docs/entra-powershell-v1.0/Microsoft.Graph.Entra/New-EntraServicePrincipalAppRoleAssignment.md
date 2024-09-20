@@ -26,7 +26,7 @@ Assigns a service principal to an application role.
 
 ```powershell
 New-EntraServicePrincipalAppRoleAssignment 
- -ObjectId <String> 
+ -ObjectId <String>
  -PrincipalId <String> 
  -Id <String> 
  -ResourceId <String>
@@ -59,7 +59,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $spo.ObjectId
 }
 
@@ -67,17 +67,17 @@ New-EntraServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:05:29 AM Box                  aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 aaaa0000-bb11-2222-33cc-444444dddddd
 ```
 
-This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID.
+This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID. You can use the command `Get-EntraServicePrincipal` to get a service principal Id.
 
-- `ObjectId`:  The ObjectId of the client service principal to which you're assigning the app role.
-- `ResourceId`: The ObjectId of the resource service principal (for example, an API).
-- `Id`: The Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
-- `PrincipalId`: The ObjectId of the client service principal to which you're assigning the app role.
+- `-ObjectId` parameter specifies the ObjectId of a client service principal to which you're assigning the app role.
+- `-ResourceId`parameter specifies the ObjectId of the resource service principal.
+- `-Id` parameter specifies the Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
+- `-PrincipalId` parameter specifies the ObjectId of the client service principal to which you're assigning the app role.
 
 ### Example 2: Assign an app role to a user
 
@@ -90,7 +90,7 @@ This example demonstrates how to assign an app role to another service principal
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $user.ObjectId
 }
 
@@ -98,17 +98,19 @@ New-EntraServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:07:15 AM Test Contoso         aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 bbbb1111-cc22-3333-44dd-555555eeeeee
 ```
 
-This example demonstrates how to assign an app role to a user in Microsoft Entra ID.
+This example demonstrates how to assign an app role to a user in Microsoft Entra ID.  
+You can use the command `Get-EntraServicePrincipal` to get a service principal Id.  
+You can use the command `Get-EntraUser` to get a user Id.
 
-- `ObjectId`:  The ObjectId of the app's service principal.
-- `ResourceId`: The ObjectId of the app's service principal.
-- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
-- `PrincipalId`: The ObjectId of the user to which you're assigning the app role.
+- `-ObjectId` parameter specifies the ObjectId of the app's service principal.
+- `-ResourceId`parameter specifies the ObjectId of the app's service principal.
+- `-Id` parameter specifies the Id of app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
+- `-PrincipalId` parameter specifies the ObjectId of a user to which you're assigning the app role.
 
 ### Example 3: Assign an app role to a group
 
@@ -116,12 +118,12 @@ This example demonstrates how to assign an app role to a user in Microsoft Entra
  Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
  $appname = 'Box'
  $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
- $group = Get-EntraGroup -SearchString 'testGroup12'
+ $group = Get-EntraGroup -SearchString 'testGroup'
 
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $group.ObjectId
  }
 
@@ -129,17 +131,19 @@ This example demonstrates how to assign an app role to a user in Microsoft Entra
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 10:59:38 AM testGroup12          aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
-This example demonstrates how to assign an app role to a group in Microsoft Entra ID.
+This example demonstrates how to assign an app role to a group in Microsoft Entra ID.  
+You can use the command `Get-EntraServicePrincipal` to get a service principal Id.  
+You can use the command `Get-EntraGroup` to get a group Id.
 
-- `ObjectId`:  The ObjectId of the app's service principal.
-- `ResourceId`: The ObjectId of the app's service principal.
-- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
-- `PrincipalId`: The ObjectId of the user to which you're assigning the app role.
+- `-ObjectId` parameter specifies the ObjectId of the app's service principal.
+- `-ResourceId`parameter specifies the ObjectId of the app's service principal.
+- `-Id` parameter specifies the Id of app role (defined on the app's service principal) to assign to the group. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the group.
+- `-PrincipalId` parameter specifies the ObjectId of a group to which you're assigning the app role.
 
 ## Parameters
 
@@ -216,6 +220,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`New-EntraServiceAppRoleAssignment` is an alias for `New-EntraServicePrincipalAppRoleAssignment`.
 
 ## Related Links
 

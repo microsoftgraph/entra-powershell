@@ -55,7 +55,7 @@ BeforeAll {
 Describe "Get-EntraBetaUser" {
     Context "Test for Get-EntraBetaUser" {
         It "Should return specific user" {
-            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
@@ -77,12 +77,12 @@ Describe "Get-EntraBetaUser" {
             }
         }
 
-        It "Should fail when ObjectId is empty string value" {
-            { Get-EntraBetaUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string value" {
+            { Get-EntraBetaUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        It "Should fail when UserId is empty" {
+            { Get-EntraBetaUser -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should return all contact" {
@@ -147,8 +147,8 @@ Describe "Get-EntraBetaUser" {
             { Get-EntraBetaUser -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
         }
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain UserId in parameters when passed UserId to it" {
+            $result = Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -163,11 +163,19 @@ Describe "Get-EntraBetaUser" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
+        }
+        It "Should return specific user with Alias" {
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
     }
 }

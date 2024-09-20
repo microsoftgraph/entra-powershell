@@ -2,7 +2,6 @@
 title: Set-EntraBetaUserManager
 description: This article provides details on the Set-EntraBetaUserManager command.
 
-
 ms.topic: reference
 ms.date: 06/21/2024
 ms.author: eunicewaweru
@@ -41,11 +40,11 @@ The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
+$manager = Get-EntraBetaUser -ObjectId 'Manager@contoso.com'
 $params = @{
     UserId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     RefObjectId = '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
 }
-
 Set-EntraBetaUserManager @params
 ```
 
@@ -60,7 +59,7 @@ Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft E
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

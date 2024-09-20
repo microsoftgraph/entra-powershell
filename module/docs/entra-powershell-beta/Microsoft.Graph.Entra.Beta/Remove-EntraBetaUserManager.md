@@ -57,7 +57,7 @@ Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft E
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

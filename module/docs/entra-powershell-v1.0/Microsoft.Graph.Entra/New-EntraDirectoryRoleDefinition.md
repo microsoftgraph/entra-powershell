@@ -319,6 +319,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`New-EntraRoleDefinition` is an alias for `New-EntraDirectoryRoleDefintion`.
+
 ## Related Links
 
 [Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)

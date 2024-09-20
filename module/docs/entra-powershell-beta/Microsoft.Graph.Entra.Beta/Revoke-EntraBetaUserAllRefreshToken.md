@@ -31,8 +31,12 @@ Revoke-EntraBetaUserAllRefreshToken
 ## Description
 
 The `Revoke-EntraBetaUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
+
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
+
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
+
+This operation is usually performed by the user or an administrator if the user's device is lost or stolen. It blocks access to the organization's data by requiring the user to sign in again to all previously authorized applications, regardless of the device.
 
 ## Examples
 
@@ -62,7 +66,7 @@ Specifies the unique ID of a user.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

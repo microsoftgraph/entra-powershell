@@ -146,7 +146,7 @@ This example gets a service principal by its display name.
 ### Example 6: Retrieve a list of all service principal, which has a display name that contains "M365 License Manager"
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -SearchString 'M365 License Manager'
 ```
 
@@ -161,6 +161,7 @@ This example gets a list of service principal, which has the specified display n
 ### Example 7: Retrieve all Enterprise apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
 ```
 
@@ -176,6 +177,7 @@ This example demonstrates how to retrieve all enterprise apps.
 ### Example 8: Retrieve all App proxy apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
 ```
 
@@ -191,6 +193,7 @@ This example demonstrates how to retrieve all app proxy apps.
 ### Example 9: Retrieve all disabled apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Filter "accountEnabled eq false"
 ```
 
@@ -205,6 +208,7 @@ This example demonstrates how to retrieve all disabled apps.
 ### Example 10: Retrieve all Global Secure Access apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
 ```
 

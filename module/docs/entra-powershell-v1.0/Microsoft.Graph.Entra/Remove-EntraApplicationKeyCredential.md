@@ -43,7 +43,7 @@ An application can use this command along with `New-EntraApplicationKeyCredentia
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq '<Application-DisplayName>'"
+$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $params = @{
     ObjectId = $application.Id
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
