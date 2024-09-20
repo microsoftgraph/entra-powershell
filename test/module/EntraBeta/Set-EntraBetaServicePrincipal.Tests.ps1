@@ -21,7 +21,7 @@ Describe "Set-EntraBetaServicePrincipal"{
         }
         It "Should return empty object with Alias" {
             $result = Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"            
-            $result | Should -Not -BeNullOrEmpty
+            $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
