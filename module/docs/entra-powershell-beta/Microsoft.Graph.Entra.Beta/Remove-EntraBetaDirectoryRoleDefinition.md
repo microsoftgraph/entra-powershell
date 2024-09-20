@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Delete a Microsoft Entra ID roleDefinition by ObjectId.
+Delete a Microsoft Entra ID Directory roleDefinition object.
 
 ## Syntax
 
@@ -32,17 +32,18 @@ Remove-EntraBetaDirectoryRoleDefinition
 
 ## Description
 
-Delete a Microsoft Entra ID roleDefinition object by ID.
+Delete a Microsoft Entra ID Directory roleDefinition object by ID.
 
 You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove a specified role definition
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Remove-EntraBetaDirectoryRoleDefinition -Id 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$DirectoryRoleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Guest Inviter'"
+Remove-EntraBetaDirectoryRoleDefinition -Id $DirectoryRoleDefinition.ObjectId
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
@@ -80,6 +81,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+`Remove-EntraBetaRoleDefinition` is an alias for `Remove-EntraBetaDirectoryRoleDefinition`.
 
 ## Related Links
 

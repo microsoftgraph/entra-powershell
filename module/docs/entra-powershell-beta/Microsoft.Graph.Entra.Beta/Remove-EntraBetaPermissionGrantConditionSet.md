@@ -50,7 +50,6 @@ $params = @{
     ConditionSetType = 'excludes'
     Id = $PermissionGrantConditionSetId
 }
-
 Remove-EntraBetaPermissionGrantConditionSet @params
 ```
 

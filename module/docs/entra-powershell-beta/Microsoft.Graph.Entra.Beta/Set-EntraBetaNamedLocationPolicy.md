@@ -50,16 +50,16 @@ Conditional access policies are custom rules that define an access scenario.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
 $ipRanges.cidrAddress = '6.5.4.3/32'
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.ipNamedLocation'
     IsTrusted = $false
     IncludeUnknownCountriesAndRegions = $false
     IpRanges = $ipRanges
 }
-
 Set-EntraBetaNamedLocationPolicy @params
 ```
 
@@ -75,12 +75,12 @@ This example shows how to update an IP named location policy in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.countryNamedLocation'
     IncludeUnknownCountriesAndRegions = $true
 }
-
 Set-EntraBetaNamedLocationPolicy @params
 ```
 
@@ -94,12 +94,12 @@ This command updates a country named location policy in Microsoft Entra ID by Po
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.ipNamedLocation'
     DisplayName = 'NewName'
 }
-
 Set-EntraBetaNamedLocationPolicy @params
 ```
 
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 
 ### -OdataType
 
-Specifies the odata type of a named location policy object in Microsoft Entra ID.
+Specifies the OData type of a named location policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -177,7 +177,7 @@ Accept wildcard characters: False
 
 ### -IsTrusted
 
-Specifies the IsTrusted value for the named location policy in Microsoft Entra ID.
+Specifies the `IsTrusted` value for the named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.Boolean

@@ -551,6 +551,8 @@ public $($object.GetType().Name)()
             GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
+            CmdletsToExport=@()
+            AliasesToExport=@()
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
@@ -643,9 +645,21 @@ function Get-EntraUnsupportedCommand {
             elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
-            #Adding direct aliases for Connect-Entra and Disconnect-Entra
-            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+
+            if (Test-Path $aliasDefinitionsPath) {
+                $directAliases = Get-Content $aliasDefinitionsPath -Raw
+                $aliases += $directAliases  # Append the content to $aliases
+            }
+
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}

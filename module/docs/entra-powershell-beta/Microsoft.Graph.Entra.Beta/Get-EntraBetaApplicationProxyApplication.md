@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationProxyApplication
@@ -19,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+Retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 

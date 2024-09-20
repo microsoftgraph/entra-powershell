@@ -2,7 +2,6 @@
 title: Remove-EntraUser
 description: This article provides details on the Remove-EntraUser command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -33,7 +32,7 @@ Remove-EntraUser
 
 ## Description
 
-The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
+The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the specified user in Microsoft Entra ID.
 
 The calling user must be assigned at least one of the following Microsoft Entra roles:
 

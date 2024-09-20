@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDeletedApplication
@@ -43,14 +44,14 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ### Example 1: Remove deleted application object
 
 ```powershell
- Connect-Entra -Scopes 'Application.ReadWrite.All'
- $Id = Get-EntraDeletedApplication -SearchString 'My Entra PowerShell Application' 
- Remove-EntraDeletedApplication -ObjectId $Id.id
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$App = Get-EntraDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraDeletedApplication -ObjectId $App.ObjectId
 ```
 
-This command removes recently deleted application.
+This command removes recently deleted application. You can use the command  `Get-EntraDeletedApplication` to get deleted application Id.
 
-- `ObjectId`:  The ObjectId of the deleted application.
+- `-ObjectId` parameter specifies the Id of a deleted application.
 
 ## Parameters
 
