@@ -127,6 +127,6 @@ Describe "Get-EntraBetaGroupOwner" {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
-    }
+        }
     }
 }
