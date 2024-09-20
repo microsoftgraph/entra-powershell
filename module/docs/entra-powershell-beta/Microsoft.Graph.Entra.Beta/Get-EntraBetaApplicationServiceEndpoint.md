@@ -102,7 +102,7 @@ Specifies the object ID of the application for which the service endpoint is ret
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
