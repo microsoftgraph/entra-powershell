@@ -262,7 +262,7 @@ Specifies the ID of a service principal in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

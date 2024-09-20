@@ -7,6 +7,22 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    function New-EntraBetaServicePrincipalPasswordCredential {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $CustomKeyIdentifier,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $StartDate,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Value,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $EndDate
+    )
+
     PROCESS{
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -52,6 +68,7 @@
             $targetTypeList += $target
         }
         $targetTypeList
-    }
+    }    
+}
 '@
 }

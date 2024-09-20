@@ -19,6 +19,12 @@ Describe "Set-EntraBetaServicePrincipal"{
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
+        It "Should return empty object with Alias" {
+            $result = Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"            
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
         It "Should fail when ServicePrincipalId is invalid" {
             { Set-EntraBetaServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
         }

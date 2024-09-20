@@ -7,6 +7,14 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    function Get-EntraBetaServicePrincipalKeyCredential {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId
+    )
+
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     $response = (Get-MgBetaServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).KeyCredentials
     $response | ForEach-Object {
@@ -15,6 +23,7 @@
         Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
         }
     }
-    $response
+    $response    
+}
 '@
 }
