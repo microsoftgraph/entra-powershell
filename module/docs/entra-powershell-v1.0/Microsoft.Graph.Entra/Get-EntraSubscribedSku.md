@@ -2,7 +2,6 @@
 title: Get-EntraSubscribedSku
 description: This article provides details on the Get-EntraSubscribedSku command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -81,7 +80,29 @@ This example demonstrates how to retrieve specified subscribed SKUs to Microsoft
 
 - `-ObjectId` parameter specifies the ID of the SKU (Stock Keeping Unit).
 
-### Example 3: Get a list of users, their assigned licenses, and licensing source
+### Example 3: Retrieve all users assigned a specific license
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+$sku = Get-EntraSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'DEVELOPERPACK_E5' }
+$skuId = $sku.SkuId
+$usersWithDeveloperPackE5 = Get-EntraUser -All | Where-Object {
+    $_.AssignedLicenses -and ($_.AssignedLicenses.SkuId -contains $skuId)
+}
+$usersWithDeveloperPackE5 | Select-Object Id, DisplayName, UserPrincipalName, AccountEnabled, UserType | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName               AccountEnabled   UserType
+--                                   -----------     -----------------               --------------   --------
+cccccccc-2222-3333-4444-dddddddddddd  Angel Brown    AngelB@contoso.com              True             Member
+dddddddd-3333-4444-5555-eeeeeeeeeeee  Avery Smith    AveryS@contoso.com              True             Member
+eeeeeeee-4444-5555-6666-ffffffffffff  Sawyer Miller  SawyerM@contoso.com             True             Member
+```
+
+This example demonstrates how to retrieve all users assigned a specific license.
+
+### Example 4: Get a list of users, their assigned licenses, and licensing source
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All'
