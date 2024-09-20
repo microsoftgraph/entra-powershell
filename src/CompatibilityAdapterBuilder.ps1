@@ -86,8 +86,7 @@ class CompatibilityAdapterBuilder {
     'Get-EntraBetaApplicationPolicy',
     'Get-EntraBetaPermissionGrantPolicy',
     'Select-EntraBetaGroupIdsGroupIsMemberOf',
-    'New-EntraBetaUserAppRoleAssignment',
-    'Remove-EntraBetaUser',
+    'New-EntraBetaUserAppRoleAssignment',    
     'Get-EntraBetaTrustFrameworkPolicy',
     'Remove-EntraBetaObjectSetting',
     'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues',
@@ -808,6 +807,7 @@ $OutputTransformations
         $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaPrivilegedRoleAssignment","Get-EntraBetaTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
+        $ParamAlias=$null
         foreach ($paramKey in $Command.Parameters.Keys) {
             if($commonParameterNames.Contains($paramKey)) {
                 continue
@@ -819,8 +819,10 @@ $OutputTransformations
             if($param.Name -eq 'All'){
                 $paramType = "switch"
             }
-            if(($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and  (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)){
+            
+            if( ($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)){
                 if ($targetParam.TargetName) {
+                    $ParamAlias = $this.GetParameterAlias($param.Name)
                     $param.Name = $targetParam.TargetName
                 }                
             }  
@@ -838,9 +840,11 @@ $OutputTransformations
                 }                
             }           
             $paramBlock = @"
+    $ParamAlias            
     $($this.GetParameterAttributes($Param))[$($paramType)] `$$($param.Name)
 "@
             $paramsList += $paramBlock
+            $ParamAlias=$null
         }
 
         $addProperty = $true
@@ -876,6 +880,10 @@ $OutputTransformations
     $attributesString[$propertyType] `$Property
 "@
         return $propertyParamBlock
+    }
+
+    hidden [string] GetParameterAlias($param){
+        return "[Alias('$param')]"
     }
 
     hidden [string] GetParameterAttributes($param){

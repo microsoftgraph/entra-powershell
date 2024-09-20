@@ -69,6 +69,15 @@ Describe "Get-EntraUser" {
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
+        It "Should return specific user with Alias" {
+            $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
 
