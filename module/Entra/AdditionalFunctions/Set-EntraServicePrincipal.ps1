@@ -31,6 +31,7 @@ function Set-EntraServicePrincipal {
     [System.String] $ServicePrincipalType,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ServicePrincipalId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

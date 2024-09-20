@@ -65,7 +65,7 @@ Specifies the ID of the service principal for which to get password credentials.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

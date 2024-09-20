@@ -6,6 +6,7 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ServicePrincipalId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

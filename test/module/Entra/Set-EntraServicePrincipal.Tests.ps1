@@ -19,6 +19,12 @@ Describe "Set-EntraServicePrincipal"{
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }   
+        It "Should update the parameter with Alias" {
+            $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should update the LogoutUrl and ServicePrincipalType parameter" {
                 $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
                 $result | Should -BeNullOrEmpty

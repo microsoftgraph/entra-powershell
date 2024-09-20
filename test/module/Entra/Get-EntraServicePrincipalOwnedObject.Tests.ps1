@@ -34,6 +34,12 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
             Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific ServicePrincipalOwnedObject with Alias" {
+            $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when ServicePrincipalId is empty" {
             { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId'*"
         }

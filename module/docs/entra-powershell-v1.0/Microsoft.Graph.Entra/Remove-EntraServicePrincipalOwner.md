@@ -65,7 +65,7 @@ Specifies the ID of a service principal.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
