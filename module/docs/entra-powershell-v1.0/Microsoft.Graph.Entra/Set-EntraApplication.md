@@ -27,7 +27,7 @@ Updates the properties of an application object.
 
 ```powershell
 Set-EntraApplication 
- -ObjectId <String>
+ -ApplicationId <String>
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
  [-TokenEncryptionKeyId <String>] 
  [-SignInAudience <String>]
@@ -61,7 +61,7 @@ Updates the properties of an application object.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     DisplayName = 'New Demo Application'
 }
 Set-EntraApplication @params
@@ -75,7 +75,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     IdentifierUris = 'https://mynewapp.contoso.com'
 }
 Set-EntraApplication @params
@@ -89,7 +89,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     GroupMembershipClaims = 'SecurityGroup'
 }
 Set-EntraApplication @params
@@ -103,7 +103,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     IsDeviceOnlyAuthSupported = $false
 }
 Set-EntraApplication @params
@@ -117,7 +117,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     Tags = 'mytag'
 }
 Set-EntraApplication @params
@@ -281,14 +281,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
