@@ -27,7 +27,7 @@ Updates the properties of an application object.
 
 ```powershell
 Set-EntraApplication 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
  [-TokenEncryptionKeyId <String>] 
  [-SignInAudience <String>]
@@ -61,7 +61,7 @@ Updates the properties of an application object.
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = '11112222-bbbb-3333-cccc-4444dddd5555'
     DisplayName = 'My new application'
 }
 
@@ -76,7 +76,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = '11112222-bbbb-3333-cccc-4444dddd5555'
     IdentifierUris = 'https://mynewapp.contoso.com'
 }
 
@@ -91,7 +91,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = '11112222-bbbb-3333-cccc-4444dddd5555'
     GroupMembershipClaims = 'SecurityGroup'
 }
 
@@ -106,7 +106,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = '11112222-bbbb-3333-cccc-4444dddd5555'
     IsDeviceOnlyAuthSupported = $false
 }
 
@@ -121,7 +121,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = '11112222-bbbb-3333-cccc-4444dddd5555'
     Tags = 'mytag'
 }
 
@@ -285,7 +285,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 

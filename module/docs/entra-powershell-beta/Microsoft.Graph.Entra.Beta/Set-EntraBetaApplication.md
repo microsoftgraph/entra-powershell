@@ -26,7 +26,7 @@ Updates the properties of an application object.
 
 ```powershell
 Set-EntraBetaApplication 
- -ObjectId <String>
+ -ApplicationId <String>
  [-Api <ApiApplication>] 
  [-OptionalClaims <OptionalClaims>] 
  [-DisplayName <String>]
@@ -61,7 +61,7 @@ Updates the properties of an application object.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My new application'
+Set-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My new application'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -70,7 +70,7 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IdentifierUris 'https://mynewapp.contoso.com'
+Set-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -79,7 +79,7 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -GroupMembershipClaims 'SecurityGroup'
+Set-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -GroupMembershipClaims 'SecurityGroup'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -88,7 +88,7 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IsDeviceOnlyAuthSupported $false
+Set-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IsDeviceOnlyAuthSupported $false
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -97,7 +97,7 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Tags 'mytag'
+Set-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Tags 'mytag'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -277,7 +277,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 

@@ -25,7 +25,7 @@ Removes a group.
 
 ```powershell
 Remove-EntraGroup 
- -ObjectId <String> 
+ -GroupId <String> 
  [<CommonParameters>]
 ```
 
@@ -49,14 +49,14 @@ The following conditions apply for apps to delete role-assignable groups:
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Remove-EntraGroup -ObjectId $group.Id
+Remove-EntraGroup -GroupId $group.Id
 ```
 
-This command is used to remove a group. The `-ObjectId` parameter specifies the ID of the group to be removed.
+This command is used to remove a group. The `-GroupId` parameter specifies the ID of the group to be removed.
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 

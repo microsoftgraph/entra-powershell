@@ -27,7 +27,7 @@ Removes an application extension property.
 ```powershell
 Remove-EntraApplicationExtensionProperty 
  -ExtensionPropertyId <String> 
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ The `Remove-EntraApplicationExtensionProperty` cmdlet removes an application ext
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ApplicationId = '22223333-cccc-4444-dddd-5555eeee6666'
     ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
 }
 
@@ -69,7 +69,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 

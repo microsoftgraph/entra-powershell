@@ -36,7 +36,7 @@ Get-EntraBetaUserOwnedObject
 
 ## Description
 
-The `Get-EntraBetaUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID.
+The `Get-EntraBetaUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID. Specify `ObjectId` parameter to get objects owned by user.
 
 ## Examples
 
@@ -55,7 +55,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves objects owned by the specified user.
 
-- `-ObjectId` parameter specifies the user ID.
+- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ### Example 2: Get all objects owned by a user
 
@@ -74,7 +74,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example retrieves all the objects owned by the specified user.
 
-- `-ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ### Example 3: Get top three objects owned by a user
 
@@ -93,7 +93,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example retrieves the top three objects owned by the specified user.
 
-- `-ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ## Parameters
 

@@ -27,7 +27,7 @@ Deletes a groupLifecyclePolicies object
 
 ```powershell
 Remove-EntraGroupLifecyclePolicy 
- -Id <String> 
+ -GroupLifecyclePolicyId <String> 
  [<CommonParameters>]
 ```
 
@@ -41,14 +41,14 @@ The Remove-EntraGroupLifecyclePolicy command deletes a groupLifecyclePolicies ob
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.
 
 ## Parameters
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the groupLifecyclePolicies object that this cmdlet removes.
 
