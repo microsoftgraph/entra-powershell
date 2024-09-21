@@ -291,6 +291,22 @@ $failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAdd
 
 This example demonstrates how to retrieve failed sign-ins for a user.
 
+### Example 14: List all guest users
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraUser -Filter "userType eq 'Guest'" -All
+$guestUsers | Select-Object DisplayName, UserPrincipalName, Id, createdDateTime, creationType, accountEnabled, UserState | Format-Table -AutoSize
+```
+
+```Output
+DisplayName     UserPrincipalName                                 Id                                   CreatedDateTime       CreationType   AccountEnabled  UserState
+-----------     -----------------                                 --                                   ---------------       ------------   --------------  ---------
+Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-2222-3333-cccccccccccc 9/13/2024 6:37:33 PM  Invitation     True            Accepted
+```
+
+This example demonstrates how to retrieve list all guest users.
+
 ## Parameters
 
 ### -All
