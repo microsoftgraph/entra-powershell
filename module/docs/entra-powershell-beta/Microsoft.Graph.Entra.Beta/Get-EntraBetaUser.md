@@ -207,14 +207,6 @@ Engineering                    2
 Executive Management           1
 Finance                        1
 HR                             1
-Legal                          1
-Manufacturing                  1
-Marketing                      2
-Operations                     1
-R&D                            2
-Retail                         2
-Sales                          1
-Sales & Marketing              1
 ```
 
 This example demonstrates how to retrieve user count in each department.
@@ -289,6 +281,16 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
 ```
 
 This example demonstrates how to retrieve users without managers.
+
+### Example 13: List failed sign-ins for a user
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$failedSignIns = Get-EntraBetaAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
+$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
+```
+
+This example demonstrates how to retrieve failed sign-ins for a user.
 
 ## Parameters
 
