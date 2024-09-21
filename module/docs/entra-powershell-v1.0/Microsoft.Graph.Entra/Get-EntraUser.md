@@ -236,6 +236,32 @@ cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com          F
 
 This example demonstrates how to retrieve disabled users with active licenses.
 
+### Example 11: Retrieve guest users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraUser -Filter "userType eq 'Guest'" -All
+$guestUsersWithLicenses = foreach ($guest in $guestUsers) {
+    if ($guest.AssignedLicenses.Count -gt 0) {
+        [pscustomobject]@{
+            Id               = $guest.Id
+            DisplayName      = $guest.DisplayName
+            UserPrincipalName = $guest.UserPrincipalName
+            AssignedLicenses = ($guest.AssignedLicenses | ForEach-Object { $_.SkuId }) -join ", "
+        }
+    }
+}
+$guestUsersWithLicenses | Format-Table Id, DisplayName, UserPrincipalName, AssignedLicenses -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName                                  AssignedLicenses
+--                                   -----------  -----------------                                  ----------------
+cccccccc-2222-3333-4444-dddddddddddd Sawyer Miller sawyerm_gmail.com#EXT#@contoso.com c42b9cae-ea4f-4ab7-9717-81576235ccac
+```
+
+This example demonstrates how to retrieve guest users with active licenses.
+
 ## Parameters
 
 ### -All
