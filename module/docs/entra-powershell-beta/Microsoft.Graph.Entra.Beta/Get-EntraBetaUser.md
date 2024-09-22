@@ -179,7 +179,7 @@ This example demonstrates how to retrieve all users with disabled accounts.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-$usersInIndia = Get-EntraUser -Filter "Country eq 'India'"
+$usersInIndia = Get-EntraBetaUser -Filter "Country eq 'India'"
 $usersInIndia | Select-Object Id, DisplayName, UserPrincipalName, OfficeLocation, Country | Format-Table -AutoSize
 ```
 
