@@ -175,21 +175,21 @@ New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 
 This example demonstrates how to retrieve all users with disabled accounts.
 
-### Example 8: List users based in India
+### Example 8: List users based in a specific country
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-$usersInIndia = Get-EntraBetaUser -Filter "Country eq 'India'"
-$usersInIndia | Select-Object Id, DisplayName, UserPrincipalName, OfficeLocation, Country | Format-Table -AutoSize
+$usersInCanada = Get-EntraBetaUser -Filter "Country eq 'Canada'"
+$usersInCanada | Select-Object Id, DisplayName, UserPrincipalName, OfficeLocation, Country | Format-Table -AutoSize
 ```
 
 ```Output
 Id                                   DisplayName   UserPrincipalName         OfficeLocation   Country
 --                                   -----------   -----------------         --------------   -------
-cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/2102          India
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/2102          Canada
 ```
 
-This example demonstrates how to retrieve all users based in India.
+This example demonstrates how to retrieve all users based in Canada.
 
 ### Example 9: List user count per department
 
