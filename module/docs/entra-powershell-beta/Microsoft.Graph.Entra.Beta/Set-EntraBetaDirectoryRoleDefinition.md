@@ -164,7 +164,7 @@ Specifies the roleDefinition object ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

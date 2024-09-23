@@ -187,7 +187,7 @@ The unique identifier of a Microsoft Entra ID roleAssignment object.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

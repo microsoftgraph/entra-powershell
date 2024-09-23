@@ -48,7 +48,7 @@ You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 o
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 
 ## Parameters
 
@@ -59,7 +59,7 @@ The unique identifier of an object in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 0

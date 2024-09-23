@@ -52,7 +52,7 @@ Updates a Microsoft Entra roleDefinition object identified by ID. You can't upda
 
 This example updates the specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-DisplayName` parameter specifies the display name for the role definition.
 
 ### Example 2: Update an roleDefinition with Description
@@ -64,7 +64,7 @@ This example updates the specified role definition in Microsoft Entra ID.
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-Description` parameter specifies the description for the role definition.
 
 ### Example 3: Update an roleDefinition with IsEnabled
@@ -76,7 +76,7 @@ This example updates the Description of specified role definition in Microsoft E
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-IsEnabled` parameter specifies whether the role definition is enabled.
 
 ### Example 4: Update an roleDefinition
@@ -101,7 +101,7 @@ Set-EntraDirectoryRoleDefinition @params
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-RolePermissions` parameter specifies the permissions for the role definition.
 - `-IsEnabled` parameter specifies whether the role definition is enabled.
 - `-DisplayName` parameter specifies the display name for the role definition.
@@ -119,7 +119,7 @@ Specifies the roleDefinition object ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
