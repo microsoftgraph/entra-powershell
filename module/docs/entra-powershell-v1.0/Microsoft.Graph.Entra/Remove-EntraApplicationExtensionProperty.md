@@ -2,13 +2,13 @@
 title: Remove-EntraApplicationExtensionProperty
 description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationExtensionProperty
@@ -41,8 +41,9 @@ The `Remove-EntraApplicationExtensionProperty` cmdlet removes an application ext
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $params = @{
-    ApplicationId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ApplicationId = $Application.ObjectId
     ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
 }
 
@@ -50,6 +51,9 @@ Remove-EntraApplicationExtensionProperty @params
 ```
 
 This example removes the extension property that has the specified ID from an application in Microsoft Entra ID.
+
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-ExtensionPropertyId` parameter specifies the  unique identifier of the extension property to remove.
 
 ## Parameters
 
@@ -76,7 +80,7 @@ Specifies the unique ID of an application in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

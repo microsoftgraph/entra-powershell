@@ -136,7 +136,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroup -SearchString 'New'
 ```
 
-```output
+```Output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Sparkling Deer      bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq newsparklingdeer New Sparkling Deer Group {Unified}
@@ -144,6 +144,52 @@ New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb newgoldenfox       
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
+
+### Example 6: Listing ownerless groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraGroup -All
+$groupsWithoutOwners = foreach ($group in $allGroups) {
+    $owners = Get-EntraGroupOwner -ObjectId $group.Id
+    if ($owners.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutOwners | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without owners. By identifying ownerless groups, IT admins can improve overall governance and operational efficiency.
+
+### Example 7: Listing empty groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraGroup -All
+$groupsWithoutMembers = foreach ($group in $allGroups) {
+    $members = Get-EntraGroupMember -ObjectId $group.Id
+    if ($members.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutMembers | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
 
 ## Parameters
 

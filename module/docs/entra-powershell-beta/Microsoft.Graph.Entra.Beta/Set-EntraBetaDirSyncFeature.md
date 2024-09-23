@@ -56,11 +56,10 @@ You can't disable these features once they're enabled.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $params = @{
-    Feature = 'EnableSoftMatchOnUpn'
+    Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
     Enable = $True
     Force = $true
 }
-
 Set-EntraBetaDirSyncFeature @params
 ```
 
@@ -91,10 +90,11 @@ This command enables the BlockSoftMatch feature for the tenant - effectively blo
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$tenantID = (Get-EntraContext).TenantId
 $params = @{
     Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
     Enable = $True
-    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    TenantId = $tenantID
 }
 
 Set-EntraBetaDirSyncFeature @params
@@ -124,7 +124,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Enabled
+### -Enable
 
 Indicates whether the specified features are turned on for the company.
 
@@ -181,6 +181,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+- For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
+- For the feature list see the [onPremisesDirectorySynchronizationFeature resource type](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature).
 
 ## Related Links
 

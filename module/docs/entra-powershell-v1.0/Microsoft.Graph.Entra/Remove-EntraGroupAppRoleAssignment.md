@@ -32,11 +32,11 @@ Remove-EntraGroupAppRoleAssignment
 
 ## Description
 
-The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
+The `Remove-EntraGroupAppRoleAssignment` cmdlet removes a group application role assignment from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Removes a group application role assignment
+### Example 1: Remove group app role assignment
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -2,7 +2,6 @@
 title: Set-EntraUser
 description: This article provides details on the Set-EntraUser command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -19,6 +18,7 @@ schema: 2.0.0
 # Set-EntraUser
 
 ## Synopsis
+
 Updates a user.
 
 ## Syntax
@@ -59,7 +59,8 @@ Set-EntraUser
 ```
 
 ## Description
-The Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
+
+The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `ObjectId` parameter to update a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -71,15 +72,20 @@ PS C:\> $user.DisplayName = 'YetAnotherTestUser'
 PS C:\> Set-EntraUser -UserId TestUser@example.com -Displayname $user.Displayname
 ```
 
-This example updates the specified user's Display name property.
+This example updates the specified user's Display name parameter.
 
-### Example 2: Set the specified user's AccountEnabled property
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+
+### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
 PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
 ```
 
-This example updates the specified user's AccountEnabled property.
+This example updates the specified user's AccountEnabled parameter.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-AccountEnabled` Specifies whether the account is enabled.
 
 ### Example 3: Set all but specified users as minors with parental consent
 
@@ -88,34 +94,52 @@ PS C:\>Get-EntraUser -All  |
 Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
 ForEach-Object  { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
-This example updates the specified user's property.
+
+This example updates the specified user's as minors with parental consent.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-ConsentProvidedForMinor` Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
 ### Example 4: Set the specified user's property
 
 ```powershell
 PS C:\>Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address" -UserType "Member"
 ```
-This example updates the specified user's City property.
 
-### Example 5: Set the specified user's PasswordProfile property
+This example updates the specified user's property.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserType` classify user types in your directory, such as "Member" and "Guest."
+- `-PasswordPolicies` Specifies password policies for the user.
+- `-OtherMails` Specifies other email addresses for the user
+
+### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-PS C:\> $a = @{
-   Password= "*****"
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$params= @{
+ObjectId = 'SawyerM@contoso.com'
+PasswordProfile  = @{
+   Password= '*****'
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
    }
 PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
-This example updates the specified user's PasswordProfile property.
+
+This example updates the specified user's PasswordProfile parameter.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-PasswordProfile` specifies the user's password profile.
 
 ## Parameters
 
 ### -AccountEnabled
+
 Indicates whether the account is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -127,10 +151,11 @@ Accept wildcard characters: False
 ```
 
 ### -City
+
 Specifies the user's city.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -142,10 +167,11 @@ Accept wildcard characters: False
 ```
 
 ### -Country
-Specifies the user's country/region.
+
+Specifies the user's country.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -157,13 +183,14 @@ Accept wildcard characters: False
 ```
 
 ### -CreationType
+
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
-When we create a local account, the property is required and you must set it to "LocalAccount."
+When creating a local account, the property is required and you must set it to "LocalAccount".
 When creating a work or school account, don't specify the property or set it to null.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -175,10 +202,11 @@ Accept wildcard characters: False
 ```
 
 ### -Department
+
 Specifies the user's department.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -190,10 +218,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the user's display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -205,7 +234,8 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionProperty
-Add data to custom user properties as the basic open extensions or the more versatile schema extensions. See [more about extensions][Learn more about extensions].
+
+Add data to custom user properties as the basic open extensions or the more versatile schema extensions.
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
@@ -220,10 +250,11 @@ Accept wildcard characters: False
 ```
 
 ### -GivenName
+
 Specifies the user's given name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -235,10 +266,13 @@ Accept wildcard characters: False
 ```
 
 ### -ImmutableId
-This property is used to associate an on-premises Active Directory user account to their Microsoft Entra ID user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName property. Important: The $ and _ characters can't be used when specifying this property.
+
+This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
+
+Important: Do not use the $ and _ characters when specifying this property.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -250,10 +284,11 @@ Accept wildcard characters: False
 ```
 
 ### -JobTitle
+
 Specifies the user's job title.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -265,10 +300,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickName
+
 Specifies a nickname for the user's mail address.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -280,10 +316,11 @@ Accept wildcard characters: False
 ```
 
 ### -Mobile
+
 Specifies the user's mobile phone number.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -298,7 +335,7 @@ Accept wildcard characters: False
 Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -310,6 +347,7 @@ Accept wildcard characters: False
 ```
 
 ### -OtherMails
+
 Specifies other email addresses for the user.
 
 ```yaml
@@ -325,10 +363,11 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordPolicies
+
 Specifies password policies for the user.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -340,6 +379,7 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordProfile
+
 Specifies the user's password profile.
 
 ```yaml
@@ -355,10 +395,11 @@ Accept wildcard characters: False
 ```
 
 ### -PostalCode
+
 Specifies the user's postal code.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -370,10 +411,11 @@ Accept wildcard characters: False
 ```
 
 ### -PreferredLanguage
+
 Specifies the user's preferred language.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -385,10 +427,11 @@ Accept wildcard characters: False
 ```
 
 ### -ShowInAddressList
+
 Set to True to show this user in the address list.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -400,6 +443,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInNames
+
 The list of sign in names for this user
 
 ```yaml
@@ -415,10 +459,11 @@ Accept wildcard characters: False
 ```
 
 ### -State
+
 Specifies the user's state.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -430,10 +475,11 @@ Accept wildcard characters: False
 ```
 
 ### -StreetAddress
+
 Specifies the user's street address.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -445,10 +491,11 @@ Accept wildcard characters: False
 ```
 
 ### -Surname
+
 Specifies the user's surname.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -460,10 +507,11 @@ Accept wildcard characters: False
 ```
 
 ### -TelephoneNumber
+
 Specifies the user's telephone number.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -475,9 +523,11 @@ Accept wildcard characters: False
 ```
 
 ### -UsageLocation
+
 A two letter country or region code (ISO standard 3166). Required for users that assigned licenses due to legal requirement to check for availability of services in country and regions. Examples include: "US," "JP," and "GB." Not nullable.
+
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -489,10 +539,11 @@ Accept wildcard characters: False
 ```
 
 ### -UserPrincipalName
+
 Specifies the user's user principal name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -504,10 +555,11 @@ Accept wildcard characters: False
 ```
 
 ### -UserType
+
 A string value that can be used to classify user types in your directory, such as "Member" and "Guest."
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -519,10 +571,11 @@ Accept wildcard characters: False
 ```
 
 ### -AgeGroup
-Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. Refer to the [legal age group property definitions][Learn more about age group and minor consent definitions].
+
+Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. See, [legal-age-group](https://learn.microsoft.com/graph/api/resources/user#legal-age-group-property-definitions).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -534,10 +587,11 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyName
+
 The company name, which the user is associated. This property can be useful for describing the company that an external user comes from. The maximum length of the company name is 64 characters.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -549,10 +603,11 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
+
 Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -564,7 +619,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -572,11 +628,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUser](Get-EntraUser.md)
 
 [New-EntraUser](New-EntraUser.md)
 
 [Remove-EntraUser](Remove-EntraUser.md)
-

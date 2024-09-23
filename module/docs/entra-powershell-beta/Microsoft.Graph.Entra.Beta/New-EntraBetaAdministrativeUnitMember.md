@@ -102,7 +102,7 @@ Specifies the AdministrativeUnitId of a Microsoft Entra ID administrative unit.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

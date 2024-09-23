@@ -50,7 +50,6 @@ Get-EntraBetaDirectoryRoleAssignment
 ```powershell
 Get-EntraBetaDirectoryRoleAssignment
  [-All]
- [-SearchString <String>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -230,22 +229,6 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -SearchString
-
-Specifies a search string.
-
-```yaml
-Type: System.String
-Parameter Sets: GetValue
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -Top
 
 The maximum number of records to return.
@@ -289,6 +272,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
 ## Notes
+
+`Get-EntraBetaRoleAssignment` is an alias for `Get-EntraBetaDirectoryRoleAssignment`.
 
 ## Related Links
 

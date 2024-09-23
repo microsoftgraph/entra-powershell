@@ -2,7 +2,6 @@
 title: Remove-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Remove-EntraBetaApplicationExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
@@ -81,7 +80,7 @@ Specifies the unique ID of an application in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

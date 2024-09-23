@@ -2,7 +2,6 @@
 title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
-
 ms.topic: reference
 ms.date: 07/11/2024
 ms.author: eunicewaweru

@@ -187,6 +187,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Get-EntraBetaServiceAppRoleAssignment` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignment`.
+
 ## Related Links
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)

@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraGroupAppRoleAssignment
@@ -35,7 +36,7 @@ New-EntraGroupAppRoleAssignment
 
 ## Description
 
-The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.
+The `New-EntraGroupAppRoleAssignment` cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
 ## Examples
 
@@ -49,7 +50,7 @@ $group = Get-EntraGroup -SearchString 'Contoso Team'
 New-EntraGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
-```output
+```Output
 DeletedDateTime        Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
 ---------------        --                                          ---------                            ---------------      -------------------- -----------
                       AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 00000000-0000-0000-0000-000000000000 3/13/2024 4:41:43 AM Contoso Team         aaaaaaaa-bbbb-cccc-1111-222222222222
@@ -86,7 +87,7 @@ Accept wildcard characters: False
 
 ### -GroupId
 
-Specifies the unique identifier of group to which the new app role is to be assigned.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -102,7 +103,7 @@ Accept wildcard characters: False
 
 ### -PrincipalId
 
-Specifies the ID of a group.
+Specifies the principal ID.
 
 ```yaml
 Type: System.String
@@ -135,7 +136,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

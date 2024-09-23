@@ -32,7 +32,7 @@ Remove-EntraGroupOwner
 
 ## Description
 
-The Remove-EntraGroupOwner cmdlet removes an owner from a group in Microsoft Entra ID.
+The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
 
 ## Examples
 
@@ -47,7 +47,7 @@ This example demonstrates how to remove an owner from a group in Microsoft Entra
 
 GroupId - Specifies the ID of a group in Microsoft Entra ID.  
 
-OwnerId  - Specifies the ID of an owner.
+- `OwnerId` specifies the ID of an owner.
 
 ## Parameters
 
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -93,7 +93,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 

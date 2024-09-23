@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
-This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID.
+This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID. You can use `Get-EntraBetaGroupLifecyclePolicy` to get Id details.
 
 ## Parameters
 
@@ -54,7 +54,7 @@ Specifies the ID of the groupLifecyclePolicies object that this cmdlet removes.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
