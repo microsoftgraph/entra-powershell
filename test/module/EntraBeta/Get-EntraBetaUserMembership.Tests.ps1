@@ -31,7 +31,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaUserMembership" {
-Context "Test for Get-EntraBetaUserMembership" {
+    Context "Test for Get-EntraBetaUserMembership" {
         It "Should return specific user membership" {
             $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty

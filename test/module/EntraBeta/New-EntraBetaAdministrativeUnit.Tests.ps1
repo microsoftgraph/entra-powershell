@@ -28,9 +28,9 @@ BeforeAll {
 }
 
 Describe "New-EntraBetaAdministrativeUnit" {
-Context "Test for New-EntraBetaAdministrativeUnit" {
+    Context "Test for New-EntraBetaAdministrativeUnit" {
         It "Should return created administrative unit" {
-            $result = New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit"
+            $result = New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted $True
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-Admin-Unit"
@@ -46,6 +46,12 @@ Context "Test for New-EntraBetaAdministrativeUnit" {
         }
         It "Should fail when Description is empty" {
             { New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description   } | Should -Throw "Missing an argument for parameter 'Description'*"
+        }
+        It "Should fail when IsMemberManagementRestricted is empty" {
+            { New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted  } | Should -Throw "Missing an argument for parameter 'IsMemberManagementRestricted'*"
+        }
+        It "Should fail when IsMemberManagementRestricted is invalid" {
+            { New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted "" } | Should -Throw "Cannot process argument transformation on parameter 'IsMemberManagementRestricted'.*"
         }
         It "Result should contain ObjectId"{
             $result = New-EntraBetaAdministrativeUnit -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit"

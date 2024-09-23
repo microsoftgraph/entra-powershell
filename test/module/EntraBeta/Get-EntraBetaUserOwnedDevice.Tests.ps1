@@ -36,7 +36,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaUserOwnedDevice" {
-Context "Test for Get-EntraBetaUserOwnedDevice" {
+    Context "Test for Get-EntraBetaUserOwnedDevice" {
         It "Should return specific user registered device" {
             $result = Get-EntraBetaUserOwnedDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
@@ -46,10 +46,10 @@ Context "Test for Get-EntraBetaUserOwnedDevice" {
 
             Should -Invoke -CommandName Get-MgBetaUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectlId is empty" {
+        It "Should fail when ObjectId is empty" {
             { Get-EntraBetaUserOwnedDevice -ObjectId    } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
-        It "Should fail when ObjectlId is invalid" {
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraBetaUserOwnedDevice -ObjectId  ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should return All user registered devices" {

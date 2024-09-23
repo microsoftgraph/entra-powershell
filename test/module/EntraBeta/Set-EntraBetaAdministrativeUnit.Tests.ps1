@@ -12,9 +12,9 @@ BeforeAll {
 }
 
 Describe "Set-EntraBetaAdministrativeUnit" {
-Context "Test for Set-EntraBetaAdministrativeUnit" {
+    Context "Test for Set-EntraBetaAdministrativeUnit" {
         It "Should return empty object" {
-            $result = Set-EntraBetaAdministrativeUnit -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit"
+            $result = Set-EntraBetaAdministrativeUnit -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted $true
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -30,6 +30,12 @@ Context "Test for Set-EntraBetaAdministrativeUnit" {
         }
         It "Should fail when Description is empty" {
             { Set-EntraBetaAdministrativeUnit -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description  } | Should -Throw "Missing an argument for parameter 'Description'*"
+        }
+        It "Should fail when IsMemberManagementRestricted is empty" {
+            { Set-EntraBetaAdministrativeUnit -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" --DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted   } | Should -Throw "Missing an argument for parameter 'IsMemberManagementRestricted'*"
+        }
+        It "Should fail when IsMemberManagementRestricted is invalid" {
+            { Set-EntraBetaAdministrativeUnit -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted "" } | Should -Throw "Cannot process argument transformation on parameter 'IsMemberManagementRestricted'.*"
         }
         It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
             Mock -CommandName Update-MgBetaAdministrativeUnit -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta

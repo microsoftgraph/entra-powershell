@@ -12,7 +12,7 @@ BeforeAll {
 }
 
 Describe "Set-EntraBetaPrivilegedRoleSetting" {
-Context "Test for Set-EntraBetaPrivilegedRoleSetting" {
+    Context "Test for Set-EntraBetaPrivilegedRoleSetting" {
         It "Should return empty object" {
 
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -RoleDefinitionId "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2"

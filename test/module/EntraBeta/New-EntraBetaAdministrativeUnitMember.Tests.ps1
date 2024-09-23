@@ -41,7 +41,7 @@ BeforeAll {
 }
 
 Describe "New-EntraBetaAdministrativeUnitMember" {
-Context "Test for New-EntraBetaAdministrativeUnitMember" {
+    Context "Test for New-EntraBetaAdministrativeUnitMember" {
         It "Should return created administrative unit member" {
             $result = New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
             $result | Should -Not -BeNullOrEmpty

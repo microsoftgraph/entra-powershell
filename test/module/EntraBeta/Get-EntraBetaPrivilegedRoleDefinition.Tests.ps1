@@ -27,7 +27,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaPrivilegedRoleDefinition" {
-Context "Test for Get-EntraBetaPrivilegedRoleDefinition" {
+    Context "Test for Get-EntraBetaPrivilegedRoleDefinition" {
         It "Should return specific privileged role definition" {
             $result = Get-EntraBetaPrivilegedRoleDefinition -ProviderId "MockRoles" -ResourceId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty

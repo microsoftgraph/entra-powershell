@@ -26,7 +26,7 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 Describe "New-EntraBetaObjectSetting" {
-Context "Test for New-EntraBetaObjectSetting" {
+    Context "Test for New-EntraBetaObjectSetting" {
         It "Should return created object setting" {
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
             $settingsCopy = $template.CreateDirectorySetting()

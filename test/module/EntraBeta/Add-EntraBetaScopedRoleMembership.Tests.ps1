@@ -17,7 +17,7 @@ BeforeAll {
               "RoleMemberInfo"               = @{
                                                   "DisplayName"          = "Conf Room Adams"
                                                   "Id"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-                                                  "AdditionalProperties" = @{"userPrincipalName" = "Adams@M365x99297270.OnMicrosoft.com" }  
+                                                  "AdditionalProperties" = @{"userPrincipalName" = "SawyerM@contoso.com" }  
                                                 }
               "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"}
               "Parameters"                   = $args
@@ -28,9 +28,9 @@ BeforeAll {
     Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaScopedRoleMembership" {
-Context "Test for Get-EntraBetaScopedRoleMembership" {
-        It "Should return specific scoped role membership" {
+Describe "Add-EntraBetaScopedRoleMembership" {
+    Context "Test for Add-EntraBetaScopedRoleMembership" {
+        It "Should add a user to the specified role within the specified administrative unit" {
             $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
             $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
@@ -42,22 +42,22 @@ Context "Test for Get-EntraBetaScopedRoleMembership" {
             Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Add-EntraBetaScopedRoleMembership -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Add-EntraBetaScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should fail when RoleObjectId is empty" {
-            { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleObjectId   } | Should -Throw "Missing an argument for parameter 'RoleObjectId'*"
+            { Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId   } | Should -Throw "Missing an argument for parameter 'RoleObjectId'*"
         }
         It "Should fail when AdministrativeUnitObjectId is empty" {
-            { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -AdministrativeUnitObjectId   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitObjectId'*"
+            { Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -AdministrativeUnitObjectId   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitObjectId'*"
         }
         It "Should fail when RoleMemberInfo is empty" {
-            { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleMemberInfo   } | Should -Throw "Missing an argument for parameter 'RoleMemberInfo'*"
+            { Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleMemberInfo   } | Should -Throw "Missing an argument for parameter 'RoleMemberInfo'*"
         }
         It "Should fail when RoleMemberInfo is invalid" {
-            { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
+            { Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
         }
         It "Result should contain Alias properties"{
             $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
@@ -88,15 +88,15 @@ Context "Test for Get-EntraBetaScopedRoleMembership" {
             $params.RoleId | Should -Be "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaAdministrativeUnitMember"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
             $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
             $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
-
+            
             Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaAdministrativeUnitMember"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
 
-            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

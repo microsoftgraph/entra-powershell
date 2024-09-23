@@ -12,7 +12,7 @@ BeforeAll {
 }
 
 Describe "Remove-EntraBetaAdministrativeUnit" {
-Context "Test for Remove-EntraBetaAdministrativeUnit" {
+    Context "Test for Remove-EntraBetaAdministrativeUnit" {
         It "Should return empty object" {
             $result = Remove-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" 
             $result | Should -BeNullOrEmpty

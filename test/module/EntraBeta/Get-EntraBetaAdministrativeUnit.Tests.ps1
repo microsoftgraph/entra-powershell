@@ -28,7 +28,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaAdministrativeUnit" {
-Context "Test for Get-EntraBetaAdministrativeUnit" {
+    Context "Test for Get-EntraBetaAdministrativeUnit" {
         It "Should return specific administrative unit" {
             $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty

@@ -34,7 +34,7 @@ $scriptblock = {
 }
 
 Describe "Get-EntraBetaApplicationPolicy" {
-Context "Test for Get-EntraBetaApplicationPolicy" {
+    Context "Test for Get-EntraBetaApplicationPolicy" {
         It "Should return specific application policy" {
             $result = Get-EntraBetaApplicationPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
             $result | Should -Not -BeNullOrEmpty

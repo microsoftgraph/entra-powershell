@@ -12,7 +12,7 @@ BeforeAll {
 }
 
 Describe "Remove-EntraBetaServicePrincipalPolicy" {
-Context "Test for Remove-EntraBetaServicePrincipalPolicy" {
+    Context "Test for Remove-EntraBetaServicePrincipalPolicy" {
         It "Should return empty object" {
             $result = Remove-EntraBetaServicePrincipalPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5"
             $result | Should -BeNullOrEmpty

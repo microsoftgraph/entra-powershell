@@ -36,7 +36,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaUserRegisteredDevice" {
-Context "Test for Get-EntraBetaUserRegisteredDevice" {
+    Context "Test for Get-EntraBetaUserRegisteredDevice" {
         It "Should return specific user registered device" {
             $result = Get-EntraBetaUserRegisteredDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty

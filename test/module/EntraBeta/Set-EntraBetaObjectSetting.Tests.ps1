@@ -10,7 +10,7 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 Describe "Set-EntraBetaObjectSetting" {
-Context "Test for Set-EntraBetaObjectSetting" {
+    Context "Test for Set-EntraBetaObjectSetting" {
         It "Should return empty object" {
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
             $settingsCopy = $template.CreateDirectorySetting()

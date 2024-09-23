@@ -10,7 +10,7 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 Describe "Remove-EntraBetaObjectSetting" {
-Context "Test for Remove-EntraBetaObjectSetting" {
+    Context "Test for Remove-EntraBetaObjectSetting" {
         It "Should return empty object" {
             $result = Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" 
             $result | Should -BeNullOrEmpty

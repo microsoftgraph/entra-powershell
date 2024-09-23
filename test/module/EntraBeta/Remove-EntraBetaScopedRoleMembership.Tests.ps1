@@ -12,7 +12,7 @@ BeforeAll {
 }
 
 Describe "Remove-EntraBetaScopedRoleMembership" {
-Context "Test for Remove-EntraBetaScopedRoleMembership" {
+    Context "Test for Remove-EntraBetaScopedRoleMembership" {
         It "Should return empty object" {
             $result = Remove-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -BeNullOrEmpty

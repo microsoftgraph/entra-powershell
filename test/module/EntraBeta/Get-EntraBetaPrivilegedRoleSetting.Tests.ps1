@@ -64,7 +64,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaPrivilegedRoleSetting" {
-Context "Test for Get-EntraBetaPrivilegedRoleSetting" {
+    Context "Test for Get-EntraBetaPrivilegedRoleSetting" {
         It "Should return specific privileged role setting" {
             $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
             $result | Should -Not -BeNullOrEmpty

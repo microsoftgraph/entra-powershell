@@ -29,7 +29,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaScopedRoleMembership" {
-Context "Test for Get-EntraBetaScopedRoleMembership" {
+    Context "Test for Get-EntraBetaScopedRoleMembership" {
         It "Should return specific scoped role membership" {
             $result = Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -Not -BeNullOrEmpty

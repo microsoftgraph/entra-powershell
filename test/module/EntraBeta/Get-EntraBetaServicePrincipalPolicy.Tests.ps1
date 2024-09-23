@@ -35,7 +35,7 @@ $scriptblock = {
 }
 
 Describe "Get-EntraBetaServicePrincipalPolicy" {
-Context "Test for Get-EntraBetaServicePrincipalPolicy" {
+    Context "Test for Get-EntraBetaServicePrincipalPolicy" {
         It "Should return specific service principal policy" {
             $result = Get-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty

@@ -64,6 +64,17 @@ Describe "Get-EntraObjectByObjectId" {
             $para= $params | ConvertTo-json | ConvertFrom-Json
             $para.Body.Ids | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
+        It "Property parameter should work" {
+            $result =  Get-EntraObjectByObjectId -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property displayName 
+            $result | Should -Not -BeNullOrEmpty
+            $result.displayName | Should -Be "Mock-App"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             { Get-EntraObjectByObjectId -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectByObjectId"
 

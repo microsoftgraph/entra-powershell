@@ -32,7 +32,7 @@ $scriptblock = {
 }
 
 Describe "Get-EntraBetaApplicationSignInSummary" {
-Context "Test for Get-EntraBetaApplicationSignInSummary" {
+    Context "Test for Get-EntraBetaApplicationSignInSummary" {
         It "Should return application sign in summary" {
             $result = Get-EntraBetaApplicationSignInSummary -Days "30" 
             $result | Should -Not -BeNullOrEmpty

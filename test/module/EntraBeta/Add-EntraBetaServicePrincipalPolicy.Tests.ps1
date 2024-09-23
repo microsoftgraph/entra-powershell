@@ -12,7 +12,7 @@ BeforeAll {
 }
 
 Describe "Add-EntraBetaServicePrincipalPolicy" {
-Context "Test for Add-EntraBetaServicePrincipalPolicy" {
+    Context "Test for Add-EntraBetaServicePrincipalPolicy" {
         It "Should return empty object" {
             $result = Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc"
             $result | Should -BeNullOrEmpty

@@ -31,7 +31,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
-Context "Test for Get-EntraBetaApplicationSignInDetailedSummary" {
+    Context "Test for Get-EntraBetaApplicationSignInDetailedSummary" {
         It "Should return specific application signed in detailed summary by filter" {
             $result = Get-EntraBetaApplicationSignInDetailedSummary -Filter "appDisplayName eq 'Mock Portal'"
             $result | Should -Not -BeNullOrEmpty

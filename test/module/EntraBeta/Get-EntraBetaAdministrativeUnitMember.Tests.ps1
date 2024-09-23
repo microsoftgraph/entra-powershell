@@ -30,7 +30,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaAdministrativeUnitMember" {
-Context "Test for Get-EntraBetaAdministrativeUnitMember" {
+    Context "Test for Get-EntraBetaAdministrativeUnitMember" {
         It "Should return specific administrative unit member" {
             $result = Get-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa"
             $result | Should -Not -BeNullOrEmpty
@@ -52,7 +52,7 @@ Context "Test for Get-EntraBetaAdministrativeUnitMember" {
             
             Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-         It "Should fail when All is invalid" {
+        It "Should fail when All is invalid" {
             { Get-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
         }
         It "Should return top 1 administrative unit member" {
