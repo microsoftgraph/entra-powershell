@@ -195,7 +195,7 @@ Specifies the ID of a device in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

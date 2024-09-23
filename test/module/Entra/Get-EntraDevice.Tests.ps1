@@ -58,6 +58,12 @@ Describe "Get-EntraDevice" {
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific device with Alias" {
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when DeviceId is invalid" {
             { Get-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
         }
