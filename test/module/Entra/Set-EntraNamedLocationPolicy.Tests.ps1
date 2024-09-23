@@ -67,12 +67,12 @@ Describe "Set-EntraNamedLocationPolicy" {
         }
             
         It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
-            Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-            $result = Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
-            $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
-            $additionalProperties = $params[1].AdditionalProperties 
-            $additionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
+            Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                Write-Host $BodyParameter.AdditionalProperties."@odata.type" | ConvertTo-Json
+                $BodyParameter.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
+                $true
+            }
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraNamedLocationPolicy"

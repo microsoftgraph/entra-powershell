@@ -22,7 +22,25 @@ BeforeAll {
             }
         )
     }
-
+    $TemplateScriptblock = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"     = "Group.Unified.Guest"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "Description"     = "Settings for a specific Unified Group"
+                "Parameters"      = $args
+                "Values"          = @(
+                    [PSCustomObject]@{
+                        "Name"         = "AllowToAddGuests"
+                        "Description"  = ""
+                        "Type"         = ""
+                        "DefaultValue" = $true
+                    }
+                )
+            }
+        )
+    }    
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 Describe "New-EntraBetaObjectSetting" {
