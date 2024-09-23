@@ -50,11 +50,11 @@ The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
-    DisplayName = 'UPDATE helpdesk'
+    Id = $group.ObjectId
+    DisplayName = 'UPDATE HelpDesk Team Leaders'
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -64,11 +64,11 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     Description = 'This is my new group'
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -78,11 +78,11 @@ This example demonstrates how to update a group description.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     MailNickName = 'newnickname'
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -92,11 +92,11 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     SecurityEnabled = $true
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -106,11 +106,11 @@ This command updates the security enabled of a specified group in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     MailEnabled = $false
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -120,13 +120,13 @@ This example demonstrates how to update a group main enabled.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     Visibility = 'Private'
     GroupTypes = 'DynamicMembership'
     IsAssignableToRole = $true
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -136,11 +136,11 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Id = $group.ObjectId
     MembershipRule = '(user.UserType -contains "Member")'
 }
-
 Set-EntraBetaGroup @params
 ```
 
@@ -150,7 +150,8 @@ This example demonstrates how to update the membership rule of a specified group
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState 'On'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Set-EntraBetaGroup -Id $group.ObjectId -MembershipRuleProcessingState 'On'
 ```
 
 This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.
@@ -191,7 +192,7 @@ Accept wildcard characters: False
 
 ### -GroupTypes
 
-Specifies that the group is a dynamic group. 
+Specifies that the group is a dynamic group.
 To create a dynamic group, specify a value of DynamicMembership.
 
 ```yaml
