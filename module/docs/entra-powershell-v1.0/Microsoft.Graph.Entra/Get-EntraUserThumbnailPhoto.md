@@ -53,7 +53,9 @@ Id      Height Width
 default 292    278
 ```
 
-This example demonstrates how to retrieve the thumbnail photo of a specified user.
+This example shows how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
+
+- `-ObjectId` parameter specifies the user for which the thumbnail photo is retrieved.
 
 ## Parameters
 

@@ -24,6 +24,127 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $HelperCmdletsToExport = @{}
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
+    hidden [string[]] $cmdtoSkipNameconverssion =  @(
+        'Revoke-EntraUserAllRefreshToken',
+        'Select-EntraGroupIdsGroupIsMemberOf',
+        'Get-EntraUserAppRoleAssignment',
+        'Get-EntraPermissionGrantConditionSet',
+        'Remove-EntraUserAppRoleAssignment',
+        'Set-EntraUserLicense',
+        'Restore-EntraDeletedApplication',
+        'Set-EntraUserPassword',
+        'Remove-EntraAdministrativeUnit',
+        'Remove-EntraAdministrativeUnitMember',
+        'Select-EntraGroupIdsServicePrincipalIsMemberOf',
+        'Get-EntraServicePrincipalDelegatedPermissionClassification',
+        'Set-EntraServicePrincipal',
+        'New-EntraConditionalAccessPolicy',
+        'Set-EntraUserThumbnailPhoto',
+        'Reset-EntraLifeCycleGroup',
+        'Get-EntraObjectByObjectId',
+        'Get-EntraGroupPermissionGrant',
+        'Remove-EntraPermissionGrantConditionSet',
+        'Get-EntraPermissionGrantPolicy',
+        'Remove-EntraOAuth2PermissionGrant',
+        'New-EntraUserAppRoleAssignment',
+        'Set-EntraPermissionGrantPolicy',
+        'Remove-EntraScopedRoleMembership',
+        'New-EntraPermissionGrantPolicy',
+        'Remove-EntraApplicationPassword',
+        'New-EntraNamedLocationPolicy',
+        'New-EntraServiceAppRoleAssignment',
+        'Select-EntraGroupIdsContactIsMemberOf',
+        'Remove-EntraServicePrincipalDelegatedPermissionClassification',
+        'Get-EntraServiceAppRoleAssignment',
+        'Set-EntraConditionalAccessPolicy',
+        'Remove-EntraPermissionGrantPolicy',
+        'Set-EntraNamedLocationPolicy',
+        'Set-EntraPermissionGrantConditionSet',
+        'Remove-EntraDeletedApplication',
+        'Select-EntraGroupIdsUserIsMemberOf',
+        'Get-EntraUserOAuth2PermissionGrant',
+        'Add-EntraBetaServicePrincipalPolicy',
+    'Get-EntraBetaPrivilegedRoleDefinition',
+    'Get-EntraBetaFeatureRolloutPolicy',
+    'Set-EntraBetaPermissionGrantPolicy',
+    'Remove-EntraBetaApplicationPassword',
+    'Get-EntraBetaServicePrincipalPolicy',
+    'Get-EntraBetaPrivilegedRoleAssignmentRequest',
+    'New-EntraBetaApplicationPassword',
+    'Set-EntraBetaPasswordSingleSignOnCredential',
+    'Get-EntraBetaObjectSetting',
+    'Add-EntraBetaApplicationPolicy',
+    'Add-EntraBetaFeatureRolloutPolicyDirectoryObject',
+    'Revoke-EntraBetaUserAllRefreshToken',
+    'Get-EntraBetaPrivilegedRole',
+    'Get-EntraBetaApplicationTemplate',
+    'Select-EntraBetaGroupIdsContactIsMemberOf',
+    'Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+    'Set-EntraBetaUserLicense',
+    'Set-EntraBetaTrustFrameworkPolicy',
+    'Remove-EntraBetaUserAppRoleAssignment',
+    'Get-EntraBetaApplicationPolicy',
+    'Get-EntraBetaPermissionGrantPolicy',
+    'Select-EntraBetaGroupIdsGroupIsMemberOf',
+    'New-EntraBetaUserAppRoleAssignment',    
+    'Get-EntraBetaTrustFrameworkPolicy',
+    'Remove-EntraBetaObjectSetting',
+    'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues',
+    'Get-EntraBetaUserOAuth2PermissionGrant',
+    'New-EntraBetaApplicationKey',
+    'Get-EntraBetaPolicy',
+    'Get-EntraBetaDirectorySetting',
+    'New-EntraBetaServiceAppRoleAssignment',
+    'Get-EntraBetaObjectByObjectId',
+    'Remove-EntraBetaPasswordSingleSignOnCredential',
+    'Set-EntraBetaPermissionGrantConditionSet',
+    'Set-EntraBetaConditionalAccessPolicy',
+    'Get-EntraBetaPolicyAppliedObject',
+    'Remove-EntraBetaDeletedApplication',
+    'Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+    'Get-EntraBetaUserAppRoleAssignment',
+    'Get-EntraBetaDirectorySettingTemplate',
+    'Remove-EntraBetaServicePrincipalPolicy',
+    'Get-EntraBetaPermissionGrantConditionSet',
+    'Set-EntraBetaObjectSetting',
+    'Remove-EntraBetaFeatureRolloutPolicyDirectoryObject',
+    'Get-EntraBetaAuthorizationPolicy',
+    'Remove-EntraBetaPermissionGrantPolicy',
+    'Set-EntraBetaDirectorySetting',
+    'Set-EntraBetaAuthorizationPolicy',
+    'Remove-EntraBetaDirectorySetting',
+    'Remove-EntraBetaApplicationPolicy',
+    'New-EntraBetaConditionalAccessPolicy',
+    'Set-EntraBetaPrivilegedRoleAssignmentRequest',
+    'Remove-EntraBetaTrustFrameworkPolicy',
+    'New-EntraBetaPasswordSingleSignOnCredential',
+    'Remove-EntraBetaPolicy',
+    'Set-EntraBetaPolicy',
+    'Set-EntraBetaCustomSecurityAttributeDefinition',
+    'Get-EntraBetaPrivilegedResource',
+    'Set-EntraBetaUserPassword',
+    'New-EntraBetaApplicationFromApplicationTemplate',
+    'Set-EntraBetaPrivilegedRoleSetting',
+    'Remove-EntraBetaApplicationKey',
+    'Get-EntraBetaPrivilegedRoleSetting',
+    'Remove-EntraBetaOAuth2PermissionGrant',
+    'Select-EntraBetaGroupIdsServicePrincipalIsMemberOf',
+    'Get-EntraBetaServicePrincipalDelegatedPermissionClassification',
+    'New-EntraBetaPrivilegedRoleAssignment',
+    'Get-EntraBetaPasswordSingleSignOnCredential',
+    'Set-EntraBetaFeatureRolloutPolicy',
+    'New-EntraBetaPermissionGrantPolicy',
+    'Remove-EntraBetaFeatureRolloutPolicy',
+    'Get-EntraBetaCustomSecurityAttributeDefinition',
+    'Remove-EntraBetaServicePrincipalDelegatedPermissionClassification',
+    'Select-EntraBetaGroupIdsUserIsMemberOf',
+    'Set-EntraBetaNamedLocationPolicy',    
+    'New-EntraBetaNamedLocationPolicy',
+    'Remove-EntraBetaApplication',
+    'Restore-EntraBetaDeletedApplication',    
+    'Remove-EntraBetaPermissionGrantConditionSet'
+        
+    )
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
@@ -422,13 +543,15 @@ public $($object.GetType().Name)()
         $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
-            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
+            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion}
         }
         $moduleSettings = @{
             Path = $manisfestPath
             GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
+            CmdletsToExport=@()
+            AliasesToExport=@()
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
@@ -511,9 +634,31 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
-            #Adding direct aliases for Connect-Entra and Disconnect-Entra
-            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+
+            if (Test-Path $aliasDefinitionsPath) {
+                $directAliases = Get-Content $aliasDefinitionsPath -Raw
+                $aliases += $directAliases  # Append the content to $aliases
+            }
+
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -565,7 +710,16 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        $function = @"
+        if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and $parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id')) {
+            $function = @"
+function $($Command.Generate) {
+$($Command.CustomScript)    
+}
+
+"@
+        }
+        else {
+            $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
     param (
@@ -575,7 +729,8 @@ $parameterDefinitions
 $($Command.CustomScript)    
 }
 
-"@
+"@   
+        }
         $codeBlock = [Scriptblock]::Create($function)
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
@@ -596,7 +751,8 @@ $($Command.CustomScript)
             "Get-EntraDevice",
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
-            "Get-EntraAdministrativeUnit"
+            "Get-EntraAdministrativeUnit",
+            "Get-EntraDirectoryRoleAssignment"
         )
         
         
@@ -646,21 +802,30 @@ $OutputTransformations
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
-    hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
+    hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {                
         $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
         $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaPrivilegedRoleAssignment","Get-EntraBetaTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
+        $ParamAlias=$null
         foreach ($paramKey in $Command.Parameters.Keys) {
             if($commonParameterNames.Contains($paramKey)) {
                 continue
             }
+            $targetParam = $Command.Parameters[$paramKey]
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
             $paramtypeToCreate = $param.ParameterType.ToString()
             if($param.Name -eq 'All'){
                 $paramType = "switch"
             }
+            
+            if( ($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)){
+                if ($targetParam.TargetName) {
+                    $ParamAlias = $this.GetParameterAlias($param.Name)
+                    $param.Name = $targetParam.TargetName
+                }                
+            }  
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
                 if($paramType -like "*List*"){
                     $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
@@ -675,9 +840,11 @@ $OutputTransformations
                 }                
             }           
             $paramBlock = @"
+    $ParamAlias            
     $($this.GetParameterAttributes($Param))[$($paramType)] `$$($param.Name)
 "@
             $paramsList += $paramBlock
+            $ParamAlias=$null
         }
 
         $addProperty = $true
@@ -713,6 +880,10 @@ $OutputTransformations
     $attributesString[$propertyType] `$Property
 "@
         return $propertyParamBlock
+    }
+
+    hidden [string] GetParameterAlias($param){
+        return "[Alias('$param')]"
     }
 
     hidden [string] GetParameterAttributes($param){
@@ -771,7 +942,9 @@ $OutputTransformations
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
-                $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
+                if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
+                    $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
+                } 
             }
             elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
@@ -1013,7 +1186,6 @@ $($output)
             'Confirm' = @('Confirm')
             'Enable' = @('New')
         }
-    
         $targetCmd = $null
         if($this.CmdCustomizations.ContainsKey($SourceCmdName)){
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
@@ -1036,10 +1208,22 @@ $($output)
             } else {
                 $prefix = $NewPrefix
             }
+
+            $NewName = ""
+            switch ($SourceCmdlet.Noun) {
+                "RoleDefinition" { $NewName = 'DirectoryRoleDefinition' }
+                "RoleAssignment" { $NewName = 'DirectoryRoleAssignment' }
+                "ServiceAppRoleAssignedTo" { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
+                "ServiceAppRoleAssignment" { $NewName = 'ServicePrincipalAppRoleAssignment' }
+                "CustomSecurityAttributeDefinitionAllowedValues" { $NewName = 'CustomSecurityAttributeDefinitionAllowedValue' }
+                "AuditSignInLogs" { $NewName = 'AuditSignInLog' }
+                "AuditDirectoryLogs" { $NewName = 'AuditDirectoryLog' }
+                default { $NewName = $SourceCmdlet.Noun }
+            }
             $cmd = [PSCustomObject]@{
                 Old = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
                 New = $targetCmd
-                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $SourceCmdlet.Noun
+                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $NewName
                 Noun = $SourceCmdlet.Noun
                 Verb = $SourceCmdlet.Verb
                 Parameters = $null

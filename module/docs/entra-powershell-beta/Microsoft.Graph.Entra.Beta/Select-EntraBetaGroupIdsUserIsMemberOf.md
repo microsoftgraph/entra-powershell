@@ -26,8 +26,7 @@ Selects the groups that a user is a member of.
 ```powershell
 Select-EntraBetaGroupIdsUserIsMemberOf 
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
-  
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 

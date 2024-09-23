@@ -38,16 +38,16 @@ When a group is renewed, the group expiration is extended by the number of days 
 
 ## Examples
 
-### Example 1
+### Example 1: Renew a group
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 Reset-EntraBetaLifeCycleGroup -GroupId 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 ```
 
-This example demonstrates how to renew a specified group.  
+This example demonstrates how to renew a specified group.
 
-- `-GroupId` - Specifies the lifecycle policy object ID.  
+- `-GroupId` - Specifies the lifecycle policy object ID.
 
 ## Parameters
 

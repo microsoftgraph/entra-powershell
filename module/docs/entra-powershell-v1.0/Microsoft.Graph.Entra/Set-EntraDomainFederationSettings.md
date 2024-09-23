@@ -2,7 +2,6 @@
 title: Set-EntraDomainFederationSettings
 description: This article provides details on the Set-EntraDomainFederationSettings command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -65,7 +64,6 @@ $params = @{
     PreferredAuthenticationProtocol = 'WsFed'
     PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
 }
-
 Set-EntraDomainFederationSettings @params
 ```
 
@@ -76,6 +74,10 @@ This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswo
 - `Disabled` - means that only wfresh=0 is sent to ADFS
 
 Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
+
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
+- `-PreferredAuthenticationProtocol` parameter specifies the preferred authentication protocol.
+- `-PromptLoginBehavior` parameter specifies the prompt sign-in behavior.
 
 ## Parameters
 
@@ -145,7 +147,7 @@ Accept wildcard characters: False
 
 ### -PassiveLogOnUri
 
-The URL that web-based clients are directed to when signing in to Microsoft Entra ID services.
+The URL that web-based clients will be directed to when signing in to Microsoft Entra ID services.
 
 ```yaml
 Type: System.String
@@ -259,7 +261,7 @@ Accept wildcard characters: False
 
 ### -PromptLoginBehavior
 
-Specifies the prompt sign-in behavior.
+Specifies the prompt login behavior.
 
 ```yaml
 Type: System.String
@@ -285,4 +287,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)
+[Get-EntraDomainFederationSettings](Get-EntraDomainFederationSettings.md)

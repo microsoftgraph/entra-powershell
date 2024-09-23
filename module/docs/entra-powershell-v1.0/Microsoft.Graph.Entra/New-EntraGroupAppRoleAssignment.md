@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraGroupAppRoleAssignment
@@ -27,7 +28,7 @@ Assign a group of users to an application role.
 ```powershell
 New-EntraGroupAppRoleAssignment 
  -ObjectId <String> 
- -PrincipalId <String> 
+ -PrincipalId <String>
  -Id <String> 
  -ResourceId <String>
  [<CommonParameters>]
@@ -35,7 +36,7 @@ New-EntraGroupAppRoleAssignment
 
 ## Description
 
-The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.
+The `New-EntraGroupAppRoleAssignment` cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
 ## Examples
 
@@ -49,7 +50,7 @@ $group = Get-EntraGroup -SearchString 'Contoso Team'
 New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
-```output
+```Output
 DeletedDateTime        Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
 ---------------        --                                          ---------                            ---------------      -------------------- -----------
                       AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 00000000-0000-0000-0000-000000000000 3/13/2024 4:41:43 AM Contoso Team         aaaaaaaa-bbbb-cccc-1111-222222222222
@@ -58,13 +59,10 @@ DeletedDateTime        Id                                          AppRoleId    
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
 
-- `ObjectId`: The ID of the group to which you're assigning the app role.
-
-- `PrincipalId`: The ID of the group to which you're assigning the app role.
-
-- `ResourceId`: The ID of the resource service Principal, which has defined the app role.
-
-- `Id`: The ID of the appRole (defined on the resource service principal) to assign to the group.
+- `-ObjectId` parameter specifies the ID of a group to which you're assigning the app role.
+- `-PrincipalId` parameter specifies the ID of a group to which you're assigning the app role.
+- `-ResourceId` parameter specifies the ID of a resource service Principal, which has defined the app role.
+- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the group.
 
 ## Parameters
 
@@ -86,7 +84,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the unique identifier of group to which the new app role is to be assigned.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -102,7 +100,7 @@ Accept wildcard characters: False
 
 ### -PrincipalId
 
-Specifies the ID of a group.
+Specifies the principal ID.
 
 ```yaml
 Type: System.String
@@ -135,7 +133,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

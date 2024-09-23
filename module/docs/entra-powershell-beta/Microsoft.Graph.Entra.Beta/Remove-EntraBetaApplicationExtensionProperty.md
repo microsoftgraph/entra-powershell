@@ -2,7 +2,6 @@
 title: Remove-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Remove-EntraBetaApplicationExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
@@ -27,7 +26,7 @@ Removes an application extension property.
 
 ```powershell
 Remove-EntraBetaApplicationExtensionProperty 
- -ObjectId <String> 
+ -ApplicationId <String> 
  -ExtensionPropertyId <String>
  [<CommonParameters>]
 ```
@@ -44,7 +43,7 @@ The `Remove-EntraBetaApplicationExtensionProperty` cmdlet removes an application
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.ObjectId
+    ApplicationId = $Application.ObjectId
     ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
 }
 
@@ -53,7 +52,7 @@ Remove-EntraBetaApplicationExtensionProperty @params
 
 This example removes the extension property that has the specified ID from an application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 - `-ExtensionPropertyId` parameter specifies the  unique identifier of the extension property to remove.
 
 ## Parameters
@@ -74,14 +73,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

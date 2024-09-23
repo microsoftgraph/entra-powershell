@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraNamedLocationPolicy
@@ -38,14 +39,17 @@ Named locations are custom rules that define network locations, which can then b
 
 ## Examples
 
-### Example 1: Deletes a named location policy in  Microsoft Entra ID with given PolicyId
+### Example 1: Deletes a named location policy in Microsoft Entra ID
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-Remove-EntraNamedLocationPolicy -PolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+Remove-EntraNamedLocationPolicy -PolicyId $policy.Id
 ```
 
-This command demonstrates how to delete the named location policy in  Microsoft Entra ID.
+This command demonstrates how to delete the named location policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the Id of named location policy.
 
 ## Parameters
 

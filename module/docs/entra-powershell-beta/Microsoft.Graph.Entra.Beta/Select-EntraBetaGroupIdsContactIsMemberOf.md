@@ -42,7 +42,7 @@ The `Select-EntraBetaGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -ObjectId 'jjjjjjjj-9999-7777-7777-uuuuuuuuuuuu').ObjectId
+$Groups.GroupIds = (Get-EntraBetaGroup -Filter "DisplayName eq 'Entra PowerShell Group'").ObjectId
 $UserID = (Get-EntraBetaContact -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc').ObjectId
 Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
 ```

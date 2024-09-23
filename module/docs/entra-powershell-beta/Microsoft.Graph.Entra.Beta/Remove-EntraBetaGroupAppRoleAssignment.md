@@ -39,8 +39,9 @@ The `Remove-EntraBetaGroupAppRoleAssignment` cmdlet removes a group application 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' 
+    ObjectId = $group.ObjectId 
     AppRoleAssignmentId = 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 }
 Remove-EntraBetaGroupAppRoleAssignment @params

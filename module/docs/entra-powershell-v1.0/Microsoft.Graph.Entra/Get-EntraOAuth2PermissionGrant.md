@@ -89,7 +89,7 @@ This command gets all the OAuth2 permission grants.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraOAuth2PermissionGrant -Top 1
+Get-EntraOAuth2PermissionGrant -Top 2
 ```
 
 ```output
