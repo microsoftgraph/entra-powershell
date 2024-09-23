@@ -18,7 +18,7 @@ BeforeAll {
                         "FieldId" = "param_emailOrUserName"
                     },
                     [PSCustomObject]@{  
-                        "Value"   = "test2420"
+                        "Value"   = "test420"
                         "Type"    = "password"
                         "FieldId" = "param_password"
                     }
@@ -64,11 +64,9 @@ Describe "Get-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should contain BodyParameter in parameters when passed PasswordSSOObjectId to it" {
-            $result = Get-EntraBetaPasswordSingleSignOnCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc56" -PasswordSSOObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
-            $params = Get-Parameters -data $result.Parameters
-            $value = $params.credentials | ConvertTo-Json 
+            $result = Get-EntraBetaPasswordSingleSignOnCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc56" -PasswordSSOObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" 
             $result | Should -Not -BeNullOrEmpty
-            ($result.Credentials | ConvertTo-Json ) | should -Be $value
+            $result.Credentials[0].Value | should -Be 'test420'
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }

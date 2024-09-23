@@ -621,7 +621,12 @@ $($Command.CustomScript)
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
             "Get-EntraAdministrativeUnit",
-            "Get-EntraDirectoryRoleAssignment"
+            "Get-EntraDirectoryRoleAssignment",
+            "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue",
+            "Get-EntraBetaFeatureRolloutPolicy",
+            "Get-EntraBetaGroup",
+            "Get-EntraBetaPrivilegedResource",
+            "Get-EntraBetaServicePrincipal"
         )
         
         
