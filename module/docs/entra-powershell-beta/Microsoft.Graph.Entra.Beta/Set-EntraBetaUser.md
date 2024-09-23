@@ -2,7 +2,6 @@
 title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -68,8 +67,8 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraBetaUser -SearchString '<user-display-name>'
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+$user = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 $params = @{
    ObjectId = $user.ObjectId
    DisplayName = 'Updated user Name'
@@ -84,7 +83,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
 $params = @{
    ObjectId = 'SawyerM@contoso.com'
    AccountEnabled = $true
@@ -100,7 +99,7 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
 Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
 ForEach-Object  { Set-EntraBetaUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
@@ -113,7 +112,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
 $params = @{
    ObjectId = 'SawyerM@contoso.com'
    City = 'Add city name'
@@ -144,10 +143,9 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraBetaUser -SearchString '<user-display-name>'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $params= @{
-ObjectId = $user.ObjectId
+ObjectId = 'SawyerM@contoso.com'
 PasswordProfile  = @{
    Password= '*****'
    ForceChangePasswordNextLogin = $true
@@ -297,7 +295,9 @@ Accept wildcard characters: False
 
 ### -ImmutableId
 
-This property is used to associate an on-premises Active Directory user account to their Microsoft Entra ID user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName property. Important: The $ and _ characters can't be used to when specifying this property.
+This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
+
+Important: Do not use the $ and _ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -412,7 +412,7 @@ Accept wildcard characters: False
 Specifies the user's password profile.
 
 ```yaml
-Type: System.PasswordProfile
+Type: PasswordProfile
 Parameter Sets: (All)
 Aliases:
 
@@ -601,7 +601,7 @@ Accept wildcard characters: False
 
 ### -AgeGroup
 
-Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult.
+Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. See, [legal-age-group](https://learn.microsoft.com/graph/api/resources/user#legal-age-group-property-definitions).
 
 ```yaml
 Type: System.String

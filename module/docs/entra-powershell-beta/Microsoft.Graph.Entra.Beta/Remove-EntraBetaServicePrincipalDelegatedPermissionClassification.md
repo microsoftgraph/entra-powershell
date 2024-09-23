@@ -27,7 +27,7 @@ Remove delegated permission classification.
 
 ```powershell
 Remove-EntraBetaServicePrincipalDelegatedPermissionClassification 
- -ServicePrincipalId <String> 
+ -ServicePrincipalId <String>
  -Id <String>
  [<CommonParameters>]
 ```

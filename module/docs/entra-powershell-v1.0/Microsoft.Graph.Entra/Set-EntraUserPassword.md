@@ -2,13 +2,13 @@
 title: Set-EntraUserPassword
 description: This article provides details on the Set-EntraUserPassword command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserPassword
@@ -60,11 +60,10 @@ This command sets the specified user's password.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= <Password>
-$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
- 
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
 $params = @{
     EnforceChangePasswordPolicy = $true
- }
+}
 Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
@@ -80,7 +79,6 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= <Password>
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-
 $params = @{
     ForceChangePasswordNextLogin = $true
 }

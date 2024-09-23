@@ -2,7 +2,6 @@
 title: Set-EntraBetaDevice
 description: This article provides details on the Set-EntraBetaDevice command.
 
-
 ms.topic: reference
 ms.date: 08/12/2024
 ms.author: eunicewaweru

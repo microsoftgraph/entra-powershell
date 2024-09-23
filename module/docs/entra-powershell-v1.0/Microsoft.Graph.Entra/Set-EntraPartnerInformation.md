@@ -2,7 +2,6 @@
 title: Set-EntraPartnerInformation
 description: This article provides details on the Set-EntraPartnerInformation command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -41,6 +40,7 @@ Set-EntraPartnerInformation
 ## Description
 
 The `Set-EntraPartnerInformation` cmdlet is used by partners to set partner-specific properties.
+
 These properties can view by all tenants that the partner has access to.
 
 ## Examples
@@ -48,47 +48,52 @@ These properties can view by all tenants that the partner has access to.
 ### Example 1: Update the help URL
 
 ```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
 Set-EntraPartnerInformation -PartnerHelpUrl 'http://www.help.contoso.com'
 ```
 
-This command updates the help URL for this partner.
+This example shows how to update the help URL.
 
 ### Example 2: Update the Support URL
 
 ```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
 Set-EntraPartnerInformation -PartnerSupportUrl 'http://www.test1.com'
 ```
 
-This command updates the Support URL for this partner.
+This example shows how to update the support URL.
 
 ### Example 3: Update the Commerce URL
 
 ```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
 Set-EntraPartnerInformation -PartnerCommerceUrl 'http://www.test1.com'
 ```
 
-This command updates the Commerce URL for this partner.
+This example shows how to update the commerce URL.
 
 ### Example 4: Update the SupportEmails
 
 ```powershell
-Set-EntraPartnerInformation -PartnerSupportEmails 'contoso@example.com' 
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraPartnerInformation -PartnerSupportEmails 'contoso@example.com'
 ```
 
-This command updates the SupportEmails for this partner.
+This example shows how to update the support email addresses.
 
 ### Example 5: Update the SupportTelephones
 
 ```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+$tenantId = (Get-EntraContext).TenantId
 $params = @{
     PartnerSupportTelephones = '234234234'
-    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    TenantId = $tenantId
 }
-
 Set-EntraPartnerInformation @params
 ```
 
-This command updates the SupportTelephones for this partner.
+This example shows how to update support telephone numbers.
 
 ## Parameters
 
@@ -210,7 +215,6 @@ Accept wildcard characters: False
 
 Specifies the partner's company name.
 
-
 ```yaml
 Type: System.String
 Parameter Sets: (All)
@@ -225,7 +229,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (<https://go.microsoft.com/fwlink/?LinkID=113216>).
 
 ## Inputs
 
