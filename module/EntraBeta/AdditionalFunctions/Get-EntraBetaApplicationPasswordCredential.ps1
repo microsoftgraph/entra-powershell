@@ -6,6 +6,7 @@ function Get-EntraBetaApplicationPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
     [System.String] $ApplicationId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property

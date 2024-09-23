@@ -64,7 +64,7 @@ The ID of the connector. You can find ID by running `Get-EntraBetaApplicationPro
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

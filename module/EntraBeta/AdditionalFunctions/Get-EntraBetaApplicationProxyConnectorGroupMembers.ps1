@@ -6,6 +6,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("Id")]
     [System.String] $OnPremisesPublishingProfileId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,

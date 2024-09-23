@@ -62,7 +62,7 @@ The objectID of the application for which to get the password credential. Use `G
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

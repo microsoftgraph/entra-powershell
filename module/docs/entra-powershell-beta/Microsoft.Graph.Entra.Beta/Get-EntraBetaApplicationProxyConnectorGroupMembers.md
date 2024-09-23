@@ -137,7 +137,7 @@ The ID of the Connector group. This ID can be found by running the `Get-EntraBet
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: Named

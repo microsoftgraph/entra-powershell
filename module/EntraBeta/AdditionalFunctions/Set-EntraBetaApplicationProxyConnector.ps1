@@ -6,6 +6,7 @@ function Set-EntraBetaApplicationProxyConnector {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("Id")]
     [System.String] $OnPremisesPublishingProfileId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ConnectorGroupId

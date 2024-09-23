@@ -27,11 +27,17 @@ BeforeAll {
 }
 Describe "Get-EntraBetaApplicationPasswordCredential" {
     Context "Test for Get-EntraBetaApplicationPasswordCredential" {
-        It "Should return specific Policy" {
+        It "Should return specific credential" {
             $result = Get-EntraBetaApplicationPasswordCredential -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.keyId | Should -Be "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
             $result.DisplayName | Should -Be "test"
             $result.CustomKeyIdentifier.gettype().name | Should -Be 'Byte[]'
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return specific credential with Alias" {
+            $result = Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }

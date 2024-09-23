@@ -6,6 +6,7 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
     [System.String] $OnPremisesPublishingProfileId
     )
 

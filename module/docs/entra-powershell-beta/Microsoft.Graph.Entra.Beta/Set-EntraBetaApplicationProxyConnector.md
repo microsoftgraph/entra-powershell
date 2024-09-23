@@ -63,7 +63,7 @@ Use the `Get-EntraBetaApplicationProxyConnectorGroup` command to find the Connec
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
