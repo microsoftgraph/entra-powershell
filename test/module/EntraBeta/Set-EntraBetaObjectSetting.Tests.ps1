@@ -6,7 +6,25 @@ BeforeAll {
         Import-Module Microsoft.Graph.Entra.Beta       
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
-    
+    $TemplateScriptblock = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"     = "Group.Unified.Guest"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "Description"     = "Settings for a specific Unified Group"
+                "Parameters"      = $args
+                "Values"          = @(
+                    [PSCustomObject]@{
+                        "Name"         = "AllowToAddGuests"
+                        "Description"  = ""
+                        "Type"         = ""
+                        "DefaultValue" = $true
+                    }
+                )
+            }
+        )
+    }    
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 Describe "Set-EntraBetaObjectSetting" {

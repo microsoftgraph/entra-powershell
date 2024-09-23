@@ -89,6 +89,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
             $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
             $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             
