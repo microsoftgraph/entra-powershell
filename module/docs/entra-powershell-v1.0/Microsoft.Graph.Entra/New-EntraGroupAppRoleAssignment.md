@@ -29,7 +29,7 @@ Assign a group of users to an application role.
 New-EntraGroupAppRoleAssignment 
  -GroupId <String> 
  -PrincipalId <String> 
- -Id <String> 
+ -AppRoleId <String> 
  -ResourceId <String>
  [<CommonParameters>]
 ```
