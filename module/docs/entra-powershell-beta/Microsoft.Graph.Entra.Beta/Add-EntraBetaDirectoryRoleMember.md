@@ -62,7 +62,7 @@ Specifies the ID of a directory role in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
