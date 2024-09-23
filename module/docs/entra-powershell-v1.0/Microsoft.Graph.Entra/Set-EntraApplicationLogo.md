@@ -95,7 +95,7 @@ The ApplicationId of the Application for which the logo is set.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: False
 Position: Named

@@ -161,7 +161,7 @@ Specifies the ID of the role definition.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

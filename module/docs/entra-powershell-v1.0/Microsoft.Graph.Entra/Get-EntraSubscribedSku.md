@@ -148,7 +148,7 @@ The object ID of the SKU (Stock Keeping Unit).
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

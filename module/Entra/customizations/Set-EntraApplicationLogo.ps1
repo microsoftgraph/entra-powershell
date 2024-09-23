@@ -9,6 +9,7 @@
     CustomScript = @'   
     [CmdletBinding(DefaultParameterSetName = 'File')]
     param (
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Parameter(ParameterSetName = "Stream")]
     [Parameter(ParameterSetName = "File")]

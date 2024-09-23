@@ -122,7 +122,7 @@ Specifies an object ID of a device.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

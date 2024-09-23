@@ -13,6 +13,7 @@
     [System.String] $Value,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $CustomKeyIdentifier,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ApplicationId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

@@ -9,6 +9,7 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $DeviceId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
