@@ -39,9 +39,8 @@ The `Remove-EntraBetaDirectoryRoleAssignment` cmdlet removes a role assignment f
 ### Example 1: Remove a role assignment
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
- Remove-EntraBetaDirectoryRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
+Remove-EntraBetaDirectoryRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
 ```
 
 This example removes the specified role assignment from Microsoft Entra ID.
@@ -79,6 +78,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+`Remove-EntraBetaRoleAssignment` is an alias for `Remove-EntraBetaDirectoryRoleAssignment`.
 
 ## Related Links
 

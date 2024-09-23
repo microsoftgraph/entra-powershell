@@ -40,14 +40,16 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ## Examples
 
-### Example 1
+### Example 1: Remove the identity provider in the directory
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-Remove-EntraIdentityProvider -IdentityProviderBaseId LinkedIn-OAUTH
+Remove-EntraIdentityProvider -IdentityProviderBaseId 'LinkedIn-OAUTH'
 ```
 
 This command demonstrates how to remove the specified identity provider.
+
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 
 ## Parameters
 
@@ -58,7 +60,7 @@ The unique identifier for an identity provider.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

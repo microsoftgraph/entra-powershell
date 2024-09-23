@@ -2,7 +2,6 @@
 title: Set-EntraBetaApplicationLogo
 description: This article provides details on the Set-EntraBetaApplicationLogo command.
 
-
 ms.topic: reference
 ms.date: 06/19/2024
 ms.author: eunicewaweru
@@ -52,7 +51,7 @@ Set-EntraBetaApplicationLogo
 
 ## Description
 
-This cmdlet is used to set the logo for an application.
+The `Set-EntraBetaApplicationLogo` cmdlet is used to set the logo for an application.
 
 ## Examples
 
@@ -114,6 +113,7 @@ System.IO.Stream System.Byte\[\]
 ### System.Object
 
 ## Notes
+
 File uploads must be smaller than 500KB.
 
 ## Related Links

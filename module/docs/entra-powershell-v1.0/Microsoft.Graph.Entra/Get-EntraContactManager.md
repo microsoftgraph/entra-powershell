@@ -58,7 +58,7 @@ Specifies the ID of a contact in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: OrgContactId
 
 Required: True
 Position: Named
