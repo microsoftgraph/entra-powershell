@@ -120,7 +120,7 @@ Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

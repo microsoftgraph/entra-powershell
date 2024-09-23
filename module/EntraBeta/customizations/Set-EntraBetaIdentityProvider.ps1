@@ -13,6 +13,7 @@
     [System.String] $Type,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $ClientSecret,
+    [Alias('Id')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $IdentityProviderBaseId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

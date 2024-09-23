@@ -15,6 +15,7 @@
     [System.String] $CustomKeyIdentifier,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.DateTime]] $StartDate,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ApplicationId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

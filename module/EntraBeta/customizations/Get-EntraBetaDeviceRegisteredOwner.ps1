@@ -11,6 +11,7 @@
     param (
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $DeviceId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

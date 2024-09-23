@@ -9,6 +9,7 @@
     CustomScript = @'   
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
+    [ALias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $UserId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]

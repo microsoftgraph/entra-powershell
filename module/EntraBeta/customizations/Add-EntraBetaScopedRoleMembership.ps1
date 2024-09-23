@@ -11,6 +11,7 @@
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $RoleObjectId,
+    [Alias('ObjectId')]
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $AdministrativeUnitObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

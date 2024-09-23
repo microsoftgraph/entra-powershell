@@ -9,6 +9,7 @@
     CustomScript = @'
      [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
+    [Alias('ObjectId')]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $SubscribedSkuId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]

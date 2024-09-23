@@ -13,6 +13,7 @@
     [System.Nullable`1[System.Int32]] $Top,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
+    [Alias('ObjectId')]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $OrgContactId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
