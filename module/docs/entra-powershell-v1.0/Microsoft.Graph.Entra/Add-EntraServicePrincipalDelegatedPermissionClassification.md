@@ -36,7 +36,7 @@ Add-EntraServicePrincipalDelegatedPermissionClassification
 
 ## Description
 
-The Add-EntraServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
+The `Add-EntraServicePrincipalDelegatedPermissionClassification` cmdlet creates a delegated permission classification for the given permission on service principal.
 
 ## Examples
 
@@ -44,12 +44,12 @@ The Add-EntraServicePrincipalDelegatedPermissionClassification cmdlet creates a 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$ServicePrincipal = Get-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
-$PermissionId = $ServicePrincipal.Oauth2PermissionScopes[0].Id
-$PermissionName =  $ServicePrincipal.Oauth2PermissionScopes[0].Value
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$PermissionId = $ServicePrincipal.PublishedPermissionScopes[0].Id
+$PermissionName =  $ServicePrincipal.PublishedPermissionScopes[0].Value
 
 $params = @{
-    ServicePrincipalId = $ServicePrincipal.Id
+    ServicePrincipalId = $ServicePrincipal.ObjectId
     PermissionId = $PermissionId
     Classification = 'Low'
     PermissionName = $PermissionName
@@ -58,17 +58,18 @@ $params = @{
 Add-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
-```output
-Id                                   Classification PermissionId                         PermissionName
---                                   -------------- ------------                         --------------
-eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
+```Output
+Id                      Classification PermissionId                         PermissionName
+--                      -------------- ------------                         --------------
+T2qU_E28O0GgkLLIYRPsTwE low            fc946a4f-bc4d-413b-a090-b2c86113ec4f LicenseManager.AccessAsUser
 ```
 
-This command creates a delegated permission classification for the given permission on the service principal.
+This command creates a delegated permission classification for the given permission on the service principal. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
 
-- The first command get the specified service principal using [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md) cmdlet and stores it in $ServicePrincipal.
-- The second command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.
-- The third command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+- `-PermissionId` parameter specifies the ID for a delegated permission.
+- `-Classification` parameter specifies the classification for a delegated permission.
+- `-PermissionName` parameter specifies the name for a delegated permission.
 
 ## Parameters
 
@@ -90,7 +91,7 @@ Accept wildcard characters: False
 
 ### -PermissionId
 
-The id for a delegated permission.
+The ID for a delegated permission.
 
 ```yaml
 Type: System.String

@@ -33,24 +33,24 @@ Remove-EntraGroupMember
 
 ## Description
 
-The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
+The `Remove-EntraGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
 
 ## Examples
 
 ### Example 1: Remove a member
 
-This example demonstrates how to remove a member from a group in Microsoft Entra ID.
-
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-Remove-EntraGroupMember -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -MemberId 'zzzzzzzz-6666-8888-9999-pppppppppppp'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+$params = @{
+    ObjectId = $group.ObjectId
+    MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
+}
+
+Remove-EntraGroupMember @params
 ```
 
-This command removes the specified member from the specified group.  
-
-ObjectId - Specifies the object ID of a group in Microsoft Entra ID.
-
-MemberId - Specifies the ID of the member to remove.
+This example demonstrates how to remove a member from a group in Microsoft Entra ID.
 
 ## Parameters
 
@@ -88,7 +88,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

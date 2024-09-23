@@ -42,17 +42,23 @@ The `Set-EntraDirSyncConfiguration` cmdlet modifies the directory synchronizatio
 ### Example 1: Set directory synchronization settings
 
 ```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -Force
 ```
 
 This command sets directory synchronization settings.
 
+- `-AccidentalDeletionThreshold` Specifies the accidental deletion prevention configuration for a tenant.
+- `-Force` Forces the command to run without asking for user confirmation.
+
 ### Example 2: Set directory synchronization settings for a Tenant
 
 ```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$tenantID = (Get-EntraContext).TenantId
 $params = @{
     AccidentalDeletionThreshold = 600
-    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    TenantId = $tenantID
     Force = $true
 }
 
@@ -60,6 +66,10 @@ Set-EntraDirSyncConfiguration @params
 ```
 
 This command sets directory synchronization settings.
+
+- `-AccidentalDeletionThreshold` Specifies the accidental deletion prevention configuration for a tenant.
+- `-Force` Forces the command to run without asking for user confirmation.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
@@ -97,7 +107,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-Specifies the unique ID of the tenant on which to perform the operation. The default value is the tenant of the current user. This parameter applies only to partner users.
+The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
 
 ```yaml
 Type: System.String
@@ -127,7 +137,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For additional details see [Update onPremisesDirectorySynchronization](/graph/api/onpremisesdirectorysynchronization-update).
+- For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
 ## Related Links
 

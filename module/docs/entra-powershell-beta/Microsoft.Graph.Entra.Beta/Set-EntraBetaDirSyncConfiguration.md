@@ -39,7 +39,7 @@ Set-EntraBetaDirSyncConfiguration
 ```powershell
 Set-EntraBetaDirSyncConfiguration 
  [-TenantId <String>] 
- [-Force] 
+ [-Force]
  [<CommonParameters>]
 ```
 
@@ -53,7 +53,7 @@ The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchroniz
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold '600' -Force
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -Force
 ```
 
 This command sets directory synchronization settings.
@@ -65,9 +65,10 @@ This command sets directory synchronization settings.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$tenantID = (Get-EntraContext).TenantId
 $params = @{
     AccidentalDeletionThreshold = 600
-    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    TenantId = $tenantID
     Force = $true
 }
 
@@ -145,6 +146,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+- For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
 ## Related Links
 
