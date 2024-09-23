@@ -5,7 +5,7 @@ BeforeAll{
     if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
         Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $psscriptroot "..\EntraCmdletsMap.ps1") -Force
+    Import-Module (Join-Path $psscriptroot ".\EntraCmdletsMap.ps1") -Force
 
     $module = Get-Module -Name Microsoft.Graph.Entra
 }
@@ -19,7 +19,7 @@ Describe "Valid parameter Tests"{
                 $commandName = $_
                 $command = Get-Command $_
                 if($command.Name.StartsWith('Remove')){
-                    $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | select -expand Name)
+                    $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | Select-Object -expand Name)
                     if($params.count -eq 1 -and $params -eq 'Id'){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
                         if($null -ne $filter){                             

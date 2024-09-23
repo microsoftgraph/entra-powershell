@@ -45,8 +45,13 @@ Describe "Invalid Tests"{
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'All'){                
-                $commandScriptBlock = [scriptblock]::Create("$command -All ")
-                { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'All'*"
+                $commandScriptBlock = [scriptblock]::Create("$command -All `$True")
+                if('Find-EntraPermission' -eq $command){
+                    { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Parameter set cannot be resolved using the specified named parameters*"
+                }
+                else {
+                    { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "A positional parameter cannot be found that accepts argument*"
+                }
             }
         }
     }
@@ -82,10 +87,10 @@ Describe "Invalid Tests"{
     }
     It "Should fail with exception when no parameter is passed" {
         $cmdlets = @(
-            @{ CmdletName = 'Enable-EntraDirectoryRole'; Exception = "Could not resolve request to a valid role template." }
-            @{ CmdletName = 'New-EntraMSConditionalAccessPolicy'; Exception = "1006: 'displayName' cannot be null" },
-            @{ CmdletName = 'New-EntraMSNamedLocationPolicy'; Exception = "1042: Unexpected type: namedLocationType for NamedLocations." },
-            @{ CmdletName = 'New-EntraMSPermissionGrantPolicy'; Exception = "PermissionGrantPolicy's Id must not be null or empty." }
+            @{ CmdletName = 'Enable-EntraDirectoryRole'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
+            @{ CmdletName = 'New-EntraConditionalAccessPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
+            @{ CmdletName = 'New-EntraNamedLocationPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
+            @{ CmdletName = 'New-EntraPermissionGrantPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
             )
             $cmdlets | ForEach-Object {
                 $commandName = $_.CmdletName

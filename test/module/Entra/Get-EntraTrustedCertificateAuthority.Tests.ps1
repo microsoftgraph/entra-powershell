@@ -31,6 +31,16 @@ BeforeAll {
             )            
         }
     }
+    $tenantObj = {
+        return @(
+            [PSCustomObject]@{
+                TenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            }
+        )
+
+    }
+
+    Mock -CommandName Get-MgContext -MockWith $tenantObj -ModuleName Microsoft.Graph.Entra
 
     Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
