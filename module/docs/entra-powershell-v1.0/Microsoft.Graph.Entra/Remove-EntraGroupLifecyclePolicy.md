@@ -33,18 +33,18 @@ Remove-EntraGroupLifecyclePolicy
 
 ## Description
 
-The Remove-EntraGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Microsoft Entra ID.
+The `Remove-EntraGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
 
 ## Examples
 
-### Example 1: Remove a groupLifecyclePolicies.
+### Example 1: Remove a groupLifecyclePolicies
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Remove-EntraGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
-This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.
+This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID. You can use `Get-EntraGroupLifecyclePolicy` to get Id details.
 
 ## Parameters
 
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -78,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraGroupLifecyclePolicy](Get-EntraGroupLifecyclePolicy.md)
 

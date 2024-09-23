@@ -22,12 +22,6 @@ schema: 2.0.0
 
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
-
-- Directory Writers
-- License Administrator
-- User Administrator
-
 ## Syntax
 
 ```powershell
@@ -41,20 +35,28 @@ Set-EntraBetaUserLicense
 
 The `Set-EntraBetaUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Writers
+- License Administrator
+- User Administrator
+
+**Note**: Before assigning a license, assign a usage location to the user using:
+`Set-EntraUser -ObjectId user@contoso.com -UsageLocation '<two-letter-country-code e.g. GB/US>'`.
+
 ## Examples
 
 ### Example 1: Add a license to a user based on a template user
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'TemplateUser@contoso.com"' 
-$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' 
+$LicensedUser = Get-EntraBetaUser -ObjectId 'TemplateUser@contoso.com' 
 $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.AddLicenses = $License 
 $Params = @{
-    ObjectId = $User.ObjectId 
+    ObjectId = 'SawyerM@contoso.com' 
     AssignedLicenses = $Licenses
 }
 Set-EntraBetaUserLicense @Params
@@ -78,7 +80,7 @@ id                             cccccccc-2222-3333-4444-dddddddddddd
 isLicenseReconciliationNeeded  False
 ```
 
-This example demonstrates how to assign a license to a user. You can use the command `Get-EntraBetaUser` to get user object Id.
+This example demonstrates how to assign a license to a user based on a template user.
 
 - `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
@@ -123,7 +125,41 @@ id                             cccccccc-2222-3333-4444-dddddddddddd
 isLicenseReconciliationNeeded  False
 ```
 
-This example demonstrates how to assign a license to a user by copying license from another user. You can use the command `Get-EntraBetaUser` to get user object Id.
+This example demonstrates how to assign a license to a user by copying license from another user.
+
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
+
+### Example 3: Remove an assigned User's License
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$UserPrincipalName = 'SawyerM@contoso.com'
+$User = Get-EntraBetaUser -ObjectId $UserPrincipalName
+$SkuId = (Get-EntraBetaUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.RemoveLicenses = $SkuId 
+Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+```
+
+```Output
+Name                           Value
+----                           -----
+displayName                    SawyerM
+id                             cccccccc-2222-3333-4444-dddddddddddd
+jobTitle
+surname                        M
+mail
+userPrincipalName              SawyerM@contoso.com
+mobilePhone
+preferredLanguage
+@odata.context                 https://graph.microsoft.com/v1.0/$metadata#users/$entity
+businessPhones                 {}
+officeLocation
+givenName                      Sawyer
+```
+
+This example demonstrates how to remove a user's license by retrieving the user details.
 
 - `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.

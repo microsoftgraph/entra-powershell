@@ -2,7 +2,6 @@
 title: Update-EntraBetaSignedInUserPassword.
 description: This article provides details on the Update-EntraBetaSignedInUserPassword command.
 
-
 ms.topic: reference
 ms.date: 07/26/2024
 ms.author: eunicewaweru
@@ -52,11 +51,10 @@ $params = @{
 Update-EntraBetaSignedInUserPassword @params
 ```
 
-This command updates the password for the signed-in user.
+This example shows how to update the password for the signed-in user.
 
-- `-CurrentPassword` Parameter specifies the current password of the signed-in user.
-
-- `-NewPassword` Parameter specifies the new password for the signed-in user.
+- `-CurrentPassword` parameter specifies the current password of the signed-in user.
+- `-NewPassword` parameter specifies the new password for the signed-in user.
 
 ## Parameters
 
@@ -102,4 +100,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+- For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
+
+## Related links

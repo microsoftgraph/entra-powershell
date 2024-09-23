@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Restore-EntraDeletedApplication
@@ -20,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Restores a previously deleted application
+Restores a previously deleted application.
 
 ## Syntax
 
@@ -49,32 +50,33 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-# List available applications
-Get-EntraApplication
+$application = Get-EntraApplication -SearchString 'New Entra Application'
 
 # Delete a specific application
-Remove-EntraApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Remove-EntraApplication -ObjectId $application.ObjectId
 
-# Retrieve the deleted application
-Get-EntraDeletedApplication
+# Confirm deleted application
+Get-EntraDeletedApplication -Filter "DisplayName eq 'New Entra Application'"
 
 # Restore a deleted application
-Restore-EntraDeletedApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Restore-EntraDeletedApplication -ObjectId $application.ObjectId
 ```
 
 ```Output
-ObjectId                             AppId                                DisplayName
---------                             -----                                -----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 00001111-aaaa-2222-bbbb-3333cccc4444 analog
+Id                                   DeletedDateTime
+--                                   ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
-This example shows how an application is deleted, then the deleted application is retrieved using the `Get-EntraDeletedApplication` cmdlet, and after the application is restored by specifying the application's Object ID in the `Restore-EntraDeletedApplication` cmdlet.
+This example shows how an application is deleted, then the deleted application is retrieved using the `Get-EntraDeletedApplication` cmdlet, and subsequently the application is restored by specifying the application's Object ID in the `Restore-EntraDeletedApplication` cmdlet.
+
+- `-ObjectId` parameter specifies the ObjectId of the deleted application that is to be restored.
 
 ## Parameters
 
 ### -IdentifierUris
 
-The IdentifierUris of the application that is to be restored
+The IdentifierUris of the application that is to be restored.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -90,7 +92,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The ObjectId of the deleted application that is to be restored
+The ObjectId of the deleted application that is to be restored.
 
 ```yaml
 Type: System.String
@@ -119,3 +121,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Remove-EntraDeletedApplication](Remove-EntraDeletedApplication.md)
+
+[Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)

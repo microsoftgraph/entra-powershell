@@ -2,7 +2,6 @@
 title: Remove-EntraBetaUser
 description: This article provides details on the Remove-EntraBetaUser command.
 
-
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru
@@ -34,13 +33,18 @@ Remove-EntraBetaUser
 
 The `Remove-EntraBetaUser` cmdlet removes a user in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the specified user in Microsoft Entra ID.
 
+The calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- User Administrator
+- Privileged Authentication Administrator
+
 ## Examples
 
 ### Example 1: Remove a user
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraBetaUser -ObjectId 'TestUser@example.com'
+Remove-EntraBetaUser -ObjectId 'SawyerM@Contoso.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.

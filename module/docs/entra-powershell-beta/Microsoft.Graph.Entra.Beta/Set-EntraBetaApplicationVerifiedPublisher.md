@@ -28,7 +28,7 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 ```powershell
 Set-EntraBetaApplicationVerifiedPublisher 
  -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest>
- -AppObjectId <String> 
+ -AppObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ $appObjId = $app.ObjectId
 $mpnId =  '0433167'
 $req =  @{verifiedPublisherId = $mpnId}
 $params = @{
-     AppObjectId = $appObjId 
+     AppObjectId = $appObjId
      SetVerifiedPublisherRequest = $req
 }
 Set-EntraBetaApplicationVerifiedPublisher @params

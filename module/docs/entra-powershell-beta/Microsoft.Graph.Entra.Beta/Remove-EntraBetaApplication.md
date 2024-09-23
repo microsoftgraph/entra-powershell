@@ -39,7 +39,8 @@ The `Remove-EntraBetaApplication` cmdlet deletes an application object identifie
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+Remove-EntraBetaApplication -ObjectId $Application.ObjectId
 ```
 
 This example demonstrates how to delete an application object.
@@ -48,7 +49,7 @@ This example demonstrates how to delete an application object.
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

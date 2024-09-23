@@ -42,17 +42,14 @@ The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID app
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $ApplicationId = (Get-EntraApplication -Top 1).ObjectId
-$UserObjectId = (Get-EntraUser -Top 1).ObjectId
+$UserObjectId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
 Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
-- The first command gets an application using [Get-EntraApplication](./Get-EntraApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
+This example demonstrates how to add an owner to an application in Microsoft Entra ID.
 
-- The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
-
-- This final command adds an owner in $UserObjectId to an application in $ApplicationId.
-
-This command adds an owner to an application.
+- `-ObjectId` parameter specifies the ID of an application.
+- `-RefObjectId` parameter specifies the ID of a user.
 
 ## Parameters
 
@@ -90,7 +87,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

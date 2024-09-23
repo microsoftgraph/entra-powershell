@@ -2,7 +2,6 @@
 title: Revoke-EntraUserAllRefreshToken
 description: This article provides details on the Revoke-EntraUserAllRefreshToken command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +11,6 @@ author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Revoke-EntraUserAllRefreshToken
-
 schema: 2.0.0
 ---
 
@@ -33,8 +31,12 @@ Revoke-EntraUserAllRefreshToken
 ## Description
 
 The `Revoke-EntraUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
+
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
+
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
+
+This operation is usually performed by the user or an administrator if the user's device is lost or stolen. It blocks access to the organization's data by requiring the user to sign in again to all previously authorized applications, regardless of the device.
 
 ## Examples
 
@@ -42,10 +44,18 @@ The cmdlet operates by resetting the refreshTokensValidFromDateTime user propert
 
 ```powershell
 Connect-Entra -Scopes 'User.RevokeSessions.All'
-Revoke-EntraUserAllRefreshToken -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Revoke-EntraUserAllRefreshToken -ObjectId 'SawyerM@contoso.com'
+```
+
+```Output
+Value
+-----
+True
 ```
 
 This example demonstrates how to revoke the tokens for the specified user.
+
+- `-ObjectId` parameter specifies the unique identifier of a user.
 
 ## Parameters
 

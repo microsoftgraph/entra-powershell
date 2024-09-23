@@ -2,13 +2,13 @@
 title: Set-EntraUserThumbnailPhoto
 description: This article provides details on the Set-EntraUserThumbnailPhoto command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserThumbnailPhoto
@@ -37,7 +37,7 @@ Set-EntraUserThumbnailPhoto
 
 ```powershell
 Set-EntraUserThumbnailPhoto 
- -FileStream <Stream> 
+ -FileStream <Stream>
  [-ObjectId <String>] 
  [<CommonParameters>]
 ```
@@ -53,7 +53,7 @@ Set-EntraUserThumbnailPhoto
 
 ## Description
 
-This cmdlet is used to set the thumbnail photo for a user.
+The `Set-EntraUserThumbnailPhoto` cmdlet is used to set the thumbnail photo for a user.
 
 Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
 
@@ -62,17 +62,18 @@ Updating any user's photo in the organization requires the User.ReadWrite.All pe
 ### Example 1: Sets the thumbnail photo
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite' #Delegated Permission
-Connect-Entra -Scopes 'User.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = 'SawyerM@contoso.com'
     FilePath = 'D:\UserThumbnailPhoto.jpg'
 }
-
 Set-EntraUserThumbnailPhoto @params
 ```
 
 This example sets the thumbnail photo of the user specified with the ObjectId parameter to the image specified with the FilePath parameter.
+
+- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-FilePath` parameter specifies the file path of the image to be uploaded as the user thumbnail photo.
 
 ## Parameters
 
