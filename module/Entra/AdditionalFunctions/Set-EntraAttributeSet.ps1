@@ -6,6 +6,7 @@ function Set-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Alias("Id")]
     [System.String] $AttributeSetId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,

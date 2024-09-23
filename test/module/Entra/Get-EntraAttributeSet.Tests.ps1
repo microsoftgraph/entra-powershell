@@ -37,6 +37,13 @@ Describe "Get-EntraAttributeSet" {
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific AttributeSet with alias" {
+            $result = Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when AttributeSetId is invalid" {
             { Get-EntraAttributeSet -AttributeSetId "" } | Should -Throw "Cannot bind argument to parameter 'AttributeSetId' because it is an empty string."
         }

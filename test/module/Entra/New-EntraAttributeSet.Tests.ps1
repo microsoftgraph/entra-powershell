@@ -33,6 +33,15 @@ Describe "New-EntraAttributeSet" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return created AttributeSet with alias" {
+            $result = New-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be "NewCustomAttributeSet"
+            $result.MaxAttributesPerSet | should -Be 125
+            $result.Description | should -Be "CustomAttributeSet" 
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when AttributeSetId parameter is invalid" {
             { New-EntraAttributeSet -AttributeSetId } | Should -Throw "Missing an argument for parameter 'AttributeSetId*"
         }

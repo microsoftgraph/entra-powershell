@@ -6,6 +6,7 @@ function Get-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Id")]
         [System.String] $AttributeSetId
     )
 

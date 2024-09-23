@@ -59,8 +59,8 @@ Set-EntraAttributeSet @params
 
 This example update an attribute set.
 
-- `Id` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
-- `Description` parameter specifies the description for the attribute set.
+- `-AttributeSetId` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
+- `-Description` parameter specifies the description for the attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
 
@@ -75,7 +75,7 @@ Set-EntraAttributeSet @params
 
 This example update an attribute set using MaxAttributesPerSet.
 
-- `-Id` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
+- `-AttributeSetId` parameter specifies the name of the attribute set. You can `Get-EntraAttributeSet` to get more details.
 - `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
 ## Parameters
@@ -103,7 +103,7 @@ Name of the attribute set. Unique identifier for the attribute set within a tena
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
