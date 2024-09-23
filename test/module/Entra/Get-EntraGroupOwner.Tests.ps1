@@ -18,11 +18,11 @@ BeforeAll {
                         "businessPhones"    = @("425-555-0100")
                         "displayName"       = "MOD Administrator"
                         "givenName"         = "MOD"
-                        "mail"              = "Test@M365x99297270.onmicrosoft.com"
+                        "mail"              = "admin@contoso.com"
                         "mobilePhone"       = "425-555-0101"
                         "preferredLanguage" = "en"
                         "surname"           = "Administrator"
-                        "userPrincipalName" = "Test@M365x99297270.onmicrosoft.com"
+                        "userPrincipalName" = "admin@contoso.com"
                         }
                     "Parameters"             = $args
                     }
