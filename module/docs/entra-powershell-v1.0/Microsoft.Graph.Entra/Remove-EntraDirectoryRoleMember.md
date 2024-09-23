@@ -49,7 +49,7 @@ $params = @{
 Remove-EntraDirectoryRoleMember @params
 ```
 
-This command removes the specified member from the specified role.
+This example removes the specified member from the specified role.
 
 - `-DirectoryRoleId` - specifies the unique identifier (ObjectId) of the directory role from which the member will be removed.
 

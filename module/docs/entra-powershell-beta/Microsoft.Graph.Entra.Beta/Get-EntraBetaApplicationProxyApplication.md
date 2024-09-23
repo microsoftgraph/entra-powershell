@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationProxyApplication
@@ -19,20 +20,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+Retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
 ```powershell
 Get-EntraBetaApplicationProxyApplication
- -ObjectId <String>
+ -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve application configured for application proxy.
+The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID. Specify `ApplicationId` parameter to retrieve application configured for application proxy.
 
 ## Examples
 
@@ -40,7 +41,7 @@ The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application c
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyApplication -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraBetaApplicationProxyApplication -ApplicationId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -52,20 +53,20 @@ https://testp-m365x99297270.msapppr...
 
 This example retrieves an application configured for Application Proxy.
 
-- `ObjectId` parameter specifies the application ID.
+- `ApplicationId` parameter specifies the application ID.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
-This ObjectId is the unique application ID of the application.
-This ObjectId can be found using the `Get-EntraBetaApplication` command.
-You can also find ObjectId in the Microsoft Portal by navigating to Microsoft Entra ID, Enterprise Applications, All Applications, Select your application, go to the properties tab, and use the ObjectId on that page.
+This ApplicationId is the unique application ID of the application.
+This ApplicationId can be found using the `Get-EntraBetaApplication` command.
+You can also find ApplicationId in the Microsoft Portal by navigating to Microsoft Entra ID, Enterprise Applications, All Applications, Select your application, go to the properties tab, and use the ObjectId on that page.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -36,3 +36,5 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         
     }
 }
+Set-Alias -Name Get-EntraHasObjectsWithDirSyncProvisioningError -Value Get-EntraDirectoryObjectOnPremisesProvisioningError -Scope Global -Force
+

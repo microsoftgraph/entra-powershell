@@ -49,6 +49,7 @@ $params = @{
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
     Proof = '{token}'
 }
+
 Remove-EntraBetaApplicationKey @params
 ```
 
@@ -62,7 +63,7 @@ This command removes the specified key credential from the specified application
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object.
+Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -94,7 +95,14 @@ Accept wildcard characters: False
 
 ### -Proof
 
-A signed JWT token used as a proof of possession.
+The JWT token provided as a proof of possession.
+
+A self-signed JWT token used as a proof of possession of the existing keys. This JWT token must be signed with a private key that corresponds to one of the existing valid certificates associated with the application. The token should contain the following claims:
+
+- `aud`: Audience needs to be 00000002-0000-0000-c000-000000000000.
+- `iss`: Issuer needs to be the ID of the application that initiates the request.
+- `nbf`: Not before time.
+- `exp`: Expiration time should be the value of nbf + 10 minutes.
 
 ```yaml
 Type: System.String

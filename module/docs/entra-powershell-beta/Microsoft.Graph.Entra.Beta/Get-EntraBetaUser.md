@@ -50,7 +50,7 @@ Get-EntraBetaUser
 
 ```powershell
 Get-EntraBetaUser
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -83,7 +83,7 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -94,7 +94,7 @@ Sawyer Miller bbbbbbbb-1111-2222-3333-cccccccccccc sawyerm@tenant.com sawyerm@te
 
 This command gets the specified user.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ### Example 3: Search among retrieved users
 
@@ -146,16 +146,34 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
-LastNonInteractiveSignInDateTime LastNonInteractiveSignInRequestId    LastSignInDateTime  LastSignInRequestId                  LastSuccessfulSignInDateTime LastSuccessfulSignInRequestId
--------------------------------- ---------------------------------    ------------------  -------------------                  ---------------------------- -----------------------------
-08/07/2023 00:08:17             bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa  08/07/2023 00:04:49 bbbbbbbb-1111-2222-3333-dddddddddddd 
+lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+lastSignInRequestId               : cccccccc-2222-3333-4444-dddddddddddd
+lastSuccessfulSignInDateTime      : 9/9/2024 1:12:13 PM
+lastNonInteractiveSignInDateTime  : 9/9/2024 1:12:13 PM
+lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+lastSignInDateTime                : 9/7/2024 9:15:41 AM
 ```
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
+
+### Example 7: List users with disabled accounts
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUser -Filter "accountEnabled eq false" | Select-Object DisplayName, Id, Mail, UserPrincipalName
+```
+
+```Output
+DisplayName        Id                                   Mail UserPrincipalName
+-----------        --                                   ---- -----------------
+New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
+```
+
+This example demonstrates how to retrieve all users with disabled accounts.
 
 ## Parameters
 
@@ -193,14 +211,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a User Principal Name (UPN) or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name (UPN) or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

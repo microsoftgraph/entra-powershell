@@ -50,46 +50,64 @@ Conditional access policies are custom rules that define an access scenario.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+$ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+$ipRanges.cidrAddress = '6.5.4.3/32'
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.ipNamedLocation'
     IsTrusted = $false
+    IncludeUnknownCountriesAndRegions = $false
+    IpRanges = $ipRanges
 }
-
 Set-EntraNamedLocationPolicy @params
 ```
 
 This example shows how to update an IP named location policy in Microsoft Entra ID by PolicyId.
 
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
+- `-IsTrusted` parameter specifies the IsTrusted value for the named location policy.
+- `-IpRanges` parameter specifies List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596.
+
 ### Example 2: Update a country named location policy in Microsoft Entra ID by PolicyId
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.countryNamedLocation'
     IncludeUnknownCountriesAndRegions = $true
 }
-
 Set-EntraNamedLocationPolicy @params
 ```
 
 This command updates a country named location policy in Microsoft Entra ID by PolicyId.
 
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-IncludeUnknownCountriesAndRegions` parameter specifies the includeUnknownCountriesAndRegions value for the named location policy.
+
 ### Example 3: Update display name of a named location policy in Microsoft Entra ID by PolicyId
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $params = @{
-    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    PolicyId = $policy.Id
     OdataType = '#microsoft.graph.ipNamedLocation'
     DisplayName = 'NewName'
 }
-
 Set-EntraNamedLocationPolicy @params
 ```
 
 This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
+
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
 
 ## Parameters
 
@@ -143,7 +161,7 @@ Accept wildcard characters: False
 
 ### -IpRanges
 
-Specifies the ip ranges of the named location policy in Microsoft Entra ID.
+List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596. The @odata.type of the ipRange is also required.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]
@@ -159,7 +177,7 @@ Accept wildcard characters: False
 
 ### -IsTrusted
 
-Specifies the isTrusted value for the named location policy in Microsoft Entra ID.
+Specifies the `IsTrusted` value for the named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.Boolean
@@ -207,7 +225,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the ID of a named location policy in Microsoft Entra ID.
+Specifies the Id of a named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Allows an admin to remove the policy for cloud authentication roll-out in Microsoft Entra ID
+Allows an admin to remove the policy for cloud authentication roll-out in Microsoft Entra ID.
 
 ## Syntax
 
@@ -34,6 +34,7 @@ Remove-EntraBetaFeatureRolloutPolicy
 ## Description
 
 An admin uses `Remove-EntraBetaFeatureRolloutPolicy` cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
+
 Users in groups that were assigned to the policy falls back to the global authentication method (most common case will be federation). Specify `Id` parameter to remove the cloud authentication roll-out policy.
 
 ## Examples
@@ -42,16 +43,17 @@ Users in groups that were assigned to the policy falls back to the global authen
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaFeatureRolloutPolicy -Id '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
+$Policy = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
+Remove-EntraBetaFeatureRolloutPolicy -Id $Policy.Id
 ```
 
-This command removes the policy for cloud authentication roll-out in Microsoft Entra ID.
+This example removes the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
+- `-Id` - specifies the unique identifier of the cloud authentication roll-out policy. You can use `Get-EntraBetaFeatureRolloutPolicy` to retrieve policy details.
 
 ## Parameters
 
-### -ID
+### -Id
 
 The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
