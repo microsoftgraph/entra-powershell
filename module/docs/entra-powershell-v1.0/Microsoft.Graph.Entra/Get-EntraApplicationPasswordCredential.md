@@ -64,7 +64,7 @@ The ApplicationId of the application for which to get the password credential. U
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
