@@ -2,7 +2,6 @@
 title: Set-EntraBetaPartnerInformation
 description: This article provides details on the Set-EntraBetaPartnerInformation command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -20,6 +19,7 @@ schema: 2.0.0
 # Set-EntraBetaPartnerInformation
 
 ## Synopsis
+
 Sets company information for partners.
 
 ## Syntax
@@ -36,49 +36,73 @@ Set-EntraBetaPartnerInformation
  [-TenantId <Guid>] 
  [<CommonParameters>]
 ```
+
 ## Description
-The Set-EntraBetaPartnerInformation cmdlet is used by partners to set partner-specific properties.
+
+The `Set-EntraBetaPartnerInformation` cmdlet is used by partners to set partner-specific properties.
+
 These properties can view by all tenants that the partner has access to.
 
 ## Examples
 
 ### Example 1: Update the help URL
+
 ```powershell
-PS C:\> Set-EntraBetaPartnerInformation -PartnerHelpUrl "http://www.help.contoso.com"
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaPartnerInformation -PartnerHelpUrl 'http://www.help.contoso.com'
 ```
-This command updates the help URL for this partner.
+
+This example shows how to update the help URL.
 
 ### Example 2: Update the Support URL
+
 ```powershell
-PS C:\> Set-EntraBetaPartnerInformation -PartnerSupportUrl "http://www.test1.com"
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaPartnerInformation -PartnerSupportUrl 'http://www.test1.com'
 ```
-This command updates the Support URL for this partner.
+
+This example shows how to update the support URL.
 
 ### Example 3: Update the Commerce URL
+
 ```powershell
-PS C:\> Set-EntraBetaPartnerInformation -PartnerCommerceUrl "http://www.test1.com" 
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaPartnerInformation -PartnerCommerceUrl 'http://www.test1.com'
 ```
-This command updates the Commerce URL for this partner.
+
+This example shows how to update the commerce URL.
 
 ### Example 4: Update the SupportEmails
+
 ```powershell
-PS C:\> Set-EntraBetaPartnerInformation -PartnerSupportEmails "contoso@example.com" 
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaPartnerInformation -PartnerSupportEmails 'contoso@example.com'
 ```
-This command updates the SupportEmails for this partner.
+
+This example shows how to update the support email addresses.
 
 ### Example 5: Update the SupportTelephones
+
 ```powershell
-PS C:\> Set-EntraBetaPartnerInformation -PartnerSupportTelephones "2342" -TenantId "b73cc049-a025-4441-ba3a-8826d9a68ecc"
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+$tenantId = (Get-EntraContext).TenantId
+$params = @{
+    PartnerSupportTelephones = '234234234'
+    TenantId = $tenantId
+}
+Set-EntraBetaPartnerInformation @params
 ```
-This command updates the SupportTelephones for this partner.
+
+This example shows how to update support telephone numbers.
 
 ## Parameters
 
 ### -PartnerCommerceUrl
+
 Specifies the URL for the partner's commerce website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -90,10 +114,11 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerHelpUrl
+
 Specifies the URL for the partner's Help website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -105,6 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportEmails
+
 Specifies the support email address for the partner.
 
 ```yaml
@@ -120,6 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportTelephones
+
 Specifies the support telephone numbers for the partner.
 
 ```yaml
@@ -135,10 +162,11 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportUrl
+
 Specifies the URL for the partner's support website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -150,12 +178,13 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
+
 Specifies the unique ID of the tenant on which to perform the operation.
 The default value is the tenant of the current user.
 This parameter applies only to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -167,6 +196,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyType
+
 Specifies the partner's company type.
 
 ```yaml
@@ -182,11 +212,11 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerCompanyName
+
 Specifies the partner's company name.
 
-
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -198,7 +228,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (<https://go.microsoft.com/fwlink/?LinkID=113216>).
 
 ## Inputs
 
@@ -207,4 +238,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Notes
 
 ## Related Links
+
 [Get-EntraBetaPartnerInformation](Get-EntraBetaPartnerInformation.md)

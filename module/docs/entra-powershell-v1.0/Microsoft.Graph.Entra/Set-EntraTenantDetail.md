@@ -2,13 +2,13 @@
 title: Set-EntraTenantDetail
 description: This article provides details on the Set-EntraTenantDetail command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraTenantDetail
@@ -41,6 +41,10 @@ This cmdlet is used to set various contact details for a tenant.
 For delegated scenarios, the signed-in user must have at least one of the following Microsoft Entra roles.
 
 - Application Administrator
+- Cloud Application Administrator
+- Privileged Role Administrator
+- User Administrator
+- Helpdesk Administrator
 
 ## Examples
 
@@ -60,32 +64,43 @@ Set-EntraTenantDetail @params
 
 This example demonstrates how to set various contact details for a tenant.
 
+- `-MarketingNotificationEmails` parameter indicates the email addresses that are used to send marketing notification emails.
+- `-SecurityComplianceNotificationMails` parameter indicates the email addresses that are used to send security compliance emails.
+- `-SecurityComplianceNotificationPhones` parameter specifies the phone numbers that are used for security compliance.
+- `-TechnicalNotificationMails` parameter indicates the email addresses that are used for technical notification emails.
+
 ### Example 2: Set MarketingNotificationEmails for a tenant
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-Set-EntraTenantDetail -MarketingNotificationEmails 'amy@contoso.com','henry@contoso.com' 
+Set-EntraTenantDetail -MarketingNotificationEmails @('amy@contoso.com','henry@contoso.com')
 ```
 
 This example demonstrates how to set MarketingNotificationEmails detail for a tenant.
+
+- `-MarketingNotificationEmails` parameter indicates the email addresses that are used to send marketing notification emails.
 
 ### Example 3: Set SecurityComplianceNotificationMails for a tenant
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-Set-EntraTenantDetail -SecurityComplianceNotificationMails 'john@contoso.com','mary@contoso.com' 
+Set-EntraTenantDetail -SecurityComplianceNotificationMails @('john@contoso.com','mary@contoso.com')
 ```
 
 This example demonstrates how to set SecurityComplianceNotificationMails detail for a tenant.
+
+- `-SecurityComplianceNotificationMails` parameter indicates the email addresses that are used to send security compliance emails.
 
 ### Example 4: Set -SecurityComplianceNotificationPhones for a tenant
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-Set-EntraTenantDetail -SecurityComplianceNotificationPhones '1-555-625-9999', '1-555-233-5544' 
+Set-EntraTenantDetail -SecurityComplianceNotificationPhones @('1-555-625-9999', '1-555-233-5544')
 ```
 
 This example demonstrates how to set MarketingNotificationEmails detail for a tenant.
+
+- `-SecurityComplianceNotificationPhones` parameter specifies the phone numbers that are used for security compliance.
 
 ### Example 5: Set TechnicalNotificationMails for a tenant
 
@@ -96,11 +111,13 @@ Set-EntraTenantDetail -TechnicalNotificationMails 'peter@contoso.com'
 
 This example demonstrates how to set TechnicalNotificationMails detail for a tenant.
 
+- `-TechnicalNotificationMails` parameter indicates the email addresses that are used for technical notification emails.
+
 ## Parameters
 
 ### -MarketingNotificationEmails
 
-The email address that is used to send marketing notification emails.
+The email addresses that are used to send marketing notification emails.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -116,7 +133,7 @@ Accept wildcard characters: False
 
 ### -SecurityComplianceNotificationMails
 
-The email address that is used to send security compliance emails.
+The email addresses that are used to send security compliance emails.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -132,7 +149,7 @@ Accept wildcard characters: False
 
 ### -SecurityComplianceNotificationPhones
 
-The phone number(s) that are used for security compliance.
+One or more phone numbers that are used for security compliance.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -192,7 +209,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For more details see [Update organization](/graph/api/organization-update).
+- For more details see [Update organization](https://learn.microsoft.com/graph/api/organization-update).
 
 ## Related Links
 

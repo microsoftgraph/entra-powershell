@@ -27,7 +27,7 @@ Updates a conditional access policy in Microsoft Entra ID by Id.
 
 ```powershell
 Set-EntraConditionalAccessPolicy 
- -PolicyId <String> 
+ -PolicyId <String>
  [-Conditions <ConditionalAccessConditionSet>]
  [-GrantControls <ConditionalAccessGrantControls>] 
  [-DisplayName <String>] 
@@ -45,7 +45,7 @@ Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Updates a conditional access policy in Microsoft Entra ID by PolicyId
+### Example 1: Update a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
@@ -54,7 +54,7 @@ $control = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGr
 $session = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
 $params = @{
     PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
-    DisplayName = 'MFA policy 1'
+    DisplayName = 'MFA policy updated'
     State = 'Enabled'
     Conditions = $cond
     GrantControls = $control
@@ -66,13 +66,20 @@ Set-EntraConditionalAccessPolicy @params
 
 The example shows how to update a conditional access policy in Microsoft Entra ID.
 
-### Example 2: Updates display name for a conditional access policy in Microsoft Entra ID by PolicyId
+- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+- `-SessionControls` parameter Enables limited experiences within specific cloud applications.
+
+### Example 2: Update display name for a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $params = @{
     PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
-    DisplayName = 'MFA policy 1'
+    DisplayName = 'MFA policy updated'
 }
 
 Set-EntraConditionalAccessPolicy @params
@@ -80,7 +87,10 @@ Set-EntraConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-### Example 3: Updates state for a conditional access policy in Microsoft Entra ID by PolicyId
+- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+
+### Example 3: Update the state for a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
@@ -94,11 +104,14 @@ Set-EntraConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
+- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
+
 ## Parameters
 
 ### -PolicyId
 
-Specifies the policy id of a conditional access policy in Microsoft Entra ID.
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -178,7 +191,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the ID of a conditional access policy in Microsoft Entra ID.
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -194,7 +207,7 @@ Accept wildcard characters: False
 
 ### -SessionControls
 
-This control allows organizations to require Microsoft Entra ID to pass device information to the selected cloud apps.
+Enables limited experiences within specific cloud applications.
 
 ```yaml
 Type: ConditionalAccessSessionControls
