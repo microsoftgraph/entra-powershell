@@ -60,7 +60,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

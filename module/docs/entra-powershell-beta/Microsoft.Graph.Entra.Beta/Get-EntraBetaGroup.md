@@ -186,7 +186,7 @@ The unique identifier of a group in Microsoft Entra ID. (GroupId)
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -217,7 +217,7 @@ The GroupId of the deleted group to be retrieved.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

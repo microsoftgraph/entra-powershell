@@ -80,7 +80,7 @@ Specifies the ID of the scoped role membership to remove.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

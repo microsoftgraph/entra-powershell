@@ -73,7 +73,7 @@ Specifies the ID of the app role (defined on the resource service principal) to 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -89,7 +89,7 @@ Specifies the ID of a user (as a UserPrincipalName or GroupId) in Microsoft Entr
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

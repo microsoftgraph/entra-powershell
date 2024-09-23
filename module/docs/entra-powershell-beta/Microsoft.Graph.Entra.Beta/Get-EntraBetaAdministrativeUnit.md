@@ -183,7 +183,7 @@ Specifies the ID of an administrative unit in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

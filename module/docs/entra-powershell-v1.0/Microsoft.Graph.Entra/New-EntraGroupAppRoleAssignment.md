@@ -75,7 +75,7 @@ Specifies the ID of the app role (defined on the resource service principal) to 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -91,7 +91,7 @@ Specifies the unique identifier of group to which the new app role is to be assi
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
