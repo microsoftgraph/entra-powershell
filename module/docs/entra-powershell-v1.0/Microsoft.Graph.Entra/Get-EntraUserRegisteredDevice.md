@@ -35,22 +35,22 @@ Get-EntraUserRegisteredDevice
 
 ## Description
 
-The Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Microsoft Entra ID.
+The `Get-EntraUserRegisteredDevice` cmdlet gets devices registered by a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get registered devices
 
 ```Powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets the devices that are registered to the specified user.
@@ -58,34 +58,33 @@ This command gets the devices that are registered to the specified user.
 ### Example 2: Get all registered devices
 
 ```Powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets all the devices that are registered to the specified user.
 
-### Example 3: Get two registered devices
+### Example 3: Get one registered device
 
 ```Powershell
-Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 2
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
 ```
 
-This command gets the top two devices that are registered to the specified user.
+This command gets the top one device that are registered to the specified user.
 
 ## Parameters
 
@@ -107,7 +106,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

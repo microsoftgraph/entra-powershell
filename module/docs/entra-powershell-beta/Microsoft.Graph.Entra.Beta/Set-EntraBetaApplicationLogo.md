@@ -2,7 +2,6 @@
 title: Set-EntraBetaApplicationLogo
 description: This article provides details on the Set-EntraBetaApplicationLogo command.
 
-
 ms.topic: reference
 ms.date: 06/19/2024
 ms.author: eunicewaweru
@@ -52,7 +51,7 @@ Set-EntraBetaApplicationLogo
 
 ## Description
 
-This cmdlet is used to set the logo for an application.
+The `Set-EntraBetaApplicationLogo` cmdlet is used to set the logo for an application.
 
 ## Examples
 
@@ -60,7 +59,12 @@ This cmdlet is used to set the logo for an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Demo Application'"
+$params = @{
+    ObjectId = $application.ObjectId
+    FilePath = 'D:\applogo.jpg'
+}
+Set-EntraBetaApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the `-ObjectId` parameter to the image specified with the `-FilePath` parameter.
@@ -114,6 +118,7 @@ System.IO.Stream System.Byte\[\]
 ### System.Object
 
 ## Notes
+
 File uploads must be smaller than 500KB.
 
 ## Related Links

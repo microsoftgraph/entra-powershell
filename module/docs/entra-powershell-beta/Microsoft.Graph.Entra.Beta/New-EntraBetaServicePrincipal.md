@@ -31,11 +31,11 @@ New-EntraBetaServicePrincipal
  [-Tags <System.Collections.Generic.List`1[System.String]>] 
  [-DisplayName <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>] 
- -AppId <String> 
+ -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
  [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
  [-LogoutUrl <String>]
- [-ServicePrincipalType <String>] 
+ [-ServicePrincipalType <String>]
  [-Homepage <String>]
  [-AppRoleAssignmentRequired <Boolean>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
@@ -56,7 +56,7 @@ For single-tenant apps where the calling user is a non-admin user but is the own
 
 ## Examples
 
-### Example 1: Create a new service principal by DisplayName, AccountEnabled, Tags, and AppRoleAssignmentRequired
+### Example 1: Create a new service principal using DisplayName, AccountEnabled, Tags, and AppRoleAssignmentRequired
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
@@ -86,7 +86,7 @@ The tag `-Tags {WindowsAzureActiveDirectoryIntegratedApp}` is used to have this 
 - `-DisplayName` parameter specifies the service principal display name.
 - `-AppRoleAssignmentRequired` parameter indicates whether an application role assignment is required.
 
-### Example 2: Create a new service principal by Homepage, logoutUrl, and ReplyUrls
+### Example 2: Create a new service principal using Homepage, logoutUrl, and ReplyUrls
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
@@ -226,7 +226,7 @@ Accept wildcard characters: False
 Indicates whether an application role assignment is required.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -337,9 +337,10 @@ Accept wildcard characters: False
 
 Specifies an array of service principal names.
 Based on the identifierURIs collection, plus the application's appId property, these URIs are used to reference an application's service principal.
-A client will use these to:
+A client uses ServicePrincipalNames to:
 
-- populate requiredResourceAccess, via "Permissions to other applications" in the Azure classic portal.  - specify a resource URI to acquire an access token, which is the URI returned in the claim.
+- populate requiredResourceAccess, via "Permissions to other applications" in the Azure classic portal.
+- Specify a resource URI to acquire an access token, which is the URI returned in the claim.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]

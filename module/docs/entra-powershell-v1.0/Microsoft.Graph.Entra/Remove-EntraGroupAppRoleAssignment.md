@@ -25,27 +25,33 @@ Delete a group application role assignment.
 
 ```powershell
 Remove-EntraGroupAppRoleAssignment 
- -AppRoleAssignmentId <String> 
+ -AppRoleAssignmentId <String>
  -ObjectId <String>
-[<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
+The `Remove-EntraGroupAppRoleAssignment` cmdlet removes a group application role assignment from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Removes a group application role assignment
+### Example 1: Remove group app role assignment
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-AzureADGroupAppRoleAssignment -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+$params = @{
+    ObjectId = $group.ObjectId 
+    AppRoleAssignmentId = 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+}
+Remove-EntraGroupAppRoleAssignment @params
 ```
 
 This example demonstrates how to remove the specified group application role assignment.
-ObjectId - Specifies the object ID of a group.
-AppRoleAssignmentId - Specifies the object ID of the group application role assignment.
+
+- `-ObjectId` parameter specifies the object ID of a group.
+- `-AppRoleAssignmentId` parameter specifies the object ID of a group application role assignment.
 
 ## Parameters
 
@@ -83,7 +89,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -28,7 +28,7 @@ Get registered devices owned by a user.
 ```powershell
 Get-EntraUserOwnedDevice
  -ObjectId <String>
- [-All ]
+ [-All]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -36,22 +36,22 @@ Get-EntraUserOwnedDevice
 
 ## Description
 
-The Get-EntraUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
+The `Get-EntraUserOwnedDevice` cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get devices owned by a user
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device1
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device2
+bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
+cccccccc-2222-3333-4444-dddddddddddd bbbb1111-cc22-3333-44dd-555555eeeeee Device2
 ```
 
 This command gets the registered devices owned by the specified user.
@@ -59,15 +59,15 @@ This command gets the registered devices owned by the specified user.
 ### Example 2: Get all devices owned by a user
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com' -All
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device1
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device2
+bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
+cccccccc-2222-3333-4444-dddddddddddd bbbb1111-cc22-3333-44dd-555555eeeeee Device2
 ```
 
 This command gets all the registered devices owned by the specified user.
@@ -75,14 +75,14 @@ This command gets all the registered devices owned by the specified user.
 ### Example 3: Get top one device owned by a user
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device1
+bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
 ```
 
 This command gets top one registered device owned by the specified user.
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
