@@ -40,7 +40,7 @@ The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `Di
 
 ## Examples
 
-### Example 1: Create a new HomeRealmDiscoveryPolicy policy
+### Example 1: Create a new policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
@@ -61,7 +61,7 @@ Definition                                                                     D
 
 This command creates a new policy in Microsoft Entra ID.
 
-- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
 
 - `-Type` Parameter specifies the type of policy.
 
@@ -172,7 +172,7 @@ This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
 
 ### -Definition
 
-Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}').
+Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]

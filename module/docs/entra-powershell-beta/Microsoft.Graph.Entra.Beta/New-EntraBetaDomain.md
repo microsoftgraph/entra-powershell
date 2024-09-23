@@ -60,7 +60,7 @@ This example demonstrates how to create a new domain in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
-New-EntraBetaDomain -Name test22.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
+New-EntraBetaDomain -Name test22.com -SupportedServices @('Email', 'OfficeCommunicationsOnline')
 ```
 
 ```Output
@@ -69,7 +69,7 @@ Id          AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsIni
 test22.com  Managed                               True           False     False     False  False      13
 ```
 
-This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID. 
+This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID.
 
 ### Example 3: Create a new Domain and make if the default new user creation
 
@@ -91,6 +91,7 @@ This example demonstrates how to create a new domain in Microsoft Entra ID and m
 ### -IsDefault
 
 Indicates whether or not this is the default domain that is used for user creation.
+
 There is only one default domain per company.
 
 ```yaml

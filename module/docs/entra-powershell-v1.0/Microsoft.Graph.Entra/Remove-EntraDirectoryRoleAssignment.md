@@ -44,7 +44,9 @@ The `Remove-EntraDirectoryRoleAssignment` cmdlet removes a role assignment from 
  Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
 ```
 
-Removes the specified role assignment from Microsoft Entra ID.
+This example removes the specified role assignment from Microsoft Entra ID.
+
+- `-Id` parameter specifies the role assignment ID.
 
 ## Parameters
 
@@ -58,7 +60,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -70,9 +72,15 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
+### System.String
+
 ## Outputs
 
+### System.Object
+
 ## Notes
+
+`Remove-EntraRoleAssignment` is an alias for `Remove-EntraDirectoryRoleAssignment`.
 
 ## Related Links
 

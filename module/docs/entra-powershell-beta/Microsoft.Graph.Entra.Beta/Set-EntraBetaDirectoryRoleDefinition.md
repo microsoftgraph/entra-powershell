@@ -2,7 +2,6 @@
 title: Set-EntraBetaDirectoryRoleDefinition
 description: This article provides details on the Set-EntraBetaDirectoryRoleDefinition command.
 
-
 ms.topic: reference
 ms.date: 07/22/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Set-EntraBetaDirectoryRoleDefinition
  [-Description <String>]
  [-RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>]
  [-TemplateId <String>] 
- [-DisplayName <String>] 
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 
@@ -110,7 +109,7 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
     Version = 2
  }
 
- Set-EntraBetaDirectoryRoleDefinition @params
+Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
@@ -160,7 +159,7 @@ Accept wildcard characters: False
 
 ### -UnifiedRoleDefinitionId
 
-The unique identifier of an object in Microsoft Entra ID.
+Specifies the roleDefinition object ID.
 
 ```yaml
 Type: System.String
@@ -224,7 +223,7 @@ Accept wildcard characters: False
 
 ### -RolePermissions
 
-Specifies permissions for the role definition.
+Specifies permissions for the role definition. List of permissions included in the role. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]
@@ -240,7 +239,7 @@ Accept wildcard characters: False
 
 ### -TemplateId
 
-Specifies the template ID for the role definition.
+Specifies the template ID for the role definition. A custom template ID can be set when `isBuiltIn` is `false`. This ID is typically used to keep the same identifier across different directories. It is read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.String
@@ -256,7 +255,7 @@ Accept wildcard characters: False
 
 ### -Version
 
-Specifies the template ID for the role definition.
+Specifies version for the role definition. Indicates version of the role definition. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.String
@@ -283,6 +282,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+`Set-EntraBetaRoleAssignment` is an alias for `Set-EntraBetaDirectoryRoleAssignment`.
 
 ## Related Links
 
