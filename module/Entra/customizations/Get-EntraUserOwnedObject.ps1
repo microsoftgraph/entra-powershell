@@ -31,7 +31,7 @@
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
 
         $Top = $null
-        if ($null -ne $PSBoundParameters["Top"]) {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $Top = $PSBoundParameters["Top"]
         }
 
