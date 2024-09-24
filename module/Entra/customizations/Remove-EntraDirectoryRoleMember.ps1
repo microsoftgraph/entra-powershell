@@ -10,6 +10,12 @@
             TargetName = "DirectoryObjectId"
             ConversionType = "Name"
             SpecialMapping = $null
+        },
+        @{
+            SourceName = "ObjectId"
+            TargetName = "DirectoryRoleId"
+            ConversionType = "Name"
+            SpecialMapping = $null
         }
     )
     Outputs = $null

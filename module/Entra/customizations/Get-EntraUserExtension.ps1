@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADUserExtension"
     TargetName = "Get-MgUserExtension"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "UserId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
