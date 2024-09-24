@@ -18,7 +18,7 @@ Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return empty object when TenantId is passed" {
-            $result = Get-EntraDirectoryObjectOnPremisesProvisioningError  -TenantId "74825acb-c984-4b54-ab65-d38347ea5e90"
+            $result = Get-EntraDirectoryObjectOnPremisesProvisioningError  -TenantId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
