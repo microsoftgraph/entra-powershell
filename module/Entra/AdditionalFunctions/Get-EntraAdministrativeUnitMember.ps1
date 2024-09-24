@@ -5,7 +5,7 @@ function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Int32]] $Top,
+        [System.Int32] $Top,
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ObjectId,
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
