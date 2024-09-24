@@ -15,7 +15,22 @@ BeforeAll {
             }
         )
     }  
+    $scriptblock2 = {
+        # Write-Host "Mocking Get-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
+        return @(
+            [PSCustomObject]@{
+              "DisplayName"     = "demo"
+              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+              "MailEnabled"     = "False"
+              "Description"     = "test"
+              "MailNickname"    = "demoNickname"
+              "SecurityEnabled" = "True"
+              "Parameters"      = $args
+            }
+        )
+    }
     Mock -CommandName Get-MgGroupMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgGroup -MockWith $scriptblock2 -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Select-EntraGroupIdsGroupIsMemberOf" {
