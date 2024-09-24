@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADServicePrincipalCreatedObject"
     TargetName = "Get-MgBetaServicePrincipalCreatedObject"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADServicePrincipalOAuth2PermissionGrant"
     TargetName = "Get-MgBetaServicePrincipalOauth2PermissionGrant"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

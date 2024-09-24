@@ -4,7 +4,14 @@
 @{
     SourceName = "Get-AzureADServicePrincipalMembership"
     TargetName = "Get-MgBetaServicePrincipalTransitiveMemberOf"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = @(
         @{
             SourceName = "AdditionalProperties"
