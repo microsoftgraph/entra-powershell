@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADApplicationServiceEndpoint"
     TargetName = "Get-MgServicePrincipalEndpoint"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
