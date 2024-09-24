@@ -8,7 +8,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
+    [System.Int32] $Top,
     [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
