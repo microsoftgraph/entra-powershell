@@ -26,28 +26,28 @@ BeforeAll {
     Mock -CommandName Reset-MgBetaUserAuthenticationMethodPassword -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
  
-    Describe "Convert-EntraBetaFederatedUser" {
-    Context "Test for Convert-EntraBetaFederatedUser" {
+    Describe "Update-EntraBetaUserFromFederated" {
+    Context "Test for Update-EntraBetaUserFromFederated" {
         It "Should sets identity synchronization features for a tenant" {
-            $result = Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
+            $result = Update-EntraBetaUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when UserPrincipalName is empty" {
-            {Convert-EntraBetaFederatedUser -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'. Specify a parameter*"
+            {Update-EntraBetaUserFromFederated -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'. Specify a parameter*"
         }
         It "Should fail when UserPrincipalName is invalid" {
-            {Convert-EntraBetaFederatedUser -UserPrincipalName ""} | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName' because it is an empty string*"
+            {Update-EntraBetaUserFromFederated -UserPrincipalName ""} | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName' because it is an empty string*"
         }
         It "Should fail when NewPassword is empty" {
-            { Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword  } | Should -Throw "Missing an argument for parameter 'NewPassword'. Specify a parameter*"
+            { Update-EntraBetaUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword  } | Should -Throw "Missing an argument for parameter 'NewPassword'. Specify a parameter*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Convert-EntraBetaFederatedUser"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaUserFromFederated"
 
-            Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
+            Update-EntraBetaUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Convert-EntraBetaFederatedUser"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaUserFromFederated"
 
             Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -61,7 +61,7 @@ BeforeAll {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234" -Debug } | Should -Not -Throw
+                { Update-EntraBetaUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
