@@ -119,7 +119,16 @@ Describe "Get-EntraBetaPrivilegedResource" {
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-
+        It "Property parameter should work" {
+            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'new'
+    
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedResource"
             $result= Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"

@@ -17,7 +17,7 @@ BeforeAll {
                     "AdditionalProperties" = @{}
                 }
                 "TargetResources" = [PSCustomObject]@{
-                    "DisplayName"          = ""
+                    "DisplayName"          = "test"
                     "GroupType"            = ""
                     "Id"                   = "00000000-0000-0000-0000-000000000000"
                     "ModifiedProperties"   = @()
@@ -107,6 +107,17 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
 
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
+        
+        It "Property parameter should work" {
+            $result = Get-EntraBetaAuditDirectoryLog -Property ActivityDisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.ActivityDisplayName | Should -Be 'GroupsODataV4_GetgroupLifecyclePolicies'
+    
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaAuditDirectoryLog -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditDirectoryLog"

@@ -300,6 +300,17 @@ Describe "Get-EntraBetaAuditSignInLog" {
 
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         } 
+        It "Property parameter should work" {
+            $result = Get-EntraBetaAuditSignInLog -Property AppDisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.AppDisplayName | Should -Be 'Azure Active Directory PowerShell'
+    
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+           }
+    
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaAuditSignInLog -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
+           }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLog"
