@@ -90,10 +90,6 @@ function Find-EntraPermission {
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if($null -ne $PSBoundParameters["Top"])
-        {
-            $params["Top"] = $PSBoundParameters["Top"]
-        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug

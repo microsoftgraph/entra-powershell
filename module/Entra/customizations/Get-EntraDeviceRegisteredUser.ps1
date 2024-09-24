@@ -29,7 +29,7 @@
         {
             $URI = "$baseUri/$($params.DeviceId)/registeredUsers?$properties"
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             $URI = "$baseUri/$($params.DeviceId)/registeredUsers?`$top=$topCount&$properties"
