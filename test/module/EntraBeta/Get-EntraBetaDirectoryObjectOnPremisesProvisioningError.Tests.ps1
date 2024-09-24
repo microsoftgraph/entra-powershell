@@ -10,30 +10,30 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaHasObjectsWithDirSyncProvisioningError" {
-    Context "Test for Get-EntraBetaHasObjectsWithDirSyncProvisioningError" {
+Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
+    Context "Test for Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
         It "Should return empty object" {
-            $result = Get-EntraBetaHasObjectsWithDirSyncProvisioningError
+            $result = Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should return empty object when TenantId is passed" {
-            $result = Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when TenantId is empty" {
-            { Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
+            { Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
         }
         It "Should fail when TenantId is invalid" {
-            { Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId "" } | Should -Throw "Cannot process argument transformation on parameter 'TenantId'.*"
+            { Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId "" } | Should -Throw "Cannot process argument transformation on parameter 'TenantId'.*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaHasObjectsWithDirSyncProvisioningError"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectoryObjectOnPremisesProvisioningError"
 
-            Get-EntraBetaHasObjectsWithDirSyncProvisioningError
+            Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaHasObjectsWithDirSyncProvisioningError"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectoryObjectOnPremisesProvisioningError"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -47,7 +47,7 @@ Describe "Get-EntraBetaHasObjectsWithDirSyncProvisioningError" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
