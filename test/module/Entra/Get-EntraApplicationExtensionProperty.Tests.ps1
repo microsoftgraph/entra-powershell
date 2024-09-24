@@ -19,7 +19,6 @@ BeforeAll {
             }
         )
     }
-    
     Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
   }
   
@@ -80,4 +79,4 @@ BeforeAll {
             }
         }    
     }
-  }
+}

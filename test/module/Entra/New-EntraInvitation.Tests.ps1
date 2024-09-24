@@ -12,7 +12,7 @@ BeforeAll {
             [PSCustomObject]@{
                 "Id"                      = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 "InviteRedeemUrl"         = "https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-ccca95d4390e%26user%3d3135a58d-b417-40ae-bb44-a82df52b7957%26ticket%3dzbiyasVbMTkRKVom98YD%25252fOJvkr2WRQsI2Om6Z62TDYg%25253d%26ver%3d2.0"
-                "InviteRedirectUrl"       = "http://myapps.microsoft.com/"
+                "InviteRedirectUrl"       = "http://myapps.contoso.com/"
                 "InvitedUser"             = @{
                                                 "AboutMe"                               = ""
                                                 "AccountEnabled"                        = ""
@@ -139,11 +139,11 @@ BeforeAll {
                                                 "Todo"                                  = ""
                                                 "TransitiveMemberOf"                    = ""
                                                 "UsageLocation"                         = ""
-                                                "UserPrincipalName"                     = "sanjeev.kumar@perennialsys.com"
+                                                "UserPrincipalName"                     = "SawyerM@contoso.com"
                                                 "UserType"                              = "Guest"
                                             }
                 "InvitedUserDisplayName"  = ""
-                "InvitedUserEmailAddress" = "sanjeev.kumar@perennialsys.com"
+                "InvitedUserEmailAddress" = "SawyerM@contoso.com"
                 "InvitedUserMessageInfo"  = @{
                                                 "CcRecipients"        = [System.Object]@()
                                                 "CustomizedMessageBody" = ""
@@ -166,14 +166,14 @@ BeforeAll {
 Describe "New-EntraInvitation" {
     Context "Test for New-EntraInvitation" {
         It "Should invite a new external user to your directory" {
-            $result = New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"
+            $result = New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should  -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $result.Status | Should -Be "PendingAcceptance"
             $result.InvitedUser.Id | Should  -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $result.InvitedUser.UserPrincipalName | Should  -Be "sanjeev.kumar@perennialsys.com"
+            $result.InvitedUser.UserPrincipalName | Should  -Be "SawyerM@contoso.com"
             $result.InvitedUser.UserType | Should  -Be "Guest"
-            $result.InvitedUserEmailAddress | Should -Be "sanjeev.kumar@perennialsys.com"
+            $result.InvitedUserEmailAddress | Should -Be "SawyerM@contoso.com"
             $result.InvitedUserType | Should -Be "Guest"
             $result.ResetRedemption | Should -Be $false
             $result.SendInvitationMessage | Should -Be $true
@@ -187,25 +187,25 @@ Describe "New-EntraInvitation" {
         }
 
         It "Should fail when InviteRedirectUrl parameter are Invalid" {
-            { New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "" } | Should -Throw "Cannot bind argument to parameter 'InviteRedirectUrl' because it is an empty string."
+            { New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "" } | Should -Throw "Cannot bind argument to parameter 'InviteRedirectUrl' because it is an empty string."
         }
 
         It "Should fail when SendInvitationMessage parameter are Invalid" {
-            { New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage "123" -InviteRedirectUrl "http://myapps.microsoft.com" } | Should -Throw "Cannot process argument transformation on parameter*"
+            { New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage "123" -InviteRedirectUrl "http://myapps.contoso.com" } | Should -Throw "Cannot process argument transformation on parameter*"
         }
 
         It "Should fail when InvitedUserEmailAddress parameter are Invalid" {
-            { New-EntraInvitation -InvitedUserEmailAddress "" -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com" } | Should -Throw "Cannot bind argument to parameter 'InvitedUserEmailAddress' because it is an empty string."
+            { New-EntraInvitation -InvitedUserEmailAddress "" -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com" } | Should -Throw "Cannot bind argument to parameter 'InvitedUserEmailAddress' because it is an empty string."
         }
 
         It "Should contain ObjectId in result" {
-            $result = New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"
+            $result = New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com"
             $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         } 
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraInvitation"
-            $result = New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"
+            $result = New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraInvitation"
             Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -220,7 +220,7 @@ Describe "New-EntraInvitation" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { New-EntraInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com" -Debug } | Should -Not -Throw
+                { New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

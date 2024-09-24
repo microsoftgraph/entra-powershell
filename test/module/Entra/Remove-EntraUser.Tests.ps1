@@ -15,7 +15,7 @@ BeforeAll {
 Describe "Remove-EntraUser" {
     Context "Test for Remove-EntraUser" {
         It "Should return empty object" {
-            $result = Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $result = Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -28,14 +28,14 @@ Describe "Remove-EntraUser" {
         It "Should contain Id in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $result = Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
-            $params.userId | Should -Be "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $params.userId | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUser"
     
-            Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUser"
     
@@ -51,7 +51,7 @@ Describe "Remove-EntraUser" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2" -Debug } | Should -Not -Throw
+                { Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

@@ -13,7 +13,7 @@ BeforeAll {
 Describe "Set-EntraApplicationLogo"{
     Context "Test for Set-EntraApplicationLogo" {
         It "Should return empty object"{
-            $result = Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
+            $result = Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Application+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -29,7 +29,7 @@ Describe "Set-EntraApplicationLogo"{
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplicationLogo"
 
-            Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
+            Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Application+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplicationLogo"
 
@@ -45,7 +45,7 @@ Describe "Set-EntraApplicationLogo"{
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate" -Debug } | Should -Not -Throw
+                { Set-EntraApplicationLogo -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -FilePath "https://th.bing.com/th?q=Application+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

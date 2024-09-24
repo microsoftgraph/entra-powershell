@@ -55,6 +55,11 @@ Describe "Get-EntraTrustedCertificateAuthority"{
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
     }
+    It "Property parameter should work" {
+        $result = Get-EntraTrustedCertificateAuthority -Property TrustedIssuerSki
+        $result | Should -Not -BeNullOrEmpty
+        $result.TrustedIssuerSki | Should -Be 'A0A42656B880B35FA7C8929A011A62113150F788'
+    }
     It "Should fail when TrustedIssuer is null" {
         { Get-EntraTrustedCertificateAuthority -TrustedIssuer  } | Should -Throw "Missing an argument for parameter*"
     }

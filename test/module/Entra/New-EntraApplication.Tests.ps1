@@ -23,7 +23,7 @@ BeforeAll {
               "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
               "PasswordCredentials"       = @{}
               "PublicClient"              = @{RedirectUris = $null }
-              "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
+              "PublisherDomain"           = "aaaabbbbbccccc.contoso.com"
               "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
               "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }              
               "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }

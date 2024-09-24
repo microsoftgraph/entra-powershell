@@ -19,7 +19,7 @@ BeforeAll {
                                                       "deviceId"               = "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
                                                       "deviceMetadata"         = "MetaData"
                                                       "deviceVersion"          = "2"
-                                                      "displayName"            = "AkshayLodha"
+                                                      "displayName"            = "Sawyer Miller"
                                                       "isCompliant"            = $false
                                                       "isManaged"              = $true
                                                       "operatingSystem"        = "WINDOWS"
@@ -52,9 +52,14 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
-            $result.AdditionalProperties.displayName | Should -Be "AkshayLodha"
+            $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
 
             Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Property parameter should work" {
+            $result = Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
+            $result.Id | Should -Be 'aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb'
         }
 
         It "Should fail when ObjectlId is empty" {
@@ -82,7 +87,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
-            $result.AdditionalProperties.displayName | Should -Be "AkshayLodha"
+            $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
 
             Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }

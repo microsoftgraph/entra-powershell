@@ -25,7 +25,7 @@ BeforeAll {
                     "Operator"                     = "OR"
                     "TermsOfUse"                   = @()
                 }
-                "Id"                   = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "Id"                   = "aaaaaaaa-1111-2222-3333-ccccccccccc"
                 "ModifiedDateTime"     = ""
                 "SessionControls"      = [PSCustomObject]@{
                     "DisableResilienceDefaults" = $null
@@ -45,10 +45,10 @@ BeforeAll {
 Describe "Get-EntraConditionalAccessPolicy" {
     Context "Test for Get-EntraConditionalAccessPolicy" {
         It "Should retrieves a conditional access policy in Microsoft Entra ID with given ID" {
-            $result = Get-EntraConditionalAccessPolicy -PolicyId "0c53a5eb-3efb-4420-bff8-57ebc2913a13"
+            $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $result.ObjectId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-ccccccccccc"
+            $result.ObjectId | Should -Be "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result.DisplayName | Should -Be "MFA policy"
             $result.State | Should -Be "enabled"
 
@@ -58,10 +58,16 @@ Describe "Get-EntraConditionalAccessPolicy" {
         It "Should retrieves a list of all conditional access policies in Microsoft Entra ID" {
             $result = Get-EntraConditionalAccessPolicy 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Contain "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $result.ObjectId | Should -Contain "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.Id | Should -Contain "aaaaaaaa-1111-2222-3333-ccccccccccc"
+            $result.ObjectId | Should -Contain "aaaaaaaa-1111-2222-3333-ccccccccccc"
 
             Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Property parameter should work" {
+            $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'MFA policy'
         }
 
         It "Should fail when PolicyId is empty" {
@@ -73,19 +79,19 @@ Describe "Get-EntraConditionalAccessPolicy" {
         }
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraConditionalAccessPolicy -PolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-ccccccccccc"
         } 
       
         It "Should contain ConditionalAccessPolicyId in parameters when passed PolicyId to it" {
-            $result = Get-EntraConditionalAccessPolicy -PolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.ConditionalAccessPolicyId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $params.ConditionalAccessPolicyId | Should -Be "aaaaaaaa-1111-2222-3333-ccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraConditionalAccessPolicy"
-            $result = Get-EntraConditionalAccessPolicy -PolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraConditionalAccessPolicy"
             Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -100,7 +106,7 @@ Describe "Get-EntraConditionalAccessPolicy" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraConditionalAccessPolicy -PolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

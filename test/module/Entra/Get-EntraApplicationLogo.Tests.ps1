@@ -27,6 +27,23 @@ Describe "Get-EntraApplicationLogo" {
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
+    It "Should return empty when passed ileName parameter" {
+        $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName "image"        
+        $result | Should -BeNullOrEmpty
+    }
+    It "Should fail when FileName is empty" {
+        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName } | Should -Throw "Missing an argument for parameter 'FileName'*"
+    }
+    It "Should return empty when passed ileName parameter" {
+        $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View $true        
+        $result | Should -BeNullOrEmpty
+    }
+    It "Should fail when View is invalid" {
+        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View "cc" } | Should -Throw "Cannot process argument transformation on parameter 'View'*"
+    }
+    It "Should fail when View is empty" {
+        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View } | Should -Throw "Missing an argument for parameter 'View'*"
+    }
     It "Should fail when ObjectId is empty" {
         { Get-EntraApplicationLogo -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
     }

@@ -15,7 +15,7 @@ BeforeAll {
             [PSCustomObject]@{
                 DisplayName                = "demo004"
                 Id                         = "sdjfksd-2343-n21kj"
-                UserPrincipalName          = "demo004@M365x99297270.OnMicrosoft.com"
+                UserPrincipalName          = "SawyerM@contoso.com"
                 AccountEnabled             = "True"
                 MailNickname               = "demoUser"
                 AgeGroup                   = "adult"
@@ -64,7 +64,7 @@ Describe "New-EntraUser" {
             $result = New-EntraUser `
                 -DisplayName "demo004" `
                 -PasswordProfile $PasswordProfile `
-                -UserPrincipalName "demo004@M365x99297270.OnMicrosoft.com" `
+                -UserPrincipalName "SawyerM@contoso.com" `
                 -AccountEnabled $true `
                 -MailNickName "demoUser" `
                 -AgeGroup "adult" `
@@ -98,7 +98,7 @@ Describe "New-EntraUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "demo004"
             $result.AccountEnabled | Should -Be $true
-            $result.UserPrincipalName | Should -Be "demo004@M365x99297270.OnMicrosoft.com"
+            $result.UserPrincipalName | Should -Be "SawyerM@contoso.com"
             $result.MailNickName | Should -Be "demoUser" 
             $result.AgeGroup | Should -Be "adult" 
             $result.City | Should -Be "New York"
