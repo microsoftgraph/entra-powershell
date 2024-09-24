@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -29,7 +32,7 @@ BeforeAll {
                 "PublicClient"                      = @{
                                                         RedirectUris=@{};
                                                     }
-                "PublisherDomain"                   = "M365x99297270.onmicrosoft.com"
+                "PublisherDomain"                   = "contoso.com"
                 "Web"                               = @{
                                                         HomePageUrl="";  
                                                         LogoutUrl=""; 
@@ -92,10 +95,13 @@ Describe "Get-EntraDeletedApplication" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"
-            $result = Get-EntraDeletedApplication -Top 1 | ConvertTo-Json | ConvertFrom-Json
-            $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"    
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
