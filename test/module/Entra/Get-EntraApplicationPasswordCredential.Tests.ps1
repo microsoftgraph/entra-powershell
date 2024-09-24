@@ -9,7 +9,7 @@ BeforeAll {
             "PasswordCredentials" = @(
                 @{
                     "CustomKeyIdentifier" = {116, 101, 115, 116}
-                    "DisplayName"         = ""
+                    "DisplayName"         = "Test"
                     "EndDateTime"         = "10/23/2024 11:36:56 AM"
                     "KeyId"               = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
                     "StartDateTime"       = "11/22/2023 11:35:16 AM"
@@ -40,6 +40,18 @@ BeforeAll {
         It "Should fail when invalid parameter is passed" {
             { Get-EntraApplicationPasswordCredential -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property DisplayName 
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Test"
+
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             { Get-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationPasswordCredential"
             $result =  Get-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -57,7 +69,7 @@ BeforeAll {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"-Debug } | Should -Not -Throw
+                {  Get-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
