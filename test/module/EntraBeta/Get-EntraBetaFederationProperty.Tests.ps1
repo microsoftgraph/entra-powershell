@@ -25,7 +25,7 @@ BeforeAll {
 Describe "Get-EntraFederationProperty" {
     Context "Test for Get-EntraFederationProperty" {
         It "Should return the empty object" {
-            $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
+            $result = Get-EntraBetaFederationProperty -DomainName "contoso.com"
             $result | Should -Not -BeNullOrEmpty
             $result.ActiveSignInUri | Should -Be "https://sts.anmaji.myworkspace.microsoft.com/adfs/services/trust/2005/usernamemixed"
             $result.DisplayName | Should -Be "ADFS HYPER-V LAB"
@@ -46,15 +46,15 @@ Describe "Get-EntraFederationProperty" {
 
         It "Should contain DomainId in parameters when DomainName to it" {
         Mock -CommandName  Get-MgBetaDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-        $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
+        $result = Get-EntraBetaFederationProperty -DomainName "contoso.com"
         $params = Get-Parameters -data $result
-        $params.DomainId | Should -Be "anmaji.myworkspace.microsoft.com"      
+        $params.DomainId | Should -Be "contoso.com"      
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
 
-            $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
+            $result = Get-EntraBetaFederationProperty -DomainName "contoso.com"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
@@ -71,7 +71,7 @@ Describe "Get-EntraFederationProperty" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com" -Debug } | Should -Not -Throw
+                { Get-EntraBetaFederationProperty -DomainName "contoso.com" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

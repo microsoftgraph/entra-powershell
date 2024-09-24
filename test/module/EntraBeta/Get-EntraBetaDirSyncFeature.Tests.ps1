@@ -37,8 +37,8 @@ BeforeAll {
     Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraDirSyncFeature" {
-    Context "Test for Get-EntraDirSyncFeature" {
+Describe "Get-EntraBetaDirSyncFeature" {
+    Context "Test for Get-EntraBetaDirSyncFeature" {
         It "Returns all the sync features" {
             $result = Get-EntraBetaDirSyncFeature
             $result | Should -Not -BeNullOrEmpty

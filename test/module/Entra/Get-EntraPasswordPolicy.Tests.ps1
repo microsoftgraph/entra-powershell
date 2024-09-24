@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id" = "M365x99297270.onmicrosoft.com"
+                "Id" = "contoso.com"
                 "IsAdminManaged" ="True"
                 "PasswordNotificationWindowInDays" = @{PasswordNotificationWindowInDays="14";  "Parameters" = $args}
                 "PasswordValidityPeriodInDays" = "2147483647"      
@@ -23,7 +23,7 @@ BeforeAll {
 Describe "Get-EntraPasswordPolicy" {
     Context "Test for Get-EntraPasswordPolicy" {
         It "Should gets the current password policy for a tenant or a domain." {
-            $result = Get-EntraPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com"
+            $result = Get-EntraPasswordPolicy -DomainName "contoso.com"
             $result | Should -Not -BeNullOrEmpty
             $result.NotificationDays.PasswordNotificationWindowInDays | Should -Be "14"
             $result.ValidityPeriod | Should -Be "2147483647"
@@ -42,7 +42,7 @@ Describe "Get-EntraPasswordPolicy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraPasswordPolicy"
     
-            $result = Get-EntraPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com" 
+            $result = Get-EntraPasswordPolicy -DomainName "contoso.com" 
             $result | Should -Not -BeNullOrEmpty
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraPasswordPolicy"
@@ -59,7 +59,7 @@ Describe "Get-EntraPasswordPolicy" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com" -Debug } | Should -Not -Throw
+                { Get-EntraPasswordPolicy -DomainName "contoso.com" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
