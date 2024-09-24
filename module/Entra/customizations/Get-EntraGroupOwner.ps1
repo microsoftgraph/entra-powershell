@@ -29,7 +29,7 @@
         {
             $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             $URI = "$baseUri/$($params.GroupId)/owners?`$top=$topCount&$properties"
