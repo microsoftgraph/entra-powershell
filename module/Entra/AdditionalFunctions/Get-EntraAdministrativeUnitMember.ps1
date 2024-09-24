@@ -4,70 +4,68 @@
 function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Int32] $Top,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $ObjectId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All
     )
 
     PROCESS {
         $params = @{}
+        $topCount = $null
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "/v1.0/directory/administrativeUnits/$ObjectId/members?`$select=*"
         $params["Uri"] = "$baseUri"
-        if($null -ne $PSBoundParameters["ObjectId"])
-        {
+        if ($null -ne $PSBoundParameters["ObjectId"]) {
             $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
         }
-        if($null -ne $PSBoundParameters["All"])
-        {
-            $uri = $baseUri
-        }
-        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
+                $minTop = 999
                 $params["Uri"] += "&`$top=999"
             }
-            else{
+            else {
                 $params["Uri"] += "&`$top=$topCount"
             }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        if($response.ContainsKey('value')){
-            $response = $response.value
-        }
-
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
-                $URI = $response.'@odata.nextLink'
-                if (-not $all) {
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
+                $params["Uri"] = $response.'@odata.nextLink'
+                if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
-                    $URI = $URI.Replace('$top=999', "`$top=$topValue")
+                    if ($minTop) {
+                        $params["Uri"] = $params["Uri"].Replace("`$top=$minTop", "`$top=$topValue")
+                    }
+                    else {
+                        $params["Uri"] = $params["Uri"].Replace("`$top=$topCount", "`$top=$topValue")
+                    }
                     $increment -= $topValue
                 }
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}
+        }
+        catch {}
         $data | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        if($data){
+        if ($data) {
             $memberList = @()
             foreach ($response in $data) {
                 $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject

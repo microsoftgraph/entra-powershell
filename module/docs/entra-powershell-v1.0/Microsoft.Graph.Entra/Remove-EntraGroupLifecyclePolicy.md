@@ -55,7 +55,7 @@ Specifies the ID of the groupLifecyclePolicies object that this cmdlet removes.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

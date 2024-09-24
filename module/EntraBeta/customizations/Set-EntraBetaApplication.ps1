@@ -31,6 +31,7 @@
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $TokenEncryptionKeyId,
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ApplicationId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

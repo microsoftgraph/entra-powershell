@@ -33,6 +33,7 @@
     [System.String] $MailNickname,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $OdataType,
+    [Alias("Id")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

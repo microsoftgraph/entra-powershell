@@ -36,7 +36,11 @@
                 $params["All"] = $PSBoundParameters["All"]
             }
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $params["Top"] = $PSBoundParameters["Top"]
         }

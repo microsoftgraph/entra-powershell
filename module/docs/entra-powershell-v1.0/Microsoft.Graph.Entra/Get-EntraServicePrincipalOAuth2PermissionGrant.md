@@ -26,7 +26,7 @@ Gets an oAuth2PermissionGrant object.
 
 ```powershell
 Get-EntraServicePrincipalOAuth2PermissionGrant
--ObjectId <String>
+-ServicePrincipalId <String>
 [-All]
 [-Top <Int32>]
 [-Property <String[]>]
@@ -44,7 +44,7 @@ The `Get-EntraServicePrincipalOAuth2PermissionGrant` cmdlet gets an oAuth2Permis
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipalId
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipalId
 ```
 
 ```output
@@ -59,7 +59,7 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All 
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -All 
 ```
 
 ```Output
@@ -76,7 +76,7 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
 ```
 
 ```Output
@@ -106,14 +106,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
