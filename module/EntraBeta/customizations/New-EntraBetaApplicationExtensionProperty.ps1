@@ -4,6 +4,13 @@
 @{
     SourceName = "New-AzureADApplicationExtensionProperty"
     TargetName = "New-MgBetaApplicationExtensionProperty"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ApplicationId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

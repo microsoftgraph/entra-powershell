@@ -4,7 +4,14 @@
 @{
     SourceName = "Get-AzureADMSAttributeSet"
     TargetName = "Get-MgBetaDirectoryAttributeSet"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "Id"
+            TargetName = "AttributeSetId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
     
 }

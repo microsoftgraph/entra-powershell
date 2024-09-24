@@ -6,6 +6,12 @@
     TargetName = "Set-MgBetaUserPhotoContent"
     Parameters = @(
         @{
+            SourceName = "ObjectId"
+            TargetName = "UserId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
             SourceName = "FilePath"
             TargetName = "InFile"
             ConversionType = "Name"
