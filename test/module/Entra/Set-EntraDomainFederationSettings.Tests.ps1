@@ -36,7 +36,7 @@ BeforeAll {
 Describe "Set-EntraDomainFederationSettings" {
     Context "Test for Set-EntraDomainFederationSettings" {
         It "Should Updates settings for a federated domain." {
-            $result =  Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport"
+            $result =  Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -SigningCertificate "Testcertificate" -NextSigningCertificate "Testcertificate"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -48,24 +48,31 @@ Describe "Set-EntraDomainFederationSettings" {
         It "Should fail when DomainName is invalid" {
              {Set-EntraDomainFederationSettings -DomainName ""} | Should -Throw "Cannot bind argument to parameter 'DomainName' because it is an empty string.*"
         } 
+        It "Should fail when NextSigningCertificate is empty" {
+            { Set-EntraDomainFederationSettings -DomainName "contoso.com" -NextSigningCertificate } | Should -Throw "Missing an argument for parameter 'NextSigningCertificate'. Specify a parameter*"
+       }
+
+       It "Should fail when SigningCertificate is empty" {
+            { Set-EntraDomainFederationSettings -DomainName "contoso.com" -SigningCertificate } | Should -Throw "Missing an argument for parameter 'SigningCertificate'. Specify a parameter*"
+       } 
 
         It "Should fail when parameter is empty" {
-            {Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" -LogOffUri  -PassiveLogOnUri  -ActiveLogOnUri -IssuerUri  -FederationBrandName  -MetadataExchangeUri  -PreferredAuthenticationProtocol  -PromptLoginBehavior } | Should -Throw "Missing an argument for parameter*"
+            {Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri  -PassiveLogOnUri  -ActiveLogOnUri -IssuerUri  -FederationBrandName  -MetadataExchangeUri  -PreferredAuthenticationProtocol  -PromptLoginBehavior } | Should -Throw "Missing an argument for parameter*"
         }
         It "Should fail when invalid paramter is passed"{
             {Set-EntraDomainFederationSettings -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
         }   
         It "Should contain DomainId in parameters when DomainName to it" {
             Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-            $result = Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com"
+            $result = Set-EntraDomainFederationSettings -DomainName "contoso.com"
             $params = Get-Parameters -data $result
             $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.DomainId | Should -Be "manan.lab.myworkspace.microsoft.com"         
+            $a.DomainId | Should -Be "contoso.com"         
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomainFederationSettings"
     
-            Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" 
+            Set-EntraDomainFederationSettings -DomainName "contoso.com" 
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomainFederationSettings"
 
@@ -81,7 +88,7 @@ Describe "Set-EntraDomainFederationSettings" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -Debug } | Should -Not -Throw
+                { Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
