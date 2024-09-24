@@ -626,7 +626,11 @@ $($Command.CustomScript)
             "Get-EntraBetaFeatureRolloutPolicy",
             "Get-EntraBetaGroup",
             "Get-EntraBetaPrivilegedResource",
-            "Get-EntraBetaServicePrincipal"
+            "Get-EntraBetaServicePrincipal",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaDevice", 
+            "Get-EntraBetaPrivilegedRoleDefinition"
         )
         
         
