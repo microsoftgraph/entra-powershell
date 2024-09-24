@@ -43,7 +43,7 @@
             $query = "$properties"
         }
 
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
