@@ -24,7 +24,7 @@ BeforeAll {
 
     Mock -CommandName Get-MgPolicyPermissionGrantPolicyExclude -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
-Describe "Get-EntraMSPermissionGrantConditionSet"{
+Describe "Get-EntraPermissionGrantConditionSet"{
     It "Should not return empty object for condition set 'includes'"{
         $result = Get-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
@@ -50,6 +50,17 @@ Describe "Get-EntraMSPermissionGrantConditionSet"{
         $result = Get-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $params = Get-Parameters -data $result.Parameters
         $params.PermissionGrantPolicyId | Should -Be "policy1"
+    }
+    It "Property parameter should work" {
+        $result = Get-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
+        $result | Should -Not -BeNullOrEmpty
+        $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+
+        Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+
+    It "Should fail when Property is empty" {
+         {Get-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraPermissionGrantConditionSet"

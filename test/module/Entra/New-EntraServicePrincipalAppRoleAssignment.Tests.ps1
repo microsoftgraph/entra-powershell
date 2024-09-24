@@ -12,9 +12,9 @@ BeforeAll {
         return @(
             [PSCustomObject]@{                
                 "DeletedDateTime"              = $null
-                "Id"                           = "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
+                "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 "PrincipalDisplayName"         = "Mock-App"
-                "AppRoleId"                    = "e18f0405-fdec-4ae8-a8a0-d8edb98b061f"
+                "AppRoleId"                    = "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f"
                 "CreatedDateTime"              = "3/12/2024 11:05:29 AM"
                 "PrincipalId"                  = "aaaaaaaa-bbbb-cccc-1111-222222222222"
                 "Parameters"                   = $args
@@ -28,7 +28,7 @@ BeforeAll {
 Describe "New-EntraServicePrincipalAppRoleAssignment"{
     Context "Test for New-EntraServicePrincipalAppRoleAssignment" {
         It "Should return New-EntraServicePrincipalAppRoleAssignment"{
-            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -ResourceId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Id "e18f0405-fdec-4ae8-a8a0-d8edb98b061f" -PrincipalId "d2d0a585-0c52-4bab-8c64-a096b98b061f"
+            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalDisplayName | should -Be "Mock-App"
             $result.PrincipalId | should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
@@ -63,18 +63,18 @@ Describe "New-EntraServicePrincipalAppRoleAssignment"{
             { New-EntraServicePrincipalAppRoleAssignment -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'."
         }
         It "Should contain AppRoleId in parameters when passed Id to it" {    
-            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -ResourceId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Id "e18f0405-fdec-4ae8-a8a0-d8edb98b061f" -PrincipalId "d2d0a585-0c52-4bab-8c64-a096b98b061f"
+            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $params = Get-Parameters -data $result.Parameters
-            $params.AppRoleId | Should -Be "e18f0405-fdec-4ae8-a8a0-d8edb98b061f"
+            $params.AppRoleId | Should -Be "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f"
         }
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {    
-            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -ResourceId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Id "e18f0405-fdec-4ae8-a8a0-d8edb98b061f" -PrincipalId "d2d0a585-0c52-4bab-8c64-a096b98b061f"
+            $result = New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae"
+            $params.ServicePrincipalId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalAppRoleAssignment"
-            $result =  New-EntraServicePrincipalAppRoleAssignment  -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -ResourceId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Id "e18f0405-fdec-4ae8-a8a0-d8edb98b061f" -PrincipalId "d2d0a585-0c52-4bab-8c64-a096b98b061f"
+            $result =  New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalAppRoleAssignment"
             Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -89,7 +89,7 @@ Describe "New-EntraServicePrincipalAppRoleAssignment"{
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  New-EntraServicePrincipalAppRoleAssignment  -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -ResourceId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Id "e18f0405-fdec-4ae8-a8a0-d8edb98b061f" -PrincipalId "d2d0a585-0c52-4bab-8c64-a096b98b061f" -Debug } | Should -Not -Throw
+                {  New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

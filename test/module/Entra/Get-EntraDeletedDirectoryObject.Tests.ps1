@@ -40,6 +40,17 @@ Describe "Get-EntraDeletedDirectoryObject"{
         $params = Get-Parameters -data $result.Parameters
         $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }
+    It "Property parameter should work" {
+        $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
+        $result | Should -Not -BeNullOrEmpty
+        $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+
+        Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+
+    It "Should fail when Property is empty" {
+         {Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+    }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"
         $result =  Get-EntraDeletedDirectoryObject -Id  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"

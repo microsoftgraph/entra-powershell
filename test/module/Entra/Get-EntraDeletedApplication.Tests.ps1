@@ -93,6 +93,17 @@ Describe "Get-EntraDeletedApplication" {
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-test-App"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraDeletedApplication -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Mock-test-App"
+
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             { Get-EntraDeletedApplication  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"
             $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
