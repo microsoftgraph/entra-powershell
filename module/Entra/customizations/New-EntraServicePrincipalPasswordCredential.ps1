@@ -7,6 +7,21 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias("ObjectId")]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ServicePrincipalId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Value,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $StartDate,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $CustomKeyIdentifier,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $EndDate
+    )
+
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $body = @{
         passwordCredential = @{
@@ -14,7 +29,7 @@
             endDateTime = $PSBoundParameters["EndDate"];
         }
     }
-    $response = Add-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ObjectId"] -BodyParameter $body
+    $response = Add-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -BodyParameter $body
     $response | ForEach-Object {
         if($null -ne $_) {
         Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
