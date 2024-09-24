@@ -12,11 +12,7 @@ BeforeAll {
                 "GroupMembershipClaims"             = {}
                 "IdentifierUris"                    = {}
                 "Info"                              = @{
-                                                        LogoUrl=""; 
-                                                        MarketingUrl=""; 
-                                                        PrivacyStatementUrl=""; 
-                                                        SupportUrl=""; 
-                                                        TermsOfServiceUrl="";
+                                                        LogoUrl="";
                                                     }
                 "IsDeviceOnlyAuthSupported"         = $null
                 "KeyCredentials"                    = {}
@@ -27,58 +23,23 @@ BeforeAll {
                                                     }
                 "PasswordCredentials"               = {}
                 "Api"                               = @{
-                                                        AcceptMappedClaims=@{}; 
                                                         KnownClientApplications=@{};
-                                                        Oauth2PermissionScopes=@{}; 
                                                         PreAuthorizedApplications=@{};
-                                                        RequestedAccessTokenVersion="2";
                                                     }
                 "PublicClient"                      = @{
                                                         RedirectUris=@{};
                                                     }
                 "PublisherDomain"                   = "M365x99297270.onmicrosoft.com"
                 "Web"                               = @{
-                                                        HomePageUrl=""; 
-                                                        ImplicitGrantSettings=""; 
-                                                        LogoutUrl="";
-                                                        RedirectUriSettings=@{}; 
+                                                        HomePageUrl="";  
+                                                        LogoutUrl=""; 
                                                         RedirectUris=@{};
+                                                        Oauth2AllowImplicitFlow=""
                                                     }
                 "RequiredResourceAccess"            = $null                
-                "AppId"                             = "9c17362d-20b6-4572-bb6f-600e57c840e5"
-                "AppManagementPolicies"             = $null
-                "ApplicationTemplateId"             = $null
-                "Certification"                     = {}
-                "CreatedDateTime"                   = "12/12/2023 11:28:45 AM"
-                "CreatedOnBehalfOf"                 = {}
-                "DefaultRedirectUri"                = $null
-                "DeletedDateTime"                   = "12/12/2023 12:23:39 PM"
-                "Description"                       = $null
-                "DisabledByMicrosoftStatus"         = $null
                 "DisplayName"                       = "Mock-test-App"
-                "ExtensionProperties"               = $null
-                "FederatedIdentityCredentials"      = $null
-                "HomeRealmDiscoveryPolicies"        = $null
-                "Id"                                = "01157307-373c-47b0-889a-3bc57033d73e"
-                "IsFallbackPublicClient"            = $null
+                "Id"                                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 "Logo"                              = $null
-                "Notes"                             = $null
-                "Oauth2RequirePostResponse"         = $null
-                "Owners"                            = $null
-                "RequestSignatureVerification"      = {}
-                "SamlMetadataUrl"                   = $null
-                "ServiceManagementReference"        = $null
-                "ServicePrincipalLockConfiguration" = {}
-                "SignInAudience"                    = "AzureADandPersonalMicrosoftAccount"
-                "Spa"                               = {}
-                "Synchronization"                   = {}
-                "Tags"                              = {}
-                "TokenEncryptionKeyId"              = $null
-                "TokenIssuancePolicies"             = $null
-                "TokenLifetimePolicies"             = $null
-                "UniqueName"                        = $null
-                "VerifiedPublisher"                 = {}
-                "AdditionalProperties"              = {}
                 "Parameters"                        = $args
             }
         )
@@ -90,12 +51,12 @@ BeforeAll {
 Describe "Get-EntraDeletedApplication" {
     Context "Test for Get-EntraDeletedApplication" {        
         It "Should return all applications" {
-            $result = Get-EntraDeletedApplication | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All is empty" {
-            { Get-EntraDeletedApplication -All } | Should -Throw "Missing an argument for parameter 'All'*"
+            { Get-EntraDeletedApplication -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }
         It "Should fail when invalid parameter is passed" {
             { Get-EntraDeletedApplication -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
@@ -122,7 +83,7 @@ Describe "Get-EntraDeletedApplication" {
         }  
         It "Result should Contain ObjectId" {
             $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
-            $result.ObjectId | should -Be "01157307-373c-47b0-889a-3bc57033d73e"
+            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
             $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json | ConvertFrom-Json
@@ -136,5 +97,18 @@ Describe "Get-EntraDeletedApplication" {
             $a= $params | ConvertTo-json | ConvertFrom-Json
             $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {  Get-EntraDeletedApplication -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }
