@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -10,7 +13,7 @@ BeforeAll {
 Describe "Set-EntraBetaUser"{
     Context "Test for Set-EntraBetaUser" {
         It "Should return empty object"{
-            $result = Set-EntraBetaUser -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -DisplayName "Mock-App"
+            $result = Set-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty 
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -23,26 +26,17 @@ Describe "Set-EntraBetaUser"{
         It "Should contain UserId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaUser -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04'
+            $result = Set-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $params = Get-Parameters -data $result
-            $params.UserId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
-        It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUser"
-            $result = Set-EntraBetaUser -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04'
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
-
         It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones, " {
             Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Beta
 
             # format like "yyyy-MM-dd HH:mm:ss"
             $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
 
-            $result = Set-EntraBetaUser -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" `
+            $result = Set-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" `
                 -UserState "PendingAcceptance" `
                 -UserStateChangedOn  $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
@@ -60,6 +54,29 @@ Describe "Set-EntraBetaUser"{
             $params.OnPremisesImmutableId | Should -Be "djkjsajsa-e32j2-2i32"
 
             $params.ExternalUserStateChangeDateTime | Should -Be $userStateChangedOn
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUser"
+            $result = Set-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUser"
+            Should -Invoke -CommandName Update-MgBetaUser  -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'-Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

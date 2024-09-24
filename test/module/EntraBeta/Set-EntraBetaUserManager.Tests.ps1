@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -10,7 +13,7 @@ BeforeAll {
 Describe "Set-EntraBetaUserManager"{
     Context "Test for Set-EntraBetaUserManager" {
         It "Should return empty object"{
-            $result = Set-EntraBetaUserManager -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
+            $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty 
             Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -23,17 +26,32 @@ Describe "Set-EntraBetaUserManager"{
         It "Should contain UserId in parameters when passed ObjectId to it" {
             Mock -CommandName Set-MgBetaUserManagerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaUserManager -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
+            $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $params.UserId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Set-MgBetaUserManagerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserManager"
-            $result = Set-EntraBetaUserManager -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserManager"
+            Should -Invoke -CommandName Set-MgBetaUserManagerByRef  -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
 
     }

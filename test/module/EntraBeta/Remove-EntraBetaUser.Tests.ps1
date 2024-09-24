@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -10,7 +13,7 @@ BeforeAll {
 Describe "Remove-EntraBetaUser" {
     Context "Test for Remove-EntraBetaUser" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -23,17 +26,32 @@ Describe "Remove-EntraBetaUser" {
         It "Should contain UserId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             
-            $result = Remove-EntraBetaUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
-            $params.UserId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaUser"
-            $result = Remove-EntraBetaUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+            $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaUser"
+            Should -Invoke -CommandName Remove-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

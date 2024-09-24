@@ -8,7 +8,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 DeletedDateTime                 = ''
-                Id                              = '26bb22db-6b8e-4adb-b761-264c869d5245'
+                Id                              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
                 '@odata.context'                = 'https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity'
                 '@odata.type'                   = '#microsoft.graph.user'
                 accountEnabled                  = $true
@@ -19,17 +19,17 @@ BeforeAll {
                 department                      = 'Sales & Marketing'
                 displayName                     = 'Miriam Graham'
                 givenName                       = 'Miriam'
-                imAddresses                     = @('miriamg@m365x99297270.onmicrosoft.com')
+                imAddresses                     = @('miriamg@contoso.com')
                 infoCatalogs                    = @{}
                 isLicenseReconciliationNeeded   = $false
                 isManagementRestricted          = $false
                 jobTitle                        = 'Director'
-                mail                            = 'MiriamG@M365x99297270.OnMicrosoft.com'
+                mail                            = 'MiriamG@contoso.com'
                 mailNickname                    = 'MiriamG'
                 officeLocation                  = '131/2103'
                 otherMails                      = @()
                 postalCode                      = '92121'
-                proxyAddresses                  = @('SMTP:MiriamG@M365x99297270.OnMicrosoft.com')
+                proxyAddresses                  = @('SMTP:MiriamG@contoso.com')
                 refreshTokensValidFromDateTime  = '2023-07-12T02:36:51Z'
                 securityIdentifier              = 'S-1-12-1-649798363-1255893902-1277583799-1163042182'
                 signInSessionsValidFromDateTime = '2023-07-12T02:36:51Z'
@@ -37,7 +37,7 @@ BeforeAll {
                 streetAddress                   = '9255 Towne Center Dr., Suite 400'
                 surname                         = 'Graham'
                 usageLocation                   = 'NL'
-                userPrincipalName               = 'MiriamG@M365x99297270.OnMicrosoft.com'
+                userPrincipalName               = 'MiriamG@contoso.com'
                 userType                        = 'Member'
                 assignedLicenses                = @(
                     @{
@@ -50,7 +50,7 @@ BeforeAll {
                         assignedDateTime   = '2023-07-07T14:18:07Z'
                         capabilityStatus   = 'Enabled'
                         service            = 'ProcessSimple'
-                        servicePlanId      = '2d589a15-b171-4e61-9b5f-31d15eeb2872'
+                        servicePlanId      = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
                     }
                 )
                 authorizationInfo               = @{certificateUserIds = @()}
@@ -59,8 +59,8 @@ BeforeAll {
                 identities                      = @(
                     @{
                         signInType      = 'userPrincipalName'
-                        issuer          = 'M365x99297270.onmicrosoft.com'
-                        issuerAssignedId = 'MiriamG@M365x99297270.OnMicrosoft.com'
+                        issuer          = 'contoso.com'
+                        issuerAssignedId = 'MiriamG@contoso.com'
                     }
                 )
                 onPremisesExtensionAttributes   = @{}
@@ -88,20 +88,20 @@ BeforeAll {
 Describe "Get-EntraBetaUserManager" {
     Context "Test for Get-EntraBetaUserManager" {
         It "Should return specific user manager" {
-            $result = Get-EntraBetaUserManager -ObjectId "26bb22db-6b8e-4adb-b761-264c869d5245"
+            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
             $result.ageGroup | Should -BeNullOrEmpty
             $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.creationType | Should -BeNullOrEmpty
-            $result.imAddresses | Should -Be @("miriamg@m365x99297270.onmicrosoft.com")
+            $result.imAddresses | Should -Be @("miriamg@contoso.com")
             $result.preferredLanguage | Should -BeNullOrEmpty
-            $result.mail | Should -Be "MiriamG@M365x99297270.OnMicrosoft.com"
+            $result.mail | Should -Be "MiriamG@contoso.com"
             $result.securityIdentifier | Should -Be "S-1-12-1-649798363-1255893902-1277583799-1163042182"
             $result.identities | Should -HaveCount 1
             $result.identities[0].signInType | Should -Be "userPrincipalName"
-            $result.identities[0].issuer | Should -Be "M365x99297270.onmicrosoft.com"
-            $result.identities[0].issuerAssignedId | Should -Be "MiriamG@M365x99297270.OnMicrosoft.com"
+            $result.identities[0].issuer | Should -Be "contoso.com"
+            $result.identities[0].issuerAssignedId | Should -Be "MiriamG@contoso.com"
 
             Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -115,23 +115,46 @@ Describe "Get-EntraBetaUserManager" {
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaUserManager -ObjectId "26bb22db-6b8e-4adb-b761-264c869d5245"
-            $result.ObjectId | should -Be "26bb22db-6b8e-4adb-b761-264c869d5245"
+            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }     
 
         It "Should contain UserId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraBetaUserManager -ObjectId "26bb22db-6b8e-4adb-b761-264c869d5245"
+            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
-            $params.UserId | Should -Be "26bb22db-6b8e-4adb-b761-264c869d5245"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
 
-            $result = Get-EntraBetaUserManager -ObjectId "26bb22db-6b8e-4adb-b761-264c869d5245"
+            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
 
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
+            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
+            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     
     }
