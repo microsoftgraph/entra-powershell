@@ -2,7 +2,6 @@
 title: Get-EntraPartnerInformation
 description: This article provides details on the Get-EntraPartnerInformation command.
 
-
 ms.topic: reference
 ms.date: 09/25/2024
 ms.author: eunicewaweru
@@ -50,7 +49,7 @@ This cmdlet should only be used for partner tenants.
 ### Example 1: Retrieve partner information
 
 ```powershell
-Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Connect-Entra -Scopes 'Organization.Read.All'
 Get-EntraPartnerInformation
 ```
 
@@ -70,8 +69,9 @@ This command retrieves partner-specific information.
 ### Example 2: Retrieve partner information with specific TenantId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.ReadWrite.All'
-Get-EntraPartnerInformation -TenantId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+Connect-Entra -Scopes 'Organization.Read.All'
+$tenantId = (Get-EntraContext).TenantId
+Get-EntraPartnerInformation -TenantId $tenantId
 ```
 
 ```Output
@@ -94,7 +94,7 @@ This command retrieves partner-specific information.
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If this isn't provided, then the value defaults to the tenant of the current user.
+If this is not provided, then the value will default to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
@@ -117,21 +117,16 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
-### The cmdlet returns the following company level information
+### The cmdlet will return the following company level information
 
-### - CompanyType: The type of this company (can be partner or regular tenant)
-
-### - PartnerCompanyName: The name of the company
-
-### - PartnerSupportTelephones: Support Telephone numbers for the partner
-
-### - PartnerSupportEmails: Support E-Mail address for the partner
-
-### - PartnerCommerceUrl: URL for the partner's commerce web site
-
-### - PartnerSupportUrl: URL for the Partner's support website
-
-### - PartnerHelpUrl: URL for the partner's help web site
+- CompanyType: The type of this company (can be partner or regular tenant)
+- DapEnabled: Flag to determine if the partner has delegated admin privileges
+- PartnerCompanyName: The name of the company
+- PartnerSupportTelephones: Support Telephone numbers for the partner
+- PartnerSupportEmails: Support E-Mail address for the partner
+- PartnerCommerceUrl: URL for the partner's commerce web site
+- PartnerSupportUrl: URL for the Partner's support website
+- PartnerHelpUrl: URL for the partner's help web site
 
 ## Notes
 

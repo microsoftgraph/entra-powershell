@@ -2,7 +2,6 @@
 title: Get-EntraBetaPartnerInformation
 description: This article provides details on the Get-EntraBetaPartnerInformation command.
 
-
 ms.topic: reference
 ms.date: 09/25/2024
 ms.author: eunicewaweru
@@ -50,7 +49,7 @@ This cmdlet should only be used for partner tenants.
 ### Example 1: Retrieve partner information
 
 ```powershell
-Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Connect-Entra -Scopes 'Organization.Read.All'
 Get-EntraBetaPartnerInformation
 ```
 
@@ -70,8 +69,9 @@ This command retrieves partner-specific information.
 ### Example 2: Retrieve partner information with specific TenantId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.ReadWrite.All'
-Get-EntraBetaPartnerInformation -TenantId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+Connect-Entra -Scopes 'Organization.Read.All'
+$tenantId = (Get-EntraContext).TenantId
+Get-EntraBetaPartnerInformation -TenantId $tenantId
 ```
 
 ```Output
@@ -119,21 +119,14 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### The cmdlet will return the following company level information
 
-### - CompanyType: The type of this company (can be partner or regular tenant)
-
-### - DapEnabled: Flag to determine if the partner has delegated admin privileges
-
-### - PartnerCompanyName: The name of the company
-
-### - PartnerSupportTelephones: Support Telephone numbers for the partner
-
-### - PartnerSupportEmails: Support E-Mail address for the partner
-
-### - PartnerCommerceUrl: URL for the partner's commerce web site
-
-### - PartnerSupportUrl: URL for the Partner's support website
-
-### - PartnerHelpUrl: URL for the partner's help web site
+- CompanyType: The type of this company (can be partner or regular tenant)
+- DapEnabled: Flag to determine if the partner has delegated admin privileges
+- PartnerCompanyName: The name of the company
+- PartnerSupportTelephones: Support Telephone numbers for the partner
+- PartnerSupportEmails: Support E-Mail address for the partner
+- PartnerCommerceUrl: URL for the partner's commerce web site
+- PartnerSupportUrl: URL for the Partner's support website
+- PartnerHelpUrl: URL for the partner's help web site
 
 ## Notes
 
