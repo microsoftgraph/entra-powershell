@@ -13,24 +13,24 @@ BeforeAll {
 Describe "Add-EntraApplicationOwner" {
     Context "Test for Add-EntraApplicationOwner" { 
         It "Should return empty object"{
-            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }       
         It "Should fail when parameters are empty" {
-            { Add-EntraApplicationOwner -ObjectId "" -RefObjectId "" } | Should -Throw "Cannot bind argument to parameter*"
+            { Add-EntraApplicationOwner -ApplicationId "" -RefObjectId "" } | Should -Throw "Cannot bind argument to parameter*"
         }
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {              
             Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
-            Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
+            Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
             Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -44,7 +44,7 @@ Describe "Add-EntraApplicationOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
