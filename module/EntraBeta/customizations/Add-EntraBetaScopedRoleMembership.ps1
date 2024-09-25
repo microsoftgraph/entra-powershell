@@ -7,6 +7,18 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    param (
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $RoleObjectId,    
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $AdministrativeUnitObjectId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.AzureAD.Model.RoleMemberInfo] $RoleMemberInfo,
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $AdministrativeUnitId
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -47,9 +59,9 @@
         {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
         {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         }
         if($null -ne $PSBoundParameters["OutBuffer"])
         {

@@ -45,7 +45,7 @@ Describe "Test for Set-EntraAdministrativeUnit" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Set-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test" -Debug } | Should -Not -Throw
+            { Set-EntraAdministrativeUnit -AdministrativeUnitId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

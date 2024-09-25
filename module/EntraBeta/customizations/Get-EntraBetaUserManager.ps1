@@ -7,6 +7,14 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [ALias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -15,9 +23,9 @@
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["UserId"])
         {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+            $params["UserId"] = $PSBoundParameters["UserId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
