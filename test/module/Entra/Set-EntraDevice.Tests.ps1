@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Set-EntraDevice"{
     Context "Test for Set-EntraDevice" {
         It "Should return empty object"{
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
+            $result = Set-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App" -AccountEnabled $true
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
@@ -28,18 +28,34 @@ Describe "Set-EntraDevice"{
         It "Should contain DeviceId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Set-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
+
+            Set-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
 
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

@@ -12,7 +12,7 @@ BeforeAll {
 }
 Describe "Add-EntraAdministrativeUnitMember tests"{
     It "Should return empty object"{
-        $result = Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
+        $result = Add-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -32,11 +32,13 @@ Describe "Add-EntraAdministrativeUnitMember tests"{
         { Add-EntraAdministrativeUnitMember -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraAdministrativeUnitMember"
-        $result = Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
-        $params = Get-Parameters -data $result
-        $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        Add-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraAdministrativeUnitMember"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     }
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
@@ -45,7 +47,7 @@ Describe "Add-EntraAdministrativeUnitMember tests"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846" -Debug } | Should -Not -Throw
+            { Add-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

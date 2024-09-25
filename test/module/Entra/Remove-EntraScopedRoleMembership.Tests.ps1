@@ -12,7 +12,7 @@ BeforeAll {
 
 Describe "Test for Remove-EntraScopedRoleMembership" {
     It "Should return empty object" {
-        $result = Remove-EntraScopedRoleMembership -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
+        $result = Remove-EntraScopedRoleMembership -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -ScopedRoleMembershipId "bbbbbbbb-2222-2222-2222-cccccccccccc"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -32,10 +32,28 @@ Describe "Test for Remove-EntraScopedRoleMembership" {
         { Remove-EntraScopedRoleMembership -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraScopedRoleMembership"
-        $result = Remove-EntraScopedRoleMembership -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
-        $params = Get-Parameters -data $result
-        $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+        Remove-EntraScopedRoleMembership -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -ScopedRoleMembershipId "bbbbbbbb-2222-2222-2222-cccccccccccc"
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraScopedRoleMembership"
+
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     } 
+    It "Should execute successfully without throwing an error" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            {  Remove-EntraScopedRoleMembership -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -ScopedRoleMembershipId "bbbbbbbb-2222-2222-2222-cccccccccccc" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }  
 }
