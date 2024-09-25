@@ -33,16 +33,22 @@ BeforeAll{
 }
 Describe "Tests for Add-EntraScopedRoleMembership"{
     It "Result should not be empty"{
+        $result = Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $result | Should -Not -BeNullOrEmpty
+        $result.Id | should -Be @('NewDummyId')
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Result should not be empty with ObjectId"{
         $result = Add-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('NewDummyId')
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is invalid" {
-        { Add-EntraScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is invalid" {
+        { Add-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is empty" {
-        { Add-EntraScopedRoleMembership -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Add-EntraScopedRoleMembership -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when RoleMemberInfo is invalid" {
         { Add-EntraScopedRoleMembership -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
@@ -55,9 +61,22 @@ Describe "Tests for Add-EntraScopedRoleMembership"{
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraScopedRoleMembership"
-        $result = Add-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $result = Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $params = Get-Parameters -data $result.Parameters
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
     }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    } 
 }

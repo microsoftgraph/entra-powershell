@@ -14,19 +14,25 @@ Describe "Set-EntraServicePrincipal"{
     Context "Test for Set-EntraServicePrincipal" {
         It "Should update the parameter" {
             $tags = @("Environment=Production", "Department=Finance", "Project=MNO")
-            $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags
+            $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }   
+        It "Should update the parameter with Alias" {
+            $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should update the LogoutUrl and ServicePrincipalType parameter" {
-                $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
+                $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
                 $result | Should -BeNullOrEmpty
     
                 Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should update the Homepage, ReplyUrls and AlternativeNames parameter" {
-            $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Homepage 'https://HomePageurlss.com' -ReplyUrls 'https://admin.microsoft1.com' -AlternativeNames "updatetest"
+            $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Homepage 'https://HomePageurlss.com' -ReplyUrls 'https://admin.microsoft1.com' -AlternativeNames "updatetest"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
@@ -40,24 +46,24 @@ Describe "Set-EntraServicePrincipal"{
             $creds.Usage = 'Sign'
             $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("A")
             $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20
-            $result= Set-EntraServicePrincipal -ObjectId 6aa187e3-bbbb-4748-a708-fc380aa9eb17  -KeyCredentials $creds
+            $result= Set-EntraServicePrincipal -ServicePrincipalId 6aa187e3-bbbb-4748-a708-fc380aa9eb17  -KeyCredentials $creds
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }     
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
+        It "Should fail when ServicePrincipalId is empty" {
+            { Set-EntraServicePrincipal -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
         }
-        It "Should fail when ObjectId is Invalid" {
-            { Set-EntraServicePrincipal -ObjectId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+        It "Should fail when ServicePrincipalId is Invalid" {
+            { Set-EntraServicePrincipal -ServicePrincipalId ""} | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
         }
         It "Should fail when non-mandatory is empty" {
-            { Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AppId  -Tags  -ReplyUrls -AccountEnabled -AlternativeNames -KeyCredentials -Homepage} | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AppId  -Tags  -ReplyUrls -AccountEnabled -AlternativeNames -KeyCredentials -Homepage} | Should -Throw "Missing an argument for parameter*"
         }  
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
 
-            Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
+            Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
 
@@ -73,7 +79,7 @@ Describe "Set-EntraServicePrincipal"{
             $tags = @("Environment=Production", "Department=Finance", "Project=MNO")
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags -Debug } | Should -Not -Throw
+                { Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
