@@ -19,7 +19,7 @@ BeforeAll {
                                                   "Id"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
                                                   "AdditionalProperties" = @{"userPrincipalName" = "Adams@M365x99297270.OnMicrosoft.com" }  
                                                 }
-              "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"}
+              "AdditionalProperties"         = @{"@odata.context"  = 'https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]'}
               "Parameters"                   = $args
             }
         )
