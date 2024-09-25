@@ -41,9 +41,9 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should return empty object for UserEligibleSettings" {
-            $setting1 = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
-            $setting1.RuleIdentifier = "AttributeConditionRule"
-            $setting1.Setting = "{
+            $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
+            $setting.RuleIdentifier = "AttributeConditionRule"
+            $setting.Setting = "{
                                     'condition'= null
                                     'conditionVersion'= null
                                     'conditionDescription'= null

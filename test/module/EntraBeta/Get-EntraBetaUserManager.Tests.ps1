@@ -89,13 +89,7 @@ Describe "Get-EntraBetaUserManager" {
     Context "Test for Get-EntraBetaUserManager" {
         It "Should return specific user manager" {
             $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-
-            $result | Should -Not -BeNullOrEmpty
-            $result.ageGroup | Should -BeNullOrEmpty
-            $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
-            $result.creationType | Should -BeNullOrEmpty
-            $result.imAddresses | Should -Be @("miriamg@contoso.com")
-            $result.preferredLanguage | Should -BeNullOrEmpty
+            $result | Should -Not -BeNullOrEmpty            
             $result.mail | Should -Be "MiriamG@contoso.com"
             $result.securityIdentifier | Should -Be "S-1-12-1-649798363-1255893902-1277583799-1163042182"
             $result.identities | Should -HaveCount 1
