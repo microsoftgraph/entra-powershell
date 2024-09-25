@@ -69,7 +69,7 @@ Specifies the ID of a Microsoft Entra ID administrative unit.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: Id
+Aliases: ObjectId
 
 Required: True
 Position: Named

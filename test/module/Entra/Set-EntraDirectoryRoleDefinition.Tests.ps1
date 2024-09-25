@@ -15,56 +15,64 @@ Describe "Set-EntraDirectoryRoleDefinition" {
         It "Should return empty object" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
+            $result = Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
+            $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+            $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
             $result = Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id is empty" {
-            { Set-EntraDirectoryRoleDefinition -Id  -DisplayName 'Mock-App' -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when UnifiedRoleDefinitionId is empty" {
+            { Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId  -DisplayName 'Mock-App' -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'UnifiedRoleDefinitionId'*"
         }
-        It "Should fail when Id is invalid" {
-            { Set-EntraDirectoryRoleDefinition -Id "" -IsEnabled $false -DisplayName 'Mock-App' -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3  } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string*"
+        It "Should fail when UnifiedRoleDefinitionId is invalid" {
+            { Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "" -IsEnabled $false -DisplayName 'Mock-App' -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3  } | Should -Throw "Cannot bind argument to parameter 'UnifiedRoleDefinitionId' because it is an empty string*"
         }
         It "Should fail when RolePermissions is empty" {
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions  } | Should -Throw "Missing an argument for parameter 'RolePermissions'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions  } | Should -Throw "Missing an argument for parameter 'RolePermissions'*"
         }
         It "Should fail when IsEnabled is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -IsEnabled  } | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -IsEnabled  } | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
         }
         It "Should fail when DisplayName is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -DisplayName  } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -DisplayName  } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
         }
         It "Should fail when ResourceScopes is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ResourceScopes } | Should -Throw "Missing an argument for parameter 'ResourceScopes'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ResourceScopes } | Should -Throw "Missing an argument for parameter 'ResourceScopes'*"
         }
         It "Should fail when Description is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description } | Should -Throw "Missing an argument for parameter 'Description'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description } | Should -Throw "Missing an argument for parameter 'Description'*"
         }
         It "Should fail when TemplateId is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -TemplateId } | Should -Throw "Missing an argument for parameter 'TemplateId'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -TemplateId } | Should -Throw "Missing an argument for parameter 'TemplateId'*"
         }
         It "Should fail when Version is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Version } | Should -Throw "Missing an argument for parameter 'Version'*"
+            {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Version } | Should -Throw "Missing an argument for parameter 'Version'*"
         }
         It "Should contain UnifiedRoleDefinitionId in parameters when passed Id to it" {
             Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            $result = Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2
+            $result = Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2
             $params = Get-Parameters -data $result
             $params.UnifiedRoleDefinitionId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
@@ -73,7 +81,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
 
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2
+            Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirectoryRoleDefinition"
 
@@ -91,7 +99,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
            
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2 -Debug } | Should -Not -Throw
+                { Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2 -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

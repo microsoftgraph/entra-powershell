@@ -8,18 +8,18 @@
     Outputs = $null
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
+    param (    
+    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $SearchString,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Filter,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Alias('Id')]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UnifiedRoleDefinitionId,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
+    [System.String] $DirectoryRoleId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -27,9 +27,9 @@
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"}
-        if($null -ne $PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["DirectoryRoleId"])
         {
-            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["Id"]
+            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["DirectoryRoleId"]
         }
         if($null -ne $PSBoundParameters["Filter"])
         {

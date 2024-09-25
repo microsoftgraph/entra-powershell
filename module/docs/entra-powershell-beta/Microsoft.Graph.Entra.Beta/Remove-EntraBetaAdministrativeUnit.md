@@ -25,13 +25,13 @@ Removes an administrative unit.
 
 ```powershell
 Remove-EntraBetaAdministrativeUnit 
- -ObjectId <String>
+ -AdministrativeUnitId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify `ObjectId` parameter to delete an administrative unit.
+The `Remove-EntraBetaAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify `AdministrativeUnitId` parameter to delete an administrative unit.
 
 To delete an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
 
@@ -42,23 +42,23 @@ To delete an administrative unit, the calling principal must have at least the P
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-Remove-EntraBetaAdministrativeUnit -ObjectId $AdministrativeUnit.ObjectId
+Remove-EntraBetaAdministrativeUnit -AdministrativeUnitId $AdministrativeUnit.ObjectId  
 ```
 
 This command removes the specified administrative unit from Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
