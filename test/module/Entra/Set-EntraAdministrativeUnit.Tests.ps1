@@ -12,7 +12,7 @@ BeforeAll {
 
 Describe "Test for Set-EntraAdministrativeUnit" {
     It "Should return empty object" {
-        $result = Set-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
+        $result = Set-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -27,10 +27,25 @@ Describe "Test for Set-EntraAdministrativeUnit" {
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAdministrativeUnit"
-        Set-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
+        Set-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test"
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAdministrativeUnit"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }
     } 
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Set-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }  
 }
