@@ -26,13 +26,13 @@ Deletes a groupLifecyclePolicies object
 
 ```powershell
 Remove-EntraBetaGroupLifecyclePolicy 
- -Id <String> 
+ -GroupLifecyclePolicyId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
+The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `GroupLifecyclePolicyId` parameter deletes the groupLifecyclePolicies object.
 
 ## Examples
 
@@ -40,21 +40,21 @@ The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolic
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID. You can use `Get-EntraBetaGroupLifecyclePolicy` to get Id details.
 
 ## Parameters
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the groupLifecyclePolicies object that this cmdlet removes.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

@@ -27,7 +27,7 @@ Adds a registered owner for a device.
 
 ```powershell
 Add-EntraBetaDeviceRegisteredOwner 
- -ObjectId <String> 
+ -DeviceId <String> 
  -RefObjectId <String> 
  [<CommonParameters>]
 ```
@@ -42,10 +42,10 @@ The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Mi
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+$User = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
 $params = @{
-    ObjectId = $Device.ObjectId 
+    DeviceId = $Device.ObjectId 
     RefObjectId = $User.ObjectId
 }
 Add-EntraBetaDeviceRegisteredOwner  @params
@@ -53,20 +53,20 @@ Add-EntraBetaDeviceRegisteredOwner  @params
 
 This example shows how to add a registered owner to a device.
 
-`-ObjectId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device Id.
+`-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device Id.
 
 `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered owner of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraBetaUser` to get user Id.
 
 ## Parameters
 
-### -ObjectId
+### -DeviceId
 
 Specifies the ID of the device.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
