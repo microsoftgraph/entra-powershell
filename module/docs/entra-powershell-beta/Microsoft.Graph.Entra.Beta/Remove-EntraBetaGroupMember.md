@@ -43,7 +43,7 @@ The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Micros
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    GroupId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    GroupId = $group.ObjectId
     MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 }
 
