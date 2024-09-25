@@ -36,20 +36,27 @@ BeforeAll {
 Describe "Get-EntraDeviceRegisteredOwner" {
     Context "Test for Get-EntraDeviceRegisteredOwner" {
         It "Should return specific device registered owner" {
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return specific device registered owner with alias" {
             $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraDeviceRegisteredOwner -ObjectId   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DeviceId is empty" {
+            { Get-EntraDeviceRegisteredOwner -DeviceId   } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraDeviceRegisteredOwner -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+        It "Should fail when DeviceId is invalid" {
+            { Get-EntraDeviceRegisteredOwner -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string.*"
         }
         It "Should return all device registered owner" {
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
@@ -57,24 +64,24 @@ Describe "Get-EntraDeviceRegisteredOwner" {
         }
         
         It "Should fail when All is invalid" {
-            { Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+            { Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
         }
         It "Should return top device registered owner" {
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when top is empty" {
-            { Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when top is invalid" {
-            { Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
         It "Result should contain Alias property" {
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.DeletionTimestamp | should -Be $null
             $result.DirSyncEnabled | should -Be $null
@@ -89,7 +96,7 @@ Describe "Get-EntraDeviceRegisteredOwner" {
         }
         It "Should contain DeviceId in parameters when passed Name to it" { 
 
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $para= $params | ConvertTo-json | ConvertFrom-Json
             $para.URI  | Should -Match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -97,7 +104,7 @@ Describe "Get-EntraDeviceRegisteredOwner" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeviceRegisteredOwner"
 
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeviceRegisteredOwner"
@@ -109,7 +116,7 @@ Describe "Get-EntraDeviceRegisteredOwner" {
         }
         
         It "Property parameter should work" {
-            $result = Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property mobilePhone
+            $result = Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property mobilePhone
             $result | Should -Not -BeNullOrEmpty
             $result.mobilePhone | Should -Be '425-555-0100'
 
@@ -117,7 +124,7 @@ Describe "Get-EntraDeviceRegisteredOwner" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should execute successfully without throwing an error" {
@@ -127,7 +134,7 @@ Describe "Get-EntraDeviceRegisteredOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

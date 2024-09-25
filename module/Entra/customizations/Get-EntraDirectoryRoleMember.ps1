@@ -9,6 +9,7 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $DirectoryRoleId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
