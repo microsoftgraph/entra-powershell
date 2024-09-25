@@ -36,6 +36,13 @@ Describe "Get-EntraDirectoryRole" {
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific user with Alias" {
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when DirectoryRoleId is invalid" {
             { Get-EntraDirectoryRole -DirectoryRoleId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryRoleId' because it is an empty string."
         }

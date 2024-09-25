@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraAdministrativeUnit
@@ -17,11 +18,11 @@ schema: 2.0.0
 
 # Remove-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
 Removes an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraAdministrativeUnit 
@@ -29,26 +30,26 @@ Remove-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify the `AdministrativeUnitId` parameter to remove of administrative unit.
 
 To delete an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
 
-## EXAMPLES
+## Examples
 
-### Example 1: Remove an  administrative unit
+### Example 1: Remove an administrative unit
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 Remove-EntraAdministrativeUnit -AdministrativeUnitId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example removes an administrative unit from Microsoft Entra ID.
+This command removes the specified administrative unit from Microsoft Entra ID.
 
 - `-AdministrativeUnitId` - specifies the unique identifier (ID) of the administrative unit, which you want to remove. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitId
 
@@ -70,13 +71,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
+
+[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 
 [Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 

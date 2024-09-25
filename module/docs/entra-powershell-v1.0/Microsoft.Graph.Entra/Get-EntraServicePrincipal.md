@@ -49,7 +49,7 @@ Get-EntraServicePrincipal
 
 ```powershell
 Get-EntraServicePrincipal
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -78,11 +78,11 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 Projec
 
 This example retrieves all service principals from the directory.
 
-### Example 2: Retrieve a service principal by ObjectId
+### Example 2: Retrieve a service principal by ServicePrincipalId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -93,7 +93,7 @@ M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 0000111
 
 This command retrieves specific service principal.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` Parameter specifies the ID of a service principal.
 
 ### Example 3: Retrieve all service principals from the directory
 
@@ -146,7 +146,7 @@ This example gets a service principal by its display name.
 ### Example 6: Retrieve a list of all service principal, which has a display name that contains "M365 License Manager"
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -SearchString 'M365 License Manager'
 ```
 
@@ -161,6 +161,7 @@ This example gets a list of service principal, which has the specified display n
 ### Example 7: Retrieve all Enterprise apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
 ```
 
@@ -176,6 +177,7 @@ This example demonstrates how to retrieve all enterprise apps.
 ### Example 8: Retrieve all App proxy apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
 ```
 
@@ -191,6 +193,7 @@ This example demonstrates how to retrieve all app proxy apps.
 ### Example 9: Retrieve all disabled apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "accountEnabled eq false"
 ```
 
@@ -205,6 +208,7 @@ This example demonstrates how to retrieve all disabled apps.
 ### Example 10: Retrieve all Global Secure Access apps
 
 ```powershell
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
 ```
 
@@ -251,14 +255,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

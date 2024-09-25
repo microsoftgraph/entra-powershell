@@ -2,7 +2,6 @@
 title: Remove-EntraTrustedCertificateAuthority
 description: This article provides details on the Remove-EntraTrustedCertificateAuthority command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -45,13 +44,16 @@ $cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInforma
 Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
-```output
+```Output
 Id
 --
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command deletes the trusted certificate authorities that are defined in your directory.
+
+- `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
+It includes properties like `AuthorityType`, `CrlDistributionPoint`, `DeltaCrlDistributionPoint`, and `TrustedCertificate`.
 
 ## Parameters
 

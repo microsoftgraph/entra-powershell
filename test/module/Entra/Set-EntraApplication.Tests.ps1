@@ -41,5 +41,11 @@ Describe "Set-EntraApplication"{
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should return specific user with Alias" {
+            $result = Set-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
+            $result | Should -BeNullOrEmpty           
+
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
     }
 }

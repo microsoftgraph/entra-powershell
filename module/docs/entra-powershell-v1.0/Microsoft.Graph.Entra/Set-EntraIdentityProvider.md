@@ -20,7 +20,8 @@ schema: 2.0.0
 # Set-EntraIdentityProvider
 
 ## Synopsis
-This cmdlet is used to update the properties of an existing identity provider configured in the directory.
+
+Update the properties of an existing identity provider configured in the directory.
 
 ## Syntax
 
@@ -35,40 +36,69 @@ Set-EntraIdentityProvider
 ```
 
 ## Description
-This cmdlet can be used to update the properties of an existing identity provider.
+
+The `Set-EntraIdentityProvider` cmdlet is used to update the properties of an existing identity provider.
+
 The type of the identity provider can't be modified.
 
 ## Examples
 
 ### Example 1: Update client id of an identity provider
+
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -ClientId NewClientId
+Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
+$params = @{
+    Id = 'Google-OAuth'
+    ClientId = 'NewClientID'
+}
+Set-EntraIdentityProvider @params
 ```
 
 This example updates the client ID for the specified identity provider.
 
+- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
+
 ### Example 2: Update client secret of an identity provider
+
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -ClientSecret NewClientSecret
+Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
+$params = @{
+    Id = 'Google-OAuth'
+    ClientSecret = 'NewClientSecret'
+}
+Set-EntradentityProvider @params
 ```
 
 This example updates the client secret for the specified identity provider.
 
+- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
+
 ### Example 3: Update display name of an identity provider
+
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -Name NewName
+Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
+$params = @{
+    Id = 'Google-OAuth'
+    Name = 'NewGoogleName'
+}
+Set-EntraIdentityProvider @params
 ```
 
 This example updates the display name for the specified identity provider.
 
+- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-Name` parameter specifies the display name of the identity provider.
+
 ## Parameters
 
 ### -ClientId
-The client ID for the application.
-This is the client ID obtained when registering the application with the identity provider.
+
+The client identifier for the application, obtained during the application's registration with the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,11 +110,11 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecret
-The client secret for the application.
-This is the client secret obtained when registering the application with the identity provider.
+
+The client secret for the application, obtained during registration with the identity provider, is write-only. A read operation returns `****`.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -96,10 +126,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 The unique identifier for an identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -111,10 +142,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The display name of the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -126,10 +158,13 @@ Accept wildcard characters: False
 ```
 
 ### -Type
+
 The identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
+For a B2B scenario, possible values: Google, Facebook. For a B2C scenario, possible values: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo, QQ, WeChat.
+
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -141,14 +176,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[New-EntraIdentityProvider](New-EntraIdentityProvider.md)
+
+[Remove-EntraIdentityProvider](Remove-EntraIdentityProvider.md)

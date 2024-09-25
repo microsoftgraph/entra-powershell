@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraAdministrativeUnit
@@ -35,14 +36,15 @@ Set-EntraAdministrativeUnit
 
 The `Set-EntraAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Use the `AdministrativeUnitId` parameter to specify the unit to update.
 
-In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with `microsoft.directory/administrativeUnits/allProperties/allTasks permission`. The least privileged role for this operation is Privileged Role Administrator
+The Privileged Role Administrator is the least privileged role required for this operation.
 
 ## Examples
 
-### Example 1: Update Description
+### Example 1: Update DisplayName
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
     AdministrativeUnitId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     Description = 'Updated AU Description'
@@ -50,16 +52,15 @@ $params = @{
 Set-EntraAdministrativeUnit @params
 ```
 
-This Command update Description of specific administrative unit.
+This Command update DisplayName of specific administrative unit.
 
 - `-AdministrativeUnitId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
-- `-Description` - Specifies a description, which you want to update.
-
-### Example 2: Update DisplayName
+### Example 2: Update Description
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
 $params = @{
     AdministrativeUnitId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DisplayName = 'UpdatedAU'
@@ -67,7 +68,7 @@ $params = @{
 Set-EntraAdministrativeUnit @params
 ```
 
-This Command update DisplayName specific administrative unit.
+This example shows how to update the description of a specific administrative unit.
 
 - `-AdministrativeUnitId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
@@ -109,7 +110,7 @@ Accept wildcard characters: False
 
 ### -AdministrativeUnitId
 
-Specifies the ID of an administrative unit in Microsoft Entra ID
+Specifies the Id of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

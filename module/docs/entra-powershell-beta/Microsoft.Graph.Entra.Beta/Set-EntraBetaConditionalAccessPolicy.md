@@ -47,7 +47,7 @@ Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Updates a conditional access policy by PolicyId
+### Example 1: Update a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
@@ -75,7 +75,7 @@ The example shows how to update a conditional access policy in Microsoft Entra I
 - `-GrantControls` parameter specifies the controls for the conditional access policy.
 - `-SessionControls` parameter Enables limited experiences within specific cloud applications.
 
-### Example 2: Updates display name for a conditional access policy by PolicyId
+### Example 2: Update display name for a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
@@ -92,7 +92,7 @@ This command updates a conditional access policy in Microsoft Entra ID.
 - `-PolicyId` parameter specifies the Id of conditional access policy.
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 
-### Example 3: Updates state for a conditional access policy by PolicyId
+### Example 3: Update the state for a conditional access policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'

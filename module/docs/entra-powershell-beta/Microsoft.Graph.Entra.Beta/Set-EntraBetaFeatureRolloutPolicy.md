@@ -13,7 +13,6 @@ author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaFeatureRolloutPolicy
-
 schema: 2.0.0
 ---
 
@@ -33,15 +32,15 @@ Set-EntraBetaFeatureRolloutPolicy
  [-IsAppliedToOrganization <Boolean>]
  [-AppliesTo <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]>]
  [-Description <String>] 
- [-DisplayName <String>] 
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication rollout policy. 
+An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication rollout policy.
 
-This includes specifying whether the method for cloud authentication is Pass-through Authentication or Password Hash Synchronization, and whether Seamless Single Sign-On (SSO) is enabled. 
+This includes specifying whether the method for cloud authentication is Pass-through Authentication or Password Hash Synchronization, and whether Seamless Single Sign-On (SSO) is enabled.
 
 Users in groups assigned to the policy will start authenticating using the new method and Seamless SSO, if it is specified.
 
@@ -61,9 +60,9 @@ Set-EntraBetaFeatureRolloutPolicy  @params
 
 This command updates the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-- `-Id` - Specify the ID of cloud authentication roll-out policy
-- `-DisplayName` - Specifies the display name of the cloud authentication roll-out policy.
-- `-IsEnabled` - Specifies the status of cloud authentication roll-out policy.
+- `-Id` - specifies the ID of cloud authentication roll-out policy.
+- `-DisplayName` - specifies the display name of the cloud authentication roll-out policy.
+- `-IsEnabled` - specifies the status of cloud authentication roll-out policy.
 
 ### Example 2: Updates the Description
 

@@ -2,7 +2,6 @@
 title: Set-EntraPermissionGrantPolicy
 description: This article provides details on the Set-EntraPermissionGrantPolicy command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Set-EntraPermissionGrantPolicy
 
 ## Description
 
-The Set-EntraPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
+The `Set-EntraPermissionGrantPolicy` command updates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
@@ -43,8 +42,9 @@ The Set-EntraPermissionGrantPolicy command updates a Microsoft Entra ID permissi
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
 $params = @{
-    Id = 'my_permission_grant_policy_id'
+    Id = $policy.Id
     Description = 'Updated description'
 }
 
@@ -53,12 +53,16 @@ Set-EntraPermissionGrantPolicy @params
 
 This command updates the description of the specified permission grant policy.
 
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
+- `-Description` parameter specifies the description for the permission grant policy.
+
 ### Example 2: Update display name of permission grant policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
 $params = @{
-    Id = 'my_permission_grant_policy_id'
+    Id = $policy.Id
     DisplayName = 'Updated DisplayName'
 }
 
@@ -66,6 +70,9 @@ Set-EntraPermissionGrantPolicy @params
 ```
 
 This command updates the display name of the specified permission grant policy.
+
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
+- `-DisplayName` parameter specifies the display name for the permission grant policy.
 
 ## Parameters
 
