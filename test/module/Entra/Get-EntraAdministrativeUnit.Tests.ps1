@@ -25,15 +25,25 @@ BeforeAll{
 }
 Describe "Tests for Get-EntraAdministrativeUnit"{
     It "Result should not be empty"{
+        $result = Get-EntraAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Result should not be empty objectid"{
         $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Get-EntraAdministrativeUnit -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Result should not be empty objectid"{
+        $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is null" {
-        { Get-EntraAdministrativeUnit -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Get-EntraAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
+    }
+    It "Should fail when AdministrativeUnitId is null" {
+        { Get-EntraAdministrativeUnit -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }    
     It "Should fail when All has an argument" {
         { Get-EntraAdministrativeUnit -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"

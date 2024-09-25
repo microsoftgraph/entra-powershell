@@ -25,7 +25,7 @@ Adds an owner to a service principal.
 
 ```powershell
 Add-EntraServicePrincipalOwner 
- -ObjectId <String> 
+ -ServicePrincipalId <String> 
  -RefObjectId <String> 
  [<CommonParameters>]
 ```
@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy
 $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 $OwnerId = (Get-EntraUser -Top 1).ObjectId
 $Params = @{
-    ObjectId = $ServicePrincipalId 
+    ServicePrincipalId = $ServicePrincipalId 
     RefObjectId = $OwnerId  
 }
 Add-EntraServicePrincipalOwner @Params
@@ -51,19 +51,19 @@ Add-EntraServicePrincipalOwner @Params
 
 This example demonstrates how to add an owner to a service principal.
 
-- `-ObjectId` parameter specifies the service principal ID.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 - `-RefObjectId` parameter specifies the user object ID.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

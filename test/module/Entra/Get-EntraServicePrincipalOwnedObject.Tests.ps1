@@ -34,7 +34,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
             Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific device with Alias" {
+        It "Should return specific ServicePrincipalOwnedObject with Alias" {
             $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('00aa00aa-bb11-cc22-dd33-44ee44ee44ee')
@@ -59,11 +59,11 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }  
-        It "Result should Contain ObjectId" {
+        It "Result should Contain ServicePrincipalId" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
         }     
-        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {              
+        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {              
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"

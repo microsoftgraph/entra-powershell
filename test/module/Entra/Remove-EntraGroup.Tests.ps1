@@ -20,7 +20,7 @@ Describe "Remove-EntraGroup" {
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific user with Alias" {
-            $result = Remove-EntraGroup -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
@@ -41,13 +41,27 @@ Describe "Remove-EntraGroup" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 
-            Remove-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Remove-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 
-            $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
+            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

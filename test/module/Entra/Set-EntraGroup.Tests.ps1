@@ -44,10 +44,23 @@ Describe "Set-EntraGroup" {
             Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
-
-            $result = Set-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
