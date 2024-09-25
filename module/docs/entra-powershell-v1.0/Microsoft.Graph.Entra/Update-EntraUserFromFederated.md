@@ -2,7 +2,6 @@
 title: Update-EntraUserFromFederated
 description: This article provides details on the Update-EntraUserFromFederated command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -44,7 +43,7 @@ Admins with User Administrator, Helpdesk Administrator, or Password Administrato
 
 ## Examples
 
-### EXAMPLE 1: Update a user in a domain
+### Example 1: Update a user in a domain
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
@@ -52,6 +51,8 @@ Update-EntraUserFromFederated -UserPrincipalName 'pattifuller@contoso.com'
 ```
 
 This command updates a user in a domain.
+
+- `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
 
 ## Parameters
 
@@ -75,7 +76,7 @@ Accept wildcard characters: False
 
 The new password of the user.
 
-The new password is required for tenants with hybrid password scenarios. If omitted for a cloud-only password, the system generates a password. This password is a Unicode string with no other encoding. It is validated against the tenant's banned password system before acceptance and must meet the tenant's cloud and/or on-premises password requirements.
+For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without additional encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
 
 ```yaml
 Type: System.String
@@ -99,6 +100,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For more information, see [resetPassword](/graph/api/authenticationmethod-resetpassword).
+- For more information, see [resetPassword](https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword).
 
 ## Related Links

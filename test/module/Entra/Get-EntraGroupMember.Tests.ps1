@@ -39,18 +39,22 @@ Describe "Get-EntraGroupMember" {
         It "Should fail when GroupId is empty" {
             { Get-EntraGroupMember -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
+
         It "Should fail when Top is empty" {
             { Get-EntraGroupMember -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
+
         It "Should fail when Top is invalid" {
             { Get-EntraGroupMember -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
+
         It "Should return all group" {
             $result = Get-EntraGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+
         It "Should fail when All has an argument" {
             { Get-EntraGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
@@ -60,14 +64,44 @@ Describe "Get-EntraGroupMember" {
             $result | Should -HaveCount 1 
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-        }  
+        } 
+
+        It "Property parameter should work" {
+            $result =  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             {  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
 
-            Get-EntraGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
+            $result = Get-EntraGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
             }
         }    
     }

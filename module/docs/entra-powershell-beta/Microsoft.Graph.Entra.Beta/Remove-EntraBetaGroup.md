@@ -32,7 +32,9 @@ Remove-EntraBetaGroup
 
 ## Description
 
-The `Remove-EntraBetaGroup` cmdlet removes a group from Microsoft Entra ID. Specify the `GroupId` parameter removes a group. Unified Group can be restored withing 30 days after deletion using the `Restore-EntraBetaDeletedDirectoryObject` cmdlet. Security groups can't be restored after deletion.
+The `Remove-EntraBetaGroup` cmdlet removes a group from Microsoft Entra ID. Specify the `GroupId` parameter removes a group.
+
+Unified Group can be restored withing 30 days after deletion using the `Restore-EntraBetaDeletedDirectoryObject` cmdlet. Security groups can't be restored after deletion.
 
 **Notes on permissions:**
 
@@ -64,7 +66,7 @@ Specifies the object ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

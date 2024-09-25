@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-`Get-EntraContext` is used to retrieve the details about your current session.
+Retrieve information about your current session
 
 ## Syntax
 
@@ -58,6 +58,9 @@ Get-EntraContext
 
 ```powershell
 Get-EntraContext
+```
+
+```Output
 ClientId              : 11112222-bbbb-3333-cccc-4444dddd5555
 TenantId              : aaaabbbb-0000-cccc-1111-dddd2222eeee
 CertificateThumbprint :
@@ -79,9 +82,11 @@ This example demonstrates how to retrieve the details of the current session.
 
 ```powershell
 Get-EntraContext | Select -ExpandProperty Scopes
+```
+
+```Output
 AppRoleAssignment.ReadWrite.All
 Directory.AccessAsUser.All
-Directory.ReadWrite.All
 EntitlementManagement.ReadWrite.All
 Group.ReadWrite.All
 openid

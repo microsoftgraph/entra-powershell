@@ -36,7 +36,6 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
         try {
             $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json

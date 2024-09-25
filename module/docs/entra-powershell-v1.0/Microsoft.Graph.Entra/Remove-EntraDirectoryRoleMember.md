@@ -27,7 +27,7 @@ Removes a member of a directory role.
 ```powershell
 Remove-EntraDirectoryRoleMember 
  -ObjectId <String> 
- -MemberId <String> 
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
@@ -49,11 +49,10 @@ $params = @{
 Remove-EntraDirectoryRoleMember @params
 ```
 
-This command removes the specified member from the specified role.
+This example removes the specified member from the specified role.
 
-- `-ObjectId` - specifies the unique identifier (ObjectId) of the directory role from which the member will be removed.
-
-- `-MemberId` - specifies the unique identifier (MemberId) of the member (user, group, or service principal) that is to be removed from the specified directory role.
+- `-ObjectId` parameter specifies the object ID of the directory role.
+- `-MemberId` parameter specifies the object ID of the role member to removed.
 
 ## Parameters
 

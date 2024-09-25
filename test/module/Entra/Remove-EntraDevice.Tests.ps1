@@ -19,6 +19,12 @@ Describe "Remove-EntraDevice" {
 
             Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should return specific user with Alias" {
+            $result = Remove-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
+        }
         It "Should fail when DeviceId is invalid" {
             { Remove-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
         }

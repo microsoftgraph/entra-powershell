@@ -26,6 +26,7 @@ Get audit logs of sign-ins.
 
 ```powershell
 Get-EntraAuditSignInLog 
+ [-SignInId]
  [-All]
  [-Top <Int32>] 
  [-Filter <String>] 
@@ -106,6 +107,22 @@ This example shows how to retrieve sign-in logs between dates.
 
 ## Parameters
 
+### -SignInId
+
+Specifies unique ID of the Audit Log.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: Id
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -All
 
 List all pages.
@@ -178,5 +195,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ## Outputs
+
+## Notes
+
+`Get-EntraAuditSignInLogs` is an alias for `Get-EntraAuditSignInLog`.
 
 ## Related Links

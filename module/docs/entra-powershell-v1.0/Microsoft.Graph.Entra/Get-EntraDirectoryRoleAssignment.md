@@ -39,7 +39,6 @@ Get-EntraDirectoryRoleAssignment
 
 ```powershell
 Get-EntraDirectoryRoleAssignment
- [-SearchString <String>]
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -115,7 +114,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+Get-EntraDirectoryRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```Output
@@ -246,22 +245,6 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -SearchString
-
-Specifies a search string.
-
-```yaml
-Type: System.String
-Parameter Sets: GetValue
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -Property
 
 Specifies properties to be returned
@@ -289,6 +272,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
 ## Notes
+
+`Get-EntraRoleAssignment` is an alias for `Get-EntraDirectoryRoleAssignment`.
 
 ## Related Links
 

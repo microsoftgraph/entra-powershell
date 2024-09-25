@@ -6,7 +6,8 @@ function Get-EntraAuditSignInLog {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [Alias("Id")]
+    [System.String] $SignInId,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Int32] $Top,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -24,7 +25,7 @@ function Get-EntraAuditSignInLog {
         $params["Uri"] = "$baseUri"
         $query = $null
 
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -35,9 +36,9 @@ function Get-EntraAuditSignInLog {
             }
         }
 
-        if($null -ne $PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["SignInId"])
         {
-            $logId = $PSBoundParameters["Id"]
+            $logId = $PSBoundParameters["SignInId"]
             $params["Uri"] = "$baseUri/$($logId)"
         }
         if($null -ne $PSBoundParameters["Filter"])

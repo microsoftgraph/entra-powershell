@@ -222,6 +222,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`New-EntraBetaServiceAppRoleAssignment` is an alias for `New-EntraBetaServicePrincipalAppRoleAssignment`.
+
 ## Related Links
 
 [Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)
