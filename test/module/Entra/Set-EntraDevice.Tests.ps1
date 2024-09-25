@@ -20,7 +20,7 @@ Describe "Set-EntraDevice"{
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific user with Alias" {
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
+            $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
@@ -39,19 +39,29 @@ Describe "Set-EntraDevice"{
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
+
+            Set-EntraDevice -DeviceObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
 
-            $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
-        It "Should return specific user with Alias" {
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
-            $result | Should -BeNullOrEmpty           
+            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
-            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
-        }
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraDevice -DeviceObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

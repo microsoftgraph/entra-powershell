@@ -6,16 +6,17 @@ function Add-EntraAdministrativeUnitMember {
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $RefObjectId,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+    [System.String] $AdministrativeUnitId
     )
 
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
         {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
             $Uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)/members/" + '$ref'
         }
         if($null -ne $PSBoundParameters["RefObjectId"])
