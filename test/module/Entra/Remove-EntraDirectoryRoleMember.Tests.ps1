@@ -13,41 +13,47 @@ BeforeAll {
 Describe "Remove-EntraDirectoryRoleMember" {
     Context "Test for Remove-EntraDirectoryRoleMember" {
         It "Should return empty object" {
+            $result = Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgDirectoryRoleMemberByRef -ModuleName Microsoft.Graph.Entra -Times 1
+        }  
+        It "Should return empty object with alias" {
             $result = Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgDirectoryRoleMemberByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }   
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraDirectoryRoleMember -ObjectId  -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DirectoryRoleId is empty" {
+            { Remove-EntraDirectoryRoleMember -DirectoryRoleId  -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Missing an argument for parameter 'DirectoryRoleId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraDirectoryRoleMember -ObjectId "" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DirectoryRoleId is invalid" {
+            { Remove-EntraDirectoryRoleMember -DirectoryRoleId "" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Cannot bind argument to parameter 'DirectoryRoleId' because it is an empty string."
         }
         It "Should fail when MemberId is empty" {
-            { Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId   } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+            { Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId   } | Should -Throw "Missing an argument for parameter 'MemberId'*"
         }
         It "Should fail when MemberId is invalid" {
-            { Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId ""  } | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
+            { Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId ""  } | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
         }
         It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgDirectoryRoleMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.DirectoryRoleId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain DirectoryObjectId in parameters when passed RefObjectId to it" {
             Mock -CommandName Remove-MgDirectoryRoleMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.DirectoryObjectId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDirectoryRoleMember"
 
-            Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDirectoryRoleMember"
 
@@ -63,7 +69,7 @@ Describe "Remove-EntraDirectoryRoleMember" {
            
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Remove-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

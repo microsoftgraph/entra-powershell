@@ -26,7 +26,7 @@ Gets a user extension.
 
 ```powershell
 Get-EntraUserExtension
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -42,7 +42,7 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 $UserId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
-Get-EntraUserExtension -ObjectId $UserId
+Get-EntraUserExtension -UserId $UserId
 ```
 
 ```Output
@@ -53,18 +53,18 @@ com.contoso.roamingSettings
 
 This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
 
-- `-ObjectId` parameter specifies the user object Id.
+- `-UserId` parameter specifies the user object Id.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of an object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
