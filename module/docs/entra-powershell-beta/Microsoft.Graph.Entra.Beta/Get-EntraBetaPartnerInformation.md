@@ -27,15 +27,15 @@ Retrieves company-level information for partners.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaPartnerInformation
+Get-EntraBetaPartnerInformation 
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaPartnerInformation
- [-TenantId <Guid>]
+Get-EntraBetaPartnerInformation 
+ [-TenantId <Guid>] 
  [<CommonParameters>]
 ```
 
