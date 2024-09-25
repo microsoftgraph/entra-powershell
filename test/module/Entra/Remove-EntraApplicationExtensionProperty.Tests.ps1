@@ -13,34 +13,40 @@ BeforeAll {
 Describe "Remove-EntraApplicationExtensionProperty" {
     Context "Test for Remove-EntraApplicationExtensionProperty" {
         It "Should return empty object" {
+            $result = Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraApplicationExtensionProperty -ObjectId  -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"} | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Remove-EntraApplicationExtensionProperty -ApplicationId  -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"} | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }  
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraApplicationExtensionProperty -ObjectId "" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Remove-EntraApplicationExtensionProperty -ApplicationId "" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         } 
         It "Should fail when ExtensionPropertyId is empty" {
-            { Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId  } | Should -Throw "Missing an argument for parameter 'ExtensionPropertyId'*"
+            { Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId  } | Should -Throw "Missing an argument for parameter 'ExtensionPropertyId'*"
         }  
         It "Should fail when ExtensionPropertyId is invalid" {
-            { Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "" } | Should -Throw "Cannot bind argument to parameter 'ExtensionPropertyId' because it is an empty string."
+            { Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "" } | Should -Throw "Cannot bind argument to parameter 'ExtensionPropertyId' because it is an empty string."
         }
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" { 
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" { 
             Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplicationExtensionProperty"
 
-            Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplicationExtensionProperty"
 
@@ -56,7 +62,7 @@ Describe "Remove-EntraApplicationExtensionProperty" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
+                { Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
