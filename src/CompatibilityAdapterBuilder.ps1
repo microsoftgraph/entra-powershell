@@ -752,7 +752,16 @@ $($Command.CustomScript)
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
             "Get-EntraAdministrativeUnit",
-            "Get-EntraDirectoryRoleAssignment"
+            "Get-EntraDirectoryRoleAssignment",
+            "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue",
+            "Get-EntraBetaFeatureRolloutPolicy",
+            "Get-EntraBetaGroup",
+            "Get-EntraBetaPrivilegedResource",
+            "Get-EntraBetaServicePrincipal",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaDevice", 
+            "Get-EntraBetaPrivilegedRoleDefinition"
         )
         
         
@@ -944,6 +953,8 @@ $OutputTransformations
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
                 if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
                     $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
+                }else{
+                    $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
                 } 
             }
             elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
@@ -989,13 +1000,29 @@ $OutputTransformations
     }
 
     hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
-        $paramBlock = @"
-    if(`$null -ne `$PSBoundParameters["$($OldName)"])
+#         $paramBlock = @"
+#     if(`$null -ne `$PSBoundParameters["$($OldName)"])
+#     {
+#         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
+        
+#     }
+
+# "@
+        $paramBlock = if ($OldName -eq "Top") {@"
+    if (`$PSBoundParameters.ContainsKey(`"Top`"))
     {
         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
 
 "@
+        } else {@"
+    if (`$null -ne `$PSBoundParameters["$($OldName)"])
+    {
+        `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
+    }
+
+"@
+}
         return $paramBlock
     }
 

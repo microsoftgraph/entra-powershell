@@ -26,7 +26,7 @@ Adds a new attribute set.
 
 ```powershell
 New-EntraAttributeSet 
- [-Id <String>] 
+ [-AttributeSetId <String>] 
  [-Description <String>] 
  [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
@@ -45,7 +45,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Testing'
+    AttributeSetId = 'NewCustomAttributeSet'
     Description = 'Attributes for engineering team'
     MaxAttributesPerSet = 10
 }
@@ -83,14 +83,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -AttributeSetId
 
 Name of the attribute set. Unique identifier for the attribute set within a tenant, up to 32 Unicode characters. It can't contain spaces or special characters, is case sensitive, and can't be changed later. Required.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: False
 Position: Named
