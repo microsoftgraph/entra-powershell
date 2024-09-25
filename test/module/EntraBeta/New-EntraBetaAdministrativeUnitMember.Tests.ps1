@@ -13,7 +13,7 @@ BeforeAll {
               "Id"                           = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
               "DeletedDateTime"              = $null
               "AdditionalProperties"         = @{
-                                                    "@odata.context"               = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"
+                                                    "@odata.context"               = 'https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]'
                                                     "@odata.type"                  = "#microsoft.graph.group"
                                                     "createdByAppId"               = "8886ad7b-1795-4542-9808-c85859d97f23"
                                                     "DisplayName"                  = "Mock-Admin-UnitMember"
