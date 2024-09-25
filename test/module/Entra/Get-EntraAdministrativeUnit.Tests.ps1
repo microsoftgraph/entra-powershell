@@ -33,12 +33,7 @@ Describe "Tests for Get-EntraAdministrativeUnit"{
         $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-    }
-    It "Result should not be empty objectid"{
-        $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-        $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-    }
+    }    
     It "Should fail when AdministrativeUnitId is empty" {
         { Get-EntraAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
@@ -74,7 +69,7 @@ Describe "Tests for Get-EntraAdministrativeUnit"{
     }  
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
-        $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result = Get-EntraAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
