@@ -12,7 +12,7 @@ BeforeAll {
             [PSCustomObject]@{
               "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
               "templateId"                   = "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
-              "@odata.context"               = "https://graph.microsoft.com/beta/$metadata#settings/$entity"
+              "@odata.context"               = 'https://graph.microsoft.com/beta/$metadata#settings/$entity'
               "displayName"                  = $null
               "values"                       = @{
                                                     "name"  = "AllowToAddGuests"
@@ -58,15 +58,27 @@ Describe "New-EntraBetaObjectSetting" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when TargetType is empty" {
+            $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
+            $settingsCopy = $template.CreateDirectorySetting()
+            $settingsCopy["AllowToAddGuests"]=$False
             { New-EntraBetaObjectSetting -TargetType  -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetType is invalid" {
+            $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
+            $settingsCopy = $template.CreateDirectorySetting()
+            $settingsCopy["AllowToAddGuests"]=$False
             { New-EntraBetaObjectSetting -TargetType  -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetObjectId is empty" {
+            $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
+            $settingsCopy = $template.CreateDirectorySetting()
+            $settingsCopy["AllowToAddGuests"]=$False
             { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId  -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetObjectId'*"
         }
         It "Should fail when TargetObjectId is invalid" {
+            $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
+            $settingsCopy = $template.CreateDirectorySetting()
+            $settingsCopy["AllowToAddGuests"]=$False
             { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId  -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetObjectId'*"
         }
         It "Should fail when DirectorySetting is empty" {
