@@ -61,7 +61,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to retrieve the owner of a specific group.
 
-- `-ObjectId` parameter specifies the ID of a group.
+- `-GroupId` parameter specifies the ID of a group.
 
 ### Example 2: Gets all group owners
 
@@ -80,7 +80,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example demonstrates how to retrieve the all owner of a specific group.  
 
-- `-ObjectId` parameter specifies the ID of a group.  
+- `-GroupId` parameter specifies the ID of a group.  
 
 ### Example 3: Gets two group owners
 
@@ -98,7 +98,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to retrieve the top two owners of a specific group.
 
-- `-ObjectId` parameter specifies the ID of a group.
+- `-GroupId` parameter specifies the ID of a group.
 
 ## Parameters
 
@@ -125,7 +125,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

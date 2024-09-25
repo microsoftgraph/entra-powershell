@@ -32,7 +32,7 @@ Remove-EntraGroupOwner
 
 ## Description
 
-The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
+The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `GroupId` and `OwnerId` parameters to remove an owner from a group.
 
 ## Examples
 
@@ -58,7 +58,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

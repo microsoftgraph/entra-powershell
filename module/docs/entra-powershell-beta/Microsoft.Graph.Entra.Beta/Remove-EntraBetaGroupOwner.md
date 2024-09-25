@@ -52,7 +52,7 @@ Remove-EntraBetaGroupOwner @params
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
-- `ObjectId` specifies the ID of a group in Microsoft Entra ID.  
+- `GroupId` specifies the ID of a group in Microsoft Entra ID.  
 
 - `OwnerId` specifies the ID of an owner.
 
@@ -65,7 +65,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
