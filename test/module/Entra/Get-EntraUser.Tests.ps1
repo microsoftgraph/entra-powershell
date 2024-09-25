@@ -38,13 +38,6 @@ BeforeAll {
             "MobilePhone"                      = $null
         }
 
-        # Response from an Invoke-GraphRequest is a hashtable with @odata.context and Value objects
-
-        # Name                           Value
-        # ----                           -----
-        # @odata.context                 https://graph.microsoft.com/v1.0/$metadata#users
-        # value                          {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hasht...
-
         $response = @{
             '@odata.context'        = 'Users()'
             Value                   = $valueObject
