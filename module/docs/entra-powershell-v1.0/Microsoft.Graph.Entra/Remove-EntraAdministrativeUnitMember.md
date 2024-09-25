@@ -44,7 +44,7 @@ To remove a member from an administrative unit, the calling principal must have 
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    AdministrativeUnitId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
 }
 Remove-EntraAdministrativeUnitMember @params
