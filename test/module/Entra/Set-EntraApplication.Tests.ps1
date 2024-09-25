@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Set-EntraApplication"{
     Context "Test for Set-EntraApplication" {
         It "Should return empty object"{
-            $result = Set-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
+            $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
@@ -28,18 +28,34 @@ Describe "Set-EntraApplication"{
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
+
+            Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
 
-            $result = Set-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }
