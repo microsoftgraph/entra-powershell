@@ -49,7 +49,7 @@ Get-EntraDeletedGroup
 
 ```powershell
 Get-EntraDeletedGroup
- -GroupId <String>
+ -DirectoryObjectId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -89,7 +89,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra GroupId.  
+This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra DirectoryObjectId.  
 
 ### Example 2: Get deleted groups in the directory using All parameter
 
@@ -158,11 +158,11 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
 
-### Example 6: Get deleted group by GroupId
+### Example 6: Get deleted group by DirectoryObjectId
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraDeletedGroup -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -171,9 +171,9 @@ DisplayName Id                                   MailNickname Description GroupT
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves the deleted group specified by GroupId.
+This cmdlet retrieves the deleted group specified by DirectoryObjectId.
 
-- `-GroupId` parameter specifies the deleted group GroupId.
+- `-DirectoryObjectId` parameter specifies the deleted group DirectoryObjectId.
 
 ## Parameters
 
@@ -210,9 +210,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -GroupId
+### -DirectoryObjectId
 
-The GroupId of the deleted group to be retrieved.
+The DirectoryObjectId of the deleted group to be retrieved.
 
 ```yaml
 Type: System.String
