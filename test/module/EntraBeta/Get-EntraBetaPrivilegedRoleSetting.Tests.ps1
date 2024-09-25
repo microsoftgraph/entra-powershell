@@ -54,7 +54,7 @@ BeforeAll {
                                                                                 "ticketingRequired" = $false
                                                                             }  
                                                 }                                                                                                     
-              "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#governanceRoleSettings/$entity"}
+              "AdditionalProperties"         = @{"@odata.context"  = 'https://graph.microsoft.com/beta/$metadata#governanceRoleSettings/$entity'}
               "Parameters"                   = $args
             }
         )
