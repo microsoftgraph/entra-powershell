@@ -21,54 +21,35 @@
     )
     PROCESS {  
         $params = @{}
+        $Method = "GET"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["UserId"]) {
             $params["UserId"] = $PSBoundParameters["UserId"]
         }
-                
 
-        $URI = "/beta/users/$($params.UserId)/ownedObjects"
+        $URI = "/beta/users/$($params.UserId)/ownedObjects/?"
+
+        if ($PSBoundParameters.ContainsKey("Top")) 
+        {
+            $URI += "&`$top=$Top"
+        }
 
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "/beta/users/$($params.UserId)/ownedObjects?$properties"
+            $URI += "&$properties"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
+
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         
-        $Method = "GET"
-
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
-        
-        $Top = $null
-        if ($null -ne $PSBoundParameters["Top"]) {
-            $Top = $PSBoundParameters["Top"]
-        }
-
-        if($Top -ne $null){
-            $response | ForEach-Object {
-                if ($null -ne $_ -and $Top -gt 0) {
-                    $data=  $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                }
-
-                $Top = $Top - 1
-            }
-        }
-        else {
-            $response | ForEach-Object {
-                if ($null -ne $_) {
-                    $data= $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                }
-            }
-        }
-
         $targetList = @()
-        foreach ($res in $data) {
+        foreach ($res in $response) {
             $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
             $res.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
@@ -78,7 +59,6 @@
             $targetList += $targetType
         }
         $targetList
-
-} 
+    }    
 '@
 }

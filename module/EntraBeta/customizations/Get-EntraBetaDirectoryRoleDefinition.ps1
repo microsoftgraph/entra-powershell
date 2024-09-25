@@ -61,7 +61,7 @@
                      $Value = "startswith(displayName,'$TmpValue')"
             $params["Filter"] = $Value
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $params["Top"] = $PSBoundParameters["Top"]
         }
