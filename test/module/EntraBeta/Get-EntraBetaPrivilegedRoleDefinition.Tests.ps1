@@ -17,7 +17,7 @@ BeforeAll {
               "ResourceId"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
               "RoleSetting"                  = " Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphGovernanceRoleSetting"
               "TemplateId"                   = "542932a4-a3b5-4094-8829-ad59de0c8689"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/beta/$metadata#governanceRoleDefinitions/$entity"}                           
+              "AdditionalProperties"         = @{"@odata.context" = 'https://graph.microsoft.com/beta/$metadata#governanceRoleDefinitions/$entity'}                           
               "Parameters"                   = $args
             }
         )
