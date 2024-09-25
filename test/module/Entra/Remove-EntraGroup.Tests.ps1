@@ -19,8 +19,8 @@ Describe "Remove-EntraGroup" {
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
-            $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
+        It "Should execute successfully with Alias" {
+            $result = Remove-EntraGroup -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1

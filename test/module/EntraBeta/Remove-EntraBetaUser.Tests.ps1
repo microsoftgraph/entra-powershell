@@ -13,26 +13,31 @@ BeforeAll {
 Describe "Remove-EntraBetaUser" {
     Context "Test for Remove-EntraBetaUser" {
         It "Should return empty object" {
+            $result = Remove-EntraBetaUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Remove-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter*"
+        It "Should fail when UserId is empty" {
+            { Remove-EntraBetaUser -UserId "" } | Should -Throw "Cannot bind argument to parameter*"
         }   
         It "Should fail when invalid parameter is passed" {
             { Remove-EntraBetaUser -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
         }
-        It "Should contain UserId in parameters when passed ObjectId to it" {
+        It "Should contain UserId in parameters when passed UserId to it" {
             Mock -CommandName Remove-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             
-            $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Remove-EntraBetaUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaUser"
-            $result = Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Remove-EntraBetaUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaUser"
             Should -Invoke -CommandName Remove-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -47,7 +52,7 @@ Describe "Remove-EntraBetaUser" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
