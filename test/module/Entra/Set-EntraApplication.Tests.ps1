@@ -14,8 +14,13 @@ BeforeAll {
 Describe "Set-EntraApplication"{
     Context "Test for Set-EntraApplication" {
         It "Should return empty object"{
-            $result = Set-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
             $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
+            $result | Should -BeNullOrEmpty           
+
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return specific user with Alias" {
+            $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
