@@ -124,8 +124,9 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
             }
             $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $value = $params.credentials | ConvertTo-Json 
+            $resultParams = Get-Parameters -data $result
             $expectedObject = $value | ConvertFrom-Json
-            $actualObject = ($result.credentials | ConvertTo-Json -Depth 10 | ConvertFrom-Json)
+            $actualObject = ($resultParams.BodyParameter.Credentials | ConvertTo-Json -Depth 10 | ConvertFrom-Json)
             $expectedObject | ForEach-Object {
                 $property = $_
                 $actualProperty = $actualObject | Where-Object { $_.fieldId -eq $property.fieldId }
