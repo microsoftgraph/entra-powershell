@@ -19,7 +19,7 @@ Describe "Remove-EntraUser" {
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1

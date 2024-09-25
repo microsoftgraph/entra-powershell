@@ -13,24 +13,29 @@ BeforeAll {
 Describe "Remove-EntraGroupLifecyclePolicy" {
     Context "Test for Remove-EntraGroupLifecyclePolicy" {
         It "Should remove a groupLifecyclePolicies" {
+            $result = Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
-
-        It "Should fail when Id is empty" {
-            { Remove-EntraGroupLifecyclePolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when GroupLifecyclePolicyId is empty" {
+            { Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
         }   
 
-        It "Should fail when Id is invalid" {
-            { Remove-EntraGroupLifecyclePolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when GroupLifecyclePolicyId is invalid" {
+            { Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId "" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string."
         }   
 
-        It "Should contain GroupLifecyclePolicyId in parameters when passed Id to it" {
+        It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
             Mock -CommandName Remove-MgGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result = Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
             $params.GroupLifecyclePolicyId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
@@ -38,7 +43,7 @@ Describe "Remove-EntraGroupLifecyclePolicy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupLifecyclePolicy"
 
-            Remove-EntraGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupLifecyclePolicy"
 
@@ -54,7 +59,7 @@ Describe "Remove-EntraGroupLifecyclePolicy" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
+                { Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

@@ -19,8 +19,8 @@ Describe "Remove-EntraDevice" {
 
             Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
-            $result = Remove-EntraDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
+        It "Should execute successfully with Alias" {
+            $result = Remove-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
