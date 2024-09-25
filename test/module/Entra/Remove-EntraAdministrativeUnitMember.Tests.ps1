@@ -15,15 +15,20 @@ BeforeAll {
 
 Describe "Test for Remove-EntraAdministrativeUnitMember" {
     It "Should return empty object" {
+        $result = Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should return empty object with ObjectId" {
         $result = Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Remove-EntraAdministrativeUnitMember -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Remove-EntraAdministrativeUnitMember -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is null" {
+        { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when MemberId is empty" {
         { Remove-EntraAdministrativeUnitMember -MemberId "" } | Should -Throw "Cannot bind argument to parameter 'MemberId'*"
@@ -35,10 +40,28 @@ Describe "Test for Remove-EntraAdministrativeUnitMember" {
         { Remove-EntraAdministrativeUnitMember -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnitMember"
-        $result = Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId
-        $params = Get-Parameters -data $result
-        $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+        Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnitMember"
+
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     } 
+    It "Should execute successfully without throwing an error" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }   
 }
