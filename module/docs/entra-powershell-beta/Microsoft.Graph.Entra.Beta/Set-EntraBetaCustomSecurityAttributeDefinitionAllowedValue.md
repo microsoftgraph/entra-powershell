@@ -34,7 +34,7 @@ Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 ## Description
 
-This `Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` cmdlet Update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
+The `Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
 ## Examples
 
@@ -122,6 +122,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.md)
+[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 
 [Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)

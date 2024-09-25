@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
+       
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
@@ -30,7 +30,7 @@
         {
             $params["Debug"] = $PSBoundParameters["Debug"]
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $params["Top"] = $PSBoundParameters["Top"]
         }

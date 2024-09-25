@@ -13,8 +13,7 @@
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/applications'
         $properties = '$select=*'
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
@@ -30,7 +29,7 @@
         {
             $URI = "$baseUri/$($params.ApplicationId)/owners?$properties"
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             $URI = "$baseUri/$($params.ApplicationId)/owners?`$top=$topCount&$properties"

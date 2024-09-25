@@ -74,7 +74,7 @@ This command retrieves the trusted certificate authorities that are defined in y
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraTrustedCertificateAuthority -TrustedIssuer 'CN=example.azure.com, O=MSIT. Ltd, L=Redmond, C=US'
+Get-EntraTrustedCertificateAuthority -TrustedIssuer 'CN=mscmdlet'
 ```
 
 ```Output
@@ -95,6 +95,8 @@ TrustedIssuerSki          : 69506400C9806497DCB48F160C31CFFEA87E544C
 
 This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuer.
 
+- `-TrustedIssuer` parameter specifies the trusted issuer.
+
 ### Example 3: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki
 
 ```powershell
@@ -112,6 +114,8 @@ TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
 ```
 
 This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki.
+
+- `-TrustedIssuerSki` parameter specifies the trusted issuer ski.
 
 ## Parameters
 
@@ -149,7 +153,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

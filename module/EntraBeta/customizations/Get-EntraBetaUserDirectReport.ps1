@@ -14,7 +14,7 @@
         $baseUri = 'https://graph.microsoft.com/beta/users'
         $properties = '$select=*'
         $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+       
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
@@ -31,7 +31,7 @@
         {
             $URI = "$baseUri/$($params.UserId)/directReports?$properties"
         }        
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             $URI = "$baseUri/$($params.UserId)/directReports?`$top=$topCount&$properties"

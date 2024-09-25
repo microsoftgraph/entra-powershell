@@ -35,7 +35,7 @@ Get-EntraUserMembership
 
 ## Description
 
-The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
+The `Get-EntraUserMembership` cmdlet gets user memberships in Microsoft Entra ID.
 
 ## Examples
 
@@ -49,17 +49,44 @@ Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com'
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-bbbbbbbb-7777-8888-9999-cccccccccccc
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+44ee44ee-ff55-aa66-bb77-88cc88cc88cc
+55ff55ff-aa66-bb77-cc88-99dd99dd99dd
 ```
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
 
-### Example 2: Get All memberships
+### Example 2: Get user memberships with additional details
+
+```powershell
+Connect-Entra -Scopes 'User.Read'
+$userMemberships = Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com'
+$membershipDetails = $userMemberships | ForEach-Object {
+    $membershipDetail = Get-EntraObjectByObjectId -ObjectIds $_.Id
+    [PSCustomObject]@{
+        odataType   = $membershipDetail.'@odata.type'
+        displayName = $membershipDetail.displayName
+        Id          = $membershipDetail.Id
+    }
+}
+$membershipDetails | Select-Object odataType, displayName, Id
+```
+
+```Output
+odataType                      displayName                         Id
+---------                      -----------                         --
+#microsoft.graph.group         Contoso Group                       33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+#microsoft.graph.group         Helpdesk Group                      55ff55ff-aa66-bb77-cc88-99dd99dd99dd
+#microsoft.graph.directoryRole Attribute Assignment Reader         22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+#microsoft.graph.directoryRole Attribute Definition Reader         11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+```
+
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID with more lookup details.
+
+### Example 3: Get All memberships
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
@@ -69,34 +96,32 @@ Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com' -All
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-bbbbbbbb-7777-8888-9999-cccccccccccc
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+44ee44ee-ff55-aa66-bb77-88cc88cc88cc
+55ff55ff-aa66-bb77-cc88-99dd99dd99dd
 ```
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
 
-### Example 3: Get top five memberships
+### Example 4: Get top three memberships
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com' -Top 5
+Get-EntraUserMembership  -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.
+This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
 
 ## Parameters
 
@@ -118,7 +143,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
