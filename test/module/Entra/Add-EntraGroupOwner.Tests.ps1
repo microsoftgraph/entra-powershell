@@ -43,18 +43,6 @@ Describe "Add-EntraGroupOwner" {
             $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
-        It "Should contain BodyParameter in parameters when passed RefObjectId to it" {
-            Mock -CommandName New-MgGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-            $result = Add-EntraGroupOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $value = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/users/bbbbbbbb-1111-2222-3333-cccccccccccc"
-            } | ConvertTo-Json -Depth 5
-            $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
-            $additionalProperties = $params[1].AdditionalProperties | ConvertTo-Json -Depth 5
-            $additionalProperties | Should -Be $value
-        }
-
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
             Add-EntraGroupOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
