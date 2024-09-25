@@ -12,15 +12,15 @@ BeforeAll {
 
 Describe "Test for Remove-EntraAdministrativeUnit" {
     It "Should return empty object" {
-        $result = Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc"
+        $result = Remove-EntraAdministrativeUnit -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Remove-EntraAdministrativeUnit -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Remove-EntraAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Remove-EntraAdministrativeUnit -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is null" {
+        { Remove-EntraAdministrativeUnit -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when invalid parameter is passed" {
         { Remove-EntraAdministrativeUnit -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
@@ -28,7 +28,7 @@ Describe "Test for Remove-EntraAdministrativeUnit" {
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnit"
 
-        Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc"
+        Remove-EntraAdministrativeUnit -AdministrativeUnitId "bbbbbbbb-1111-1111-1111-cccccccccccc"
 
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnit"
 
@@ -44,7 +44,7 @@ Describe "Test for Remove-EntraAdministrativeUnit" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -Debug } | Should -Not -Throw
+            { Remove-EntraAdministrativeUnit -AdministrativeUnitId "bbbbbbbb-1111-1111-1111-cccccccccccc" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
