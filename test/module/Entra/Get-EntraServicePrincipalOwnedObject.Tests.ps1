@@ -11,7 +11,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{              
-              "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+              "Id"                           = "111cc9b5-fce9-485e-9566-c68debafac5f"
               "DeletedDateTime"              = $null
               "AdditionalProperties"         = @{
                                                     accountEnabled = $true;
@@ -37,7 +37,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
         It "Should return specific ServicePrincipalOwnedObject with Alias" {
             $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('00aa00aa-bb11-cc22-dd33-44ee44ee44ee')
+            $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
             Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
@@ -66,14 +66,32 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
         It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {              
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $params.ServicePrincipalId | Should -Be "2d028fff-7e65-4340-80ca-89be16dae0b3"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalOwnedObject"
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalOwnedObject"
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

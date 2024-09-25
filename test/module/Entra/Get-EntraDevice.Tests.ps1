@@ -122,7 +122,7 @@ Describe "Get-EntraDevice" {
         }
         It "Result should Contain ObjectId" {
             $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
             $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
