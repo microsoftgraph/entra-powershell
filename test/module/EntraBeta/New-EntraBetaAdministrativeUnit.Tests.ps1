@@ -18,7 +18,7 @@ BeforeAll {
               "Members"                      = $null
               "ScopedRoleMembers"            = $null
               "Visibility"                   = $null
-              "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"}
+              "AdditionalProperties"         = @{"@odata.context"  = 'https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]'}
               "Parameters"                   = $args
             }
         )
