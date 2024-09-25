@@ -42,7 +42,6 @@ class CompatibilityAdapterBuilder {
         'Set-EntraUserThumbnailPhoto',
         'Reset-EntraLifeCycleGroup',
         'Get-EntraObjectByObjectId',
-        'Get-EntraGroupPermissionGrant',
         'Remove-EntraPermissionGrantConditionSet',
         'Get-EntraPermissionGrantPolicy',
         'Remove-EntraOAuth2PermissionGrant',
