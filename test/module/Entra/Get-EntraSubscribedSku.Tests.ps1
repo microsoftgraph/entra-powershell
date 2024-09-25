@@ -36,17 +36,24 @@ $scriptblock = {
 Describe "Get-EntraSubscribedSku" {
     Context "Test for Get-EntraSubscribedSku" {
         It "Should return specific SubscribedSku" {
+            $result = Get-EntraSubscribedSku -SubscribedSkuId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
+            $result | Should -Not -BeNullOrEmpty
+	        $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"		
+            
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
+        }   
+        It "Should return specific SubscribedSku with alias" {
             $result = Get-EntraSubscribedSku -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
             $result | Should -Not -BeNullOrEmpty
 	        $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"		
             
             Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }   
-        It "Should fail when ObjectId empty" {
-            { Get-EntraSubscribedSku -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when SubscribedSkuId empty" {
+            { Get-EntraSubscribedSku -SubscribedSkuId  } | Should -Throw "Missing an argument for parameter 'SubscribedSkuId'*"
         }
-        It "Should fail when ObjectId invalid" {
-            { Get-EntraSubscribedSku -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when SubscribedSkuId invalid" {
+            { Get-EntraSubscribedSku -SubscribedSkuId "" } | Should -Throw "Cannot bind argument to parameter 'SubscribedSkuId' because it is an empty string."
         }
         It "Should return all SubscribedSku" {
             $result = Get-EntraSubscribedSku 
@@ -83,7 +90,7 @@ Describe "Get-EntraSubscribedSku" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraSubscribedSku -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555" -Debug } | Should -Not -Throw
+                { Get-EntraSubscribedSku -SubscribedSkuId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

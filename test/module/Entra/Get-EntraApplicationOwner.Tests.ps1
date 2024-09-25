@@ -32,18 +32,18 @@ BeforeAll {
 Describe "Get-EntraApplicationOwner"{
     Context "Test for Get-EntraApplicationOwner"{
         It "Should return application owner" {
-            $result = Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             Write-Host $result
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraApplicationOwner -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is empty" {
+            { Get-EntraApplicationOwner -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is null" {
-            { Get-EntraApplicationOwner -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is null" {
+            { Get-EntraApplicationOwner -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }
         It "Should fail when All has an argument" {
             { Get-EntraApplicationOwner -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -55,13 +55,13 @@ Describe "Get-EntraApplicationOwner"{
             { Get-EntraApplicationOwner -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         } 
         It "Property parameter should work" {
-            $result =  Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
+            $result =  Get-EntraApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationOwner"
-            $result =  Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result =  Get-EntraApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationOwner"    
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -76,7 +76,7 @@ Describe "Get-EntraApplicationOwner"{
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                {  Get-EntraApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

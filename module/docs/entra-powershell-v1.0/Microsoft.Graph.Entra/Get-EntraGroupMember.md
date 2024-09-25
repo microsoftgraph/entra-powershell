@@ -25,7 +25,7 @@ Gets a member of a group.
 
 ```powershell
 Get-EntraGroupMember
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -34,7 +34,7 @@ Get-EntraGroupMember
 
 ## Description
 
-The `Get-EntraGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
+The `Get-EntraGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a member of a group.
 
 In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions: `microsoft.directory/groups/members/read`, `microsoft.directory/groups/members/limitedRead`, or `microsoft.directory/groups/hiddenMembers/read` (for hidden members). The following least privileged roles support this operation:
 
@@ -59,7 +59,7 @@ To list members of a hidden group, the `Member.Read.Hidden` permission is also r
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraGroupMember -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -70,13 +70,13 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This example demonstrates how to retrieve group member by ID.
 
-- `-ObjectId` Specifies the ID of a group.
+- `-GroupId` Specifies the ID of a group.
 
 ### Example 2: Get two group member
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
+Get-EntraGroupMember -GroupId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
 ```
 
 ```Output
@@ -88,13 +88,13 @@ Id                                   DeletedDateTime
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
-- `-ObjectId` specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ### Example 3: Get all members within a group by group ID
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All
+Get-EntraGroupMember -GroupId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All
 ```
 
 ```Output
@@ -109,13 +109,13 @@ cccccccc-8888-9999-0000-dddddddddddd
 
 This example retrieves all members within a group by group ID.
 
-- `-ObjectId` specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ### Example 4: Retrieve and Select Group Member Properties
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
+Get-EntraGroupMember -GroupId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
 ```
 
 ```Output
@@ -127,9 +127,9 @@ test2                                #microsoft.graph.servicePrincipal
 test3                                #microsoft.graph.servicePrincipal
 ```
 
-This example retrieves the members of a specified group by its `ObjectId` and selects only the `DisplayName` and `@odata.type` properties for each member.
+This example retrieves the members of a specified group by its `GroupId` and selects only the `DisplayName` and `@odata.type` properties for each member.
 
-- `-ObjectId` specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ## Parameters
 
@@ -149,14 +149,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
