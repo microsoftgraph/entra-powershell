@@ -117,7 +117,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
-The cmdlet will return the following company level information
+Company level information outputs:
 
 - CompanyType: The type of this company (can be partner or regular tenant)
 - DapEnabled: Flag to determine if the partner has delegated admin privileges
