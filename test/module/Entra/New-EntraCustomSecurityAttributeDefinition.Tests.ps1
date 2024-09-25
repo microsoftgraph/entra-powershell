@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
@@ -75,17 +78,16 @@ Describe "New-EntraCustomSecurityAttributeDefinition" {
         It "Should fail when usePreDefinedValuesOnly is invalid" {
             { New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering"  -description "Active projects for user" -isCollection $true -isSearchable  $true  -name "Project1234" -status  "Available" -type "String" -usePreDefinedValuesOnly "" } | Should -Throw "Cannot process argument transformation on parameter 'usePreDefinedValuesOnly'*"
         }
-
-
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraCustomSecurityAttributeDefinition"
-
-            New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering"  -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true | Out-Null
+            $result = New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering"  -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraCustomSecurityAttributeDefinition"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }
+        } 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

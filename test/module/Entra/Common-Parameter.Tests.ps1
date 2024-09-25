@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll{
     if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
         Import-Module Microsoft.Graph.Entra
