@@ -23,19 +23,19 @@ BeforeAll {
   
 Describe "Get-EntraBetaApplicationLogo" {
     It "Should return empty" {
-        $result = Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"        
+        $result = Get-EntraBetaApplicationLogo -ApplicationId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Get-EntraBetaApplicationLogo -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is empty" {
+        { Get-EntraBetaApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Get-EntraBetaApplicationLogo -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is null" {
+        { Get-EntraBetaApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationLogo"
-        $result = Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"
+        $result = Get-EntraBetaApplicationLogo -ApplicationId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"
         $result | Should -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationLogo"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -50,7 +50,7 @@ Describe "Get-EntraBetaApplicationLogo" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
+            { Get-EntraBetaApplicationLogo -ApplicationId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
