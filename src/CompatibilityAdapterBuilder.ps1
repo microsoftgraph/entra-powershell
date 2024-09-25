@@ -139,7 +139,6 @@ class CompatibilityAdapterBuilder {
     'Select-EntraBetaGroupIdsUserIsMemberOf',
     'Set-EntraBetaNamedLocationPolicy',    
     'New-EntraBetaNamedLocationPolicy',
-    'Remove-EntraBetaApplication',
     'Restore-EntraBetaDeletedApplication',    
     'Remove-EntraBetaPermissionGrantConditionSet'
         
