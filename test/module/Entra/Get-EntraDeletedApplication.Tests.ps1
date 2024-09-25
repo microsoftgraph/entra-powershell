@@ -65,36 +65,36 @@ Describe "Get-EntraDeletedApplication" {
             { Get-EntraDeletedApplication -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
         }         
         It "Should return specific application by searchstring" {
-            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-test-App'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
         } 
         It "Should return specific application by filter" {
-            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-test-App'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top application" {
-            $result = Get-EntraDeletedApplication -Top 1 | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -Top 1 | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 10| ConvertFrom-Json
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-test-App"
         }
         It "Property parameter should work" {
-            $result = Get-EntraDeletedApplication -Property DisplayName
+            $result = Get-EntraDeletedApplication -Property "DisplayName"  | ConvertTo-Json | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-test-App"
 
@@ -106,7 +106,7 @@ Describe "Get-EntraDeletedApplication" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"
-            $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json | ConvertFrom-Json
+            $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"    
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
