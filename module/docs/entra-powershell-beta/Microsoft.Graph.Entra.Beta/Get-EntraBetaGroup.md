@@ -48,7 +48,7 @@ Get-EntraBetaGroup
 
 ```powershell
 Get-EntraBetaGroup
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -56,7 +56,7 @@ Get-EntraBetaGroup
 
 ## Description
 
-The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group.
+The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a specific group.
 
 ## Examples
 
@@ -79,11 +79,11 @@ SimpleGroup                                       eeeeeeee-4444-5555-6666-ffffff
 
 This example demonstrates how to get all groups from Microsoft Entra ID.
 
-### Example 2: Get a specific group by using an ObjectId
+### Example 2: Get a specific group by using an GroupId
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Get-EntraBetaGroup -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
 ```Output
@@ -225,14 +225,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
-The unique identifier of a group in Microsoft Entra ID. (ObjectId).
+The unique identifier of a group in Microsoft Entra ID. (GroupId)
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
