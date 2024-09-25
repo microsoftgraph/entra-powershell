@@ -10,12 +10,12 @@
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $RoleObjectId,
-    [Alias('ObjectId')]
+    [System.String] $RoleObjectId,    
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $AdministrativeUnitObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.AzureAD.Model.RoleMemberInfo] $RoleMemberInfo,
+    [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId
     )

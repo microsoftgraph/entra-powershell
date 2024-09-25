@@ -33,9 +33,9 @@
             $properties = "`$select=$($selectProperties)"
         }
         
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["GroupId"])
         {
-            $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
             $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
         
