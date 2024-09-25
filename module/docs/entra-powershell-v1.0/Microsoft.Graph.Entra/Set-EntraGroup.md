@@ -26,7 +26,7 @@ Sets the properties for an existing Microsoft Entra ID group.
 
 ```powershell
 Set-EntraGroup 
- -Id <String>
+ -GroupId <String>
  [-DisplayName <String>] 
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
  [-SecurityEnabled <Boolean>]  
@@ -40,7 +40,7 @@ Set-EntraGroup
 
 ## Description
 
-The `Set-EntraGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `Id` parameter to set the properties for an existing Microsoft Entra ID group.
+The `Set-EntraGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `GroupId` parameter to set the properties for an existing Microsoft Entra ID group.
 
 ## Examples
 
@@ -50,7 +50,7 @@ The `Set-EntraGroup` cmdlet sets the properties for an existing Microsoft Entra 
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     DisplayName = 'UPDATE HelpDesk Team Leaders'
 }
 Set-EntraGroup @params
@@ -64,7 +64,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     Description = 'This is my new group'
 }
 Set-EntraGroup @params
@@ -78,7 +78,7 @@ This example demonstrates how to update a group description.
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     MailNickName = 'newnickname'
 }
 Set-EntraGroup @params
@@ -92,7 +92,7 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     SecurityEnabled = $true
 }
 Set-EntraGroup @params
@@ -106,7 +106,7 @@ This command updates the security enabled of a specified group in Microsoft Entr
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     MailEnabled = $false
 }
 Set-EntraGroup @params
@@ -120,7 +120,7 @@ This example demonstrates how to update a group main enabled.
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    Id = $group.ObjectId
+    GroupId = $group.ObjectId
     Visibility = 'Private'
     GroupTypes = 'DynamicMembership'
     IsAssignableToRole = $true
@@ -181,14 +181,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
 Specifies the object ID of a group.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

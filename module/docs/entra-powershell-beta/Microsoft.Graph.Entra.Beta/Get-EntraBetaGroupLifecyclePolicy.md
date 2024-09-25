@@ -37,14 +37,14 @@ Get-EntraBetaGroupLifecyclePolicy
 
 ```powershell
 Get-EntraBetaGroupLifecyclePolicy
- -Id <String>
+ -GroupLifecyclePolicyId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-Id` parameter to get the group lifecycle policy.
+The `Get-EntraBetaGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-GroupLifecyclePolicyId` parameter to get the group lifecycle policy.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## Examples
@@ -68,7 +68,7 @@ This example demonstrates how to retrieve the properties and relationships of al
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
 ```Output
@@ -79,18 +79,18 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy.
 
-- `-Id` parameter specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
+- `-GroupLifecyclePolicyId` parameter specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ## Parameters
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

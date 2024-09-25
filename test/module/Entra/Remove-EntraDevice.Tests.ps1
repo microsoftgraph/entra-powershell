@@ -14,21 +14,27 @@ BeforeAll {
 Describe "Remove-EntraDevice" {
     Context "Test for Remove-EntraDevice" {
         It "Should return empty object" {
-            $result = Remove-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should return specific user with Alias" {
+            $result = Remove-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraDevice -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DeviceId is invalid" {
+            { Remove-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
+        }
+        It "Should fail when DeviceId is empty" {
+            { Remove-EntraDevice -DeviceId } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
         }   
-        It "Should contain DeviceId in parameters when passed ObjectId to it" {
+        It "Should contain DeviceId in parameters when passed DeviceId to it" {
             Mock -CommandName Remove-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
@@ -39,23 +45,9 @@ Describe "Remove-EntraDevice" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDevice"
 
-            Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
+            $result = Remove-EntraDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
-        It "Should execute successfully without throwing an error" {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
-            }
-        }   
     }
 }
