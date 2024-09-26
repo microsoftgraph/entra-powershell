@@ -26,7 +26,7 @@ Get a contact membership.
 
 ```powershell
 Get-EntraContactMembership
- -ObjectId <String>
+ -OrgContactId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -46,7 +46,7 @@ This command is useful to administrators who need to understand which groups, ro
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -ObjectId $Contact.ObjectId
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId
 ```
 
 ```Output
@@ -64,7 +64,7 @@ This command gets all the memberships for specified contact.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -ObjectId $Contact.ObjectId -All
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId -All
 ```
 
 ```Output
@@ -82,7 +82,7 @@ This command gets all the memberships for specified contact.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -ObjectId $Contact.ObjectId -Top 2
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId -Top 2
 ```
 
 ```Output
@@ -112,14 +112,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
