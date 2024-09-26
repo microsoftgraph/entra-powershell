@@ -22,26 +22,30 @@ BeforeAll {
 }
 
 Describe "Get-EntraDeletedDirectoryObject"{
-    It "Should fail when Id is empty" {
-        { Get-EntraDeletedDirectoryObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+    It "Result should return DeletedDirectoryObject using alias" {
+        $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }
-    It "Should fail when Id is null" {
-        { Get-EntraDeletedDirectoryObject -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+    It "Should fail when DirectoryObjectId is empty" {
+        { Get-EntraDeletedDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId'*"
+    }
+    It "Should fail when DirectoryObjectId is null" {
+        { Get-EntraDeletedDirectoryObject -DirectoryObjectId  } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
     }
     It "Should fail when invalid parameter is passed" {
         { Get-EntraDeletedDirectoryObject -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
     }
     It "Result should Contain ObjectId" {
-        $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-    }
+    }    
     It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
-        $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $params = Get-Parameters -data $result.Parameters
         $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }
     It "Property parameter should work" {
-        $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
+        $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
         $result | Should -Not -BeNullOrEmpty
         $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
@@ -49,11 +53,11 @@ Describe "Get-EntraDeletedDirectoryObject"{
     }
 
     It "Should fail when Property is empty" {
-         {Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+         {Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"
-        $result =  Get-EntraDeletedDirectoryObject -Id  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result =  Get-EntraDeletedDirectoryObject -DirectoryObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"    
         Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -68,7 +72,7 @@ Describe "Get-EntraDeletedDirectoryObject"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraDeletedDirectoryObject -Id  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            { Get-EntraDeletedDirectoryObject -DirectoryObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
