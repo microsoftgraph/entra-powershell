@@ -10,7 +10,7 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
             $appId = $env:TEST_APPID
             $tenantId = $env:TEST_TENANTID
             $cert = $env:CERTIFICATETHUMBPRINT
-            Connect-MgGraph -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
+            Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
 
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $testName = 'SimpleTests' + $thisTestInstanceId
