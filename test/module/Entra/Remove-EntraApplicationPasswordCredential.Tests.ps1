@@ -12,15 +12,20 @@ BeforeAll {
 
 Describe "Remove-EntraApplicationPasswordCredential"{
     It "Should return empty object" {
+        $result = Remove-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Remove-MgApplicationPassword -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should return empty object with alias" {
         $result = Remove-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Remove-MgApplicationPassword -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Remove-EntraApplicationPasswordCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is empty" {
+        { Remove-EntraApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Remove-EntraApplicationPasswordCredential -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is null" {
+        { Remove-EntraApplicationPasswordCredential -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
     }
     It "Should fail when KeyId is empty" {
         { Remove-EntraApplicationPasswordCredential -KeyId "" } | Should -Throw "Cannot bind argument to parameter 'KeyId'*"
@@ -31,15 +36,15 @@ Describe "Remove-EntraApplicationPasswordCredential"{
     It "Should fail when invalid parameter is passed" {
         { Remove-EntraApplicationPasswordCredential -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'."
     }
-    It "Should contain ApplicationId in parameters when passed ObjectId to it" {
+    It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
         Mock -CommandName Remove-MgApplicationPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-        $result = Remove-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
+        $result = Remove-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
         $params = Get-Parameters -data $result
         $params.ApplicationId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplicationPasswordCredential"
-        $result = Remove-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
+        $result = Remove-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333"
         $result | Should  -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplicationPasswordCredential"
         Should -Invoke -CommandName Remove-MgApplicationPassword -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -54,7 +59,7 @@ Describe "Remove-EntraApplicationPasswordCredential"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Remove-EntraApplicationPasswordCredential -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333" -Debug } | Should -Not -Throw
+            { Remove-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-bbbb-cccc-1111-222222222222" -KeyId "bbbbbbbb-cccc-dddd-2222-333333333333" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
