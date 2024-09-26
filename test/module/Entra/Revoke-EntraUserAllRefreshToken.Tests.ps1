@@ -14,20 +14,25 @@ BeforeAll {
 Describe "Revoke-EntraUserAllRefreshToken" {
     Context "Test for Revoke-EntraUserAllRefreshToken" {
         It "Should return empty object" {
+            $result = Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return empty object with alias" {
             $result = Revoke-EntraUserAllRefreshToken -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty string" {
-            { Revoke-EntraUserAllRefreshToken -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string" {
+            { Revoke-EntraUserAllRefreshToken -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }   
-        It "Should fail when ObjectId is empty" {
-            { Revoke-EntraUserAllRefreshToken -ObjectId } | Should -Throw "Missing an argument for parameter*"
+        It "Should fail when UserId is empty" {
+            { Revoke-EntraUserAllRefreshToken -UserId } | Should -Throw "Missing an argument for parameter*"
         }  
-        It "Should contain Id in parameters when passed ObjectId to it" {
+        It "Should contain Id in parameters when passed UserId to it" {
             Mock -CommandName Revoke-MgUserSignInSession -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Revoke-EntraUserAllRefreshToken -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
             $params.userId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -35,7 +40,7 @@ Describe "Revoke-EntraUserAllRefreshToken" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Revoke-EntraUserAllRefreshToken"
             
             
-            Revoke-EntraUserAllRefreshToken -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Revoke-EntraUserAllRefreshToken"
 
@@ -52,7 +57,7 @@ Describe "Revoke-EntraUserAllRefreshToken" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Revoke-EntraUserAllRefreshToken -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
