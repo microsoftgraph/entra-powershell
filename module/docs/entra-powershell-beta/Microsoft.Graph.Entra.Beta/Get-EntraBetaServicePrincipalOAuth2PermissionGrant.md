@@ -27,7 +27,7 @@ Gets an OAuth2PermissionGrant object.
 
 ```powershell
 Get-EntraBetaServicePrincipalOAuth2PermissionGrant
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -45,7 +45,7 @@ The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2Pe
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipal.ObjectId
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -56,14 +56,14 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 AllPrinci
 
 This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
 ### Example 2: Get all OAuth2 permission grants of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipal.ObjectId -All 
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -76,14 +76,14 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal
 
 This example demonstrates how to get all OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
 ### Example 3: Get two OAuth2 permission grants of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipal.ObjectId -Top 2
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
@@ -95,7 +95,7 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal
 
 This example demonstrates how to get top two OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
 ## Parameters
 
@@ -115,14 +115,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

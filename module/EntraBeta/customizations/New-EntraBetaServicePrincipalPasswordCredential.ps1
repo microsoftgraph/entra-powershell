@@ -7,18 +7,34 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    function New-EntraBetaServicePrincipalPasswordCredential {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $CustomKeyIdentifier,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $StartDate,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Value,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $EndDate
+    )
+
     PROCESS{
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
         $Method = "POST"
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["StartDate"] = $PSBoundParameters["StartDate"]
             $params["EndDate"] = $PSBoundParameters["EndDate"]
 
-            $URI = "$baseUri/$($params.ObjectId)/addPassword"
+            $URI = "$baseUri/$($params.ServicePrincipalId)/addPassword"
             $body = @{
                 passwordCredential = @{
                     startDateTime = $PSBoundParameters["StartDate"];
@@ -52,6 +68,7 @@
             $targetTypeList += $target
         }
         $targetTypeList
-    }
+    }    
+}
 '@
 }

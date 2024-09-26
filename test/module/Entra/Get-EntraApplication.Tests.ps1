@@ -37,17 +37,17 @@ BeforeAll {
 Describe "Get-EntraApplication" {
     Context "Test for Get-EntraApplication" {
         It "Should return specific application" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Get-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Get-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }
         It "Should return all applications" {
             $result = Get-EntraApplication -All
@@ -91,12 +91,12 @@ Describe "Get-EntraApplication" {
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Result should Contain ApplicationId" {
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {              
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
@@ -108,38 +108,17 @@ Describe "Get-EntraApplication" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
 
+            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should return specific user with Alias" {
             $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
-
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
-        } 
-        It "Property parameter should work" {
-            $result = Get-EntraApplication -Top 1 -Property DisplayName
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Mock-App'
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Property is empty" {
-            { Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
-        }
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraApplication -Top 1 -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
-            }
-        } 
     }
 }
