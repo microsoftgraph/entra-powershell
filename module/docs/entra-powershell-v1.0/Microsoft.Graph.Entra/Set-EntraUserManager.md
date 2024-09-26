@@ -40,7 +40,12 @@ The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$manager = Get-EntraUser -ObjectId 'Manager@contoso.com'
+$params = @{
+    UserId = 'SawyerM@contoso.com'
+    RefObjectId = $manager.ObjectId
+}
+Set-EntraUserManager @params
 ```
 
 This example demonstrates how to update the manager for the specified user.

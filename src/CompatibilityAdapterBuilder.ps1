@@ -25,7 +25,6 @@ class CompatibilityAdapterBuilder {
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
     hidden [string[]] $cmdtoSkipNameconverssion =  @(
-        'Revoke-EntraUserAllRefreshToken',
         'Select-EntraGroupIdsGroupIsMemberOf',
         'Get-EntraUserAppRoleAssignment',
         'Get-EntraPermissionGrantConditionSet',
@@ -62,7 +61,6 @@ class CompatibilityAdapterBuilder {
         'Set-EntraPermissionGrantConditionSet',
         'Remove-EntraDeletedApplication',
         'Select-EntraGroupIdsUserIsMemberOf',
-        'Get-EntraUserOAuth2PermissionGrant',
         'Add-EntraBetaServicePrincipalPolicy',
     'Get-EntraBetaPrivilegedRoleDefinition',
     'Get-EntraBetaFeatureRolloutPolicy',
