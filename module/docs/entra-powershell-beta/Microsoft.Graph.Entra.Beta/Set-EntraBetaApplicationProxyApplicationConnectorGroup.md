@@ -26,14 +26,14 @@ The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet assigns the 
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationConnectorGroup 
- -ObjectId <String> 
+ -OnPremisesPublishingProfileId <String> 
  -ConnectorGroupId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet sets the connector group assigned for the specified application. Specify `ObjectId` and `ConnectorGroupId` parameter to assign the given connector group to a specified application.
+The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet sets the connector group assigned for the specified application. Specify `OnPremisesPublishingProfileId` and `ConnectorGroupId` parameter to assign the given connector group to a specified application.
 
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ The application must be configured for Application Proxy in Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    OnPremisesPublishingProfileId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
     ConnectorGroupId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Set-EntraBetaApplicationProxyApplicationConnectorGroup @params
@@ -52,7 +52,7 @@ Set-EntraBetaApplicationProxyApplicationConnectorGroup @params
 
 This example set a new Connector Group for a specific application.
 
-- `ObjectId` parameter specifies the application ID.
+- `OnPremisesPublishingProfileId` parameter specifies the application ID.
 - `ConnectorGroupId` parameter specifies the connector group ID that assign to the application.
 
 ## Parameters
@@ -74,7 +74,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OnPremisesPublishingProfileId
 
 The unique application ID for the application the Connector group assigns to.
 The application ID can be found using the `Get-EntraBetaApplication` command.
@@ -82,7 +82,7 @@ The application ID can be found using the `Get-EntraBetaApplication` command.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
