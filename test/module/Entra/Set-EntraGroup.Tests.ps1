@@ -19,7 +19,7 @@ Describe "Set-EntraGroup" {
 
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 
@@ -39,13 +39,28 @@ Describe "Set-EntraGroup" {
             $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }        
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
 
-            $result = Set-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
+            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

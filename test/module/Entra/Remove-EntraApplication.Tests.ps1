@@ -14,13 +14,13 @@ BeforeAll {
 Describe "Remove-EntraApplication" {
     Context "Test for Remove-EntraApplication" {
         It "Should return empty object" {
-            $result = Remove-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
-            $result = Remove-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+        It "Should execute successfully with Alias" {
+            $result = Remove-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
@@ -34,18 +34,18 @@ Describe "Remove-EntraApplication" {
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
             Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplication"
 
-            $result = Remove-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Remove-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
+            Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
     }
 }

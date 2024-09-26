@@ -32,6 +32,14 @@ BeforeAll{
 }
 Describe "Tests for Get-EntraScopedRoleMembership"{
     It "Result should not be empty"{
+        $result = Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
+        $result | Should -Not -BeNullOrEmpty
+        $result.ObjectId | should -Be $scopedRoleMembershipId
+        $result.AdministrativeUnitObjectId | should -Be $unitObjId
+        $result.RoleObjectId | should -Be $roleObjId
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Result should not be empty with ObjectId"{
         $result = Get-EntraScopedRoleMembership -ObjectId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
         $result | Should -Not -BeNullOrEmpty
         $result.ObjectId | should -Be $scopedRoleMembershipId
@@ -39,24 +47,27 @@ Describe "Tests for Get-EntraScopedRoleMembership"{
         $result.RoleObjectId | should -Be $roleObjId
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is invalid" {
-        { Get-EntraScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is invalid" {
+        { Get-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is empty" {
-        { Get-EntraScopedRoleMembership -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Get-EntraScopedRoleMembership -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }    
     It "Should fail when ScopedRoleMembershipId is empty" {
-        { Get-EntraScopedRoleMembership -ObjectId $unitObjId -ScopedRoleMembershipId } | Should -Throw "Missing an argument for parameter 'ScopedRoleMembershipId'*"
+        { Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId } | Should -Throw "Missing an argument for parameter 'ScopedRoleMembershipId'*"
     }
     It "Should fail when invalid parameter is passed" {
         { Get-EntraScopedRoleMembership -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraScopedRoleMembership"
-        $result = Get-EntraScopedRoleMembership -ObjectId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
-        $params = Get-Parameters -data $result.Parameters
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+        $result = Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
+        $result | Should -Not -BeNullOrEmpty
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraScopedRoleMembership"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     }
     It "Should execute successfully without throwing an error" {
         # Disable confirmation prompts       
@@ -65,7 +76,7 @@ Describe "Tests for Get-EntraScopedRoleMembership"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraScopedRoleMembership -ObjectId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId -Debug } | Should -Not -Throw
+            { Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

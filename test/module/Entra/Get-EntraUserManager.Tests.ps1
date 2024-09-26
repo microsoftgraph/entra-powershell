@@ -38,6 +38,24 @@ BeforeAll {
 Describe "Get-EntraUserManager" {
     Context "Test for Get-EntraUserManager" {
         It "Should return specific User" {
+            $result = Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+            $result.ageGroup | Should -BeNullOrEmpty
+            $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
+            $result.creationType | Should -BeNullOrEmpty
+            $result.imAddresses | Should -Be @("test@contoso.com")
+            $result.preferredLanguage | Should -BeNullOrEmpty
+            $result.mail | Should -Be "test@contoso.com"
+            $result.securityIdentifier | Should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result.identities | Should -HaveCount 1
+            $result.identities[0].signInType | Should -Be "userPrincipalName"
+            $result.identities[0].issuer | Should -Be "contoso.com"
+            $result.identities[0].issuerAssignedId | Should -Be "test@contoso.com"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific User wit alias" {
             $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
             $result.ageGroup | Should -BeNullOrEmpty
@@ -55,16 +73,16 @@ Describe "Get-EntraUserManager" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty string value" {
-            { Get-EntraUserManager -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string value" {
+            { Get-EntraUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraUserManager -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        It "Should fail when UserId is empty" {
+            { Get-EntraUserManager -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Should contain UserId in parameters when passed UserId to it" {
+            $result = Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $params.Uri | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
@@ -72,7 +90,7 @@ Describe "Get-EntraUserManager" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserManager"
 
-            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserManager"
@@ -84,7 +102,7 @@ Describe "Get-EntraUserManager" {
         } 
 
         It "Property parameter should work" {
-            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id 
+            $result = Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
@@ -92,7 +110,7 @@ Describe "Get-EntraUserManager" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should execute successfully without throwing an error" {
@@ -102,7 +120,7 @@ Describe "Get-EntraUserManager" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
