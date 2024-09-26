@@ -26,7 +26,7 @@ Retrieves license details for a user.
 
 ```powershell
 Get-EntraBetaUserLicenseDetail
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -41,7 +41,7 @@ This cmdlet retrieves license details for a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserLicenseDetail -ObjectId 'SawyerM@contoso.com'
+Get-EntraBetaUserLicenseDetail -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -56,14 +56,14 @@ This example demonstrates how to retrieve license details for a user from Micros
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 The object ID of the user for which the license details are retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

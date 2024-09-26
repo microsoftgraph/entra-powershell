@@ -12,15 +12,20 @@ BeforeAll {
 }
 Describe "Add-EntraAdministrativeUnitMember tests"{
     It "Should return empty object"{
+        $result = Add-EntraAdministrativeUnitMember -AdministrativeUnitId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should return empty object with ObjectId"{
         $result = Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should fail when ObjectId is empty"{
-        {  Add-EntraAdministrativeUnitMember -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+        {  Add-EntraAdministrativeUnitMember -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
     }
     It "Should fail when ObjectId is null"{
-        {  Add-EntraAdministrativeUnitMember -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        {  Add-EntraAdministrativeUnitMember -AdministrativeUnitId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
     }
     It "Should fail when RefObjectId is empty"{
         {  Add-EntraAdministrativeUnitMember -RefObjectId "" } | Should -Throw "Cannot bind argument to parameter 'RefObjectId'*"
@@ -32,9 +37,10 @@ Describe "Add-EntraAdministrativeUnitMember tests"{
         { Add-EntraAdministrativeUnitMember -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraAdministrativeUnitMember"
-        $result = Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
+        Add-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraAdministrativeUnitMember"
+        $result = Add-EntraAdministrativeUnitMember -AdministrativeUnitId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
         $params = Get-Parameters -data $result
         $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
     }
@@ -45,7 +51,7 @@ Describe "Add-EntraAdministrativeUnitMember tests"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846" -Debug } | Should -Not -Throw
+            { Add-EntraAdministrativeUnitMember -AdministrativeUnitId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

@@ -37,7 +37,7 @@ Get-EntraBetaSubscribedSku
 
 ```powershell
 Get-EntraBetaSubscribedSku
- -ObjectId <String>
+ -SubscribedSkuId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -65,11 +65,11 @@ cccc2222-dd33-4444-55ee-666666ffffff 2222cccc-33dd-eeee-ff44-aaaaaa555555 M365x9
 
 This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
 
-### Example 2: Get subscribed SKUs by ObjectId
+### Example 2: Get subscribed SKUs by SubscribedSkuId
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraBetaSubscribedSku -ObjectId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+Get-EntraBetaSubscribedSku -SubscribedSkuId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 ```
 
 ```Output
@@ -80,7 +80,7 @@ aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x9
 
 This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.
 
-- `-ObjectId` parameter specifies the ID of the SKU (Stock Keeping Unit).
+- `-SubscribedSkuId` parameter specifies the ID of the SKU (Stock Keeping Unit).
 
 ### Example 3: Get a list of users, their assigned licenses, and licensing source
 
@@ -106,7 +106,7 @@ foreach ($User in $SelectedUsers) {
     try {
         # Check if the group display name is already in the hashtable
         if (-not $GroupDisplayNames.ContainsKey($AssignedByGroup)) {
-            $Group = Get-EntraBetaGroup -ObjectId $AssignedByGroup
+            $Group = Get-EntraBetaGroup -GroupId $AssignedByGroup
             $GroupDisplayNames[$AssignedByGroup] = $Group.DisplayName
         }
 
@@ -142,14 +142,14 @@ This example shows a list of users, their licenses, and the source of the licens
 
 ## Parameters
 
-### -ObjectId
+### -SubscribedSkuId
 
 The object ID of the SKU (Stock Keeping Unit).
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
