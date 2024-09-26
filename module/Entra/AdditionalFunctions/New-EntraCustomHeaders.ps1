@@ -8,6 +8,8 @@ function New-EntraCustomHeaders {
         Creates a custom header for use in telemetry.
     .DESCRIPTION
         The custom header created is a User-Agent with header value "<PowerShell version> EntraPowershell/<EntraPowershell version> <Entra PowerShell command>"
+    .PARAMETER Command
+        The command that is being executed.
     .EXAMPLE
         New-EntraCustomHeaders -Command Get-EntraUser
     #>
@@ -19,7 +21,7 @@ function New-EntraCustomHeaders {
     )
     
     $psVersion = $global:PSVersionTable.PSVersion
-    $entraVersion = (Get-module Microsoft.Graph.Entra | select version).Version.ToString()
+    $entraVersion = (Get-module Microsoft.Graph.Entra | Select-Object version).Version.ToString()
     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
     $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
     $customHeaders["User-Agent"] = $userAgentHeaderValue
