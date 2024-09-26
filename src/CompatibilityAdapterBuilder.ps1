@@ -739,6 +739,7 @@ $($Command.CustomScript)
             "Get-EntraApplication",
             "Get-EntraDeletedApplication",
             "Get-EntraDeletedGroup",
+            "Get-EntraBetaDeletedGroup",
             "Get-EntraRoleAssignment",
             "Get-EntraContact",
             "Get-EntraRoleDefinition",
