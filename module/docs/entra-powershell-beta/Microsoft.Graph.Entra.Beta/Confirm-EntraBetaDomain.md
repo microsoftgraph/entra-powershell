@@ -26,8 +26,8 @@ Validate the ownership of a domain.
 
 ```powershell
 Confirm-EntraBetaDomain 
- -Name <String> 
- [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>] 
+ -DomainName <String> 
+ -ForceTakeover <Boolean>
  [<CommonParameters>]
 ```
 
@@ -43,8 +43,10 @@ The work or school account needs to belong to at least the **Domain Name Adminis
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
-Confirm-EntraBetaDomain -Name Contoso.com
+Confirm-EntraBetaDomain -DomainName Contoso.com
 ```
+
+- `DomainName` Specifies the fully qualified domain name to retrieve.
 
 This example verifies a domain and updates its status to `verified`.
 
@@ -52,14 +54,17 @@ This example verifies a domain and updates its status to `verified`.
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
-Confirm-EntraBetaDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
+Confirm-EntraBetaDomain -DomainName Contoso.com -ForceTakeover $True
 ```
 
-This example confirms a domain in dual federation scenarios.
+This example demonstrates the confirmation of a domain when an external administrator needs to take over an unmanaged domain.
+
+- `DomainName` Specifies the fully qualified domain name to retrieve.
+- `ForceTakeover` Specifies whether to forcibly take control of an unmanaged domain associated with a tenant.
 
 ## Parameters
 
-### -Name
+### -DomainName
 
 Specifies the name of the domain.
 
@@ -75,12 +80,12 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -CrossCloudVerificationCode
+### -ForceTakeover
 
-The cross-cloud domain verification code.
+Used for external admin takeover of an unmanaged domain. The default value for this parameter is false.
 
 ```yaml
-Type: CrossCloudVerificationCodeBody
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -102,11 +107,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
-
-[Get-EntraBetaDomain](Get-EntraBetaDomain.md)
-
-[New-EntraBetaDomain](New-EntraBetaDomain.md)
-
-[Remove-EntraBetaDomain](Remove-EntraBetaDomain.md)
-
-[Set-EntraBetaDomain](Set-EntraBetaDomain.md)
