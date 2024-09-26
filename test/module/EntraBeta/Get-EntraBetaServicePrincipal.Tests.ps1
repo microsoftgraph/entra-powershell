@@ -88,19 +88,7 @@ Describe "Get-EntraBetaServicePrincipal" {
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-
-        It "Should get all service principal" {
-            $result = Get-EntraBetaServicePrincipal -All
-            $result | Should -Not -BeNullOrEmpty
-
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
-        }
-
-        It "Should fail when All has an argument" {
-            { Get-EntraBetaServicePrincipal -All  $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
-        }
-
-        It "Should get service principal by ObjectId" {
+        It "Should execute successfully with Alias" {
             $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
@@ -114,12 +102,37 @@ Describe "Get-EntraBetaServicePrincipal" {
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should get all service principal" {
+            $result = Get-EntraBetaServicePrincipal -All
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when ObjectId is Invalid" {
-            { Get-EntraBetaServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaServicePrincipal -All  $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
+
+        It "Should get service principal by ObjectId" {
+            $result = Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result.ServicePrincipalNames | Should -Be @('bbbbbbbb-1111-2222-3333-cccccccccc55')
+            $result.DisplayName | Should -Be "demo1"
+            $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.AppOwnerOrganizationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
+            $result.SignInAudience | Should -Be "AzureADMyOrg"
+            $result.ServicePrincipalType | Should -Be "Application"
+           
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+
+        It "Should fail when ServicePrincipalId is empty" {
+            { Get-EntraBetaServicePrincipal -ServicePrincipalId  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
+        }
+
+        It "Should fail when ServicePrincipalId is Invalid" {
+            { Get-EntraBetaServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
         }
 
         It "Should get top service principal" {
@@ -185,12 +198,12 @@ Describe "Get-EntraBetaServicePrincipal" {
         }
 
         It "Should contain ObjectId in result" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result = Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result = Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
 
@@ -198,7 +211,7 @@ Describe "Get-EntraBetaServicePrincipal" {
         }
 
         It "Should contain filter in parameters when passed SearchString to it" {
-            $result = Get-EntraBetaServicePrincipal -SearchString  "demo1"
+            $result = Get-EntraBetaServicePrincipal -SearchString "demo1"
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Be "publisherName eq 'demo1' or (displayName eq 'demo1' or startswith(displayName,'demo1'))"
 
@@ -207,7 +220,7 @@ Describe "Get-EntraBetaServicePrincipal" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
-            $result=  Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result=  Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -217,10 +230,10 @@ Describe "Get-EntraBetaServicePrincipal" {
         }   
         
         It "Should fail when Property is empty" {
-            { Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property AppDisplayName
+            $result = Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property AppDisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be 'demo1'
 
@@ -234,7 +247,7 @@ Describe "Get-EntraBetaServicePrincipal" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Debug } | Should -Not -Throw
+                { Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

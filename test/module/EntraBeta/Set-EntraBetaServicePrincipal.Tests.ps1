@@ -33,8 +33,7 @@ Describe "Set-EntraBetaServicePrincipal"{
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaServicePrincipal"
-
-            Set-EntraBetaServicePrincipal -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc | Out-Null
+            Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc | Out-Null
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaServicePrincipal"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -48,7 +47,7 @@ Describe "Set-EntraBetaServicePrincipal"{
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaServicePrincipal -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Debug } | Should -Not -Throw
+                { Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
