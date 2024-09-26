@@ -43,10 +43,26 @@ Describe "Set-EntraFeatureRolloutPolicy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraFeatureRolloutPolicy"
 
-            Set-EntraFeatureRolloutPolicy -Id 7e22e9df-abf0-4ee2-bcf8-fd7b62eff2f5 -DisplayName 'Feature-Rollout-Policytest' -Description 'Feature-Rollout-test' -IsEnabled $false | Out-Null 
+            Set-EntraFeatureRolloutPolicy -Id 7e22e9df-abf0-4ee2-bcf8-fd7b62eff2f5 -DisplayName 'Feature-Rollout-Policytest' -Description 'Feature-Rollout-test' -IsEnabled $false
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraFeatureRolloutPolicy"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraFeatureRolloutPolicy -Id 7e22e9df-abf0-4ee2-bcf8-fd7b62eff2f5 -DisplayName 'Feature-Rollout-Policytest' -Description 'Feature-Rollout-test' -IsEnabled $false -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
             }
         }   
     }
