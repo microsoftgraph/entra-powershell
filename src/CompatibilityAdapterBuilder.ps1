@@ -39,7 +39,6 @@ class CompatibilityAdapterBuilder {
         'Get-EntraServicePrincipalDelegatedPermissionClassification',
         'Set-EntraServicePrincipal',
         'New-EntraConditionalAccessPolicy',
-        'Set-EntraUserThumbnailPhoto',
         'Reset-EntraLifeCycleGroup',
         'Get-EntraObjectByObjectId',
         'Remove-EntraPermissionGrantConditionSet',
