@@ -26,7 +26,7 @@ Retrieve the service endpoint of an application.
 
 ```powershell
 Get-EntraApplicationServiceEndpoint
- -ObjectId <String>
+ -ApplicationId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -48,36 +48,36 @@ Other services can use the information stored in the ServiceEndpoint entity to f
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
 
-`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 2: Get all service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId -All 
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
 
-`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 3: Get top five service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId -Top 5
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId -Top 5
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
 
-`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
@@ -97,14 +97,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the object ID of the application for which the service endpoint is retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
