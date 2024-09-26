@@ -26,7 +26,7 @@ Get devices registered by a user.
 
 ```powershell
 Get-EntraUserRegisteredDevice
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -43,7 +43,7 @@ The `Get-EntraUserRegisteredDevice` cmdlet gets devices registered by a user in 
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com'
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -59,7 +59,7 @@ This command gets the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -All 
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -75,7 +75,7 @@ This command gets all the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 1
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
@@ -104,14 +104,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

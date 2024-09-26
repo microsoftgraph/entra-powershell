@@ -38,13 +38,6 @@ BeforeAll {
             "MobilePhone"                      = $null
         }
 
-        # Response from an Invoke-GraphRequest is a hashtable with @odata.context and Value objects
-
-        # Name                           Value
-        # ----                           -----
-        # @odata.context                 https://graph.microsoft.com/v1.0/$metadata#users
-        # value                          {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hasht...
-
         $response = @{
             '@odata.context'        = 'Users()'
             Value                   = $valueObject
@@ -69,7 +62,7 @@ Describe "Get-EntraUser" {
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty

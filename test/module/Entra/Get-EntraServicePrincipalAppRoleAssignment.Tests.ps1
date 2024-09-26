@@ -29,57 +29,78 @@ BeforeAll {
 Describe "Get-EntraServiceAppRoleAssigned" {
     Context "Test for Get-EntraServiceAppRoleAssigned" {
         It "Should return service principal application role assignment." {
+            $result =  Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34"
+            $result | Should -Not -BeNullOrEmpty
+            $result.ResourceId | should -Be '021510b7-e753-40aa-b668-29753295ca34'
+
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result =  Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34"
             $result | Should -Not -BeNullOrEmpty
             $result.ResourceId | should -Be '021510b7-e753-40aa-b668-29753295ca34'
 
             Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraServicePrincipalAppRoleAssignment -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'.*" 
+        It "Should fail when ServicePrincipalId is empty" {
+            { Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*" 
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraServicePrincipalAppRoleAssignment -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+        It "Should fail when ServicePrincipalId is invalid" {
+            { Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
         }
         It "Should return all service principal application role assignment." {
-            $result = Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All 
+            $result = Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
                    
         It "Should return top service principal application role assignment." {
-            $result =  Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -top 1
+            $result =  Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34" -top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-                { Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+                { Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
             } 
          It "Should fail when Top is invalid" {
-                { Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+                { Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
             }   
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34"
+        It "Result should Contain ServicePrincipalId" {
+            $result = Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34"
             $result.ObjectId | should -Be "qjltmaz9l02qPcgftHNirITXiOnmHR5GmW_oEXl_ZL8"
         } 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             Mock -CommandName Get-MgServicePrincipalAppRoleAssignedTo -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34"
+            $result = Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34"
             $params = Get-Parameters -data $result
             $params.ServicePrincipalId | Should -Be "021510b7-e753-40aa-b668-29753295ca34"
         }
         
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgServicePrincipalAppRoleAssignedTo -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalAppRoleAssignment"
+            $result = Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalAppRoleAssignment"
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+           }
+        }   
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
-            $result = Get-EntraServicePrincipalAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {  Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "021510b7-e753-40aa-b668-29753295ca34" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

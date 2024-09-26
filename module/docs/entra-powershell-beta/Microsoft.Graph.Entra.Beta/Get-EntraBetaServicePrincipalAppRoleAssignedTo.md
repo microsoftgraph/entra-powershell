@@ -27,7 +27,7 @@ Gets app role assignments for this app or service, granted to users, groups and 
 
 ```powershell
 Get-EntraBetaServicePrincipalAppRoleAssignedTo
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -56,7 +56,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -67,14 +67,14 @@ Id                                          AppRoleId                           
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 
 ### Example 2: Get all app role assignments
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -All 
+ Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -89,14 +89,14 @@ Id                                          AppRoleId                           
 
 This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 
 ### Example 3: Get five app role assignments
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -Top 5
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -Top 5
 ```
 
 ```Output
@@ -111,7 +111,7 @@ Id                                          AppRoleId                           
 
 This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 
 ## Parameters
 
@@ -131,14 +131,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

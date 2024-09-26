@@ -166,7 +166,7 @@ Describe "Get-EntraBetaUser" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty

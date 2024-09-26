@@ -19,7 +19,7 @@ BeforeAll {
                                                   "Id"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
                                                   "AdditionalProperties" = @{"userPrincipalName" = "Adams@M365x99297270.OnMicrosoft.com" }  
                                                 }
-              "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"}
+              "AdditionalProperties"         = @{"@odata.context"  = 'https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]'}
               "Parameters"                   = $args
             }
         )
@@ -31,6 +31,15 @@ BeforeAll {
 Describe "Get-EntraBetaScopedRoleMembership" {
     Context "Test for Get-EntraBetaScopedRoleMembership" {
         It "Should return specific scoped role membership" {
+            $result = Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result.RoleId | Should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
+            $result.AdministrativeUnitId | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
+
+            Should -Invoke -CommandName Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return specific scoped role membership with alias" {
             $result = Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
@@ -39,38 +48,38 @@ Describe "Get-EntraBetaScopedRoleMembership" {
 
             Should -Invoke -CommandName Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when AdministrativeUnitId is empty" {
+            { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId  } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when AdministrativeUnitId is invalid" {
+            { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId' because it is an empty string."
         }
         It "Should fail when ScopedRoleMembershipId is empty" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId   } | Should -Throw "Missing an argument for parameter 'ScopedRoleMembershipId'*"
+            { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId   } | Should -Throw "Missing an argument for parameter 'ScopedRoleMembershipId'*"
         }
         It "Should fail when ScopedRoleMembershipId is invalid" {
-            { Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "" } | Should -Throw "Cannot bind argument to parameter 'ScopedRoleMembershipId' because it is an empty string."
+            { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "" } | Should -Throw "Cannot bind argument to parameter 'ScopedRoleMembershipId' because it is an empty string."
         }
-        It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
+        It "Should contain AdministrativeUnitId in parameters when passed AdministrativeUnitId to it" {    
             
-            $result = Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result = Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $params = Get-Parameters -data $result.Parameters
             $params.AdministrativeUnitId | Should -Be "dddddddd-1111-2222-3333-eeeeeeeeeeee"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Property RoleId
+            $result = Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Property RoleId
             $result | Should -Not -BeNullOrEmpty
             $result.RoleId | Should -Be 'cccccccc-85c2-4543-b86c-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaScopedRoleMembership"
 
-            $result =  Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result =  Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaScopedRoleMembership"
@@ -87,7 +96,7 @@ Describe "Get-EntraBetaScopedRoleMembership" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Debug } | Should -Not -Throw
+                { Get-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

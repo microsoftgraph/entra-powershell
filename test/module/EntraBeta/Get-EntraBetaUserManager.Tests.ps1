@@ -88,7 +88,7 @@ BeforeAll {
 Describe "Get-EntraBetaUserManager" {
     Context "Test for Get-EntraBetaUserManager" {
         It "Should return specific user manager" {
-            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
             $result.ageGroup | Should -BeNullOrEmpty
@@ -107,7 +107,7 @@ Describe "Get-EntraBetaUserManager" {
         }
 
         It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUserManager -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }   
 
         It "Should fail when invalid parameter is passed" {
@@ -115,12 +115,12 @@ Describe "Get-EntraBetaUserManager" {
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }     
 
         It "Should contain UserId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -128,14 +128,14 @@ Describe "Get-EntraBetaUserManager" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
 
-            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
 
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
-            $result = Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
             Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -150,7 +150,7 @@ Describe "Get-EntraBetaUserManager" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

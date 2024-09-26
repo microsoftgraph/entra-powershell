@@ -26,7 +26,7 @@ Gets a service principal application role assignment.
 
 ```powershell
 Get-EntraServicePrincipalAppRoleAssignment
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -44,7 +44,7 @@ The `Get-EntraServicePrincipalAppRoleAssignment` cmdlet gets a role assignment f
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
  $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Get-EntraServicePrincipalAppRoleAssignment -ObjectId $ServicePrincipalId
+ Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipalId
 ```
 
 ```Output
@@ -63,7 +63,7 @@ This command gets application role assignments for specified service principal.
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+ Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
 ```
 
 ```Output
@@ -82,7 +82,7 @@ This command gets all application role assignments for specified service princip
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
+ Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
 ```
 
 ```Output
@@ -113,14 +113,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

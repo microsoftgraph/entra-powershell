@@ -18,7 +18,7 @@ BeforeAll {
               "Members"                      = $null
               "ScopedRoleMembers"            = $null
               "Visibility"                   = $null
-              "AdditionalProperties"         = @{"@odata.context"  = "https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]"}
+              "AdditionalProperties"         = @{"@odata.context"  = 'https://graph.microsoft.com/beta/$metadata#scopedRoleMemberships/$entity]'}
               "Parameters"                   = $args
             }
         )
@@ -30,6 +30,15 @@ BeforeAll {
 Describe "Get-EntraBetaAdministrativeUnit" {
     Context "Test for Get-EntraBetaAdministrativeUnit" {
         It "Should return specific administrative unit" {
+            $result = Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result.DisplayName | Should -Be "Mock-Administrative-unit"
+            $result.Description | Should -Be "NewAdministrativeUnit"
+
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return specific administrative unit with alias" {
             $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
@@ -38,11 +47,11 @@ Describe "Get-EntraBetaAdministrativeUnit" {
 
             Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaAdministrativeUnit -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when AdministrativeUnitId is empty" {
+            { Get-EntraBetaAdministrativeUnit -AdministrativeUnitId  } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaAdministrativeUnit -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when AdministrativeUnitId is invalid" {
+            { Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId' because it is an empty string."
         }
         It "Should return all administrative units" {
             $result = Get-EntraBetaAdministrativeUnit -All
@@ -75,18 +84,18 @@ Describe "Get-EntraBetaAdministrativeUnit" {
         It "Should fail when filter is empty" {
             { Get-EntraBetaAdministrativeUnit -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
-        It "Result should contain ObjectId"{
-            $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        It "Result should contain AdministrativeUnitId"{
+            $result = Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result.ObjectId | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
-        It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
+        It "Should contain AdministrativeUnitId in parameters when passed AdministrativeUnitId to it" {    
 
-            $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result = Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.AdministrativeUnitId | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
+            $result = Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-Administrative-unit'
  
@@ -98,7 +107,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAdministrativeUnit"
 
-            $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result = Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAdministrativeUnit"
@@ -115,7 +124,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

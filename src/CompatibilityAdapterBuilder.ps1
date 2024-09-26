@@ -42,7 +42,6 @@ class CompatibilityAdapterBuilder {
         'Set-EntraUserThumbnailPhoto',
         'Reset-EntraLifeCycleGroup',
         'Get-EntraObjectByObjectId',
-        'Get-EntraGroupPermissionGrant',
         'Remove-EntraPermissionGrantConditionSet',
         'Get-EntraPermissionGrantPolicy',
         'Remove-EntraOAuth2PermissionGrant',
@@ -140,7 +139,6 @@ class CompatibilityAdapterBuilder {
     'Select-EntraBetaGroupIdsUserIsMemberOf',
     'Set-EntraBetaNamedLocationPolicy',    
     'New-EntraBetaNamedLocationPolicy',
-    'Remove-EntraBetaApplication',
     'Restore-EntraBetaDeletedApplication',    
     'Remove-EntraBetaPermissionGrantConditionSet'
         
@@ -753,6 +751,11 @@ $($Command.CustomScript)
             "Get-EntraServicePrincipal",
             "Get-EntraAdministrativeUnit",
             "Get-EntraDirectoryRoleAssignment",
+            "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue",
+            "Get-EntraBetaFeatureRolloutPolicy",
+            "Get-EntraBetaGroup",
+            "Get-EntraBetaPrivilegedResource",
+            "Get-EntraBetaServicePrincipal",
             "Get-EntraBetaAdministrativeUnit",
             "Get-EntraBetaAdministrativeUnit",
             "Get-EntraBetaDevice", 
@@ -948,6 +951,8 @@ $OutputTransformations
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
                 if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
                     $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
+                }else{
+                    $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
                 } 
             }
             elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
