@@ -51,14 +51,35 @@ BeforeAll {
 Describe "Get-EntraDevice" {
     Context "Test for Get-EntraDevice" {
         It "Should return specific device" {
-            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-ccccccccccc"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should return specific device with Alias" {
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when DeviceId is invalid" {
+            { Get-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
+        }
+        It "Should fail when DeviceId is empty" {
+            { Get-EntraDevice -DeviceId } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
+        }
+        It "Should fail when searchstring is empty" {
+            { Get-EntraDevice -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+        } 
+        It "Should fail when filter is empty" {
+            { Get-EntraDevice -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
+        It "Should fail when Top is empty" {
+            { Get-EntraDevice -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }
+        It "Should fail when Top is invalid" {
+            { Get-EntraDevice -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return all devices" {
             $result = Get-EntraDevice -All
@@ -100,11 +121,11 @@ Describe "Get-EntraDevice" {
             { Get-EntraDevice -Property DisplayName -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
