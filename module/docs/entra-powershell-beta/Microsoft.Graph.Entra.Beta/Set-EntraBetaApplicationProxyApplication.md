@@ -26,7 +26,7 @@ The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set conf
 
 ```powershell
 Set-EntraBetaApplicationProxyApplication 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [-ExternalUrl <String>] 
  [-InternalUrl <String>]
  [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>] 
@@ -42,7 +42,7 @@ Set-EntraBetaApplicationProxyApplication
 
 ## Description
 
-The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set other settings for an application in Microsoft Entra ID configured to use ApplicationProxy. Specify `ObjectId` parameter to update application configured for application proxy.
+The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set other settings for an application in Microsoft Entra ID configured to use ApplicationProxy. Specify `ApplicationId` parameter to update application configured for application proxy.
 
 ## Examples
 
@@ -51,7 +51,7 @@ The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set othe
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
     InternalUrl = 'http://finance/'
     ExternalAuthenticationType = 'AadPreAuthentication' 
@@ -80,7 +80,7 @@ isPersistentCookieEnabled                : False
 
 This example update `ExternalUrl`, `InternalUrl`, `ExternalAuthenticationType`, and `IsTranslateHostHeaderEnabled` parameter.
 
-- `-ObjectId` parameter specifies the application ID.
+- `-ApplicationId` parameter specifies the application ID.
 - `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
 - `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
 - `-ExternalAuthenticationType` parameter specifies the external authentication type.
@@ -91,7 +91,7 @@ This example update `ExternalUrl`, `InternalUrl`, `ExternalAuthenticationType`, 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
     InternalUrl = 'http://finance/'
     ExternalAuthenticationType = 'AadPreAuthentication' 
@@ -123,7 +123,7 @@ isPersistentCookieEnabled                : False
 
 This example update `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, and `IsPersistentCookieEnabled` parameter.
 
-- `-ObjectId` parameter specifies the application ID.
+- `-ApplicationId` parameter specifies the application ID.
 - `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
 - `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
 - `-ExternalAuthenticationType` parameter specifies the external authentication type.
@@ -137,7 +137,7 @@ This example update `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, and `IsP
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
     InternalUrl = 'http://finance/'
     ExternalAuthenticationType = 'AadPreAuthentication' 
@@ -168,7 +168,7 @@ isPersistentCookieEnabled                : False
 
 This example update `IsTranslateLinksInBodyEnabled`, `ApplicationServerTimeout`, and  `ConnectorGroupId` parameter.
 
-- `-ObjectId` parameter specifies the application ID.
+- `-ApplicationId` parameter specifies the application ID.
 - `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
 - `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
 - `-ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
@@ -178,7 +178,7 @@ This example update `IsTranslateLinksInBodyEnabled`, `ApplicationServerTimeout`,
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique application ID of an application in Microsoft Entra ID.
 This objectid can be found using the `Get-EntraBetaApplication` command.
@@ -186,7 +186,7 @@ This objectid can be found using the `Get-EntraBetaApplication` command.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

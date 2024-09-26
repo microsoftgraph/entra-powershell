@@ -27,7 +27,7 @@ The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroupMembers
- -Id <String> 
+ -OnPremisesPublishingProfileId <String> 
  [-All] 
  [-Top <Int32>]
  [-Filter <String>]
@@ -43,7 +43,7 @@ The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaApplicationProxyConnectorGroupMembers -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -55,13 +55,13 @@ bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3
 
 This example retrieves all the connectors in the group.
 
-- `Id` parameter specifies the connector group ID.
+- `OnPremisesPublishingProfileId` parameter specifies the connector group ID.
 
 ### Example 2: Gets top one connector in the group
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Get-EntraBetaApplicationProxyConnectorGroupMembers -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
 ```
 
 ```Output
@@ -72,14 +72,14 @@ bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3
 
 This example retrieves top one connector in the group.
 
-- `Id` parameter specifies the connector group ID.
+- `OnPremisesPublishingProfileId` parameter specifies the connector group ID.
 
 ### Example 3: Gets the connectors in the group with filter parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    OnPremisesPublishingProfileId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     Filter = "machineName eq 'AppProxy Machine'"
 }
 Get-EntraBetaApplicationProxyConnectorGroupMembers @params
@@ -94,7 +94,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3
 
 This example retrieves a connector in the group using machineName property.
 
-- `Id` parameter specifies the connector group ID.
+- `OnPremisesPublishingProfileId` parameter specifies the connector group ID.
 
 ## Parameters
 
@@ -130,14 +130,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -OnPremisesPublishingProfileId
 
 The ID of the Connector group. This ID can be found by running the `Get-EntraBetaApplicationProxyConnectorGroup` command.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: 
+Aliases: Id
 
 Required: True
 Position: Named

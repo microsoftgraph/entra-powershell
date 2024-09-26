@@ -24,14 +24,14 @@ Gets the password credential for an application.
 
 ```powershell
 Get-EntraBetaApplicationPasswordCredential 
- -ObjectId <String>
+ -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password credentials for a Microsoft Entra ID application. Specify `ObjectId` parameter to cmdlet receives the password credentials.
+The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password credentials for a Microsoft Entra ID application. Specify `ApplicationId` parameter to cmdlet receives the password credentials.
 
 ## Examples
 
@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password cr
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationPasswordCredential -ObjectId $application.ObjectId
+Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.ObjectId
 ```
 
 ```Output
@@ -51,18 +51,18 @@ CustomKeyIdentifier  DisplayName EndDateTime         Hint KeyId                 
 
 This example shows how to retrieve the password credential for specified application.
 
-- `-ObjectId` specifies the ID of an application object in Microsoft Entra ID.
+- `-ApplicationId` specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The objectID of the application for which to get the password credential. Use `Get-EntraBetaApplication` for more details.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
