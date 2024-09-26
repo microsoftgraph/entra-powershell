@@ -14,27 +14,33 @@ BeforeAll {
 Describe "Remove-EntraBetaAdministrativeUnitMember" {
     Context "Test for Remove-EntraBetaAdministrativeUnitMember" {
         It "Should return empty object" {
+            $result = Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return empty object with alias" {
             $result = Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId  -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when AdministrativeUnitId is empty" {
+            { Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId  -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when AdministrativeUnitId is invalid" {
+            { Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"} | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId' because it is an empty string."
         }
         It "Should fail when MemberId is empty" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId  } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+            { Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId  } | Should -Throw "Missing an argument for parameter 'MemberId'*"
         }
         It "Should fail when MemberId is invalid" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId ""} | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
+            { Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId ""} | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaAdministrativeUnitMember"
 
-            Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
+            Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
            
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaAdministrativeUnitMember"
@@ -50,7 +56,7 @@ Describe "Remove-EntraBetaAdministrativeUnitMember" {
             
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

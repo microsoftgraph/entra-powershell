@@ -48,6 +48,16 @@ BeforeAll {
 Describe "Get-EntraUserOwnedDevice" {
 Context "Test for Get-EntraUserOwnedDevice" {
         It "Should get devices owned by a user" {
+            $result = Get-EntraUserOwnedDevice -UserId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
+            $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
+            $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
+
+            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should get devices owned by a user with alias" {
             $result = Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
@@ -58,20 +68,20 @@ Context "Test for Get-EntraUserOwnedDevice" {
         }
 
         It "Property parameter should work" {
-            $result = Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
+            $result = Get-EntraUserOwnedDevice -UserId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
             $result.Id | Should -Be 'aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb'
         }
 
         It "Should fail when ObjectlId is empty" {
-            { Get-EntraUserOwnedDevice -ObjectId    } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Get-EntraUserOwnedDevice -UserId    } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
 
         It "Should fail when ObjectlId is invalid" {
-            { Get-EntraUserOwnedDevice -ObjectId  ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraUserOwnedDevice -UserId  ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should get all devices owned by a user" {
-            $result = Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -All
+            $result = Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Contain "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
 
@@ -83,7 +93,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
         }
 
         It "Should get top one device owned by a user" {
-            $result = Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top 1
+            $result = Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
@@ -93,22 +103,22 @@ Context "Test for Get-EntraUserOwnedDevice" {
         }
 
         It "Should fail when Top is empty" {
-            { Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
 
         It "Should fail when Top is invalid" {
-            { Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top "XCX" } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top "XCX" } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        It "Should contain UserId in parameters when passed UserId to it" {              
+            $result = Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOwnedDevice"
-            $result = Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result = Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOwnedDevice"
             Should -Invoke -CommandName Get-MgUserOwnedDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -123,7 +133,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserOwnedDevice -ObjectId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

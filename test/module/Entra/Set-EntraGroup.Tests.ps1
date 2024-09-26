@@ -19,7 +19,7 @@ Describe "Set-EntraGroup" {
 
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 

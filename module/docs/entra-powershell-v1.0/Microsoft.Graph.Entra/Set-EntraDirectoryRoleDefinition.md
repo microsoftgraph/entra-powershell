@@ -29,7 +29,7 @@ Set-EntraDirectoryRoleDefinition
 [-TemplateId <String>] 
 [-DisplayName <String>]
 [-RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>]
--Id <String> 
+-UnifiedRoleDefinitionId <String> 
 [-Description <String>] 
 [-Version <String>] 
 [-IsEnabled <Boolean>]
@@ -46,78 +46,62 @@ Updates a Microsoft Entra roleDefinition object identified by ID. You can't upda
 ### Example 1: Update an roleDefinition
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$roleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
-$params = @{
-   Id = $roleDefinition.ObjectId
-   DisplayName = 'UpdatedDisplayName'
-}
-Set-EntraDirectoryRoleDefinition @params
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-DisplayName` parameter specifies the display name for the role definition.
 
 ### Example 2: Update an roleDefinition with Description
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$roleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
-$params = @{
-   Id = $roleDefinition.ObjectId
-   Description = 'MYROLEUPDATE1S'
-}
-Set-EntraDirectoryRoleDefinition @params
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-Description` parameter specifies the description for the role definition.
 
 ### Example 3: Update an roleDefinition with IsEnabled
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$roleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
-$params = @{
-   Id = $roleDefinition.ObjectId
-   IsEnabled = $true
-}
-Set-EntraDirectoryRoleDefinition @params
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-IsEnabled` parameter specifies whether the role definition is enabled.
 
 ### Example 4: Update an roleDefinition
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$roleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
-$params = @{
-   Id = $roleDefinition.ObjectId
-   Description = 'Update'
-   DisplayName = 'Update'
-   ResourceScopes = '/'
-   IsEnabled = $false
-   RolePermissions = $RolePermissions
-   TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
-   Version = 2
-}
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+ $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
+ $params = @{
+    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Description = 'Update'
+    DisplayName = 'Update'
+    ResourceScopes = '/'
+    IsEnabled = $false
+    RolePermissions = $RolePermissions
+    TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
+    Version = 2
+ }
 
 Set-EntraDirectoryRoleDefinition @params
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 - `-RolePermissions` parameter specifies the permissions for the role definition.
 - `-IsEnabled` parameter specifies whether the role definition is enabled.
 - `-DisplayName` parameter specifies the display name for the role definition.
@@ -128,14 +112,14 @@ This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleDefinitionId
 
 Specifies the roleDefinition object ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

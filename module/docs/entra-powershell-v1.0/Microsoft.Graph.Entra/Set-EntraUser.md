@@ -25,7 +25,7 @@ Updates a user.
 
 ```powershell
 Set-EntraUser 
- -ObjectId <String> 
+ -UserId <String> 
  [-PostalCode <String>] 
  [-CompanyName <String>]
  [-GivenName <String>] 
@@ -67,13 +67,9 @@ The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `Ob
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$user = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
-$params = @{
-   ObjectId = $user.ObjectId
-   DisplayName = 'Updated user Name'
-}
-Set-EntraUser @params
+PS C:\> $user = Get-EntraUser -UserId TestUser@example.com 
+PS C:\> $user.DisplayName = 'YetAnotherTestUser' 
+PS C:\> Set-EntraUser -UserId TestUser@example.com -Displayname $user.Displayname
 ```
 
 This example updates the specified user's Display name parameter.
@@ -83,12 +79,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$params = @{
-   ObjectId = 'SawyerM@contoso.com'
-   AccountEnabled = $true
-}
-Set-EntraUser @params
+PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -99,9 +90,9 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+PS C:\>Get-EntraUser -All  | 
+Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+ForEach-Object  { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -112,25 +103,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$params = @{
-   ObjectId = 'SawyerM@contoso.com'
-   City = 'Add city name'
-   CompanyName = 'Microsoft'
-   Country = 'Add country name'
-   Department = 'Add department name'
-   GivenName = 'Mircosoft'
-   ImmutableId = '#1' 
-   JobTitle = 'Manager'
-   MailNickName = 'Add mailnickname'
-   Mobile = '9984534564'
-   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
-   PasswordPolicies = 'DisableStrongPassword'
-   State = 'UP'
-   StreetAddress = 'Add address'
-   UserType = 'Member'
-}
-Set-EntraUser @params
+PS C:\>Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address" -UserType "Member"
 ```
 
 This example updates the specified user's property.
@@ -151,8 +124,7 @@ PasswordProfile  = @{
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
    }
-}
-Set-EntraUser @params
+PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
 
 This example updates the specified user's PasswordProfile parameter.
@@ -359,14 +331,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
-
-Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
+### -UserId
+Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

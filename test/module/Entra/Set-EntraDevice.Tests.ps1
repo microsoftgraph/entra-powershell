@@ -19,8 +19,8 @@ Describe "Set-EntraDevice"{
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should return specific user with Alias" {
-            $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
+        It "Should execute successfully with Alias" {
+            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1

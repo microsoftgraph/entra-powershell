@@ -13,25 +13,30 @@ BeforeAll {
 Describe "Remove-EntraBetaApplication" {
     Context "Test for Remove-EntraBetaApplication" {
         It "Should return empty object" {
+            $result = Remove-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Remove-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter*"
+        It "Should fail when ApplicationId is empty" {
+            { Remove-EntraBetaApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter*"
         }   
         It "Should fail when invalid parameter is passed" {
             { Remove-EntraBetaApplication -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
         }
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
             Mock -CommandName Remove-MgBetaApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-            $result = Remove-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000"
+            $result = Remove-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "aaaaaaaa-1111-1111-1111-000000000000"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaApplication"
-            $result = Remove-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000"
+            $result = Remove-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaApplication"
             Should -Invoke -CommandName Remove-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -46,7 +51,7 @@ Describe "Remove-EntraBetaApplication" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

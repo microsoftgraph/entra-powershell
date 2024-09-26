@@ -42,7 +42,6 @@ class CompatibilityAdapterBuilder {
         'Set-EntraUserThumbnailPhoto',
         'Reset-EntraLifeCycleGroup',
         'Get-EntraObjectByObjectId',
-        'Get-EntraGroupPermissionGrant',
         'Remove-EntraPermissionGrantConditionSet',
         'Get-EntraPermissionGrantPolicy',
         'Remove-EntraOAuth2PermissionGrant',
@@ -140,7 +139,6 @@ class CompatibilityAdapterBuilder {
     'Select-EntraBetaGroupIdsUserIsMemberOf',
     'Set-EntraBetaNamedLocationPolicy',    
     'New-EntraBetaNamedLocationPolicy',
-    'Remove-EntraBetaApplication',
     'Restore-EntraBetaDeletedApplication',    
     'Remove-EntraBetaPermissionGrantConditionSet'
         

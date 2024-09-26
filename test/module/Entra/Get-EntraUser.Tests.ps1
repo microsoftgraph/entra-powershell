@@ -62,7 +62,7 @@ Describe "Get-EntraUser" {
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should return specific user with Alias" {
+        It "Should execute successfully with Alias" {
             $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty
