@@ -31,7 +31,6 @@ Find-EntraPermission
     [-SearchString] <String>
     [-ExactMatch]
     [-PermissionType <String>]
-    [-Online]
     [-ProgressAction <ActionPreference>]
     [<CommonParameters>]
 ```
@@ -162,18 +161,6 @@ Accept wildcard characters: False
 ### -ExactMatch
 
 Sets if Search String should be an exact match.
-
-```yaml
-
-Type: System.Management.Automation.SwitchParameter
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Online
 
 ```yaml
 
