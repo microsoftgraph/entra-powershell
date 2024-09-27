@@ -20,14 +20,9 @@ function Set-EntraDirSyncEnabled {
         if ($EnableDirsync -or (-not($EnableDirsync))) {
             $body["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
         }        
-        if ([string]::IsNullOrWhiteSpace($TenantId)) {
-           
-            $OrganizationId = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/").value).id
-           write-host($OrganizationId)
+        if ([string]::IsNullOrWhiteSpace($TenantId)) {           
+            $OrganizationId = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/").value).id           
             $URL = "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/" + $OrganizationId
-
-            # $OnPremisesDirectorySynchronizationId = (Get-MgDirectoryOnPremiseSynchronization).Id
-            # $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
         }
         
         $params["Uri"] = $URL
@@ -47,9 +42,7 @@ function Set-EntraDirSyncEnabled {
         }
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-
         $response
-            # $response = Update-MgOrganization @params -Headers $customHeaders
-            # $response
+        
     }
 }
