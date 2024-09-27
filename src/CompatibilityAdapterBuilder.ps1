@@ -60,6 +60,18 @@ class CompatibilityAdapterBuilder {
         'Remove-EntraDeletedApplication',
         'Select-EntraGroupIdsUserIsMemberOf',
         'Add-EntraBetaServicePrincipalPolicy',
+        'Get-EntraApplicationKeyCredential',
+        'Get-EntraPermissionGrantConditionSet',
+        'Get-EntraPermissionGrantConditionSet',
+        'New-EntraNamedLocationPolicy',
+        'New-EntraServicePrincipalAppRoleAssignment',
+        'Restore-EntraDeletedDirectoryObject',
+    'Restore-EntraBetaDeletedDirectoryObject',
+    'New-EntraBetaServicePrincipalAppRoleAssignment',
+    'New-EntraBetaNamedLocationPolicy',
+    'Get-EntraBetaPermissionGrantConditionSet',
+    'Get-EntraBetaPermissionGrantConditionSet',
+    'Get-EntraBetaApplicationKeyCredential',
     'Get-EntraBetaPrivilegedRoleDefinition',
     'Get-EntraBetaFeatureRolloutPolicy',
     'Set-EntraBetaPermissionGrantPolicy',
@@ -85,7 +97,7 @@ class CompatibilityAdapterBuilder {
     'New-EntraBetaUserAppRoleAssignment',    
     'Get-EntraBetaTrustFrameworkPolicy',
     'Remove-EntraBetaObjectSetting',
-    'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues',
+    'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue',
     'Get-EntraBetaUserOAuth2PermissionGrant',
     'New-EntraBetaApplicationKey',
     'Get-EntraBetaPolicy',
@@ -705,7 +717,7 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and $parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id')) {
+        if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id'))) {
             $function = @"
 function $($Command.Generate) {
 $($Command.CustomScript)    
@@ -947,7 +959,7 @@ $OutputTransformations
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
-                if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
+                if(($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
                     $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
                 }else{
                     $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)

@@ -107,7 +107,7 @@ Describe "Get-EntraBetaUserManager" {
         }
 
         It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }   
 
         It "Should fail when invalid parameter is passed" {

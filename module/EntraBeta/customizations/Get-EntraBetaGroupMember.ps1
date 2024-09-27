@@ -96,10 +96,12 @@
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')
+                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')                
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    if ($null -ne $_.PSObject.Properties[$prop]) {
+                        $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                        $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    }
                 }
             }
         }
