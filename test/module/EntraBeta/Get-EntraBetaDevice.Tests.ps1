@@ -33,18 +33,24 @@ BeforeAll {
 Describe "Get-EntraBetaDevice" {
     Context "Test for Get-EntraBetaDevice" {
         It "Should return specific device" {
-            $result = Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | should -Be "Mock-Device"
 
             Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaDevice -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should return specific device with Alias" {
+            $result = Get-EntraBetaDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DeviceId is empty" {
+            { Get-EntraBetaDevice -DeviceId  } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
+        }
+        It "Should fail when DeviceId is invalid" {
+            { Get-EntraBetaDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
         }
         It "Should return all applications" {
             $result = Get-EntraBetaDevice -All
@@ -93,7 +99,7 @@ Describe "Get-EntraBetaDevice" {
             { Get-EntraBetaDevice -Top xy } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Result should Contain Alias properties" {
-            $result = Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DevicePhysicalIds | should -Be "[HWID]:h:6825786449406074"
             $result.DeviceObjectVersion | should -Be "2"
@@ -104,7 +110,7 @@ Describe "Get-EntraBetaDevice" {
 
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.DeviceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -114,19 +120,19 @@ Describe "Get-EntraBetaDevice" {
             $params.Filter | Should -Match 'Mock-Device'
         }
         It "Property parameter should work" {
-            $result =  Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
+            $result =  Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-Device'
 
             Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDevice"
 
-            $result = Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDevice"
@@ -143,7 +149,7 @@ Describe "Get-EntraBetaDevice" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

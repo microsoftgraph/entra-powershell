@@ -6,16 +6,17 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+    [Alias("ObjectId")]
+    [System.String] $OnPremisesPublishingProfileId
     )
 
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "DELETE"
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/"+'$ref'
+            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$OnPremisesPublishingProfileId/connectorGroup/"+'$ref'
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

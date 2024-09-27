@@ -6,16 +6,17 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    [Alias("Id")]
+    [System.String] $OnPremisesPublishingProfileId
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
-        $Id = $PSBoundParameters["Id"]
+        $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
         $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
-        if($PSBoundParameters.ContainsKey("Id"))
+        if($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId"))
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
         }

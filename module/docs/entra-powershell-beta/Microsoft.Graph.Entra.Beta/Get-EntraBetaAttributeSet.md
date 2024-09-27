@@ -36,7 +36,7 @@ Get-EntraBetaAttributeSet
 
 ```powershell
 Get-EntraBetaAttributeSet 
- -Id <String> 
+ -AttributeSetId <String> 
  [<CommonParameters>]
 ```
 
@@ -75,7 +75,7 @@ This example returns all attribute sets.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraBetaAttributeSet -Id 'Testing'
+Get-EntraBetaAttributeSet -AttributeSetId 'Testing'
 ```
 
 ```Output
@@ -86,11 +86,11 @@ Testing Attributes for engineering team 10
 
 This example demonstrates how to retrieve an attribute set by Id.
 
-- `Id` parameter specifies the unique identifier for the attribute set within a tenant.
+- `-AttributeSetId` parameter specifies the unique identifier for the attribute set within a tenant.
 
 ## Parameters
 
-### -Id
+### -AttributeSetId
 
 Unique identifier for the attribute set within a tenant. 
 
@@ -99,7 +99,7 @@ This identifier can be up to 32 characters long and may include Unicode characte
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

@@ -26,7 +26,7 @@ Get the direct reports for a contact.
 
 ```powershell
 Get-EntraBetaContactDirectReport
- -ObjectId <String>
+ -OrgContactId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -44,37 +44,37 @@ The `Get-EntraBetaContactDirectReport` cmdlet gets the direct reports for a cont
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraBetaContact -Top 1
-Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId
+Get-EntraBetaContactDirectReport -OrgContactId $Contact.ObjectId
 ```
 
 This example shows how to retrieve direct reports for an organizational contact.
 You can use the command `Get-EntraBetaContact` to get organizational contact.
 
-- `-ObjectId` parameter specifies the contact Id.
+- `-OrgContactId` parameter specifies the contact Id.
 
 ### Example 2: Get all direct reports of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraBetaContact -Top 1
-Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId -All
+Get-EntraBetaContactDirectReport -OrgContactId $Contact.ObjectId -All
 ```
 
 This example shows how to retrieve all direct reports for an organizational contact.
 
-- `-ObjectId` parameter specifies the contact Id.
+- `-OrgContactId` parameter specifies the contact Id.
 
 ### Example 3: Get top two direct reports of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraBetaContact -Top 1
-Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId -Top 2
+Get-EntraBetaContactDirectReport -OrgContactId $Contact.ObjectId -Top 2
 ```
 
 This example shows how to retrieve top two direct reports for an organizational contact.
 
-- `-ObjectId` parameter specifies the contact Id.
+- `-OrgContactId` parameter specifies the contact Id.
 
 ## Parameters
 
@@ -94,14 +94,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

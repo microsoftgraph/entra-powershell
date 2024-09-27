@@ -27,7 +27,7 @@ Get a service principal membership.
 
 ```powershell
 Get-EntraBetaServicePrincipalMembership
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -45,7 +45,7 @@ The `Get-EntraBetaServicePrincipalMembership` cmdlet gets the memberships of a s
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId
+Get-EntraBetaServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -56,14 +56,14 @@ Id                                   DeletedDateTime
 
 This cmdlet retrieves a specified service principal memberships in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal ID.
 
-- `-ObjectId` parameter specifies the service principal ID.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ### Example 2: Retrieve all memberships of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId -All 
+Get-EntraBetaServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -76,14 +76,14 @@ Id                                   DeletedDateTime
 
 This command gets all memberships of a specified service principal.
 
-- `-ObjectId` parameter specifies the service principal ID.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ### Example 3: Retrieve top two memberships of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipal.ObjectId -Top 2
+Get-EntraBetaServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
@@ -96,7 +96,7 @@ Id                                   DeletedDateTime
 
 This command gets top two memberships of a specified service principal.
 
-- `-ObjectId` parameter specifies the service principal ID.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ## Parameters
 
@@ -116,14 +116,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

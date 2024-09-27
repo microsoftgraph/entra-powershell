@@ -27,14 +27,14 @@ Retrieves the lifecycle policy object to which a group belongs.
 
 ```powershell
 Get-EntraBetaLifecyclePolicyGroup
- -Id <String>
+ -GroupId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-Id` parameter to get the lifecycle policy object to which a group belongs.
+The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-GroupId` parameter to get the lifecycle policy object to which a group belongs.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraBetaLifecyclePolicyGroup -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -53,18 +53,18 @@ bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200            
 
 This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.
 
-- `-Id` - specifies the ID of a group.
+- `-GroupId` - specifies the ID of a group.
 
 ## Parameters
 
-### -Id
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

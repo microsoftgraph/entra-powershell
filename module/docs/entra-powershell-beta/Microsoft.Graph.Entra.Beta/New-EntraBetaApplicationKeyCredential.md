@@ -26,7 +26,7 @@ Creates a key credential for an application.
 
 ```powershell
 New-EntraBetaApplicationKeyCredential 
- -ObjectId <String>
+ -ApplicationId <String>
  [-CustomKeyIdentifier <String>] 
  [-Type <KeyType>] 
  [-Usage <KeyUsage>]
@@ -53,7 +53,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy
 
 $AppId = (Get-EntraApplication -Top 1).Objectid
 $params = @{
-    ObjectId = $AppId
+    ApplicationId = $AppId
     CustomKeyIdentifier = 'EntraPowerShellKey'
     StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
@@ -76,7 +76,7 @@ Value               : {49, 50, 51}
 
 This example shows how to create an application key credential.
 
-- `-ObjectId` Specifies a unique ID of an application
+- `-ApplicationId` Specifies a unique ID of an application
 - `-CustomKeyIdentifier` Specifies a custom key ID.
 - `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
 - `-Type` Specifies the type of the key.
@@ -99,7 +99,7 @@ $base64Thumbprint = [System.Convert]::ToBase64String($bin)
 $keyid = [System.Guid]::NewGuid().ToString() 
 
 $params = @{
-    ObjectId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ApplicationId = '22223333-cccc-4444-dddd-5555eeee6666'
     CustomKeyIdentifier = $base64Thumbprint
     Type = 'AsymmetricX509Cert'
     Usage = 'Verify'
@@ -113,7 +113,7 @@ New-EntraBetaApplicationKeyCredential @params
 
 This example shows how to create an application key credential.
 
-- `-ObjectId` Specifies a unique ID of an application
+- `-ApplicationId` Specifies a unique ID of an application
 - `-CustomKeyIdentifier` Specifies a custom key ID.
 - `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
 - `-EndDate` Specifies the time when the key becomes invalid as a DateTime object.
@@ -155,14 +155,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
