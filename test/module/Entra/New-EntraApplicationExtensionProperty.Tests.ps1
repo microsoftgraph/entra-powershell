@@ -66,12 +66,9 @@ Context "Test for New-EntraApplicationExtensionProperty" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplicationExtensionProperty"
-
             $result = New-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DataType "MockType" -Name "Mock-App" -TargetObjects "Application"
             $result | Should -Not -BeNullOrEmpty
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplicationExtensionProperty"
-
             Should -Invoke -CommandName New-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
