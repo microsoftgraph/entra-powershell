@@ -19,13 +19,8 @@
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "https://graph.microsoft.com/beta/users/$UserId"
         $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
-        $params["Uri"] = "$baseUri/?$properties"
+        $params["Uri"] = "$baseUri/?$properties"        
         
-        if ($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
-            $params["Uri"] = "$baseUri/?$properties"
-        }
         if($null -ne $PSBoundParameters["Property"])
         {
             $params["Property"] = $PSBoundParameters["Property"]

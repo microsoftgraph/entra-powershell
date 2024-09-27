@@ -20,12 +20,7 @@
         $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId"
         $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
         $params["Uri"] = "$baseUri/?$properties"
-        
-        if ($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
-            $params["Uri"] = "$baseUri/?$properties"
-        }
+                
         if($null -ne $PSBoundParameters["Property"])
         {
             $params["Property"] = $PSBoundParameters["Property"]
