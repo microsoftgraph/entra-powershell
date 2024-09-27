@@ -27,6 +27,9 @@ Retrieve the thumbnail photo of a user.
 ```powershell
 Get-EntraBetaUserThumbnailPhoto
  -ObjectId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
+ [-View <Boolean>]
  [<CommonParameters>]
 ```
 
@@ -55,6 +58,38 @@ This example shows how to retrieve the thumbnail photo of a user that is specifi
 
 ## Parameters
 
+### -FileName
+
+If specified, a copy of the thumbnail photo is written to the specified file name.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -FilePath
+
+If specified, a copy of the thumbnail photo is written to the specified file path with a random name.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -ObjectId
 
 The object ID of the user for which the thumbnail photo is retrieved.
@@ -65,6 +100,22 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -View
+
+If true, view the photo on the screen in a new window.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
