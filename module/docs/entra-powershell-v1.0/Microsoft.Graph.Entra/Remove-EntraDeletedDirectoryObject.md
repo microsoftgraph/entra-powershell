@@ -66,7 +66,7 @@ The DirectoryObjectId of the directory object that is permanently deleted.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
