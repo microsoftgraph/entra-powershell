@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to restore a previously deleted object.
+Restore a previously deleted object.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Restore-EntraDeletedDirectoryObject
 
 ## Description
 
-This cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
+The `Restore-EntraDeletedDirectoryObject` cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
 
 When a group or application is deleted, it is initially soft deleted and can be recovered within the first 30 days. After 30 days, the deleted object is permanently deleted and cannot be recovered.
 
@@ -71,13 +71,15 @@ Id                                   DeletedDateTime
 dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example shows how to restore a deleted object.
+This example shows how to restore a deleted object in Microsoft Entra ID.
+
+- `-Id` parameter specifies the Id of the directory object to restore.
 
 ## Parameters
 
 ### -Id
 
-The Id of the directory object to restore
+The Id of the directory object to restore.
 
 ```yaml
 Type: System.String

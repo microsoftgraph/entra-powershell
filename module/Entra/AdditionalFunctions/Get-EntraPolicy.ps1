@@ -8,7 +8,7 @@ function Get-EntraPolicy {
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
+    [System.Int32] $Top,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All
     )
@@ -19,6 +19,12 @@ function Get-EntraPolicy {
         $baseUrl = "https://graph.microsoft.com/v1.0/policies/"
         $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
+        if($PSBoundParameters.ContainsKey("Top") -and ($null -eq $Top -or $Top -eq 0)){
+            Write-Error "Invalid page size specified: '0'. Must be between 1 and 999 inclusive.  
+Status: 400 (BadRequest) 
+ErrorCode: Request_UnsupportedQuery"
+            break
+        }
         $response = @()
         foreach ($endpoint in $endpoints) {
             $url = "${baseUrl}${endpoint}"
@@ -36,49 +42,7 @@ function Get-EntraPolicy {
                 }
             }
         }
-
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
-        }
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
+        
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================")

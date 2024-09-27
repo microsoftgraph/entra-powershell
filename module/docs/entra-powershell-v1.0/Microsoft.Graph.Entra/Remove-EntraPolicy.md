@@ -11,7 +11,7 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraPolicy
 schema: 2.0.0
 ---
 
@@ -44,13 +44,13 @@ Remove-EntraPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
 This command removes the specified policy from Microsoft Entra ID.
 
-- `-Id` - specifies the ID of the policy you want to remove. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the Policy.
+- `-Id` - specifies the ID of the policy you want to remove.
 
 ## Parameters
 
 ### -Id
 
-The ID of the policy you want to remove.
+The Id of the policy you want to remove.
 
 ```yaml
 Type: System.String

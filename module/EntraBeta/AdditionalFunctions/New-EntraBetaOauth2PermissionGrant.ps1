@@ -72,7 +72,7 @@ function New-EntraBetaOauth2PermissionGrant {
                         $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                     }
                 }
-            }        
+            }
             $userData
         }
     }

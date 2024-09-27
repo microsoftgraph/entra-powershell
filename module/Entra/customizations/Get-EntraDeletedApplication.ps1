@@ -47,7 +47,7 @@
             $params["Debug"] = $PSBoundParameters["Debug"]
         }
         
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $params["Top"] = $PSBoundParameters["Top"]
         }
@@ -109,7 +109,7 @@
                      'PublisherDomain','Web','RequiredResourceAccess')
                      
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $value = $_.$prop | ConvertTo-Json -Depth 5 | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
                

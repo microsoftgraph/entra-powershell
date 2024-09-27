@@ -74,51 +74,7 @@ function New-EntraBetaApplicationProxyApplication {
         if($null -ne $PSBoundParameters["ApplicationServerTimeout"])
         {
             $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
+        }        
 
         #Create New App
         $newAppBody = @{
@@ -148,7 +104,7 @@ function New-EntraBetaApplicationProxyApplication {
                 } 
             } 
             try {
-                $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
+                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
             } catch {
                 Write-Error $_
                 return
@@ -188,7 +144,7 @@ function New-EntraBetaApplicationProxyApplication {
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
+                Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
             } catch {
                 Write-Error $_
                 return
@@ -203,6 +159,17 @@ function New-EntraBetaApplicationProxyApplication {
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
             }
         }
-        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled    
+        
+        $response = $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled | ConvertTo-Json -depth 10 | ConvertFrom-Json
+            
+        $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphonPremisesPublishing
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        
+            }
+        
+        $respType
         }        
 }

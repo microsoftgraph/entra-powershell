@@ -26,7 +26,7 @@ Assigns a user to an application role.
 ```powershell
 New-EntraUserAppRoleAssignment 
  -ObjectId <String> 
- -PrincipalId <String> 
+ -PrincipalId <String>
  -Id <String> 
  -ResourceId <String>
  [<CommonParameters>]
@@ -38,11 +38,11 @@ The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application rol
 
 To grant an app role assignment to a user, you need three identifiers:
 
-- PrincipalId: The id of the user to whom you are assigning the app role.
+- PrincipalId: The Id of the user to whom you are assigning the app role.
 
-- ResourceId: The id of the resource servicePrincipal that has defined the app role.
+- ResourceId: The Id of the resource servicePrincipal that has defined the app role.
 
-- Id: The id of the appRole (defined on the resource service principal) to assign to the user.
+- Id: The Id of the appRole (defined on the resource service principal) to assign to the user.
 
 ## Examples
 
@@ -64,13 +64,21 @@ $params = @{
 New-EntraUserAppRoleAssignment @params
 ```
 
-```output
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- ------------------- -
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 UserPrincipalName          aaaaaaaa-bbbb-cccc-1111-222222222222 User          App-DisplayName 
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
+This command assigns a user to an application that doesn't have any roles.  
+You can use the command `Get-EntraUser` to get user object Id.  
+You can use the command `Get-EntraApplication` to get application Id.  
+You can use the command `Get-EntraServicePrincipal` to get service principal object Id.
+
+- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
 
 ### Example 2: Assign a user to a specific role within an application
 
@@ -97,9 +105,14 @@ DeletedDateTime Id                                          AppRoleId           
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
+You can use the command `Get-EntraUser` to get user object Id.  
+You can use the command `Get-EntraServicePrincipal` to get service principal object Id.
 
-For more information on how to retrieve application roles for an application, see description of the Id parameter.
+- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
 
 ## Parameters
 
@@ -131,7 +144,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of the user (as a User Principal Name or ObjectId) in Microsoft Entra ID to which the new app role is to be assigned.
+Specifies the ID of the user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID to which the new app role is to be assigned.
 
 ```yaml
 Type: System.String

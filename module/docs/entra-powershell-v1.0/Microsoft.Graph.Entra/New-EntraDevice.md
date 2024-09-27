@@ -34,7 +34,7 @@ New-EntraDevice
  -DeviceOSVersion <String>
  -AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>
  [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] 
- -DeviceTrustType <String>] 
+ [-DeviceTrustType <String>] 
  [-DeviceMetadata <String>]
  [-ApproximateLastLogonTimeStamp <DateTime>] 
  [-IsManaged <Boolean>]
@@ -49,13 +49,14 @@ New-EntraDevice
 
 The `New-EntraDevice` cmdlet creates a device in Microsoft Entra ID.
 
+The calling user must be in one of the following Microsoft Entra roles: Intune Administrator or Windows 365 Administrator.
+
 ## Examples
 
 ### Example 1: Create a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 
 $params = @{
     AccountEnabled = $true

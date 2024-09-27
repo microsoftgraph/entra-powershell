@@ -43,9 +43,8 @@ Retrieve the thumbnail photo of a user.
 ### Example 1: Retrieve thumbnail photo by Id
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserThumbnailPhoto -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserThumbnailPhoto -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -54,7 +53,9 @@ Id      Height Width
 default 292    278
 ```
 
-This example demonstrates how to retrieve the thumbnail photo of a specified user.
+This example shows how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
+
+- `-ObjectId` parameter specifies the user for which the thumbnail photo is retrieved.
 
 ## Parameters
 

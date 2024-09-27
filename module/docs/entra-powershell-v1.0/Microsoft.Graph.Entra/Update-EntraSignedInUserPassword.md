@@ -2,9 +2,8 @@
 title: Update-EntraSignedInUserPassword
 description: This article provides details on the Update-EntraSignedInUserPassword command.
 
-
 ms.topic: reference
-ms.date: 07/22/2024
+ms.date: 08/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,7 +26,7 @@ Updates the password for the signed-in user.
 
 ```powershell
 Update-EntraSignedInUserPassword 
- -NewPassword <SecureString> 
+ -NewPassword <SecureString>
  -CurrentPassword <SecureString>
  [<CommonParameters>]
 ```
@@ -36,7 +35,7 @@ Update-EntraSignedInUserPassword
 
 The `Update-EntraSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
 
-Allow users to update their own passwords. Any user can update their password without needing to be in an administrator role.
+Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
 ## Examples
 
@@ -50,15 +49,13 @@ $params = @{
     CurrentPassword = $CurrentPassword
     NewPassword = $NewPassword
 }
-
 Update-EntraSignedInUserPassword @params
 ```
 
-This example updates the password for the signed-in user.
+This example shows how to update the password for the signed-in user.
 
-- `CurrentPassword` specifies the current password of the signed-in user.
-
-- `NewPassword` specifies the new password for the signed-in user.
+- `-CurrentPassword` parameter specifies the current password of the signed-in user.
+- `-NewPassword` parameter specifies the new password for the signed-in user.
 
 ## Parameters
 
@@ -106,4 +103,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
 
-## RELATED LINKS
+## Related links
