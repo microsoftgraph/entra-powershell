@@ -47,7 +47,7 @@ $params = @{
     ObjectId = $Device.ObjectId 
     RefObjectId = $User.ObjectId
 }
-Add-EntraDeviceRegisteredUser @params
+Add-EntraDeviceRegisteredOwner @params
 ```
 
 This example shows how to add a registered user to a device.
