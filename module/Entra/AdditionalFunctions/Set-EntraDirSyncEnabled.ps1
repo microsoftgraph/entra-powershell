@@ -15,14 +15,14 @@ function Set-EntraDirSyncEnabled {
         $body = @{}
         $OrganizationId=''
         $params["Method"] = "PATCH"
-        $URL = "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/" + $TenantId
+        $URL = "https://graph.microsoft.com/v1.0/organization/" + $TenantId
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($EnableDirsync -or (-not($EnableDirsync))) {
             $body["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
         }        
         if ([string]::IsNullOrWhiteSpace($TenantId)) {           
             $OrganizationId = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/").value).id           
-            $URL = "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/" + $OrganizationId
+            $URL = "https://graph.microsoft.com/v1.0/organization/" + $OrganizationId
         }
         
         $params["Uri"] = $URL
