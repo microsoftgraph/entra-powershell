@@ -49,5 +49,18 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
                 $true
             }
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }    
     }
 }

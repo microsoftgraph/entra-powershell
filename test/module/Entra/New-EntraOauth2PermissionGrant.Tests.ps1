@@ -55,11 +55,25 @@ Describe "New-EntraOauth2PermissionGrant" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraOauth2PermissionGrant"
-
-            New-EntraOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" | Out-Null
+            $result = New-EntraOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraOauth2PermissionGrant"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
+            }
+        } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
             }
         }   
     }
