@@ -11,6 +11,9 @@ schedules:
     include:
     - main
 
+trigger: none
+pr: none
+
 pool:
   vmImage: windows-latest
 stages:
