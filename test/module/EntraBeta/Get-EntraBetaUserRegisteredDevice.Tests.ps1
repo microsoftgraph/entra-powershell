@@ -47,10 +47,10 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when UserId is empty" {
-            { Get-EntraBetaUserRegisteredDevice -UserId    } | Should -Throw "Missing an argument for parameter 'UserId'*"
+            { Get-EntraBetaUserRegisteredDevice -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
         It "Should fail when UserId is invalid" {
-            { Get-EntraBetaUserRegisteredDevice -UserId  ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Get-EntraBetaUserRegisteredDevice -UserId ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should return All user registered devices" {
             $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
@@ -118,4 +118,3 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
         }
     }
 }
- 
