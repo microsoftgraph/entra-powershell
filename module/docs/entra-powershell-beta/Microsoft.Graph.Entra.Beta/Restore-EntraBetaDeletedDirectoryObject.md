@@ -79,11 +79,7 @@ This example shows how to restore a deleted object in Microsoft Entra ID.
 ### Example 2: Restoring a Soft-Deleted User and Removing Conflicting Proxy Addresses
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All' #administrativeUnit resource
-Connect-Entra -Scopes 'Application.ReadWrite.All' #application resource
-Connect-Entra -Scopes 'Group.ReadWrite.All' #group resource
-Connect-Entra -Scopes 'Application.ReadWrite.All' #servicePrincipal resource
-Connect-Entra -Scopes 'User.ReadWrite.All' #user resource
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Restore-EntraBetaDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -AutoReconcileProxyConflict
 ```
 
