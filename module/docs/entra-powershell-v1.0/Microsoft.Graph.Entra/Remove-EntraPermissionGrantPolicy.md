@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraPermissionGrantPolicy
@@ -43,7 +44,9 @@ Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 Remove-EntraPermissionGrantPolicy -Id 'my_permission_grant_policy_id'
 ```
 
-This example demonstrates how to remove permission grant policy with specified ID.
+This command removes the specified permission grant policy in Microsoft Entra ID.
+
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
 
 ## Parameters
 

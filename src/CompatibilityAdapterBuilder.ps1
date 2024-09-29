@@ -429,6 +429,8 @@ public $($object.GetType().Name)()
             GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
+            CmdletsToExport=@()
+            AliasesToExport=@()
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
@@ -494,7 +496,7 @@ public $($object.GetType().Name)()
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
 function Get-EntraUnsupportedCommand {
-    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Entra PowerShell."
+    Throw [System.NotSupportedException] "This command is not supported by Microsoft Entra PowerShell."
 }
 
 "@
@@ -521,9 +523,21 @@ function Get-EntraUnsupportedCommand {
             elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
-            #Adding direct aliases for Connect-Entra and Disconnect-Entra
-            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+
+            if (Test-Path $aliasDefinitionsPath) {
+                $directAliases = Get-Content $aliasDefinitionsPath -Raw
+                $aliases += $directAliases  # Append the content to $aliases
+            }
+
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -607,7 +621,16 @@ $($Command.CustomScript)
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
             "Get-EntraAdministrativeUnit",
-            "Get-EntraDirectoryRoleAssignment"
+            "Get-EntraDirectoryRoleAssignment",
+            "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue",
+            "Get-EntraBetaFeatureRolloutPolicy",
+            "Get-EntraBetaGroup",
+            "Get-EntraBetaPrivilegedResource",
+            "Get-EntraBetaServicePrincipal",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaAdministrativeUnit",
+            "Get-EntraBetaDevice", 
+            "Get-EntraBetaPrivilegedRoleDefinition"
         )
         
         
@@ -827,13 +850,29 @@ $OutputTransformations
     }
 
     hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
-        $paramBlock = @"
-    if(`$null -ne `$PSBoundParameters["$($OldName)"])
+#         $paramBlock = @"
+#     if(`$null -ne `$PSBoundParameters["$($OldName)"])
+#     {
+#         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
+        
+#     }
+
+# "@
+        $paramBlock = if ($OldName -eq "Top") {@"
+    if (`$PSBoundParameters.ContainsKey(`"Top`"))
     {
         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
 
 "@
+        } else {@"
+    if (`$null -ne `$PSBoundParameters["$($OldName)"])
+    {
+        `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
+    }
+
+"@
+}
         return $paramBlock
     }
 

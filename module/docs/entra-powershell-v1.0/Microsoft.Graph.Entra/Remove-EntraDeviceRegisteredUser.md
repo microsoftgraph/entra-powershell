@@ -43,7 +43,7 @@ The `Remove-EntraDeviceRegisteredUser` cmdlet removes a registered user from a M
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $Device = Get-EntraDevice -Top 1
 $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
-Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
+Remove-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
 This example shows how to remove the registered user from device.

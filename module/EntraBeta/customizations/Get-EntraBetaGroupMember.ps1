@@ -22,7 +22,7 @@
                 $params["All"] = $PSBoundParameters["All"]
             }
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $params["Top"] = $PSBoundParameters["Top"]
         }

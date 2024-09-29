@@ -92,13 +92,10 @@ Describe "Get-EntraBetaGroupOwner" {
         It "Should contain 'User-Agent' header" {
         
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
-
             $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-
-           $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
-
-           Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                $true
            }
@@ -115,7 +112,7 @@ Describe "Get-EntraBetaGroupOwner" {
         { Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
        }
 
-       It "Should execute successfully without throwing an error" {
+       It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference
         $DebugPreference = 'Continue'
@@ -128,5 +125,5 @@ Describe "Get-EntraBetaGroupOwner" {
             $DebugPreference = $originalDebugPreference        
         }
     }
-    }
+}
 }

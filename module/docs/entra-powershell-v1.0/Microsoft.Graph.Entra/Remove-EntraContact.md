@@ -32,7 +32,7 @@ Remove-EntraContact
 
 ## Description
 
-The Remove-EntraContact removes a contact from Microsoft Entra ID.
+The `Remove-EntraContact` removes a contact from Microsoft Entra ID.
 
 ## Examples
 
@@ -40,7 +40,7 @@ The Remove-EntraContact removes a contact from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Top 1
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
 Remove-EntraContact -ObjectId $Contact.ObjectId
 ```
 

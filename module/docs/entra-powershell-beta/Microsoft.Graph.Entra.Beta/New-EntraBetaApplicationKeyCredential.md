@@ -88,8 +88,7 @@ You can use the `Get-EntraBetaApplication` cmdlet to retrieve the application Ob
 ### Example 2: Use a certificate to add an application key credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 
 $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
 $cer.Import('C:\Users\ContosoUser\appcert.cer') 

@@ -42,7 +42,9 @@ Set-EntraBetaAuthorizationPolicy
 
 ## Description
 
-The `Set-EntraBetaAuthorizationPolicy` cmdlet updates an Azure Active Directory authorization policy.
+The `Set-EntraBetaAuthorizationPolicy` cmdlet updates a Microsoft Entra ID authorization policy.
+
+For delegated scenarios, the user needs to have the `Privileged Role Administrator` Microsoft Entra role.
 
 ## Examples
 
