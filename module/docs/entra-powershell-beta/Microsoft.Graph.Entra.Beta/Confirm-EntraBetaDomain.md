@@ -25,8 +25,8 @@ Validate the ownership of a domain.
 ## Syntax
 
 ```powershell
-Confirm-EntraBetaDomain 
- -DomainName <String> 
+Confirm-EntraBetaDomain
+ -DomainName <String>
  -ForceTakeover <Boolean>
  [<CommonParameters>]
 ```
@@ -50,17 +50,17 @@ Confirm-EntraBetaDomain -DomainName Contoso.com
 
 This example verifies a domain and updates its status to `verified`.
 
-### Example 2: Confirm the domain with a cross cloud verification code
+### Example 2: External admin takeover of a domain
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraBetaDomain -DomainName Contoso.com -ForceTakeover $True
 ```
 
-This example demonstrates the confirmation of a domain when an external administrator needs to take over an unmanaged domain.
+This example illustrates how to confirm a domain when an external administrator needs to assume control of an unmanaged domain.
 
-- `DomainName` Specifies the fully qualified domain name to retrieve.
-- `ForceTakeover` Specifies whether to forcibly take control of an unmanaged domain associated with a tenant.
+- `DomainName` specifies the fully qualified domain name to retrieve.
+- `ForceTakeover` specifies whether to forcibly take control of an unmanaged domain associated with a tenant.
 
 ## Parameters
 
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 
 ### -ForceTakeover
 
-Used for external admin takeover of an unmanaged domain. The default value for this parameter is false.
+Used for external admin takeover of an unmanaged domain. The default value for this parameter is `false`.
 
 ```yaml
 Type: System.Boolean
