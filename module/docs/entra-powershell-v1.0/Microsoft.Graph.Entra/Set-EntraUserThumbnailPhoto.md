@@ -27,27 +27,27 @@ Set the thumbnail photo for a user.
 ### File (Default)
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
- [-ObjectId <String>] 
- -FilePath <String> 
+Set-EntraUserThumbnailPhoto
+ [-ObjectId <String>]
+ -FilePath <String>
  [<CommonParameters>]
 ```
 
 ### Stream
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
+Set-EntraUserThumbnailPhoto
  -FileStream <Stream>
- [-ObjectId <String>] 
+ [-ObjectId <String>]
  [<CommonParameters>]
 ```
 
 ### ByteArray
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
- [-ObjectId <String>] 
- -ImageByteArray <Byte[]> 
+Set-EntraUserThumbnailPhoto
+ [-ObjectId <String>]
+ -ImageByteArray <Byte[]>
  [<CommonParameters>]
 ```
 

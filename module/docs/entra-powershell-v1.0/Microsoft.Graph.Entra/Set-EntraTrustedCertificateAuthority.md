@@ -26,7 +26,7 @@ Updates a trusted certificate authority.
 ## Syntax
 
 ```powershell
-Set-EntraTrustedCertificateAuthority 
+Set-EntraTrustedCertificateAuthority
  -CertificateAuthorityInformation <CertificateAuthorityInformation>
 ```
 

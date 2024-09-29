@@ -26,17 +26,17 @@ Used to set identity synchronization features for a tenant.
 ## Syntax
 
 ```powershell
-Set-EntraDirSyncFeature 
- -Feature <String> 
- -Enabled <Boolean> 
- [-TenantId <String>] 
- [-Force] 
+Set-EntraDirSyncFeature
+ -Feature <String>
+ -Enabled <Boolean>
+ [-TenantId <String>]
+ [-Force]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraDirSyncFeature` cmdlet sets identity synchronization features for a tenant.  
+The `Set-EntraDirSyncFeature` cmdlet sets identity synchronization features for a tenant.
 
 You can use the following synchronization features with this cmdlet:  
 

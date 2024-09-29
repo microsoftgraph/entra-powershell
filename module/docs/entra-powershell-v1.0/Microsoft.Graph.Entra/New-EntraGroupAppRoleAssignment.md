@@ -26,10 +26,10 @@ Assign a group of users to an application role.
 ## Syntax
 
 ```powershell
-New-EntraGroupAppRoleAssignment 
- -ObjectId <String> 
+New-EntraGroupAppRoleAssignment
+ -ObjectId <String>
  -PrincipalId <String>
- -Id <String> 
+ -Id <String>
  -ResourceId <String>
  [<CommonParameters>]
 ```

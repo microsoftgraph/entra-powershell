@@ -25,9 +25,9 @@ Removes the registered owner of a device.
 ## Syntax
 
 ```powershell
-Remove-EntraDeviceRegisteredOwner 
- -OwnerId <String> 
- -ObjectId <String> 
+Remove-EntraDeviceRegisteredOwner
+ -OwnerId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

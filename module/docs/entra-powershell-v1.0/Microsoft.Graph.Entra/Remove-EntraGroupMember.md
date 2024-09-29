@@ -25,9 +25,9 @@ Removes a member from a group.
 ## Syntax
 
 ```powershell
-Remove-EntraGroupMember 
- -ObjectId <String> 
- -MemberId <String> 
+Remove-EntraGroupMember
+ -ObjectId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 

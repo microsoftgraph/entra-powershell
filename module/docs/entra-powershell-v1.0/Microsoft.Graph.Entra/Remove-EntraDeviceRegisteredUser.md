@@ -25,9 +25,9 @@ Removes a registered user from a device.
 ## Syntax
 
 ```powershell
-Remove-EntraDeviceRegisteredUser 
- -ObjectId <String> 
- -UserId <String> 
+Remove-EntraDeviceRegisteredUser
+ -ObjectId <String>
+ -UserId <String>
  [<CommonParameters>]
 ```
 

@@ -26,18 +26,18 @@ Update an existing Microsoft Entra ID permission grant condition set.
 ## Syntax
 
 ```powershell
-Set-EntraPermissionGrantConditionSet 
+Set-EntraPermissionGrantConditionSet
  -ConditionSetType <String>
  -Id <String>
  -PolicyId <String>
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
- [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>] 
- [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>] 
+ [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>]
+ [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>]
  [-ResourceApplication <String>]
- [-PermissionType <String>] 
+ [-PermissionType <String>]
  [-PermissionClassification <String>]
  [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>]
- [-ClientApplicationPublisherIds <System.Collections.Generic.List`1[System.String]>] 
+ [-ClientApplicationPublisherIds <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

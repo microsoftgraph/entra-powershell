@@ -24,9 +24,9 @@ Removes an owner from a group.
 ## Syntax
 
 ```powershell
-Remove-EntraGroupOwner 
- -OwnerId <String> 
- -ObjectId <String> 
+Remove-EntraGroupOwner
+ -OwnerId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

@@ -25,8 +25,8 @@ Removes an owner from a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipalOwner 
- -OwnerId <String> 
+Remove-EntraServicePrincipalOwner
+ -OwnerId <String>
  -ObjectId <String>
  [<CommonParameters>]
 ```

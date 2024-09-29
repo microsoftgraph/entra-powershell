@@ -25,7 +25,7 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 ## Syntax
 
 ```powershell
-Set-EntraUserLicense 
+Set-EntraUserLicense
  -ObjectId <String>
  -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]

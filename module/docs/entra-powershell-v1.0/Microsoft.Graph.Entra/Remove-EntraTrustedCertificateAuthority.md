@@ -25,7 +25,7 @@ Removes a trusted certificate authority.
 ## Syntax
 
 ```powershell
-Remove-EntraTrustedCertificateAuthority 
+Remove-EntraTrustedCertificateAuthority
  -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```

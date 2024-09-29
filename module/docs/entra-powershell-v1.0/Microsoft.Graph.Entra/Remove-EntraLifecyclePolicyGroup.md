@@ -26,9 +26,9 @@ Removes a group from a lifecycle policy.
 ## Syntax
 
 ```powershell
-Remove-EntraLifecyclePolicyGroup 
- -GroupId <String> 
- -Id <String> 
+Remove-EntraLifecyclePolicyGroup
+ -GroupId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 

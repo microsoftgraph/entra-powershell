@@ -26,7 +26,7 @@ Removes a user application role assignment.
 
 ```powershell
 Remove-EntraUserAppRoleAssignment
- -AppRoleAssignmentId <String> 
+ -AppRoleAssignmentId <String>
  -ObjectId <String>
  [<CommonParameters>]
 ```

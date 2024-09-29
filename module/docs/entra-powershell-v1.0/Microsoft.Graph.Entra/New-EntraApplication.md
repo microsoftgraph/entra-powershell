@@ -38,7 +38,7 @@ New-EntraApplication
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
  [-PublicClient <PublicClientApplication>]
  [-InformationalUrl <InformationalUrl>]
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-Api <ApiApplication>]
  [-OptionalClaims <OptionalClaims>]
  [-GroupMembershipClaims <String>]

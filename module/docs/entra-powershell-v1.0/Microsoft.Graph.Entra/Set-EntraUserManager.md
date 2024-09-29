@@ -24,9 +24,9 @@ Updates a user's manager.
 ## Syntax
 
 ```powershell
-Set-EntraUserManager 
- -ObjectId <String> 
- -RefObjectId <String> 
+Set-EntraUserManager
+ -ObjectId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

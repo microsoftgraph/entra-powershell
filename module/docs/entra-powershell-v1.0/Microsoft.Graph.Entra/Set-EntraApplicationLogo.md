@@ -27,9 +27,9 @@ Sets the logo for an Application
 ### File (Default)
 
 ```powershell
-Set-EntraApplicationLogo 
- -ObjectId <String> 
- -FilePath <String> 
+Set-EntraApplicationLogo
+ -ObjectId <String>
+ -FilePath <String>
  [<CommonParameters>]
 ```
 

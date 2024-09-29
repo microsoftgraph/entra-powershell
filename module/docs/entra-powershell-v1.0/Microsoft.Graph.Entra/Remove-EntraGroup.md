@@ -24,8 +24,8 @@ Removes a group.
 ## Syntax
 
 ```powershell
-Remove-EntraGroup 
- -ObjectId <String> 
+Remove-EntraGroup
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

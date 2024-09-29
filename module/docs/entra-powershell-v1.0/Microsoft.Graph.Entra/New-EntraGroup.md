@@ -28,11 +28,11 @@ New-EntraGroup
  -DisplayName <String>
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
  -SecurityEnabled <Boolean>
- [-Description <String>] 
- -MailEnabled <Boolean> 
+ [-Description <String>]
+ -MailEnabled <Boolean>
  -MailNickname <String>
- [-Visibility <String>] 
- [-IsAssignableToRole <Boolean>] 
+ [-Visibility <String>]
+ [-IsAssignableToRole <Boolean>]
  [<CommonParameters>]
 ```
 

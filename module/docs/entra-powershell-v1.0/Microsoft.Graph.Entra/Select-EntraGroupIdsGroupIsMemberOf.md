@@ -25,7 +25,7 @@ Gets group IDs that a group is a member of.
 ## Syntax
 
 ```powershell
-Select-EntraGroupIdsGroupIsMemberOf 
+Select-EntraGroupIdsGroupIsMemberOf
  -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]

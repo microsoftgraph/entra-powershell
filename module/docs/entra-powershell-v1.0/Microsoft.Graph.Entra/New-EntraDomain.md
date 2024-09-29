@@ -25,10 +25,10 @@ Creates a domain.
 ## Syntax
 
 ```powershell
-New-EntraDomain 
+New-EntraDomain
  -Name <String>
- [-IsDefault <Boolean>] 
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [-IsDefault <Boolean>]
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

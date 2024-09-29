@@ -25,9 +25,9 @@ Remove a password from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationPassword 
- -ObjectId <String> 
- [-KeyId <String>] 
+Remove-EntraApplicationPassword
+ -ObjectId <String>
+ [-KeyId <String>]
  [<CommonParameters>]
 ```
 

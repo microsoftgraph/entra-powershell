@@ -26,9 +26,9 @@ Restores a previously deleted application.
 ## Syntax
 
 ```powershell
-Restore-EntraDeletedApplication 
+Restore-EntraDeletedApplication
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- -ObjectId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
