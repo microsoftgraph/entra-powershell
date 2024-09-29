@@ -26,11 +26,11 @@ Used to set identity synchronization features for a tenant.
 ## Syntax
 
 ```powershell
-Set-EntraBetaDirSyncFeature 
- -Feature <String> 
- -Enabled <Boolean> 
- [-TenantId <String>] 
- [-Force] 
+Set-EntraBetaDirSyncFeature
+ -Feature <String>
+ -Enabled <Boolean>
+ [-TenantId <String>]
+ [-Force]
  [<CommonParameters>]
 ```
 

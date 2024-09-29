@@ -24,7 +24,7 @@ Deletes an application object.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplication 
+Remove-EntraBetaApplication
  -ObjectId <String>
  [<CommonParameters>]
 ```

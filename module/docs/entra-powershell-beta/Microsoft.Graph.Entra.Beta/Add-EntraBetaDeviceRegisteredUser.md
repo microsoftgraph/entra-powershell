@@ -26,9 +26,9 @@ Adds a registered user for a device.
 ## Syntax
 
 ```powershell
-Add-EntraBetaDeviceRegisteredUser 
- -ObjectId <String> 
- -RefObjectId <String> 
+Add-EntraBetaDeviceRegisteredUser
+ -ObjectId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

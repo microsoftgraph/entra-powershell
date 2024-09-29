@@ -25,10 +25,10 @@ Creates a new groupLifecyclePolicy.
 ## Syntax
 
 ```powershell
-New-EntraBetaGroupLifecyclePolicy 
- -AlternateNotificationEmails <String> 
+New-EntraBetaGroupLifecyclePolicy
+ -AlternateNotificationEmails <String>
  -ManagedGroupTypes <String>
- -GroupLifetimeInDays <Int32> 
+ -GroupLifetimeInDays <Int32>
  [<CommonParameters>]
 ```
 

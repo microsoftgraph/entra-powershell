@@ -25,10 +25,10 @@ Creates an administrative unit.
 ## Syntax
 
 ```powershell
-New-EntraBetaAdministrativeUnit 
+New-EntraBetaAdministrativeUnit
  -DisplayName <String>
- [-Description <String>] 
- [-IsMemberManagementRestricted <Boolean>] 
+ [-Description <String>]
+ [-IsMemberManagementRestricted <Boolean>]
  [<CommonParameters>]
 ```
 

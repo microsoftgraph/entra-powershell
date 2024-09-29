@@ -26,8 +26,8 @@ Gets a servicePrincipal policy.
 ## Syntax
 
 ```powershell
-Get-EntraBetaServicePrincipalPolicy 
- -Id <String> 
+Get-EntraBetaServicePrincipalPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

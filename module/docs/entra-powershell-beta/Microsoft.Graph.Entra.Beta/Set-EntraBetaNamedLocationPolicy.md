@@ -26,14 +26,14 @@ Updates a named location policy in Microsoft Entra ID by PolicyId.
 ## Syntax
 
 ```powershell
-Set-EntraBetaNamedLocationPolicy 
+Set-EntraBetaNamedLocationPolicy
  -PolicyId <String>
- [-IncludeUnknownCountriesAndRegions <Boolean>] 
+ [-IncludeUnknownCountriesAndRegions <Boolean>]
  [-Id <String>]
- [-IsTrusted <Boolean>] 
+ [-IsTrusted <Boolean>]
  [-OdataType <String>]
  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
- [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>] 
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
  [-DisplayName <String>]
  [<CommonParameters>]
 ```

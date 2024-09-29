@@ -25,13 +25,13 @@ Allows an admin to modify the policy for cloud authentication roll-out in Micros
 ## Syntax
 
 ```powershell
-Set-EntraBetaFeatureRolloutPolicy 
- [-Feature <FeatureEnum>] 
- [-IsEnabled <Boolean>] 
+Set-EntraBetaFeatureRolloutPolicy
+ [-Feature <FeatureEnum>]
+ [-IsEnabled <Boolean>]
  -Id <String>
  [-IsAppliedToOrganization <Boolean>]
  [-AppliesTo <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]>]
- [-Description <String>] 
+ [-Description <String>]
  [-DisplayName <String>]
  [<CommonParameters>]
 ```

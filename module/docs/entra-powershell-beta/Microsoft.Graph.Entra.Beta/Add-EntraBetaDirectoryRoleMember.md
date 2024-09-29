@@ -25,8 +25,8 @@ Adds a member to a directory role.
 ## Syntax
 
 ```powershell
-Add-EntraBetaDirectoryRoleMember 
- -ObjectId <String> 
+Add-EntraBetaDirectoryRoleMember
+ -ObjectId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```

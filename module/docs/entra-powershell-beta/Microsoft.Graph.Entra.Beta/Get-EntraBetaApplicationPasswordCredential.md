@@ -23,7 +23,7 @@ Gets the password credential for an application.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationPasswordCredential 
+Get-EntraBetaApplicationPasswordCredential
  -ObjectId <String>
  [-Property <String[]>]
  [<CommonParameters>]

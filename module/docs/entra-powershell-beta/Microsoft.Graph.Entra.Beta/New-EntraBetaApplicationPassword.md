@@ -25,8 +25,8 @@ Adds a strong password to an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationPassword 
- -ObjectId <String> 
+New-EntraBetaApplicationPassword
+ -ObjectId <String>
  -PasswordCredential <PasswordCredential>
  [<CommonParameters>]
 ```

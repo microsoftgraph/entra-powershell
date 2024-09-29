@@ -26,8 +26,8 @@ Get key credentials for a service principal.
 ## Syntax
 
 ```powershell
-Get-EntraBetaServicePrincipalKeyCredential 
- -ObjectId <String> 
+Get-EntraBetaServicePrincipalKeyCredential
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

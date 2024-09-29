@@ -25,8 +25,8 @@ Delete a Microsoft Entra ID roleAssignment.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDirectoryRoleAssignment 
- -Id <String> 
+Remove-EntraBetaDirectoryRoleAssignment
+ -Id <String>
  [<CommonParameters>]
 ```
 

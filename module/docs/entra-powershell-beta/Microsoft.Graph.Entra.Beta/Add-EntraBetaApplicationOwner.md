@@ -25,8 +25,8 @@ Adds an owner to an application.
 ## Syntax
 
 ```powershell
-Add-EntraBetaApplicationOwner 
- -ObjectId <String> 
+Add-EntraBetaApplicationOwner
+ -ObjectId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```

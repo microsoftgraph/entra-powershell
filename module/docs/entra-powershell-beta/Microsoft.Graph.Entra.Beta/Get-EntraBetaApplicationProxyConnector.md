@@ -29,27 +29,27 @@ The `Get-EntraBetaApplicationProxyConnector` cmdlet a list of all connectors, or
 
 ```powershell
 Get-EntraBetaApplicationProxyConnector
- [-All] 
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-All]
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
 ### GetVague
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ [-SearchString <String>]
+ [-All]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- -Id <String> 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ -Id <String>
+ [-All]
  [<CommonParameters>]
 ```
 

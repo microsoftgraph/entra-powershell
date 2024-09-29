@@ -26,8 +26,8 @@ Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 ## Syntax
 
 ```powershell
-Get-EntraBetaDirectoryObjectOnPremisesProvisioningError 
- [-TenantId <String>] 
+Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 

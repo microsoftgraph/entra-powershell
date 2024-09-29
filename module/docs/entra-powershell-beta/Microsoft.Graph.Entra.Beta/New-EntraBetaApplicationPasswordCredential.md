@@ -25,11 +25,11 @@ Creates a password credential for an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationPasswordCredential 
- -ObjectId <String> 
+New-EntraBetaApplicationPasswordCredential
+ -ObjectId <String>
  [-CustomKeyIdentifier <String>]
- [-StartDate <DateTime>] 
- [-EndDate <DateTime>] 
+ [-StartDate <DateTime>]
+ [-EndDate <DateTime>]
  [<CommonParameters>]
 ```
 

@@ -25,8 +25,8 @@ Delete a Microsoft Entra ID Directory roleDefinition object.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDirectoryRoleDefinition 
- -Id <String> 
+Remove-EntraBetaDirectoryRoleDefinition
+ -Id <String>
  [<CommonParameters>]
 ```
 

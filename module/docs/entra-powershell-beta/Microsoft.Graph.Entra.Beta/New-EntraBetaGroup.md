@@ -27,15 +27,15 @@ Creates a Microsoft Entra ID group.
 ```powershell
 New-EntraBetaGroup
  -DisplayName <String>
- -MailNickname <String> 
- -MailEnabled <Boolean> 
+ -MailNickname <String>
+ -MailEnabled <Boolean>
  -SecurityEnabled <Boolean>
- [-MembershipRule <String>] 
- [-Description <String>] 
- [-GroupTypes <System.Collections.Generic.List`1[System.String]>] 
- [-Visibility <String>] 
+ [-MembershipRule <String>]
+ [-Description <String>]
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+ [-Visibility <String>]
  [-MembershipRuleProcessingState <String>]
- [-IsAssignableToRole <Boolean>] 
+ [-IsAssignableToRole <Boolean>]
  [<CommonParameters>]
 ```
 

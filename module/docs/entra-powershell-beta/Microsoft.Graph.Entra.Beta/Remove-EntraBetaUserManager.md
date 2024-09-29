@@ -25,7 +25,7 @@ Removes a user's manager.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaUserManager 
+Remove-EntraBetaUserManager
  -ObjectId <String>
  [<CommonParameters>]
 ```

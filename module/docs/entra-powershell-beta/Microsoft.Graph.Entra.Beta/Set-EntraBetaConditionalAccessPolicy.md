@@ -26,16 +26,16 @@ Updates a conditional access policy in Microsoft Entra ID by Id.
 ## Syntax
 
 ```powershell
-Set-EntraBetaConditionalAccessPolicy 
+Set-EntraBetaConditionalAccessPolicy
  -PolicyId <String>
- [-Id <String>] 
- [-SessionControls <ConditionalAccessSessionControls>] 
- [-ModifiedDateTime <String>] 
+ [-Id <String>]
+ [-SessionControls <ConditionalAccessSessionControls>]
+ [-ModifiedDateTime <String>]
  [-CreatedDateTime <String>]
- [-State <String>] 
+ [-State <String>]
  [-GrantControls <ConditionalAccessGrantControls>]
- [-Conditions <ConditionalAccessConditionSet>] 
- [-DisplayName <String>] 
+ [-Conditions <ConditionalAccessConditionSet>]
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

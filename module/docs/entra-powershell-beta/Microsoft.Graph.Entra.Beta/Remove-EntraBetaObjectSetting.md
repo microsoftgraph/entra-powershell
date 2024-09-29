@@ -26,9 +26,9 @@ Deletes settings in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaObjectSetting 
- -Id <String> 
- -TargetType <String> 
+Remove-EntraBetaObjectSetting
+ -Id <String>
+ -TargetType <String>
  -TargetObjectId <String>
  [<CommonParameters>]
 ```

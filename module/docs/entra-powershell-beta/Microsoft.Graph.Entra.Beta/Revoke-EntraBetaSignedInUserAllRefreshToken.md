@@ -24,7 +24,7 @@ Invalidates the refresh tokens issued to applications for the current user.
 ## Syntax
 
 ```powershell
-Revoke-EntraBetaSignedInUserAllRefreshToken 
+Revoke-EntraBetaSignedInUserAllRefreshToken
  [<CommonParameters>]
 ```
 

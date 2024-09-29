@@ -32,7 +32,7 @@ New-EntraBetaNamedLocationPolicy
  [-IsTrusted <Boolean>]
  [-OdataType <String>]
  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
- [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>] 
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
  [-DisplayName <String>]
  [<CommonParameters>]
 ```

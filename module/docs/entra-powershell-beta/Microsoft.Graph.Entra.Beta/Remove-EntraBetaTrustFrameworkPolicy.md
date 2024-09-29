@@ -26,8 +26,8 @@ Deletes a trust framework policy (custom policy) in the Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaTrustFrameworkPolicy 
- -Id <String> 
+Remove-EntraBetaTrustFrameworkPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

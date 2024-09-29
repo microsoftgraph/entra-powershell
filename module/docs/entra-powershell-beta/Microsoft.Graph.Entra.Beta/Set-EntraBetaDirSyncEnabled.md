@@ -26,9 +26,9 @@ Turns directory synchronization on or off for a company.
 
 ```powershell
 Set-EntraBetaDirSyncEnabled
- -EnableDirSync <Boolean> 
- [-Force] 
- [-TenantId <String>] 
+ -EnableDirSync <Boolean>
+ [-Force]
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 

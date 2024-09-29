@@ -27,25 +27,25 @@ Sets the logo for an Application
 ### File (Default)
 
 ```powershell
-Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
- -FilePath <String> 
+Set-EntraBetaApplicationLogo
+ -ObjectId <String>
+ -FilePath <String>
  [<CommonParameters>]
 ```
 
 ### Stream
 
 ```powershell
-Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
+Set-EntraBetaApplicationLogo
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ### ByteArray
 
 ```powershell
-Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
+Set-EntraBetaApplicationLogo
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -61,8 +61,8 @@ The `Set-EntraBetaApplicationLogo` cmdlet is used to set the logo for an applica
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
-    FilePath = 'D:\applogo.jpg'
+ ObjectId = $application.ObjectId
+ FilePath = 'D:\applogo.jpg'
 }
 Set-EntraBetaApplicationLogo @params
 ```

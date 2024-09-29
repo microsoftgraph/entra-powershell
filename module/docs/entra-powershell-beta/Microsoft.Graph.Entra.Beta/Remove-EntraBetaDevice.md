@@ -26,7 +26,7 @@ Deletes a device.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDevice 
+Remove-EntraBetaDevice
  -ObjectId <String>
  [<CommonParameters>]
 ```

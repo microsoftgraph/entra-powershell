@@ -25,9 +25,9 @@ Creates the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-New-EntraBetaPasswordSingleSignOnCredential 
+New-EntraBetaPasswordSingleSignOnCredential
  -ObjectId <String>
- -PasswordSSOCredential <PasswordSSOCredentials> 
+ -PasswordSSOCredential <PasswordSSOCredentials>
  [<CommonParameters>]
 ```
 

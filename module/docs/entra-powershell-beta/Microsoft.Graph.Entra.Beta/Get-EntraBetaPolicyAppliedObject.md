@@ -26,8 +26,8 @@ Gets a policy-applied object from Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Get-EntraBetaPolicyAppliedObject 
- -Id <String> 
+Get-EntraBetaPolicyAppliedObject
+ -Id <String>
  [<CommonParameters>]
 ```
 

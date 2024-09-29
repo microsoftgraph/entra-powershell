@@ -24,11 +24,11 @@ Updates an administrative unit.
 ## Syntax
 
 ```powershell
-Set-EntraBetaAdministrativeUnit 
- -Id <String> 
- [-IsMemberManagementRestricted <Boolean>] 
- [-Description <String>] 
- [-DisplayName <String>] 
+Set-EntraBetaAdministrativeUnit
+ -Id <String>
+ [-IsMemberManagementRestricted <Boolean>]
+ [-Description <String>]
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

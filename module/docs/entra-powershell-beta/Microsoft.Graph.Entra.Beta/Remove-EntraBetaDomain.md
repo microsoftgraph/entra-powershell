@@ -26,8 +26,8 @@ Removes a domain.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDomain 
- -Name <String> 
+Remove-EntraBetaDomain
+ -Name <String>
  [<CommonParameters>]
 ```
 

@@ -23,8 +23,8 @@ Invalidates the refresh tokens issued to applications for a user.
 ## Syntax
 
 ```powershell
-Revoke-EntraBetaUserAllRefreshToken 
- -ObjectId <String> 
+Revoke-EntraBetaUserAllRefreshToken
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

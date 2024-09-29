@@ -24,7 +24,7 @@ Removes a user application role assignment.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaUserAppRoleAssignment 
+Remove-EntraBetaUserAppRoleAssignment
  -ObjectId <String>
  -AppRoleAssignmentId <String>
  [<CommonParameters>]

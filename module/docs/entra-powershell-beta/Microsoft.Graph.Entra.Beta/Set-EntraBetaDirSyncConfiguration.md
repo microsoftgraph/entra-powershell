@@ -28,17 +28,17 @@ Modifies the directory synchronization settings.
 ### SetAccidentalDeletionThreshold (Default)
 
 ```powershell
-Set-EntraBetaDirSyncConfiguration 
- -AccidentalDeletionThreshold <UInt32> 
- [-Force] 
+Set-EntraBetaDirSyncConfiguration
+ -AccidentalDeletionThreshold <UInt32>
+ [-Force]
  [<CommonParameters>]
 ```
 
 ### All
 
 ```powershell
-Set-EntraBetaDirSyncConfiguration 
- [-TenantId <String>] 
+Set-EntraBetaDirSyncConfiguration
+ [-TenantId <String>]
  [-Force]
  [<CommonParameters>]
 ```

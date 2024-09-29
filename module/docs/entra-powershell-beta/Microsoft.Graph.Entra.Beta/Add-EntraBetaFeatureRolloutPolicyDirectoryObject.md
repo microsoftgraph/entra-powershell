@@ -27,9 +27,9 @@ Users in this group start authenticating to the cloud per policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaFeatureRolloutPolicyDirectoryObject 
- -Id <String> 
- -RefObjectId <String> 
+Add-EntraBetaFeatureRolloutPolicyDirectoryObject
+ -Id <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

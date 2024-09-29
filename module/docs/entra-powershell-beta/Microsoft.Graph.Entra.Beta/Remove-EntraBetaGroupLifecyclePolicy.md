@@ -25,8 +25,8 @@ Deletes a groupLifecyclePolicies object
 ## Syntax
 
 ```powershell
-Remove-EntraBetaGroupLifecyclePolicy 
- -Id <String> 
+Remove-EntraBetaGroupLifecyclePolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

@@ -26,8 +26,8 @@ Renews a group by updating the RenewedDateTime property on a group to the curren
 ## Syntax
 
 ```powershell
-Reset-EntraBetaLifeCycleGroup 
- -GroupId <String> 
+Reset-EntraBetaLifeCycleGroup
+ -GroupId <String>
  [<CommonParameters>]
 ```
 

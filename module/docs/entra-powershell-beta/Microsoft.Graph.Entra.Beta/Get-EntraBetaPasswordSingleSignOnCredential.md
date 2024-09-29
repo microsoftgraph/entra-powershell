@@ -25,8 +25,8 @@ Gets the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-Get-EntraBetaPasswordSingleSignOnCredential 
- -ObjectId <String> 
+Get-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```

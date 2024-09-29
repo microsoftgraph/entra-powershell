@@ -25,10 +25,10 @@ Assigns a user to an application role.
 ## Syntax
 
 ```powershell
-New-EntraBetaUserAppRoleAssignment 
- -ResourceId <String> 
- -Id <String> 
- -ObjectId <String> 
+New-EntraBetaUserAppRoleAssignment
+ -ResourceId <String>
+ -Id <String>
+ -ObjectId <String>
  -PrincipalId <String>
  [<CommonParameters>]
 ```

@@ -25,18 +25,18 @@ Updates an authorization policy.
 ## Syntax
 
 ```powershell
-Set-EntraBetaAuthorizationPolicy 
- -Id <String> 
+Set-EntraBetaAuthorizationPolicy
+ -Id <String>
  [-DisplayName <String>]
  [-EnabledPreviewFeatures <System.Collections.Generic.List`1[System.String]>]
- [-DefaultUserRolePermissions <DefaultUserRolePermissions>] 
+ [-DefaultUserRolePermissions <DefaultUserRolePermissions>]
  [-AllowedToSignUpEmailBasedSubscriptions <Boolean>]
  [-AllowedToUseSSPR <Boolean>]
  [-PermissionGrantPolicyIdsAssignedToDefaultUserRole <System.Collections.Generic.List`1[System.String]>]
- [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>] 
+ [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>]
  [-Description <String>]
- [-BlockMsolPowerShell <Boolean>] 
- [-GuestUserRoleId <String>] 
+ [-BlockMsolPowerShell <Boolean>]
+ [-GuestUserRoleId <String>]
  [<CommonParameters>]
 ```
 

@@ -26,15 +26,15 @@ Creates a new conditional access policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-New-EntraBetaConditionalAccessPolicy 
- [-Id <String>] 
+New-EntraBetaConditionalAccessPolicy
+ [-Id <String>]
  [-SessionControls <ConditionalAccessSessionControls>]
- [-ModifiedDateTime <String>] 
- [-CreatedDateTime <String>] 
+ [-ModifiedDateTime <String>]
+ [-CreatedDateTime <String>]
  [-State <String>]
- [-GrantControls <ConditionalAccessGrantControls>] 
+ [-GrantControls <ConditionalAccessGrantControls>]
  [-Conditions <ConditionalAccessConditionSet>]
- [-DisplayName <String>] 
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

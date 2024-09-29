@@ -25,8 +25,8 @@ Removes a key credential from an application.
 
 ```powershell
 Remove-EntraBetaApplicationKeyCredential
- -ObjectId <String> 
- -KeyId <String> 
+ -ObjectId <String>
+ -KeyId <String>
  [<CommonParameters>]
 ```
 

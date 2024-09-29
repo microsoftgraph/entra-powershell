@@ -26,28 +26,28 @@ Creates (registers) a new application object.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplication 
+New-EntraBetaApplication
  -DisplayName <String>
- [-Api <ApiApplication>] 
- [-OptionalClaims <OptionalClaims>] 
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>]
  [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]>]
- [-Web <WebApplication>] 
+ [-Web <WebApplication>]
  [-IsFallbackPublicClient <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
- [-PublicClient <PublicClientApplication>] 
+ [-PublicClient <PublicClientApplication>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
- [-TokenEncryptionKeyId <String>] 
+ [-TokenEncryptionKeyId <String>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- [-ParentalControlSettings <ParentalControlSettings>] 
+ [-ParentalControlSettings <ParentalControlSettings>]
  [-GroupMembershipClaims <String>]
  [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-SignInAudience <String>] 
- [-InformationalUrl <InformationalUrl>] 
+ [-SignInAudience <String>]
+ [-InformationalUrl <InformationalUrl>]
  [<CommonParameters>]
 ```
 

@@ -27,9 +27,9 @@ Sets a user extension.
 ### SetSingle
 
 ```powershell
-Set-EntraBetaUserExtension 
- -ExtensionName <String> 
- -ObjectId <String> 
+Set-EntraBetaUserExtension
+ -ExtensionName <String>
+ -ObjectId <String>
  -ExtensionValue <String>
  [<CommonParameters>]
 ```
@@ -37,7 +37,7 @@ Set-EntraBetaUserExtension
 ### SetMultiple
 
 ```powershell
-Set-EntraBetaUserExtension 
+Set-EntraBetaUserExtension
  -ObjectId <String>
  -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
  [<CommonParameters>]

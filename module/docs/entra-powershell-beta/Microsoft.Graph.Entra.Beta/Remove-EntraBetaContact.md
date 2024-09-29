@@ -26,8 +26,8 @@ Removes a contact.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaContact 
- -ObjectId <String> 
+Remove-EntraBetaContact
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

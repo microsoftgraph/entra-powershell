@@ -28,8 +28,8 @@ Gets a policy.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaPolicy 
- [-Top <Int32>] 
+Get-EntraBetaPolicy
+ [-Top <Int32>]
  [-All] 
  [<CommonParameters>]
 ```
@@ -37,9 +37,9 @@ Get-EntraBetaPolicy
 ### GetById
 
 ```powershell
-Get-EntraBetaPolicy 
- -Id <String> 
- [-All] 
+Get-EntraBetaPolicy
+ -Id <String>
+ [-All]
  [<CommonParameters>]
 ```
 

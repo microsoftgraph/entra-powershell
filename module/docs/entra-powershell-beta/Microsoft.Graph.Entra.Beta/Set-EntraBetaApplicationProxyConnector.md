@@ -25,9 +25,9 @@ The `Set-EntraBetaApplicationProxyConnector` cmdlet allows reassignment of the c
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyConnector 
- -Id <String> 
- -ConnectorGroupId <String> 
+Set-EntraBetaApplicationProxyConnector
+ -Id <String>
+ -ConnectorGroupId <String>
  [<CommonParameters>]
 ```
 

@@ -26,7 +26,7 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationVerifiedPublisher 
+Set-EntraBetaApplicationVerifiedPublisher
  -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest>
  -AppObjectId <String>
  [<CommonParameters>]
