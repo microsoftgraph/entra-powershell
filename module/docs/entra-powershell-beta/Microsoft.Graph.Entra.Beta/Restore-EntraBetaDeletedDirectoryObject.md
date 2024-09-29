@@ -118,7 +118,7 @@ Accept wildcard characters: False
 
 ### -AutoReconcileProxyConflict
 
-Indicates whether Microsoft Entra ID should remove any conflicting proxy addresses while restoring a soft-deleted user whose one or more proxy addresses are currently used for an active user. Used only for restoring soft-deleted user. The default value for this paramater is false.
+Specifies whether Microsoft Entra ID should remove conflicting proxy addresses when restoring a soft-deleted user, if any of the user's proxy addresses are currently in use by an active user. This parameter applies only when restoring a soft-deleted user. The default value is `false`.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
