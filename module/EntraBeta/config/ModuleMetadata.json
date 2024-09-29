@@ -2,7 +2,7 @@
     "guid": "3a8a0270-121c-4455-845d-497458213f96",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Entra PowerShell Beta",
+    "description": "Microsoft Entra PowerShell Beta: Microsoft Entra PowerShell is a scenario-driven module that allows administrators to efficiently manage Entra ID resources, including users, groups, applications, and policies, among others",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Beta.Users",

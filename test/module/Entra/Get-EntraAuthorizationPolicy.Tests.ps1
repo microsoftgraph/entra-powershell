@@ -30,7 +30,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgPolicyAuthorizationPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraAuthorizationPolicy" {
@@ -48,14 +48,27 @@ Describe "Get-EntraAuthorizationPolicy" {
             $result.AllowedToUseSspr | should -Be $True
             $result.BlockMsolPowerShell | should -Be $True
 
-            Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return AuthorizationPolicy when passed Id" {
+            $result = Get-EntraAuthorizationPolicy -Id 'authorizationPolicy'
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be 'authorizationPolicy'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Id is invalid" {
+            {Get-EntraAuthorizationPolicy -Id ''} | Should -Throw 'Exception calling "Substring" with "2" argument*'
+        }
+        It "Should fail when Id is invalid" {
+            {Get-EntraAuthorizationPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Property parameter should work" {
             $result = Get-EntraAuthorizationPolicy -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'AuthorizationPolicy'
 
-            Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraAuthorizationPolicy -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -67,7 +80,7 @@ Describe "Get-EntraAuthorizationPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuthorizationPolicy"
 
-            Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
