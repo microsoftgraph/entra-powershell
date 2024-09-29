@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Enables aliases for AzureAD modules.
+Enables aliases for AzureAD commands.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Enable-EntraAzureADAlias
 
 ## Description
 
-Enables aliases for Azure AD modules.
+Enables Azure AD command aliases in the current PowerShell session.
 
 ## Examples
 
