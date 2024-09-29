@@ -27,8 +27,8 @@ Gets a policy.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraPolicy 
- [-Top <Int32>] 
+Get-EntraPolicy
+ [-Top <Int32>]
  [-All] 
  [<CommonParameters>]
 ```
@@ -36,9 +36,9 @@ Get-EntraPolicy
 ### GetById
 
 ```powershell
-Get-EntraPolicy 
- -Id <String> 
- [-All] 
+Get-EntraPolicy
+ -Id <String>
+ [-All]
  [<CommonParameters>]
 ```
 

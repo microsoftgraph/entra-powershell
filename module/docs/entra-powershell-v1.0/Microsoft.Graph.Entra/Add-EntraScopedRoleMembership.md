@@ -25,9 +25,9 @@ Assign a Microsoft Entra role with an administrative unit scope.
 
 ```powershell
 Add-EntraScopedRoleMembership
- -ObjectId <String> 
- [-RoleObjectId <String>] 
- [-RoleMemberInfo <RoleMemberInfo>] 
+ -ObjectId <String>
+ [-RoleObjectId <String>]
+ [-RoleMemberInfo <RoleMemberInfo>]
  [<CommonParameters>]
 ```
 

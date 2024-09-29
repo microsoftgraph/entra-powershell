@@ -25,8 +25,8 @@ Validate the ownership of a domain.
 ## Syntax
 
 ```powershell
-Confirm-EntraDomain 
- -Name <String> 
+Confirm-EntraDomain
+ -Name <String>
  [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
  [<CommonParameters>]
 ```

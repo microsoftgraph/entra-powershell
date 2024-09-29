@@ -26,7 +26,7 @@ Gets an administrative unit.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraAdministrativeUnit 
+Get-EntraAdministrativeUnit
  [-Top <Int32>]
  [-All]
  [-Filter <String>]
@@ -37,8 +37,8 @@ Get-EntraAdministrativeUnit
 ### GetById
 
 ```powershell
-Get-EntraAdministrativeUnit 
- -ObjectId <String> 
+Get-EntraAdministrativeUnit
+ -ObjectId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]

@@ -28,8 +28,8 @@ Retrieve information about your current session
 
 ```powershell
 Get-EntraContext
-   [-ProgressAction <ActionPreference>]
-   [<CommonParameters>]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## Description

@@ -26,8 +26,8 @@ Add an instance of an application from the Microsoft Entra application gallery i
 ## Syntax
 
 ```powershell
-New-EntraApplicationFromApplicationTemplate 
- -Id <String> 
+New-EntraApplicationFromApplicationTemplate
+ -Id <String>
  -DisplayName <ApplicationTemplateDisplayName>
  [<CommonParameters>]
 ```

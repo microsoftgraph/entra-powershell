@@ -27,8 +27,8 @@ Gets the policy for cloud authentication roll-out in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraFeatureRolloutPolicy 
- [-Filter <String>] 
+Get-EntraFeatureRolloutPolicy
+ [-Filter <String>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -36,16 +36,16 @@ Get-EntraFeatureRolloutPolicy
 ### GetVague
 
 ```powershell
-Get-EntraFeatureRolloutPolicy 
- [-SearchString <String>] 
+Get-EntraFeatureRolloutPolicy
+ [-SearchString <String>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraFeatureRolloutPolicy 
- -Id <String> 
+Get-EntraFeatureRolloutPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

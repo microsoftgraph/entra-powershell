@@ -26,14 +26,14 @@ Connect to Microsoft Entra ID with an authenticated account.
 ### UserParameterSet (Default)
 
 ```powershell
-Connect-Entra 
-[[-Scopes] <String[]>] 
-[[-ClientId] <String>] 
+Connect-Entra
+[[-Scopes] <String[]>]
+[[-ClientId] <String>]
 [-TenantId <String>]
-[-ContextScope <ContextScope>] 
-[-Environment <String>] 
-[-UseDeviceCode] 
-[-ClientTimeout <Double>] 
+[-ContextScope <ContextScope>]
+[-Environment <String>]
+[-UseDeviceCode]
+[-ClientTimeout <Double>]
 [-NoWelcome]
 [<CommonParameters>]
 ```
@@ -41,29 +41,29 @@ Connect-Entra
 ### AppCertificateParameterSet
 
 ```powershell
-Connect-Entra 
-[-ClientId] <String> 
-[[-CertificateSubjectName] <String>] 
+Connect-Entra
+[-ClientId] <String>
+[[-CertificateSubjectName] <String>]
 [[-CertificateThumbprint] <String>]
-[-Certificate <X509Certificate2>] 
-[-TenantId <String>] 
-[-ContextScope <ContextScope>] 
+[-Certificate <X509Certificate2>]
+[-TenantId <String>]
+[-ContextScope <ContextScope>]
 [-Environment <String>]
-[-ClientTimeout <Double>] 
-[-NoWelcome] 
+[-ClientTimeout <Double>]
+[-NoWelcome]
 [<CommonParameters>]
 ```
 
 ### IdentityParameterSet
 
 ```powershell
-Connect-Entra 
-[[-ClientId] <String>] 
-[-ContextScope <ContextScope>] 
+Connect-Entra
+[[-ClientId] <String>]
+[-ContextScope <ContextScope>]
 [-Environment <String>]
-[-ClientTimeout <Double>] 
-[-Identity] 
-[-NoWelcome] 
+[-ClientTimeout <Double>]
+[-Identity]
+[-NoWelcome]
 [<CommonParameters>]
 ```
 

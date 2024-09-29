@@ -27,7 +27,7 @@ Gets an application.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraApplication 
+Get-EntraApplication
  [-Filter <String>]
  [-All]
  [-Top <Int32>]
@@ -38,7 +38,7 @@ Get-EntraApplication
 ### GetByValue
 
 ```powershell
-Get-EntraApplication 
+Get-EntraApplication
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraApplication
 ### GetById
 
 ```powershell
-Get-EntraApplication 
+Get-EntraApplication
  -ObjectId <String>
  [-Property <String[]>]
  [-All]

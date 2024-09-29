@@ -27,10 +27,10 @@ Gets an object setting.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraObjectSetting 
- [-Top <Int32>] 
- [-All] 
- -TargetType <String> 
+Get-EntraObjectSetting
+ [-Top <Int32>]
+ [-All]
+ -TargetType <String>
  -TargetObjectId <String>
  [<CommonParameters>]
 ```
@@ -38,9 +38,9 @@ Get-EntraObjectSetting
 ### GetById
 
 ```powershell
-Get-EntraObjectSetting 
- -Id <String> [-All] 
- -TargetType <String> 
+Get-EntraObjectSetting
+ -Id <String> [-All]
+ -TargetType <String>
  -TargetObjectId <String>
  [<CommonParameters>]
 ```

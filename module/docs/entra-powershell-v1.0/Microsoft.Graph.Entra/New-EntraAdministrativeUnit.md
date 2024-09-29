@@ -27,8 +27,8 @@ Creates an administrative unit.
 
 ```powershell
 New-EntraAdministrativeUnit
- [-Description <String>] 
- -DisplayName <String> 
+ [-Description <String>]
+ -DisplayName <String>
  [<CommonParameters>]
 ```
 

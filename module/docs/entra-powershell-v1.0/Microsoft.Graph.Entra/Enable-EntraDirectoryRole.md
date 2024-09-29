@@ -26,8 +26,8 @@ Activates an existing directory role in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Enable-EntraDirectoryRole 
- [-RoleTemplateId <String>] 
+Enable-EntraDirectoryRole
+ [-RoleTemplateId <String>]
  [<CommonParameters>]
 ```
 

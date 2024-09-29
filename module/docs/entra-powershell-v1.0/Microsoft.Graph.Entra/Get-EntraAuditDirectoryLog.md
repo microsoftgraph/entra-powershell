@@ -25,10 +25,10 @@ Get directory audit logs.
 ## Syntax
 
 ```powershell
-Get-EntraAuditDirectoryLog 
-[-All] 
-[-Top <Int32>] 
-[-Filter <String>] 
+Get-EntraAuditDirectoryLog
+[-All]
+[-Top <Int32>]
+[-Filter <String>]
 [<CommonParameters>]
 ```
 

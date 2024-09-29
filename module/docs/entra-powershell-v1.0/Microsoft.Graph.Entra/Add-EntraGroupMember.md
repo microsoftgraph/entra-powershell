@@ -25,9 +25,9 @@ Adds a member to a group.
 ## Syntax
 
 ```powershell
-Add-EntraGroupMember 
- -ObjectId <String> 
- -RefObjectId <String> 
+Add-EntraGroupMember
+ -ObjectId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

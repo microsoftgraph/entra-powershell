@@ -25,10 +25,10 @@ Get audit logs of sign-ins.
 ## Syntax
 
 ```powershell
-Get-EntraAuditSignInLog 
+Get-EntraAuditSignInLog
  [-All]
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 

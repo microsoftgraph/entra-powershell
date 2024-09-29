@@ -34,7 +34,7 @@ Get-EntraAttributeSet
 
 ```powershell
 Get-EntraAttributeSet
- -Id <String> 
+ -Id <String>
  [<CommonParameters>]
 ```
 

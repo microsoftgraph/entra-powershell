@@ -26,9 +26,9 @@ Checks the status of directory synchronization features for a tenant.
 ## Syntax
 
 ```powershell
-Get-EntraDirSyncFeature 
- [-TenantId <String>] 
- [-Feature <String>] 
+Get-EntraDirSyncFeature
+ [-TenantId <String>]
+ [-Feature <String>]
  [<CommonParameters>]
 ```
 
