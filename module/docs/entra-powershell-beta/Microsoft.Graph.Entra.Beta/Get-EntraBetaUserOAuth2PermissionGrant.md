@@ -72,7 +72,7 @@ This example retrieves the OAuth2 permission grants for a user using the ObjectI
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
