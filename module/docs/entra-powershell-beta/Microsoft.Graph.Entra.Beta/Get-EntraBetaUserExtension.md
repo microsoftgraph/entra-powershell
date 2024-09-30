@@ -46,9 +46,14 @@ Get-EntraBetaUserExtension -UserId $UserId
 ```
 
 ```Output
-Id
---
-com.contoso.roamingSettings
+Name                           Value
+----                           -----
+id                             00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+@odata.context                 https://graph.microsoft.com/beta/$metadata#users(identities,onPremisesDistinguishedName,employeeId,createdDateTime)/$entity
+onPremisesDistinguishedName
+employeeId
+createdDateTime                18/07/2024 05:13:40
+identities                     {SawyerM@contoso.com}
 ```
 
 This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.

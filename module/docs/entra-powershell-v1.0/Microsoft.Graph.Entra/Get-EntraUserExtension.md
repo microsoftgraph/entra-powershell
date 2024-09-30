@@ -46,9 +46,13 @@ Get-EntraUserExtension -UserId $UserId
 ```
 
 ```Output
-Id
---
-com.contoso.roamingSettings
+Name                           Value
+----                           -----
+@odata.context                 https://graph.microsoft.com/v1.0/$metadata#users(identities,onPremisesDistinguishedName,employeeId,createdDateTime)/$entity
+identities                     {SawyerM@contoso.com}
+employeeId
+createdDateTime                18/07/2024 05:13:40
+onPremisesDistinguishedName
 ```
 
 This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
