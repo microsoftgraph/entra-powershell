@@ -7,13 +7,13 @@ param(
     $NumberOfUsers = 10,
     $UserPrefix = 'Test123_',
     $GroupName = 'TestGroup123',
-    $Domain = 'yourdomine',
+    $Domain = '<your-domain>',
     [switch] $Clean
     )
 
     
 $GenericPassword = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$GenericPassword.Password = "G3n3r1cP4ssw0rd123"
+$GenericPassword.Password = '<very-strong-and-complex-value>'
 $GenericPassword.ForceChangePasswordNextLogin = $true
 
 $usersArray = @()
