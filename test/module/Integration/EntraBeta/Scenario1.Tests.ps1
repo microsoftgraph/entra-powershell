@@ -2,12 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    $testReportPath = join-path $psscriptroot "\setenv.ps1"
-    Import-Module -Name $testReportPath
-    $appId = $env:TEST_APPID
-    $tenantId = $env:TEST_TENANTID
-    $cert = $env:CERTIFICATETHUMBPRINT
-    Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
+    $testReportPath = join-path $psscriptroot "..\setenv.ps1"
+    . $testReportPath
 }
 Describe "Integration Testing" {
 
@@ -28,7 +24,7 @@ Describe "Integration Testing" {
         It "Verification of Attached Secret"{
             $application.PasswordCredentials.KeyId | Should -be $Result.KeyId
         }
-    } 
+    }  
     Context "Scen3: Create Service Principal to the newly created application"{
         It "Creation of the Service Principal"{
             $global:newServicePrincipal = New-EntraBetaServicePrincipal -AppId $newApp.AppId
@@ -47,11 +43,11 @@ Describe "Integration Testing" {
     } 
     Context "Scen4: Configure App ID URI and Redirect URIs on the newly created application"{
         It "Configuring the App ID URI and Redirect URI"{
-            Set-EntraBetaApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972766.onmicrosoft.com") -Web @{RedirectUris = 'https://contoso.com'}
+            Set-EntraBetaApplication -ObjectId $newApp.Id -IdentifierUris @("IdentifierUri.com") -Web @{RedirectUris = 'https://contoso.com'}
         }
         It "Verifying the App ID URI configuration and Redirect URI"{
             $updatedApp = Get-EntraBetaApplication -ObjectId $newApp.Id | ConvertTo-json | ConvertFrom-json
-            $updatedApp.IdentifierUris | Should -Be "IdM365x992972766.onmicrosoft.com"
+            $updatedApp.IdentifierUris | Should -Be "IdentifierUri.com"
             $updatedApp.Web.RedirectUris | Should -Be "https://contoso.com"
         }
     } 
@@ -78,8 +74,17 @@ Describe "Integration Testing" {
         }
     }
     Context "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it"{
+        It "Creating user"{
+            $domain = (Get-EntraBetaTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
+            $user = 'SimpleTestUserss' + $thisTestInstanceId
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "Pass@1234"
+            $global:existingUser = New-EntraBetaUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
+        }
         It "Assigning users to the Service Principal and setting the correct AppRole for the Service Principal"{
-            $global:existUser =  Get-EntraBetaUser -Top 1
+            $global:existUser =  Get-EntraBetaUser -ObjectId $existingUser.Id
             Add-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.Id -RefObjectId $existUser.Id
             
             $global:AppRoletoServicePrincipal = New-EntraBetaServiceAppRoleAssignment -ObjectId $servicePrincipal.Id -ResourceId $servicePrincipal.Id -Id $updatedApp.AppRoles.Id -PrincipalId $existUser.ObjectId
@@ -94,14 +99,20 @@ Describe "Integration Testing" {
     }
     Context "Scen7: Create a new user and add that user to an existing group"{
         It "Creating the user"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraBetaTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $user = 'SimpleTestUserss' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser = New-EntraBetaUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser = New-EntraBetaUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
+        }
+        It "Creating a new Group"{
+            $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
+            $global:ExistingGroup = New-EntraBetaGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" 
         }
         It "Adding the user to an existing group"{
-            $global:ExistGroup = Get-EntraBetaGroup -top 1
+            $global:ExistGroup = Get-EntraBetaGroup -ObjectId $ExistingGroup.Id
             Add-EntraBetaGroupMember -ObjectId $ExistGroup.ObjectId -RefObjectId $NewUser.ObjectId
         }
         It "Verification of new user's addition to the existing group"{
@@ -115,23 +126,25 @@ Describe "Integration Testing" {
             $global:NewGroup = New-EntraBetaGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" 
         }
         It "Adding existing user to new group"{
-            $ExistUser = Get-EntraBetaUser -top 1
+            $ExistUser = Get-EntraBetaUser -ObjectId $existingUser.Id
             Add-EntraBetaGroupMember -ObjectId $NewGroup.ObjectId -RefObjectId $ExistUser.ObjectId
         }
         It "Verification of exixting user's addition to the new group"{
-            $User = Get-EntraBetaUser -top 1
+            $User = Get-EntraBetaUser -ObjectId $existingUser.Id
             $GetMember = Get-EntraBetaGroupMember -ObjectId $NewGroup.ObjectId 
             $GetMember.Id | Should -Contain $User.Id
         }
     }
     Context "Scen9: Create a new user and create a new group and add that new user to the new group"{
         It "Creating a new user and group"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraBetaTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser1 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser1 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain" 
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
             $global:NewGroup1 = New-EntraBetaGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName"
@@ -142,12 +155,14 @@ Describe "Integration Testing" {
     }
     Context "Scen10: Create a new user and add the user to the newly created group and check that user is Member of the group"{
         It "Creating a new user and group"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraBetaTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser2 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser2 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain"
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
             $global:NewGroup2 = New-EntraBetaGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName"
@@ -162,11 +177,14 @@ Describe "Integration Testing" {
     }
     Context "Scen11: Create a new user and assign that user to the existing Service Principal"{
         It "Creating a new user and assign that user to the existing Service Principal"{
+            $domain = (Get-EntraBetaTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $Tuser = 'SimpleTestUsers' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser3 = New-EntraBetaUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser3 = New-EntraBetaUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@$domain"
             Add-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.Id -RefObjectId $NewUser3.Id
         }
         It "Verfication of assigned User"{
