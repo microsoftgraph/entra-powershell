@@ -35,21 +35,13 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $data = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders    
+        $data = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | Convertto-json | convertfrom-json
+        $data | ForEach-Object {
+            if($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
+            }
+        }    
         $data
-        # if($data){
-        #     $userList = @()
-        #     foreach ($response in $data) {
-        #         $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphExtension
-        #         $response.PSObject.Properties | ForEach-Object {
-        #             $propertyName = $_.Name
-        #             $propertyValue = $_.Value
-        #             $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-        #         }
-        #         $userList += $userType
-        #     }
-        #     $userList 
-        # }
     }
 '@
 }
