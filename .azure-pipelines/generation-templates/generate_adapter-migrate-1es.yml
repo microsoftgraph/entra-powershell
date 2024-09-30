@@ -6,9 +6,6 @@ parameters:
   - name: Sign
     type: boolean
     default: false
-  - name: Integration
-    type: boolean
-    default: false
 
 steps:
 - task: powershell@2
@@ -52,7 +49,7 @@ steps:
     script: ./build/Create-CompatModule.ps1 -Module Entra -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
-  - template: ../common-templates/esrp/codesign.yml
+  - template: ../common-templates/esrp/codesign-migrate.yml
     parameters:
       FolderPath: "bin"
       Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
@@ -74,11 +71,11 @@ steps:
       . ./build/common-functions.ps1
       Create-ModuleFolder
     pwsh: false
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Files Entra'
+- task: 1ES.PublishBuildArtifacts@1
+  displayName: 'Publish Module Files EntraBeta'
   inputs:
-    ArtifactName: 'Module Files'
     PathtoPublish: 'bin'
+    ArtifactName: 'Module Files'
 - task: powershell@2
   displayName: 'Register Local Gallery'
   inputs:
@@ -93,11 +90,11 @@ steps:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
-- task: PublishBuildArtifacts@1
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File Entra'
   inputs:
-    ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Module Nuget'
 - task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:
@@ -131,7 +128,7 @@ steps:
       ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
-  - template: ../common-templates/esrp/codesign.yml
+  - template: ../common-templates/esrp/codesign-migrate.yml
     parameters:
       FolderPath: "bin"
       Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
@@ -153,22 +150,22 @@ steps:
       . ./build/common-functions.ps1
       Create-ModuleFolder
     pwsh: false
-- task: PublishBuildArtifacts@1
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Files EntraBeta'
   inputs:
+    PathtoPublish: 'bin'
     ArtifactName: 'Module Files'
-    PathtoPublish: 'bin'    
 - task: powershell@2
   displayName: 'Publish to Local Gallery EntraBeta'
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
-- task: PublishBuildArtifacts@1
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File EntraBeta'
   inputs:
-    ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Module Nuget'
 - task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:
@@ -208,35 +205,7 @@ steps:
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: "./test/results/pester-test-results-preview.xml"
-    failTaskOnFailedTests: true
-- ${{ if eq(parameters.Integration, true) }}:
-  - task: powershell@2
-    displayName: 'Run Entra integration tests'
-    inputs:
-      targetType: inline
-      pwsh: true
-      script: |
-        cd test/module/Entra/Integration
-        Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: NUnit
-      testResultsFiles: "./test/results/pester-test-results-preview.xml"
-      failTaskOnFailedTests: true
-- ${{ if eq(parameters.Integration, true) }}:
-  - task: powershell@2
-    displayName: 'Run EntraBeta integration tests'
-    inputs:
-      targetType: inline
-      pwsh: true
-      script: |
-        cd test/module/EntraBeta/Integration
-        Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: NUnit
-      testResultsFiles: "./test/results/pester-test-results-preview.xml"
-      failTaskOnFailedTests: true
+    failTaskOnFailedTests: true    
 - task: powershell@2
   displayName: 'Remove Local Gallery'
   inputs:

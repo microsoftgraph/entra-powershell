@@ -1,0 +1,29 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# https://aka.ms/yaml
+
+name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
+
+schedules:
+- cron: '0 0 * * *'
+  displayName: Daily midnight build
+  branches:
+    include:
+    - main
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: windows-latest
+stages:
+- stage: Build
+  displayName: 'Integration tests build'
+  jobs:
+  - job: Build
+    displayName: Microsoft Graph Compatibility Adapter Build and Artifact Generations
+    steps:
+      - template: ./generation-templates/generate_adapter.yml
+        parameters:
+          Integration: true
+          Sign: false

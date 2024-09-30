@@ -53,6 +53,16 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraAuthorizationPolicy
 ```
 
+```Output
+DeletedDateTime Description                                                       DisplayName          Id                  AllowEmailVerifiedUsersToJoinOrganization AllowI
+                                                                                                                                                                     nvites
+                                                                                                                                                                     From
+--------------- -----------                                                       -----------          --                  ----------------------------------------- ------
+                Used to manage authorization related settings across the company. Authorization Policy authorizationPolicy True                                      every…
+```
+
+This example gets the Microsoft Entra ID authorization policy.
+
 ### Example 2: Get an authorization policy by ID
 
 ```powershell
@@ -61,23 +71,21 @@ Get-EntraAuthorizationPolicy -Id 'authorizationPolicy' | Format-List
 ```
 
 ```Output
-DefaultUserRolePermissions                        : @{AllowedToCreateApps=True; AllowedToCreateSecurityGroups=True; AllowedToCreateTenants=True; AllowedToReadBitlockerKeysForOwnedDevice=True; AllowedToReadOtherUsers=True; AdditionalProperties=}
-AllowEmailVerifiedUsersToJoinOrganization         : False
-AllowInvitesFrom                                  : everyone
-AllowUserConsentForRiskyApps                      :
-AllowedToSignUpEmailBasedSubscriptions            : True
-AllowedToUseSspr                                  : True
-BlockMsolPowerShell                               : False
-DefaultUserRoleOverrides                          :
-DeletedDateTime                                   :
-Description                                       : Used to manage authorization related settings across the company.
-DisplayName                                       : Authorization Policy
-EnabledPreviewFeatures                            : {}
-GuestUserRoleId                                   : 10dae51f-b6af-4016-8d66-8c2a99b929b3
-Id                                                : authorizationPolicy
-PermissionGrantPolicyIdsAssignedToDefaultUserRole : {ManagePermissionGrantsForSelf.microsoft-user-default-legacy, ManagePermissionGrantsForOwnedResource.microsoft-dynamically-managed-permissions-for-team,
-                                                    ManagePermissionGrantsForOwnedResource.microsoft-dynamically-managed-permissions-for-chat}
-AdditionalProperties                              : {}
+allowInvitesFrom                          : everyone
+allowUserConsentForRiskyApps              :
+id                                        : authorizationPolicy
+defaultUserRolePermissions                : @{allowedToCreateSecurityGroups=True; allowedToReadBitlockerKeysForOwnedDevice=True; allowedToCreateTenants=True;
+                                            allowedToReadOtherUsers=True; allowedToCreateApps=False; permissionGrantPoliciesAssigned=System.Object[]}
+blockMsolPowerShell                       : False
+guestUserRoleId                           : a0b1b346-4d3e-4e8b-98f8-753987be4970
+displayName                               : Authorization Policy
+@odata.context                            : https://graph.microsoft.com/v1.0/$metadata#policies/authorizationPolicy/$entity
+allowedToSignUpEmailBasedSubscriptions    : True
+description                               : Used to manage authorization related settings across the company.
+allowEmailVerifiedUsersToJoinOrganization : True
+allowedToUseSSPR                          : True
+DeletedDateTime                           :
+AdditionalProperties                      : {}
 ```
 
 This example gets the Microsoft Entra ID authorization policy.
