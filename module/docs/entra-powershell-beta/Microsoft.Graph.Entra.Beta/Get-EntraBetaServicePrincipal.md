@@ -220,6 +220,21 @@ Global secure access app     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-
 
 This example demonstrates how to retrieve all Global secure access apps.
 
+### Example 11: List all applications without user assignment
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipal -All | Where-Object {$_.appRoleAssignmentRequired -ne 'true'}
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App without user assignment     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all applications without user assignment.
+
 ## Parameters
 
 ### -All
