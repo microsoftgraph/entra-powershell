@@ -31,7 +31,6 @@ Find-EntraPermission
     [-SearchString] <String>
     [-ExactMatch]
     [-PermissionType <String>]
-    [-Online]
     [-ProgressAction <ActionPreference>]
     [<CommonParameters>]
 ```

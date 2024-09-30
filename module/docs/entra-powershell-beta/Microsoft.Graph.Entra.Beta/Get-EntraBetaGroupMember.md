@@ -115,7 +115,7 @@ This example retrieves all members within a group by group ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -GroupId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
+Get-EntraBetaGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
 ```
 
 ```Output
