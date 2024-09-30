@@ -42,7 +42,6 @@ function Set-EntraDirSyncEnabled {
         }
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        $response
-        
+        $response        
     }
 }
