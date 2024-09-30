@@ -27,7 +27,7 @@ Retrieve a list of users that are registered users of the device.
 
 ```powershell
 Get-EntraDeviceRegisteredUser
- -ObjectId <String>
+ -DeviceId <String>
  [-All <Boolean>]
  [-Top <Int32 >]
  [-Property <String[]>]
@@ -36,7 +36,7 @@ Get-EntraDeviceRegisteredUser
 
 ## Description
 
-The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `ObjectId` parameter to get a registered user for a Microsoft Entra ID device.
+The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `DeviceId` parameter to get a registered user for a Microsoft Entra ID device.
 
 ## Examples
 
@@ -45,7 +45,7 @@ The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsof
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $DevId = (Get-EntraDevice -Top 1).ObjectId
-Get-EntraDeviceRegisteredUser -ObjectId $DevId
+Get-EntraDeviceRegisteredUser -DeviceId $DevId
 ```
 
 ```Output
@@ -63,7 +63,7 @@ This example demonstrates how to retrieve registered user for a specific Microso
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Get-EntraDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
 
 ```Output
@@ -77,13 +77,13 @@ ffffffff-4444-5555-6666-gggggggggggg
 
 This example demonstrates how to retrieve all registered users for a specified device.
 
-- `-ObjectId` parameter specifies an object ID of a device, which you want to retrieve.
+- `-DeviceId` parameter specifies an object ID of a device, which you want to retrieve.
 
 ### Example 3: Get top two registered users of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+Get-EntraDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
 ```
 
 ```Output
@@ -95,7 +95,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to retrieve top two registered users for the specified device.
 
-- `-ObjectId` parameter specifies an object ID of a device, which you want to retrieve.
+- `-DeviceId` parameter specifies an object ID of a device, which you want to retrieve.
 
 ## Parameters
 
@@ -115,14 +115,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceId
 
 Specifies an object ID of a device.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

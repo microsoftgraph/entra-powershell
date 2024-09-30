@@ -13,34 +13,40 @@ BeforeAll {
 Describe "Add-EntraDeviceRegisteredOwner" {
     Context "Test for Add-EntraDeviceRegisteredOwner" {
         It "Should return empty object" {
-            $result = Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Add-EntraDeviceRegisteredOwner -ObjectId  -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
+        It "Should execute successfully with Alias" {
+            $result = Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName New-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Add-EntraDeviceRegisteredOwner -ObjectId "" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DeviceId is empty" {
+            { Add-EntraDeviceRegisteredOwner -DeviceId  -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Missing an argument for parameter 'DeviceId'.*"
+        }
+        It "Should fail when DeviceId is invalid" {
+            { Add-EntraDeviceRegisteredOwner -DeviceId "" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"  } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
         }
         It "Should fail when RefObjectId is empty" {
-            { Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
+            { Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
         }
         It "Should fail when RefObjectId is invalid" {
-            { Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
+            { Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
         It "Should contain DeviceId in parameters when passed ObjectId to it" {
             Mock -CommandName New-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
             $params = Get-Parameters -data $result
             $params.DeviceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain BodyParameter in parameters when passed RefObjectId to it" {
             Mock -CommandName New-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
              $value = @{
                 "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbbbbb-1111-2222-3333-cccccccccccc"}
                 Should -Invoke -CommandName New-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -52,7 +58,7 @@ Describe "Add-EntraDeviceRegisteredOwner" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraDeviceRegisteredOwner"
 
-            Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraDeviceRegisteredOwner"
 
@@ -69,7 +75,7 @@ Describe "Add-EntraDeviceRegisteredOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                {Add-EntraDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

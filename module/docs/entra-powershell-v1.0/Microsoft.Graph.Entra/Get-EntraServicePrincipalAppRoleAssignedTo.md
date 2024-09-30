@@ -26,7 +26,7 @@ Gets app role assignments for this app or service, granted to users, groups and 
 
 ```powershell
 Get-EntraServicePrincipalAppRoleAssignedTo
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All ]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -55,7 +55,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
  $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipalId
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipalId
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
@@ -68,7 +68,7 @@ This example shows how to get app role assignments for an app or service, grante
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId 00001111-aaaa-2222-bbbb-3333cccc4444 -All 
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -All 
 ```
 
 ```output
@@ -86,7 +86,7 @@ This command gets the all app role assignments for the service principal granted
 ### Example 3: Get five app role assignments
 
 ```powershell
- Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId 00001111-aaaa-2222-bbbb-3333cccc4444 -Top 5
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -Top 5
 ```
 
 ```Output
@@ -119,14 +119,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

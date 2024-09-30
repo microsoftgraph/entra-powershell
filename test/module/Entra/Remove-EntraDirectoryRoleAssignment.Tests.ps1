@@ -13,28 +13,34 @@ BeforeAll {
 Describe "Remove-EntraDirectoryRoleAssignment" {
     Context "Test for Remove-EntraDirectoryRoleAssignment" {
         It "Should return empty object" {
+            $result = Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id is empty" {
-            { Remove-EntraDirectoryRoleAssignment -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when UnifiedRoleAssignmentId is empty" {
+            { Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId  } | Should -Throw "Missing an argument for parameter 'UnifiedRoleAssignmentId'*"
         }
-        It "Should fail when Id is invalid" {
-            { Remove-EntraDirectoryRoleAssignment -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when UnifiedRoleAssignmentId is invalid" {
+            { Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'UnifiedRoleAssignmentId' because it is an empty string."
         }   
         It "Should contain UnifiedRoleAssignmentId in parameters when passed Id to it" {
             Mock -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result = Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $params = Get-Parameters -data $result
             $params.UnifiedRoleAssignmentId | Should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDirectoryRoleAssignment"
 
-            Remove-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDirectoryRoleAssignment"
 
@@ -50,7 +56,7 @@ Describe "Remove-EntraDirectoryRoleAssignment" {
            
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Debug } | Should -Not -Throw
+                { Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

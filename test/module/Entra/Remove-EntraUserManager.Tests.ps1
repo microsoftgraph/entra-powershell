@@ -14,20 +14,25 @@ BeforeAll {
 Describe "Remove-EntraUserManager" {
     Context "Test for Remove-EntraUserManager" {
         It "Should return empty object" {
+            $result = Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Remove-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return empty object with alias" {
             $result = Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty string" {
-            { Remove-EntraUserManager -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string" {
+            { Remove-EntraUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }   
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraUserManager -ObjectId } | Should -Throw "Missing an argument for parameter*"
+        It "Should fail when UserId is empty" {
+            { Remove-EntraUserManager -UserId } | Should -Throw "Missing an argument for parameter*"
         }  
-        It "Should contain Id in parameters when passed ObjectId to it" {
+        It "Should contain UserId in parameters when passed UserId to it" {
             Mock -CommandName Remove-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
             $params.userId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -36,7 +41,7 @@ Describe "Remove-EntraUserManager" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserManager"
             
             
-            Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserManager"
 
@@ -53,7 +58,7 @@ Describe "Remove-EntraUserManager" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

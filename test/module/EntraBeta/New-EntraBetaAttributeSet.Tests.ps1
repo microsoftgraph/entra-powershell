@@ -25,6 +25,16 @@ BeforeAll {
 Describe "New-EntraBetaAttributeSet" {
     Context "Test for New-EntraBetaAttributeSet" {
         It "Should create new attribute set" {
+            $result = New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
+            $result.Description | should -Be "New AttributeSet"
+            $result.MaxAttributesPerSet | should -Be 21
+
+            Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+
+        It "Should create new attribute set with alias" {
             $result = New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
@@ -34,31 +44,31 @@ Describe "New-EntraBetaAttributeSet" {
             Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when Id is empty" {
-            { New-EntraBetaAttributeSet -Id  -Description "New AttributeSet" -MaxAttributesPerSet 21 } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when AttributeSetId is empty" {
+            { New-EntraBetaAttributeSet -AttributeSetId  -Description "New AttributeSet" -MaxAttributesPerSet 21 } | Should -Throw "Missing an argument for parameter 'AttributeSetId'*"
         }
 
         It "Should fail when Description is empty" {
-            { New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description  -MaxAttributesPerSet 21 } | Should -Throw "Missing an argument for parameter 'Description'*"
+            { New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description  -MaxAttributesPerSet 21 } | Should -Throw "Missing an argument for parameter 'Description'*"
         }
 
         It "Should fail when MaxAttributesPerSet is empty" {
-            { New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet  } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet'*"
+            { New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet  } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet'*"
         }
 
         It "Should fail when MaxAttributesPerSet is invalid" {
-            { New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet "XYZ" } | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'*"
+            { New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet "XYZ" } | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'*"
         }
 
         It "Result should Contain ObjectId" {
-            $result = New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
+            $result = New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAttributeSet"
 
-            $result = New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
+            $result = New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAttributeSet"
@@ -76,7 +86,7 @@ Describe "New-EntraBetaAttributeSet" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21 -Debug } | Should -Not -Throw
+                { New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21 -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

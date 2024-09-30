@@ -7,32 +7,35 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    function Remove-EntraBetaServicePrincipalPasswordCredential {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $KeyId,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId
+    )
+
     PROCESS{
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
-        $Method = "POST"
-        if($PSBoundParameters.ContainsKey("Verbose"))
+        $Method = "POST"        
+        if($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"])
         {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($null -ne $PSBoundParameters["ObjectId"] -and $null -ne $PSBoundParameters["KeyId"])
-        {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["KeyId"] = $PSBoundParameters["KeyId"]
-            $URI = "$baseUri/$($params.ObjectId)/removePassword"
+            $URI = "$baseUri/$($params.ServicePrincipalId)/removePassword"
             $body = @{
                 "keyId" = $($params.KeyId)
             }
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -Body $body)
-    }
+    }    
+}
 '@
 }

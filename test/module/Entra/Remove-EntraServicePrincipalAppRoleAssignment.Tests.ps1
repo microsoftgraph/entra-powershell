@@ -11,54 +11,55 @@ BeforeAll {
 }
 Describe "Remove-EntraServicePrincipalAppRoleAssignment" {
     Context "Test for Remove-EntraServicePrincipalAppRoleAssignment" {
-        It "Should return empty object" {
+        It "Should return empty ServicePrincipalId" {
+            $result =  Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result =  Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraServicePrincipalAppRoleAssignment -ObjectId  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"}| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
+        It "Should fail when ServicePrincipalId is empty" {
+            { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"}| Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"                
         } 
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "" -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+        It "Should fail when ServicePrincipalId is invalid" {
+            { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "" -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
         }
         It "Should fail when AppRoleAssignmentId is empty" {
-            { Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId }| Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'.*"                
+            { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId }| Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'.*"                
         } 
         It "Should fail when AppRoleAssignmentId is invalid" {
-            { Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string.*"
+            { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string.*"
         }
-        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
+        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
             Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" 
+            $result = Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" 
             $params = Get-Parameters -data $result
             $params.ServicePrincipalId | Should -Be "cc7fcc82-ac1b-4785-af47-2ca3b7052886"
         
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalAppRoleAssignment"
-            $result = Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" 
-            $result | Should -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalAppRoleAssignment"
-            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
+            $result = Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
-        It "Should execute successfully without throwing an error " {
+        It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
-    
+           
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"  -Debug } | Should -Not -Throw
+                { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
-        }   
+        }
     }
 }

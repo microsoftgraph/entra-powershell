@@ -27,59 +27,66 @@ BeforeAll {
 Describe "Get-EntraUserMembership" {
     Context "Test for Get-EntraUserMembership" {
         It "Should return specific user membership" {
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific user membership with alias" {
             $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraUserMembership -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when UserId is empty" {
+            { Get-EntraUserMembership -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
 
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraUserMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is invalid" {
+            { Get-EntraUserMembership -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should return all user membership" {
-            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }  
         
         It "Should return top user membership" {
-            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 5
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 5
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         } 
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        It "Should contain UserId in parameters when passed UserId to it" {
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
 
         It "Property parameter should work" {
-            $result =  Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
+            $result =  Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
@@ -87,13 +94,13 @@ Describe "Get-EntraUserMembership" {
         }
 
         It "Should fail when Property is empty" {
-             {  Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             {  Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserMembership"
 
-            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserMembership"
@@ -111,7 +118,7 @@ Describe "Get-EntraUserMembership" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

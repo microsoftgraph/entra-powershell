@@ -27,7 +27,7 @@ Updates the properties of an application object.
 
 ```powershell
 Set-EntraBetaApplication 
- -ObjectId <String>
+ -ApplicationId <String>
  [-Api <ApiApplication>] 
  [-OptionalClaims <OptionalClaims>] 
  [-DisplayName <String>]
@@ -64,7 +64,7 @@ Updates the properties of an application object.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     DisplayName = 'New Demo Application'
 }
 Set-EntraBetaApplication @params
@@ -78,7 +78,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     IdentifierUris = 'https://mynewapp.contoso.com'
 }
 Set-EntraBetaApplication @params
@@ -92,7 +92,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     GroupMembershipClaims = 'SecurityGroup'
 }
 Set-EntraBetaApplication @params
@@ -106,7 +106,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     IsDeviceOnlyAuthSupported = $false
 }
 Set-EntraBetaApplication @params
@@ -120,7 +120,7 @@ This command updates an application in Microsoft Entra ID.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ObjectId = $application.ObjectId
+    ApplicationId = $application.ObjectId
     Tags = 'mytag'
 }
 Set-EntraBetaApplication @params
@@ -304,14 +304,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

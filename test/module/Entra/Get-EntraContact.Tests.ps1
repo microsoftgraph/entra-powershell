@@ -48,6 +48,20 @@ BeforeAll {
 Describe "Get-EntraContact" {
     Context "Test for Get-EntraContact" {
         It "Should return specific Contact" {
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+            $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
+            $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
+            $result.Phones | Should -BeNullOrEmpty
+            $result.ServiceProvisioningErrors | Should -BeNullOrEmpty
+            $result.Mobile | Should -BeNullOrEmpty
+            $result.TelephoneNumber | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific Contact alias" {
             $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
@@ -60,13 +74,14 @@ Describe "Get-EntraContact" {
 
             Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
         }
+
         
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraContact -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when OrgContactId is empty" {
+            { Get-EntraContact -OrgContactId } | Should -Throw "Missing an argument for parameter 'OrgContactId'*"
         }
 
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraContact -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when OrgContactId is invalid" {
+            { Get-EntraContact -OrgContactId "" } | Should -Throw "Cannot bind argument to parameter 'OrgContactId' because it is an empty string."
         }
 
         It "Should return all contact" {
@@ -106,31 +121,31 @@ Describe "Get-EntraContact" {
             { Get-EntraContact -Top xy } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Result should Contain OrgContactId" {
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
-        It "Should contain OrgContactId in parameters when passed ObjectId to it" {
-            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Should contain OrgContactId in parameters when passed OrgContactId to it" {
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $params.OrgContactId | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
         It "Property parameter should work" {
-            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Bob Kelly (TAILSPIN)'
 
             Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContact"
 
-            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContact"
@@ -148,7 +163,7 @@ Describe "Get-EntraContact" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

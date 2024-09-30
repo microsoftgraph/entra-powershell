@@ -27,7 +27,7 @@ Retrieve the logo of an application.
 
 ```powershell
 Get-EntraBetaApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [-FileName <String>] 
  [-FilePath <String>] 
  [-View <Boolean>]
@@ -36,7 +36,7 @@ Get-EntraBetaApplicationLogo
 
 ## Description
 
-The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
+The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ApplicationId` parameter to get a specific application logo for an application.
 
 ## Examples
 
@@ -44,7 +44,7 @@ The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
+Get-EntraBetaApplicationLogo -ApplicationId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
@@ -83,14 +83,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectID of the application for which the logo is to be retrieved.
+The ApplicationId of the application for which the logo is to be retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -7,13 +7,25 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $GroupId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
 
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["GroupId"])
         {
-            $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
         }
         if($null -ne $PSBoundParameters["All"])
         {
@@ -84,10 +96,12 @@
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')
+                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')                
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    if ($null -ne $_.PSObject.Properties[$prop]) {
+                        $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                        $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    }
                 }
             }
         }

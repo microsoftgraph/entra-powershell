@@ -25,7 +25,7 @@ Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ```powershell
 Set-EntraBetaGroupLifecyclePolicy 
- -Id <String>
+ -GroupLifecyclePolicyId <String>
  [-AlternateNotificationEmails <String>] 
  [-ManagedGroupTypes <String>] 
  [-GroupLifetimeInDays <Int32>] 
@@ -44,7 +44,7 @@ The `Set-EntraBetaGroupLifecyclePolicy` command updates a specific group Lifecyc
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = $policy.Id
+    GroupLifecyclePolicyId = $policy.Id
     GroupLifetimeInDays = 200 
     AlternateNotificationEmails = 'example@contoso.com' 
     ManagedGroupTypes = 'All'
@@ -60,7 +60,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200
 
 This example updates the specified groupLifecyclePolicy in Microsoft Entra ID.
 
-- `-Id` parameter specifies the ID of the Lifecycle Policy to be modified.
+- `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy to be modified.
 - `-GroupLifetimeInDays` parameter specifies the lifetime of the groups in the policy to 200 days. The GroupLifetimeInDays represents the number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.
 - `-AlternateNotificationEmails` parameter specifies the email address that receives notifications about the policy. Multiple email address can be defined by separating email address with a semicolon.
 - `-ManagedGroupTypes` parameter specifies which office 365 groups the policy applies to. Possible values are `All`, `Selected`, or `None`.  
@@ -101,14 +101,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

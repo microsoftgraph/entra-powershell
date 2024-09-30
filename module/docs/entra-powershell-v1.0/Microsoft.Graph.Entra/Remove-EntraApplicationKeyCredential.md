@@ -26,7 +26,7 @@ Removes a key credential from an application.
 
 ```powershell
 Remove-EntraApplicationKeyCredential
- -ObjectId <String> 
+ -ApplicationId <String> 
  -KeyId <String> 
  [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ An application can use this command along with `New-EntraApplicationKeyCredentia
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $params = @{
-    ObjectId = $application.Id
+    ApplicationId = $application.Id
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 
@@ -54,7 +54,7 @@ Remove-EntraApplicationKeyCredential @params
 
 This command removes the specified key credential from the specified application.
 
-- `-ObjectId` Specifies the ID of an application.
+- `-ApplicationId` Specifies the ID of an application.
 - `-KeyId` Specifies a custom key ID. Use `Get-EntraApplicationKeyCredential` to get the keyId details.
 
 ## Parameters
@@ -75,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

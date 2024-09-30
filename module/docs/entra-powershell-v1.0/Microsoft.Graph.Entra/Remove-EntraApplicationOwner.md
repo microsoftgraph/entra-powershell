@@ -27,7 +27,7 @@ Removes an owner from an application.
 ```powershell
 Remove-EntraApplicationOwner 
  -OwnerId <String> 
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ The `Remove-EntraApplicationOwner` cmdlet removes an owner from an application i
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $Application = Get-EntraApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.ObjectId
+    ApplicationId = $Application.ObjectId
     OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 
@@ -52,19 +52,19 @@ Remove-EntraApplicationOwner @params
 
 This example removes the specified owner from the specified application. You can use the command `Get-EntraApplication` to get application Id.
 
-- `-ObjectId` parameter specifies the the unique identifier of a application.
+- `-ApplicationId` parameter specifies the the unique identifier of a application.
 - `-OwnerId` parameter specifies the ID of the owner.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

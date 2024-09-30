@@ -32,7 +32,8 @@ function Set-EntraBetaServicePrincipal {
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -65,10 +66,6 @@ function Set-EntraBetaServicePrincipal {
         {
             $body["tags"] = $PSBoundParameters["Tags"]
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
         if($null -ne $PSBoundParameters["DisplayName"])
         {
             $body["displayName"] = $PSBoundParameters["DisplayName"]
@@ -76,10 +73,6 @@ function Set-EntraBetaServicePrincipal {
         if($null -ne $PSBoundParameters["AppId"])
         {
             $body["appId"] = $PSBoundParameters["AppId"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
         }
         if($null -ne $PSBoundParameters["ErrorUrl"])
         {
@@ -107,9 +100,9 @@ function Set-EntraBetaServicePrincipal {
         {
             $body["replyUrls"] =  $PSBoundParameters["ReplyUrls"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["Uri"] += "/$ObjectId" 
+            $params["Uri"] += "/$ServicePrincipalId" 
         }
         if($null -ne $PSBoundParameters["LogoutUrl"])
         {
