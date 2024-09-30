@@ -5,7 +5,7 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
 
     Context "When getting user and group" {
         BeforeAll {
-            $testReportPath = join-path $psscriptroot "\setenv.ps1"
+            $testReportPath = join-path $psscriptroot "..\setenv.ps1"
             . $testReportPath
 
             $domain = (Get-EntraTenantDetail).VerifiedDomains.Name

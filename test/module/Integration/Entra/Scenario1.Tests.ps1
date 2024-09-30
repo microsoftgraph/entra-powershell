@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    $testReportPath = join-path $psscriptroot "\setenv.ps1"
+    $testReportPath = join-path $psscriptroot "..\setenv.ps1"
     . $testReportPath
 }
 Describe "Integration Testing" {

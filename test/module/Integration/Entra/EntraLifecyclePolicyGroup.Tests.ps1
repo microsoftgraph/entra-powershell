@@ -5,7 +5,7 @@ Describe "The EntraLifecyclePolicyGroup command executing unmocked" {
 
     Context "When getting LifecyclePolicyGroup" {
         BeforeAll {
-            $testReportPath = join-path $psscriptroot "\setenv.ps1"
+            $testReportPath = join-path $psscriptroot "..\setenv.ps1"
             . $testReportPath
 
             $thisTestInstanceId = New-Guid | Select-Object -ExpandProperty Guid

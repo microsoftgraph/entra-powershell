@@ -5,7 +5,7 @@ Describe "The EntraApplicationExtensionProperty command executing unmocked" {
 
     Context "When getting ApplicationExtensionProperty" {
         BeforeAll {
-            $testReportPath = join-path $psscriptroot "\setenv.ps1"
+            $testReportPath = join-path $psscriptroot "..\setenv.ps1"
             . $testReportPath
             
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
