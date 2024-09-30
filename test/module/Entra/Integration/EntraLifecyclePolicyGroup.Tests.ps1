@@ -5,18 +5,8 @@ Describe "The EntraLifecyclePolicyGroup command executing unmocked" {
 
     Context "When getting LifecyclePolicyGroup" {
         BeforeAll {
-            $testReportPath = Join-Path $PSScriptRoot "\setenv.ps1"
-            Import-Module -Name $testReportPath
-
-            $appId = $env:TEST_APPID
-            $tenantId = $env:TEST_TENANTID
-            $cert = $env:CERTIFICATETHUMBPRINT
-
-            if (-not $appId -or -not $tenantId -or -not $cert) {
-                throw "Required environment variables are not set."
-            }
-
-            Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
+            $testReportPath = join-path $psscriptroot "\setenv.ps1"
+            . $testReportPath
 
             $thisTestInstanceId = New-Guid | Select-Object -ExpandProperty Guid
             $global:displayName = 'Demo Help Group' + $thisTestInstanceId

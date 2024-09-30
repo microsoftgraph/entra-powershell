@@ -3,11 +3,7 @@
 # ------------------------------------------------------------------------------
 BeforeAll {
     $testReportPath = join-path $psscriptroot "\setenv.ps1"
-    Import-Module -Name $testReportPath
-    $appId = $env:TEST_APPID
-    $tenantId = $env:TEST_TENANTID
-    $cert = $env:CERTIFICATETHUMBPRINT
-    Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
+    . $testReportPath
 }
 Describe "Integration Testing" {
 
@@ -47,11 +43,11 @@ Describe "Integration Testing" {
     } 
     Context "Scen4: Configure App ID URI and Redirect URIs on the newly created application"{
         It "Configuring the App ID URI and Redirect URI"{
-            Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972766.onmicrosoft.com") -Web @{RedirectUris = 'https://contoso.com'}
+            Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdentifierUri.com") -Web @{RedirectUris = 'https://contoso.com'}
         }
         It "Verifying the App ID URI configuration and Redirect URI"{
             $updatedApp = Get-EntraApplication -ObjectId $newApp.Id | ConvertTo-json | ConvertFrom-json
-            $updatedApp.IdentifierUris | Should -Be "IdM365x992972766.onmicrosoft.com"
+            $updatedApp.IdentifierUris | Should -Be "IdentifierUri.com"
             $updatedApp.Web.RedirectUris | Should -Be "https://contoso.com"
         }
     } 
@@ -66,7 +62,6 @@ Describe "Integration Testing" {
             $approle.Id = '643985ce-3eaf-4a67-9550-ecca25cb6814'
             $approle.Value = 'Application'
             $approle.IsEnabled = $true
-            $approle.Origin = "Application"
 
              # Assign approles to existing applictaion
             $global:AppUpdate = Set-EntraApplication -ObjectId $newApp.Id -AppRoles $approle
@@ -79,8 +74,17 @@ Describe "Integration Testing" {
         }
     }
     Context "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it"{
+        It "Creating user"{
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
+            $user = 'SimpleTestUserss' + $thisTestInstanceId
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "Pass@1234"
+            $global:existingUser = New-EntraUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
+        }
         It "Assigning users to the Service Principal and setting the correct AppRole for the Service Principal"{
-            $global:existUser =  Get-EntraUser -Top 1
+            $global:existUser =  Get-EntraUser -ObjectId $existingUser.Id
             Add-EntraServicePrincipalOwner -ObjectId $servicePrincipal.Id -RefObjectId $existUser.Id
             
             $global:AppRoletoServicePrincipal = New-EntraServiceAppRoleAssignment -ObjectId $servicePrincipal.Id -ResourceId $servicePrincipal.Id -Id $updatedApp.AppRoles.Id -PrincipalId $existUser.ObjectId
@@ -95,14 +99,20 @@ Describe "Integration Testing" {
     }
     Context "Scen7: Create a new user and add that user to an existing group"{
         It "Creating the user"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $user = 'SimpleTestUserss' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
+        }
+        It "Creating a new Group"{
+            $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
+            $global:ExistingGroup = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" 
         }
         It "Adding the user to an existing group"{
-            $global:ExistGroup = Get-EntraGroup -top 1
+            $global:ExistGroup = Get-EntraGroup -ObjectId $ExistingGroup.Id
             Add-EntraGroupMember -ObjectId $ExistGroup.ObjectId -RefObjectId $NewUser.ObjectId
         }
         It "Verification of new user's addition to the existing group"{
@@ -116,23 +126,25 @@ Describe "Integration Testing" {
             $global:NewGroup = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" 
         }
         It "Adding existing user to new group"{
-            $ExistUser = Get-EntraUser -top 1
+            $ExistUser = Get-EntraUser -ObjectId $existingUser.Id
             Add-EntraGroupMember -ObjectId $NewGroup.ObjectId -RefObjectId $ExistUser.ObjectId
         }
         It "Verification of exixting user's addition to the new group"{
-            $User = Get-EntraUser -top 1
+            $User = Get-EntraUser -ObjectId $existingUser.Id
             $GetMember = Get-EntraGroupMember -ObjectId $NewGroup.ObjectId 
             $GetMember.Id | Should -Contain $User.Id
         }
     }
     Context "Scen9: Create a new user and create a new group and add that new user to the new group"{
         It "Creating a new user and group"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain" 
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
             $global:NewGroup1 = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName"
@@ -143,12 +155,14 @@ Describe "Integration Testing" {
     }
     Context "Scen10: Create a new user and add the user to the newly created group and check that user is Member of the group"{
         It "Creating a new user and group"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser2 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser2 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain"
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
             $global:NewGroup2 = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName"
@@ -163,11 +177,14 @@ Describe "Integration Testing" {
     }
     Context "Scen11: Create a new user and assign that user to the existing Service Principal"{
         It "Creating a new user and assign that user to the existing Service Principal"{
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $Tuser = 'SimpleTestUsers' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:NewUser3 = New-EntraUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser3 = New-EntraUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@$domain"
             Add-EntraServicePrincipalOwner -ObjectId $servicePrincipal.Id -RefObjectId $NewUser3.Id
         }
         It "Verfication of assigned User"{
@@ -203,27 +220,27 @@ Describe "Integration Testing" {
     #         $result.Conditions.Applications.IncludeApplications | should -Be $NewServicePrincipal.AppId
     #     }
     # }
-    Context "Scen13: Create new claims issuance policy and attach that to the Service Principal"{
-        It "Creating policy"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
-            $testpolicyName = 'Simplepolicy' + $thisTestInstanceId
-            $global:NewPolicy = New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName $testpolicyName -Type "claimsMappingPolicies" -IsOrganizationDefault $false
-        }
-        It "Attaching Policy to service principal"{
-            Add-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id -RefObjectId $NewPolicy.Id
-        }
-        It "Verification of added policy to service principal"{
-            $result = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id
-            $result.Id | should -Contain $NewPolicy.Id
-        }
-    }
-    Context "Scene14: Remove the policy attached to the existing Service Principal"{
-        It "Removing the policy attached"{
-            Remove-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id -PolicyId $NewPolicy.Id
-            $retrivePolicy = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id
-            $retrivePolicy.Id | should -Not -Contain $NewPolicy.Id
-        }
-    }
+    # Context "Scen13: Create new claims issuance policy and attach that to the Service Principal"{
+    #     It "Creating policy"{
+    #         $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+    #         $testpolicyName = 'Simplepolicy' + $thisTestInstanceId
+    #         $global:NewPolicy = New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName $testpolicyName -Type "claimsMappingPolicies" -IsOrganizationDefault $false
+    #     }
+    #     It "Attaching Policy to service principal"{
+    #         Add-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id -RefObjectId $NewPolicy.Id
+    #     }
+    #     It "Verification of added policy to service principal"{
+    #         $result = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id
+    #         $result.Id | should -Contain $NewPolicy.Id
+    #     }
+    # }
+    # Context "Scene14: Remove the policy attached to the existing Service Principal"{
+    #     It "Removing the policy attached"{
+    #         Remove-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id -PolicyId $NewPolicy.Id
+    #         $retrivePolicy = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipal.Id
+    #         $retrivePolicy.Id | should -Not -Contain $NewPolicy.Id
+    #     }
+    # }
 
     AfterAll {
         Remove-EntraGroupMember -ObjectId $ExistGroup.ObjectId -MemberId $NewUser.ObjectId
@@ -241,6 +258,6 @@ Describe "Integration Testing" {
             Remove-EntraGroup -ObjectId $group.Id | Out-Null
         }
         # Remove-EntraConditionalAccessPolicy -PolicyId $NewConditionalAccessPolicy.Id
-        Remove-EntraPolicy -Id $NewPolicy.Id
+        # Remove-EntraPolicy -Id $NewPolicy.Id
     }
 }

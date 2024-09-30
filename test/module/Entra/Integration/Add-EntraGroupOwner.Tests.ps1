@@ -6,26 +6,23 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
     Context "When getting user and group" {
         BeforeAll {
             $testReportPath = join-path $psscriptroot "\setenv.ps1"
-            Import-Module -Name $testReportPath
-            $appId = $env:TEST_APPID
-            $tenantId = $env:TEST_TENANTID
-            $cert = $env:CERTIFICATETHUMBPRINT
-            Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
+            . $testReportPath
 
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testName = 'SimpleTests' + $thisTestInstanceId
             $testName1 = 'SimpleTests1' + $thisTestInstanceId
 
             #create test user 
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName $testName"@M365x99297270.OnMicrosoft.com" 
+            $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName "$testName@$domain"
     
             #create test user 
             $PasswordProfile1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile1.Password = "Pass@1234"
-            $global:newUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testName1 -PasswordProfile $PasswordProfile1 -MailNickName $testName1 -UserPrincipalName $testName1"@M365x99297270.OnMicrosoft.com" 
-    
+            $global:newUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testName1 -PasswordProfile $PasswordProfile1 -MailNickName $testName1 -UserPrincipalName "$testName1@$domain"
             #create test group 
             $global:newGroup = New-EntraGroup -DisplayName $testName -MailEnabled $false -SecurityEnabled $true -MailNickName $testName 
         }

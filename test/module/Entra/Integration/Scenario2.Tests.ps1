@@ -3,22 +3,20 @@
 # ------------------------------------------------------------------------------
 BeforeAll {
     $testReportPath = join-path $psscriptroot "\setenv.ps1"
-    Import-Module -Name $testReportPath
-    $appId = $env:TEST_APPID
-    $tenantId = $env:TEST_TENANTID
-    $cert = $env:CERTIFICATETHUMBPRINT
-    Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
+    . $testReportPath
 }
 Describe "Integration Testing" {
 
     Context "Scen1: Assign Entra roles including assign roles with different scopes"{
         It "Get user and role"{
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
+            $thisTestInstanceId = (New-Guid).Guid.ToString()
+            $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"                
-            $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
+            $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain"
 
             $global:role = Get-EntraDirectoryRole | Where-Object {$_.DisplayName -eq "Application Administrator"}
         }

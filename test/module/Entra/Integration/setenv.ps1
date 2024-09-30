@@ -1,6 +1,13 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-$env:TEST_APPID = "8886ad7b-1795-4542-9808-c85859d97f23"
-$env:TEST_TENANTID = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
-$env:CERTIFICATETHUMBPRINT = "305D4F33E153980E2451F6E068426FC2BCAF683E"
+# $env:TEST_APPID = "45451aa1-24e7-46c8-b9e5-dccb2118f536"
+# $env:TEST_TENANTID = "0e5ab497-530a-4f6f-bd51-2230c84acad8"
+# $env:CERTIFICATETHUMBPRINT = "5C76C328BE9A29C0077398FC52BA531EAF8480F2"
+
+
+$appId = "45451aa1-24e7-46c8-b9e5-dccb2118f536"
+$tenantId = "0e5ab497-530a-4f6f-bd51-2230c84acad8"
+$cert = "5C76C328BE9A29C0077398FC52BA531EAF8480F2"
+
+Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert

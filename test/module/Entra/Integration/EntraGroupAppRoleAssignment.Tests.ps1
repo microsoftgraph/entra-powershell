@@ -6,11 +6,7 @@ Describe "The EntraGroupAppRoleAssignment command executing unmocked" {
     Context "When getting GroupAppRoleAssignment" {
         BeforeAll {
             $testReportPath = join-path $psscriptroot "\setenv.ps1"
-            Import-Module -Name $testReportPath
-            $appId = $env:TEST_APPID
-            $tenantId = $env:TEST_TENANTID
-            $cert = $env:CERTIFICATETHUMBPRINT
-            Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
+            . $testReportPath
 
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $global:displayName = 'DemoName' + $thisTestInstanceId
