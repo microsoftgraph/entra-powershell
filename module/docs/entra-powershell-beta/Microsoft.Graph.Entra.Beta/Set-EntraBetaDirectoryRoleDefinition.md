@@ -47,12 +47,13 @@ Updates a Microsoft Entra roleDefinition object identified by ID. You can't upda
 ### Example 1: Update an roleDefinition
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- $params = @{
-    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    DisplayName = 'UpdatedDisplayName'
- }
- Set-EntraBetaDirectoryRoleDefinition @params
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$roleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
+$params = @{
+   UnifiedRoleDefinitionId = $roleDefinition.Id
+   DisplayName = 'UpdatedDisplayName'
+}
+Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
@@ -63,12 +64,13 @@ This example updates the specified role definition in Microsoft Entra ID.
 ### Example 2: Update an roleDefinition with Description
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- $params = @{
-    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Description = 'MYROLEUPDATE1S'
- }
- Set-EntraBetaDirectoryRoleDefinition @params
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$roleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
+$params = @{
+   UnifiedRoleDefinitionId = $roleDefinition.Id
+   Description = 'MYROLEUPDATE1S'
+}
+Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
@@ -79,12 +81,13 @@ This example updates the Description of specified role definition in Microsoft E
 ### Example 3: Update an roleDefinition with IsEnabled
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- $params = @{
-    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    IsEnabled = $true
- }
- Set-EntraBetaDirectoryRoleDefinition @params
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$roleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
+$params = @{
+   UnifiedRoleDefinitionId = $roleDefinition.Id
+   IsEnabled = $true
+}
+Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
@@ -95,19 +98,20 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
 ### Example 4: Update an roleDefinition
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
- $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
- $params = @{
-    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Description = 'Update'
-    DisplayName = 'Update'
-    ResourceScopes = '/'
-    IsEnabled = $false
-    RolePermissions = $RolePermissions
-    TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
-    Version = 2
- }
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$roleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
+$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
+$params = @{
+   UnifiedRoleDefinitionId = $roleDefinition.Id
+   Description = 'Update'
+   DisplayName = 'Update'
+   ResourceScopes = '/'
+   IsEnabled = $false
+   RolePermissions = $RolePermissions
+   TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
+   Version = 2
+}
 
 Set-EntraBetaDirectoryRoleDefinition @params
 ```
