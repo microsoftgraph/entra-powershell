@@ -4,6 +4,7 @@
 BeforeAll {
     $testReportPath = join-path $psscriptroot "..\setenv.ps1"
     . $testReportPath
+    $password = $env:USER_PASSWORD
 }
 Describe "Integration Testing" {
 
@@ -80,7 +81,7 @@ Describe "Integration Testing" {
             $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $user = 'SimpleTestUserss' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:existingUser = New-EntraBetaUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
         }
         It "Assigning users to the Service Principal and setting the correct AppRole for the Service Principal"{
@@ -104,7 +105,7 @@ Describe "Integration Testing" {
             $thisTestInstanceId = $thisTestInstanceId.Substring($thisTestInstanceId.Length - 5)
             $user = 'SimpleTestUserss' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:NewUser = New-EntraBetaUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@$domain"
         }
         It "Creating a new Group"{
@@ -143,7 +144,7 @@ Describe "Integration Testing" {
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:NewUser1 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain" 
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
@@ -161,7 +162,7 @@ Describe "Integration Testing" {
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:NewUser2 = New-EntraBetaUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain"
 
             $testGrpName = 'SimpleTestGroup' + $thisTestInstanceId
@@ -183,7 +184,7 @@ Describe "Integration Testing" {
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $Tuser = 'SimpleTestUsers' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:NewUser3 = New-EntraBetaUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@$domain"
             Add-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.Id -RefObjectId $NewUser3.Id
         }

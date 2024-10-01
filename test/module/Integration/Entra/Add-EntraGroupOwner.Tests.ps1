@@ -7,6 +7,7 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
         BeforeAll {
             $testReportPath = join-path $psscriptroot "..\setenv.ps1"
             . $testReportPath
+            $password = $env:USER_PASSWORD
 
             $domain = (Get-EntraTenantDetail).VerifiedDomains.Name
             $thisTestInstanceId = (New-Guid).Guid.ToString()
@@ -16,12 +17,12 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
 
             #create test user 
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"
+            $PasswordProfile.Password = $password
             $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName "$testName@$domain"
     
             #create test user 
             $PasswordProfile1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile1.Password = "Pass@1234"
+            $PasswordProfile1.Password = $password
             $global:newUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testName1 -PasswordProfile $PasswordProfile1 -MailNickName $testName1 -UserPrincipalName "$testName1@$domain"
             #create test group 
             $global:newGroup = New-EntraGroup -DisplayName $testName -MailEnabled $false -SecurityEnabled $true -MailNickName $testName 

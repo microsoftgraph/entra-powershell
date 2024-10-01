@@ -4,6 +4,7 @@
 BeforeAll {
     $testReportPath = join-path $psscriptroot "..\setenv.ps1"
     . $testReportPath
+    $password = $env:USER_PASSWORD
 }
 Describe "Integration Testing" {
 
@@ -15,7 +16,7 @@ Describe "Integration Testing" {
             $testUserName = 'SimpleTestUsers' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "Pass@1234"                
+            $PasswordProfile.Password = $password                
             $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@$domain"
 
             $global:role = Get-EntraDirectoryRole | Where-Object {$_.DisplayName -eq "Application Administrator"}

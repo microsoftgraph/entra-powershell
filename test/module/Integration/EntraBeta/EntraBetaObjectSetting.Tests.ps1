@@ -5,15 +5,11 @@ Describe "The EntraBetaObjectSetting commands executing unmocked" {
 
     Context "When Changing group settings" {
         BeforeAll {
-            $testReportPath = join-path $psscriptroot "\setenv.ps1"
-            Import-Module -Name $testReportPath
-            $appId = $env:TEST_APPID
-            $tenantId = $env:TEST_TENANTID
-            $cert = $env:CERTIFICATETHUMBPRINT
-            Connect-MgGraph -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
+            $testReportPath = join-path $psscriptroot "..\setenv.ps1"
+            . $testReportPath
 
-            $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $testGroupName = 'SimpleTestAppRead' + $testGroupName
+            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $testGroupName = 'SimpleTestAppRead' + $thisTestInstanceId
             $global:testGroup = New-EntraBetaGroup -DisplayName $testGroupName -MailEnabled $false -SecurityEnabled $true -MailNickName $testGroupName -Description $testGroupName
         }
 
