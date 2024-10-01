@@ -1,0 +1,48 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+trigger: none
+pr: none
+
+resources:
+  pipelines:
+  - pipeline: _EntraPowerShell-Release-Build 
+    source: EntraPowerShell-Release-Build
+
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@templates
+  parameters:
+    stages:
+    - stage: release
+      jobs:
+      - job: approval
+        displayName: Approval
+        pool: server
+        timeoutInMinutes: 720
+        steps:
+        - task: ApprovalTask@1
+          inputs:
+            environment: Production
+            servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
+
+      - job: release
+        dependsOn: approval
+        condition: succeeded('approval')
+        templateContext:
+          type: releaseJob
+          isProduction: true
+          inputs:
+          - input: pipelineArtifact
+            pipeline: _EntraPowerShell-Release-Build
+            artifactName: drop
+            targetPath: $(Pipeline.Workspace)/drop
+        steps:
+        - task: 1ES.PublishNuget@1
+          displayName: Publish Nuget package
+          inputs:
+            useDotNetTask: false
+            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/drop'
+            nuGetFeedType: external
+            allowPackageConflicts: true
+            publishPackageMetadata: true

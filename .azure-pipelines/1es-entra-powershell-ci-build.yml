@@ -6,8 +6,6 @@ trigger:
     include:
       - main
 pr: none
-# variables:
-#   WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 parameters:
   - name: Pack
     type: boolean
@@ -17,13 +15,13 @@ parameters:
     default: true
 resources:
   repositories:
-    - repository: 1ESPipelineTemplates
-      type: git
-      name: 1ESPipelineTemplates/1ESPipelineTemplates
-      ref: refs/heads/main
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/heads/main
 
 extends:
-  template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
       name: MSSecurity-1ES-Build-Agents-Pool
@@ -34,21 +32,12 @@ extends:
         name: MSSecurity-1ES-Build-Agents-Pool
         image: MSSecurity-1ES-Windows-2022
         os: windows
-    # featureFlags:
-    #   WindowsHostVersion: 1ESWindows2022
     stages:
     - stage: build
       jobs:
       - job: EntraPowerShellCIBuild
         displayName: Entra PowerShell CI Build
         timeoutInMinutes: 840
-        # variables:
-        #   ob_outputDirectory: '$(Build.SourcesDirectory)/out'
-        templateContext:
-          outputs:
-          - output: pipelineArtifact
-            targetPath: $(System.DefaultWorkingDirectory)/Samples
-            artifactName: entraPS
         steps:
           - template: .azure-pipelines/common-templates/install-tools.yml@self
           - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
