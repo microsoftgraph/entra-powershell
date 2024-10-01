@@ -43,8 +43,6 @@ Describe "Remove-EntraServicePrincipalAppRoleAssignment" {
         
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalAppRoleAssignment"
             $result = Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
             $params = Get-Parameters -data $result

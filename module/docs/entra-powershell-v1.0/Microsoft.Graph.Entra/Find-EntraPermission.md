@@ -31,7 +31,6 @@ Find-EntraPermission
     [-SearchString] <String>
     [-ExactMatch]
     [-PermissionType <String>]
-    [-Online]
     [-ProgressAction <ActionPreference>]
     [<CommonParameters>]
 ```
@@ -174,6 +173,17 @@ Accept wildcard characters: False
 ```
 
 ### -Online
+
+Specify the Online parameter in addition to SearchString to force Find-MgGraphPermission to update its set of
+permissions by requesting the latest permissions data from Microsoft Graph itself before searching for the
+permissions specified the SearchString parameter. This ensures that Find-MgGraphPermission returns the most
+accurate search results as new permissions are added to Microsoft Graph for new APIs. The command uses the
+existing access to Microsoft Graph as enabled by a previous invocation of the Connect-MgGraph command to issue the
+request for updated permissions. If your current connection does not already have access to read this data from
+Microsoft Graph or if there is no network connectivity to Microsoft Graph, the command will fail. If the command
+is successful in updating the set of permissions prior to searching for permissions, Find-MgGraphPermission will
+continue to use the updated list for all future invocations of the command even if they do not specify the Online
+parameter
 
 ```yaml
 

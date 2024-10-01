@@ -98,7 +98,7 @@ This example demonstrates how to get all applications from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication |
+Get-EntraBetaApplication |
     Where-Object {
         $_.PasswordCredentials.keyId -ne $null -and
         $_.PasswordCredentials.EndDateTime -lt (Get-Date).AddDays(30)

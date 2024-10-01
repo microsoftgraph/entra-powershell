@@ -45,14 +45,42 @@ Describe "Test for Set-EntraPolicy" {
         { Set-EntraPolicy -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
 
-
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPolicy"
-        $result = Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
-        $params = Get-Parameters -data $result
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
+
+        Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPolicy"
+
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
+    }
+    It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPartnerInformation"
+
+            Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPartnerInformation"
+
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+        }
+    }
+    It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+        }
     } 
 }
 

@@ -612,7 +612,7 @@ public $($object.GetType().Name)()
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
 function Get-EntraUnsupportedCommand {
-    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Entra PowerShell."
+    Throw [System.NotSupportedException] "This command is not supported by Microsoft Entra PowerShell."
 }
 
 "@

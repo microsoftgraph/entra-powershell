@@ -67,7 +67,7 @@ $params = @{
     IdentityProviderBaseId = 'Google-OAuth'
     ClientSecret = 'NewClientSecret'
 }
-Set-EntradentityProvider @params
+Set-EntraIdentityProvider @params
 ```
 
 This example updates the client secret for the specified identity provider.

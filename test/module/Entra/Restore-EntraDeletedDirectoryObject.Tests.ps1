@@ -23,11 +23,12 @@ BeforeAll {
                                                     "preferredLanguage"      = "EN"
                                                  }
               "Parameters"                   = $args
+              "ObjectId"                     = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             }
         )
-    }
+    } 
 
-    Mock -CommandName Restore-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 Describe "Restore-EntraDeletedDirectoryObject" {
 Context "Restore-EntraDeletedDirectoryObject" {
@@ -35,8 +36,13 @@ Context "Restore-EntraDeletedDirectoryObject" {
             $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-
-            Should -Invoke -CommandName Restore-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return specific MS deleted directory object with AutoReconcileProxyConflict" {
+            $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AutoReconcileProxyConflict
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is empty" {
             { Restore-EntraDeletedDirectoryObject -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -47,20 +53,13 @@ Context "Restore-EntraDeletedDirectoryObject" {
         It "Result should contain Alias properties" {
             $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.OdataType |  should -Be "#microsoft.graph.user"
-        }
-        It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
-            $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
-            $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        }
-        It "Should contain 'User-Agent' header" {
+            $result.AdditionalProperties."@odata.type" |  should -Be "#microsoft.graph.user"
+        }        
+        It "Should contain 'User-Agent' header" {           
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
-            $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
-            $result | Should -Not -BeNullOrEmpty
+           Restore-EntraDeletedDirectoryObject -Id "11112222-bbbb-3333-cccc-4444dddd5555"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
-    
-            Should -Invoke -CommandName Restore-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
