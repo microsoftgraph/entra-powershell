@@ -7,4 +7,4 @@ $tenantId = "0e5ab497-530a-4f6f-bd51-2230c84acad8"
 $cert = "5C76C328BE9A29C0077398FC52BA531EAF8480F2"
 
 # Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
-Connect-MgGraph -Identity -ClientId $appId
+Connect-Entra -Identity -ClientId $appId
