@@ -44,7 +44,7 @@ The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership f
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
 $AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    AdministrativeUnitId = $AdministrativeUnit.AdministrativeUnitId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Remove-EntraScopedRoleMembership @params
