@@ -46,11 +46,11 @@ Describe "Get-EntraBetaUserOwnedDevice" {
 
             Should -Invoke -CommandName Get-MgBetaUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUserOwnedDevice -UserId    } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when UserId is empty" {
+            { Get-EntraBetaUserOwnedDevice -UserId    } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaUserOwnedDevice -UserId  ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is invalid" {
+            { Get-EntraBetaUserOwnedDevice -UserId  ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should return All user registered devices" {
             $result = Get-EntraBetaUserOwnedDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
@@ -76,7 +76,7 @@ Describe "Get-EntraBetaUserOwnedDevice" {
         It "Should fail when Top is invalid" {
             { Get-EntraBetaUserOwnedDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
-        It "Should contain UserId in parameters when passed ObjectId to it" {              
+        It "Should contain UserId in parameters when passed UserId to it" {              
             $result = Get-EntraBetaUserOwnedDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"

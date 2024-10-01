@@ -19,7 +19,7 @@
     [System.Nullable`1[System.Int32]] $Top,
     [Alias('Id')]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $DirectoryRoleId,
+    [System.String] $UnifiedRoleDefinitionId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -27,9 +27,9 @@
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"}
-        if($null -ne $PSBoundParameters["DirectoryRoleId"])
+        if($null -ne $PSBoundParameters["UnifiedRoleDefinitionId"])
         {
-            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["DirectoryRoleId"]
+            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["UnifiedRoleDefinitionId"]
         }
         if($null -ne $PSBoundParameters["Filter"])
         {

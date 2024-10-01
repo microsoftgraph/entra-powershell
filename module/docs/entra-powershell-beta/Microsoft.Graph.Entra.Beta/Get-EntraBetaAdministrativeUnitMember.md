@@ -51,7 +51,7 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.ObjectId
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id
 ```
 
 ```Output
@@ -73,7 +73,7 @@ This example returns the list of administrative unit members from specified admi
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.ObjectId -All
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -All
 ```
 
 ```Output
@@ -95,7 +95,7 @@ This example returns the list of all administrative unit members from specified 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.ObjectId -Top 3
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -Top 3
 ```
 
 ```Output
