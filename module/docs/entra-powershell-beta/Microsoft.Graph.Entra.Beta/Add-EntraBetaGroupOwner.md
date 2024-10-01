@@ -46,7 +46,7 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$user = Get-EntraBetaUser -GroupId 'SawyerM@contoso.com'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{
     GroupId = $group.ObjectId
     RefObjectId = $user.ObjectId

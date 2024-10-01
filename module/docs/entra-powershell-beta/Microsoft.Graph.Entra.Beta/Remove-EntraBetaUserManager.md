@@ -40,7 +40,7 @@ The `Remove-EntraBetaUserManager` cmdlet removes a user's manager in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$User = Get-EntraBetaUser -Top 1
+$User = Get-EntraBetaUser -UserId 'SawyerM@Contoso.com'
 Remove-EntraBetaUserManager -UserId $User.ObjectId
 ```
 

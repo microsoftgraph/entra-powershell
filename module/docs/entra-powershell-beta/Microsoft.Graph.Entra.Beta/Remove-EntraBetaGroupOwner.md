@@ -43,7 +43,7 @@ The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microso
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    GroupId = 'qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh'
+    GroupId = $group.Id
     OwnerId = 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
 }
 
