@@ -42,7 +42,7 @@ The `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsof
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $Device = Get-EntraDevice -SearchString '<device-display-name>'
 $params = @{
     DeviceId = $Device.ObjectId 

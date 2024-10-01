@@ -46,7 +46,7 @@ The `Add-EntraGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Sp
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$user = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
     GroupId = $group.ObjectId
     RefObjectId = $user.ObjectId
