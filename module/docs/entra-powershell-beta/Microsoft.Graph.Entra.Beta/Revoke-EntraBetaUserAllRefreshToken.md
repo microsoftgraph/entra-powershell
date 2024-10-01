@@ -44,7 +44,7 @@ This operation is usually performed by the user or an administrator if the user'
 
 ```powershell
 Connect-Entra -Scopes 'User.RevokeSessions.All'
-Revoke-EntraBetaUserAllRefreshToken -UserId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Revoke-EntraBetaUserAllRefreshToken -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
