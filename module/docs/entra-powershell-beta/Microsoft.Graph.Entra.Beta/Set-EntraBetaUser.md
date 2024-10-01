@@ -68,7 +68,7 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$user = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{
    UserId = $user.ObjectId
    DisplayName = 'Updated user Name'
@@ -145,7 +145,7 @@ This example updates the specified user's property.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $params= @{
-UserId = $user.UserId
+UserId = 'SawyerM@contoso.com'
 PasswordProfile  = @{
    Password= '*****'
    ForceChangePasswordNextLogin = $true
