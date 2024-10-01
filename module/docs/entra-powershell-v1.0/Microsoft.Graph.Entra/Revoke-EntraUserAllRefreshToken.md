@@ -44,7 +44,7 @@ This operation is usually performed by the user or an administrator if the user'
 
 ```powershell
 Connect-Entra -Scopes 'User.RevokeSessions.All'
-Revoke-EntraUserAllRefreshToken -UserId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Revoke-EntraUserAllRefreshToken -UserId 'SawyerM@contoso.com'
 ```
 
 This example demonstrates how to revoke the tokens for the specified user.
