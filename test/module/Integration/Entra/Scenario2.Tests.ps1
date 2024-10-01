@@ -53,36 +53,36 @@ Describe "Integration Testing" {
     #         $getRole.Id | Should -Contain $customRole.Id
     #     }
     # }
-    # Context "Add or deactivate custom security attribute definitions in Microsoft Entra ID"{
-    #     It "Adding custom security attribute definitions"{
-    #         $thisTestInstanceId = Get-Random -Minimum 10000 -Maximum 100000
-    #         $testName = 'TestDefinition' + $thisTestInstanceId
-    #         $AttributeSet  = Get-EntraAttributeSet -Id 'Testing'
-    #         $params = @{
-    #             Name = $testName 
-    #             Description = 'Target completion' 
-    #             Type = 'String' 
-    #             Status = 'Available' 
-    #             AttributeSet = $AttributeSet.Id 
-    #             IsCollection = $False 
-    #             IsSearchable = $True 
-    #             UsePreDefinedValuesOnly = $True
-    #         }
-    #         $global:Definition = New-EntraCustomSecurityAttributeDefinition  @params
-    #     }
-    #     It "Deactivate custom security attribute definition"{
-    #         $params = @{
-    #             Id = $Definition.Id 
-    #             Description = 'Target completion' 
-    #             Status = 'Deprecated' 
-    #         }
-    #         Set-EntraCustomSecurityAttributeDefinition @params
-    #     }
-    #     It "Verification of deactivation of custom security attribute definition"{
-    #         $global:getDefinition = Get-EntraCustomSecurityAttributeDefinition -Id $Definition.Id
-    #         $getDefinition.Status | Should -Be 'Deprecated' 
-    #     }
-    # }
+    Context "Add or deactivate custom security attribute definitions in Microsoft Entra ID"{
+        It "Adding custom security attribute definitions"{
+            $thisTestInstanceId = Get-Random -Minimum 10000 -Maximum 100000
+            $testName = 'TestDefinition' + $thisTestInstanceId
+            $AttributeSet  = Get-EntraAttributeSet -Id 'Testing'
+            $params = @{
+                Name = $testName 
+                Description = 'Target completion' 
+                Type = 'String' 
+                Status = 'Available' 
+                AttributeSet = $AttributeSet.Id 
+                IsCollection = $False 
+                IsSearchable = $True 
+                UsePreDefinedValuesOnly = $True
+            }
+            $global:Definition = New-EntraCustomSecurityAttributeDefinition  @params
+        }
+        It "Deactivate custom security attribute definition"{
+            $params = @{
+                Id = $Definition.Id 
+                Description = 'Target completion' 
+                Status = 'Deprecated' 
+            }
+            Set-EntraCustomSecurityAttributeDefinition @params
+        }
+        It "Verification of deactivation of custom security attribute definition"{
+            $global:getDefinition = Get-EntraCustomSecurityAttributeDefinition -Id $Definition.Id
+            $getDefinition.Status | Should -Be 'Deprecated' 
+        }
+    }
     AfterAll {
         Remove-EntraRoleAssignment -Id $assignedRole.Id
         foreach ($user in (Get-EntraUser -SearchString "SimpleTestUsers")) {
