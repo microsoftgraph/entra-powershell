@@ -42,7 +42,7 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationExtensionProperty -ApplicationId $Application.ObjectId
+Get-EntraBetaApplicationExtensionProperty -ApplicationId $Application.Id
 ```
 
 ```Output

@@ -42,7 +42,7 @@ The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension pr
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $Application = Get-EntraApplication -SearchString '<application-name>'
-Get-EntraApplicationExtensionProperty -ApplicationId $Application.ObjectId
+Get-EntraApplicationExtensionProperty -ApplicationId $Application.Id
 ```
 
 ```Output
