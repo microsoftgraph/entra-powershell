@@ -42,8 +42,6 @@ Note: Only the Attribute Definition Administrator role is supported for this ope
 
 You can only update the `description` and `maxAttributesPerSet` properties.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
-
 ## Examples
 
 ### Example 1: Update an attribute set

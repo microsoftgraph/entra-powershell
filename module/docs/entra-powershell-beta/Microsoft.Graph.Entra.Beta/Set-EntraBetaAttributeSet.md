@@ -34,11 +34,13 @@ Set-EntraBetaAttributeSet
 
 ## Description
 
-Updates a Microsoft Entra ID attribute set object identified by ID. Specify `AttributeSetId` parameter to update an attribute set.
+The `Set-EntraBetaAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. Specify `AttributeSetId` parameter to Update a Microsoft Entra ID attribute set object.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
+
+Note: Only the Attribute Definition Administrator role is supported for this operation. Ensure the signed-in user is assigned this role.
 
 You can only update the `description` and `maxAttributesPerSet` properties.
-
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
 
