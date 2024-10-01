@@ -6,8 +6,8 @@ pr: none
 
 resources:
   pipelines:
-  - pipeline: _EntraPowerShell-Release-Build 
-    source: EntraPowerShell-Release-Build
+  - pipeline: _1es-EntraPowerShell-CI
+    source: 1es-EntraPowerShell-CI
   repositories:
   - repository: 1ESPipelineTemplates
     type: git
@@ -47,7 +47,7 @@ extends:
           isProduction: true
           inputs:
           - input: pipelineArtifact
-            pipeline: _EntraPowerShell-Release-Build
+            pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
             targetPath: $(Pipeline.Workspace)/drop
         steps:
