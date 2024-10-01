@@ -40,7 +40,7 @@ The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$manager = Get-EntraUser -ObjectId 'Manager@contoso.com'
+$manager = Get-EntraUser -UserId 'Manager@contoso.com'
 $params = @{
     UserId = 'SawyerM@contoso.com'
     RefObjectId = $manager.ObjectId
