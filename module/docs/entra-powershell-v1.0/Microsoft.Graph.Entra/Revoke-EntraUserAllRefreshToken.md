@@ -47,6 +47,12 @@ Connect-Entra -Scopes 'User.RevokeSessions.All'
 Revoke-EntraUserAllRefreshToken -UserId 'SawyerM@contoso.com'
 ```
 
+```Output
+Value
+-----
+True
+```
+
 This example demonstrates how to revoke the tokens for the specified user.
 
 - `-UserId` parameter specifies the unique identifier of a user.
