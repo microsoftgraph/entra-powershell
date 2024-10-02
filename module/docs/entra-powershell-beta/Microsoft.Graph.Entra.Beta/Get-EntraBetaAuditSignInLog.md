@@ -105,6 +105,16 @@ Get-EntraBetaAuditSignInLog -Filter "createdDateTime ge 2024-07-01T00:00:00Z and
 
 This example shows how to retrieve sign-in logs between dates.
 
+### Example 5: List failed sign-ins for a user
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$failedSignIns = Get-EntraBetaAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
+$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
+```
+
+This example demonstrates how to retrieve failed sign-ins for a user.
+
 ## Parameters
 
 ### -All
