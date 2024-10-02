@@ -17,7 +17,7 @@
     )
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "https://graph.microsoft.com/beta/users/$UserId"
         $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
         $params["Uri"] = "$baseUri/?$properties"        

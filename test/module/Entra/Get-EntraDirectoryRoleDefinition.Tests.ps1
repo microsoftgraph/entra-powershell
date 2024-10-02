@@ -35,7 +35,7 @@ BeforeAll {
 Describe "Get-EntraDirectoryRoleDefinition" {
     Context "Test for Get-EntraDirectoryRoleDefinition" {
         It "Should return specificrole Defination" {
-            $result = Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
+            $result = Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-App"
             $result.Id | Should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
@@ -50,11 +50,11 @@ Describe "Get-EntraDirectoryRoleDefinition" {
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when DirectoryRoleId is empty" {
-            { Get-EntraDirectoryRoleDefinition -DirectoryRoleId  } | Should -Throw "Missing an argument for parameter 'DirectoryRoleId'*"
+        It "Should fail when UnifiedRoleDefinitionId is empty" {
+            { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId  } | Should -Throw "Missing an argument for parameter 'UnifiedRoleDefinitionId'*"
         }
-        It "Should fail when DirectoryRoleId is invalid" {
-            { Get-EntraDirectoryRoleDefinition -DirectoryRoleId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryRoleId' because it is an empty string."
+        It "Should fail when UnifiedRoleDefinitionId is invalid" {
+            { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'UnifiedRoleDefinitionId' because it is an empty string."
         }
         It "Should return all role assignments" {
             $result = Get-EntraDirectoryRoleDefinition -All 
@@ -98,7 +98,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             { Get-EntraDirectoryRoleDefinition -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }         
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
+            $result = Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $result.ObjectId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
         }     
         It "Should contain Filter in parameters when passed SearchString to it" {              
@@ -107,19 +107,19 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $params.Filter | Should -Match "Mock-App"
         }
         It "Property parameter should work" {
-            $result = Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property DisplayName
+            $result = Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleDefinition"
 
-            Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
+            Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleDefinition"
 
@@ -135,7 +135,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDirectoryRoleDefinition -DirectoryRoleId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Debug } | Should -Not -Throw
+                { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
