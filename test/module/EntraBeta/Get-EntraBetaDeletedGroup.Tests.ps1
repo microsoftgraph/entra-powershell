@@ -31,7 +31,7 @@ BeforeAll {
 Describe "Get-EntraBetaDeletedGroup" {
 Context "Test for Get-EntraBetaDeletedGroup" {
         It "Should return specific Deleted Group" {
-            $result = Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-App"
@@ -48,11 +48,11 @@ Context "Test for Get-EntraBetaDeletedGroup" {
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when DirectoryObjectId is empty" {
-            { Get-EntraBetaDeletedGroup -DirectoryObjectId    } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
+        It "Should fail when GroupId is empty" {
+            { Get-EntraBetaDeletedGroup -GroupId    } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
-        It "Should fail when DirectoryObjectId is invalid" {
-            { Get-EntraBetaDeletedGroup -DirectoryObjectId  ""} | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId' because it is an empty string."
+        It "Should fail when GroupId is invalid" {
+            { Get-EntraBetaDeletedGroup -GroupId  ""} | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }
          It "Should return All deleted groups" {
             $result = Get-EntraBetaDeletedGroup  -All
@@ -61,7 +61,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 deleted group" {
             $result = Get-EntraBetaDeletedGroup -Top 1
@@ -73,10 +73,10 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific deleted group by filter" {
             $result = Get-EntraBetaDeletedGroup -Filter "DisplayName eq 'Mock-App'"
@@ -103,17 +103,17 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             { Get-EntraBetaDeletedGroup -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
+            $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
-        It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
-            $result = Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        It "Should contain GroupId in parameters when passed Id to it" {              
+            $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -124,7 +124,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedGroup"
-            $result = Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedGroup"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -139,7 +139,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaDeletedGroup -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

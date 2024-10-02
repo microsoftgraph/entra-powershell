@@ -49,7 +49,7 @@ Get-EntraDeletedGroup
 
 ```powershell
 Get-EntraDeletedGroup
- -DirectoryObjectId <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -158,11 +158,11 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
 
-### Example 6: Get deleted group by DirectoryObjectId
+### Example 6: Get deleted group by GroupId
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -171,9 +171,9 @@ DisplayName Id                                   MailNickname Description GroupT
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves the deleted group specified by DirectoryObjectId.
+This cmdlet retrieves the deleted group specified by GroupId.
 
-- `-DirectoryObjectId` parameter specifies the deleted group DirectoryObjectId.
+- `-GroupId` parameter specifies the deleted group GroupId.
 
 ## Parameters
 
@@ -210,9 +210,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -DirectoryObjectId
+### -GroupId
 
-The DirectoryObjectId of the deleted group to be retrieved.
+The GroupId of the deleted group to be retrieved.
 
 ```yaml
 Type: System.String
