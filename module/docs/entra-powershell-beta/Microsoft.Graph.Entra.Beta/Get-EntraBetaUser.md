@@ -175,6 +175,139 @@ New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 
 This example demonstrates how to retrieve all users with disabled accounts.
 
+### Example 8: List users based in a specific country
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$usersInCanada = Get-EntraBetaUser -Filter "Country eq 'Canada'"
+$usersInCanada | Select-Object Id, DisplayName, UserPrincipalName, OfficeLocation, Country | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName   UserPrincipalName         OfficeLocation   Country
+--                                   -----------   -----------------         --------------   -------
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/2102          Canada
+```
+
+This example demonstrates how to retrieve all users based in Canada.
+
+### Example 9: List user count per department
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$departmentCounts = Get-EntraBetaUser -All | Group-Object -Property Department | Select-Object Name, @{Name="MemberCount"; Expression={$_.Count}}
+$departmentCounts | Format-Table Name, MemberCount -AutoSize
+```
+
+```Output
+Name                 MemberCount
+----                 -----------
+                               7
+Engineering                    2
+Executive Management           1
+Finance                        1
+HR                             1
+```
+
+This example demonstrates how to retrieve user count in each department.
+
+### Example 10: List disabled users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$disabledUsersWithLicenses = Get-EntraBetaUser -Filter "accountEnabled eq false" -All | Where-Object {
+    $_.AssignedLicenses -ne $null -and $_.AssignedLicenses.Count -gt 0
+}
+$disabledUsersWithLicenses | Select-Object Id, DisplayName, UserPrincipalName, AccountEnabled | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName           AccountEnabled
+--                                   -----------  -----------------           --------------
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com          False
+```
+
+This example demonstrates how to retrieve disabled users with active licenses.
+
+### Example 11: Retrieve guest users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraBetaUser -Filter "userType eq 'Guest'" -All
+$guestUsersWithLicenses = foreach ($guest in $guestUsers) {
+    if ($guest.AssignedLicenses.Count -gt 0) {
+        [pscustomobject]@{
+            Id               = $guest.Id
+            DisplayName      = $guest.DisplayName
+            UserPrincipalName = $guest.UserPrincipalName
+            AssignedLicenses = ($guest.AssignedLicenses | ForEach-Object { $_.SkuId }) -join ", "
+        }
+    }
+}
+$guestUsersWithLicenses | Format-Table Id, DisplayName, UserPrincipalName, AssignedLicenses -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName                                  AssignedLicenses
+--                                   -----------  -----------------                                  ----------------
+cccccccc-2222-3333-4444-dddddddddddd Sawyer Miller sawyerm_gmail.com#EXT#@contoso.com c42b9cae-ea4f-4ab7-9717-81576235ccac
+```
+
+This example demonstrates how to retrieve guest users with active licenses.
+
+### Example 12: Retrieve users without managers
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$allUsers = Get-EntraBetaUser -All
+$usersWithoutManagers = foreach ($user in $allUsers) {
+    $manager = Get-EntraBetaUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
+    if (-not $manager) {
+        [pscustomobject]@{
+            Id               = $user.Id
+            DisplayName      = $user.DisplayName
+            UserPrincipalName = $user.UserPrincipalName
+        }
+    }
+}
+$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName
+--                                   -----------     -----------------
+cccccccc-2222-3333-4444-dddddddddddd  New User       NewUser@tenant.com
+bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
+```
+
+This example demonstrates how to retrieve users without managers.
+
+### Example 13: List failed sign-ins for a user
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$failedSignIns = Get-EntraBetaAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
+$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
+```
+
+This example demonstrates how to retrieve failed sign-ins for a user.
+
+### Example 14: List all guest users
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraBetaUser -Filter "userType eq 'Guest'" -All
+$guestUsers | Select-Object DisplayName, UserPrincipalName, Id, createdDateTime, creationType, accountEnabled, UserState | Format-Table -AutoSize
+```
+
+```Output
+DisplayName     UserPrincipalName                                 Id                                   CreatedDateTime       CreationType   AccountEnabled  UserState
+-----------     -----------------                                 --                                   ---------------       ------------   --------------  ---------
+Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-2222-3333-cccccccccccc 9/13/2024 6:37:33 PM  Invitation     True            Accepted
+```
+
+This example demonstrates how to retrieve list all guest users.
+
 ## Parameters
 
 ### -All
