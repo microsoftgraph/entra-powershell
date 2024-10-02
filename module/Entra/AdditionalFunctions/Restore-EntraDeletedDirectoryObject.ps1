@@ -29,8 +29,13 @@ function Restore-EntraDeletedDirectoryObject {
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json       
-        
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json  
+        $data | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+    
+            }
+        }     
         $userList = @()
         foreach ($res in $data) {
             $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
