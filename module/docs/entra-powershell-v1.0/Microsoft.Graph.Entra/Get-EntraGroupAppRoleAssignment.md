@@ -35,7 +35,7 @@ Get-EntraGroupAppRoleAssignment
 
 ## Description
 
-The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
+The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `GroupId` parameter to get a group application role assignment.
 
 ## Examples
 
@@ -57,7 +57,7 @@ MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                
 
 This example retrieves the application role assignments of a group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 2: Retrieve all application role assignments of a group
 
@@ -76,7 +76,7 @@ MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                
 
 This example retrieves all application role assignments of the specified group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 3: Retrieve top two application role assignments of a group
 
@@ -94,7 +94,7 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 
 This example retrieves top two application role assignments of the specified group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ## Parameters
 

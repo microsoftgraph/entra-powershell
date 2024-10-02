@@ -47,7 +47,7 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
 $group = Get-EntraGroup -SearchString 'Contoso Team'
-New-EntraGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+New-EntraGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -AppRoleId $spo.Approles[1].id
 ```
 
 ```Output

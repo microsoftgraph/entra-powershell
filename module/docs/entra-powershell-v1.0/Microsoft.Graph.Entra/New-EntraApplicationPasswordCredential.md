@@ -56,7 +56,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ApplicationId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
@@ -79,7 +79,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ApplicationId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-CustomKeyIdentifier` Speicifies unique binary identifier.
 
 ### Example 3: Create a password credential using StartDate parameter
@@ -104,7 +104,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ApplicationId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-StartDate` Speicifies the date and time at which the password becomes valid.
 
 ### Example 4: Create a password credential using EndDate parameter
@@ -129,7 +129,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ApplicationId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-EndDate` Speicifies The date and time at which the password expires.
 
 ## Parameters

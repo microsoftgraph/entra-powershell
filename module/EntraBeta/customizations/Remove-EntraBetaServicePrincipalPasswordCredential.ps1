@@ -7,7 +7,6 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    function Remove-EntraBetaServicePrincipalPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -21,7 +20,7 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
-        $Method = "POST"        
+        $Method = "POST"
         if($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"])
         {
             $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
@@ -35,7 +34,6 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -Body $body)
-    }    
-}
+    }
 '@
 }

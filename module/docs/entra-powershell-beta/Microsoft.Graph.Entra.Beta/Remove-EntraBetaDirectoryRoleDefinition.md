@@ -41,8 +41,8 @@ You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 o
 ### Example 1: Remove a specified role definition
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Remove-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+Remove-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.

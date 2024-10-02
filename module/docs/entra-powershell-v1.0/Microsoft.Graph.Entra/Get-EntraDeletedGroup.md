@@ -89,7 +89,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra DirectoryObjectId.  
+This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.  
 
 ### Example 2: Get deleted groups in the directory using All parameter
 

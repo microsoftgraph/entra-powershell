@@ -27,9 +27,9 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"}
-        if($null -ne $PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["UnifiedRoleDefinitionId"])
         {
-            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["Id"]
+            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["UnifiedRoleDefinitionId"]
         }
         if($null -ne $PSBoundParameters["Filter"])
         {

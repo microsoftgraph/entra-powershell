@@ -19,7 +19,7 @@
     )
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand       
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         if ($null -ne $PSBoundParameters["AttributeSetId"])
         {
