@@ -49,7 +49,7 @@ Get-EntraServicePrincipal
 
 ```powershell
 Get-EntraServicePrincipal
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -78,11 +78,11 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 Projec
 
 This example retrieves all service principals from the directory.
 
-### Example 2: Retrieve a service principal by ObjectId
+### Example 2: Retrieve a service principal by ServicePrincipalId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -93,7 +93,7 @@ M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 0000111
 
 This command retrieves specific service principal.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` Parameter specifies the ID of a service principal.
 
 ### Example 3: Retrieve all service principals from the directory
 
@@ -220,6 +220,37 @@ Global secure access app     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-
 
 This example demonstrates how to retrieve all Global secure access apps.
 
+### Example 11: List all applications without user assignment
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal -All | Where-Object {$_.appRoleAssignmentRequired -ne 'true'}
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App without user assignment     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all applications without user assignment.
+
+### Example 12: List all SAML application details
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "PreferredSingleSignOnMode eq 'saml'"
+$servicePrincipal | Select-Object Id, DisplayName, AccountEnabled, AppId, PreferredSingleSignOnMode, AppRoleAssignmentRequired, SignInAudience, NotificationEmailAddresses, PreferredTokenSigningKeyEndDateTime, PreferredTokenSigningKeyValid, ReplyUrls,LoginUrl, LogoutUrl | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName                           AccountEnabled AppId                                PreferredSingleSignOnMode AppRoleAssignmentRequired SignInAudience NotificationEmailAddresses
+--                                   -----------                           -------------- -----                                ------------------------- ------------------------- -------------- --------------
+00001111-aaaa-2222-bbbb-3333cccc4444 SAML App                             True            33334444-dddd-5555-eeee-6666ffff7777 saml                              True                    AzureADMyOrg   {admin@Contoso}
+```
+
+This example demonstrates how to retrieve all SAML application details.
+
 ## Parameters
 
 ### -All
@@ -255,14 +286,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

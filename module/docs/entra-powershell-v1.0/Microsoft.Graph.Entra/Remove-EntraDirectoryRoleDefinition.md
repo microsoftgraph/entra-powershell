@@ -27,7 +27,7 @@ Delete a Microsoft Entra ID Directory roleDefinition object.
 
 ```powershell
 Remove-EntraDirectoryRoleDefinition 
- -Id <String> 
+ -UnifiedRoleDefinitionId <String> 
  [<CommonParameters>]
 ```
 
@@ -43,24 +43,23 @@ You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 o
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$DirectoryRoleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Guest Inviter'"
-Remove-EntraDirectoryRoleDefinition -Id $DirectoryRoleDefinition.ObjectId
+Remove-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleDefinitionId
 
 The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 0

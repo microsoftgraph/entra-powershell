@@ -27,14 +27,14 @@ Gets members of a directory role.
 
 ```powershell
 Get-EntraDirectoryRoleMember
- -ObjectId <String>
+ -DirectoryRoleId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `ObjectId`. Use the `Get-EntraDirectoryRole` cmdlet to get the `ObjectId` value.
+The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `DirectoryRoleId`. Use the `Get-EntraDirectoryRole` cmdlet to get the `DirectoryRoleId` value.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory r
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraDirectoryRoleMember -ObjectId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
+Get-EntraDirectoryRoleMember -DirectoryRoleId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
 ```
 
 ```Output
@@ -53,18 +53,18 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This example retrieves the members of the specified role.
 
-- `-ObjectId` parameter specifies directory role ID.
+- `-DirectoryRoleId` parameter specifies directory role ID.
 
 ## Parameters
 
-### -ObjectId
+### -DirectoryRoleId
 
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -14,48 +14,38 @@ BeforeAll {
 Describe "Remove-EntraApplication" {
     Context "Test for Remove-EntraApplication" {
         It "Should return empty object" {
+            $result = Remove-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Remove-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Remove-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }   
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
             Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplication"
 
-            Remove-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplication"
-
+            Remove-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
         } 
-        It "Should execute successfully without throwing an error" {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
-            }
-        }   
     }
 }

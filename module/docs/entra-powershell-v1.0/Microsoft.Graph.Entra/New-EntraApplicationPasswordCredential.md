@@ -27,7 +27,7 @@ Creates a password credential for an application.
 
 ```powershell
 New-EntraApplicationPasswordCredential 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [-CustomKeyIdentifier <String>]
  [-StartDate <DateTime>] 
  [-EndDate <DateTime>] 
@@ -45,7 +45,7 @@ The `New-EntraApplicationPasswordCredential` cmdlet creates a password credentia
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-New-EntraApplicationPasswordCredential -ObjectId $application.Id
+New-EntraApplicationPasswordCredential -ApplicationId $application.Id
 ```
 
 ```Output
@@ -56,7 +56,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ObjectId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
@@ -64,7 +64,7 @@ This command creates new password credential for specified application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $params = @{
-    ObjectId = $application.Id
+    ApplicationId = $application.Id
     CustomKeyIdentifier = '<userfriendlyDisplayName>'
 }
 
@@ -79,7 +79,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ObjectId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-CustomKeyIdentifier` Speicifies unique binary identifier.
 
 ### Example 3: Create a password credential using StartDate parameter
@@ -88,7 +88,7 @@ This command creates new password credential for specified application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $params = @{
-    ObjectId = $application.Id
+    ApplicationId = $application.Id
     StartDate = (Get-Date).AddYears(0)
     CustomKeyIdentifier = '<userfriendlyDisplayName>'
 }
@@ -104,7 +104,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ObjectId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-StartDate` Speicifies the date and time at which the password becomes valid.
 
 ### Example 4: Create a password credential using EndDate parameter
@@ -113,7 +113,7 @@ This command creates new password credential for specified application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $params = @{
-    ObjectId = $application.Id
+    ApplicationId = $application.Id
     EndDate = (Get-Date).AddYears(2)
     CustomKeyIdentifier = '<userfriendlyDisplayName>'
 }
@@ -129,19 +129,19 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-- `-ObjectId` Specifies the ID of a user.
+- `-ApplicationId` Specifies the ID of an application.
 - `-EndDate` Speicifies The date and time at which the password expires.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

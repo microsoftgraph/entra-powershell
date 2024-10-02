@@ -27,7 +27,7 @@ Get objects owned by a user.
 
 ```powershell
 Get-EntraUserOwnedObject
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -36,7 +36,7 @@ Get-EntraUserOwnedObject
 
 ## Description
 
-The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID. Specify `ObjectId` parameter to get objects owned by user.
+The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID. Specify `UserId` parameter to get objects owned by user.
 
 ## Examples
 
@@ -44,7 +44,7 @@ The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com'
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -60,7 +60,7 @@ hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 
 This example retrieves objects owned by the specified user.
 
-- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+- `-UserId` Parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
 ### Example 2: Get objects owned by a user with additional details
 
@@ -92,7 +92,7 @@ This example retrieves objects owned by the specified user with more lookup deta
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com' -All 
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -108,13 +108,13 @@ hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 
 This example retrieves all the objects owned by the specified user.
 
-- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+- `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
 ### Example 4: Get top three objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com' -Top 3
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output
@@ -127,7 +127,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example retrieves the top three objects owned by the specified user.
 
-- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+- `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
 ## Parameters
 
@@ -147,14 +147,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -25,14 +25,14 @@ Updates a user's manager.
 
 ```powershell
 Set-EntraUserManager 
- -ObjectId <String> 
+ -UserId <String> 
  -RefObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `ObjectId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
+The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `UserId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -40,9 +40,9 @@ The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$manager = Get-EntraUser -ObjectId 'Manager@contoso.com'
+$manager = Get-EntraUser -UserId 'Manager@contoso.com'
 $params = @{
-    ObjectId = 'SawyerM@contoso.com'
+    UserId = 'SawyerM@contoso.com'
     RefObjectId = $manager.ObjectId
 }
 Set-EntraUserManager @params
@@ -52,14 +52,14 @@ This example demonstrates how to update the manager for the specified user.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

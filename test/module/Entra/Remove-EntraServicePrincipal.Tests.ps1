@@ -12,21 +12,25 @@ BeforeAll {
 Describe "Remove-EntraServicePrincipal" {
     Context "Test for Remove-EntraServicePrincipal" {
         It "Should return empty object" {
+            $result = Remove-EntraServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Remove-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should update the parameter with Alias" {
             $result = Remove-EntraServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
-
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraServicePrincipal -ObjectId }| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
+        It "Should fail when ServicePrincipalId is empty" {
+            { Remove-EntraServicePrincipal -ServicePrincipalId }| Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"                
         } 
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+        It "Should fail when ServicePrincipalId is invalid" {
+            { Remove-EntraServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
         }
-        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
+        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
             Mock -CommandName Remove-MgServicePrincipal -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
+            $result = Remove-EntraServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
             $params = Get-Parameters -data $result
             $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         
@@ -34,7 +38,7 @@ Describe "Remove-EntraServicePrincipal" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipal"
 
-            Remove-EntraServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
+            Remove-EntraServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipal"
 
@@ -51,7 +55,7 @@ Describe "Remove-EntraServicePrincipal" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Remove-EntraServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

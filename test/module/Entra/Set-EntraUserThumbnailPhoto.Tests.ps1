@@ -13,28 +13,35 @@ BeforeAll {
 Describe "Set-EntraUserThumbnailPhoto" {
     Context "Test for Set-EntraUserThumbnailPhoto" {
         It "Should return specific User" {
+            $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific User with alias" {
             $result = Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty string value" {
-            { Set-EntraUserThumbnailPhoto -ObjectId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string value" {
+            { Set-EntraUserThumbnailPhoto -UserId ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraUserThumbnailPhoto -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        It "Should fail when UserId is empty" {
+            { Set-EntraUserThumbnailPhoto -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should fail when RefObjectId is invalid" {
-            { Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
             Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
+            $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $params = Get-Parameters -data $result
             $params.UserId | Should -Match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -42,7 +49,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         It "Should contain InFile in parameters" {
             Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
+            $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $params = Get-Parameters -data $result
             $params.InFile | Should -Match "UserThumbnailPhoto.jpg"
         }
@@ -50,7 +57,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserThumbnailPhoto"
              
-            Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
+            Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserThumbnailPhoto"
     
@@ -67,7 +74,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'-Debug } | Should -Not -Throw
+                { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'-Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

@@ -15,15 +15,20 @@ BeforeAll {
 
 Describe "Test for Remove-EntraAdministrativeUnitMember" {
     It "Should return empty object" {
+        $result = Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should return empty object with ObjectId" {
         $result = Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Remove-EntraAdministrativeUnitMember -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Remove-EntraAdministrativeUnitMember -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is null" {
+        { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when MemberId is empty" {
         { Remove-EntraAdministrativeUnitMember -MemberId "" } | Should -Throw "Cannot bind argument to parameter 'MemberId'*"
@@ -37,7 +42,7 @@ Describe "Test for Remove-EntraAdministrativeUnitMember" {
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnitMember"
 
-        Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId
+        Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId
 
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnitMember"
 
@@ -53,7 +58,7 @@ Describe "Test for Remove-EntraAdministrativeUnitMember" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Remove-EntraAdministrativeUnitMember -ObjectId $auId -MemberId $memId -Debug } | Should -Not -Throw
+            { Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $auId -MemberId $memId -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

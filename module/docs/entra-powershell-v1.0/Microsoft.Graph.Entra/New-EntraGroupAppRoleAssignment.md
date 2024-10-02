@@ -27,9 +27,9 @@ Assign a group of users to an application role.
 
 ```powershell
 New-EntraGroupAppRoleAssignment 
- -ObjectId <String> 
- -PrincipalId <String>
- -Id <String> 
+ -GroupId <String> 
+ -PrincipalId <String> 
+ -AppRoleId <String> 
  -ResourceId <String>
  [<CommonParameters>]
 ```
@@ -47,7 +47,7 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
 $group = Get-EntraGroup -SearchString 'Contoso Team'
-New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+New-EntraGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -AppRoleId $spo.Approles[1].id
 ```
 
 ```Output
@@ -59,21 +59,24 @@ DeletedDateTime        Id                                          AppRoleId    
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the ID of a group to which you're assigning the app role.
-- `-PrincipalId` parameter specifies the ID of a group to which you're assigning the app role.
-- `-ResourceId` parameter specifies the ID of a resource service Principal, which has defined the app role.
-- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the group.
+- `GroupId`: The ID of the group to which you're assigning the app role.
+
+- `PrincipalId`: The ID of the group to which you're assigning the app role.
+
+- `ResourceId`: The ID of the resource service Principal, which has defined the app role.
+
+- `AppRoleId`: The ID of the appRole (defined on the resource service principal) to assign to the group.
 
 ## Parameters
 
-### -Id
+### -AppRoleId
 
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -82,14 +85,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

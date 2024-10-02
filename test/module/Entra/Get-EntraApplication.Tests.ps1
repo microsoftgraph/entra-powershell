@@ -37,17 +37,17 @@ BeforeAll {
 Describe "Get-EntraApplication" {
     Context "Test for Get-EntraApplication" {
         It "Should return specific application" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Get-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Get-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }
         It "Should return all applications" {
             $result = Get-EntraApplication -All
@@ -91,12 +91,12 @@ Describe "Get-EntraApplication" {
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Result should Contain ApplicationId" {
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {              
+            $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
@@ -141,5 +141,13 @@ Describe "Get-EntraApplication" {
                 $DebugPreference = $originalDebugPreference        
             }
         } 
+        It "Should execute successfully with Alias" {
+            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
     }
 }
