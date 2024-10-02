@@ -64,6 +64,33 @@ This example demonstrates how to retrieve the manager of a specific user.
 
 - `-ObjectId` Parameter specifies ObjectID or User Principal Name of User.
 
+### Example 2: Retrieve users without managers
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$allUsers = Get-EntraBetaUser -All
+$usersWithoutManagers = foreach ($user in $allUsers) {
+    $manager = Get-EntraBetaUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
+    if (-not $manager) {
+        [pscustomobject]@{
+            Id               = $user.Id
+            DisplayName      = $user.DisplayName
+            UserPrincipalName = $user.UserPrincipalName
+        }
+    }
+}
+$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName
+--                                   -----------     -----------------
+cccccccc-2222-3333-4444-dddddddddddd  New User       NewUser@tenant.com
+bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
+```
+
+This example demonstrates how to retrieve users without managers.
+
 ## Parameters
 
 ### -ObjectId
