@@ -26,13 +26,13 @@ Removes a group.
 
 ```powershell
 Remove-EntraBetaGroup 
- -ObjectId <String> 
+ -GroupId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaGroup` cmdlet removes a group from Microsoft Entra ID. Specify the `ObjectId` parameter removes a group. 
+The `Remove-EntraBetaGroup` cmdlet removes a group from Microsoft Entra ID. Specify the `GroupId` parameter removes a group.
 
 Unified Group can be restored withing 30 days after deletion using the `Restore-EntraBetaDeletedDirectoryObject` cmdlet. Security groups can't be restored after deletion.
 
@@ -50,23 +50,23 @@ The following conditions apply for apps to delete role-assignable groups:
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Remove-EntraBetaGroup -ObjectId $group.Id
+Remove-EntraBetaGroup -GroupId $group.Id
 ```
 
 This example demonstrates how to remove a group in Microsoft Entra ID.
 
-- `ObjectId` parameter specifies the group ID .
+- `GroupId` parameter specifies the group ID .
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -13,26 +13,31 @@ BeforeAll {
 Describe "Set-EntraBetaUserManager"{
     Context "Test for Set-EntraBetaUserManager" {
         It "Should return empty object"{
+            $result = Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -BeNullOrEmpty 
+            Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return empty object with alias"{
             $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty 
             Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraBetaUserManager -ObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty" {
+            { Set-EntraBetaUserManager -UserId ""  } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should fail when invalid parameter is passed" {
             { Set-EntraBetaUserManager -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
         }
-        It "Should contain UserId in parameters when passed ObjectId to it" {
+        It "Should contain UserId in parameters when passed UserId to it" {
             Mock -CommandName Set-MgBetaUserManagerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserManager"
-            $result = Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserManager"
             Should -Invoke -CommandName Set-MgBetaUserManagerByRef  -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -47,7 +52,7 @@ Describe "Set-EntraBetaUserManager"{
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

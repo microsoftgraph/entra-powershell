@@ -27,7 +27,7 @@ Permanently delete a previously deleted directory object.
 
 ```powershell
 Remove-EntraDeletedDirectoryObject 
- -Id <String> 
+ -DirectoryObjectId <String> 
  [<CommonParameters>]
 ```
 
@@ -50,23 +50,23 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Group.ReadWrite.All','Application.ReadWrite.All','User.ReadWrite.All'
 
-Remove-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Remove-EntraDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example demonstrates how to permanently delete a previously deleted directory object by Id.
+This example demonstrates how to permanently delete a previously deleted directory object by DirectoryObjectId.
 
-- `-Id` parameter specifies the Id of the directory object that is permanently deleted.
+- `-DirectoryObjectId` parameter specifies the Id of the directory object that is permanently deleted.
 
 ## Parameters
 
-### -Id
+### -DirectoryObjectId
 
-The Id of the directory object that is permanently deleted.
+The DirectoryObjectId of the directory object that is permanently deleted.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

@@ -28,8 +28,8 @@ Assign a group of users to an application role.
 ```powershell
 New-EntraBetaGroupAppRoleAssignment 
  -ResourceId <String> 
- -Id <String> 
- -ObjectId <String> 
+ -AppRoleId <String> 
+ -GroupId <String> 
  -PrincipalId <String>
  [<CommonParameters>]
 ```
@@ -47,7 +47,7 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appname = 'Box'
 $spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
 $group = Get-EntraBetaGroup -SearchString 'Contoso Team'
-New-EntraBetaGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+New-EntraBetaGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -AppRoleId $spo.Approles[1].id
 ```
 
 ```Output
@@ -59,21 +59,21 @@ DeletedDateTime        Id                                          AppRoleId    
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the ID of a group to which you're assigning the app role.
+- `-GroupId` parameter specifies the ID of a group to which you're assigning the app role.
 - `-PrincipalId` parameter specifies the ID of a group to which you're assigning the app role.
 - `-ResourceId` parameter specifies the ID of a resource service Principal, which has defined the app role.
-- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the group.
+- `-AppRoleId` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the group.
 
 ## Parameters
 
-### -Id
+### -AppRoleId
 
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -82,14 +82,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
-Specifies the ID of a group in Microsoft Entra ID.
+Specifies the ID of a user (as a UserPrincipalName or GroupId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

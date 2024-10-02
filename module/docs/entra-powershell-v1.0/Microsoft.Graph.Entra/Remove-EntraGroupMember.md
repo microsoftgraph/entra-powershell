@@ -26,7 +26,7 @@ Removes a member from a group.
 
 ```powershell
 Remove-EntraGroupMember 
- -ObjectId <String> 
+ -GroupId <String> 
  -MemberId <String> 
  [<CommonParameters>]
 ```
@@ -42,15 +42,14 @@ The `Remove-EntraGroupMember` cmdlet removes a member from a group in Microsoft 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    ObjectId = $group.ObjectId
-    MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
-}
-
-Remove-EntraGroupMember @params
+Remove-EntraGroupMember -GroupId $group.Id -MemberId 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 ```
 
-This example demonstrates how to remove a member from a group in Microsoft Entra ID.
+This command removes the specified member from the specified group.  
+
+GroupId - Specifies the object ID of a group in Microsoft Entra ID.
+
+MemberId - Specifies the ID of the member to remove.
 
 ## Parameters
 
@@ -70,14 +69,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

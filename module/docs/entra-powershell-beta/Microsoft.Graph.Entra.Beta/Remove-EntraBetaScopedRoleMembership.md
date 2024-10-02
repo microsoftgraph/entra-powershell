@@ -27,14 +27,14 @@ Removes a scoped role membership.
 
 ```powershell
 Remove-EntraBetaScopedRoleMembership 
- -ObjectId <String> 
+ -AdministrativeUnitId <String> 
  -ScopedRoleMembershipId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
+The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `AdministrativeUnitId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
 
 ## Examples
 
@@ -44,7 +44,7 @@ The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membersh
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = $AdministrativeUnit.ObjectId
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Remove-EntraBetaScopedRoleMembership @params
@@ -52,12 +52,12 @@ Remove-EntraBetaScopedRoleMembership @params
 
 This cmdlet removes a specific scoped role membership from Microsoft Entra ID. You can use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit Id.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `-ScopedRoleMembershipId` parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraBetaScopedRoleMembership` command.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit object.
 
@@ -80,7 +80,7 @@ Specifies the ID of the scoped role membership to remove.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -77,6 +77,14 @@ BeforeAll {
 Describe "Get-EntraServicePrincipal" {
     Context "Test for Get-EntraServicePrincipal" {
         It "Should return specific service" {
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should execute successfully with Alias" {
             $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
@@ -84,12 +92,12 @@ Describe "Get-EntraServicePrincipal" {
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ServicePrincipalId is empty" {
+            { Get-EntraServicePrincipal -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
 
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ServicePrincipalId is invalid" {
+            { Get-EntraServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
         }
 
         It "Should return all service" {
@@ -118,8 +126,8 @@ Describe "Get-EntraServicePrincipal" {
             { Get-EntraServicePrincipal -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Result should Contain ServicePrincipalId" {
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
@@ -147,13 +155,13 @@ Describe "Get-EntraServicePrincipal" {
             { Get-EntraServicePrincipal -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         } 
 
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Result should Contain ServicePrincipalId" {
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
-        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
@@ -165,7 +173,7 @@ Describe "Get-EntraServicePrincipal" {
         }
         
         It "Property parameter should work" {
-            $result =   Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName 
+            $result =   Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName 
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Windows Update for Business Deployment Service"
 
@@ -173,12 +181,12 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should fail when Property is empty" {
-             {  Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             {  Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
 
-            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
@@ -196,7 +204,7 @@ Describe "Get-EntraServicePrincipal" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

@@ -11,7 +11,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "Value"                = "True"
-                "AdditionalProperties" = "{[@odata.context, https://graph.microsoft.com/v1.0/$metadata#Edm.Boolean]}"
+                "AdditionalProperties" = "{[@odata.context, https://graph.microsoft.com/v1.0/`$metadata#Edm.Boolean]}"
                 "Parameters"           = $args
             }
         )
@@ -23,28 +23,35 @@ BeforeAll {
 Describe "Add-EntraLifecyclePolicyGroup" {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
+            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+            $result | Should -Not -BeNullOrEmpty"
+            $result.Value | should -Be "True"
+
+            Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return created LifecyclePolicyGroup with alias" {
             $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff
             $result | Should -Not -BeNullOrEmpty"
             $result.Value | should -Be "True"
 
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id is invalid" {
-            { Add-EntraLifecyclePolicyGroup -Id "" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+        It "Should fail when GroupLifecyclePolicyId is invalid" {
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string.*"
         }
-        It "Should fail when Id is empty" {
-            { Add-EntraLifecyclePolicyGroup -Id -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'Id'.*"
+        It "Should fail when GroupLifecyclePolicyId is empty" {
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
         } 
         It "Should fail when GroupId is invalid" {
-            { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
         }
         It "Should fail when GroupId is empty" {
-            { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
-            Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
@@ -60,7 +67,7 @@ Describe "Add-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Debug } | Should -Not -Throw
+                { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

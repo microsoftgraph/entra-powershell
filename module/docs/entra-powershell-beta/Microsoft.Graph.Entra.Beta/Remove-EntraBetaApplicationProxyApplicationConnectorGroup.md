@@ -26,7 +26,7 @@ The `Remove-EntraBetaApplicationProxyApplicationConnectorGroupcmdlet` sets the c
 
 ```powershell
 Remove-EntraBetaApplicationProxyApplicationConnectorGroup
- -ObjectId <String> 
+ -OnPremisesPublishingProfileId <String> 
  [<CommonParameters>]
 ```
 
@@ -41,16 +41,16 @@ The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ```POWERSHELL
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Remove-EntraBetaApplicationProxyApplicationConnectorGroup -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example removes the Connector Group associated with an application, setting the group to 'Default.'
 
-- `ObjectId` parameter specifies the application ID.
+- `OnPremisesPublishingProfileId` parameter specifies the application ID.
 
 ## Parameters
 
-### -ObjectId
+### -OnPremisesPublishingProfileId
 
 The unique application ID of the application.
 The application ID can be found using the `Get-EntraBetaApplication` command.
@@ -59,7 +59,7 @@ You can also find objectId  in the Microsoft Entra Admin Center by navigating to
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

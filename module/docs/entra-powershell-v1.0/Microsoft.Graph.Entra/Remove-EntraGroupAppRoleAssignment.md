@@ -25,9 +25,9 @@ Delete a group application role assignment.
 
 ```powershell
 Remove-EntraGroupAppRoleAssignment 
- -AppRoleAssignmentId <String>
- -ObjectId <String>
- [<CommonParameters>]
+ -AppRoleAssignmentId <String> 
+ -GroupId <String>
+[<CommonParameters>]
 ```
 
 ## Description
@@ -41,17 +41,12 @@ The `Remove-EntraGroupAppRoleAssignment` cmdlet removes a group application role
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    ObjectId = $group.ObjectId 
-    AppRoleAssignmentId = 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
-}
-Remove-EntraGroupAppRoleAssignment @params
+Remove-EntraGroupAppRoleAssignment -GroupId $group.Id -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 This example demonstrates how to remove the specified group application role assignment.
-
-- `-ObjectId` parameter specifies the object ID of a group.
-- `-AppRoleAssignmentId` parameter specifies the object ID of a group application role assignment.
+GroupId - Specifies the object ID of a group.
+AppRoleAssignmentId - Specifies the object ID of the group application role assignment.
 
 ## Parameters
 
@@ -71,14 +66,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

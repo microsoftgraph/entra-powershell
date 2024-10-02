@@ -27,7 +27,7 @@ Adds a group to a lifecycle policy.
 
 ```powershell
 Add-EntraBetaLifecyclePolicyGroup 
- -Id <String> 
+ -GroupLifecyclePolicyId <String> 
  -GroupId <String> 
  [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Office365 group'"
 $policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = $policy.Id
+    GroupLifecyclePolicyId = $policy.Id
     groupId = $group.ObjectId
 }
 Add-EntraBetaLifecyclePolicyGroup @params
@@ -53,7 +53,7 @@ Add-EntraBetaLifecyclePolicyGroup @params
 
 This example adds a group to the lifecycle policy.
 
-- `-Id` parameter specifies the ID of the Lifecycle Policy add to the group.
+- `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy add to the group.
 - `-GroupId`  parameter specifies the ID of the group add to the Lifecycle Policy.
 
 ## Parameters
@@ -74,14 +74,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

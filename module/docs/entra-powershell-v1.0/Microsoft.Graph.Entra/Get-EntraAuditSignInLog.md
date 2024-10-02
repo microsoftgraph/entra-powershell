@@ -26,6 +26,7 @@ Get audit logs of sign-ins.
 
 ```powershell
 Get-EntraAuditSignInLog 
+ [-SignInId]
  [-All]
  [-Top <Int32>] 
  [-Filter <String>] 
@@ -115,6 +116,22 @@ $failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAdd
 This example demonstrates how to retrieve failed sign-ins for a user.
 
 ## Parameters
+
+### -SignInId
+
+Specifies unique ID of the Audit Log.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: Id
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -All
 

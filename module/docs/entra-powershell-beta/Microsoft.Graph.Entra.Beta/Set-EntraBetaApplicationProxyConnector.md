@@ -26,7 +26,7 @@ The `Set-EntraBetaApplicationProxyConnector` cmdlet allows reassignment of the c
 
 ```powershell
 Set-EntraBetaApplicationProxyConnector 
- -Id <String> 
+ -OnPremisesPublishingProfileId <String> 
  -ConnectorGroupId <String> 
  [<CommonParameters>]
 ```
@@ -42,7 +42,7 @@ The `Set-EntraBetaApplicationProxyConnector` cmdlet allows reassignment of the c
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    OnPremisesPublishingProfileId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
     ConnectorGroupId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Set-EntraBetaApplicationProxyConnector @params
@@ -50,12 +50,12 @@ Set-EntraBetaApplicationProxyConnector @params
 
 This example demonstrates how to move a Connector to a different Connector Group.
 
-- `-Id` parameter specifies the connector ID.
+- `-OnPremisesPublishingProfileId` parameter specifies the connector ID.
 - `-ConnectorGroupId` parameter specifies the application proxy connector group ID.
 
 ## Parameters
 
-### -Id
+### -OnPremisesPublishingProfileId
 
 The ID of the Connector being moved.
 Use the `Get-EntraBetaApplicationProxyConnectorGroup` command to find the Connector Group ID.
@@ -63,7 +63,7 @@ Use the `Get-EntraBetaApplicationProxyConnectorGroup` command to find the Connec
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

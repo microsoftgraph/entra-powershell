@@ -35,6 +35,15 @@ BeforeAll {
 Describe "Get-EntraUserRegisteredDevice" {
 Context "Test for Get-EntraUserRegisteredDevice" {
         It "Should return specific user registered device" {
+            $result = Get-EntraUserRegisteredDevice -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
+            $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.AdditionalProperties.displayName | Should -Be "Mock-App"
+
+            Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return specific user registered device with alias" {
             $result = Get-EntraUserRegisteredDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
@@ -44,13 +53,13 @@ Context "Test for Get-EntraUserRegisteredDevice" {
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ObjectlId is empty" {
-            { Get-EntraUserRegisteredDevice -ObjectId    } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Get-EntraUserRegisteredDevice -UserId    } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
         It "Should fail when ObjectlId is invalid" {
-            { Get-EntraUserRegisteredDevice -ObjectId  ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraUserRegisteredDevice -UserId  ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should return All user registered devices" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+            $result = Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
             $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
@@ -59,10 +68,10 @@ Context "Test for Get-EntraUserRegisteredDevice" {
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 user registered device" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+            $result = Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
             $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
@@ -71,29 +80,29 @@ Context "Test for Get-EntraUserRegisteredDevice" {
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
+            $result = Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgUserRegisteredDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
-        It "Should contain UserId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        It "Should contain UserId in parameters when passed UserId to it" {              
+            $result = Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserRegisteredDevice"
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserRegisteredDevice"
             Should -Invoke -CommandName Get-MgUserRegisteredDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -108,7 +117,7 @@ Context "Test for Get-EntraUserRegisteredDevice" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraUserRegisteredDevice -UserId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

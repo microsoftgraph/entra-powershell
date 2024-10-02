@@ -26,13 +26,13 @@ Removes an owner from a group.
 ```powershell
 Remove-EntraGroupOwner 
  -OwnerId <String> 
- -ObjectId <String> 
+ -GroupId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
+The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `GroupId` and `OwnerId` parameters to remove an owner from a group.
 
 ## Examples
 
@@ -41,30 +41,25 @@ The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft E
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    ObjectId = $group.ObjectId
-    OwnerId = 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
-}
-
-Remove-EntraGroupOwner @params
+Remove-EntraGroupOwner -GroupId $group.Id -OwnerId 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
-- `ObjectId` specifies the ID of a group in Microsoft Entra ID.  
+GroupId - Specifies the ID of a group in Microsoft Entra ID.  
 
 - `OwnerId` specifies the ID of an owner.
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

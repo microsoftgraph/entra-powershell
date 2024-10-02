@@ -23,36 +23,41 @@ BeforeAll {
   
 Describe "Get-EntraApplicationLogo" {
     It "Should return empty" {
+        $result = Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
+        $result | Should -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should return empty" {
         $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should return empty when passed ileName parameter" {
-        $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName "image"        
+        $result = Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName "image"        
         $result | Should -BeNullOrEmpty
     }
     It "Should fail when FileName is empty" {
-        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName } | Should -Throw "Missing an argument for parameter 'FileName'*"
+        { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName } | Should -Throw "Missing an argument for parameter 'FileName'*"
     }
     It "Should return empty when passed ileName parameter" {
-        $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View $true        
+        $result = Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View $true        
         $result | Should -BeNullOrEmpty
     }
     It "Should fail when View is invalid" {
-        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View "cc" } | Should -Throw "Cannot process argument transformation on parameter 'View'*"
+        { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View "cc" } | Should -Throw "Cannot process argument transformation on parameter 'View'*"
     }
     It "Should fail when View is empty" {
-        { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View } | Should -Throw "Missing an argument for parameter 'View'*"
+        { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View } | Should -Throw "Missing an argument for parameter 'View'*"
     }
-    It "Should fail when ObjectId is empty" {
-        { Get-EntraApplicationLogo -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is empty" {
+        { Get-EntraApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Get-EntraApplicationLogo -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when ApplicationId is null" {
+        { Get-EntraApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
-        Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"           
+        Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"           
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -66,7 +71,7 @@ Describe "Get-EntraApplicationLogo" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"  -Debug } | Should -Not -Throw
+            { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"  -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

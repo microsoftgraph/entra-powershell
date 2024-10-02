@@ -27,7 +27,7 @@ Assign a Microsoft Entra role with an administrative unit scope.
 
 ```powershell
 Add-EntraBetaScopedRoleMembership 
- -ObjectId <String> 
+ -AdministrativeUnitId <String> 
  [-RoleMemberInfo <RoleMemberInfo>]
  [-RoleObjectId <String>] 
  [<CommonParameters>]
@@ -35,7 +35,7 @@ Add-EntraBetaScopedRoleMembership
 
 ## Description
 
-The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
+The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
@@ -51,7 +51,7 @@ $Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 $RoleMember.ObjectId = $User.ObjectId
 $params = @{
-    ObjectId = $Unit.ObjectId
+    AdministrativeUnitId = $Unit.ObjectId
     RoleObjectId = $Role.ObjectId
     RoleMemberInfo = $RoleMember
 }
@@ -66,20 +66,20 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 The example shows how to add a user to the specified role within the specified administrative unit.
 
-- `-ObjectId` Parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` Parameter specifies the ID of an administrative unit.
 - `-RoleObjectId` Parameter specifies the ID of a directory role.
 - `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

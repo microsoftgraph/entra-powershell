@@ -25,16 +25,16 @@ Add a member to a group.
 
 ```powershell
 Add-EntraBetaGroupMember 
- -ObjectId <String> 
+ -GroupId <String> 
  -RefObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `ObjectId` and `RefObjectId` parameters to add a member to a group.
+The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `GroupId` and `RefObjectId` parameters to add a member to a group.
 
-`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
+`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
 
 `-RefObjectId` - specifies the unique identifier (Object ID) of the member to be added to the group.
 
@@ -45,7 +45,7 @@ The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `Obj
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $params = @{
-    ObjectId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
+    GroupId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 
@@ -56,14 +56,14 @@ This example demonstrates how to add a member to a group.
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -28,7 +28,7 @@ Adds an administrative unit member.
 ```powershell
 Add-EntraAdministrativeUnitMember 
  -RefObjectId <String> 
- -ObjectId <String> 
+ -AdministrativeUnitId <String> 
  [<CommonParameters>]
 ```
 
@@ -47,9 +47,9 @@ To add a user, group, or device to an administrative unit, the calling principal
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = $AdministrativeUnit.ObjectId
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     RefObjectId = $User.ObjectId
 }
 Add-EntraAdministrativeUnitMember @params
@@ -57,19 +57,19 @@ Add-EntraAdministrativeUnitMember @params
 
 This example shows how to add an administrative unit member. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraUser` to get user ID.
 
-- `ObjectId` parameter specifies the ID of an administrative unit.
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

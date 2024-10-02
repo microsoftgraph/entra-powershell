@@ -49,7 +49,7 @@ Get-EntraBetaServicePrincipal
 
 ```powershell
 Get-EntraBetaServicePrincipal
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -78,11 +78,11 @@ ProvisioningPowerBi                 cccccccc-2222-3333-4444-dddddddddddd 2222333
 
 This example retrieves all service principals from the directory.
 
-### Example 2: Retrieve a service principal by ObjectId
+### Example 2: Retrieve a service principal by ServicePrincipalId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaServicePrincipal -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -93,7 +93,7 @@ M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 0000111
 
 This command retrieves specific service principal.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` Parameter specifies the ID of a service principal.
 
 ### Example 3: Retrieve all service principals from the directory
 
@@ -286,14 +286,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

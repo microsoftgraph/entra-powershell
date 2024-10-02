@@ -27,7 +27,7 @@ Gets the manager of a user.
 
 ```powershell
 Get-EntraUserManager
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraUserManager
 ## Description
 
 The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify
-`ObjectId` parameter to get the specific manager of user.
+`UserId` parameter to get the specific manager of user.
 
 ## Examples
 
@@ -43,7 +43,7 @@ The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserManager -ObjectId 'SawyerM@contoso.com'
+Get-EntraUserManager -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -62,7 +62,7 @@ displayName                     : Sawyer Miller
 
 This example demonstrates how to retrieve the manager of a specific user.
 
-- `-ObjectId` Parameter specifies ObjectID or User Principal Name of User.
+- `-UserId` Parameter specifies UserId or User Principal Name of User.
 
 ### Example 2: Retrieve users without managers
 
@@ -93,14 +93,14 @@ This example demonstrates how to retrieve users without managers.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-The unique identifier of a user in Microsoft Entra ID (User Principal Name or ObjectId).
+The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

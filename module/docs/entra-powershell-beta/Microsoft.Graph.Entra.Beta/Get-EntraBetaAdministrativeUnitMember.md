@@ -27,7 +27,7 @@ Gets a member of an administrative unit.
 
 ```powershell
 Get-EntraBetaAdministrativeUnitMember
- -ObjectId <String>
+ -AdministrativeUnitId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -36,7 +36,7 @@ Get-EntraBetaAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameters to retrieve an administrative unit member.
+The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameters to retrieve an administrative unit member.
 
 In delegated scenarios with work or school accounts, the signed-in user must either be a member user or be assigned a supported Microsoft Entra role, or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
 
@@ -46,12 +46,12 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 
 ## Examples
 
-### Example 1: Get an administrative unit member by ObjectId
+### Example 1: Get an administrative unit member by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id
 ```
 
 ```Output
@@ -66,14 +66,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of administrative unit members from specified administrative unit ObjectId.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
-### Example 2: Get all administrative unit members by ObjectId
+### Example 2: Get all administrative unit members by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -All
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -All
 ```
 
 ```Output
@@ -88,14 +88,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of all administrative unit members from specified administrative unit ObjectId.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
-### Example 3: Get top three administrative unit members by ObjectId
+### Example 3: Get top three administrative unit members by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -Top 3
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -Top 3
 ```
 
 ```Output
@@ -108,18 +108,18 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 
 This example returns top three administrative unit members from specified administrative unit ObjectId.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

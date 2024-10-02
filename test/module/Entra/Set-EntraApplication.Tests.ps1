@@ -14,28 +14,35 @@ BeforeAll {
 Describe "Set-EntraApplication"{
     Context "Test for Set-EntraApplication" {
         It "Should return empty object"{
+            $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
+            $result | Should -BeNullOrEmpty           
+
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Set-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Set-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Set-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         } 
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {
+        It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
             Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Set-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
 
-            Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
 
@@ -51,7 +58,7 @@ Describe "Set-EntraApplication"{
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

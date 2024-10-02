@@ -25,7 +25,7 @@ List Microsoft Entra role assignments with administrative unit scope.
 
 ```powershell
 Get-EntraScopedRoleMembership 
- -ObjectId <String>
+ -AdministrativeUnitId <String>
  [-ScopedRoleMembershipId <String>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -43,7 +43,7 @@ The `Get-EntraScopedRoleMembership` cmdlet lists Microsoft Entra role assignment
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
 $AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = $AdministrativeUnit.ObjectId
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Get-EntraScopedRoleMembership @params
@@ -57,7 +57,7 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 This example gets scoped role administrator. You cane use the command `Get-EntraAdministrativeUnit` to get administrative unit Id.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `-ScopedRoleMembershipId` parameter specifies the scoped role membership Id.
 
 ### Example 2: List scoped administrators for administrative unit by ObjectId
@@ -76,18 +76,18 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 This example list scoped administrators with objectId.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

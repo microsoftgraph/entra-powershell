@@ -14,28 +14,34 @@ BeforeAll {
 Describe "Remove-EntraIdentityProvider" {
 Context "Test for Remove-EntraIdentityProvider" {
         It "Should return empty object" {
+            $result = Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" 
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Remove-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Remove-EntraIdentityProvider -Id "Google-OAUTH" 
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is empty" {
-            { Remove-EntraIdentityProvider -Id   } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Remove-EntraIdentityProvider -IdentityProviderBaseId   } | Should -Throw "Missing an argument for parameter 'IdentityProviderBaseId'*"
         }
-        It "Should fail when Id is invalid" {
-            { Remove-EntraIdentityProvider -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when IdentityProviderBaseId is invalid" {
+            { Remove-EntraIdentityProvider -IdentityProviderBaseId "" } | Should -Throw "Cannot bind argument to parameter 'IdentityProviderBaseId' because it is an empty string."
         }
-        It "Should contain IdentityProviderBaseId in parameters when passed Id to it" {    
+        It "Should contain IdentityProviderBaseId in parameters when passed IdentityProviderBaseId to it" {    
             Mock -CommandName Remove-MgIdentityProvider -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraIdentityProvider -Id "Google-OAUTH"
+            $result = Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH"
             $params = Get-Parameters -data $result
             $params.IdentityProviderBaseId | Should -Be "Google-OAUTH"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraIdentityProvider"
 
-            Remove-EntraIdentityProvider -Id "Google-OAUTH"
+            Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraIdentityProvider"
 
@@ -51,7 +57,7 @@ Context "Test for Remove-EntraIdentityProvider" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraIdentityProvider -Id "Google-OAUTH" -Debug } | Should -Not -Throw
+                { Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
