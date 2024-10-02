@@ -26,7 +26,7 @@ Get user memberships.
 
 ```powershell
 Get-EntraBetaUserMembership
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -43,7 +43,7 @@ The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -90,7 +90,7 @@ This example demonstrates how to retrieve user memberships in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com' -All
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -110,7 +110,7 @@ This example demonstrates how to retrieve users all memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'SawyerM@contoso.com' -Top 3
+Get-EntraBetaUserMembership  -UserId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output
@@ -122,6 +122,22 @@ Id                                   DeletedDateTime
 ```
 
 This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
+
+### Example 5: List groups that Sawyer Miller is a member of
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$groups = Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
+$groups | Select-Object DisplayName, Id, GroupTypes, Visibility | Format-Table -AutoSize
+```
+
+```Output
+DisplayName       Id                                   GroupTypes  Visibility
+-----------       --                                   ----------  ----------
+Contoso Group     bbbbbbbb-1111-2222-3333-cccccccccccc  {Unified}  Public
+```
+
+This example demonstrates how to retrieve the groups that a user is a member of.
 
 ## Parameters
 
@@ -141,14 +157,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

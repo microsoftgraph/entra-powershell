@@ -27,6 +27,15 @@ BeforeAll {
 Describe "Get-EntraUserOAuth2PermissionGrant" {
     Context "Test for Get-EntraUserOAuth2PermissionGrant" {
         It "Should return specific UserOAuth2PermissionGrant" {
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222"
+            $result | Should -Not -BeNullOrEmpty
+            $result.PrincipalId | should -Contain 'aaaaaaaa-bbbb-cccc-1111-222222222222'
+            $result.Id | Should -Contain 'Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2'
+
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific UserOAuth2PermissionGrant with alias" {
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | should -Contain 'aaaaaaaa-bbbb-cccc-1111-222222222222'
@@ -35,54 +44,54 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraUserOAuth2PermissionGrant -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when UserId is empty" {
+            { Get-EntraUserOAuth2PermissionGrant -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
 
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraUserOAuth2PermissionGrant -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is invalid" {
+            { Get-EntraUserOAuth2PermissionGrant -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should return all User OAuth2Permission Grant" {
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -All
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }      
         
         It "Should return top User OAuth2Permission Grant" {
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top 1
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain PrincipalId" {
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222"
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result.PrincipalId | should -Contain "aaaaaaaa-bbbb-cccc-1111-222222222222"
         } 
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222"
+        It "Should contain UserId in parameters when passed UserId to it" {
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
         }
 
         
         It "Property parameter should work" {
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property ConsentType 
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property ConsentType 
             $result | Should -Not -BeNullOrEmpty
             $result.ConsentType | Should -Be "Principal"
 
@@ -90,13 +99,13 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOAuth2PermissionGrant"
 
-            $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222"
+            $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOAuth2PermissionGrant"
@@ -114,7 +123,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
+                { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

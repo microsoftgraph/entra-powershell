@@ -33,7 +33,7 @@ Describe "Get-EntraApplication" {
     It 'Should have Get parameterSet' {
         $GetAzureADApplication = Get-Command Get-EntraApplication
         $GetParameterSet = $GetAzureADApplication.ParameterSets | Where-Object Name -eq "GetById"
-        $GetParameterSet.Parameters.Name | Should -Contain ObjectId
+        $GetParameterSet.Parameters.Name | Should -Contain ApplicationId
     }
 
     It 'Should have GetViaIdentity parameterSet' {

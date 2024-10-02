@@ -49,7 +49,7 @@ Get-EntraDirectoryRoleDefinition
 
 ```powershell
 Get-EntraDirectoryRoleDefinition
- -Id <String>
+ -UnifiedRoleDefinitionId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,7 +57,7 @@ Get-EntraDirectoryRoleDefinition
 
 ## Description
 
-The `Get-EntraDirectoryRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
+The `Get-EntraDirectoryRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `UnifiedRoleDefinitionId` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
 
@@ -89,11 +89,11 @@ Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa8240402
 
 This command returns all the role definitions present.
 
-### Example 2: Get a role definition by ID
+### Example 2: Get a role definition by UnifiedRoleDefinitionId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
+Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
@@ -104,7 +104,7 @@ Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa8240402
 
 This command returns a specified role definition.
 
-- `-Id` parameter specifies the roleDefinition object ID.
+- `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 
 ### Example 3: Filter role definitions by display name
 
@@ -134,7 +134,7 @@ DisplayName           Id                                   TemplateId           
 Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
 ```
 
-This command return top two the role definitions in Microsoft Entra ID.
+This command return top two the role definitions in Microsoft Entra DirectoryRoleId.
 
 ### Example 5: Filter role definitions by display name
 
@@ -154,14 +154,14 @@ This command return all the role definitions containing the specified display na
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleDefinitionId
 
-Specifies the ID of the role definition.
+Specifies the UnifiedRoleDefinitionId of the role definition.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

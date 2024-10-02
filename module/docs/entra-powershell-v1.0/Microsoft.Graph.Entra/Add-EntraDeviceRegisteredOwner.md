@@ -26,7 +26,7 @@ Adds a registered owner for a device.
 
 ```powershell
 Add-EntraDeviceRegisteredOwner
- -ObjectId <String>
+ -DeviceId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```
@@ -41,10 +41,10 @@ The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Micros
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $Device = Get-EntraDevice -SearchString '<device-display-name>'
 $params = @{
-    ObjectId = $Device.ObjectId 
+    DeviceId = $Device.ObjectId 
     RefObjectId = $User.ObjectId
 }
 Add-EntraDeviceRegisteredOwner @params
@@ -52,20 +52,20 @@ Add-EntraDeviceRegisteredOwner @params
 
 This example shows how to add a registered user to a device.
 
-- `-ObjectId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraDevice` to get device Id.
+- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraDevice` to get device Id.
 
 - `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraUser` to get user Id.
 
 ## Parameters
 
-### -ObjectId
+### -DeviceId
 
 Specifies the object ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

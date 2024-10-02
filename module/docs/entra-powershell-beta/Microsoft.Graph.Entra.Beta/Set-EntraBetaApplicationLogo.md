@@ -28,7 +28,7 @@ Sets the logo for an Application
 
 ```powershell
 Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  -FilePath <String> 
  [<CommonParameters>]
 ```
@@ -37,7 +37,7 @@ Set-EntraBetaApplicationLogo
 
 ```powershell
 Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [<CommonParameters>]
 ```
 
@@ -45,7 +45,7 @@ Set-EntraBetaApplicationLogo
 
 ```powershell
 Set-EntraBetaApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [<CommonParameters>]
 ```
 
@@ -55,19 +55,15 @@ The `Set-EntraBetaApplicationLogo` cmdlet is used to set the logo for an applica
 
 ## Examples
 
-### Example 1: Sets the application logo for the application specified by the ObjectID parameter
+### Example 1: Sets the application logo for the application specified by the ApplicationId parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Demo Application'"
-$params = @{
-    ObjectId = $application.ObjectId
-    FilePath = 'D:\applogo.jpg'
-}
-Set-EntraBetaApplicationLogo @params
+Set-EntraBetaApplicationLogo -ApplicationId $application.Id -FilePath 'D:\applogo.jpg'
 ```
 
-This cmdlet sets the application logo for the application specified by the `-ObjectId` parameter to the image specified with the `-FilePath` parameter.
+This cmdlet sets the application logo for the application specified by the `-ApplicationId` parameter to the image specified with the `-FilePath` parameter.
 
 ## Parameters
 
@@ -87,14 +83,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectID of the Application for which the logo is set.
+The ApplicationId of the Application for which the logo is set.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: False
 Position: Named

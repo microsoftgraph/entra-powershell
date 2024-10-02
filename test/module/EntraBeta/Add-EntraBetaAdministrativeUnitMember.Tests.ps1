@@ -14,33 +14,39 @@ BeforeAll {
 Describe "Add-EntraBetaAdministrativeUnitMember" {
     Context "Test for Add-EntraBetaAdministrativeUnitMember" {
         It "Should return empty object" {
-            $result = Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
+            $result = Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Add-EntraBetaAdministrativeUnitMember -ObjectId  -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should return empty object with alias" {
+            $result = Add-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Add-EntraBetaAdministrativeUnitMember -ObjectId "" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when AdministrativeUnitId is empty" {
+            { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId  -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
+        }
+        It "Should fail when AdministrativeUnitId is invalid" {
+            { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"} | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId' because it is an empty string."
         }
         It "Should fail when RefObjectId is empty" {
-            { Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId  } | Should -Throw "Missing an argument for parameter 'RefObjectId'*"
+            { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId  } | Should -Throw "Missing an argument for parameter 'RefObjectId'*"
         }
         It "Should fail when RefObjectId is invalid" {
-            { Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""} | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
+            { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""} | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
-        It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
+        It "Should contain AdministrativeUnitId in parameters when passed AdministrativeUnitId to it" {    
             Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-            $result = Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
+            $result = Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $params = Get-Parameters -data $result
             $params.AdministrativeUnitId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaAdministrativeUnitMember"
 
-            Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
+            Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaAdministrativeUnitMember"
 
@@ -56,7 +62,7 @@ Describe "Add-EntraBetaAdministrativeUnitMember" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff" -Debug } | Should -Not -Throw
+                { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

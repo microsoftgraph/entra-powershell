@@ -33,6 +33,15 @@ BeforeAll {
 Describe "Get-EntraBetaUserMembership" {
     Context "Test for Get-EntraBetaUserMembership" {
         It "Should return specific user membership" {
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            $result.AdditionalProperties.DisplayName | Should -Be "Mock-Membership"
+            $result.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.group"
+
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should return specific user membership with alias" {
             $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
@@ -41,58 +50,58 @@ Describe "Get-EntraBetaUserMembership" {
 
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUserMembership -ObjectId   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when UserId is empty" {
+            { Get-EntraBetaUserMembership -UserId   } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraBetaUserMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is invalid" {
+            { Get-EntraBetaUserMembership -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should return all user memberships" {
-            $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
          It "Should fail when All is invalid" {
-            { Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 user memberships" {
-            $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
 
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
          It "Should fail when Top is invalid" {
-            { Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
-        It "Should contain UserId in parameters when passed ObjectId to it" {    
+        It "Should contain UserId in parameters when passed UserId to it" {    
             
-            $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Property parameter should work" {
-            $result =  Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
+            $result =  Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
 
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserMembership"
             
-            $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserMembership"
@@ -108,7 +117,7 @@ Describe "Get-EntraBetaUserMembership" {
             
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

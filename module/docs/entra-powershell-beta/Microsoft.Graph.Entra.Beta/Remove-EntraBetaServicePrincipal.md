@@ -27,7 +27,7 @@ Removes a service principal.
 
 ```powershell
 Remove-EntraBetaServicePrincipal 
- -ObjectId <String> 
+ -ServicePrincipalId <String> 
  [<CommonParameters>]
 ```
 
@@ -42,23 +42,23 @@ The `Remove-EntraBetaServicePrincipal` cmdlet removes a service principal in Mic
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Remove-EntraBetaServicePrincipal -ObjectId $servicePrincipal.ObjectId
+Remove-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.ObjectId
 ```
 
 This example demonstrates how to remove a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

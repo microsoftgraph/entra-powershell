@@ -39,7 +39,7 @@ Get-EntraContract
 
 ```powershell
 Get-EntraContract
- -ObjectId <String>
+ -ContractId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -77,7 +77,7 @@ It isn't automatically updated if the customer tenant's display name changes.
 
 - `objectType` - a string that identifies the object type. The value is always `Contract`.
 
-- `ObjectId` - the unique identifier for the partnership.
+- `ContractId` - the unique identifier for the partnership.
 
 ## Examples
 
@@ -134,14 +134,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ContractId
 
 Specifies the ID of a contract.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

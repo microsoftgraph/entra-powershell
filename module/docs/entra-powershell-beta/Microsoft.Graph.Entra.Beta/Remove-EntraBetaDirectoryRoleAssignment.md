@@ -26,7 +26,7 @@ Delete a Microsoft Entra ID roleAssignment.
 
 ```powershell
 Remove-EntraBetaDirectoryRoleAssignment 
- -Id <String> 
+ -UnifiedRoleAssignmentId <String> 
  [<CommonParameters>]
 ```
 
@@ -40,23 +40,23 @@ The `Remove-EntraBetaDirectoryRoleAssignment` cmdlet removes a role assignment f
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
-Remove-EntraBetaDirectoryRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
+Remove-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
 ```
 
 This example removes the specified role assignment from Microsoft Entra ID.
 
-- `-Id` parameter specifies the role assignment ID.
+- `-UnifiedRoleAssignmentId` parameter specifies the role assignment ID.
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleAssignmentId
 
 The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 0

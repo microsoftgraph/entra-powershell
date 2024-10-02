@@ -14,32 +14,32 @@ BeforeAll {
 Describe "Remove-EntraBetaGroupOwner" {
     Context "Test for Remove-EntraBetaGroupOwner" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaGroupOwner -ObjectId -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when GroupId is empty" {
+            { Remove-EntraBetaGroupOwner -GroupId -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }   
 
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraBetaGroupOwner -ObjectId "" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when GroupId is invalid" {
+            { Remove-EntraBetaGroupOwner -GroupId "" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }   
 
         It "Should fail when OwnerId is empty" {
-            { Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
+            { Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
         }   
 
         It "Should fail when OwnerId is invalid" {
-            { Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId ""} | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string."
+            { Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId ""} | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string."
         }   
 
-        It "Should contain GroupId in parameters when passed ObjectId to it" {
+        It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
@@ -47,14 +47,14 @@ Describe "Remove-EntraBetaGroupOwner" {
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
             Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.DirectoryObjectId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupOwner"
-            $result =  Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result =  Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupOwner"
             Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -70,7 +70,7 @@ Describe "Remove-EntraBetaGroupOwner" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

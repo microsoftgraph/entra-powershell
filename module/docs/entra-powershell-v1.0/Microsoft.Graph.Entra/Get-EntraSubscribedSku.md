@@ -2,7 +2,6 @@
 title: Get-EntraSubscribedSku
 description: This article provides details on the Get-EntraSubscribedSku command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -36,7 +35,7 @@ Get-EntraSubscribedSku
 
 ```powershell
 Get-EntraSubscribedSku
- -ObjectId <String>
+ -SubscribedSkuId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -64,11 +63,11 @@ cccc2222-dd33-4444-55ee-666666ffffff 2222cccc-33dd-eeee-ff44-aaaaaa555555 M365x9
 
 This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
 
-### Example 2: Get subscribed SKUs by ObjectId
+### Example 2: Get subscribed SKUs by SubscribedSkuId
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraSubscribedSku -ObjectId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666'
+Get-EntraSubscribedSku -SubscribedSkuId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666'
 ```
 
 ```Output
@@ -79,9 +78,31 @@ aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x9
 
 This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.
 
-- `-ObjectId` parameter specifies the ID of the SKU (Stock Keeping Unit).
+- `-SubscribedSkuId` parameter specifies the ID of the SKU (Stock Keeping Unit).
 
-### Example 3: Get a list of users, their assigned licenses, and licensing source
+### Example 3: Retrieve all users assigned a specific license
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+$sku = Get-EntraSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'DEVELOPERPACK_E5' }
+$skuId = $sku.SkuId
+$usersWithDeveloperPackE5 = Get-EntraUser -All | Where-Object {
+    $_.AssignedLicenses -and ($_.AssignedLicenses.SkuId -contains $skuId)
+}
+$usersWithDeveloperPackE5 | Select-Object Id, DisplayName, UserPrincipalName, AccountEnabled, UserType | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName               AccountEnabled   UserType
+--                                   -----------     -----------------               --------------   --------
+cccccccc-2222-3333-4444-dddddddddddd  Angel Brown    AngelB@contoso.com              True             Member
+dddddddd-3333-4444-5555-eeeeeeeeeeee  Avery Smith    AveryS@contoso.com              True             Member
+eeeeeeee-4444-5555-6666-ffffffffffff  Sawyer Miller  SawyerM@contoso.com             True             Member
+```
+
+This example demonstrates how to retrieve all users assigned a specific license.
+
+### Example 4: Get a list of users, their assigned licenses, and licensing source
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All'
@@ -105,7 +126,7 @@ foreach ($User in $SelectedUsers) {
     try {
         # Check if the group display name is already in the hashtable
         if (-not $GroupDisplayNames.ContainsKey($AssignedByGroup)) {
-            $Group = Get-EntraGroup -ObjectId $AssignedByGroup
+            $Group = Get-EntraGroup -GroupId $AssignedByGroup
             $GroupDisplayNames[$AssignedByGroup] = $Group.DisplayName
         }
 
@@ -141,14 +162,14 @@ This example shows a list of users, their licenses, and the source of the licens
 
 ## Parameters
 
-### -ObjectId
+### -SubscribedSkuId
 
 The object ID of the SKU (Stock Keeping Unit).
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

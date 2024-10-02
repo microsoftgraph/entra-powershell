@@ -216,21 +216,20 @@ steps:
       targetType: inline
       pwsh: true
       script: |
-        cd test/module/Entra/Integration
+        cd test/module/Integration/Entra
         Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: NUnit
       testResultsFiles: "./test/results/pester-test-results-preview.xml"
       failTaskOnFailedTests: true
-- ${{ if eq(parameters.Integration, true) }}:
   - task: powershell@2
     displayName: 'Run EntraBeta integration tests'
     inputs:
       targetType: inline
       pwsh: true
       script: |
-        cd test/module/EntraBeta/Integration
+        cd test/module/Integration/EntraBeta
         Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
   - task: PublishTestResults@2
     inputs:

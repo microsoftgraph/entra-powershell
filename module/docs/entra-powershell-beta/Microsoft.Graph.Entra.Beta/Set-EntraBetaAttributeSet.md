@@ -26,7 +26,7 @@ Updates an existing attribute set.
 
 ```powershell
 Set-EntraBetaAttributeSet 
- -Id <String>
+ -AttributeSetId <String>
  [-Description <String>] 
  [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
@@ -34,11 +34,13 @@ Set-EntraBetaAttributeSet
 
 ## Description
 
-Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
+The `Set-EntraBetaAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. Specify `AttributeSetId` parameter to Update a Microsoft Entra ID attribute set object.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
+
+Note: Only the Attribute Definition Administrator role is supported for this operation. Ensure the signed-in user is assigned this role.
 
 You can only update the `description` and `maxAttributesPerSet` properties.
-
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
 
@@ -47,7 +49,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Engineering'
+    AttributeSetId = 'Engineering'
     Description = 'Attributes for engineering team'
 }
 Set-EntraBetaAttributeSet @params
@@ -55,7 +57,7 @@ Set-EntraBetaAttributeSet @params
 
 This example update an attribute set.
 
-- `Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
+- `AttributeSetId` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
 - `Description` parameter specifies the description for the attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
@@ -63,7 +65,7 @@ This example update an attribute set.
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Engineering' 
+    AttributeSetId = 'Engineering' 
     MaxAttributesPerSet = 10
 }
 Set-EntraBetaAttributeSet @params
@@ -71,7 +73,7 @@ Set-EntraBetaAttributeSet @params
 
 This example update an attribute set using MaxAttributesPerSet.
 
-- `-Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
+- `-AttributeSetId` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
 - `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
 ## Parameters
@@ -92,14 +94,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -AttributeSetId
 
 Name of the attribute set. Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

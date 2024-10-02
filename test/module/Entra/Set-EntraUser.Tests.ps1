@@ -14,23 +14,23 @@ BeforeAll {
 Describe "Set-EntraUser" {
     Context "Test for Set-EntraUser" {
         It "Should return empty object" {
-            $result = Set-EntraUser -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo002" -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -PostalCode "10001"
+            $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo002" -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -PostalCode "10001"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty" {
+            { Set-EntraUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         } 
 
-        It "Should fail when ObjectId is no value" {
-            { Set-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when UserId is no value" {
+            { Set-EntraUser -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         } 
 
-        It "Should contain userId in parameters when passed ObjectId to it" {
+        It "Should contain userId in parameters when passed UserId to it" {
             Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
-            $result = Set-EntraUser -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
+            $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
             $params = Get-Parameters -data $result
             $params.userId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params.MobilePhone | Should -Be "1234567890"
@@ -39,7 +39,7 @@ Describe "Set-EntraUser" {
 
         It "Should contain MobilePhone in parameters when passed Mobile to it" {
             Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
-            $result = Set-EntraUser -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
+            $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
             $params = Get-Parameters -data $result
             $params.MobilePhone | Should -Be "1234567890"
         }
@@ -47,7 +47,7 @@ Describe "Set-EntraUser" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUser"
     
-            Set-EntraUser -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
+            Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUser"
     
@@ -63,7 +63,7 @@ Describe "Set-EntraUser" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraUser -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890" -Debug } | Should -Not -Throw
+                { Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
@@ -75,7 +75,7 @@ Describe "Set-EntraUser" {
             # format like "yyyy-MM-dd HH:mm:ss"
             $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
 
-            $result = Set-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" `
+            $result = Set-EntraUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" `
                 -UserState "PendingAcceptance" `
                 -UserStateChangedOn  $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
