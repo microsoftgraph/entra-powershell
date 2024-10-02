@@ -123,6 +123,22 @@ Id                                   DeletedDateTime
 
 This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
 
+### Example 5: List groups that Sawyer Miller is a member of
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$groups = Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com'
+$groups | Select-Object DisplayName, Id, GroupTypes, Visibility | Format-Table -AutoSize
+```
+
+```Output
+DisplayName       Id                                   GroupTypes  Visibility
+-----------       --                                   ----------  ----------
+Contoso Group     bbbbbbbb-1111-2222-3333-cccccccccccc  {Unified}  Public
+```
+
+This example demonstrates how to retrieve the groups that a user is a member of.
+
 ## Parameters
 
 ### -All
