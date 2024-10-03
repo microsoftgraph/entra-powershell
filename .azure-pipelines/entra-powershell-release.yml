@@ -1,14 +1,24 @@
 trigger:
 - none
-pool:
-  name: default
+
+resources:
+  pipelines:
+  - pipeline: _EntraPowerShell-Release-Build
+    trigger: none
+    source: EntraPowerShell-Release-Build
+    project: One
 
 stages:
 - stage: PS_Gallery_Deploy
   displayName: PS Gallery Deploy
   jobs:
+  - job: Download_Artifacts
+    steps:
+    - download: _EntraPowerShell-Release-Build
   - job: Install_Dependencies
     displayName: Install dependencies
+    pool:
+      vmImage: windows-latest
     steps:
     - task: PowerShell@2
       displayName: Version Check
@@ -17,24 +27,25 @@ stages:
         pwsh: true
         script: |
           Write-Output $PSVersionTable
+    dependsOn: Download_Artifacts
+
   - job: Release_Approval
     displayName: Agentless job
-    pool:
-      type: server
+    pool: server
     steps:
-    - task: ManualValidation@0
+    - task: ManualValidation@1
+      timeoutInMinutes: 1440
       inputs:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
-        onTimeout: reject
-      enabled: false
-      timeoutInMinutes: 6120
+        onTimeout: 'resume'
+    dependsOn: Install_Dependencies
 
   - job: PsGallery_Push
     displayName: Push to PS Gallery
     pool:
-      type: server
-    timeoutInMinutes: 6120
+      vmImage: windows-latest
+    timeoutInMinutes: 1440
     steps:
     - task: powershell@2
       inputs:
