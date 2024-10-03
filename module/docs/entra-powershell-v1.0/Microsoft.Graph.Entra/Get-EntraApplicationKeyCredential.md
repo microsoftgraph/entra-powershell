@@ -25,7 +25,7 @@ Gets the key credentials for an application.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationKeyCredential 
+Get-EntraApplicationKeyCredential
  -ObjectId <String>
  [<CommonParameters>]
 ```

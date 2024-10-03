@@ -26,8 +26,8 @@ Removes a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipal 
- -ServicePrincipalId <String> 
+Remove-EntraServicePrincipal
+ -ServicePrincipalId <String>
  [<CommonParameters>]
 ```
 

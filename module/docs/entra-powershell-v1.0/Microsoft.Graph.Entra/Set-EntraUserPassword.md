@@ -25,11 +25,11 @@ Sets the password of a user.
 ## Syntax
 
 ```powershell
-Set-EntraUserPassword 
- [-ForceChangePasswordNextLogin <Boolean>] 
+Set-EntraUserPassword
+ [-ForceChangePasswordNextLogin <Boolean>]
  [-EnforceChangePasswordPolicy <Boolean>]
- -ObjectId <String> 
- -Password <SecureString> 
+ -ObjectId <String>
+ -Password <SecureString>
  [<CommonParameters>]
 ```
 

@@ -24,9 +24,9 @@ Adds an owner to a service principal.
 ## Syntax
 
 ```powershell
-Add-EntraServicePrincipalOwner 
- -ServicePrincipalId <String> 
- -RefObjectId <String> 
+Add-EntraServicePrincipalOwner
+ -ServicePrincipalId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

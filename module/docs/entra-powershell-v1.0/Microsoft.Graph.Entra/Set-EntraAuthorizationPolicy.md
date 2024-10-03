@@ -25,14 +25,14 @@ Updates an authorization policy.
 ## Syntax
 
 ```powershell
-Set-EntraAuthorizationPolicy 
+Set-EntraAuthorizationPolicy
  [-BlockMsolPowerShell <Boolean>]
- [-AllowedToSignUpEmailBasedSubscriptions <Boolean>] 
+ [-AllowedToSignUpEmailBasedSubscriptions <Boolean>]
  [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>]
- [-DisplayName <String>] 
- [-Description <String>] 
+ [-DisplayName <String>]
+ [-Description <String>]
  [-DefaultUserRolePermissions <DefaultUserRolePermissions>]
- [-AllowedToUseSSPR <Boolean>] 
+ [-AllowedToUseSSPR <Boolean>]
  [<CommonParameters>]
 ```
 

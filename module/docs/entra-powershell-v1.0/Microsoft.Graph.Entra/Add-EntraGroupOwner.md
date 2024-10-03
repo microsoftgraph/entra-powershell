@@ -25,9 +25,9 @@ Adds an owner to a group.
 ## Syntax
 
 ```powershell
-Add-EntraGroupOwner 
- -GroupId <String> 
- -RefObjectId <String> 
+Add-EntraGroupOwner
+ -GroupId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

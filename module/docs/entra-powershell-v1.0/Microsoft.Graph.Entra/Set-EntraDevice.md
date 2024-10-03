@@ -26,21 +26,21 @@ Updates a device.
 
 ```powershell
 Set-EntraDevice
- -DeviceObjectId <String> 
+ -DeviceObjectId <String>
  [-DevicePhysicalIds <System.Collections.Generic.List`1[String]>]
- [-DeviceOSType <String>] 
- [-DeviceTrustType <String>] 
- [-DisplayName <String>] 
+ [-DeviceOSType <String>]
+ [-DeviceTrustType <String>]
+ [-DisplayName <String>]
  [-DeviceMetadata <String>]
- [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-ApproximateLastLogonTimeStamp <DateTime>]
  [-AccountEnabled <Boolean>]
- [-IsManaged <Boolean >] 
- [-DeviceId <String>] 
- [-DeviceObjectVersion <Int32>] 
- [-IsCompliant <Boolean    >]
+ [-IsManaged <Boolean >]
+ [-DeviceId <String>]
+ [-DeviceObjectVersion <Int32>]
+ [-IsCompliant <Boolean>]
  [-DeviceOSVersion <String>]
  [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
- [-ProfileType <String>] 
+ [-ProfileType <String>]
  [-SystemLabels <System.Collections.Generic.List`1[String]>]
  [<CommonParameters>]
 ```

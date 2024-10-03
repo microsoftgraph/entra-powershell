@@ -27,7 +27,7 @@ Removes a user extension.
 ### SetMultiple
 
 ```powershell
-Remove-EntraUserExtension 
+Remove-EntraUserExtension
  -ObjectId <String>
  -ExtensionNames <System.Collections.Generic.List`1[System.String]>
  [<CommonParameters>]
@@ -36,8 +36,8 @@ Remove-EntraUserExtension
 ### SetSingle
 
 ```powershell
-Remove-EntraUserExtension 
- -ObjectId <String> 
+Remove-EntraUserExtension
+ -ObjectId <String>
  -ExtensionName <String>
  [<CommonParameters>]
 ```

@@ -25,12 +25,12 @@ Create a new Microsoft Entra ID roleDefinition.
 ## Syntax
 
 ```powershell
-New-EntraDirectoryRoleDefinition 
- [-TemplateId <String>] 
+New-EntraDirectoryRoleDefinition
+ [-TemplateId <String>]
  -DisplayName <String>
  -RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>
  [-Description <String>]
- [-Version <String>] 
+ [-Version <String>]
  -IsEnabled <Boolean>
  [-ResourceScopes <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]

@@ -26,7 +26,7 @@ Removes a permission grant policy.
 ## Syntax
 
 ```powershell
-Remove-EntraPermissionGrantPolicy 
+Remove-EntraPermissionGrantPolicy
  -Id <String>
  [<CommonParameters>]
 ```

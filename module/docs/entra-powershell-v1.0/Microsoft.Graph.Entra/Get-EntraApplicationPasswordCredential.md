@@ -25,7 +25,7 @@ Gets the password credential for an application.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationPasswordCredential 
+Get-EntraApplicationPasswordCredential
  -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]

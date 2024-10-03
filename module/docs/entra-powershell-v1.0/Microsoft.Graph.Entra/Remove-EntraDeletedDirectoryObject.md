@@ -26,8 +26,8 @@ Permanently delete a previously deleted directory object.
 ## Syntax
 
 ```powershell
-Remove-EntraDeletedDirectoryObject 
- -DirectoryObjectId <String> 
+Remove-EntraDeletedDirectoryObject
+ -DirectoryObjectId <String>
  [<CommonParameters>]
 ```
 

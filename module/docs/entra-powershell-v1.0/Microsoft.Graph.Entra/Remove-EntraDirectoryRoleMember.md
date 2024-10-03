@@ -25,9 +25,9 @@ Removes a member of a directory role.
 ## Syntax
 
 ```powershell
-Remove-EntraDirectoryRoleMember 
- -DirectoryRoleId <String> 
- -MemberId <String> 
+Remove-EntraDirectoryRoleMember
+ -DirectoryRoleId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 

@@ -26,10 +26,10 @@ Updates a domain.
 ## Syntax
 
 ```powershell
-Set-EntraDomain 
+Set-EntraDomain
  -Name <String>
  [-IsDefault <Boolean>]
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

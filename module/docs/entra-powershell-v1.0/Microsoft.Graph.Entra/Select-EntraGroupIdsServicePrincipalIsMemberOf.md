@@ -26,9 +26,9 @@ Selects the groups in which a service principal is a member.
 ## Syntax
 
 ```powershell
-Select-EntraGroupIdsServicePrincipalIsMemberOf 
+Select-EntraGroupIdsServicePrincipalIsMemberOf
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 

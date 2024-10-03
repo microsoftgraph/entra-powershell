@@ -27,12 +27,13 @@ Helps users determine the necessary permissions for resources and identify the a
 ### Add Entra Environment Name
 
 ```powershell
-Find-EntraPermission 
-    [-SearchString] <String>
-    [-ExactMatch]
-    [-PermissionType <String>]
-    [-ProgressAction <ActionPreference>]
-    [<CommonParameters>]
+Find-EntraPermission
+ [-SearchString] <String>
+ [-ExactMatch]
+ [-PermissionType <String>]
+ [-Online]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## Description

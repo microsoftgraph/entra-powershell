@@ -25,12 +25,12 @@ Create a delegated permission grant using an oAuth2PermissionGrant object. This 
 ## Syntax
 
 ```powershell
-New-EntraOauth2PermissionGrant 
- -ClientId <string> 
- -ConsentType <string> 
- -ResourceId <string> 
+New-EntraOauth2PermissionGrant
+ -ClientId <string>
+ -ConsentType <string>
+ -ResourceId <string>
  [-PrincipalId <string>]
- [-Scope <string>]  
+ [-Scope <string>]
  [<CommonParameters>]
 ```
 

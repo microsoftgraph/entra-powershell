@@ -25,8 +25,8 @@ Removes a password credential from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationPasswordCredential 
- -ApplicationId <String> 
+Remove-EntraApplicationPasswordCredential
+ -ApplicationId <String>
  -KeyId <String>
  [<CommonParameters>]
 ```

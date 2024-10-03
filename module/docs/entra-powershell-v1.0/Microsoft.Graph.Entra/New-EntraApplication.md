@@ -26,24 +26,24 @@ Creates (registers) a new application object.
 ## Syntax
 
 ```powershell
-New-EntraApplication 
+New-EntraApplication
  -DisplayName <String>
  [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-TokenEncryptionKeyId <String>] 
+ [-TokenEncryptionKeyId <String>]
  [-SignInAudience <String>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-ParentalControlSettings <ParentalControlSettings>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
- [-PublicClient <PublicClientApplication>] 
+ [-PublicClient <PublicClientApplication>]
  [-InformationalUrl <InformationalUrl>]
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-Api <ApiApplication>]
- [-OptionalClaims <OptionalClaims>] 
- [-GroupMembershipClaims <String>] 
+ [-OptionalClaims <OptionalClaims>]
+ [-GroupMembershipClaims <String>]
  [-Web <WebApplication>]
- [-IsFallbackPublicClient <Boolean>] 
+ [-IsFallbackPublicClient <Boolean>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
  [<CommonParameters>]

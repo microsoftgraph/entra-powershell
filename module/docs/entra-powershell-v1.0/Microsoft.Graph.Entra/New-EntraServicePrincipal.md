@@ -28,17 +28,17 @@ Creates a service principal.
 New-EntraServicePrincipal
  -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-Homepage <String>] 
+ [-Homepage <String>]
  [-LogoutUrl <String>]
  [-ServicePrincipalType <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
  [-Tags <System.Collections.Generic.List`1[System.String]>]
- [-AccountEnabled <String>] 
+ [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
- [-AppRoleAssignmentRequired <Boolean>] 
+ [-AppRoleAssignmentRequired <Boolean>]
  [-DisplayName <String>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

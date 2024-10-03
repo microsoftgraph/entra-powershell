@@ -25,10 +25,10 @@ Updates an administrative unit.
 ## Syntax
 
 ```powershell
-Set-EntraAdministrativeUnit 
- -AdministrativeUnitId <String> 
- [-Description <String>] 
- [-DisplayName <String>] 
+Set-EntraAdministrativeUnit
+ -AdministrativeUnitId <String>
+ [-Description <String>]
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

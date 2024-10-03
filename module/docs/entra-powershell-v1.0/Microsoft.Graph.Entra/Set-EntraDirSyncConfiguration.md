@@ -26,7 +26,7 @@ Modifies the directory synchronization settings.
 ## Syntax
 
 ```powershell
-Set-EntraDirSyncConfiguration 
+Set-EntraDirSyncConfiguration
  -AccidentalDeletionThreshold <UInt32>
  [-Force]
  [-TenantId <Guid>]

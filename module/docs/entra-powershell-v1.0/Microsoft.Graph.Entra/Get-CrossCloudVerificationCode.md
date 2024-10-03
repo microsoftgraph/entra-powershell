@@ -26,8 +26,8 @@ Important: Only applies to a verified domain.
 ## Syntax
 
 ```powershell
-Get-CrossCloudVerificationCode 
- -Name <String> 
+Get-CrossCloudVerificationCode
+ -Name <String>
  [<CommonParameters>]
 ```
 

@@ -25,9 +25,9 @@ Updates an existing custom security attribute definition predefined value.
 ## Syntax
 
 ```powershell
-Set-EntraCustomSecurityAttributeDefinitionAllowedValue 
+Set-EntraCustomSecurityAttributeDefinitionAllowedValue
  [-IsActive <Boolean>]
- -CustomSecurityAttributeDefinitionId <String> 
+ -CustomSecurityAttributeDefinitionId <String>
  -Id <String> [<CommonParameters>]
 ```
 

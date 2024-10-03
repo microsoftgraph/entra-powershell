@@ -38,7 +38,7 @@ Get-EntraDevice
 ### GetByValue
 
 ```powershell
-Get-EntraDevice 
+Get-EntraDevice
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraDevice
 ### GetById
 
 ```powershell
-Get-EntraDevice 
+Get-EntraDevice
  -DeviceId <String>
  [-All]
  [-Property <String[]>]

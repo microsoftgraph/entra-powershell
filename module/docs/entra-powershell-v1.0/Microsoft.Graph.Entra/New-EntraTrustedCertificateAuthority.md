@@ -26,7 +26,7 @@ Creates a trusted certificate authority.
 ## Syntax
 
 ```powershell
-New-EntraTrustedCertificateAuthority 
+New-EntraTrustedCertificateAuthority
  -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```

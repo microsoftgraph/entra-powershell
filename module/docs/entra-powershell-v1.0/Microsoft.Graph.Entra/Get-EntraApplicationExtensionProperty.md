@@ -25,7 +25,7 @@ Gets application extension properties.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationExtensionProperty 
+Get-EntraApplicationExtensionProperty
  -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]

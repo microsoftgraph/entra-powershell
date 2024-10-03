@@ -26,9 +26,9 @@ Creates a permission grant policy.
 ## Syntax
 
 ```powershell
-New-EntraPermissionGrantPolicy 
+New-EntraPermissionGrantPolicy
  -Id <String>
- [-DisplayName <String>] 
+ [-DisplayName <String>]
  [-Description <String>]
  [<CommonParameters>]
 ```

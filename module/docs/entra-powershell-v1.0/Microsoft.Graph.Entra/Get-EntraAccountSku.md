@@ -28,15 +28,15 @@ Retrieves all the SKUs for a company.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraAccountSku 
+Get-EntraAccountSku
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraAccountSku 
- [-TenantId <String>] 
+Get-EntraAccountSku
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 

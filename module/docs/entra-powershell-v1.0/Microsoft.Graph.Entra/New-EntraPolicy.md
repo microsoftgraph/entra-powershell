@@ -26,11 +26,11 @@ Creates a policy.
 ## Syntax
 
 ```powershell
-New-EntraPolicy 
- -Definition <System.Collections.Generic.List`1[System.String]> 
+New-EntraPolicy
+ -Definition <System.Collections.Generic.List`1[System.String]>
  -DisplayName <String>
  -Type <String>
- [-IsOrganizationDefault <Boolean>] 
+ [-IsOrganizationDefault <Boolean>]
  [<CommonParameters>]
 ```
 

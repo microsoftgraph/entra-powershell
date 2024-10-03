@@ -25,10 +25,10 @@ Retrieves the thumbnail photo of a contact.
 ## Syntax
 
 ```powershell
-Get-EntraContactThumbnailPhoto 
- -ObjectId <String> 
- [-FilePath <String>] 
- [-FileName <String>] 
+Get-EntraContactThumbnailPhoto
+ -ObjectId <String>
+ [-FilePath <String>]
+ [-FileName <String>]
  [-View <Boolean>]
  [<CommonParameters>]
 ```

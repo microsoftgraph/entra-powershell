@@ -25,8 +25,8 @@ Gets extension properties registered with Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Get-EntraExtensionProperty 
- [-IsSyncedFromOnPremises <Boolean>] 
+Get-EntraExtensionProperty
+ [-IsSyncedFromOnPremises <Boolean>]
  [<CommonParameters>]
 ```
 

@@ -25,7 +25,7 @@ Removes a user.
 ## Syntax
 
 ```powershell
-Remove-EntraUser 
+Remove-EntraUser
  -UserId <String>
  [<CommonParameters>]
 ```
