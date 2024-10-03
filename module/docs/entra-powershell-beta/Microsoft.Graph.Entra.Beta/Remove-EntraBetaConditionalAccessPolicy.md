@@ -25,8 +25,8 @@ Deletes a conditional access policy in Microsoft Entra ID by Id.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaConditionalAccessPolicy 
- -PolicyId <String> 
+Remove-EntraBetaConditionalAccessPolicy
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 

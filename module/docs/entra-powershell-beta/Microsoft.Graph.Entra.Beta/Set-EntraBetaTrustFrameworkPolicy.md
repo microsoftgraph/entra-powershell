@@ -28,9 +28,9 @@ This cmdlet is used to update a trust framework policy (custom policy) in the di
 ### Content (Default)
 
 ```powershell
-Set-EntraBetaTrustFrameworkPolicy 
- [-Id <String>] 
- -Content <String> 
+Set-EntraBetaTrustFrameworkPolicy
+ [-Id <String>]
+ -Content <String>
  [-OutputFilePath <String>]
  [<CommonParameters>]
 ```
@@ -38,9 +38,9 @@ Set-EntraBetaTrustFrameworkPolicy
 ### File
 
 ```powershell
-Set-EntraBetaTrustFrameworkPolicy 
- [-Id <String>] 
- -InputFilePath <String> 
+Set-EntraBetaTrustFrameworkPolicy
+ [-Id <String>]
+ -InputFilePath <String>
  [-OutputFilePath <String>]
  [<CommonParameters>]
 ```

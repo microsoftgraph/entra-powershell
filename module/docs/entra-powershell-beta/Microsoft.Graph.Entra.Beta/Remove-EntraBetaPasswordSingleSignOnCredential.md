@@ -25,8 +25,8 @@ Removes the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaPasswordSingleSignOnCredential 
- -ObjectId <String> 
+Remove-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```

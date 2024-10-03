@@ -25,8 +25,8 @@ Removes an application extension property.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationExtensionProperty 
- -ApplicationId <String> 
+Remove-EntraBetaApplicationExtensionProperty
+ -ApplicationId <String>
  -ExtensionPropertyId <String>
  [<CommonParameters>]
 ```

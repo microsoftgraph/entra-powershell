@@ -26,8 +26,8 @@ Restore a previously deleted object.
 ## Syntax
 
 ```powershell
-Restore-EntraBetaDeletedDirectoryObject 
- -Id <String> 
+Restore-EntraBetaDeletedDirectoryObject
+ -Id <String>
  [-AutoReconcileProxyConflict]
  [<CommonParameters>]
 ```

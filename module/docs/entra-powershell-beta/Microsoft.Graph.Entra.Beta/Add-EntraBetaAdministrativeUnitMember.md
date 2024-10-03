@@ -26,8 +26,8 @@ Adds an administrative unit member.
 ## Syntax
 
 ```powershell
-Add-EntraBetaAdministrativeUnitMember 
- -RefObjectId <String> 
+Add-EntraBetaAdministrativeUnitMember
+ -RefObjectId <String>
  -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```

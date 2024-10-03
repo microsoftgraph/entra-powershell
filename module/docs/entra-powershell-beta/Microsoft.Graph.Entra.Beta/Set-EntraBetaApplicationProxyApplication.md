@@ -25,18 +25,18 @@ The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set conf
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyApplication 
- -ApplicationId <String> 
- [-ExternalUrl <String>] 
+Set-EntraBetaApplicationProxyApplication
+ -ApplicationId <String>
+ [-ExternalUrl <String>]
  [-InternalUrl <String>]
- [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>] 
+ [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>]
  [-IsTranslateHostHeaderEnabled <Boolean>]
- [-IsHttpOnlyCookieEnabled <Boolean>] 
- [-IsSecureCookieEnabled <Boolean>] 
+ [-IsHttpOnlyCookieEnabled <Boolean>]
+ [-IsSecureCookieEnabled <Boolean>]
  [-IsPersistentCookieEnabled <Boolean>]
- [-IsTranslateLinksInBodyEnabled <Boolean>] 
+ [-IsTranslateLinksInBodyEnabled <Boolean>]
  [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
- [-ConnectorGroupId <String>] 
+ [-ConnectorGroupId <String>]
  [<CommonParameters>]
 ```
 

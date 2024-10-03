@@ -26,10 +26,10 @@ Add a classification for a delegated permission.
 ## Syntax
 
 ```powershell
-Add-EntraBetaServicePrincipalDelegatedPermissionClassification 
+Add-EntraBetaServicePrincipalDelegatedPermissionClassification
  -PermissionId <String>
- -Classification <ClassificationEnum> 
- -PermissionName <String> 
+ -Classification <ClassificationEnum>
+ -PermissionName <String>
  -ServicePrincipalId <String>
  [<CommonParameters>]
 ```

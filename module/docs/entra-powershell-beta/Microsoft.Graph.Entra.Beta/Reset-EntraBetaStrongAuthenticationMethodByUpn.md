@@ -26,8 +26,8 @@ Resets the strong authentication method using the User Principal Name (UPN).
 ## Syntax
 
 ```powershell
-Reset-EntraBetaStrongAuthenticationMethodByUpn 
- -UserPrincipalName <String> 
+Reset-EntraBetaStrongAuthenticationMethodByUpn
+ -UserPrincipalName <String>
  [<CommonParameters>]
 ```
 

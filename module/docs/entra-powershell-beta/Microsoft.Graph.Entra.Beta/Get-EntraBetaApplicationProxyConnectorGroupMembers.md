@@ -27,8 +27,8 @@ The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroupMembers
- -OnPremisesPublishingProfileId <String> 
- [-All] 
+ -OnPremisesPublishingProfileId <String>
+ [-All]
  [-Top <Int32>]
  [-Filter <String>]
 ```

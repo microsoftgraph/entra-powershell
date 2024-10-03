@@ -26,10 +26,10 @@ Creates a password credential for a service principal.
 ## Syntax
 
 ```powershell
-New-EntraBetaServicePrincipalPasswordCredential 
+New-EntraBetaServicePrincipalPasswordCredential
  -ServicePrincipalId <String>
- [-EndDate <DateTime>] 
- [-StartDate <DateTime>] 
+ [-EndDate <DateTime>]
+ [-StartDate <DateTime>]
  [<CommonParameters>]
 ```
 

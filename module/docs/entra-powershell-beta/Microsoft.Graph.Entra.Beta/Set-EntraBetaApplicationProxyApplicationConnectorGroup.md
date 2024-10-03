@@ -25,8 +25,8 @@ The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet assigns the 
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyApplicationConnectorGroup 
- -OnPremisesPublishingProfileId <String> 
+Set-EntraBetaApplicationProxyApplicationConnectorGroup
+ -OnPremisesPublishingProfileId <String>
  -ConnectorGroupId <String>
  [<CommonParameters>]
 ```

@@ -26,11 +26,11 @@ Creates an application extension property.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationExtensionProperty 
- -ApplicationId <String> 
- [-DataType <String>] 
+New-EntraBetaApplicationExtensionProperty
+ -ApplicationId <String>
+ [-DataType <String>]
  -Name <String>
- [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

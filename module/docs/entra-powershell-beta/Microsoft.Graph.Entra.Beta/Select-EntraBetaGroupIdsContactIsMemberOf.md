@@ -25,9 +25,9 @@ Get groups in which a contact is a member.
 ## Syntax
 
 ```powershell
-Select-EntraBetaGroupIdsContactIsMemberOf 
+Select-EntraBetaGroupIdsContactIsMemberOf
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 

@@ -26,29 +26,29 @@ Updates the properties of an application object.
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplication 
+Set-EntraBetaApplication
  -ApplicationId <String>
- [-Api <ApiApplication>] 
- [-OptionalClaims <OptionalClaims>] 
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>]
  [-DisplayName <String>]
  [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]>]
- [-Web <WebApplication>] 
+ [-Web <WebApplication>]
  [-IsFallbackPublicClient <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
- [-PublicClient <PublicClientApplication>] 
+ [-PublicClient <PublicClientApplication>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-TokenEncryptionKeyId <String>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- [-ParentalControlSettings <ParentalControlSettings>] 
- [-GroupMembershipClaims <String>] 
+ [-ParentalControlSettings <ParentalControlSettings>]
+ [-GroupMembershipClaims <String>]
  [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-SignInAudience <String>] 
- [-InformationalUrl <InformationalUrl>] 
+ [-SignInAudience <String>]
+ [-InformationalUrl <InformationalUrl>]
  [<CommonParameters>]
 ```
 

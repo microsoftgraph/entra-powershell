@@ -25,10 +25,10 @@ Adds a predefined value for a custom security attribute definition.
 ## Syntax
 
 ```powershell
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
  -IsActive <Boolean>
- -CustomSecurityAttributeDefinitionId <String> 
- -Id <String> 
+ -CustomSecurityAttributeDefinitionId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 

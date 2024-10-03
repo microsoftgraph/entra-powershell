@@ -24,8 +24,8 @@ Updates the password for the signed-in user.
 ## Syntax
 
 ```powershell
-Update-EntraBetaSignedInUserPassword 
- -CurrentPassword <SecureString> 
+Update-EntraBetaSignedInUserPassword
+ -CurrentPassword <SecureString>
  -NewPassword <SecureString>
  [<CommonParameters>]
 ```

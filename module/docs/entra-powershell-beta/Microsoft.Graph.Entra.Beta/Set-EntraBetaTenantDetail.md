@@ -25,7 +25,7 @@ Set contact details for a tenant.
 ## Syntax
 
 ```powershell
-Set-EntraBetaTenantDetail 
+Set-EntraBetaTenantDetail
  [-MarketingNotificationEmails <System.Collections.Generic.List`1[System.String]>]
  [-TechnicalNotificationMails <System.Collections.Generic.List`1[System.String]>]
  [-PrivacyProfile <PrivacyProfile>]

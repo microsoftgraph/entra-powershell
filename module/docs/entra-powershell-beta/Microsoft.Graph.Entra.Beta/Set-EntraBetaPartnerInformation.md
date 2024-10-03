@@ -25,15 +25,15 @@ Sets company information for partners.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPartnerInformation 
- [-CompanyType <CompanyType>] 
+Set-EntraBetaPartnerInformation
+ [-CompanyType <CompanyType>]
  [-PartnerCompanyName <String>]
- [-PartnerSupportTelephones <String[]>] 
- [-PartnerSupportEmails <String[]>] 
+ [-PartnerSupportTelephones <String[]>]
+ [-PartnerSupportEmails <String[]>]
  [-PartnerCommerceUrl <String>]
- [-PartnerSupportUrl <String>] 
- [-PartnerHelpUrl <String>] 
- [-TenantId <Guid>] 
+ [-PartnerSupportUrl <String>]
+ [-PartnerHelpUrl <String>]
+ [-TenantId <Guid>]
  [<CommonParameters>]
 ```
 

@@ -24,9 +24,9 @@ Add a member to a group.
 ## Syntax
 
 ```powershell
-Add-EntraBetaGroupMember 
- -GroupId <String> 
- -RefObjectId <String> 
+Add-EntraBetaGroupMember
+ -GroupId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

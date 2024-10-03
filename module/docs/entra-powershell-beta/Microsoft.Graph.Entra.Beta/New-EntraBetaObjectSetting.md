@@ -26,9 +26,9 @@ Creates a settings object.
 ## Syntax
 
 ```powershell
-New-EntraBetaObjectSetting 
- -DirectorySetting <DirectorySetting> 
- -TargetType <String> 
+New-EntraBetaObjectSetting
+ -DirectorySetting <DirectorySetting>
+ -TargetType <String>
  -TargetObjectId <String>
  [<CommonParameters>]
 ```

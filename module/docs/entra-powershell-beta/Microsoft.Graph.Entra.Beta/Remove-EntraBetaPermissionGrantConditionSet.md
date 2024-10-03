@@ -26,9 +26,9 @@ Delete a Microsoft Entra ID permission grant condition set by ID.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaPermissionGrantConditionSet 
- -Id <String> 
- -ConditionSetType <String> 
+Remove-EntraBetaPermissionGrantConditionSet
+ -Id <String>
+ -ConditionSetType <String>
  -PolicyId <String>
  [<CommonParameters>]
 ```

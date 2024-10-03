@@ -35,8 +35,8 @@ Get-EntraBetaAttributeSet
 ### GetById
 
 ```powershell
-Get-EntraBetaAttributeSet 
- -AttributeSetId <String> 
+Get-EntraBetaAttributeSet
+ -AttributeSetId <String>
  [<CommonParameters>]
 ```
 

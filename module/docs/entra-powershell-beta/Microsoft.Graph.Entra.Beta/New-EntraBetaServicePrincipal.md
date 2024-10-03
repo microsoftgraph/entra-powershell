@@ -26,14 +26,14 @@ Creates a service principal.
 ## Syntax
 
 ```powershell
-New-EntraBetaServicePrincipal 
+New-EntraBetaServicePrincipal
  [-AccountEnabled <String>]
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-DisplayName <String>]
- [-AlternativeNames <System.Collections.Generic.List`1[System.String]>] 
+ [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>]
  [-LogoutUrl <String>]
  [-ServicePrincipalType <String>]
  [-Homepage <String>]

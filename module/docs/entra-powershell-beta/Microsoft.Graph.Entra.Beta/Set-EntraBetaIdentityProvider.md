@@ -26,12 +26,12 @@ Update the properties of an existing identity provider configured in the directo
 ## Syntax
 
 ```powershell
-Set-EntraBetaIdentityProvider 
- -IdentityProviderBaseId <String> 
- [-Type <String>] 
- [-Name <String>] 
+Set-EntraBetaIdentityProvider
+ -IdentityProviderBaseId <String>
+ [-Type <String>]
+ [-Name <String>]
  [-ClientId <String>]
- [-ClientSecret <String>] 
+ [-ClientSecret <String>]
  [<CommonParameters>]
 ```
 

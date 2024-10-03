@@ -26,8 +26,8 @@ Permanently delete a previously deleted directory object.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDeletedDirectoryObject 
- -Id <String> 
+Remove-EntraBetaDeletedDirectoryObject
+ -Id <String>
  [<CommonParameters>]
 ```
 

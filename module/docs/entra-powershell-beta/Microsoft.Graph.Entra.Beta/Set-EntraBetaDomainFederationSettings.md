@@ -25,7 +25,7 @@ Updates settings for a federated domain.
 ## Syntax
 
 ```powershell
-Set-EntraBetaDomainFederationSettings 
+Set-EntraBetaDomainFederationSettings
  -DomainName <String>
  [-SigningCertificate <String>]
  [-NextSigningCertificate <String>]

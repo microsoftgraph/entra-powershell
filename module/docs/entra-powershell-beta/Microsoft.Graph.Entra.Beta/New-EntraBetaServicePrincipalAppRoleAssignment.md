@@ -26,11 +26,11 @@ Assigns a service principal to an application role.
 ## Syntax
 
 ```powershell
-New-EntraBetaServicePrincipalAppRoleAssignment 
- -ResourceId <String> 
- -Id <String> 
+New-EntraBetaServicePrincipalAppRoleAssignment
+ -ResourceId <String>
+ -Id <String>
  -ObjectId <String>
- -PrincipalId <String> 
+ -PrincipalId <String>
  [<CommonParameters>]
 ```
 

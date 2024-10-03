@@ -26,8 +26,8 @@ Gets the directory synchronization settings.
 ## Syntax
 
 ```powershell
-Get-EntraBetaDirSyncConfiguration 
- [-TenantId <String>] 
+Get-EntraBetaDirSyncConfiguration
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 

@@ -24,7 +24,7 @@ Removes a user.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaUser 
+Remove-EntraBetaUser
  -UserId <String>
  [<CommonParameters>]
 ```

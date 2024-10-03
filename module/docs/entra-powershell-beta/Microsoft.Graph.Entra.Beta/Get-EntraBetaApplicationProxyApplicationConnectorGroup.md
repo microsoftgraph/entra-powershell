@@ -25,8 +25,8 @@ The `Get-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet retrieves th
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationProxyApplicationConnectorGroup 
- -ObjectId <String> 
+Get-EntraBetaApplicationProxyApplicationConnectorGroup
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

@@ -28,18 +28,18 @@ This cmdlet is used to create a trust framework policy (custom policy) in the di
 ### Content (Default)
 
 ```powershell
-New-EntraBetaTrustFrameworkPolicy 
- -Content <String> 
- [-OutputFilePath <String>] 
+New-EntraBetaTrustFrameworkPolicy
+ -Content <String>
+ [-OutputFilePath <String>]
  [<CommonParameters>]
 ```
 
 ### File
 
 ```powershell
-New-EntraBetaTrustFrameworkPolicy 
- -InputFilePath <String> 
- [-OutputFilePath <String>] 
+New-EntraBetaTrustFrameworkPolicy
+ -InputFilePath <String>
+ [-OutputFilePath <String>]
  [<CommonParameters>]
 ```
 

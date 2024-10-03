@@ -25,8 +25,8 @@ Deletes an Application Proxy application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationProxyApplication 
- -ApplicationId <String> 
+Remove-EntraBetaApplicationProxyApplication
+ -ApplicationId <String>
  [-RemoveADApplication <Boolean>]
  [<CommonParameters>]
 ```

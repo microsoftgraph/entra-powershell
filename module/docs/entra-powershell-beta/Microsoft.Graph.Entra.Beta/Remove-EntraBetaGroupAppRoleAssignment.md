@@ -23,8 +23,8 @@ Delete a group application role assignment.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaGroupAppRoleAssignment 
- -GroupId <String> 
+Remove-EntraBetaGroupAppRoleAssignment
+ -GroupId <String>
  -AppRoleAssignmentId <String>
  [<CommonParameters>]
 ```

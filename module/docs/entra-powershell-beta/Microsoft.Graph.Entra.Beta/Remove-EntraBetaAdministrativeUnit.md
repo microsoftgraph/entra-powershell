@@ -24,8 +24,8 @@ Removes an administrative unit.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaAdministrativeUnit 
- -AdministrativeUnitId <String> 
+Remove-EntraBetaAdministrativeUnit
+ -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```
 

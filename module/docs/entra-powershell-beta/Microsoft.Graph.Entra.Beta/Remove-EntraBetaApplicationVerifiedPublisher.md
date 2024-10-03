@@ -26,8 +26,8 @@ Removes the verified publisher from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationVerifiedPublisher 
- -AppObjectId <String> 
+Remove-EntraBetaApplicationVerifiedPublisher
+ -AppObjectId <String>
  [<CommonParameters>]
 ```
 

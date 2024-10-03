@@ -25,15 +25,15 @@ Update an existing Microsoft Entra ID roleDefinition.
 ## Syntax
 
 ```powershell
-Set-EntraBetaDirectoryRoleDefinition 
+Set-EntraBetaDirectoryRoleDefinition
  -UnifiedRoleDefinitionId <String>
- [-IsEnabled <Boolean>] 
+ [-IsEnabled <Boolean>]
  [-InheritsPermissionsFrom <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition]>]
- [-Version <String>] 
+ [-Version <String>]
  [-ResourceScopes <System.Collections.Generic.List`1[System.String]>]
  [-Description <String>]
  [-RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>]
- [-TemplateId <String>] 
+ [-TemplateId <String>]
  [-DisplayName <String>]
  [<CommonParameters>]
 ```

@@ -24,11 +24,11 @@ Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Set-EntraBetaGroupLifecyclePolicy 
+Set-EntraBetaGroupLifecyclePolicy
  -GroupLifecyclePolicyId <String>
- [-AlternateNotificationEmails <String>] 
- [-ManagedGroupTypes <String>] 
- [-GroupLifetimeInDays <Int32>] 
+ [-AlternateNotificationEmails <String>]
+ [-ManagedGroupTypes <String>]
+ [-GroupLifetimeInDays <Int32>]
  [<CommonParameters>]
 ```
 

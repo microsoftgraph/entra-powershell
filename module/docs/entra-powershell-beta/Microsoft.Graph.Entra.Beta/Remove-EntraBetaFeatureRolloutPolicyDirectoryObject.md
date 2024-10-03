@@ -28,8 +28,8 @@ Users in this group revert back to the authenticating using the global policy (i
 
 ```powershell
 Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
- -ObjectId <String> 
- -Id <String> 
+ -ObjectId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 

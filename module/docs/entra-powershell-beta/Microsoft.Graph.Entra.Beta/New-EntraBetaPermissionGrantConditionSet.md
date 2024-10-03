@@ -26,17 +26,17 @@ Create a new Microsoft Entra ID permission grant condition set in a given policy
 ## Syntax
 
 ```powershell
-New-EntraBetaPermissionGrantConditionSet 
+New-EntraBetaPermissionGrantConditionSet
  -PolicyId <String>
  -ConditionSetType <String>
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
  [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>]
- [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>] 
- [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>] 
+ [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>]
+ [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>]
  [-ResourceApplication <String>]
  [-ClientApplicationPublisherIds <System.Collections.Generic.List`1[System.String]>]
- [-PermissionClassification <String>]  
- [-PermissionType <String>] 
+ [-PermissionClassification <String>]
+ [-PermissionType <String>]
  [<CommonParameters>]
 ```
 

@@ -25,13 +25,13 @@ Creates a key credential for an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationKeyCredential 
+New-EntraBetaApplicationKeyCredential
  -ApplicationId <String>
- [-CustomKeyIdentifier <String>] 
- [-Type <KeyType>] 
+ [-CustomKeyIdentifier <String>]
+ [-Type <KeyType>]
  [-Usage <KeyUsage>]
- [-Value <String>] 
- [-EndDate <DateTime>] 
+ [-Value <String>]
+ [-EndDate <DateTime>]
  [-StartDate <DateTime>]
  [<CommonParameters>]
 ```

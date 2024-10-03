@@ -26,11 +26,11 @@ Adds a new key to an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationKey 
- -ObjectId <String> 
+New-EntraBetaApplicationKey
+ -ObjectId <String>
  -KeyCredential <KeyCredential>
  -Proof <String>
- [-PasswordCredential <PasswordCredential>] 
+ [-PasswordCredential <PasswordCredential>]
  [<CommonParameters>]
 ```
 

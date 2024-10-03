@@ -27,21 +27,21 @@ Currently only group objects are supported.
 ## Syntax
 
 ```powershell
-New-EntraBetaAdministrativeUnitMember 
+New-EntraBetaAdministrativeUnitMember
  -AdministrativeUnitId <String>
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
  [-AssignedLabels <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]>]
- [-OdataType <String>] 
- [-Description <String>] 
- -SecurityEnabled <Boolean> 
+ [-OdataType <String>]
+ [-Description <String>]
+ -SecurityEnabled <Boolean>
  [-IsAssignableToRole <Boolean>]
- [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>] 
+ [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>]
  -DisplayName <String>
- [-Visibility <String>] 
- -MailEnabled <Boolean> 
- -MailNickname <String> 
+ [-Visibility <String>]
+ -MailEnabled <Boolean>
+ -MailNickname <String>
  [-MembershipRule <String>]
- [-MembershipRuleProcessingState <String>] 
+ [-MembershipRuleProcessingState <String>]
  [<CommonParameters>]
 ```
 

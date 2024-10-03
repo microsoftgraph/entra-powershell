@@ -26,10 +26,10 @@ Retrieve the logo of an application.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationLogo 
- -ApplicationId <String> 
- [-FileName <String>] 
- [-FilePath <String>] 
+Get-EntraBetaApplicationLogo
+ -ApplicationId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
  [-View <Boolean>]
  [<CommonParameters>]
 ```

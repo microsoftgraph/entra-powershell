@@ -24,8 +24,8 @@ Adds an owner to a service principal.
 ## Syntax
 
 ```powershell
-Add-EntraBetaServicePrincipalOwner 
- -ServicePrincipalId <String> 
+Add-EntraBetaServicePrincipalOwner
+ -ServicePrincipalId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```

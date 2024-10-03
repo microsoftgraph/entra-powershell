@@ -25,14 +25,14 @@ Create a new customSecurityAttributeDefinition object.
 ## Syntax
 
 ```powershell
-New-EntraBetaCustomSecurityAttributeDefinition 
- -IsSearchable <Boolean> 
- -IsCollection <Boolean> 
- -AttributeSet <String> 
- -Type <String> 
- -Name <String> 
+New-EntraBetaCustomSecurityAttributeDefinition
+ -IsSearchable <Boolean>
+ -IsCollection <Boolean>
+ -AttributeSet <String>
+ -Type <String>
+ -Name <String>
  -Status <String>
- -UsePreDefinedValuesOnly <Boolean> 
+ -UsePreDefinedValuesOnly <Boolean>
  [-Description <String>]
  [<CommonParameters>]
 ```

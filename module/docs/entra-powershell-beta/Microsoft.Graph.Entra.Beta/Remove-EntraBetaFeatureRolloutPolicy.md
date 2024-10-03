@@ -26,8 +26,8 @@ Allows an admin to remove the policy for cloud authentication roll-out in Micros
 ## Syntax
 
 ```powershell
-Remove-EntraBetaFeatureRolloutPolicy 
- -Id <String> 
+Remove-EntraBetaFeatureRolloutPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

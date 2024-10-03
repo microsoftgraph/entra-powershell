@@ -26,7 +26,7 @@ The `Remove-EntraBetaApplicationProxyApplicationConnectorGroupcmdlet` sets the c
 
 ```powershell
 Remove-EntraBetaApplicationProxyApplicationConnectorGroup
- -OnPremisesPublishingProfileId <String> 
+ -OnPremisesPublishingProfileId <String>
  [<CommonParameters>]
 ```
 

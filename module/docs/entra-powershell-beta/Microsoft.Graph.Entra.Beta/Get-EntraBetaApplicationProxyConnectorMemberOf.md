@@ -27,7 +27,7 @@ The `Get-EntraBetaApplicationProxyConnectorMemberOf` command gets the ConnectorG
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorMemberOf
- -OnPremisesPublishingProfileId <String> 
+ -OnPremisesPublishingProfileId <String>
  [<CommonParameters>]
 ```
 

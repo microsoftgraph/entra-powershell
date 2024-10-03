@@ -25,7 +25,7 @@ Adds an owner to a group.
 ## Syntax
 
 ```powershell
-Add-EntraBetaGroupOwner 
+Add-EntraBetaGroupOwner
  -GroupId <String>
  -RefObjectId <String>
  [<CommonParameters>]

@@ -25,18 +25,18 @@ Sets the properties for an existing Microsoft Entra ID group.
 ## Syntax
 
 ```powershell
-Set-EntraBetaGroup 
+Set-EntraBetaGroup
  -GroupId <String>
- [-GroupTypes <System.Collections.Generic.List`1[System.String]>] 
- [-DisplayName <String>] 
- [-Description <String>] 
- [-IsAssignableToRole <Boolean>] 
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+ [-DisplayName <String>]
+ [-Description <String>]
+ [-IsAssignableToRole <Boolean>]
  [-SecurityEnabled <Boolean>]
- [-Visibility <String>] 
- [-MailEnabled <Boolean>] 
+ [-Visibility <String>]
+ [-MailEnabled <Boolean>]
  [-MailNickname <String>]
- [-MembershipRule <String>] 
- [-MembershipRuleProcessingState <String>] 
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>]
  [<CommonParameters>]
 ```
 

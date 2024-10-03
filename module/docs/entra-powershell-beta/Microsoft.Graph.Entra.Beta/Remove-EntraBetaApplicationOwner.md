@@ -25,9 +25,9 @@ Removes an owner from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationOwner 
- -OwnerId <String> 
- -ApplicationId <String> 
+Remove-EntraBetaApplicationOwner
+ -OwnerId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 

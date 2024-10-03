@@ -25,10 +25,10 @@ Updates a permission grant policy.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPermissionGrantPolicy 
+Set-EntraBetaPermissionGrantPolicy
  -Id <String>
- [-Description <String>] 
- [-DisplayName <String>] 
+ [-Description <String>]
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

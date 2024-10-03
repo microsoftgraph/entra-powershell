@@ -25,11 +25,11 @@ Update the properties of a customSecurityAttributeDefinition object.
 ## Syntax
 
 ```powershell
-Set-EntraBetaCustomSecurityAttributeDefinition 
- -Id <String> 
- [-Description <String>] 
+Set-EntraBetaCustomSecurityAttributeDefinition
+ -Id <String>
+ [-Description <String>]
  [-Status <String>]
- [-UsePreDefinedValuesOnly <Boolean>] 
+ [-UsePreDefinedValuesOnly <Boolean>]
  [<CommonParameters>]
 ```
 
