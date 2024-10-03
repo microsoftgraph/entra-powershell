@@ -25,7 +25,7 @@ Selects the groups that a user is a member of.
 ## Syntax
 
 ```powershell
-Select-EntraGroupIdsUserIsMemberOf 
+Select-EntraGroupIdsUserIsMemberOf
  -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]

@@ -25,8 +25,8 @@ This cmdlet is used to delete an identity provider in the directory.
 ## Syntax
 
 ```powershell
-Remove-EntraIdentityProvider 
- -IdentityProviderBaseId <String> 
+Remove-EntraIdentityProvider
+ -IdentityProviderBaseId <String>
  [<CommonParameters>]
 ```
 

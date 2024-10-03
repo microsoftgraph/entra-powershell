@@ -26,7 +26,7 @@ Creates a new conditional access policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-New-EntraConditionalAccessPolicy 
+New-EntraConditionalAccessPolicy
  [-Id <String>]
  [-DisplayName <String>]
  [-State <String>]

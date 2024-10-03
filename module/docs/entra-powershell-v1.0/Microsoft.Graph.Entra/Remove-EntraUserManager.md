@@ -25,8 +25,8 @@ Removes a user's manager.
 ## Syntax
 
 ```powershell
-Remove-EntraUserManager 
- -UserId <String> 
+Remove-EntraUserManager
+ -UserId <String>
 ```
 
 ## Description

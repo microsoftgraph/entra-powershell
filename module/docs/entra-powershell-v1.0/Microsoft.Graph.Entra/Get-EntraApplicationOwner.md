@@ -26,7 +26,7 @@ Gets the owner of an application.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationOwner 
+Get-EntraApplicationOwner
  -ApplicationId <String>
  [-All]
  [-Top <Int32>]

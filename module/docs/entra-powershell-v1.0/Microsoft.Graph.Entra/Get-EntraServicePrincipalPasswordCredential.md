@@ -25,8 +25,8 @@ Get credentials for a service principal.
 ## Syntax
 
 ```powershell
-Get-EntraServicePrincipalPasswordCredential 
- -ServicePrincipalId <String> 
+Get-EntraServicePrincipalPasswordCredential
+ -ServicePrincipalId <String>
  [<CommonParameters>]
 ```
 

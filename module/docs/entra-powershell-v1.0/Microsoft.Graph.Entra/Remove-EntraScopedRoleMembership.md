@@ -26,8 +26,8 @@ Removes a scoped role membership.
 ## Syntax
 
 ```powershell
-Remove-EntraScopedRoleMembership 
- -AdministrativeUnitId <String> 
+Remove-EntraScopedRoleMembership
+ -AdministrativeUnitId <String>
  -ScopedRoleMembershipId <String>
  [<CommonParameters>]
 ```

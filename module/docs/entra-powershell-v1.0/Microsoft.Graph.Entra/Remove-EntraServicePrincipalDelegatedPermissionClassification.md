@@ -25,7 +25,7 @@ Remove delegated permission classification.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipalDelegatedPermissionClassification 
+Remove-EntraServicePrincipalDelegatedPermissionClassification
  -ServicePrincipalId <String>
  -Id <String>
  [<CommonParameters>]

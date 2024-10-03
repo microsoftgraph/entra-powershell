@@ -26,13 +26,13 @@ This cmdlet is used to invite a new external user to your directory.
 ## Syntax
 
 ```powershell
-New-EntraInvitation 
- [-InvitedUser <User>] 
- [-InvitedUserType <String>] 
+New-EntraInvitation
+ [-InvitedUser <User>]
+ [-InvitedUserType <String>]
  -InvitedUserEmailAddress <String>
- [-SendInvitationMessage <Boolean>] 
+ [-SendInvitationMessage <Boolean>]
 -InviteRedirectUrl <String>
- [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] 
+ [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>]
  [<CommonParameters>]
 ```
 

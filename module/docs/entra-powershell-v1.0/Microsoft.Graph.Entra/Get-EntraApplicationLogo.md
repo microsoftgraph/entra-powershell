@@ -26,10 +26,10 @@ Retrieve the logo of an application.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationLogo 
- -ApplicationId <String> 
- [-FileName <String>] 
- [-View <Boolean>] 
+Get-EntraApplicationLogo
+ -ApplicationId <String>
+ [-FileName <String>]
+ [-View <Boolean>]
  [-FilePath <String>]
  [<CommonParameters>]
 ```

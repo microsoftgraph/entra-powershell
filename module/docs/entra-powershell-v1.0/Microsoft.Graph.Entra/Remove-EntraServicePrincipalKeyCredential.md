@@ -25,8 +25,8 @@ Removes a key credential from a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipalKeyCredential 
- -ServicePrincipalId <String> 
+Remove-EntraServicePrincipalKeyCredential
+ -ServicePrincipalId <String>
  -KeyId <String>
  [<CommonParameters>]
 ```

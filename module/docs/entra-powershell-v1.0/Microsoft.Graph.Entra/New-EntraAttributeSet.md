@@ -25,9 +25,9 @@ Adds a new attribute set.
 ## Syntax
 
 ```powershell
-New-EntraAttributeSet 
- [-AttributeSetId <String>] 
- [-Description <String>] 
+New-EntraAttributeSet
+ [-AttributeSetId <String>]
+ [-Description <String>]
  [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
 ```

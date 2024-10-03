@@ -20,21 +20,21 @@ schema: 2.0.0
 
 ## Synopsis
 
-Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Syntax
 
 ```powershell
-Test-EntraScript 
- -Path <String[]> 
- [-Content <String>] 
- [-Quiet] 
+Test-EntraScript
+ -Path <String[]>
+ [-Content <String>]
+ [-Quiet]
  [<CommonParameters>]
 ```
 
 ## Description
 
-Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Examples
 

@@ -27,7 +27,7 @@ Gets a member of an administrative unit.
 
 ```powershell
 Get-EntraAdministrativeUnitMember
- -AdministrativeUnitId <String> 
+ -AdministrativeUnitId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]

@@ -27,19 +27,19 @@ Updates a service principal.
 Set-EntraServicePrincipal
  -ServicePrincipalId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-Homepage <String>] 
- [-AppId <String>] 
- [-LogoutUrl <String>] 
+ [-Homepage <String>]
+ [-AppId <String>]
+ [-LogoutUrl <String>]
  [-ServicePrincipalType <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
  [-PreferredSingleSignOnMode <String>]
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
- [-AppRoleAssignmentRequired <Boolean>] 
+ [-AppRoleAssignmentRequired <Boolean>]
  [-DisplayName <String>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 

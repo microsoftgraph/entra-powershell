@@ -38,8 +38,8 @@ Get-EntraApplicationTemplate
 ### GetById
 
 ```powershell
-Get-EntraApplicationTemplate 
- -Id <String> 
+Get-EntraApplicationTemplate
+ -Id <String>
  [<CommonParameters>]
 ```
 

@@ -26,8 +26,8 @@ Restore a previously deleted object.
 ## Syntax
 
 ```powershell
-Restore-EntraDeletedDirectoryObject 
- -Id <String> 
+Restore-EntraDeletedDirectoryObject
+ -Id <String>
  [<CommonParameters>]
 ```
 

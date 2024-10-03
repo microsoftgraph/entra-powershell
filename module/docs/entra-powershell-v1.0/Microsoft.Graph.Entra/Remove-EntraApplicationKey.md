@@ -26,10 +26,10 @@ Removes a key from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationKey 
- -ObjectId <String> 
- [-Proof <String>] 
- [-KeyId <String>] 
+Remove-EntraApplicationKey
+ -ObjectId <String>
+ [-Proof <String>]
+ [-KeyId <String>]
  [<CommonParameters>]
 ```
 

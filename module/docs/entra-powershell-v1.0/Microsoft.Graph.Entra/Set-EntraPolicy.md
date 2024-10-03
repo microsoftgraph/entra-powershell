@@ -24,12 +24,12 @@ Updates a policy.
 ## Syntax
 
 ```powershell
-Set-EntraPolicy 
+Set-EntraPolicy
  -Id <String>
- [-Definition <System.Collections.Generic.List`1[System.String]>] 
- [-DisplayName <String>] 
+ [-Definition <System.Collections.Generic.List`1[System.String]>]
+ [-DisplayName <String>]
  [-Type <String>]
- [-IsOrganizationDefault <Boolean>] 
+ [-IsOrganizationDefault <Boolean>]
  [<CommonParameters>]
 ```
 

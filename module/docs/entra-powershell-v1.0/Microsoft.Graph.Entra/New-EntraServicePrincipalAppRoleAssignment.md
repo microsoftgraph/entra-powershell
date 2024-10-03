@@ -25,10 +25,10 @@ Assigns a service principal to an application role.
 ## Syntax
 
 ```powershell
-New-EntraServicePrincipalAppRoleAssignment 
+New-EntraServicePrincipalAppRoleAssignment
  -ObjectId <String>
- -PrincipalId <String> 
- -Id <String> 
+ -PrincipalId <String>
+ -Id <String>
  -ResourceId <String>
  [<CommonParameters>]
 ```

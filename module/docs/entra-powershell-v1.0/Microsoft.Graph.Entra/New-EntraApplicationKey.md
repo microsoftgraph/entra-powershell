@@ -26,10 +26,10 @@ Adds a new key to an application.
 ## Syntax
 
 ```powershell
-New-EntraApplicationKey 
- -ObjectId <String> 
+New-EntraApplicationKey
+ -ObjectId <String>
  -KeyCredential <KeyCredential>
- -PasswordCredential <PasswordCredential>] 
+ -PasswordCredential <PasswordCredential>]
  -Proof <String>
  [<CommonParameters>]
 ```

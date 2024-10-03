@@ -24,8 +24,8 @@ Removes a policy.
 ## Syntax
 
 ```powershell
-Remove-EntraPolicy 
- -Id <String> 
+Remove-EntraPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 

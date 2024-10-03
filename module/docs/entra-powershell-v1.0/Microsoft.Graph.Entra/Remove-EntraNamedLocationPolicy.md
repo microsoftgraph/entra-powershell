@@ -26,8 +26,8 @@ Deletes a Microsoft Entra ID named location policy by PolicyId.
 ## Syntax
 
 ```powershell
-Remove-EntraNamedLocationPolicy 
- -PolicyId <String> 
+Remove-EntraNamedLocationPolicy
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 

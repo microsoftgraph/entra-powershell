@@ -24,10 +24,10 @@ Assigns a user to an application role.
 ## Syntax
 
 ```powershell
-New-EntraUserAppRoleAssignment 
- -ObjectId <String> 
+New-EntraUserAppRoleAssignment
+ -ObjectId <String>
  -PrincipalId <String>
- -Id <String> 
+ -Id <String>
  -ResourceId <String>
  [<CommonParameters>]
 ```

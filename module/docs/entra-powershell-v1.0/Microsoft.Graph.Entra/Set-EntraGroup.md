@@ -25,16 +25,16 @@ Sets the properties for an existing Microsoft Entra ID group.
 ## Syntax
 
 ```powershell
-Set-EntraGroup 
+Set-EntraGroup
  -GroupId <String>
- [-DisplayName <String>] 
+ [-DisplayName <String>]
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
- [-SecurityEnabled <Boolean>]  
- [-Description <String>] 
+ [-SecurityEnabled <Boolean>]
+ [-Description <String>]
  [-MailEnabled <Boolean>]
- [-MailNickname <String>] 
- [-Visibility <String>] 
- [-IsAssignableToRole <Boolean>] 
+ [-MailNickname <String>]
+ [-Visibility <String>]
+ [-IsAssignableToRole <Boolean>]
  [<CommonParameters>]
 ```
 
