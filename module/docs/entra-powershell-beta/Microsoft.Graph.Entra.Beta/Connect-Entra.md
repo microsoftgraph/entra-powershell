@@ -71,36 +71,36 @@ Connect-Entra
 
 ```powershell
 Connect-Entra
-[-ClientSecretCredential <PSCredential>]
-[-TenantId <String>]
-[-ContextScope <ContextScope>]
-[-Environment <String>]
-[-ClientTimeout <Double>]
-[-NoWelcome]
-[<CommonParameters>]
+ [-ClientSecretCredential <PSCredential>]
+ [-TenantId <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### AccessTokenParameterSet
 
 ```powershell
 Connect-Entra
-[-AccessToken] <SecureString>
-[-Environment <String>]
-[-ClientTimeout <Double>]
-[-NoWelcome]
-[<CommonParameters>]
+ [-AccessToken] <SecureString>
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### EnvironmentVariableParameterSet
 
 ```powershell
 Connect-Entra
-[-ContextScope <ContextScope>]
-[-Environment <String>]
-[-ClientTimeout <Double>]
-[-EnvironmentVariable]
-[-NoWelcome]
-[<CommonParameters>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-EnvironmentVariable]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ## Description
