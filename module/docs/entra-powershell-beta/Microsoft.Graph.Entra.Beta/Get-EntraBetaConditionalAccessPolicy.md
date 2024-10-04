@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaConditionalAccessPolicy.
+title: Get-EntraBetaConditionalAccessPolicy
 description: This article provides details on the Get-EntraBetaConditionalAccessPolicy command.
 
 

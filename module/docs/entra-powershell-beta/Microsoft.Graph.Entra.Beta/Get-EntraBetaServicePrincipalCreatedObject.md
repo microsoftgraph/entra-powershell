@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaServicePrincipalCreatedObject.
+title: Get-EntraBetaServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraBetaServicePrincipalCreatedObject command.
 
 
