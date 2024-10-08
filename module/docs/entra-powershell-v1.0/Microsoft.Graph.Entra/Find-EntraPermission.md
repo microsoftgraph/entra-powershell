@@ -32,6 +32,7 @@ Find-EntraPermission
  [-ExactMatch]
  [-PermissionType <String>]
  [-Online]
+ [-All]
  [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
@@ -139,7 +140,7 @@ Specifies the filter for the permissions e.g. domain and scope.
 
 Type: System.String
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -205,7 +206,7 @@ Specifies the type of Permission e.g. Delegated or Application.
 Type: System.String
 Required: False
 Position: Named
-Default value: None
+Default value: Any
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
