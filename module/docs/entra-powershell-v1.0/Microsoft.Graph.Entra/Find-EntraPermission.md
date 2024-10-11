@@ -24,12 +24,22 @@ Helps users determine the necessary permissions for resources and identify the a
 
 ## Syntax
 
-### Add Entra Environment Name
+### Search
 
 ```powershell
 Find-EntraPermission
  [-SearchString] <String>
  [-ExactMatch]
+ [-PermissionType <String>]
+ [-Online]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
+```
+
+### All
+
+```powershell
+Find-EntraPermission
  [-PermissionType <String>]
  [-Online]
  [-All]
