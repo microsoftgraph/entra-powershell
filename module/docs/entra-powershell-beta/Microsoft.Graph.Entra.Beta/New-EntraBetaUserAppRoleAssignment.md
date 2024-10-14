@@ -39,11 +39,11 @@ The `New-EntraBetaUserAppRoleAssignment` cmdlet assigns a user to an application
 
 To grant an app role assignment to a user, you need three identifiers:
 
-- PrincipalId: The Id of the user to whom you are assigning the app role.
+- PrincipalId: The ID of the user to whom you are assigning the app role.
 
-- ResourceId: The Id of the resource servicePrincipal that has defined the app role.
+- ResourceId: The ID of the resource servicePrincipal that defines the app role.
 
-- Id: The Id of the appRole (defined on the resource service principal) to assign to the user.
+- Id: The ID of the appRole (defined on the resource service principal) to assign to the user.
 
 ## Examples
 
@@ -70,14 +70,14 @@ ZwFW_R__GkeNdDsAcKvOoerWWY8NKDJGlIgS4FjeyXQ 00000000-0000-0000-0000-000000000000
 ```
 
 This command assigns a user to an application that doesn't have any roles.  
-You can use the command `Get-EntraBetaUser` to get user object Id.  
-You can use the command `Get-EntraBetaApplication` to get application Id.  
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
+You can use the command `Get-EntraBetaUser` to get user object ID.  
+You can use the command `Get-EntraBetaApplication` to get application ID.  
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
 
-- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
-- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
-- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
-- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
+- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the ID of a resource servicePrincipal that defines the app role.
+- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
 
 ### Example 2: Assign a user to a specific role within an application
 
@@ -104,13 +104,13 @@ Idn1u1K7S0OWoJWIjkT69Stnjqd1iblKlg-GoqVkNlM cbbf6a32-6dcd-4f22-9be7-ffb128119fae
 ```
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
-You can use the command `Get-EntraBetaUser` to get user object Id.  
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
+You can use the command `Get-EntraBetaUser` to get user object ID.
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
 
-- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
-- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
-- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
-- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
+- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-ResourceId` specifies the ID of a resource servicePrincipal that defines the app role.
+- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
 
 ## Parameters
 
