@@ -66,7 +66,7 @@ New-EntraBetaUserAppRoleAssignment @params
 ```Output
 Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName ResourceId
 --                                          ---------                            -----------------   -------------------- -----------                          ------------- ------------------- ----------
-ZwFW_R__GkeNdDsAcKvOoerWWY8NKDJGlIgS4FjeyXQ 00000000-0000-0000-0000-000000000000 08-08-2024 05:40:06 Conf Room Adams      aaaaaaaa-bbbb-cccc-1111-222222222222 User          testp22             07188127-baa9-4f…
+ZwFW_R__GkeNdDsAcKvOoerWWY8NKDJGlIgS4FjeyXQ 00000000-0000-0000-0000-000000000000 08-08-2024 05:40:06 Conf Room Adams      aaaaaaaa-bbbb-cccc-1111-222222222222 User          ResourceDisplayName             07188127-baa9-4f…
 ```
 
 This command assigns a user to an application that doesn't have any roles.  
