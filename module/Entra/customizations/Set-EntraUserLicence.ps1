@@ -12,6 +12,7 @@
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $UserId,
+    
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses
     )

@@ -7,7 +7,7 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-     [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
