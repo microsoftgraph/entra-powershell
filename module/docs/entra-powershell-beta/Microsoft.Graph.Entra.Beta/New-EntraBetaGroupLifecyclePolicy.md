@@ -56,7 +56,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb example@contoso.com                     99                  Selected
 ```
 
-This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to '<example@contoso.com>'.
+This example creates a new groupLifecyclePolicy with a group lifetime of 99 days for a selected set of Office 365 groups. Renewal notification emails are sent to <example@contoso.com> for groups without owners.
 
 - `-GroupLifetimeInDays` parameter specifies the number of days a group can exist before it needs to be renewed.
 - `-ManagedGroupTypes` parameter allows the admin to select which office 365 groups the policy applies to.
@@ -66,8 +66,7 @@ This example creates a new groupLifecyclePolicy setting the group lifetime to 99
 
 ### -AlternateNotificationEmails
 
-Notification emails for groups that have no owners will be sent to these email addresses.
-List of email addresses separated by a ";".
+Notification emails for groups without owners are sent to these email addresses, separated by a ';'.
 
 ```yaml
 Type: System.String
@@ -99,10 +98,10 @@ Accept wildcard characters: False
 
 ### -ManagedGroupTypes
 
-This parameter allows the admin to select which office 365 groups the policy applies to.
-"None" will create the policy in a disabled state.
-"All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
+This parameter allows the admin to select which Office 365 groups the policy applies to.
+'None' creates the policy in a disabled state.
+'All' applies the policy to every Office 365 group in the tenant.
+'Selected' allows the admin to choose specific Office 365 groups to which the policy applies.
 
 ```yaml
 Type: System.String
