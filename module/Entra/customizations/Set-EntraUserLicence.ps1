@@ -1,19 +1,20 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
-function Set-EntraUserLicense {
+@{
+    SourceName = "Set-AzureADUserLicense"
+    TargetName = $null
+    Parameters = $null
+    Outputs = $null
+    CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-                
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $UserId,
-                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses
     )
-
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
@@ -51,5 +52,6 @@ function Set-EntraUserLicense {
             }
         }
         $response
-    }      
+    }  
+'@
 }

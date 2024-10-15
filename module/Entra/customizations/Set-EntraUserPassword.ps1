@@ -1,9 +1,13 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
-function Set-EntraUserPassword {
-    [CmdletBinding(DefaultParameterSetName = '')]
+@{
+    SourceName = "Set-AzureADUserPassword"
+    TargetName = $null
+    Parameters = $null
+    Outputs = $null
+    CustomScript = @'
+     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -19,7 +23,6 @@ function Set-EntraUserPassword {
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $EnforceChangePasswordPolicy
     )
-
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
@@ -97,5 +100,6 @@ function Set-EntraUserPassword {
         
         $response = Update-MgUser -Headers $customHeaders -UserId $userId -PasswordProfile $PasswordProfile @params
         $response
-    }     
+    } 
+'@
 }
