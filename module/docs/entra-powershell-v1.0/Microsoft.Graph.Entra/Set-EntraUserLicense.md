@@ -185,7 +185,7 @@ Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
