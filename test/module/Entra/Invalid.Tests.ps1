@@ -47,7 +47,7 @@ Describe "Invalid Tests"{
             if ($command.ParameterSets.Parameters.Name -contains 'All'){                
                 $commandScriptBlock = [scriptblock]::Create("$command -All `$True")
                 if('Find-EntraPermission' -eq $command){
-                    { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Parameter set cannot be resolved using the specified named parameters*"
+                    { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "'A positional parameter cannot be found that accepts argument 'True'*"
                 }
                 else {
                     { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "A positional parameter cannot be found that accepts argument*"
