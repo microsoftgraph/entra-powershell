@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaApplicationKey.
+title: New-EntraBetaApplicationKey
 description: This article provides details on the New-EntraBetaApplicationKey command.
 
 

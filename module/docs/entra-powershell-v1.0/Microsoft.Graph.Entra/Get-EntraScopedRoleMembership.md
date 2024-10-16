@@ -1,5 +1,5 @@
 ---
-title: Get-EntraScopedRoleMembership.
+title: Get-EntraScopedRoleMembership
 description: This article provides details on the Get-EntraScopedRoleMembership command.
 
 ms.topic: reference
