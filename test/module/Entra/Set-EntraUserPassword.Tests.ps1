@@ -16,7 +16,7 @@ Describe "Set-EntraUserPassword" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           $result = Set-EntraUserPassword -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+           $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
            $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
@@ -75,7 +75,7 @@ Describe "Set-EntraUserPassword" {
             $userUPN="mock106@M365x99297270.OnMicrosoft.com"
             $newPassword="New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
