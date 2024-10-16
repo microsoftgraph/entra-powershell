@@ -7,7 +7,6 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-	[CmdletBinding(DefaultParameterSetName = '')]
     param (         
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $ForceChangePasswordNextLogin,

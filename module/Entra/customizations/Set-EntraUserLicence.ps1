@@ -7,7 +7,6 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    [[CmdletBinding(DefaultParameterSetName = '')]
     param (            
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
