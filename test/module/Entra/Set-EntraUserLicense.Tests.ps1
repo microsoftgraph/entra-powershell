@@ -40,7 +40,7 @@ Describe "Set-EntraUserLicense" {
             }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
+            $result =  Set-EntraUserLicense -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
 
             $result | Should -Not -BeNullOrEmpty
             $result.userPrincipalName | Should -Be "test122@M365x99297270.OnMicrosoft.com"
