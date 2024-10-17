@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraOAuth2PermissionGrant
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 10/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -90,8 +90,8 @@ This command gets all the OAuth2 permission grants.
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Your_SERVICE_PRINCIPAL_Here'"
-Get-EntraOAuth2PermissionGrant | Where-Object {$_.ClientId -eq $servicePrincipal.Id -and $_.PrincipalId -eq $user.Id} | FL
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraOAuth2PermissionGrant | Where-Object {$_.ClientId -eq $servicePrincipal.Id -and $_.PrincipalId -eq $user.Id} | Format-List
 ```
 
 ```Output
@@ -187,3 +187,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
+[New-EntraOAuth2PermissionGrant](New-EntraOauth2PermissionGrant.md)
