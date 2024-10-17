@@ -80,7 +80,27 @@ This example demonstrates how to retrieve specified subscribed SKUs to Microsoft
 
 - `-SubscribedSkuId` parameter specifies the ID of the SKU (Stock Keeping Unit).
 
-### Example 3: Retrieve all users assigned a specific license
+### Example 3: Get available license plans
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All','Organization.Read.All'
+Get-EntraSubscribedSku | Select-Object -Property Sku*, ConsumedUnits -ExpandProperty PrepaidUnits
+```
+
+```Output
+Enabled              : 5
+LockedOut            : 0
+Suspended            : 0
+Warning              : 0
+AdditionalProperties :
+SkuId                : efccb6f7-5641-4e0e-bd10-b4976e1bf68e
+SkuPartNumber        : EMS
+ConsumedUnits        : 3
+```
+
+This example demonstrates how to retrieve available license plans.
+
+### Example 4: Retrieve all users assigned a specific license
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -102,7 +122,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff  Sawyer Miller  SawyerM@contoso.com        
 
 This example demonstrates how to retrieve all users assigned a specific license.
 
-### Example 4: Get a list of users, their assigned licenses, and licensing source
+### Example 5: Get a list of users, their assigned licenses, and licensing source
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All'
