@@ -60,3 +60,4 @@ extends:
             nuGetFeedType: external
             allowPackageConflicts: true
             publishPackageMetadata: true
+            publishFeedCredentials: EntraPowerShell_PSGallery
