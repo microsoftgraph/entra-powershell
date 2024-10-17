@@ -26,7 +26,7 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ```powershell
 Set-EntraUserLicense
- -ObjectId <String>
+ -UserId <String>
  -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]
 ```
@@ -56,7 +56,7 @@ $License.SkuId = $LicensedUser.AssignedLicenses.SkuId
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.AddLicenses = $License 
 $Params = @{
-    ObjectId = 'SawyerM@contoso.com' 
+    UserId = 'SawyerM@contoso.com' 
     AssignedLicenses = $Licenses
 }
 Set-EntraUserLicense @Params
@@ -82,7 +82,7 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user based on a template user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 2: Add a license to a user by copying license from another user
@@ -100,7 +100,7 @@ $addLicensesArray += $License1
 $addLicensesArray += $License2
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.AddLicenses = $addLicensesArray
-Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+Set-EntraUserLicense -UserId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
 ```Output
@@ -135,7 +135,7 @@ $User = Get-EntraUser -ObjectId $UserPrincipalName
 $SkuId = (Get-EntraUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.RemoveLicenses = $SkuId 
-Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+Set-EntraUserLicense -UserId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
 ```Output
@@ -178,14 +178,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
