@@ -7,13 +7,20 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    param (            
+    [Alias("ObjectId")]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,      
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["UserId"])
         {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
-            $UserId = $PSBoundParameters["ObjectId"]
+            $params["UserId"] = $PSBoundParameters["UserId"]
+            $UserId = $PSBoundParameters["UserId"]
         }
         $jsonBody = @{
             addLicenses    = @(if ($PSBoundParameters.AssignedLicenses.AddLicenses) {
@@ -40,7 +47,7 @@
 
         $response | ForEach-Object {
             if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name UserId -Value Id
             }
         }
         $response
