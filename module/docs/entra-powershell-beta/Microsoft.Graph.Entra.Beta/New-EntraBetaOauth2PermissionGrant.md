@@ -215,3 +215,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## RELATED LINKS
+
+[Remove-EntraBetaOAuth2PermissionGrant](Remove-EntraBetaOAuth2PermissionGrant.md)
+[Get-EntraBetaOAuth2PermissionGrant](Get-EntraBetaOAuth2PermissionGrant.md)
