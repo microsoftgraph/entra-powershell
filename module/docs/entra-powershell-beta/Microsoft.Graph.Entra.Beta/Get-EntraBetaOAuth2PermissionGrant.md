@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaOAuth2PermissionG
 
 
 ms.topic: reference
-ms.date: 08/09/2024
+ms.date: 10/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -91,8 +91,8 @@ This command gets all the OAuth2 permission grants.
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Your_SERVICE_PRINCIPAL_Here'"
-Get-EntraBetaOAuth2PermissionGrant | Where-Object {$_.ClientId -eq $servicePrincipal.Id -and $_.PrincipalId -eq $user.Id} | FL
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraBetaOAuth2PermissionGrant | Where-Object {$_.ClientId -eq $servicePrincipal.Id -and $_.PrincipalId -eq $user.Id} | Format-List
 ```
 
 ```Output
@@ -187,3 +187,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraBetaOAuth2PermissionGrant](Remove-EntraBetaOAuth2PermissionGrant.md)
+[New-EntraBetaOAuth2PermissionGrant](New-EntraBetaOauth2PermissionGrant.md)
