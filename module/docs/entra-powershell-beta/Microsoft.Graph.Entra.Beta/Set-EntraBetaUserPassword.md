@@ -45,7 +45,7 @@ Any user can update their password without belonging to any administrator role.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$newPassword = <Password>
+$newPassword = '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword
 ```
@@ -59,12 +59,9 @@ This command sets the specified user's password.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$newPassword= <Password>
+$newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
-$params = @{
-    EnforceChangePasswordPolicy = $true
-}
-Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
+Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword -EnforceChangePasswordPolicy $True
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
@@ -77,12 +74,9 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 
 ```powershell
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$newPassword= <Password>
+$newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-$params = @{
-    ForceChangePasswordNextLogin = $true
-}
-Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
+Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextLogin $True
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.

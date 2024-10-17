@@ -160,6 +160,18 @@ This example updates the specified user's PasswordProfile parameter.
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-PasswordProfile` specifies the user's password profile.
 
+### Example 6: Set user's usage location for license assignment
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Set-EntraUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
+```
+
+This example updates the specified user's Usage Location for license management.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
+
 ## Parameters
 
 ### -AccountEnabled
