@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaOAuth2PermissionG
 
 
 ms.topic: reference
-ms.date: 08/09/2024
+ms.date: 10/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -68,7 +68,7 @@ H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a  22223333-cccc-4444-dddd-5555eeee6666 Principal  
 
 This command gets the OAuth2 permission grants.
 
-### Example 2: Get All the OAuth2 permission grants
+### Example 2: Get all the OAuth2 permission grants
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -86,7 +86,29 @@ H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a  22223333-cccc-4444-dddd-5555eeee6666 Principal  
 
 This command gets all the OAuth2 permission grants.
 
-### Example 3: Get top 2 OAuth2 permission grants record
+### Example 3: Get OAuth2 permission grants for a user in a service principal
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraBetaOAuth2PermissionGrant | Where-Object {$_.ClientId -eq $servicePrincipal.Id -and $_.PrincipalId -eq $user.Id} | Format-List
+```
+
+```Output
+ObjectId             : E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2
+ClientId             : 22223333-cccc-4444-dddd-5555eeee6666
+ConsentType          : Principal
+Id                   : E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2
+PrincipalId          : aaaaaaaa-bbbb-cccc-1111-222222222222
+ResourceId           : c2c2c2c2-dddd-eeee-ffff-a3a3a3a3a3a3
+Scope                :  User.Read.All openid profile offline_access Organization.Read.All User.ReadWrite.All Device.Read.All Device.ReadWrite.All Directory.Read.All User.Read RoleManagement.ReadWrite.Directory Group.ReadWrite.All
+AdditionalProperties : {}
+```
+
+This example gets the OAuth2 permission grants for a user in a service principal.
+
+### Example 4: Get top 2 OAuth2 permission grants record
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -165,3 +187,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraBetaOAuth2PermissionGrant](Remove-EntraBetaOAuth2PermissionGrant.md)
+[New-EntraBetaOAuth2PermissionGrant](New-EntraBetaOauth2PermissionGrant.md)
