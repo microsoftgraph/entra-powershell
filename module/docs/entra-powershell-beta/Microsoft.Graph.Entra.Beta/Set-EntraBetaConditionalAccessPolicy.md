@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Updates a conditional access policy in Microsoft Entra ID by Id.
+Updates a conditional access policy in Microsoft Entra ID by ID.
 
 ## Syntax
 
@@ -41,7 +41,7 @@ Set-EntraBetaConditionalAccessPolicy
 
 ## Description
 
-This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by Id.
+This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by ID.
 
 Conditional access policies are custom rules that define an access scenario.
 
@@ -68,7 +68,7 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 The example shows how to update a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-PolicyId` parameter specifies the ID of conditional access policy.
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 - `-Conditions` parameter specifies the conditions for the conditional access policy.
@@ -89,7 +89,7 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-PolicyId` parameter specifies the ID of conditional access policy.
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 
 ### Example 3: Update the state for a conditional access policy
@@ -106,14 +106,14 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the Id of conditional access policy.
+- `-PolicyId` parameter specifies the ID of conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 
 ## Parameters
 
 ### -PolicyId
 
-Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
+Specifies the policy ID of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -193,7 +193,7 @@ Accept wildcard characters: False
 
 ### -CreatedDateTime
 
-The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on January 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
 Type: System.String
@@ -209,7 +209,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
+Specifies the policy ID of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -225,7 +225,7 @@ Accept wildcard characters: False
 
 ### -ModifiedDateTime
 
-The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on January 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
 Type: System.String

@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieve a list of permission grants consented for this group.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraBetaGroupPermissionGrant
 
 ## Description
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieve a list of permission grants consented for this group.
 
 ## Examples
 
@@ -95,7 +95,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-### string
+### String
 
 ## Outputs
 

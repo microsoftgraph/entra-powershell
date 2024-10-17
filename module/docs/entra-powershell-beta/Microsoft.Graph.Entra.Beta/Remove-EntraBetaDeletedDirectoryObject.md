@@ -39,9 +39,9 @@ When a directory object is permanently deleted, it can no longer be restored.
 
 For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
 
-- To permanently delete deleted applications or service principals: `Application Administrator`, `Cloud Application Administrator`, or `Hybrid Identity Administrator`.
-- To permanently delete deleted users: `User Administrator`.
-- To permanently delete deleted groups: `Groups Administrator`.
+- To permanently delete applications or service principals: `Application Administrator`, `Cloud Application Administrator`, or `Hybrid Identity Administrator`.
+- To permanently delete users: `User Administrator`.
+- To permanently delete groups: `Groups Administrator`.
 
 ## Examples
 
@@ -53,15 +53,15 @@ Connect-Entra -Scopes 'Application.ReadWrite.All','Group.ReadWrite.All','Applica
 Remove-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example demonstrates how to permanently delete a previously deleted directory object by Id.
+This example demonstrates how to permanently delete a previously deleted directory object by ID.
 
-- `-Id` parameter specifies the Id of the directory object that is permanently deleted.
+- `-Id` parameter specifies the ID of the directory object that is permanently deleted.
 
 ## Parameters
 
 ### -Id
 
-The Id of the directory object that is permanently deleted.
+The ID of the directory object that is permanently deleted.
 
 ```yaml
 Type: System.String

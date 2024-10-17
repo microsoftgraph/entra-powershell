@@ -54,7 +54,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example gets the owners of a specified service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
+This example gets the owners of a specified service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
@@ -74,7 +74,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets all the owners of a service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
+This command gets all the owners of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
@@ -93,7 +93,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top two owners of a service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
+This command gets top two owners of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
@@ -129,7 +129,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AlexW@contoso.com  Alex Wilber
 bbbbbbbb-1111-2222-3333-cccccccccccc AdeleV@contoso.com Adele Vance
 ```
 
-This example shows how to retrieve additional details of a service principal owner such as displayName, userPrincipalName.
+This example shows how to retrieve more details of a service principal owner such as displayName, userPrincipalName.
 
 ## Parameters
 

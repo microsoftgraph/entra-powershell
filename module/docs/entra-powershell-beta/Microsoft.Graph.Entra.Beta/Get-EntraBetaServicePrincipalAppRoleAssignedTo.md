@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Gets app role assignments for this app or service, granted to users, groups and other service principals.
+Gets app role assignments for this app or service, granted to users, groups, and other service principals.
 
 ## Syntax
 
@@ -36,7 +36,7 @@ Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
 ## Description
 
-The `Get-EntraBetaServicePrincipalAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+The `Get-EntraBetaServicePrincipalAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups, and other service principals.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
@@ -51,7 +51,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ## Examples
 
-### Example 1: Get app role assignment by Id
+### Example 1: Get app role assignment by ID
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -65,9 +65,9 @@ Id                                          AppRoleId                           
 1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box 
 ```
 
-This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
+This example shows how to get app role assignments for an app or service, granted to users, groups, and other service principals.
 
-- `-ServicePrincipalId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ### Example 2: Get all app role assignments
 
@@ -87,9 +87,9 @@ Id                                          AppRoleId                           
 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 eeee4444-ff55-6666-77aa-888888bbbbbb
 ```
 
-This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
+This command gets the all app role assignments for the service principal granted to users, groups, and other service principals.
 
-- `-ServicePrincipalId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ### Example 3: Get five app role assignments
 
@@ -109,9 +109,9 @@ Id                                          AppRoleId                           
 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 eeee4444-ff55-6666-77aa-888888bbbbbb
 ```
 
-This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
+This command gets the five app role assignments for the service principal granted to users, groups, and other service principals.
 
-- `-ServicePrincipalId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal ID.
 
 ## Parameters
 

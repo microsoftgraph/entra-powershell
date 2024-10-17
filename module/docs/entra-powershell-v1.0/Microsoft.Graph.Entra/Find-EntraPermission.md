@@ -24,7 +24,7 @@ Helps users determine the necessary permissions for resources and identify the a
 
 ## Syntax
 
-### Add Entra Environment Name
+### Search
 
 ```powershell
 Find-EntraPermission
@@ -32,6 +32,17 @@ Find-EntraPermission
  [-ExactMatch]
  [-PermissionType <String>]
  [-Online]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
+```
+
+### All
+
+```powershell
+Find-EntraPermission
+ [-PermissionType <String>]
+ [-Online]
+ [-All]
  [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
@@ -127,19 +138,19 @@ e4aa47b9-9a69-4109-82ed-36ec70d85ff1 Admin   AccessReview.ReadWrite.All         
 5af8c3f5-baca-439a-97b0-ea58a435e269 Admin   AccessReview.ReadWrite.Membership                       Allows the app to read,
 ```
 
-This examples shows how to get all permissions of a specified type e.g. `Delegated` or `Application` permissions.
+This example shows how to get all permissions of a specified type, for example, `Delegated` or `Application` permissions.
 
 ## Parameters
 
 ### -SearchString
 
-Specifies the filter for the permissions e.g. domain and scope.
+Specifies the filter for the permissions, for example, domain and scope.
 
 ```yaml
 
 Type: System.String
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -147,7 +158,7 @@ Accept wildcard characters: False
 
 ### -All
 
-Sets if the cmdlet will return all parameters.
+Sets if the cmdlet returns all parameters.
 
 ```yaml
 
@@ -175,16 +186,7 @@ Accept wildcard characters: False
 
 ### -Online
 
-Specify the Online parameter in addition to SearchString to force Find-MgGraphPermission to update its set of
-permissions by requesting the latest permissions data from Microsoft Graph itself before searching for the
-permissions specified the SearchString parameter. This ensures that Find-MgGraphPermission returns the most
-accurate search results as new permissions are added to Microsoft Graph for new APIs. The command uses the
-existing access to Microsoft Graph as enabled by a previous invocation of the Connect-MgGraph command to issue the
-request for updated permissions. If your current connection does not already have access to read this data from
-Microsoft Graph or if there is no network connectivity to Microsoft Graph, the command will fail. If the command
-is successful in updating the set of permissions prior to searching for permissions, Find-MgGraphPermission will
-continue to use the updated list for all future invocations of the command even if they do not specify the Online
-parameter
+Use the -Online parameter with -SearchString in Find-MgGraphPermission to fetch the latest permissions from Microsoft Graph before searching. This ensures Find-MgGraphPermission returns accurate results by including any new permissions added for recent APIs. The command uses the existing Microsoft Graph connection established by Connect-MgGraph. If your connection lacks permissions to access this data or if there’s no network connectivity, the command fails. Once updated, Find-MgGraphPermission will continue using the refreshed permission list for future searches, even without the -Online parameter.
 
 ```yaml
 
@@ -198,14 +200,14 @@ Accept wildcard characters: False
 
 ### -PermissionType
 
-Specifies the type of Permission e.g. Delegated or Application.
+Specifies the type of Permission, for example, Delegated or Application.
 
 ```yaml
 
 Type: System.String
 Required: False
 Position: Named
-Default value: None
+Default value: Any
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -1,0 +1,387 @@
+{
+  "properties": {
+    "helpUri": "https://eng.ms/docs/microsoft-security/security/azure-security/cloudai-security-fundamentals-engineering/security-integration/guardian-wiki/microsoft-guardian/general/baselines"
+  },
+  "version": "1.0.0",
+  "baselines": {
+    "default": {
+      "name": "default",
+      "createdDate": "2024-10-01 09:06:57Z",
+      "lastUpdatedDate": "2024-10-01 09:08:04Z"
+    }
+  },
+  "results": {
+    "c1fac7702e9a39be024f7b55eea04058f0d937c296f9ba2db3c6b208348e4deb": {
+      "signature": "c1fac7702e9a39be024f7b55eea04058f0d937c296f9ba2db3c6b208348e4deb",
+      "alternativeSignatures": [
+        "fd3f3c657bc3e5ee3556dd30a09e85d78da242d06a4b625deb47b905d7e3163c"
+      ],
+      "target": "module/Entra/AdditionalFunctions/Update-EntraUserFromFederated.ps1",
+      "line": 8,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingUsernameAndPasswordParams",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "ec5d7a836126cb1b1710d9db7076e49968c663b283903151d6299575c1b16b40": {
+      "signature": "ec5d7a836126cb1b1710d9db7076e49968c663b283903151d6299575c1b16b40",
+      "alternativeSignatures": [
+        "3c3995f34e7cbb9465f7187c52d55d88f0c2ddc70428f0dcf4bb247aa6ff3072"
+      ],
+      "target": "module/EntraBeta/AdditionalFunctions/Update-EntraBetaUserFromFederated.ps1",
+      "line": 8,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingUsernameAndPasswordParams",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "2ec0aa64c3e2a0e61a53c04e628372de192f48413ecc46ab72946b0be86131b4": {
+      "signature": "2ec0aa64c3e2a0e61a53c04e628372de192f48413ecc46ab72946b0be86131b4",
+      "alternativeSignatures": [
+        "660ca63406b064dac3e96b764aabf0bd1b2c29269fb8f1cbbb4595bacfafefe8"
+      ],
+      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "line": 39,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "b66916dcbc173cda10428b4ad3cff386495791e8765ff323f32176529b9c7924": {
+      "signature": "b66916dcbc173cda10428b4ad3cff386495791e8765ff323f32176529b9c7924",
+      "alternativeSignatures": [
+        "0e1fc42c5c7da05e5e268872ea0862d31b06c5943885b84c03e4424bedd5c239"
+      ],
+      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "line": 69,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "6128c8e5b7541a04a5a396bba3e58db0b5e74c02e429d5b32029961e9ad8d7da": {
+      "signature": "6128c8e5b7541a04a5a396bba3e58db0b5e74c02e429d5b32029961e9ad8d7da",
+      "alternativeSignatures": [
+        "999c386993d4953cefc6cfed690cb62d62e8350a45b17fbcbe6f23d4df9492b3"
+      ],
+      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "line": 111,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "dfbc07ee6b06264a4deaf4774f68e4a07ff0a92120ae2df4dc5356e4ed62511b": {
+      "signature": "dfbc07ee6b06264a4deaf4774f68e4a07ff0a92120ae2df4dc5356e4ed62511b",
+      "alternativeSignatures": [
+        "a1562a9034f1e3e1b3f4469395192d20944cec736650f1c5e9d2770a14734188"
+      ],
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "line": 13,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "f182802b19db3b481b6eb91c2a5478ec94fab1b4013b283e70fa4468b50a725c": {
+      "signature": "f182802b19db3b481b6eb91c2a5478ec94fab1b4013b283e70fa4468b50a725c",
+      "alternativeSignatures": [
+        "9235224cea5d1fd6c3804bf4140c4cdc6d847a2e665e3539236f553f4d49b381"
+      ],
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "line": 14,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "a8846035554bd7bb3383afa870e304c5fde8752287b4c03fb11b4f260236269f": {
+      "signature": "a8846035554bd7bb3383afa870e304c5fde8752287b4c03fb11b4f260236269f",
+      "alternativeSignatures": [
+        "083bf8e5f1f602db96875486592d7f4f147f816d7b43a64c757977a2f2be816d"
+      ],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 43,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "a3268c89df6caa7dbc6dddaedd9b5d3ebf9d8b886927a6e67a20a4677335e9ea": {
+      "signature": "a3268c89df6caa7dbc6dddaedd9b5d3ebf9d8b886927a6e67a20a4677335e9ea",
+      "alternativeSignatures": [
+        "c4b7bfd96922301823bbe12f66d68bed59511c6e542d6a6c8f07f7a790fdd2d6"
+      ],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 44,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "221b23352bd244ec620742478d5aeb1dd72eac1dd80ca27cbbf6b9be1716b789": {
+      "signature": "221b23352bd244ec620742478d5aeb1dd72eac1dd80ca27cbbf6b9be1716b789",
+      "alternativeSignatures": [
+        "657f1350c4fe5b762fca53b73c0d552244216b23b0de59d949e2ff2c1346cc56"
+      ],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 62,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "573d8caea4f73d14f448e482fe18c8aa91a5b14fb72182429ed4b0b0e4072d4e": {
+      "signature": "573d8caea4f73d14f448e482fe18c8aa91a5b14fb72182429ed4b0b0e4072d4e",
+      "alternativeSignatures": [
+        "9340acb9bd4f081de858b09bff7152084e6dc96153b6d071168bf3dfc9be3d3b"
+      ],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 63,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "psscriptanalyzer",
+      "ruleId": "PSAvoidUsingConvertToSecureStringWithPlainText",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "7a15e10f8794c7ba9573885179d72cf2048f52e5905b8a8b2f5ad22e2d674697": {
+      "signature": "7a15e10f8794c7ba9573885179d72cf2048f52e5905b8a8b2f5ad22e2d674697",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/New-EntraUser.Tests.ps1",
+      "line": 176,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "d1c0334d336f0bd3522fc117695a805ef0448ffae78d3b81aa9a1a2d660f4d8d": {
+      "signature": "d1c0334d336f0bd3522fc117695a805ef0448ffae78d3b81aa9a1a2d660f4d8d",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/New-EntraUser.Tests.ps1",
+      "line": 208,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2": {
+      "signature": "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "line": 13,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e": {
+      "signature": "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "line": 14,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "4b0e62b96546410864d86e58db04cd9062f8ca98c0e8edd2fc8acb7cca96bacc": {
+      "signature": "4b0e62b96546410864d86e58db04cd9062f8ca98c0e8edd2fc8acb7cca96bacc",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/Update-EntraUserFromFederated.Tests.ps1",
+      "line": 32,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "50b2f4af6fb2609a903f518d27b0c2c719c32bd2d511fd43703c3975c2cb1688": {
+      "signature": "50b2f4af6fb2609a903f518d27b0c2c719c32bd2d511fd43703c3975c2cb1688",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/Update-EntraUserFromFederated.Tests.ps1",
+      "line": 49,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "b40b72c08b82ccdbc0f77c4546662f5ca14d04ab5fbb9f04d24adb8a517da073": {
+      "signature": "b40b72c08b82ccdbc0f77c4546662f5ca14d04ab5fbb9f04d24adb8a517da073",
+      "alternativeSignatures": [],
+      "target": "test/module/Entra/Update-EntraUserFromFederated.Tests.ps1",
+      "line": 65,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "94361dde82412fd833290296faa24755f1c0e91236d9b17754629400220176da": {
+      "signature": "94361dde82412fd833290296faa24755f1c0e91236d9b17754629400220176da",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 43,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "b6363ed44b15dd493cccd5b7aca883dac6f74d7906f96aa096ca65b76b594118": {
+      "signature": "b6363ed44b15dd493cccd5b7aca883dac6f74d7906f96aa096ca65b76b594118",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 44,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "0525c4cda249bd24d516359811c840e6f9ef7976ef4dc52bc84d63cc20dd729d": {
+      "signature": "0525c4cda249bd24d516359811c840e6f9ef7976ef4dc52bc84d63cc20dd729d",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 62,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "c192fe1b37f71243cc5cee41a6a8891a48f8b4e72d87705dd8f183cc17c53a8e": {
+      "signature": "c192fe1b37f71243cc5cee41a6a8891a48f8b4e72d87705dd8f183cc17c53a8e",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
+      "line": 63,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "7f47ed24c53808e09f081288c46c9debc4601743cab370e3011bdeca767cc7da": {
+      "signature": "7f47ed24c53808e09f081288c46c9debc4601743cab370e3011bdeca767cc7da",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaUserFromFederated.Tests.ps1",
+      "line": 32,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "7e07464610e3502e2e5d3730fd560b7c4d85254d94f057ce76c75337a98afab5": {
+      "signature": "7e07464610e3502e2e5d3730fd560b7c4d85254d94f057ce76c75337a98afab5",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaUserFromFederated.Tests.ps1",
+      "line": 48,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    },
+    "1d815a867480dd749645de3c494394f6f9ac423a305e6c7116ec71df0af670a6": {
+      "signature": "1d815a867480dd749645de3c494394f6f9ac423a305e6c7116ec71df0af670a6",
+      "alternativeSignatures": [],
+      "target": "test/module/EntraBeta/Update-EntraBetaUserFromFederated.Tests.ps1",
+      "line": 64,
+      "memberOf": [
+        "default"
+      ],
+      "tool": "credscan",
+      "ruleId": "CSCAN-GENERAL0060",
+      "createdDate": "2024-10-01 08:37:35Z",
+      "expirationDate": "2025-03-20 09:10:40Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2024-10-01 09:10:40Z"
+    }
+  }
+}
