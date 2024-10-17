@@ -31,13 +31,13 @@ Revoke-EntraSignedInUserAllRefreshToken
 
 ## Description
 
-The `Revoke-EntraSignedInUserAllRefreshToken` cmdlet invalidates all the refresh tokens issued to applications for a user (as well as session cookies in a user's browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time.
+The `Revoke-EntraSignedInUserAllRefreshToken` cmdlet invalidates all the refresh tokens issued to applications for a user (and session cookies in a user's browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time.
 
-Typically, this operation is performed (by the user or an administrator) if the user has a lost or stolen device. This operation prevents access to the organization's data through applications on the device by requiring the user to sign in again to all applications that they have previously consented to, independent of device.
+The user or an administrator typically performs this operation if the user's device is lost or stolen. This action prevents access to the organization's data on the device by requiring the user to sign in again to all previously consented applications, regardless of the device.
 
-Note: If the application attempts to redeem a delegated access token for this user by using an invalidated refresh token, the application will get an error. If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint, which will force the user to sign in.
+Note: If the application attempts to redeem a delegated access token for this user using an invalidated refresh token, the application receives an error. When this happens, the application needs to acquire a new refresh token by making a request to the authorized endpoint, which forces the user to sign in.
 
-After running this command, there might be a small delay of a few minutes before tokens are revoked.
+After you run this command, a small delay of a few minutes can occur before tokens are revoked.
 
 ## Examples
 

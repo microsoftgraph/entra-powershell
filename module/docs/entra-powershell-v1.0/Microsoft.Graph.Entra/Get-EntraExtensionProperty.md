@@ -36,7 +36,7 @@ The Get-EntraExtensionProperty cmdlet gets a collection that contains the extens
 
 You can get extension properties that are synced with on-premises Microsoft Entra ID that aren't synced with on-premises Microsoft Entra ID or both types.
 
-This command returns all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
+This command returns all directory extension definitions registered in a directory, including those from multitenant apps. The following entities support extension properties:
 
 - User
 - Group
@@ -70,7 +70,7 @@ Specifies whether this cmdlet gets extension properties that are synced or not s
 
 - `$True` - get extension properties that are synced from the on-premises Microsoft Entra ID.
 - `$False` - get extension properties that aren't synced from the on-premises Microsoft Entra ID.
-- `No value` - get all extension properties (both synced and non-synced).
+- `No value` - get all extension properties (both synced and nonsynced).
 
 ```yaml
 Type: System.Boolean

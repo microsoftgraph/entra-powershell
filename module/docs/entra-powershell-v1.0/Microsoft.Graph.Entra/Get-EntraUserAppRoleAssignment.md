@@ -57,9 +57,9 @@ DeletedDateTime Id                                          AppRoleId           
 
 ```
 
-This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraUser` to get Service principal Object ID.
+This example retrieves a user application role assignment for the user in $UserId. You can use the command `Get-EntraUser` to get Service principal Object ID.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-ObjectId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all application role assignments
 
@@ -79,7 +79,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example demonstrates how to retrieve all application role assignment for the specified user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-ObjectId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 3: Get top two application role assignments
 
@@ -97,7 +97,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example demonstrates how to retrieve top two application role assignment for the specified user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-ObjectId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
 ## Parameters
 
