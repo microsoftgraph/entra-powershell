@@ -24,7 +24,7 @@ Helps users determine the necessary permissions for resources and identify the a
 
 ## Syntax
 
-### Add Entra Environment Name
+### Search
 
 ```powershell
 Find-EntraPermission
@@ -32,6 +32,17 @@ Find-EntraPermission
  [-ExactMatch]
  [-PermissionType <String>]
  [-Online]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
+```
+
+### All
+
+```powershell
+Find-EntraPermission
+ [-PermissionType <String>]
+ [-Online]
+ [-All]
  [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
@@ -139,7 +150,7 @@ Specifies the filter for the permissions e.g. domain and scope.
 
 Type: System.String
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -205,7 +216,7 @@ Specifies the type of Permission e.g. Delegated or Application.
 Type: System.String
 Required: False
 Position: Named
-Default value: None
+Default value: Any
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
