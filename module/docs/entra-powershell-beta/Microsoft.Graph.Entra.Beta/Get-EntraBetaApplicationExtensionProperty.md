@@ -51,9 +51,9 @@ DeletedDateTime Id                                   AppDisplayName DataType IsM
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                Boolean  False         False                  extension_c371a443f6734a3e8982a26357fb7d59_NewAttribute {User}
 ```
 
-This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraBetaApplication` to get application Id.
+This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraBetaApplication` to get application ID.
 
-- `-ApplicationId` parameter specifies the the unique identifier of a application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 
