@@ -49,14 +49,14 @@ extends:
           - input: pipelineArtifact
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(Pipeline.Workspace)/drop
+            targetPath: $(Build.ArtifactStagingDirectory)/drop
         steps:
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(Pipeline.Workspace)'
+            packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(Build.ArtifactStagingDirectory)'
             nuGetFeedType: external
             allowPackageConflicts: true
             publishPackageMetadata: true
