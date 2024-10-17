@@ -40,7 +40,7 @@ Describe "Set-EntraUserLicense" {
             }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
+            $result =  Set-EntraUserLicense -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
 
             $result | Should -Not -BeNullOrEmpty
             $result.userPrincipalName | Should -Be "test122@M365x99297270.OnMicrosoft.com"
@@ -59,25 +59,25 @@ Describe "Set-EntraUserLicense" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty string value" {
-            { Set-EntraUserLicense -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string value" {
+            { Set-EntraUserLicense -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraUserLicense -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        It "Should fail when UserId is empty" {
+            { Set-EntraUserLicense -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should fail when AssignedLicenses is empty" {
-            { Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses } | Should -Throw "Missing an argument for parameter 'AssignedLicenses'. Specify a parameter of type 'Microsoft.Open.AzureAD.Model.AssignedLicenses' and try again."
+            { Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses } | Should -Throw "Missing an argument for parameter 'AssignedLicenses'. Specify a parameter of type 'Microsoft.Open.AzureAD.Model.AssignedLicenses' and try again."
         }
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
+        It "Should contain UserId in parameters when passed UserId to it" {
             $addLicensesArray = [PSCustomObject]@{
                 skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
                 }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
+            $result =  Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
     
             $params = Get-Parameters -data $result.Parameters
             $params.Uri | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
@@ -91,7 +91,7 @@ Describe "Set-EntraUserLicense" {
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
              
-            Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
+            Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserLicense"
     
@@ -113,7 +113,7 @@ Describe "Set-EntraUserLicense" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses -Debug } | Should -Not -Throw
+                { Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

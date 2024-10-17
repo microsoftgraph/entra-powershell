@@ -28,7 +28,7 @@ Sets the password of a user.
 Set-EntraUserPassword
  [-ForceChangePasswordNextLogin <Boolean>]
  [-EnforceChangePasswordPolicy <Boolean>]
- -ObjectId <String>
+ -UserId <String>
  -Password <SecureString>
  [<CommonParameters>]
 ```
@@ -47,12 +47,12 @@ Any user can update their password without belonging to any administrator role.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword = <Password>
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword
+Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
 
-- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
 
 ### Example 2: Set a user's password with EnforceChangePasswordPolicy parameter
@@ -64,12 +64,12 @@ $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 $params = @{
     EnforceChangePasswordPolicy = $true
 }
-Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
+Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
 
-- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
 - `-EnforceChangePasswordPolicy` parameter force the user to change their password, if set to true.
 
@@ -82,7 +82,7 @@ $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 $params = @{
     ForceChangePasswordNextLogin = $true
 }
-Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
+Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
@@ -125,14 +125,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of an object.
+Specifies the ID of a user.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
