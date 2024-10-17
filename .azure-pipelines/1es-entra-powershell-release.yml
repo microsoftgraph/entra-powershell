@@ -6,12 +6,26 @@ pr: none
 
 resources:
   pipelines:
-  - pipeline: _EntraPowerShell-Release-Build 
-    source: EntraPowerShell-Release-Build
+  - pipeline: _1es-EntraPowerShell-CI
+    source: 1es-EntraPowerShell-CI
+  repositories:
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/heads/main
 
 extends:
-  template: v1/1ES.Official.PipelineTemplate.yml@templates
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
+    pool:
+      name: MSSecurity-1ES-Build-Agents-Pool
+      image: MSSecurity-1ES-Windows-2022
+      os: windows
+    sdl:
+      sourceAnalysisPool:
+        name: MSSecurity-1ES-Build-Agents-Pool
+        image: MSSecurity-1ES-Windows-2022
+        os: windows
     stages:
     - stage: release
       jobs:
@@ -33,16 +47,17 @@ extends:
           isProduction: true
           inputs:
           - input: pipelineArtifact
-            pipeline: _EntraPowerShell-Release-Build
+            pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(Pipeline.Workspace)/drop
+            targetPath: $(Build.ArtifactStagingDirectory)/drop
         steps:
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(Pipeline.Workspace)/drop'
+            packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(Build.ArtifactStagingDirectory)'
             nuGetFeedType: external
             allowPackageConflicts: true
             publishPackageMetadata: true
+            publishFeedCredentials: EntraPowerShell_PSGallery
