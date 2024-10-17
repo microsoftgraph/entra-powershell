@@ -46,11 +46,13 @@ The `New-EntraBetaOauth2PermissionGrant` cmdlet creates a delegated permission g
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$graphApp = Get-EntraBetaServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ClientId = $servicePrincipal.Id
     ConsentType = 'AllPrincipals'
-    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+    ResourceId = $graphApp.Id
+    Scope = 'Directory.Read.All'
     StartTime = Get-Date
     ExpiryTime = (Get-Date).AddYears(1)
 }
@@ -70,12 +72,15 @@ This command Grant authorization to impersonate all users.
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$graphApp = Get-EntraBetaServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ClientId = $servicePrincipal.Id
     ConsentType = 'Principal'
-    PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
-    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+    PrincipalId = $user.Id
+    ResourceId = $graphApp.Id
+    Scope = 'Directory.Read.All'
     StartTime = Get-Date
     ExpiryTime = (Get-Date).AddYears(1)
 }
