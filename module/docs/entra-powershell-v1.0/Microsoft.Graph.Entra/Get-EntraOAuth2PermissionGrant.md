@@ -122,7 +122,7 @@ A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           00001111-aaaa-2222-bbbb-3333cccc4444 Al
 C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                       b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
 ```
 
-This command gets top 2 OAuth2 permission grants records.
+This command retrieves the top 2 OAuth2 permission grant records.
 
 ## Parameters
 
