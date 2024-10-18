@@ -26,7 +26,7 @@ Sets a user extension.
 
 ```powershell
 Set-EntraUserExtension
- -ObjectId <String>
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -41,7 +41,7 @@ The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-    ObjectId = 'SawyerM@contoso.com'
+    UserId = 'SawyerM@contoso.com'
     ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
     ExtensionValue = 'New Value'
 }
@@ -50,15 +50,15 @@ Set-EntraUserExtension @params
 
 This example shows how to update the value of the extension attribute for a specified user.
 
-- `-ObjectId` parameter specifies the user Id.
+- `-UserId` parameter specifies the user Id.
 - `-ExtensionName` parameter specifies the name of an extension.
 - `-ExtensionValue` parameter specifies the extension name values.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of an object.
+Specifies the ID of the user.
 
 ```yaml
 Type: System.String
