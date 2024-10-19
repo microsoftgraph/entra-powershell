@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaServicePrincipalPolicy.
+title: Remove-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Remove-EntraBetaServicePrincipalPolicy command.
 
 
@@ -26,9 +26,9 @@ Delete a servicePrincipal policy.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaServicePrincipalPolicy 
- -Id <String> 
- -PolicyId <String> 
+Remove-EntraBetaServicePrincipalPolicy
+ -Id <String>
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 

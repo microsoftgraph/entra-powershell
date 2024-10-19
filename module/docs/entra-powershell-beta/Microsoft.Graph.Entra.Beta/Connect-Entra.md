@@ -26,81 +26,81 @@ Connect to Microsoft Entra ID with an authenticated account.
 ### UserParameterSet (Default)
 
 ```powershell
-Connect-Entra 
-[[-Scopes] <String[]>] 
-[[-ClientId] <String>] 
-[-TenantId <String>]
-[-ContextScope <ContextScope>] 
-[-Environment <String>] 
-[-UseDeviceCode] 
-[-ClientTimeout <Double>] 
-[-NoWelcome]
-[<CommonParameters>]
+Connect-Entra
+ [[-Scopes] <String[]>]
+ [[-ClientId] <String>]
+ [-TenantId <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-UseDeviceCode]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### AppCertificateParameterSet
 
 ```powershell
-Connect-Entra 
-[-ClientId] <String> 
-[[-CertificateSubjectName] <String>] 
-[[-CertificateThumbprint] <String>]
-[-Certificate <X509Certificate2>] 
-[-TenantId <String>] 
-[-ContextScope <ContextScope>] 
-[-Environment <String>]
-[-ClientTimeout <Double>] 
-[-NoWelcome] 
-[<CommonParameters>]
+Connect-Entra
+ [-ClientId] <String>
+ [[-CertificateSubjectName] <String>]
+ [[-CertificateThumbprint] <String>]
+ [-Certificate <X509Certificate2>]
+ [-TenantId <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### IdentityParameterSet
 
 ```powershell
-Connect-Entra 
-[[-ClientId] <String>] 
-[-ContextScope <ContextScope>] 
-[-Environment <String>]
-[-ClientTimeout <Double>] 
-[-Identity] 
-[-NoWelcome] 
-[<CommonParameters>]
+Connect-Entra
+ [[-ClientId] <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-Identity]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### AppSecretCredentialParameterSet
 
 ```powershell
-Connect-Entra 
-[-ClientSecretCredential <PSCredential>] 
-[-TenantId <String>] 
-[-ContextScope <ContextScope>]
-[-Environment <String>] 
-[-ClientTimeout <Double>] 
-[-NoWelcome] 
-[<CommonParameters>]
+Connect-Entra
+ [-ClientSecretCredential <PSCredential>]
+ [-TenantId <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### AccessTokenParameterSet
 
 ```powershell
-Connect-Entra 
-[-AccessToken] <SecureString> 
-[-Environment <String>] 
-[-ClientTimeout <Double>] 
-[-NoWelcome]
-[<CommonParameters>]
+Connect-Entra
+ [-AccessToken] <SecureString>
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ### EnvironmentVariableParameterSet
 
 ```powershell
-Connect-Entra 
-[-ContextScope <ContextScope>] 
-[-Environment <String>] 
-[-ClientTimeout <Double>]
-[-EnvironmentVariable] 
-[-NoWelcome] 
-[<CommonParameters>]
+Connect-Entra
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-EnvironmentVariable]
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
 
 ## Description

@@ -7,6 +7,23 @@
     Parameters   = $null
     outputs      = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Alias("ObjectId")]
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $SearchString,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Filter,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
+
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
@@ -15,8 +32,7 @@
         $baseUri = 'https://graph.microsoft.com/v1.0/users'
         $properties = '$select=Id,AccountEnabled,AgeGroup,OfficeLocation,AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType,OnPremisesLastSyncDateTime,ImAddresses,SecurityIdentifier,OnPremisesUserPrincipalName,ServiceProvisioningErrors,IsResourceAccount,OnPremisesExtensionAttributes,DeletedDateTime,OnPremisesSyncEnabled,EmployeeType,EmployeeHireDate,CreatedDateTime,EmployeeOrgData,preferredDataLocation,Identities,onPremisesSamAccountName,EmployeeId,EmployeeLeaveDateTime,AuthorizationInfo,FaxNumber,OnPremisesDistinguishedName,OnPremisesDomainName,IsLicenseReconciliationNeeded,signInSessionsValidFromDateTime'
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri/?$properties"
-        
+        $params["Uri"] = "$baseUri/?$properties"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
@@ -24,8 +40,7 @@
             $properties = "`$select=$($selectProperties)"
             $params["Uri"] = "$baseUri/?$properties"
         }
-
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -34,8 +49,7 @@
             else{
                 $params["Uri"] += "&`$top=$topCount"
             }
-        }
-        
+        }        
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $TmpValue = $PSBoundParameters["SearchString"]
@@ -43,9 +57,9 @@
             $params["Uri"] += "&$SearchString"
             $customHeaders['ConsistencyLevel'] = 'eventual'
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["UserId"])
         {
-            $UserId = $PSBoundParameters["ObjectId"]
+            $UserId = $PSBoundParameters["UserId"]
             if ($UserId -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'){
                 $f = '$' + 'Filter'
                 $Filter = "UserPrincipalName eq '$UserId'"
@@ -68,11 +82,11 @@
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0)){
-            Write-Error "Resource '$ObjectId' does not exist or one of its queried reference-property objects are not present.
-
-Status: 404 (NotFound)
-ErrorCode: Request_ResourceNotFound"
+        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0))
+        {
+            Write-Error "Resource '$UserId' does not exist or one of its queried reference-property objects are not present.
+            Status: 404 (NotFound)
+            ErrorCode: Request_ResourceNotFound"
         }
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
@@ -104,17 +118,19 @@ ErrorCode: Request_ResourceNotFound"
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
             }
         }
-        $userList = @()
-        foreach ($response in $data) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser
-            $response.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($data){
+            $userList = @()
+            foreach ($response in $data) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser
+                $response.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
+            $userList 
         }
-        $userList 
     }
 '@
 }

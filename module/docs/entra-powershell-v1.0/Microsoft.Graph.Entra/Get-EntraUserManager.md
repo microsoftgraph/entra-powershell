@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserManager.
+title: Get-EntraUserManager
 description: This article provides details on the Get-EntraUserManager command.
 
 
@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserManager
@@ -26,14 +27,15 @@ Gets the manager of a user.
 
 ```powershell
 Get-EntraUserManager
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify
+`UserId` parameter to get the specific manager of user.
 
 ## Examples
 
@@ -41,34 +43,64 @@ The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Get-EntraUserManager -UserId 'SawyerM@contoso.com'
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@contoso.com}
-preferredLanguage               :
-mail                            : MiriamG@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+```Output
+DeletedDateTime                 :
+Id                              : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
+@odata.type                     : #microsoft.graph.user
+accountEnabled                  : True
+businessPhones                  : {+1 858 555 0109}
+city                            : San Diego
+createdDateTime                 : 2023-07-07T14:18:05Z
+country                         : United States
+department                      : Sales & Marketing
+displayName                     : Sawyer Miller
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.
 
+- `-UserId` Parameter specifies UserId or User Principal Name of User.
+
+### Example 2: Retrieve users without managers
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$allUsers = Get-EntraUser -All
+$usersWithoutManagers = foreach ($user in $allUsers) {
+    $manager = Get-EntraUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
+    if (-not $manager) {
+        [pscustomobject]@{
+            Id               = $user.Id
+            DisplayName      = $user.DisplayName
+            UserPrincipalName = $user.UserPrincipalName
+        }
+    }
+}
+$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName
+--                                   -----------     -----------------
+cccccccc-2222-3333-4444-dddddddddddd  New User       NewUser@tenant.com
+bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
+```
+
+This example demonstrates how to retrieve users without managers.
+
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
+The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -79,7 +111,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

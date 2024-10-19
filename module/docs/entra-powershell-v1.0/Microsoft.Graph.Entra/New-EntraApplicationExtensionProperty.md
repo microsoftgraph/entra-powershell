@@ -26,11 +26,11 @@ Creates an application extension property.
 ## Syntax
 
 ```powershell
-New-EntraApplicationExtensionProperty 
- -ObjectId <String> 
+New-EntraApplicationExtensionProperty
+ -ApplicationId <String>
  -Name <String>
- [-DataType <String>]     
- [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ [-DataType <String>]
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 
@@ -43,10 +43,10 @@ The `New-EntraApplicationExtensionProperty` cmdlet creates an application extens
 ### Example 1: Create an extension property
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = $Application.ObjectId
     Name = 'NewAttribute'
 }
 
@@ -61,13 +61,16 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 This command creates an application extension property of the string type for the specified object.
 
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+
 ### Example 2: Create an extension property with data type parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = $Application.ObjectId
     Name = 'NewAttribute'
     DataType = 'Boolean'
 }
@@ -83,15 +86,19 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 This command creates an application extension property of the specified data type for the specified object.
 
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-DataType` parameter specifies the data type of the value the extension property can hold.
+
 ### Example 3: Create an extension property with targets parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
 $params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    ApplicationId = $Application.ObjectId
     Name = 'NewAttribute'
     TargetObjects = $targets
 }
@@ -106,6 +113,10 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 ```
 
 The example shows how to create an application extension property with the specified target objects for the specified object.
+
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-TargetObjects` parameter specifies the Microsoft Graph resources that use the extension property. All values must be in PascalCase.
 
 ## Parameters
 
@@ -134,7 +145,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Name of the extension property.
+Specifies the name of the extension property.
 
 ```yaml
 Type: System.String
@@ -148,14 +159,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

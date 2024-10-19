@@ -2,7 +2,6 @@
 title: Remove-EntraUser
 description: This article provides details on the Remove-EntraUser command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,14 +25,14 @@ Removes a user.
 ## Syntax
 
 ```powershell
-Remove-EntraUser 
- -ObjectId <String>
+Remove-EntraUser
+ -UserId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
+The `Remove-EntraUser` cmdlet removes a user in Microsoft Entra ID. Specify the `UserId` parameter to remove the specified user in Microsoft Entra ID.
 
 The calling user must be assigned at least one of the following Microsoft Entra roles:
 
@@ -47,21 +46,21 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraUser -ObjectId 'SawyerM@Contoso.com'
+Remove-EntraUser -UserId 'SawyerM@Contoso.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

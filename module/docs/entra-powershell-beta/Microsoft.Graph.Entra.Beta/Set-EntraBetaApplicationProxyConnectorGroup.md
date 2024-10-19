@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaApplicationProxyConnectorGroup.
+title: Set-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Set-EntraBetaApplicationProxyConnectorGroup command.
 
 ms.topic: reference
@@ -25,9 +25,9 @@ The `Set-EntraBetaApplicationProxyConnectorGroup` cmdlet allows you to change th
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyConnectorGroup 
- -Id <String> 
- -Name <Name> 
+Set-EntraBetaApplicationProxyConnectorGroup
+ -Id <String>
+ -Name <Name>
  [<CommonParameters>]
 ```
 

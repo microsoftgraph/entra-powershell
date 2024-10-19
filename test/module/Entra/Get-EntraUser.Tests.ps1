@@ -38,13 +38,6 @@ BeforeAll {
             "MobilePhone"                      = $null
         }
 
-        # Response from an Invoke-GraphRequest is a hashtable with @odata.context and Value objects
-
-        # Name                           Value
-        # ----                           -----
-        # @odata.context                 https://graph.microsoft.com/v1.0/$metadata#users
-        # value                          {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hasht...
-
         $response = @{
             '@odata.context'        = 'Users()'
             Value                   = $valueObject
@@ -61,6 +54,15 @@ BeforeAll {
 Describe "Get-EntraUser" {
     Context "Test for Get-EntraUser" {
         It "Should return specific user" {
+            $result = Get-EntraUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should execute successfully with Alias" {
             $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty
@@ -84,11 +86,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should fail when ObjectId is empty string value" {
-            { Get-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when ObjectId is empty" {
-            { Get-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+            { Get-EntraUser -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should return all contact" {
@@ -153,14 +155,20 @@ Describe "Get-EntraUser" {
             { Get-EntraUser -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
         }
 
-        # It "Should contain UserId in parameters when passed ObjectId to it" {
-        #     $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        #     $result | Should -Not -BeNullOrEmpty
-
-        #     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-        #         $UserId | Should -Be $null
-        #         $true
-        #     }
-        # }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { 
+                    Get-EntraUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug 
+                } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
+            }
+        }
     }
 }

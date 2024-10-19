@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationSignInSummary.
+title: Get-EntraBetaApplicationSignInSummary
 description: This article provides details on the Get-EntraBetaApplicationSignInSummary command.
 
 ms.topic: reference
@@ -25,10 +25,10 @@ Get sign in summary by last number of days.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationSignInSummary 
- -Days <Int32> 
- [-Top <Int32>] 
- [-Filter <String>] 
+Get-EntraBetaApplicationSignInSummary
+ -Days <Int32>
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 

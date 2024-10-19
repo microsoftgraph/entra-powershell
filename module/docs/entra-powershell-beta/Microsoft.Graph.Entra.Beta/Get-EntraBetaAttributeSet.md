@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAttributeSet.
+title: Get-EntraBetaAttributeSet
 description: This article provides details on the Get-EntraBetaAttributeSet command.
 
 ms.topic: reference
@@ -35,14 +35,23 @@ Get-EntraBetaAttributeSet
 ### GetById
 
 ```powershell
-Get-EntraBetaAttributeSet 
- -Id <String> 
+Get-EntraBetaAttributeSet
+ -AttributeSetId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-Gets a list of Microsoft Entra ID attribute sets. Specify `Id` parameter to retrieve an attribute set.
+The `Get-EntraABetaAttributeSet` cmdlet gets a list of Microsoft Entra ID attribute sets.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The supported roles for this operation are:
+
+- Attribute Assignment Reader
+- Attribute Definition Reader
+- Attribute Assignment Administrator
+- Attribute Definition Administrator
+
+By default, other administrator roles cannot read, define, or assign custom security attributes.
 
 ## Examples
 
@@ -66,7 +75,7 @@ This example returns all attribute sets.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraBetaAttributeSet -Id 'Testing'
+Get-EntraBetaAttributeSet -AttributeSetId 'Testing'
 ```
 
 ```Output
@@ -77,18 +86,20 @@ Testing Attributes for engineering team 10
 
 This example demonstrates how to retrieve an attribute set by Id.
 
-- `Id` parameter specifies the unique identifier for the attribute set within a tenant.
+- `-AttributeSetId` parameter specifies the unique identifier for the attribute set within a tenant.
 
 ## Parameters
 
-### -Id
+### -AttributeSetId
 
-Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
+Unique identifier for the attribute set within a tenant. 
+
+This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

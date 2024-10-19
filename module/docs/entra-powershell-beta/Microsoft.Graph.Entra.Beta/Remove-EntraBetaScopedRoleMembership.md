@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaScopedRoleMembership.
+title: Remove-EntraBetaScopedRoleMembership
 description: This article provides details on the Remove-EntraBetaScopedRoleMembership command.
 
 
@@ -26,15 +26,15 @@ Removes a scoped role membership.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaScopedRoleMembership 
- -ObjectId <String> 
- -ScopedRoleMembershipId <String> 
+Remove-EntraBetaScopedRoleMembership
+ -AdministrativeUnitId <String>
+ -ScopedRoleMembershipId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
+The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `AdministrativeUnitId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
 
 ## Examples
 
@@ -42,20 +42,24 @@ The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membersh
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Remove-EntraBetaScopedRoleMembership @params
 ```
 
-This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
+This cmdlet removes a specific scoped role membership from Microsoft Entra ID. You can use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit Id.
+
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraBetaScopedRoleMembership` command.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
-Specifies an object ID.
+Specifies the ID of an administrative unit object.
 
 ```yaml
 Type: System.String
@@ -76,7 +80,7 @@ Specifies the ID of the scoped role membership to remove.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

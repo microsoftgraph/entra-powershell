@@ -6,7 +6,8 @@ function Set-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Id,
+    [Alias("Id")]
+    [System.String] $AttributeSetId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -18,62 +19,18 @@ function Set-EntraAttributeSet {
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
-    $params["Method"] = "PATCH"
-    if($null -ne $PSBoundParameters["ErrorAction"])
+    $params["Method"] = "PATCH"    
+    if($null -ne $PSBoundParameters["AttributeSetId"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if($null -ne $PSBoundParameters["Id"])
-    {
-        $params["Uri"] += $Id
-    }
-    if($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $Null
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $Null
-    }
+        $params["Uri"] += $AttributeSetId
+    }    
     if($null -ne $PSBoundParameters["Description"])
     {
         $body["description"] = $PSBoundParameters["Description"]
-    }
-    if($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
+    }    
     if($null -ne $PSBoundParameters["MaxAttributesPerSet"])
     {
         $body["maxAttributesPerSet"] = $PSBoundParameters["MaxAttributesPerSet"]
-    }
-    if($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     $params["Body"] = $body
 

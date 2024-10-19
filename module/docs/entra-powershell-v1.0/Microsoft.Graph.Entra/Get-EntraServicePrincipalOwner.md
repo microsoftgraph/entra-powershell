@@ -26,7 +26,7 @@ Get the owner of a service principal.
 
 ```powershell
 Get-EntraServicePrincipalOwner
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -35,7 +35,7 @@ Get-EntraServicePrincipalOwner
 
 ## Description
 
-The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalOwner` cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -43,59 +43,97 @@ The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.ObjectId
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This example gets the owners of a specified service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID.
 
-The second command gets the owner of a service principal identified by $ServicePrincipalId.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
 ### Example 2: Retrieve all the owners of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -All
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.ObjectId -All
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets all the owners of a service principal.
+This command gets all the owners of a service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID.
+
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
 ### Example 3: Retrieve top two owners of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.ObjectId -Top 2
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top two owners of a service principal.
+This command gets top two owners of a service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID.
+
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+
+### Example 4: Retrieve service principal owner details
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+# Get the owners of the service principal
+$owners = Get-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.ObjectId -All
+$result = @()
+
+# Loop through each owner and get their UserPrincipalName and DisplayName
+foreach ($owner in $owners) {
+    $userId = $owner.Id
+    $user = Get-EntraUser -UserId $userId
+    $userDetails = [PSCustomObject]@{
+        Id                = $owner.Id
+        UserPrincipalName = $user.UserPrincipalName
+        DisplayName       = $user.DisplayName
+    }
+    $result += $userDetails
+}
+
+# Output the result in a table format
+$result | Format-Table -AutoSize
+```
+
+```Output
+Id                                   UserPrincipalName             DisplayName
+--                                   -----------------             -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AlexW@contoso.com  Alex Wilber
+bbbbbbbb-1111-2222-3333-cccccccccccc AdeleV@contoso.com Adele Vance
+```
+
+This example shows how to retrieve more details of a service principal owner such as displayName, userPrincipalName.
 
 ## Parameters
+
 ### -All
 
 List all pages.
@@ -111,14 +149,15 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-### -ObjectId
+
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -145,7 +184,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -161,7 +200,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

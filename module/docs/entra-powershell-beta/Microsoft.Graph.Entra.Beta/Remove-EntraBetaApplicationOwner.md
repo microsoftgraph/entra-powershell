@@ -25,15 +25,15 @@ Removes an owner from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationOwner 
-    -OwnerId <String> 
-    -ObjectId <String> 
+Remove-EntraBetaApplicationOwner
+ -OwnerId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
+The `Remove-EntraBetaApplicationOwner` cmdlet removes an owner from an application in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,21 +41,29 @@ The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraBetaApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$params = @{
+    ApplicationId = $Application.ObjectId
+    OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaApplicationOwner @params
 ```
 
-This command removes the specified owner from the specified application.
+This example removes the specified owner from the specified application. You can use the command `Get-EntraBetaApplication` to get application Id.
+
+- `-ApplicationId` parameter specifies the the unique identifier of a application.
+- `-OwnerId` parameter specifies the ID of the owner.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

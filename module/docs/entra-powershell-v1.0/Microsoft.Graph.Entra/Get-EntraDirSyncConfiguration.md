@@ -26,8 +26,8 @@ Gets the directory synchronization settings.
 ## Syntax
 
 ```powershell
-Get-EntraDirSyncConfiguration 
- [-TenantId <Guid>] 
+Get-EntraDirSyncConfiguration
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
@@ -35,43 +35,47 @@ Get-EntraDirSyncConfiguration
 
 The `Get-EntraDirSyncConfiguration` cmdlet gets the directory synchronization settings.
 
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
+
 ## Examples
 
 ### Example 1: Get directory synchronization settings
 
 ```powershell
-Get-EntraDirSyncConfiguration 
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+Get-EntraDirSyncConfiguration
 ```
 
-```output
+```Output
 AccidentalDeletionThreshold DeletionPreventionType
 --------------------------- ----------------------
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings.
+This example gets directory synchronization settings.
 
 ### Example 2: Get directory synchronization settings by TenantId
 
 ```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 Get-EntraDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
-```output
+```Output
 AccidentalDeletionThreshold DeletionPreventionType
 --------------------------- ----------------------
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings by TenantId.
+This example gets directory synchronization settings by TenantId.
+
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided then it defaults to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique ID of the tenant for the operation. If TenantId isn't provided, it defaults to the current user's tenant. This parameter applies only to partner users.
 
 ```yaml
 Type: System.String

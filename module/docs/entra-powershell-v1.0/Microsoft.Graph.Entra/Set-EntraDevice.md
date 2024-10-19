@@ -1,7 +1,6 @@
 ---
-title: Set-EntraDevice.
+title: Set-EntraDevice
 description: This article provides details on the Set-EntraDevice command.
-
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -9,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraDevice
@@ -26,21 +26,21 @@ Updates a device.
 
 ```powershell
 Set-EntraDevice
- -ObjectId <String> 
+ -DeviceObjectId <String>
  [-DevicePhysicalIds <System.Collections.Generic.List`1[String]>]
- [-DeviceOSType <String>] 
- [-DeviceTrustType <String>] 
- [-DisplayName <String>] 
+ [-DeviceOSType <String>]
+ [-DeviceTrustType <String>]
+ [-DisplayName <String>]
  [-DeviceMetadata <String>]
- [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-ApproximateLastLogonTimeStamp <DateTime>]
  [-AccountEnabled <Boolean>]
- [-IsManaged <Boolean >] 
- [-DeviceId <String>] 
- [-DeviceObjectVersion <Int32>] 
- [-IsCompliant <Boolean    >]
+ [-IsManaged <Boolean >]
+ [-DeviceId <String>]
+ [-DeviceObjectVersion <Int32>]
+ [-IsCompliant <Boolean>]
  [-DeviceOSVersion <String>]
  [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
- [-ProfileType <String>] 
+ [-ProfileType <String>]
  [-SystemLabels <System.Collections.Generic.List`1[String]>]
  [<CommonParameters>]
 ```
@@ -49,14 +49,15 @@ Set-EntraDevice
 
 The `Set-EntraDevice` cmdlet updates a device in Microsoft Entra ID.
 
+The calling user must have at least the Intune Administrator role in Microsoft Entra. A user with the Cloud Device Administrator role can only enable or disable devices, while a user with the Windows 365 Administrator role can only update basic device properties.
+
 ## Examples
 
 ### Example 1: Update a device display name
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
 ```
 
 This example shows how to update a display name of a specified.
@@ -64,12 +65,11 @@ This example shows how to update a display name of a specified.
 ### Example 2: Update a device alternative security ID
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 $NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
 $NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
 $NewId.type = 2
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
+Set-EntraDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
 ```
 
 This example shows how to update an alternative security ID of a specified device.
@@ -77,9 +77,8 @@ This example shows how to update an alternative security ID of a specified devic
 ### Example 3: Update a device account enabled
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
 ```
 
 This example shows how to update an account enabled of a specified device.
@@ -87,9 +86,8 @@ This example shows how to update an account enabled of a specified device.
 ### Example 4: Update a device OS type
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
 ```
 
 This example shows how to update an OS type of a specified device.
@@ -97,11 +95,10 @@ This example shows how to update an OS type of a specified device.
 ### Example 5: Update a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DeviceObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DeviceMetadata = 'Testdevice'
     DeviceObjectVersion = 4
     DevicePhysicalIds = '[GID]:g:1234567890123456'
@@ -323,14 +320,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceObjectId
 
 Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

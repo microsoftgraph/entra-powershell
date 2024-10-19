@@ -11,7 +11,6 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
-        $keysChanged = @{}
         if($null -ne $PSBoundParameters["IncludeUnknownCountriesAndRegions"])
         {
             $body["IncludeUnknownCountriesAndRegions"] = $PSBoundParameters["IncludeUnknownCountriesAndRegions"]

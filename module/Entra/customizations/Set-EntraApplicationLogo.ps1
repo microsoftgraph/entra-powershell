@@ -7,19 +7,30 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+    [CmdletBinding(DefaultParameterSetName = 'File')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Parameter(ParameterSetName = "Stream")]
+    [Parameter(ParameterSetName = "File")]
+    [Parameter(ParameterSetName = "ByteArray")]
+    [System.String] $ApplicationId,
+    [Parameter(ParameterSetName = "ByteArray", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Byte[]] $ImageByteArray,
+    [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $FilePath,
+    [Parameter(ParameterSetName = "Stream", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.IO.Stream] $FileStream
+    )
     PROCESS {    
         try{
             $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
             $baseUri = 'https://graph.microsoft.com/v1.0/applications'
-            $Method = "PUT"
-            if($PSBoundParameters.ContainsKey("Verbose"))
+            $Method = "PUT"            
+            if($null -ne $PSBoundParameters["ApplicationId"])
             {
-                $params["Verbose"] = $PSBoundParameters["Verbose"]
-            }
-            if($null -ne $PSBoundParameters["ObjectId"])
-            {
-                $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+                $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
                 $URI = "$baseUri/$($params.ApplicationId)/logo"
             }
             if($null -ne $PSBoundParameters["FilePath"]){

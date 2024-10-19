@@ -26,30 +26,41 @@ Removes a group from a lifecycle policy.
 ## Syntax
 
 ```powershell
-Remove-EntraLifecyclePolicyGroup 
- -GroupId <String> 
- -Id <String> 
+Remove-EntraLifecyclePolicyGroup
+ -GroupId <String>
+ -GroupLifecyclePolicyId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
+The `Remove-EntraLifecyclePolicyGroup` cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Remove a group from a lifecycle policy
+### Example 1: Remove lifecycle policy group
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraLifecyclePolicyGroup -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -GroupId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
+$policy = Get-EntraLifecyclePolicyGroup -Id $group.ObjectId
+$params = @{
+    GroupLifecyclePolicyId = $policy.Id
+    GroupId = $group.ObjectId
+}
+Remove-EntraLifecyclePolicyGroup @params
 ```
 
-This example demonstrates how to  remove a group from a lifecycle policy in Microsoft Entra ID with specified Id and groupId.  
+```Output
+Value
+-----
+True
+```
 
-Id - Specifies the ID of the lifecycle policy object.  
+This example demonstrates how to  remove a group from a lifecycle policy in Microsoft Entra ID with specified Id and groupId.
 
-GroupId - Specifies the ID of a group.
+- `-GroupLifecyclePolicyId` parameter specifies the lifecycle policy object ID.  
+- `-GroupId` parameter specifies the ID of Office365 group.
 
 ## Parameters
 
@@ -69,14 +80,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -87,7 +98,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

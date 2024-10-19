@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraUserCreatedObject.
+title: Get-EntraUserCreatedObject
 description: This article provides details on the  Get-EntraUserCreatedObject Command.
 
 
@@ -26,7 +26,7 @@ Get objects created by the user.
 
 ```powershell
 Get-EntraUserCreatedObject
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -35,16 +35,15 @@ Get-EntraUserCreatedObject
 
 ## Description
 
-The Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
+The `Get-EntraUserCreatedObject` cmdlet gets objects created by a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get a user-created object
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -56,14 +55,35 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
-This command gets an object created by the specified user.
+This example retrieves an object created by the specified user.
 
-### Example 2: Get a top one user-created object
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
+
+### Example 2: Get all user-created objects
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com' -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+```
+
+This example retrieves all objects created by the specified user.
+
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
+
+### Example 3: Get a top one user-created object
+
+```powershell
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
@@ -72,7 +92,9 @@ Id                                   DeletedDateTime
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top one object created by the specified user.
+This example retrieves top one object created by the specified user.
+
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
 ## Parameters
 
@@ -92,14 +114,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -126,7 +148,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

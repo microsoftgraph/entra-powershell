@@ -14,32 +14,54 @@ BeforeAll {
 Describe "Set-EntraDevice"{
     Context "Test for Set-EntraDevice" {
         It "Should return empty object"{
+            $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
+            $result | Should -BeNullOrEmpty           
+
+            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should execute successfully with Alias" {
             $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Set-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DeviceObjectId is invalid" {
+            { Set-EntraDevice -DeviceObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceObjectId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraDevice -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DeviceObjectId is empty" {
+            { Set-EntraDevice -DeviceObjectId } | Should -Throw "Missing an argument for parameter 'DeviceObjectId'*"
         }
-        It "Should contain DeviceId in parameters when passed ObjectId to it" {
+        It "Should contain DeviceId in parameters when passed DeviceObjectId to it" {
             Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
+
+            Set-EntraDevice -DeviceObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDevice"
 
-            $result = Set-EntraDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraDevice -DeviceObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

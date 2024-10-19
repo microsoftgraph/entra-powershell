@@ -1,10 +1,9 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
-
+title: Remove-EntraServicePrincipalPasswordCredential
+description: This article provides details on the Remove-EntraServicePrincipalPasswordCredential command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -26,29 +25,33 @@ Removes a password credential from a service principal.
 
 ```powershell
 Remove-EntraServicePrincipalPasswordCredential
- -ObjectId <String>
+ -ServicePrincipalId <String>
  -KeyId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.
+The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove a password credential from a service principal in Microsoft Entra ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Remove-AzureADServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$Params = @{
+    ServicePrincipalId = $ServicePrincipal.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+}
+Remove-EntraServicePrincipalPasswordCredential @Params
 ```
 
-This command demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
+This example demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
 
-- **ObjectId**: The ObjectId of the specified Service Principal Password Credential.  
-- **KeyID**: The unique identifier of the Password Credential.  
+- `-ServicePrincipalId` parameter specifies the ServicePrincipalId of a specified Service Principal Password Credential.  
+- `-KeyId` parameter specifies the unique identifier of a Password Credential.
 
 ## Parameters
 
@@ -68,14 +71,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -86,7 +89,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

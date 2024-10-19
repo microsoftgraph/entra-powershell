@@ -7,14 +7,27 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
-    PROCESS {    
+    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    param (
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Name,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $ClientId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Type,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $ClientSecret,
+    [Alias('Id')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $IdentityProviderBaseId
+    )
+    PROCESS {        
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
-        $keysChanged = @{}
-        if($null -ne $PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["IdentityProviderBaseId"])
         {
-            $params["IdentityProviderBaseId"] = $PSBoundParameters["Id"]
+            $params["IdentityProviderBaseId"] = $PSBoundParameters["IdentityProviderBaseId"]
         }
         if($null -ne $PSBoundParameters["Type"])
         {

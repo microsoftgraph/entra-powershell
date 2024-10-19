@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaGroupOwner.
+title: Add-EntraBetaGroupOwner
 description: This article provides details on the Add-EntraBetaGroupOwner command.
 
 
@@ -25,19 +25,19 @@ Adds an owner to a group.
 ## Syntax
 
 ```powershell
-Add-EntraBetaGroupOwner 
- -ObjectId <String>
+Add-EntraBetaGroupOwner
+ -GroupId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
+The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
 
-`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
 
-`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group (user or service principal).
 
 ## Examples
 
@@ -45,9 +45,11 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    GroupId = $group.ObjectId
+    RefObjectId = $user.ObjectId
 }
 
 Add-EntraBetaGroupOwner @params
@@ -57,14 +59,14 @@ This example demonstrates how to add an owner to a group.
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

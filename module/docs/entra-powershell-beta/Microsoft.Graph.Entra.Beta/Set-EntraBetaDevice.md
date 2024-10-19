@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaDevice
+description: This article provides details on the Set-EntraBetaDevice command.
+
+ms.topic: reference
+ms.date: 08/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaDevice
@@ -9,39 +19,105 @@ schema: 2.0.0
 # Set-EntraBetaDevice
 
 ## Synopsis
+
 Updates a device.
 
 ## Syntax
 
-```
-Set-EntraBetaDevice [-AccountEnabled <Boolean>] [-DeviceObjectVersion <Int32>]
- [-ApproximateLastLogonTimeStamp <DateTime>] [-DeviceTrustType <String>] [-ProfileType <String>]
+```powershell
+Set-EntraBetaDevice
+ -DeviceObjectId <String>
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[String]>]
+ [-DeviceOSType <String>]
+ [-DeviceTrustType <String>]
+ [-DisplayName <String>]
+ [-DeviceMetadata <String>]
+ [-ApproximateLastLogonTimeStamp <DateTime>]
+ [-AccountEnabled <Boolean>]
+ [-IsManaged <Boolean >]
+ [-DeviceId <String>]
+ [-DeviceObjectVersion <Int32>]
+ [-IsCompliant <Boolean>]
+ [-DeviceOSVersion <String>]
  [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
- [-DeviceOSVersion <String>] [-DisplayName <String>] [-DeviceOSType <String>]
- [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] -ObjectId <String>
- [-IsManaged <Boolean>] [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
- [-DeviceMetadata <String>] [-DeviceId <String>] [-IsCompliant <Boolean>] [<CommonParameters>]
+ [-ProfileType <String>]
+ [-SystemLabels <System.Collections.Generic.List`1[String]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-The Set-EntraBetaDevice cmdlet updates a device in Azure Active Directory (AD).
+
+The `Set-EntraBetaDevice` cmdlet updates a device in Microsoft Entra ID.
+
+The calling user must have at least the Intune Administrator role in Microsoft Entra. A user with the Cloud Device Administrator role can only enable or disable devices, while a user with the Windows 365 Administrator role can only update basic device properties.
 
 ## Examples
 
-### Example 1: Update a device
-```
-PS C:\>Set-EntraBetaDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa" -DisplayName "My OS/2 computer"
+### Example 1: Update a device display name
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
 ```
 
-This command updates the specified device.
+This example shows how to update a display name of a specified.
+
+### Example 2: Update a device alternative security ID
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+$NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
+$NewId.type = 2
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
+```
+
+This example shows how to update an alternative security ID of a specified device.
+
+### Example 3: Update a device account enabled
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
+```
+
+This example shows how to update an account enabled of a specified device.
+
+### Example 4: Update a device OS type
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
+```
+
+This example shows how to update an OS type of a specified device.
+
+### Example 5: Update a device
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+
+$params = @{
+    DeviceObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DeviceMetadata = 'Testdevice'
+    DeviceObjectVersion = 4
+    DevicePhysicalIds = '[GID]:g:1234567890123456'
+    IsCompliant = $false
+}
+
+Set-EntraBetaDevice @params
+```
+
+This example shows how to update multiple properties of a specified device.
 
 ## Parameters
 
 ### -AccountEnabled
+
 Indicates whether the account is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 
@@ -53,6 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlternativeSecurityIds
+
 Specifies alternative security IDs.
 
 ```yaml
@@ -68,10 +145,11 @@ Accept wildcard characters: False
 ```
 
 ### -ApproximateLastLogonTimeStamp
-@{Text=}
+
+The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime 
 Parameter Sets: (All)
 Aliases:
 
@@ -83,10 +161,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceId
+
 Specifies the device ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,10 +177,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceMetadata
-The device metadata for this device
+
+The device metadata for this device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -113,10 +193,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceObjectVersion
+
 Specifies the object version of the device.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -128,10 +209,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSType
+
 Specifies the operating system.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -143,10 +225,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSVersion
-Specifies the operating sytem version.
+
+Specifies the operating system version.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -158,6 +241,7 @@ Accept wildcard characters: False
 ```
 
 ### -DevicePhysicalIds
+
 Specifies the physical ID.
 
 ```yaml
@@ -173,10 +257,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceTrustType
-The device trust type
+
+Specifies the device trust type.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -188,10 +273,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -203,10 +289,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompliant
+
 Indicates whether the device is compliant.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 
@@ -218,10 +305,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsManaged
+
 Indicates whether the device is managed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 
@@ -232,13 +320,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
-Specifies the object ID of a device in Azure AD.
+### -DeviceObjectId
+
+Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -248,10 +337,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProfileType
-{{ Fill ProfileType Description }}
+
+Specifies the profile type of the device. Possible values: RegisteredDevice (default), SecureVM, Printer, Shared, IoT.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -263,7 +353,8 @@ Accept wildcard characters: False
 ```
 
 ### -SystemLabels
-{{ Fill SystemLabels Description }}
+
+Specifies list of labels applied to the device by the system.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -278,7 +369,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -288,9 +380,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaDevice]()
+[Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 
-[New-EntraBetaDevice]()
+[New-EntraBetaDevice](New-EntraBetaDevice.md)
 
-[Remove-EntraBetaDevice]()
-
+[Remove-EntraBetaDevice](Remove-EntraBetaDevice.md)

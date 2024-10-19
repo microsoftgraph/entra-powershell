@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAdministrativeUnitMember.
+title: Get-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
 
 
@@ -27,7 +27,7 @@ Gets a member of an administrative unit.
 
 ```powershell
 Get-EntraBetaAdministrativeUnitMember
- -ObjectId <String>
+ -AdministrativeUnitId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -36,15 +36,22 @@ Get-EntraBetaAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameters to retrieve an administrative unit member.
+The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameters to retrieve an administrative unit member.
+
+In delegated scenarios with work or school accounts, the signed-in user must either be a member user or be assigned a supported Microsoft Entra role, or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Directory Readers: Read basic properties on administrative units
+- Global Reader: Read all properties of administrative units, including members
+- Privileged Role Administrator: Create and manage administrative units (including members)
 
 ## Examples
 
-### Example 1: Get an administrative unit member by ObjectId
+### Example 1: Get an administrative unit member by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id
 ```
 
 ```Output
@@ -59,11 +66,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of administrative unit members from specified administrative unit ObjectId.
 
-### Example 2: Get all administrative unit members by ObjectId
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+
+### Example 2: Get all administrative unit members by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -All
 ```
 
 ```Output
@@ -78,11 +88,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of all administrative unit members from specified administrative unit ObjectId.
 
-### Example 3: Get top three administrative unit members by ObjectId
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+
+### Example 3: Get top three administrative unit members by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -Top 3
 ```
 
 ```Output
@@ -95,16 +108,18 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 
 This example returns top three administrative unit members from specified administrative unit ObjectId.
 
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -147,7 +162,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

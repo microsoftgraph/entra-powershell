@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationVerifiedPublisher.
+title: Remove-EntraApplicationVerifiedPublisher
 description: This article provides details on the Remove-EntraApplicationVerifiedPublisher command.
 
 
@@ -25,8 +25,8 @@ Removes the verified publisher from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationVerifiedPublisher 
- -AppObjectId <String> 
+Remove-EntraApplicationVerifiedPublisher
+ -AppObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -38,13 +38,15 @@ Removes the verified publisher from an application.
 
 ### Example 1: Remove the verified publisher from an application
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$appObjId = '22223333-cccc-4444-dddd-5555eeee6666'
-Remove-EntraApplicationVerifiedPublisher -AppObjectId $appObjId
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+Remove-EntraApplicationVerifiedPublisher -AppObjectId $app.ObjectId
 ```
 
 This command demonstrates how to remove the verified publisher from an application.  
+
+- `-AppObjectId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 

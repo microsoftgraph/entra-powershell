@@ -1,5 +1,5 @@
 ---
-title: New-EntraGroupLifecyclePolicy.
+title: New-EntraGroupLifecyclePolicy
 description: This article provides details on the New-EntraGroupLifecyclePolicy command.
 
 
@@ -25,10 +25,10 @@ Creates a new groupLifecyclePolicy.
 ## Syntax
 
 ```powershell
-New-EntraGroupLifecyclePolicy 
- -ManagedGroupTypes <String> 
+New-EntraGroupLifecyclePolicy
+ -ManagedGroupTypes <String>
  -GroupLifetimeInDays <Int32>
- -AlternateNotificationEmails <String> 
+ -AlternateNotificationEmails <String>
  [<CommonParameters>]
 ```
 
@@ -42,23 +42,31 @@ Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Selected' -AlternateNotificationEmails 'example@contoso.com'
+$Params = @{
+    GroupLifetimeInDays = 99
+    ManagedGroupTypes = 'Selected'
+    AlternateNotificationEmails = 'example@contoso.com'
+}
+New-EntraGroupLifecyclePolicy @params
 ```
 
-```output
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 example@contoso.com         99                  Selected
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb example@contoso.com         99                  Selected
 ```
 
-This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.
+This example creates a new groupLifecyclePolicy with a group lifetime of 99 days for a selected set of Office 365 groups. Renewal notification emails are sent to <example@contoso.com> for groups without owners.
+
+- `-GroupLifetimeInDays` parameter specifies the number of days a group can exist before it needs to be renewed.
+- `-ManagedGroupTypes` parameter allows the admin to select which office 365 groups the policy applies to.
+- `-AlternateNotificationEmails` parameter specifies notification emails for group.
 
 ## Parameters
 
 ### -AlternateNotificationEmails
 
-Notification emails for groups that have no owners sent to these email addresses.
-List of email addresses separated by a ";"
+Notification emails for groups without owners are sent to these email addresses, separated by a ';'.
 
 ```yaml
 Type: System.String
@@ -90,10 +98,10 @@ Accept wildcard characters: False
 
 ### -ManagedGroupTypes
 
-This parameter allows the admin to select which office 365 groups the policy applies to.
-"None" create the policy in a disabled state.
-"All" apply the policy to every Office 365 group in the tenant.
-"Selected" allow the admin to choose specific Office 365 groups that the policy applies to.
+This parameter allows the admin to select which Office 365 groups the policy applies to.
+'None' creates the policy in a disabled state.
+'All' applies the policy to every Office 365 group in the tenant.
+'Selected' allows the admin to choose specific Office 365 groups to which the policy applies.
 
 ```yaml
 Type: System.String
@@ -109,7 +117,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

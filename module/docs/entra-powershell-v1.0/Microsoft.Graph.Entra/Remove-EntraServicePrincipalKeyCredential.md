@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServicePrincipalKeyCredential.
+title: Remove-EntraServicePrincipalKeyCredential
 description: This article provides details on the Remove-EntraServicePrincipalKeyCredential command.
 
 
@@ -25,8 +25,8 @@ Removes a key credential from a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipalKeyCredential 
- -ObjectId <String> 
+Remove-EntraServicePrincipalKeyCredential
+ -ServicePrincipalId <String>
  -KeyId <String>
  [<CommonParameters>]
 ```
@@ -43,8 +43,8 @@ The Remove-EntraServicePrincipalKeyCredential cmdlet removes a key credential fr
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $SPObjectID = (Get-EntraServicePrincipal -SearchString 'Entra Multi-Factor Auth Client').ObjectID
-Get-EntraServicePrincipalKeyCredential -ObjectId $SPObjectID
-Remove-EntraServicePrincipalKeyCredential -ObjectID $SPObjectID -KeyId <PASTE_KEYID_VALUE>
+Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $SPObjectID
+Remove-EntraServicePrincipalKeyCredential -ServicePrincipalId $SPObjectID -KeyId <PASTE_KEYID_VALUE>
 ```
 
 This example demonstrates how to remove a key credential from a service principal in Microsoft Entra ID.
@@ -71,14 +71,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

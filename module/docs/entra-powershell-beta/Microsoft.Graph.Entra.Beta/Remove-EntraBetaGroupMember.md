@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaGroupMember.
+title: Remove-EntraBetaGroupMember
 description: This article provides details on the Remove-EntraBetaGroupMember command.
 
 
@@ -25,15 +25,15 @@ Removes a member from a group.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaGroupMember 
- -ObjectId <String> 
- -MemberId <String> 
+Remove-EntraBetaGroupMember
+ -GroupId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
+The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `GroupId` and `MemberId` parameters to remove a member from a group.
 
 ## Examples
 
@@ -41,8 +41,9 @@ The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Micros
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $params = @{
-    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    GroupId = $group.ObjectId
     MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 }
 
@@ -69,14 +70,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaGroup.
+title: Get-EntraBetaGroup
 description: This article provides details on the Get-EntraBetaGroup command.
 
 ms.topic: reference
@@ -48,7 +48,7 @@ Get-EntraBetaGroup
 
 ```powershell
 Get-EntraBetaGroup
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -56,7 +56,7 @@ Get-EntraBetaGroup
 
 ## Description
 
-The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group.
+The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a specific group.
 
 ## Examples
 
@@ -68,7 +68,6 @@ Get-EntraBetaGroup
 ```
 
 ```Output
-
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
 SimpleTestGrp                                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName
@@ -78,13 +77,13 @@ My new group                                      dddddddd-3333-4444-5555-eeeeee
 SimpleGroup                                       eeeeeeee-4444-5555-6666-ffffffffffff NickName
 ```
 
-This example demonstrates how to get all groups from Microsoft Entra ID.  
+This example demonstrates how to get all groups from Microsoft Entra ID.
 
-### Example 2: Get a specific group by using an ObjectId
+### Example 2: Get a specific group by using an GroupId
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Get-EntraBetaGroup -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
 ```Output
@@ -93,7 +92,7 @@ DisplayName                                       Id                            
 SimpleTestGrp                   eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
 ```
 
-This example demonstrates how to retrieve specific group by providing ID. This command gets information for the group that has the specified ID.
+This example demonstrates how to retrieve specific group by providing ID.
 
 ### Example 3: Get top five groups
 
@@ -125,7 +124,7 @@ Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents of Contoso {Unified}
-```  
+```
 
 In this example, we retrieve group using the Display Name.
 
@@ -144,6 +143,52 @@ new1                    bbbbbbbb-7777-8888-9999-cccccccccccc new1               
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
+
+### Example 6: Listing ownerless groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraBetaGroup -All
+$groupsWithoutOwners = foreach ($group in $allGroups) {
+    $owners = Get-EntraBetaGroupOwner -ObjectId $group.Id
+    if ($owners.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutOwners | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without owners. By identifying ownerless groups, IT admins can improve overall governance and operational efficiency.
+
+### Example 7: Listing empty groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraBetaGroup -All
+$groupsWithoutMembers = foreach ($group in $allGroups) {
+    $members = Get-EntraBetaGroupMember -ObjectId $group.Id
+    if ($members.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutMembers | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
 
 ## Parameters
 
@@ -180,14 +225,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
-The unique identifier of a group in Microsoft Entra ID. (ObjectId)
+The unique identifier of a group in Microsoft Entra ID. (GroupId)
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

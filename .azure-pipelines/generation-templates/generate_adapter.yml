@@ -6,6 +6,9 @@ parameters:
   - name: Sign
     type: boolean
     default: false
+  - name: Integration
+    type: boolean
+    default: false
 
 steps:
 - task: powershell@2
@@ -205,7 +208,34 @@ steps:
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: "./test/results/pester-test-results-preview.xml"
-    failTaskOnFailedTests: true    
+    failTaskOnFailedTests: true
+- ${{ if eq(parameters.Integration, true) }}:
+  - task: powershell@2
+    displayName: 'Run Entra integration tests'
+    inputs:
+      targetType: inline
+      pwsh: true
+      script: |
+        cd test/module/Integration/Entra
+        Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: NUnit
+      testResultsFiles: "./test/results/pester-test-results-preview.xml"
+      failTaskOnFailedTests: true
+  - task: powershell@2
+    displayName: 'Run EntraBeta integration tests'
+    inputs:
+      targetType: inline
+      pwsh: true
+      script: |
+        cd test/module/Integration/EntraBeta
+        Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: NUnit
+      testResultsFiles: "./test/results/pester-test-results-preview.xml"
+      failTaskOnFailedTests: true
 - task: powershell@2
   displayName: 'Remove Local Gallery'
   inputs:
@@ -214,3 +244,10 @@ steps:
       . ./build/common-functions.ps1
       Unregister-LocalGallery
     pwsh: false
+- task: PSScriptAnalyzer@1
+  displayName: 'Run PSScriptAnalyzer'
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    Settings: required
+    IgnorePattern: .gdn
+    Recurse: true

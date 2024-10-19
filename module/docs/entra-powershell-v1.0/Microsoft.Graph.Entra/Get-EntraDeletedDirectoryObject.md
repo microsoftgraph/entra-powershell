@@ -20,21 +20,21 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
+Retrieves a soft deleted directory object from the directory.
 
 ## Syntax
 
 ```powershell
 Get-EntraDeletedDirectoryObject
- -Id <String>
+ -DirectoryObjectId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
-Soft delete for groups is currently only implemented for Unified Groups (also known as
+The `Get-EntraDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
+Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
 ## Examples
@@ -43,27 +43,46 @@ Office 365 Groups).
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
-Get-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
 ```
 
-This example shows how to retrieve the deleted directory object with `Id` `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` from the directory
+This example shows how to retrieve the deleted directory object from the directory.
+
+- `-DirectoryObjectId` parameter specifies the Id of the directory object to retrieve.
+
+### Example 2: Retrieve a deleted directory object with more details.
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
+Get-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type' -AutoSize
+```
+
+```Output
+Id                                   displayName           @odata.type
+--                                   -----------           -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Entra PowerShell App #microsoft.graph.application
+```
+
+This example shows how to retrieve the deleted directory object details from the directory.
+
+- `-Id` parameter specifies the Id of the directory object to retrieve.
 
 ## Parameters
 
-### -Id
+### -DirectoryObjectId
 
 The Id of the directory object to retrieve.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -74,7 +93,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

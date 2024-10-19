@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaPasswordSingleSignOnCredential.
+title: Remove-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Remove-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference
@@ -25,8 +25,8 @@ Removes the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaPasswordSingleSignOnCredential 
- -ObjectId <String> 
+Remove-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```

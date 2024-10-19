@@ -21,20 +21,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds a group to a lifecycle policy
+Adds a group to a lifecycle policy.
 
 ## Syntax
 
 ```powershell
-Add-EntraLifecyclePolicyGroup 
- -GroupId <String> 
- -Id <String> 
+Add-EntraLifecyclePolicyGroup
+ -GroupId <String>
+ -GroupLifecyclePolicyId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Add-EntraLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
+The `Add-EntraLifecyclePolicyGroup` cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
 
 ## Examples
 
@@ -42,16 +42,25 @@ The Add-EntraLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Add-EntraLifecyclePolicyGroup -Id '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6' -groupId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
+$policy = Get-EntraGroupLifecyclePolicy | Select-Object -First 1
+$params = @{
+    GroupLifecyclePolicyId = $policy.Id
+    groupId = $group.ObjectId
+}
+Add-EntraLifecyclePolicyGroup @params
 ```
 
-This command adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
+This example adds a group to the lifecycle policy.
+
+- `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy add to the group.
+- `-GroupId`  parameter specifies the ID of the group add to the Lifecycle Policy.
 
 ## Parameters
 
 ### -GroupId
 
-Specifies the ID of a group in Microsoft Entra ID.
+Specifies the ID of an Office365 group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -65,14 +74,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -83,7 +92,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -96,3 +105,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Notes
 
 ## Related Links
+
+[Get-EntraLifecyclePolicyGroup](Get-EntraLifecyclePolicyGroup.md)
+
+[Remove-EntraLifecyclePolicyGroup](Remove-EntraLifecyclePolicyGroup.md)

@@ -1,7 +1,6 @@
 ---
-title: Set-EntraBetaGroupLifecyclePolicy.
+title: Set-EntraBetaGroupLifecyclePolicy
 description: This article provides details on the Set-EntraBetaGroupLifecyclePolicy command.
-
 
 ms.topic: reference
 ms.date: 07/23/2024
@@ -25,11 +24,11 @@ Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Set-EntraBetaGroupLifecyclePolicy 
- -Id <String>
- [-AlternateNotificationEmails <String>] 
- [-ManagedGroupTypes <String>] 
- [-GroupLifetimeInDays <Int32>] 
+Set-EntraBetaGroupLifecyclePolicy
+ -GroupLifecyclePolicyId <String>
+ [-AlternateNotificationEmails <String>]
+ [-ManagedGroupTypes <String>]
+ [-GroupLifetimeInDays <Int32>]
  [<CommonParameters>]
 ```
 
@@ -43,8 +42,9 @@ The `Set-EntraBetaGroupLifecyclePolicy` command updates a specific group Lifecyc
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+    GroupLifecyclePolicyId = $policy.Id
     GroupLifetimeInDays = 200 
     AlternateNotificationEmails = 'example@contoso.com' 
     ManagedGroupTypes = 'All'
@@ -55,12 +55,12 @@ Set-EntraBetaGroupLifecyclePolicy @params
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 Selected
+ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 All
 ```
 
 This example updates the specified groupLifecyclePolicy in Microsoft Entra ID.
 
-- `-Id` parameter specifies the ID of the Lifecycle Policy to be modified.
+- `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy to be modified.
 - `-GroupLifetimeInDays` parameter specifies the lifetime of the groups in the policy to 200 days. The GroupLifetimeInDays represents the number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.
 - `-AlternateNotificationEmails` parameter specifies the email address that receives notifications about the policy. Multiple email address can be defined by separating email address with a semicolon.
 - `-ManagedGroupTypes` parameter specifies which office 365 groups the policy applies to. Possible values are `All`, `Selected`, or `None`.  
@@ -70,7 +70,7 @@ In this case, 'All' suggests that the policy manages all types of groups.
 
 ### -AlternateNotificationEmails
 
-Notification emails for groups that have no owners will be sent to these email addresses.
+Notification emails for groups that have no owners are sent to these email addresses.
 List of email addresses separated by a ";".
 
 ```yaml
@@ -101,14 +101,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -120,9 +120,10 @@ Accept wildcard characters: False
 ### -ManagedGroupTypes
 
 Allows the admin to select which office 365 groups the policy applies to.
-"None" will create the policy in a disabled state.
-"All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
+
+- "None" will create the policy in a disabled state.
+- "All" will apply the policy to every Office 365 group in the tenant.
+- "Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
 Type: System.String

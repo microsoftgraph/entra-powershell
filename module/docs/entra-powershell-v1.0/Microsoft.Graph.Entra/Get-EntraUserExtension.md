@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserExtension.
+title: Get-EntraUserExtension
 description: This article provides details on the Get-EntraUserExtension command.
 
 
@@ -26,7 +26,7 @@ Gets a user extension.
 
 ```powershell
 Get-EntraUserExtension
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -41,26 +41,33 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-$UserId = (Get-EntraUser -Top 1).ObjectId
-Get-EntraUserExtension -ObjectId $UserId
+$UserId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
+Get-EntraUserExtension -UserId $UserId
 ```
 
-This example shows how to retrieve the extension attributes for a specified user.
+```Output
+onPremisesDistinguishedName :
+@odata.context              : https://graph.microsoft.com/v1.0/$metadata#users(identities,onPremisesDistinguishedName,employeeId,createdDateTime)/$entity
+createdDateTime             : 18/07/2024 05:13:40
+employeeId                  :
+identities                  : {@{signInType=userPrincipalName; issuerAssignedId=SawyerM@contoso.com; issuer=SawyerM@contoso.com}}
+userIdentities              : {@{signInType=userPrincipalName; issuerAssignedId=SawyerM@contoso.com; issuer=SawyerM@contoso.com}}
+```
 
-- The first command gets the ID of a Microsoft Entra ID user by using the `Get-EntraUser` (./Get-EntraUser.md) cmdlet. The command stores the value in the $UserId variable.  
+This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
 
-- The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
+- `-UserId` parameter specifies the user object Id.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of an object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -71,7 +78,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

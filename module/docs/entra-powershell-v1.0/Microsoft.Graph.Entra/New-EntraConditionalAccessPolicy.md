@@ -26,7 +26,7 @@ Creates a new conditional access policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-New-EntraConditionalAccessPolicy 
+New-EntraConditionalAccessPolicy
  [-Id <String>]
  [-DisplayName <String>]
  [-State <String>]
@@ -48,7 +48,6 @@ Conditional access policies are custom rules that define an access scenario.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-
 $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
 $conditions.Applications.IncludeApplications = '00000002-0000-0ff1-ce00-000000000000'
@@ -69,18 +68,23 @@ New-EntraConditionalAccessPolicy @params
 ```
 
 ```Output
-Id                      : 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9
-DisplayName             : MFA policy
-CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-State                   : Enabled
+Id                                   CreatedDateTime     Description DisplayName ModifiedDateTime State   TemplateId
+--                                   ---------------     ----------- ----------- ---------------- -----   ----------
+aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 07:29:09             MFA policy                   enabled
 ```
 
 This command creates a new conditional access policy in Microsoft Entra ID that requires MFA to access Exchange Online.
 
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+- `-SessionControls` parameter Enables limited experiences within specific cloud applications.
+
 ### Example 2: Creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions
 
 ```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
 $conditions.Applications.IncludeApplications = '00000002-0000-0ff1-ce00-000000000000'
@@ -103,14 +107,59 @@ New-EntraConditionalAccessPolicy @params
 ```
 
 ```Output
-Id                      : 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9
-DisplayName             : MFA policy
-CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-State                   : Enabled
+Id                                   CreatedDateTime     Description DisplayName ModifiedDateTime State   TemplateId
+--                                   ---------------     ----------- ----------- ---------------- -----   ----------
+aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 07:31:25             MFA policy                   enabled
 ```
 
-This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from non-trusted regions.
+This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions.
+
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+
+### Example 3: Use all conditions and controls
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+
+$Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+$Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
+$Condition.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
+$Condition.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+$Condition.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
+$Condition.Users.IncludeUsers = "all"
+
+$Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+$Controls._Operator = "AND"
+$Controls.BuiltInControls = @("mfa")
+
+$SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+$ApplicationEnforcedRestrictions = New-Object Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationEnforcedRestrictions
+$ApplicationEnforcedRestrictions.IsEnabled = $true
+$SessionControls.applicationEnforcedRestrictions = $ApplicationEnforcedRestrictions
+$params = @{
+     DisplayName = "ConditionalAccessPolicy"
+     Conditions = $conditions
+     GrantControls = $controls
+     SessionControls = $SessionControls
+ }
+New-EntraConditionalAccessPolicy @params
+```
+
+```Output
+Id                                   CreatedDateTime     Description DisplayName ModifiedDateTime State   TemplateId
+--                                   ---------------     ----------- ----------- ---------------- -----   ----------
+aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 07:31:25             ConditionalAccessPolicy                 enabled
+```
+
+This example creates new conditional access policy in Microsoft Entra ID  with all the conditions and controls.
+
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+- `-SessionControls` parameter Enables limited experiences within specific cloud applications.
 
 ## Parameters
 
@@ -123,7 +172,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -155,7 +204,7 @@ Type: ConditionalAccessConditionSet
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -171,7 +220,7 @@ Type: ConditionalAccessGrantControls
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -180,7 +229,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the policy id of a conditional access policy in Microsoft Entra ID.
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -203,7 +252,7 @@ Type: ConditionalAccessSessionControls
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

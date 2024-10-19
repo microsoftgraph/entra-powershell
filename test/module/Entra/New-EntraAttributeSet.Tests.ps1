@@ -25,6 +25,15 @@ BeforeAll {
 Describe "New-EntraAttributeSet" {
     Context "Test for New-EntraAttributeSet" {
         It "Should return created AttributeSet" {
+            $result = New-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be "NewCustomAttributeSet"
+            $result.MaxAttributesPerSet | should -Be 125
+            $result.Description | should -Be "CustomAttributeSet" 
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return created AttributeSet with alias" {
             $result = New-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "NewCustomAttributeSet"
@@ -33,8 +42,8 @@ Describe "New-EntraAttributeSet" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id parameter is invalid" {
-            { New-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
+        It "Should fail when AttributeSetId parameter is invalid" {
+            { New-EntraAttributeSet -AttributeSetId } | Should -Throw "Missing an argument for parameter 'AttributeSetId*"
         }
         It "Should fail when Description parameter is empty" {
             { New-EntraAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
@@ -48,11 +57,26 @@ Describe "New-EntraAttributeSet" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraAttributeSet"
 
-            New-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
+            New-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }  
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { 
+                    New-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 -Debug 
+                } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
+            }
+        } 
     }
 }

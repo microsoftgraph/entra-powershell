@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroupPermissionGrant.
+title: Get-EntraGroupPermissionGrant
 description: This article provides details on the Get-EntraGroupPermissionGrant command.
 
 
@@ -20,20 +20,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants consented to for a group.
 
 ## Syntax
 
 ```powershell
 Get-EntraGroupPermissionGrant
- -Id <String>
+ -GroupId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants consented to for a group.
 
 ## Examples
 
@@ -41,10 +41,10 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All' 
-Get-EntraGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+Get-EntraGroupPermissionGrant -GroupId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
-```output
+```Output
   Id             : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
   ClientId       : 00001111-aaaa-2222-bbbb-3333cccc4444
   ClientAppId    : 44445555-eeee-6666-ffff-7777aaaa8888
@@ -57,14 +57,14 @@ This cmdlet list existing permission grants for the specified group.
 
 ## Parameters
 
-### -Id
+### -GroupId
 
 The unique identifier of group.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -91,11 +91,11 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
-### string
+### String
 
 ## Outputs
 

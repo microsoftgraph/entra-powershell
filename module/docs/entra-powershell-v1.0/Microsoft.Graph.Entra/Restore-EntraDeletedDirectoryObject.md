@@ -21,19 +21,19 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to restore a previously deleted object.
+Restore a previously deleted object.
 
 ## Syntax
 
 ```powershell
-Restore-EntraDeletedDirectoryObject 
- -Id <String> 
+Restore-EntraDeletedDirectoryObject
+ -Id <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
+The `Restore-EntraDeletedDirectoryObject` cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
 
 When a group or application is deleted, it is initially soft deleted and can be recovered within the first 30 days. After 30 days, the deleted object is permanently deleted and cannot be recovered.
 
@@ -71,13 +71,33 @@ Id                                   DeletedDateTime
 dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example shows how to restore a deleted object.
+This example shows how to restore a deleted object in Microsoft Entra ID.
+
+- `-Id` parameter specifies the Id of the directory object to restore.
+
+### Example 2: Restoring a Soft-Deleted User and Removing Conflicting Proxy Addresses
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Restore-EntraDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -AutoReconcileProxyConflict
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
+
+This example shows how to restore a deleted object in Microsoft Entra ID.
+
+- `-Id` parameter specifies the Id of the directory object to restore.
+- `-AutoReconcileProxyConflict` parameter removes any conflicting proxy addresses while restoring a soft-deleted user whose one or more proxy addresses are currently used for an active user.
 
 ## Parameters
 
 ### -Id
 
-The Id of the directory object to restore
+The Id of the directory object to restore.
 
 ```yaml
 Type: System.String
@@ -85,6 +105,22 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -AutoReconcileProxyConflict
+
+Specifies whether Microsoft Entra ID should remove conflicting proxy addresses when restoring a soft-deleted user, if any of the user's proxy addresses are currently in use by an active user. This parameter applies only when restoring a soft-deleted user. The default value is `false`.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)

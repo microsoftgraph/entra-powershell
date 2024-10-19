@@ -26,28 +26,28 @@ Creates (registers) a new application object.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplication 
+New-EntraBetaApplication
  -DisplayName <String>
- [-Api <ApiApplication>] 
- [-OptionalClaims <OptionalClaims>] 
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>]
  [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]>]
- [-Web <WebApplication>] 
+ [-Web <WebApplication>]
  [-IsFallbackPublicClient <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
- [-PublicClient <PublicClientApplication>] 
+ [-PublicClient <PublicClientApplication>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
- [-TokenEncryptionKeyId <String>] 
+ [-TokenEncryptionKeyId <String>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- [-ParentalControlSettings <ParentalControlSettings>] 
+ [-ParentalControlSettings <ParentalControlSettings>]
  [-GroupMembershipClaims <String>]
  [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-SignInAudience <String>] 
- [-InformationalUrl <InformationalUrl>] 
+ [-SignInAudience <String>]
+ [-InformationalUrl <InformationalUrl>]
  [<CommonParameters>]
 ```
 
@@ -60,7 +60,7 @@ Creates (registers) a new application object. Specify the `DisplayName` paramete
 ### Example 1: Create an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 New-EntraBetaApplication -DisplayName 'My new application'
 ```
 
@@ -75,7 +75,7 @@ This command creates an application in Microsoft Entra ID.
 ### Example 2: Create an application using IdentifierUris parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 New-EntraBetaApplication -DisplayName 'My new application' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
@@ -106,7 +106,7 @@ This command creates an application in Microsoft Entra ID.
 ### Example 4: Create an application using AppRoles parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $types = @()
 $types += 'User'
 $approle = New-Object Microsoft.Open.MSGraph.Model.AppRole
@@ -148,6 +148,7 @@ This command creates an application in Microsoft Entra ID.
 ### -AddIns
 
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
+
 For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
 
 This will let services like Office 365 call the application in the context of a document the user is working on.
@@ -169,7 +170,24 @@ Accept wildcard characters: False
 Specifies settings for an application that implements a web API.
 
 ```yaml
-Type: System.ApiApplication
+Type: ApiApplication
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppRoles
+
+The collection of application roles that an application might declare.
+These roles can be assigned to users, groups, or service principals.
+
+```yaml
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Parameter Sets: (All)
 Aliases:
 
@@ -217,8 +235,8 @@ Accept wildcard characters: False
 User-defined URI(s) that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
 
 The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
-Extra URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
 
+Extra URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
 This collection is also used to populate the Web application's servicePrincipalNames collection.
 
 ```yaml
@@ -240,7 +258,7 @@ Basic profile information of the application such as app's marketing, support, t
 The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
-Type: System.InformationalUrl
+Type: InformationalUrl
 Parameter Sets: (All)
 Aliases:
 
@@ -310,7 +328,7 @@ Accept wildcard characters: False
 Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
-Type: System.OptionalClaims
+Type: OptionalClaims
 Parameter Sets: (All)
 Aliases:
 
@@ -327,6 +345,22 @@ Reserved for future use.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ParentalControlSettings
+
+Specifies parental control settings for an application.
+
+```yaml
+Type: ParentalControlSettings
 Parameter Sets: (All)
 Aliases:
 
@@ -381,7 +415,7 @@ Specifies whether this application is a public client (such as an installed appl
 Default is false.
 
 ```yaml
-Type: System.PublicClientApplication
+Type: PublicClientApplication
 Parameter Sets: (All)
 Aliases:
 
@@ -445,6 +479,7 @@ Accept wildcard characters: False
 ### -TokenEncryptionKeyId
 
 Specifies the keyId of a public key from the keyCredentials collection.
+
 When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to.
 
 The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
@@ -466,7 +501,7 @@ Accept wildcard characters: False
 Specifies settings for a web application.
 
 ```yaml
-Type: System.WebApplication
+Type: WebApplication
 Parameter Sets: (All)
 Aliases:
 

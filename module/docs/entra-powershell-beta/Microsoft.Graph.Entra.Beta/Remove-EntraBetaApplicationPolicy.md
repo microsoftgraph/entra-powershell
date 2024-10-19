@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationPolicy.
+title: Remove-EntraBetaApplicationPolicy
 description: This article provides details on the Remove-EntraBetaApplicationPolicy command.
 
 
@@ -26,9 +26,9 @@ Removes an application policy.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationPolicy 
- -Id <String> 
- -PolicyId <String> 
+Remove-EntraBetaApplicationPolicy
+ -Id <String>
+ -PolicyId <String>
 [<CommonParameters>]
 ```
 

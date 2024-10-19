@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDevice.
+title: Get-EntraDevice
 description: This article provides details on the Get-EntraDevice command.
 
 
@@ -38,7 +38,7 @@ Get-EntraDevice
 ### GetByValue
 
 ```powershell
-Get-EntraDevice 
+Get-EntraDevice
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,8 +48,8 @@ Get-EntraDevice
 ### GetById
 
 ```powershell
-Get-EntraDevice 
- -ObjectId <String>
+Get-EntraDevice
+ -DeviceId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,7 +57,7 @@ Get-EntraDevice
 
 ## Description
 
-The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
+The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `DeviceId` parameter to get a specific device.
 
 ## Examples
 
@@ -65,7 +65,7 @@ The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDevice -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraDevice -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -74,7 +74,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve specific device by providing ID.
+This example shows how to retrieve a device using its ID.
 
 ### Example 2: Get all devices
 
@@ -121,9 +121,9 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve device by display name from Microsoft Entra ID.
+This example demonstrates how to retrieve device using the display name.
 
-### Example 5: Get a device by display name
+### Example 5: Get a device using display name
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -136,7 +136,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve all the devices whose display name starts with Woodgrove from Microsoft Entra ID.  
+This example demonstrates how to retrieve all the devices whose display name starts with the word `Woodgrove`.
 
 ### Example 6: Search among retrieved devices
 
@@ -151,7 +151,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.
+This example shows how to retrieve devices containing the word 'DESKTOP.'
 
 ## Parameters
 
@@ -188,14 +188,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceId
 
 Specifies the ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -210,7 +210,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False

@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaServicePrincipalPolicy.
+title: Add-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Add-EntraBetaServicePrincipalPolicy command.
 
 
@@ -26,9 +26,9 @@ Adds a servicePrincipal policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaServicePrincipalPolicy 
- -Id <String> 
- -RefObjectId <String> 
+Add-EntraBetaServicePrincipalPolicy
+ -Id <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

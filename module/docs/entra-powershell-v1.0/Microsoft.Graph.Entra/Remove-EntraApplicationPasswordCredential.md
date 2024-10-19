@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationPasswordCredential.
+title: Remove-EntraApplicationPasswordCredential
 description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
 
 
@@ -25,10 +25,10 @@ Removes a password credential from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationPasswordCredential 
--ObjectId <String> 
--KeyId <String>
-[<CommonParameters>]
+Remove-EntraApplicationPasswordCredential
+ -ApplicationId <String>
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -40,20 +40,22 @@ The `Remove-EntraApplicationPasswordCredential` cmdlet removes a password creden
 ### Example 1: Remove an application password credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$AppID = (Get-EntraApplication -Top 1).ObjectId
-$KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $AppId
-Remove-EntraApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk App'"
+$KeyIDs = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id
+Remove-EntraApplicationPasswordCredential -ApplicationId $application.Id -KeyId $KeyIds[0].KeyId
 ```
 
-This example shows how to remove the application password credential for the application.
+This example demonstrates how to remove the password credential for an application.
+
+- `ApplicationId` Specifies the ID of the application. Use `Get-EntraApplication` to get application ObjectId value.
+- `KeyId` Specifies the ID of the password credential. Use `Get-EntraApplicationPasswordCredential` to retrieve a specific credential details.
 
 ## Parameters
 
 ### -KeyId
 
-The unique identifier for the password.
+Specifies the ID of the password credential.
 
 ```yaml
 Type: System.String
@@ -67,14 +69,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of the application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

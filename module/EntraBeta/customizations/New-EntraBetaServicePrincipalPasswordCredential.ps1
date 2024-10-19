@@ -7,68 +7,40 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    function New-EntraBetaServicePrincipalPasswordCredential {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $CustomKeyIdentifier,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $StartDate,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Alias("ObjectId")]
+    [System.String] $ServicePrincipalId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Value,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $EndDate
+    )
+
     PROCESS{
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
         $Method = "POST"
-        if($PSBoundParameters.ContainsKey("Verbose"))
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["StartDate"] = $PSBoundParameters["StartDate"]
             $params["EndDate"] = $PSBoundParameters["EndDate"]
 
-            $URI = "$baseUri/$($params.ObjectId)/addPassword"
+            $URI = "$baseUri/$($params.ServicePrincipalId)/addPassword"
             $body = @{
                 passwordCredential = @{
                     startDateTime = $PSBoundParameters["StartDate"];
                     endDateTime = $PSBoundParameters["EndDate"];
                 }
             }
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -84,7 +56,19 @@
             Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
             }
         }
-        $response
-    }
+
+        $targetTypeList = @()
+        foreach($data in $response){
+            $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $target | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetTypeList += $target
+        }
+        $targetTypeList
+    }    
+}
 '@
 }

@@ -26,18 +26,17 @@ Gets the registered owner of a device.
 ## Syntax
 
 ```powershell
-Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredOwner
- -ObjectId <String>
+ -DeviceId <String>
  [-All]
- [-Top <Int32  >]
+ [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID. Specify `DeviceId` parameter gets the registered owner of a device.
 
 ## Examples
 
@@ -46,67 +45,71 @@ The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a devic
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $DevId = (Get-EntraDevice -Top 1).ObjectId
-Get-EntraDeviceRegisteredOwner -ObjectId $DevId
+Get-EntraDeviceRegisteredOwner -DeviceId $DevId
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This example shows how to find the registered owner of a device.
+This example shows how to find the registered owner of a device..
 
-- The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
-
-- The second command gets the registered owner of the device in `$DevId`.
+- `-DeviceId` parameter specifies the device's ID.
 
 ### Example 2: Retrieve the registered owner of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+Get-EntraDeviceRegisteredOwner -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command gets the registered owner of a device.
+
+- `-DeviceId` parameter specifies the device's ID
 
 ### Example 3: Retrieve all the registered owners of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -All 
+Get-EntraDeviceRegisteredOwner -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -All 
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command retrieves all the registered owners of a device.
+
+- `-DeviceId` parameter specifies the device's ID.
 
 ### Example 4: Retrieve top one registered owner of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Top 1
+Get-EntraDeviceRegisteredOwner -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -Top 1
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command retrieves top one registered owner of a device.
+This command retrieves all the registered owners of a device.
+
+- `-DeviceId` parameter specifies the device's ID.
 
 ## Parameters
 
@@ -126,14 +129,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceId
 
 Specifies the ID of an object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -160,7 +163,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

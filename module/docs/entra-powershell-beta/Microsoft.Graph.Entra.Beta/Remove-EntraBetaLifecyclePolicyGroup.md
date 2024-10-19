@@ -26,9 +26,9 @@ Removes a group from a lifecycle policy.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaLifecyclePolicyGroup 
- -Id <String> 
- -GroupId <String> 
+Remove-EntraBetaLifecyclePolicyGroup
+ -GroupLifecyclePolicyId <String>
+ -GroupId <String>
  [<CommonParameters>]
 ```
 
@@ -42,9 +42,11 @@ The `Remove-EntraBetaLifecyclePolicyGroup` cmdlet removes a group from a lifecyc
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Office365 group'"
+$policy = Get-EntraBetaLifecyclePolicyGroup -Id $group.ObjectId
 $params = @{
-    Id = '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
-    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupLifecyclePolicyId = $policy.Id
+    GroupId = $group.ObjectId
 }
 Remove-EntraBetaLifecyclePolicyGroup @params
 ```
@@ -57,8 +59,8 @@ True
 
 This example demonstrates how to  remove a group from a lifecycle policy in Microsoft Entra ID with specified Id and groupId.
 
-- `-Id` parameter specifies the lifecycle policy object ID.  
-- `-GroupId` parameter specifies the ID of a group.
+- `-GroupLifecyclePolicyId` parameter specifies the lifecycle policy object ID.  
+- `-GroupId` parameter specifies the ID of Office365 group.
 
 ## Parameters
 
@@ -78,14 +80,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

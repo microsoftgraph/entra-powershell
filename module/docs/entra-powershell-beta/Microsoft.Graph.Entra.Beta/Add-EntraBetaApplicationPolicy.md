@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaApplicationPolicy.
+title: Add-EntraBetaApplicationPolicy
 description: This article provides details on the Add-EntraBetaApplicationPolicy command.
 
 
@@ -26,9 +26,9 @@ Adds an application policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaApplicationPolicy 
- -Id <String> 
- -RefObjectId <String> 
+Add-EntraBetaApplicationPolicy
+ -Id <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

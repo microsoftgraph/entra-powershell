@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaPasswordSingleSignOnCredential.
+title: Set-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Set-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference
@@ -25,9 +25,9 @@ Sets the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPasswordSingleSignOnCredential 
+Set-EntraBetaPasswordSingleSignOnCredential
  -ObjectId <String>
- -PasswordSSOCredential <PasswordSSOCredentials> 
+ -PasswordSSOCredential <PasswordSSOCredentials>
  [<CommonParameters>]
 ```
 

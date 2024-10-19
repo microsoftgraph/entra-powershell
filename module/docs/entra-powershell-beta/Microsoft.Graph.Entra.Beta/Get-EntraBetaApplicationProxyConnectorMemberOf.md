@@ -2,6 +2,7 @@
 title: Get-EntraBetaApplicationProxyConnectorMemberOf
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorMemberOf command.
 
+
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru
@@ -26,7 +27,7 @@ The `Get-EntraBetaApplicationProxyConnectorMemberOf` command gets the ConnectorG
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorMemberOf
- -Id <String> 
+ -OnPremisesPublishingProfileId <String>
  [<CommonParameters>]
 ```
 
@@ -41,33 +42,29 @@ If no group is assigned to the connector, by default it is in 'Default.'
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnectorMemberOf -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaApplicationProxyConnectorMemberOf -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-region
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test-group
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Backup Application Servers
 ```
 
 This example retrieves the ConnectorGroup With Specified Connector ID.  
 
-- `-Id` parameter specifies the connector ID.
+- `-OnPremisesPublishingProfileId` parameter specifies the connector ID.
 
 ## Parameters
 
-### -Id
+### -OnPremisesPublishingProfileId
 
 The ID of the connector. You can find ID by running `Get-EntraBetaApplicationProxyConnector`.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

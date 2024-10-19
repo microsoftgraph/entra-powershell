@@ -4,8 +4,9 @@
 function Set-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -16,10 +17,10 @@ function Set-EntraAdministrativeUnit {
     $params = @{}
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{}
-    if($null -ne $PSBoundParameters["ObjectId"])
+    
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
     }
     if($null -ne $PSBoundParameters["DisplayName"])
     {
@@ -30,50 +31,6 @@ function Set-EntraAdministrativeUnit {
     {
         $params["Description"] = $PSBoundParameters["Description"]
         $body["Description"] = $PSBoundParameters["Description"]
-    }
-    if($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $Null
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $Null
-    }    
-    if($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
 
     $uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)"

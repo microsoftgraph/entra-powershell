@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraAdministrativeUnitMem
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -26,41 +26,50 @@ Adds an administrative unit member.
 ## Syntax
 
 ```powershell
-Add-EntraAdministrativeUnitMember 
- -RefObjectId <String> 
- -Id <String> 
+Add-EntraAdministrativeUnitMember
+ -RefObjectId <String>
+ -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
+
+The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
+
+Administrative units enable more granular management of permissions and access, particularly in large organizations or where administrative responsibilities are divided across departments or regions.
+
+To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
 
 ## Examples
 
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
-PS C:\>Add-EntraAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    RefObjectId = $User.ObjectId
+}
+Add-EntraAdministrativeUnitMember @params
 ```
 
-This command adds a user as an administrative unit member.
+This example shows how to add an administrative unit member. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraUser` to get user ID.
 
-`-Id` - specifies the unique identifier (ID) of the administrative unit to which you want to add a member. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
-
-`-RefObjectId` - specifies the unique identifier (Object ID) of the user or group you want to add as a member of the administrative unit. In this example, `dddddddd-3333-4444-5555-eeeeeeeeeeee` is the Object ID of the user or group being added.
-
-Administrative units can help manage permissions and access in a more granular way, especially in large organizations or in scenarios where administrative responsibilities are divided among different departments or regions.
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
 ## Parameters
 
-### -Id
+### -AdministrativeUnitId
 
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -100,4 +109,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
 
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
-

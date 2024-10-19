@@ -6,75 +6,35 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @'   
-    PROCESS {    
+    CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $DirectoryRoleId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
+    PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $topCount = $null
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
         $baseUri = 'https://graph.microsoft.com/v1.0/directoryRoles'
         $properties = '$select=*'
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
+        if($null -ne $PSBoundParameters["DirectoryRoleId"])
         {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
+            $params["DirectoryRoleId"] = $PSBoundParameters["DirectoryRoleId"]
+            $URI = "$baseUri/$($params.DirectoryRoleId)/members?$properties"
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.ObjectId)/members?$properties"
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
@@ -83,11 +43,23 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value ServiceProvisioningErrors 
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones               
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value ServiceProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones
             }
         }
-        $response 
+        if($response){
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
+            }
+            $userList
         }
+    }
 '@
 }

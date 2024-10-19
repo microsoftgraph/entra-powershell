@@ -24,33 +24,55 @@ BeforeAll {
 Describe "Get-EntraAttributeSet" {
     Context "Test for Get-EntraAttributeSet" {
         It "Should return AttributeSets with any parameter" {
-            $result = Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific AttributeSet" {
+            $result = Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return specific AttributeSet with alias" {
             $result = Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id is invalid" {
-            { Get-EntraAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when AttributeSetId is invalid" {
+            { Get-EntraAttributeSet -AttributeSetId "" } | Should -Throw "Cannot bind argument to parameter 'AttributeSetId' because it is an empty string."
         }
-        It "Should fail when Id is empty" {
-            { Get-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when AttributeSetId is empty" {
+            { Get-EntraAttributeSet -AttributeSetId } | Should -Throw "Missing an argument for parameter 'AttributeSetId'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAttributeSet"
 
-            Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
+            Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }    
+        } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { 
+                    Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug 
+                } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
+            }
+        }   
     }
 }

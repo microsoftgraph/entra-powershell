@@ -7,6 +7,15 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
+    $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
     if($null -ne $PSBoundParameters["Property"])
@@ -16,6 +25,14 @@
 
     # TODO : Invoke API and apply the correct Select query
 
-    (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).PasswordCredentials
+    $response = (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).PasswordCredentials
+
+    if($null -ne $PSBoundParameters["Property"])
+    {
+        $response | Select-Object $PSBoundParameters["Property"]
+    }
+    else {
+        $response
+    } 
 '@
 }

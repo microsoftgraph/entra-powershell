@@ -25,8 +25,8 @@ Gets application extension properties.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationExtensionProperty 
- -ObjectId <String>
+Get-EntraApplicationExtensionProperty
+ -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -41,27 +41,30 @@ The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension pr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationExtensionProperty -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationExtensionProperty -ApplicationId $Application.Id
 ```
 
-```output
-ObjectId                             Name                                                    TargetObjects
---------                             ----                                                    -------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+```Output
+DeletedDateTime Id                                   AppDisplayName DataType IsMultiValued IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   -------------- -------- ------------- ---------------------- ----                                                    -------------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                Boolean  False         False                  extension_c371a443f6734a3e8982a26357fb7d59_NewAttribute {User}
 ```
 
-This command gets the extension properties for the specified application in Microsoft Entra ID.
+This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraApplication` to get application ID.
+
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -72,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -88,7 +91,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

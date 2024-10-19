@@ -26,8 +26,8 @@ Displays the properties of the Microsoft Entra ID Federation Services 2.0 server
 ## Syntax
 
 ```powershell
-Get-EntraFederationProperty 
- -DomainName <String> 
+Get-EntraFederationProperty
+ -DomainName <String>
  [<CommonParameters>]
 ```
 
@@ -56,6 +56,8 @@ Get-EntraFederationProperty -DomainName contoso.com
 ```
 
 This command displays properties for specified domain.
+
+- `-DomainName` Specifies the domain name.
 
 ## Parameters
 

@@ -1,7 +1,6 @@
 ---
-title: Set-EntraUserExtension.
+title: Set-EntraUserExtension
 description: This article provides details on the Set-EntraUserExtension command.
-
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -9,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserExtension
@@ -32,18 +32,27 @@ Set-EntraUserExtension
 
 ## Description
 
-The `Set-EntraUserExtension` cmdlet sets a user extension in Microsoft Entra ID.
+The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
 
 ```powershell
-$User = Get-EntraUser -Top 1
-Set-EntraUserExtension -ObjectId $User.ObjectId 
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$params = @{
+    ObjectId = 'SawyerM@contoso.com'
+    ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
+    ExtensionValue = 'New Value'
+}
+Set-EntraUserExtension @params
 ```
 
 This example shows how to update the value of the extension attribute for a specified user.
+
+- `-ObjectId` parameter specifies the user Id.
+- `-ExtensionName` parameter specifies the name of an extension.
+- `-ExtensionValue` parameter specifies the extension name values.
 
 ## Parameters
 
@@ -78,7 +87,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraUser](Get-EntraUser.md)
 
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
-
-[Get-EntraExtensionProperty](Get-EntraExtensionProperty.md)
 
 [Remove-EntraUserExtension](Remove-EntraUserExtension.md)

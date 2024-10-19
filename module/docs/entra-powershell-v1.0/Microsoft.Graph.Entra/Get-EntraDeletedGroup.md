@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve the soft deleted groups in a directory.
+This cmdlet is used to retrieve the soft deleted groups in a Microsoft Entra ID.
 
 ## Syntax
 
@@ -49,19 +49,27 @@ Get-EntraDeletedGroup
 
 ```powershell
 Get-EntraDeletedGroup
- -Id <String>
+ -GroupId <String>
  [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetVague
+
+```powershell
+Get-EntraBetaDeletedGroup
+ [-All]
+ [-SearchString <String>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet is used to retrieve the soft deleted groups in a directory.
-When a group is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
-After 30 days the group is permanently deleted and can no longer be recovered.
-Soft delete is currently only implemented for Unified Groups (also known as
-Office 365 Groups).
+This cmdlet retrieves soft-deleted groups from a directory. When a group is deleted, it is soft deleted and can be recovered within 30 days. After 30 days, the group is permanently deleted and cannot be recovered.
+
+Please note that soft delete currently applies only to Unified Groups (also known as Office 365 Groups).
 
 ## Examples
 
@@ -72,7 +80,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraDeletedGroup
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -81,7 +89,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the directory.  
+This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.  
 
 ### Example 2: Get deleted groups in the directory using All parameter
 
@@ -90,7 +98,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraDeletedGroup -All 
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -108,7 +116,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraDeletedGroup -Top 2
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -124,7 +132,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraDeletedGroup -SearchString 'test2'
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -139,10 +147,10 @@ This cmdlet retrieves deleted groups in the directory, containing the specified 
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -Filter "displayname eq 'test21'"
+Get-EntraDeletedGroup -Filter "displayName eq 'test21'"
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -150,24 +158,27 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
 
-### Example 6: Get deleted group by Id
+### Example 6: Get deleted group by GroupId
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves the deleted group specified by `-Id`.  
+This cmdlet retrieves the deleted group specified by GroupId.
+
+- `-GroupId` parameter specifies the deleted group GroupId.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -199,14 +210,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
-The Id of the deleted group to be retrieved.
+The GroupId of the deleted group to be retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

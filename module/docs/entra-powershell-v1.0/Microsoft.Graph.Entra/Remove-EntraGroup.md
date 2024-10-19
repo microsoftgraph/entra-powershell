@@ -24,16 +24,16 @@ Removes a group.
 ## Syntax
 
 ```powershell
-Remove-EntraGroup 
- -ObjectId <String> 
+Remove-EntraGroup
+ -GroupId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
-Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraDeletedDirectoryObject cmdlet.
-Security groups can't be restored after deletion.
+The `Remove-EntraGroup` cmdlet removes a group from Microsoft Entra ID. Specify the `GroupId` parameter removes a group. 
+
+Unified Group can be restored withing 30 days after deletion using the `Restore-EntraBetaDeletedDirectoryObject` cmdlet. Security groups can't be restored after deletion.
 
 **Notes on permissions:**
 
@@ -48,21 +48,24 @@ The following conditions apply for apps to delete role-assignable groups:
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Remove-EntraGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Remove-EntraGroup -GroupId $group.Id
 ```
 
-This command is used to remove a group. The `-ObjectId` parameter specifies the ID of the group to be removed.
+This example demonstrates how to remove a group in Microsoft Entra ID.
+
+- `GroupId` parameter specifies the group ID .
 
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -73,7 +76,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

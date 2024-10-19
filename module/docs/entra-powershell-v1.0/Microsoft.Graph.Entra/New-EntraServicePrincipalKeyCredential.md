@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipalKeyCredential.
+title: New-EntraServicePrincipalKeyCredential
 description: This article provides details on the New-EntraServicePrincipalKeyCredential command.
 
 
@@ -25,13 +25,13 @@ Creates a password credential for a service principal.
 ## Syntax
 
 ```powershell
-New-EntraServicePrincipalKeyCredential 
- -ObjectId <String> 
+New-EntraServicePrincipalKeyCredential
+ -ObjectId <String>
  [-CustomKeyIdentifier <String>]
- [-StartDate <DateTime>] 
- [-EndDate <DateTime>] 
- [-Type <KeyType>] 
- [-Usage <KeyUsage>] 
+ [-StartDate <DateTime>]
+ [-EndDate <DateTime>]
+ [-Type <KeyType>]
+ [-Usage <KeyUsage>]
  [-Value <String>]
  [<CommonParameters>]
 ```

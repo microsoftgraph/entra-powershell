@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaPasswordSingleSignOnCredential.
+title: Get-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Get-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference
@@ -25,8 +25,8 @@ Gets the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-Get-EntraBetaPasswordSingleSignOnCredential 
- -ObjectId <String> 
+Get-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```

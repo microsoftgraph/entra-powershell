@@ -25,12 +25,12 @@ Create a delegated permission grant using an oAuth2PermissionGrant object. This 
 ## Syntax
 
 ```powershell
-New-EntraOauth2PermissionGrant 
- -ClientId <string> 
- -ConsentType <string> 
- -ResourceId <string> 
+New-EntraOauth2PermissionGrant
+ -ClientId <string>
+ -ConsentType <string>
+ -ResourceId <string>
  [-PrincipalId <string>]
- [-Scope <string>]  
+ [-Scope <string>]
  [<CommonParameters>]
 ```
 
@@ -44,12 +44,15 @@ The `New-EntraOauth2PermissionGrant` cmdlet creates a delegated permission grant
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$graphApp = Get-EntraServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    ConsentType = 'Principal'
-    PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
-    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+    ClientId = $servicePrincipal.Id
+    ConsentType = 'AllPrincipals'
+    ResourceId = $graphApp.Id
+    Scope = 'Directory.Read.All'
+    StartTime = Get-Date
+    ExpiryTime = (Get-Date).AddYears(1)
 }
 New-EntraOauth2PermissionGrant @params
 ```
@@ -67,11 +70,17 @@ This command Grant authorization to impersonate all users.
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$graphApp = Get-EntraServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    ConsentType = 'AllPrincipals'
-    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+    ClientId = $servicePrincipal.Id
+    ConsentType = 'Principal'
+    PrincipalId = $user.Id
+    ResourceId = $graphApp.Id
+    Scope = 'Directory.Read.All'
+    StartTime = Get-Date
+    ExpiryTime = (Get-Date).AddYears(1)
 }
 New-EntraOauth2PermissionGrant @params
 ```
@@ -174,3 +183,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## RELATED LINKS
+
+[Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
+[Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)

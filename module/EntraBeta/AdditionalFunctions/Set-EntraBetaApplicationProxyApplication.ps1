@@ -6,7 +6,8 @@ function Set-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [Alias("ObjectId")]
+    [System.String] $ApplicationId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ExternalUrl,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -30,13 +31,13 @@ function Set-EntraBetaApplicationProxyApplication {
 
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ApplicationId"])
         {
-            $ObjectId = $PSBoundParameters["ObjectId"]
+            $ApplicationId = $PSBoundParameters["ApplicationId"]
         }
         if($null -ne $PSBoundParameters["ExternalUrl"])
         {
@@ -44,7 +45,7 @@ function Set-EntraBetaApplicationProxyApplication {
         }
         if($null -ne $PSBoundParameters["InternalUrl"])
         {
-            $onPremisesPublishing["internalUrl"] = $PSBoundParameters["InternalUrl"]   
+            $onPremisesPublishing["internalUrl"] = $PSBoundParameters["InternalUrl"]
         }
         if($null -ne $PSBoundParameters["ExternalAuthenticationType"])
         {
@@ -75,50 +76,6 @@ function Set-EntraBetaApplicationProxyApplication {
         {
             $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
 
         # Update InternalUrl and ExternalUrl
         if ($ExternalUrl.EndsWith("/")) {
@@ -127,21 +84,21 @@ function Set-EntraBetaApplicationProxyApplication {
         else {
             $exUrl = $ExternalUrl
         }
-        $updateUrlBody = @{ 
-            identifierUris = @($exUrl) 
-            web = @{ 
-            redirectUris = @($ExternalUrl) 
+        $updateUrlBody = @{
+            identifierUris = @($exUrl)
+            web = @{
+            redirectUris = @($ExternalUrl)
             homePageUrl = $InternalUrl
             logoutUrl = $ExternalUrl+"?appproxy=logout"
-            } 
+            }
         }
         try {
-            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody
         } catch {
             Write-Error $_
             return
         }
-  
+
         # update onpremises
         $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
         try {
@@ -150,17 +107,17 @@ function Set-EntraBetaApplicationProxyApplication {
             Write-Error $_
             return
         }
-       
+
         #update connector group
         if($null -ne $PSBoundParameters["ConnectorGroupId"]){
             $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
             $ConnectorGroupBody = @{
                 "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
-            } 
+            }
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
+                Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
             } catch {
                 Write-Error $_
                 return
@@ -178,6 +135,5 @@ function Set-EntraBetaApplicationProxyApplication {
            }
         }
         $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
-
-    }        
+    }
 }

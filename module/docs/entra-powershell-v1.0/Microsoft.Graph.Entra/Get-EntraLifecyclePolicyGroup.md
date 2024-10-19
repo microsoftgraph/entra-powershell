@@ -1,5 +1,5 @@
 ---
-title: Get-EntraLifecyclePolicyGroup.
+title: Get-EntraLifecyclePolicyGroup
 description: This article provides details on the Get-EntraLifecyclePolicyGroup command.
 
 
@@ -26,14 +26,14 @@ Retrieves the lifecycle policy object to which a group belongs.
 
 ```powershell
 Get-EntraLifecyclePolicyGroup
- -Id <String>
+ -GroupId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Get-EntraLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
+The `Get-EntraLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-GroupId` parameter to get the lifecycle policy object to which a group belongs.
 
 ## Examples
 
@@ -41,28 +41,29 @@ The Get-EntraLifecyclePolicyGroup retrieves the lifecycle policy object to which
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraLifecyclePolicyGroup -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-```output
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
 bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
-This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
-This command retrieves the lifecycle policy object to which a group belongs.
+This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.
+
+- `-GroupId` - specifies the ID of a group.
 
 ## Parameters
 
-### -Id
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -89,7 +90,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

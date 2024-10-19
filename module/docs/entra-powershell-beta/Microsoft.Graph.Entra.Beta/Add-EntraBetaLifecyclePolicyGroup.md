@@ -26,9 +26,9 @@ Adds a group to a lifecycle policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaLifecyclePolicyGroup 
- -Id <String> 
- -GroupId <String> 
+Add-EntraBetaLifecyclePolicyGroup
+ -GroupLifecyclePolicyId <String>
+ -GroupId <String>
  [<CommonParameters>]
 ```
 
@@ -42,23 +42,25 @@ The `Add-EntraBetaLifecyclePolicyGroup` cmdlet adds a group to a lifecycle polic
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Office365 group'"
+$policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
-    groupId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    GroupLifecyclePolicyId = $policy.Id
+    groupId = $group.ObjectId
 }
 Add-EntraBetaLifecyclePolicyGroup @params
 ```
 
 This example adds a group to the lifecycle policy.
 
-- `-Id` parameter specifies the ID of the Lifecycle Policy add to the group.
+- `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy add to the group.
 - `-GroupId`  parameter specifies the ID of the group add to the Lifecycle Policy.
 
 ## Parameters
 
 ### -GroupId
 
-Specifies the ID of a group in  Microsoft Entra ID.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -72,14 +74,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
-Specifies the ID of the lifecycle policy object in  Microsoft Entra ID.
+Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

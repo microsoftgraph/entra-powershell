@@ -25,8 +25,8 @@ Deletes an Application Proxy application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationProxyApplication 
- -ObjectId <String> 
+Remove-EntraBetaApplicationProxyApplication
+ -ApplicationId <String>
  [-RemoveADApplication <Boolean>]
  [<CommonParameters>]
 ```
@@ -41,37 +41,37 @@ The `Remove-EntraBetaApplicationProxyApplication` cmdlet removes Application Pro
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaApplicationProxyApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Remove-EntraBetaApplicationProxyApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example removes a Proxy Application.
 
-- `ObjectId` parameter specifies the application ID.
+- `ApplicationId` parameter specifies the application ID.
 
 ### Example 2: Remove a Proxy Application, and remove it from Microsoft Entra ID completely
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaApplicationProxyApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RemoveADApplication $true
+Remove-EntraBetaApplicationProxyApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RemoveADApplication $true
 ```
 
 This example removes a Proxy Application, and removes it from Microsoft Entra ID completely.
 
-- `ObjectId` parameter specifies the application ID.  
+- `ApplicationId` parameter specifies the application ID.  
 - `RemoveADApplication` parameter specifies the user confirmation to delete application completely.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The unique application ID of the application.
-This ObjectId can be found using the `Get-EntraBetaApplication` command.
-You can also find this ObjectId in the Microsoft by navigating to Microsoft Entra ID > App registrations > All applications. Select your application. This will takes you to the application's overview page. Use the ObjectId on that page.
+This ApplicationId can be found using the `Get-EntraBetaApplication` command.
+You can also find this ApplicationId in the Microsoft by navigating to Microsoft Entra ID > App registrations > All applications. Select your application. This will takes you to the application's overview page. Use the ObjectId on that page.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

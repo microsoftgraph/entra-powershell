@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaPasswordSingleSignOnCredential.
+title: New-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the New-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference
@@ -25,9 +25,9 @@ Creates the password Single-Sign-On (SSO) credentials.
 ## Syntax
 
 ```powershell
-New-EntraBetaPasswordSingleSignOnCredential 
+New-EntraBetaPasswordSingleSignOnCredential
  -ObjectId <String>
- -PasswordSSOCredential <PasswordSSOCredentials> 
+ -PasswordSSOCredential <PasswordSSOCredentials>
  [<CommonParameters>]
 ```
 

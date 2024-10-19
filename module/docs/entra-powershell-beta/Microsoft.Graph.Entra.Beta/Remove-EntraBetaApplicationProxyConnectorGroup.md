@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationProxyConnectorGroup.
+title: Remove-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
 
 ms.topic: reference
@@ -25,8 +25,8 @@ The `Remove-EntraBetaApplicationProxyConnectorGroup` cmdlet deletes an Applicati
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationProxyConnectorGroup 
- -Id <String> 
+Remove-EntraBetaApplicationProxyConnectorGroup
+ -Id <String>
  [<CommonParameters>]
 ```
 

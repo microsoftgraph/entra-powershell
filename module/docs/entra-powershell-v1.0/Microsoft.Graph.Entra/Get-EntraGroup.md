@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroup.
+title: Get-EntraGroup
 description: This article explains the Get-EntraGroup command.
 
 
@@ -49,7 +49,7 @@ Get-EntraGroup
 
 ```powershell
 Get-EntraGroup
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,7 +57,7 @@ Get-EntraGroup
 
 ## Description
 
-The Get-EntraGroup cmdlet gets a group in Microsoft Entra ID.
+The `Get-EntraGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group.
 
 ## Examples
 
@@ -68,31 +68,32 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroup
 ```
 
-```output
-ObjectId                             DisplayName                          Description
---------                             -----------                          -----------
-hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq  Contoso Group                       Contoso Group
-pppppppp-4444-0000-8888-yyyyyyyyyyyy  Crimson Eagle                       Crimson Eagle Group
-tttttttt-0000-3333-9999-mmmmmmmmmmmm  Bold Falcon                         Bold Falcon Group
+```Output
+DisplayName                                       Id                                   MailNickname                                   Description
+-----------                                       --                                   ------------                                   -----------
+SimpleTestGrp                                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName
+SimpleGroup                                       bbbbbbbb-1111-2222-3333-cccccccccccc NickName
+testGroupInAU10                                   cccccccc-2222-3333-4444-dddddddddddd testGroupInAU10                                testGroupInAU10
+My new group                                      dddddddd-3333-4444-5555-eeeeeeeeeeee NotSet                                         New created group
+SimpleGroup                                       eeeeeeee-4444-5555-6666-ffffffffffff NickName
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.
 
-### Example 2: Get a specific group by using an ObjectId
+### Example 2: Get a specific group by using an GroupId
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroup -ObjectId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
+Get-EntraGroup -GroupId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
 ```
 
-```output
+```Output
 DisplayName    Id                                   MailNickname        Description         GroupTypes
 -----------    --                                   ------------        -----------         ----------
 Crimson Eagle  pppppppp-4444-0000-8888-yyyyyyyyyyyy crimsoneaglegroup   Crimson Eagle Group {Unified}
 ```
 
-This example demonstrates how to retrieve specific group by providing ID.  
-This command gets information for the group that has the specified ID.
+This example demonstrates how to retrieve specific group by providing ID.
 
 ### Example 3: Get top five groups
 
@@ -101,7 +102,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroup -Top 5
 ```
 
-```output
+```Output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
 Contoso Group           hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq contosogroup          Contoso Group
@@ -111,8 +112,7 @@ Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda         
 Misty Fox               kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn mistyfox              Misty Fox Group
 ```
 
-This example demonstrates how to get top five groups from Microsoft Entra ID.  
-This command gets the five groups in Microsoft Entra ID.
+This example demonstrates how to get top five groups.
 
 ### Example 4: Get a group by DisplayName
 
@@ -121,14 +121,13 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroup -Filter "DisplayName eq 'Azure Panda'"
 ```
 
-```output
+```Output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Azure Panda        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda       Azure Panda        {Unified}
 ```
 
-In this example, we retrieve group by display name from Microsoft Entra ID.
-This command gets the specified group.
+In this example, we retrieve group using the Display Name.
 
 ### Example 5: Get groups that contain a search string
 
@@ -137,7 +136,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroup -SearchString 'New'
 ```
 
-```output
+```Output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Sparkling Deer      bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq newsparklingdeer New Sparkling Deer Group {Unified}
@@ -146,13 +145,60 @@ New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb newgoldenfox       
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
 
+### Example 6: Listing ownerless groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraGroup -All
+$groupsWithoutOwners = foreach ($group in $allGroups) {
+    $owners = Get-EntraGroupOwner -ObjectId $group.Id
+    if ($owners.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutOwners | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without owners. By identifying ownerless groups, IT admins can improve overall governance and operational efficiency.
+
+### Example 7: Listing empty groups
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$allGroups = Get-EntraGroup -All
+$groupsWithoutMembers = foreach ($group in $allGroups) {
+    $members = Get-EntraGroupMember -ObjectId $group.Id
+    if ($members.Count -eq 0) {
+        $group
+    }
+}
+$groupsWithoutMembers | Format-Table DisplayName, Id, GroupTypes
+```
+
+```Output
+DisplayName           Id                                   GroupTypes
+-----------           --                                   ----------
+My new group          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {}
+HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
+```
+
+This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
+
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -162,6 +208,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -Filter
 
 Specifies an OData v4.0 filter statement.
@@ -179,14 +226,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
-The unique identifier of a group in Microsoft Entra ID (ObjectId)
+The unique identifier of a group in Microsoft Entra ID (GroupId)
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -201,7 +248,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -245,7 +292,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

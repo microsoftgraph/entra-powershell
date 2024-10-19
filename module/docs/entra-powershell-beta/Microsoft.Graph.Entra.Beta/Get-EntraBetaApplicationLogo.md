@@ -21,22 +21,22 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve the logo of an application
+Retrieve the logo of an application.
 
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationLogo 
- -ObjectId <String> 
- [-FileName <String>] 
- [-FilePath <String>] 
+Get-EntraBetaApplicationLogo
+ -ApplicationId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
  [-View <Boolean>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
+The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ApplicationId` parameter to get a specific application logo for an application.
 
 ## Examples
 
@@ -44,7 +44,7 @@ The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
+Get-EntraBetaApplicationLogo -ApplicationId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 
 ### -FilePath
 
-If provided, the application logo is copied with a random filename to the file path that is specified in this parameter
+If provided, the application logo is copied with a random filename to the file path that is specified in this parameter.
 
 ```yaml
 Type: System.String
@@ -83,14 +83,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectID of the application for which the logo is to be retrieved
+The ApplicationId of the application for which the logo is to be retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -26,7 +26,7 @@ Get a contact membership.
 
 ```powershell
 Get-EntraContactMembership
- -ObjectId <String>
+ -OrgContactId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -45,11 +45,11 @@ This command is useful to administrators who need to understand which groups, ro
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Top 1
-Get-EntraContactMembership -ObjectId $Contact.ObjectId
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -63,10 +63,11 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -All
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId -All
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -80,10 +81,11 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -Top 2
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $Contact.ObjectId -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -110,14 +112,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -144,7 +146,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -25,9 +25,9 @@ Removes a member of a directory role.
 ## Syntax
 
 ```powershell
-Remove-EntraDirectoryRoleMember 
- -ObjectId <String> 
- -MemberId <String> 
+Remove-EntraDirectoryRoleMember
+ -DirectoryRoleId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
@@ -42,16 +42,16 @@ The `Remove-EntraDirectoryRoleMember` cmdlet removes a member from a directory r
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $params = @{
-    ObjectId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+    DirectoryRoleId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
     MemberId = '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
 }
 
 Remove-EntraDirectoryRoleMember @params
 ```
 
-This command removes the specified member from the specified role.
+This example removes the specified member from the specified role.
 
-- `-ObjectId` - specifies the unique identifier (ObjectId) of the directory role from which the member will be removed.
+- `-DirectoryRoleId` - specifies the unique identifier (ObjectId) of the directory role from which the member will be removed.
 
 - `-MemberId` - specifies the unique identifier (MemberId) of the member (user, group, or service principal) that is to be removed from the specified directory role.
 
@@ -73,14 +73,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DirectoryRoleId
 
 Specifies the object ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

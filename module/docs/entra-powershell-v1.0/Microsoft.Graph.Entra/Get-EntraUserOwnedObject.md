@@ -8,6 +8,7 @@ ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
@@ -26,7 +27,7 @@ Get objects owned by a user.
 
 ```powershell
 Get-EntraUserOwnedObject
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -35,7 +36,7 @@ Get-EntraUserOwnedObject
 
 ## Description
 
-The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
+The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID. Specify `UserId` parameter to get objects owned by user.
 
 ## Examples
 
@@ -43,62 +44,90 @@ The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
-This command gets objects owned by the specified user.
+This example retrieves objects owned by the specified user.
 
-### Example 2: Get all objects owned by a user
+- `-UserId` Parameter specifies the ID of a user as a UserPrincipalName or UserId.
+
+### Example 2: Get objects owned by a user with additional details
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+$ownedObjects = Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com'
+
+$objectDetails = $ownedObjects | ForEach-Object {
+    $objectDetail = Get-EntraObjectByObjectId -ObjectIds $_.Id
+    [PSCustomObject]@{
+        odataType   = $objectDetail.'@odata.type'
+        displayName = $objectDetail.displayName
+        Id          = $objectDetail.Id
+    }
+}
+$objectDetails | Format-Table -Property odataType, displayName, Id -AutoSize
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+odataType              displayName                         Id
+---------              -----------                         --
+#microsoft.graph.group Contoso FTE Group                   bbbbbbbb-1111-2222-3333-cccccccccccc
+#microsoft.graph.group Digital Engineering Group           aaaaaaaa-1111-1111-1111-000000000000
 ```
 
-This command gets all the objects owned by the specified user.
+This example retrieves objects owned by the specified user with more lookup details.
 
-### Example 3: Get top three objects owned by a user
+### Example 3: Get all objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
-This command gets the top three objects owned by the specified user.
+This example retrieves all the objects owned by the specified user.
+
+- `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
+
+### Example 4: Get top three objects owned by a user
+
+```powershell
+Connect-Entra -Scopes 'User.Read'
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+```
+
+This example retrieves the top three objects owned by the specified user.
+
+- `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
 ## Parameters
 
@@ -118,14 +147,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -152,7 +181,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

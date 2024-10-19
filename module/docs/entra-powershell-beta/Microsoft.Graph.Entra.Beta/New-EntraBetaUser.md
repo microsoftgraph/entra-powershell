@@ -25,41 +25,41 @@ Creates a Microsoft Entra ID user.
 ## Syntax
 
 ```powershell
-New-EntraBetaUser 
- -DisplayName <String> 
+New-EntraBetaUser
+ -DisplayName <String>
  -AccountEnabled <Boolean>
  -PasswordProfile <PasswordProfile>
- [-PostalCode <String>] 
- [-MailNickName <String>] 
+ [-PostalCode <String>]
+ [-MailNickName <String>]
  [-ShowInAddressList <Boolean>]
- [-Department <String>] 
- [-TelephoneNumber <String>] 
+ [-Department <String>]
+ [-TelephoneNumber <String>]
  [-PreferredLanguage <String>]
- [-Mobile <String>] 
- [-JobTitle <String>] 
+ [-Mobile <String>]
+ [-JobTitle <String>]
  [-ConsentProvidedForMinor <String>]
- [-PhysicalDeliveryOfficeName <String>] 
- [-PasswordPolicies <String>] 
+ [-PhysicalDeliveryOfficeName <String>]
+ [-PasswordPolicies <String>]
  [-IsCompromised <Boolean>]
  [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-OtherMails <System.Collections.Generic.List`1[System.String]>] 
- [-UserState <String>] 
+ [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+ [-UserState <String>]
  [-ImmutableId <String>]
- [-City <String>] 
+ [-City <String>]
  [-AgeGroup <String>]
  [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-UsageLocation <String>] 
- [-UserStateChangedOn <String>] 
+ [-UsageLocation <String>]
+ [-UserStateChangedOn <String>]
  [-Country <String>]
- [-UserPrincipalName <String>] 
- [-GivenName <String>] 
- [-UserType <String>] 
+ [-UserPrincipalName <String>]
+ [-GivenName <String>]
+ [-UserType <String>]
  [-StreetAddress <String>]
- [-State <String>] 
+ [-State <String>]
  [-CompanyName <String>]
- [-FacsimileTelephoneNumber <String>] 
- [-Surname <String>] 
- [-CreationType <String>] 
+ [-FacsimileTelephoneNumber <String>]
+ [-Surname <String>]
+ [-CreationType <String>]
  [<CommonParameters>]
 ```
 
@@ -72,7 +72,7 @@ The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the
 ### Example 1: Create a user using MailNickName parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
 $params = @{
@@ -87,22 +87,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -110,7 +97,7 @@ This command creates a new user.
 ### Example 2: Create a user using AgeGroup parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
 $params = @{
@@ -126,22 +113,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        : Adult
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -149,7 +123,7 @@ This command creates a new user.
 ### Example 3: Create a user using City parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
 $params = @{
@@ -165,22 +139,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -188,7 +149,7 @@ This command creates a new user.
 ### Example 4: Create a user using Department parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
 $params = @{
@@ -204,22 +165,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -227,7 +175,7 @@ This command creates a new user.
 ### Example 5: Create a user using Mobile parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
 $params = @{
@@ -243,22 +191,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -317,8 +252,9 @@ Accept wildcard characters: False
 
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
-When user creating a local account, the property is required and you must set it to "LocalAccount".
-When user creating a work or school account, don't specify the property or set it to null.
+
+- When user creating a local account, the property is required and you must set it to "LocalAccount".
+- When user creating a work or school account, don't specify the property or set it to null.
 
 ```yaml
 Type: System.String
@@ -517,7 +453,9 @@ Accept wildcard characters: False
 ### -PasswordProfile
 
 Specifies the user's password profile.
+
 The parameter type for this parameter is "PasswordProfile".
+
 In order to pass a parameter of this type, you first need to create a variable in PowerShell with that type:
 
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -532,10 +470,12 @@ New-EntraBetaUser -PasswordProfile $PasswordProfile ...
 
 Other attributes that can be set in the PasswordProfile are
 
-$PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
+- $PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.
+
+- ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
 
 ```yaml
-Type: System.PasswordProfile
+Type: PasswordProfile
 Parameter Sets: (All)
 Aliases:
 
@@ -613,7 +553,9 @@ Accept wildcard characters: False
 ### -SignInNames
 
 Specifies the collection of sign-in names for a local account in a Microsoft Entra ID B2C tenant.
+
 Each sign-in name must be unique across the company/tenant.
+
 The property must be specified when you create a local account user; don't specify it when you create a work or school account.
 
 ```yaml
@@ -695,7 +637,9 @@ Accept wildcard characters: False
 ### -UsageLocation
 
 A two letter country code (ISO standard 3166).
+
 Required for users that are assigned licenses due to legal requirement to check for availability of services in countries.
+
 Examples include: "US", "JP", and "GB".
 
 ```yaml
@@ -713,10 +657,15 @@ Accept wildcard characters: False
 ### -UserPrincipalName
 
 The user principal name (UPN) of the user.
+
 The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822.
+
 By convention, this UPN should map to the user's email name.
+
 The general format is "alias@domain".
+
 For work or school accounts, the domain must be present in the tenant's collection of verified domains.
+
 This property is required when a work or school account is created; it's optional for local accounts.
 
 ```yaml

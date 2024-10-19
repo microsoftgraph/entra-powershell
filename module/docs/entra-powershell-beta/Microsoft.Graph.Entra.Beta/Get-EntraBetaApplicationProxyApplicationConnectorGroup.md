@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationProxyApplicationConnectorGroup.
+title: Get-EntraBetaApplicationProxyApplicationConnectorGroup
 description: This article provides details on the Get-EntraBetaApplicationProxyApplicationConnectorGroup.
 
 ms.topic: reference
@@ -25,8 +25,8 @@ The `Get-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet retrieves th
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationProxyApplicationConnectorGroup 
- -ObjectId <String> 
+Get-EntraBetaApplicationProxyApplicationConnectorGroup
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

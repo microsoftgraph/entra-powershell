@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaUserExtension
+description: This article provides details on the Get-EntraBetaUserExtension command.
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserExtension
@@ -9,55 +19,56 @@ schema: 2.0.0
 # Get-EntraBetaUserExtension
 
 ## Synopsis
+
 Gets a user extension.
 
 ## Syntax
 
 ```powershell
 Get-EntraBetaUserExtension
- -ObjectId <String>
+ -UserId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaUserExtension cmdlet gets a user extension in Azure Active Directory (AD).
+
+The `Get-EntraBetaUserExtension` cmdlet gets a user extension in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve extension attributes for a user
-```
-PS C:\> $UserId = (Get-EntraBetaUser -Top 1).ObjectId
-PS C:\> Get-EntraBetaUserExtension -ObjectId $UserId
 
-Key                            Value 
----                            ----- 
-odata.metadata                 https://graph.windows.net/85b5ff1e-0402-400c-9e3c0f9e965325d1$metadata#directoryObjects/Microsoft.Director... 
-odata.type                     Microsoft.DirectoryServices.User
-deletionTimestamps
-signInNames                    [] 
-companyName 
-creationType 
-facsimileTelephoneNumber 
-isCompromised 
-refreshTokensValidFromDateTime 11/7/2016 10:11:09 PM 
-showInAddressList
+```powershell
+Connect-Entra -Scopes 'User.Read'
+$UserId = (Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com').ObjectId
+Get-EntraBetaUserExtension -UserId $UserId
 ```
 
-The first command gets the ID of an Azure AD user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet. 
-The command stores the value in the $UserId variable.
+```Output
+onPremisesDistinguishedName :
+@odata.context              : https://graph.microsoft.com/beta/$metadata#users(identities,onPremisesDistinguishedName,employeeId,createdDateTime)/$entity
+identities                  : {@{issuer=SawyerM@contoso.com; signInType=userPrincipalName; issuerAssignedId=SawyerM@contoso.com}}
+employeeId                  :
+id                          : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+createdDateTime             : 18/07/2024 05:13:40
+userIdentities              : {@{issuer=SawyerM@contoso.com; signInType=userPrincipalName; issuerAssignedId=SawyerM@contoso.com}}
+```
 
-The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
+This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.
+
+- `-UserId` parameter specifies the user object Id.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -68,7 +79,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -83,7 +94,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -93,9 +105,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
-[Remove-EntraBetaUserExtension]()
+[Remove-EntraBetaUserExtension](Remove-EntraBetaUserExtension.md)
 
-[Set-EntraBetaUserExtension]()
-
+[Set-EntraBetaUserExtension](Set-EntraBetaUserExtension.md)

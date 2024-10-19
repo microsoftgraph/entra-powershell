@@ -28,15 +28,15 @@ Retrieves all the SKUs for a company.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraAccountSku 
+Get-EntraAccountSku
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraAccountSku 
- [-TenantId <Guid>] 
+Get-EntraAccountSku
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
@@ -44,11 +44,11 @@ Get-EntraAccountSku
 
 The `Get-EntraAccountSku` retrieves the list of commercial subscriptions acquired by an organization.
 
-To map license names as displayed in the Microsoft Entra admin center or the Microsoft 365 admin center to their Microsoft Graph skuId and skuPartNumber properties, refer to the provided mapping information.
+For a list of license names in the Microsoft Entra or Microsoft 365 admin centers and their corresponding Microsoft Graph `skuId` and `skuPartNumber` properties, refer to the [mapping information](https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference).
 
 ## Examples
 
-### EXAMPLE 1: Gets a list of SKUs
+### Example 1: Gets a list of SKUs
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -56,16 +56,16 @@ Get-EntraAccountSku
 ```
 
 ```Output
-Id                                            AccountId                            AccountName   AppliesTo
---                                            ---------                            -----------   -------
-eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
+--                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSPRE…
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTERP…
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERP…
 ```
 
 This command returns a list of SKUs.
 
-### EXAMPLE 2: Gets a list of SKUs by TenantId
+### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -73,25 +73,27 @@ Get-EntraAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
 ```Output
-Id                                            AccountId                            AccountName   AppliesTo
---                                            ---------                            -----------   -------
-eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
+--                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSPRE…
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTERP…
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERP…
 ```
 
-This command returns a list of SKUs for a tenant.
+This command returns a list of SKUs for a specified tenant.
+
+- `-TenantId` parameter specifies the unique ID of the tenant.
 
 ## Parameters
 
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If this isn't provided then the value defaults to
-the tenant of the current user.
+If this isn't provided, then the value will default to the tenant of the current user.
+This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

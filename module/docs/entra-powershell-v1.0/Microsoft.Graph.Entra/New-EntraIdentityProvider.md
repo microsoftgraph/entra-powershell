@@ -21,22 +21,22 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to configure a new identity provider in the directory.
+Configure a new identity provider in the directory.
 
 ## Syntax
 
 ```powershell
-New-EntraIdentityProvider 
- -Type <String> 
- -ClientSecret <String> 
- -ClientId <String> 
+New-EntraIdentityProvider
+ -Type <String>
+ -ClientSecret <String>
+ -ClientId <String>
  [-Name <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet is used to configure an identity provider in the directory.
+The `New-EntraIdentityProvider` cmdlet is used to configure an identity provider in the directory.
 
 Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
 
@@ -77,6 +77,11 @@ LinkedIn-OAUTH LinkedInName
 ```
 
 This example adds a LinkedIn identity provider.
+
+- `-Type` parameter specifies the identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+- `-Name` parameter specifies the display name of the identity provider.
+- `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
+- `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
 ## Parameters
 

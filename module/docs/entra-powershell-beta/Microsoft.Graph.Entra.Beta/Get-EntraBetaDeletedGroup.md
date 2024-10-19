@@ -39,7 +39,7 @@ Get-EntraBetaDeletedGroup
 
 ```powershell
 Get-EntraBetaDeletedGroup
- -Id <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,11 +57,9 @@ Get-EntraBetaDeletedGroup
 
 ## Description
 
-This cmdlet is used to retrieve the soft deleted groups in a directory.
-When a group is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
-After 30 days the group is permanently deleted and can no longer be recovered.
-Note that soft delete is currently only implemented for Unified Groups (also known as
-Office 365 Groups).
+This cmdlet retrieves soft-deleted groups from a directory. When a group is deleted, it is soft deleted and can be recovered within 30 days. After 30 days, the group is permanently deleted and cannot be recovered.
+
+Please note that soft delete currently applies only to Unified Groups (also known as Office 365 Groups).
 
 ## Examples
 
@@ -150,11 +148,11 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
 
-### Example 6: Get deleted group by Id
+### Example 6: Get deleted group by GroupId
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraBetaDeletedGroup -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -163,9 +161,9 @@ DisplayName Id                                   MailNickname Description GroupT
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves the deleted group specified by Id.
+This cmdlet retrieves the deleted group specified by GroupId.
 
-- `-Id` parameter specifies the deleted group ID.
+- `-GroupId` parameter specifies the deleted group ID.
 
 ## Parameters
 
@@ -187,7 +185,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -202,14 +200,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
-The Id of the deleted group to be retrieved.
+The GroupId of the deleted group to be retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

@@ -2,6 +2,7 @@
 title: Get-EntraBetaApplicationProxyConnector
 description: This article provides details on the Get-EntraBetaApplicationProxyConnector command.
 
+
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru
@@ -28,27 +29,27 @@ The `Get-EntraBetaApplicationProxyConnector` cmdlet a list of all connectors, or
 
 ```powershell
 Get-EntraBetaApplicationProxyConnector
- [-All] 
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-All]
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
 ### GetVague
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ [-SearchString <String>]
+ [-All]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- -Id <String> 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ -OnPremisesPublishingProfileId <String>
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -67,13 +68,9 @@ Get-EntraBetaApplicationProxyConnector
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-externalIp                     18.140.241.94
-machineName                    AppProxy Machine
-version                        1.5.3437.0
-status                         active
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command Retrieve all connectors.
@@ -82,23 +79,18 @@ This command Retrieve all connectors.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnector -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaApplicationProxyConnector -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-@odata.context                 https://graph.microsoft.com/beta/$metadata#onPrem...
-externalIp                     18.140.241.94
-version                        0.0
-machineName                    AppProxy Machine
-status                         active
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to Retrieve information for a specific connector.
 
-- `Id` parameter specifies the connector ID.
+- `OnPremisesPublishingProfileId` parameter specifies the connector ID.
 
 ### Example 3: Retrieve information for a top one connector
 
@@ -108,13 +100,9 @@ Get-EntraBetaApplicationProxyConnector -Top 1
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-externalIp                     18.140.241.94
-machineName                    AppProxy Machine
-version                        1.5.3437.0
-status                         active
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to Retrieve information for a top one connector.
@@ -127,13 +115,9 @@ Get-EntraBetaApplicationProxyConnector -SearchString 'Entra PowerShell AppProxy 
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-externalIp                     18.140.241.94
-machineName                    Entra PowerShell AppProxy Connector
-version                        1.5.3437.0
-status                         active
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to Retrieve information using SearchString.
@@ -146,13 +130,9 @@ Get-EntraBetaApplicationProxyConnector -Filter "machineName eq 'AppProxy Machine
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-externalIp                     18.140.241.94
-machineName                    AppProxy Machine
-version                        1.5.3437.0
-status                         active
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to Retrieve information using machineName property.
@@ -177,7 +157,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 Details on querying with oData can be found here: <https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
 
@@ -193,7 +173,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -OnPremisesPublishingProfileId
 
 The ID of the specific connector.
 You can find this ID by running the command without this parameter to get the desired ID, or by going into the portal and viewing connector details.
@@ -201,7 +181,7 @@ You can find this ID by running the command without this parameter to get the de
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

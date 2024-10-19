@@ -2,7 +2,7 @@
     "guid": "742dccd1-bf4b-46a0-a3f2-14e0bb508233",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Entra PowerShell",
+    "description": "Microsoft Entra PowerShell v1.0: Microsoft Entra PowerShell is a scenario-driven module that allows administrators to efficiently manage Entra ID resources, including users, groups, applications, and policies, among others",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Users",
@@ -12,7 +12,8 @@
       "Microsoft.Graph.Identity.DirectoryManagement", 
       "Microsoft.Graph.Identity.Governance", 
       "Microsoft.Graph.Identity.SignIns",
-      "Microsoft.Graph.Applications"
+      "Microsoft.Graph.Applications",
+      "Microsoft.Graph.Reports"
     ],
     "requiredModulesVersion": "2.15.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
@@ -29,6 +30,6 @@
       "Entra"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
-    "version": "0.12.0",
+    "version": "0.18.0",
     "Prerelease": "preview"
   }

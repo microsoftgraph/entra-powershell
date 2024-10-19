@@ -7,10 +7,23 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Value,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $CustomKeyIdentifier,
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $StartDate,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $EndDate
+    )
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         $body=@{}
 
         if($null -ne $PSBoundParameters["StartDate"])
@@ -25,9 +38,9 @@
         {
             $body["displayName"] = $PSBoundParameters["CustomKeyIdentifier"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ApplicationId"])
         {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {

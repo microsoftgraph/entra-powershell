@@ -39,7 +39,7 @@ Get-EntraContract
 
 ```powershell
 Get-EntraContract
- -ObjectId <String>
+ -ContractId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -55,12 +55,11 @@ The contract object contains the following attributes:
 
 Possible values are:  
 
-++ "SyndicationPartner", which indicates a partner that exclusively resells and manages O365 and Intune for this customer.
+1. SyndicationPartner - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
 They resell and support their customers.
-++ "BreadthPartner", which indicates that the partner has the ability to provide administrative support for this customer.
+1. BreadthPartner - indicates that the partner has the ability to provide administrative support for this customer.
 However the partner isn't allowed to resell to the customer.
-++ "ResellerPartner", which indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant.
-In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
+1. ResellerPartner - indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
 
 - `customerContextId` - unique identifier for the customer tenant referenced by this partnership.
 
@@ -78,11 +77,11 @@ It isn't automatically updated if the customer tenant's display name changes.
 
 - `objectType` - a string that identifies the object type. The value is always `Contract`.
 
-- `ObjectId` - the unique identifier for the partnership.
+- `ContractId` - the unique identifier for the partnership.
 
 ## Examples
 
-### Example 1: Get all contracts
+### Example 1: Get all contracts in the directory
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -90,6 +89,15 @@ Get-EntraContract
 ```
 
 This command gets all contracts in the Microsoft Entra ID.
+
+### Example 2: Get top two contracts in the directory
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraContract -Top 2
+```
+
+This command gets top two contracts in the Microsoft Entra ID.
 
 ## Parameters
 
@@ -126,14 +134,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ContractId
 
 Specifies the ID of a contract.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -160,7 +168,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

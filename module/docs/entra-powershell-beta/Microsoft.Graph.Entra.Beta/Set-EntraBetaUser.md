@@ -1,10 +1,9 @@
 ---
-title: Set-EntraBetaUser.
+title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
 
-
 ms.topic: reference
-ms.date: 06/21/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,97 +24,153 @@ Updates a user.
 ## Syntax
 
 ```powershell
-Set-EntraBetaUser 
- -ObjectId <String> 
- [-PostalCode <String>] 
- [-MailNickName <String>] 
+Set-EntraBetaUser
+ -UserId <String>
+ [-PostalCode <String>]
+ [-MailNickName <String>]
  [-ShowInAddressList <Boolean>]
- [-Department <String>] 
- [-DisplayName <String>] 
- [-Mobile <String>] 
+ [-Department <String>]
+ [-DisplayName <String>]
+ [-Mobile <String>]
  [-JobTitle <String>]
- [-ConsentProvidedForMinor <String>] 
- [-OtherMails <System.Collections.Generic.List`1[System.String]>] 
+ [-ConsentProvidedForMinor <String>]
+ [-OtherMails <System.Collections.Generic.List`1[System.String]>]
  [-PasswordPolicies <String>]
  [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-PreferredLanguage <String>] 
- [-ImmutableId <String>] 
+ [-PreferredLanguage <String>]
+ [-ImmutableId <String>]
  [-City <String>]
  [-AgeGroup <String>]
  [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-UsageLocation <String>] 
- [-State <String>] 
- [-AccountEnabled <Boolean>] 
+ [-UsageLocation <String>]
+ [-State <String>]
+ [-AccountEnabled <Boolean>]
  [-Country <String>]
- [-UserPrincipalName <String>] 
- [-GivenName <String>] 
- [-PasswordProfile <PasswordProfile>] 
+ [-UserPrincipalName <String>]
+ [-GivenName <String>]
+ [-PasswordProfile <PasswordProfile>]
  [-UserType <String>]
- [-StreetAddress <String>] 
- [-CompanyName <String>] 
- [-Surname <String>] 
- [-TelephoneNumber <String>] 
- [-CreationType <String>] 
+ [-StreetAddress <String>]
+ [-CompanyName <String>]
+ [-Surname <String>]
+ [-TelephoneNumber <String>]
+ [-CreationType <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `ObjectId` parameter to update a user in Microsoft Entra ID.
+The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraBetaUser -ObjectId 'TestUser@example.com' 
-$user.DisplayName = 'YetAnotherTestUser' 
-Set-EntraUser -ObjectId 'TestUser@example.com' -Displayname $user.Displayname
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$params = @{
+   UserId = $user.ObjectId
+   DisplayName = 'Updated user Name'
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's Display name parameter.
 
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -AccountEnabled $true
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+$params = @{
+   UserId = 'SawyerM@contoso.com'
+   AccountEnabled = $true
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's AccountEnabled parameter.
 
-### Example 3: Set all but specified user's ConsentProvidedForMinor parameter
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-AccountEnabled` Specifies whether the account is enabled.
+
+### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-Get-EntraBetaUser -Top 1  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | ForEach-Object  { Set-EntraBetaUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+ForEach-Object  { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
 
-### Example 4: Set the specified user's parameter
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-ConsentProvidedForMinor` Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
+
+### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -City 'Add city name' -CompanyName 'Microsoft' -ConsentProvidedForMinor 'Granted' -Country 'Add country name' -Department 'Add department name' -GivenName 'Mircosoft' -ImmutableId '#1' -JobTitle 'Manager' -MailNickName 'Add mailnickname' -Mobile '9984534564' -OtherMails 'test12@M365x99297270.OnMicrosoft.com' -PasswordPolicies 'DisableStrongPassword' -State 'UP' -StreetAddress 'Add address' -UserType 'Member'
+Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+$params = @{
+   UserId = 'SawyerM@contoso.com'
+   City = 'Add city name'
+   CompanyName = 'Microsoft'
+   Country = 'Add country name'
+   Department = 'Add department name'
+   GivenName = 'Mircosoft'
+   ImmutableId = '#1' 
+   JobTitle = 'Manager'
+   MailNickName = 'Add mailnickname'
+   Mobile = '9984534564'
+   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
+   PasswordPolicies = 'DisableStrongPassword'
+   State = 'UP'
+   StreetAddress = 'Add address'
+   UserType = 'Member'
+}
+Set-EntraBetaUser @params
 ```
 
-This example updates the specified user's parameter.
+This example updates the specified user's property.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-UserType` classify user types in your directory, such as "Member" and "Guest."
+- `-PasswordPolicies` Specifies password policies for the user.
+- `-OtherMails` Specifies other email addresses for the user
 
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-$a = @{
-   Password= "*****"
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$params= @{
+UserId = 'SawyerM@contoso.com'
+PasswordProfile  = @{
+   Password= '*****'
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
    }
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -PasswordProfile $a
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-PasswordProfile` specifies the user's password profile.
+
+### Example 6: Set user's usage location for license assignment
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
+```
+
+This example updates the specified user's Usage Location for license management.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+- `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
 
 ## Parameters
 
@@ -220,7 +275,7 @@ Accept wildcard characters: False
 
 ### -ExtensionProperty
 
-Add data to custom user properties as the basic open extensions or the more versatile schema extensions. 
+Add data to custom user properties as the basic open extensions or the more versatile schema extensions.
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
@@ -252,7 +307,9 @@ Accept wildcard characters: False
 
 ### -ImmutableId
 
-This property is used to associate an on-premises Active Directory user account to their Microsoft Entra ID user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName property. Important: The $ and _ characters can't be used to when specifying this property.
+This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
+
+Important: Do not use the $ and _ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -314,14 +371,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -367,7 +424,7 @@ Accept wildcard characters: False
 Specifies the user's password profile.
 
 ```yaml
-Type: System.PasswordProfile
+Type: PasswordProfile
 Parameter Sets: (All)
 Aliases:
 
@@ -556,7 +613,7 @@ Accept wildcard characters: False
 
 ### -AgeGroup
 
-Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. Refer to the [legal age group property definitions][Learn more about age group and minor consent definitions].
+Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. See, [legal-age-group](https://learn.microsoft.com/graph/api/resources/user#legal-age-group-property-definitions).
 
 ```yaml
 Type: System.String

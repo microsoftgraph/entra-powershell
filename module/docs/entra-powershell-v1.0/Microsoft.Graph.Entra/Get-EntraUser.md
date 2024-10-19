@@ -49,7 +49,7 @@ Get-EntraUser
 
 ```powershell
 Get-EntraUser
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,7 +57,7 @@ Get-EntraUser
 
 ## Description
 
-The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
+The `Get-EntraUser` cmdlet gets a user from Microsoft Entra ID.
 
 ## Examples
 
@@ -68,7 +68,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Top 3
 ```
 
-```output
+```Output
 DisplayName      Id                                   Mail                  UserPrincipalName
 -----------      --                                   ----                  -----------------
 Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
@@ -82,16 +82,18 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
+Get-EntraUser -UserId 'SawyerM@contoso.com'
 ```
 
-```output
-DisplayName      Id                                   Mail                  UserPrincipalName
------------      --                                   ----                  -----------------
-Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
+```Output
+DisplayName Id                                   Mail                                 UserPrincipalName
+----------- --                                   ----                                 -----------------
+Sawyer Miller bbbbbbbb-1111-2222-3333-cccccccccccc sawyerm@tenant.com sawyerm@tenant.com
 ```
 
-This example demonstrates how to retrieve specific user by providing ID.
+This command gets the specified user.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ### Example 3: Search among retrieved users
 
@@ -100,11 +102,11 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -SearchString 'New'
 ```
 
-```output
-ObjectId                             DisplayName UserPrincipalName                   UserType
---------                             ----------- -----------------                   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
-dddddddd-9999-0000-1111-eeeeeeeeeeee New Test user    NewTestUser@contoso.com Member
+```Output
+DisplayName        Id                                   Mail UserPrincipalName
+-----------        --                                   ---- -----------------
+New User88         bbbbbbbb-1111-2222-3333-cccccccccccc      demo99@tenant.com
+New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 ```
 
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName.
@@ -113,16 +115,16 @@ This cmdlet gets all users that match the value of SearchString against the firs
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
+Get-EntraUser -Filter "userPrincipalName eq 'SawyerM@contoso.com'"
 ```
 
-```output
-ObjectId                             DisplayName UserPrincipalName                   UserType
---------                             ----------- -----------------                   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
+```Output
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+Sawyer Miller    cccccccc-2222-3333-4444-dddddddddddd      SawyerM@contoso.com
 ```
 
-In this example, we retrieve user by `UserPrincipalName` from Microsoft Entra ID.
+This command gets the specified user.
 
 ### Example 5: Get a user by MailNickname
 
@@ -131,7 +133,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
-```output
+```Output
 DisplayName     Id                                   Mail                                UserPrincipalName
 -----------     --                                   ----                                -----------------
 Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.com
@@ -143,19 +145,167 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraUser -Top 1  -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
-```output
-lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa 
-lastNonInteractiveSignInDateTime  : 7/31/2024 1:20:28 PM
-lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-cccccccccccc 
-lastSignInDateTime                : 7/31/2024 8:18:35 AM
-lastSignInRequestId               : bbbbbbbb-1111-2222-3333-dddddddddddd 
-lastSuccessfulSignInDateTime      : 7/31/2024 1:20:28 PM
+```Output
+lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+lastSignInRequestId               : cccccccc-2222-3333-4444-dddddddddddd
+lastSuccessfulSignInDateTime      : 9/9/2024 1:12:13 PM
+lastNonInteractiveSignInDateTime  : 9/9/2024 1:12:13 PM
+lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+lastSignInDateTime                : 9/7/2024 9:15:41 AM
 ```
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
+
+### Example 7: List users with disabled accounts
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraUser -Filter "accountEnabled eq false" | Select-Object DisplayName, Id, Mail, UserPrincipalName
+```
+
+```Output
+DisplayName        Id                                   Mail UserPrincipalName
+-----------        --                                   ---- -----------------
+New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
+```
+
+This example demonstrates how to retrieve all users with disabled accounts.
+
+### Example 8: List users based in a specific country
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$usersInCanada = Get-EntraUser -Filter "Country eq 'Canada'"
+$usersInCanada | Select-Object Id, DisplayName, UserPrincipalName, OfficeLocation, Country | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName   UserPrincipalName         OfficeLocation   Country
+--                                   -----------   -----------------         --------------   -------
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/2102          Canada
+```
+
+This example demonstrates how to retrieve all users based in Canada.
+
+### Example 9: List user count per department
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$departmentCounts = Get-EntraUser -All | Group-Object -Property Department | Select-Object Name, @{Name="MemberCount"; Expression={$_.Count}}
+$departmentCounts | Format-Table Name, MemberCount -AutoSize
+```
+
+```Output
+Name                 MemberCount
+----                 -----------
+                               7
+Engineering                    2
+Executive Management           1
+Finance                        1
+HR                             1
+```
+
+This example demonstrates how to retrieve user count in each department.
+
+### Example 10: List disabled users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$disabledUsersWithLicenses = Get-EntraUser -Filter "accountEnabled eq false" -All | Where-Object {
+    $_.AssignedLicenses -ne $null -and $_.AssignedLicenses.Count -gt 0
+}
+$disabledUsersWithLicenses | Select-Object Id, DisplayName, UserPrincipalName, AccountEnabled | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName           AccountEnabled
+--                                   -----------  -----------------           --------------
+cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com          False
+```
+
+This example demonstrates how to retrieve disabled users with active licenses.
+
+### Example 11: Retrieve guest users with active licenses
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraUser -Filter "userType eq 'Guest'" -All
+$guestUsersWithLicenses = foreach ($guest in $guestUsers) {
+    if ($guest.AssignedLicenses.Count -gt 0) {
+        [pscustomobject]@{
+            Id               = $guest.Id
+            DisplayName      = $guest.DisplayName
+            UserPrincipalName = $guest.UserPrincipalName
+            AssignedLicenses = ($guest.AssignedLicenses | ForEach-Object { $_.SkuId }) -join ", "
+        }
+    }
+}
+$guestUsersWithLicenses | Format-Table Id, DisplayName, UserPrincipalName, AssignedLicenses -AutoSize
+```
+
+```Output
+Id                                   DisplayName  UserPrincipalName                                  AssignedLicenses
+--                                   -----------  -----------------                                  ----------------
+cccccccc-2222-3333-4444-dddddddddddd Sawyer Miller sawyerm_gmail.com#EXT#@contoso.com c42b9cae-ea4f-4ab7-9717-81576235ccac
+```
+
+This example demonstrates how to retrieve guest users with active licenses.
+
+### Example 12: Retrieve users without managers
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$allUsers = Get-EntraUser -All
+$usersWithoutManagers = foreach ($user in $allUsers) {
+    $manager = Get-EntraUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
+    if (-not $manager) {
+        [pscustomobject]@{
+            Id               = $user.Id
+            DisplayName      = $user.DisplayName
+            UserPrincipalName = $user.UserPrincipalName
+        }
+    }
+}
+$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName -AutoSize
+```
+
+```Output
+Id                                   DisplayName     UserPrincipalName
+--                                   -----------     -----------------
+cccccccc-2222-3333-4444-dddddddddddd  New User       NewUser@tenant.com
+bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
+```
+
+This example demonstrates how to retrieve users without managers.
+
+### Example 13: List failed sign-ins for a user
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$failedSignIns = Get-EntraAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
+$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
+```
+
+This example demonstrates how to retrieve failed sign-ins for a user.
+
+### Example 14: List all guest users
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$guestUsers = Get-EntraUser -Filter "userType eq 'Guest'" -All
+$guestUsers | Select-Object DisplayName, UserPrincipalName, Id, createdDateTime, creationType, accountEnabled, UserState | Format-Table -AutoSize
+```
+
+```Output
+DisplayName     UserPrincipalName                                 Id                                   CreatedDateTime       CreationType   AccountEnabled  UserState
+-----------     -----------------                                 --                                   ---------------       ------------   --------------  ---------
+Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-2222-3333-cccccccccccc 9/13/2024 6:37:33 PM  Invitation     True            Accepted
+```
+
+This example demonstrates how to retrieve list all guest users.
 
 ## Parameters
 
@@ -179,7 +329,7 @@ Accept wildcard characters: False
 
 Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
-Details on querying with oData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
+Details on querying with OData can be [found here](https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell).
 
 ```yaml
 Type: System.String
@@ -193,14 +343,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name (UPN) or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -215,7 +365,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -243,7 +393,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

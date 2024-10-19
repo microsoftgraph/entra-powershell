@@ -1,5 +1,5 @@
 ---
-title: Test-EntraScript.
+title: Test-EntraScript
 description: This article provides details on the Test-EntraScript command.
 
 
@@ -20,21 +20,21 @@ schema: 2.0.0
 
 ## Synopsis
 
-Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Syntax
 
 ```powershell
-Test-EntraScript 
- -Path <String[]> 
- [-Content <String>] 
- [-Quiet] 
+Test-EntraScript
+ -Path <String[]>
+ [-Content <String>]
+ [-Quiet]
  [<CommonParameters>]
 ```
 
 ## Description
 
-Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Examples
 
@@ -52,13 +52,13 @@ Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.En
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
-Returns a list of all scripts that would not run under the Microsoft.Graph.Entra module, listing each issue with line and code.
+Returns a list of all scripts that wouldn't run under the Microsoft.Graph.Entra module, listing each issue with line and code.
 
 ## Parameters
 
 ### -Path
 
-Path to the script file(s) to scan.
+Path to one or more script files to scan.
 Or name of the content, when also specifying -Content
 
 ```yaml
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ### -Content
 
 Code content to scan.
-Used when scanning code that has no file representation (e.g.
+Used when scanning code that has no file representation (for example,
 straight from a repository).
 
 ```yaml
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 
 ### -Quiet
 
-Only return $true or $false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($false)
+Only return $true or $ false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($ false)
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
