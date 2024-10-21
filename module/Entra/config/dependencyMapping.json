@@ -1,0 +1,3 @@
+{
+    "Microsoft.Graph.Entra.Users":["Microsoft.Graph.Users,Microsoft.Graph.Authentication"]
+}
