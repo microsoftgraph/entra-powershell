@@ -187,8 +187,28 @@ Set-StrictMode -Version 5
         # Define module name based on sub-directory name
         $moduleName = $subDir.Name
 
+        $helpFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName-help.xml"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
+        }
+		
+		
+        $manifestFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName.psd1"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName.psd1"
+        }
+
+       
+        $moduleFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName.psm1"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName.psm1"
+        }
+
         # Log the start of processing for this module
-        Write-Host "[EntraModuleBuilder] Processing module: $moduleName" -ForegroundColor Blue
+        Write-Host "[EntraModuleBuilder] Processing module: $moduleFileName" -ForegroundColor Blue
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
@@ -200,8 +220,9 @@ Set-StrictMode -Version 5
             Prerelease = $null
         }
 
+
         # Set the manifest path and functions to export
-        $manifestPath = Join-Path $this.OutputDirectory "$moduleName.psd1"
+        $manifestPath = Join-Path $this.OutputDirectory "$manifestFileName"
 
         # Check if the specified directory exists
        if (-Not (Test-Path -Path $subDir)) {
@@ -232,25 +253,7 @@ Set-StrictMode -Version 5
         }
 
        
-        $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName-help.xml"
-        } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
-        }
-		
-		
-        $manifestFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName.psd1"
-        } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName.psd1"
-        }
-
-       
-        $moduleFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName.psm1"
-        } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName.psm1"
-        }
+        
 
         # Module manifest settings
         $moduleSettings = @{
