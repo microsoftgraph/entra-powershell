@@ -5,6 +5,10 @@
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
+    [string] BasePath
+    [string] OutputDirectory
+    [string] TypeDefsDirectory
+    [string] BaseDocsPath
 
     EntraModuleBuilder() {
         $this.headerText = @"
@@ -151,8 +155,8 @@ Set-StrictMode -Version 5
     $subDirectories = Get-ChildItem -Path $BasePath -Directory
 
     # Update paths specific to this sub-directory
-    $settingPath = Join-Path $subDir.FullName "config/ModuleMetadata.json"
-    $dependencyMappingPath = Join-Path $subDir.FullName "config/dependencyMapping.json"
+    $settingPath = "../module/"+$module+"config/ModuleMetadata.json"
+    $dependencyMappingPath = "../module/"+$module+"config/dependencyMapping.json"
 
     # Load the module metadata
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
