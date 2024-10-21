@@ -1,16 +1,24 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+#This function uses the moduleMapping.json to split the docs to subdirectories
+
 function Get-DirectoryFileMap {
     param (
-        [string]$Source = 'Entra',  # Default to 'Entra'
-        [string]$OutputDirectory
+        [string]$Source = 'Entra' # Default to 'Entra'
+     
     )
 
-    # Determine the root directory based on the Source parameter
+    # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
             $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra"
+            $OutputDirectory='../module/Entra/config/'
         }
         'EntraBeta' {
-            $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra.Beta"
+            $RootDirectory = "./entra-powershell/module/EntraBeta/Microsoft.Graph.Entra.Beta"
+            $OutputDirectory="../module/EntraBeta/config/"
         }
         default {
             throw "Invalid Source specified. Use 'Entra' or 'EntraBeta'."
@@ -55,6 +63,5 @@ function Get-DirectoryFileMap {
 }
 
 # Usage example:
-$outputDir = "C:\Users\enganga\Entra\"
-Get-DirectoryFileMap -Source 'Entra' -OutputDirectory $outputDir  # For Entra
+Get-DirectoryFileMap -Source 'Entra'
 

@@ -1,10 +1,28 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+#This function copies the docs using the moduleMapping.json into their submodule directories
+
 function Copy-MarkdownFilesFromMapping {
     param (
-        [string]$Source = 'Entra',  # Default to 'Entra'
-        [string]$MappingFilePath = "./moduleMapping.json",  # Path to moduleMapping.json
-        [string]$DocsRootDirectory  # Output root directory to copy .md files into
+        [string]$Source = 'Entra'  # Default to 'Entra'
     )
 
+
+   switch ($Source) {
+        'Entra' {
+            $DocsRootDirectory = "../module/docs/Entra/Microsoft.Graph.Entra"
+            $MappingFilePath='../module/Entra/config/moduleMapping.json'
+        }
+        'EntraBeta' {
+            $DocsRootDirectory = "../module/docs/EntraBeta/Microsoft.Graph.Entra.Beta"
+            $OutputDirectory="../module/EntraBeta/config/"
+        }
+        default {
+            throw "Invalid Source specified. Use 'Entra' or 'EntraBeta'."
+        }
+    }
     # Check if the mapping file exists
     if (-not (Test-Path -Path $MappingFilePath -PathType Leaf)) {
         throw "Mapping file '$MappingFilePath' does not exist."
@@ -63,6 +81,4 @@ function Copy-MarkdownFilesFromMapping {
 }
 
 # Usage example:
-$mappingFile = "./moduleMapping.json"
-$outputDocsDir = "C:\Users\enganga\Entra\Split-Docs\"
-Copy-MarkdownFilesFromMapping -Source 'Entra' -MappingFilePath $mappingFile -DocsRootDirectory $outputDocsDir  # For Entra
+Copy-MarkdownFilesFromMapping -Source 'Entra'  # For Entra
