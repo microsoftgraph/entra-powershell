@@ -143,24 +143,32 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
     }
 
-    [void] CreateModuleManifest($module) {
+ [void] CreateModuleManifest($module) {
     # Get all subdirectories in the base path
-    $BasePath=$this.BasePath
-    $OutputFolder=$this.outputDirectory
+    $BasePath = $this.BasePath
+    $OutputFolder = $this.outputDirectory
 
     $subDirectories = Get-ChildItem -Path $BasePath -Directory
-    $settingPath = "../module/"+$module+"/config/ModuleMetadata.json"
+    
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
         $moduleName = $subDir.Name
 
         # Log the start of processing for this module
         Write-Host "[EntraModuleBuilder] Processing module: $moduleName" -ForegroundColor Blue
-
+        
         # Update paths specific to this sub-directory
-       
-        $files = @("$moduleName.psd1", "$moduleName.psm1", "$moduleName-Help.xml")
+        $settingPath = Join-Path $subDir.FullName "config/ModuleMetadata.json"
+        $dependencyMappingPath = Join-Path $subDir.FullName "config/dependencyMapping.json"
+
+        # Load the module metadata
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
+
+        # Load dependency mapping from JSON
+        $dependencyMapping = @{}
+        if (Test-Path $dependencyMappingPath) {
+            $dependencyMapping = Get-Content -Path $dependencyMappingPath | ConvertFrom-Json
+        }
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
@@ -175,11 +183,13 @@ Set-StrictMode -Version 5
         # Set the manifest path and functions to export
         $manifestPath = Join-Path $OutputFolder "$moduleName.psd1"
         $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
-        
-        # Collect required modules
+
+        # Collect required modules from dependency mapping
         $requiredModules = @()
-        foreach ($module in $content.requiredModules) {
-            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion}
+        if ($dependencyMapping.ContainsKey($moduleName)) {
+            foreach ($dependency in $dependencyMapping[$moduleName]) {
+                $requiredModules += @{ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion}
+            }
         }
 
         # Module manifest settings
@@ -192,7 +202,7 @@ Set-StrictMode -Version 5
             AliasesToExport = @()
             Author = $($content.authors)
             CompanyName = $($content.owners)
-            FileList = $files
+            FileList = @("$moduleName.psd1", "$moduleName.psm1", "$moduleName-Help.xml")
             RootModule = "$moduleName.psm1"
             Description = 'Microsoft Graph Entra PowerShell.'
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
@@ -219,6 +229,7 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] Manifest for $moduleName created successfully" -ForegroundColor Green
     }
 }
+
 
 
 [void] CreateModuleHelp([string] $Module) {
