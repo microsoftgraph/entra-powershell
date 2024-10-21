@@ -124,7 +124,7 @@ class EntraModuleSplitter {
         # Determine file paths and output directories
         $psm1FilePath = $this.GetModuleFilePath($Source)
         $outputDirectory = $this.GetOutputDirectory($Source)
-        $jsonFilePath = "..\module\mapping\moduleMapping.json"
+        $jsonFilePath = "..\module\"+$Source+"\config\moduleMapping.json"
 
         $this.CreateOutputDirectory($outputDirectory)
         $unmappedDirectory = Join-Path -Path $outputDirectory -ChildPath "UnMappedFiles"

@@ -149,6 +149,19 @@ Set-StrictMode -Version 5
     $OutputFolder = $this.outputDirectory
 
     $subDirectories = Get-ChildItem -Path $BasePath -Directory
+
+    # Update paths specific to this sub-directory
+    $settingPath = Join-Path $subDir.FullName "config/ModuleMetadata.json"
+    $dependencyMappingPath = Join-Path $subDir.FullName "config/dependencyMapping.json"
+
+    # Load the module metadata
+    $content = Get-Content -Path $settingPath | ConvertFrom-Json
+
+    # Load dependency mapping from JSON
+    $dependencyMapping = @{}
+    if (Test-Path $dependencyMappingPath) {
+        $dependencyMapping = Get-Content -Path $dependencyMappingPath | ConvertFrom-Json
+    }
     
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
@@ -156,19 +169,6 @@ Set-StrictMode -Version 5
 
         # Log the start of processing for this module
         Write-Host "[EntraModuleBuilder] Processing module: $moduleName" -ForegroundColor Blue
-        
-        # Update paths specific to this sub-directory
-        $settingPath = Join-Path $subDir.FullName "config/ModuleMetadata.json"
-        $dependencyMappingPath = Join-Path $subDir.FullName "config/dependencyMapping.json"
-
-        # Load the module metadata
-        $content = Get-Content -Path $settingPath | ConvertFrom-Json
-
-        # Load dependency mapping from JSON
-        $dependencyMapping = @{}
-        if (Test-Path $dependencyMappingPath) {
-            $dependencyMapping = Get-Content -Path $dependencyMappingPath | ConvertFrom-Json
-        }
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
