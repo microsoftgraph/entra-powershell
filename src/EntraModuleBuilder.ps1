@@ -188,9 +188,9 @@ Set-StrictMode -Version 5
         $moduleName = $subDir.Name
 
         $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName-help.xml"
+            "Microsoft.Graph.Entra.$moduleName-Help.xml"
         } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
+            "Microsoft.Graph.Entra.Beta.$moduleName-Help.xml"
         }
 		
 		
@@ -362,6 +362,5 @@ Set-StrictMode -Version 5
 
     Write-Host "[EntraModuleBuilder] Help files generated successfully for module: $Module" -ForegroundColor Green
 }
-
 
 }
