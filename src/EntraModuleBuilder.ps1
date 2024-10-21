@@ -262,8 +262,8 @@ Set-StrictMode -Version 5
             AliasesToExport = @()
             Author = $($content.authors)
             CompanyName = $($content.owners)
-            FileList = @("$manifestFileName.psd1", "$moduleFileName.psm1", "$helpFileName-help.xml")
-            RootModule = "$moduleFileName.psm1"
+            FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")
+            RootModule = "$moduleFileName"
             Description = 'Microsoft Graph Entra PowerShell.'
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
             PowerShellVersion = $([System.Version]::Parse('5.1'))
