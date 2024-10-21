@@ -209,7 +209,7 @@ class EntraModuleSplitter {
         $startDirectory = if ($Module -eq 'EntraBeta') {
             "..\module\Entra\Microsoft.Graph.Entra.Beta\"
         } else {
-            "..\module\EntraBeta\Entra-Modules\Microsoft.Graph.Entra\"
+            "..\module\EntraBeta\Microsoft.Graph.Entra\"
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {
