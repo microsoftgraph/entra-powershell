@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
@@ -124,7 +128,7 @@ Set-StrictMode -Version 5
         $parentDirPath = Get-Item $resolvedStartDirectory
         $parentDirName = $parentDirPath.Name
 
-        $destDirectory = Join-Path -Path (Get-Location) -ChildPath "dest"
+        $destDirectory = Join-Path -Path (Get-Location) -ChildPath "..\bin\"
         $this.EnsureDestinationDirectory($destDirectory)
 
         foreach ($subDir in $subDirectories) {
