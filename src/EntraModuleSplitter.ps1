@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 # This class splits the larger Microsoft.Graph.Entra.psm1 or Microsoft.Graph.Entra.Beta.psm1 into separate files and also constructrs the submodule directories
 class EntraModuleSplitter {
     [string]$Header
@@ -20,17 +24,17 @@ class EntraModuleSplitter {
 
     [string] GetModuleFilePath([string]$source) {
         if ($source -eq 'Entra') {
-            return ".\entra-powershell\bin\Microsoft.Graph.Entra.psm1"
+            return "..\bin\Microsoft.Graph.Entra.psm1"
         } else {
-            return ".\entra-powershell\bin\Microsoft.Graph.Entra.Beta.psm1"
+            return "..\bin\Microsoft.Graph.Entra.Beta.psm1"
         }
     }
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return ".\Entra-Modules"
+            return "..\module\Entra"
         } else {
-            return ".\Entra-BetaModules"
+            return "..\module\EntraBeta"
         }
     }
 
@@ -120,7 +124,7 @@ class EntraModuleSplitter {
         # Determine file paths and output directories
         $psm1FilePath = $this.GetModuleFilePath($Source)
         $outputDirectory = $this.GetOutputDirectory($Source)
-        $jsonFilePath = ".\key-value-pairs.json"
+        $jsonFilePath = "..\module\mapping\moduleMapping.json"
 
         $this.CreateOutputDirectory($outputDirectory)
         $unmappedDirectory = Join-Path -Path $outputDirectory -ChildPath "UnMappedFiles"
@@ -203,9 +207,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            ".\Entra-Modules\Microsoft.Graph.Entra.Beta\"
+            "..\module\Entra\Microsoft.Graph.Entra.Beta\"
         } else {
-            ".\Entra-Modules\Microsoft.Graph.Entra\"
+            "..\module\EntraBeta\Entra-Modules\Microsoft.Graph.Entra\"
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {
