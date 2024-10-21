@@ -147,7 +147,9 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
     }
 
- 
+ [void] CreateRootModule([string] $Module){
+     
+ }
 
  [void] CreateModuleManifest($module) {
   
@@ -252,9 +254,6 @@ Set-StrictMode -Version 5
             }
         }
 
-       
-        
-
         # Module manifest settings
         $moduleSettings = @{
             Path = $manifestPath
@@ -333,17 +332,18 @@ Set-StrictMode -Version 5
         # Generate the help file name based on the module and sub-directory
         $subDirectoryName = [System.IO.Path]::GetFileName($subDirectory.FullName)
 		Write-Host "SubDirName: $subDirectoryName" -ForegroundColor Blue
+
         $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$subDirectoryName-help.xml"
+            "Microsoft.Graph.Entra.$subDirectoryName-Help.xml"
         } else {
-            "Microsoft.Graph.Entra.Beta.$subDirectoryName-help.xml"
+            "Microsoft.Graph.Entra.Beta.$subDirectoryName-Help.xml"
         }
  
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
         $moduleDocsPath=$subDirectory
+
 		Write-Host "ModuleDocsPath: $moduleDocsPath" -ForegroundColor Blue
-		
 		Write-Host "HelpOutputPath: $helpOutputFilePath" -ForegroundColor Blue
 		
 		try{
@@ -352,8 +352,7 @@ Set-StrictMode -Version 5
 
         Write-Host "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -ForegroundColor Green
 			
-		}catch{
-			
+		}catch{			
 		    Write-Host "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -ForegroundColor Red
 		}
 
