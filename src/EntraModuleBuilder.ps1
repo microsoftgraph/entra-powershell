@@ -155,17 +155,33 @@ Set-StrictMode -Version 5
     $subDirectories = Get-ChildItem -Path $this.BasePath -Directory
 
     # Update paths specific to this sub-directory
-    $settingPath = "../module/"+$module+"config/ModuleMetadata.json"
-    $dependencyMappingPath = "../module/"+$module+"config/dependencyMapping.json"
+    $settingPath = "./config/ModuleMetadata.json"
+    $dependencyMappingPath = "./config/dependencyMapping.json"
 
     # Load the module metadata
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
     # Load dependency mapping from JSON
-    $dependencyMapping = @{}
+    # Check if the dependency mapping file exists and load it
     if (Test-Path $dependencyMappingPath) {
-        $dependencyMapping = Get-Content -Path $dependencyMappingPath | ConvertFrom-Json
+        # Read the JSON content
+        $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
+        
+        # Check if the JSON content is not null or empty
+        if (-not [string]::IsNullOrEmpty($jsonContent)) {
+            # Convert JSON to Hashtable
+            $dependencyMapping = @{}
+            $parsedContent = $jsonContent | ConvertFrom-Json
+            foreach ($key in $parsedContent.PSObject.Properties.Name) {
+                $dependencyMapping[$key] = $parsedContent.$key
+            }
+        } else {
+            Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
     }
+
     
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
@@ -188,22 +204,52 @@ Set-StrictMode -Version 5
         $manifestPath = Join-Path $this.OutputDirectory "$moduleName.psd1"
 
         # Check if the specified directory exists
-       if (-Not (Test-Path -Path $DirectoryPath)) {
-        Write-Error "The specified directory does not exist: $DirectoryPath"
-        return $null  # Return null if the directory does not exist
+       if (-Not (Test-Path -Path $subDir)) {
+        Write-Error "The specified directory does not exist: $subDir"
+        exit
        }
 
        # Get all files in the specified directory and its subdirectories, without extensions
-        $allFunctions = Get-ChildItem -Path $DirectoryPath -Recurse -File | ForEach-Object { $_.BaseName }
+        $allFunctions = Get-ChildItem -Path $subDir -Recurse -File | ForEach-Object { $_.BaseName }
 
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
         # Collect required modules from dependency mapping
         $requiredModules = @()
-        if ($dependencyMapping.ContainsKey($moduleName)) {
-            foreach ($dependency in $dependencyMapping[$moduleName]) {
-                $requiredModules += @{ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion}
+        if (Test-Path $dependencyMappingPath) {
+            $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
+            # Convert JSON to Hashtable
+            $dependencyMapping = @{}
+            foreach ($key in $jsonContent.PSObject.Properties.Name) {
+                $dependencyMapping[$key] = $jsonContent.$key
             }
+            
+            if ($dependencyMapping.ContainsKey($moduleName)) {
+                foreach ($dependency in $dependencyMapping[$moduleName]) {
+                    $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                }
+            }
+        }
+
+       
+        $helpFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName-help.xml"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
+        }
+		
+		
+        $manifestFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName.psd1"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName.psd1"
+        }
+
+       
+        $moduleFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$moduleName-help.xml"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
         }
 
         # Module manifest settings
@@ -216,7 +262,7 @@ Set-StrictMode -Version 5
             AliasesToExport = @()
             Author = $($content.authors)
             CompanyName = $($content.owners)
-            FileList = @("$moduleName.psd1", "$moduleName.psm1", "$moduleName-Help.xml")
+            FileList = @("$manifestFileName.psd1", "$moduleFileName.psm1", "$helpFileName-Help.xml")
             RootModule = "$moduleName.psm1"
             Description = 'Microsoft Graph Entra PowerShell.'
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
@@ -225,14 +271,14 @@ Set-StrictMode -Version 5
             RequiredModules = $requiredModules
             NestedModules = @()
         }
+		
 
         # Add prerelease info if it exists
         if ($null -ne $content.Prerelease) {
             $PSData.Prerelease = $content.Prerelease
         }
 
-        # Update any load message for this module if necessary
-        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
+        
 
         # Create and update the module manifest
         Write-Host "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath" -ForegroundColor Green
@@ -248,30 +294,29 @@ Set-StrictMode -Version 5
 
 [void] CreateModuleHelp([string] $Module) {
    
-    $binPath = $this.OutputDirectory
-    if (!(Test-Path $binPath)) {
-        New-Item -ItemType Directory -Path $binPath | Out-Null
+    if (!(Test-Path $this.OutputDirectory)) {
+        New-Item -ItemType Directory -Path $this.OutputDurectory | Out-Null
     }
 
     # Determine the base docs path based on the specified module
-    $baseDocsPath = $this.BaseDocsPath
+    $docsPath=$this.BaseDocsPath
     if ($Module -eq "Entra") {
-        $baseDocsPath = Join-Path -Path $baseDocsPath -ChildPath "entra-powershell-v1.0/Microsoft.Graph.Entra"
+        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-v1.0/Microsoft.Graph.Entra"
     } elseif ($Module -eq "EntraBeta") {
-        $baseDocsPath = Join-Path -Path $baseDocsPath -ChildPath "entra-powershell-beta/Microsoft.Graph.Entra.Beta"
+        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta/Microsoft.Graph.Entra.Beta"
     } else {
         Write-Host "Invalid module specified: $Module" -ForegroundColor Red
         return
     }
 
     # Check if the base docs path exists
-    if (!(Test-Path $baseDocsPath)) {
-        Write-Host "The specified base documentation path does not exist: $baseDocsPath" -ForegroundColor Red
+    if (!(Test-Path $docsPath)) {
+        Write-Host "The specified base documentation path does not exist: $docsPath" -ForegroundColor Red
         return
     }
 
     # Get all subdirectories within the base docs path
-    $subDirectories = Get-ChildItem -Path $baseDocsPath -Directory
+    $subDirectories = Get-ChildItem -Path $docsPath -Directory
     foreach ($subDirectory in $subDirectories) {
         # Get all markdown files in the current subdirectory
         $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
@@ -289,9 +334,9 @@ Set-StrictMode -Version 5
             "Microsoft.Graph.Entra.Beta.$subDirectoryName-help.xml"
         }
 
-        $helpOutputFilePath = Join-Path -Path $binPath -ChildPath $helpFileName
+        $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
-        $moduleDocsPath=Join-Path -Path $baseDocsPath -ChildPath $subDirectory
+        $moduleDocsPath=Join-Path -Path $docsPath -ChildPath $subDirectory
 
         # Create the help file using PlatyPS
         New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
@@ -304,4 +349,3 @@ Set-StrictMode -Version 5
 
 
 }
-
