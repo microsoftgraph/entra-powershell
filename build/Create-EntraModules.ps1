@@ -4,13 +4,14 @@ param (
 
 # Import the necessary scripts
 . ..\src\EntraModuleSplitter.ps1
-. ..\src\EntraModuleBuilder.ps1
+
 
 # Split the module and take into account the AzureADAliases as well
 $entraModuleSplitter = [EntraModuleSplitter]::new()
 $entraModuleSplitter.SplitEntraModule($Module)  # Pass the module argument
 $entraModuleSplitter.ProcessEntraAzureADAliases($Module)
 
+. ..\src\EntraModuleBuilder.ps1
 # Build Entra Module
 $moduleBuilder = [EntraModuleBuilder]::new()
 
