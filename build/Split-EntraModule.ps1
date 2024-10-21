@@ -7,7 +7,7 @@ $entraModuleSplitter.SplitEntraModule('Entra')  # or 'EntraBeta'
 $entraModuleSplitter.ProcessEntraAzureADAliases('Entra')
 
 #Build the .psm1 file, 
-#TODO: Generate help-xml
-#TODO: Generate the .psd1
+#TODO: Generate help-xml file
+#TODO: Generate the .psd1 file
 $moduleBuilder = [EntraModuleBuilder]::new()
 $moduleBuilder.CreateSubModuleFile("..\module\Entra\Microsoft.Graph.Entra\", ".\Typedefs.txt")
