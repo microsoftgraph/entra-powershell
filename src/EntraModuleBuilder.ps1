@@ -264,16 +264,14 @@ Set-StrictMode -Version 5
             "Microsoft.Graph.Entra.Beta.$subDirectoryName-help.xml"
         }
 
-        $helpFilePath = Join-Path -Path $binPath -ChildPath $helpFileName
+        $helpOutputFilePath = Join-Path -Path $binPath -ChildPath $helpFileName
 
-        # Combine all markdown file contents into one for generating the help file
-        $markdownContent = $markdownFiles | ForEach-Object { Get-Content -Path $_.FullName }
-        $markdownCombined = $markdownContent -join "`n"
-
+        $moduleDocsPath=Join-Path -Path $baseDocsPath -ChildPath $subDirectory
+        
         # Create the help file using PlatyPS
-        New-ExternalHelp -Path $helpFilePath -Content $markdownCombined -Force
+        New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
-        Write-Host "[EntraModuleBuilder] Help file generated: $helpFilePath" -ForegroundColor Green
+        Write-Host "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -ForegroundColor Green
     }
 
     Write-Host "[EntraModuleBuilder] Help files generated successfully for module: $Module" -ForegroundColor Green
