@@ -5,10 +5,10 @@
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
-    [string] BasePath
-    [string] OutputDirectory
-    [string] TypeDefsDirectory
-    [string] BaseDocsPath
+    [string]$BasePath
+    [string]$OutputDirectory
+    [string]$TypeDefsDirectory
+    [string]$BaseDocsPath
 
     EntraModuleBuilder() {
         $this.headerText = @"
@@ -147,12 +147,12 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
     }
 
- [void] CreateModuleManifest($module) {
-    # Get all subdirectories in the base path
-    $BasePath = $this.BasePath
-    $OutputFolder = $this.outputDirectory
+ 
 
-    $subDirectories = Get-ChildItem -Path $BasePath -Directory
+ [void] CreateModuleManifest($module) {
+  
+
+    $subDirectories = Get-ChildItem -Path $this.BasePath -Directory
 
     # Update paths specific to this sub-directory
     $settingPath = "../module/"+$module+"config/ModuleMetadata.json"
@@ -185,8 +185,18 @@ Set-StrictMode -Version 5
         }
 
         # Set the manifest path and functions to export
-        $manifestPath = Join-Path $OutputFolder "$moduleName.psd1"
-        $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
+        $manifestPath = Join-Path $this.OutputDirectory "$moduleName.psd1"
+
+        # Check if the specified directory exists
+       if (-Not (Test-Path -Path $DirectoryPath)) {
+        Write-Error "The specified directory does not exist: $DirectoryPath"
+        return $null  # Return null if the directory does not exist
+       }
+
+       # Get all files in the specified directory and its subdirectories, without extensions
+        $allFunctions = Get-ChildItem -Path $DirectoryPath -Recurse -File | ForEach-Object { $_.BaseName }
+
+        $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
         # Collect required modules from dependency mapping
         $requiredModules = @()
