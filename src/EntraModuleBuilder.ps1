@@ -17,6 +17,8 @@ Set-StrictMode -Version 5
 
     $this.BasePath = (join-path $PSScriptRoot '../module/Entra/') 
     $this.OutputDirectory = (join-path $PSScriptRoot '../bin/') 
+    $this.TypeDefsDirectory="./Typedefs.txt"
+    $this.BaseDocsPath='../docs/'
     }
 
     [string] ResolveStartDirectory([string]$directory) {
@@ -110,7 +112,7 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] Module file created: $psm1FilePath" -ForegroundColor Green
     }
 
-    [void] CreateSubModuleFile([string]$startDirectory, [string]$typedefsFilePath) {
+    [void] CreateSubModuleFile([string]$startDirectory, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         Write-Host "[EntraModuleBuilder] Starting CreateSubModuleFile script..." -ForegroundColor Green
 
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
@@ -131,7 +133,7 @@ Set-StrictMode -Version 5
         $parentDirPath = Get-Item $resolvedStartDirectory
         $parentDirName = $parentDirPath.Name
 
-        $destDirectory = Join-Path -Path (Get-Location) -ChildPath "..\bin\"
+        $destDirectory = Join-Path -Path (Get-Location) -ChildPath $this.OutputDirectory
         $this.EnsureDestinationDirectory($destDirectory)
 
         foreach ($subDir in $subDirectories) {
@@ -218,6 +220,64 @@ Set-StrictMode -Version 5
     }
 }
 
+
+[void] CreateModuleHelp([string] $Module) {
+   
+    $binPath = $this.OutputDirectory
+    if (!(Test-Path $binPath)) {
+        New-Item -ItemType Directory -Path $binPath | Out-Null
+    }
+
+    # Determine the base docs path based on the specified module
+    $baseDocsPath = $this.BaseDocsPath
+    if ($Module -eq "Entra") {
+        $baseDocsPath = Join-Path -Path $baseDocsPath -ChildPath "entra-powershell-v1.0/Microsoft.Graph.Entra"
+    } elseif ($Module -eq "EntraBeta") {
+        $baseDocsPath = Join-Path -Path $baseDocsPath -ChildPath "entra-powershell-beta/Microsoft.Graph.Entra.Beta"
+    } else {
+        Write-Host "Invalid module specified: $Module" -ForegroundColor Red
+        return
+    }
+
+    # Check if the base docs path exists
+    if (!(Test-Path $baseDocsPath)) {
+        Write-Host "The specified base documentation path does not exist: $baseDocsPath" -ForegroundColor Red
+        return
+    }
+
+    # Get all subdirectories within the base docs path
+    $subDirectories = Get-ChildItem -Path $baseDocsPath -Directory
+    foreach ($subDirectory in $subDirectories) {
+        # Get all markdown files in the current subdirectory
+        $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
+
+        if ($markdownFiles.Count -eq 0) {
+            Write-Host "No markdown files found in $($subDirectory.FullName)." -ForegroundColor Yellow
+            continue
+        }
+
+        # Generate the help file name based on the module and sub-directory
+        $subDirectoryName = [System.IO.Path]::GetFileName($subDirectory.FullName)
+        $helpFileName = if ($Module -eq "Entra") {
+            "Microsoft.Graph.Entra.$subDirectoryName-help.xml"
+        } else {
+            "Microsoft.Graph.Entra.Beta.$subDirectoryName-help.xml"
+        }
+
+        $helpFilePath = Join-Path -Path $binPath -ChildPath $helpFileName
+
+        # Combine all markdown file contents into one for generating the help file
+        $markdownContent = $markdownFiles | ForEach-Object { Get-Content -Path $_.FullName }
+        $markdownCombined = $markdownContent -join "`n"
+
+        # Create the help file using PlatyPS
+        New-ExternalHelp -Path $helpFilePath -Content $markdownCombined -Force
+
+        Write-Host "[EntraModuleBuilder] Help file generated: $helpFilePath" -ForegroundColor Green
+    }
+
+    Write-Host "[EntraModuleBuilder] Help files generated successfully for module: $Module" -ForegroundColor Green
+}
 
 
 }
