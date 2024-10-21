@@ -14,6 +14,9 @@ class EntraModuleBuilder {
 # ------------------------------------------------------------------------------ 
 Set-StrictMode -Version 5 
 "@
+
+    $this.BasePath = (join-path $PSScriptRoot '../module/Entra/') 
+    $this.OutputDirectory = (join-path $PSScriptRoot '../bin/') 
     }
 
     [string] ResolveStartDirectory([string]$directory) {
@@ -137,5 +140,85 @@ Set-StrictMode -Version 5
 
         Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
     }
+
+    [void] WriteModuleManifest($module) {
+    # Get all subdirectories in the base path
+    $BasePath=$this.BasePath
+    $OutputFolder=$this.outputDirectory
+
+    $subDirectories = Get-ChildItem -Path $BasePath -Directory
+    $settingPath = "../module/"+$module+"/config/ModuleMetadata.json"
+    foreach ($subDir in $subDirectories) {
+        # Define module name based on sub-directory name
+        $moduleName = $subDir.Name
+
+        # Log the start of processing for this module
+        Write-Host "[EntraModuleBuilder] Processing module: $moduleName" -ForegroundColor Blue
+
+        # Update paths specific to this sub-directory
+       
+        $files = @("$moduleName.psd1", "$moduleName.psm1", "$moduleName-Help.xml")
+        $content = Get-Content -Path $settingPath | ConvertFrom-Json
+
+        # Define PSData block based on the contents of the ModuleMetadata.json file
+        $PSData = @{
+            Tags = $($content.tags)
+            LicenseUri = $($content.licenseUri)
+            ProjectUri = $($content.projectUri)
+            IconUri = $($content.iconUri)
+            ReleaseNotes = $($content.releaseNotes)
+            Prerelease = $null
+        }
+
+        # Set the manifest path and functions to export
+        $manifestPath = Join-Path $OutputFolder "$moduleName.psd1"
+        $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
+        
+        # Collect required modules
+        $requiredModules = @()
+        foreach ($module in $content.requiredModules) {
+            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion}
+        }
+
+        # Module manifest settings
+        $moduleSettings = @{
+            Path = $manifestPath
+            GUID = $($content.guid)
+            ModuleVersion = "$($content.version)"
+            FunctionsToExport = $functions
+            CmdletsToExport = @()
+            AliasesToExport = @()
+            Author = $($content.authors)
+            CompanyName = $($content.owners)
+            FileList = $files
+            RootModule = "$moduleName.psm1"
+            Description = 'Microsoft Graph Entra PowerShell.'
+            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
+            PowerShellVersion = $([System.Version]::Parse('5.1'))
+            CompatiblePSEditions = @('Desktop', 'Core')
+            RequiredModules = $requiredModules
+            NestedModules = @()
+        }
+
+        # Add prerelease info if it exists
+        if ($null -ne $content.Prerelease) {
+            $PSData.Prerelease = $content.Prerelease
+        }
+
+        # Update any load message for this module if necessary
+        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
+
+        # Create and update the module manifest
+        Write-Host "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath" -ForegroundColor Green
+        New-ModuleManifest @moduleSettings
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+
+        # Log completion for this module
+        Write-Host "[EntraModuleBuilder] Manifest for $moduleName created successfully" -ForegroundColor Green
+    }
+}
+
+
+
 }
 
