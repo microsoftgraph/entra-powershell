@@ -143,7 +143,7 @@ Set-StrictMode -Version 5
         Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
     }
 
-    [void] WriteModuleManifest($module) {
+    [void] CreateModuleManifest($module) {
     # Get all subdirectories in the base path
     $BasePath=$this.BasePath
     $OutputFolder=$this.outputDirectory
@@ -267,7 +267,7 @@ Set-StrictMode -Version 5
         $helpOutputFilePath = Join-Path -Path $binPath -ChildPath $helpFileName
 
         $moduleDocsPath=Join-Path -Path $baseDocsPath -ChildPath $subDirectory
-        
+
         # Create the help file using PlatyPS
         New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
