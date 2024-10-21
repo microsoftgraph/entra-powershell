@@ -163,24 +163,24 @@ Set-StrictMode -Version 5
 
     # Load dependency mapping from JSON
     # Check if the dependency mapping file exists and load it
-    if (Test-Path $dependencyMappingPath) {
-        # Read the JSON content
-        $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
-        
-        # Check if the JSON content is not null or empty
-        if (-not [string]::IsNullOrEmpty($jsonContent)) {
-            # Convert JSON to Hashtable
-            $dependencyMapping = @{}
-            $parsedContent = $jsonContent | ConvertFrom-Json
-            foreach ($key in $parsedContent.PSObject.Properties.Name) {
-                $dependencyMapping[$key] = $parsedContent.$key
-            }
-        } else {
-            Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
+if (Test-Path $dependencyMappingPath) {
+    # Read the JSON content
+    $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
+    
+    # Check if the JSON content is not null or empty
+    if (-not [string]::IsNullOrEmpty($jsonContent)) {
+        # Convert JSON to Hashtable
+        $dependencyMapping = @{}
+        $parsedContent = $jsonContent | ConvertFrom-Json
+        foreach ($key in $parsedContent.PSObject.Properties.Name) {
+            $dependencyMapping[$key] = $parsedContent.$key
         }
     } else {
-        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
+        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
     }
+} else {
+    Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
+}
 
     
     foreach ($subDir in $subDirectories) {
@@ -215,21 +215,21 @@ Set-StrictMode -Version 5
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
         # Collect required modules from dependency mapping
-        $requiredModules = @()
-        if (Test-Path $dependencyMappingPath) {
-            $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
-            # Convert JSON to Hashtable
-            $dependencyMapping = @{}
-            foreach ($key in $jsonContent.PSObject.Properties.Name) {
-                $dependencyMapping[$key] = $jsonContent.$key
-            }
-            
-            if ($dependencyMapping.ContainsKey($moduleName)) {
-                foreach ($dependency in $dependencyMapping[$moduleName]) {
-                    $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
-                }
-            }
+$requiredModules = @()
+if (Test-Path $dependencyMappingPath) {
+    $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
+    # Convert JSON to Hashtable
+    $dependencyMapping = @{}
+    foreach ($key in $jsonContent.PSObject.Properties.Name) {
+        $dependencyMapping[$key] = $jsonContent.$key
+    }
+    
+    if ($dependencyMapping.ContainsKey($moduleName)) {
+        foreach ($dependency in $dependencyMapping[$moduleName]) {
+            $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
         }
+    }
+}
 
        
         $helpFileName = if ($Module -eq "Entra") {
@@ -247,9 +247,9 @@ Set-StrictMode -Version 5
 
        
         $moduleFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName-help.xml"
+            "Microsoft.Graph.Entra.$moduleName.psm1"
         } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName-help.xml"
+            "Microsoft.Graph.Entra.Beta.$moduleName.psm1"
         }
 
         # Module manifest settings
@@ -262,8 +262,8 @@ Set-StrictMode -Version 5
             AliasesToExport = @()
             Author = $($content.authors)
             CompanyName = $($content.owners)
-            FileList = @("$manifestFileName.psd1", "$moduleFileName.psm1", "$helpFileName-Help.xml")
-            RootModule = "$moduleName.psm1"
+            FileList = @("$manifestFileName.psd1", "$moduleFileName.psm1", "$helpFileName-help.xml")
+            RootModule = "$moduleFileName.psm1"
             Description = 'Microsoft Graph Entra PowerShell.'
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
             PowerShellVersion = $([System.Version]::Parse('5.1'))
@@ -317,6 +317,7 @@ Set-StrictMode -Version 5
 
     # Get all subdirectories within the base docs path
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
+	Write-Host "SubDirs: $subDirectories" -ForegroundColor Blue
     foreach ($subDirectory in $subDirectories) {
         # Get all markdown files in the current subdirectory
         $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
@@ -328,20 +329,32 @@ Set-StrictMode -Version 5
 
         # Generate the help file name based on the module and sub-directory
         $subDirectoryName = [System.IO.Path]::GetFileName($subDirectory.FullName)
+		Write-Host "SubDirName: $subDirectoryName" -ForegroundColor Blue
         $helpFileName = if ($Module -eq "Entra") {
             "Microsoft.Graph.Entra.$subDirectoryName-help.xml"
         } else {
             "Microsoft.Graph.Entra.Beta.$subDirectoryName-help.xml"
         }
-
+ 
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
-        $moduleDocsPath=Join-Path -Path $docsPath -ChildPath $subDirectory
-
-        # Create the help file using PlatyPS
-        New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
+        $moduleDocsPath=$subDirectory
+		Write-Host "ModuleDocsPath: $moduleDocsPath" -ForegroundColor Blue
+		
+		Write-Host "HelpOutputPath: $helpOutputFilePath" -ForegroundColor Blue
+		
+		try{
+		  # Create the help file using PlatyPS
+	    New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
         Write-Host "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -ForegroundColor Green
+			
+		}catch{
+			
+		    Write-Host "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -ForegroundColor Red
+		}
+
+      
     }
 
     Write-Host "[EntraModuleBuilder] Help files generated successfully for module: $Module" -ForegroundColor Green
