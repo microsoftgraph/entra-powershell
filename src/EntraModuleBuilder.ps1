@@ -155,32 +155,32 @@ Set-StrictMode -Version 5
     $subDirectories = Get-ChildItem -Path $this.BasePath -Directory
 
     # Update paths specific to this sub-directory
-    $settingPath = "./config/ModuleMetadata.json"
-    $dependencyMappingPath = "./config/dependencyMapping.json"
+    $settingPath = Join-Path $this.BasePath "./config/ModuleMetadata.json" 
+    $dependencyMappingPath = Join-Path $this.BasePath "./config/dependencyMapping.json"
 
     # Load the module metadata
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
     # Load dependency mapping from JSON
     # Check if the dependency mapping file exists and load it
-if (Test-Path $dependencyMappingPath) {
-    # Read the JSON content
-    $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
-    
-    # Check if the JSON content is not null or empty
-    if (-not [string]::IsNullOrEmpty($jsonContent)) {
-        # Convert JSON to Hashtable
-        $dependencyMapping = @{}
-        $parsedContent = $jsonContent | ConvertFrom-Json
-        foreach ($key in $parsedContent.PSObject.Properties.Name) {
-            $dependencyMapping[$key] = $parsedContent.$key
+    if (Test-Path $dependencyMappingPath) {
+        # Read the JSON content
+        $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
+        
+        # Check if the JSON content is not null or empty
+        if (-not [string]::IsNullOrEmpty($jsonContent)) {
+            # Convert JSON to Hashtable
+            $dependencyMapping = @{}
+            $parsedContent = $jsonContent | ConvertFrom-Json
+            foreach ($key in $parsedContent.PSObject.Properties.Name) {
+                $dependencyMapping[$key] = $parsedContent.$key
+            }
+        } else {
+            Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
         }
     } else {
-        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
+        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
     }
-} else {
-    Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
-}
 
     
     foreach ($subDir in $subDirectories) {
@@ -215,21 +215,21 @@ if (Test-Path $dependencyMappingPath) {
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
         # Collect required modules from dependency mapping
-$requiredModules = @()
-if (Test-Path $dependencyMappingPath) {
-    $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
-    # Convert JSON to Hashtable
-    $dependencyMapping = @{}
-    foreach ($key in $jsonContent.PSObject.Properties.Name) {
-        $dependencyMapping[$key] = $jsonContent.$key
-    }
-    
-    if ($dependencyMapping.ContainsKey($moduleName)) {
-        foreach ($dependency in $dependencyMapping[$moduleName]) {
-            $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+        $requiredModules = @()
+        if (Test-Path $dependencyMappingPath) {
+            $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
+            # Convert JSON to Hashtable
+            $dependencyMapping = @{}
+            foreach ($key in $jsonContent.PSObject.Properties.Name) {
+                $dependencyMapping[$key] = $jsonContent.$key
+            }
+            
+            if ($dependencyMapping.ContainsKey($moduleName)) {
+                foreach ($dependency in $dependencyMapping[$moduleName]) {
+                    $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                }
+            }
         }
-    }
-}
 
        
         $helpFileName = if ($Module -eq "Entra") {
