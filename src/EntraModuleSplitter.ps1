@@ -305,8 +305,3 @@ class EntraModuleSplitter {
         Write-Host "[EntraModuleSplitter] UnMapped Aliases: $unMappedAliasesCount" -ForegroundColor Red
     }
 }
-
-# Execute the function
-$entraModuleSplitter = [EntraModuleSplitter]::new()
-$entraModuleSplitter.SplitEntraModule('Entra')  # or 'EntraBeta'
-$entraModuleSplitter.ProcessEntraAzureADAliases('Entra')
