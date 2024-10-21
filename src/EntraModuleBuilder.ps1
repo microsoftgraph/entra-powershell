@@ -135,10 +135,3 @@ Set-StrictMode -Version 5
     }
 }
 
-# Call the function with the appropriate starting directory and typedefs file path
-try {
-    $moduleBuilder = [EntraModuleBuilder]::new()
-    $moduleBuilder.CreateSubModuleFile(".\Entra-Modules\Microsoft.Graph.Entra\", ".\Typedefs.txt")
-} catch {
-    Write-Host "[EntraModuleBuilder] $_.Exception.Message" -ForegroundColor Red
-}
