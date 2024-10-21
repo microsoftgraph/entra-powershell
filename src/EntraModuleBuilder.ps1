@@ -67,54 +67,59 @@ Set-StrictMode -Version 5
     }
 
     [void] ProcessSubDirectory([string]$currentDirPath, [string]$currentDirName, [string]$parentDirName, [string]$destDirectory, [string]$typedefsFilePath) {
-        Write-Host "[EntraModuleBuilder] Processing directory: $currentDirPath" -ForegroundColor Yellow
+    Write-Host "[EntraModuleBuilder] Processing directory: $currentDirPath" -ForegroundColor Yellow
 
-        $psm1FileName = "$parentDirName.$currentDirName.psm1"
-        $psm1FilePath = Join-Path -Path $destDirectory -ChildPath $psm1FileName
+    $psm1FileName = "$parentDirName.$currentDirName.psm1"
+    $psm1FilePath = Join-Path -Path $destDirectory -ChildPath $psm1FileName
 
-        Write-Host "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath" -ForegroundColor Green
+    Write-Host "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath" -ForegroundColor Green
 
-        $psm1Content = $this.headerText + "`n"  # Add a newline after the header
-        $ps1Files = Get-ChildItem -Path $currentDirPath -Filter "*.ps1"
+    $psm1Content = $this.headerText + "`n"  # Add a newline after the header
+    $ps1Files = Get-ChildItem -Path $currentDirPath -Filter "*.ps1"
 
-        if ($ps1Files.Count -eq 0) {
-            Write-Host "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -ForegroundColor Yellow
-        }
-
-        $enableEntraFiles = @()
-        $otherFiles = @()
-
-        foreach ($ps1File in $ps1Files) {
-            if ($ps1File.Name -like "Enable-Entra*") {
-                $enableEntraFiles += $ps1File
-            } else {
-                $otherFiles += $ps1File
-            }
-        }
-
-        foreach ($ps1File in $otherFiles) {
-            Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
-            $fileContent = Get-Content -Path $ps1File.FullName
-            $cleanedContent = $this.RemoveHeader($fileContent)
-            $psm1Content += $cleanedContent -join "`n"
-        }
-
-        foreach ($ps1File in $enableEntraFiles) {
-            Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
-            $fileContent = Get-Content -Path $ps1File.FullName
-            $cleanedContent = $this.RemoveHeader($fileContent)
-            $psm1Content += $cleanedContent -join "`n"
-        }
-
-        Write-Host "[EntraModuleBuilder] Appending content from Typedefs.txt" -ForegroundColor Cyan
-        $typedefsContent = Get-Content -Path $typedefsFilePath -Raw
-        $psm1Content += "`n# Typedefs`n" + $typedefsContent
-
-        Write-Host "[EntraModuleBuilder] Writing .psm1 file to disk: $psm1FilePath" -ForegroundColor Green
-        Set-Content -Path $psm1FilePath -Value $psm1Content
-
-        Write-Host "[EntraModuleBuilder] Module file created: $psm1FilePath" -ForegroundColor Green
+    if ($ps1Files.Count -eq 0) {
+        Write-Host "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -ForegroundColor Yellow
     }
+
+    $enableEntraFiles = @()
+    $otherFiles = @()
+
+    foreach ($ps1File in $ps1Files) {
+        if ($ps1File.Name -like "Enable-Entra*") {
+            $enableEntraFiles += $ps1File
+        } else {
+            $otherFiles += $ps1File
+        }
+    }
+
+    foreach ($ps1File in $otherFiles) {
+        Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
+        $fileContent = Get-Content -Path $ps1File.FullName
+        $cleanedContent = $this.RemoveHeader($fileContent)
+        $psm1Content += $cleanedContent -join "`n"
+    }
+
+    foreach ($ps1File in $enableEntraFiles) {
+        Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
+        $fileContent = Get-Content -Path $ps1File.FullName
+        $cleanedContent = $this.RemoveHeader($fileContent)
+        $psm1Content += $cleanedContent -join "`n"
+    }
+
+    # Add the Export-ModuleMember line to export functions
+    $functionsToExport = ($otherFiles + $enableEntraFiles | ForEach-Object { $_.BaseName }) -join "', '"
+    $psm1Content += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
+
+    Write-Host "[EntraModuleBuilder] Appending content from Typedefs.txt" -ForegroundColor Cyan
+    $typedefsContent = Get-Content -Path $typedefsFilePath -Raw
+    $psm1Content += "`n# Typedefs`n" + $typedefsContent
+
+    Write-Host "[EntraModuleBuilder] Writing .psm1 file to disk: $psm1FilePath" -ForegroundColor Green
+    Set-Content -Path $psm1FilePath -Value $psm1Content
+
+    Write-Host "[EntraModuleBuilder] Module file created: $psm1FilePath" -ForegroundColor Green
+}
+
 
     [void] CreateSubModuleFile([string]$startDirectory, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         Write-Host "[EntraModuleBuilder] Starting CreateSubModuleFile script..." -ForegroundColor Green
@@ -241,14 +246,18 @@ Set-StrictMode -Version 5
         $requiredModules = @()
         if (Test-Path $dependencyMappingPath) {
             $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
+            Write-Host "Dependency Mapping: $jsonContent" -ForegroundColor Green
             # Convert JSON to Hashtable
             $dependencyMapping = @{}
             foreach ($key in $jsonContent.PSObject.Properties.Name) {
                 $dependencyMapping[$key] = $jsonContent.$key
             }
             
-            if ($dependencyMapping.ContainsKey($moduleName)) {
-                foreach ($dependency in $dependencyMapping[$moduleName]) {
+            $keyModuleName= [System.IO.Path]::GetFileNameWithoutExtension($moduleFileName)
+            
+            if ($dependencyMapping.ContainsKey($keyModuleName)) {
+                Write-Host "Here #moduleFin" -ForegroundColor Red
+                foreach ($dependency in $dependencyMapping[$keyModuleName]) {
                     $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
                 }
             }
