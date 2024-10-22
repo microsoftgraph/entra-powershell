@@ -48,7 +48,7 @@ Other services can use the information stored in the ServiceEndpoint entity to f
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.Id
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
@@ -60,7 +60,7 @@ This example demonstrates how to retrieve service endpoint of the application th
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId -All 
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.Id -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
@@ -72,7 +72,7 @@ This example demonstrates how to retrieve all service endpoints of a specified a
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationServiceEndpoint -ApplicationId $application.ObjectId -Top 5
+Get-EntraApplicationServiceEndpoint -ApplicationId $application.Id -Top 5
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
