@@ -42,19 +42,14 @@ Adds a strong password to an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$Application = Get-EntraBetaApplication -SearchString '<application-name>'
-$PasswordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
-$PasswordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
-$PasswordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
-$PasswordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
-$PasswordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
-$PasswordCredential.Hint = 'b'
-$params = @{
-    ObjectId = $Application.ObjectId
-    PasswordCredential = $PasswordCredential
-}
-
-New-EntraApplicationPassword @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$passwordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
+$passwordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
+$passwordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
+$passwordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
+$passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
+$passwordCredential.Hint = 'b'
+New-EntraApplicationPassword -ObjectId $application.Id -PasswordCredential $passwordCredential
 ```
 
 ```Output
