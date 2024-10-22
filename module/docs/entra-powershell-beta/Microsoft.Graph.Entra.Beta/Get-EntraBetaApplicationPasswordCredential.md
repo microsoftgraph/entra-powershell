@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password cr
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.ObjectId
+Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id
 ```
 
 ```Output
