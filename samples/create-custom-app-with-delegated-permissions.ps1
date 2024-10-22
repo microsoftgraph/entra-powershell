@@ -2,83 +2,51 @@
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.Read.All', 'Group.Read.All', 'DelegatedPermissionGrant.ReadWrite.All', 'AuditLog.Read.All'
 
 # Define application name and redirect URI
-$AppName = "Entra PowerShell 3"
-$RedirectUri = "http://localhost"
+$appName = "Entra PowerShell App (Delegated)"
+$redirectUri = "http://localhost"
 
 # Define delegated permission and Graph API ID
-$DelegatedPermission = 'User.Read.All'
-$GraphApiId = '00000003-0000-0000-c000-000000000000'
+$delegatedPermission = 'User.Read.All'
+$graphApiId = '00000003-0000-0000-c000-000000000000'
 
 # Get a user and a group
-$User = Get-EntraUser -SearchString 'Adele'
-$Group = Get-EntraGroup -Search 'Sales and Marketing'
+$user = Get-EntraUser -UserId 'AdeleV@contoso.com'
+$group = Get-EntraGroup -Search 'Sales and Marketing'
 
 # Create a new application
-$AppParams = @{
-    DisplayName            = $AppName
-    PublicClient           = @{ RedirectUris = $RedirectUri }
-    IsFallbackPublicClient = $false
-}
-$App = New-EntraApplication @AppParams
+$app = New-EntraApplication -DisplayName $appName -PublicClient @{ RedirectUris = $redirectUri } -IsFallbackPublicClient $False
 
 # Create a service principal for the application
-$ServicePrincipalParams = @{
-    AppId = $App.AppId
-}
-$ServicePrincipal = New-EntraServicePrincipal @ServicePrincipalParams
+$servicePrincipal = New-EntraServicePrincipal -AppId $app.AppId
 
 # Assign users and groups to the application
-$UserAppRoleAssignmentParams = @{
-    ObjectId    = $User.ObjectId
-    PrincipalId = $User.ObjectId
-    ResourceId  = $ServicePrincipal.ObjectId
-    Id          = [Guid]::Empty
-}
-New-EntraUserAppRoleAssignment @UserAppRoleAssignmentParams
+$emptyGuidUser = [Guid]::Empty.ToString()
+New-EntraUserAppRoleAssignment -ObjectId $user.Id -PrincipalId $user.Id -ResourceId $servicePrincipal.Id -Id $emptyGuidUser
 
-$GroupAppRoleAssignmentParams = @{
-    ObjectId    = $Group.ObjectId
-    PrincipalId = $Group.ObjectId
-    ResourceId  = $ServicePrincipal.ObjectId
-    Id          = [Guid]::Empty
-}
-New-EntraGroupAppRoleAssignment @GroupAppRoleAssignmentParams
+$emptyGuidGroup = [Guid]::Empty.ToString()
+New-EntraGroupAppRoleAssignment -GroupId $group.Id -PrincipalId $group.Id -ResourceId $servicePrincipal.Id -Id $emptyGuidGroup
 
 # Get Graph service principal
-$GraphServicePrincipal = Get-EntraServicePrincipal -Filter "AppId eq '$GraphApiId'"
+$graphServicePrincipal = Get-EntraServicePrincipal -Filter "AppId eq '$graphApiId'"
 
 # Create resource access object
-$ResourceAccess = New-Object Microsoft.Open.MSGraph.Model.ResourceAccess
-$ResourceAccess.Id = ((Get-EntraServicePrincipal -ObjectId $GraphServicePrincipal.ObjectId).Oauth2PermissionScopes | Where-Object { $_.Value -eq $DelegatedPermission }).Id
-$ResourceAccess.Type = 'Scope'
+$resourceAccessDelegated = New-Object Microsoft.Open.MSGraph.Model.ResourceAccess
+$resourceAccessDelegated.Id = ((Get-EntraServicePrincipal -ServicePrincipalId $graphServicePrincipal.Id).Oauth2PermissionScopes | Where-Object { $_.Value -eq $delegatedPermission }).Id
+$resourceAccessDelegated.Type = 'Scope'
 
 # Create required resource access object
-$RequiredResourceAccess = New-Object Microsoft.Open.MSGraph.Model.RequiredResourceAccess
-$RequiredResourceAccess.ResourceAppId = $GraphApiId
-$RequiredResourceAccess.ResourceAccess = $ResourceAccess
+$requiredResourceAccessDelegated = New-Object Microsoft.Open.MSGraph.Model.RequiredResourceAccess
+$requiredResourceAccessDelegated.ResourceAppId = $graphApiId
+$requiredResourceAccessDelegated.ResourceAccess = $resourceAccessDelegated
 
 # Set application required resource access
-$SetAppParams = @{
-    ObjectId               = $App.ObjectId
-    RequiredResourceAccess = $RequiredResourceAccess
-}
-Set-EntraApplication @SetAppParams
+Set-EntraApplication -ApplicationId $app.Id -RequiredResourceAccess $requiredResourceAccessDelegated
 
 # Set service principal parameters
-$ServicePrincipalUpdateParams = @{
-    ObjectId                  = $ServicePrincipal.ObjectId
-    AppRoleAssignmentRequired = $true
-}
-Set-EntraServicePrincipal @ServicePrincipalUpdateParams
+Set-EntraServicePrincipal -ServicePrincipalId $servicePrincipal.Id -AppRoleAssignmentRequired $True
 
 # Grant OAuth2 permission
-$PermissionGrantParams = @{
-    ClientId    = $ServicePrincipal.Id
-    ConsentType = 'AllPrincipals'
-    ResourceId  = $GraphServicePrincipal.Id
-    Scope       = $DelegatedPermission
-}
-$PermissionGrant = New-EntraOauth2PermissionGrant @PermissionGrantParams
+$permissionGrant = New-EntraOauth2PermissionGrant -ClientId $servicePrincipal.Id -ConsentType 'AllPrincipals' -ResourceId $graphServicePrincipal.Id -Scope $delegatedPermission
 
 # Get and filter OAuth2 permission grants
-Get-EntraOAuth2PermissionGrant -All | Where-Object { $_.Id -eq $PermissionGrant.Id }
+Get-EntraOAuth2PermissionGrant -All | Where-Object { $_.Id -eq $permissionGrant.Id }
