@@ -3,43 +3,21 @@
 # ------------------------------------------------------------------------------
 
 #This function uses the moduleMapping.json to split the docs to subdirectories
-
+. ./common-functions.ps1
 function Get-DirectoryFileMap {
     param (
         [string]$Source = 'Entra' # Default to 'Entra'
     )
 
-    # Function to log messages with color
-    function Log-Message {
-        param (
-            [string]$Message,
-            [string]$Level = 'Info' # Default log level
-        )
-        
-        switch ($Level) {
-            'Info' {
-                Write-Host "[Create-ModuleMapping] INFO: $Message" -ForegroundColor Green
-            }
-            'Warning' {
-                Write-Host "[Create-ModuleMapping] WARNING: $Message" -ForegroundColor Yellow
-            }
-            'Error' {
-                Write-Host "[Create-ModuleMapping] ERROR: $Message" -ForegroundColor Red
-            }
-            default {
-                Write-Host "[Create-ModuleMapping] $Message" -ForegroundColor White
-            }
-        }
-    }
 
     # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
-            $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra"
+            $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra/"
             $OutputDirectory = '../module/Entra/config/'
         }
         'EntraBeta' {
-            $RootDirectory = "./entra-powershell/module/EntraBeta/Microsoft.Graph.Entra.Beta"
+            $RootDirectory = "./entra-powershell/module/EntraBeta/Microsoft.Graph.Entra.Beta/"
             $OutputDirectory = "../module/EntraBeta/config/"
         }
         default {
