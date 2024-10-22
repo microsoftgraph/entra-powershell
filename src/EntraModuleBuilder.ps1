@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
+. ../build/common-functions.ps1
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
@@ -31,10 +31,10 @@ Set-StrictMode -Version 5
 
     [bool] CheckTypedefsFile([string]$typedefsFilePath) {
         if (-not (Test-Path -Path $typedefsFilePath)) {
-            Write-Host "[EntraModuleBuilder] Error: Typedefs.txt file not found at $typedefsFilePath" -ForegroundColor Red
+            Log-Message "[EntraModuleBuilder] Error: Typedefs.txt file not found at $typedefsFilePath" -Level 'ERROR'
             return $false
         } else {
-            Write-Host "[EntraModuleBuilder] Typedefs.txt found at $typedefsFilePath" -ForegroundColor Cyan
+            Log-Message "[EntraModuleBuilder] Typedefs.txt found at $typedefsFilePath" -Level 'INFO'
             return $true
         }
     }
@@ -42,7 +42,7 @@ Set-StrictMode -Version 5
     [void] EnsureDestinationDirectory([string]$destDirectory) {
         if (-not (Test-Path -Path $destDirectory)) {
             New-Item -ItemType Directory -Path $destDirectory | Out-Null
-            Write-Host "[EntraModuleBuilder] Created destination directory: $destDirectory" -ForegroundColor Green
+            Log-Message "[EntraModuleBuilder] Created destination directory: $destDirectory"
         }
     }
 
@@ -67,18 +67,18 @@ Set-StrictMode -Version 5
     }
 
     [void] ProcessSubDirectory([string]$currentDirPath, [string]$currentDirName, [string]$parentDirName, [string]$destDirectory, [string]$typedefsFilePath) {
-    Write-Host "[EntraModuleBuilder] Processing directory: $currentDirPath" -ForegroundColor Yellow
+    Log-Message "[EntraModuleBuilder] Processing directory: $currentDirPath"
 
     $psm1FileName = "$parentDirName.$currentDirName.psm1"
     $psm1FilePath = Join-Path -Path $destDirectory -ChildPath $psm1FileName
 
-    Write-Host "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath" -ForegroundColor Green
+    Log-Message "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath"
 
     $psm1Content = $this.headerText + "`n"  # Add a newline after the header
     $ps1Files = Get-ChildItem -Path $currentDirPath -Filter "*.ps1"
 
     if ($ps1Files.Count -eq 0) {
-        Write-Host "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -ForegroundColor Yellow
+        Log-Message "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -Level 'ERROR'
     }
 
     $enableEntraFiles = @()
@@ -93,14 +93,14 @@ Set-StrictMode -Version 5
     }
 
     foreach ($ps1File in $otherFiles) {
-        Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
+        Log-Message "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)"
         $fileContent = Get-Content -Path $ps1File.FullName
         $cleanedContent = $this.RemoveHeader($fileContent)
         $psm1Content += $cleanedContent -join "`n"
     }
 
     foreach ($ps1File in $enableEntraFiles) {
-        Write-Host "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
+        Log-Message "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
         $fileContent = Get-Content -Path $ps1File.FullName
         $cleanedContent = $this.RemoveHeader($fileContent)
         $psm1Content += $cleanedContent -join "`n"
@@ -114,15 +114,15 @@ Set-StrictMode -Version 5
     $typedefsContent = Get-Content -Path $typedefsFilePath -Raw
     $psm1Content += "`n# Typedefs`n" + $typedefsContent
 
-    Write-Host "[EntraModuleBuilder] Writing .psm1 file to disk: $psm1FilePath" -ForegroundColor Green
+    Log-Message "[EntraModuleBuilder] Writing .psm1 file to disk: $psm1FilePath"
     Set-Content -Path $psm1FilePath -Value $psm1Content
 
-    Write-Host "[EntraModuleBuilder] Module file created: $psm1FilePath" -ForegroundColor Green
+    Log-Message "[EntraModuleBuilder] Module file created: $psm1FilePath" -Level 'SUCCESS'
 }
 
 
     [void] CreateSubModuleFile([string]$startDirectory, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
-        Write-Host "[EntraModuleBuilder] Starting CreateSubModuleFile script..." -ForegroundColor Green
+        Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
 
@@ -131,10 +131,10 @@ Set-StrictMode -Version 5
         }
 
         if (-not (Test-Path -Path $resolvedStartDirectory)) {
-            Write-Host "[EntraModuleBuilder] Error: Start directory not found: $resolvedStartDirectory" -ForegroundColor Red
+            Log-Message "[EntraModuleBuilder] Error: Start directory not found: $resolvedStartDirectory" -Level 'ERROR'
             return
         } else {
-            Write-Host "[EntraModuleBuilder] Processing directories inside: $resolvedStartDirectory" -ForegroundColor Cyan
+            Log-Message "[EntraModuleBuilder] Processing directories inside: $resolvedStartDirectory"
         }
 
         $subDirectories = Get-ChildItem -Path $resolvedStartDirectory -Directory
@@ -149,7 +149,7 @@ Set-StrictMode -Version 5
             $this.ProcessSubDirectory($subDir.FullName, $subDir.Name, $parentDirName, $destDirectory, $typedefsFilePath)
         }
 
-        Write-Host "[EntraModuleBuilder] CreateSubModuleFile script completed." -ForegroundColor Green
+        Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
 
  [void] CreateRootModule([string] $Module){
@@ -183,10 +183,10 @@ Set-StrictMode -Version 5
                 $dependencyMapping[$key] = $parsedContent.$key
             }
         } else {
-            Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -ForegroundColor Yellow
+           Log-Message "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -Level 'ERROR'
         }
     } else {
-        Write-Host "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -ForegroundColor Yellow
+        Log-Message "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -Level 'ERROR'
     }
 
     
@@ -215,7 +215,7 @@ Set-StrictMode -Version 5
         }
 
         # Log the start of processing for this module
-        Write-Host "[EntraModuleBuilder] Processing module: $moduleFileName" -ForegroundColor Blue
+        Log-Message "[EntraModuleBuilder] Processing module: $moduleFileName"
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
@@ -233,7 +233,7 @@ Set-StrictMode -Version 5
 
         # Check if the specified directory exists
        if (-Not (Test-Path -Path $subDir)) {
-        Write-Error "The specified directory does not exist: $subDir"
+        Log-Message "The specified directory does not exist: $subDir" -Level 'ERROR'
         exit
        }
 
@@ -291,12 +291,12 @@ Set-StrictMode -Version 5
         
 
         # Create and update the module manifest
-        Write-Host "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath" -ForegroundColor Green
+        Log-Message "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath"
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
         # Log completion for this module
-        Write-Host "[EntraModuleBuilder] Manifest for $moduleName created successfully" -ForegroundColor Green
+        Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
     }
 }
 
@@ -315,13 +315,13 @@ Set-StrictMode -Version 5
     } elseif ($Module -eq "EntraBeta") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta/Microsoft.Graph.Entra.Beta"
     } else {
-        Write-Host "Invalid module specified: $Module" -ForegroundColor Red
+        Log-Message "Invalid module specified: $Module" -Level 'ERROR'
         return
     }
 
     # Check if the base docs path exists
     if (!(Test-Path $docsPath)) {
-        Write-Host "The specified base documentation path does not exist: $docsPath" -ForegroundColor Red
+        Log-Message "The specified base documentation path does not exist: $docsPath" -Level 'ERROR'
         return
     }
 
@@ -333,13 +333,12 @@ Set-StrictMode -Version 5
         $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
 
         if ($markdownFiles.Count -eq 0) {
-            Write-Host "No markdown files found in $($subDirectory.FullName)." -ForegroundColor Yellow
+            Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }
 
         # Generate the help file name based on the module and sub-directory
         $subDirectoryName = [System.IO.Path]::GetFileName($subDirectory.FullName)
-		Write-Host "SubDirName: $subDirectoryName" -ForegroundColor Blue
 
         $helpFileName = if ($Module -eq "Entra") {
             "Microsoft.Graph.Entra.$subDirectoryName-Help.xml"
@@ -350,24 +349,21 @@ Set-StrictMode -Version 5
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
         $moduleDocsPath=$subDirectory
-
-		Write-Host "ModuleDocsPath: $moduleDocsPath" -ForegroundColor Blue
-		Write-Host "HelpOutputPath: $helpOutputFilePath" -ForegroundColor Blue
 		
 		try{
 		  # Create the help file using PlatyPS
 	    New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
-        Write-Host "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -ForegroundColor Green
+        Log-Message "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -Level 'SUCCESS'
 			
 		}catch{			
-		    Write-Host "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -ForegroundColor Red
+		    Log-Message "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -Level 'ERROR'
 		}
 
       
     }
 
-    Write-Host "[EntraModuleBuilder] Help files generated successfully for module: $Module" -ForegroundColor Green
+    Log-Message "[EntraModuleBuilder] Help files generated successfully for module: $Module" -Level 'SUCCESS'
 }
 
 }
