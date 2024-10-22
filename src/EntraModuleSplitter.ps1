@@ -2,6 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
+. ../build/common-functions.ps1
 # This class splits the larger Microsoft.Graph.Entra.psm1 or Microsoft.Graph.Entra.Beta.psm1 into separate files and also constructrs the submodule directories
 class EntraModuleSplitter {
     [string]$Header
@@ -18,7 +19,7 @@ class EntraModuleSplitter {
     [void] CreateOutputDirectory([string]$directoryPath) {
         if (-not (Test-Path -Path $directoryPath)) {
             New-Item -ItemType Directory -Path $directoryPath | Out-Null
-            Write-Host "[EntraModuleSplitter] Created directory: $directoryPath" -ForegroundColor Green
+            Log-Message "[EntraModuleSplitter] Created directory: $directoryPath" -Level 'SUCCESS'
         }
     }
 
@@ -83,7 +84,7 @@ class EntraModuleSplitter {
     if ($functionName -eq $specificFunctionName) {
         $topLevelOutputPath = Join-Path -Path $moduleOutputDirectory -ChildPath "$specificFunctionName.ps1"
         Set-Content -Path $topLevelOutputPath -Value $ps1Content
-        Write-Host "[EntraModuleSplitter] Created specific function file: $topLevelOutputPath" -ForegroundColor Cyan
+        Log-Message "[EntraModuleSplitter] Created specific function file: $topLevelOutputPath" -Level 'INFO'
         return
     }
 
@@ -107,7 +108,7 @@ class EntraModuleSplitter {
             # Write the main function to the appropriate directory
             $outputFilePath = Join-Path -Path $keyDirectoryPath -ChildPath "$functionName.ps1"
             Set-Content -Path $outputFilePath -Value $ps1Content
-            Write-Host "[EntraModuleSplitter] Created function file: $outputFilePath in $keyDirectoryPath" -ForegroundColor Green
+            Log-Message "[EntraModuleSplitter] Created function file: $outputFilePath in $keyDirectoryPath" -Level 'SUCCESS'
 
             $isMapped = $true
             break
@@ -117,7 +118,7 @@ class EntraModuleSplitter {
     if (-not $isMapped) {
         $unmappedFilePath = Join-Path -Path $unmappedDirectory -ChildPath "$functionName.ps1"
         Set-Content -Path $unmappedFilePath -Value $ps1Content
-        Write-Host "[EntraModuleSplitter] Created unmapped function file: $unmappedFilePath in UnMappedFiles" -ForegroundColor Red
+        Log-Message "[EntraModuleSplitter] Created unmapped function file: $unmappedFilePath in UnMappedFiles" -Level 'ERROR'
     }
 }
 
@@ -135,7 +136,7 @@ class EntraModuleSplitter {
 
             # Write the function to the specified file
             Set-Content -Path $functionFilePath -Value $headerPs1Content
-            Write-Host "[EntraModuleSplitter] Added $functionName function to: $functionFilePath" -ForegroundColor Green
+            Log-Message "[EntraModuleSplitter] Added $functionName function to: $functionFilePath"
         }
     }
 }
@@ -172,7 +173,7 @@ class EntraModuleSplitter {
     # Call the new method to add functions to all directories
     $this.AddFunctionsToAllDirectories($moduleOutputDirectory, $functionContents)
 
-    Write-Host "[EntraModuleSplitter] Splitting and organizing complete." -ForegroundColor Green
+    Log-Message "[EntraModuleSplitter] Splitting and organizing complete." -Level 'SUCCESS'
 }
 
 
@@ -230,7 +231,7 @@ class EntraModuleSplitter {
         # Display summary information
         $this.DisplaySummary($totalAliases, $mappedAliasesCount, $unMappedAliases.Count)
 
-        Write-Host "[EntraModuleSplitter] Processing complete." -ForegroundColor Green
+        Log-Message "[EntraModuleSplitter] Processing complete." -Level 'SUCCESS'
     }
 
     [string[]] GetModuleDirectories([string]$Module) {
@@ -299,7 +300,7 @@ class EntraModuleSplitter {
         $fileContent = $header + $functionWrapperStart + ($filteredLines -join "`n") + $functionWrapperEnd
 
         Set-Content -Path $outputFilePath -Value $fileContent
-        Write-Host "[EntraModuleSplitter] Filtered lines have been written and wrapped inside Enable-EntraAzureADAliases function to $outputFilePath" -ForegroundColor Green
+        Log-Message "[EntraModuleSplitter] Filtered lines have been written and wrapped inside Enable-EntraAzureADAliases function to $outputFilePath" -Level 'SUCCESS'
     }
 
     [string[]] WriteUnmappedAliases([string[]]$aliasFileContent, [string[]]$allMappedAliases, [string]$targetDirectory) {
@@ -316,9 +317,9 @@ class EntraModuleSplitter {
         if ($unMappedAliases.Count -gt 0) {
             $unmappedFilePath = Join-Path -Path $targetDirectory -ChildPath "UnMappedAliases.psd1"
             Set-Content -Path $unmappedFilePath -Value $unMappedAliases
-            Write-Host "[EntraModuleSplitter] Unmapped aliases have been written to $unmappedFilePath" -ForegroundColor Yellow
+            Log-Message "[EntraModuleSplitter] Unmapped aliases have been written to $unmappedFilePath" -Level 'INFO'
         } else {
-            Write-Host "[EntraModuleSplitter] No unmapped aliases found." -ForegroundColor Blue
+            Log-Message "[EntraModuleSplitter] No unmapped aliases found." -Level 'INFO'
         }
 
         return $unMappedAliases  # Ensure this line returns the unmapped aliases
@@ -327,13 +328,13 @@ class EntraModuleSplitter {
     [void] CreateDirectory([string]$path) {
         if (-not (Test-Path -Path $path)) {
             New-Item -Path $path -ItemType Directory | Out-Null
-            Write-Host "[EntraModuleSplitter] Created directory: $path" -ForegroundColor Yellow
+            Log-Message "[EntraModuleSplitter] Created directory: $path"
         }
     }
 
     [void] DisplaySummary([int]$totalAliases, [int]$mappedAliasesCount, [int]$unMappedAliasesCount) {
-        Write-Host "[EntraModuleSplitter] Total Alias Lines (excluding comments and blanks): $totalAliases" -ForegroundColor Blue
-        Write-Host "[EntraModuleSplitter] Mapped Aliases: $mappedAliasesCount" -ForegroundColor Blue
-        Write-Host "[EntraModuleSplitter] UnMapped Aliases: $unMappedAliasesCount" -ForegroundColor Red
+        Log-Message "[EntraModuleSplitter] Total Alias Lines (excluding comments and blanks): $totalAliases"
+        Log-Message "[EntraModuleSplitter] Mapped Aliases: $mappedAliasesCount"
+        Log-Message "[EntraModuleSplitter] UnMapped Aliases: $unMappedAliasesCount" -Level 'ERROR'
     }
 }
