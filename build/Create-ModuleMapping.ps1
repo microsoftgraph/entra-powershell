@@ -7,51 +7,82 @@
 function Get-DirectoryFileMap {
     param (
         [string]$Source = 'Entra' # Default to 'Entra'
-     
     )
+
+    # Function to log messages with color
+    function Log-Message {
+        param (
+            [string]$Message,
+            [string]$Level = 'Info' # Default log level
+        )
+        
+        switch ($Level) {
+            'Info' {
+                Write-Host "[Create-ModuleMapping] INFO: $Message" -ForegroundColor Green
+            }
+            'Warning' {
+                Write-Host "[Create-ModuleMapping] WARNING: $Message" -ForegroundColor Yellow
+            }
+            'Error' {
+                Write-Host "[Create-ModuleMapping] ERROR: $Message" -ForegroundColor Red
+            }
+            default {
+                Write-Host "[Create-ModuleMapping] $Message" -ForegroundColor White
+            }
+        }
+    }
 
     # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
             $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra"
-            $OutputDirectory='../module/Entra/config/'
+            $OutputDirectory = '../module/Entra/config/'
         }
         'EntraBeta' {
             $RootDirectory = "./entra-powershell/module/EntraBeta/Microsoft.Graph.Entra.Beta"
-            $OutputDirectory="../module/EntraBeta/config/"
+            $OutputDirectory = "../module/EntraBeta/config/"
         }
         default {
+            Log-Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." 'Error'
             throw "Invalid Source specified. Use 'Entra' or 'EntraBeta'."
         }
     }
 
     # Check if the root directory exists
     if (-not (Test-Path -Path $RootDirectory -PathType Container)) {
+        Log-Message "Directory '$RootDirectory' does not exist." 'Error'
         throw "Directory '$RootDirectory' does not exist."
+    } else {
+        Log-Message "Root directory '$RootDirectory' found."
     }
 
     # Check if the output directory exists, create if it doesn't
     if (-not (Test-Path -Path $OutputDirectory -PathType Container)) {
         New-Item -Path $OutputDirectory -ItemType Directory | Out-Null
+        Log-Message "Output directory '$OutputDirectory' did not exist, created it." 'Warning'
+    } else {
+        Log-Message "Output directory '$OutputDirectory' exists."
     }
 
-    $directoryMap = @{}
+    $fileDirectoryMap = @{}
 
     # Get all the subdirectories under the root directory
     $subDirectories = Get-ChildItem -Path $RootDirectory -Directory
 
     foreach ($subDir in $subDirectories) {
+        Log-Message "Processing subdirectory '$($subDir.Name)'." 'Info'
+
         # Get the files in each sub-directory without their extensions
         $files = Get-ChildItem -Path $subDir.FullName -File | ForEach-Object {
-            [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
+            $fileName = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
+            # Map the file name to the directory name
+            $fileDirectoryMap[$fileName] = $subDir.Name
+            Log-Message "Mapped file '$fileName' to directory '$($subDir.Name)'." 'Info'
         }
-
-        # Add the directory name and corresponding file names to the map
-        $directoryMap[$subDir.Name] = $files
     }
 
-    # Convert the directory map to JSON
-    $jsonOutput = $directoryMap | ConvertTo-Json -Depth 3
+    # Convert the file-directory map to JSON
+    $jsonOutput = $fileDirectoryMap | ConvertTo-Json -Depth 3
 
     # Define the output file path as moduleMapping.json
     $outputFilePath = Join-Path -Path $OutputDirectory -ChildPath "moduleMapping.json"
@@ -59,9 +90,9 @@ function Get-DirectoryFileMap {
     # Write the JSON output to moduleMapping.json
     $jsonOutput | Out-File -FilePath $outputFilePath -Encoding UTF8
 
-    Write-Host "moduleMapping.json has been created at $outputFilePath"
+    Log-Message "moduleMapping.json has been created at '$outputFilePath'." 'Info'
 }
 
-# Usage example:
-Get-DirectoryFileMap -Source 'Entra'
+
+
 

@@ -256,7 +256,6 @@ Set-StrictMode -Version 5
             $keyModuleName= [System.IO.Path]::GetFileNameWithoutExtension($moduleFileName)
             
             if ($dependencyMapping.ContainsKey($keyModuleName)) {
-                Write-Host "Here #moduleFin" -ForegroundColor Red
                 foreach ($dependency in $dependencyMapping[$keyModuleName]) {
                     $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
                 }
