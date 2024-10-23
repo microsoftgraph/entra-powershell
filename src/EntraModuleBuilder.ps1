@@ -165,7 +165,7 @@ Set-StrictMode -Version 5
         } else {
             "../module/EntraBeta"
         }
-    $moduleBasePath =f ($Module -eq "Entra") {
+    $moduleBasePath =if ($Module -eq "Entra") {
             "../module/Entra/Microsoft.Graph.Entra"
         } else {
             "../module/EntraBeta/Microsoft.Graph.Entra.Beta"
