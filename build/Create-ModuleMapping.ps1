@@ -2,7 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-#This function uses the moduleMapping.json to split the docs to subdirectories
+#This function uses the moduleMapping.json to split the docs to subdirectories i.e. Key =SubModule name and
+# Value =an array of strings representing the files in that directory
 . ./common-functions.ps1
 function Get-DirectoryFileMap {
     param (
@@ -13,11 +14,11 @@ function Get-DirectoryFileMap {
     # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
-            $RootDirectory = "./entra-powershell/module/Entra/Microsoft.Graph.Entra/"
+            $RootDirectory = "../module/Entra/Microsoft.Graph.Entra/"
             $OutputDirectory = '../module/Entra/config/'
         }
         'EntraBeta' {
-            $RootDirectory = "./entra-powershell/module/EntraBeta/Microsoft.Graph.Entra.Beta/"
+            $RootDirectory = "../module/EntraBeta/Microsoft.Graph.Entra.Beta/"
             $OutputDirectory = "../module/EntraBeta/config/"
         }
         default {
@@ -63,7 +64,7 @@ function Get-DirectoryFileMap {
     $jsonOutput = $fileDirectoryMap | ConvertTo-Json -Depth 3
 
     # Define the output file path as moduleMapping.json
-    $outputFilePath = Join-Path -Path $OutputDirectory -ChildPath "moduleMapping.json"
+    $outputFilePath = Join-Path -Path $OutputDirectory -ChildPath "newModuleMapping.json"
 
     # Write the JSON output to moduleMapping.json
     $jsonOutput | Out-File -FilePath $outputFilePath -Encoding UTF8
@@ -71,6 +72,4 @@ function Get-DirectoryFileMap {
     Log-Message "moduleMapping.json has been created at '$outputFilePath'." 'Info'
 }
 
-
-
-
+Get-DirectoryFileMap -Source 'Entra'
