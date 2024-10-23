@@ -40,9 +40,9 @@ The `Remove-EntraBetaApplicationPasswordCredential` cmdlet removes a password cr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk App'"
-$KeyIDs = Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id
-Remove-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -KeyId $KeyIds[0].KeyId
+$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
+$applicationPassword = Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'ERP App Password'}
+Remove-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example demonstrates how to remove the password credential for an application.

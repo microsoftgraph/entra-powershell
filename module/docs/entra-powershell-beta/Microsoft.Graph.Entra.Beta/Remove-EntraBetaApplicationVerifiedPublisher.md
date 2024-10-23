@@ -41,8 +41,8 @@ Removes the verified publisher from an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
-Remove-EntraBetaApplicationVerifiedPublisher -AppObjectId $app.ObjectId
+$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
+Remove-EntraBetaApplicationVerifiedPublisher -AppObjectId $application.Id
 ```
 
 This command demonstrates how to remove the verified publisher from an application.  
