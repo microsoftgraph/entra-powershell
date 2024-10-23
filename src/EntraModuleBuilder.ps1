@@ -153,23 +153,30 @@ Set-StrictMode -Version 5
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
- [string[]] GetSubModuleFiles([string]$directoryPath) {
+ [string[]] GetSubModuleFiles([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
-        if (-Not (Test-Path -Path $directoryPath)) {
+        # Define the pattern for matching submodule files
+        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
+            "Microsoft.Graph.Entra.Beta.*.psm1"
+        } else {
+            "Microsoft.Graph.Entra.*.psm1"
+        }
+
+        if (-Not (Test-Path -Path $DirectoryPath)) {
             Write-Host "Directory does not exist: $directoryPath" -ForegroundColor Red
             return $null # Return null if directory does not exist
         }
 
         # Get all .psm1 files in the specified directory
-        $psm1Files = Get-ChildItem -Path $directoryPath -Filter *.psm1 -File
+        $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
 
         # Check if any .psm1 files were found
-        if ($psm1Files.Count -eq 0) {
-            Write-Host "No .psm1 files found in the directory: $directoryPath" -ForegroundColor Yellow
+        if ($subModules.Count -eq 0) {
+            Log-Message "No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
             return @() # Return an empty array if no files are found
         } else {
             # Return the names of the .psm1 files
-            return $psm1Files.Name
+            return $subModules.Name
         }
     }
 
@@ -180,9 +187,10 @@ Set-StrictMode -Version 5
         'Microsoft.Graph.Enta.Beta.root.psm1'
     }
 
+    $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
 
-    #Generate the .psm1 file
-     # Validate the target directory
+    #Generate the Root .psm1 file
+    # Validate the target directory
     if (-not (Test-Path $TargetDirectory)) {
         Log-Message "The specified target directory does not exist. Creating it..." -Level 'ERROR'
         New-Item -ItemType Directory -Path $TargetDirectory -Force | Out-Null
@@ -370,6 +378,7 @@ foreach (`$subModule in `$subModules) {
         Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
     }
 }
+
 
 [void] CreateModuleHelp([string] $Module) {
    
