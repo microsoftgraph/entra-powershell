@@ -22,7 +22,7 @@ Set-StrictMode -Version 5
     
     $this.OutputDirectory = '../bin/'
     $this.TypeDefsDirectory="../build/Typedefs.txt"
-    $this.BaseDocsPath='../docs/'
+    $this.BaseDocsPath='../module/docs/'
    
     }
 
