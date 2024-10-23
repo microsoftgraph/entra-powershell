@@ -3,6 +3,7 @@
 # ------------------------------------------------------------------------------
 
 #This function copies the docs using the moduleMapping.json into their submodule directories
+# i.e. For each entry, it will use the Key(cmdlet name) and map it to the Value(A subdirectory created in the respective docs directory)
 
 . ./common-functions.ps1
 
@@ -15,12 +16,12 @@ function Copy-MarkdownFilesFromMapping {
     # Determine source directories and mapping file paths based on the Source parameter
     switch ($Source) {
         'Entra' {
-            $DocsSourceDirectory = "./entra-powershell/module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
-            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
+            $DocsSourceDirectory = "../module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
+            $MappingFilePath = '../module/Entra/config/newModuleMapping.json'
         }
         'EntraBeta' {
-            $DocsSourceDirectory = "./entra-powershell/module/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
-            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
+            $DocsSourceDirectory = "../module/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
+            $MappingFilePath = "../module/EntraBeta/config/newModuleMapping.json"
         }
         default {
             Log-Message -Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'
@@ -74,5 +75,4 @@ function Copy-MarkdownFilesFromMapping {
 }
 
 
-# Usage example:
-#Copy-MarkdownFilesFromMapping -Source 'Entra'  # For Entra
+Copy-MarkdownFilesFromMapping -Source 'Entra'  # For Entra
