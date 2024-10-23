@@ -41,12 +41,9 @@ The Add-EntraGroupMember cmdlet adds a member to a group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$params = @{
-    GroupId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-
-Add-EntraGroupMember @params
+$group = Get-EntraGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+Add-EntraGroupMember -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
