@@ -42,13 +42,8 @@ An application can use this command along with `New-EntraBetaApplicationKeyCrede
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$params = @{
-    ApplicationId = $application.Id
-    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
-}
-
-Remove-EntraBetaApplicationKeyCredential @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Remove-EntraBetaApplicationKeyCredential -ApplicationId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 ```
 
 This command removes the specified key credential from the specified application.
