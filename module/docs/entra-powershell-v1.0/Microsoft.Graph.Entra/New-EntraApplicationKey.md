@@ -46,7 +46,7 @@ Adds a new key to an application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = $app.Id
+    ApplicationId = $application.Id
     KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
     PasswordCredential = @{ DisplayName = 'mypassword' }
     Proof = '{token}'
