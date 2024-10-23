@@ -27,7 +27,7 @@ Adds a strong password to an application.
 
 ```powershell
 New-EntraApplicationPassword
- -ObjectId <String>
+ -ApplicationId <String>
  -PasswordCredential <PasswordCredential>
  [<CommonParameters>]
 ```
@@ -60,19 +60,19 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This example adds a password to the specified application.
 
-- `-ObjectId` parameter specifies the unique identifier of the application.
+- `-ApplicationId` parameter specifies the unique identifier of the application.
 - `-PasswordCredential` parameter specifies a password credential associated with an application or a service principal.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The unique identifier of the application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

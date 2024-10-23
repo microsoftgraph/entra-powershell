@@ -52,7 +52,7 @@ As part of the request validation, proof of possession of an existing key is ver
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $params = @{
-    ApplicationId = $application
+    ApplicationId = $application.Id
     CustomKeyIdentifier = 'EntraPowerShellKey'
     StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
