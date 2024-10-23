@@ -2,6 +2,12 @@
 
 . ..\src\EntraModuleBuilder.ps1
 # Build Entra Module
+
+
+param (
+    [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
+)
+
 $moduleBuilder = [EntraModuleBuilder]::new()
 
 # Determine the output path based on the module
