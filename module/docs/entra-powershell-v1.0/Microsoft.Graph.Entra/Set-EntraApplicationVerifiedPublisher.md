@@ -42,15 +42,10 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
-$appObjId = $app.ObjectId
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $mpnId =  '0433167'
 $req =  @{verifiedPublisherId = $mpnId}
-$params = @{
-     AppObjectId = $appObjId
-     SetVerifiedPublisherRequest = $req
-}
-Set-EntraApplicationVerifiedPublisher @params
+Set-EntraApplicationVerifiedPublisher -AppObjectId $application.Id -SetVerifiedPublisherRequest $req
 ```
 
 This command sets the verified publisher of an application.
