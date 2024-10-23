@@ -33,9 +33,9 @@ class EntraModuleSplitter {
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return "..\module\Entra"
+            return "..\module\Entra\"
         } else {
-            return "..\module\EntraBeta"
+            return "..\module\EntraBeta\"
         }
     }
 
@@ -78,43 +78,39 @@ class EntraModuleSplitter {
     [void] ProcessFunction([pscustomobject]$function, [string]$specificFunctionName, [string]$moduleOutputDirectory, [PSCustomObject]$jsonContent, [string]$header, [string]$unmappedDirectory) {
     $functionName = $function.Name
     $functionContent = $function.Content
+
+    # Append the function contents to the header
     $ps1Content = $header + "`n" + $functionContent
 
-    # Check for specific function
+    # Add the Enable-Entra*AzureADAlias function to the root of the module directory
     if ($functionName -eq $specificFunctionName) {
         $topLevelOutputPath = Join-Path -Path $moduleOutputDirectory -ChildPath "$specificFunctionName.ps1"
         Set-Content -Path $topLevelOutputPath -Value $ps1Content
         Log-Message "[EntraModuleSplitter] Created specific function file: $topLevelOutputPath" -Level 'INFO'
         return
     }
-
+	
+	 # Function has been mapped to a directory
     $isMapped = $false
 
-    foreach ($key in $jsonContent.PSObject.Properties.Name) {
-        if ($functionName -like "*Dir*") {
-            $key = 'Directory'
-        }
+    if($functionName -ne 'New-EntraCustomHeaders' or $functionName -ne 'Get-EntraUnsupportedCommand'){
+        $subModuleDirectoryName = $moduleMapping.$functionName
 
-        if ($functionName -like "*$key*") {
-            $keyDirectoryPath = if ($functionName -like "*Device*") {
-                Join-Path -Path $moduleOutputDirectory -ChildPath "Device"
-            } else {
-                Join-Path -Path $moduleOutputDirectory -ChildPath $key
-            }
+        # Create the subModule Directory
+        $subModuleDirectory = Join-Path $moduleOutputDirectory -ChildPath "$subModuleDirectoryName"
 
-            # Create the directory if it doesn't exist
-            $this.CreateOutputDirectory($keyDirectoryPath)
+        # Create the directory if it doesn't exist
+        $this.CreateOutputDirectory($subModuleDirectory)
 
-            # Write the main function to the appropriate directory
-            $outputFilePath = Join-Path -Path $keyDirectoryPath -ChildPath "$functionName.ps1"
-            Set-Content -Path $outputFilePath -Value $ps1Content
-            Log-Message "[EntraModuleSplitter] Created function file: $outputFilePath in $keyDirectoryPath" -Level 'SUCCESS'
+        # Write the main function to the appropriate directory
+        $outputFilePath = Join-Path -Path $subModuleDirectory -ChildPath "$functionName.ps1"
+        Set-Content -Path $outputFilePath -Value $ps1Content
+        Log-Message "[EntraModuleSplitter] Created function file: $outputFilePath in $subModuleDirectory" -Level 'SUCCESS'
 
-            $isMapped = $true
-            break
-        }
-    }
+        $isMapped = $true
+	}
 
+    # Account for unmapped files
     if (-not $isMapped) {
         $unmappedFilePath = Join-Path -Path $unmappedDirectory -ChildPath "$functionName.ps1"
         Set-Content -Path $unmappedFilePath -Value $ps1Content
@@ -141,40 +137,45 @@ class EntraModuleSplitter {
     }
 }
 
-[void] SplitEntraModule([string]$Source = 'Entra') {
-    # Determine file paths and output directories
-    $psm1FilePath = $this.GetModuleFilePath($Source)
-    $outputDirectory = $this.GetOutputDirectory($Source)
-    $jsonFilePath = "../module/Entra/config/moduleMapping.json"
+[void] SplitEntraModule([string]$Module = 'Entra') {
 
-    $this.CreateOutputDirectory($outputDirectory)
-    $unmappedDirectory = Join-Path -Path $outputDirectory -ChildPath "UnMappedFiles"
-    $this.CreateOutputDirectory($unmappedDirectory)
+       $JsonFilePath=if($Module -eq 'Entra'){
+          '../module/Entra/config/moduleMapping.json'
+       }else{
+         '../module/EntraBeta/config/moduleMapping.json'
+       }
+		# Determine file paths and output directories
+		$psm1FilePath = $this.GetModuleFilePath($Module)
+		$outputDirectory = $this.GetOutputDirectory($Module)
 
-    $jsonContent = $this.ReadJsonFile($jsonFilePath)
-    $moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
-    $moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
-    $this.CreateOutputDirectory($moduleOutputDirectory)
+		$this.CreateOutputDirectory($outputDirectory)
+		$unmappedDirectory = Join-Path -Path $outputDirectory -ChildPath "UnMappedFiles"
+		$this.CreateOutputDirectory($unmappedDirectory)
 
-    $psm1Content = Get-Content -Path $psm1FilePath -Raw
-    $functions = $this.ExtractFunctions($psm1Content)
+		$jsonContent = $this.ReadJsonFile($JsonFilePath)
+		$moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
+		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
+		$this.CreateOutputDirectory($moduleOutputDirectory)
 
-    # Get the function contents for both New-EntraCustomHeaders and Get-EntraUnsupportedCommand
-    $functionNames = @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
-    $functionContents = $functions | Where-Object { $functionNames -contains $_.Name }
+		$psm1Content = Get-Content -Path $psm1FilePath -Raw
+		$functions = $this.ExtractFunctions($psm1Content)
 
-    # Initialize a variable to track if the specific function is processed
-    $specificFunctionName = if ($moduleName -eq "Microsoft.Graph.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
+		# Get the function contents for both New-EntraCustomHeaders and Get-EntraUnsupportedCommand
+		$functionNames = @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
+		$functionContents = $functions | Where-Object { $functionNames -contains $_.Name }
 
-    foreach ($function in $functions) {
-        $this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
-    }
+		# Initialize a variable to track if the specific function is processed
+		$specificFunctionName = if ($moduleName -eq "Microsoft.Graph.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
 
-    # Call the new method to add functions to all directories
-    $this.AddFunctionsToAllDirectories($moduleOutputDirectory, $functionContents)
+		foreach ($function in $functions) {
+			$this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
+		}
 
-    Log-Message "[EntraModuleSplitter] Splitting and organizing complete." -Level 'SUCCESS'
-}
+		# Call the new method to add functions to all directories
+		$this.AddFunctionsToAllDirectories($moduleOutputDirectory, $functionContents)
+
+		Log-Message "[EntraModuleSplitter] Splitting and organizing complete." -Level 'SUCCESS'
+	}
 
 
     [void] ProcessEntraAzureADAliases([string]$Module = 'Entra') {
