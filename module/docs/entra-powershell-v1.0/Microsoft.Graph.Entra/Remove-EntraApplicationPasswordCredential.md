@@ -41,9 +41,9 @@ The `Remove-EntraApplicationPasswordCredential` cmdlet removes a password creden
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk App'"
-$KeyIDs = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id
-Remove-EntraApplicationPasswordCredential -ApplicationId $application.Id -KeyId $KeyIds[0].KeyId
+$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
+$applicationPassword = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'ERP App Password'}
+Remove-EntraApplicationPasswordCredential -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example demonstrates how to remove the password credential for an application.
