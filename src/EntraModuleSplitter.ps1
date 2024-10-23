@@ -99,6 +99,7 @@ class EntraModuleSplitter {
         # Create the subModule Directory
         $subModuleDirectory = Join-Path $moduleOutputDirectory -ChildPath "$subModuleDirectoryName"
 
+
         # Create the directory if it doesn't exist
         $this.CreateOutputDirectory($subModuleDirectory)
 
