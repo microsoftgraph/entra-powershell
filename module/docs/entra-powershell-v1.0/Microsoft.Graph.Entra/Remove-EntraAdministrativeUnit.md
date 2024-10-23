@@ -42,8 +42,8 @@ To delete an administrative unit, the calling principal must have at least the P
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-Remove-EntraAdministrativeUnit -ObjectId $AdministrativeUnit.ObjectId
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
+Remove-EntraAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id
 ```
 
 This command removes the specified administrative unit from Microsoft Entra ID.

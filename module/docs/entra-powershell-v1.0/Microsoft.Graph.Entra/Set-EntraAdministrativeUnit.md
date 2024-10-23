@@ -42,38 +42,18 @@ The Privileged Role Administrator is the least privileged role required for this
 
 ## Examples
 
-### Example 1: Update DisplayName
+### Example 1: Update DisplayName and description
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-$params = @{
-    AdministrativeUnitId =  $AdministrativeUnit.ObjectId
-    DisplayName = 'UpdatedAU'
-}
-Set-EntraAdministrativeUnit @params
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+Set-EntraAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description'
 ```
 
 This Command update DisplayName of specific administrative unit.
 
 - `-AdministrativeUnitId` parameter specifies the Id of an administrative unit.
 - `-DisplayName` parameter specifies the display name for the administrative unit.
-
-### Example 2: Update Description
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    Description = 'Updated AU Description'
-}
-Set-EntraAdministrativeUnit @params
-```
-
-This example shows how to update the description of a specific administrative unit.
-
-- `-AdministrativeUnitId` parameter specifies the Id of an administrative unit.
 - `-Description` parameter specifies the description for the administrative unit.
 
 ## Parameters

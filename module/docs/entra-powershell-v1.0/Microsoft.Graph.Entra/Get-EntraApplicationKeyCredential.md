@@ -41,7 +41,7 @@ The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationKeyCredential -ObjectId $application.ObjectId
+Get-EntraApplicationKeyCredential -ObjectId $application.Id
 ```
 
 ```Output

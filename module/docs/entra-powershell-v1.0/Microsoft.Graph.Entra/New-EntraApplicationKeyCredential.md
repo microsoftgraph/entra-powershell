@@ -51,17 +51,15 @@ As part of the request validation, proof of possession of an existing key is ver
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-
-$AppId = (Get-EntraApplication -Top 1).Objectid
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $params = @{
-    ApplicationId = $AppId
+    ApplicationId = $application.Id
     CustomKeyIdentifier = 'EntraPowerShellKey'
     StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
     Usage = 'Sign'
     Value = '<my-value>'
 }
-
 New-EntraApplicationKeyCredential @params
 ```
 
@@ -90,7 +88,7 @@ You can use the `Get-EntraApplication` cmdlet to retrieve the application Object
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
 $cer.Import('C:\Users\ContosoUser\appcert.cer') 
 $bin = $cer.GetRawCertData()
@@ -100,7 +98,7 @@ $base64Thumbprint = [System.Convert]::ToBase64String($bin)
 $keyid = [System.Guid]::NewGuid().ToString() 
 
 $params = @{
-    ApplicationId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ApplicationId = $application.Id
     CustomKeyIdentifier = $base64Thumbprint
     Type = 'AsymmetricX509Cert'
     Usage = 'Verify'
@@ -108,7 +106,6 @@ $params = @{
     StartDate = $cer.GetEffectiveDateString()
     EndDate = $cer.GetExpirationDateString()
 }
-
 New-EntraApplicationKeyCredential @params
 ```
 

@@ -41,7 +41,8 @@ The `Get-EntraBetaApplicationProxyApplication` cmdlet retrieves an application c
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyApplication -ApplicationId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso App Proxy'"
+Get-EntraBetaApplicationProxyApplication -ApplicationId $application.Id
 ```
 
 ```Output
@@ -59,9 +60,7 @@ This example retrieves an application configured for Application Proxy.
 
 ### -ApplicationId
 
-This ApplicationId is the unique application ID of the application.
-This ApplicationId can be found using the `Get-EntraBetaApplication` command.
-You can also find ApplicationId in the Microsoft Portal by navigating to Microsoft Entra ID, Enterprise Applications, All Applications, Select your application, go to the properties tab, and use the ObjectId on that page.
+The ApplicationId is a unique identifier for the application. You can find it using the `Get-EntraBetaApplication` command in PowerShell, or in the Microsoft Entra admin portal by navigating to **Entra ID** > **Enterprise Applications** > **All Applications**, selecting your application, and viewing the **Properties** tab. Use the `ObjectId` value.
 
 ```yaml
 Type: System.String

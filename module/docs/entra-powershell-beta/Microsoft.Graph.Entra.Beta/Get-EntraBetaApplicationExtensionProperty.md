@@ -41,8 +41,8 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationExtensionProperty -ApplicationId $Application.Id
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id
 ```
 
 ```Output

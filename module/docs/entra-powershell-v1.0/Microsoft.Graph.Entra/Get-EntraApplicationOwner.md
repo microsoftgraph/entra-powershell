@@ -44,8 +44,8 @@ The `Get-EntraApplicationOwner` cmdlet get an owner of an Microsoft Entra ID app
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-Get-EntraApplicationOwner -ApplicationId $Application.ObjectId
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraApplicationOwner -ApplicationId $application.Id
 ```
 
 ```Output
@@ -93,8 +93,8 @@ This example demonstrates how to get the owners of an application in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -All
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraApplicationOwner -ApplicationId $application.Id -All
 ```
 
 ```Output
@@ -114,8 +114,8 @@ This example demonstrates how to get the all owners of a specified application i
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -Top 2
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraApplicationOwner -ApplicationId $application.Id -Top 2
 ```
 
 ```Output

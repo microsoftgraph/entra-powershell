@@ -42,7 +42,7 @@ The `Get-EntraApplicationPasswordCredential` cmdlet receives the password creden
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationPasswordCredential -ApplicationId $application.ObjectId
+Get-EntraApplicationPasswordCredential -ApplicationId $application.Id
 ```
 
 ```Output

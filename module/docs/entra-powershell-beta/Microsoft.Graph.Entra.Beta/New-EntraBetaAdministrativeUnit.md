@@ -61,11 +61,7 @@ This example demonstrates how to create an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$params = @{
-    DisplayName = 'Pacific Administrative Unit'
-    Description = 'Administrative Unit for Pacific region'
-}
-New-EntraBetaAdministrativeUnit @params
+New-EntraBetaAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
 ```
 
 ```Output
@@ -83,11 +79,7 @@ This example demonstrates how to create an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$params = @{
-    DisplayName = 'NewUnit'
-    IsMemberManagementRestricted = $true
-}
-New-EntraBetaAdministrativeUnit @params
+New-EntraBetaAdministrativeUnit -DisplayName 'NewUnit' -IsMemberManagementRestricted $True
 ```
 
 ```Output

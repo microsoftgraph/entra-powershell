@@ -24,7 +24,7 @@ Retrieve the service endpoint of an application.
 
 ```powershell
 Get-EntraBetaApplicationServiceEndpoint
- -ApplicationId <String>
+ -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -45,37 +45,37 @@ Other services can use the information stored in the ServiceEndpoint entity to f
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationServiceEndpoint -ApplicationId $application.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Contoso Helpdesk App'"
+Get-EntraBetaApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
 
-`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ServicePrincipalId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 2: Get all service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationServiceEndpoint -ApplicationId $application.ObjectId -All 
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Contoso Helpdesk App'"
+Get-EntraBetaApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
 
-`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ServicePrincipalId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 3: Get top five service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationServiceEndpoint -ApplicationId $application.ObjectId -Top 5
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Contoso Helpdesk App'"
+Get-EntraBetaApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id -Top 5
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
 
-`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ServicePrincipalId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
@@ -95,7 +95,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ApplicationId
+### -ServicePrincipalId
 
 Specifies the object ID of the application for which the service endpoint is retrieved.
 

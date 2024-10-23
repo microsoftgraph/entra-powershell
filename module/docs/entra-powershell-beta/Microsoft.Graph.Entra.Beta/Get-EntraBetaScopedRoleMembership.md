@@ -43,12 +43,10 @@ The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assign
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
-}
-Get-EntraBetaScopedRoleMembership @params
+$role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+$roleMembership = Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id | Where-Object {$_.RoleId -eq $role.Id}
+Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -ScopedRoleMembershipId $roleMembership.Id
 ```
 
 ```Output
@@ -66,8 +64,8 @@ This example gets scoped role administrator. You cane use the command `Get-Entra
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $AdministrativeUnit.ObjectId
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id
 ```
 
 ```Output
