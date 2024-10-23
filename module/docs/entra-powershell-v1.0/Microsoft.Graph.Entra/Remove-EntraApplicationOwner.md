@@ -48,6 +48,9 @@ $params = @{
 }
 
 Remove-EntraApplicationOwner @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$owner = Get-EntraApplicationOwner -ApplicationId $application.Id | Where-Object {$_.userPrincipalName -eq 'SawyerM@contoso.com'}
+Remove-EntraApplicationOwner -ApplicationId $application.Id -OwnerId $owner.Id
 ```
 
 This example removes the specified owner from the specified application. You can use the command `Get-EntraApplication` to get application Id.
