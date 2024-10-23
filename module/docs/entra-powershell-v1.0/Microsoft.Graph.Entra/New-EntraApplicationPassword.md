@@ -49,7 +49,7 @@ $passwordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
 $passwordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
 $passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
 $passwordCredential.Hint = 'b'
-New-EntraApplicationPassword -ObjectId $application.Id -PasswordCredential $passwordCredential
+New-EntraApplicationPassword -ApplicationId $application.Id -PasswordCredential $passwordCredential
 ```
 
 ```Output
