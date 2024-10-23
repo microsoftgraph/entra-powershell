@@ -44,12 +44,9 @@ The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `Gro
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$params = @{
-    GroupId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-
-Add-EntraBetaGroupMember @params
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+Add-EntraBetaGroupMember -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
