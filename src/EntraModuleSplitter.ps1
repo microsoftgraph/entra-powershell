@@ -145,7 +145,7 @@ class EntraModuleSplitter {
     # Determine file paths and output directories
     $psm1FilePath = $this.GetModuleFilePath($Source)
     $outputDirectory = $this.GetOutputDirectory($Source)
-    $jsonFilePath = ".\key-value-pairs.json"
+    $jsonFilePath = "../module/Entra/config/moduleMapping.json"
 
     $this.CreateOutputDirectory($outputDirectory)
     $unmappedDirectory = Join-Path -Path $outputDirectory -ChildPath "UnMappedFiles"
@@ -236,9 +236,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            "..\module\Entra\Microsoft.Graph.Entra.Beta\"
+            "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
         } else {
-            "..\module\EntraBeta\Microsoft.Graph.Entra\"
+            "..\module\Entra\Microsoft.Graph.Entra\"
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {

@@ -5,10 +5,10 @@
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
-    [string]$BasePath
     [string]$OutputDirectory
     [string]$TypeDefsDirectory
     [string]$BaseDocsPath
+    
 
     EntraModuleBuilder() {
         $this.headerText = @"
@@ -19,10 +19,11 @@ class EntraModuleBuilder {
 Set-StrictMode -Version 5 
 "@
 
-    $this.BasePath = (join-path $PSScriptRoot '../module/Entra/') 
-    $this.OutputDirectory = (join-path $PSScriptRoot '../bin/') 
-    $this.TypeDefsDirectory="./Typedefs.txt"
+    
+    $this.OutputDirectory = '../bin/'
+    $this.TypeDefsDirectory="../build/Typedefs.txt"
     $this.BaseDocsPath='../docs/'
+   
     }
 
     [string] ResolveStartDirectory([string]$directory) {
@@ -127,6 +128,7 @@ Set-StrictMode -Version 5
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
 
         if (-not ($this.CheckTypedefsFile($typedefsFilePath))) {
+            Log-Message "Typedefs.txt not found" -Level 'ERROR'
             return
         }
 
@@ -157,13 +159,23 @@ Set-StrictMode -Version 5
  }
 
  [void] CreateModuleManifest($module) {
-  
-
-    $subDirectories = Get-ChildItem -Path $this.BasePath -Directory
-
     # Update paths specific to this sub-directory
-    $settingPath = Join-Path $this.BasePath "./config/ModuleMetadata.json" 
-    $dependencyMappingPath = Join-Path $this.BasePath "./config/dependencyMapping.json"
+    $rootPath=if ($Module -eq "Entra") {
+            "../module/Entra"
+        } else {
+            "../module/EntraBeta"
+        }
+    $moduleBasePath =f ($Module -eq "Entra") {
+            "../module/Entra/Microsoft.Graph.Entra"
+        } else {
+            "../module/EntraBeta/Microsoft.Graph.Entra.Beta"
+    }
+
+    $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
+
+		
+    $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
+    $dependencyMappingPath = Join-Path $rootPath -ChildPath "/config/dependencyMapping.json"
 
     # Load the module metadata
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
