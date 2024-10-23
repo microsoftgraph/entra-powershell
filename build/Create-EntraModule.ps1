@@ -1,14 +1,9 @@
 
-
-. ..\src\EntraModuleBuilder.ps1
-# Build Entra Module
-
-
 param (
     [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
 )
 
-$moduleBuilder = [EntraModuleBuilder]::new()
+. ..\src\EntraModuleBuilder.ps1
 
 # Determine the output path based on the module
 $startPath = if ($Module -eq "Entra") {
@@ -16,6 +11,7 @@ $startPath = if ($Module -eq "Entra") {
 } else {
     "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
 }
+$moduleBuilder = [EntraModuleBuilder]::new()
 
 $moduleBuilder.CreateModuleHelp($Module)
 $moduleBuilder.CreateSubModuleFile($startPath, ".\Typedefs.txt")
