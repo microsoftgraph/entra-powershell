@@ -45,13 +45,22 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$App = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
-Remove-EntraBetaDeletedApplication -ObjectId $App.ObjectId
+$deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraBetaDeletedApplication -ObjectId $deletedApplication.Id
 ```
 
 This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
 
 - `-ObjectId` parameter specifies the Id of a deleted application.
+
+### Example 2: Remove deleted application using pipelining
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Get-EntraBetaDeletedApplication -Filter "DisplayName eq 'My PowerShell Application'" | Remove-EntraBetaDeletedApplication
+```
+
+This command removes recently deleted application using pipelining.
 
 ## Parameters
 
