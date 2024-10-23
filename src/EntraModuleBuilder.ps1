@@ -153,9 +153,72 @@ Set-StrictMode -Version 5
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
+ [string[]] GetSubModuleFiles([string]$directoryPath) {
+        # Check if the directory exists
+        if (-Not (Test-Path -Path $directoryPath)) {
+            Write-Host "Directory does not exist: $directoryPath" -ForegroundColor Red
+            return $null # Return null if directory does not exist
+        }
+
+        # Get all .psm1 files in the specified directory
+        $psm1Files = Get-ChildItem -Path $directoryPath -Filter *.psm1 -File
+
+        # Check if any .psm1 files were found
+        if ($psm1Files.Count -eq 0) {
+            Write-Host "No .psm1 files found in the directory: $directoryPath" -ForegroundColor Yellow
+            return @() # Return an empty array if no files are found
+        } else {
+            # Return the names of the .psm1 files
+            return $psm1Files.Name
+        }
+    }
 
  [void] CreateRootModule([string] $Module){
-     
+    $rootModuleName=if($Module -eq 'Entra'){
+        'Microsoft.Graph.Entra.root.psm1'
+    }else{
+        'Microsoft.Graph.Enta.Beta.root.psm1'
+    }
+
+
+    #Generate the .psm1 file
+     # Validate the target directory
+    if (-not (Test-Path $TargetDirectory)) {
+        Log-Message "The specified target directory does not exist. Creating it..." -Level 'ERROR'
+        New-Item -ItemType Directory -Path $TargetDirectory -Force | Out-Null
+    }
+
+    # Start building the code snippet
+    $codeSnippet = @"
+# Import all sub-modules dynamically
+
+`$subModules = @(
+"@
+
+    # Add each sub-module to the code snippet
+    foreach ($subModule in $subModules) {
+        $codeSnippet += "    '$subModule',`n"
+    }
+
+    # Close the array and complete the foreach loop
+    $codeSnippet += @"
+)
+
+foreach (`$subModule in `$subModules) {
+    Import-Module -Name `$subModule -Force -ErrorAction Stop
+}
+"@
+
+   $rootModuleContent=$this.headerText+"`n"+$codeSnippet
+    # Define the file paths
+   
+    $rootPsm1FilePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
+
+    # Write the generated code to both files
+   
+    $rootModuleContent | Out-File -FilePath $rootPsm1FilePath -Encoding utf8
+
+    Log-Message "[EntraModuleBuilder] Root Module successfully created" -Level 'SUCCESS'
  }
 
  [void] CreateModuleManifest($module) {
@@ -218,8 +281,7 @@ Set-StrictMode -Version 5
         } else {
             "Microsoft.Graph.Entra.Beta.$moduleName.psd1"
         }
-
-       
+    
         $moduleFileName = if ($Module -eq "Entra") {
             "Microsoft.Graph.Entra.$moduleName.psm1"
         } else {
@@ -238,7 +300,6 @@ Set-StrictMode -Version 5
             ReleaseNotes = $($content.releaseNotes)
             Prerelease = $null
         }
-
 
         # Set the manifest path and functions to export
         $manifestPath = Join-Path $this.OutputDirectory "$manifestFileName"
@@ -300,8 +361,6 @@ Set-StrictMode -Version 5
             $PSData.Prerelease = $content.Prerelease
         }
 
-        
-
         # Create and update the module manifest
         Log-Message "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath"
         New-ModuleManifest @moduleSettings
@@ -311,8 +370,6 @@ Set-StrictMode -Version 5
         Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
     }
 }
-
-
 
 [void] CreateModuleHelp([string] $Module) {
    
@@ -371,7 +428,6 @@ Set-StrictMode -Version 5
 		}catch{			
 		    Log-Message "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -Level 'ERROR'
 		}
-
       
     }
 
