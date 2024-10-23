@@ -41,13 +41,9 @@ Remove a password from an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq '<Application-DisplayName>'"
-$params = @{
-    ObjectId = $application.Id
-    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
-}
-
-Remove-EntraApplicationPassword @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$applicationPassword = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'CRM Helpdesk App'}
+Remove-EntraApplicationPassword -ObjectId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example removes the specified password from the specified application.
