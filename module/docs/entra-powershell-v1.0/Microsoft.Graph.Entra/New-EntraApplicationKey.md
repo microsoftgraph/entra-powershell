@@ -44,7 +44,7 @@ Adds a new key to an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+$application = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
     ObjectId = $app.Id
     KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
