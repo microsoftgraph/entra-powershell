@@ -44,11 +44,11 @@ Adds a strong password to an application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $passwordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
-$passwordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
+$passwordCredential.StartDateTime = Get-Date -Year 2024 -Month 10 -Day 23
 $passwordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
-$passwordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
-$passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
-$passwordCredential.Hint = 'b'
+$passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('Analytics App Password')
+$passwordCredential.Hint = 'analytics'
+$passwordCredential.DisplayName = 'Analytics App Password'
 New-EntraApplicationPassword -ApplicationId $application.Id -PasswordCredential $passwordCredential
 ```
 
