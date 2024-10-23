@@ -60,7 +60,7 @@ This example retrieves an application configured for Application Proxy.
 
 ### -ApplicationId
 
-The ApplicationId is a unique identifier for the application. You can find it using the Get-EntraBetaApplication command in PowerShell, or in the Microsoft Entra admin portal by navigating to Entra ID > Enterprise Applications > All Applications, selecting your application, and viewing the Properties tab. Use the `ObjectId` value.
+The ApplicationId is a unique identifier for the application. You can find it using the `Get-EntraBetaApplication` command in PowerShell, or in the Microsoft Entra admin portal by navigating to **Entra ID** > **Enterprise Applications** > **All Applications**, selecting your application, and viewing the **Properties** tab. Use the `ObjectId` value.
 
 ```yaml
 Type: System.String
