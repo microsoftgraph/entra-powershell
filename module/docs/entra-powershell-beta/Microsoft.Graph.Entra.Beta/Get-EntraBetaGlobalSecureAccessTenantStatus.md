@@ -40,9 +40,9 @@ Get-EntraBetaGlobalSecureAccessTenantStatus
 ```
 
 ```Output
-@odata.context         : https://graph.microsoft.com/beta/$metadata#networkAccess/tenantStatus/$entity
-onboardingStatus       : onboarded
-onboardingErrorMessage :
+@odata.context                                                                onboardingStatus onboardingErrorMessage
+--------------                                                                ---------------- ----------------------
+https://graph.microsoft.com/beta/$metadata#networkAccess/tenantStatus/$entity offboarded
 ```
 
 This command retrieves the onboarding status of the Global Secure Access service in the tenant.
