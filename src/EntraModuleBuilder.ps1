@@ -271,7 +271,7 @@ foreach (`$subModule in `$subModules) {
         $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
         $nestedModules=@()
         foreach($module in $subModules){
-            if($module -eq $moduleName){
+            if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                 $nestedModules += $module
             }	
