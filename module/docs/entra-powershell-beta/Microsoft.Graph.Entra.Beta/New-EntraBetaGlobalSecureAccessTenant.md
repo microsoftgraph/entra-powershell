@@ -24,7 +24,7 @@ Onboard the Global Secure Access service in the tenant.
 
 The `New-EntraBetaGlobalSecureAccessTenant` cmdlet onboards the Global Secure Access service in the tenant.
 
-In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least-privileged roles are supported:
+In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with the necessary permissions:
 
 - Global Secure Access Administrator
 - Security Administrator
@@ -65,5 +65,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## RELATED LINKS
 
 [Get-EntraBetaGlobalSecureAccessTenantStatus](Get-EntraBetaGlobalSecureAccessTenantStatus.md)
-
-
