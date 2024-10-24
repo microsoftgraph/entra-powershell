@@ -201,7 +201,7 @@ Set-StrictMode -Version 5
     # Prevents the old root module from being added to prevent cyclic dependency
     foreach($module in $subModuleFiles){
         if($module -ne $rootModuleName){
-            subModules+=$module
+            $subModules+=$module
         }
     }
 
