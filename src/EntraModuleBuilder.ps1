@@ -230,9 +230,7 @@ Set-StrictMode -Version 5
 `$moduleBasePath = Split-Path -Parent `$MyInvocation.MyCommand.Definition
 foreach (`$subModule in `$subModules) {
     `$subModulePath=Join-Path `$moduleBasePath -ChildPath `$subModule
-     Write-Host "Importing... `$subModule" -ForegroundColor Yellow
      Import-Module -Name `$subModulePath -Force -ErrorAction Stop
-     Write-Host "Imported `$subModule" -ForegroundColor Yellow
 }
 "@
 
