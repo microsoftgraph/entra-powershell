@@ -202,6 +202,7 @@ Set-StrictMode -Version 5
     foreach($module in $subModuleFiles){
         if($module -ne $rootModuleName){
             $subModules+=$module
+
         }
     }
 
@@ -226,9 +227,10 @@ Set-StrictMode -Version 5
     # Close the array and complete the foreach loop
     $codeSnippet += @"
 )
-
+`$moduleBasePath = Split-Path -Parent `$MyInvocation.MyCommand.Definition
 foreach (`$subModule in `$subModules) {
-    Import-Module -Name `( Join-Path $PSScriptRoot $subModule) -Force
+    `$subModulePath=Join-Path `$moduleBasePath -ChildPath `$subModule
+    Import-Module -Name `$subModulePath -Force -ErrorAction Stop
 }
 "@
 
