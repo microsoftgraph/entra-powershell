@@ -24,10 +24,17 @@ Onboard the Global Secure Access service in the tenant.
 
 The `New-EntraBetaGlobalSecureAccessTenant` cmdlet onboards the Global Secure Access service in the tenant.
 
-## Example
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least-privileged roles are supported:
+
+- Global Secure Access Administrator
+- Security Administrator
+
+## Examples
+
+### Example 1: Enable Global Secure Access for a tenant
 
 ```powershell
-Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All'
 New-EntraBetaGlobalSecureAccessTenant
 ```
 
