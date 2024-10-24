@@ -204,6 +204,35 @@ function Get-CustomizationFiles {
 	$customizationFileList
 }
 
+# Reusable logging function
+function Log-Message {
+    param (
+        [string]$Message,
+        [string]$Level = 'INFO',  # Default log level is INFO
+        [ConsoleColor]$Color = [ConsoleColor]::White # Default color is White
+    )
+
+    switch ($Level) {
+        'INFO' {
+            $color = 'Cyan'
+        }
+        'WARNING' {
+            $color = 'Yellow'
+        }
+        'ERROR' {
+            $color = 'Red'
+        }
+        'SUCCESS' {
+            $color = 'Green'
+        }
+        default {
+            $color = $Color
+        }
+    }
+
+    Write-Host "[$Level] $Message" -ForegroundColor $color
+}
+
 function Create-ModuleHelp {
 	param (
 		[string]
