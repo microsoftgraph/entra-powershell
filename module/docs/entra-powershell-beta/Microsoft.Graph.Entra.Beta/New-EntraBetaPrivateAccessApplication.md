@@ -32,6 +32,7 @@ The `New-EntraBetaPrivateAccessApplication` cmdlet creates a Private Access appl
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 New-EntraBetaPrivateAccessApplication -ApplicationName TestApp1
 ```
+
 This example demonstrates how to create a new Private Access application called TestApp1 and assign the default connector group to it.
 
 ### Example 2: Create a new Private Access app and assign a specific connector group
@@ -40,6 +41,7 @@ This example demonstrates how to create a new Private Access application called 
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 New-EntraBetaPrivateAccessApplication -ApplicationName TestApp1 -ConnectorGroupId a3bdc7a8-e7af-0000-abe7-4f093d2141d8
 ```
+
 This example demonstrates how to create a new Private Access application called TestApp1 and assign a specific connector group to it.
 
 ## Parameters
@@ -101,4 +103,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
-
