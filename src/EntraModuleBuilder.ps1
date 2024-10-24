@@ -228,7 +228,7 @@ Set-StrictMode -Version 5
 )
 
 foreach (`$subModule in `$subModules) {
-    Import-Module -Name `$subModule -Force
+    Import-Module -Name `( Join-Path $PSScriptRoot $subModule) -Force
 }
 "@
 
