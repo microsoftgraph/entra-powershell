@@ -22,12 +22,20 @@ Retrieves the onboarding status of the Global Secure Access service in the tenan
 
 ## Description
 
-The `Get-EntraBetaGlobalSecureAccessTenantStatus` cmdlet retrieves the onboarding status of the Global Secure Access service in the tenant
+The `Get-EntraBetaGlobalSecureAccessTenantStatus` cmdlet retrieves the onboarding status of the Global Secure Access service in the tenant.
 
-## Example
+For delegated scenarios involving work or school accounts, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The following least-privileged roles are supported for this operation:
+
+- Global Reader
+- Global Secure Access Administrator
+- Security Administrator
+
+## Examples
+
+### Example 1: Check Global Secure Access status for the tenant
 
 ```powershell
-Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
+Connect-Entra -Scopes 'NetworkAccessPolicy.Read.All'
 Get-EntraBetaGlobalSecureAccessTenantStatus
 ```
 
