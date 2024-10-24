@@ -271,8 +271,10 @@ foreach (`$subModule in `$subModules) {
         $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
         $nestedModules=@()
         foreach($module in $subModules){
-			Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
-            $nestedModules += $module
+            if($module -eq $moduleName){
+                Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
+                $nestedModules += $module
+            }	
         }
         $moduleSettings = @{
             Path = $manifestPath
