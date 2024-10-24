@@ -122,7 +122,13 @@ Set-StrictMode -Version 5
 }
 
 
-    [void] CreateSubModuleFile([string]$startDirectory, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
+    [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
+        # Determine the output path based on the module
+        $startDirectory = if ($Module -eq "Entra") {
+            "..\module\Entra\Microsoft.Graph.Entra\"
+        } else {
+            "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
+        }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
@@ -150,6 +156,9 @@ Set-StrictMode -Version 5
         foreach ($subDir in $subDirectories) {
             $this.ProcessSubDirectory($subDir.FullName, $subDir.Name, $parentDirName, $destDirectory, $typedefsFilePath)
         }
+
+        #Create the RootModule .psm1 file
+        $this.CreateRootModule($Module)
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
@@ -227,6 +236,73 @@ foreach (`$subModule in `$subModules) {
     $rootModuleContent | Out-File -FilePath $rootPsm1FilePath -Encoding utf8
 
     Log-Message "[EntraModuleBuilder] Root Module successfully created" -Level 'SUCCESS'
+ }
+
+  [void] CreateRootModuleManifest([string] $Module) {
+	 
+	    # Update paths specific to this sub-directory
+        $rootPath=if ($Module -eq "Entra") {
+            "../module/Entra"
+        } else {
+            "../module/EntraBeta"
+        }
+      	
+		$moduleName=if($Module  -eq 'Entra'){
+			'Microsoft.Graph.Entra.root'
+		}else{
+			'Microsoft.Grap.Entra.Beta.root'
+		}
+		
+        $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
+		
+		#We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
+        $files = @("$($moduleName).psd1", "$($moduleName).psm1")
+        $content = Get-Content -Path $settingPath | ConvertFrom-Json
+        $PSData = @{
+            Tags = $($content.tags)
+            LicenseUri = $($content.licenseUri)
+            ProjectUri = $($content.projectUri)
+            IconUri = $($content.iconUri)
+            ReleaseNotes = $($content.releaseNotes)
+            Prerelease = $null
+        }
+        $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
+		
+        $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+        $nestedModules=@()
+        foreach($module in $subModules){
+			Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
+            $nestedModules += $module
+        }
+        $moduleSettings = @{
+            Path = $manisfestPath
+            GUID = $($content.guid)
+            ModuleVersion = "$($content.version)"
+            FunctionsToExport =@()
+            CmdletsToExport=@()
+            AliasesToExport=@()
+            Author =  $($content.authors)
+            CompanyName = $($content.owners)
+            FileList = $files
+            RootModule = "$($moduleName).psm1" 
+            Description = 'Microsoft Graph Entra PowerShell.'    
+            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
+            PowerShellVersion = $([System.Version]::Parse('5.1'))
+            CompatiblePSEditions = @('Desktop','Core')
+            RequiredModules =  @()
+            NestedModules = $nestedModules
+        }
+        
+        if($null -ne $content.Prerelease){
+            $PSData.Prerelease = $content.Prerelease
+        }
+
+        Log-Message "Starting Root Module Manifest generation" -Level 'INFO'
+        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
+        New-ModuleManifest @moduleSettings
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+		
+		Log-Message "Root Module Manifest successfully created" -Level 'INFO'
  }
 
  [void] CreateModuleManifest($module) {
@@ -377,6 +453,10 @@ foreach (`$subModule in `$subModules) {
         # Log completion for this module
         Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
     }
+
+    #Create the Root Module Manifest
+
+    $this.CreateRootModuleManifest($module)
 }
 
 
