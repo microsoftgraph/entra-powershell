@@ -45,7 +45,9 @@ Get-EntraBetaGlobalSecureAccessTenantStatus
 https://graph.microsoft.com/beta/$metadata#networkAccess/tenantStatus/$entity offboarded
 ```
 
-This command retrieves the onboarding status of the Global Secure Access service in the tenant.
+This command checks if the Global Secure Access service is activated in the tenant.
+
+If the status is `offboarded`, you can activate the service with `New-EntraBetaGlobalSecureAccessTenant`.
 
 ### CommonParameters
 
