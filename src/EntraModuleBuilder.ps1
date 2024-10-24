@@ -199,11 +199,6 @@ Set-StrictMode -Version 5
     $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
 
     #Generate the Root .psm1 file
-    # Validate the target directory
-    if (-not (Test-Path $TargetDirectory)) {
-        Log-Message "The specified target directory does not exist. Creating it..." -Level 'ERROR'
-        New-Item -ItemType Directory -Path $TargetDirectory -Force | Out-Null
-    }
 
     # Start building the code snippet
     $codeSnippet = @"
@@ -275,7 +270,7 @@ foreach (`$subModule in `$subModules) {
             $nestedModules += $module
         }
         $moduleSettings = @{
-            Path = $manisfestPath
+            Path = $manifestPath
             GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport =@()
@@ -298,7 +293,7 @@ foreach (`$subModule in `$subModules) {
         }
 
         Log-Message "Starting Root Module Manifest generation" -Level 'INFO'
-        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
+        
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 		
