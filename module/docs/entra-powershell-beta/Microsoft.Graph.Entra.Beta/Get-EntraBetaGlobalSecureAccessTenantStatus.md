@@ -49,6 +49,8 @@ This command checks if the Global Secure Access service is activated in the tena
 
 If the status is `offboarded`, you can activate the service with `New-EntraBetaGlobalSecureAccessTenant`.
 
+The onboarding status can be: `offboarded`, `offboarding in progress`, `onboarding in progress`, `onboarded`, `onboarding error`, or `offboarding error`.
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
