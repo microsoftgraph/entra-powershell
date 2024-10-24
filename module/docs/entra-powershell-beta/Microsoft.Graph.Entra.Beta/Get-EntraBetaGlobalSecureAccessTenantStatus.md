@@ -35,7 +35,7 @@ For delegated scenarios involving work or school accounts, the signed-in user mu
 ### Example 1: Check Global Secure Access status for the tenant
 
 ```powershell
-Connect-Entra -Scopes 'NetworkAccessPolicy.Read.All'
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 Get-EntraBetaGlobalSecureAccessTenantStatus
 ```
 
