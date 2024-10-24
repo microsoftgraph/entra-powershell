@@ -34,7 +34,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 ### Example 1: Enable Global Secure Access for a tenant
 
 ```powershell
-Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All'
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 New-EntraBetaGlobalSecureAccessTenant
 ```
 
