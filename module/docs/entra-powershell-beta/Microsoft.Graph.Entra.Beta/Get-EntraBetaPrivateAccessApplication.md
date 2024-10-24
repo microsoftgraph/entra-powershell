@@ -93,7 +93,7 @@ The Object ID of a Private Access application object.
 ```yaml
 Type: System.String
 Parameter Sets: SingleAppID
-Aliases: 
+Aliases: ObjectId
 
 Required: False
 Position: 1
