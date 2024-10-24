@@ -208,9 +208,14 @@ Set-StrictMode -Version 5
 "@
 
     # Add each sub-module to the code snippet
-    foreach ($subModule in $subModules) {
-        $codeSnippet += "    '$subModule',`n"
-    }
+    for ($i = 0; $i -lt $subModules.Count; $i++) {
+        $codeSnippet += "    '$($subModules[$i])'"
+        if ($i -lt $subModules.Count - 1) {
+            $codeSnippet += ",`n" # Add a comma except for the last item
+        } else {
+            $codeSnippet += "`n"  # Just a newline for the last item
+        }
+   }
 
     # Close the array and complete the foreach loop
     $codeSnippet += @"
