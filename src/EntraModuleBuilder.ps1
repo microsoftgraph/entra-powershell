@@ -196,9 +196,15 @@ Set-StrictMode -Version 5
         'Microsoft.Graph.Enta.Beta.root.psm1'
     }
 
-    $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+    $subModuleFiles=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+    $subModules=@()
+    # Prevents the old root module from being added to prevent cyclic dependency
+    foreach($module in $subModuleFiles){
+        if($module -ne $rootModuleName){
+            subModules+=$module
+        }
+    }
 
-    #Generate the Root .psm1 file
 
     # Start building the code snippet
     $codeSnippet = @"
