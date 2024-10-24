@@ -337,27 +337,7 @@ foreach (`$subModule in `$subModules) {
     # Load the module metadata
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
-    # Load dependency mapping from JSON
-    # Check if the dependency mapping file exists and load it
-    if (Test-Path $dependencyMappingPath) {
-        # Read the JSON content
-        $jsonContent = Get-Content -Path $dependencyMappingPath -Raw
-        
-        # Check if the JSON content is not null or empty
-        if (-not [string]::IsNullOrEmpty($jsonContent)) {
-            # Convert JSON to Hashtable
-            $dependencyMapping = @{}
-            $parsedContent = $jsonContent | ConvertFrom-Json
-            foreach ($key in $parsedContent.PSObject.Properties.Name) {
-                $dependencyMapping[$key] = $parsedContent.$key
-            }
-        } else {
-           Log-Message "[EntraModuleBuilder] Warning: dependencyMapping.json is empty." -Level 'ERROR'
-        }
-    } else {
-        Log-Message "[EntraModuleBuilder] Warning: dependencyMapping.json not found at $dependencyMappingPath." -Level 'ERROR'
-    }
-
+    # Create Manifest for each SubModule
     
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
