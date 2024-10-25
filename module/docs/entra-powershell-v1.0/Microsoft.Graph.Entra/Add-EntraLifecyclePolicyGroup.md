@@ -44,11 +44,7 @@ The `Add-EntraLifecyclePolicyGroup` cmdlet adds a group to a lifecycle policy in
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
 $policy = Get-EntraGroupLifecyclePolicy | Select-Object -First 1
-$params = @{
-    GroupLifecyclePolicyId = $policy.Id
-    groupId = $group.ObjectId
-}
-Add-EntraLifecyclePolicyGroup @params
+Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId $policy.Id -GroupId $group.Id
 ```
 
 This example adds a group to the lifecycle policy.

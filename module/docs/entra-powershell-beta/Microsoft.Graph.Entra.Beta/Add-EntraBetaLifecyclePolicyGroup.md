@@ -44,11 +44,7 @@ The `Add-EntraBetaLifecyclePolicyGroup` cmdlet adds a group to a lifecycle polic
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Office365 group'"
 $policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
-$params = @{
-    GroupLifecyclePolicyId = $policy.Id
-    groupId = $group.ObjectId
-}
-Add-EntraBetaLifecyclePolicyGroup @params
+Add-EntraBetaLifecyclePolicyGroup -GroupLifecyclePolicyId $policy.Id -GroupId $group.Id
 ```
 
 This example adds a group to the lifecycle policy.
