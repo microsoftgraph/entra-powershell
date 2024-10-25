@@ -35,10 +35,6 @@ Add-EntraBetaGroupOwner
 
 The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
 
-`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
-
-`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group (user or service principal).
-
 ## Examples
 
 ### Example 1: Add an owner to a group
@@ -47,15 +43,13 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$params = @{
-    GroupId = $group.ObjectId
-    RefObjectId = $user.ObjectId
-}
-
-Add-EntraBetaGroupOwner @params
+Add-EntraBetaGroupOwner -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add an owner to a group.
+
+`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group (user or service principal).
 
 ## Parameters
 
