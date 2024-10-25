@@ -56,7 +56,7 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
-    ObjectId = $application.Id
+    ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
     Ports = '22,3389'
     Protocol = 'TCP,UDP'
