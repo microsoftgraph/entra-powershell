@@ -50,12 +50,12 @@ function New-EntraBetaPrivateAccessApplication {
 
 	Invoke-GraphRequest @params
 
-	$bodyJson = @{
-		"@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
-	} | ConvertTo-Json -Depth 99 -Compress
-
 	# If ConnectorGroupId has been specified, assign the connector group to the app, otherwise the default connector group will be assigned.
 	if ($ConnectorGroupId) {
+
+		$bodyJson = @{
+			"@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+		} | ConvertTo-Json -Depth 99 -Compress
 		
 		$params = @{
 			Method = 'PUT'
