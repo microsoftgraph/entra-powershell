@@ -6,10 +6,10 @@ function New-EntraBetaPrivateAccessApplicationSegment {
 	[CmdletBinding()]
 	param (
 
-		[Alias('id')]
+		[Alias('ObjectId')]
 		[Parameter(Mandatory = $True, Position = 1, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
 		[string]
-		$ObjectID,
+		$ApplicationID,
 		
 		[Parameter(Mandatory = $True)]
 		[string]
@@ -71,7 +71,7 @@ function New-EntraBetaPrivateAccessApplicationSegment {
 
 	$params = @{
 		Method = 'POST'
-		Uri = "https://graph.microsoft.com/beta/applications/$ObjectID/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/"
+		Uri = "https://graph.microsoft.com/beta/applications/$ApplicationID/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/"
 		Headers = $customHeaders
 		Body = $bodyJson
 		OutputType = 'PSObject'
