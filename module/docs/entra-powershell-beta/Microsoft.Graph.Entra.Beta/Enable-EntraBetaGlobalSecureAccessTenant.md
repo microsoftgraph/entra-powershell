@@ -1,6 +1,6 @@
 ---
-title: New-EntraBetaGlobalSecureAccessTenant
-description: This article provides details on the New-EntraBetaGlobalSecureAccessTenant command.
+title: Enable-EntraBetaGlobalSecureAccessTenant
+description: This article provides details on the Enable-EntraBetaGlobalSecureAccessTenant command.
 
 ms.topic: reference
 ms.date: 10/19/2024
@@ -14,7 +14,7 @@ online version:
 schema: 2.0.0
 ---
 
-# New-EntraBetaGlobalSecureAccessTenant
+# Enable-EntraBetaGlobalSecureAccessTenant
 
 ## Synopsis
 
@@ -22,13 +22,20 @@ Onboard the Global Secure Access service in the tenant.
 
 ## Description
 
-The `New-EntraBetaGlobalSecureAccessTenant` cmdlet onboards the Global Secure Access service in the tenant.
+The `Enable-EntraBetaGlobalSecureAccessTenant` cmdlet onboards the Global Secure Access service in the tenant.
 
-## Example
+In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with the necessary permissions:
+
+- Global Secure Access Administrator
+- Security Administrator
+
+## Examples
+
+### Example 1: Enable Global Secure Access for a tenant
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-New-EntraBetaGlobalSecureAccessTenant
+Enable-EntraBetaGlobalSecureAccessTenant
 ```
 
 ```Output
@@ -58,5 +65,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## RELATED LINKS
 
 [Get-EntraBetaGlobalSecureAccessTenantStatus](Get-EntraBetaGlobalSecureAccessTenantStatus.md)
-
-

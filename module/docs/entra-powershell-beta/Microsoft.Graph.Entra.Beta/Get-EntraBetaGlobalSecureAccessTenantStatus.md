@@ -22,9 +22,17 @@ Retrieves the onboarding status of the Global Secure Access service in the tenan
 
 ## Description
 
-The `Get-EntraBetaGlobalSecureAccessTenantStatus` cmdlet retrieves the onboarding status of the Global Secure Access service in the tenant
+The `Get-EntraBetaGlobalSecureAccessTenantStatus` cmdlet retrieves the onboarding status of the Global Secure Access service in the tenant.
 
-## Example
+For delegated scenarios involving work or school accounts, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The following least-privileged roles are supported for this operation:
+
+- Global Reader
+- Global Secure Access Administrator
+- Security Administrator
+
+## Examples
+
+### Example 1: Check Global Secure Access status for the tenant
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
@@ -32,12 +40,16 @@ Get-EntraBetaGlobalSecureAccessTenantStatus
 ```
 
 ```Output
-@odata.context         : https://graph.microsoft.com/beta/$metadata#networkAccess/tenantStatus/$entity
-onboardingStatus       : onboarded
-onboardingErrorMessage :
+@odata.context                                                                onboardingStatus onboardingErrorMessage
+--------------                                                                ---------------- ----------------------
+https://graph.microsoft.com/beta/$metadata#networkAccess/tenantStatus/$entity offboarded
 ```
 
-This command retrieves the onboarding status of the Global Secure Access service in the tenant.
+This command checks if the Global Secure Access service is activated in the tenant.
+
+If the status is `offboarded`, you can activate the service with `New-EntraBetaGlobalSecureAccessTenant`.
+
+The onboarding status can be: `offboarded`, `offboarding in progress`, `onboarding in progress`, `onboarded`, `onboarding error`, or `offboarding error`.
 
 ### CommonParameters
 
@@ -64,4 +76,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
-

@@ -5,10 +5,10 @@ function Get-EntraBetaPrivateAccessApplication {
 
 	[CmdletBinding(DefaultParameterSetName = 'AllPrivateAccessApps')]
 	param (
-
+		[Alias("ObjectId")]
 		[Parameter(Mandatory = $True, Position = 1, ParameterSetName = 'SingleAppID')]
 		[string]
-		$ObjectID,
+		$ApplicationId,
 		
 		[Parameter(Mandatory = $False, ParameterSetName = 'SingleAppName')]
 		[string]
@@ -25,7 +25,7 @@ function Get-EntraBetaPrivateAccessApplication {
 			break
 		}			
 		"SingleAppID" {
-			Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ObjectID/?`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames"
+			Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/?`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames"
 			break
 		}
 		"SingleAppName" {

@@ -35,14 +35,14 @@ Get-EntraBetaPrivateAccessApplication
 
 ```Output
 displayName     : testApp1
-appId           : b8a10d3c-0000-4d0b-9b31-d24a097a1e02
-id              : 8f139194-c876-0000-af51-8aeb7f1fb9d4
+appId           : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id              : bbbbbbbb-1111-2222-3333-cccccccccccc
 tags            : {IsAccessibleViaZTNAClient, HideApp, PrivateAccessNonWebApplication}
 createdDateTime : 14/06/2024 12:38:50 AM
 
 displayName     : QuickAccess
-appId           : d2d253be-0000-4d93-a5e4-5c0aca66ef5e
-id              : a3bdc7a8-e7af-0000-abe7-4f093d2141d8
+appId           : dddddddd-3333-4444-5555-eeeeeeeeeeee
+id              : eeeeeeee-4444-5555-6666-ffffffffffff
 tags            : {HideApp, NetworkAccessQuickAccessApplication}
 createdDateTime : 4/07/2023 4:00:07 AM
 ```
@@ -53,14 +53,14 @@ This command retrieves all Private Access applications, including Quick Access.
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-
-Get-EntraBetaPrivateAccessApplication -ObjectID a3bdc7a8-e7af-0000-abe7-4f093d2141d8
+$application = Get-EntraBetaPrivateAccessApplication | Where-Object {$_.DisplayName -eq 'Finance team file share'}
+Get-EntraBetaPrivateAccessApplication -ApplicationId $application.Id
 ```
 
 ```Output
 displayName     : QuickAccess
-appId           : d2d253be-0000-4d93-a5e4-5c0aca66ef5e
-id              : a3bdc7a8-e7af-0000-abe7-4f093d2141d8
+appId           : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id              : bbbbbbbb-1111-2222-3333-cccccccccccc
 tags            : {HideApp, NetworkAccessQuickAccessApplication}
 createdDateTime : 4/07/2023 4:00:07 AM
 ```
@@ -71,14 +71,13 @@ This example demonstrates how to retrieve information for a specific Private Acc
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-
-Get-EntraBetaPrivateAccessApplication -ApplicationName testApp1
+Get-EntraBetaPrivateAccessApplication -ApplicationName 'Finance team file share'
 ```
 
 ```Output
-displayName     : testApp1
-appId           : b8a10d3c-0000-4d0b-9b31-d24a097a1e02
-id              : 8f139194-c876-0000-af51-8aeb7f1fb9d4
+displayName     : Finance team file share
+appId           : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id              : bbbbbbbb-1111-2222-3333-cccccccccccc
 tags            : {IsAccessibleViaZTNAClient, HideApp, PrivateAccessNonWebApplication}
 createdDateTime : 14/06/2024 12:38:50 AM
 ```
@@ -87,14 +86,14 @@ This example demonstrates how to retrieve information for a specific Private Acc
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The Object ID of a Private Access application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: SingleAppID
-Aliases: 
+Aliases: ObjectId
 
 Required: False
 Position: 1
@@ -144,4 +143,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
-
