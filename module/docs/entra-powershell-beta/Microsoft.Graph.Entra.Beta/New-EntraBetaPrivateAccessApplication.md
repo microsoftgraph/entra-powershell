@@ -18,11 +18,11 @@ schema: 2.0.0
 
 ## Synopsis
 
-Creates a Private Access applications and assigns a connector group to it.
+Creates a Private Access application and assigns a connector group to it.
 
 ## Description
 
-The `New-EntraBetaPrivateAccessApplication` cmdlet creates a Private Access applications and assigns a connector group to it.
+The `New-EntraBetaPrivateAccessApplication` cmdlet creates a Private Access application and assigns a connector group to it.
 
 ## Examples
 
@@ -30,19 +30,20 @@ The `New-EntraBetaPrivateAccessApplication` cmdlet creates a Private Access appl
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-New-EntraBetaPrivateAccessApplication -ApplicationName TestApp1
+New-EntraBetaPrivateAccessApplication -ApplicationName 'Contoso GSA Application'
 ```
 
-This example demonstrates how to create a new Private Access application called TestApp1 and assign the default connector group to it.
+This example shows how to create a new Private Access application named `Contoso GSA Application` and assign it to the default connector group.
 
 ### Example 2: Create a new Private Access app and assign a specific connector group
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-New-EntraBetaPrivateAccessApplication -ApplicationName TestApp1 -ConnectorGroupId a3bdc7a8-e7af-0000-abe7-4f093d2141d8
+$connectorGroup = Get-EntraBetaApplicationProxyConnectorGroup -Filter "Name eq 'Contoso GSA Group'"
+New-EntraBetaPrivateAccessApplication -ApplicationName 'Contoso GSA Application' -ConnectorGroupId $connectorGroup.Id
 ```
 
-This example demonstrates how to create a new Private Access application called TestApp1 and assign a specific connector group to it.
+This example shows how to create a new Private Access application named `Contoso GSA Application` and assign it to a specific connector group.
 
 ## Parameters
 
@@ -64,7 +65,7 @@ Accept wildcard characters: False
 
 ### -ConnectorGroupId
 
-Specifies a connector group to be assigned to the application.
+Specifies a connector group to assign to the application. Use `Get-EntraBetaApplicationProxyConnectorGroup` to retrieve connector details or `New-EntraBetaApplicationProxyConnectorGroup` to create a new group.
 
 ```yaml
 Type: System.String
@@ -97,9 +98,7 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## RELATED LINKS
 
 [Get-EntraBetaPrivateAccessApplication](Get-EntraBetaPrivateAccessApplication.md)
-
 [Get-EntraBetaPrivateAccessApplicationSegment](Get-EntraBetaPrivateAccessApplicationSegment.md)
-
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
-
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
+[New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
