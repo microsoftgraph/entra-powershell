@@ -40,7 +40,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 - Group owners
 - User Administrator
 - Directory Writers
--  Groups Administrator
+- Groups Administrator
 
 ## Examples
 

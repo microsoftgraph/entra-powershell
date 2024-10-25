@@ -35,26 +35,12 @@ Add-EntraGroupMember
 
 The Add-EntraGroupMember cmdlet adds a member to a group.
 
-In delegated scenarios, the signed-in user needs either a supported Microsoft Entra role or a custom role with the microsoft.directory/groups/members/update permission. For most groups, the least privileged roles that allow this operation are:
+In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
 - Group owners
 - Directory Writers
 - Groups Administrator
-- Identity Governance Administrator
 - User Administrator
-
-For Microsoft 365 groups specifically:
-
-- Exchange Administrator
-- SharePoint Administrator
-- Teams Administrator
-- Yammer Administrator
-
-For security groups specifically:
-
-- Intune Administrator
-
-To add members to a role-assignable group, the app must have `RoleManagement.ReadWrite.Directory` permission, and the calling user must have a supported Microsoft Entra role. The least privileged role for this is `Privileged Role Administrator`.
 
 ## Examples
 
