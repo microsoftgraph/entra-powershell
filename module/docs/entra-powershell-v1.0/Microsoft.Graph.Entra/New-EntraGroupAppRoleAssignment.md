@@ -45,7 +45,7 @@ The `New-EntraGroupAppRoleAssignment` cmdlet assigns a group of users to an appl
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "Displayname eq 'Box'"
-$group = Get-EntraGroup -SearchString 'ADC Global'
+$group = Get-EntraGroup -SearchString 'Contoso Global'
 New-EntraGroupAppRoleAssignment -GroupId $group.Id -PrincipalId $group.Id -ResourceId $servicePrincipal.Id -AppRoleId $servicePrincipal.Approles[1].Id
 ```
 
