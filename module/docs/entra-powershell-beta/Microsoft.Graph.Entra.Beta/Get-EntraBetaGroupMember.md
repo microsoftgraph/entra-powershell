@@ -58,6 +58,7 @@ To list members of a hidden group, the `Member.Read.Hidden` permission is also r
 ### Example 1: Retrieve and Select Group Member Properties
 
 ```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
 Get-EntraBetaGroup -GroupId $group.Id | Get-EntraBetaGroupMember | Select-Object Id, DisplayName, '@odata.type' 
 ```
