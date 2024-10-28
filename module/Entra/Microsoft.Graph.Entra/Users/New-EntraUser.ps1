@@ -7,70 +7,61 @@ function New-EntraUser {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserState,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsCompromised,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Surname,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.Dictionary`2[System.String,System.String]] $ExtensionProperty,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Country,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $OtherMails,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $State,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PostalCode,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PhysicalDeliveryOfficeName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $GivenName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Nullable`1[System.Boolean]] $AccountEnabled,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserPrincipalName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $CreationType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AgeGroup,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $JobTitle,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ImmutableId,
+    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]] $SignInNames,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $CompanyName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $StreetAddress,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $ImmutableId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $UsageLocation,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.Nullable`1[System.Boolean]] $AccountEnabled,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Surname,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $PasswordPolicies,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]] $SignInNames,
+    [System.Nullable`1[System.Boolean]] $IsCompromised,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $PostalCode,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Department,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $CreationType,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $PreferredLanguage,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $TelephoneNumber,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.Dictionary`2[System.String,System.String]] $ExtensionProperty,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $ShowInAddressList,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $FacsimileTelephoneNumber,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $UserPrincipalName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $UserStateChangedOn,
@@ -79,34 +70,43 @@ function New-EntraUser {
     [System.String] $Mobile,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $City,
+    [System.Collections.Generic.List`1[System.String]] $OtherMails,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UsageLocation,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $FacsimileTelephoneNumber,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $ShowInAddressList,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Department,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PreferredLanguage,
+    [System.String] $PhysicalDeliveryOfficeName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $ConsentProvidedForMinor,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MailNickName,
+    [System.String] $UserType,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $StreetAddress
+    [System.String] $GivenName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $DisplayName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $UserState,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $AgeGroup,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $State,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $JobTitle,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $City,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Country,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $MailNickName
     )
 
     PROCESS {    

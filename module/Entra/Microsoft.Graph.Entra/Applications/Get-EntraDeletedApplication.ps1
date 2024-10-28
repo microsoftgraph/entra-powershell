@@ -6,17 +6,17 @@ function Get-EntraDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
+    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $SearchString,
+                
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+                
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
-                
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-                
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
