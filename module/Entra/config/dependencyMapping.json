@@ -1,11 +1,11 @@
 {
-    "Microsoft.Graph.Entra.Users":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions","Microsoft.Graph.Users.Functions"],
+    "Microsoft.Graph.Entra.User":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions","Microsoft.Graph.Users.Functions"],
     "Microsoft.Graph.Entra.Authentication":["Microsoft.Graph.Authentication"],
-    "Microsoft.Graph.Entra.DirectoryObjects":["Microsoft.Graph.DirectoryObjects"],
-    "Microsoft.Graph.Entra.Groups":["Microsoft.Graph.Groups"],
+    "Microsoft.Graph.Entra.Directory":["Microsoft.Graph.DirectoryObjects"],
+    "Microsoft.Graph.Entra.Group":["Microsoft.Graph.Groups"],
     "Microsoft.Graph.Entra.DirectoryManagement":["Microsoft.Graph.DirectoryManagement"],
     "Microsoft.Graph.Entra.Governance":["Microsoft.Graph.Governance"],
     "Microsoft.Graph.Entra.SignIns":["Microsoft.Graph.SigIns"],
-    "Microsoft.Graph.Entra.Applications":["Microsoft.Graph.Applications"],
+    "Microsoft.Graph.Entra.Application":["Microsoft.Graph.Applications"],
     "Microsoft.Graph.Entra.Reports":["Microsoft.Graph.Reports"]
 }

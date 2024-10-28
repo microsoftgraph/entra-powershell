@@ -93,7 +93,8 @@ class EntraModuleSplitter {
 	 # Function has been mapped to a directory
     $isMapped = $false
 
-    if($functionName -ne 'New-EntraCustomHeaders' or $functionName -ne 'Get-EntraUnsupportedCommand'){
+    if($moduleMapping.ContainsKey($functionName)){
+
         $subModuleDirectoryName = $moduleMapping.$functionName
 
         # Create the subModule Directory
@@ -112,7 +113,7 @@ class EntraModuleSplitter {
 	}
 
     # Account for unmapped files
-    if (-not $isMapped) {
+    if (-not $isMapped -and $functionName -ne 'New-EntraCustomHeaders') {
         $unmappedFilePath = Join-Path -Path $unmappedDirectory -ChildPath "$functionName.ps1"
         Set-Content -Path $unmappedFilePath -Value $ps1Content
         Log-Message "[EntraModuleSplitter] Created unmapped function file: $unmappedFilePath in UnMappedFiles" -Level 'ERROR'
