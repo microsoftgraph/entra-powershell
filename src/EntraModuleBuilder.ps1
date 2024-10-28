@@ -453,7 +453,7 @@ foreach (`$subModule in `$subModules) {
 [void] CreateModuleHelp([string] $Module) {
    
     if (!(Test-Path $this.OutputDirectory)) {
-        New-Item -ItemType Directory -Path $this.OutputDurectory | Out-Null
+        New-Item -ItemType Directory -Path $this.OutputDirectory | Out-Null
     }
 
     # Determine the base docs path based on the specified module
