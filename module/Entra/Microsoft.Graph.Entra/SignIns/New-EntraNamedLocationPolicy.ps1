@@ -10,9 +10,6 @@ function New-EntraNamedLocationPolicy {
     [System.String] $DisplayName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Id,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IncludeUnknownCountriesAndRegions,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -23,6 +20,9 @@ function New-EntraNamedLocationPolicy {
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IsTrusted,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Id,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]] $IpRanges

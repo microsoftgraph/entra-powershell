@@ -10,22 +10,22 @@ function New-EntraInvitation {
     [System.String] $InvitedUserEmailAddress,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $InvitedUserType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $SendInvitationMessage,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $InvitedUserDisplayName,
+    [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $SendInvitationMessage,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
     [System.String] $InviteRedirectUrl,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo
+    [System.String] $InvitedUserType,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $InvitedUserDisplayName
     )
 
     PROCESS {

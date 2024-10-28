@@ -7,86 +7,98 @@ function Set-EntraAuthorizationPolicy {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $AllowedToSignUpEmailBasedSubscriptions,
+    [System.String] $Description,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $DisplayName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $AllowEmailVerifiedUsersToJoinOrganization,
+    [System.Nullable`1[System.Boolean]] $AllowedToSignUpEmailBasedSubscriptions,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $AllowedToUseSSPR,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $BlockMsolPowerShell,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Description,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions] $DefaultUserRolePermissions,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $AllowedToUseSSPR
+    [System.Nullable`1[System.Boolean]] $AllowEmailVerifiedUsersToJoinOrganization
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["AllowedToSignUpEmailBasedSubscriptions"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["AllowedToSignUpEmailBasedSubscriptions"] = $PSBoundParameters["AllowedToSignUpEmailBasedSubscriptions"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["DisplayName"])
+    if ($null -ne $PSBoundParameters["Description"])
     {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+        $params["Description"] = $PSBoundParameters["Description"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["DisplayName"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
     }
     if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["AllowEmailVerifiedUsersToJoinOrganization"])
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["AllowEmailVerifiedUsersToJoinOrganization"] = $PSBoundParameters["AllowEmailVerifiedUsersToJoinOrganization"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if ($null -ne $PSBoundParameters["BlockMsolPowerShell"])
+    if ($null -ne $PSBoundParameters["AllowedToSignUpEmailBasedSubscriptions"])
     {
-        $params["BlockMsolPowerShell"] = $PSBoundParameters["BlockMsolPowerShell"]
+        $params["AllowedToSignUpEmailBasedSubscriptions"] = $PSBoundParameters["AllowedToSignUpEmailBasedSubscriptions"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["AllowedToUseSSPR"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["AllowedToUseSSPR"] = $PSBoundParameters["AllowedToUseSSPR"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["Description"])
+    if ($null -ne $PSBoundParameters["BlockMsolPowerShell"])
     {
-        $params["Description"] = $PSBoundParameters["Description"]
+        $params["BlockMsolPowerShell"] = $PSBoundParameters["BlockMsolPowerShell"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
     if($null -ne $PSBoundParameters["DefaultUserRolePermissions"])
     {
@@ -100,21 +112,9 @@ function Set-EntraAuthorizationPolicy {
             $Value = $hash
         $params["DefaultUserRolePermissions"] = $Value
     }
-    if ($null -ne $PSBoundParameters["AllowedToUseSSPR"])
+    if ($null -ne $PSBoundParameters["AllowEmailVerifiedUsersToJoinOrganization"])
     {
-        $params["AllowedToUseSSPR"] = $PSBoundParameters["AllowedToUseSSPR"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["AllowEmailVerifiedUsersToJoinOrganization"] = $PSBoundParameters["AllowEmailVerifiedUsersToJoinOrganization"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

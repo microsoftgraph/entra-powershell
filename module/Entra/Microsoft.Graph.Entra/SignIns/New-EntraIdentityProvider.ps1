@@ -7,16 +7,16 @@ function New-EntraIdentityProvider {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $ClientSecret,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
     [System.String] $Type,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Name,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $ClientId
+    [System.String] $ClientId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $ClientSecret
     )
 
     PROCESS {    
