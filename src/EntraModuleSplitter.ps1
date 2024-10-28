@@ -75,7 +75,7 @@ class EntraModuleSplitter {
         return $functions
     }
 
-    [void] ProcessFunction([pscustomobject]$function, [string]$specificFunctionName, [string]$moduleOutputDirectory, [PSCustomObject]$jsonContent, [string]$header, [string]$unmappedDirectory) {
+    [void] ProcessFunction([pscustomobject]$function, [string]$specificFunctionName, [string]$moduleOutputDirectory, [PSCustomObject]$moduleMapping, [string]$header, [string]$unmappedDirectory) {
     $functionName = $function.Name
     $functionContent = $function.Content
 
