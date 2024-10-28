@@ -7,7 +7,7 @@
 
 . ./common-functions.ps1
 
-function Copy-MarkdownFilesFromMapping {
+function Split-Docs {
     param (
         [string]$Source = 'Entra',  # Default to 'Entra'
         [string]$OutputDirectory    # Allow custom output directory
@@ -17,11 +17,11 @@ function Copy-MarkdownFilesFromMapping {
     switch ($Source) {
         'Entra' {
             $DocsSourceDirectory = "../module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
-            $MappingFilePath = '../module/Entra/config/newModuleMapping.json'
+            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
         }
         'EntraBeta' {
             $DocsSourceDirectory = "../module/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
-            $MappingFilePath = "../module/EntraBeta/config/newModuleMapping.json"
+            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
         }
         default {
             Log-Message -Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'
@@ -74,5 +74,3 @@ function Copy-MarkdownFilesFromMapping {
     Log-Message -Message "Markdown file copying complete." -Level 'INFO'
 }
 
-
-Copy-MarkdownFilesFromMapping -Source 'Entra'  # For Entra
