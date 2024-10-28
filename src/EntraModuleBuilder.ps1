@@ -154,6 +154,11 @@ Set-StrictMode -Version 5
         $this.EnsureDestinationDirectory($destDirectory)
 
         foreach ($subDir in $subDirectories) {
+            # Skip the 'Migration' sub-directory
+            if ($subDir.Name -eq 'Migration') {
+                Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+                continue
+            }
             $this.ProcessSubDirectory($subDir.FullName, $subDir.Name, $parentDirName, $destDirectory, $typedefsFilePath)
         }
 
@@ -341,6 +346,12 @@ foreach (`$subModule in `$subModules) {
     
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
+        # Skip the 'Migration' sub-directory
+        if ($subDir.Name -eq 'Migration') {
+            Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+            continue
+        }
+        
         $moduleName = $subDir.Name
 
         $helpFileName = if ($Module -eq "Entra") {
@@ -465,7 +476,7 @@ foreach (`$subModule in `$subModules) {
     }
 
     # Determine the base docs path based on the specified module
-    $docsPath=$this.BaseDocsPath
+    $docsPath = $this.BaseDocsPath
     if ($Module -eq "Entra") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-v1.0/Microsoft.Graph.Entra"
     } elseif ($Module -eq "EntraBeta") {
@@ -482,12 +493,20 @@ foreach (`$subModule in `$subModules) {
     }
 
     # Get all subdirectories within the base docs path
-    $subDirectories = Get-ChildItem -Path $docsPath
+    $subDirectories = Get-ChildItem -Path $docsPath -Directory
     foreach ($subDirectory in $subDirectories) {
-        # Get all markdown files in the current subdirectory
-        $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
+        # Skip the 'Migration' sub-directory
+        if ($subDirectory.Name -eq 'Migration') {
+            Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+            continue
+        }
 
-        if ($null -ne $markDownFiles -and $markdownFiles.Count -eq 0) {
+        # Get all markdown files in the current subdirectory
+        $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
+        Log-Message "Processing $subDirectory" -Level 'WARNING'
+        
+        # Check if markdown files are found
+        if (-not($markDownFiles)) {
             Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }
@@ -503,21 +522,21 @@ foreach (`$subModule in `$subModules) {
  
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
-        $moduleDocsPath=$subDirectory
+        $moduleDocsPath = $subDirectory
 		
-		try{
-		  # Create the help file using PlatyPS
-	    New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
+		try {
+            # Create the help file using PlatyPS
+            New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
-        Log-Message "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -Level 'SUCCESS'
+            Log-Message "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -Level 'SUCCESS'
 			
-		}catch{			
-		    Log-Message "[EntraModuleBuilder] CreateModuleHelp:  $_.Exception.Message" -Level 'ERROR'
+		} catch {			
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp: $_.Exception.Message" -Level 'ERROR'
 		}
-      
     }
 
     Log-Message "[EntraModuleBuilder] Help files generated successfully for module: $Module" -Level 'SUCCESS'
 }
+
 
 }

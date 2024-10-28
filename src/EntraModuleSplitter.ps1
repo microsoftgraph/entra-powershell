@@ -197,7 +197,12 @@ class EntraModuleSplitter {
         $totalAliases = $aliasFileContent.Count
 
         foreach ($directory in $directories) {
-            # Get the full path of the directory
+            # Skip the 'Migration' sub-directory
+            if ($directory.Name -eq 'Migration') {
+                Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+                continue
+            }
+                # Get the full path of the directory
             $directoryPath = $directory.FullName
 
             # Get .ps1 file names in the current directory
