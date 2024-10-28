@@ -7,6 +7,7 @@
 
 . ./common-functions.ps1
 
+
 function Split-Docs {
     param (
         [string]$Source = 'Entra',  # Default to 'Entra'
@@ -39,7 +40,7 @@ function Split-Docs {
     }
 
     # Load the JSON content from the mapping file
-    $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json -AsHashTable
+    $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json
 
     # Ensure the root documentation directory exists, create if it doesn't
     if (-not (Test-Path -Path $TargetRootDirectory -PathType Container)) {
