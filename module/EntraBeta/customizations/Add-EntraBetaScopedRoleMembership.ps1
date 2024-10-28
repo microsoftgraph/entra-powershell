@@ -75,7 +75,7 @@
         {
             $TmpValue = $PSBoundParameters["RoleMemberInfo"]
                         $Value = @{
-                            id = ($TmpValue).ObjectId
+                            id = ($TmpValue).Id
                         } | ConvertTo-Json
             $params["RoleMemberInfo"] = $Value
         }
