@@ -75,3 +75,4 @@ function Split-Docs {
     Log-Message -Message "Markdown file copying complete." -Level 'INFO'
 }
 
+Split-Docs -Source 'Entra'
