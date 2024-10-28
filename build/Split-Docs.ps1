@@ -39,7 +39,7 @@ function Split-Docs {
     }
 
     # Load the JSON content from the mapping file
-    $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json
+    $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json -AsHashTable
 
     # Ensure the root documentation directory exists, create if it doesn't
     if (-not (Test-Path -Path $TargetRootDirectory -PathType Container)) {

@@ -215,6 +215,7 @@
   "Set-EntraUserThumbnailPhoto": "Users",
   "Update-EntraSignedInUserPassword": "Users",
   "Reset-EntraStrongAuthenticationMethodByUpn": "Authentication",
+  "Get-EntraDirSyncfeature": "DirectoryManagement",
   "Get-EntraAttributeSet": "DirectoryManagement",
   "New-EntraAttributeSet": "DirectoryManagement",
   "Set-EntraAttributeSet": "DirectoryManagement",
@@ -259,5 +260,5 @@
   "Remove-EntraServicePrincipalAppRoleAssignment": "Applications",
   "Set-EntraDirectoryRoleDefinition": "Governance",
   "Update-EntraUserFromFederated": "Users",
-  "Get-EntraDomainServiceConfiguration":"DirectoryManagement"
+  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement"
 }
