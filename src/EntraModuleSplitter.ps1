@@ -40,7 +40,7 @@ class EntraModuleSplitter {
     }
 
     [PSCustomObject] ReadJsonFile([string]$jsonFilePath) {
-        return Get-Content -Path $jsonFilePath | ConvertFrom-Json
+        return Get-Content -Path $jsonFilePath | ConvertFrom-Json -AsHashTable
     }
 
     [array] ExtractFunctions([string]$content) {
