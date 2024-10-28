@@ -393,7 +393,7 @@ foreach (`$subModule in `$subModules) {
         $requiredModules = @()
         if (Test-Path $dependencyMappingPath) {
             $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
-            Write-Host "Dependency Mapping: $jsonContent" -ForegroundColor Green
+            Log-Message "Dependency Mapping: $jsonContent"
             # Convert JSON to Hashtable
             $dependencyMapping = @{}
             foreach ($key in $jsonContent.PSObject.Properties.Name) {
@@ -404,7 +404,9 @@ foreach (`$subModule in `$subModules) {
             
             if ($dependencyMapping.ContainsKey($keyModuleName)) {
                 foreach ($dependency in $dependencyMapping[$keyModuleName]) {
+                    Log-Message "$content.requiredModulesVersion" -Level 'WARNING'
                     $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                    Log-Message $requiredModules.Count
                 }
             }
         }
@@ -437,11 +439,17 @@ foreach (`$subModule in `$subModules) {
 
         # Create and update the module manifest
         Log-Message "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath"
-        New-ModuleManifest @moduleSettings
+        try{
+             New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
         # Log completion for this module
         Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
+
+        }catch{
+            Log-Message $_.Exception.Message -Level 'ERROR'
+        }
+       
     }
 
     #Create the Root Module Manifest
@@ -474,13 +482,12 @@ foreach (`$subModule in `$subModules) {
     }
 
     # Get all subdirectories within the base docs path
-    $subDirectories = Get-ChildItem -Path $docsPath -Directory
-	Write-Host "SubDirs: $subDirectories" -ForegroundColor Blue
+    $subDirectories = Get-ChildItem -Path $docsPath
     foreach ($subDirectory in $subDirectories) {
         # Get all markdown files in the current subdirectory
         $markdownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
 
-        if ($markdownFiles.Count -eq 0) {
+        if ($null -ne $markDownFiles -and $markdownFiles.Count -eq 0) {
             Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }

@@ -8,15 +8,15 @@ function Get-EntraUserThumbnailPhoto {
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $View,
+    [Alias('ObjectId')]            
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $FileName,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $FilePath,
-    [Alias('ObjectId')]            
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -29,21 +29,9 @@ function Get-EntraUserThumbnailPhoto {
     {
         $params["View"] = $PSBoundParameters["View"]
     }
-    if ($null -ne $PSBoundParameters["FileName"])
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["FileName"] = $PSBoundParameters["FileName"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["ErrorAction"])
     {
@@ -53,41 +41,53 @@ function Get-EntraUserThumbnailPhoto {
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["FilePath"])
-    {
-        $params["FilePath"] = $PSBoundParameters["FilePath"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if ($null -ne $PSBoundParameters["InformationVariable"])
     {
         $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
     if ($null -ne $PSBoundParameters["UserId"])
     {
         $params["UserId"] = $PSBoundParameters["UserId"]
+    }
+    if ($null -ne $PSBoundParameters["FileName"])
+    {
+        $params["FileName"] = $PSBoundParameters["FileName"]
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if ($null -ne $PSBoundParameters["FilePath"])
+    {
+        $params["FilePath"] = $PSBoundParameters["FilePath"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
     if($null -ne $PSBoundParameters["Property"])
     {

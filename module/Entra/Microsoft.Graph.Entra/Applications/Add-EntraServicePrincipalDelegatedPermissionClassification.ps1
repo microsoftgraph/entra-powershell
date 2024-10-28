@@ -23,45 +23,49 @@ function Add-EntraServicePrincipalDelegatedPermissionClassification {
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["Classification"])
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["Classification"] = $PSBoundParameters["Classification"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
+    if ($null -ne $PSBoundParameters["Classification"])
+    {
+        $params["Classification"] = $PSBoundParameters["Classification"]
+    }
     if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PermissionName"])
-    {
-        $params["PermissionName"] = $PSBoundParameters["PermissionName"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["PermissionName"])
+    {
+        $params["PermissionName"] = $PSBoundParameters["PermissionName"]
+    }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
@@ -71,17 +75,13 @@ function Add-EntraServicePrincipalDelegatedPermissionClassification {
     {
         $params["PermissionId"] = $PSBoundParameters["PermissionId"]
     }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
     if ($null -ne $PSBoundParameters["OutBuffer"])
     {
         $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
     if ($null -ne $PSBoundParameters["ServicePrincipalId"])
     {
