@@ -60,14 +60,7 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    Type = 'LinkedIn'
-    Name = 'LinkedInName'
-    ClientId = 'LinkedInAppClientId'
-    ClientSecret = 'LinkedInAppClientSecret'
-}
-
-New-EntraIdentityProvider @params
+New-EntraIdentityProvider -Type 'LinkedIn' -Name 'LinkedInName' -ClientId 'LinkedInAppClientId' -ClientSecret 'LinkedInAppClientSecret'
 ```
 
 ```Output
