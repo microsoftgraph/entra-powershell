@@ -414,7 +414,6 @@ foreach (`$subModule in `$subModules) {
             
             if ($dependencyMapping.ContainsKey($keyModuleName)) {
                 foreach ($dependency in $dependencyMapping[$keyModuleName]) {
-                    Log-Message "$content.requiredModulesVersion" -Level 'WARNING'
                     $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
                     Log-Message $requiredModules.Count
                 }

@@ -1,9 +1,11 @@
 
+[cmdletbinding()]
 param (
     [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
 )
 
-. ..\src\EntraModuleBuilder.ps1
+. (Join-Path $psscriptroot "/common-functions.ps1")
+. (Join-Path $psscriptroot "../src/EntraModuleBuilder.ps1")
 
 $moduleBuilder = [EntraModuleBuilder]::new()
 
