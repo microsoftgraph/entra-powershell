@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            "..\module\Entra\Microsoft.Graph.Entra\"
+            "..\moduleVNext\Entra\Microsoft.Graph.Entra\"
         } else {
-            "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
+            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta\"
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -333,7 +333,7 @@ foreach (`$subModule in `$subModules) {
             "../moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
     }
 
-    $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
+    $subDirectories = Get-ChildItem -Path $moduleBasePath
 
 		
     $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
