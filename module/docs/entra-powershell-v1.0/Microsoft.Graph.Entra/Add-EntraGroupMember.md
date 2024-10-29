@@ -55,8 +55,8 @@ Add-EntraGroupMember -GroupId $group.Id -RefObjectId $user.Id
 
 This example demonstrates how to add a member to a group.
 
-- `-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
-- -RefObjectId` - specifies the unique identifier (Object ID) of the member to be added to the group.
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
+- `-RefObjectId` - Specifies the unique identifier (Object ID) of the member to be added to the group.
 
 ## Parameters
 
