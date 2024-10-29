@@ -43,12 +43,8 @@ The `Remove-EntraLifecyclePolicyGroup` cmdlet removes a group from a lifecycle p
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
-$policy = Get-EntraLifecyclePolicyGroup -Id $group.ObjectId
-$params = @{
-    GroupLifecyclePolicyId = $policy.Id
-    GroupId = $group.ObjectId
-}
-Remove-EntraLifecyclePolicyGroup @params
+$policy = Get-EntraLifecyclePolicyGroup -Id $group.Id
+Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId $policy.Id -GroupId $group.Id
 ```
 
 ```Output
