@@ -8,6 +8,7 @@ param (
 
 # Import the necessary scripts
 . ..\src\EntraModuleSplitter.ps1
+. .\Split-Docs
 
 
 
@@ -15,3 +16,5 @@ param (
 $entraModuleSplitter = [EntraModuleSplitter]::new()
 $entraModuleSplitter.SplitEntraModule($Module)  # Pass the module argument
 $entraModuleSplitter.ProcessEntraAzureADAliases($Module)
+
+Split-Docs -Source $Module
