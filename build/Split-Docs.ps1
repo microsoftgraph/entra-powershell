@@ -57,6 +57,11 @@ function Split-Docs {
 
         # Create the sub-directory under the output root directory if it doesn't exist
         $targetSubDir = Join-Path -Path $TargetRootDirectory -ChildPath $subDirName
+
+        if($subDirName -eq 'Migration' -or $subDirName -eq 'Invitations'){
+            Log-Message "Skipping $subDirName" -Level 'WARNING'
+            continue
+        }
         if (-not (Test-Path -Path $targetSubDir -PathType Container)) {
             New-Item -Path $targetSubDir -ItemType Directory | Out-Null
             Log-Message -Message "Created sub-directory: $targetSubDir" -Level 'SUCCESS'
