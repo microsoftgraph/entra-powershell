@@ -57,10 +57,12 @@ Use a clean PowerShell session when you're building the module. The building pro
 .\build\Create-CreateModule.ps1 -Module Entra // or EntraBeta
 ```
 
-The generated module is in the output folder `./bin`
+The generated modules are in the output folder `./bin`
 In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.<SubModule>psd1 -Force`
 
-SubModule in this case is the name of the specific sub-module you want to use.
+Alternatively, import the root module(that encompases and includes all the sub-modules and their help and dependencies) `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
+
+SubModule in this case is the name of the specific sub-module you want to use. They are `Authentication,Users,DirectoryManagement, Groups, Applications,Governance,SignIns and Reports`
 
 ## Usage
 
