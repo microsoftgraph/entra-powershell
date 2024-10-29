@@ -49,7 +49,7 @@ This example demonstrates how to remove an owner from a group in Microsoft Entra
 
 - `GroupId` - Specifies the ID of a group in Microsoft Entra ID.  
 
-- `OwnerId` specifies the ID of an owner.
+- `OwnerId` - Specifies the ID of an owner.
 
 ## Parameters
 
