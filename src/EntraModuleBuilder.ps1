@@ -196,9 +196,9 @@ Set-StrictMode -Version 5
 
  [void] CreateRootModule([string] $Module){
     $rootModuleName=if($Module -eq 'Entra'){
-        'Microsoft.Graph.Entra.root.psm1'
+        'Microsoft.Graph.Entra.psm1'
     }else{
-        'Microsoft.Graph.Enta.Beta.root.psm1'
+        'Microsoft.Graph.Enta.Beta.psm1'
     }
 
     $subModuleFiles=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
@@ -261,9 +261,9 @@ foreach (`$subModule in `$subModules) {
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
-			'Microsoft.Graph.Entra.root'
+			'Microsoft.Graph.Entra'
 		}else{
-			'Microsoft.Grap.Entra.Beta.root'
+			'Microsoft.Grap.Entra.Beta'
 		}
 		
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
