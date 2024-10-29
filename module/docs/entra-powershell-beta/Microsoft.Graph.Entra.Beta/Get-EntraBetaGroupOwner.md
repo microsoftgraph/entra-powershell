@@ -62,7 +62,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance #microsoft.graph.user
 
 This example demonstrates how to retrieve the owner of a specific group.
 
-- `-GroupId` Parameter specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ### Example 2: Gets all group owners
 
