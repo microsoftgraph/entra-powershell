@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            "..\moduleVNext\Entra\Microsoft.Graph.Entra\"
+            "..\moduleVNext\Entra\Microsoft.Graph.Entra"
         } else {
-            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta\"
+            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta"
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -155,7 +155,7 @@ Set-StrictMode -Version 5
 
         foreach ($subDir in $subDirectories) {
             # Skip the 'Migration' sub-directory
-            if ($subDir.Name -eq 'Migration') {
+            if ($subDir.Name -eq 'Migration' -or $subDir.Name -eq 'Invitations') {
                 Log-Message "Skipping 'Migration' directory." -Level 'INFO'
                 continue
             }
@@ -333,7 +333,7 @@ foreach (`$subModule in `$subModules) {
             "../moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
     }
 
-    $subDirectories = Get-ChildItem -Path $moduleBasePath
+    $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
 
 		
     $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
@@ -346,12 +346,6 @@ foreach (`$subModule in `$subModules) {
     
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
-        # Skip the 'Migration' sub-directory
-        if ($subDir.Name -eq 'Migration' -or $subDir.Name -eq 'Invitations') {
-            Log-Message "Skipping 'Migration and Invitation' directory." -Level 'INFO'
-            continue
-        }
-        
         $moduleName = $subDir.Name
 
         $helpFileName = if ($Module -eq "Entra") {
@@ -415,7 +409,6 @@ foreach (`$subModule in `$subModules) {
             if ($dependencyMapping.ContainsKey($keyModuleName)) {
                 foreach ($dependency in $dependencyMapping[$keyModuleName]) {
                     $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
-                    Log-Message $requiredModules.Count
                 }
             }
         }
@@ -476,9 +469,9 @@ foreach (`$subModule in `$subModules) {
     # Determine the base docs path based on the specified module
     $docsPath = $this.BaseDocsPath
     if ($Module -eq "Entra") {
-        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-v1.0/Microsoft.Graph.Entra"
+        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-v1.0"
     } elseif ($Module -eq "EntraBeta") {
-        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta/Microsoft.Graph.Entra.Beta"
+        $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta"
     } else {
         Log-Message "Invalid module specified: $Module" -Level 'ERROR'
         return
