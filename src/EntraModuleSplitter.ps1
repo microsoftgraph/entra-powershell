@@ -33,9 +33,9 @@ class EntraModuleSplitter {
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return "..\module\Entra\"
+            return "..\moduleVNext\Entra\"
         } else {
-            return "..\module\EntraBeta\"
+            return "..\moduleVNext\EntraBeta\"
         }
     }
 
@@ -142,9 +142,9 @@ class EntraModuleSplitter {
 [void] SplitEntraModule([string]$Module = 'Entra') {
 
        $JsonFilePath=if($Module -eq 'Entra'){
-          '../module/Entra/config/moduleMapping.json'
+          '../moduleVNext/Entra/config/moduleMapping.json'
        }else{
-         '../module/EntraBeta/config/moduleMapping.json'
+         '../moduleVNext/EntraBeta/config/moduleMapping.json'
        }
 		# Determine file paths and output directories
 		$psm1FilePath = $this.GetModuleFilePath($Module)
@@ -159,6 +159,7 @@ class EntraModuleSplitter {
 		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
 		$this.CreateOutputDirectory($moduleOutputDirectory)
 
+        Log-Message 'PSM1 Path $psm1FilePath' -Level 'WARNING'
 		$psm1Content = Get-Content -Path $psm1FilePath -Raw
 		$functions = $this.ExtractFunctions($psm1Content)
 
@@ -170,6 +171,9 @@ class EntraModuleSplitter {
 		$specificFunctionName = if ($moduleName -eq "Microsoft.Graph.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
 
 		foreach ($function in $functions) {
+            if($moduleOutputDirectory -eq 'Migration' -or $moduleOutputDirectory -eq 'Invitations'){
+                continue;
+            }
 			$this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
 		}
 
@@ -198,8 +202,8 @@ class EntraModuleSplitter {
 
         foreach ($directory in $directories) {
             # Skip the 'Migration' sub-directory
-            if ($directory.Name -eq 'Migration') {
-                Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+            if ($directory.Name -eq 'Migration' -or $directory.Name -eq 'Invitations') {
+                Log-Message "Skipping $directory.Name directory." -Level 'INFO'
                 continue
             }
                 # Get the full path of the directory
@@ -244,9 +248,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
+            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta\"
         } else {
-            "..\module\Entra\Microsoft.Graph.Entra\"
+            "..\moduleVNext\Entra\Microsoft.Graph.Entra\"
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {

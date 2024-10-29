@@ -18,11 +18,13 @@ function Split-Docs {
     switch ($Source) {
         'Entra' {
             $DocsSourceDirectory = "../module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
-            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
+            $MappingFilePath = '../moduleVNext/Entra/config/moduleMapping.json'
+            $OutputDirectory='../moduleVNext/docs/entra-powershell-v1.0'
         }
         'EntraBeta' {
             $DocsSourceDirectory = "../module/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
-            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
+            $MappingFilePath = "../moduleVNext/EntraBeta/config/moduleMapping.json"
+            $OutputDirectory="../moduleVNext/docs/entra-powershell-beta"
         }
         default {
             Log-Message -Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'
@@ -31,7 +33,7 @@ function Split-Docs {
     }
 
     # Use the provided output directory or default to DocsSourceDirectory if none specified
-    $TargetRootDirectory = if ($OutputDirectory) { $OutputDirectory } else { $DocsSourceDirectory }
+    $TargetRootDirectory = $OutputDirectory
 
     # Check if the mapping file exists
     if (-not (Test-Path -Path $MappingFilePath -PathType Leaf)) {
