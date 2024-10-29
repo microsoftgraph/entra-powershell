@@ -93,7 +93,7 @@ class EntraModuleSplitter {
 	 # Function has been mapped to a directory
     $isMapped = $false
 
-    if($moduleMapping.ContainsKey($functionName)){
+    if($moduleMapping.ContainsKey($functionName) -and (-not($moduleMapping.$functionName -eq 'Migration' -or $moduleMapping.$functionName -eq 'Invitations'))){
 
         $subModuleDirectoryName = $moduleMapping.$functionName
 
@@ -157,6 +157,7 @@ class EntraModuleSplitter {
 		$jsonContent = $this.ReadJsonFile($JsonFilePath)
 		$moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
 		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
+        Log-Message "ModuleOutputDirectry $moduleOutputDirectory" -Level 'ERROR'
 		$this.CreateOutputDirectory($moduleOutputDirectory)
 
         Log-Message 'PSM1 Path $psm1FilePath' -Level 'WARNING'
@@ -171,10 +172,7 @@ class EntraModuleSplitter {
 		$specificFunctionName = if ($moduleName -eq "Microsoft.Graph.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
 
 		foreach ($function in $functions) {
-            if($moduleOutputDirectory -eq 'Migration' -or $moduleOutputDirectory -eq 'Invitations'){
-                continue;
-            }
-			$this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
+               $this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
 		}
 
 		# Call the new method to add functions to all directories
