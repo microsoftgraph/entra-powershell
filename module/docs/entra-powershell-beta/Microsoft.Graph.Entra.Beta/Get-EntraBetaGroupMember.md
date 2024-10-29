@@ -133,7 +133,7 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This example demonstrates how to retrieve group member by ID.
 
-- `-GroupId` Specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ## Parameters
 
