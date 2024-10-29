@@ -404,8 +404,7 @@ foreach (`$subModule in `$subModules) {
         $requiredModules = @()
         if (Test-Path $dependencyMappingPath) {
             $jsonContent = Get-Content -Path $dependencyMappingPath -Raw | ConvertFrom-Json
-            Log-Message "Dependency Mapping: $jsonContent"
-            # Convert JSON to Hashtable
+           
             $dependencyMapping = @{}
             foreach ($key in $jsonContent.PSObject.Properties.Name) {
                 $dependencyMapping[$key] = $jsonContent.$key
@@ -503,8 +502,7 @@ foreach (`$subModule in `$subModules) {
 
         # Get all markdown files in the current subdirectory
         $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
-        Log-Message "Processing $subDirectory" -Level 'WARNING'
-        
+       
         # Check if markdown files are found
         if (-not($markDownFiles)) {
             Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
