@@ -43,7 +43,20 @@ Install-Module -Name PlatyPS
 
 ### Split Legacy Module
 
-If you've made any changes to the legacy module e.g. Any files under `.\module` directory. Run the following script.
+If you've made any changes to the legacy module e.g. Any files under `.\module` directory.
+
+1. Build the legacy module.
+
+```powershell
+# Build help module for the Microsoft Entra Module
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra // or EntraBeta for the preview version
+
+# Rebuild the legacy module
+.\build\Create-CompatModule.ps1 -Module Entra // or EntraBeta
+```
+
+2. Split the legacy module into functions .ps1 files into the respective sub-module directories.
 
 ```powershell
   .\build\Split-EntraModule.ps1 -Module 'Entra' 
@@ -62,7 +75,7 @@ Use a clean PowerShell session when you're building the module. The building pro
 
 The generated modules are in the output folder `./bin`
 
-SubModule in this case is the name of the specific sub-module you want to use. They are `Authentication,Users,DirectoryManagement, Groups, Applications,Governance,SignIns and Reports`
+SubModule in this case is the name of the specific sub-module you want to use. They are: `Authentication,Users,DirectoryManagement, Groups, Applications,Governance,SignIns and Reports`
 
 In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.<SubModule>psd1 -Force`
 
