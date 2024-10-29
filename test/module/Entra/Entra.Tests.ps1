@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
-    Import-Module Microsoft.Graph.Entra
+    Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
 }
 
 Import-Module Pester
