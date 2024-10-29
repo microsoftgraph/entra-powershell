@@ -11,5 +11,5 @@ $moduleBuilder = [EntraModuleBuilder]::new()
 
 
 $moduleBuilder.CreateModuleHelp($Module)
-$moduleBuilder.CreateSubModuleFile($Module, ".\Typedefs.txt")
+$moduleBuilder.CreateSubModuleFile($Module, ".\build\Typedefs.txt")
 $moduleBuilder.CreateModuleManifest($Module)

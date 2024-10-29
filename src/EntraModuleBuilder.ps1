@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-. ../build/common-functions.ps1
+
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
@@ -20,9 +20,9 @@ Set-StrictMode -Version 5
 "@
 
     
-    $this.OutputDirectory = '../bin/'
-    $this.TypeDefsDirectory="../build/Typedefs.txt"
-    $this.BaseDocsPath='../moduleVNext/docs/'
+    $this.OutputDirectory = './bin/'
+    $this.TypeDefsDirectory="./build/TypeDefs.txt"
+    $this.BaseDocsPath='./moduleVNext/docs/'
    
     }
 
@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            "..\moduleVNext\Entra\Microsoft.Graph.Entra"
+            ".\moduleVNext\Entra\Microsoft.Graph.Entra"
         } else {
-            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta"
+            ".\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta"
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -255,9 +255,9 @@ foreach (`$subModule in `$subModules) {
 	 
 	    # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
-            "../moduleVNext/Entra"
+            "./moduleVNext/Entra"
         } else {
-            "../moduleVNext/EntraBeta"
+            "./moduleVNext/EntraBeta"
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
@@ -323,14 +323,14 @@ foreach (`$subModule in `$subModules) {
  [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
     $rootPath=if ($Module -eq "Entra") {
-            "../moduleVNext/Entra"
+            "./moduleVNext/Entra"
         } else {
-            "../moduleVNext/EntraBeta"
+            "./moduleVNext/EntraBeta"
         }
     $moduleBasePath =if ($Module -eq "Entra") {
-            "../moduleVNext/Entra/Microsoft.Graph.Entra"
+            "./moduleVNext/Entra/Microsoft.Graph.Entra"
         } else {
-            "../moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
+            "./moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
     }
 
     $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
