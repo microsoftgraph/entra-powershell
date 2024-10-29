@@ -22,7 +22,7 @@ Set-StrictMode -Version 5
     
     $this.OutputDirectory = '../bin/'
     $this.TypeDefsDirectory="../build/Typedefs.txt"
-    $this.BaseDocsPath='../module/docs/'
+    $this.BaseDocsPath='../moduleVNext/docs/'
    
     }
 
@@ -255,9 +255,9 @@ foreach (`$subModule in `$subModules) {
 	 
 	    # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
-            "../module/Entra"
+            "../moduleVNext/Entra"
         } else {
-            "../module/EntraBeta"
+            "../moduleVNext/EntraBeta"
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
@@ -323,14 +323,14 @@ foreach (`$subModule in `$subModules) {
  [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
     $rootPath=if ($Module -eq "Entra") {
-            "../module/Entra"
+            "../moduleVNext/Entra"
         } else {
-            "../module/EntraBeta"
+            "../moduleVNext/EntraBeta"
         }
     $moduleBasePath =if ($Module -eq "Entra") {
-            "../module/Entra/Microsoft.Graph.Entra"
+            "../moduleVNext/Entra/Microsoft.Graph.Entra"
         } else {
-            "../module/EntraBeta/Microsoft.Graph.Entra.Beta"
+            "../moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
     }
 
     $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
@@ -347,8 +347,8 @@ foreach (`$subModule in `$subModules) {
     foreach ($subDir in $subDirectories) {
         # Define module name based on sub-directory name
         # Skip the 'Migration' sub-directory
-        if ($subDir.Name -eq 'Migration') {
-            Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+        if ($subDir.Name -eq 'Migration' -or $subDir.Name -eq 'Invitations') {
+            Log-Message "Skipping 'Migration and Invitation' directory." -Level 'INFO'
             continue
         }
         
@@ -494,7 +494,7 @@ foreach (`$subModule in `$subModules) {
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
     foreach ($subDirectory in $subDirectories) {
         # Skip the 'Migration' sub-directory
-        if ($subDirectory.Name -eq 'Migration') {
+        if ($subDirectory.Name -eq 'Migration' -or $subDirectory.Name -eq 'Invitations') {
             Log-Message "Skipping 'Migration' directory." -Level 'INFO'
             continue
         }
