@@ -14,7 +14,7 @@
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $AdministrativeUnitObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.AzureAD.Model.RoleMemberInfo] $RoleMemberInfo,
+    [Microsoft.Open.MSGraph.Model.MsRoleMemberInfo] $RoleMemberInfo,
     [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId
@@ -22,7 +22,6 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -75,7 +74,7 @@
         {
             $TmpValue = $PSBoundParameters["RoleMemberInfo"]
                         $Value = @{
-                            id = ($TmpValue).ObjectId
+                            id = ($TmpValue).Id
                         } | ConvertTo-Json
             $params["RoleMemberInfo"] = $Value
         }
