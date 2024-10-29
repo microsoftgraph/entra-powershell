@@ -40,6 +40,7 @@ The module help files are generated from markdown documentation (using platyPS m
 # Install PlatyPS module
 Install-Module -Name PlatyPS
 ```
+
 ### Split Legacy Module
 
 Run if you've made any changes to the legacy module e.g. Any files under .\module directory.
@@ -51,6 +52,7 @@ Run if you've made any changes to the legacy module e.g. Any files under .\modul
 
  
 ### Build vNext module
+
 Use a clean PowerShell session when you're building the module. The building process attempts to load the required versions of the module, which fails if another version of the dependencies is already loaded. 
 
 ```powershell
