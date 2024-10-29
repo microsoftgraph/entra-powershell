@@ -5,7 +5,13 @@ Clone the module and follow the instructions described. You need **Microsoft.Gra
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
 cd entra-powershell
+
 ```
+
+### Checkout the Modularization Feature Branch
+
+git pull
+git checkout modularize
 
 ### Install dependencies
 
@@ -27,22 +33,31 @@ Or
 > If you encounter Execution Policies error, run the command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`.
 
 ### Install PlatyPS
+
 The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
 ```powershell
 # Install PlatyPS module
 Install-Module -Name PlatyPS
 ```
+### Split Legacy Module
+
+Run if you've made any changes to the legacy module e.g. Any files under .\module directory.
+
+```powershell
+  .\build\Split-EntraModule -Module 'Entra' 
 
 ```
-### Build module
+
+ 
+### Build vNext module
 Use a clean PowerShell session when you're building the module. The building process attempts to load the required versions of the module, which fails if another version of the dependencies is already loaded. 
 
 ```powershell
 .\build\Create-CreateModule.ps1 -Module Entra // or EntraBeta
 ```
 
-The generated module is in the output folder `./bin` 
+The generated module is in the output folder `./bin`
 In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.<SubModule>psd1 -Force`
 
 SubModule in this case is the name of the specific sub-module you want to use.
@@ -74,22 +89,6 @@ Connect-Graph
 Get-AzureADUser
 ```
 
-## Installing a test version (Optional)
-
-Install a test version (optional), which is recommended if you're trying to test with automation, which tries to load the module from the default PowerShell modules folder.
-
-```powershell
-. .\build\Common-functions.ps1
-Create-ModuleFolder
-Register-LocalGallery
-.\build\Publish-LocalCompatModule.ps1 -Install
-Unregister-LocalGallery
-#When you install, you can load the module without the Path to the files.
-Import-Module Microsoft.Graph.Entra.<SubModule>.psd1 -Force
-```
-
-The snippet in the optional testing section publishes the module to a local repository and installs the module.
-
 ## FAQs
 
 1. Installation error: `cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.`
@@ -112,7 +111,7 @@ Or
 
 Use the latest version of PowerShell 7+ as the runtime version (highly recommended).
 
-3. Build Help error: `New-ExternalHelp : The term 'New-ExternalHelp' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again. `.
+3. Build Help error: `New-ExternalHelp : The term 'New-ExternalHelp' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.`.
 
 To solve this error, install PlatyPS module by running the command:
 
