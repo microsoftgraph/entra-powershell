@@ -59,11 +59,8 @@ DeletedDateTime        Id                                          AppRoleId    
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
 
 - `GroupId`: The ID of the group to which you're assigning the app role.
-
 - `PrincipalId`: The ID of the group to which you're assigning the app role.
-
 - `ResourceId`: The ID of the resource service Principal, which has defined the app role.
-
 - `AppRoleId`: The ID of the appRole (defined on the resource service principal) to assign to the group.
 
 ## Parameters
