@@ -55,8 +55,8 @@ Add-EntraGroupOwner -GroupId $group.Id -RefObjectId $user.Id
 
 This example demonstrates how to add an owner to a group.
 
-- `-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
-- `-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+- `-RefObjectId` - Specifies the unique identifier (Object ID) of the owner to be added to the group.
 
 ## Parameters
 
