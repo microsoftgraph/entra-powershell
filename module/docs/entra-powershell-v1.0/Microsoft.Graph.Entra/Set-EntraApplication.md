@@ -63,10 +63,10 @@ $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Ap
 $params = @{
     ApplicationId = $application.Id
     DisplayName = 'Contoso Entra PowerShell App Production'
-	IdentifierUris = 'https://contoso.com'
-	GroupMembershipClaims = 'SecurityGroup'
-	IsDeviceOnlyAuthSupported = $False
-	Tags = 'mytag'
+    IdentifierUris = 'https://contoso.com'
+    GroupMembershipClaims = 'SecurityGroup'
+    IsDeviceOnlyAuthSupported = $False
+    Tags = 'mytag'
 }
 Set-EntraApplication @params
 ```
