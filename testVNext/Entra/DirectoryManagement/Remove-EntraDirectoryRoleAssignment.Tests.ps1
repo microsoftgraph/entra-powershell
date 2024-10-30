@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Governance       
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement       
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Governance
+    Mock -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
   
 Describe "Remove-EntraDirectoryRoleAssignment" {
@@ -16,13 +16,13 @@ Describe "Remove-EntraDirectoryRoleAssignment" {
             $result = Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when UnifiedRoleAssignmentId is empty" {
             { Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId  } | Should -Throw "Missing an argument for parameter 'UnifiedRoleAssignmentId'*"
@@ -31,7 +31,7 @@ Describe "Remove-EntraDirectoryRoleAssignment" {
             { Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'UnifiedRoleAssignmentId' because it is an empty string."
         }   
         It "Should contain UnifiedRoleAssignmentId in parameters when passed Id to it" {
-            Mock -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Governance
+            Mock -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 
             $result = Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $params = Get-Parameters -data $result
@@ -44,7 +44,7 @@ Describe "Remove-EntraDirectoryRoleAssignment" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDirectoryRoleAssignment"
 
-            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

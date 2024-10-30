@@ -11,7 +11,7 @@
 function Split-Tests {
     param (
         [string]$Source = 'Entra',  # Default to 'Entra'
-        [string]$OutputDirectory    # Allow custom output directory
+        [string]$OutputDirectory      # Allow custom output directory
     )
 
     # Determine source directories and mapping file paths based on the Source parameter
@@ -34,9 +34,6 @@ function Split-Tests {
         }
     }
 
-    # Use the provided output directory or default to DocsSourceDirectory if none specified
-    $TargetRootDirectory = $OutputDirectory
-
     # Check if the mapping file exists
     if (-not (Test-Path -Path $MappingFilePath -PathType Leaf)) {
         Log-Message -Message "Mapping file '$MappingFilePath' does not exist." -Level 'ERROR'
@@ -46,17 +43,20 @@ function Split-Tests {
     # Load the JSON content from the mapping file
     $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json
 
+    # Create a set to track files that have been processed
+    $processedFiles = @{}
+
     # Ensure the root documentation directory exists
-    if (-not (Test-Path -Path $TargetRootDirectory -PathType Container)) {
-        New-Item -Path $TargetRootDirectory -ItemType Directory | Out-Null
-        Log-Message -Message "Created directory: $TargetRootDirectory" -Level 'SUCCESS'
+    if (-not (Test-Path -Path $OutputDirectory -PathType Container)) {
+        New-Item -Path $OutputDirectory -ItemType Directory | Out-Null
+        Log-Message -Message "Created directory: $OutputDirectory" -Level 'SUCCESS'
     }
 
     # Collect all test files in the source directory
     $allTestFiles = Get-ChildItem -Path $TestSourceDirectory -Filter "*.Tests.ps1" -File
 
     # Define additional test files to be copied to each subdirectory
-    $additionalTestFiles = @("General.Test.ps1", "Invalid.Tests.ps1", "Module.Tests.ps1", "Valid.Tests.ps1")
+    $additionalTestFiles = @("General.Test.ps1", "Invalid.Tests.ps1", "Module.Tests.ps1", "Valid.Tests.ps1", "Entra.Tests.ps1")
 
     # Iterate over each file-directory pair in the moduleMapping.json
     foreach ($fileEntry in $moduleMapping.PSObject.Properties) {
@@ -64,7 +64,7 @@ function Split-Tests {
         $subDirName = $fileEntry.Value   # Value (sub-directory name)
 
         # Create the sub-directory under the output root directory if it doesn't exist
-        $targetSubDir = Join-Path -Path $TargetRootDirectory -ChildPath $subDirName
+        $targetSubDir = Join-Path -Path $OutputDirectory -ChildPath $subDirName
 
         # Skip specified subdirectories
         if ($subDirName -eq 'Migration' -or $subDirName -eq 'Invitations') {
@@ -81,19 +81,12 @@ function Split-Tests {
         $sourceFile = Join-Path -Path $TestSourceDirectory -ChildPath "$fileName.Tests.ps1"
 
         if (Test-Path -Path $sourceFile -PathType Leaf) {
-            # Read the content of the source file
-            $fileContent = Get-Content -Path $sourceFile -Raw
-
-            # Define the replacement string with the current directory name
-            $replacementString = "$modulePrefix.$subDirName"
-
-            # Replace occurrences of 'Microsoft.Graph.Entra' or 'Microsoft.Graph.Entra.Beta' as needed
-            $updatedContent = $fileContent -replace [regex]::Escape($modulePrefix), $replacementString
-
-            # Save the modified content to the target sub-directory
-            $targetFilePath = Join-Path -Path $targetSubDir -ChildPath "$fileName.Tests.ps1"
-            $updatedContent | Set-Content -Path $targetFilePath
-            Log-Message -Message "Copied and modified '$sourceFile' to '$targetFilePath'" -Level 'SUCCESS'
+            # Copy the file to the target sub-directory
+            Copy-Item -Path $sourceFile -Destination $targetSubDir
+            Log-Message -Message "Copied '$sourceFile' to '$targetSubDir'" -Level 'SUCCESS'
+            
+            # Track the processed file
+            $processedFiles[$fileName] = $true
         } else {
             Log-Message -Message "File '$fileName.Tests.ps1' not found in '$TestSourceDirectory'" -Level 'WARNING'
         }
@@ -102,8 +95,12 @@ function Split-Tests {
         foreach ($additionalTestFile in $additionalTestFiles) {
             $additionalSourceFile = Join-Path -Path $TestSourceDirectory -ChildPath $additionalTestFile
             if (Test-Path -Path $additionalSourceFile -PathType Leaf) {
+                # Copy the additional test file
                 Copy-Item -Path $additionalSourceFile -Destination $targetSubDir
                 Log-Message -Message "Copied additional test file '$additionalSourceFile' to '$targetSubDir'" -Level 'SUCCESS'
+                
+                # Track the processed additional file
+                $processedFiles[$additionalTestFile] = $true
             } else {
                 Log-Message -Message "Additional test file '$additionalTestFile' not found in '$TestSourceDirectory'" -Level 'WARNING'
             }
@@ -114,30 +111,43 @@ function Split-Tests {
             # Prepare the modified content for Dir or Application tests
             $sourceFileDir = Join-Path -Path $TestSourceDirectory -ChildPath "$fileName.Tests.ps1"
             if (Test-Path -Path $sourceFileDir -PathType Leaf) {
-                # Read the content and perform replacements for Dir/Application
-                $fileContentDir = Get-Content -Path $sourceFileDir -Raw
-                $updatedContentDir = $fileContentDir -replace [regex]::Escape($modulePrefix), $replacementString
-
-                # Determine the destination subdirectory based on the test file name
-                $targetSubDirDir = if ($fileName -like "*Dir*") {
-                    Join-Path -Path $TargetRootDirectory -ChildPath "DirectoryManagement"
+                # Copy the file to the appropriate target directory
+                $targetDirSubDir = if ($fileName -like "*Dir*") {
+                    Join-Path -Path $OutputDirectory -ChildPath "DirectoryManagement"
                 } elseif ($fileName -like "*Application*") {
-                    Join-Path -Path $TargetRootDirectory -ChildPath "Applications"
+                    Join-Path -Path $OutputDirectory -ChildPath "Applications"
                 } else {
-                    $targetSubDir  # Default to the original target subdirectory
+                    $targetSubDir
                 }
 
-                # Ensure the destination subdirectory exists
-                if (-not (Test-Path -Path $targetSubDirDir -PathType Container)) {
-                    New-Item -Path $targetSubDirDir -ItemType Directory | Out-Null
-                    Log-Message -Message "Created destination directory: $targetSubDirDir" -Level 'SUCCESS'
+                if (-not (Test-Path -Path $targetDirSubDir -PathType Container)) {
+                    New-Item -Path $targetDirSubDir -ItemType Directory | Out-Null
+                    Log-Message -Message "Created target directory: $targetDirSubDir" -Level 'SUCCESS'
                 }
 
-                # Save the modified content to the appropriate destination
-                $targetFilePathDir = Join-Path -Path $targetSubDirDir -ChildPath "$fileName.Tests.ps1"
-                $updatedContentDir | Set-Content -Path $targetFilePathDir
-                Log-Message -Message "Copied and modified '$sourceFileDir' to '$targetFilePathDir'" -Level 'SUCCESS'
+                # Copy the file to the determined sub-directory
+                Copy-Item -Path $sourceFileDir -Destination $targetDirSubDir
+                Log-Message -Message "Copied '$sourceFileDir' to '$targetDirSubDir'" -Level 'SUCCESS'
+                
+                # Track the processed Dir/Application file
+                 
+                $processedFiles[$fileName] = $true
             }
+        }
+    }
+
+    # Process all copied files to update their contents
+    foreach ($subDir in Get-ChildItem -Path $OutputDirectory -Directory) {
+        $subDirPath = $subDir.FullName
+        $testFilesInSubDir = Get-ChildItem -Path $subDirPath -Filter "*.Tests.ps1"
+
+        foreach ($testFile in $testFilesInSubDir) {
+            $fileContent = Get-Content -Path $testFile.FullName -Raw
+            $updatedContent = $fileContent -replace [regex]::Escape($modulePrefix), "$modulePrefix.$($subDir.Name)"
+
+            # Save the modified content back to the file
+            $updatedContent | Set-Content -Path $testFile.FullName
+            Log-Message -Message "Updated content in '$testFile.FullName'" -Level 'SUCCESS'
         }
     }
 
@@ -145,8 +155,8 @@ function Split-Tests {
     foreach ($testFile in $allTestFiles) {
         $baseName = $testFile.BaseName -replace '\.Tests$', ''  # Remove '.Tests' suffix
         
-        # Check if the base name is in the mapping file without the ".Tests" suffix
-        if (-not $moduleMapping.PSObject.Properties["$baseName"]) {
+        # Only consider unmapped files if they haven't been processed
+        if (-not $processedFiles.ContainsKey($baseName)) {
             # Check if the test file already exists in the output directories
             $isMapped = $false
             
@@ -157,13 +167,14 @@ function Split-Tests {
 
             # If not mapped, copy it to the root output directory
             if (-not $isMapped) {
-                Copy-Item -Path $testFile.FullName -Destination $TargetRootDirectory
-                Log-Message -Message "Copied unmapped test '$testFile' to '$TargetRootDirectory'" -Level 'INFO'
+                Copy-Item -Path $testFile.FullName -Destination $OutputDirectory
+                Log-Message -Message "Copied unmapped test '$testFile' to '$OutputDirectory'" -Level 'INFO'
             }
         }
     }
 
-    Log-Message -Message "Test file copying and modification complete." -Level 'INFO'
+    Log-Message -Message "Split-Tests completed for source: $Source" -Level 'SUCCESS'
 }
 
-Split-Tests -Source 'Entra'
+# Example usage
+Split-Tests -Source 'Entra' 

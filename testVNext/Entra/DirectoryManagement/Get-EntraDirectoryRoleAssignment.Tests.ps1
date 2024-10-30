@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Governance      
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
@@ -26,7 +26,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgRoleManagementDirectoryRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Governance
+    Mock -CommandName Get-MgRoleManagementDirectoryRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDirectoryRoleAssignment" {
@@ -35,13 +35,13 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             $result = Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Get-EntraDirectoryRoleAssignment is empty" {
             { Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId  } | Should -Throw "Missing an argument for parameter 'UnifiedRoleAssignmentId'*"
@@ -53,7 +53,7 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             $result = Get-EntraDirectoryRoleAssignment -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }       
         It "Should fail when All is invalid" {
             { Get-EntraDirectoryRoleAssignment -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -62,7 +62,7 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             $result = Get-EntraDirectoryRoleAssignment -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraDirectoryRoleAssignment -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -75,7 +75,7 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2'
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraDirectoryRoleAssignment -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -95,7 +95,7 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | Should -Be 'aaaaaaaa-bbbb-cccc-1111-222222222222'
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -107,7 +107,7 @@ Describe "Get-EntraDirectoryRoleAssignment" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleAssignment"
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
