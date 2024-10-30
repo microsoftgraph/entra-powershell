@@ -281,7 +281,7 @@ foreach (`$subModule in `$subModules) {
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
         $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
-        $requiredModules=@()
+        $requireModules=@()
         foreach($module in $subModules){
             if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
