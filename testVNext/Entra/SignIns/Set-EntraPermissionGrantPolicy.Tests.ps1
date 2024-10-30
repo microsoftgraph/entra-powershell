@@ -5,7 +5,7 @@ BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
         Import-Module Microsoft.Graph.Entra.SignIns      
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
     Mock -CommandName Update-MgPolicyPermissionGrantPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }

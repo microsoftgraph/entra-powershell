@@ -15,6 +15,7 @@ function Split-Tests {
     )
 
     # Determine source directories and mapping file paths based on the Source parameter
+    
     switch ($Source) {
         'Entra' {
             $TestSourceDirectory = "../test/module/Entra"
@@ -144,12 +145,15 @@ function Split-Tests {
         foreach ($testFile in $testFilesInSubDir) {
             $fileContent = Get-Content -Path $testFile.FullName -Raw
             $updatedContent = $fileContent -replace [regex]::Escape($modulePrefix), "$modulePrefix.$($subDir.Name)"
+            
 
             # Save the modified content back to the file
             $updatedContent | Set-Content -Path $testFile.FullName
             Log-Message -Message "Updated content in '$testFile.FullName'" -Level 'SUCCESS'
         }
     }
+
+
 
     # Handle unmapped files that do not exist in the mapping
     foreach ($testFile in $allTestFiles) {

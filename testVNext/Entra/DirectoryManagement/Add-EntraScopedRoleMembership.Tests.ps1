@@ -5,7 +5,7 @@ BeforeAll{
     if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
         Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     $userObjId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
     $roleObjId = "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
