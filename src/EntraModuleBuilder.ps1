@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-. ../build/common-functions.ps1
+
 # This class builds the submodules i.e. generate the .psm1 file, help-xml and .psd1 file
 class EntraModuleBuilder {
     [string]$headerText
@@ -20,9 +20,9 @@ Set-StrictMode -Version 5
 "@
 
     
-    $this.OutputDirectory = '../bin/'
-    $this.TypeDefsDirectory="../build/Typedefs.txt"
-    $this.BaseDocsPath='../moduleVNext/docs/'
+    $this.OutputDirectory = './bin/'
+    $this.TypeDefsDirectory="./build/TypeDefs.txt"
+    $this.BaseDocsPath='./moduleVNext/docs/'
    
     }
 
@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            "..\moduleVNext\Entra\Microsoft.Graph.Entra"
+            ".\moduleVNext\Entra\Microsoft.Graph.Entra"
         } else {
-            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta"
+            ".\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta"
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -163,7 +163,7 @@ Set-StrictMode -Version 5
         }
 
         #Create the RootModule .psm1 file
-        $this.CreateRootModule($Module)
+        # $this.CreateRootModule($Module)
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
@@ -190,7 +190,7 @@ Set-StrictMode -Version 5
             return @() # Return an empty array if no files are found
         } else {
             # Return the names of the .psm1 files
-            return $subModules.Name
+            return $subModules.BaseName
         }
     }
 
@@ -207,7 +207,6 @@ Set-StrictMode -Version 5
     foreach($module in $subModuleFiles){
         if($module -ne $rootModuleName){
             $subModules+=$module
-
         }
     }
 
@@ -255,9 +254,9 @@ foreach (`$subModule in `$subModules) {
 	 
 	    # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
-            "../moduleVNext/Entra"
+            "./moduleVNext/Entra"
         } else {
-            "../moduleVNext/EntraBeta"
+            "./moduleVNext/EntraBeta"
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
@@ -282,11 +281,11 @@ foreach (`$subModule in `$subModules) {
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
         $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
-        $nestedModules=@()
+        $requiredodules=@()
         foreach($module in $subModules){
-            if($module -ne "$($moduleName).psm1"){
+            if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
-                $nestedModules += $module
+               $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
             }	
         }
         $moduleSettings = @{
@@ -299,13 +298,12 @@ foreach (`$subModule in `$subModules) {
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
-            RootModule = "$($moduleName).psm1" 
             Description = 'Microsoft Graph Entra PowerShell.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules =  @()
-            NestedModules = $nestedModules
+            RequiredModules =  $requiredModules
+            NestedModules = @()
         }
         
         if($null -ne $content.Prerelease){
@@ -323,14 +321,14 @@ foreach (`$subModule in `$subModules) {
  [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
     $rootPath=if ($Module -eq "Entra") {
-            "../moduleVNext/Entra"
+            "./moduleVNext/Entra"
         } else {
-            "../moduleVNext/EntraBeta"
+            "./moduleVNext/EntraBeta"
         }
     $moduleBasePath =if ($Module -eq "Entra") {
-            "../moduleVNext/Entra/Microsoft.Graph.Entra"
+            "./moduleVNext/Entra/Microsoft.Graph.Entra"
         } else {
-            "../moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
+            "./moduleVNext/EntraBeta/Microsoft.Graph.Entra.Beta"
     }
 
     $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
