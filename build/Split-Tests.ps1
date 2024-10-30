@@ -36,7 +36,6 @@ function Split-Tests {
 
     # Use the provided output directory or default to DocsSourceDirectory if none specified
     $TargetRootDirectory = $OutputDirectory
-    $UnMappedDirectory = Join-Path -Path $TargetRootDirectory -ChildPath "UnMappedTests"
 
     # Check if the mapping file exists
     if (-not (Test-Path -Path $MappingFilePath -PathType Leaf)) {
@@ -47,18 +46,17 @@ function Split-Tests {
     # Load the JSON content from the mapping file
     $moduleMapping = Get-Content -Path $MappingFilePath | ConvertFrom-Json
 
-    # Ensure the root documentation directory and UnMappedTests directory exist
+    # Ensure the root documentation directory exists
     if (-not (Test-Path -Path $TargetRootDirectory -PathType Container)) {
         New-Item -Path $TargetRootDirectory -ItemType Directory | Out-Null
         Log-Message -Message "Created directory: $TargetRootDirectory" -Level 'SUCCESS'
     }
-    if (-not (Test-Path -Path $UnMappedDirectory -PathType Container)) {
-        New-Item -Path $UnMappedDirectory -ItemType Directory | Out-Null
-        Log-Message -Message "Created directory for unmapped tests: $UnMappedDirectory" -Level 'SUCCESS'
-    }
 
     # Collect all test files in the source directory
     $allTestFiles = Get-ChildItem -Path $TestSourceDirectory -Filter "*.Tests.ps1" -File
+
+    # Define additional test files to be copied to each subdirectory
+    $additionalTestFiles = @("General.Test.ps1", "Invalid.Tests.ps1", "Module.Tests.ps1", "Valid.Tests.ps1")
 
     # Iterate over each file-directory pair in the moduleMapping.json
     foreach ($fileEntry in $moduleMapping.PSObject.Properties) {
@@ -99,16 +97,69 @@ function Split-Tests {
         } else {
             Log-Message -Message "File '$fileName.Tests.ps1' not found in '$TestSourceDirectory'" -Level 'WARNING'
         }
+
+        # Copy additional test files to the target sub-directory
+        foreach ($additionalTestFile in $additionalTestFiles) {
+            $additionalSourceFile = Join-Path -Path $TestSourceDirectory -ChildPath $additionalTestFile
+            if (Test-Path -Path $additionalSourceFile -PathType Leaf) {
+                Copy-Item -Path $additionalSourceFile -Destination $targetSubDir
+                Log-Message -Message "Copied additional test file '$additionalSourceFile' to '$targetSubDir'" -Level 'SUCCESS'
+            } else {
+                Log-Message -Message "Additional test file '$additionalTestFile' not found in '$TestSourceDirectory'" -Level 'WARNING'
+            }
+        }
+
+        # Check if the current test file name contains "Dir" or "Application" and handle them appropriately
+        if ($fileName -like "*Dir*" -or $fileName -like "*Application*") {
+            # Prepare the modified content for Dir or Application tests
+            $sourceFileDir = Join-Path -Path $TestSourceDirectory -ChildPath "$fileName.Tests.ps1"
+            if (Test-Path -Path $sourceFileDir -PathType Leaf) {
+                # Read the content and perform replacements for Dir/Application
+                $fileContentDir = Get-Content -Path $sourceFileDir -Raw
+                $updatedContentDir = $fileContentDir -replace [regex]::Escape($modulePrefix), $replacementString
+
+                # Determine the destination subdirectory based on the test file name
+                $targetSubDirDir = if ($fileName -like "*Dir*") {
+                    Join-Path -Path $TargetRootDirectory -ChildPath "DirectoryManagement"
+                } elseif ($fileName -like "*Application*") {
+                    Join-Path -Path $TargetRootDirectory -ChildPath "Applications"
+                } else {
+                    $targetSubDir  # Default to the original target subdirectory
+                }
+
+                # Ensure the destination subdirectory exists
+                if (-not (Test-Path -Path $targetSubDirDir -PathType Container)) {
+                    New-Item -Path $targetSubDirDir -ItemType Directory | Out-Null
+                    Log-Message -Message "Created destination directory: $targetSubDirDir" -Level 'SUCCESS'
+                }
+
+                # Save the modified content to the appropriate destination
+                $targetFilePathDir = Join-Path -Path $targetSubDirDir -ChildPath "$fileName.Tests.ps1"
+                $updatedContentDir | Set-Content -Path $targetFilePathDir
+                Log-Message -Message "Copied and modified '$sourceFileDir' to '$targetFilePathDir'" -Level 'SUCCESS'
+            }
+        }
     }
 
-    # Handle unmapped files by checking if they exist in the mapping
+    # Handle unmapped files that do not exist in the mapping
     foreach ($testFile in $allTestFiles) {
         $baseName = $testFile.BaseName -replace '\.Tests$', ''  # Remove '.Tests' suffix
+        
         # Check if the base name is in the mapping file without the ".Tests" suffix
         if (-not $moduleMapping.PSObject.Properties["$baseName"]) {
-            # Copy unmapped test file to UnMappedTests directory
-            Copy-Item -Path $testFile.FullName -Destination $UnMappedDirectory
-            Log-Message -Message "Copied unmapped test '$testFile' to '$UnMappedDirectory'" -Level 'INFO'
+            # Check if the test file already exists in the output directories
+            $isMapped = $false
+            
+            # Check for both Entra and EntraBeta directories
+            if (Test-Path -Path (Join-Path -Path $OutputDirectory -ChildPath $baseName)) {
+                $isMapped = $true
+            }
+
+            # If not mapped, copy it to the root output directory
+            if (-not $isMapped) {
+                Copy-Item -Path $testFile.FullName -Destination $TargetRootDirectory
+                Log-Message -Message "Copied unmapped test '$testFile' to '$TargetRootDirectory'" -Level 'INFO'
+            }
         }
     }
 
