@@ -44,13 +44,8 @@ The `New-EntraApplicationExtensionProperty` cmdlet creates an application extens
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-$params = @{
-    ApplicationId = $Application.ObjectId
-    Name = 'NewAttribute'
-}
-
-New-EntraApplicationExtensionProperty @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute'
 ```
 
 ```Output
@@ -68,14 +63,8 @@ This command creates an application extension property of the string type for th
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-$params = @{
-    ApplicationId = $Application.ObjectId
-    Name = 'NewAttribute'
-    DataType = 'Boolean'
-}
-
-New-EntraApplicationExtensionProperty @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute1' -DataType 'Boolean'
 ```
 
 ```Output
@@ -94,16 +83,10 @@ This command creates an application extension property of the specified data typ
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraApplication -SearchString '<application-name>'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
-$params = @{
-    ApplicationId = $Application.ObjectId
-    Name = 'NewAttribute'
-    TargetObjects = $targets
-}
-
-New-EntraApplicationExtensionProperty @params
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute2' -TargetObjects $targets
 ```
 
 ```Output
