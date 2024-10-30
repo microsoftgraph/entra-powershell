@@ -85,5 +85,8 @@
         public System.String Origin;
         public System.String Value;
 "@
+"Microsoft.Open.MSGraph.Model.MsRoleMemberInfo"=@"
+    public System.String Id;
+"@
 }
 
