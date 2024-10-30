@@ -42,12 +42,8 @@ The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microso
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.Id
-    OwnerId = 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
-}
-
-Remove-EntraBetaGroupOwner @params
+$groupOwner = Get-EntraBetaGroup -GroupId $group.Id | Get-EntraBetaGroupOwner | Where-Object {$_.displayName -eq 'Adele Vance'}
+Remove-EntraBetaGroupOwner -GroupId $group.Id -OwnerId $groupOwner.Id
 ```
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.

@@ -42,23 +42,17 @@ The `Select-EntraGroupIdsServicePrincipalIsMemberOf` cmdlet selects the groups i
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraGroup -Top 10).ObjectId
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-$params = @{
-    ObjectId = $ServicePrincipal.ObjectId
-    GroupIdsForMembershipCheck = $Groups
-}
-Select-EntraGroupIdsServicePrincipalIsMemberOf @params
+$groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$groups.GroupIds = (Get-EntraGroup -Top 10).Id
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $groups
 ```
 
 ```Output
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command gets the group membership of a group for a specified service principal.  
-You can use the command `Get-EntraGroup` to get group Id.  
-You can use the command `Get-EntraServicePrincipal` to get service principal Id.
+This command gets the group membership of a group for a specified service principal. Use the command `Get-EntraGroup` to get group Id and `Get-EntraServicePrincipal` to get service principal Id.
 
 - `-ObjectId` parameter specifies the service principal Id.
 - `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.
