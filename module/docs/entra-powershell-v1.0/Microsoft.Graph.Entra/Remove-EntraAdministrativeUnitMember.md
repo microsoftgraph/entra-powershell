@@ -42,12 +42,9 @@ To remove a member from an administrative unit, the calling principal must have 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
-}
-Remove-EntraAdministrativeUnitMember @params
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+$adminUnitMember = Get-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id | Select-Object Id, DisplayName,'@odata.type' | Where-Object {$_.DisplayName -eq 'Saywer Miller'}
+Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $adminUnitMember.Id
 ```
 
 This command removes a specified member (user or group) from a specified administrative unit.

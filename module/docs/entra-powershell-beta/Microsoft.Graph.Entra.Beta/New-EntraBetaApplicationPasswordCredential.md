@@ -62,11 +62,7 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$parameters = @{
-    ApplicationId = $application.Id
-    CustomKeyIdentifier = '<userfriendlyDisplayName>'
-}
-New-EntraBetaApplicationPasswordCredential @parameters
+New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>'
 ```
 
 ```Output
@@ -86,13 +82,8 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$parameters = @{
-    ApplicationId = $application.Id
-    StartDate = (Get-Date).AddYears(0)
-    CustomKeyIdentifier = '<userfriendlyDisplayName>'
-}
-
-New-EntraBetaApplicationPasswordCredential @parameters
+$startDate = (Get-Date).AddYears(0)
+New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -StartDate $startDate
 ```
 
 ```Output
@@ -111,13 +102,8 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$parameters = @{
-    ApplicationId = $application.Id
-    EndDate = (Get-Date).AddYears(2)
-    CustomKeyIdentifier = '<userfriendlyDisplayName>'
-}
-
-New-EntraBetaApplicationPasswordCredential @parameters
+$endDate = (Get-Date).AddYears(2)
+New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -EndDate $endDate
 ```
 
 ```Output

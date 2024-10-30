@@ -42,50 +42,26 @@ The Privileged Role Administrator is the least privileged role required for this
 
 ## Examples
 
-### Example 1: Update DisplayName
+### Example 1: Update DisplayName and description
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    DisplayName = 'UpdatedAU'
-}
-Set-EntraBetaAdministrativeUnit @params
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description'
 ```
 
 This Command update DisplayName of specific administrative unit.
 
 - `-AdministrativeUnitId` parameter specifies the Id of an administrative unit.
 - `-DisplayName` parameter specifies the display name for the administrative unit.
-
-### Example 2: Update Description
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    Description = 'Updated AU Description'
-}
-Set-EntraBetaAdministrativeUnit @params
-```
-
-This example shows how to update the description of a specific administrative unit.
-
-- `-AdministrativeUnitId` parameter specifies the Id of an administrative unit.
 - `-Description` parameter specifies the description for the administrative unit.
 
-### Example 3: Update IsMemberManagementRestricted
+### Example 2: Update IsMemberManagementRestricted
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    IsMemberManagementRestricted = $true
-}
-Set-EntraBetaAdministrativeUnit @params
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
+Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -IsMemberManagementRestricted $True
 ```
 
 This example shows how to update the `IsMemberManagementRestricted` setting for a specific administrative unit.

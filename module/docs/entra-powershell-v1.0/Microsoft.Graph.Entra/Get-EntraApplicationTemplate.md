@@ -62,7 +62,8 @@ This command gets all the application template objects
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$applicationTemplate = Get-EntraApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
+Get-EntraApplicationTemplate -Id $applicationTemplate.Id
 ```
 
 ```Output
