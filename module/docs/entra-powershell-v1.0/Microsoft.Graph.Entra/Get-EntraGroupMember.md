@@ -60,7 +60,7 @@ To list members of a hidden group, the `Member.Read.Hidden` permission is also r
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraGroup -GroupId $group.Id | Get-EntraGroupMember | Select-Object Id, DisplayName, '@odata.type' 
+Get-EntraGroup -GroupId $group.Id | Get-EntraGroupMember | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
