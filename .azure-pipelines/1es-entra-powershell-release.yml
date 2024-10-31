@@ -54,7 +54,7 @@ extends:
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
-            useDotNetTask: false
+            useDotNetTask: true
             packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             packageParentPath: '$(Build.ArtifactStagingDirectory)'
             nuGetFeedType: external
