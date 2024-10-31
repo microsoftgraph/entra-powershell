@@ -72,7 +72,7 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.serviceP
 cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 ```
 
-This example retrieves the members of a specified group by its `GroupId`.
+This example retrieves the members of a specified group by its `GroupId` and selects only the `Id`, `DisplayName` and `@odata.type` properties for each member.
 
 - `-GroupId` specifies the ID of a group.
 
@@ -133,7 +133,7 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This example demonstrates how to retrieve group member by ID.
 
-- `-GroupId` specifies the ID of a group.
+- `-GroupId` Specifies the ID of a group.
 
 ## Parameters
 

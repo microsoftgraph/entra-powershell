@@ -60,8 +60,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Set-EntraBetaGroup -GroupId $group.Id -Description 'Updated Group Description'
+Get-EntraBetaGroup -Filter "displayName eq 'HelpDesk Team Leaders'" | Set-EntraBetaGroup -Description 'HelpDesk Team Leaders Global'
 ```
 
 This example demonstrates how to update a group description.  
