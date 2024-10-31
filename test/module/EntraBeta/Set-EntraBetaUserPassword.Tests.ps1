@@ -22,13 +22,11 @@ Describe "Set-EntraBetaUserPassword" {
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when UserId is empty" {
-           $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
            { Set-EntraBetaUserPassword -UserId  -Password $secPassword } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
         It "Should fail when UserId is invalid" {
-           $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
            { Set-EntraBetaUserPassword -UserId "" -Password $secPassword } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
