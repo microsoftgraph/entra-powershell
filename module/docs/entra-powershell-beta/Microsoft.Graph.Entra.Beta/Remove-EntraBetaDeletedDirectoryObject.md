@@ -49,8 +49,8 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Group.ReadWrite.All','Application.ReadWrite.All','User.ReadWrite.All'
-
-Remove-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application'
+Remove-EntraBetaDeletedDirectoryObject -DirectoryObjectId $deletedApplication.Id
 ```
 
 This example demonstrates how to permanently delete a previously deleted directory object by ID.

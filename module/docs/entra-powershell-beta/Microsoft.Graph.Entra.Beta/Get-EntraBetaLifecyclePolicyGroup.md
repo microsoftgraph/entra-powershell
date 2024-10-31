@@ -42,7 +42,8 @@ The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaLifecyclePolicyGroup -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaLifecyclePolicyGroup -GroupId $group.Id
 ```
 
 ```Output

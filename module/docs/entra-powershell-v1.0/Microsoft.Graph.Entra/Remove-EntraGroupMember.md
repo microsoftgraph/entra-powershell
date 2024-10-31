@@ -42,14 +42,15 @@ The `Remove-EntraGroupMember` cmdlet removes a member from a group in Microsoft 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Remove-EntraGroupMember -GroupId $group.Id -MemberId 'zzzzzzzz-6666-8888-9999-pppppppppppp'
+$groupMember = Get-EntraGroup -GroupId $group.Id | Get-EntraGroupMember | Where-Object {$_.displayName -eq 'Adele Vance'}
+Remove-EntraGroupMember -GroupId $group.Id -MemberId $groupMember.Id
 ```
 
 This command removes the specified member from the specified group.  
 
-GroupId - Specifies the object ID of a group in Microsoft Entra ID.
+- `GroupId` - Specifies the object ID of a group in Microsoft Entra ID.
 
-MemberId - Specifies the ID of the member to remove.
+- `MemberId` - Specifies the ID of the member to remove.
 
 ## Parameters
 

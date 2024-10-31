@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve the soft deleted groups in a Microsoft Entra ID.
+Retrieves soft-deleted groups in Microsoft Entra ID.
 
 ## Syntax
 
@@ -57,9 +57,9 @@ Get-EntraBetaDeletedGroup
 
 ## Description
 
-This cmdlet retrieves soft-deleted groups from a directory. When a group is deleted, it is soft deleted and can be recovered within 30 days. After 30 days, the group is permanently deleted and cannot be recovered.
+The `Get-EntraBetaDeletedGroup` cmdlet retrieves soft-deleted groups from the directory. Deleted groups can be recovered within 30 days, after which they are permanently deleted.
 
-Please note that soft delete currently applies only to Unified Groups (also known as Office 365 Groups).
+Soft delete currently applies only to Unified Groups (Office 365 Groups).
 
 ## Examples
 
