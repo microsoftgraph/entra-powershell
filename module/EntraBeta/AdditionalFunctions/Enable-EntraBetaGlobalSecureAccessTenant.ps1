@@ -10,6 +10,6 @@ function Enable-EntraBetaGlobalSecureAccessTenant {
     $response = Invoke-GraphRequest -Method POST -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/networkAccess/microsoft.graph.networkaccess.onboard"
     $response
             
-		}			
+    }			
 
 }
