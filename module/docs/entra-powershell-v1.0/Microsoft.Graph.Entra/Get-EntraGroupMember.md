@@ -93,7 +93,7 @@ dddddddd-9999-0000-1111-eeeeeeeeeeee
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
-- `-GroupId` specifies the ID of a group. 
+- `-GroupId` specifies the ID of a group.
 
 ### Example 3: Get all members within a group by group ID
 
