@@ -17,6 +17,8 @@
     [System.Security.SecureString] $Password,      
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $EnforceChangePasswordPolicy
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Boolean] $ForceChangePasswordNextSignInWithMfa
     )
     PROCESS {    
         $params = @{}
