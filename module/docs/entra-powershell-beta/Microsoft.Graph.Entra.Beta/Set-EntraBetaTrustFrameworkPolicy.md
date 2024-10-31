@@ -49,9 +49,7 @@ Set-EntraBetaTrustFrameworkPolicy
 
 The `Set-EntraBetaTrustFrameworkPolicy` cmdlet is used to update a trust framework policy in the directory.
 
-The contents of the trust framework policy to be updated can be provided using a file or a command line variable.
-
-The contents of the updated trust framework policy can be written to an output file or to the screen.
+In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
 ## Examples
 

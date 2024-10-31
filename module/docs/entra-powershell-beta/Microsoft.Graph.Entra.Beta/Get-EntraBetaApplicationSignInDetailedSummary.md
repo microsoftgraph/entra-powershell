@@ -63,10 +63,7 @@ This example returns all sign ins to Microsoft Entra ID Portal.
 
 ```powershell
 Connect-Entra -Scopes 'Reports.Read.All'
-$params = @{
-    Filter = "appDisplayName eq 'Azure Portal' AND aggregatedEventDateTime gt 2024-06-01 AND aggregatedEventDateTime lt 2024-07-01"
-}
-Get-EntraBetaApplicationSignInDetailedSummary @params
+Get-EntraBetaApplicationSignInDetailedSummary -Filter "appDisplayName eq 'Azure Portal' AND aggregatedEventDateTime gt 2024-10-20 AND aggregatedEventDateTime lt 2024-10-22"
 ```
 
 ```Output

@@ -44,11 +44,8 @@ The application template with ID `8adf8e6e-67b2-4cf2-a259-e3dc5476c621` can be u
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    DisplayName = 'ApplicationTemplate'
-}
-New-EntraApplicationFromApplicationTemplate @params
+$applicationTemplate = Get-EntraApplicationTemplate -Filter "DisplayName eq 'SAP Fieldglass'"
+New-EntraApplicationFromApplicationTemplate -Id $applicationTemplate.Id -DisplayName 'Contoso SAP App'
 ```
 
 ```Output

@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationKeyCredential -ObjectId $application.ObjectId
+Get-EntraBetaApplicationKeyCredential -ObjectId $application.Id
 ```
 
 ```Output
