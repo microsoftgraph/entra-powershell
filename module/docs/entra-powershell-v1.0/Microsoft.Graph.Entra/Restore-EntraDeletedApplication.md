@@ -50,16 +50,8 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraApplication -SearchString 'New Entra Application'
-
-# Delete a specific application
-Remove-EntraApplication -ObjectId $application.ObjectId
-
-# Confirm deleted application
-Get-EntraDeletedApplication -Filter "DisplayName eq 'New Entra Application'"
-
-# Restore a deleted application
-Restore-EntraDeletedApplication -ObjectId $application.ObjectId
+$deletedApplication = Get-EntraDeletedApplication -SearchString 'My PowerShell Application'
+Restore-EntraDeletedApplication -ObjectId $deletedApplication.Id
 ```
 
 ```Output
