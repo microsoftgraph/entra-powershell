@@ -24,14 +24,16 @@ Describe "Update-EntraBetaOauth2PermissionGrant" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $psVersion = $PSVersionTable.PSVersion.ToString()
-            $entraVersion = (Get-Module -Name Microsoft.Graph.Entra).Version.ToString()
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaOauth2PermissionGrant"
 
-            Update-EntraBetaOauth2PermissionGrant -OAuth2PermissionGrantId '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA' -Scope 'User.Read.All' | Out-Null
+            $result = Update-EntraBetaOauth2PermissionGrant -OAuth2PermissionGrantId '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA' -Scope 'User.Read.All'
+            $result | Should -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaOauth2PermissionGrant"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
-                $params.Headers.'User-Agent' -eq $userAgentHeaderValue
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
             }
         }
 
