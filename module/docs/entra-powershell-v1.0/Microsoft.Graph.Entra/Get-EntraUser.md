@@ -145,7 +145,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -Property Id, DisplayName, UserPrincipalName -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
@@ -155,6 +155,9 @@ lastSuccessfulSignInDateTime      : 9/9/2024 1:12:13 PM
 lastNonInteractiveSignInDateTime  : 9/9/2024 1:12:13 PM
 lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
 lastSignInDateTime                : 9/7/2024 9:15:41 AM
+id                                : aaaaaaaa-bbbb-cccc-1111-222222222222
+displayName                       : Sawyer Miller
+userPrincipalName                 : SawyerM@contoso.com
 ```
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.

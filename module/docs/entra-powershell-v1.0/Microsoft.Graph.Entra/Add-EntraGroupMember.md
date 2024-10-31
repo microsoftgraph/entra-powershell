@@ -35,21 +35,28 @@ Add-EntraGroupMember
 
 The Add-EntraGroupMember cmdlet adds a member to a group.
 
+In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
+
+- Group owners
+- Directory Writers
+- Groups Administrator
+- User Administrator
+
 ## Examples
 
 ### Example 1: Add a member to a group
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$params = @{
-    GroupId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-
-Add-EntraGroupMember @params
+$group = Get-EntraGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+Add-EntraGroupMember -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
+
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
+- `-RefObjectId` - Specifies the unique identifier (Object ID) of the member to be added to the group.
 
 ## Parameters
 
