@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgServicePrincipalAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgServicePrincipalAppRoleAssignmentTo -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
