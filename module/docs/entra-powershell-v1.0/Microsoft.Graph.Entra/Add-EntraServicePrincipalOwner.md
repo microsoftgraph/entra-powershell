@@ -40,13 +40,9 @@ The `Add-EntraServicePrincipalOwner` cmdlet adds an owner to a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-$OwnerId = (Get-EntraUser -Top 1).ObjectId
-$Params = @{
-    ServicePrincipalId = $ServicePrincipalId 
-    RefObjectId = $OwnerId  
-}
-Add-EntraServicePrincipalOwner @Params
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$owner = Get-EntraUser -UserId 'SawyerM@contoso.com'
+Add-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -RefObjectId $owner.Id
 ```
 
 This example demonstrates how to add an owner to a service principal.
