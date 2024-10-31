@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgServicePrincipalAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgServicePrincipalAppRoleAssignedTo -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
@@ -33,14 +33,14 @@ Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | should -Be '4d8fcb23-adc7-4d47-9328-2420eb1075ef'
 
-            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should execute successfully with Alias" {
             $result =  Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId  "4d8fcb23-adc7-4d47-9328-2420eb1075ef"
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | should -Be '4d8fcb23-adc7-4d47-9328-2420eb1075ef'
 
-            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
             { Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*" 
@@ -52,13 +52,13 @@ Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
             $result = Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId "4d8fcb23-adc7-4d47-9328-2420eb1075ef" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }                
         It "Should return top  app role assignments " {
             $result =  Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId "4d8fcb23-adc7-4d47-9328-2420eb1075ef" -top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
                 { Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId "4d8fcb23-adc7-4d47-9328-2420eb1075ef" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -71,7 +71,7 @@ Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
             $result.ObjectID | should -Be "I8uPTcetR02TKCQg6xB170ZWgaqJluBEqPHHxTxJ9Hs"
         } 
         It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
-            Mock -CommandName Get-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgServicePrincipalAppRoleAssignedTo -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId "4d8fcb23-adc7-4d47-9328-2420eb1075ef"
             $params = Get-Parameters -data $result
@@ -83,7 +83,7 @@ Describe "Get-EntraServicePrincipalAppRoleAssignedTo" {
             $result= Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId "4d8fcb23-adc7-4d47-9328-2420eb1075ef"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalAppRoleAssignedTo"
-            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
