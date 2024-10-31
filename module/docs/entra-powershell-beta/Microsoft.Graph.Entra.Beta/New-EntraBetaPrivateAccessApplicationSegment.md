@@ -32,7 +32,7 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
-    ApplicationID = $application.Id
+    ApplicationId = $application.Id
     DestinationHost = 'ssh.contoso.local'
     Ports = 22
     Protocol = 'TCP'
