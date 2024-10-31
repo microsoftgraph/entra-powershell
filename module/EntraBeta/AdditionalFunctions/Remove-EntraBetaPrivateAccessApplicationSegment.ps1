@@ -5,9 +5,10 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
 
 	[CmdletBinding()]
 	param (
+		[Alias('ObjectId')]
 		[Parameter(Mandatory = $True, Position = 1)]
 		[string]
-		$ObjectID,
+		$ApplicationId,
 		[Parameter(Mandatory = $False, Position = 2)]
 		[string]
 		$ApplicationSegmentId
@@ -15,6 +16,6 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
 
 	PROCESS {
 		$customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-		Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ObjectID/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
+		Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
 	}
 }

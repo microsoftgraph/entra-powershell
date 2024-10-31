@@ -72,7 +72,7 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.serviceP
 cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 ```
 
-This example retrieves the members of a specified group by its `GroupId` and selects only the `DisplayName` and `@odata.type` properties for each member.
+This example retrieves the members of a specified group by its `GroupId` and selects only the `Id`, `DisplayName` and `@odata.type` properties for each member.
 
 - `-GroupId` specifies the ID of a group.
 
@@ -87,8 +87,8 @@ Get-EntraGroupMember -GroupId $group.Id -Top 2
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+cccccccc-8888-9999-0000-dddddddddddd
+dddddddd-9999-0000-1111-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  

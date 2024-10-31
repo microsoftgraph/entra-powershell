@@ -33,7 +33,7 @@ Get-EntraBetaDirSyncConfiguration
 
 ## Description
 
-The `Get-EntraBetaDirSyncConfiguration` cmdlet gets the directory synchronization settings.
+The `Get-EntraBetaDirSyncConfiguration` cmdlet gets the directory synchronization settings. See [configuration settings](https://learn.microsoft.com/graph/api/resources/onpremisesaccidentaldeletionprevention#properties) details.
 
 For delegated scenarios, the user needs to be assigned the Global Administrator role.
 
@@ -58,7 +58,8 @@ This example gets directory synchronization settings.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Get-EntraBetaDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+$tenant = Get-EntraBetaTenantDetail
+Get-EntraBetaDirSyncConfiguration -TenantId $tenant.Id
 ```
 
 ```Output
