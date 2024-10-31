@@ -43,7 +43,7 @@ Describe "Set-EntraBetaUserPassword" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserBetaPassword -UserId $userUPN -Password "" } | Should -Throw "Cannot process argument transformation on parameter 'Password'*"
+           { Set-EntraBetaUserPassword -UserId $userUPN -Password "" } | Should -Throw "Cannot process argument transformation on parameter 'Password'*"
         }
         It "Should fail when ForceChangePasswordNextLogin  is empty" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
