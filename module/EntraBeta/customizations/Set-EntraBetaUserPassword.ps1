@@ -17,8 +17,6 @@
     [System.Security.SecureString] $Password,      
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $EnforceChangePasswordPolicy
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Boolean] $ForceChangePasswordNextSignInWithMfa
     )
     PROCESS {    
         $params = @{}
@@ -88,7 +86,7 @@
 
         $PasswordProfile = @{}
         if($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
-        if($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $ForceChangePasswordNextSignInWithMfa }
+        if($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $EnforceChangePasswordPolicy }
         if($null -ne $PSBoundParameters["Password"]) { $PasswordProfile["password"] = $PlainPassword }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
