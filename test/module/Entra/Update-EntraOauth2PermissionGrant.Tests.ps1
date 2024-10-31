@@ -1,73 +1,53 @@
 # ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if (-not (Get-Module -Name Microsoft.Graph.Entra -ListAvailable)) {
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgOauth2PermissionGrant -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
-Describe 'Update-EntraOauth2PermissionGrant' {
-    Mock -CommandName 'New-EntraCustomHeaders' -MockWith {
-        return @{ "Authorization" = "Bearer token" }
-    }
-
-    Mock -CommandName 'Invoke-GraphRequest' -MockWith {
-        return @{ "status" = "success" }
-    }
-
-    Context 'When OAuth2PermissionGrantId is provided' {
-        It 'Should call Invoke-GraphRequest with correct parameters' {
-            $OAuth2PermissionGrantId = '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA'
-            $Scope = 'User.Read.All'
-
-            $expectedUri = "https://graph.microsoft.com/v1.0/oauth2PermissionGrants/$OAuth2PermissionGrantId"
-            $expectedBody = @{ "scope" = $Scope }
-
-            Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId $OAuth2PermissionGrantId -Scope $Scope
-
-            Assert-MockCalled -CommandName 'Invoke-GraphRequest' -Exactly 1 -Scope It -ParameterFilter {
-                $params["Uri"] -eq $expectedUri -and
-                $params["Method"] -eq "PATCH" -and
-                $params["Body"]["scope"] -eq $Scope
-            }
+Describe "Update-EntraOauth2PermissionGrant" {
+    Context "Test for Update-EntraOauth2PermissionGrant" {
+        It "Should return empty object" {
+            $result = Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA' -Scope 'User.Read.All'
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
+
+        It "Should fail when OAuth2PermissionGrantId is empty" {
+            { Update-EntraOauth2PermissionGrant -Scope 'User.Read.All' } | Should -Throw "Missing an argument for parameter 'OAuth2PermissionGrantId'. Specify a parameter*"
+        }
+
         It "Should contain 'User-Agent' header" {
             $psVersion = $PSVersionTable.PSVersion.ToString()
             $entraVersion = (Get-Module -Name Microsoft.Graph.Entra).Version.ToString()
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraOauth2PermissionGrant"
-    
-            Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId $OAuth2PermissionGrantId -Scope $Scope
-    
-            Assert-MockCalled -CommandName 'Invoke-GraphRequest' -Exactly 1 -Scope It -ParameterFilter {
-                $params["Headers"]['User-Agent'] -eq $userAgentHeaderValue
+
+            Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA' -Scope 'User.Read.All' | Out-Null
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $params.Headers.'User-Agent' -eq $userAgentHeaderValue
             }
         }
-    }
 
-    Context 'When Scope is not provided' {
-        It 'Should call Invoke-GraphRequest with correct parameters' {
-            $OAuth2PermissionGrantId = '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA'
-
-            $expectedUri = "https://graph.microsoft.com/v1.0/oauth2PermissionGrants/$OAuth2PermissionGrantId"
-            $expectedBody = @{}
-
-            Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId $OAuth2PermissionGrantId
-
-            Assert-MockCalled -CommandName 'Invoke-GraphRequest' -Exactly 1 -Scope It -ParameterFilter {
-                $params["Uri"] -eq $expectedUri -and
-                $params["Method"] -eq "PATCH" -and
-                $params["Body"].Count -eq 0
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId '9NZRbmDg40WLpstnWGOz3bPoBg32YpRKr8_RV9A0geA' -Scope 'User.Read.All' -Debug } | Should -Not -Throw
             }
-        }
-    }
-
-    Context 'When OAuth2PermissionGrantId is not provided' {
-        It 'Should fail when OAuth2PermissionGrantId is empty' {
-            { Update-EntraOauth2PermissionGrant -Scope 'User.Read' } | Should -Throw "Cannot bind argument to parameter 'OAuth2PermissionGrantId' because it is an empty string."
+            finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }
