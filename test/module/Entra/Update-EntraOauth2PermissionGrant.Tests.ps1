@@ -20,7 +20,7 @@ Describe "Update-EntraOauth2PermissionGrant" {
         }
 
         It "Should fail when OAuth2PermissionGrantId is empty" {
-            { Update-EntraOauth2PermissionGrant -Scope 'User.Read.All' } | Should -Throw "Missing an argument for parameter 'OAuth2PermissionGrantId'. Specify a parameter*"
+            { Update-EntraOauth2PermissionGrant -OAuth2PermissionGrantId -Scope 'User.Read.All' } | Should -Throw "Missing an argument for parameter 'OAuth2PermissionGrantId'. Specify a parameter*"
         }
 
         It "Should contain 'User-Agent' header" {
