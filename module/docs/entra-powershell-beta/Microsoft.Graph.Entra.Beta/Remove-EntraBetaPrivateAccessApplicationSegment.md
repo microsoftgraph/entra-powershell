@@ -30,32 +30,26 @@ The `Remove-EntraBetaPrivateAccessApplicationSegment` cmdlet removes application
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
-$ApplicationSegmentId = (Get-EntraBetaPrivateAccessApplicationSegment -ObjectId $ApplicationObjectId -Top 1).Id
-
-$params = @{
-    ObjectId = $ApplicationObjectId
-    ApplicationSegmentId = $ApplicationSegmentId
-}
-
-Remove-EntraBetaPrivateAccessApplicationSegment @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$applicationSegment = Get-EntraBetaPrivateAccessApplicationSegment -ApplicationId $application.Id | Where-Object {$_.destinationType -eq 'fqdn'}
+Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId $application.Id -ApplicationSegmentId $applicationSegment.Id
 ```
 
 This example shows how to remove an application segment associated to a Private Access application.
 
-- `ObjectId` is the application Object ID of the Private Access Application.
+- `ApplicationId` is the application Object ID of the Private Access Application.
 - `ApplicationSegmentId` is the application segment identifier to be deleted.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The object ID of a Private Access application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: 
-Aliases: id
+Aliases: ObjectId
 
 Required: True
 Position: 1

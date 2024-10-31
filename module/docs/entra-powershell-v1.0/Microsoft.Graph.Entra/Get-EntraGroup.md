@@ -84,7 +84,8 @@ This example demonstrates how to get all groups from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroup -GroupId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Azure Panda'"
+Get-EntraGroup -GroupId $group.Id
 ```
 
 ```Output

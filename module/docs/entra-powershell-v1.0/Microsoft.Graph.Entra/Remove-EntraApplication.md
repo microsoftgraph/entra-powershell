@@ -39,11 +39,20 @@ The `Remove-EntraApplication` cmdlet deletes an application object identified by
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-Remove-EntraApplication -ApplicationId $Application.ObjectId
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Remove-EntraApplication -ApplicationId $application.Id
 ```
 
 This example demonstrates how to delete an application object.
+
+### Example 2: Remove an application using pipelining
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'" | Remove-EntraApplication
+```
+
+This example demonstrates how to delete an application object using pipelining.
 
 ## Parameters
 

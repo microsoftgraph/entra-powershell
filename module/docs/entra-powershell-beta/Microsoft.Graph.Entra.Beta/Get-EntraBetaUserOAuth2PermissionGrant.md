@@ -52,23 +52,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ## Examples
 
-### Example 1: Retrieve the OAuth2 permission grants for a user
-
-```powershell
-Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaUserOAuth2PermissionGrant -UserId 'SawyerM@contoso.com'
-```
-
-```Output
-Id                                                               ClientId                             ConsentType ExpiryTime
---                                                               --------                             ----------- ----------
-HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
-9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
-```
-
-This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `UserId` value.
-
-### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
+### Example 1: Retrieve the OAuth2 permission grants for a user using object ID parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -86,7 +70,7 @@ This example retrieves the OAuth2 permission grants for a user using object ID p
 
 - `-UserId` parameter specifies the user ID.
 
-### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
+### Example 2: Retrieve the OAuth2 permission grants for a user using All parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -104,7 +88,7 @@ This example retrieves the OAuth2 permission grants for a user using All paramet
 
 - `-UserId` parameter specifies the user ID.
 
-### Example 4: Retrieve top one OAuth2 permission grant
+### Example 3: Retrieve top one OAuth2 permission grant
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'

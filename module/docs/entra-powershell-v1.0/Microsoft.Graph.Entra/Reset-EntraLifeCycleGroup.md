@@ -42,12 +42,13 @@ When a group is renewed, the group expiration is extended by the number of days 
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Reset-EntraLifeCycleGroup -Id 'hhhhhhhh-8888-9999-8888-cccccccccccc'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Reset-EntraLifeCycleGroup -Id $group.Id
 ```
 
 This example demonstrates how to renew a specified group.
 
-- `-Id` - Specifies the lifecycle policy object ID.
+- `-Id` - Specifies the group Object ID.
 
 ## Parameters
 

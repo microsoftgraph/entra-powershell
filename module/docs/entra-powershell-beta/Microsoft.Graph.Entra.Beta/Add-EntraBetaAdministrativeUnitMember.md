@@ -46,16 +46,12 @@ To add a user, group, or device to an administrative unit, the calling principal
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$User = Get-EntraBetaUser -SearchString '<user-name>'
-$params = @{
-    AdministrativeUnitId = $AdministrativeUnit.ObjectId
-    RefObjectId = $User.ObjectId
-}
-Add-EntraBetaAdministrativeUnitMember @params
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
 ```
 
-This example shows how to add an administrative unit member. You can use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraBetaUser` to get user ID.
+This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaUser` to find the user ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
@@ -107,7 +103,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraBetaAdministrativeUnitMember](Get-EntraBetaAdministrativeUnitMember.md)
-
-[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
-
 [Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)
+[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)

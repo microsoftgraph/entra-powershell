@@ -41,7 +41,8 @@ The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso App Proxy'"
+Get-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId $application.Id
 ```
 
 ```Output

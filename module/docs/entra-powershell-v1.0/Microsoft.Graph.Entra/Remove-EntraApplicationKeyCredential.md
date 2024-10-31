@@ -43,13 +43,8 @@ An application can use this command along with `New-EntraApplicationKeyCredentia
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-$params = @{
-    ApplicationId = $application.Id
-    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
-}
-
-Remove-EntraApplicationKeyCredential @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Remove-EntraApplicationKeyCredential -ApplicationId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 ```
 
 This command removes the specified key credential from the specified application.
