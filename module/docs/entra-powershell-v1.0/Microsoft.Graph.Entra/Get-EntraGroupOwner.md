@@ -52,16 +52,14 @@ In delegated scenarios, the signed-in user must have a supported Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -GroupId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraGroup -GroupId $group.Id | Get-EntraGroupOwner | Select-Object Id, DisplayName, '@odata.type' 
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
+id                                   displayName       @odata.type
+--                                   -----------       -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve the owner of a specific group.
@@ -72,7 +70,8 @@ This example demonstrates how to retrieve the owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -GroupId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraGroupOwner -GroupId $group.Id -All
 ```
 
 ```Output
@@ -92,7 +91,8 @@ This example demonstrates how to retrieve the all owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -GroupId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraGroupOwner -GroupId $group.Id -Top 2
 ```
 
 ```Output

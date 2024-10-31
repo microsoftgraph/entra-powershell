@@ -43,11 +43,12 @@ The `New-EntraBetaObjectSetting` cmdlet creates a settings object in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$template = Get-EntraBetaDirectorySettingTemplate | ? {$_.displayname -eq 'group.unified.guest'}
-$settingsCopy = $template.CreateDirectorySetting()
-$settingsCopy['AllowToAddGuests']=$False
-$groupID= (Get-EntraBetaGroup -SearchString 'Demo group123').ObjectId
-New-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $groupID -DirectorySetting $settingsCopy
+$template = Get-EntraBetaDirectorySettingTemplate | Where-Object { $_.displayname -eq 'Group.Unified.Guest' }
+$setting = $template.CreateDirectorySetting()
+$setting['AllowToAddGuests'] = $False
+
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+New-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -DirectorySetting $setting
 ```
 
 ```Output

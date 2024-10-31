@@ -41,7 +41,7 @@ The `Remove-EntraGroupLifecyclePolicy` command deletes a groupLifecyclePolicies 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Get-EntraGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'} | Remove-EntraGroupLifecyclePolicy
 ```
 
 This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID. You can use `Get-EntraGroupLifecyclePolicy` to get Id details.
