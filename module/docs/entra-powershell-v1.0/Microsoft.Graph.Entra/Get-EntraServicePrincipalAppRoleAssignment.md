@@ -38,6 +38,7 @@ Get-EntraServicePrincipalAppRoleAssignment
 The `Get-EntraServicePrincipalAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
 - Directory Synchronization Accounts
 - Directory Writer
 - Hybrid Identity Administrator
@@ -52,9 +53,9 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ### Example 1: Retrieve the application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -72,8 +73,9 @@ This command gets application role assignments for specified service principal.
 ### Example 2: Retrieve all application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```Output
@@ -91,8 +93,9 @@ This command gets all application role assignments for specified service princip
 ### Example 3: Retrieve the top five application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -Top 3
 ```
 
 ```Output
