@@ -27,8 +27,8 @@ Gets an object owned by a service principal.
 
 ```powershell
 Get-EntraServicePrincipalOwnedObject
- [-All]
  -ServicePrincipalId <String>
+ [-All]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
