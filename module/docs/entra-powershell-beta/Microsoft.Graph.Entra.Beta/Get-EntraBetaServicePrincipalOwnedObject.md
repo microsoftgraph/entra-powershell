@@ -43,8 +43,8 @@ The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet retrieves an object owned 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id
 ```
 
 ```Output
@@ -61,8 +61,8 @@ The command retrieves the owned objects of a service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipalId -All
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -All
 ```
 
 ```Output
@@ -76,31 +76,12 @@ This example retrieves an object owned by a service principal in Microsoft Entra
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
-### Example 2: Retrieve all owned objects of a service principal
-
-```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId -All 
-```
-
-```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-```
-
-The command receives the all owned objects of a service principal.
-
-- `-ServicePrincipalId` Parameter specifies the ID of a service principal.
-
 ### Example 3: Retrieve top one owned object of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId -Top 1
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -Top 1
 ```
 
 ```Output
