@@ -461,11 +461,14 @@ foreach (`$subModule in `$subModules) {
 
 
 [void] CreateModuleHelp([string] $Module) {
+
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Starting the creation of Module help.."
    
     if (!(Test-Path $this.OutputDirectory)) {
         New-Item -ItemType Directory -Path $this.OutputDirectory | Out-Null
     }
 
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Output Directory $this.OutputDirectory verified..."
     # Determine the base docs path based on the specified module
     $docsPath = $this.BaseDocsPath
     if ($Module -eq "Entra") {
@@ -473,31 +476,35 @@ foreach (`$subModule in `$subModules) {
     } elseif ($Module -eq "EntraBeta") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta"
     } else {
-        Log-Message "Invalid module specified: $Module" -Level 'ERROR'
+       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Invalid module specified: $Module" -Level 'ERROR'
         return
     }
 
     # Check if the base docs path exists
     if (!(Test-Path $docsPath)) {
-        Log-Message "The specified base documentation path does not exist: $docsPath" -Level 'ERROR'
+        Log-Message "[EntraModuleBuilder] CreateModuleHelp: The specified base documentation path does not exist: $docsPath" -Level 'ERROR'
         return
     }
+
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Docs files directory &docsPath verified..."
 
     # Get all subdirectories within the base docs path
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
     foreach ($subDirectory in $subDirectories) {
         # Skip the 'Migration' sub-directory
         if ($subDirectory.Name -eq 'Migration' -or $subDirectory.Name -eq 'Invitations') {
-            Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:Skipping 'Migration' directory." -Level 'INFO'
             continue
         }
+
+       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
         $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
        
         # Check if markdown files are found
         if (-not($markDownFiles)) {
-            Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }
 
