@@ -40,14 +40,10 @@ The `Remove-EntraBetaServicePrincipalOwner` cmdlet removes an owner from a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
-$owner = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-
-$params= @{
-    ServicePrincipalId = $servicePrincipal.Id 
-    OwnerId = $owner.Id
-}
-Remove-EntraBetaServicePrincipalOwner @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$ownership = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
+$owner = $ownership | Where-Object {$_.userPrincipalName -eq 'SawyerM@Contoso.com' }
+Remove-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
 ```
 
 This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
