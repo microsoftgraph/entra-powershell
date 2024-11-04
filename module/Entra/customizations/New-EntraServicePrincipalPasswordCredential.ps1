@@ -19,7 +19,9 @@
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $CustomKeyIdentifier,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $EndDate
+    [System.Nullable`1[System.DateTime]] $EndDate,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $DisplayName
     )
 
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -27,6 +29,7 @@
         passwordCredential = @{
             startDateTime = $PSBoundParameters["StartDate"];
             endDateTime = $PSBoundParameters["EndDate"];
+            displayName = $PSBoundParameters["DisplayName"];
         }
     }
     $response = Add-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -BodyParameter $body

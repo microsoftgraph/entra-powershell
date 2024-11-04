@@ -20,7 +20,9 @@
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Value,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $EndDate
+    [System.Nullable`1[System.DateTime]] $EndDate,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.DateTime]] $DisplayName
     )
 
     PROCESS{
@@ -39,6 +41,7 @@
                 passwordCredential = @{
                     startDateTime = $PSBoundParameters["StartDate"];
                     endDateTime = $PSBoundParameters["EndDate"];
+                    displayName = $PSBoundParameters["DisplayName"];
                 }
             }
         }
