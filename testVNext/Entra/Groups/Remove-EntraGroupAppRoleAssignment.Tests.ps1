@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Groups
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
 
-    Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraGroupAppRoleAssignment" {
@@ -16,13 +16,13 @@ Describe "Remove-EntraGroupAppRoleAssignment" {
             $result = Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return empty object with Alias" {
             $result = Remove-EntraGroupAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when GroupId is empty" {
             { Remove-EntraGroupAppRoleAssignment -GroupId  -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -37,7 +37,7 @@ Describe "Remove-EntraGroupAppRoleAssignment" {
             { Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string."
         }
         It "Should contain GroupId in parameters when passed GroupId to it" { 
-            Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Groups
+            Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $params = Get-Parameters -data $result
@@ -50,7 +50,7 @@ Describe "Remove-EntraGroupAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupAppRoleAssignment"
 
-            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

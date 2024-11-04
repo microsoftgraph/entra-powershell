@@ -10,13 +10,13 @@
 
 function Split-Tests {
     param (
-        [string]$Source = 'Entra',  # Default to 'Entra'
+        [string]$Module = 'Entra',  # Default to 'Entra'
         [string]$OutputDirectory      # Allow custom output directory
     )
 
     # Determine source directories and mapping file paths based on the Source parameter
     
-    switch ($Source) {
+    switch ($Module) {
         'Entra' {
             $TestSourceDirectory = "../test/module/Entra"
             $MappingFilePath = '../moduleVNext/Entra/config/moduleMapping.json'
@@ -177,8 +177,44 @@ function Split-Tests {
         }
     }
 
-    Log-Message -Message "Split-Tests completed for source: $Source" -Level 'SUCCESS'
+    Log-Message -Message "Split-Tests completed for source: $Module" -Level 'SUCCESS'
 }
 
-# Example usage
-Split-Tests -Source 'Entra' 
+function Update-CommonFunctionsImport {
+    param (
+        [string]$Module='Entra'  # Default to the current directory if no path is provided
+    )
+ 
+   $rootPath=if($Module -eq 'Entra'){
+       "../testVNext/Entra"
+   }else{
+        "../testVNext/EntraBeta"
+   }
+    
+    # Get all .Tests.ps1 files in the specified directory and its subdirectories
+    $testFiles = Get-ChildItem -Path $rootPath -Recurse -Filter *.Tests.ps1
+
+    Log-Message "Starting common-functions import update"
+    # Loop through each file
+    foreach ($file in $testFiles) {
+        # Read the content of the file
+        $content = Get-Content -Path $file.FullName
+
+        Log-Message "Processing $file"
+        
+        # Check if the target string exists in the content
+          if ($content -match  'Import-Module\s*\(\s*Join-Path\s*\$psscriptroot\s*["'']\.\.\\Common-Functions\.ps1["'']\s*\)\s*-Force') {
+            # Replace the old string with the new one
+            $newContent = $content -replace 'Import-Module \(Join-Path \$PSScriptRoot "\.\.\\\.\.\\\.\.\\Common-Functions\.ps1"\) -Force', 'Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force'
+            
+            # Write the updated content back to the file
+            Set-Content -Path $file.FullName -Value $newContent
+            
+            # Output the change
+            Log-Message "Updated file: $($file.FullName)"
+        }
+    }
+}
+
+
+Split-Tests -Module 'EntraBeta'

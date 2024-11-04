@@ -2,11 +2,11 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 $scriptblock = {
     return @(
@@ -34,7 +34,7 @@ $scriptblock = {
 
 }
 
-    Mock -CommandName Get-MgOrganization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgOrganization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 
@@ -44,7 +44,7 @@ Describe "Get-EntraTenantDetail" {
             $result = Get-EntraTenantDetail -All 
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should fail when All is invalid" {
             { Get-EntraTenantDetail -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -53,7 +53,7 @@ Describe "Get-EntraTenantDetail" {
             $result = Get-EntraTenantDetail -Top 1
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should fail when Top is empty" {
             { Get-EntraTenantDetail -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -66,7 +66,7 @@ Describe "Get-EntraTenantDetail" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock App'
 
-            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraTenantDetail -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -78,7 +78,7 @@ Describe "Get-EntraTenantDetail" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTenantDetail"
 
-            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -98,4 +98,3 @@ Describe "Get-EntraTenantDetail" {
         }
     }   
 }
-

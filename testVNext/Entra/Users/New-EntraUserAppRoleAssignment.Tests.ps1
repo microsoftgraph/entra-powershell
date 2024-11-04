@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Users      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         #Write-Host "Mocking New-EntraUserAppRoleAssignment with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -30,7 +30,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName New-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName New-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "New-EntraUserAppRoleAssignment" {
@@ -66,7 +66,7 @@ Describe "New-EntraUserAppRoleAssignment" {
             $result.ResourceDisplayName | Should -Be $expectedResult.ResourceDisplayName
             $result.ResourceId | Should -Be $expectedResult.ResourceId
 
-            Should -Invoke -CommandName New-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName New-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when parameters are empty" {
@@ -78,7 +78,7 @@ Describe "New-EntraUserAppRoleAssignment" {
         }
 
         It "Should contain UserId in parameters" {
-            Mock -CommandName New-MgUserAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName New-MgUserAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result =  New-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PrincipalId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -ResourceId 'bbbbbbbb-cccc-dddd-2222-333333333333' -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $params = Get-Parameters -data $result
@@ -94,7 +94,7 @@ Describe "New-EntraUserAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUserAppRoleAssignment"
 
-            Should -Invoke -CommandName New-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

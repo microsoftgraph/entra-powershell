@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -41,18 +41,18 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 Describe "Get-EntraServicePrincipalOwner"{
     It "Result should not be empty" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should update the parameter with Alias" {
         $result = Get-EntraServicePrincipalOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should fail when ServicePrincipalId is empty" {
         { Get-EntraServicePrincipalOwner -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
@@ -60,7 +60,7 @@ Describe "Get-EntraServicePrincipalOwner"{
     It "Should return all applications" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should fail when All has an argument" {
         { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
@@ -68,7 +68,7 @@ Describe "Get-EntraServicePrincipalOwner"{
     It "Should return top application" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Result should Contain ServicePrincipalId" {            
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -84,7 +84,7 @@ Describe "Get-EntraServicePrincipalOwner"{
         $result | Should -Not -BeNullOrEmpty
         $result.DisplayName | Should -Be 'Adams Smith'
 
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should fail when Property is empty" {
         { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -94,7 +94,7 @@ Describe "Get-EntraServicePrincipalOwner"{
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalOwner"    
-        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Set-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Set-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Set-EntraUserManager" {
@@ -16,14 +16,14 @@ Describe "Set-EntraUserManager" {
             $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should return specific User with alias" {
             $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when UserId is empty string value" {
@@ -39,7 +39,7 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should contain UserId in parameters when passed UserId to it" {
-            Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
             $result = Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
@@ -53,7 +53,7 @@ Describe "Set-EntraUserManager" {
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
     
-            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

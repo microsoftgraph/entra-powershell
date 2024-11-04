@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.SignIns      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -28,7 +28,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "New-EntraNamedLocationPolicy" {
@@ -42,7 +42,7 @@ Context "Test for New-EntraNamedLocationPolicy" {
             $result.DisplayName | Should -Be "Mock-App policies"
             $result.CreatedDateTime | Should -Be "14-05-2024 09:38:07"
 
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when OdataType is empty" {
             { New-EntraNamedLocationPolicy -OdataType  } | Should -Throw "Missing an argument for parameter 'OdataType'*"
@@ -81,7 +81,7 @@ Context "Test for New-EntraNamedLocationPolicy" {
             $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         }
         It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
-            Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+            Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
             $ipRanges.cidrAddress = "6.5.4.1/30"
@@ -98,7 +98,7 @@ Context "Test for New-EntraNamedLocationPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
 
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

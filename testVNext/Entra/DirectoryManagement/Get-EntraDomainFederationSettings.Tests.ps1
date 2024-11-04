@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement        
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -29,7 +29,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Get-EntraDomainFederationSettings" {
@@ -39,7 +39,7 @@ Describe "Get-EntraDomainFederationSettings" {
             $result | Should -Not -BeNullOrEmpty
             $result.FederationBrandName | Should -Be "Contoso"
             $result.ActiveLogOnUri | Should -Be "https://sts.deverett.info/adfs/services/trust/2005/usernamemixed"
-            Should -Invoke -CommandName Get-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when TenantId is null" {
             { Get-EntraDomainFederationSettings -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
@@ -61,7 +61,7 @@ Describe "Get-EntraDomainFederationSettings" {
             $result = Get-EntraDomainFederationSettings -DomainName "test.com"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainFederationSettings"
-            Should -Invoke -CommandName Get-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         # Write-Host "Mocking Get-EntraUserOwnedObject with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -25,7 +25,7 @@ BeforeAll {
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Get-EntraUserOwnedObject" {
@@ -42,7 +42,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result.DisplayName | Should -Be "ToGraph_443DEM"
 
 
-            should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific User with alias" {
             $result = Get-EntraUserOwnedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -56,7 +56,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result.DisplayName | Should -Be "ToGraph_443DEM"
 
 
-            should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when UserId is empty string value" {
             { Get-EntraUserOwnedObject -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
@@ -70,7 +70,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result = Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }    
 
         It "Should fail when top is empty" {
@@ -84,7 +84,7 @@ Describe "Get-EntraUserOwnedObject" {
         It "Should return all contact" {
             $result = Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -105,7 +105,7 @@ Describe "Get-EntraUserOwnedObject" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOwnedObject"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -116,7 +116,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result | Should -Not -BeNullOrEmpty
             $result.displayName | Should -Be "ToGraph_443DEM"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -139,4 +139,3 @@ Describe "Get-EntraUserOwnedObject" {
 
     }
 }
-

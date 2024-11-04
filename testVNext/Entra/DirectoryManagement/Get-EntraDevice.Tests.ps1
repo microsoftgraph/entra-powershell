@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         # Write-Host "Mocking Get-MgDevice with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -45,7 +45,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraDevice" {
@@ -55,13 +55,13 @@ Describe "Get-EntraDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')
 
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific device with Alias" {
             $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when DeviceId is invalid" {
             { Get-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
@@ -85,7 +85,7 @@ Describe "Get-EntraDevice" {
             $result = Get-EntraDevice -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraDevice -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
@@ -95,27 +95,27 @@ Describe "Get-EntraDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         } 
         It "Should return specific device by filter" {
             $result = Get-EntraDevice -Filter "DisplayName -eq 'Mock-Device'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top device" {
             $result = Get-EntraDevice -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Property parameter should work" {
             $result = Get-EntraDevice -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraDevice -Property DisplayName -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -134,7 +134,7 @@ Describe "Get-EntraDevice" {
             $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDevice"
-            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

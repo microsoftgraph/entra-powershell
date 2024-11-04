@@ -9,7 +9,12 @@ param (
 
 $moduleBuilder = [EntraModuleBuilder]::new()
 
+if($Module -eq 'Entra'){
+    $typeDefsPath=".\V1.0-Typedefs.txt"
+}else if($Module -eq 'EntraBeta'){
+    $typeDefsPath='.\Beta-TypeDefs.txt'
+}
 
 $moduleBuilder.CreateModuleHelp($Module)
-$moduleBuilder.CreateSubModuleFile($Module, ".\Typedefs.txt")
+$moduleBuilder.CreateSubModuleFile($Module, $typeDefsPath)
 $moduleBuilder.CreateModuleManifest($Module)

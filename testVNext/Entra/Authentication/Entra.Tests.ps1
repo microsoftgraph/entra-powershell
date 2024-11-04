@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Authentication.psd1 -Force
+if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
+    Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
 }
 
 Import-Module Pester
 
-$psmPath = (Get-Module Microsoft.Graph.Entra.Authentication).Path
+$psmPath = (Get-Module Microsoft.Graph.Entra).Path
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\*.Tests.ps1"
 

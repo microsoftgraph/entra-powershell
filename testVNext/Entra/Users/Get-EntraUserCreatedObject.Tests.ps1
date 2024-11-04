@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -49,7 +49,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Get-MgUserCreatedObject -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Get-MgUserCreatedObject -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Get-EntraUserCreatedObject" {
@@ -59,7 +59,7 @@ Describe "Get-EntraUserCreatedObject" {
 
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should return specific User with alias" {
@@ -67,7 +67,7 @@ Describe "Get-EntraUserCreatedObject" {
 
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when UserId is empty string value" {
@@ -81,7 +81,7 @@ Describe "Get-EntraUserCreatedObject" {
         It "Should return all contact" {
             $result = Get-EntraUserCreatedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -92,7 +92,7 @@ Describe "Get-EntraUserCreatedObject" {
             $result = Get-EntraUserCreatedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
         }    
 
         It "Should fail when top is empty" {
@@ -117,7 +117,7 @@ Describe "Get-EntraUserCreatedObject" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserCreatedObject"
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -128,7 +128,7 @@ Describe "Get-EntraUserCreatedObject" {
             $result | Should -Not -BeNullOrEmpty
             $result.appDisplayName | Should -Be "Microsoft Graph Command Line Tools"
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when Property is empty" {

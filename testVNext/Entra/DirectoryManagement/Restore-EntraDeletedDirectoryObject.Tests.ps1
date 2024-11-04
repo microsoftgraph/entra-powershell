@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -23,7 +23,7 @@ BeforeAll {
         )
     } 
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 Describe "Restore-EntraDeletedDirectoryObject" {
     Context "Restore-EntraDeletedDirectoryObject" {
@@ -31,13 +31,13 @@ Describe "Restore-EntraDeletedDirectoryObject" {
             $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
             It "Should return specific MS deleted directory object with AutoReconcileProxyConflict" {
                 $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AutoReconcileProxyConflict
                 $result | Should -Not -BeNullOrEmpty
                 $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
             }
             It "Should fail when Id is empty" {
                 { Restore-EntraDeletedDirectoryObject -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -54,7 +54,7 @@ Describe "Restore-EntraDeletedDirectoryObject" {
                 $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
                Restore-EntraDeletedDirectoryObject -Id "11112222-bbbb-3333-cccc-4444dddd5555"
                 $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
-                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                     $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                     $true
                 }

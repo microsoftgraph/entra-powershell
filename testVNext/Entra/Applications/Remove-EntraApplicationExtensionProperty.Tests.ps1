@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
 
-    Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraApplicationExtensionProperty" {
@@ -16,13 +16,13 @@ Describe "Remove-EntraApplicationExtensionProperty" {
             $result = Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { Remove-EntraApplicationExtensionProperty -ApplicationId  -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"} | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -37,7 +37,7 @@ Describe "Remove-EntraApplicationExtensionProperty" {
             { Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "" } | Should -Throw "Cannot bind argument to parameter 'ExtensionPropertyId' because it is an empty string."
         }
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" { 
-            Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications
+            Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionPropertyId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
@@ -50,7 +50,7 @@ Describe "Remove-EntraApplicationExtensionProperty" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplicationExtensionProperty"
 
-            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

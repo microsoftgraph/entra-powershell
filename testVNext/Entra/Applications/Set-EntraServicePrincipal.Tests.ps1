@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications    
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra    
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Set-EntraServicePrincipal"{
@@ -17,25 +17,25 @@ Describe "Set-EntraServicePrincipal"{
             $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should update the parameter with Alias" {
             $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should update the LogoutUrl and ServicePrincipalType parameter" {
                 $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
                 $result | Should -BeNullOrEmpty
     
-                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should update the Homepage, ReplyUrls and AlternativeNames parameter" {
             $result= Set-EntraServicePrincipal -ServicePrincipalId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Homepage 'https://HomePageurlss.com' -ReplyUrls 'https://admin.microsoft1.com' -AlternativeNames "updatetest"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         } 
         It "Should update the KeyCredentials parameter" {
             $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
@@ -49,7 +49,7 @@ Describe "Set-EntraServicePrincipal"{
             $result= Set-EntraServicePrincipal -ServicePrincipalId 6aa187e3-bbbb-4748-a708-fc380aa9eb17  -KeyCredentials $creds
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }     
         It "Should fail when ServicePrincipalId is empty" {
             { Set-EntraServicePrincipal -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
@@ -67,7 +67,7 @@ Describe "Set-EntraServicePrincipal"{
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

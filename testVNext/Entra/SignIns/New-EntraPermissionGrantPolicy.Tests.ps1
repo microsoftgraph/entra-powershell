@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns      
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName New-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "New-EntraPermissionGrantPolicy" {
@@ -35,7 +35,7 @@ Describe "New-EntraPermissionGrantPolicy" {
             $result.Includes | should -Be @("22cc22cc-dd33-ee44-ff55-66aa66aa66aa")
             $result.DeletedDateTime | should -Be "2/8/2024 6:39:16 AM"
 
-            Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is empty" {
             { New-EntraPermissionGrantPolicy -Id -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" } | Should -Throw "Missing an argument for parameter 'Id'.*"
@@ -58,7 +58,7 @@ Describe "New-EntraPermissionGrantPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraPermissionGrantPolicy"
 
-            Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

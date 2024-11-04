@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     $scriptblock = {
         return @(
             [PSCustomObject]@{
@@ -29,16 +29,16 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
-    Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 Describe "Set-EntraDomainFederationSettings" {
     Context "Test for Set-EntraDomainFederationSettings" {
         It "Should Updates settings for a federated domain." {
             $result =  Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -SigningCertificate "Testcertificate" -NextSigningCertificate "Testcertificate"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
         }
         
         It "Should fail when DomainName is empty" {
@@ -63,7 +63,7 @@ Describe "Set-EntraDomainFederationSettings" {
             {Set-EntraDomainFederationSettings -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
         }   
         It "Should contain DomainId in parameters when DomainName to it" {
-            Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+            Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra
             $result = Set-EntraDomainFederationSettings -DomainName "contoso.com"
             $params = Get-Parameters -data $result
             $a= $params | ConvertTo-json | ConvertFrom-Json
@@ -76,7 +76,7 @@ Describe "Set-EntraDomainFederationSettings" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomainFederationSettings"
 
-            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

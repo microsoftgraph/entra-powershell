@@ -3,10 +3,10 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgServicePrincipalOwnedObject -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgServicePrincipalOwnedObject -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraServicePrincipalOwnedObject" {
@@ -32,13 +32,13 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
-            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific ServicePrincipalOwnedObject with Alias" {
             $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
-            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
             { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId'*"
@@ -49,7 +49,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
         It "Should return all Owned Objects" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -57,7 +57,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
         It "Should return top Owned Object" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Top 1
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ServicePrincipalId" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
@@ -74,7 +74,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalOwnedObject"
-            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

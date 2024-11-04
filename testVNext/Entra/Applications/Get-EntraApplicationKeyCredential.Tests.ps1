@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         @{
@@ -24,7 +24,7 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
   }
   
   Describe "Get-EntraApplicationKeyCredential" {
@@ -32,7 +32,7 @@ BeforeAll {
         It "Should not return empty" {
             $result = Get-EntraApplicationKeyCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { Get-EntraApplicationKeyCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
@@ -42,7 +42,7 @@ BeforeAll {
             $result = Get-EntraApplicationKeyCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationKeyCredential"    
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

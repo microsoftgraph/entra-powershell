@@ -3,13 +3,13 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users       
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 
-    Mock -CommandName Remove-MgUser -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Remove-MgUser -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Remove-EntraUser" {
@@ -17,12 +17,12 @@ Describe "Remove-EntraUser" {
         It "Should return empty object" {
             $result = Remove-EntraUser -UserId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraUser -ObjectId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when UserId is empty string" {
             { Remove-EntraUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
@@ -31,7 +31,7 @@ Describe "Remove-EntraUser" {
             { Remove-EntraUser -UserId } | Should -Throw "Missing an argument for parameter*"
         }  
         It "Should contain Id in parameters when passed UserId to it" {
-            Mock -CommandName Remove-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Remove-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraUser -UserId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
@@ -44,7 +44,7 @@ Describe "Remove-EntraUser" {
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUser"
     
-            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     $scriptblock = {
         return @(
             [PSCustomObject]@{
@@ -15,7 +15,7 @@ BeforeAll {
         )
     }  
 
-    Mock -CommandName Get-MgServicePrincipalMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgServicePrincipalMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
@@ -26,7 +26,7 @@ Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
             $SPId = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
             $result = Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgServicePrincipalMemberOf -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }    
         It "Should fail when ObjectID parameter is empty" {
             { Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId  -GroupIdsForMembershipCheck "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" } | Should -Throw "Missing an argument for parameter*"
@@ -50,7 +50,7 @@ Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsServicePrincipalIsMemberOf"
 
-            Should -Invoke -CommandName Get-MgServicePrincipalMemberOf -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipalMemberOf -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

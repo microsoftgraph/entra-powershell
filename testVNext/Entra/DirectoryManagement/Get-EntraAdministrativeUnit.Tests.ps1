@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         @{
@@ -21,18 +21,18 @@ BeforeAll{
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 Describe "Tests for Get-EntraAdministrativeUnit"{
     It "Result should not be empty"{
         $result = Get-EntraAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Result should not be empty objectid"{
         $result = Get-EntraAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }    
     It "Should fail when AdministrativeUnitId is empty" {
         { Get-EntraAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
@@ -59,20 +59,20 @@ Describe "Tests for Get-EntraAdministrativeUnit"{
         $result = Get-EntraAdministrativeUnit -Filter "displayName -eq 'test111'"
         $result | Should -Not -BeNullOrEmpty
         $result.DisplayName | should -Be 'test111'
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
     }  
     It "Should return top AdministrativeUnit" {
         $result = @(Get-EntraAdministrativeUnit -Top 1)
         $result | Should -Not -BeNullOrEmpty
         $result | Should -HaveCount 1 
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
     }  
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
         $result = Get-EntraAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnit"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

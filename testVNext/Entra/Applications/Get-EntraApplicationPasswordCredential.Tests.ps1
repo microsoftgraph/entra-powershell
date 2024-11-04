@@ -1,8 +1,8 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         @{
@@ -21,7 +21,7 @@ BeforeAll {
         }
     }
 
-    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
   }
 
   Describe "Get-EntraApplicationPasswordCredential" {
@@ -29,7 +29,7 @@ BeforeAll {
         It "Should not return empty" {
             $result = Get-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
@@ -45,7 +45,7 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Test"
 
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -57,7 +57,7 @@ BeforeAll {
             $result =  Get-EntraApplicationPasswordCredential -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationPasswordCredential"    
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

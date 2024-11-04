@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraServicePrincipalPasswordCredential" {
@@ -16,13 +16,13 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
             $result = Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should update the parameter with Alias" {
             $result = Remove-EntraServicePrincipalPasswordCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
             { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId  -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
@@ -37,7 +37,7 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
             { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId ""} | should -Throw "Cannot bind argument to parameter 'KeyId'*"
         }  
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications
+            Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
@@ -50,7 +50,7 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalPasswordCredential"
 
-            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

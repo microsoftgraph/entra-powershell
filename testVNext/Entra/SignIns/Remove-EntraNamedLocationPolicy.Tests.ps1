@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.SignIns
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
 
-    Mock -CommandName Remove-MgIdentityConditionalAccessNamedLocation -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Remove-MgIdentityConditionalAccessNamedLocation -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraNamedLocationPolicy" {
@@ -16,7 +16,7 @@ Describe "Remove-EntraNamedLocationPolicy" {
             $result = Remove-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Remove-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when PolicyId is empty" {
             { Remove-EntraNamedLocationPolicy -PolicyId  } | Should -Throw "Missing an argument for parameter 'PolicyId'*"
@@ -25,7 +25,7 @@ Describe "Remove-EntraNamedLocationPolicy" {
             { Remove-EntraNamedLocationPolicy -PolicyId "" } | Should -Throw "Cannot bind argument to parameter 'PolicyId' because it is an empty string*"
         }
         It "Should contain NamedLocationId in parameters when passed PolicyId to it" {
-            Mock -CommandName Remove-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
+            Mock -CommandName Remove-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5"
             $params = Get-Parameters -data $result
@@ -38,7 +38,7 @@ Describe "Remove-EntraNamedLocationPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraNamedLocationPolicy"
 
-            Should -Invoke -CommandName Remove-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

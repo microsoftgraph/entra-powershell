@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement        
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -21,7 +21,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Get-EntraAccountSku" {
@@ -36,7 +36,7 @@ Describe "Get-EntraAccountSku" {
             $result.AccountId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AppliesTo | should -Be "User"
 
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when TenantId is empty" {
             { Get-EntraAccountSku -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
@@ -53,7 +53,7 @@ Describe "Get-EntraAccountSku" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAccountSku"
 
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

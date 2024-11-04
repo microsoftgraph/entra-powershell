@@ -10,12 +10,12 @@
 
 function Split-Docs {
     param (
-        [string]$Source = 'Entra',  # Default to 'Entra'
+        [string]$Module = 'Entra',  # Default to 'Entra'
         [string]$OutputDirectory    # Allow custom output directory
     )
 
     # Determine source directories and mapping file paths based on the Source parameter
-    switch ($Source) {
+    switch ($Module) {
         'Entra' {
             $DocsSourceDirectory = "../module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
             $MappingFilePath = '../moduleVNext/Entra/config/moduleMapping.json'
@@ -81,5 +81,3 @@ function Split-Docs {
 
     Log-Message -Message "Markdown file copying complete." -Level 'INFO'
 }
-
-Split-Docs -Source 'Entra'

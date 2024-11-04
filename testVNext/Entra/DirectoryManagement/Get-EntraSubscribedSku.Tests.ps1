@@ -2,11 +2,11 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+        Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 $scriptblock = {
     return @(
@@ -29,7 +29,7 @@ $scriptblock = {
 
 }
 
-    Mock -CommandName Get-MgSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 
@@ -40,14 +40,14 @@ Describe "Get-EntraSubscribedSku" {
             $result | Should -Not -BeNullOrEmpty
 	        $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"		
             
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should return specific SubscribedSku with alias" {
             $result = Get-EntraSubscribedSku -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
             $result | Should -Not -BeNullOrEmpty
 	        $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"		
             
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }   
         It "Should fail when SubscribedSkuId empty" {
             { Get-EntraSubscribedSku -SubscribedSkuId  } | Should -Throw "Missing an argument for parameter 'SubscribedSkuId'*"
@@ -59,14 +59,14 @@ Describe "Get-EntraSubscribedSku" {
             $result = Get-EntraSubscribedSku 
             $result | Should -Not -BeNullOrEmpty
 
-	    Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+	    Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Property parameter should work" {
             $result = Get-EntraSubscribedSku -Property AppliesTo
             $result | Should -Not -BeNullOrEmpty
             $result.AppliesTo | Should -Be 'User'
 
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraSubscribedSku -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -78,7 +78,7 @@ Describe "Get-EntraSubscribedSku" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscribedSku"
 
-            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -98,4 +98,3 @@ Describe "Get-EntraSubscribedSku" {
         }
     }   
 }
-

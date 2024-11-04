@@ -1,17 +1,17 @@
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.SignIns)){
-    Import-Module Microsoft.Graph.Entra.SignIns
+if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
+    Import-Module Microsoft.Graph.Entra
 }
 
 Describe "Invalid Tests"{
     It "Should fail when parameters are invalid"{
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object{
             $command = Get-Command $_
                 { Invoke-Command $command -demo "" } | Should -Throw "A parameter cannot be found that matches parameter name 'demo'."
             }
     }
     It "Should fail with 'TenantId' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'TenantId'){
@@ -21,7 +21,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'Id' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'Id'){
@@ -31,7 +31,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'ObjectId' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'ObjectId'){                
@@ -41,7 +41,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'All' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'All'){                
@@ -56,7 +56,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'Top' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'Top'){                
@@ -66,7 +66,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'Filter' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'Filter'){                
@@ -76,7 +76,7 @@ Describe "Invalid Tests"{
         }
     }
     It "Should fail with 'SearchString' parameter" {
-        $module = Get-Module -Name Microsoft.Graph.Entra.SignIns
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if ($command.ParameterSets.Parameters.Name -contains 'SearchString'){                

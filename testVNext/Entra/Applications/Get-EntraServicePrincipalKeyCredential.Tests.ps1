@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications        
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -25,7 +25,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraServicePrincipalKeyCredential" {
@@ -36,7 +36,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $result | Should -Not -BeNullOrEmpty
             $result.KeyId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should update the parameter with Alias" {
@@ -45,7 +45,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $result | Should -Not -BeNullOrEmpty
             $result.KeyId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
             $errorActionPreference = "Stop"
@@ -72,7 +72,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalKeyCredential"
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

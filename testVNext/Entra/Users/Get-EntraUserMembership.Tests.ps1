@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Users        
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -21,7 +21,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgUserMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Get-MgUserMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Get-EntraUserMembership" {
@@ -30,14 +30,14 @@ Describe "Get-EntraUserMembership" {
             $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should return specific user membership with alias" {
             $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when UserId is empty" {
@@ -52,7 +52,7 @@ Describe "Get-EntraUserMembership" {
             $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -63,7 +63,7 @@ Describe "Get-EntraUserMembership" {
             $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 5
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -90,7 +90,7 @@ Describe "Get-EntraUserMembership" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -105,7 +105,7 @@ Describe "Get-EntraUserMembership" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserMembership"
 
-            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

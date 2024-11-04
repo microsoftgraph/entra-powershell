@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users        
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgUser -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Update-MgUser -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
   
 Describe "Set-EntraUser" {
@@ -17,7 +17,7 @@ Describe "Set-EntraUser" {
             $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo002" -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -PostalCode "10001"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when UserId is empty" {
@@ -29,7 +29,7 @@ Describe "Set-EntraUser" {
         } 
 
         It "Should contain userId in parameters when passed UserId to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
             $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
             $params = Get-Parameters -data $result
             $params.userId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -38,7 +38,7 @@ Describe "Set-EntraUser" {
         }
 
         It "Should contain MobilePhone in parameters when passed Mobile to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
             $result = Set-EntraUser -UserId bbbbbbbb-1111-2222-3333-cccccccccccc -Mobile "1234567890"
             $params = Get-Parameters -data $result
             $params.MobilePhone | Should -Be "1234567890"
@@ -51,7 +51,7 @@ Describe "Set-EntraUser" {
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUser"
     
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -70,7 +70,7 @@ Describe "Set-EntraUser" {
             }
         }
         It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
             # format like "yyyy-MM-dd HH:mm:ss"
             $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")

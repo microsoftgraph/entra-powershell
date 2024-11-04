@@ -27,7 +27,7 @@ function Update-CommonFunctionsImport {
         Log-Message "Processing $file"
         
         # Check if the target string exists in the content
-          if ($content -match 'Import-Module \(Join-Path \$PSScriptRoot "\.\.\\\.\.\\\.\.\\Common-Functions\.ps1"\) -Force') {
+          if ($content -match  'Import-Module\s*\(\s*Join-Path\s*\$psscriptroot\s*["'']\.\.\\Common-Functions\.ps1["'']\s*\)\s*-Force') {
             # Replace the old string with the new one
             $newContent = $content -replace 'Import-Module \(Join-Path \$PSScriptRoot "\.\.\\\.\.\\\.\.\\Common-Functions\.ps1"\) -Force', 'Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force'
             
@@ -41,3 +41,4 @@ function Update-CommonFunctionsImport {
 }
 
 Update-CommonFunctionsImport -Module 'Entra'
+Update-CommonFunctionsImport -Module 'EntraBeta'
