@@ -21,7 +21,7 @@
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.DateTime]] $EndDate,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $DisplayName
+    [System.String] $DisplayName
     )
 
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
