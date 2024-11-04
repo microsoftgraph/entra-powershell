@@ -111,7 +111,7 @@ Set-StrictMode -Version 5
     $functionsToExport = ($otherFiles + $enableEntraFiles | ForEach-Object { $_.BaseName }) -join "', '"
     $psm1Content += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
 
-    Write-Host "[EntraModuleBuilder] Appending content from Typedefs.txt" -ForegroundColor Cyan
+    Log-Message "[EntraModuleBuilder] ProcessSubDirectory: Appending content from Typedefs.txt" -ForegroundColor Cyan
     $typedefsContent = Get-Content -Path $typedefsFilePath -Raw
     $psm1Content += "`n# Typedefs`n" + $typedefsContent
 
@@ -134,7 +134,7 @@ Set-StrictMode -Version 5
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
 
         if (-not ($this.CheckTypedefsFile($typedefsFilePath))) {
-            Log-Message "Typedefs.txt not found" -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] $typedefsFilePath not found" -Level 'ERROR'
             return
         }
 
@@ -156,7 +156,7 @@ Set-StrictMode -Version 5
         foreach ($subDir in $subDirectories) {
             # Skip the 'Migration' sub-directory
             if ($subDir.Name -eq 'Migration' -or $subDir.Name -eq 'Invitations') {
-                Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+                Log-Message "[EntraModuleBuilder]: Skipping 'Migration' directory." -Level 'INFO'
                 continue
             }
             $this.ProcessSubDirectory($subDir.FullName, $subDir.Name, $parentDirName, $destDirectory, $typedefsFilePath)
@@ -177,7 +177,7 @@ Set-StrictMode -Version 5
         }
 
         if (-Not (Test-Path -Path $DirectoryPath)) {
-            Write-Host "Directory does not exist: $directoryPath" -ForegroundColor Red
+            Log-Message "[EntraModuleBuilder]: Directory does not exist: $directoryPath" -ForegroundColor Red
             return $null # Return null if directory does not exist
         }
 
@@ -186,7 +186,7 @@ Set-StrictMode -Version 5
 
         # Check if any .psm1 files were found
         if ($subModules.Count -eq 0) {
-            Log-Message "No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
+            Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
             return @() # Return an empty array if no files are found
         } else {
             # Return the names of the .psm1 files
@@ -248,7 +248,7 @@ foreach (`$subModule in `$subModules) {
    
     $rootModuleContent | Out-File -FilePath $rootPsm1FilePath -Encoding utf8
 
-    Log-Message "[EntraModuleBuilder] Root Module successfully created" -Level 'SUCCESS'
+    Log-Message "[EntraModuleBuilder]: Root Module successfully created" -Level 'SUCCESS'
  }
 
   [void] CreateRootModuleManifest([string] $Module) {
@@ -285,7 +285,7 @@ foreach (`$subModule in `$subModules) {
         $nestedModules=@()
         foreach($module in $subModules){
             if($module -ne "$($moduleName).psm1"){
-                Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
+                Log-Message "[EntraModuleBuilder]: Adding $module to Root Module Nested Modules" -Level 'INFO'
                 $nestedModules += $module
             }	
         }
@@ -312,12 +312,12 @@ foreach (`$subModule in `$subModules) {
             $PSData.Prerelease = $content.Prerelease
         }
 
-        Log-Message "Starting Root Module Manifest generation" -Level 'INFO'
+        Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
         
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 		
-		Log-Message "Root Module Manifest successfully created" -Level 'INFO'
+		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
 
  [void] CreateModuleManifest($module) {
@@ -368,7 +368,7 @@ foreach (`$subModule in `$subModules) {
         }
 
         # Log the start of processing for this module
-        Log-Message "[EntraModuleBuilder] Processing module: $moduleFileName"
+        Log-Message "[EntraModuleBuilder]: Processing module: $moduleFileName"
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
@@ -385,7 +385,7 @@ foreach (`$subModule in `$subModules) {
 
         # Check if the specified directory exists
        if (-Not (Test-Path -Path $subDir)) {
-        Log-Message "The specified directory does not exist: $subDir" -Level 'ERROR'
+        Log-Message "[EntraModuleBuilder]: The specified directory does not exist: $subDir" -Level 'ERROR'
         exit
        }
 
@@ -440,13 +440,13 @@ foreach (`$subModule in `$subModules) {
         }
 
         # Create and update the module manifest
-        Log-Message "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath"
+        Log-Message "[EntraModuleBuilder]: Creating manifest for $moduleName at $manifestPath"
         try{
              New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
         # Log completion for this module
-        Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
+        Log-Message "[EntraModuleBuilder]: Manifest for $moduleName created successfully" -Level 'SUCCESS'
 
         }catch{
             Log-Message $_.Exception.Message -Level 'ERROR'
@@ -525,7 +525,7 @@ foreach (`$subModule in `$subModules) {
             # Create the help file using PlatyPS
             New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
-            Log-Message "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -Level 'SUCCESS'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp help file generated: $helpOutputFilePath" -Level 'SUCCESS'
 			
 		} catch {			
             Log-Message "[EntraModuleBuilder] CreateModuleHelp: $_.Exception.Message" -Level 'ERROR'
