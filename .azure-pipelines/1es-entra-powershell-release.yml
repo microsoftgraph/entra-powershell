@@ -50,7 +50,7 @@ extends:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
             targetPath: $(Build.ArtifactStagingDirectory)/drop
-        # steps:
+        steps:
         # - task: 1ES.PublishNuget@1
         #   displayName: Publish Nuget package
         #   inputs:
@@ -63,8 +63,10 @@ extends:
           displayName: Publish Nuget package
           inputs:
             command: push
+            publishVstsFeed: ''
             nuGetFeedType: external
             packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             allowPackageConflicts: True
             publishPackageMetadata: True
             publishFeedCredentials: EntraPowerShell_PSGallery
+            verbosityPush: ''
