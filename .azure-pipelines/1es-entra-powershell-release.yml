@@ -63,10 +63,8 @@ extends:
           displayName: Publish Nuget package
           inputs:
             command: push
-            publishVstsFeed: ''
             nuGetFeedType: external
             packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             allowPackageConflicts: True
             publishPackageMetadata: True
             publishFeedCredentials: EntraPowerShell_PSGallery
-            verbosityPush: ''
