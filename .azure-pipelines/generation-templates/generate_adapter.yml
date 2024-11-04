@@ -209,6 +209,32 @@ steps:
     testResultsFormat: NUnit
     testResultsFiles: "./test/results/pester-test-results-preview.xml"
     failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: '[Modularization] Run tests Entra'
+  inputs:
+    targetType: inline
+    pwsh: true
+    script: |
+      cd testVNext/Entra
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results-ad.xml"
+    failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: '[Modularization] Run tests Entra Beta'
+  inputs:
+    targetType: inline
+    pwsh: true
+    script: |
+      cd testVNext/EntraBeta
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results-ad.xml"
+    failTaskOnFailedTests: true
 - ${{ if eq(parameters.Integration, true) }}:
   - task: powershell@2
     displayName: 'Run Entra integration tests'
