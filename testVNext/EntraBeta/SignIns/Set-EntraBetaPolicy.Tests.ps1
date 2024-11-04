@@ -6,7 +6,7 @@ BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
         Import-Module Microsoft.Graph.Entra.Beta.SignIns    
     }
-    Import-Module (Join-Path $PSScriptRoot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     $scriptblock = {
         #Write-Host "Mocking set-EntraPolicy with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -98,3 +98,4 @@ Describe "Set-EntraBetaPolicy" {
         } 
     }
 }
+

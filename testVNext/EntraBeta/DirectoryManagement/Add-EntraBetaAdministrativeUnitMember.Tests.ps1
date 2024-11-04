@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
 
     Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
@@ -72,3 +72,4 @@ Describe "Add-EntraBetaAdministrativeUnitMember" {
 
     }
 }
+

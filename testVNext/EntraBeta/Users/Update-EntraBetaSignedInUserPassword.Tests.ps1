@@ -6,7 +6,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Users    
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Users
 }
@@ -75,3 +75,4 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
         } 
     }
 }
+

@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Authentication) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Authentication
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     $scriptblock = {
         return @(
             [PSCustomObject]@{
@@ -66,3 +66,4 @@ Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
     }    
 }
 }
+

@@ -11,7 +11,7 @@ $moduleBuilder = [EntraModuleBuilder]::new()
 
 if($Module -eq 'Entra'){
     $typeDefsPath=".\V1.0-Typedefs.txt"
-}else if($Module -eq 'EntraBeta'){
+}else{
     $typeDefsPath='.\Beta-TypeDefs.txt'
 }
 

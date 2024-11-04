@@ -6,7 +6,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Groups    
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     Mock -CommandName New-MgBetaGroupMember -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
 }
@@ -78,4 +78,5 @@ Describe "Add-EntraBetaGroupMember" {
         }
     }
 }
+
 

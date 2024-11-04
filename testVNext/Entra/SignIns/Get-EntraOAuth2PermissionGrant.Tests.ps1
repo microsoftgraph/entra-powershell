@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -111,3 +111,4 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
 
     }
 }
+

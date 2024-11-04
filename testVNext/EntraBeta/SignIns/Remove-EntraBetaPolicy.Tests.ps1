@@ -6,7 +6,7 @@ BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
         Import-Module Microsoft.Graph.Entra.Beta.SignIns    
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     $ScriptBlock = {        
         $response = @{
             '@odata.context' = 'https://graph.microsoft.com/v1.0/$metadata#policies/homeRealmDiscoveryPolicies/$entity'            
@@ -58,3 +58,4 @@ Describe "Remove-EntraBetaPolicy" {
         } 
     }
 }
+

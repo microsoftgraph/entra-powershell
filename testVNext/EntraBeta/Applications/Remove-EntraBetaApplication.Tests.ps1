@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Applications    
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaApplication -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Applications
 }
@@ -59,3 +59,4 @@ Describe "Remove-EntraBetaApplication" {
         }
     }
 }
+

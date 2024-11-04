@@ -263,7 +263,7 @@ foreach (`$subModule in `$subModules) {
 		$moduleName=if($Module  -eq 'Entra'){
 			'Microsoft.Graph.Entra'
 		}else{
-			'Microsoft.Grap.Entra.Beta'
+			'Microsoft.Graph.Entra.Beta'
 		}
 		
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 

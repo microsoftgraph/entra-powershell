@@ -5,7 +5,7 @@ BeforeAll{
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
     $response = @{
         "id" = "aaaaaaaa-1111-2222-3333-cccccccccccc"
@@ -85,3 +85,4 @@ Describe "Get-EntraApplicationTemplate tests"{
         Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
     }
 }
+
