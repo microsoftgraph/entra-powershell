@@ -42,10 +42,10 @@ The `Select-EntraGroupIdsServicePrincipalIsMemberOf` cmdlet selects the groups i
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$groups.GroupIds = (Get-EntraGroup -Top 10).Id
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $groups
+$group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$group.GroupIds = (Get-EntraGroup -Top 10).Id
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
+Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $group
 ```
 
 ```Output
