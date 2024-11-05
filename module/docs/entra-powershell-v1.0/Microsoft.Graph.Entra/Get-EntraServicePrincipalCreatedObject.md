@@ -42,8 +42,8 @@ The `Get-EntraServicePrincipalCreatedObject` cmdlet gets an object created by a 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id
 ```
 
 This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
@@ -54,8 +54,8 @@ This example gets objects created by the service principal identified by $Servic
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -All
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
@@ -66,8 +66,8 @@ This example demonstrates how to get the all object created by a specified servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.

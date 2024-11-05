@@ -60,12 +60,12 @@ For single-tenant apps where the calling user is a non-admin user but is the own
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $params = @{
     AccountEnabled = $true 
-    AppId = $MyApp.AppId 
+    AppId = $application.AppId 
     AppRoleAssignmentRequired = $true 
-    DisplayName = $MyApp.DisplayName 
+    DisplayName = $application.DisplayName 
     Tags = {WindowsAzureActiveDirectoryIntegratedApp}
 }
 New-EntraBetaServicePrincipal @params
@@ -74,7 +74,7 @@ New-EntraBetaServicePrincipal @params
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraBetaApplication` to get application app Id.
@@ -90,20 +90,20 @@ The tag `-Tags {WindowsAzureActiveDirectoryIntegratedApp}` is used to have this 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $params = @{
-    AppId = $MyApp.AppId 
+    AppId = $application.AppId 
     Homepage = 'https://localhost/home' 
     LogoutUrl = 'htpp://localhost/logout' 
     ReplyUrls = 'https://localhost/redirect'
 }
-New-EntraBetaServicePrincipal @params  
+New-EntraBetaServicePrincipal @params
 ```
 
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraBetaApplication` to get application app Id.
@@ -125,18 +125,15 @@ $creds.Type = 'Symmetric'
 $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes('strong-cred-value')
 $creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
-$MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
-$params = @{
-    AppId = $MyApp.AppId  
-    KeyCredentials = $creds
-}
-New-EntraBetaServicePrincipal @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
+
+New-EntraBetaServicePrincipal -AppId $application.AppId -KeyCredentials $creds
 ```
 
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraBetaApplication` to get application app Id.
@@ -148,20 +145,14 @@ This example demonstrates how to create a new service Principal in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
-$params = @{
-    AppId = $MyApp.AppId 
-    AlternativeNames = 'sktest2' 
-    ServicePrincipalType = 'Application' 
-    ServicePrincipalNames = $MyApp.AppId
-}
-New-EntraBetaServicePrincipal @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
+New-EntraBetaServicePrincipal -AppId $application.AppId -AlternativeNames 'sktest2' -ServicePrincipalType 'Application' -ServicePrincipalNames $application.AppId
 ```
 
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraBetaApplication` to get application app Id.
