@@ -15,6 +15,7 @@
     [Alias("ObjectId")]
     [System.String] $ServicePrincipalId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    # Switch to include all service principal owners
     [switch] $All,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
