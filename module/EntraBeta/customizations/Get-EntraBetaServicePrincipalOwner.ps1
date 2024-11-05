@@ -7,7 +7,6 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    function Get-EntraBetaServicePrincipalOwner {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -69,6 +68,5 @@
         }
         $response
     }    
-}
 '@
 }
