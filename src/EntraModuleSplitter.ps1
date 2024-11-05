@@ -196,7 +196,11 @@ class EntraModuleSplitter {
 
         # Get total alias lines from the alias file (ignoring comments and empty lines)
         $aliasFileContent = $this.GetFilteredAliasFileContent($aliasFilePath)
-        $totalAliases = $aliasFileContent.Count
+        $totalAliases = if($aliasFileContent){
+            $aliasFileContent.Count
+        }else{
+            0
+        }
 
         foreach ($directory in $directories) {
             # Skip the 'Migration' sub-directory
@@ -318,7 +322,7 @@ class EntraModuleSplitter {
         $unMappedAliases = $aliasFileContent | Where-Object { $allMappedAliases -notcontains $_ }
 
         # Remove the first and last lines if applicable
-        if ($unMappedAliases.Count -gt 2) {
+        if ($unMappedAliases -and $unMappedAliases.Count -gt 2) {
             $unMappedAliases = $unMappedAliases[1..($unMappedAliases.Count - 2)]
         } else {
             $unMappedAliases = @()  # Ensure it returns an empty array if fewer than 2 lines
