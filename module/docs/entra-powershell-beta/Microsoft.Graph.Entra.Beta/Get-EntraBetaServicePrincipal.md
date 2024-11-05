@@ -240,7 +240,7 @@ This example demonstrates how to retrieve all applications without user assignme
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "PreferredSingleSignOnMode eq 'saml'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "PreferredSingleSignOnMode eq 'saml'"
 $servicePrincipal | Select-Object Id, DisplayName, AccountEnabled, AppId, PreferredSingleSignOnMode, AppRoleAssignmentRequired, SignInAudience, NotificationEmailAddresses, PreferredTokenSigningKeyEndDateTime, PreferredTokenSigningKeyValid, ReplyUrls,LoginUrl, LogoutUrl | Format-Table -AutoSize
 ```
 
