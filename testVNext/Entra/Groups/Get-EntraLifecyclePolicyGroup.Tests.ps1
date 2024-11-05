@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -19,7 +19,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgGroupLifecyclePolicyByGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgGroupLifecyclePolicyByGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Get-EntraLifecyclePolicyGroup" {
@@ -33,7 +33,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ManagedGroupTypes | Should -Be "All"
 
-            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Retrieve lifecycle policy object with alias" {
@@ -45,7 +45,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ManagedGroupTypes | Should -Be "All"
 
-            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -67,7 +67,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
-            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -82,7 +82,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraLifecyclePolicyGroup"
 
-            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

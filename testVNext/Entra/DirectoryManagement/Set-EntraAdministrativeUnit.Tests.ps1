@@ -2,24 +2,24 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Test for Set-EntraAdministrativeUnit" {
     It "Should return empty object" {
         $result = Set-EntraAdministrativeUnit -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Should return empty object withObjectID" {
         $result = Set-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Should fail when AdministrativeUnitId is empty" {
         { Set-EntraAdministrativeUnit -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
@@ -33,7 +33,7 @@ Describe "Test for Set-EntraAdministrativeUnit" {
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAdministrativeUnit"
         Set-EntraAdministrativeUnit -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

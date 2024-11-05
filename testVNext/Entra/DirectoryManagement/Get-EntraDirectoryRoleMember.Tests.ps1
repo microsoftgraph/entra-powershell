@@ -2,9 +2,9 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra      
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -23,7 +23,7 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 
 }
 
@@ -34,14 +34,14 @@ Describe "EntraDirectoryRoleMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should return specific directory rolemember with alias" {
             $result = (Get-EntraDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb") | ConvertTo-json | ConvertFrom-json
             $result | Should -Not -BeNullOrEmpty
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when DirectoryRoleId is empty" {
             { Get-EntraDirectoryRoleMember -DirectoryRoleId } | Should -Throw "Missing an argument for parameter 'DirectoryRoleId'*"
@@ -69,7 +69,7 @@ Describe "EntraDirectoryRoleMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -82,7 +82,7 @@ Describe "EntraDirectoryRoleMember" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleMember"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

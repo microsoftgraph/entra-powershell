@@ -4,8 +4,8 @@
 
 Describe "Get-EntraApplication" {
     BeforeAll {
-        if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-            Import-Module Microsoft.Graph.Entra.Applications
+        if((Get-Module -Name Microsoft.Graph.Entra.Applications.Applications) -eq $null){
+            Import-Module Microsoft.Graph.Entra.Applications.Applications
         }
     }    
 
@@ -18,7 +18,7 @@ Describe "Get-EntraApplication" {
 
     It "Should return a list of applications by default" {
         $GetAzureADApplication = Get-Command Get-EntraApplication
-        $GetAzureADApplication.ModuleName | Should -Be "Microsoft.Graph.Entra.Applications"
+        $GetAzureADApplication.ModuleName | Should -Be "Microsoft.Graph.Entra.Applications.Applications"
         $GetAzureADApplication.DefaultParameterSet | Should -Be "GetQuery"
     }
 

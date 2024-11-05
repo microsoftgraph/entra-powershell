@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Governance)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Governance.psd1 -Force
+if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Governance.Governance)){
+    Import-Module .\bin\Microsoft.Graph.Entra.Governance.Governance.psd1 -Force
 }
 
 Import-Module Pester
 
-$psmPath = (Get-Module Microsoft.Graph.Entra.Governance).Path
+$psmPath = (Get-Module Microsoft.Graph.Entra.Governance.Governance).Path
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\*.Tests.ps1"
 

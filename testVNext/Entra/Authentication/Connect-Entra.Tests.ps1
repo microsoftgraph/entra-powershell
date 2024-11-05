@@ -3,11 +3,11 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll{
-    if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication)){
-        Import-Module Microsoft.Graph.Entra.Authentication      
+    if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication.Authentication)){
+        Import-Module Microsoft.Graph.Entra.Authentication.Authentication      
     }
 
-    Mock -CommandName Connect-MgGraph -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication
+    Mock -CommandName Connect-MgGraph -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication.Authentication
 
     $ConnectEntraCommand = Get-Command Connect-Entra
 }
@@ -16,22 +16,22 @@ Describe "Connect-Entra Mock"{
     It "should return empty object"{
         $result = Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c"
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
     }
     It "Should connect to specified environment"{
         $result = Connect-Entra -Environment Global
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
     }
     It "Should connect to an environment as a different identity"{
         $result = Connect-Entra -ContextScope "Process"
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
     }
     It "Should allow for authentication using environment variables"{
         $result = Connect-Entra -EnvironmentVariable
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
     }
     It "Should return error when TenantId is null"{
         { Connect-Entra -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"

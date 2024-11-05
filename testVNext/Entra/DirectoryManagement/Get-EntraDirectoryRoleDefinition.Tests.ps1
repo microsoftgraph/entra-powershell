@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -29,7 +29,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
 }
 
 Describe "Get-EntraDirectoryRoleDefinition" {
@@ -40,7 +40,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.Id | Should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should return specificrole Defination With Alias" {
             $result = Get-EntraDirectoryRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333"
@@ -48,7 +48,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.Id | Should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when UnifiedRoleDefinitionId is empty" {
             { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId  } | Should -Throw "Missing an argument for parameter 'UnifiedRoleDefinitionId'*"
@@ -60,7 +60,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result = Get-EntraDirectoryRoleDefinition -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraDirectoryRoleDefinition -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -69,7 +69,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result = Get-EntraDirectoryRoleDefinition -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraDirectoryRoleDefinition -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -82,7 +82,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when String is empty" {
             { Get-EntraDirectoryRoleDefinition -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
@@ -92,7 +92,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraDirectoryRoleDefinition -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -111,7 +111,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -123,7 +123,7 @@ Describe "Get-EntraDirectoryRoleDefinition" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleDefinition"
 
-            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

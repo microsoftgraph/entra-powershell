@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -MockWith {
+    Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -MockWith {
         return @{
             value = @(
                 @{
@@ -23,10 +23,10 @@ BeforeAll {
 Describe "Set-EntraPartnerInformation" {
     Context "Test for Set-EntraPartnerInformation" {
         It "Should return empty object" {
-            Mock -CommandName Invoke-MgGraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Invoke-MgGraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
             $result = Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc
             $result | Should -BeNullOrEmpty   
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when PartnerSupportUrl is empty" {
             { Set-EntraPartnerInformation -PartnerSupportUrl } | Should -Throw "Missing an argument for parameter 'PartnerSupportUrl'*"
@@ -66,7 +66,7 @@ Describe "Set-EntraPartnerInformation" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPartnerInformation"
 
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

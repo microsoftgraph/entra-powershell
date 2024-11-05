@@ -2,24 +2,24 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications.Applications
 }
 Describe "Remove-EntraServicePrincipalAppRoleAssignment" {
     Context "Test for Remove-EntraServicePrincipalAppRoleAssignment" {
         It "Should return empty ServicePrincipalId" {
             $result =  Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result =  Remove-EntraServicePrincipalAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications.Applications -Times 1
         }
 
         It "Should fail when ServicePrincipalId is empty" {
@@ -35,7 +35,7 @@ Describe "Remove-EntraServicePrincipalAppRoleAssignment" {
             { Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string.*"
         }
         It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
-            Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications
+            Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications.Applications
 
             $result = Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" 
             $params = Get-Parameters -data $result
@@ -45,7 +45,7 @@ Describe "Remove-EntraServicePrincipalAppRoleAssignment" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalAppRoleAssignment"
             Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
-            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

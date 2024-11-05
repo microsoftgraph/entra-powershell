@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra
+    if ((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -19,14 +19,14 @@ BeforeAll{
         "supportedProvisioningTypes" = @{}
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Graph.Entra.Applications
 }
 Describe "Get-EntraApplicationTemplate tests"{
     It "Should return specific application" {
         $result = Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc"
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('aaaaaaaa-1111-2222-3333-cccccccccccc')
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should fail when Id is empty" {
         { Get-EntraApplicationTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
@@ -40,7 +40,7 @@ Describe "Get-EntraApplicationTemplate tests"{
     It "Should return all application templates" {
         $result = Get-EntraApplicationTemplate
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
@@ -58,7 +58,7 @@ Describe "Get-EntraApplicationTemplate tests"{
     It "Should return top ApplicationTemplate" {
         $result = Get-EntraApplicationTemplate -Top 1
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should fail when Top is invalid" {
         { Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
@@ -66,7 +66,7 @@ Describe "Get-EntraApplicationTemplate tests"{
     It "Should return all templates" {
         $result = Get-EntraApplicationTemplate -All 
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should fail when All has an argument" {
         { Get-EntraApplicationTemplate -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -82,7 +82,7 @@ Describe "Get-EntraApplicationTemplate tests"{
         $result = Get-EntraApplicationTemplate -Filter "DisplayName eq 'test name'"
         $result | Should -Not -BeNullOrEmpty
         $result.DisplayName | should -Be 'test name'
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
 }
 

@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
-    Mock -CommandName Update-MgPolicyAuthorizationPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgPolicyAuthorizationPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
   
 Describe "Set-EntraAuthorizationPolicy" {
@@ -20,7 +20,7 @@ Describe "Set-EntraAuthorizationPolicy" {
             $result = Set-EntraAuthorizationPolicy -AllowedToSignUpEmailBasedSubscriptions $false -AllowedToUseSSPR $false -AllowEmailVerifiedUsersToJoinOrganization $true -BlockMsolPowerShell $true -DefaultUserRolePermissions $DefaultUserRolePermissions -Description "test" -DisplayName "Authorization Policies"            
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgPolicyAuthorizationPolicy  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgPolicyAuthorizationPolicy  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when AllowedToSignUpEmailBasedSubscriptions is invalid" {
             { Set-EntraAuthorizationPolicy -AllowedToSignUpEmailBasedSubscriptions 'a' } | Should -Throw "Cannot process argument transformation on parameter 'AllowedToSignUpEmailBasedSubscriptions'.*"
@@ -69,7 +69,7 @@ Describe "Set-EntraAuthorizationPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAuthorizationPolicy"
 
-            Should -Invoke -CommandName Update-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

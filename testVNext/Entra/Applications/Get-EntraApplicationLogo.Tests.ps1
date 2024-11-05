@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -18,19 +18,19 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
   
 Describe "Get-EntraApplicationLogo" {
     It "Should return empty" {
         $result = Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should return empty" {
         $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
     }
     It "Should return empty when passed ileName parameter" {
         $result = Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FileName "image"        
@@ -59,7 +59,7 @@ Describe "Get-EntraApplicationLogo" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
         Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"           
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

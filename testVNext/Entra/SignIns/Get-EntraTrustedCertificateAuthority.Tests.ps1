@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -40,20 +40,20 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Get-MgContext -MockWith $tenantObj -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgContext -MockWith $tenantObj -ModuleName Microsoft.Graph.Entra.SignIns
 
-    Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 Describe "Get-EntraTrustedCertificateAuthority"{
     It "Result should not be empty when no parameter passed" {
         $result = Get-EntraTrustedCertificateAuthority
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
     }
     It "Result should not be empty when parameters are empty" {
         $result = Get-EntraTrustedCertificateAuthority -TrustedIssuer '' -TrustedIssuerSki ''
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
     }
     It "Property parameter should work" {
         $result = Get-EntraTrustedCertificateAuthority -Property TrustedIssuerSki
@@ -70,7 +70,7 @@ Describe "Get-EntraTrustedCertificateAuthority"{
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTrustedCertificateAuthority"
         Get-EntraTrustedCertificateAuthority
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTrustedCertificateAuthority"
-        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

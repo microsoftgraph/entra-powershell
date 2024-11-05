@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -29,20 +29,20 @@ BeforeAll{
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 Describe "Tests for Add-EntraScopedRoleMembership"{
     It "Result should not be empty"{
         $result = Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('NewDummyId')
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Result should not be empty with ObjectId"{
         $result = Add-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('NewDummyId')
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Should fail when AdministrativeUnitId is invalid" {
         { Add-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"

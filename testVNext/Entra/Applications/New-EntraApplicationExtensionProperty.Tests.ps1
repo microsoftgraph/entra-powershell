@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -24,7 +24,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
 
 Describe "New-EntraApplicationExtensionProperty" {
@@ -37,7 +37,7 @@ Context "Test for New-EntraApplicationExtensionProperty" {
             $result.TargetObjects | Should -Be "Application"
             $result.DataType | Should -Be "MockType"
 
-            Should -Invoke -CommandName New-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should return created MS application extension property with alias" {
             $result = New-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DataType "MockType" -Name "Mock-App" -TargetObjects "Application"
@@ -47,7 +47,7 @@ Context "Test for New-EntraApplicationExtensionProperty" {
             $result.TargetObjects | Should -Be "Application"
             $result.DataType | Should -Be "MockType"
 
-            Should -Invoke -CommandName New-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { New-EntraApplicationExtensionProperty -ApplicationId  -DataType "MockType" -Name "Mock-App" -TargetObjects "Application"  } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -78,7 +78,7 @@ Context "Test for New-EntraApplicationExtensionProperty" {
             $result = New-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DataType "MockType" -Name "Mock-App" -TargetObjects "Application"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplicationExtensionProperty"
-            Should -Invoke -CommandName New-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

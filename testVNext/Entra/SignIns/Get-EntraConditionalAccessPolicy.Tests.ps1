@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -39,7 +39,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Get-EntraConditionalAccessPolicy" {
@@ -52,7 +52,7 @@ Describe "Get-EntraConditionalAccessPolicy" {
             $result.DisplayName | Should -Be "MFA policy"
             $result.State | Should -Be "enabled"
 
-            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should retrieves a list of all conditional access policies in Microsoft Entra ID" {
@@ -61,7 +61,7 @@ Describe "Get-EntraConditionalAccessPolicy" {
             $result.Id | Should -Contain "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result.ObjectId | Should -Contain "aaaaaaaa-1111-2222-3333-ccccccccccc"
 
-            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Property parameter should work" {
@@ -94,7 +94,7 @@ Describe "Get-EntraConditionalAccessPolicy" {
             $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraConditionalAccessPolicy"
-            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

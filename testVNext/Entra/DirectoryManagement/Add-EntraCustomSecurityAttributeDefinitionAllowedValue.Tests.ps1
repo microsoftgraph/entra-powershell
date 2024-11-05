@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -15,7 +15,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
 }
   
 Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
@@ -26,7 +26,7 @@ Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
             $result.Id | should -Be "Apline"
             $result.IsActive | should -Be $true
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when CustomSecurityAttributeDefinitionId is empty" {
             { Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'.*"
@@ -50,7 +50,7 @@ Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraCustomSecurityAttributeDefinitionAllowedValue"
             Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraCustomSecurityAttributeDefinitionAllowedValue"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Authentication) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Authentication
+    if((Get-Module -Name Microsoft.Graph.Entra.Authentication.Authentication) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Authentication.Authentication
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -17,7 +17,7 @@ BeforeAll {
             }
          )
     }
-    Mock -CommandName Get-MgUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication
+    Mock -CommandName Get-MgUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication.Authentication
 }
  
 Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
@@ -26,7 +26,7 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
         $result = Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
         $result | Should -BeNullOrEmpty
        
-        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
     }
     It "Should fail when UserPrincipalName is empty" {
         { Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
@@ -39,14 +39,14 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraStrongAuthenticationMethodByUpn"
 
         Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }
     }  
     It "Should contain 'User-Agent' header" {
         Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1 -ParameterFilter {
             $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
             $true
         }

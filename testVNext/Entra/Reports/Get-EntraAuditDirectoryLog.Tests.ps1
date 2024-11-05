@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Reports) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Reports        
+    if ((Get-Module -Name Microsoft.Graph.Entra.Reports.Reports) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Reports.Reports        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -37,7 +37,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Reports
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Reports.Reports
 }
   
 Describe "Get-EntraAuditDirectoryLog" {
@@ -46,7 +46,7 @@ Describe "Get-EntraAuditDirectoryLog" {
             $result = Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports.Reports -Times 1
         }        
         It "Should fail when Id is empty" {
             { Get-EntraAuditDirectoryLog -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -63,7 +63,7 @@ Describe "Get-EntraAuditDirectoryLog" {
         It "Should return all Audit Directory Logs" {
             $result = Get-EntraAuditDirectoryLog -All 
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports.Reports -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraAuditDirectoryLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -73,13 +73,13 @@ Describe "Get-EntraAuditDirectoryLog" {
             $result = Get-EntraAuditDirectoryLog -Filter "correlationId eq 'bbbbbbbb-1111-2222-3333-cccccccccrrr'"
             $result | Should -Not -BeNullOrEmpty
             $result.id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports.Reports -Times 1
         }  
         It "Should return top Audit Directory Logs" {
             $result = @(Get-EntraAuditDirectoryLog -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports.Reports -Times 1
         }        
         It "Should contain ID in parameters when passed Id to it" {
             $result = Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"            
@@ -87,11 +87,11 @@ Describe "Get-EntraAuditDirectoryLog" {
         }
 
         It "Should contain 'User-Agent' header" { 
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Reports
+            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Reports.Reports
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditDirectoryLog"
             $result =  Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }    

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Set-EntraGroup" {
@@ -17,13 +17,13 @@ Describe "Set-EntraGroup" {
             $result = Set-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when GroupId is invalid" {
             { Set-EntraGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
@@ -32,7 +32,7 @@ Describe "Set-EntraGroup" {
             { Set-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Groups
 
             $result = Set-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
@@ -44,7 +44,7 @@ Describe "Set-EntraGroup" {
             Set-EntraGroup -Id bbbbbbbb-1111-2222-3333-cccccccccccc
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
-            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

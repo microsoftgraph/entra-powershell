@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Reports)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Reports.psd1 -Force
+if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Reports.Reports)){
+    Import-Module .\bin\Microsoft.Graph.Entra.Reports.Reports.psd1 -Force
 }
 
 Import-Module Pester
 
-$psmPath = (Get-Module Microsoft.Graph.Entra.Reports).Path
+$psmPath = (Get-Module Microsoft.Graph.Entra.Reports.Reports).Path
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\*.Tests.ps1"
 

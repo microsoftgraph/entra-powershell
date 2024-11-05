@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -42,7 +42,7 @@ BeforeAll {
         
     }  
 
-    Mock -CommandName Get-MgContact -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgContact -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraContact" {
@@ -58,7 +58,7 @@ Describe "Get-EntraContact" {
             $result.Mobile | Should -BeNullOrEmpty
             $result.TelephoneNumber | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
 
         It "Should return specific Contact alias" {
@@ -72,7 +72,7 @@ Describe "Get-EntraContact" {
             $result.Mobile | Should -BeNullOrEmpty
             $result.TelephoneNumber | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
 
         
@@ -88,7 +88,7 @@ Describe "Get-EntraContact" {
             $result = Get-EntraContact -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraContact -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -99,7 +99,7 @@ Describe "Get-EntraContact" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Bob Kelly (TAILSPIN)'
 
-            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }  
 
         It "Should fail when filter is empty" {
@@ -110,7 +110,7 @@ Describe "Get-EntraContact" {
             $result = Get-EntraContact -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -136,7 +136,7 @@ Describe "Get-EntraContact" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Bob Kelly (TAILSPIN)'
 
-            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -150,7 +150,7 @@ Describe "Get-EntraContact" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContact"
 
-            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

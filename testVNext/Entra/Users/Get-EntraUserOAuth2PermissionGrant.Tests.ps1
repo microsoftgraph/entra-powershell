@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Users        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -21,7 +21,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgUserOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgUserOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
 }
   
 Describe "Get-EntraUserOAuth2PermissionGrant" {
@@ -32,7 +32,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result.PrincipalId | should -Contain 'aaaaaaaa-bbbb-cccc-1111-222222222222'
             $result.Id | Should -Contain 'Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2'
 
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should return specific UserOAuth2PermissionGrant with alias" {
@@ -41,7 +41,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result.PrincipalId | should -Contain 'aaaaaaaa-bbbb-cccc-1111-222222222222'
             $result.Id | Should -Contain 'Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2'
 
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when UserId is empty" {
@@ -56,7 +56,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -67,7 +67,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -95,7 +95,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result | Should -Not -BeNullOrEmpty
             $result.ConsentType | Should -Be "Principal"
 
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -110,7 +110,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOAuth2PermissionGrant"
 
-            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra
+    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -32,7 +32,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
 }
 
 Describe "Get-EntraUserManager" {
@@ -52,7 +52,7 @@ Describe "Get-EntraUserManager" {
             $result.identities[0].issuer | Should -Be "contoso.com"
             $result.identities[0].issuerAssignedId | Should -Be "test@contoso.com"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should return specific User wit alias" {
@@ -70,7 +70,7 @@ Describe "Get-EntraUserManager" {
             $result.identities[0].issuer | Should -Be "contoso.com"
             $result.identities[0].issuerAssignedId | Should -Be "test@contoso.com"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when UserId is empty string value" {
@@ -95,7 +95,7 @@ Describe "Get-EntraUserManager" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserManager"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -106,7 +106,7 @@ Describe "Get-EntraUserManager" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when Property is empty" {

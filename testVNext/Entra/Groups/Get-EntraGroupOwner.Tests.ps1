@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -29,7 +29,7 @@ BeforeAll {
                 )
             }    
         }
-    Mock -CommandName  Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName  Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Get-EntraGroupOwner" {
@@ -40,7 +40,7 @@ Describe "Get-EntraGroupOwner" {
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Get a group owner by alias" {
             $result = Get-EntraGroupOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -48,7 +48,7 @@ Describe "Get-EntraGroupOwner" {
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -63,7 +63,7 @@ Describe "Get-EntraGroupOwner" {
             $result = Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -74,7 +74,7 @@ Describe "Get-EntraGroupOwner" {
             $result = Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 2
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -102,7 +102,7 @@ Describe "Get-EntraGroupOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -117,7 +117,7 @@ Describe "Get-EntraGroupOwner" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupOwner"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

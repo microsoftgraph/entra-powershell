@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -28,7 +28,7 @@ BeforeAll{
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 Describe "Tests for Get-EntraScopedRoleMembership"{
     It "Result should not be empty"{
@@ -37,7 +37,7 @@ Describe "Tests for Get-EntraScopedRoleMembership"{
         $result.ObjectId | should -Be $scopedRoleMembershipId
         $result.AdministrativeUnitObjectId | should -Be $unitObjId
         $result.RoleObjectId | should -Be $roleObjId
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Result should not be empty with ObjectId"{
         $result = Get-EntraScopedRoleMembership -ObjectId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
@@ -45,7 +45,7 @@ Describe "Tests for Get-EntraScopedRoleMembership"{
         $result.ObjectId | should -Be $scopedRoleMembershipId
         $result.AdministrativeUnitObjectId | should -Be $unitObjId
         $result.RoleObjectId | should -Be $roleObjId
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Should fail when AdministrativeUnitId is invalid" {
         { Get-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
@@ -64,7 +64,7 @@ Describe "Tests for Get-EntraScopedRoleMembership"{
         $result = Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraScopedRoleMembership"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

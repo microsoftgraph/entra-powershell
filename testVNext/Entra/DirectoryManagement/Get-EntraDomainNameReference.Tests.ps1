@@ -3,8 +3,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -28,7 +28,7 @@ BeforeAll {
     }
     
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 
@@ -40,7 +40,7 @@ Describe "Get-EntraDomainNameReference" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '22cc22cc-dd33-ee44-ff55-66aa66aa66aa'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Name is empty" {
             { Get-EntraDomainNameReference -Name  } | Should -Throw "Missing an argument for parameter 'Name'*"
@@ -73,7 +73,7 @@ Describe "Get-EntraDomainNameReference" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be '22cc22cc-dd33-ee44-ff55-66aa66aa66aa'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -85,7 +85,7 @@ Describe "Get-EntraDomainNameReference" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

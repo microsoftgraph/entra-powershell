@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -22,7 +22,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Get-EntraOAuth2PermissionGrant" {
@@ -35,7 +35,7 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $result.PrincipalId | Should -BeNullOrEmpty
             $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
-            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should return All Group AppRole Assignment" {
             $result = Get-EntraOAuth2PermissionGrant -All
@@ -46,7 +46,7 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
 
-            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraOAuth2PermissionGrant -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -60,7 +60,7 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
 
-            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraOAuth2PermissionGrant -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -77,7 +77,7 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $result | Should -Not -BeNullOrEmpty
             $result.ConsentType | Should -Be 'AllPrincipals'
 
-            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraOAuth2PermissionGrant -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -90,7 +90,7 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraOAuth2PermissionGrant"
 
-            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

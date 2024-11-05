@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra       
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
   
 Describe "Set-EntraNamedLocationPolicy" {
@@ -20,7 +20,7 @@ Describe "Set-EntraNamedLocationPolicy" {
             $result = Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges @($ipRanges1,$ipRanges2) -IsTrusted $true -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when PolicyId is empty" {
             { Set-EntraNamedLocationPolicy -PolicyId -OdataType "#microsoft.graph.ipNamedLocation" } | Should -Throw "Missing an argument for parameter 'PolicyId'*"
@@ -59,7 +59,7 @@ Describe "Set-EntraNamedLocationPolicy" {
             { Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -IncludeUnknownCountriesAndRegions xyz } | Should -Throw "Cannot process argument transformation on parameter 'IncludeUnknownCountriesAndRegions'*"
         }
         It "Should contain NamedLocationId in parameters when passed PolicyId to it" {
-            Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
 
             $result = Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
             $params = Get-Parameters -data $result
@@ -68,7 +68,7 @@ Describe "Set-EntraNamedLocationPolicy" {
             
         It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
             Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 Write-Host $BodyParameter.AdditionalProperties."@odata.type" | ConvertTo-Json
                 $BodyParameter.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
                 $true
@@ -81,7 +81,7 @@ Describe "Set-EntraNamedLocationPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraNamedLocationPolicy"
 
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

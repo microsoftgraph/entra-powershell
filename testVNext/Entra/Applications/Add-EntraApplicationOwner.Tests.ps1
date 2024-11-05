@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName New-MgApplicationOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgApplicationOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
 }
   
 Describe "Add-EntraApplicationOwner" {
@@ -16,13 +16,13 @@ Describe "Add-EntraApplicationOwner" {
             $result = Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty           
 
-            Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }       
         It "Should fail when parameters are empty" {
             { Add-EntraApplicationOwner -ApplicationId "" -RefObjectId "" } | Should -Throw "Cannot bind argument to parameter*"
         }
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {              
-            Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications
 
             $result = Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
@@ -32,7 +32,7 @@ Describe "Add-EntraApplicationOwner" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
             Add-EntraApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
-            Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,9 +2,9 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -28,7 +28,7 @@ $scriptblock = {
 
 }
   
-    Mock -CommandName Get-MgDomainServiceConfigurationRecord -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDomainServiceConfigurationRecord -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
 }   
 
 Describe "Get-EntraDomainServiceConfigurationRecord" {
@@ -38,7 +38,7 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '0000aaaa-11bb-cccc-dd22-eeeeee333333'
 
-            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
 
         }   
         It "Should fail when Name is empty" {
@@ -51,13 +51,13 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
             $result = Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com"
             $result.DnsRecordId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333" 
 
-            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Result should Contain ObjectId" {            
             $result = Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com"
             $result.ObjectId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333" 
 
-            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 
         }
         It "Should contain DomainId in parameters when passed Name to it" {
             $result = Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com"
@@ -69,7 +69,7 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
             $result | Should -Not -BeNullOrEmpty
             $result.RecordType | Should -Be 'Mx'
 
-            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              {Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -81,7 +81,7 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainServiceConfigurationRecord"
 
-            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

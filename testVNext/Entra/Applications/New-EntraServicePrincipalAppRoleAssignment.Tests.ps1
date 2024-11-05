@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications    
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -22,7 +22,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgServicePrincipalAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName New-MgServicePrincipalAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications.Applications
 }
 
 Describe "New-EntraServicePrincipalAppRoleAssignment"{
@@ -33,7 +33,7 @@ Describe "New-EntraServicePrincipalAppRoleAssignment"{
             $result.PrincipalDisplayName | should -Be "Mock-App"
             $result.PrincipalId | should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
-            Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications.Applications -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { New-EntraServicePrincipalAppRoleAssignment -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
@@ -77,7 +77,7 @@ Describe "New-EntraServicePrincipalAppRoleAssignment"{
             $result =  New-EntraServicePrincipalAppRoleAssignment  -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Id "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalAppRoleAssignment"
-            Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Applications.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

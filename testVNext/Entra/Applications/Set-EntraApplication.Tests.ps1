@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgApplication -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgApplication -MockWith {} -ModuleName Microsoft.Graph.Entra.Applications
 }
 
 Describe "Set-EntraApplication"{
@@ -17,13 +17,13 @@ Describe "Set-EntraApplication"{
             $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
-            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Set-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
-            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
             { Set-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
@@ -32,7 +32,7 @@ Describe "Set-EntraApplication"{
             { Set-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         } 
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
-            Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Applications
 
             $result = Set-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -46,7 +46,7 @@ Describe "Set-EntraApplication"{
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
 
-            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

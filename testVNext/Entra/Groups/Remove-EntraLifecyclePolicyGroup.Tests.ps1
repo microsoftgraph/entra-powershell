@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -15,7 +15,7 @@ BeforeAll {
             }
         )
     }  
-    Mock -CommandName Remove-MgGroupFromLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgGroupFromLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
 
 Describe "Remove-EntraLifecyclePolicyGroup" {
@@ -24,14 +24,14 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
             $result = Remove-EntraLifecyclePolicyGroup  -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $result.Value | Should -Be $true
 
-            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should remove a group from a lifecycle policy with alias" {
             $result = Remove-EntraLifecyclePolicyGroup  -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $result.Value | Should -Be $true
 
-            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
@@ -69,7 +69,7 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraLifecyclePolicyGroup"
 
-            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
