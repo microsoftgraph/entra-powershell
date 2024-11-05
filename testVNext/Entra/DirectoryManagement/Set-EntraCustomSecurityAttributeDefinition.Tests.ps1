@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Test for Set-EntraCustomSecurityAttributeDefinition" {
@@ -16,7 +16,7 @@ Describe "Test for Set-EntraCustomSecurityAttributeDefinition" {
     It "Should return empty object" {
         $result = Set-EntraCustomSecurityAttributeDefinition -Id "Demo12_ProjectDatevaluevaluevalue12test" -Description "Test desc" -UsePreDefinedValuesOnly $false -Status "Available"
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
     It "Should fail when ID is empty" {
         { Set-EntraCustomSecurityAttributeDefinition -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
@@ -28,7 +28,7 @@ Describe "Test for Set-EntraCustomSecurityAttributeDefinition" {
         { Set-EntraCustomSecurityAttributeDefinition -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
+        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraCustomSecurityAttributeDefinition"
         $result = Set-EntraCustomSecurityAttributeDefinition -Id "Demo12_ProjectDatevaluevaluevalue12test" -Description "Test desc" -UsePreDefinedValuesOnly $false -Status "Available"
         $params = Get-Parameters -data $result

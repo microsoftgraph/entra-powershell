@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll{
-    if((Get-Module -Name Microsoft.Graph.Entra.Users.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Users.Users      
+    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Users.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
 
     $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
     $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
@@ -18,7 +18,7 @@ Describe "Tests for Update-EntraSignedInUserPassword"{
     It "should return empty object"{
         $result = Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users.Users -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
     }
     It "Should fail when CurrentPassword is null" {
         { Update-EntraSignedInUserPassword -CurrentPassword } | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
@@ -40,7 +40,7 @@ Describe "Tests for Update-EntraSignedInUserPassword"{
 
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraSignedInUserPassword"
 
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users.Users -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

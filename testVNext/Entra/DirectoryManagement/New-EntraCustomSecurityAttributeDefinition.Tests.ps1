@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement      
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "New-EntraCustomSecurityAttributeDefinition" {
@@ -33,7 +33,7 @@ Describe "New-EntraCustomSecurityAttributeDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "Engineering_Project1234"            
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when attributeSet is empty" {
             { New-EntraCustomSecurityAttributeDefinition -attributeSet  -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true } | Should -Throw "Missing an argument for parameter 'attributeSet'.*"
@@ -83,7 +83,7 @@ Describe "New-EntraCustomSecurityAttributeDefinition" {
             $result = New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering"  -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraCustomSecurityAttributeDefinition"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

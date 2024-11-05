@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns.SignIns      
+    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -22,7 +22,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
   
 Describe "New-EntraFeatureRolloutPolicy" {
@@ -35,7 +35,7 @@ Describe "New-EntraFeatureRolloutPolicy" {
             $result.IsEnabled | should -Be "False"
             $result.Description | should -Be "FeatureRolloutPolicy" 
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Feature are invalid" {
             { New-EntraFeatureRolloutPolicy -Feature "" } | Should -Throw "Cannot bind argument to parameter 'Feature'*"
@@ -63,7 +63,7 @@ Describe "New-EntraFeatureRolloutPolicy" {
             $result = New-EntraFeatureRolloutPolicy -Feature 'PasswordHashSync' -DisplayName 'FeatureRolloutPolicy1' -Description 'FeatureRolloutPolicy1' -IsEnabled $false 
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraFeatureRolloutPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

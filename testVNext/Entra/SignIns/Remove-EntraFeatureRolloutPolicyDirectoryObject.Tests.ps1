@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.SignIns.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.SignIns.SignIns       
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
             $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -Id bbbbbbbb-1111-2222-3333-cccccccccccc -ObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Id is invalid" {
             { Remove-EntraFeatureRolloutPolicyDirectoryObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
@@ -36,7 +36,7 @@ Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
             $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -Id bbbbbbbb-1111-2222-3333-cccccccccccc -ObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraFeatureRolloutPolicyDirectoryObject"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

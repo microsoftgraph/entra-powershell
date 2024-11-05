@@ -3,11 +3,11 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll{
-    if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication.Authentication)){
-        Import-Module Microsoft.Graph.Entra.Authentication.Authentication      
+    if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication)){
+        Import-Module Microsoft.Graph.Entra.Authentication      
     }
 
-    Mock -CommandName Disconnect-MgGraph -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication.Authentication
+    Mock -CommandName Disconnect-MgGraph -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication
 
     $command = Get-Command Disconnect-Entra
 }
@@ -16,7 +16,7 @@ Describe "Disconnect-Entra Mock"{
     It "should return empty object"{
         $result = Disconnect-Entra
         $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Disconnect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication.Authentication -Times 1
+        Should -Invoke -CommandName Disconnect-MgGraph -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
     }
     It "Should return error when invalid parameter is provided"{
         { Disconnect-MgGraph -DisplayName } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"

@@ -2,15 +2,15 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Reports.Reports)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Reports.Reports.psd1 -Force
+if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Applications)){
+    Import-Module .\bin\Microsoft.Graph.Entra.Applications.psd1 -Force
 }
 
 Import-Module Pester
 
-$psmPath = (Get-Module Microsoft.Graph.Entra.Reports.Reports).Path
-$testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
-$mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\*.Tests.ps1"
+$psmPath = (Get-Module Microsoft.Graph.Entra.Applications).Path
+$testReportPath = join-path $psscriptroot "..\..\TestReport\Entra"
+$mockScriptsPath = join-path $psscriptroot "..\..\testVNext\Entra\*\*.Tests.ps1"
 
 $testOutputFile = "$testReportPath\TestResults.xml"
 if (!(test-path -path $testReportPath)) {new-item -path $testReportPath -itemtype directory}

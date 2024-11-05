@@ -2,9 +2,9 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement      
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -26,7 +26,7 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 
 }
 
@@ -40,7 +40,7 @@ Describe "Get-EntraObjectByObjectId" {
             $result.displayName | should -Be 'Mock-App'
              $result.userType | should -Be 'User'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { Get-EntraObjectByObjectId -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectIds'*"
@@ -53,7 +53,7 @@ Describe "Get-EntraObjectByObjectId" {
             $result | Should -Not -BeNullOrEmpty
             $result.userType | should -Be 'User'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { Get-EntraObjectByObjectId -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Types } | Should -Throw "Missing an argument for parameter 'Types'*"
@@ -69,7 +69,7 @@ Describe "Get-EntraObjectByObjectId" {
             $result | Should -Not -BeNullOrEmpty
             $result.displayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -83,7 +83,7 @@ Describe "Get-EntraObjectByObjectId" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectByObjectId"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Groups.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Groups.Groups        
+    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
 
@@ -19,7 +19,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups.Groups
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
 
 Describe "Get-EntraObjectSetting" {
@@ -28,7 +28,7 @@ Describe "Get-EntraObjectSetting" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }        
         It "Should fail when TargetType is empty" {
             { Get-EntraObjectSetting -TargetType } | Should -Throw "Missing an argument for parameter 'TargetType'*"
@@ -42,7 +42,7 @@ Describe "Get-EntraObjectSetting" {
         It "Should return all Object Setting" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -51,7 +51,7 @@ Describe "Get-EntraObjectSetting" {
             $result = @(Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should contain ID in parameters when passed TargetType TargetObjectId to it" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -62,7 +62,7 @@ Describe "Get-EntraObjectSetting" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectSetting"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

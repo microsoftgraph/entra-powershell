@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns.SignIns        
+    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.SignIns        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
   
 Describe "Get-EntraFeatureRolloutPolicy" {
@@ -31,7 +31,7 @@ Describe "Get-EntraFeatureRolloutPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Id is invalid" {
             { Get-EntraFeatureRolloutPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
@@ -50,20 +50,20 @@ Describe "Get-EntraFeatureRolloutPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Feature-Rollout-Policy'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         } 
         It "Should return specific FeatureRolloutPolicy by filter" {
             $result = Get-EntraFeatureRolloutPolicy -Filter "DisplayName -eq 'Feature-Rollout-Policy'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Feature-Rollout-Policy'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should return specific Property" {
             $result = Get-EntraFeatureRolloutPolicy -Property Id
             $result.Id | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }  
         
         It "Should contain 'User-Agent' header" {
@@ -74,7 +74,7 @@ Describe "Get-EntraFeatureRolloutPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraFeatureRolloutPolicy"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
