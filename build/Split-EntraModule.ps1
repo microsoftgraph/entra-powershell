@@ -17,4 +17,5 @@ $entraModuleSplitter = [EntraModuleSplitter]::new()
 $entraModuleSplitter.SplitEntraModule($Module)  # Pass the module argument
 $entraModuleSplitter.ProcessEntraAzureADAliases($Module)
 
-Split-Docs -Source $Module
+./Split-Docs.ps1 -Module $Module
+./Split-Tests.ps1 -Module $Module
