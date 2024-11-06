@@ -6,11 +6,11 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
 	[CmdletBinding()]
 	param (
 		[Alias('ObjectId')]
-		[Parameter(Mandatory = $True, Position = 1)]
-		[string]
+		[Parameter(Mandatory = $True)]
+		[System.String]
 		$ApplicationId,
-		[Parameter(Mandatory = $False, Position = 2)]
-		[string]
+		[Parameter(Mandatory = $False)]
+		[System.String]
 		$ApplicationSegmentId
 	)
 

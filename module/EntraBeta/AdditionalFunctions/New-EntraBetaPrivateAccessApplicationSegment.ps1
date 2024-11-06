@@ -7,26 +7,26 @@ function New-EntraBetaPrivateAccessApplicationSegment {
 	param (
 
 		[Alias('ObjectId')]
-		[Parameter(Mandatory = $True, Position = 1, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-		[string]
+		[Parameter(Mandatory = $True, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+		[System.String]
 		$ApplicationId,
 		
 		[Parameter(Mandatory = $True)]
-		[string]
+		[System.String]
 		$DestinationHost,
 		
 		[Parameter(Mandatory = $False)]
-		[string[]]
+		[System.String[]]
 		$Ports,
 		
 		[Parameter(Mandatory = $False)]
 		[ValidateSet("TCP", "UDP")]
-		[string[]]
+		[System.String[]]
 		$Protocol,
 
 		[Parameter(Mandatory = $True)]
 		[ValidateSet("ipAddress", "dnsSuffix", "ipRangeCidr","ipRange","FQDN")]
-		[string]
+		[System.String]
 		$DestinationType
 	)
 

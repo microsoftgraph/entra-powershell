@@ -5,9 +5,9 @@ description: This article provides details on the Enable-EntraBetaGlobalSecureAc
 ms.topic: reference
 ms.date: 10/31/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -19,6 +19,12 @@ schema: 2.0.0
 ## Synopsis
 
 Onboard the Global Secure Access service in the tenant.
+
+## Syntax
+
+```powershell
+Enable-EntraBetaGlobalSecureAccessTenant
+```
 
 ## Description
 

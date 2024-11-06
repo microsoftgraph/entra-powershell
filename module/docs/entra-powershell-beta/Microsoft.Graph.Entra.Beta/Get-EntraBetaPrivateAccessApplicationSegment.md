@@ -5,9 +5,9 @@ description: This article provides details on the Get-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -19,6 +19,15 @@ schema: 2.0.0
 ## Synopsis
 
 Retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
+
+## Syntax
+
+```powershell
+Get-EntraBetaPrivateAccessApplicationSegment
+ -ApplicationId <String>
+ [-ApplicationSegmentId <String>]
+ [<CommonParameters>]
+```
 
 ## Description
 
@@ -77,7 +86,7 @@ Parameter Sets: AllApplicationSegments, SingleApplicationSegment
 Aliases: ObjectId
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -93,7 +102,7 @@ Parameter Sets: SingleApplicationSegment
 Aliases:
 
 Required: False
-Position: 2, Named
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

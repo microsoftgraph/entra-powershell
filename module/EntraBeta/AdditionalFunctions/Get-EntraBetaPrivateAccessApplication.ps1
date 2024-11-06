@@ -8,12 +8,12 @@ function Get-EntraBetaPrivateAccessApplication {
     [CmdletBinding(DefaultParameterSetName = 'AllPrivateAccessApps')]
     param (
         [Alias("ObjectId")]
-        [Parameter(Mandatory = $True, Position = 1, ParameterSetName = 'SingleAppID')]
-        [string]
+        [Parameter(Mandatory = $True, ParameterSetName = 'SingleAppID')]
+        [System.String]
         $ApplicationId,
         
         [Parameter(Mandatory = $False, ParameterSetName = 'SingleAppName')]
-        [string]
+        [System.String]
         $ApplicationName
     )
 

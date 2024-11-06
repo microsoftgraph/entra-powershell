@@ -7,11 +7,11 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
 	[CmdletBinding(DefaultParameterSetName = 'AllApplicationSegments')]
 	param (
 		[Alias('ObjectId')]
-		[Parameter(Mandatory = $True, Position = 1, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-		[string]
+		[Parameter(Mandatory = $True, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+		[System.String]
 		$ApplicationId,
-		[Parameter(Mandatory = $False, Position = 2, ParameterSetName = 'SingleApplicationSegment')]
-		[string]
+		[Parameter(Mandatory = $False, ParameterSetName = 'SingleApplicationSegment')]
+		[System.String]
 		$ApplicationSegmentId
 	)
 
