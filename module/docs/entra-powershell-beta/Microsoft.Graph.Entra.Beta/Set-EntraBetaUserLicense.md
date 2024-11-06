@@ -42,7 +42,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - User Administrator
 
 **Note**: Before assigning a license, assign a usage location to the user using:
-`Set-EntraUser -ObjectId user@contoso.com -UsageLocation '<two-letter-country-code e.g. GB/US>'`.
+`Set-EntraBetaUser -UserId user@contoso.com -UsageLocation '<two-letter-country-code e.g. GB/US>'`.
 
 ## Examples
 
@@ -50,16 +50,19 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'TemplateUser@contoso.com' 
-$License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
-$License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
-$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
-$Licenses.AddLicenses = $License 
-$Params = @{
-    ObjectId = 'SawyerM@contoso.com' 
-    AssignedLicenses = $Licenses
+
+$licensedUser = Get-EntraBetaUser -UserId 'TemplateUser@contoso.com'
+$targetUser = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+
+$sourceUserLicenses = $licensedUser.AssignedLicenses
+
+$licensesToAssign = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+foreach ($license in $sourceUserLicenses) {
+    $assignedLicense = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+    $assignedLicense.SkuId = $license.SkuId
+    $licensesToAssign.AddLicenses= $assignedLicense
+    Set-EntraBetaUserLicense -UserId $targetUser.Id -AssignedLicenses $licensesToAssign
 }
-Set-EntraBetaUserLicense @Params
 ```
 
 ```Output
@@ -82,7 +85,7 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user based on a template user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 2: Add a license to a user by copying license from another user
@@ -105,6 +108,19 @@ $Params = @{
     AssignedLicenses = $Licenses
 }
 Set-EntraBetaUserLicense @Params
+
+$licensedUser = Get-EntraUser -UserId 'AdeleV@contoso.com'
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com' 
+$license1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$license1.SkuId = $licensedUser.AssignedLicenses.SkuId[0] 
+$license2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$license2.SkuId = $licensedUser.AssignedLicenses.SkuId[1]
+$addLicensesArray = @()
+$addLicensesArray += $license1
+$addLicensesArray += $license2
+$licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$licenses.AddLicenses = $addLicensesArray
+Set-EntraBetaUserLicense -UserId $user.Id -AssignedLicenses $licenses
 ```
 
 ```Output
@@ -127,19 +143,20 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user by copying license from another user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 3: Remove an assigned User's License
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$UserPrincipalName = 'SawyerM@contoso.com'
-$User = Get-EntraBetaUser -ObjectId $UserPrincipalName
-$SkuId = (Get-EntraBetaUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
-$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
-$Licenses.RemoveLicenses = $SkuId 
-Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+
+$userPrincipalName = 'SawyerM@contoso.com'
+$user = Get-EntraBetaUser -UserId $userPrincipalName
+$skuId = (Get-EntraBetaUserLicenseDetail -UserId $userPrincipalName).SkuId
+$licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$licenses.RemoveLicenses = $skuId 
+Set-EntraBetaUserLicense -UserId $user.Id -AssignedLicenses $licenses
 ```
 
 ```Output
@@ -161,7 +178,7 @@ givenName                      Sawyer
 
 This example demonstrates how to remove a user's license by retrieving the user details.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ## Parameters
