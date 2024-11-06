@@ -61,13 +61,12 @@ Get-EntraBetaUserAppRoleAssignment -ObjectId $user.Id
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
-                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2
-                0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o             22223333-cccc-4444-dddd-5555eeee6666 13-09-2023 16:41:53 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-5
-                0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q             33334444-dddd-5555-eeee-6666ffff7777 13-09-2023 17:28:17 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-7
-
+DeletedDateTime   Id                                        AppRoleId                              CreatedDateTime       PrincipalDisplayName  PrincipalId                          PrincipalType  ResourceDisplayName
+---------------   --                                        ---------                              ---------------       --------------------  -----------                          -------------  -------------------
+                  0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i            00001111-aaaa-2222-bbbb-3333cccc4444  31-07-2023 04:29:57  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-1
+                  0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2
+                  0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o            22223333-cccc-4444-dddd-5555eeee6666  13-09-2023 16:41:53  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-5
+                  0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q            33334444-dddd-5555-eeee-6666ffff7777  13-09-2023 17:28:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-7
 ```
 
 This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraBetaUser` to get Service principal Object ID.
@@ -83,12 +82,12 @@ Get-EntraBetaUserAppRoleAssignment -ObjectId $user.Id -All
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
-                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2 
-                0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o             22223333-cccc-4444-dddd-5555eeee6666 13-09-2023 16:41:53 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-5
-                0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q             33334444-dddd-5555-eeee-6666ffff7777 13-09-2023 17:28:17 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-7
+DeletedDateTime   Id                                        AppRoleId                              CreatedDateTime       PrincipalDisplayName  PrincipalId                          PrincipalType  ResourceDisplayName
+---------------   --                                        ---------                              ---------------       --------------------  -----------                          -------------  -------------------
+                  0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i            00001111-aaaa-2222-bbbb-3333cccc4444  31-07-2023 04:29:57  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-1
+                  0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2
+                  0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o            22223333-cccc-4444-dddd-5555eeee6666  13-09-2023 16:41:53  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-5
+                  0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q            33334444-dddd-5555-eeee-6666ffff7777  13-09-2023 17:28:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-7
 ```
 
 This example demonstrates how to retrieve all application role assignment for the specified user.
@@ -103,10 +102,10 @@ Get-EntraBetaUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-2222222222
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
-                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Sawyer Miller            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2 
+DeletedDateTime   Id                                        AppRoleId                              CreatedDateTime       PrincipalDisplayName  PrincipalId                          PrincipalType  ResourceDisplayName
+---------------   --                                        ---------                              ---------------       --------------------  -----------                          -------------  -------------------
+                  0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i            00001111-aaaa-2222-bbbb-3333cccc4444  31-07-2023 04:29:57  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-1
+                  0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2
 ```
 
 This example demonstrates how to retrieve top two application role assignment for the specified user.
