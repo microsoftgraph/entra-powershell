@@ -42,7 +42,7 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = 'ssh.contoso.local'
@@ -66,7 +66,7 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
