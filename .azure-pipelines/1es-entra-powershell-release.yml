@@ -54,9 +54,13 @@ extends:
             artifactName: drop
             targetPath: $(Build.ArtifactStagingDirectory)/drop
         steps:
+        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/package/'
+        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/packages/'
+        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/'
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
+            command: push
             useDotNetTask: false
             packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             packageParentPath: '$(Build.ArtifactStagingDirectory)'
