@@ -35,6 +35,14 @@ Get-EntraUserLicenseDetail
 
 This cmdlet retrieves license details for a user.
 
+In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/users/licenseDetails/read` permission. The following least privileged roles support this operation:
+
+- Guest Inviter  
+- Directory Readers  
+- Directory Writers  
+- License Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Retrieve user license details
