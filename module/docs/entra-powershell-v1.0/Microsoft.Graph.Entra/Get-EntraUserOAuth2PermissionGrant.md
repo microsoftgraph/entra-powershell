@@ -85,7 +85,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2
 
 This example retrieves the OAuth2 permission grants for a user using All parameter.
 
-- `-ObjectId` parameter specifies the user ID.
+- `-UserId` parameter specifies the user ID.
 
 ### Example 3: Retrieve top one OAuth2 permission grant
 
