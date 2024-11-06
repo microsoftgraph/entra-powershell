@@ -163,6 +163,37 @@ This example demonstrates how to remove a user's license by retrieving the user 
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
+### Example 4: Bulk Assign Licenses to Multiple Users
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+
+# Retrieve the SkuId for the desired license plans
+$skuId1 = (Get-EntraSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'AAD_PREMIUM_P2' }).SkuId
+$skuId2 = (Get-EntraSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'EMS' }).SkuId
+
+# Define the user to whom the licenses will be assigned
+$users = ('AljosaH@Contoso.com','PalameeC@Contoso.com')
+
+# You can, alternatively, import users from a csv file. For this example, the CSV should have a column named 'user'
+$users = Import-Csv -Path "C:\path\to\your\users.csv" | Select-Object -ExpandProperty user
+
+# Create license assignment objects
+$license1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$license1.SkuId = $skuId1
+
+$license2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$license2.SkuId = $skuId2
+
+$licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
+$licenses.AddLicenses = $license1, $license2
+
+# Assign the licenses to each user
+foreach ($user in $users$users) {
+ Set-EntraUserLicense -UserId $user -AssignedLicenses $licenses
+}
+```
+
 ## Parameters
 
 ### -AssignedLicenses
