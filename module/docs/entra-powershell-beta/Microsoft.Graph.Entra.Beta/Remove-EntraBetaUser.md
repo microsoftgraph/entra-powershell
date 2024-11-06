@@ -49,6 +49,15 @@ Remove-EntraBetaUser -UserId 'SawyerM@Contoso.com'
 
 This command removes the specified user in Microsoft Entra ID.
 
+### Example 2: Remove a user based on search results
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraBetaUser -UserId 'SawyerM@Contoso.com' | Remove-EntraBetaUser
+```
+
+This command removes the specified user in Microsoft Entra ID.
+
 ## Parameters
 
 ### -UserId
