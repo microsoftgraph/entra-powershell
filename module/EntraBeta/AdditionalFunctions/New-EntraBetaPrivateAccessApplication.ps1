@@ -7,11 +7,11 @@ function New-EntraBetaPrivateAccessApplication {
 
     [CmdletBinding(DefaultParameterSetName = 'AllPrivateAccessApps')]
     param (
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $True)]
         [System.String]
         $ApplicationName,
         
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $False)]
         [System.String]
         $ConnectorGroupId
     )
