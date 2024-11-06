@@ -36,6 +36,17 @@ New-EntraUserAppRoleAssignment
 
 The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. Supported roles include:
+
+- Directory Synchronization Accounts (for Entra Connect and Cloud Sync)
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
+
 ## Examples
 
 ### Example 1: Assign a user to an application without roles
