@@ -81,7 +81,8 @@ This example retrieves all contact objects in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContact -OrgContactId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContact -OrgContactId $contact.Id
 ```
 
 ```Output
@@ -132,7 +133,7 @@ This example retrieves top two contacts in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
 ```
 
 ```Output

@@ -35,14 +35,22 @@ Get-EntraContactManager
 
 The `Get-EntraContactManager` cmdlet gets the manager of a contact in Microsoft Entra ID.
 
+For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
+
+- Directory Readers: Read basic properties  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Get the manager of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Top 1
-Get-EntraContactManager -OrgContactId $Contact.ObjectId
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactManager -OrgContactId $contact.Id
 ```
 
 The example demonstrates how to retrieve the manager of a contact. You can use the command `Get-EntraContact` to get organizational contact.
