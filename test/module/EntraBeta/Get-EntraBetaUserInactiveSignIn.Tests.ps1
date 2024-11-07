@@ -20,9 +20,10 @@ BeforeAll {
                 AccountEnabled    = 'True'
                 createdDateTime   = '2024-10-07T12:15:17Z'
                 signInActivity    = @{
-                    LastSignInDateTime               = '10/7/2024 12:15:17 PM'
-                    LastNonInteractiveSignInDateTime = '10/7/2024 12:13:13 PM'
-                    LastSignInRequestId              = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+                    LastSignInDateTime                = '10/7/2024 12:15:17 PM'
+                    LastNonInteractiveSignInDateTime  = '10/7/2024 12:13:13 PM'
+                    LastSignInRequestId               = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+                    LastNonInteractiveSignInRequestId = ''
                 }
             }
         }
@@ -56,7 +57,7 @@ Describe "Get-EntraBetaUserInactiveSignIn" {
             $result.createdDateTime | should -Be "2024-10-07T12:15:17Z"
             $result.LastSignInDateTime | should -Be "10/16/2024 11:13:42 AM"
             $result.LastSigninDaysAgo | should -Be "22"
-            $result.lastSignInRequestId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
+            $result.lastSignInRequestId | should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result.lastNonInteractiveSignInDateTime | should -Be "Unknown"
             $result.LastNonInteractiveSigninDaysAgo | should -Be "Unknown"
             $result.lastNonInteractiveSignInRequestId | should -Be ""
