@@ -4,6 +4,7 @@
     "newPrefix" : "Entra",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
+      "Microsoft.Graph",
       "Microsoft.Graph.DirectoryObjects",
       "Microsoft.Graph.Users",
       "Microsoft.Graph.Users.Actions", 
