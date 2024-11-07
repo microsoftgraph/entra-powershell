@@ -6,14 +6,14 @@ function Get-EntraBetaFeatureRolloutPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $SearchString,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
                 
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -22,49 +22,23 @@ function Get-EntraBetaFeatureRolloutPolicy {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     $keysChanged = @{SearchString = "Filter"}
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["FeatureRolloutPolicyId"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if($null -ne $PSBoundParameters["SearchString"])
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $TmpValue = $PSBoundParameters["SearchString"]
+        $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+        $params["Filter"] = $Value
     }
     if($null -ne $PSBoundParameters["Filter"])
     {
@@ -75,19 +49,45 @@ function Get-EntraBetaFeatureRolloutPolicy {
         $Value = $TmpValue
         $params["Filter"] = $Value
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if($null -ne $PSBoundParameters["SearchString"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $TmpValue = $PSBoundParameters["SearchString"]
-        $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
-        $params["Filter"] = $Value
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["Id"])
+    {
+        $params["FeatureRolloutPolicyId"] = $PSBoundParameters["Id"]
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if($null -ne $PSBoundParameters["Property"])
     {

@@ -9,14 +9,14 @@ function Set-EntraBetaUserPassword {
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ObjectId,
                 
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Boolean] $EnforceChangePasswordPolicy,
+                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Security.SecureString] $Password,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Boolean] $ForceChangePasswordNextLogin,
-                
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Boolean] $EnforceChangePasswordPolicy
+    [System.Boolean] $ForceChangePasswordNextLogin
     )
 
     PROCESS {    
