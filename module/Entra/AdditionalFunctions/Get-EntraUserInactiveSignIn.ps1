@@ -41,24 +41,46 @@ function Get-EntraUserInactiveSignIn {
         }
 
         foreach ($userObject in $users) {
-            $checkedUser = [ordered] @{
-                UserID                            = $userObject.Id
-                DisplayName                       = $userObject.DisplayName
-                UserPrincipalName                 = $userObject.UserPrincipalName
-                Mail                              = $userObject.Mail
-                UserType                          = $userObject.UserType
-                AccountEnabled                    = $userObject.AccountEnabled
-                LastSignInDateTime                = $userObject.signInActivity.LastSignInDateTime ?? "Unknown"
-                LastSigninDaysAgo                 = if ($null -eq $userObject.signInActivity.LastSignInDateTime) { "Unknown" } else { (New-TimeSpan -Start $userObject.signInActivity.LastSignInDateTime -End (Get-Date)).Days }
-                lastSignInRequestId               = $userObject.signInActivity.lastSignInRequestId ?? "Unknown"
-                lastNonInteractiveSignInDateTime  = $userObject.signInActivity.lastNonInteractiveSignInDateTime ?? "Unknown"
-                LastNonInteractiveSigninDaysAgo   = if ($null -eq $userObject.signInActivity.lastNonInteractiveSignInDateTime) { "Unknown" } else { (New-TimeSpan -Start $userObject.signInActivity.lastNonInteractiveSignInDateTime -End (Get-Date)).Days }
-                lastNonInteractiveSignInRequestId = $userObject.signInActivity.lastNonInteractiveSignInRequestId ?? "Unknown"
-                CreatedDateTime                   = $userObject.CreatedDateTime ?? "Unknown"
-                CreatedDaysAgo                    = if ($null -eq $userObject.CreatedDateTime) { "Unknown" } else { (New-TimeSpan -Start $userObject.CreatedDateTime -End (Get-Date)).Days }
+            $checkedUser = [ordered] @{}
+            $checkedUser.UserID = $userObject.Id
+            $checkedUser.DisplayName = $userObject.DisplayName
+            $checkedUser.UserPrincipalName = $userObject.UserPrincipalName
+            $checkedUser.Mail = $userObject.Mail
+            $checkedUser.UserType = $userObject.UserType
+            $checkedUser.AccountEnabled = $userObject.AccountEnabled
+
+            If ($null -eq $userObject.signInActivity.LastSignInDateTime) {
+                $checkedUser.LastSignInDateTime = "Unknown"
+                $checkedUser.LastSigninDaysAgo = "Unknown"
+                $checkedUser.lastNonInteractiveSignInDateTime = "Unknown"
+            }
+            else {
+                $checkedUser.LastSignInDateTime = $userObject.signInActivity.LastSignInDateTime
+                $checkedUser.LastSigninDaysAgo = (New-TimeSpan -Start $checkedUser.LastSignInDateTime -End (Get-Date)).Days
+                $checkedUser.lastSignInRequestId = $userObject.signInActivity.lastSignInRequestId
+
+                #lastNonInteractiveSignInDateTime is NULL
+                If ($null -eq $userObject.signInActivity.lastNonInteractiveSignInDateTime) {
+                    $checkedUser.lastNonInteractiveSignInDateTime = "Unknown"
+                    $checkedUser.LastNonInteractiveSigninDaysAgo = "Unknown"
+
+                }
+                else {
+                    $checkedUser.lastNonInteractiveSignInDateTime = $userObject.signInActivity.lastNonInteractiveSignInDateTime
+                    $checkedUser.LastNonInteractiveSigninDaysAgo = (New-TimeSpan -Start $checkedUser.lastNonInteractiveSignInDateTime -End (Get-Date)).Days
+                    $checkedUser.lastNonInteractiveSignInRequestId = $userObject.signInActivity.lastNonInteractiveSignInRequestId
+                }
+            }
+            If ($null -eq $userObject.CreatedDateTime) {
+                $checkedUser.CreatedDateTime = "Unknown"
+                $checkedUser.CreatedDaysAgo = "Unknown"
+            }
+            else {
+                $checkedUser.CreatedDateTime = $userObject.CreatedDateTime
+                $checkedUser.CreatedDaysAgo = (New-TimeSpan -Start $userObject.CreatedDateTime -End (Get-Date)).Days
             }
 
-            Write-Output [PSCustomObject]$checkedUser
+            Write-Output ([pscustomobject]$checkedUser)
         }
     }
 
