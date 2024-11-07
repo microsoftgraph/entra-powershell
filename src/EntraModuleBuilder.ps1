@@ -163,7 +163,7 @@ Set-StrictMode -Version 5
         }
 
         #Create the RootModule .psm1 file
-        # $this.CreateRootModule($Module)
+        $this.CreateRootModule($Module)
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
@@ -234,15 +234,12 @@ Set-StrictMode -Version 5
 # Set execution policy to ensure scripts can be executed
 Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 
-# Log that the module is being loaded
-Write-Host 'Entra.psm1 is being loaded...'
-
 # Import all sub-modules dynamically
 `$subModules = @(
 "@
 
     for ($i = 0; $i -lt $subModules.Count; $i++) {
-        $codeSnippet += "    '$($subModules[$i])'"
+        $codeSnippet += "'$($subModules[$i])'"
         if ($i -lt $subModules.Count - 1) {
             $codeSnippet += ",`n"  # Add a comma except for the last item
         } else {
@@ -256,7 +253,7 @@ Write-Host 'Entra.psm1 is being loaded...'
 `$moduleBasePath = Split-Path -Parent `$MyInvocation.MyCommand.Definition
 foreach (`$subModule in `$subModules) {
     `$subModulePath = Join-Path `$moduleBasePath -ChildPath `$subModule
-    Import-Module -Name `$subModulePath -Global
+    Import-Module -Name `$subModulePath -Force
 }
 "@
 
@@ -301,7 +298,6 @@ foreach (`$subModule in `$subModules) {
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
                $nestedModules+=$module
-
             }	
         }
         $moduleSettings = @{
