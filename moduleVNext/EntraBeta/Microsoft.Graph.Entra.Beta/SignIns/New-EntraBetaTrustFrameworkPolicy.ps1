@@ -11,11 +11,11 @@ function New-EntraBetaTrustFrameworkPolicy {
     [Parameter(ParameterSetName = "File")]
     [System.String] $OutputFilePath,
                 
-    [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $InputFilePath,
-                
     [Parameter(ParameterSetName = "Content", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Content
+    [System.String] $Content,
+                
+    [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $InputFilePath
     )
 
     PROCESS {

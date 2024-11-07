@@ -6,14 +6,14 @@ function Get-EntraBetaApplicationSignInSummary {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Filter,
+                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Days,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-                
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter
+    [System.Nullable`1[System.Int32]] $Top
     )
 
     PROCESS {  

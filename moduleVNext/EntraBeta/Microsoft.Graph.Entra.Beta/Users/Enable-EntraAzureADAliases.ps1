@@ -1,0 +1,73 @@
+# ------------------------------------------------------------------------------ 
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information. 
+# ------------------------------------------------------------------------------ 
+function Enable-EntraAzureADAliases {
+   Set-Alias -Name Get-AzureADUserMembership -Value Get-EntraBetaUserMembership -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserOwnedDevice -Value Get-EntraBetaUserOwnedDevice -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserExtension -Value Set-EntraBetaUserExtension -Scope Global -Force
+   Set-Alias -Name Remove-AzureADUserManager -Value Remove-EntraBetaUserManager -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserManager -Value Set-EntraBetaUserManager -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserManager -Value Get-EntraBetaUserManager -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserThumbnailPhoto -Value Get-EntraBetaUserThumbnailPhoto -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserThumbnailPhoto -Value Set-EntraBetaUserThumbnailPhoto -Scope Global -Force
+   Set-Alias -Name Get-AzureADUser -Value Get-EntraBetaUser -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserOwnedObject -Value Get-EntraBetaUserOwnedObject -Scope Global -Force
+   Set-Alias -Name Remove-AzureADUserAppRoleAssignment -Value Remove-EntraBetaUserAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Remove-AzureADUserExtension -Value Remove-EntraBetaUserExtension -Scope Global -Force
+   Set-Alias -Name Remove-AzureADUser -Value Remove-EntraBetaUser -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserRegisteredDevice -Value Get-EntraBetaUserRegisteredDevice -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserExtension -Value Get-EntraBetaUserExtension -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserLicenseDetail -Value Get-EntraBetaUserLicenseDetail -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserDirectReport -Value Get-EntraBetaUserDirectReport -Scope Global -Force
+   Set-Alias -Name New-AzureADUser -Value New-EntraBetaUser -Scope Global -Force
+   Set-Alias -Name New-AzureADUserAppRoleAssignment -Value New-EntraBetaUserAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserCreatedObject -Value Get-EntraBetaUserCreatedObject -Scope Global -Force
+   Set-Alias -Name Set-AzureADUser -Value Set-EntraBetaUser -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserLicense -Value Set-EntraBetaUserLicense -Scope Global -Force
+   Set-Alias -Name Update-AzureADSignedInUserPassword -Value Update-EntraBetaSignedInUserPassword -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserOAuth2PermissionGrant -Value Get-EntraBetaUserOAuth2PermissionGrant -Scope Global -Force
+   Set-Alias -Name Get-AzureADUserAppRoleAssignment -Value Get-EntraBetaUserAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserPassword -Value Set-EntraBetaUserPassword -Scope Global -Force
+   Set-Alias -Name Get-CrossCloudVerificationCode -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-RbacApplicationRoleAssignment -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-RbacApplicationRoleDefinition -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-RbacApplicationRoleAssignment -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-RbacApplicationRoleDefinition -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-RbacApplicationRoleAssignment -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-RbacApplicationRoleDefinition -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-RbacApplicationRoleDefinition -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationProxyApplicationConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationPasswordCredential -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-AzureADExternalDomainFederation -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-AzureADServicePrincipalKeyCredential -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADExtensionProperty -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationServiceEndpoint -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Restore-AzureADMSDeletedDirectoryObject -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADPrivilegedRoleAssignment -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationProxyConnectorMemberOf -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyApplication -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-AzureADExternalDomainFederation -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Close-AzureADMSPrivilegedRoleAssignmentRequest -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADDeviceConfiguration -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyApplicationSingleSignOn -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Open-AzureADMSPrivilegedRoleAssignmentRequest -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADExternalDomainFederation -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyApplicationCustomDomainCertificate -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Add-AzureADMSPrivilegedResource -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationProxyConnectorGroupMembers -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADCurrentSessionInfo -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyApplicationConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-AzureADContactManager -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-AzureADApplicationProxyApplicationConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name New-AzureADApplicationProxyApplication -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Remove-AzureADServicePrincipalKeyCredential -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Set-AzureADApplicationProxyConnector -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADContactThumbnailPhoto -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
+   Set-Alias -Name Get-AzureADApplicationProxyConnector -Value Get-EntraUnsupportedCommand -Scope Global -Force
+
+}

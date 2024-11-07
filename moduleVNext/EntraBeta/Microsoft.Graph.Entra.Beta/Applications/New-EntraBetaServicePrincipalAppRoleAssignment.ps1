@@ -6,50 +6,34 @@ function New-EntraBetaServicePrincipalAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $Id,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $PrincipalId,
-                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ObjectId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $ResourceId
+    [System.String] $PrincipalId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $ResourceId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $Id
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["AppRoleId"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["PrincipalId"])
-    {
-        $params["PrincipalId"] = $PSBoundParameters["PrincipalId"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if ($null -ne $PSBoundParameters["ObjectId"])
     {
@@ -59,33 +43,49 @@ function New-EntraBetaServicePrincipalAppRoleAssignment {
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["PrincipalId"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["PrincipalId"] = $PSBoundParameters["PrincipalId"]
     }
     if ($null -ne $PSBoundParameters["ResourceId"])
     {
         $params["ResourceId"] = $PSBoundParameters["ResourceId"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["Id"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["AppRoleId"] = $PSBoundParameters["Id"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

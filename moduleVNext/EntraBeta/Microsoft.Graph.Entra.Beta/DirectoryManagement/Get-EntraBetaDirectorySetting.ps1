@@ -6,11 +6,11 @@ function Get-EntraBetaDirectorySetting {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-                
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
+                
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
@@ -22,17 +22,21 @@ function Get-EntraBetaDirectorySetting {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if ($null -ne $PSBoundParameters["Id"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["DirectorySettingId"] = $PSBoundParameters["Id"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if($null -ne $PSBoundParameters["All"])
     {
@@ -41,49 +45,45 @@ function Get-EntraBetaDirectorySetting {
             $params["All"] = $PSBoundParameters["All"]
         }
     }
-    if ($null -ne $PSBoundParameters["WarningAction"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if ($null -ne $PSBoundParameters["Id"])
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        $params["DirectorySettingId"] = $PSBoundParameters["Id"]
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($PSBoundParameters.ContainsKey("Top"))
-    {
-        $params["Top"] = $PSBoundParameters["Top"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["OutBuffer"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($PSBoundParameters.ContainsKey("Top"))
+    {
+        $params["Top"] = $PSBoundParameters["Top"]
     }
     if($null -ne $PSBoundParameters["Property"])
     {

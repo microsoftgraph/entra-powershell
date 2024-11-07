@@ -6,59 +6,23 @@ function Set-EntraBetaDomain {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $SupportedServices,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsDefaultForCloudRedirections,
-                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Name,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsDefault
+    [System.Collections.Generic.List`1[System.String]] $SupportedServices,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsDefault,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsDefaultForCloudRedirections
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["SupportedServices"])
-    {
-        $params["SupportedServices"] = $PSBoundParameters["SupportedServices"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["IsDefaultForCloudRedirections"])
-    {
-        $params["IsDefaultForCloudRedirections"] = $PSBoundParameters["IsDefaultForCloudRedirections"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
@@ -67,25 +31,61 @@ function Set-EntraBetaDomain {
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
     if ($null -ne $PSBoundParameters["Name"])
     {
         $params["DomainId"] = $PSBoundParameters["Name"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["SupportedServices"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["SupportedServices"] = $PSBoundParameters["SupportedServices"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if ($null -ne $PSBoundParameters["IsDefault"])
     {
         $params["IsDefault"] = $PSBoundParameters["IsDefault"]
     }
+    if ($null -ne $PSBoundParameters["IsDefaultForCloudRedirections"])
+    {
+        $params["IsDefaultForCloudRedirections"] = $PSBoundParameters["IsDefaultForCloudRedirections"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

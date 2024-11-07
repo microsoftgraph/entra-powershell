@@ -16,25 +16,17 @@ function Get-EntraBetaContactManager {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if ($null -ne $PSBoundParameters["OrgContactId"])
     {
@@ -44,29 +36,37 @@ function Get-EntraBetaContactManager {
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["ErrorAction"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if($null -ne $PSBoundParameters["Property"])
     {

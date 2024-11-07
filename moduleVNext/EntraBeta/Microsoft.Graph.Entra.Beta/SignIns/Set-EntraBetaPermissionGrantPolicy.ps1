@@ -6,11 +6,11 @@ function Set-EntraBetaPermissionGrantPolicy {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $DisplayName,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description
@@ -20,65 +20,65 @@ function Set-EntraBetaPermissionGrantPolicy {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["PermissionGrantPolicyId"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if ($null -ne $PSBoundParameters["DisplayName"])
     {
         $params["DisplayName"] = $PSBoundParameters["DisplayName"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["Description"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["Description"] = $PSBoundParameters["Description"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["Id"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["PermissionGrantPolicyId"] = $PSBoundParameters["Id"]
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["ErrorAction"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["Description"])
+    {
+        $params["Description"] = $PSBoundParameters["Description"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

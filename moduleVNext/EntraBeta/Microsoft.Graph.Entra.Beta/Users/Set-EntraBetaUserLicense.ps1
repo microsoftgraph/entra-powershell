@@ -7,10 +7,10 @@ function Set-EntraBetaUserLicense {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses,
+    [System.String] $ObjectId,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+    [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses
     )
 
     PROCESS {    
