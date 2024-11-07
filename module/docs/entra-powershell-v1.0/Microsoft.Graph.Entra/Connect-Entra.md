@@ -107,7 +107,7 @@ Connect-Entra
 
 The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
 
-Several authentication scenarios are supported based on your use case, such as delegated (interactive) and app-only (non-interactive).
+Several authentication scenarios are supported based on your use case, such as delegated (interactive) and app-only (non-interactive). For more information, see the [authentication scenario](https://learn.microsoft.com/powershell/entra-powershell/authentication-scenarios) details.
 
 `Connect-Entra` is an alias for `Connect-MgGraph`.
 
@@ -137,7 +137,8 @@ This example shows how to authenticate to Microsoft Entra ID with scopes.
 ### Example 3: Delegated access: Using an access token
 
 ```powershell
-$secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
+$accessToken = 'eyJ0e..'
+$secureString = ConvertTo-SecureString -String $accessToken -AsPlainText -Force
 Connect-Entra -AccessToken $secureString
 ```
 
@@ -147,7 +148,7 @@ Welcome to Microsoft Graph!
 
 This example shows how to interactively authenticate to Microsoft Entra ID using an access token.
 
-For more information on how to get or create access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
+For detailed instructions on obtaining or creating an access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
 
 ### Example 4: Delegated access: Using device code flow
 
@@ -166,13 +167,10 @@ For more information, see [Device Code flow](https://learn.microsoft.com/entra/i
 ### Example 5: App-only access: Using client credential with a Certificate thumbprint
 
 ```powershell
-$connectParams = @{
-    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-    ApplicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    CertificateThumbprint = 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
-}
-
-Connect-Entra @connectParams
+$contosoCert = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq 'CN=Entra PowerShell Contoso Certificate'}
+$tenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+$applicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+Connect-Entra -TenantId $tenantId -ApplicationId $applicationId -CertificateThumbprint $contosoCert.Thumbprint
 ```
 
 ```Output
@@ -181,23 +179,30 @@ Welcome to Microsoft Graph!
 
 This example shows how to authenticate using an ApplicationId and CertificateThumbprint.
 
-For more information on how to get or create CertificateThumbprint, see [Authenticate with app-only access](https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth).
+To create a certificate, run the command:
+
+```PowerShell
+$certname = 'Contoso Certificate'
+
+# Create a self-signed certificate
+$cert = New-SelfSignedCertificate -Subject "CN=$certname" -CertStoreLocation "Cert:\CurrentUser\My" -KeyExportPolicy 'Exportable' -KeySpec 'Signature' -KeyLength 2048 -KeyAlgorithm 'RSA' -HashAlgorithm 'SHA256'
+
+# Retrieve the certificate from the store using its thumbprint
+$store = Get-Item "Cert:\CurrentUser\My\$($cert.Thumbprint)"
+
+# Set the FriendlyName property
+$store.FriendlyName = 'Contoso Certificate'
+```
+
+For more information on how to get or create CertificateThumbprint, see [Create a self-signed public certificate](https://learn.microsoft.com/entra/identity-platform/howto-create-self-signed-certificate?toc=%2Fpowershell%2Fentra-powershell%2Ftoc.json&bc=%2Fpowershell%2Fentra-powershell%2Fbreadcrumb%2Ftoc.json).
 
 ### Example 6: App-only access: Using client credential with a certificate name
 
 ```powershell
-$params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-    CertificateName = 'YOUR_CERT_SUBJECT'
-}
-
-Connect-Entra @params
-```
-
-```powershell
- $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
- Connect-Entra -ClientId '<App-Id>' -TenantId '<Tenant-Id>' -Certificate $Cert
+$contosoCert = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq 'CN=Contoso Certificate'}
+$applicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+$tenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+Connect-Entra -ClientId $applicationId -TenantId $tenantId -CertificateName $contosoCert.Subject
 ```
 
 You can find the certificate subject by running the above command.
@@ -205,22 +210,18 @@ You can find the certificate subject by running the above command.
 ### Example 7: App-only access: Using client credential with a certificate
 
 ```powershell
-$Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
-$params = @{
-    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-    Certificate = $Cert
-}
-
-Connect-Entra @params
+$contosoCert = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq 'CN=Contoso Certificate'}
+$applicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+$tenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+Connect-Entra -ClientId $applicationId -TenantId $tenantId -Certificate $contosoCert
 ```
 
 ### Example 8: App-only access: Using client secret credentials
 
 ```powershell
-$ClientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
+$clientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
 # Enter client_secret in the password prompt.
-Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $ClientSecretCredential
+Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $clientSecretCredential
 ```
 
 This authentication method is ideal for background interactions.
@@ -281,7 +282,7 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 13: Sets the HTTP client timeout in seconds
 
 ```powershell
- Connect-Entra -ClientTimeout 60
+Connect-Entra -ClientTimeout 60
 ```
 
 ```Output
@@ -577,6 +578,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`Connect-Entra` is an alias for `Connect-MgGraph`.
 
 ## Related Links
 
