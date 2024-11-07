@@ -17,7 +17,7 @@ function Get-EntraUserInactiveSignIn {
     )
 
     process {
-        
+
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
@@ -31,7 +31,7 @@ function Get-EntraUserInactiveSignIn {
         $inactiveFilter = "(signInActivity/lastSignInDateTime le '$queryDate')"
 
         Write-Debug ("Retrieving Users with Filter {0}" -f $inactiveFilter)
-        $queryUsers = Get-MgUser -Headers $customHeaders -Filter $inactiveFilter -All:$true  -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled
+        $queryUsers = Get-MgUser -Headers $customHeaders -Filter $inactiveFilter -Pagesize 999 -All:$true  -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled
 
         $users = if ($UserType -eq "All") {
             $queryUsers
