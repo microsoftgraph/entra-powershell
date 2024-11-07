@@ -10,9 +10,10 @@ param (
 $moduleBuilder = [EntraModuleBuilder]::new()
 
 if($Module -eq 'Entra'){
-    $typeDefsPath=".\build\V1.0-Typedefs.txt"
+
+    $typeDefsPath=(Join-Path $PSScriptRoot "/V1.0-Typedefs.txt")
 }else{
-    $typeDefsPath='.\build\Beta-TypeDefs.txt'
+    $typeDefsPath=(Join-Path $PSScriptRoot "/Beta-TypeDefs.txt")
 }
 
 $moduleBuilder.CreateModuleHelp($Module)
