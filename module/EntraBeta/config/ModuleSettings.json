@@ -4,6 +4,7 @@
     "newPrefix" : "EntraBeta",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
+      "Microsoft.Graph.Beta",
       "Microsoft.Graph.Beta.DirectoryObjects",
       "Microsoft.Graph.Beta.Users",
       "Microsoft.Graph.Beta.Users.Actions", 
