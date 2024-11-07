@@ -579,12 +579,13 @@ $($requiredModulesEntries -join ",`n")
         }
 
         Log-Message "[Logs] subDirectory : {$subDirectory}"
+        Log-Message "[Logs] subDirectory FullName : $($subDirectory.FullName)"
 
-       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
+        Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
         $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
-       
+        Log-Message "[Logs] markDownFiles : {$markDownFiles}"
         # Check if markdown files are found
         if (-not($markDownFiles)) {
             Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
