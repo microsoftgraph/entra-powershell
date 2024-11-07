@@ -51,6 +51,12 @@ steps:
     targetType: inline
     script: ./build/Create-CompatModule.ps1 -Module Entra -Verbose
     pwsh: false
+- task: powershell@2
+  displayName: '[Modularization ] Build Entra'
+  inputs:
+    targetType: inline
+    script: ./build/Create-EntraModule.ps1 -Module Entra -Verbose
+    pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
     parameters:
@@ -129,6 +135,12 @@ steps:
     script: |
       $MaximumFunctionCount=32768
       ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
+    pwsh: false
+- task: powershell@2
+  displayName: '[Modularization ] Build EntraBeta'
+  inputs:
+    targetType: inline
+    script: ./build/Create-EntraModule.ps1 -Module EntraBeta -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
