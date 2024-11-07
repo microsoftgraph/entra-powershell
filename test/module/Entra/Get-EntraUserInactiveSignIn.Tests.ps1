@@ -16,6 +16,9 @@ BeforeAll {
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
                 Mail              = 'AllanD@Contoso.com'
+                UserType          = 'Member'
+                AccountEnabled    = 'True'
+                createdDateTime   = '2024-10-07T12:15:17Z'
                 signInActivity    = @{
                     LastSignInDateTime               = '10/7/2024 12:15:17 PM'
                     LastNonInteractiveSignInDateTime = '10/7/2024 12:13:13 PM'
@@ -30,6 +33,9 @@ BeforeAll {
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
                 Mail              = 'AllanD@Contoso.com'
+                UserType          = 'Member'
+                AccountEnabled    = 'True'
+                createdDateTime   = '2024-10-07T12:15:17Z'
             }
         }
     } -ModuleName Microsoft.Graph.Entra
@@ -44,6 +50,9 @@ Describe "Get-EntraUserInactiveSignIn" {
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
             $result.Mail | should -Be "AllanD@Contoso.com"
+            $result.UserType | should -Be "Member"
+            $result.AccountEnabled | should -Be "True"
+            $result.createdDateTime | should -Be "10/07/2024 12:15:17"
 
             Should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }

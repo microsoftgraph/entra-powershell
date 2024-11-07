@@ -16,6 +16,9 @@ BeforeAll {
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
                 Mail              = 'AllanD@Contoso.com'
+                UserType          = 'Member'
+                AccountEnabled    = 'True'
+                createdDateTime   = '2024-10-07T12:15:17Z'
                 signInActivity    = @{
                     LastSignInDateTime               = '10/7/2024 12:15:17 PM'
                     LastNonInteractiveSignInDateTime = '10/7/2024 12:13:13 PM'
@@ -30,6 +33,9 @@ BeforeAll {
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
                 Mail              = 'AllanD@Contoso.com'
+                UserType          = 'Member'
+                AccountEnabled    = 'True'
+                createdDateTime   = '2024-10-07T12:15:17Z'
             }
         }
     } -ModuleName Microsoft.Graph.Entra.Beta
@@ -39,27 +45,30 @@ BeforeAll {
 Describe "Get-EntraBetaUserInactiveSignIn" {
     Context "Test for Get-EntraBetaUserInactiveSignIn" {
         It "Returns all the Inactive users in a tenant in the last N days." {
-            $result = Get-EntraBetaUserInactiveSignIn -Ago 30
+            $result = Get-EntraBetaUserInactiveSignIn -Ago 30 -UserType "All"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
             $result.Mail | should -Be "AllanD@Contoso.com"
+            $result.UserType | should -Be "Member"
+            $result.AccountEnabled | should -Be "True"
+            $result.createdDateTime | should -Be "10/07/2024 12:15:17"
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Ago is empty" {
             { Get-EntraBetaUserInactiveSignIn -Ago } | Should -Throw "Missing an argument for parameter 'Ago'*"
         }
-
+       
         It "Should fail when Ago is invalid" {
             { Get-EntraBetaUserInactiveSignIn -Ago HH } | Should -Throw "Cannot process argument transformation on parameter 'Ago'*"
         }
-       
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserInactiveSignIn"
 
-            $result = Get-EntraBetaUserInactiveSignIn -Ago 30
+            $result = Get-EntraBetaUserInactiveSignIn -Ago 30 -UserType "All"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserInactiveSignIn"
