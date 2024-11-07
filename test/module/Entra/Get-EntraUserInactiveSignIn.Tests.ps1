@@ -52,7 +52,7 @@ Describe "Get-EntraUserInactiveSignIn" {
             $result.Mail | should -Be "AllanD@Contoso.com"
             $result.UserType | should -Be "Member"
             $result.AccountEnabled | should -Be "True"
-            $result.createdDateTime | should -Be "10/07/2024 12:15:17"
+            $result.createdDateTime | should -Be "2024-10-07T12:15:17Z"
 
             Should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
