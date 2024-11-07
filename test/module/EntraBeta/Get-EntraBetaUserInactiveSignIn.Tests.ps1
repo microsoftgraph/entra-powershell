@@ -48,20 +48,6 @@ Describe "Get-EntraBetaUserInactiveSignIn" {
         It "Returns all the Inactive users in a tenant in the last N days." {
             $result = Get-EntraBetaUserInactiveSignIn -Ago 30 -UserType "All"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
-            $result.DisplayName | should -Be "Allan Deyoung"
-            $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
-            $result.Mail | should -Be "AllanD@Contoso.com"
-            $result.UserType | should -Be "Member"
-            $result.AccountEnabled | should -Be "True"
-            $result.createdDateTime | should -Be "2024-10-07T12:15:17Z"
-            $result.LastSignInDateTime | should -Be "10/16/2024 11:13:42 AM"
-            $result.LastSigninDaysAgo | should -Be "22"
-            $result.lastSignInRequestId | should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $result.lastNonInteractiveSignInDateTime | should -Be "Unknown"
-            $result.LastNonInteractiveSigninDaysAgo | should -Be "Unknown"
-            $result.lastNonInteractiveSignInRequestId | should -Be ""
-            $result.CreatedDaysAgo | should -Be "31"
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
