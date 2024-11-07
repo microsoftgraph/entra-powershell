@@ -7,10 +7,10 @@ function New-EntraBetaDirectoryRoleAssignment {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $RoleDefinitionId,
+    [System.String] $PrincipalId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $PrincipalId,
+    [System.String] $RoleDefinitionId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
     [System.String] $DirectoryScopeId
@@ -20,29 +20,17 @@ function New-EntraBetaDirectoryRoleAssignment {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["RoleDefinitionId"])
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["RoleDefinitionId"] = $PSBoundParameters["RoleDefinitionId"]
-    }
-    if ($null -ne $PSBoundParameters["PrincipalId"])
-    {
-        $params["PrincipalId"] = $PSBoundParameters["PrincipalId"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if ($null -ne $PSBoundParameters["InformationVariable"])
     {
@@ -52,33 +40,45 @@ function New-EntraBetaDirectoryRoleAssignment {
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["PrincipalId"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["PrincipalId"] = $PSBoundParameters["PrincipalId"]
     }
-    if ($null -ne $PSBoundParameters["DirectoryScopeId"])
+    if ($null -ne $PSBoundParameters["RoleDefinitionId"])
     {
-        $params["DirectoryScopeId"] = $PSBoundParameters["DirectoryScopeId"]
+        $params["RoleDefinitionId"] = $PSBoundParameters["RoleDefinitionId"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["ErrorAction"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["DirectoryScopeId"])
+    {
+        $params["DirectoryScopeId"] = $PSBoundParameters["DirectoryScopeId"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

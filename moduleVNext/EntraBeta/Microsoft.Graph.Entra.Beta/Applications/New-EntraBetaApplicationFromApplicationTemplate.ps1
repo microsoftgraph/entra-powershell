@@ -7,10 +7,10 @@ function New-EntraBetaApplicationFromApplicationTemplate {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [Microsoft.Open.MSGraph.Model.ApplicationTemplateDisplayName] $DisplayName,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.MSGraph.Model.ApplicationTemplateDisplayName] $DisplayName
+    [System.String] $Id
     )
 
     PROCESS {

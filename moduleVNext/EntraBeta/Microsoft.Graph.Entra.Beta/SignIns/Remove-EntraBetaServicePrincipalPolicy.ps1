@@ -7,10 +7,10 @@ function Remove-EntraBetaServicePrincipalPolicy {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [System.String] $PolicyId,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $PolicyId
+    [System.String] $Id
     )
 
     PROCESS {  

@@ -6,100 +6,100 @@ function New-EntraBetaPrivilegedRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Id,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsElevated,
-                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $UserId,
+    [System.String] $RoleId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.DateTime]] $ExpirationDateTime,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsElevated,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $ResultMessage,
                 
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Id,
+                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $RoleId
+    [System.String] $UserId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["RoleId"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["Id"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["IsElevated"])
-    {
-        $params["IsElevated"] = $PSBoundParameters["IsElevated"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["UserId"])
-    {
-        $params["UserId"] = $PSBoundParameters["UserId"]
-    }
-    if ($null -ne $PSBoundParameters["ExpirationDateTime"])
-    {
-        $params["ExpirationDateTime"] = $PSBoundParameters["ExpirationDateTime"]
+        $params["RoleId"] = $PSBoundParameters["RoleId"]
     }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if ($null -ne $PSBoundParameters["ResultMessage"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["ResultMessage"] = $PSBoundParameters["ResultMessage"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ExpirationDateTime"])
+    {
+        $params["ExpirationDateTime"] = $PSBoundParameters["ExpirationDateTime"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["IsElevated"])
+    {
+        $params["IsElevated"] = $PSBoundParameters["IsElevated"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["RoleId"])
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["RoleId"] = $PSBoundParameters["RoleId"]
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["ResultMessage"])
+    {
+        $params["ResultMessage"] = $PSBoundParameters["ResultMessage"]
+    }
+    if ($null -ne $PSBoundParameters["Id"])
+    {
+        $params["Id"] = $PSBoundParameters["Id"]
+    }
+    if ($null -ne $PSBoundParameters["UserId"])
+    {
+        $params["UserId"] = $PSBoundParameters["UserId"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

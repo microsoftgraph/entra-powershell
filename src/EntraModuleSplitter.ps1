@@ -168,7 +168,7 @@ class EntraModuleSplitter {
 
 		$functionNames =if($moduleName -eq 'Microsoft.Graph.Entra'){
             @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
-        }else if($moduleName -eq 'Microsoft.Graph.Entra.Beta'){
+        }else{
             @("New-EntraBetaCustomHeaders","Get-EntraBetaUnsupportedCommand")
         }
 

@@ -6,10 +6,10 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
 
 	[CmdletBinding(DefaultParameterSetName = 'AllApplicationSegments')]
 	param (
-		[Alias('id')]
+		[Alias('ObjectId')]
 		[Parameter(Mandatory = $True, Position = 1, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
 		[string]
-		$ObjectId,
+		$ApplicationId,
 		[Parameter(Mandatory = $False, Position = 2, ParameterSetName = 'SingleApplicationSegment')]
 		[string]
 		$ApplicationSegmentId
@@ -19,12 +19,12 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 		switch ($PSCmdlet.ParameterSetName) {
 			"AllApplicationSegments" {
-				$response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments"
+				$response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments"
 				$response.value
 				break
 			}
 			"SingleApplicationSegment" {
-				Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
+				Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
 				break
 			}
 	    }

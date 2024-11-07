@@ -7,71 +7,71 @@ function Set-EntraBetaApplicationVerifiedPublisher {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AppObjectId,
+    [Microsoft.Open.MSGraph.Model.SetVerifiedPublisherRequest] $SetVerifiedPublisherRequest,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.MSGraph.Model.SetVerifiedPublisherRequest] $SetVerifiedPublisherRequest
+    [System.String] $AppObjectId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["AppObjectId"])
-    {
-        $params["AppObjectId"] = $PSBoundParameters["AppObjectId"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if ($null -ne $PSBoundParameters["SetVerifiedPublisherRequest"])
     {
         $params["SetVerifiedPublisherRequest"] = $PSBoundParameters["SetVerifiedPublisherRequest"]
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
+    if ($null -ne $PSBoundParameters["AppObjectId"])
+    {
+        $params["AppObjectId"] = $PSBoundParameters["AppObjectId"]
+    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -6,11 +6,11 @@ function Get-EntraBetaTrustFrameworkPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-                
     [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $OutputFilePath
+    [System.String] $OutputFilePath,
+                
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id
     )
 
     PROCESS {    

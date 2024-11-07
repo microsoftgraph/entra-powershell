@@ -6,11 +6,8 @@ function Set-EntraBetaPermissionGrantConditionSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds,
+    [System.String] $ResourceApplication,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $Permissions,
@@ -18,26 +15,29 @@ function Set-EntraBetaPermissionGrantConditionSet {
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $PolicyId,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ConditionSetType,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $ClientApplicationsFromVerifiedPublisherOnly,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
+    [System.Collections.Generic.List`1[System.String]] $ClientApplicationIds,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ConditionSetType,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $PermissionClassification,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $PermissionType,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PermissionClassification,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ResourceApplication,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $ClientApplicationIds
+    [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds
     )
 
     PROCESS {    
