@@ -569,8 +569,6 @@ $($requiredModulesEntries -join ",`n")
     # Get all subdirectories within the base docs path
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
 
-    Log-Message "[Logs] docsPath : {$docsPath}"
-    Log-Message "[Logs] subDirectories : {$subDirectories}"
     foreach ($subDirectory in $subDirectories) {
         # Skip the 'Migration' sub-directory
         if ($subDirectory.Name -eq 'Migration' -or $subDirectory.Name -eq 'Invitations') {
@@ -578,24 +576,13 @@ $($requiredModulesEntries -join ",`n")
             continue
         }
 
-        $subDirectoryFullPath = $docsPath + "\" + $subDirectory.Name
-        $subDirectoryFullPath2 = Join-Path $PSScriptRoot $docsPath
-		$subDirectoryFullPath2 = Join-Path $subDirectoryFullPath2 $subDirectory.Name
-
-        Log-Message "[Logs] subDirectory : $subDirectory"
-        Log-Message "[Logs] subDirectory Name : $($subDirectory.Name)"
-        Log-Message "[Logs] subDirectory FullName : $($subDirectory.FullName)"
-        Log-Message "[Logs] subDirectory FullPath : $subDirectoryFullPath"
-        Log-Message "[Logs] subDirectory FullPath2 : $subDirectoryFullPath2"
-
         Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
-        $markDownFiles = Get-ChildItem -Path $subDirectoryFullPath -Filter "*.md"
-        Log-Message "[Logs] markDownFiles : {$markDownFiles}"
+        $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
         # Check if markdown files are found
         if (-not($markDownFiles)) {
-            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $subDirectoryFullPath." -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }
 
@@ -617,6 +604,10 @@ $($requiredModulesEntries -join ",`n")
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
         $moduleDocsPath = $subDirectory
+        Log-Message "[Logs] moduleDocsPath : {$moduleDocsPath}"
+        Log-Message "[Logs] helpOutputFilePath : {$helpOutputFilePath}"
+        Log-Message "[Logs] helpFileName : {$helpFileName}"
+        Log-Message "[Logs] subDirectory : {$subDirectory}"
 		
 		try {
             # Create the help file using PlatyPS
