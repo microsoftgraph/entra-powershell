@@ -578,27 +578,36 @@ $($requiredModulesEntries -join ",`n")
             continue
         }
 
+        $subDirectoryFullPath = Join-Path -Path $docsPath -ChildPath $subDirectory.Name
+
         Log-Message "[Logs] subDirectory : {$subDirectory}"
+        Log-Message "[Logs] subDirectory Name : $($subDirectory.Name)"
         Log-Message "[Logs] subDirectory FullName : $($subDirectory.FullName)"
 
         Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
-        $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
-        Log-Message "[Logs] markDownFiles : {$markDownFiles}"
+        $markDownFiles = Get-ChildItem -Path $subDirectoryFullPath -Filter "*.md"
+        #Log-Message "[Logs] markDownFiles : {$markDownFiles}"
         # Check if markdown files are found
         if (-not($markDownFiles)) {
-            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $subDirectoryFullPath." -Level 'ERROR'
             continue
         }
 
         # Generate the help file name based on the module and sub-directory
-        $subDirectoryName = [System.IO.Path]::GetFileName($subDirectory.FullName)
+        # $subDirectoryName = [System.IO.Path]::GetFileName($subDirectoryFullPath)
+
+        # $helpFileName = if ($Module -eq "Entra") {
+        #     "Microsoft.Graph.Entra.$subDirectoryName-Help.xml"
+        # } else {
+        #     "Microsoft.Graph.Entra.Beta.$subDirectoryName-Help.xml"
+        # }
 
         $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$subDirectoryName-Help.xml"
+            "Microsoft.Graph.Entra.$($subDirectory.Name)-Help.xml"
         } else {
-            "Microsoft.Graph.Entra.Beta.$subDirectoryName-Help.xml"
+            "Microsoft.Graph.Entra.Beta.$($subDirectory.Name)-Help.xml"
         }
  
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
