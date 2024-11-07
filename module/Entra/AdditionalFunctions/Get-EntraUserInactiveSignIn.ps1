@@ -3,22 +3,22 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraUserInactiveSignIn {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     [OutputType([string])]
     param (
         # User Last Sign In Activity is before Days ago
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Number of days to check for Last Sign In Activity")]
         [Alias("LastSignInBeforeDaysAgo")]
-        [int] $Ago = 30,
+        [int] $Ago,
         # Return results for All, Member, or Guest userTypes
         [ValidateSet("All", "Member", "Guest")]
-        [string]
+        [System.String]
         $UserType = "All"
     )
 
     process {
-        if ($CriticalError) { return }
-
+        
+        $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
         foreach ($param in @("Debug", "WarningVariable", "InformationVariable", "InformationAction", "OutVariable", "OutBuffer", "ErrorVariable", "PipelineVariable", "ErrorAction", "WarningAction")) {
@@ -62,7 +62,4 @@ function Get-EntraUserInactiveSignIn {
         }
     }
 
-    end {
-        if ($CriticalError) { return }
-    }
 }
