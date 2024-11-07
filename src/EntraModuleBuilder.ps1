@@ -194,62 +194,74 @@ Set-StrictMode -Version 5
         }
     }
 
- [void] CreateRootModule([string] $Module){
-    $rootModuleName=if($Module -eq 'Entra'){
+# Main function to create the root module
+[void] CreateRootModule([string] $Module) {
+    # Determine the root module name based on the module type
+    $rootModuleName = if ($Module -eq 'Entra') {
         'Microsoft.Graph.Entra.psm1'
-    }else{
-        'Microsoft.Graph.Enta.Beta.psm1'
+    } else {
+        'Microsoft.Graph.Entra.Beta.psm1'
     }
 
-    $subModuleFiles=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
-    $subModules=@()
-    # Prevents the old root module from being added to prevent cyclic dependency
-    foreach($module in $subModuleFiles){
-        if($module -ne $rootModuleName){
-            $subModules+=$module
-
+    # Get the list of submodules and exclude the root module
+    $subModuleFiles = $this.GetSubModuleFiles($Module, $this.OutputDirectory)
+    $subModules = @()
+    
+    # Prevents the old root module from being added to avoid cyclic dependencies
+    foreach ($module in $subModuleFiles) {
+        if ($module -ne $rootModuleName) {
+            $subModules += $module
         }
     }
 
+    # Build the code snippet using the GetCodeSnippet function
+    $codeSnippet = $this.GetCodeSnippet($subModules)
 
-    # Start building the code snippet
+    # Combine the header text and the code snippet for the root module
+    $rootModuleContent = $this.headerText + "`n" + $codeSnippet
+
+    # Define the file paths
+    $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
+
+    # Write the root module content (psm1)
+    $rootModuleContent | Out-File -FilePath $rootModulePath -Encoding utf8
+
+    Log-Message "[EntraModuleBuilder]: Root Module successfully created" -Level 'SUCCESS'
+}
+
+[string] GetCodeSnippet([Array] $subModules) {
     $codeSnippet = @"
-# Import all sub-modules dynamically
+# Set execution policy to ensure scripts can be executed
+Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 
+# Log that the module is being loaded
+Write-Host 'Entra.psm1 is being loaded...'
+
+# Import all sub-modules dynamically
 `$subModules = @(
 "@
 
-    # Add each sub-module to the code snippet
     for ($i = 0; $i -lt $subModules.Count; $i++) {
         $codeSnippet += "    '$($subModules[$i])'"
         if ($i -lt $subModules.Count - 1) {
-            $codeSnippet += ",`n" # Add a comma except for the last item
+            $codeSnippet += ",`n"  # Add a comma except for the last item
         } else {
             $codeSnippet += "`n"  # Just a newline for the last item
         }
-   }
+    }
 
-    # Close the array and complete the foreach loop
+    # Close the array and the loop
     $codeSnippet += @"
 )
 `$moduleBasePath = Split-Path -Parent `$MyInvocation.MyCommand.Definition
 foreach (`$subModule in `$subModules) {
-    `$subModulePath=Join-Path `$moduleBasePath -ChildPath `$subModule
-     Import-Module -Name `$subModulePath -Force -ErrorAction Stop
+    `$subModulePath = Join-Path `$moduleBasePath -ChildPath `$subModule
+    Import-Module -Name `$subModulePath -Global
 }
 "@
 
-   $rootModuleContent=$this.headerText+"`n"+$codeSnippet
-    # Define the file paths
-   
-    $rootPsm1FilePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
-
-    # Write the generated code to both files
-   
-    $rootModuleContent | Out-File -FilePath $rootPsm1FilePath -Encoding utf8
-
-    Log-Message "[EntraModuleBuilder]: Root Module successfully created" -Level 'SUCCESS'
- }
+    return $codeSnippet
+}
 
   [void] CreateRootModuleManifest([string] $Module) {
 	 
@@ -282,11 +294,14 @@ foreach (`$subModule in `$subModules) {
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
         $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+        $requiredModules=@()
         $nestedModules=@()
         foreach($module in $subModules){
-            if($module -ne "$($moduleName).psm1"){
-                Log-Message "[EntraModuleBuilder]: Adding $module to Root Module Nested Modules" -Level 'INFO'
-                $nestedModules += $module
+            if($module -ne $moduleName){
+                Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
+               $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
+               $nestedModules+=$module
+
             }	
         }
         $moduleSettings = @{
@@ -304,7 +319,7 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules =  @()
+            RequiredModules=@()
             NestedModules = $nestedModules
         }
         
@@ -443,7 +458,7 @@ foreach (`$subModule in `$subModules) {
         Log-Message "[EntraModuleBuilder]: Creating manifest for $moduleName at $manifestPath"
         try{
              New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+            Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
         # Log completion for this module
         Log-Message "[EntraModuleBuilder]: Manifest for $moduleName created successfully" -Level 'SUCCESS'
