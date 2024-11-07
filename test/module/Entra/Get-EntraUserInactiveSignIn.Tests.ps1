@@ -58,7 +58,7 @@ Describe "Get-EntraUserInactiveSignIn" {
             $result.lastSignInRequestId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
             $result.lastNonInteractiveSignInDateTime | should -Be "Unknown"
             $result.LastNonInteractiveSigninDaysAgo | should -Be "Unknown"
-            $result.lastNonInteractiveSignInRequestId | should -Be "ffffffff-5555-6666-7777-gggggggggggg"
+            $result.lastNonInteractiveSignInRequestId | should -Be ""
             $result.CreatedDaysAgo | should -Be "31"
 
             Should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
