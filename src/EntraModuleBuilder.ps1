@@ -111,7 +111,7 @@ Set-StrictMode -Version 5
     $functionsToExport = ($otherFiles + $enableEntraFiles | ForEach-Object { $_.BaseName }) -join "', '"
     $psm1Content += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
 
-    Write-Host "[EntraModuleBuilder] Appending content from Typedefs.txt" -ForegroundColor Cyan
+    Log-Message "[EntraModuleBuilder] ProcessSubDirectory: Appending content from Typedefs.txt" -ForegroundColor Cyan
     $typedefsContent = Get-Content -Path $typedefsFilePath -Raw
     $psm1Content += "`n# Typedefs`n" + $typedefsContent
 
@@ -134,7 +134,7 @@ Set-StrictMode -Version 5
         $resolvedStartDirectory = $this.ResolveStartDirectory($startDirectory)
 
         if (-not ($this.CheckTypedefsFile($typedefsFilePath))) {
-            Log-Message "Typedefs.txt not found" -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] $typedefsFilePath not found" -Level 'ERROR'
             return
         }
 
@@ -156,7 +156,7 @@ Set-StrictMode -Version 5
         foreach ($subDir in $subDirectories) {
             # Skip the 'Migration' sub-directory
             if ($subDir.Name -eq 'Migration' -or $subDir.Name -eq 'Invitations') {
-                Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+                Log-Message "[EntraModuleBuilder]: Skipping 'Migration' directory." -Level 'INFO'
                 continue
             }
             $this.ProcessSubDirectory($subDir.FullName, $subDir.Name, $parentDirName, $destDirectory, $typedefsFilePath)
@@ -177,7 +177,7 @@ Set-StrictMode -Version 5
         }
 
         if (-Not (Test-Path -Path $DirectoryPath)) {
-            Write-Host "Directory does not exist: $directoryPath" -ForegroundColor Red
+            Log-Message "[EntraModuleBuilder]: Directory does not exist: $directoryPath" -ForegroundColor Red
             return $null # Return null if directory does not exist
         }
 
@@ -186,11 +186,11 @@ Set-StrictMode -Version 5
 
         # Check if any .psm1 files were found
         if ($subModules.Count -eq 0) {
-            Log-Message "No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
+            Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
             return @() # Return an empty array if no files are found
         } else {
             # Return the names of the .psm1 files
-            return $subModules.BaseName
+            return $subModules.Name
         }
     }
 
@@ -234,12 +234,15 @@ Set-StrictMode -Version 5
 # Set execution policy to ensure scripts can be executed
 Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 
+# Log that the module is being loaded
+Write-Host 'Entra.psm1 is being loaded...'
+
 # Import all sub-modules dynamically
 `$subModules = @(
 "@
 
     for ($i = 0; $i -lt $subModules.Count; $i++) {
-        $codeSnippet += "'$($subModules[$i])'"
+        $codeSnippet += "    '$($subModules[$i])'"
         if ($i -lt $subModules.Count - 1) {
             $codeSnippet += ",`n"  # Add a comma except for the last item
         } else {
@@ -253,7 +256,7 @@ Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 `$moduleBasePath = Split-Path -Parent `$MyInvocation.MyCommand.Definition
 foreach (`$subModule in `$subModules) {
     `$subModulePath = Join-Path `$moduleBasePath -ChildPath `$subModule
-    Import-Module -Name `$subModulePath -Force
+    Import-Module -Name `$subModulePath -Global
 }
 "@
 
@@ -272,7 +275,7 @@ foreach (`$subModule in `$subModules) {
 		$moduleName=if($Module  -eq 'Entra'){
 			'Microsoft.Graph.Entra'
 		}else{
-			'Microsoft.Grap.Entra.Beta'
+			'Microsoft.Graph.Entra.Beta'
 		}
 		
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
@@ -298,6 +301,7 @@ foreach (`$subModule in `$subModules) {
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
                $nestedModules+=$module
+
             }	
         }
         $moduleSettings = @{
@@ -310,6 +314,7 @@ foreach (`$subModule in `$subModules) {
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
+            RootModule = "$($moduleName).psm1" 
             Description = 'Microsoft Graph Entra PowerShell.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
@@ -322,12 +327,12 @@ foreach (`$subModule in `$subModules) {
             $PSData.Prerelease = $content.Prerelease
         }
 
-        Log-Message "Starting Root Module Manifest generation" -Level 'INFO'
+        Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
         
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 		
-		Log-Message "Root Module Manifest successfully created" -Level 'INFO'
+		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
 
  [void] CreateModuleManifest($module) {
@@ -378,7 +383,7 @@ foreach (`$subModule in `$subModules) {
         }
 
         # Log the start of processing for this module
-        Log-Message "[EntraModuleBuilder] Processing module: $moduleFileName"
+        Log-Message "[EntraModuleBuilder]: Processing module: $moduleFileName"
 
         # Define PSData block based on the contents of the ModuleMetadata.json file
         $PSData = @{
@@ -395,7 +400,7 @@ foreach (`$subModule in `$subModules) {
 
         # Check if the specified directory exists
        if (-Not (Test-Path -Path $subDir)) {
-        Log-Message "The specified directory does not exist: $subDir" -Level 'ERROR'
+        Log-Message "[EntraModuleBuilder]: The specified directory does not exist: $subDir" -Level 'ERROR'
         exit
        }
 
@@ -450,13 +455,13 @@ foreach (`$subModule in `$subModules) {
         }
 
         # Create and update the module manifest
-        Log-Message "[EntraModuleBuilder] Creating manifest for $moduleName at $manifestPath"
+        Log-Message "[EntraModuleBuilder]: Creating manifest for $moduleName at $manifestPath"
         try{
              New-ModuleManifest @moduleSettings
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
         # Log completion for this module
-        Log-Message "[EntraModuleBuilder] Manifest for $moduleName created successfully" -Level 'SUCCESS'
+        Log-Message "[EntraModuleBuilder]: Manifest for $moduleName created successfully" -Level 'SUCCESS'
 
         }catch{
             Log-Message $_.Exception.Message -Level 'ERROR'
@@ -471,11 +476,14 @@ foreach (`$subModule in `$subModules) {
 
 
 [void] CreateModuleHelp([string] $Module) {
+
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Starting the creation of Module help.."
    
     if (!(Test-Path $this.OutputDirectory)) {
         New-Item -ItemType Directory -Path $this.OutputDirectory | Out-Null
     }
 
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Output Directory $this.OutputDirectory verified..."
     # Determine the base docs path based on the specified module
     $docsPath = $this.BaseDocsPath
     if ($Module -eq "Entra") {
@@ -483,31 +491,35 @@ foreach (`$subModule in `$subModules) {
     } elseif ($Module -eq "EntraBeta") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta"
     } else {
-        Log-Message "Invalid module specified: $Module" -Level 'ERROR'
+       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Invalid module specified: $Module" -Level 'ERROR'
         return
     }
 
     # Check if the base docs path exists
     if (!(Test-Path $docsPath)) {
-        Log-Message "The specified base documentation path does not exist: $docsPath" -Level 'ERROR'
+        Log-Message "[EntraModuleBuilder] CreateModuleHelp: The specified base documentation path does not exist: $docsPath" -Level 'ERROR'
         return
     }
+
+    Log-Message "[EntraModuleBuilder] CreateModuleHelp: Docs files directory &docsPath verified..."
 
     # Get all subdirectories within the base docs path
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
     foreach ($subDirectory in $subDirectories) {
         # Skip the 'Migration' sub-directory
         if ($subDirectory.Name -eq 'Migration' -or $subDirectory.Name -eq 'Invitations') {
-            Log-Message "Skipping 'Migration' directory." -Level 'INFO'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:Skipping 'Migration' directory." -Level 'INFO'
             continue
         }
+
+       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
         $markDownFiles = Get-ChildItem -Path $subDirectory.FullName -Filter "*.md"
        
         # Check if markdown files are found
         if (-not($markDownFiles)) {
-            Log-Message "No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $($subDirectory.FullName)." -Level 'ERROR'
             continue
         }
 
@@ -528,7 +540,7 @@ foreach (`$subModule in `$subModules) {
             # Create the help file using PlatyPS
             New-ExternalHelp -Path $moduleDocsPath -OutputPath $helpOutputFilePath -Force
 
-            Log-Message "[EntraModuleBuilder] Help file generated: $helpOutputFilePath" -Level 'SUCCESS'
+            Log-Message "[EntraModuleBuilder] CreateModuleHelp help file generated: $helpOutputFilePath" -Level 'SUCCESS'
 			
 		} catch {			
             Log-Message "[EntraModuleBuilder] CreateModuleHelp: $_.Exception.Message" -Level 'ERROR'
