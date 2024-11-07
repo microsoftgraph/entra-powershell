@@ -234,9 +234,6 @@ Set-StrictMode -Version 5
 # Set execution policy to ensure scripts can be executed
 Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 
-# Log that the module is being loaded
-Write-Host 'Entra.psm1 is being loaded...'
-
 # Import all sub-modules dynamically
 `$subModules = @(
 "@
