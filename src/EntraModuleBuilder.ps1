@@ -337,9 +337,9 @@ foreach (`$subModule in `$subModules) {
 
         # Check if the validation was successful
          if ($manifestValidationResult) {
-            Write-Host "Root Module manifest is valid." -ForegroundColor Green
+            Log-Message "Root Module manifest is valid." -Level 'INFO'
         } else {
-            Write-Host "Root Module manifest is invalid." -ForegroundColor Red
+            Log-Message "Root Module manifest is invalid." -Level 'ERROR'
         }
 		
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
@@ -475,9 +475,9 @@ foreach (`$subModule in `$subModules) {
 
             # Check if the validation was successful
             if ($manifestValidationResult) {
-                Write-Host "$manifestFileName Module manifest is valid." -ForegroundColor Green
+                Log-Message "$manifestFileName Module manifest is valid." -Level 'INFO'
             } else {
-                Write-Host "$manifestFileName Module manifest is invalid." -ForegroundColor Red
+                Log-Message "$manifestFileName Module manifest is invalid." -Level 'ERROR'
             }
 
         # Log completion for this module
