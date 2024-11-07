@@ -20,9 +20,9 @@ Set-StrictMode -Version 5
 "@
 
     
-    $this.OutputDirectory = (Join-Path $PSScriptRoot '/bin/')
-    $this.TypeDefsDirectory=(Join-Path $PSScriptRoot "./build/TypeDefs.txt")
-    $this.BaseDocsPath=(Join-Path $PSScriptRoot '/moduleVNext/docs/')
+    $this.OutputDirectory = (Join-Path $PSScriptRoot '../bin/')
+    $this.TypeDefsDirectory=(Join-Path $PSScriptRoot "../build/TypeDefs.txt")
+    $this.BaseDocsPath=(Join-Path $PSScriptRoot '../moduleVNext/docs/')
    
     }
 
@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            (Join-Path $PSScripRoot "\moduleVNext\Entra\Microsoft.Graph.Entra")
+            (Join-Path $PSScriptRoot "..\moduleVNext\Entra\Microsoft.Graph.Entra")
         } else {
-            (Join-Path $PSScriptRoot "\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta")
+            (Join-Path $PSScriptRoot "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta")
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -150,7 +150,7 @@ Set-StrictMode -Version 5
         $parentDirPath = Get-Item $resolvedStartDirectory
         $parentDirName = $parentDirPath.Name
 
-        $destDirectory = Join-Path -Path (Get-Location) -ChildPath $this.OutputDirectory
+        $destDirectory = $this.OutputDirectory
         $this.EnsureDestinationDirectory($destDirectory)
 
         foreach ($subDir in $subDirectories) {
@@ -264,9 +264,9 @@ foreach (`$subModule in `$subModules) {
 	 
 	    # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
-           (Join-Path $PSScriptRoot "/moduleVNext/Entra")
+           (Join-Path $PSScriptRoot "../moduleVNext/Entra")
         } else {
-            (Join-Path $PSScriptRoot "/moduleVNext/EntraBeta")
+            (Join-Path $PSScriptRoot "../moduleVNext/EntraBeta")
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
@@ -345,9 +345,9 @@ foreach (`$subModule in `$subModules) {
  [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
-           (Join-Path $PSScriptRoot "/moduleVNext/Entra")
+           (Join-Path $PSScriptRoot "../moduleVNext/Entra")
         } else {
-            (Join-Path $PSScriptRoot "/moduleVNext/EntraBeta")
+            (Join-Path $PSScriptRoot "../moduleVNext/EntraBeta")
         }
     $moduleBasePath =if ($Module -eq "Entra") {
             (Join-Path $rootPath "/Microsoft.Graph.Entra")
