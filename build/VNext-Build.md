@@ -63,6 +63,13 @@ Create-ModuleHelp -Module Entra // or EntraBeta for the preview version
 
 ```
 
+If NO CHANGES have been made to the `.\module`, then proceed and build the vNext Module
+
+```powershell
+  .\build\Split-EntraModule.ps1 -Module 'Entra' 
+
+```
+
 This will ensure that the cmdlet function files are moved to the right sub-module directory under `.\moduleVNext` directory.
 
 ### Build vNext module
