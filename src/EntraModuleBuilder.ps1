@@ -578,17 +578,21 @@ $($requiredModulesEntries -join ",`n")
             continue
         }
 
-        $subDirectoryFullPath = Join-Path -Path $docsPath -ChildPath $subDirectory.Name
+        $subDirectoryFullPath = $docsPath + "\" + $subDirectory.Name
+        $subDirectoryFullPath2 = Join-Path $PSScriptRoot $docsPath
+		$subDirectoryFullPath2 = Join-Path $subDirectoryFullPath2 $subDirectory.Name
 
-        Log-Message "[Logs] subDirectory : {$subDirectory}"
+        Log-Message "[Logs] subDirectory : $subDirectory"
         Log-Message "[Logs] subDirectory Name : $($subDirectory.Name)"
         Log-Message "[Logs] subDirectory FullName : $($subDirectory.FullName)"
+        Log-Message "[Logs] subDirectory FullPath : $subDirectoryFullPath"
+        Log-Message "[Logs] subDirectory FullPath2 : $subDirectoryFullPath2"
 
         Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
         # Get all markdown files in the current subdirectory
         $markDownFiles = Get-ChildItem -Path $subDirectoryFullPath -Filter "*.md"
-        #Log-Message "[Logs] markDownFiles : {$markDownFiles}"
+        Log-Message "[Logs] markDownFiles : {$markDownFiles}"
         # Check if markdown files are found
         if (-not($markDownFiles)) {
             Log-Message "[EntraModuleBuilder] CreateModuleHelp:No markdown files found in $subDirectoryFullPath." -Level 'ERROR'
