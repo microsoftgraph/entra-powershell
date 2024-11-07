@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "UserID"                            = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                "Id"                                = "00001111-aaaa-2222-bbbb-3333cccc4444"
                 "DisplayName"                       = "Allan Deyoung"
                 "UserPrincipalName"                 = "AllanD@Contoso.com"
                 "Mail"                              = "AllanD@Contoso.com"
@@ -33,9 +33,9 @@ BeforeAll {
 Describe "Get-EntraBetaUserInactiveSignIn" {
     Context "Test for Get-EntraBetaUserInactiveSignIn" {
         It "Returns all the Inactive users in a tenant in the last N days." {
-            $result = Get-EntraBetaUserInactiveSignIn -Ago 30 -UserType "All"
+            $result = Get-EntraBetaUserInactiveSignIn -Ago 30
             $result | Should -Not -BeNullOrEmpty
-            $result.UserID | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
             $result.Mail | should -Be "AllanD@Contoso.com"
@@ -62,7 +62,7 @@ Describe "Get-EntraBetaUserInactiveSignIn" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserInactiveSignIn"
 
-            $result = Get-EntraBetaUserInactiveSignIn -Ago 30 -UserType "All"
+            $result = Get-EntraBetaUserInactiveSignIn -Ago 30
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserInactiveSignIn"

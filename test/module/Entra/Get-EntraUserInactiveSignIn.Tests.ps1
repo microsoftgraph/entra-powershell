@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "UserID"                            = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                "Id"                                = "00001111-aaaa-2222-bbbb-3333cccc4444"
                 "DisplayName"                       = "Allan Deyoung"
                 "UserPrincipalName"                 = "AllanD@Contoso.com"
                 "Mail"                              = "AllanD@Contoso.com"
@@ -35,7 +35,7 @@ Describe "Get-EntraUserInactiveSignIn" {
         It "Returns all the Inactive users in a tenant in the last N days." {
             $result = Get-EntraUserInactiveSignIn -Ago 30 -UserType "All"
             $result | Should -Not -BeNullOrEmpty
-            $result.UserID | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
             $result.Mail | should -Be "AllanD@Contoso.com"
