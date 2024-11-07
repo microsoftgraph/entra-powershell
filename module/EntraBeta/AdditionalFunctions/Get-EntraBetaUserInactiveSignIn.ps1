@@ -40,6 +40,11 @@ function Get-EntraBetaUserInactiveSignIn {
         $queryFilter = ("(signInActivity/lastSignInDateTime le {0})" -f $queryDate)
 
         Write-Debug ("Retrieving Users with Filter {0}" -f $queryFilter)
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        
         $queryUsers = Get-MgBetaUser -Filter $queryFilter -PageSize 999 -All:$true -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled -Headers $customHeaders 
 
         $users = if ($UserType -eq "All") {
