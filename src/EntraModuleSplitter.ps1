@@ -113,7 +113,7 @@ class EntraModuleSplitter {
 	}
 
     # Account for unmapped files
-    if (-not $isMapped -and $functionName -ne 'New-EntraCustomHeaders') {
+    if (-not $isMapped -and ($functionName -ne 'New-EntraCustomHeaders' -or $functionName -ne 'New-EntraBetaCustomHeaders')) {
         $unmappedFilePath = Join-Path -Path $unmappedDirectory -ChildPath "$functionName.ps1"
         Set-Content -Path $unmappedFilePath -Value $ps1Content
         Log-Message "[EntraModuleSplitter] Created unmapped function file: $unmappedFilePath in UnMappedFiles" -Level 'ERROR'
@@ -165,7 +165,13 @@ class EntraModuleSplitter {
 		$functions = $this.ExtractFunctions($psm1Content)
 
 		# Get the function contents for both New-EntraCustomHeaders and Get-EntraUnsupportedCommand
-		$functionNames = @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
+
+		$functionNames =if($moduleName -eq 'Microsoft.Graph.Entra'){
+            @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
+        }else if($moduleName -eq 'Microsoft.Graph.Entra.Beta'){
+            @("New-EntraBetaCustomHeaders","Get-EntraBetaUnsupportedCommand")
+        }
+
 		$functionContents = $functions | Where-Object { $functionNames -contains $_.Name }
 
 		# Initialize a variable to track if the specific function is processed
