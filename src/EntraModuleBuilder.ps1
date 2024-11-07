@@ -568,12 +568,17 @@ $($requiredModulesEntries -join ",`n")
 
     # Get all subdirectories within the base docs path
     $subDirectories = Get-ChildItem -Path $docsPath -Directory
+
+    Log-Message "[Logs] docsPath : {$docsPath}"
+    Log-Message "[Logs] subDirectories : {$subDirectories}"
     foreach ($subDirectory in $subDirectories) {
         # Skip the 'Migration' sub-directory
         if ($subDirectory.Name -eq 'Migration' -or $subDirectory.Name -eq 'Invitations') {
             Log-Message "[EntraModuleBuilder] CreateModuleHelp:Skipping 'Migration' directory." -Level 'INFO'
             continue
         }
+
+        Log-Message "[Logs] subDirectory : {$subDirectory}"
 
        Log-Message "[EntraModuleBuilder] CreateModuleHelp:Creating help file for $subDirectory.."
 
