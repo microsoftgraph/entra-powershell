@@ -40,7 +40,7 @@ This cmdlet retrieves users without interactive sign-ins in the last N days.
 ### Example 1: Retrieve users without interactive sign-ins in the last 10 days
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUserInactiveSignIn -Ago 10
 ```
 
@@ -62,6 +62,32 @@ CreatedDaysAgo                    : 31
 ```
 
 This example shows how to find users who haven’t signed in within the past 30 days.
+
+### Example 2: Retrieve guest users without interactive sign-ins in the last 10 days
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Get-EntraUserInactiveSignIn -Ago 10 -UserType 'Guest'
+```
+
+```Output
+UserID                            : cccccccc-2222-3333-4444-dddddddddddd
+DisplayName                       : Allan Deyoung
+UserPrincipalName                 : AllanD@Contoso.com
+Mail                              : AllanD@Contoso.com
+UserType                          : Guest
+AccountEnabled                    : True
+LastSignInDateTime                : 10/7/2024 12:15:17 PM
+LastSigninDaysAgo                 : 30
+lastSignInRequestId               : eeeeeeee-4444-5555-6666-ffffffffffff
+lastNonInteractiveSignInDateTime  : 10/7/2024 12:13:13 PM
+LastNonInteractiveSigninDaysAgo   : 30
+lastNonInteractiveSignInRequestId : dddddddd-3333-4444-5555-eeeeeeeeeeee
+CreatedDateTime                   : 10/7/2024 12:32:30 AM
+CreatedDaysAgo                    : 31
+```
+
+This example shows how to find guest users who haven’t signed in within the past 30 days. Choose `All` for all users, `Member` for internal users, or `Guest` for external users.
 
 ## Parameters
 
