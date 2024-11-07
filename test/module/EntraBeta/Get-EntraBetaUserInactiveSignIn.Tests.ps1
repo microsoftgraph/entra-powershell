@@ -15,6 +15,7 @@ BeforeAll {
                 Id                = '00001111-aaaa-2222-bbbb-3333cccc4444'
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
+                Mail              = 'AllanD@Contoso.com'
                 signInActivity    = @{
                     LastSignInDateTime               = '10/7/2024 12:15:17 PM'
                     LastNonInteractiveSignInDateTime = '10/7/2024 12:13:13 PM'
@@ -28,6 +29,7 @@ BeforeAll {
                 Id                = '00001111-aaaa-2222-bbbb-3333cccc4444'
                 DisplayName       = 'Allan Deyoung'
                 UserPrincipalName = 'AllanD@Contoso.com'
+                Mail              = 'AllanD@Contoso.com'
             }
         }
     } -ModuleName Microsoft.Graph.Entra.Beta
@@ -42,6 +44,7 @@ Describe "Get-EntraBetaUserInactiveSignIn" {
             $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
+            $result.Mail | should -Be "AllanD@Contoso.com"
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
