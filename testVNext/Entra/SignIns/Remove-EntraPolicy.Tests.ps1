@@ -7,7 +7,7 @@ BeforeAll {
         Import-Module Microsoft.Graph.Entra.SignIns      
     }
 
-    Import-Module (Join-Path $PSScriptRoot "..\..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $ScriptBlock = {
         

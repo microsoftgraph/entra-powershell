@@ -11,7 +11,7 @@ BeforeAll {
          "Id" = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
     }
 }
-    Import-Module (Join-Path $PSScriptRoot "..\..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     Mock -CommandName Get-MgOrganization -MockWith {$scriptblock} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
     Mock -CommandName Update-MgOrganization -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }

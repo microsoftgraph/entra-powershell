@@ -6,7 +6,7 @@ BeforeAll {
         #Import-Module .\bin\Microsoft.Graph.Entra.DirectoryManagement.psm1 -Force
         Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgDeviceRegisteredUserByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }

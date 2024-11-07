@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
         Import-Module Microsoft.Graph.Entra.Groups
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Groups
 }

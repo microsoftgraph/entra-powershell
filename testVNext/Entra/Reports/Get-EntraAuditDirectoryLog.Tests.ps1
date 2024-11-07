@@ -6,7 +6,7 @@ BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra.Reports) -eq $null) {
         Import-Module Microsoft.Graph.Entra.Reports        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         # Write-Host "Mocking Get-EntraAuditDirectoryLog with parameters: $($args | ConvertTo-Json -Depth 3)"

@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
         Import-Module Microsoft.Graph.Entra.SignIns
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgOAuth2PermissionGrant -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
