@@ -331,6 +331,16 @@ foreach (`$subModule in `$subModules) {
         
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+
+        # Validate the module manifest
+         $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
+
+        # Check if the validation was successful
+         if ($manifestValidationResult) {
+            Log-Message "Root Module manifest is valid." -Level 'INFO'
+        } else {
+            Log-Message "Root Module manifest is invalid." -Level 'ERROR'
+        }
 		
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
@@ -458,7 +468,21 @@ foreach (`$subModule in `$subModules) {
         Log-Message "[EntraModuleBuilder]: Creating manifest for $moduleName at $manifestPath"
         try{
              New-ModuleManifest @moduleSettings
+<<<<<<< HEAD
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+=======
+             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+
+             # Validate the module manifest
+            $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
+
+            # Check if the validation was successful
+            if ($manifestValidationResult) {
+                Log-Message "$manifestFileName Module manifest is valid." -Level 'INFO'
+            } else {
+                Log-Message "$manifestFileName Module manifest is invalid." -Level 'ERROR'
+            }
+>>>>>>> 9b7b5c43234a620d8fe3152c8b6220f33254e653
 
         # Log completion for this module
         Log-Message "[EntraModuleBuilder]: Manifest for $moduleName created successfully" -Level 'SUCCESS'
