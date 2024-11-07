@@ -48,6 +48,10 @@ Describe "Get-EntraBetaUserInactiveSignIn" {
         It "Should fail when Ago is empty" {
             { Get-EntraBetaUserInactiveSignIn -Ago } | Should -Throw "Missing an argument for parameter 'Ago'*"
         }
+
+        It "Should fail when Ago is invalid" {
+            { Get-EntraBetaUserInactiveSignIn -Ago HH } | Should -Throw "Cannot process argument transformation on parameter 'Ago'*"
+        }
        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserInactiveSignIn"
