@@ -1,0 +1,116 @@
+---
+title: Get-EntraBetaUserInactiveSignIn
+description: This article provides details on the Get-EntraBetaUserInactiveSignIn command.
+
+
+ms.topic: reference
+ms.date: 11/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserInactiveSignIn
+
+schema: 2.0.0
+---
+
+# Get-EntraBetaUserInactiveSignIn
+
+## Synopsis
+
+Retrieve users without interactive sign-ins in the last N days.
+
+## Syntax
+
+```powershell
+Get-EntraBetaUserInactiveSignIn
+ -Ago <Int32>
+ [-UserType <String>]
+ [<CommonParameters>]
+```
+
+## Description
+
+This cmdlet retrieves users without interactive sign-ins in the last N days.
+
+## Examples
+
+### Example 1: Retrieve users without interactive sign-ins in the last 10 days
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserInactiveSignIn -Ago 10
+```
+
+```Output
+UserID                            : cccccccc-2222-3333-4444-dddddddddddd
+DisplayName                       : Allan Deyoung
+UserPrincipalName                 : AllanD@Contoso.com
+Mail                              : AllanD@Contoso.com
+UserType                          : Member
+AccountEnabled                    : True
+LastSignInDateTime                : 10/7/2024 12:15:17 PM
+LastSigninDaysAgo                 : 30
+lastSignInRequestId               : eeeeeeee-4444-5555-6666-ffffffffffff
+lastNonInteractiveSignInDateTime  : 10/7/2024 12:13:13 PM
+LastNonInteractiveSigninDaysAgo   : 30
+lastNonInteractiveSignInRequestId : dddddddd-3333-4444-5555-eeeeeeeeeeee
+CreatedDateTime                   : 10/7/2024 12:32:30 AM
+CreatedDaysAgo                    : 31
+```
+
+This example shows how to find users who haven’t signed in within the past 30 days.
+
+## Parameters
+
+### -Ago
+
+Number of days to check for Last Sign In Activity.
+
+```yaml
+Type: System.Int32
+Parameter Sets: (All)
+Aliases: LastSignInBeforeDaysAgo
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UserType
+
+Specifies the type of user to filter. Choose `All` for all users, `Member` for internal users, or `Guest` for external users.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: All
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+### System.String
+
+## Outputs
+
+### System.Object
+
+## Notes
+
+## Related Links
+
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
