@@ -27,11 +27,11 @@ function Get-EntraUserInactiveSignIn {
             }
         }
 
-        $queryDate = (Get-Date).AddDays(-$Ago).ToString("yyyy-MM-ddTHH:mm:ssZ")
-        $inactiveFilter = "(signInActivity/lastSignInDateTime le '$queryDate')"
+        $queryDate = Get-Date (Get-Date).AddDays($(0 - $Ago)) -UFormat %Y-%m-%dT00:00:00Z
+        $queryFilter = ("(signInActivity/lastSignInDateTime le {0})" -f $queryDate)
 
-        Write-Debug ("Retrieving Users with Filter {0}" -f $inactiveFilter)
-        $queryUsers = Get-MgUser -Headers $customHeaders -Filter $inactiveFilter -Pagesize 999 -All:$true  -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled
+        Write-Debug ("Retrieving Users with Filter {0}" -f $queryFilter)
+        $queryUsers = Get-MgUser -Filter $queryFilter -Pagesize 999 -All:$true  -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled -Headers $customHeaders 
 
         $users = if ($UserType -eq "All") {
             $queryUsers
