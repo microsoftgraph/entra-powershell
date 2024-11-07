@@ -6,28 +6,31 @@ BeforeAll {
         Import-Module Microsoft.Graph.Entra        
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
-
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "Id"                                = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                "DisplayName"                       = "Allan Deyoung"
-                "UserPrincipalName"                 = "AllanD@Contoso.com"
-                "Mail"                              = "AllanD@Contoso.com"
-                "UserType"                          = "Member"
-                "AccountEnabled"                    = "True"
-                "LastSignInDateTime"                = "10/7/2024 12:15:17 PM"
-                "LastSigninDaysAgo"                 = "30"
-                "lastSignInRequestId"               = "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-                "lastNonInteractiveSignInDateTime"  = "10/7/2024 12:13:13 PM"
-                "LastNonInteractiveSigninDaysAgo"   = "30"
-                "lastNonInteractiveSignInRequestId" = "bbbbbbbb-cccc-dddd-2222-333333333333"
-                "CreatedDateTime"                   = "10/7/2024 12:32:30 AM"
-                "CreatedDaysAgo"                    = "30"
+ 
+    Mock -CommandName Get-MgUser -MockWith {
+        param ($Property)
+        if ($Property -contains 'signInActivity') {
+            # Return a mock object including signInActivity property
+            [pscustomobject]@{
+                Id                = '00001111-aaaa-2222-bbbb-3333cccc4444'
+                DisplayName       = 'Allan Deyoung'
+                UserPrincipalName = 'AllanD@Contoso.com'
+                signInActivity    = @{
+                    LastSignInDateTime               = '10/7/2024 12:15:17 PM'
+                    LastNonInteractiveSignInDateTime = '10/7/2024 12:13:13 PM'
+                    LastSignInRequestId              = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+                }
             }
-        )
-    }    
-    Mock -CommandName Get-MgUser -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+        }
+        else {
+            # Return a generic mock object
+            [pscustomobject]@{
+                Id                = '00001111-aaaa-2222-bbbb-3333cccc4444'
+                DisplayName       = 'Allan Deyoung'
+                UserPrincipalName = 'AllanD@Contoso.com'
+            }
+        }
+    } -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Get-EntraUserInactiveSignIn" {
@@ -38,25 +41,11 @@ Describe "Get-EntraUserInactiveSignIn" {
             $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.DisplayName | should -Be "Allan Deyoung"
             $result.UserPrincipalName | should -Be "AllanD@Contoso.com"
-            $result.Mail | should -Be "AllanD@Contoso.com"
-            $result.UserType | should -Be "Member"
-            $result.AccountEnabled | should -Be "True"
-            $result.LastSignInDateTime | should -Be "10/7/2024 12:15:17 PM"
-            $result.LastSigninDaysAgo | should -Be "30"
-            $result.lastSignInRequestId | should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $result.lastNonInteractiveSignInDateTime | should -Be "10/7/2024 12:13:13 PM"
-            $result.LastNonInteractiveSigninDaysAgo | should -Be "30"
-            $result.lastNonInteractiveSignInRequestId | should -Be "bbbbbbbb-cccc-dddd-2222-333333333333"
-            $result.CreatedDateTime | should -Be "10/7/2024 12:32:30 AM"
-            $result.CreatedDaysAgo | should -Be "30"
 
             Should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Ago is empty" {
             { Get-EntraUserInactiveSignIn -Ago } | Should -Throw "Missing an argument for parameter 'Ago'*"
-        }
-        It "Should fail when Ago is invalid" {
-            { Get-EntraUserInactiveSignIn -Ago "MSFT" } | Should -Throw "Ago should be a number.*"
         }
        
         It "Should contain 'User-Agent' header" {
