@@ -260,8 +260,22 @@ foreach (`$subModule in `$subModules) {
 }
 "@
 
+<<<<<<< HEAD
     return $codeSnippet
 }
+=======
+   $rootModuleContent=$this.headerText+"`n"+$codeSnippet
+    # Define the file paths
+   
+    $rootPsm1FilePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
+
+    # Write the generated code to both files
+   
+    $rootModuleContent | Out-File -FilePath $rootPsm1FilePath -Encoding utf8
+
+    Log-Message "[EntraModuleBuilder]: Root Module successfully created" -Level 'SUCCESS'
+ }
+>>>>>>> 08f91e5a3a34d91239e69e05b1c3bbcff0b1853b
 
   [void] CreateRootModuleManifest([string] $Module) {
 	 
@@ -297,11 +311,17 @@ foreach (`$subModule in `$subModules) {
         $requiredModules=@()
         $nestedModules=@()
         foreach($module in $subModules){
+<<<<<<< HEAD
             if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
                $nestedModules+=$module
 
+=======
+            if($module -ne "$($moduleName).psm1"){
+                Log-Message "[EntraModuleBuilder]: Adding $module to Root Module Nested Modules" -Level 'INFO'
+                $nestedModules += $module
+>>>>>>> 08f91e5a3a34d91239e69e05b1c3bbcff0b1853b
             }	
         }
         $moduleSettings = @{
