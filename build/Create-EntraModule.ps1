@@ -1,7 +1,8 @@
 
 [cmdletbinding()]
 param (
-    [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
+    [string]$Module = "Entra",  # Default to "Entra" if no argument is provided
+    [switch]$
 )
 
 . (Join-Path $psscriptroot "/common-functions.ps1")
@@ -18,4 +19,4 @@ if($Module -eq 'Entra'){
 
 $moduleBuilder.CreateModuleHelp($Module)
 $moduleBuilder.CreateSubModuleFile($Module, $typeDefsPath)
-$moduleBuilder.CreateModuleManifest($Module)
+$moduleBuilder.CreateModuleManifest($Module, $Root)

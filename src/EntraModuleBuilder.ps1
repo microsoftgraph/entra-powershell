@@ -316,7 +316,7 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules=@()
+            RequiredModules=$requiredModules
             NestedModules = $nestedModules
         }
         
@@ -342,7 +342,7 @@ foreach (`$subModule in `$subModules) {
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
 
- [void] CreateModuleManifest($module) {
+ [void] CreateModuleManifest($module, $Root) {
     # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
            (Join-Path $PSScriptRoot "../moduleVNext/Entra")
@@ -466,8 +466,6 @@ foreach (`$subModule in `$subModules) {
         try{
              New-ModuleManifest @moduleSettings
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
-             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
-
              # Validate the module manifest
             $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
 
@@ -487,9 +485,11 @@ foreach (`$subModule in `$subModules) {
        
     }
 
-    #Create the Root Module Manifest
-
-    $this.CreateRootModuleManifest($module)
+    #Create the Root Module Manifest if the Root param has been set
+   if($Root){
+      $this.CreateRootModuleManifest($module)
+   }
+   
 }
 
 
