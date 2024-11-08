@@ -21,7 +21,7 @@ else{
 	$fullModuleNames += $modName
 }
 
-if($fullModuleName -contains 'Microsoft.Graph.Entra.Beta'){
+if($fullModuleName -like 'Microsoft.Graph.Entra.Beta*'){
 	$moduleName = 'EntraBeta'
 }
 else{
