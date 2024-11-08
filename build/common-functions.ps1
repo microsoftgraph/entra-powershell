@@ -139,10 +139,10 @@ function Create-ModuleFolder {
 	$thisModuleDirectory = Join-Path $modulesDirectory (Get-ModuleName)
 	$targetDirectory = Join-Path $thisModuleDirectory (Get-ModuleVersion).tostring()
 
-	Log-Message "[Create-ModuleFolder]: OutputDirectory : $OutputDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: modulesDirectory : $modulesDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: thisModuleDirectory : $thisModuleDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: targetDirectory : $targetDirectory" -Level 'INFO'
+	Write-Host "[Create-ModuleFolder]: OutputDirectory : $OutputDirectory" -ForegroundColor 'Yellow'
+	Write-Host "[Create-ModuleFolder]: modulesDirectory : $modulesDirectory" -ForegroundColor 'Yellow'
+	Write-Host "[Create-ModuleFolder]: thisModuleDirectory : $thisModuleDirectory" -ForegroundColor 'Yellow'
+	Write-Host "[Create-ModuleFolder]: targetDirectory : $targetDirectory" -ForegroundColor 'Yellow'
 
 
 	$null = New-Item -Path $targetDirectory -ItemType Directory
