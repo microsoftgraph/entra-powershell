@@ -161,7 +161,17 @@ function Create-ModuleFolder {
 		$ignorableSegmentCount = ((Get-ModuleBasePath).replace("`\", '/') -split '/').count
 		$sourceFileList = @()
 		$destinationFileList = @()
-		Get-ModuleFiles | Where  { $_ -like "*$module*" } | ForEach-Object {
+		$moduleFiles = @()
+
+		if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psd1" }
+			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psm1" }
+		}
+		else{
+			$moduleFiles +=  Get-ModuleFiles | Where  { $_ -like "*$module*" }
+		}
+
+		$moduleFiles | ForEach-Object {
 			$normalizedFile = $_.replace("`\", '/')
 			$segments = $normalizedFile -split '/'
 			$relativeSegments = $segments[$ignorableSegmentCount..($segments.length - 1)]
@@ -169,13 +179,6 @@ function Create-ModuleFolder {
 
 			$sourceFileList += Join-Path (Get-ModuleBasePath) $relativePath
 			$destinationFileList += Join-Path $targetDirectory $relativePath
-
-			Log-Message "[Create-ModuleFolder]: segments : $segments" -Level 'INFO'
-			Log-Message "[Create-ModuleFolder]: relativeSegments : $relativeSegments" -Level 'INFO'
-			Log-Message "[Create-ModuleFolder]: relativePath : $relativePath" -Level 'INFO'
-			Log-Message "[Create-ModuleFolder]: targetDirectory : $targetDirectory" -Level 'INFO'
-			# Log-Message "[Create-ModuleFolder]: sourceFileList : $sourceFileList" -Level 'INFO'
-			# Log-Message "[Create-ModuleFolder]: destinationFileList : $destinationFileList" -Level 'INFO'
 		}
 
 		0..($sourceFileList.length - 1) | ForEach-Object {
