@@ -2,7 +2,7 @@
 [cmdletbinding()]
 param (
     [string]$Module = "Entra",  # Default to "Entra" if no argument is provided
-    [switch]$
+    [switch]$Root
 )
 
 . (Join-Path $psscriptroot "/common-functions.ps1")
