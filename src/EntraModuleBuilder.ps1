@@ -345,7 +345,7 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            NestedModules = $nestedModules
+            NestedModules = @()
         }
         
         if($null -ne $content.Prerelease){
