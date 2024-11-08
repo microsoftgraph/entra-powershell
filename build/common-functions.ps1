@@ -136,44 +136,64 @@ function Create-ModuleFolder {
 		$null = Remove-Item -Recurse -Force $modulesDirectory
 	}
 
-	$thisModuleDirectory = Join-Path $modulesDirectory (Get-ModuleName)
-	$targetDirectory = Join-Path $thisModuleDirectory (Get-ModuleVersion).tostring()
+	$modules = @()
+	$moduleName = Get-ModuleName
+	$moduleVersion = Get-ModuleVersion
 
-	Log-Message "[Create-ModuleFolder]: OutputDirectory : $OutputDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: modulesDirectory : $modulesDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: thisModuleDirectory : $thisModuleDirectory" -Level 'INFO'
-	Log-Message "[Create-ModuleFolder]: targetDirectory : $targetDirectory" -Level 'INFO'
-
-	$null = New-Item -Path $targetDirectory -ItemType Directory
-
-	$ignorableSegmentCount = ((Get-ModuleBasePath).replace("`\", '/') -split '/').count
-	$sourceFileList = @()
-	$destinationFileList = @()
-	Get-ModuleFiles | ForEach-Object {
-		$normalizedFile = $_.replace("`\", '/')
-		$segments = $normalizedFile -split '/'
-		$relativeSegments = $segments[$ignorableSegmentCount..($segments.length - 1)]
-		$relativePath = $relativeSegments -join '/'
-
-		$sourceFileList += Join-Path (Get-ModuleBasePath) $relativePath
-		$destinationFileList += Join-Path $targetDirectory $relativePath
+	if($moduleVersion -is [array])
+	{
+		$moduleVersion = $moduleVersion[0]
 	}
 
-	0..($sourceFileList.length - 1) | ForEach-Object {
-		$parent = Split-Path -Parent $destinationFileList[ $_ ]
-		if ( -not (Test-Path $parent) ) {
-			$null = New-Item -Path $parent -ItemType Directory
+	if($moduleName -isnot [array]){
+		$modules += $moduleName
+	}
+	else{
+		$modules = $moduleName
+	}
+
+	foreach($module in $modules){
+		$thisModuleDirectory = Join-Path $modulesDirectory $module
+		$targetDirectory = Join-Path $thisModuleDirectory $moduleVersion.tostring()
+
+		$null = New-Item -Path $targetDirectory -ItemType Directory
+
+		$ignorableSegmentCount = ((Get-ModuleBasePath).replace("`\", '/') -split '/').count
+		$sourceFileList = @()
+		$destinationFileList = @()
+		Get-ModuleFiles | Where  { $_ -like "*$module*" } | ForEach-Object {
+			$normalizedFile = $_.replace("`\", '/')
+			$segments = $normalizedFile -split '/'
+			$relativeSegments = $segments[$ignorableSegmentCount..($segments.length - 1)]
+			$relativePath = $relativeSegments -join '/'
+
+			$sourceFileList += Join-Path (Get-ModuleBasePath) $relativePath
+			$destinationFileList += Join-Path $targetDirectory $relativePath
+
+			Log-Message "[Create-ModuleFolder]: segments : $segments" -Level 'INFO'
+			Log-Message "[Create-ModuleFolder]: relativeSegments : $relativeSegments" -Level 'INFO'
+			Log-Message "[Create-ModuleFolder]: relativePath : $relativePath" -Level 'INFO'
+			Log-Message "[Create-ModuleFolder]: targetDirectory : $targetDirectory" -Level 'INFO'
+			# Log-Message "[Create-ModuleFolder]: sourceFileList : $sourceFileList" -Level 'INFO'
+			# Log-Message "[Create-ModuleFolder]: destinationFileList : $destinationFileList" -Level 'INFO'
 		}
 
-		$destinationName = Split-Path -Leaf $destinationFileList[ $_ ]
-		$syntaxOnlySourceName = Split-Path -Leaf $sourceFileList[ $_ ]
-		$sourceActualName = (Get-ChildItem (Split-Path -Parent $sourceFileList[ $_ ]) -Filter $syntaxOnlySourceName).name
+		0..($sourceFileList.length - 1) | ForEach-Object {
+			$parent = Split-Path -Parent $destinationFileList[ $_ ]
+			if ( -not (Test-Path $parent) ) {
+				$null = New-Item -Path $parent -ItemType Directory
+			}
 
-		if ( $destinationName -cne $sourceActualName ) {
-			throw "The case-sensitive name of the file at source path '$($sourceFileList[$_])' is actually '$sourceActualName' and it does not match the case of the last element of destination path '$($destinationFileList[$_])' -- the case of the file names must match exactly in order to support environments with case-sensitive file systems. This can be corrected in the module manifest by specifying the case of the file exactly as it exists in the module source code directory"
+			$destinationName = Split-Path -Leaf $destinationFileList[ $_ ]
+			$syntaxOnlySourceName = Split-Path -Leaf $sourceFileList[ $_ ]
+			$sourceActualName = (Get-ChildItem (Split-Path -Parent $sourceFileList[ $_ ]) -Filter $syntaxOnlySourceName).name
+
+			if ( $destinationName -cne $sourceActualName ) {
+				throw "The case-sensitive name of the file at source path '$($sourceFileList[$_])' is actually '$sourceActualName' and it does not match the case of the last element of destination path '$($destinationFileList[$_])' -- the case of the file names must match exactly in order to support environments with case-sensitive file systems. This can be corrected in the module manifest by specifying the case of the file exactly as it exists in the module source code directory"
+			}
+
+			Copy-Item $sourceFileList[ $_ ] $destinationFileList[ $_ ]
 		}
-
-		Copy-Item $sourceFileList[ $_ ] $destinationFileList[ $_ ]
 	}
 }
 
