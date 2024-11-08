@@ -193,7 +193,32 @@ Set-StrictMode -Version 5
             return $subModules.Name
         }
     }
+  [string[]] GetSubModuleMaifestFiles([string] $Module, [string]$DirectoryPath) {
+        # Check if the directory exists
+        # Define the pattern for matching submodule files
+        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
+            "Microsoft.Graph.Entra.Beta.*.psd1"
+        } else {
+            "Microsoft.Graph.Entra.*.psd1"
+        }
 
+        if (-Not (Test-Path -Path $DirectoryPath)) {
+            Log-Message "[EntraModuleBuilder]: Directory does not exist: $directoryPath" -ForegroundColor Red
+            return $null # Return null if directory does not exist
+        }
+
+        # Get all .psm1 files in the specified directory
+        $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
+
+        # Check if any .psm1 files were found
+        if ($subModules.Count -eq 0) {
+            Log-Message "[EntraModuleBuilder]: No .psd1 files found in the directory: $directoryPath" -Level 'INFO'
+            return @() # Return an empty array if no files are found
+        } else {
+            # Return the names of the .psm1 files
+            return $subModules.Name
+        }
+    }
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
     # Determine the root module name based on the module type
@@ -290,7 +315,7 @@ foreach (`$subModule in `$subModules) {
         }
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
-        $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+        $subModules=$this.GetSubModuleManifestFiles($Module,$this.OutputDirectory)
         $requiredModules=@()
         $nestedModules=@()
         foreach($module in $subModules){
