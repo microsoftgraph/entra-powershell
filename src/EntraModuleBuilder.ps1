@@ -352,7 +352,7 @@ foreach (`$subModule in `$subModules) {
         Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
         
         New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData -Verbose
 
         # Validate the module manifest
          $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
