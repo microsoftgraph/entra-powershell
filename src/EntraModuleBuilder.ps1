@@ -184,6 +184,8 @@ Set-StrictMode -Version 5
         # Get all .psm1 files in the specified directory
         $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
 
+        $subModuleFileN
+
         # Check if any .psm1 files were found
         if ($subModules.Count -eq 0) {
             Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
@@ -193,6 +195,35 @@ Set-StrictMode -Version 5
             return $subModules.Name
         }
     }
+
+ [string[]] Get-SubModuleFileNames([string]$Module, [string]$DirectoryPath) {
+  
+
+    # Define the pattern for matching submodule files
+    $pattern = if ($Module -like "Microsoft.Graph.Entra.Beta.*") {
+        "Microsoft.Graph.Entra.Beta.*.psm1"
+    } else {
+        "Microsoft.Graph.Entra.*.psm1"
+    }
+
+    # Check if the directory exists
+    if (-Not (Test-Path -Path $DirectoryPath)) {
+        Log-Message "[EntraModuleBuilder]: Directory does not exist: $DirectoryPath" -ForegroundColor Red
+        return $null # Return null if directory does not exist
+    }
+
+    # Get all .psm1 files in the specified directory
+    $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
+
+    # Check if any .psm1 files were found
+    if ($subModules.Count -eq 0) {
+        Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $DirectoryPath" -Level 'INFO'
+        return @() # Return an empty array if no files are found
+    } else {
+        # Return the filenames without their extensions
+        return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
+    }
+}
 
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
@@ -290,7 +321,7 @@ foreach (`$subModule in `$subModules) {
         }
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
-        $subModules=$this.GetSubModuleFiles($Module,$this.OutputDirectory)
+        $subModules=$this.GetSubModuleFileNames($Module,$this.OutputDirectory)
         $requiredModules=@()
         $nestedModules=@()
         foreach($module in $subModules){
@@ -317,7 +348,7 @@ foreach (`$subModule in `$subModules) {
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
             RequiredModules=@()
-            NestedModules = $nestedModules
+            NestedModules = @()
         }
         
         if($null -ne $content.Prerelease){
@@ -329,14 +360,22 @@ foreach (`$subModule in `$subModules) {
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
-        # Validate the module manifest
-         $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
+         #Format the RequiredModules section as text
+        $requiredModulesText = "RequiredModules = @(" + `
+            ($requiredModules | ForEach-Object {
+                "@{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
+            } | Out-String -Stream | ForEach-Object { "    $_" } | Out-String) + ")"
 
-        # Check if the validation was successful
-         if ($manifestValidationResult) {
-            Log-Message "Root Module manifest is valid." -Level 'INFO'
-        } else {
-            Log-Message "Root Module manifest is invalid." -Level 'ERROR'
+        # Read the existing manifest file content as an array of lines
+        $fileContent = Get-Content -Path $manifestPath
+
+        # Find and update the `# RequiredModules` line
+        for ($i = 0; $i -lt $fileContent.Count; $i++) {
+            if ($fileContent[$i] -match '^#\s*RequiredModules') {
+                # Uncomment and replace the line with the new RequiredModules content
+                $fileContent[$i] = $requiredModulesText
+                break
+            }
         }
 		
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
@@ -466,7 +505,6 @@ foreach (`$subModule in `$subModules) {
         try{
              New-ModuleManifest @moduleSettings
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
-             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
              # Validate the module manifest
             $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
@@ -486,10 +524,6 @@ foreach (`$subModule in `$subModules) {
         }
        
     }
-
-    #Create the Root Module Manifest
-
-    $this.CreateRootModuleManifest($module)
 }
 
 
