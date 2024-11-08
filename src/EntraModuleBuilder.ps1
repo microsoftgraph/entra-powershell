@@ -326,7 +326,7 @@ foreach (`$subModule in `$subModules) {
             if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
-               $nestedModules+=$module
+               $nestedModules+="$($module).psm1"
 
             }	
         }
@@ -345,7 +345,7 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            NestedModules = @()
+            NestedModules = $nestedModules
         }
         
         if($null -ne $content.Prerelease){
