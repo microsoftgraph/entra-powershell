@@ -345,7 +345,6 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules=@()
             NestedModules = @()
         }
         
@@ -358,23 +357,48 @@ foreach (`$subModule in `$subModules) {
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
-         #Format the RequiredModules section as text
-        $requiredModulesText = "RequiredModules = @(" + `
-            ($requiredModules | ForEach-Object {
-                "@{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
-            } | Out-String -Stream | ForEach-Object { "    $_" } | Out-String) + ")"
+         # Format the RequiredModules section as text
+$requiredModulesText = @"
+RequiredModules = @(
+$($RequiredModules | ForEach-Object {
+    "    @{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
+})
+)
+"@.Trim()
 
-        # Read the existing manifest file content as an array of lines
-        $fileContent = Get-Content -Path $manifestPath
+    # Log the generated RequiredModules text for debugging
+    Log-Message "Generated RequiredModules section:`n$requiredModulesText"
 
-        # Find and update the `# RequiredModules` line
-        for ($i = 0; $i -lt $fileContent.Count; $i++) {
-            if ($fileContent[$i] -match '^#\s*RequiredModules') {
-                # Uncomment and replace the line with the new RequiredModules content
-                $fileContent[$i] = $requiredModulesText
-                break
-            }
-        }
+    # Read the existing root module manifest file content
+    if (-Not (Test-Path -Path $ManifestPath)) {
+        Log-Message "Manifest file not found: $ManifestPath" -ForegroundColor Red
+        return
+    }
+
+    # Using -Raw to get all content in one go
+    $fileContent = Get-Content -Path $ManifestPath -Raw -ErrorAction Stop
+
+    # Check if the `# RequiredModules = @()` section exists
+    if ($fileContent -match '^\s*#\s*RequiredModules\s*=\s*@\(\)') {
+        Log-Message "Found commented '# RequiredModules = @()' section."
+        
+        # Replace the commented section with the new RequiredModules content
+        $fileContent = $fileContent -replace '^\s*#\s*RequiredModules\s*=\s*@\(\)', $requiredModulesText
+    } 
+    else {
+        Log-Message "No '# RequiredModules = @()' section found. Appending to the end of the file." -Level 'ERROR'
+    }
+
+    # Write the updated content back to the manifest file
+    try {
+        # Use Set-Content with -Force to ensure overwrite
+        $fileContent | Set-Content -Path $ManifestPath -Force -Encoding UTF8
+        Log-Message "[EntraModuleBuilder]: Manifest file updated successfully."
+    }
+    catch {
+        Log-Message "Error writing to manifest file: $_" -ForegroundColor Red
+    }
+
 		
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
