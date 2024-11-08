@@ -246,6 +246,5 @@ function Create-ModuleHelp {
 	$moduleDocsPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name ModuleSubdirectoryName)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name docsPath)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name ($Module + "Path"))
-	Log-Message "[ModuleHelp] moduleDocsPath : $moduleDocsPath" -Level 'INFO'
 	New-ExternalHelp -Path $moduleDocsPath -OutputPath $binPath -Force
 }

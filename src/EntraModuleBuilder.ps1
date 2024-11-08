@@ -451,13 +451,13 @@ $($requiredModulesEntries -join ",`n")
         $manifestPath = Join-Path $this.OutputDirectory "$manifestFileName"
 
         # Check if the specified directory exists
-       if (-Not (Test-Path -Path $subDir)) {
+       if (-Not (Test-Path -Path $subDir.FullName)) {
         Log-Message "[EntraModuleBuilder]: The specified directory does not exist: $subDir" -Level 'ERROR'
         exit
        }
 
        # Get all files in the specified directory and its subdirectories, without extensions
-        $allFunctions = Get-ChildItem -Path $subDir -Recurse -File | ForEach-Object { $_.BaseName }
+        $allFunctions = Get-ChildItem -Path $subDir.FullName -Recurse -File | ForEach-Object { $_.BaseName }
 
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
@@ -509,7 +509,7 @@ $($requiredModulesEntries -join ",`n")
         # Create and update the module manifest
         Log-Message "[EntraModuleBuilder]: Creating manifest for $moduleName at $manifestPath"
         try{
-             New-ModuleManifest @moduleSettings
+            New-ModuleManifest @moduleSettings
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
              # Validate the module manifest
@@ -551,10 +551,12 @@ $($requiredModulesEntries -join ",`n")
     $docsPath = $this.BaseDocsPath
     if ($Module -eq "Entra") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-v1.0"
-    } elseif ($Module -eq "EntraBeta") {
+    }
+    elseif ($Module -eq "EntraBeta") {
         $docsPath = Join-Path -Path $this.BaseDocsPath -ChildPath "entra-powershell-beta"
-    } else {
-       Log-Message "[EntraModuleBuilder] CreateModuleHelp:Invalid module specified: $Module" -Level 'ERROR'
+    }
+    else {
+        Log-Message "[EntraModuleBuilder] CreateModuleHelp:Invalid module specified: $Module" -Level 'ERROR'
         return
     }
 
@@ -586,15 +588,6 @@ $($requiredModulesEntries -join ",`n")
             continue
         }
 
-        # Generate the help file name based on the module and sub-directory
-        # $subDirectoryName = [System.IO.Path]::GetFileName($subDirectoryFullPath)
-
-        # $helpFileName = if ($Module -eq "Entra") {
-        #     "Microsoft.Graph.Entra.$subDirectoryName-Help.xml"
-        # } else {
-        #     "Microsoft.Graph.Entra.Beta.$subDirectoryName-Help.xml"
-        # }
-
         $helpFileName = if ($Module -eq "Entra") {
             "Microsoft.Graph.Entra.$($subDirectory.Name)-Help.xml"
         } else {
@@ -604,10 +597,6 @@ $($requiredModulesEntries -join ",`n")
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
         $moduleDocsPath = $subDirectory.FullName
-        Log-Message "[Logs] moduleDocsPath : {$moduleDocsPath}"
-        Log-Message "[Logs] helpOutputFilePath : {$helpOutputFilePath}"
-        Log-Message "[Logs] helpFileName : {$helpFileName}"
-        Log-Message "[Logs] subDirectory : {$subDirectory}"
 		
 		try {
             # Create the help file using PlatyPS

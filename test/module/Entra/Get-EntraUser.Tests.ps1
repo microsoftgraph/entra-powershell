@@ -73,7 +73,6 @@ Describe "Get-EntraUser" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
-            Write-Verbose "Header value : {$userAgentHeaderValue}" -Verbose
 
             $result = Get-EntraUser -Top 1
             $result | Should -Not -BeNullOrEmpty
