@@ -10,15 +10,28 @@ param(
 
 . "$psscriptroot/common-functions.ps1"
 
-$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
-$modulePath = Join-Path $modulePath (Get-ModuleName)
 $fullModuleName = Get-ModuleName
-if($fullModuleName -eq 'Microsoft.Graph.Entra'){
-	$moduleName = 'Entra'
+
+if($fullModuleName -is [array]){
+	$fullModuleName = $fullModuleName[0]
 }
-else{
+
+if($fullModuleName -contains 'Microsoft.Graph.Entra.Beta'){
 	$moduleName = 'EntraBeta'
 }
+else{
+	$moduleName = 'Entra'
+}
+
+$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
+$modulePath = Join-Path $modulePath (Get-ModuleName)
+# $fullModuleName = Get-ModuleName
+# if($fullModuleName -eq 'Microsoft.Graph.Entra'){
+# 	$moduleName = 'Entra'
+# }
+# else{
+# 	$moduleName = 'EntraBeta'
+# }
 
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
