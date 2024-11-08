@@ -193,7 +193,7 @@ Set-StrictMode -Version 5
             return $subModules.Name
         }
     }
-  [string[]] GetSubModuleMaifestFiles([string] $Module, [string]$DirectoryPath) {
+  [string[]] GetSubModuleManifestFiles([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
         # Define the pattern for matching submodule files
         $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
