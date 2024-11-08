@@ -603,7 +603,7 @@ $($requiredModulesEntries -join ",`n")
  
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName
 
-        $moduleDocsPath = $subDirectory
+        $moduleDocsPath = $subDirectory.FullName
         Log-Message "[Logs] moduleDocsPath : {$moduleDocsPath}"
         Log-Message "[Logs] helpOutputFilePath : {$helpOutputFilePath}"
         Log-Message "[Logs] helpFileName : {$helpFileName}"
