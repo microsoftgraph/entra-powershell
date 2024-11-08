@@ -10,7 +10,7 @@ param(
 
 . "$psscriptroot/common-functions.ps1"
 
-$fullModuleNames = ()
+$fullModuleNames = @()
 $modName = Get-ModuleName
 
 if($modName -is [array]){
