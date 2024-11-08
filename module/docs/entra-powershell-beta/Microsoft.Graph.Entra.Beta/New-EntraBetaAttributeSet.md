@@ -36,7 +36,9 @@ New-EntraBetaAttributeSet
 
 Adds a new Microsoft Entra ID attribute set object.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+The signed-in user must be assigned one of the following directory roles:
+
+- Attribute Definition Administrator
 
 ## Examples
 
