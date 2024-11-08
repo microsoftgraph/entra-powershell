@@ -44,13 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$params = @{
-    AttributeSetId = 'Testing'
-    Description = 'Attributes for engineering team'
-    MaxAttributesPerSet = 10
-}
-
-New-EntraBetaAttributeSet @params
+New-EntraBetaAttributeSet -AttributeSetId 'ContosoSet' -Description 'Contoso Set' -MaxAttributesPerSet 15
 ```
 
 ```Output
