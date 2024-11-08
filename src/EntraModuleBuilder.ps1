@@ -342,7 +342,7 @@ foreach (`$subModule in `$subModules) {
 		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
  }
 
- [void] CreateModuleManifest($module, $Root) {
+ [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
         $rootPath=if ($Module -eq "Entra") {
            (Join-Path $PSScriptRoot "../moduleVNext/Entra")
@@ -485,11 +485,6 @@ foreach (`$subModule in `$subModules) {
        
     }
 
-    #Create the Root Module Manifest if the Root param has been set
-   if($Root){
-      $this.CreateRootModuleManifest($module)
-   }
-   
 }
 
 
