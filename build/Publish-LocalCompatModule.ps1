@@ -10,10 +10,15 @@ param(
 
 . "$psscriptroot/common-functions.ps1"
 
-$fullModuleName = Get-ModuleName
+$fullModuleNames = ()
+$modName = Get-ModuleName
 
-if($fullModuleName -is [array]){
-	$fullModuleName = $fullModuleName[0]
+if($modName -is [array]){
+	$fullModuleName = $modName[0]
+}
+else{
+	$fullModuleName = $modName
+	$fullModuleNames += $modName
 }
 
 if($fullModuleName -contains 'Microsoft.Graph.Entra.Beta'){
@@ -22,16 +27,6 @@ if($fullModuleName -contains 'Microsoft.Graph.Entra.Beta'){
 else{
 	$moduleName = 'Entra'
 }
-
-$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
-$modulePath = Join-Path $modulePath (Get-ModuleName)
-# $fullModuleName = Get-ModuleName
-# if($fullModuleName -eq 'Microsoft.Graph.Entra'){
-# 	$moduleName = 'Entra'
-# }
-# else{
-# 	$moduleName = 'EntraBeta'
-# }
 
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
@@ -45,8 +40,13 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
-Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+foreach($module in $fullModuleNames){
+	$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
+	$modulePath = Join-Path $modulePath $module
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
-if ($Install) {
-	Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
+	if ($Install) {
+		Install-Module -Name module -Repository (Get-LocalPSRepoName) -AllowClobber
+	}
 }
+
