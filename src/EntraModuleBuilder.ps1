@@ -184,8 +184,6 @@ Set-StrictMode -Version 5
         # Get all .psm1 files in the specified directory
         $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
 
-        $subModuleFileN
-
         # Check if any .psm1 files were found
         if ($subModules.Count -eq 0) {
             Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $directoryPath" -Level 'INFO'
@@ -196,34 +194,34 @@ Set-StrictMode -Version 5
         }
     }
 
- [string[]] Get-SubModuleFileNames([string]$Module, [string]$DirectoryPath) {
-  
+     [string[]] GetSubModuleFileNames([string] $Module, [string]$DirectoryPath) {
+        # Check if the directory exists
+        # Define the pattern for matching submodule files
+        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
+            "Microsoft.Graph.Entra.Beta.*.psd1"
+        } else {
+            "Microsoft.Graph.Entra.*.psd1"
+        }
 
-    # Define the pattern for matching submodule files
-    $pattern = if ($Module -like "Microsoft.Graph.Entra.Beta.*") {
-        "Microsoft.Graph.Entra.Beta.*.psm1"
-    } else {
-        "Microsoft.Graph.Entra.*.psm1"
+        if (-Not (Test-Path -Path $DirectoryPath)) {
+            Log-Message "[EntraModuleBuilder]: Directory does not exist: $directoryPath" -ForegroundColor Red
+            return $null # Return null if directory does not exist
+        }
+
+        # Get all .psm1 files in the specified directory
+        $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
+
+        # Check if any .psm1 files were found
+        if ($subModules.Count -eq 0) {
+            Log-Message "[EntraModuleBuilder]: No .psd1 files found in the directory: $directoryPath" -Level 'INFO'
+            return @() # Return an empty array if no files are found
+        } else {
+            # Return the names of the .psd1 files
+            return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
+        }
     }
 
-    # Check if the directory exists
-    if (-Not (Test-Path -Path $DirectoryPath)) {
-        Log-Message "[EntraModuleBuilder]: Directory does not exist: $DirectoryPath" -ForegroundColor Red
-        return $null # Return null if directory does not exist
-    }
-
-    # Get all .psm1 files in the specified directory
-    $subModules = Get-ChildItem -Path $DirectoryPath -Filter $pattern -File
-
-    # Check if any .psm1 files were found
-    if ($subModules.Count -eq 0) {
-        Log-Message "[EntraModuleBuilder]: No .psm1 files found in the directory: $DirectoryPath" -Level 'INFO'
-        return @() # Return an empty array if no files are found
-    } else {
-        # Return the filenames without their extensions
-        return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
-    }
-}
+ 
 
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
