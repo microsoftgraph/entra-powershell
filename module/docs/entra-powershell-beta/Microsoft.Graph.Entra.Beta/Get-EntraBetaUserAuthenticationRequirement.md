@@ -39,6 +39,10 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Global Reader  
 - Authentication Policy Administrator
 
+**Note:** The most effective way to protect users with Microsoft Entra MFA is by creating a Conditional Access policy. Conditional Access, a feature available in Microsoft Entra ID P1 and P2, allows you to enforce MFA based on specific conditions and scenarios.
+
+For Microsoft Entra ID Free tenants without Conditional Access, you can [use security defaults](https://learn.microsoft.com/entra/fundamentals/security-defaults) to protect users. MFA prompts are automatic, but you can't customize the rules.
+
 ## Examples
 
 ### Example 1: Retrieve a User's MFA Status
@@ -61,11 +65,11 @@ This example retrieves an object created by the specified user. The `UserId` par
 
 A user's state shows whether an Authentication Administrator has enrolled them in per-user Microsoft Entra multifactor authentication. User accounts can have one of three distinct states in Microsoft Entra MFA:
 
-**`Disabled`** - The default state for a user not enrolled in per-user Microsoft Entra multifactor authentication.
+- **`Disabled`** - The default state for a user not enrolled in per-user Microsoft Entra multifactor authentication.
 
-**`Enabled`** - The user is enrolled in per-user Microsoft Entra multifactor authentication, but can still use their password for legacy authentication. If the user has no registered MFA authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser).
+- **`Enabled`** - The user is enrolled in per-user Microsoft Entra multifactor authentication, but can still use their password for  legacy authentication. If the user has no registered MFA authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser).
 
-**`Enforced`** - The user is enrolled per-user in Microsoft Entra multifactor authentication. If the user has no registered authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser). Users who complete registration while they're Enabled are automatically moved to the Enforced state.
+- **`Enforced`** - The user is enrolled per-user in Microsoft Entra multifactor authentication. If the user has no registered authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser). Users who complete registration while they're Enabled are automatically moved to the Enforced state.
 
 ## Parameters
 
