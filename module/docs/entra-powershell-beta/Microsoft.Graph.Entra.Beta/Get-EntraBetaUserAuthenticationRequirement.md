@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve the Authentication Method Status for a user.
+Retrieve the Authentication Method Status of a user.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraBetaUserAuthenticationRequirement
 
 ## Description
 
-The `Get-EntraBetaUserAuthenticationRequirement` cmdlet retrieves a user's authentication method status.
+The `Get-EntraBetaUserAuthenticationRequirement` cmdlet retrieves the authentication method status of a user.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can perform this operation:
 
@@ -48,8 +48,6 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraBetaUserAuthenticationRequirement -UserId 'SawyerM@contoso.com'
 ```
 
-This example retrieves an object created by the specified user. The `UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
-
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -58,6 +56,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 dddddddd-3333-4444-5555-eeeeeeeeeeee
 eeeeeeee-4444-5555-6666-ffffffffffff
 ```
+
+This example retrieves an object created by the specified user. The `UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
 A user's state shows whether an Authentication Administrator has enrolled them in per-user Microsoft Entra multifactor authentication. User accounts can have one of three distinct states in Microsoft Entra MFA:
 
