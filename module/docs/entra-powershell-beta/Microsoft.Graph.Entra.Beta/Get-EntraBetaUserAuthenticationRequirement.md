@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve the Authentication Method Status of a user.
+Retrieve the authentication method status of a user.
 
 ## Syntax
 
