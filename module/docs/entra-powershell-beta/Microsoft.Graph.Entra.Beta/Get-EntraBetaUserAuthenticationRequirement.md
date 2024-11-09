@@ -53,12 +53,9 @@ Get-EntraBetaUserAuthenticationRequirement -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+perUserMfaState @odata.context
+--------------- --------------
+disabled        https://graph.microsoft.com/beta/$metadata#users(..)
 ```
 
 This example retrieves an object created by the specified user. The `UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
