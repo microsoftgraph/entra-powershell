@@ -65,11 +65,9 @@ This example retrieves an object created by the specified user. The `UserId` par
 
 A user's state shows whether an Authentication Administrator has enrolled them in per-user Microsoft Entra multifactor authentication. User accounts can have one of three distinct states in Microsoft Entra MFA:
 
-- **`Disabled`** - The default state for a user not enrolled in per-user Microsoft Entra multifactor authentication.
-
-- **`Enabled`** - The user is enrolled in per-user Microsoft Entra multifactor authentication, but can still use their password for  legacy authentication. If the user has no registered MFA authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser).
-
-- **`Enforced`** - The user is enrolled per-user in Microsoft Entra multifactor authentication. If the user has no registered authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser). Users who complete registration while they're Enabled are automatically moved to the Enforced state.
+- `Disabled` - The default state for a user not enrolled in per-user Microsoft Entra multifactor authentication.
+- `Enabled` - The user is enrolled in per-user Microsoft Entra multifactor authentication, but can still use their password for  legacy authentication. If the user has no registered MFA authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser).
+- `Enforced` - The user is enrolled per-user in Microsoft Entra multifactor authentication. If the user has no registered authentication methods, they receive a prompt to register the next time they sign in using modern authentication (such as when they sign in on a web browser). Users who complete registration while they're Enabled are automatically moved to the Enforced state.
 
 ## Parameters
 
