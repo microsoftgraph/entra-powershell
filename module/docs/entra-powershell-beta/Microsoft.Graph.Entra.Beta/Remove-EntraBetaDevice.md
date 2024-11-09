@@ -35,7 +35,11 @@ Remove-EntraBetaDevice
 
 The `Remove-EntraBetaDevice` cmdlet removes a device from Microsoft Entra ID.
 
-The calling user must be in one of the following Microsoft Entra roles: Intune Administrator, Windows 365 Administrator, or Cloud Device Administrator.
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
+
+- Intune Administrator  
+- Windows 365 Administrator  
+- Cloud Device Administrator
 
 ## Examples
 
@@ -43,8 +47,8 @@ The calling user must be in one of the following Microsoft Entra roles: Intune A
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-$Device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
-Remove-EntraBetaDevice -DeviceId $Device.ObjectId
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Remove-EntraBetaDevice -DeviceId $device.ObjectId
 ```
 
 This command removes the specified device.
