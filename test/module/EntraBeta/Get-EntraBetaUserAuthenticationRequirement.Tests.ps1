@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
 BeforeAll {
@@ -10,9 +11,9 @@ BeforeAll {
 
     $scriptblock = {
         return @{
-            "perUserMfaState" = "disabled" 
+            "perUserMfaState" = "disabled"
         }
-    }    
+    }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
@@ -20,21 +21,23 @@ BeforeAll {
 Describe "Get-EntraBetaUserAuthenticationRequirement" {
     Context "Test for Get-EntraBetaUserAuthenticationRequirement" {
         It "Should return user extensions" {
-            $result = Get-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com"            
+            $result = Get-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaUserAuthenticationRequirement -ObjectId "SawyerM@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
+
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserAuthenticationRequirement"
+
             $result = Get-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
 
@@ -52,16 +55,15 @@ Describe "Get-EntraBetaUserAuthenticationRequirement" {
             { Get-EntraBetaUserAuthenticationRequirement -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
-
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
-    
+
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { 
-                    Get-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -Debug 
+                {
+                    Get-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -Debug
                 } | Should -Not -Throw
             }
             finally {
