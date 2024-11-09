@@ -15,18 +15,20 @@ function Get-EntraBetaUserAuthenticationRequirement {
             # Initialize parameters and headers
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-            $uri = "https://graph.microsoft.com/beta/users/$UserId/authentication/requirements"
+            $baseUri = "https://graph.microsoft.com/beta/users/$UserId"
+            $params["Uri"] = "$baseUri/authentication/requirements"
 
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
 
             # Make the API call
-            $response = Invoke-RestMethod -Headers $customHeaders -Uri $uri -Method Get
+            $response = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | Convertto-json | convertfrom-json
 
             # Return the response
             return $response
-        } catch {
+        }
+        catch {
             Write-Error "An error occurred while retrieving user authentication requirements: $_"
         }
     }
