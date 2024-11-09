@@ -44,7 +44,7 @@ The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Mi
 Connect-Entra -Scopes 'Device.ReadWrite.All'
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-Add-EntraBetaDeviceRegisteredOwner  -DeviceId $device.ObjectId -RefObjectId $user.Id
+Add-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId -RefObjectId $user.Id
 ```
 
 This example shows how to add a registered owner to a device.
