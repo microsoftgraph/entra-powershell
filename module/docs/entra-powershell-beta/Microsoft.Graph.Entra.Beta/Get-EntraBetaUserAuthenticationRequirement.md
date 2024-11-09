@@ -20,15 +20,13 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve a User's Authentication Method Status.
+Retrieve the Authentication Method Status for a user.
 
 ## Syntax
 
 ```powershell
 Get-EntraBetaUserAuthenticationRequirement
  -UserId <String>
- [-All]
- [-Top <Int32>]
  [<CommonParameters>]
 ```
 
@@ -40,10 +38,6 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 - Global Reader  
 - Authentication Policy Administrator
-
-**Note:** The most effective way to protect users with Microsoft Entra MFA is by creating a Conditional Access policy. Conditional Access, a feature available in Microsoft Entra ID P1 and P2, allows you to enforce MFA based on specific conditions and scenarios.
-
-For Microsoft Entra ID Free tenants without Conditional Access, you can [use security defaults](https://learn.microsoft.com/entra/fundamentals/security-defaults) to protect users. MFA prompts are automatic, but you can't customize the rules.
 
 ## Examples
 
