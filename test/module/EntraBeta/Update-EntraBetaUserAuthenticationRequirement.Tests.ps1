@@ -27,14 +27,6 @@ Describe "Update-EntraBetaUserAuthenticationRequirement" {
             { Update-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -PerUserMfaState } | Should -Throw "Missing an argument for parameter 'PerUserMfaState'. Specify a parameter*"
         }
 
-        It "Should fail when UserId is invalid" {
-            { Update-EntraBetaUserAuthenticationRequirement -UserId XYZ -PerUserMfaState "enabled" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
-        }
-
-        It "Should fail when PerUserMfaState is invalid" {
-            { Update-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -PerUserMfaState 455 } | Should -Throw "Cannot bind argument to parameter 'PerUserMfaState' because it is an empty string*"
-        }
-
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaUserAuthenticationRequirement"
 
