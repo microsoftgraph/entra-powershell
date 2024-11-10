@@ -28,11 +28,11 @@ Describe "Update-EntraBetaUserAuthenticationRequirement" {
         }
 
         It "Should fail when UserId is invalid" {
-            { Update-EntraBetaUserAuthenticationRequirement -UserId "" -PerUserMfaState "enabled" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
+            { Update-EntraBetaUserAuthenticationRequirement -UserId XYZ -PerUserMfaState "enabled" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
         }
 
         It "Should fail when PerUserMfaState is invalid" {
-            { Update-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -PerUserMfaState "" } | Should -Throw "Cannot bind argument to parameter 'PerUserMfaState' because it is an empty string*"
+            { Update-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -PerUserMfaState 455 } | Should -Throw "Cannot bind argument to parameter 'PerUserMfaState' because it is an empty string*"
         }
 
         It "Should contain 'User-Agent' header" {
