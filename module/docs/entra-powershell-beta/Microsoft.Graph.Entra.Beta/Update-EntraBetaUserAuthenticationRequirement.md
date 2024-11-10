@@ -35,7 +35,7 @@ Update-EntraBetaUserAuthenticationRequirement
 
 The `Update-EntraBetaUserAuthenticationRequirement` cmdlet is used to update the MFA status of a user.
 
-**Note:** Enabled users automatically switch to Enforced once they register for Microsoft Entra MFA. Avoid manually setting a user to Enforced unless they are already registered or it’s acceptable for them to experience interruptions with legacy authentication protocols.
+**Note:** Enabled users automatically switch to Enforced once they register for Microsoft Entra MFA. Avoid manually setting a user to Enforced unless they're already registered or it’s acceptable for them to experience interruptions with legacy authentication protocols.
 
 In delegated scenarios with work or school accounts, where the signed-in user acts on behalf of another user, they must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
 
@@ -106,6 +106,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-Enabled users are automatically switched to Enforced when they register for Microsoft Entra multifactor authentication. Don't manually change the user state to Enforced unless the user is already registered or if it is acceptable for the user to experience interruption in connections to legacy authentication protocols.
+Enabled users are automatically switched to Enforced when they register for Microsoft Entra multifactor authentication. Don't manually change the user state to Enforced unless the user is already registered or if it's acceptable for the user to experience interruption in connections to legacy authentication protocols.
 
 ## Related Links
