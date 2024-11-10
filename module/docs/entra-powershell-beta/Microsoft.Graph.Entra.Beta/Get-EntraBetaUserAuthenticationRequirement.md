@@ -54,7 +54,7 @@ perUserMfaState @odata.context
 disabled        https://graph.microsoft.com/beta/$metadata#users(..)
 ```
 
-This example retrieves an object created by the specified user. The `UserId` parameter specifies the object ID of a user(as a UserPrincipalName or UserId).
+This example retrieves the authentication method status of a user.
 
 A user's state shows whether an Authentication Administrator enrolls them in per-user Microsoft Entra multifactor authentication. User accounts have one of three distinct states in Microsoft Entra MFA:
 
