@@ -19,8 +19,15 @@ function Update-EntraBetaUserAuthenticationRequirement {
             # Initialize headers and URI
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-            $uri = "https://graph.microsoft.com/beta/users/$UserId/authentication/requirements"
 
+            if ($null -ne $PSBoundParameters["UserId"]) {
+                $params["UserId"] = $PSBoundParameters["UserId"]
+            }
+            if ($null -ne $PSBoundParameters["CurrentPassword"]) {
+                $params["PerUserMfaState"] = $PSBoundParameters["PerUserMfaState"]
+            }
+
+            $params["Url"] = "https://graph.microsoft.com/beta/users/$UserId/authentication/requirements"
             # Create the body for the PATCH request
             $body = @{
                 perUserMfaState = $PerUserMfaState
@@ -31,11 +38,14 @@ function Update-EntraBetaUserAuthenticationRequirement {
             Write-Debug("=========================================================================`n")
 
             # Make the API call
-            $response = Invoke-RestMethod -Headers $customHeaders -Uri $uri -Method Patch -ContentType "application/json" -Body $body
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method PATCH -Body $body
 
             # Return the response
             return $response
-        } catch {
+
+            
+        }
+        catch {
             Write-Error "An error occurred while updating user authentication requirements: $_"
         }
     }
