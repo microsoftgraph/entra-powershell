@@ -1,7 +1,7 @@
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.
 #  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 function Get-EntraUserAuthenticationMethod {
     [CmdletBinding()]
     param (
@@ -13,7 +13,7 @@ function Get-EntraUserAuthenticationMethod {
     PROCESS {
         try {
             # Initialize headers and URI
-            $params = @{}
+            $params = @{ }
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
             if ($null -ne $PSBoundParameters["UserId"]) {
@@ -46,8 +46,16 @@ function Get-EntraUserAuthenticationMethod {
                 $authMethodType | Add-Member -MemberType AliasProperty -Name AuthenticationMethodType -Value '@odata.type'
                 $authMethodList += $authMethodType
             }
-            # Format the output as a table with specified properties
-            $authMethodList
+
+            # Check if Format-List is used and select properties accordingly
+            if ($PSCmdlet.MyInvocation.BoundParameters['Format'] -eq 'List') {
+                # Return all properties
+                $authMethodList
+            }
+            else {
+                # Return default properties
+                $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType -AutoSize
+            }
         }
         catch {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
