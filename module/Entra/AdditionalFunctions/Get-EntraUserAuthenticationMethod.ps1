@@ -29,10 +29,23 @@ function Get-EntraUserAuthenticationMethod {
             # Make the API call
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method GET
 
-            # Extract keys and values from the response
-            $responseObject = $response | ConvertFrom-Json
-
-            return $responseObject
+            if ($response.ContainsKey('value')) {
+                $response = $response.value
+            }
+    
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json       
+            
+            $authMethodList = @()
+            foreach ($res in $data) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAuthenticationMethod
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $authMethodList += $userType
+            }
+            $authMethodList
         }
         catch {
             Write-Error "An error occurred while updating user authentication requirements: $_"
