@@ -43,9 +43,11 @@ function Get-EntraUserAuthenticationMethod {
                     $propertyValue = $_.Value
                     $authMethodType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $authMethodType | Add-Member -MemberType AliasProperty -Name AuthenticationMethodType -Value '@odata.type'
                 $authMethodList += $authMethodType
             }
-            $authMethodList
+            # Format the output as a table with specified properties
+            $authMethodList | Format-Table -Property Id, DisplayName, AuthenticationMethodType -AutoSize
         }
         catch {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
