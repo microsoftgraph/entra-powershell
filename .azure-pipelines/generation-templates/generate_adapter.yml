@@ -131,14 +131,14 @@ steps:
       . ./build/common-functions.ps1
       Create-ModuleHelp -Module EntraBeta
     pwsh: false
-- task: powershell@2
-  displayName: 'Build EntraBeta'
-  inputs:
-    targetType: inline
-    script: |
-      $MaximumFunctionCount=32768
-      ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
-    pwsh: false
+# - task: powershell@2
+#   displayName: 'Build EntraBeta'
+#   inputs:
+#     targetType: inline
+#     script: |
+#       $MaximumFunctionCount=32768
+#       ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
+#     pwsh: false
 - task: powershell@2
   displayName: '[Modularization ] Build EntraBeta'
   inputs:
