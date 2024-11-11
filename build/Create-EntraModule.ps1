@@ -1,7 +1,8 @@
 
 [cmdletbinding()]
 param (
-    [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
+    [string]$Module = "Entra",  # Default to "Entra" if no argument is provided
+    [switch]$Root
 )
 
 . (Join-Path $psscriptroot "/common-functions.ps1")
@@ -16,6 +17,11 @@ if($Module -eq 'Entra'){
     $typeDefsPath=(Join-Path $PSScriptRoot "/Beta-TypeDefs.txt")
 }
 
-$moduleBuilder.CreateModuleHelp($Module)
-$moduleBuilder.CreateSubModuleFile($Module, $typeDefsPath)
-$moduleBuilder.CreateModuleManifest($Module)
+if($Root){
+    $moduleBuilder.CreateRootModuleManifest($Module)
+}else{
+    $moduleBuilder.CreateModuleHelp($Module)
+    $moduleBuilder.CreateSubModuleFile($Module, $typeDefsPath)
+    $moduleBuilder.CreateModuleManifest($Module)
+}
+
