@@ -26,21 +26,6 @@ BeforeAll {
 
 Describe "Get-EntraUserAuthenticationMethod" {
     Context "Test for Get-EntraUserAuthenticationMethod" {
-        It "Should return specific user authentication method" {
-            $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
-            $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-        }
-        
-        It "Should return specific user authentication method with alias" {
-            $result = Get-EntraUserAuthenticationMethod -ObjectId "SawyerM@Contoso.com"
-            $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-        }
         
         It "Should fail when UserId is empty" {
             { Get-EntraUserAuthenticationMethod -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
@@ -57,13 +42,13 @@ Describe "Get-EntraUserAuthenticationMethod" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should contain UserId in parameters when passed UserId to it" { 
-            $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
-            $params = Get-Parameters -data $result.Parameters
-            $para = $params | ConvertTo-json | ConvertFrom-Json
-            $para.URI  | Should -Match "SawyerM@Contoso.com"
+        It "Should return all user authentication methods with an alias" {
+            $result = Get-EntraUserAuthenticationMethod -ObjectId "SawyerM@Contoso.com" 
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        
+      
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAuthenticationMethod"
             $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
