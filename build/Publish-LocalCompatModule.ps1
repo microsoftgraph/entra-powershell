@@ -15,6 +15,7 @@ $modName = Get-ModuleName
 
 if($modName -is [array]){
 	$fullModuleName = $modName[0]
+	$fullModuleNames = $modName
 }
 else{
 	$fullModuleName = $modName

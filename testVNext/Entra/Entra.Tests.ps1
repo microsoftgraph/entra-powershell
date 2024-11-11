@@ -29,7 +29,8 @@ if($null -eq (Get-Module -Name Microsoft.Graph.Entra.SignIns)){
 
 Import-Module Pester
 
-$psmPath = (Get-Module Microsoft.Graph.Entra.Applications).Path
+#$psmPath = (Get-Module Microsoft.Graph.Entra.Applications).Path
+$ps1FilesPath = join-path $psscriptroot "..\..\moduleVNext\Entra\Microsoft.Graph.Entra"
 $testReportPath = join-path $psscriptroot "..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\testVNext\Entra\*\*.Tests.ps1"
 
@@ -44,7 +45,8 @@ $config.Run.PassThru = $true
 $config.Run.Exit = $true
 $config.CodeCoverage.Enabled = $true
 $config.CodeCoverage.CoveragePercentTarget = 100
-$config.CodeCoverage.Path = $psmPath
+#$config.CodeCoverage.Path = $psmPath
+$config.CodeCoverage.Path = $ps1FilesPath
 $config.TestResult.Enabled = $true
 $config.TestResult.OutputPath = $testOutputFile
 $config.Output.Verbosity = "Detailed"
