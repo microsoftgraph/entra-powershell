@@ -59,16 +59,6 @@ steps:
     targetType: inline
     script: |
       ./build/Create-EntraModule.ps1 -Module Entra -Verbose
-      Import-Module ./bin/Microsoft.Graph.Entra.Authentication.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.Applications.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.DirectoryManagement.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.Governance.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.Users.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.Groups.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.Reports.psd1 -Force
-      Import-Module ./bin/Microsoft.Graph.Entra.SignIns.psd1 -Force
-      ./build/Create-EntraModule.ps1 -Module 'Entra' -Root
-
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
