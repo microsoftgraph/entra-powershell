@@ -47,7 +47,7 @@ function Get-EntraUserAuthenticationMethod {
                 $authMethodList += $authMethodType
             }
             # Format the output as a table with specified properties
-            $authMethodList | Format-Table -Property Id, DisplayName, AuthenticationMethodType -AutoSize
+            $authMethodList
         }
         catch {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
