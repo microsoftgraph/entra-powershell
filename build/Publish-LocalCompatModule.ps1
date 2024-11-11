@@ -57,6 +57,9 @@ foreach($module in $fullModuleNames){
 }
 
 foreach($module in $fullModuleNames){
+	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+		continue
+	}
 	Import-Module $module
 }
 
