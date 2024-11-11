@@ -47,8 +47,9 @@ function Get-EntraUserAuthenticationMethod {
                 $authMethodList += $authMethodType
             }
 
-            # Check if Format-List is used and select properties accordingly
-            if ($PSCmdlet.MyInvocation.BoundParameters['Format'] -eq 'List') {
+            # Check if the user requested 'Format-List' or 'FL' to output all properties
+            $outputPreference = $PSCmdlet.MyInvocation.Line.ToLower()
+            if ($outputPreference.Contains("format-list") -or $outputPreference.Contains("fl")) {
                 # Return all properties
                 $authMethodList
             }
