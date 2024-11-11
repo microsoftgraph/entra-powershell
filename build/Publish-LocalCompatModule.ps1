@@ -76,7 +76,9 @@ $modulePath = Join-Path $modulePath $module
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
 $available = Get-Module -ListAvailable
+$pathenv = $env:PSModulePath
 Log-Message "[Publish Local Compat] Available : $available" -Level 'INFO'
+Log-Message "[Publish Local Compat] pathenv : $pathenv" -Level 'INFO'
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
 if ($Install) {
