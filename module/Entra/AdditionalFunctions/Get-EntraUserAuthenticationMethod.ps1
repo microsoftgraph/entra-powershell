@@ -54,7 +54,7 @@ function Get-EntraUserAuthenticationMethod {
             }
             else {
                 # Return default properties
-                $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType -AutoSize
+                $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType | Format-Table -AutoSize
             }
         }
         catch {
