@@ -52,16 +52,17 @@ foreach($module in $fullModuleNames){
 	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
 	if ($Install) {
+		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
 		Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
 	}
 }
 
-foreach($module in $fullModuleNames){
-	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
-		continue
-	}
-	Import-Module $module
-}
+# foreach($module in $fullModuleNames){
+# 	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+# 		continue
+# 	}
+# 	Import-Module $module
+# }
 
 if($moduleName -eq 'Entra'){
 	$module = 'Microsoft.Graph.Entra'
@@ -77,6 +78,7 @@ Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
 if ($Install) {
+	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
 	Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
 }
 
