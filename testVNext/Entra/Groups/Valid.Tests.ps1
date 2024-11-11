@@ -5,7 +5,7 @@ BeforeAll{
     if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Groups)){
         Import-Module Microsoft.Graph.Entra.Groups
     }
-    Import-Module (Join-Path $psscriptroot ".\EntraCmdletsMap.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\EntraCmdletsMap.ps1") -Force
 
     $module = Get-Module -Name Microsoft.Graph.Entra.Groups
 }
@@ -20,7 +20,7 @@ Describe "Valid parameter Tests"{
                 $command = Get-Command $_
                 if($command.Name.StartsWith('Remove')){
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | Select-Object -expand Name)
-                    if($params.count -eq 1 -and $params -eq 'Id'){
+                    if(($params -eq 'Id') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'Id')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
                         if($null -ne $filter){                             
                             try { 
@@ -58,7 +58,7 @@ Describe "Valid parameter Tests"{
                 $command = Get-Command $_
                 if($command.Name.StartsWith('Remove')){
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | select -expand Name)
-                    if($params.count -eq 1 -and $params -eq 'ObjectId'){
+                    if(($params -eq 'ObjectId') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'ObjectId')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
                         if($null -ne $filter){                             
                             try {            
