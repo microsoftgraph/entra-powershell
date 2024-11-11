@@ -48,7 +48,7 @@ function Get-EntraUserAuthenticationMethod {
             $authMethodList
         }
         catch {
-            Write-Error "An error occurred while updating user authentication requirements: $_"
+            Write-Error "An error occurred while retrieving user authentication methods: $_"
         }
     }
 }
