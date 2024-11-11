@@ -67,7 +67,7 @@ steps:
       Import-Module ./bin/Microsoft.Graph.Entra.Groups.psd1 -Force
       Import-Module ./bin/Microsoft.Graph.Entra.Reports.psd1 -Force
       Import-Module ./bin/Microsoft.Graph.Entra.SignIns.psd1 -Force
-      ./build/Create-EntraModule.ps1 -Module EntraBeta -Root -Verbose
+      ./build/Create-EntraModule.ps1 -Module Entra -Root -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
