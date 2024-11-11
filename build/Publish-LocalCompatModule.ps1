@@ -57,12 +57,12 @@ foreach($module in $fullModuleNames){
 	}
 }
 
-# foreach($module in $fullModuleNames){
-# 	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
-# 		continue
-# 	}
-# 	Import-Module $module
-# }
+foreach($module in $fullModuleNames){
+	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+		continue
+	}
+	Import-Module $module -Verbose
+}
 
 if($moduleName -eq 'Entra'){
 	$module = 'Microsoft.Graph.Entra'
@@ -75,6 +75,8 @@ $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutput
 $modulePath = Join-Path $modulePath $module
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
+$available = Get-Module -ListAvailable
+Log-Message "[Publish Local Compat] Available : $available" -Level 'INFO'
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
 if ($Install) {
