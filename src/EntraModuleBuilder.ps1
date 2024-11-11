@@ -307,7 +307,7 @@ foreach (`$subModule in `$subModules) {
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
 		
 		#We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
-        $files = @("$($moduleName).psd1", "$($moduleName).psm1")
+        $files = @("$($moduleName).psd1")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
             Tags = $($content.tags)
@@ -321,13 +321,10 @@ foreach (`$subModule in `$subModules) {
 		
         $subModules=$this.GetSubModuleFileNames($Module,$this.OutputDirectory)
         $requiredModules=@()
-        $nestedModules=@()
         foreach($module in $subModules){
             if($module -ne $moduleName){
                 Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
                $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
-               $nestedModules+="$($module).psm1"
-
             }	
         }
         $moduleSettings = @{
@@ -340,7 +337,6 @@ foreach (`$subModule in `$subModules) {
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
-            RootModule = "$($moduleName).psm1" 
             Description = 'Microsoft Graph Entra PowerShell.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
