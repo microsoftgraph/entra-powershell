@@ -26,10 +26,7 @@ Retrieve a list of a user's registered authentication methods.
 
 ```powershell
 Get-EntraUserAuthenticationMethod
- -ObjectId <String>
- [-All]
- [-Top <Int32>]
- [-Property <String[]>]
+ -UserId <String>
  [<CommonParameters>]
 ```
 
