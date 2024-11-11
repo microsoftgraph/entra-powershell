@@ -163,7 +163,7 @@ Set-StrictMode -Version 5
         }
 
         #Create the RootModule .psm1 file
-        $this.CreateRootModule($Module)
+        #$this.CreateRootModule($Module)
 
         Log-Message "[EntraModuleBuilder] CreateSubModuleFile script completed." -Level 'SUCCESS'
     }
