@@ -27,17 +27,12 @@ function Get-EntraUserAuthenticationMethod {
             Write-Debug("=========================================================================`n")
 
             # Make the API call
-            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method GET | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method GET
 
             # Extract keys and values from the response
-            $response | ForEach-Object {
-                $_.PSObject.Properties | ForEach-Object {
-                    [PSCustomObject]@{
-                        Key   = $_.Name
-                        Value = $_.Value
-                    }
-                }
-            }
+            $responseObject = $response | ConvertFrom-Json
+
+            return $responseObject
         }
         catch {
             Write-Error "An error occurred while updating user authentication requirements: $_"
