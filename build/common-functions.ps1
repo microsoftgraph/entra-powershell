@@ -28,11 +28,13 @@ function Get-ModuleBasePath {
 }
 
 function Get-ModuleVersion {
-    (Get-ModuleManifestFile).FullName | Test-ModuleManifest | Select-Object -ExpandProperty Version
+	# Added -ErrorAction SilentlyContinue due to validation failure on Microsoft.Graph.Entra RequiredModules
+	# The RequiredModules are the Microsoft.Graph.Entra.* sub-modules
+    (Get-ModuleManifestFile).FullName | Test-ModuleManifest -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Version
 }
 
 function Get-ModuleFiles {
-    (Get-ModuleManifestFile).FullName | Test-ModuleManifest | Select-Object -ExpandProperty FileList
+    (Get-ModuleManifestFile).FullName | Test-ModuleManifest -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FileList
 }
 
 function Get-PSGalleryRepoName {
