@@ -44,10 +44,12 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 foreach($module in $fullModuleNames){
 	$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 	$modulePath = Join-Path $modulePath $module
+	Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
+	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
 	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
 	if ($Install) {
-		Install-Module -Name module -Repository (Get-LocalPSRepoName) -AllowClobber
+		Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
 	}
 }
 
