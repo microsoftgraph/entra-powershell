@@ -51,10 +51,10 @@ foreach($module in $fullModuleNames){
 	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
 	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
-	# if ($Install) {
-	# 	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
-	# 	Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
-	# }
+	if ($Install) {
+		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
+		Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
+	}
 }
 
 # foreach($module in $fullModuleNames){
@@ -75,11 +75,18 @@ $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutput
 $modulePath = Join-Path $modulePath $module
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-$available = Get-Module -ListAvailable
+$available =  Get-Module -ListAvailable | Format-Table -Property Name,Version,ModuleType
 $pathenv = $env:PSModulePath
 Log-Message "[Publish Local Compat] Available : $available" -Level 'INFO'
 Log-Message "[Publish Local Compat] pathenv : $pathenv" -Level 'INFO'
-Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+try{
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+	ErrorAction -SilentlyContinue
+}
+catch{
+
+}
+
 
 if ($Install) {
 	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
