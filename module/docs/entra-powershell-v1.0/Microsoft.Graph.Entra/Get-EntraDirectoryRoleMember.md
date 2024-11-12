@@ -57,13 +57,14 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
 $directoryRole = Get-EntraDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
-Get-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id
+Get-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id | Select Id, DisplayName, '@odata.type', CreatedDateTime
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-7777-8888-9999-cccccccccccc
+id                                   displayName     @odata.type            createdDateTime  
+--                                   -----------     -----------            ---------------  
+bbbbbbbb-7777-8888-9999-cccccccccccc Debra Berger    #microsoft.graph.user  10/7/2024 12:31:57 AM  
+cccccccc-2222-3333-4444-dddddddddddd Contoso Group   #microsoft.graph.group 11/12/2024 9:59:43 AM
 ```
 
 This example retrieves the members of the specified role.
