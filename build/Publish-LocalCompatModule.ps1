@@ -31,6 +31,8 @@ else{
 
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
+$metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
+$metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
 if($moduleName -eq 'Entra'){
 	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
@@ -66,7 +68,7 @@ else{
 
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath $module
-$modulePath = Join-Path $modulePath $content.destinationModuleVersion
+$modulePath = Join-Path $modulePath $metadata.version
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
 Publish-PSResource -Path $modulePath -Repository (Get-LocalPSRepoName) -SkipDependenciesCheck
