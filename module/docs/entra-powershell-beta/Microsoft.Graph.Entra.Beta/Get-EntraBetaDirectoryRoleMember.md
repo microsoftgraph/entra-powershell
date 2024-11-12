@@ -36,13 +36,28 @@ Get-EntraBetaDirectoryRoleMember
 
 The `Get-EntraBetaDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `DirectoryRoleId`. Use the `Get-EntraBetaDirectoryRole` cmdlet to get the `DirectoryRoleId` value.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- User Administrator  
+- Helpdesk Administrator  
+- Service Support Administrator  
+- Billing Administrator  
+- Directory Readers  
+- Directory Writers  
+- Application Administrator  
+- Security Reader  
+- Security Administrator  
+- Privileged Role Administrator  
+- Cloud Application Administrator
+
 ## Examples
 
 ### Example 1: Get members by role ID
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRoleMember -DirectoryRoleId '1708c380-4b8a-4977-a46e-6031676f6b41'
+$directoryRole = Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
+Get-EntraBetaDirectoryRoleMember -DirectoryRoleId $directoryRole.Id
 ```
 
 ```Output
