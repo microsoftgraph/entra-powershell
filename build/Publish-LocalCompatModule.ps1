@@ -57,13 +57,6 @@ foreach($module in $fullModuleNames){
 	}
 }
 
-# foreach($module in $fullModuleNames){
-# 	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
-# 		continue
-# 	}
-# 	Import-Module $module -Verbose
-# }
-
 if($moduleName -eq 'Entra'){
 	$module = 'Microsoft.Graph.Entra'
 }
@@ -73,24 +66,12 @@ else{
 
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath $module
+$modulePath = Join-Path $modulePath $content.destinationModuleVersion
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-#$available =  Get-Module -ListAvailable | Format-Table -Property Name,Version,ModuleType
-$modules_in_nuget = Find-Module -Repository (Get-LocalPSRepoName)
-$pathenv = $env:PSModulePath
-Log-Message "[Publish Local Compat] Nuget modules : $modules_in_nuget" -Level 'INFO'
-Log-Message "[Publish Local Compat] pathenv : $pathenv" -Level 'INFO'
-try{
-	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
-	ErrorAction -SilentlyContinue
-}
-catch{
-
-}
-
+Publish-PSResource -Path $modulePath -Repository (Get-LocalPSRepoName) -SkipDependenciesCheck
 
 if ($Install) {
 	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
 	Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
 }
-
