@@ -48,11 +48,7 @@ The `Set-EntraBetaDirSyncEnabled` cmdlet turns directory synchronization on or o
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-$params = @{
-    EnableDirsync = $True 
-    Force = $True
-}
-Set-EntraBetaDirSyncEnabled @params
+Set-EntraBetaDirSyncEnabled -EnableDirsync $true -Force $true
 ```
 
 This example turns on directory synchronization for a company.
@@ -64,13 +60,8 @@ This example turns on directory synchronization for a company.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-$params = @{
-    EnableDirsync = $False 
-    TenantId = 'aaaaaaaa-1111-1111-1111-000000000000'
-    Force = $True
-    
-}
-Set-EntraBetaDirSyncEnabled @params
+$tenantID = (Get-EntraContext).TenantId
+Set-EntraBetaDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force $true
 ```
 
 This example turns off directory synchronization for a company.
