@@ -3,28 +3,28 @@
 # ------------------------------------------------------------------------------
 
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Authentication.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Authentication -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Applications)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Applications.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Applications -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement)){
-    Import-Module .\bin\Microsoft.Graph.Entra.DirectoryManagement.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.DirectoryManagement -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Governance)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Governance.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Governance -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Users)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Users.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Users -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Groups)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Groups.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Groups -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Reports)){
-    Import-Module .\bin\Microsoft.Graph.Entra.Reports.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.Reports -Force
 }
 if($null -eq (Get-Module -Name Microsoft.Graph.Entra.SignIns)){
-    Import-Module .\bin\Microsoft.Graph.Entra.SignIns.psd1 -Force
+    Import-Module Microsoft.Graph.Entra.SignIns -Force
 }
 
 Import-Module Pester
