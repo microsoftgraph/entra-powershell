@@ -75,9 +75,10 @@ $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutput
 $modulePath = Join-Path $modulePath $module
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-$available =  Get-Module -ListAvailable | Format-Table -Property Name,Version,ModuleType
+#$available =  Get-Module -ListAvailable | Format-Table -Property Name,Version,ModuleType
+$modules_in_nuget = Find-Module -Repository (Get-LocalPSRepoName)
 $pathenv = $env:PSModulePath
-Log-Message "[Publish Local Compat] Available : $available" -Level 'INFO'
+Log-Message "[Publish Local Compat] Nuget modules : $modules_in_nuget" -Level 'INFO'
 Log-Message "[Publish Local Compat] pathenv : $pathenv" -Level 'INFO'
 try{
 	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
