@@ -31,37 +31,37 @@ BeforeAll{
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
-Describe "Tests for Add-EntraScopedRoleMembership"{
+Describe "Tests for New-EntraScopedRoleMembership"{
     It "Result should not be empty"{
-        $result = Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $result = New-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('NewDummyId')
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Result should not be empty with ObjectId"{
-        $result = Add-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $result = New-EntraScopedRoleMembership -ObjectId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $result | Should -Not -BeNullOrEmpty
         $result.Id | should -Be @('NewDummyId')
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
     It "Should fail when AdministrativeUnitId is invalid" {
-        { Add-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
+        { New-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when AdministrativeUnitId is empty" {
-        { Add-EntraScopedRoleMembership -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
+        { New-EntraScopedRoleMembership -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when RoleMemberInfo is invalid" {
-        { Add-EntraScopedRoleMembership -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
+        { New-EntraScopedRoleMembership -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
     }
     It "Should fail when RoleMemberInfo is empty" {
-        { Add-EntraScopedRoleMembership -RoleMemberInfo } | Should -Throw "Missing an argument for parameter 'RoleMemberInfo'*"
+        { New-EntraScopedRoleMembership -RoleMemberInfo } | Should -Throw "Missing an argument for parameter 'RoleMemberInfo'*"
     }
     It "Should fail when invalid parameter is passed" {
-        { Add-EntraScopedRoleMembership -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
+        { New-EntraScopedRoleMembership -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraScopedRoleMembership"
-        $result = Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraScopedRoleMembership"
+        $result = New-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember
         $params = Get-Parameters -data $result.Parameters
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -73,7 +73,7 @@ Describe "Tests for Add-EntraScopedRoleMembership"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Add-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember -Debug } | Should -Not -Throw
+            { New-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -RoleObjectId $roleObjId -RoleMemberInfo $RoleMember -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

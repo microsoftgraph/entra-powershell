@@ -1,6 +1,6 @@
 ---
-title: Add-EntraScopedRoleMembership
-description: This article provides details on the Add-EntraScopedRoleMembership command.
+title: New-EntraScopedRoleMembership
+description: This article provides details on the New-EntraScopedRoleMembership command.
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -10,12 +10,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraScopedRoleMembership
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraScopedRoleMembership
 
 schema: 2.0.0
 ---
 
-# Add-EntraScopedRoleMembership
+# New-EntraScopedRoleMembership
 
 ## Synopsis
 
@@ -24,7 +24,7 @@ Assign a Microsoft Entra role with an administrative unit scope.
 ## Syntax
 
 ```powershell
-Add-EntraScopedRoleMembership
+New-EntraScopedRoleMembership
  -AdministrativeUnitId <String>
  [-RoleObjectId <String>]
  [-RoleMemberInfo <RoleMemberInfo>]
@@ -33,7 +33,7 @@ Add-EntraScopedRoleMembership
 
 ## Description
 
-The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
+The `New-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
@@ -48,7 +48,7 @@ $role = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'"
 $administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
 $roleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
 $roleMember.Id = $user.Id
-Add-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -RoleObjectId $role.Id -RoleMemberInfo $roleMember
+New-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -RoleObjectId $role.Id -RoleMemberInfo $roleMember
 ```
 
 ```Output

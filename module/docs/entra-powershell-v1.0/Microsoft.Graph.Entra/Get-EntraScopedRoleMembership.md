@@ -138,6 +138,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraScopedRoleMembership](Add-EntraScopedRoleMembership.md)
+[New-EntraScopedRoleMembership](New-EntraScopedRoleMembership.md)
 
 [Remove-EntraScopedRoleMembership](Remove-EntraScopedRoleMembership.md)
