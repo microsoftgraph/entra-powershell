@@ -127,6 +127,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Add-EntraBetaScopedRoleMembership` is an alias for `New-EntraBetaScopedRoleMembership`.
+
 ## Related Links
 
 [Get-EntraBetaScopedRoleMembership](Get-EntraBetaScopedRoleMembership.md)
