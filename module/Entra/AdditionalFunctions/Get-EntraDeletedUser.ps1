@@ -97,7 +97,7 @@ function Get-EntraDeletedUser {
         Write-Debug("=========================================================================`n")
 
         # Make the API call
-        $response = Get-MgDirectoryDeletedItemAsUser @params -Headers $customHeaders -PageSize 999
+        $response = Get-MgDirectoryDeletedItemAsUser @params -Headers $customHeaders
 
         # Process the response
         foreach ($item in $response) {
