@@ -72,7 +72,7 @@ function Get-EntraUserInactiveSignIn {
                 CreatedDaysAgo                    = if ($null -eq $userObject.CreatedDateTime) { "Unknown" } else { (New-TimeSpan -Start $userObject.CreatedDateTime -End (Get-Date)).Days }
             }
 
-            Write-Output ([Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]$checkedUser)
+            Write-Output ([pscustomobject]$checkedUser)
         }
     }
 }
