@@ -62,7 +62,7 @@ This example gets the owners of a specified service principal. You can use the c
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type' -All
+Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -All | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
 ```
 
 ```Output
@@ -81,7 +81,7 @@ This command gets all the owners of a service principal. You can use the command
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type' -Top 2
+Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -Top 2 | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
 ```
 
 ```Output
