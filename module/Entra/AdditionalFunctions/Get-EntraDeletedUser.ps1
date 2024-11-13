@@ -106,6 +106,16 @@ function Get-EntraDeletedUser {
             }
         }
 
-        $response
+        # Check if the user requested 'Format-List' or 'FL' to output all properties
+        $outputPreference = $PSCmdlet.MyInvocation.Line.ToLower()
+        if ($outputPreference.Contains("format-list") -or $outputPreference.Contains("fl")) {
+            # Return all properties
+            $response
+        }
+        else {
+            # Return default properties
+            $response | Select-Object -Property Id, DisplayName, UserPrincipalName, UserType, DeletedDateTime,
+            @{Name = "PermanentDeletionDate"; Expression = { $_.DeletedDateTime.AddDays(30) } } | Format-Table -AutoSize
+        }
     }    
 }
