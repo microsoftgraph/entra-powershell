@@ -28,12 +28,10 @@
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaFeatureRolloutPolicyDirectoryObject.md
   - name: Add-EntraBetaLifecyclePolicyGroup
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaLifecyclePolicyGroup.md
-  - name: Add-EntraBetaScopedRoleMembership
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaScopedRoleMembership.md
+  - name: New-EntraBetaScopedRoleMembership
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaScopedRoleMembership.md
   - name: Add-EntraBetaServicePrincipalDelegatedPermissionClassification
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaServicePrincipalDelegatedPermissionClassification.md
-  - name: Add-EntraBetaScopedRoleMembership
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaScopedRoleMembership.md
   - name: Add-EntraBetaServicePrincipalOwner
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaServicePrincipalOwner.md
   - name: Add-EntraBetaServicePrincipalPolicy
