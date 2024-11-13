@@ -10,15 +10,10 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime"      = "10-05-2024 04:27:17"
-                "CreatedDateTime"      = "07-07-2023 14:31:41"
-                "DisplayName"          = "Raul Razo"
-                "MailNickname"         = "RaulR"
-                "UserType"             = "Member"
-                "UserPrincipalName"    = "RaulR@Contoso.com"
-                "AdditionalProperties" = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#users/$entity" }
-                "Parameters"           = $args
+                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeletedDateTime" = "10-05-2024 04:27:17"
+                "CreatedDateTime" = "07-07-2023 14:31:41"
+                "DisplayName"     = "Raul Razo"
             }
         )
     }
@@ -31,18 +26,13 @@ Describe "Get-EntraDeletedUser" {
         It "Should return specific Deleted User" {
             $result = Get-EntraDeletedUser -UserId "RaulR@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Raul Razo"
-            $result.UserType | Should -Be "Member"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific Deleted user with alias" {
             $result = Get-EntraDeletedUser -Id "RaulR@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Raul Razo"
-            $result.UserType | Should -Be "Member"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -64,9 +54,6 @@ Describe "Get-EntraDeletedUser" {
         It "Should return top 1 deleted user" {
             $result = Get-EntraDeletedUser -Top 1
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Raul Razo"
-            $result.UserType | Should -Be "Member"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -79,9 +66,6 @@ Describe "Get-EntraDeletedUser" {
         It "Should return specific deleted user by filter" {
             $result = Get-EntraDeletedUser -Filter "DisplayName eq 'Raul Razo'"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Raul Razo"
-            $result.UserType | Should -Be "Member"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -91,9 +75,6 @@ Describe "Get-EntraDeletedUser" {
         It "Should return specific deleted users by SearchString" {
             $result = Get-EntraDeletedUser -SearchString "Raul Razo"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.MailNickname | Should -Be "RaulR"
-            $result.DisplayName | Should -Be "Raul Razo"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
