@@ -26,11 +26,13 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
                     # Retrieve all application segments
                     $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments"
                     $response.value
+                    break
                 }
                 "SingleApplicationSegment" {
                     # Retrieve a single application segment
                     $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
                     $response
+                    break
                 }
             }
         } catch {
