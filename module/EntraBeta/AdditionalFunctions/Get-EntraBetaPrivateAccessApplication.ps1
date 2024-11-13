@@ -8,33 +8,42 @@ function Get-EntraBetaPrivateAccessApplication {
     [CmdletBinding(DefaultParameterSetName = 'AllPrivateAccessApps')]
     param (
         [Alias("ObjectId")]
-        [Parameter(Mandatory = $True, Position = 1, ParameterSetName = 'SingleAppID')]
-        [string]
+        [Parameter(Mandatory = $True, ParameterSetName = 'SingleAppID')]
+        [System.String]
         $ApplicationId,
         
         [Parameter(Mandatory = $False, ParameterSetName = 'SingleAppName')]
-        [string]
+        [System.String]
         $ApplicationName
     )
 
     PROCESS {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        try {
+            # Create custom headers for the request
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        switch ($PSCmdlet.ParameterSetName) {
-            "AllPrivateAccessApps" {
-                $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri 'https://graph.microsoft.com/beta/applications?$count=true&$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames&$filter=tags/Any(x: x eq ''PrivateAccessNonWebApplication'') or tags/Any(x: x eq ''NetworkAccessManagedApplication'') or tags/Any(x: x eq ''NetworkAccessQuickAccessApplication'')'
-                $response.value
-                break
+            switch ($PSCmdlet.ParameterSetName) {
+                "AllPrivateAccessApps" {
+                    # Retrieve all private access applications
+                    $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri 'https://graph.microsoft.com/beta/applications?$count=true&$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames&$filter=tags/Any(x: x eq ''PrivateAccessNonWebApplication'') or tags/Any(x: x eq ''NetworkAccessManagedApplication'') or tags/Any(x: x eq ''NetworkAccessQuickAccessApplication'')'
+                    $response.value
+                    break
+                }
+                "SingleAppID" {
+                    # Retrieve a single application by ID
+                    $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/?`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames"
+                    $response
+                    break
+                }
+                "SingleAppName" {
+                    # Retrieve a single application by name
+                    $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications?`$count=true&`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames&`$filter=DisplayName eq '$ApplicationName'"
+                    $response.value
+                    break
+                }
             }
-            "SingleAppID" {
-                Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/?`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames"
-                break
-            }
-            "SingleAppName" {
-                $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications?`$count=true&`$select=displayName,appId,id,tags,createdDateTime,servicePrincipalType,createdDateTime,servicePrincipalNames&`$filter=DisplayName eq '$ApplicationName'"
-                $response.value
-                break
-            }
+        } catch {
+            Write-Error "Failed to retrieve the application(s): $_"
         }
     }
 }
