@@ -24,14 +24,14 @@ BeforeAll {
 Describe "Get-EntraDeletedUser" {
     Context "Test for Get-EntraDeletedUser" {
         It "Should return specific Deleted User" {
-            $result = Get-EntraDeletedUser -UserId "RaulR@Contoso.com"
+            $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Raul Razo"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific Deleted user with alias" {
-            $result = Get-EntraDeletedUser -Id "RaulR@Contoso.com"
+            $result = Get-EntraDeletedUser -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
@@ -49,7 +49,7 @@ Describe "Get-EntraDeletedUser" {
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 deleted user" {
             $result = Get-EntraDeletedUser -Top 1
@@ -58,10 +58,10 @@ Describe "Get-EntraDeletedUser" {
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific deleted user by filter" {
             $result = Get-EntraDeletedUser -Filter "DisplayName eq 'Raul Razo'"
@@ -82,17 +82,17 @@ Describe "Get-EntraDeletedUser" {
             { Get-EntraDeletedUser -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -Property DisplayName
+            $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Raul Razo'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
-            { Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain UserId in parameters when passed Id to it" {              
-            $result = Get-EntraDeletedUser -UserId "RaulR@Contoso.com"
+            $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -103,7 +103,7 @@ Describe "Get-EntraDeletedUser" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedUser"
-            $result = Get-EntraDeletedUser -UserId "RaulR@Contoso.com"
+            $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedUser"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -118,7 +118,7 @@ Describe "Get-EntraDeletedUser" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDeletedUser -UserId "RaulR@Contoso.com" -Debug } | Should -Not -Throw
+                { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
