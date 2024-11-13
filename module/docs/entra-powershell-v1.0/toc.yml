@@ -20,8 +20,8 @@
     href: Microsoft.Graph.Entra/Add-EntraApplicationOwner.md
   - name: Add-EntraLifecyclePolicyGroup
     href: Microsoft.Graph.Entra/Add-EntraLifecyclePolicyGroup.md
-  - name: Add-EntraScopedRoleMembership
-    href: Microsoft.Graph.Entra/Add-EntraScopedRoleMembership.md
+  - name: New-EntraScopedRoleMembership
+    href: Microsoft.Graph.Entra/New-EntraScopedRoleMembership.md
   - name: Add-EntraServicePrincipalOwner
     href: Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner.md
   - name: Confirm-EntraDomain
