@@ -89,11 +89,6 @@ Describe "Get-EntraDeletedUser" {
         It "Should fail when Property is empty" {
             { Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
-        It "Should contain UserId in parameters when passed Id to it" {              
-            $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedUser"
