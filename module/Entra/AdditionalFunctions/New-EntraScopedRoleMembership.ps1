@@ -5,7 +5,7 @@ function New-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (   
     [Alias("ObjectId")] 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The Unique ID of the administrative unit.")]
     [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $RoleObjectId,
