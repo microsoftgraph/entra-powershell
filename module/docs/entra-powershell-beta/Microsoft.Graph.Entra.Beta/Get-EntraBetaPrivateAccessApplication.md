@@ -5,9 +5,9 @@ description: This article provides details on the Get-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 10/19/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -19,6 +19,24 @@ schema: 2.0.0
 ## Synopsis
 
 Retrieves a list of all Private Access applications, or if specified, details of a specific application.
+
+## Syntax
+
+### ApplicationId (Default)
+
+```powershell
+Get-EntraBetaPrivateAccessApplication
+ [-ApplicationId <String>]
+ [<CommonParameters>]
+```
+
+### ApplicationName
+
+```powershell
+Get-EntraBetaPrivateAccessApplication
+ [-ApplicationName <String>]
+ [<CommonParameters>]
+```
 
 ## Description
 
@@ -49,11 +67,11 @@ createdDateTime : 4/07/2023 4:00:07 AM
 
 This command retrieves all Private Access applications, including Quick Access.
 
-### Example 2: Retrieve a specific Private Access application by object id
+### Example 2: Retrieve a specific Private Access application by object Id
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$application = Get-EntraBetaPrivateAccessApplication | Where-Object {$_.DisplayName -eq 'Finance team file share'}
+$application = Get-EntraBetaPrivateAccessApplication | Where-Object {$_.displayName -eq 'Finance team file share'}
 Get-EntraBetaPrivateAccessApplication -ApplicationId $application.Id
 ```
 
@@ -96,7 +114,7 @@ Parameter Sets: SingleAppID
 Aliases: ObjectId
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -112,7 +130,7 @@ Parameter Sets: SingleAppName
 Aliases:
 
 Required: False
-Position: 2, Named
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
