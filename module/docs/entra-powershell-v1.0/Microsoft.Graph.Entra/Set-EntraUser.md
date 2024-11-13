@@ -68,12 +68,7 @@ The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `Us
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$params = @{
-   UserId = $user.Id
-   DisplayName = 'Updated user Name'
-}
-Set-EntraUser @params
+Set-EntraUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
 This example updates the specified user's Display name parameter.
@@ -84,11 +79,7 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$params = @{
-   UserId = 'SawyerM@contoso.com'
-   AccountEnabled = $true
-}
-Set-EntraUser @params
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -114,7 +105,7 @@ This example updates the specified user's as minors with parental consent.
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
 $params = @{
-   UserId = 'SawyerM@contoso.com'
+   UserId = 'SawyerM@Contoso.com'
    City = 'Add city name'
    CompanyName = 'Microsoft'
    Country = 'Add country name'
@@ -124,7 +115,7 @@ $params = @{
    JobTitle = 'Manager'
    MailNickName = 'Add mailnickname'
    Mobile = '9984534564'
-   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
+   OtherMails = 'sawyerm@Contoso.com'
    PasswordPolicies = 'DisableStrongPassword'
    State = 'UP'
    StreetAddress = 'Add address'

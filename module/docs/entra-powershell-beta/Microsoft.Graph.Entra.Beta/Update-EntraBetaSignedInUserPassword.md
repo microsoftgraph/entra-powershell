@@ -42,13 +42,9 @@ Enable users to update their own passwords. Any user can change their password w
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$CurrentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$NewPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$params = @{
-    CurrentPassword = $CurrentPassword
-    NewPassword = $NewPassword
-}
-Update-EntraBetaSignedInUserPassword @params
+$currentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+$newPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+Update-EntraBetaSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
 ```
 
 This example shows how to update the password for the signed-in user.
