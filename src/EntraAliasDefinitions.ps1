@@ -15,4 +15,3 @@ Set-Alias -Name Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Value A
 Set-Alias -Name Get-EntraAuditDirectoryLogs -Value Get-EntraAuditDirectoryLog -Scope Global -Force
 Set-Alias -Name Get-EntraAuditSignInLogs -Value Get-EntraAuditSignInLog -Scope Global -Force
 Set-Alias -Name Add-EntraScopedRoleMembership -Value New-EntraScopedRoleMembership -Scope Global -Force
-Set-Alias -Name New-EntraScopedRoleMemberOf -Value New-EntraScopedRoleMembership -Scope Global -Force
