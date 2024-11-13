@@ -35,7 +35,9 @@ New-EntraScopedRoleMembership
 
 The `New-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
 
-For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
 
 ## Examples
 
