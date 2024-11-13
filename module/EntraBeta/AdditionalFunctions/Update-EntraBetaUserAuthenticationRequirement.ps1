@@ -9,8 +9,8 @@ function Update-EntraBetaUserAuthenticationRequirement {
         [Alias("ObjectId")]
         [System.String] $UserId,
 
-        [Parameter(Mandatory = $true, HelpMessage = "Specify the per-user MFA state. Valid values are 'enabled', 'disabled', 'enforced' or 'unknownFutureValue'.")]
-        [ValidateSet("enabled", "disabled", "enforced" , "unknownFutureValue")]
+        [Parameter(Mandatory = $true, HelpMessage = "Specify the per-user MFA state. Valid values are 'enabled', 'disabled', or 'enforced'.")]
+        [ValidateSet("enabled", "disabled", "enforced")]
         [System.String] $PerUserMfaState
     )
 
