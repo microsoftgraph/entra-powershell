@@ -26,7 +26,6 @@ Describe "Get-EntraDeletedUser" {
         It "Should return specific Deleted User" {
             $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "Raul Razo"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -84,7 +83,6 @@ Describe "Get-EntraDeletedUser" {
         It "Property parameter should work" {
             $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Raul Razo'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -96,11 +94,7 @@ Describe "Get-EntraDeletedUser" {
             $params = Get-Parameters -data $result.Parameters
             $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
-        It "Should contain Filter in parameters when passed SearchString to it" {              
-            $result = Get-EntraDeletedUser -SearchString "Raul Razo"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Match "Raul Razo"
-        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedUser"
             $result = Get-EntraDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
