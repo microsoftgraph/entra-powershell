@@ -44,8 +44,8 @@ The `Get-EntraBetaServicePrincipalCreatedObject` cmdlet gets an object created b
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id
 ```
 
 This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraBetaServicePrincipal` to get service principal ID.
@@ -56,8 +56,8 @@ This example gets objects created by the service principal identified by $Servic
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -All
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
@@ -68,8 +68,8 @@ This example demonstrates how to get the all object created by a specified servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.

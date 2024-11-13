@@ -53,9 +53,9 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ### Example 1: Retrieve the app role assignments
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
@@ -67,8 +67,9 @@ This example shows how to get app role assignments for an app or service, grante
 ### Example 2: Get all app role assignments
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -All 
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All 
 ```
 
 ```output
@@ -86,7 +87,8 @@ This command gets the all app role assignments for the service principal granted
 ### Example 3: Get five app role assignments
 
 ```powershell
- Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -Top 5
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -Top 5
 ```
 
 ```Output
@@ -186,3 +188,7 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 `Get-EntraServiceAppRoleAssignedTo` is an alias for `Get-EntraServicePrincipalAppRoleAssignedTo`.
 
 ## Related Links
+
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
+
+[Get-EntraServicePrincipalAppRoleAssignment](Get-EntraServicePrincipalAppRoleAssignment.md)

@@ -41,8 +41,8 @@ The `Get-EntraBetaServicePrincipalKeyCredential` cmdlet gets the key credentials
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output

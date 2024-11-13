@@ -55,14 +55,14 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
 Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
 --                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
-1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box 
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Helpdesk Application                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Helpdesk Application 
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups, and other service principals.
@@ -73,8 +73,8 @@ This example shows how to get app role assignments for an app or service, grante
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -All 
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```Output
@@ -95,8 +95,8 @@ This command gets the all app role assignments for the service principal granted
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -Top 5
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -Top 5
 ```
 
 ```Output
@@ -198,3 +198,7 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 `Get-EntraBetaServiceAppRoleAssignedTo` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignedTo`.
 
 ## Related Links
+
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
+
+[Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)
