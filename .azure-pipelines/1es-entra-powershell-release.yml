@@ -17,15 +17,24 @@ resources:
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
+    # pool:
+    #   name: MSSecurity-1ES-Build-Agents-Pool
+    #   image: MSSecurity-1ES-Windows-2022
+    #   os: windows
+    # sdl:
+    #   sourceAnalysisPool:
+    #     name: MSSecurity-1ES-Build-Agents-Pool
+    #     image: MSSecurity-1ES-Windows-2022
+    #     os: windows
     pool:
       name: MSSecurity-1ES-Build-Agents-Pool
-      image: MSSecurity-1ES-Windows-2022
-      os: windows
+      image: MSSecurity-1ES-Linux-2022
+      os: linux
     sdl:
       sourceAnalysisPool:
         name: MSSecurity-1ES-Build-Agents-Pool
-        image: MSSecurity-1ES-Windows-2022
-        os: windows
+        image: MSSecurity-1ES-Linux-2022
+        os: linux
     stages:
     - stage: release
       jobs:
