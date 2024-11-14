@@ -1,6 +1,6 @@
 ---
-title: Get-EntraDeletedUser
-description: This article provides details on the Get-EntraDeletedUser command.
+title: Get-EntraBetaDeletedUser
+description: This article provides details on the Get-EntraBetaDeletedUser command.
 
 
 ms.topic: reference
@@ -9,14 +9,14 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDeletedUser
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedUser
 
 schema: 2.0.0
 ---
 
-# Get-EntraDeletedUser
+# Get-EntraBetaDeletedUser
 
 ## Synopsis
 
@@ -27,7 +27,7 @@ Retrieves soft-deleted (recently deleted) users in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDeletedUser
+Get-EntraBetaDeletedUser
  [-Top <Int32>]
  [-All]
  [-Filter <String>]
@@ -38,7 +38,7 @@ Get-EntraDeletedUser
 ### GetByValue
 
 ```powershell
-Get-EntraDeletedUser
+Get-EntraBetaDeletedUser
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraDeletedUser
 ### GetById
 
 ```powershell
-Get-EntraDeletedUser
+Get-EntraBetaDeletedUser
  -UserId <String>
  [-All]
  [-Property <String[]>]
@@ -58,7 +58,7 @@ Get-EntraDeletedUser
 ### GetVague
 
 ```powershell
-Get-EntraDeletedUser
+Get-EntraBetaDeletedUser
  [-All]
  [-SearchString <String>]
  [-Property <String[]>]
@@ -67,7 +67,7 @@ Get-EntraDeletedUser
 
 ## Description
 
-The `Get-EntraDeletedUser` cmdlet retrieves soft-deleted (recently deleted) users from the directory. Deleted users can be recovered within 30 days, after which they're permanently deleted.
+The `Get-EntraBetaDeletedUser` cmdlet retrieves soft-deleted (recently deleted) users from the directory. Deleted users can be recovered within 30 days, after which they're permanently deleted.
 
 ## Examples
 
@@ -75,7 +75,7 @@ The `Get-EntraDeletedUser` cmdlet retrieves soft-deleted (recently deleted) user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser
+Get-EntraBetaDeletedUser
 ```
 
 ```Output
@@ -93,7 +93,7 @@ This example shows how to retrieve all recoverable deleted users in the Microsof
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser -All 
+Get-EntraBetaDeletedUser -All 
 ```
 
 ```Output
@@ -111,7 +111,7 @@ This example shows how to retrieve all recoverable deleted users, using All para
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser -Top 2 #alias: Limit e.g. -Limit 2
+Get-EntraBetaDeletedUser -Top 2 #alias: Limit e.g. -Limit 2
 ```
 
 ```Output
@@ -127,7 +127,7 @@ This example shows how to retrieve the top two recoverable deleted users in the 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser -SearchString 'Avery Smith'
+Get-EntraBetaDeletedUser -SearchString 'Avery Smith'
 ```
 
 ```Output
@@ -142,7 +142,7 @@ This example shows how to retrieve deleted users in the directory, containing th
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser -Filter "displayName eq 'Avery Smith'"
+Get-EntraBetaDeletedUser -Filter "displayName eq 'Avery Smith'"
 ```
 
 ```Output
@@ -157,7 +157,7 @@ This example shows how to retrieve deleted users in the directory, having the sp
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraDeletedUser -UserId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+Get-EntraBetaDeletedUser -UserId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
 ```Output
