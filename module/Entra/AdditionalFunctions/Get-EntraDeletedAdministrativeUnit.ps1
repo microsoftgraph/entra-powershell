@@ -62,7 +62,15 @@ function Get-EntraDeletedAdministrativeUnit {
         try {
             # Make the API call
             $response = Get-MgDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
-            return $response
+
+            # Flatten and extract values in AdditionalProperties
+            $flattenedResponse = $response | ForEach-Object {
+                $_.AdditionalProperties.GetEnumerator() | ForEach-Object {
+                    $_.Key, $_.Value
+                }
+            }
+
+            return $flattenedResponse
         }
         catch {
             # Handle any errors that occur during the API call
