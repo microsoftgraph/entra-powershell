@@ -23,7 +23,7 @@ function Get-EntraAuditDirectoryLog {
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"+"?"
 
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {

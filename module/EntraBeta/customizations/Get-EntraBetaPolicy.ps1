@@ -23,6 +23,12 @@
                         "authenticationMethodsPolicy", 
                         "permissionGrantPolicies")
         
+        if($PSBoundParameters.ContainsKey("Top") -and ($null -eq $Top -or $Top -eq 0)){
+            Write-Error "Invalid page size specified: '0'. Must be between 1 and 999 inclusive.  
+Status: 400 (BadRequest) 
+ErrorCode: Request_UnsupportedQuery"
+            break
+        }
         $response = @()
         foreach ($endpoint in $endpoints) {
             $url = "${baseUrl}${endpoint}"

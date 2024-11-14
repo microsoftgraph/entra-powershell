@@ -40,7 +40,7 @@ Get-EntraBetaAdministrativeUnit
 
 ```powershell
 Get-EntraBetaAdministrativeUnit
- -ObjectId <String>
+ -AdministrativeUnitId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -48,7 +48,7 @@ Get-EntraBetaAdministrativeUnit
 
 ## Description
 
-The `Get-EntraBetaAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a specific administrative unit.
+The `Get-EntraBetaAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameter to get a specific administrative unit.
 
 ## Examples
 
@@ -98,7 +98,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraBetaAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaAdministrativeUnit -AdministrativeUnitId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -109,7 +109,7 @@ DeletedDateTime Id                                   Description          Displa
 
 This example returns the details of the specified administrative unit.
 
-- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
 ### Example 4: Get administrative units filter by display name
 
@@ -176,14 +176,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

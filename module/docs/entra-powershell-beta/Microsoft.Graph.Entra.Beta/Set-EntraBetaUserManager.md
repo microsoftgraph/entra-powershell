@@ -2,7 +2,6 @@
 title: Set-EntraBetaUserManager
 description: This article provides details on the Set-EntraBetaUserManager command.
 
-
 ms.topic: reference
 ms.date: 06/21/2024
 ms.author: eunicewaweru
@@ -25,15 +24,15 @@ Updates a user's manager.
 ## Syntax
 
 ```powershell
-Set-EntraBetaUserManager 
- -ObjectId <String> 
- -RefObjectId <String> 
+Set-EntraBetaUserManager
+ -UserId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `ObjectId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
+The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `UserId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,11 +40,11 @@ The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
+$manager = Get-EntraBetaUser -UserId 'Manager@contoso.com'
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    UserId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     RefObjectId = '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
 }
-
 Set-EntraBetaUserManager @params
 ```
 
@@ -53,14 +52,14 @@ This example demonstrates how to update the manager for the specified user.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

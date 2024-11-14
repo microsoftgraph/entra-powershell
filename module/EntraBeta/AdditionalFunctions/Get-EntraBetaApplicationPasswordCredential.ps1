@@ -6,7 +6,8 @@ function Get-EntraBetaApplicationPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [Alias("ObjectId")]
+    [System.String] $ApplicationId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -14,7 +15,7 @@ function Get-EntraBetaApplicationPasswordCredential {
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = "https://graph.microsoft.com/beta/applications/$ObjectId/passwordCredentials"
+        $baseUri = "https://graph.microsoft.com/beta/applications/$ApplicationId/passwordCredentials"
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
 

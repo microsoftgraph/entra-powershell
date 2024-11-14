@@ -26,9 +26,9 @@ Delete a servicePrincipal policy.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaServicePrincipalPolicy 
- -Id <String> 
- -PolicyId <String> 
+Remove-EntraBetaServicePrincipalPolicy
+ -Id <String>
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 

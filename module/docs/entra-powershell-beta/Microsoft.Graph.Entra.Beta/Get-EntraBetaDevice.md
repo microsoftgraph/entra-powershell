@@ -50,7 +50,7 @@ Get-EntraBetaDevice
 
 ```powershell
 Get-EntraBetaDevice
- -ObjectId <String>
+ -DeviceId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -58,7 +58,7 @@ Get-EntraBetaDevice
 
 ## Description
 
-The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific device.
+The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `DeviceId` parameter to get a specific device.
 
 ## Examples
 
@@ -66,7 +66,7 @@ The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify 
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
+Get-EntraBetaDevice -DeviceId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
 ```Output
@@ -195,14 +195,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceId
 
 Specifies the ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

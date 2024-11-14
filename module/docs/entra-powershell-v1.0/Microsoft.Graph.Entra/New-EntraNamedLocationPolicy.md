@@ -62,27 +62,24 @@ New-EntraNamedLocationPolicy @params
 ```
 
 ```Output
-OdataType               : #microsoft.graph.ipNamedLocation
-Id                      : bbbbbbbb-1111-2222-3333-cccccccccccc
-DisplayName             : IP named location policy
-CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-IsTrusted               : false
-IpRanges                : {
-                            class IpRange {
-                              CidrAddress: 6.5.4.3/32
-                            }
-                          }
+Id                                   CreatedDateTime     DisplayName              ModifiedDateTime
+--                                   ---------------     -----------              ----------------
+bbbbbbbb-1111-2222-3333-cccccccccccc 31-07-2024 10:45:27 IP named location policy 31-07-2024 10:45:27
 ```
 
 This command creates a new country named location policy in Microsoft Entra ID.
+
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
+- `-IsTrusted` parameter specifies the IsTrusted value for the named location policy.
+- `-IpRanges` parameter specifies List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596.
 
 ### Example 2: Creates a new country named location policy in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $params = @{
-    ODataType = '#microsoft.graph.countryNamedLocation'
+    OdataType = '#microsoft.graph.countryNamedLocation'
     DisplayName = 'Country named location policy'
     CountriesAndRegions = 'IN'
     IncludeUnknownCountriesAndRegions = $false
@@ -91,17 +88,18 @@ $params = @{
 New-EntraNamedLocationPolicy @params
 ```
 
-```output
-OdataType                         : #microsoft.graph.countryNamedLocation
-Id                                : bbbbbbbb-1111-2222-3333-cccccccccccc
-DisplayName                       : Country named location policy
-CreatedDateTime                   : 2019-09-26T23:12:16.0792706Z
-ModifiedDateTime                  : 2019-09-27T00:12:12.5986473Z
-CountriesAndRegions               : {IN}
-IncludeUnknownCountriesAndRegions : False
+```Output
+Id                                   CreatedDateTime     DisplayName                   ModifiedDateTime
+--                                   ---------------     -----------                   ----------------
+cccccccc-2222-3333-4444-dddddddddddd 31-07-2024 10:46:16 Country named location policy 31-07-2024 10:46:16
 ```
 
 This command creates a new country named location policy in Microsoft Entra ID.
+
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
+- `-CountriesAndRegions` parameter specifies the countries and regions for the named location policy.
+- `-IncludeUnknownCountriesAndRegions` parameter specifies the includeUnknownCountriesAndRegions value for the named location policy.
 
 ## Parameters
 
@@ -123,7 +121,7 @@ Accept wildcard characters: False
 
 ### -DisplayName
 
-Specifies the human-readable name of the location.
+Specifies the display name of a named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -155,7 +153,7 @@ Accept wildcard characters: False
 
 ### -IsTrusted
 
-Specifies the isTrusted value for the named location policy in Microsoft Entra ID.
+Specifies the `IsTrusted` value for the named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.Boolean
@@ -171,7 +169,7 @@ Accept wildcard characters: False
 
 ### -CountriesAndRegions
 
-List of countries and/or regions in the two-letter format specified by ISO 3166-2.
+Specifies the countries and regions for the named location policy in Microsoft Entra ID. List of countries and/or regions in the two-letter format specified by ISO 3166-2.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]

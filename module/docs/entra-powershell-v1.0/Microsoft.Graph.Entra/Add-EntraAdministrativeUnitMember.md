@@ -26,9 +26,9 @@ Adds an administrative unit member.
 ## Syntax
 
 ```powershell
-Add-EntraAdministrativeUnitMember 
- -RefObjectId <String> 
- -ObjectId <String> 
+Add-EntraAdministrativeUnitMember
+ -RefObjectId <String>
+ -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```
 
@@ -46,30 +46,26 @@ To add a user, group, or device to an administrative unit, the calling principal
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
-$params = @{
-    ObjectId = $AdministrativeUnit.ObjectId
-    RefObjectId = $User.ObjectId
-}
-Add-EntraAdministrativeUnitMember @params
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
 ```
 
-This example shows how to add an administrative unit member. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraUser` to get user ID.
+This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraUser` to find the user ID.
 
-- `ObjectId` parameter specifies the ID of an administrative unit.
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -107,5 +103,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
-
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
+[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)

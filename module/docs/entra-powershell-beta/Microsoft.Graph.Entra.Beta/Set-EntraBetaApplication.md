@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaApplication
@@ -25,29 +26,29 @@ Updates the properties of an application object.
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplication 
- -ObjectId <String>
- [-Api <ApiApplication>] 
- [-OptionalClaims <OptionalClaims>] 
+Set-EntraBetaApplication
+ -ApplicationId <String>
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>]
  [-DisplayName <String>]
  [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]>]
- [-Web <WebApplication>] 
+ [-Web <WebApplication>]
  [-IsFallbackPublicClient <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
- [-PublicClient <PublicClientApplication>] 
+ [-PublicClient <PublicClientApplication>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
- [-TokenEncryptionKeyId <String>] 
+ [-TokenEncryptionKeyId <String>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- [-ParentalControlSettings <ParentalControlSettings>] 
- [-GroupMembershipClaims <String>] 
+ [-ParentalControlSettings <ParentalControlSettings>]
+ [-GroupMembershipClaims <String>]
  [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-SignInAudience <String>] 
- [-InformationalUrl <InformationalUrl>] 
+ [-SignInAudience <String>]
+ [-InformationalUrl <InformationalUrl>]
  [<CommonParameters>]
 ```
 
@@ -60,8 +61,17 @@ Updates the properties of an application object.
 ### Example 1: Update an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My new application'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$params = @{
+    ApplicationId = $application.Id
+    DisplayName = 'Contoso Entra PowerShell App Production'
+    IdentifierUris = 'https://contoso.com'
+    GroupMembershipClaims = 'SecurityGroup'
+    IsDeviceOnlyAuthSupported = $False
+    Tags = 'mytag'
+}
+Set-EntraBetaApplication @params
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -69,8 +79,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 2: Update an application using IdentifierUris parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IdentifierUris 'https://mynewapp.contoso.com'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraBetaApplication -ApplicationId $application.Id -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -78,8 +89,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 3: Update an application using GroupMembershipClaims parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -GroupMembershipClaims 'SecurityGroup'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraBetaApplication -ApplicationId $application.Id -GroupMembershipClaims 'SecurityGroup'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -87,8 +99,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 4: Update an application using IsDeviceOnlyAuthSupported parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IsDeviceOnlyAuthSupported $false
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraBetaApplication -ApplicationId $application.Id -IsDeviceOnlyAuthSupported $False
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -96,8 +109,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 5: Update an application using Tags parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Tags 'mytag'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraBetaApplication -ApplicationId $application.Id -Tags 'mytag'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -129,7 +143,7 @@ Accept wildcard characters: False
 Specifies settings for an application that implements a web API.
 
 ```yaml
-Type: System.ApiApplication
+Type: ApiApplication
 Parameter Sets: (All)
 Aliases:
 
@@ -213,7 +227,7 @@ Basic profile information of the application such as app's marketing, support, t
 The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
-Type: System.InformationalUrl
+Type: InformationalUrl
 Parameter Sets: (All)
 Aliases:
 
@@ -244,9 +258,10 @@ Accept wildcard characters: False
 
 Specifies the fallback application type as public client, such as an installed application running on a mobile device.
 
-The default value is false that means the fallback application type is confidential client such as web app.
+The default value is `false` that means the fallback application type is confidential client such as web app.
 
 There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example, ROPC flow where it's configured without specifying a redirect URI).
+
 In those cases Microsoft Entra ID interprets the application type based on the value of this property.
 
 ```yaml
@@ -277,14 +292,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -298,7 +313,7 @@ Accept wildcard characters: False
 Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
-Type: System.OptionalClaims
+Type: OptionalClaims
 Parameter Sets: (All)
 Aliases:
 
@@ -330,7 +345,7 @@ Accept wildcard characters: False
 Specifies parental control settings for an application.
 
 ```yaml
-Type: System.ParentalControlSettings
+Type: ParentalControlSettings
 Parameter Sets: (All)
 Aliases:
 
@@ -385,7 +400,7 @@ Accept wildcard characters: False
 Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is `false`.
 
 ```yaml
-Type: System.PublicClientApplication
+Type: PublicClientApplication
 Parameter Sets: (All)
 Aliases:
 
@@ -449,6 +464,7 @@ Accept wildcard characters: False
 ### -TokenEncryptionKeyId
 
 Specifies the keyId of a public key from the keyCredentials collection.
+
 When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to.
 
 The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
@@ -470,7 +486,7 @@ Accept wildcard characters: False
 Specifies settings for a web application.
 
 ```yaml
-Type: System.WebApplication
+Type: WebApplication
 Parameter Sets: (All)
 Aliases:
 

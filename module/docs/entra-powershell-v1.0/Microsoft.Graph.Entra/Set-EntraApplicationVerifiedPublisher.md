@@ -21,20 +21,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-Set the verified publisher for an application using a verified Microsoft Partner Network (MPN) identifier.
+Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
 ## Syntax
 
 ```powershell
-Set-EntraApplicationVerifiedPublisher 
+Set-EntraApplicationVerifiedPublisher
  -AppObjectId <String>
- -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest> 
+ -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest>
  [<CommonParameters>]
 ```
 
 ## Description
 
-Set the verified publisher for an application using a verified Microsoft Partner Network (MPN) identifier.
+Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
 ## Examples
 
@@ -42,21 +42,18 @@ Set the verified publisher for an application using a verified Microsoft Partner
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$appObjId = '11112222-bbbb-3333-cccc-4444dddd5555'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $mpnId =  '0433167'
-$req =  @{verifiedPublisherId=$mpnId}
-
-$params = @{
-    AppObjectId = $appObjId
-    SetVerifiedPublisherRequest = $req
-}
-
-Set-EntraApplicationVerifiedPublisher @params
+$req =  @{verifiedPublisherId = $mpnId}
+Set-EntraApplicationVerifiedPublisher -AppObjectId $application.Id -SetVerifiedPublisherRequest $req
 ```
 
 This command sets the verified publisher of an application.
 
 The Microsoft Partner Network ID (MPNID) of the verified publisher can be obtained from the publisher's Partner Center account.
+
+- `-AppObjectId` parameter specifies the unique identifier of a Microsoft Entra ID Application.
+- `-SetVerifiedPublisherRequest` parameter specifies the request body object containing the verifiedPublisherId property with it's the MPNID value.
 
 ## Parameters
 

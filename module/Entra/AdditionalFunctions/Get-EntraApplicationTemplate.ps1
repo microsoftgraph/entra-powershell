@@ -7,7 +7,7 @@ function Get-EntraApplicationTemplate {
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
+    [System.Int32] $Top,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Get-EntraApplicationTemplate {
             $selectProperties = $selectProperties -Join ','
             $params["Uri"] = $uri+"?`$select=$($selectProperties)"
         }
-        if(($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All"))) -or ($null -ne $PSBoundParameters["Top"] -and  $null -ne $PSBoundParameters["All"]))
+        if(($PSBoundParameters.ContainsKey("Top") -and  (-not $PSBoundParameters.ContainsKey("All"))) -or ($PSBoundParameters.ContainsKey("Top") -and  $null -ne $PSBoundParameters["All"]))
         {
             $topCount = $PSBoundParameters["Top"]            
             $params["Uri"] += "&`$top=$topCount"

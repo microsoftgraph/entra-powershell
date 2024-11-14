@@ -25,9 +25,9 @@ Adds a member to a directory role.
 ## Syntax
 
 ```powershell
-Add-EntraDirectoryRoleMember 
- -ObjectId <String> 
- -RefObjectId <String> 
+Add-EntraDirectoryRoleMember
+ -DirectoryRoleId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ The `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $params = @{
-    ObjectId = '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
+    DirectoryRoleId = '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Add-EntraDirectoryRoleMember @params
@@ -50,19 +50,19 @@ Add-EntraDirectoryRoleMember @params
 
 This example adds a member to a directory role.
 
-- `ObjectId` parameter specifies the ID of the directory role to which the member is added. Use the Get-EntraDirectoryRole command to retrieve the details of the directory role.
+- `DirectoryRoleId` parameter specifies the ID of the directory role to which the member is added. Use the Get-EntraDirectoryRole command to retrieve the details of the directory role.
 - `RefObjectId` parameter specifies the ID of Microsoft Entra ID object to assign as owner/manager/member.
 
 ## Parameters
 
-### -ObjectId
+### -DirectoryRoleId
 
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

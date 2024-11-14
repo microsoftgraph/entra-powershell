@@ -2,7 +2,6 @@
 title: Remove-EntraApplication
 description: This article provides details on the Remove-EntraApplication command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -20,19 +19,19 @@ schema: 2.0.0
 
 ## Synopsis
 
-Delete an application by ObjectId.
+Deletes an application object.
 
 ## Syntax
 
 ```powershell
-Remove-EntraApplication 
- -ObjectId <String>
+Remove-EntraApplication
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraApplication` cmdlet removes the specified application from Microsoft Entra ID.
+The `Remove-EntraApplication` cmdlet deletes an application object identified by ApplicationId. Specify the `ApplicationId` parameter to delete an application object.
 
 ## Examples
 
@@ -40,21 +39,31 @@ The `Remove-EntraApplication` cmdlet removes the specified application from Micr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Remove-EntraApplication -ApplicationId $application.Id
 ```
 
-This command removes the specified application.
+This example demonstrates how to delete an application object.
+
+### Example 2: Remove an application using pipelining
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'" | Remove-EntraApplication
+```
+
+This example demonstrates how to delete an application object using pipelining.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -68,6 +77,8 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
+
+### System.String
 
 ## Outputs
 

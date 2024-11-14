@@ -26,9 +26,9 @@ Adds an application policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaApplicationPolicy 
- -Id <String> 
- -RefObjectId <String> 
+Add-EntraBetaApplicationPolicy
+ -Id <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

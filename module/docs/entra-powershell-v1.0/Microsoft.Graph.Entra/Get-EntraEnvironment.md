@@ -27,15 +27,15 @@ Gets global public Environments.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraEnvironment 
+Get-EntraEnvironment
  [<CommonParameters>]
 ```
 
 ### GetByName
 
 ```powershell
-Get-EntraEnvironment 
- -Name <String> 
+Get-EntraEnvironment
+ -Name <String>
  [<CommonParameters>]
 ```
 

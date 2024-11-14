@@ -26,8 +26,8 @@ Deletes a Microsoft Entra ID named location policy by PolicyId.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaNamedLocationPolicy 
- -PolicyId <String> 
+Remove-EntraBetaNamedLocationPolicy
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,8 @@ Named locations are custom rules that define network locations, which can then b
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-Remove-EntraBetaNamedLocationPolicy -PolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+$policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+Remove-EntraBetaNamedLocationPolicy -PolicyId $policy.Id
 ```
 
 This command demonstrates how to delete the named location policy in Microsoft Entra ID.

@@ -25,10 +25,10 @@ Adds a predefined value for a custom security attribute definition.
 ## Syntax
 
 ```powershell
-Add-EntraCustomSecurityAttributeDefinitionAllowedValue 
+Add-EntraCustomSecurityAttributeDefinitionAllowedValue
  -CustomSecurityAttributeDefinitionId <String>
- -Id <String> 
- -IsActive <Boolean> 
+ -Id <String>
+ -IsActive <Boolean>
  [<CommonParameters>]
 ```
 
@@ -129,6 +129,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+`Add-EntraCustomSecurityAttributeDefinitionAllowedValues` is an alias for `Add-EntraCustomSecurityAttributeDefinitionAllowedValue`.
 
 ## Related Links
 

@@ -7,6 +7,18 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $GroupId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -21,16 +33,16 @@
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["GroupId"])
         {
-            $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
         if($null -ne $PSBoundParameters["All"])
         {
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
-        if($null -ne $PSBoundParameters["Top"])
+        if($PSBoundParameters.ContainsKey("Top"))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {

@@ -79,3 +79,5 @@ function Update-EntraUserFromFederated {
         $response
         }
 }
+Set-Alias -Name Convert-EntraFederatedUser -Value Update-EntraUserFromFederated -Scope Global -Force
+

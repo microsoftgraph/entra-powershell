@@ -24,15 +24,15 @@ Removes an administrative unit member.
 ## Syntax
 
 ```powershell
-Remove-EntraAdministrativeUnitMember 
- -ObjectId <String> 
+Remove-EntraAdministrativeUnitMember
+ -AdministrativeUnitId <String>
  -MemberId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraAdministrativeUnitMember` cmdlet removes an administrative unit member in Microsoft Entra ID. Specify `ObjectId` and `MemberId` to Remove an administrative unit member.
+The `Remove-EntraAdministrativeUnitMember` cmdlet removes an administrative unit member in Microsoft Entra ID. Specify `AdministrativeUnitId` and `MemberId` to remove an administrative unit member.
 
 To remove a member from an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
 
@@ -42,18 +42,15 @@ To remove a member from an administrative unit, the calling principal must have 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-    MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
-}
-Remove-EntraAdministrativeUnitMember @params
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+$adminUnitMember = Get-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id | Select-Object Id, DisplayName,'@odata.type' | Where-Object {$_.DisplayName -eq 'Saywer Miller'}
+Remove-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $adminUnitMember.Id
 ```
 
 This command removes a specified member (user or group) from a specified administrative unit.
 
-- `-ObjectId` - specifies the unique identifier (ID) of the administrative unit from which you want to remove a member. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ObjectId of the administrative unit.
-
-- `-MemberId` - specifies the unique identifier (Object ID) of the user or group you want to remove from the administrative unit. In this example, `eeeeeeee-4444-5555-6666-ffffffffffff` is the Object ID of the member being removed.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `-MemberId` parameter specifies the ID of the administrative unit member.
 
 ## Parameters
 
@@ -73,14 +70,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -AdministrativeUnitId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -104,3 +101,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
+
+[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)

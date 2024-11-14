@@ -26,7 +26,7 @@ The `New-EntraBetaApplicationProxyConnectorGroup` cmdlet creates a new Applicati
 
 ```powershell
 New-EntraBetaApplicationProxyConnectorGroup
- -Name <Name> 
+ -Name <Name>
  [<CommonParameters>]
 ```
 

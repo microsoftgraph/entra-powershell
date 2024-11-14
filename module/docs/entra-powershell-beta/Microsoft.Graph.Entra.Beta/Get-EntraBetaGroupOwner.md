@@ -25,7 +25,7 @@ Gets an owner of a group.
 
 ```powershell
 Get-EntraBetaGroupOwner
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -34,7 +34,7 @@ Get-EntraBetaGroupOwner
 
 ## Description
 
-The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify `ObjectId` parameter gets an owner of a group.
+The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify `GroupId` parameter gets an owner of a group.
 
 In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/owners/read` permission. The following least privileged roles support this operation:
 
@@ -50,24 +50,26 @@ In delegated scenarios, the signed-in user must have a supported Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroup -GroupId $group.Id | Get-EntraBetaGroupOwner | Select-Object Id, DisplayName, '@odata.type' 
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-cccccccc-2222-3333-4444-dddddddddddd
+id                                   displayName       @odata.type
+--                                   -----------       -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve the owner of a specific group.
 
-- `-ObjectId` parameter specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ### Example 2: Gets all group owners
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupOwner -GroupId $group.Id -All
 ```
 
 ```Output
@@ -80,13 +82,14 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example demonstrates how to retrieve the all owner of a specific group.  
 
-- `-ObjectId` parameter specifies the ID of a group.  
+- `-GroupId` parameter specifies the ID of a group.  
 
 ### Example 3: Gets two group owners
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupOwner -GroupId $group.Id -Top 2
 ```
 
 ```Output
@@ -98,7 +101,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to retrieve the top two owners of a specific group.
 
-- `-ObjectId` parameter specifies the ID of a group.
+- `-GroupId` parameter specifies the ID of a group.
 
 ## Parameters
 
@@ -118,14 +121,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

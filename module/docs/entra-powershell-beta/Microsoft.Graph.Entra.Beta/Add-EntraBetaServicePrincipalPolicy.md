@@ -26,9 +26,9 @@ Adds a servicePrincipal policy.
 ## Syntax
 
 ```powershell
-Add-EntraBetaServicePrincipalPolicy 
- -Id <String> 
- -RefObjectId <String> 
+Add-EntraBetaServicePrincipalPolicy
+ -Id <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 

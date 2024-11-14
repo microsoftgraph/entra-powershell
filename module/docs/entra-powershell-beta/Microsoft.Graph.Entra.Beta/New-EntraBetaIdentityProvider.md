@@ -26,11 +26,11 @@ Configure a new identity provider in the directory.
 ## Syntax
 
 ```powershell
-New-EntraBetaIdentityProvider 
- -ClientId <String> 
- -Type <String> 
+New-EntraBetaIdentityProvider
+ -ClientId <String>
+ -Type <String>
  -ClientSecret <String>
- [-Name <String>] 
+ [-Name <String>]
  [<CommonParameters>]
 ```
 
@@ -60,14 +60,7 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    Type = 'Google'
-    Name = 'GoogleName'
-    ClientId = 'Google123'
-    ClientSecret = 'GoogleClientSecret'
-}
-
-New-EntraBetaIdentityProvider @params
+New-EntraBetaIdentityProvider -Type 'Google' -Name 'GoogleName' -ClientId 'Google123' -ClientSecret 'GoogleClientSecret'
 ```
 
 ```Output

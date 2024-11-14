@@ -28,7 +28,7 @@ Gets a contact from Microsoft Entra ID.
 ```powershell
 Get-EntraBetaContact
  [-Filter <String>]
- [-All] 
+ [-All]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -38,7 +38,7 @@ Get-EntraBetaContact
 
 ```powershell
 Get-EntraBetaContact
- -ObjectId <String>
+ -OrgContactId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -72,7 +72,7 @@ This example retrieves all contact objects in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraBetaContact -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaContact -OrgContactId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -83,7 +83,7 @@ Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com    
 
 This example retrieves specified contact in the directory.
 
-- `-ObjectId` parameter specifies the contact Id.
+- `-OrgContactId` parameter specifies the contact Id.
 
 ### Example 3: Retrieve all contacts objects in the directory
 
@@ -172,14 +172,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

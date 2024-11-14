@@ -25,9 +25,9 @@ Get groups in which a contact is a member.
 ## Syntax
 
 ```powershell
-Select-EntraBetaGroupIdsContactIsMemberOf 
+Select-EntraBetaGroupIdsContactIsMemberOf
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 
@@ -41,10 +41,10 @@ The `Select-EntraBetaGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -ObjectId 'jjjjjjjj-9999-7777-7777-uuuuuuuuuuuu').ObjectId
-$UserID = (Get-EntraBetaContact -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc').ObjectId
-Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+$group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$group.GroupIds = (Get-EntraBetaGroup -Filter "displayName eq 'Sales and Marketing'").Id
+$contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Admin'"
+Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId $contact.Id -GroupIdsForMembershipCheck $group
 ```
 
 This example demonstrates how to get groups in which a contact is a member.
@@ -97,3 +97,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaContact](Get-EntraBetaContact.md)

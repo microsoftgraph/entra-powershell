@@ -2,7 +2,6 @@
 title: Remove-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Remove-EntraBetaApplicationExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
@@ -26,8 +25,8 @@ Removes an application extension property.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationExtensionProperty 
- -ObjectId <String> 
+Remove-EntraBetaApplicationExtensionProperty
+ -ApplicationId <String>
  -ExtensionPropertyId <String>
  [<CommonParameters>]
 ```
@@ -42,18 +41,14 @@ The `Remove-EntraBetaApplicationExtensionProperty` cmdlet removes an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$Application = Get-EntraBetaApplication -SearchString '<application-name>'
-$params = @{
-    ObjectId = $Application.ObjectId
-    ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
-}
-
-Remove-EntraBetaApplicationExtensionProperty @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$extension = Get-EntraApplicationExtensionProperty -ApplicationId $application.Id | Where-Object {$_.Name -eq 'extension_3ed1a24748dd4e4cb91fc0ab09576ff0_NewAttribute'}
+Remove-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id -ExtensionPropertyId $extension.Id
 ```
 
 This example removes the extension property that has the specified ID from an application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 - `-ExtensionPropertyId` parameter specifies the  unique identifier of the extension property to remove.
 
 ## Parameters
@@ -74,14 +69,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

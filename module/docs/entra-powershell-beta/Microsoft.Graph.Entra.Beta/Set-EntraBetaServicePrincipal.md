@@ -2,8 +2,6 @@
 title: Set-EntraBetaServicePrincipal
 description: This article provides details on the Set-EntraBetaServicePrincipal command.
 
-
-ms.service: active-directory
 ms.topic: reference
 ms.date: 06/10/2024
 ms.author: eunicewaweru
@@ -27,21 +25,21 @@ Updates a service principal.
 
 ```powershell
 Set-EntraBetaServicePrincipal
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-Homepage <String>] 
- [-AppId <String>] 
- [-LogoutUrl <String>] 
+ [-Homepage <String>]
+ [-AppId <String>]
+ [-LogoutUrl <String>]
  [-ServicePrincipalType <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
  [-PreferredSingleSignOnMode <String>]
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
- [-AppRoleAssignmentRequired <Boolean>] 
+ [-AppRoleAssignmentRequired <Boolean>]
  [-DisplayName <String>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 
@@ -55,94 +53,77 @@ The `Set-EntraBetaServicePrincipal` cmdlet updates a service principal in Micros
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    AccountEnabled = $False
-}
-Set-EntraBetaServicePrincipal @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -AccountEnabled $false
 ```
 
 This example demonstrates how to update `AccountEnabled` of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
-- `-AccountEnabled` Parameter specifies indicates whether the account is enabled.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-AccountEnabled` parameter specifies indicates whether the account is enabled.
 
-### Example 2: Update AppId and Homepage of a service principal
+### Example 2: Update Homepage of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    AppId = '22223333-cccc-4444-dddd-5555eeee6666'
-    Homepage = 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
-}
-Set-EntraBetaServicePrincipal @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$homePage = 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -Homepage $homePage
 ```
 
 This example demonstrates how to update `AppId` and Homepage of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
-- `-AppId` Parameter specifies the application ID.
-- `-Homepage` Parameter specifies the home page or landing page of the application.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-AppId` parameter specifies the application ID.
+- `-Homepage` parameter specifies the home page or landing page of the application.
 
 ### Example 3: Update AlternativeNames and DisplayName of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy
-$params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    AlternativeNames = 'Service Principal Demo'
-    DisplayName = 'NewName'
-}
-
-Set-EntraBetaServicePrincipal @params
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -AlternativeNames 'Helpdesk Application Global' -DisplayName 'NewName'
 ```
 
 This example demonstrates how to update AlternativeNames and DisplayName of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
 ### Example 4: Update LogoutUrl and ReplyUrls of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    LogoutUrl = 'https://securescore.office.com/SignOut'
-    ReplyUrls = 'https://admin.contoso.com'
-}
-
-Set-EntraBetaServicePrincipal @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$logoutUrl = 'https://securescore.office.com/SignOut'
+$replyUrls = 'https://admin.contoso.com'
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -LogoutUrl $logoutUrl -ReplyUrls $replyUrls
 ```
 
 This example demonstrates how to update LogoutUrl and ReplyUrls of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
-- `-LogoutUrl` Parameter specifies the sign out URL.
-- `-ReplyUrls` Parameter specifies the URLs that user tokens are sent to for sign in with the associated application.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-LogoutUrl` parameter specifies the sign out URL.
+- `-ReplyUrls` parameter specifies the URLs that user tokens are sent to for sign in with the associated application.
 
 ### Example 5: Update ServicePrincipalType and AppRoleAssignmentRequired of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    ServicePrincipalType = 'Application'
-    AppRoleAssignmentRequired = $True
-}
-Set-EntraBetaServicePrincipal @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -ServicePrincipalType 'Application' -AppRoleAssignmentRequired $True
 ```
 
 This example demonstrates how to update `ServicePrincipalType` and `AppRoleAssignmentRequired` of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
-- `-ServicePrincipalType` Parameter specifies the service principal type.
-- `-AppRoleAssignmentRequired` Parameter specifies indicates whether an application role assignment is required.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-ServicePrincipalType` parameter specifies the service principal type.
+- `-AppRoleAssignmentRequired` parameter specifies indicates whether an application role assignment is required.
 
 ### Example 6: Update KeyCredentials of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
 $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
 $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('Test')
 $startdate = Get-Date -Year 2024 -Month 10 -Day 10
@@ -151,13 +132,10 @@ $creds.Type = 'Symmetric'
 $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes('A')
 $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
-Set-EntraBetaServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -KeyCredentials $creds
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.ObjectId -KeyCredentials $creds
 ```
 
 This example demonstrates how to update KeyCredentials of a service principal in Microsoft Entra ID.
-
-- First command stored the key credentials in a variable.  
-- Second command updates KeyCredentials of a service principal.
 
 Use the `New-EntraBetaServicePrincipalPasswordCredential` and `Remove-EntraBetaServicePrincipalPasswordCredential` cmdlets to update the password or secret for a servicePrincipal.
 
@@ -165,18 +143,14 @@ Use the `New-EntraBetaServicePrincipalPasswordCredential` and `Remove-EntraBetaS
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectId = 'aaaaaaaa-bbbb-aaaa-cccc-aaaaaaaaaaaa'
-    PreferredSingleSignOnMode = 'saml'
-}
-
-Set-EntraBetaServicePrincipal @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Set-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id -PreferredSingleSignOnMode 'saml'
 ```
 
 This example demonstrates how to update `PreferredSingleSignOnMode` of a service principal in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
-- `-PreferredSingleSignOnMode` Parameter specifies the single sign-on mode configured for this application.
+- `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-PreferredSingleSignOnMode` parameter specifies the single sign-on mode configured for this application.
 
 ## Parameters
 
@@ -308,14 +282,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Species the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -407,6 +381,7 @@ Accept wildcard characters: False
 ### -Tags
 
 Specifies an array of tags.
+
 If you intend for this service principal to show up in the All Applications list in the admin portal, you need to set this value to {WindowsAzureActiveDirectoryIntegratedApp}.
 
 ```yaml

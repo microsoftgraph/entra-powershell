@@ -25,8 +25,8 @@ Removes an OAuth2PermissionGrant.
 ## Syntax
 
 ```powershell
-Remove-EntraOAuth2PermissionGrant 
- -ObjectId <String> 
+Remove-EntraOAuth2PermissionGrant
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -82,3 +82,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
+
+[Update-EntraOAuth2PermissionGrant](Update-EntraOauth2PermissionGrant.md)

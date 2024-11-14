@@ -26,10 +26,10 @@ Configure a new identity provider in the directory.
 ## Syntax
 
 ```powershell
-New-EntraIdentityProvider 
- -Type <String> 
- -ClientSecret <String> 
- -ClientId <String> 
+New-EntraIdentityProvider
+ -Type <String>
+ -ClientSecret <String>
+ -ClientId <String>
  [-Name <String>]
  [<CommonParameters>]
 ```
@@ -60,14 +60,7 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    Type = 'LinkedIn'
-    Name = 'LinkedInName'
-    ClientId = 'LinkedInAppClientId'
-    ClientSecret = 'LinkedInAppClientSecret'
-}
-
-New-EntraIdentityProvider @params
+New-EntraIdentityProvider -Type 'LinkedIn' -Name 'LinkedInName' -ClientId 'LinkedInAppClientId' -ClientSecret 'LinkedInAppClientSecret'
 ```
 
 ```Output
@@ -77,6 +70,11 @@ LinkedIn-OAUTH LinkedInName
 ```
 
 This example adds a LinkedIn identity provider.
+
+- `-Type` parameter specifies the identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+- `-Name` parameter specifies the display name of the identity provider.
+- `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
+- `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
 ## Parameters
 

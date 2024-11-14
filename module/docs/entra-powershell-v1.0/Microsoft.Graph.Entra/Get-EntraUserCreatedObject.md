@@ -26,7 +26,7 @@ Get objects created by the user.
 
 ```powershell
 Get-EntraUserCreatedObject
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -43,7 +43,7 @@ The `Get-EntraUserCreatedObject` cmdlet gets objects created by a user in Micros
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraUserCreatedObject -ObjectId 'SawyerM@contoso.com'
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -57,13 +57,13 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example retrieves an object created by the specified user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
 ### Example 2: Get all user-created objects
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraUserCreatedObject -ObjectId 'SawyerM@contoso.com' -All
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -77,13 +77,13 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example retrieves all objects created by the specified user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
 ### Example 3: Get a top one user-created object
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraUserCreatedObject -ObjectId 'SawyerM@contoso.com' -Top 1
+Get-EntraUserCreatedObject -UserId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
@@ -94,7 +94,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves top one object created by the specified user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
 ## Parameters
 
@@ -114,14 +114,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

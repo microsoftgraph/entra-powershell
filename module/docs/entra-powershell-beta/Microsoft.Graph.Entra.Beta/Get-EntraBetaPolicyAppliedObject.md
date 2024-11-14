@@ -26,8 +26,8 @@ Gets a policy-applied object from Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Get-EntraBetaPolicyAppliedObject 
- -Id <String> 
+Get-EntraBetaPolicyAppliedObject
+ -Id <String>
  [<CommonParameters>]
 ```
 
@@ -51,7 +51,7 @@ aaaaaaaa-1111-1111-1111-000000000000
 bbbbcccc-1111-dddd-2222-eeee3333ffff
 ```
 
-This command retrieve policy-applied object from Microsoft Entra ID.
+This command retrieves policy-applied object from Microsoft Entra ID.
 
 - `-Id` Parameter specifies ID of the policy for which you want to find the objects.
 
@@ -59,7 +59,7 @@ This command retrieve policy-applied object from Microsoft Entra ID.
 
 ### -Id
 
-The Id of the policy for which you want to find the objects.
+The ID of the policy for which you want to find the objects.
 
 ```yaml
 Type: System.String

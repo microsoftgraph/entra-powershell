@@ -35,9 +35,9 @@ Get-EntraCustomSecurityAttributeDefinition
 ### GetById
 
 ```powershell
-Get-EntraCustomSecurityAttributeDefinition 
+Get-EntraCustomSecurityAttributeDefinition
  -Id <String>
-[-Property <String[]>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 

@@ -28,9 +28,9 @@ The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaApplicationProxyConnectorGroup 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaApplicationProxyConnectorGroup
+ [-All]
+ [-Top <Int32>]
  [-Filter <String>]
  [<CommonParameters>]
 ```
@@ -38,9 +38,9 @@ Get-EntraBetaApplicationProxyConnectorGroup
 ### GetByValue
 
 ```powershell
-Get-EntraBetaApplicationProxyConnectorGroup 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplicationProxyConnectorGroup
+ [-SearchString <String>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -48,8 +48,8 @@ Get-EntraBetaApplicationProxyConnectorGroup
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroup
- -Id <String> 
- [-All] 
+ -Id <String>
+ [-All]
  [<CommonParameters>]
 ```
 

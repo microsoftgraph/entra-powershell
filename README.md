@@ -10,6 +10,12 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 ---
+
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
+[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
+[![PSGallery Platform](https://img.shields.io/powershellgallery/p/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Platform)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
+[![GitHub issues](https://img.shields.io/github/issues/microsoftgraph/entra-powershell)](https://github.com/microsoftgraph/entra-powershell/issues)
+
 # Microsoft Entra PowerShell (preview)
 
 [Microsoft Entra PowerShell (preview)][learn.microsoft], is a command-line tool that allows administrators to manage and automate Microsoft Entra product family resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.

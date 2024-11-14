@@ -28,16 +28,17 @@ Users in this group revert back to the authenticating using the global policy (i
 
 ```powershell
 Remove-EntraFeatureRolloutPolicyDirectoryObject
- -ObjectId <String> 
- -Id <String> 
+ -ObjectId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
 An admin uses the `Remove-EntraFeatureRolloutPolicyDirectoryObject` cmdlet to remove groups from the cloud authentication roll-out policy.
+
 Users in these groups start authenticating against the global authentication policy (for example,
-federation).
+federation). Specify `ObjectId` and `Id` parameter to remove groups from the cloud authentication roll-out policy.
 
 ## Examples
 
@@ -52,11 +53,10 @@ $params = @{
 Remove-EntraFeatureRolloutPolicyDirectoryObject @params
 ```
 
-This example removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
+This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
 
 - `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
-
-- `-ObjectId` Parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy in Microsoft Entra ID.
+- `-ObjectId` parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy.
 
 ## Parameters
 

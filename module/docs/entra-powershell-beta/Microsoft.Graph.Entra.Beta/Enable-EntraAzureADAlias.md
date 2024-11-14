@@ -1,4 +1,14 @@
 ---
+title: Enable-EntraAzureADAlias
+description: This article provides details on the Enable-EntraAzureADAlias command.
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Enable-EntraAzureADAlias
@@ -9,25 +19,28 @@ schema: 2.0.0
 # Enable-EntraAzureADAlias
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Enables aliases for AzureAD commands.
 
 ## Syntax
 
-```
+```powershell
 Enable-EntraAzureADAlias
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Enables Azure AD command aliases in the current PowerShell session.
 
 ## Examples
 
-### Example 1
+### Example 1: Enable aliasing
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Enable-EntraAzureADAlias
 ```
 
-{{ Add example description here }}
+Enables all Azure AD prefixes for the current PowerShell session.
 
 ## Parameters
 
@@ -38,6 +51,7 @@ PS C:\> {{ Add example code here }}
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links

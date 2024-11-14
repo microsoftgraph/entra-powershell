@@ -25,19 +25,22 @@ Adds an owner to a group.
 ## Syntax
 
 ```powershell
-Add-EntraBetaGroupOwner 
- -ObjectId <String>
+Add-EntraBetaGroupOwner
+ -GroupId <String>
  -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
+The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
 
-`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
 
-`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group (user or service principal).
+- Group owners
+- User Administrator
+- Directory Writers
+- Groups Administrator
 
 ## Examples
 
@@ -46,27 +49,25 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$user = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
-$params = @{
-    ObjectId = $group.ObjectId
-    RefObjectId = $user.ObjectId
-}
-
-Add-EntraBetaGroupOwner @params
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+Add-EntraBetaGroupOwner -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add an owner to a group.
 
+- `-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+- `-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
+
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

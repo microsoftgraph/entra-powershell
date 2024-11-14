@@ -25,8 +25,8 @@ Gets application extension properties.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationExtensionProperty 
- -ObjectId <String>
+Get-EntraApplicationExtensionProperty
+ -ApplicationId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -41,8 +41,8 @@ The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension pr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$Application = Get-EntraApplication -SearchString '<application-name>'
-Get-EntraApplicationExtensionProperty -ObjectId $Application.ObjectId
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraApplicationExtensionProperty -ApplicationId $application.Id
 ```
 
 ```Output
@@ -51,20 +51,20 @@ DeletedDateTime Id                                   AppDisplayName DataType IsM
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                Boolean  False         False                  extension_c371a443f6734a3e8982a26357fb7d59_NewAttribute {User}
 ```
 
-This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraApplication` to get application Id.
+This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraApplication` to get application ID.
 
-- `-ObjectId` parameter specifies the the unique identifier of a application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -2,7 +2,6 @@
 title: Update-EntraBetaUserFromFederated
 description: This article provides details on the Update-EntraBetaUserFromFederated command.
 
-
 ms.topic: reference
 ms.date: 08/19/2024
 ms.author: eunicewaweru
@@ -26,15 +25,15 @@ Updates a user in a domain that was recently converted from single sign-on (also
 ## Syntax
 
 ```powershell
-Update-EntraBetaUserFromFederated 
- -UserPrincipalName <String> 
- [-NewPassword <String>] 
+Update-EntraBetaUserFromFederated
+ -UserPrincipalName <String>
+ [-NewPassword <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Update-EntraBetaUserFromFederated` cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.  A new password must be provided for the user.
+The `Update-EntraBetaUserFromFederated` cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
 This process writes the new password to Microsoft Entra ID and, if configured with password writeback, pushes it to on-premises Active Directory. The admin can provide a new password or let the system generate one. The user will be prompted to change their password at their next sign-in.
 
@@ -77,7 +76,7 @@ Accept wildcard characters: False
 
 The new password of the user.
 
-The new password is required for tenants with hybrid password scenarios. If omitted for a cloud-only password, the system generates a password. This password is a Unicode string with no other encoding. It's validated against the tenant's banned password system before acceptance and must meet the tenant's cloud and/or on-premises password requirements.
+For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without additional encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
 
 ```yaml
 Type: System.String
@@ -100,5 +99,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+- For more information, see [resetPassword](https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword).
 
 ## Related Links

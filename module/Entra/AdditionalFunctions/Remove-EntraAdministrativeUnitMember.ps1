@@ -4,8 +4,9 @@
 function Remove-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
+    [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $MemberId
     )
@@ -13,9 +14,9 @@ function Remove-EntraAdministrativeUnitMember {
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand    
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
     }
     if($null -ne $PSBoundParameters["MemberId"])
     {
@@ -26,7 +27,7 @@ function Remove-EntraAdministrativeUnitMember {
     $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
     Write-Debug("=========================================================================`n")
     
-    $uri = "/v1.0/directory/administrativeUnits/$ObjectId/members/$MemberId/`$ref"
+    $uri = "/v1.0/directory/administrativeUnits/$AdministrativeUnitId/members/$MemberId/`$ref"
     $params["Uri"] = $uri
 
     $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method DELETE    

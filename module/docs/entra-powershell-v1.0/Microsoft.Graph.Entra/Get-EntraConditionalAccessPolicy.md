@@ -35,7 +35,7 @@ Get-EntraConditionalAccessPolicy
 ### GetById
 
 ```powershell
-Get-EntraConditionalAccessPolicy 
+Get-EntraConditionalAccessPolicy
  -PolicyId <String>
  [-Property <String[]>]
  [<CommonParameters>]

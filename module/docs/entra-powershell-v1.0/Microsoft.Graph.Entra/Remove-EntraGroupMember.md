@@ -25,32 +25,32 @@ Removes a member from a group.
 ## Syntax
 
 ```powershell
-Remove-EntraGroupMember 
- -ObjectId <String> 
- -MemberId <String> 
+Remove-EntraGroupMember
+ -GroupId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
+The `Remove-EntraGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
 
 ## Examples
 
 ### Example 1: Remove a member
 
-This example demonstrates how to remove a member from a group in Microsoft Entra ID.
-
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-Remove-EntraGroupMember -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -MemberId 'zzzzzzzz-6666-8888-9999-pppppppppppp'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+$groupMember = Get-EntraGroup -GroupId $group.Id | Get-EntraGroupMember | Where-Object {$_.displayName -eq 'Adele Vance'}
+Remove-EntraGroupMember -GroupId $group.Id -MemberId $groupMember.Id
 ```
 
 This command removes the specified member from the specified group.  
 
-ObjectId - Specifies the object ID of a group in Microsoft Entra ID.
+- `GroupId` - Specifies the object ID of a group in Microsoft Entra ID.
 
-MemberId - Specifies the ID of the member to remove.
+- `MemberId` - Specifies the ID of the member to remove.
 
 ## Parameters
 
@@ -70,14 +70,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -88,7 +88,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

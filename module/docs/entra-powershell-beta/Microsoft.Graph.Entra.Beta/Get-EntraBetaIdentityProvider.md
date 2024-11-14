@@ -36,7 +36,7 @@ Get-EntraBetaIdentityProvider
 
 ```powershell
 Get-EntraBetaIdentityProvider
- -Id <String>
+ -IdentityProviderBaseId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -76,7 +76,7 @@ This example retrieves the list of all configured identity providers and their p
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.Read.All'
-Get-EntraBetaIdentityProvider -Id 'Google-OAUTH'
+Get-EntraBetaIdentityProvider -IdentityProviderBaseId 'Google-OAUTH'
 ```
 
 ```Output
@@ -87,18 +87,18 @@ Google-OAUTH GoogleName
 
 This example retrieves the properties for the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 
 ## Parameters
 
-### -Id
+### -IdentityProviderBaseId
 
 The unique identifier for an identity provider.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

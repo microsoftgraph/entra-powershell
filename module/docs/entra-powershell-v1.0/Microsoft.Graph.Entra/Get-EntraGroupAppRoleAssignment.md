@@ -26,7 +26,7 @@ Gets a group application role assignment.
 
 ```powershell
 Get-EntraGroupAppRoleAssignment
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -35,7 +35,7 @@ Get-EntraGroupAppRoleAssignment
 
 ## Description
 
-The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
+The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `GroupId` parameter to get a group application role assignment.
 
 ## Examples
 
@@ -43,8 +43,8 @@ The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assig
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$GroupId = (Get-EntraGroup -Top 1).ObjectId
-Get-EntraGroupAppRoleAssignment -ObjectId $GroupId
+$group = Get-EntraGroup -SearchString 'Contoso marketing'
+Get-EntraGroupAppRoleAssignment -GroupId $group.Id
 ```
 
 ```Output
@@ -57,13 +57,14 @@ MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                
 
 This example retrieves the application role assignments of a group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 2: Retrieve all application role assignments of a group
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
+$group = Get-EntraGroup -SearchString 'Contoso marketing'
+Get-EntraGroupAppRoleAssignment -GroupId $group.Id -All
 ```
 
 ```Output
@@ -76,13 +77,14 @@ MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                
 
 This example retrieves all application role assignments of the specified group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 3: Retrieve top two application role assignments of a group
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
+$group = Get-EntraGroup -SearchString 'Contoso marketing'
+Get-EntraGroupAppRoleAssignment -GroupId $group.Id -Top 2
 ```
 
 ```Output
@@ -94,7 +96,7 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 
 This example retrieves top two application role assignments of the specified group.
 
-- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
+- `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ## Parameters
 
@@ -114,15 +116,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
-
+Aliases: ObjectId
+ 
 Required: True
 Position: Named
 Default value: None

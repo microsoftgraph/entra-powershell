@@ -26,7 +26,7 @@ Creates a trusted certificate authority.
 ## Syntax
 
 ```powershell
-New-EntraTrustedCertificateAuthority 
+New-EntraTrustedCertificateAuthority
  -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
@@ -57,6 +57,9 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command creates the trusted certificate authorities in your directory.
+
+- `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
+It includes properties like `AuthorityType`, `CrlDistributionPoint`, `DeltaCrlDistributionPoint`, and `TrustedCertificate`.
 
 ## Parameters
 

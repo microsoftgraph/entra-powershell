@@ -55,11 +55,8 @@ The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId
-}
-Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -77,12 +74,9 @@ This command retrieves all delegated permission classifications from the service
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId 
-  Id = '5XBeIKarUkypdm0tRsSAQwE'
-}
-Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$permissionClassification = Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Id $permissionClassification.Id
 ```
 
 ```Output
@@ -100,12 +94,8 @@ This command retrieves the delegated permission classification by Id from the se
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId  
-  Filter = "PermissionName eq 'Sites.Read.All'"
-}
-Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
 ```
 
 ```Output

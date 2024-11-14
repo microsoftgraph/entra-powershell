@@ -26,8 +26,8 @@ Deletes a directory setting in  Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDirectorySetting 
- -Id <String> 
+Remove-EntraBetaDirectorySetting
+ -Id <String>
  [<CommonParameters>]
 ```
 

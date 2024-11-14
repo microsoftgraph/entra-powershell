@@ -86,6 +86,24 @@ Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NL                {@{Capabiliti
 
 This example shows how to retrieve details of a top one tenant in Microsoft Entra ID.
 
+### Example 3: Get directory tenant size quota
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+(Get-EntraBetaTenantDetail).AdditionalProperties.directorySizeQuota
+```
+
+```Output
+Key   Value
+---   -----
+used    339
+total 50000
+```
+
+This example shows how to retrieve the directory tenant size quota.
+
+A directory quota represents the maximum number of objects allowed in a tenant, including user accounts, app registrations, and groups. Once this limit is reached, attempts to create new objects will result in an error.
+
 ## Parameters
 
 ### -All

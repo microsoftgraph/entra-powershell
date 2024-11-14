@@ -26,17 +26,17 @@ Retrieve the logo of an application.
 ## Syntax
 
 ```powershell
-Get-EntraApplicationLogo 
- -ObjectId <String> 
- [-FileName <String>] 
- [-View <Boolean>] 
+Get-EntraApplicationLogo
+ -ApplicationId <String>
+ [-FileName <String>]
+ [-View <Boolean>]
  [-FilePath <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
+The `Get-EntraApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ApplicationId` parameter to get a specific application logo for an application.
 
 ## Examples
 
@@ -44,7 +44,8 @@ The `Get-EntraApplicationLogo` cmdlet retrieves the logo that is set for an appl
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraApplicationLogo -ApplicationId $application.Id -FilePath 'D:\outfile1.jpg'
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
@@ -83,14 +84,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectID of the application for which the logo is to be retrieved.
+The ApplicationId of the application for which the logo is to be retrieved.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

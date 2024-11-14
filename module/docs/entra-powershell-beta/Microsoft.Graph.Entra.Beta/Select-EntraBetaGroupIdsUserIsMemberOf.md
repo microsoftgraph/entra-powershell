@@ -24,10 +24,9 @@ Selects the groups that a user is a member of.
 ## Syntax
 
 ```powershell
-Select-EntraBetaGroupIdsUserIsMemberOf 
+Select-EntraBetaGroupIdsUserIsMemberOf
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
-  
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 
@@ -43,13 +42,9 @@ The `Select-EntraBetaGroupIdsUserIsMemberOf` cmdlet selects the groups that a us
 Connect-Entra -Scopes 'Application.Read.All'
 $myGroup = Get-EntraBetaGroup -Filter "DisplayName eq '<Group-DisplayName>'"
 $UserId = 'SawyerM@contoso.com'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = $myGroup.ObjectId
-$Params = @{
-    ObjectId = $UserId 
-    GroupIdsForMembershipCheck = $Groups
-}
-Select-EntraBetaGroupIdsUserIsMemberOf @Params
+$groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$groups.GroupIds = $myGroup.Id
+Select-EntraBetaGroupIdsUserIsMemberOf -ObjectId 'SawyerM@contoso.com' -GroupIdsForMembershipCheck $groups
 ```
 
 ```Output

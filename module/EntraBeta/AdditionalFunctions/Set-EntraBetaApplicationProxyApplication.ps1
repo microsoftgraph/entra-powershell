@@ -6,7 +6,8 @@ function Set-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [Alias("ObjectId")]
+    [System.String] $ApplicationId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ExternalUrl,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -34,9 +35,9 @@ function Set-EntraBetaApplicationProxyApplication {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ApplicationId"])
         {
-            $ObjectId = $PSBoundParameters["ObjectId"]
+            $ApplicationId = $PSBoundParameters["ApplicationId"]
         }
         if($null -ne $PSBoundParameters["ExternalUrl"])
         {

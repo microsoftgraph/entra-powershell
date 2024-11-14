@@ -6,7 +6,7 @@ function Set-EntraBetaDirSyncConfiguration {
     [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
     param (
         [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.UInt32] $AccidentalDeletionThreshold,
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
         [switch] $Force
     )
 

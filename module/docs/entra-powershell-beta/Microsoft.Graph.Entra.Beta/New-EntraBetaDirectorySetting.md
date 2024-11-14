@@ -26,8 +26,8 @@ Creates a directory settings object.
 ## Syntax
 
 ```powershell
-New-EntraBetaDirectorySetting 
- -DirectorySetting <DirectorySetting> 
+New-EntraBetaDirectorySetting
+ -DirectorySetting <DirectorySetting>
  [<CommonParameters>]
 ```
 

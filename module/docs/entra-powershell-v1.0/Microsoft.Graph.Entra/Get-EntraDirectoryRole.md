@@ -37,7 +37,7 @@ Get-EntraDirectoryRole
 
 ```powershell
 Get-EntraDirectoryRole
- -ObjectId <String>
+ -DirectoryRoleId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -52,7 +52,7 @@ The `Get-EntraDirectoryRole` cmdlet gets a directory role from Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraDirectoryRole -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
+Get-EntraDirectoryRole -DirectoryRoleId '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
 ```
 
 ```Output
@@ -134,14 +134,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DirectoryRoleId
 
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

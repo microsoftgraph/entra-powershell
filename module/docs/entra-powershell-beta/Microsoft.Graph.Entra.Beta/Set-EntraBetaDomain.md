@@ -26,10 +26,10 @@ Updates a domain.
 ## Syntax
 
 ```powershell
-Set-EntraBetaDomain 
+Set-EntraBetaDomain
  -Name <String>
  [-IsDefault <Boolean>]
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 
@@ -68,7 +68,7 @@ This example demonstrates how to set domain capabilities for new user account in
 ### -IsDefault
 
 Indicates whether or not this is the default domain that is used for user creation.
-There is only one default domain per company.
+There's only one default domain per company.
 
 ```yaml
 Type: System.Boolean

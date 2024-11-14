@@ -26,8 +26,8 @@ Get credentials for a service principal.
 ## Syntax
 
 ```powershell
-Get-EntraBetaServicePrincipalPasswordCredential 
- -ObjectId <String> 
+Get-EntraBetaServicePrincipalPasswordCredential
+ -ServicePrincipalId <String>
  [<CommonParameters>]
 ```
 
@@ -41,8 +41,8 @@ The `Get-EntraBetaServicePrincipalPasswordCredential` cmdlet gets the password c
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalPasswordCredential -ObjectId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -55,18 +55,18 @@ CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                  
 
 This example retrieves the password credentials for specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the object ID of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.
+- `-ServicePrincipalId` parameter specifies the object ID of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of the service principal for which to get password credentials.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

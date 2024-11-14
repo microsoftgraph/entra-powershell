@@ -7,17 +7,24 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias("Id")]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $DirectoryObjectId
+    )
+
     PROCESS {  
         $params = @{}
         $Method = "DELETE"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["Id"] = $PSBoundParameters["Id"]
+        if ($null -ne $PSBoundParameters["DirectoryObjectId"]) {
+            $params["DirectoryObjectId"] = $PSBoundParameters["DirectoryObjectId"]
         }        
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = "https://graph.microsoft.com/v1.0/directory/deletedItems/$Id"
+        $URI = "https://graph.microsoft.com/v1.0/directory/deletedItems/$DirectoryObjectId"
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response
     }

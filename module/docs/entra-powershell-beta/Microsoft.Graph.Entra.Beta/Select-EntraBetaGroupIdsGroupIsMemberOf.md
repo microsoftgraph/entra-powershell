@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Select-EntraBetaGroupIdsGroupIsMemberOf
@@ -24,9 +25,9 @@ Gets group IDs that a group is a member of.
 ## Syntax
 
 ```powershell
-Select-EntraBetaGroupIdsGroupIsMemberOf 
+Select-EntraBetaGroupIdsGroupIsMemberOf
  -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 
@@ -40,10 +41,10 @@ The `Select-EntraBetaGroupIdsGroupIsMemberOf` cmdlet gets the groups that a spec
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Select-EntraBetaGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
+$groupObject = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$groupObject.GroupIds = (Get-EntraBetaGroup -Filter "displayName eq 'Tailspin Toys'").Id
+$group = Get-EntraBetaGroup -Filter "displayName eq 'sg-Legal'"
+Select-EntraBetaGroupIdsGroupIsMemberOf  -ObjectId $group.Id -GroupIdsForMembershipCheck $groupObject
 ```
 
 This example gets the group membership of a group identified by $GroupId. Use `Get-EntraBetaGroup` cmdlet to obtain group `ObjectId` value.

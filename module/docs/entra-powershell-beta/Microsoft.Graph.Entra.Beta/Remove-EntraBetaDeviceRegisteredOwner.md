@@ -26,9 +26,9 @@ Removes the registered owner of a device.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaDeviceRegisteredOwner 
- -OwnerId <String> 
- -ObjectId <String> 
+Remove-EntraBetaDeviceRegisteredOwner
+ -OwnerId <String>
+ -DeviceId <String>
  [<CommonParameters>]
 ```
 
@@ -44,21 +44,21 @@ The `Remove-EntraBetaDeviceRegisteredOwner` cmdlet removes the registered owner 
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $Device = Get-EntraBetaDevice -Top 1
 $Owner = Get-EntraBetaDeviceRegisteredOwner -ObjectId $Device.ObjectId
-Remove-EntraBetaDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
+Remove-EntraBetaDeviceRegisteredOwner -DeviceId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
 This examples shows how to remove the owner of a device.
 
 ## Parameters
 
-### -ObjectId
+### -DeviceId
 
 Specifies an object ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

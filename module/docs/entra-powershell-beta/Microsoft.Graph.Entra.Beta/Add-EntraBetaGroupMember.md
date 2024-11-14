@@ -24,19 +24,22 @@ Add a member to a group.
 ## Syntax
 
 ```powershell
-Add-EntraBetaGroupMember 
- -ObjectId <String> 
- -RefObjectId <String> 
+Add-EntraBetaGroupMember
+ -GroupId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `ObjectId` and `RefObjectId` parameters to add a member to a group.
+The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `GroupId` and `RefObjectId` parameters to add a member to a group.
 
-`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
+In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
-`-RefObjectId` - specifies the unique identifier (Object ID) of the member to be added to the group.
+- Group owners
+- Directory Writers
+- Groups Administrator
+- User Administrator
 
 ## Examples
 
@@ -44,26 +47,26 @@ The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `Obj
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$params = @{
-    ObjectId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-
-Add-EntraBetaGroupMember @params
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+Add-EntraBetaGroupMember -GroupId $group.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
 
+- `-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
+- -RefObjectId` - specifies the unique identifier (Object ID) of the member to be added to the group.
+
 ## Parameters
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

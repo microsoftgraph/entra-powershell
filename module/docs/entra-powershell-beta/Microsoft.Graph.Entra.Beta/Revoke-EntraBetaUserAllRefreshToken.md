@@ -23,16 +23,20 @@ Invalidates the refresh tokens issued to applications for a user.
 ## Syntax
 
 ```powershell
-Revoke-EntraBetaUserAllRefreshToken 
- -ObjectId <String> 
+Revoke-EntraBetaUserAllRefreshToken
+ -UserId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Revoke-EntraBetaUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
+
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
+
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
+
+The user or an administrator usually performs this operation if the user's device is lost or stolen. It blocks access to the organization's data by requiring the user to sign in again to all previously authorized applications, regardless of the device
 
 ## Examples
 
@@ -40,7 +44,7 @@ The cmdlet operates by resetting the refreshTokensValidFromDateTime user propert
 
 ```powershell
 Connect-Entra -Scopes 'User.RevokeSessions.All'
-Revoke-EntraBetaUserAllRefreshToken -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Revoke-EntraBetaUserAllRefreshToken -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -51,18 +55,18 @@ True
 
 This example demonstrates how to revoke the tokens for the specified user.
 
-- `-ObjectId` parameter specifies the unique identifier of a user.
+- `-UserId` parameter specifies the unique identifier of a user.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the unique ID of a user.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

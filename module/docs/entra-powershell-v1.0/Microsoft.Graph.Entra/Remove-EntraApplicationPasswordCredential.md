@@ -25,10 +25,10 @@ Removes a password credential from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraApplicationPasswordCredential 
--ObjectId <String> 
--KeyId <String>
-[<CommonParameters>]
+Remove-EntraApplicationPasswordCredential
+ -ApplicationId <String>
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -41,21 +41,21 @@ The `Remove-EntraApplicationPasswordCredential` cmdlet removes a password creden
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk App'"
-$KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $application.Id
-Remove-EntraApplicationPasswordCredential -ObjectId $application.Id -KeyId $KeyIds[0].KeyId
+$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
+$applicationPassword = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'ERP App Password'}
+Remove-EntraApplicationPasswordCredential -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example demonstrates how to remove the password credential for an application.
 
-- `ObjectId` Specifies the ID of the application. Use `Get-EntraApplication` to get application ObjectId value.
+- `ApplicationId` Specifies the ID of the application. Use `Get-EntraApplication` to get application ObjectId value.
 - `KeyId` Specifies the ID of the password credential. Use `Get-EntraApplicationPasswordCredential` to retrieve a specific credential details.
 
 ## Parameters
 
 ### -KeyId
 
-The unique identifier for the password.
+Specifies the ID of the password credential.
 
 ```yaml
 Type: System.String
@@ -69,14 +69,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of the application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

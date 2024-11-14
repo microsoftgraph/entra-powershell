@@ -25,8 +25,8 @@ Removes a domain.
 ## Syntax
 
 ```powershell
-Remove-EntraDomain 
- -Name <String> 
+Remove-EntraDomain
+ -Name <String>
  [<CommonParameters>]
 ```
 
@@ -45,7 +45,7 @@ The work or school account needs to belong to at least the `Domain Name Administ
 
 ### Example 1: Remove a domain
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Remove-EntraDomain -Name Contoso.com
 ```

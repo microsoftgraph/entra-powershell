@@ -25,10 +25,10 @@ Adds a predefined value for a custom security attribute definition.
 ## Syntax
 
 ```powershell
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
  -IsActive <Boolean>
- -CustomSecurityAttributeDefinitionId <String> 
- -Id <String> 
+ -CustomSecurityAttributeDefinitionId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 
@@ -128,6 +128,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+`Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues` is an alias for `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue`.
 
 ## Related Links
 

@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaContact
@@ -25,8 +26,8 @@ Removes a contact.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaContact 
- -ObjectId <String> 
+Remove-EntraBetaContact
+ -OrgContactId <String>
  [<CommonParameters>]
 ```
 
@@ -41,21 +42,21 @@ The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
-Remove-EntraBetaContact -ObjectId $Contact.ObjectId
+Remove-EntraBetaContact -OrgContactId $Contact.ObjectId
 ```
 
 The example shows how to remove a contact.
 
 ## Parameters
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

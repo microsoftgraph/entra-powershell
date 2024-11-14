@@ -38,14 +38,14 @@ Get-EntraBetaDirectoryRole
 
 ```powershell
 Get-EntraBetaDirectoryRole
- -ObjectId <String>
+ -DirectoryRoleId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID. Specify `ObjectId` parameter to get a directory role.
+The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID. Specify `DirectoryRoleId` parameter to get a directory role.
 
 ## Examples
 
@@ -53,7 +53,7 @@ The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRole -ObjectId '56644e28-bf8b-4dad-8595-24448ffa3cb8'
+Get-EntraBetaDirectoryRole -DirectoryRoleId '56644e28-bf8b-4dad-8595-24448ffa3cb8'
 ```
 
 ```Output
@@ -64,7 +64,7 @@ DeletedDateTime Id                                   Description
 
 This command gets the specified directory role.
 
-- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
+- `-DirectoryRoleId` parameter specifies the ID of a directory role in Microsoft Entra ID.
 
 ### Example 2: Get all directory roles
 
@@ -135,14 +135,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DirectoryRoleId
 
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

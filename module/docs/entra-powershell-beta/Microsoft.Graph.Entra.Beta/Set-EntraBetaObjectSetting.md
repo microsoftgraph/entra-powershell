@@ -26,11 +26,11 @@ Updates object settings.
 ## Syntax
 
 ```powershell
-Set-EntraBetaObjectSetting 
- -Id <String> 
- -DirectorySetting <DirectorySetting> 
+Set-EntraBetaObjectSetting
+ -Id <String>
+ -DirectorySetting <DirectorySetting>
  -TargetType <String>
- -TargetObjectId <String> 
+ -TargetObjectId <String>
  [<CommonParameters>]
 ```
 

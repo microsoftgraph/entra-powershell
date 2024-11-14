@@ -25,9 +25,9 @@ Removes an owner from a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraServicePrincipalOwner 
- -OwnerId <String> 
- -ObjectId <String> 
+Remove-EntraServicePrincipalOwner
+ -OwnerId <String>
+ -ServicePrincipalId <String>
  [<CommonParameters>]
 ```
 
@@ -41,31 +41,27 @@ The `Remove-EntraServicePrincipalOwner` cmdlet removes an owner from a service p
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
-$owner = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
-
-$params= @{
-    ObjectId = $servicePrincipal.Id 
-    OwnerId = $owner.Id
-}
-Remove-EntraServicePrincipalOwner @params
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$ownership = Get-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
+$owner = $ownership | Where-Object {$_.userPrincipalName -eq 'SawyerM@Contoso.com' }
+Remove-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
 ```
 
 This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 - `-OwnerId` parameter specifies the service principal owner Id.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -92,7 +88,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

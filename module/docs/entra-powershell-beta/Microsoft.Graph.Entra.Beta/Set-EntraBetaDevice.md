@@ -2,7 +2,6 @@
 title: Set-EntraBetaDevice
 description: This article provides details on the Set-EntraBetaDevice command.
 
-
 ms.topic: reference
 ms.date: 08/12/2024
 ms.author: eunicewaweru
@@ -27,21 +26,21 @@ Updates a device.
 
 ```powershell
 Set-EntraBetaDevice
- -ObjectId <String> 
+ -DeviceObjectId <String>
  [-DevicePhysicalIds <System.Collections.Generic.List`1[String]>]
- [-DeviceOSType <String>] 
- [-DeviceTrustType <String>] 
- [-DisplayName <String>] 
+ [-DeviceOSType <String>]
+ [-DeviceTrustType <String>]
+ [-DisplayName <String>]
  [-DeviceMetadata <String>]
- [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-ApproximateLastLogonTimeStamp <DateTime>]
  [-AccountEnabled <Boolean>]
- [-IsManaged <Boolean >] 
- [-DeviceId <String>] 
- [-DeviceObjectVersion <Int32>] 
- [-IsCompliant <Boolean    >]
+ [-IsManaged <Boolean >]
+ [-DeviceId <String>]
+ [-DeviceObjectVersion <Int32>]
+ [-IsCompliant <Boolean>]
  [-DeviceOSVersion <String>]
  [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
- [-ProfileType <String>] 
+ [-ProfileType <String>]
  [-SystemLabels <System.Collections.Generic.List`1[String]>]
  [<CommonParameters>]
 ```
@@ -58,7 +57,7 @@ The calling user must have at least the Intune Administrator role in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
 ```
 
 This example shows how to update a display name of a specified.
@@ -70,7 +69,7 @@ Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 $NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
 $NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
 $NewId.type = 2
-Set-EntraBetaDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
 ```
 
 This example shows how to update an alternative security ID of a specified device.
@@ -79,7 +78,7 @@ This example shows how to update an alternative security ID of a specified devic
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
 ```
 
 This example shows how to update an account enabled of a specified device.
@@ -88,7 +87,7 @@ This example shows how to update an account enabled of a specified device.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
+Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
 ```
 
 This example shows how to update an OS type of a specified device.
@@ -99,7 +98,7 @@ This example shows how to update an OS type of a specified device.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DeviceObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DeviceMetadata = 'Testdevice'
     DeviceObjectVersion = 4
     DevicePhysicalIds = '[GID]:g:1234567890123456'
@@ -321,14 +320,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DeviceObjectId
 
 Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

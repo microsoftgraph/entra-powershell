@@ -48,7 +48,7 @@ Get-EntraBetaApplication
 
 ```powershell
 Get-EntraBetaApplication
- -ObjectId <String>
+ -ApplicationId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -60,11 +60,11 @@ The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
 
 ## Examples
 
-### Example 1: Get an application by ObjectId
+### Example 1: Get an application by ApplicationId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -98,7 +98,7 @@ This example demonstrates how to get all applications from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication |
+Get-EntraBetaApplication |
     Where-Object {
         $_.PasswordCredentials.keyId -ne $null -and
         $_.PasswordCredentials.EndDateTime -lt (Get-Date).AddDays(30)
@@ -192,14 +192,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

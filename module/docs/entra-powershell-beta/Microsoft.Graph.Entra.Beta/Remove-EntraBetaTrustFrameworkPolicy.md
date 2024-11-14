@@ -26,8 +26,8 @@ Deletes a trust framework policy (custom policy) in the Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaTrustFrameworkPolicy 
- -Id <String> 
+Remove-EntraBetaTrustFrameworkPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 
@@ -35,7 +35,7 @@ Remove-EntraBetaTrustFrameworkPolicy
 
 The `Remove-EntraBetaTrustFrameworkPolicy` cmdlet deletes a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted.
 
-The work or school account must have the `B2C IEF Keyset Administrator` role in Microsoft Entra.
+In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
 ## Examples
 

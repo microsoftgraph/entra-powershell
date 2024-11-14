@@ -26,8 +26,8 @@
     href: Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner.md
   - name: Confirm-EntraDomain
     href: Microsoft.Graph.Entra/Confirm-EntraDomain.md
-  - name: Convert-EntraFederatedUser
-    href: Microsoft.Graph.Entra/Convert-EntraFederatedUser.md
+  - name: Update-EntraUserFromFederated
+    href: Microsoft.Graph.Entra/Update-EntraUserFromFederated.md
   - name: Enable-EntraAzureADAlias
     href: Microsoft.Graph.Entra/Enable-EntraAzureADAlias.md
   - name: Enable-EntraDirectoryRole
@@ -98,8 +98,8 @@
     href: Microsoft.Graph.Entra/Get-EntraGroupMember.md
   - name: Get-EntraGroupOwner
     href: Microsoft.Graph.Entra/Get-EntraGroupOwner.md
-  - name: Get-EntraHasObjectsWithDirSyncProvisioningError
-    href: Microsoft.Graph.Entra/Get-EntraHasObjectsWithDirSyncProvisioningError.md
+  - name: Get-EntraDirectoryObjectOnPremisesProvisioningError
+    href: Microsoft.Graph.Entra/Get-EntraDirectoryObjectOnPremisesProvisioningError.md
   - name: Get-EntraAdministrativeUnit
     href: Microsoft.Graph.Entra/Get-EntraAdministrativeUnit.md
   - name: Get-EntraAdministrativeUnitMember
@@ -134,10 +134,10 @@
     href: Microsoft.Graph.Entra/Get-EntraPermissionGrantConditionSet.md
   - name: Get-EntraPermissionGrantPolicy
     href: Microsoft.Graph.Entra/Get-EntraPermissionGrantPolicy.md
-  - name: Get-EntraRoleAssignment
-    href: Microsoft.Graph.Entra/Get-EntraRoleAssignment.md
-  - name: Get-EntraRoleDefinition
-    href: Microsoft.Graph.Entra/Get-EntraRoleDefinition.md
+  - name: Get-EntraDirectoryRoleAssignment
+    href: Microsoft.Graph.Entra/Get-EntraDirectoryRoleAssignment.md
+  - name: Get-EntraDirectoryRoleDefinition
+    href: Microsoft.Graph.Entra/Get-EntraDirectoryRoleDefinition.md
   - name: Get-EntraScopedRoleMembership
     href: Microsoft.Graph.Entra/Get-EntraScopedRoleMembership.md
   - name: Get-EntraOAuth2PermissionGrant
@@ -148,10 +148,10 @@
     href: Microsoft.Graph.Entra/Get-EntraPartnerInformation.md
   - name: Get-EntraPasswordPolicy
     href: Microsoft.Graph.Entra/Get-EntraPasswordPolicy.md
-  - name: Get-EntraServiceAppRoleAssignedTo
-    href: Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignedTo.md
-  - name: Get-EntraServiceAppRoleAssignment
-    href: Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignment.md
+  - name: Get-EntraServicePrincipalAppRoleAssignedTo
+    href: Microsoft.Graph.Entra/Get-EntraServicePrincipalAppRoleAssignedTo.md
+  - name: Get-EntraServicePrincipalAppRoleAssignment
+    href: Microsoft.Graph.Entra/Get-EntraServicePrincipalAppRoleAssignment.md
   - name: Get-EntraServicePrincipal
     href: Microsoft.Graph.Entra/Get-EntraServicePrincipal.md
   - name: Get-EntraServicePrincipalCreatedObject
@@ -174,8 +174,6 @@
     href: Microsoft.Graph.Entra/Get-EntraTenantDetail.md
   - name: Get-EntraTrustedCertificateAuthority
     href: Microsoft.Graph.Entra/Get-EntraTrustedCertificateAuthority.md
-  - name: Get-EntraUnsupportedCommand
-    href: Microsoft.Graph.Entra/Get-EntraUnsupportedCommand.md
   - name: Get-EntraUser
     href: Microsoft.Graph.Entra/Get-EntraUser.md
   - name: Get-EntraUserAppRoleAssignment
@@ -244,12 +242,12 @@
     href: Microsoft.Graph.Entra/New-EntraPermissionGrantConditionSet.md
   - name: New-EntraPermissionGrantPolicy
     href: Microsoft.Graph.Entra/New-EntraPermissionGrantPolicy.md
-  - name: New-EntraRoleAssignment
-    href: Microsoft.Graph.Entra/New-EntraRoleAssignment.md
-  - name: New-EntraRoleDefinition
-    href: Microsoft.Graph.Entra/New-EntraRoleDefinition.md
-  - name: New-EntraServiceAppRoleAssignment
-    href: Microsoft.Graph.Entra/New-EntraServiceAppRoleAssignment.md
+  - name: New-EntraDirectoryRoleAssignment
+    href: Microsoft.Graph.Entra/New-EntraDirectoryRoleAssignment.md
+  - name: New-EntraDirectoryRoleDefinition
+    href: Microsoft.Graph.Entra/New-EntraDirectoryRoleDefinition.md
+  - name: New-EntraServicePrincipalAppRoleAssignment
+    href: Microsoft.Graph.Entra/New-EntraServicePrincipalAppRoleAssignment.md
   - name: New-EntraServicePrincipal
     href: Microsoft.Graph.Entra/New-EntraServicePrincipal.md
   - name: New-EntraServicePrincipalPasswordCredential
@@ -326,16 +324,16 @@
     href: Microsoft.Graph.Entra/Remove-EntraPermissionGrantConditionSet.md
   - name: Remove-EntraPermissionGrantPolicy
     href: Microsoft.Graph.Entra/Remove-EntraPermissionGrantPolicy.md
-  - name: Remove-EntraRoleAssignment
-    href: Microsoft.Graph.Entra/Remove-EntraRoleAssignment.md
-  - name: Remove-EntraRoleDefinition
-    href: Microsoft.Graph.Entra/Remove-EntraRoleDefinition.md
+  - name: Remove-EntraDirectoryRoleAssignment
+    href: Microsoft.Graph.Entra/Remove-EntraDirectoryRoleAssignment.md
+  - name: Remove-EntraDirectoryRoleDefinition
+    href: Microsoft.Graph.Entra/Remove-EntraDirectoryRoleDefinition.md
   - name: Remove-EntraScopedRoleMembership
     href: Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership.md
   - name: Remove-EntraOAuth2PermissionGrant
     href: Microsoft.Graph.Entra/Remove-EntraOAuth2PermissionGrant.md
-  - name: Remove-EntraServiceAppRoleAssignment
-    href: Microsoft.Graph.Entra/Remove-EntraServiceAppRoleAssignment.md
+  - name: Remove-EntraServicePrincipalAppRoleAssignment
+    href: Microsoft.Graph.Entra/Remove-EntraServicePrincipalAppRoleAssignment.md
   - name: Remove-EntraServicePrincipal
     href: Microsoft.Graph.Entra/Remove-EntraServicePrincipal.md
   - name: Remove-EntraServicePrincipalKeyCredential
@@ -412,8 +410,8 @@
     href: Microsoft.Graph.Entra/Set-EntraPermissionGrantConditionSet.md
   - name: Set-EntraPermissionGrantPolicy
     href: Microsoft.Graph.Entra/Set-EntraPermissionGrantPolicy.md
-  - name: Set-EntraRoleDefinition
-    href: Microsoft.Graph.Entra/Set-EntraRoleDefinition.md
+  - name: Set-EntraDirectoryRoleDefinition
+    href: Microsoft.Graph.Entra/Set-EntraDirectoryRoleDefinition.md
   - name: Set-EntraServicePrincipal
     href: Microsoft.Graph.Entra/Set-EntraServicePrincipal.md
   - name: Set-EntraTenantDetail

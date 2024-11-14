@@ -24,8 +24,8 @@ Removes a password credential from an application.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaApplicationPasswordCredential 
- -ObjectId <String> 
+Remove-EntraBetaApplicationPasswordCredential
+ -ApplicationId <String>
  -KeyId <String>
  [<CommonParameters>]
 ```
@@ -40,14 +40,14 @@ The `Remove-EntraBetaApplicationPasswordCredential` cmdlet removes a password cr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk App'"
-$KeyIDs = Get-EntraBetaApplicationPasswordCredential -ObjectId $application.Id
-Remove-EntraBetaApplicationPasswordCredential -ObjectId $application.Id -KeyId $KeyIds[0].KeyId
+$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
+$applicationPassword = Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'ERP App Password'}
+Remove-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example demonstrates how to remove the password credential for an application.
 
-- `ObjectId` Specifies the ID of the application. Use `Get-EntraBetaApplication` to get application ObjectId value.
+- `ApplicationId` Specifies the ID of the application. Use `Get-EntraBetaApplication` to get application ApplicationId value.
 - `KeyId` Specifies the ID of the password credential. Use `Get-EntraBetaApplicationPasswordCredential` to retrieve a specific credential details.
 
 ## Parameters
@@ -68,14 +68,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of the application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -27,9 +27,9 @@ Sets a user extension.
 ### SetSingle
 
 ```powershell
-Set-EntraBetaUserExtension 
- -ExtensionName <String> 
- -ObjectId <String> 
+Set-EntraBetaUserExtension
+ -ExtensionName <String>
+ -ObjectId <String>
  -ExtensionValue <String>
  [<CommonParameters>]
 ```
@@ -37,7 +37,7 @@ Set-EntraBetaUserExtension
 ### SetMultiple
 
 ```powershell
-Set-EntraBetaUserExtension 
+Set-EntraBetaUserExtension
  -ObjectId <String>
  -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
  [<CommonParameters>]
@@ -53,16 +53,15 @@ The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = $User.ObjectId 
+    ObjectId = 'SawyerM@contoso.com'
     ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
     ExtensionValue = 'New Value'
 }
 Set-EntraBetaUserExtension @params
 ```
 
-This example shows how to update the value of the extension attribute for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.
+This example shows how to update the value of the extension attribute for a specified user.
 
 - `-ObjectId` parameter specifies the user Id.
 - `-ExtensionName` parameter specifies the name of an extension.

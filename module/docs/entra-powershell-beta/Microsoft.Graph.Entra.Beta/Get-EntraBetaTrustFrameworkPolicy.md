@@ -47,6 +47,8 @@ Get-EntraBetaTrustFrameworkPolicy
 
 The `Get-EntraBetaTrustFrameworkPolicy` cmdlet retrieves the trust framework policies that have been created in the directory.
 
+In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
+
 ## Examples
 
 ### Example 1: Retrieves the list of all trust framework policies in the directory

@@ -27,18 +27,18 @@ Gets the predefined value for a custom security attribute definition.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraCustomSecurityAttributeDefinitionAllowedValue 
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue
  -CustomSecurityAttributeDefinitionId <String>
- [-Filter <String>] 
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraCustomSecurityAttributeDefinitionAllowedValue 
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue
  -CustomSecurityAttributeDefinitionId <String>
- -Id <String> 
+ -Id <String>
  [<CommonParameters>]
 ```
 

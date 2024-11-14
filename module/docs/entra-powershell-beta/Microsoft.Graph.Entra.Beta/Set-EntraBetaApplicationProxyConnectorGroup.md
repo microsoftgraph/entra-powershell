@@ -25,9 +25,9 @@ The `Set-EntraBetaApplicationProxyConnectorGroup` cmdlet allows you to change th
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyConnectorGroup 
- -Id <String> 
- -Name <Name> 
+Set-EntraBetaApplicationProxyConnectorGroup
+ -Id <String>
+ -Name <Name>
  [<CommonParameters>]
 ```
 

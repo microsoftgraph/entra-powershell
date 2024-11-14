@@ -25,13 +25,13 @@ Creates a key credential for an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationKeyCredential 
- -ObjectId <String>
- [-CustomKeyIdentifier <String>] 
- [-Type <KeyType>] 
+New-EntraBetaApplicationKeyCredential
+ -ApplicationId <String>
+ [-CustomKeyIdentifier <String>]
+ [-Type <KeyType>]
  [-Usage <KeyUsage>]
- [-Value <String>] 
- [-EndDate <DateTime>] 
+ [-Value <String>]
+ [-EndDate <DateTime>]
  [-StartDate <DateTime>]
  [<CommonParameters>]
 ```
@@ -50,17 +50,15 @@ As part of the request validation, proof of possession of an existing key is ver
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-
-$AppId = (Get-EntraApplication -Top 1).Objectid
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $params = @{
-    ObjectId = $AppId
+    ApplicationId = $application.Id
     CustomKeyIdentifier = 'EntraPowerShellKey'
     StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
     Usage = 'Sign'
     Value = '<my-value>'
 }
-
 New-EntraBetaApplicationKeyCredential @params
 ```
 
@@ -76,7 +74,7 @@ Value               : {49, 50, 51}
 
 This example shows how to create an application key credential.
 
-- `-ObjectId` Specifies a unique ID of an application
+- `-ApplicationId` Specifies a unique ID of an application
 - `-CustomKeyIdentifier` Specifies a custom key ID.
 - `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
 - `-Type` Specifies the type of the key.
@@ -88,9 +86,8 @@ You can use the `Get-EntraBetaApplication` cmdlet to retrieve the application Ob
 ### Example 2: Use a certificate to add an application key credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
 $cer.Import('C:\Users\ContosoUser\appcert.cer') 
 $bin = $cer.GetRawCertData()
@@ -100,7 +97,7 @@ $base64Thumbprint = [System.Convert]::ToBase64String($bin)
 $keyid = [System.Guid]::NewGuid().ToString() 
 
 $params = @{
-    ObjectId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ApplicationId = $application.Id
     CustomKeyIdentifier = $base64Thumbprint
     Type = 'AsymmetricX509Cert'
     Usage = 'Verify'
@@ -108,13 +105,12 @@ $params = @{
     StartDate = $cer.GetEffectiveDateString()
     EndDate = $cer.GetExpirationDateString()
 }
-
 New-EntraBetaApplicationKeyCredential @params
 ```
 
 This example shows how to create an application key credential.
 
-- `-ObjectId` Specifies a unique ID of an application
+- `-ApplicationId` Specifies a unique ID of an application
 - `-CustomKeyIdentifier` Specifies a custom key ID.
 - `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
 - `-EndDate` Specifies the time when the key becomes invalid as a DateTime object.
@@ -156,14 +152,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

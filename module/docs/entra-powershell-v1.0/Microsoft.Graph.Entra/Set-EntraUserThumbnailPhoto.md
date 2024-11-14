@@ -2,13 +2,13 @@
 title: Set-EntraUserThumbnailPhoto
 description: This article provides details on the Set-EntraUserThumbnailPhoto command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserThumbnailPhoto
@@ -27,33 +27,33 @@ Set the thumbnail photo for a user.
 ### File (Default)
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
- [-ObjectId <String>] 
- -FilePath <String> 
+Set-EntraUserThumbnailPhoto
+ [-UserId <String>]
+ -FilePath <String>
  [<CommonParameters>]
 ```
 
 ### Stream
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
- -FileStream <Stream> 
- [-ObjectId <String>] 
+Set-EntraUserThumbnailPhoto
+ -FileStream <Stream>
+ [-UserId <String>]
  [<CommonParameters>]
 ```
 
 ### ByteArray
 
 ```powershell
-Set-EntraUserThumbnailPhoto 
- [-ObjectId <String>] 
- -ImageByteArray <Byte[]> 
+Set-EntraUserThumbnailPhoto
+ [-UserId <String>]
+ -ImageByteArray <Byte[]>
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet is used to set the thumbnail photo for a user.
+The `Set-EntraUserThumbnailPhoto` cmdlet is used to set the thumbnail photo for a user.
 
 Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
 
@@ -62,17 +62,18 @@ Updating any user's photo in the organization requires the User.ReadWrite.All pe
 ### Example 1: Sets the thumbnail photo
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite' #Delegated Permission
-Connect-Entra -Scopes 'User.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    UserId = 'SawyerM@contoso.com'
     FilePath = 'D:\UserThumbnailPhoto.jpg'
 }
-
 Set-EntraUserThumbnailPhoto @params
 ```
 
-This example sets the thumbnail photo of the user specified with the ObjectId parameter to the image specified with the FilePath parameter.
+This example sets the thumbnail photo of the user specified with the UserId parameter to the image specified with the FilePath parameter.
+
+- `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-FilePath` parameter specifies the file path of the image to be uploaded as the user thumbnail photo.
 
 ## Parameters
 
@@ -92,14 +93,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 The Object ID of the user for which the user thumbnail photo is set.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: False
 Position: Named

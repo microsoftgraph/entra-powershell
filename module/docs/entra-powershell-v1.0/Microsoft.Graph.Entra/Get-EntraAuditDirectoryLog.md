@@ -25,10 +25,10 @@ Get directory audit logs.
 ## Syntax
 
 ```powershell
-Get-EntraAuditDirectoryLog 
-[-All] 
-[-Top <Int32>] 
-[-Filter <String>] 
+Get-EntraAuditDirectoryLog
+[-All]
+[-Top <Int32>]
+[-Filter <String>]
 [<CommonParameters>]
 ```
 
@@ -171,5 +171,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ## Outputs
+
+## Notes
+
+`Get-EntraAuditDirectoryLogs` is an alias for `Get-EntraAuditDirectoryLog`.
 
 ## Related Links

@@ -26,46 +26,43 @@ Removes a scoped role membership.
 ## Syntax
 
 ```powershell
-Remove-EntraScopedRoleMembership 
- -ObjectId <String> 
+Remove-EntraScopedRoleMembership
+ -AdministrativeUnitId <String>
  -ScopedRoleMembershipId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID.
+The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `AdministrativeUnitId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
 
 ## Examples
 
-### Example 1: Removes a scoped role membership
+### Example 1: Remove a scoped role membership
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$params = @{
-    ObjectId = $AdministrativeUnit.ObjectId
-    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
-}
-Remove-EntraScopedRoleMembership @params
+$role = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+$roleMembership = Get-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id | Where-Object {$_.RoleId -eq $role.Id}
+Remove-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -ScopedRoleMembershipId $roleMembership.Id
 ```
 
-This example removes a specific scoped role membership from Microsoft Entra ID.
+This cmdlet removes a specific scoped role membership from Microsoft Entra ID. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit Id.
 
-- `-ObjectId` - parameter specifies the ID of an administrative unit.
-
-- `-ScopedRoleMembershipId` - parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraScopedRoleMembership` command.
+- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraScopedRoleMembership` command.
 
 ## Parameters
 
-### -ObjectId
+### -AdministrativeUnitId
 
-Specifies the ID of an administrative unit.
+Specifies the ID of an administrative unit object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

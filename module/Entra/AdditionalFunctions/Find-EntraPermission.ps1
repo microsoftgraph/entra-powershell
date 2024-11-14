@@ -3,18 +3,21 @@
 # ------------------------------------------------------------------------------
 
 function Find-EntraPermission {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'Search')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Position = 1)]
-    [System.String] $SearchString,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [switch] $ExactMatch,
-    [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $PermissionType,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $Online
+        [parameter(ParameterSetName='Search', position=0, ValueFromPipeline=$true, Mandatory=$true)]
+        [String] $SearchString,
+
+        [parameter(ParameterSetName='Search')]
+        [Switch] $ExactMatch,
+
+        [ValidateSet('Any', 'Delegated', 'Application')]
+        [String] $PermissionType = 'Any',
+
+        [Switch] $Online,
+
+        [parameter(ParameterSetName='All')]
+        [Switch] $All
     )
 
     PROCESS {    
@@ -89,10 +92,6 @@ function Find-EntraPermission {
         if($null -ne $PSBoundParameters["WarningAction"])
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        if($null -ne $PSBoundParameters["Top"])
-        {
-            $params["Top"] = $PSBoundParameters["Top"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")

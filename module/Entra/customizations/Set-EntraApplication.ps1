@@ -7,6 +7,51 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    param (
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $TokenEncryptionKeyId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.ApiApplication] $Api,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]] $AddIns,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.ParentalControlSettings] $ParentalControlSettings,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $DisplayName,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $GroupMembershipClaims,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.WebApplication] $Web,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $Tags,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $SignInAudience
+    )
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -123,9 +168,9 @@
         {
             $params["GroupMembershipClaims"] = $PSBoundParameters["GroupMembershipClaims"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ApplicationId"])
         {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
         }
         if($null -ne $PSBoundParameters["AddIns"])
         {

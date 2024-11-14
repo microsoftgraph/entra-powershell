@@ -2,7 +2,6 @@
 title: Set-EntraUserManager
 description: This article provides details on the Set-EntraUserManager command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -25,15 +24,15 @@ Updates a user's manager.
 ## Syntax
 
 ```powershell
-Set-EntraUserManager 
- -ObjectId <String> 
- -RefObjectId <String> 
+Set-EntraUserManager
+ -UserId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Set-EntraUserManager cmdlet update the manager for a user in Microsoft Entra ID.
+The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `UserId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,21 +40,26 @@ The Set-EntraUserManager cmdlet update the manager for a user in Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$manager = Get-EntraUser -UserId 'Manager@contoso.com'
+$params = @{
+    UserId = 'SawyerM@contoso.com'
+    RefObjectId = $manager.ObjectId
+}
+Set-EntraUserManager @params
 ```
 
-This example demonstrates how to set the manager, with ID `eeeeeeee-4444-5555-6666-ffffffffffff` for the user with the ID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
+This example demonstrates how to update the manager for the specified user.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -90,7 +94,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUserManager](Get-EntraUserManager.md)
 

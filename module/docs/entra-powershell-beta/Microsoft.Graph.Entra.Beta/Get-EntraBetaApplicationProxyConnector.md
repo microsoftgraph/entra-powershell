@@ -29,27 +29,27 @@ The `Get-EntraBetaApplicationProxyConnector` cmdlet a list of all connectors, or
 
 ```powershell
 Get-EntraBetaApplicationProxyConnector
- [-All] 
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-All]
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
 ### GetVague
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ [-SearchString <String>]
+ [-All]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaApplicationProxyConnector 
- -Id <String> 
- [-All] 
+Get-EntraBetaApplicationProxyConnector
+ -OnPremisesPublishingProfileId <String>
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -79,7 +79,7 @@ This command Retrieve all connectors.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnector -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaApplicationProxyConnector -OnPremisesPublishingProfileId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -90,7 +90,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to Retrieve information for a specific connector.
 
-- `Id` parameter specifies the connector ID.
+- `OnPremisesPublishingProfileId` parameter specifies the connector ID.
 
 ### Example 3: Retrieve information for a top one connector
 
@@ -173,7 +173,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -OnPremisesPublishingProfileId
 
 The ID of the specific connector.
 You can find this ID by running the command without this parameter to get the desired ID, or by going into the portal and viewing connector details.
@@ -181,7 +181,7 @@ You can find this ID by running the command without this parameter to get the de
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

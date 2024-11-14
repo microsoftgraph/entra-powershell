@@ -36,3 +36,5 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
         }
     }
 }
+Set-Alias -Name Get-EntraBetaHasObjectsWithDirSyncProvisioningError -Value Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -Scope Global -Force
+

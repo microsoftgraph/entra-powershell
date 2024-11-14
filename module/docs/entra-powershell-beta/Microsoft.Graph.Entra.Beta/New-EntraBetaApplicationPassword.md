@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationPassword
@@ -24,8 +25,8 @@ Adds a strong password to an application.
 ## Syntax
 
 ```powershell
-New-EntraBetaApplicationPassword 
- -ObjectId <String> 
+New-EntraBetaApplicationPassword
+ -ObjectId <String>
  -PasswordCredential <PasswordCredential>
  [<CommonParameters>]
 ```
@@ -40,17 +41,14 @@ Adds a strong password to an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$PasswordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
-$PasswordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
-$PasswordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
-$PasswordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
-$PasswordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
-$PasswordCredential.Hint = 'b'
-$params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    PasswordCredential = $PasswordCredential
-}
-New-EntraBetaApplicationPassword @params
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$passwordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
+$passwordCredential.StartDateTime = Get-Date -Year 2024 -Month 10 -Day 23
+$passwordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
+$passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('ERP App Password')
+$passwordCredential.Hint = 'erpapppassword'
+$passwordCredential.DisplayName = 'ERP App Password'
+New-EntraBetaApplicationPassword -ObjectId $application.Id -PasswordCredential $passwordCredential
 ```
 
 ```Output
@@ -68,7 +66,7 @@ This example adds a password to the specified application.
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object.
+The unique identifier of the application object.
 
 ```yaml
 Type: System.String

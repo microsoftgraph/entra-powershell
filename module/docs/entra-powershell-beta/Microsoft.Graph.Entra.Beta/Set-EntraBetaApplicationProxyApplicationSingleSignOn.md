@@ -26,11 +26,11 @@ The `Set-EntraBetaApplicationProxyApplicationSingleSignOn` cmdlet allows you to 
 ## Syntax
 
 ```powershell
-Set-EntraBetaApplicationProxyApplicationSingleSignOn 
- -ObjectId <String> 
+Set-EntraBetaApplicationProxyApplicationSingleSignOn
+ -ObjectId <String>
  -SingleSignOnMode <SingleSignOnModeEnum>
  [-KerberosInternalApplicationServicePrincipalName <String>]
- [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>] 
+ [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>]
  [<CommonParameters>]
 ```
 

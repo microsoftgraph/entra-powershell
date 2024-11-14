@@ -26,12 +26,12 @@ Update the properties of an existing identity provider configured in the directo
 ## Syntax
 
 ```powershell
-Set-EntraBetaIdentityProvider 
- -Id <String> 
- [-Type <String>] 
- [-Name <String>] 
+Set-EntraBetaIdentityProvider
+ -IdentityProviderBaseId <String>
+ [-Type <String>]
+ [-Name <String>]
  [-ClientId <String>]
- [-ClientSecret <String>] 
+ [-ClientSecret <String>]
  [<CommonParameters>]
 ```
 
@@ -39,7 +39,7 @@ Set-EntraBetaIdentityProvider
 
 The `Set-EntraBetaIdentityProvider` cmdlet is used to update the properties of an existing identity provider.
 
-The type of the identity provider cannot be modified.
+The type of the identity provider can't be modified.
 
 ## Examples
 
@@ -48,7 +48,7 @@ The type of the identity provider cannot be modified.
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
 $params = @{
-    Id = 'Google-OAuth'
+    IdentityProviderBaseId = 'Google-OAuth'
     ClientId = 'NewClientID'
 }
 Set-EntraBetaIdentityProvider @params
@@ -56,7 +56,7 @@ Set-EntraBetaIdentityProvider @params
 
 This example updates the client ID for the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 - `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
 
 ### Example 2: Update client secret of an identity provider
@@ -64,15 +64,15 @@ This example updates the client ID for the specified identity provider.
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
 $params = @{
-    Id = 'Google-OAuth'
+    IdentityProviderBaseId = 'Google-OAuth'
     ClientSecret = 'NewClientSecret'
 }
-Set-EntraBetadentityProvider @params
+Set-EntraBetaIdentityProvider @params
 ```
 
 This example updates the client secret for the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 - `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
 ### Example 3: Update display name of an identity provider
@@ -80,7 +80,7 @@ This example updates the client secret for the specified identity provider.
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
 $params = @{
-    Id = 'Google-OAuth'
+    IdentityProviderBaseId = 'Google-OAuth'
     Name = 'NewGoogleName'
 }
 Set-EntraBetaIdentityProvider @params
@@ -88,7 +88,7 @@ Set-EntraBetaIdentityProvider @params
 
 This example updates the display name for the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier of the identity provider.
+- `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 - `-Name` parameter specifies the display name of the identity provider.
 
 ## Parameters
@@ -125,14 +125,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -IdentityProviderBaseId
 
 The unique identifier for an identity provider.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

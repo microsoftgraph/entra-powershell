@@ -24,9 +24,9 @@ Removes an owner from a service principal.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaServicePrincipalOwner 
- -OwnerId <String> 
- -ObjectId <String>
+Remove-EntraBetaServicePrincipalOwner
+ -OwnerId <String>
+ -ServicePrincipalId <String>
  [<CommonParameters>]
 ```
 
@@ -40,31 +40,27 @@ The `Remove-EntraBetaServicePrincipalOwner` cmdlet removes an owner from a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
-$owner = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
-
-$params= @{
-    ObjectId = $servicePrincipal.Id 
-    OwnerId = $owner.Id
-}
-Remove-EntraBetaServicePrincipalOwner @params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$ownership = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
+$owner = $ownership | Where-Object {$_.userPrincipalName -eq 'SawyerM@Contoso.com' }
+Remove-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
 ```
 
 This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 - `-OwnerId` parameter specifies the service principal owner Id.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -26,24 +26,24 @@ Updates the properties of an application object.
 ## Syntax
 
 ```powershell
-Set-EntraApplication 
- -ObjectId <String> 
+Set-EntraApplication
+ -ApplicationId <String>
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-TokenEncryptionKeyId <String>] 
+ [-TokenEncryptionKeyId <String>]
  [-SignInAudience <String>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-ParentalControlSettings <ParentalControlSettings>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
- [-PublicClient <PublicClientApplication>] 
- [-InformationalUrl <InformationalUrl>] 
- [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-PublicClient <PublicClientApplication>]
+ [-InformationalUrl <InformationalUrl>]
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
  [-Api <ApiApplication>]
- [-OptionalClaims <OptionalClaims>] 
- [-GroupMembershipClaims <String>] 
+ [-OptionalClaims <OptionalClaims>]
+ [-GroupMembershipClaims <String>]
  [-Web <WebApplication>]
- [-DisplayName <String>] 
- [-IsFallbackPublicClient <Boolean>] 
+ [-DisplayName <String>]
+ [-IsFallbackPublicClient <Boolean>]
  [-IsDeviceOnlyAuthSupported <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
  [<CommonParameters>]
@@ -58,13 +58,16 @@ Updates the properties of an application object.
 ### Example 1: Update an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
-    DisplayName = 'My new application'
+    ApplicationId = $application.Id
+    DisplayName = 'Contoso Entra PowerShell App Production'
+    IdentifierUris = 'https://contoso.com'
+    GroupMembershipClaims = 'SecurityGroup'
+    IsDeviceOnlyAuthSupported = $False
+    Tags = 'mytag'
 }
-
 Set-EntraApplication @params
 ```
 
@@ -73,14 +76,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 2: Update an application using IdentifierUris parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
-    IdentifierUris = 'https://mynewapp.contoso.com'
-}
-
-Set-EntraApplication @params
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraApplication -ApplicationId $application.Id -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -88,14 +86,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 3: Update an application using GroupMembershipClaims parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
-    GroupMembershipClaims = 'SecurityGroup'
-}
-
-Set-EntraApplication @params
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraApplication -ApplicationId $application.Id -GroupMembershipClaims 'SecurityGroup'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -103,14 +96,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 4: Update an application using IsDeviceOnlyAuthSupported parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
-    IsDeviceOnlyAuthSupported = $false
-}
-
-Set-EntraApplication @params
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraApplication -ApplicationId $application.Id -IsDeviceOnlyAuthSupported $False
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -118,14 +106,9 @@ This command updates an application in Microsoft Entra ID.
 ### Example 5: Update an application using Tags parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-$params = @{
-    ObjectId = '11112222-bbbb-3333-cccc-4444dddd5555'
-    Tags = 'mytag'
-}
-
-Set-EntraApplication @params
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Set-EntraApplication -ApplicationId $application.Id -Tags 'mytag'
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -151,6 +134,7 @@ Accept wildcard characters: False
 ### -AppRoles
 
 The collection of application roles that an application might declare.
+
 These roles can be assigned to users, groups, or service principals.
 
 ```yaml
@@ -199,7 +183,7 @@ Accept wildcard characters: False
 
 ### -IdentifierUris
 
-Specifies identifier URIs.
+Specifies identifier Uniform Resource Identifiers (URIs).
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -216,6 +200,7 @@ Accept wildcard characters: False
 ### -InformationalUrl
 
 Basic profile information of the application such as app's marketing, support, terms of service and privacy statement URLs.
+
 The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
@@ -252,8 +237,7 @@ Specifies the fallback application type as public client, such as an installed a
 
 The default value is `false` that means the fallback application type is confidential client such as web app.
 
-There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example,
-ROPC flow where it's configured without specifying a redirect URI).
+There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example, ROPC flow where it's configured without specifying a redirect URI).
 
 In those cases Microsoft Entra ID interprets the application type based on the value of this property.
 
@@ -285,14 +269,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -335,7 +319,7 @@ Accept wildcard characters: False
 
 ### -PasswordCredentials
 
-The collection of password credentials associated with the application
+Specifies password credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
@@ -351,8 +335,7 @@ Accept wildcard characters: False
 
 ### -PublicClient
 
-Specifies whether this application is a public client (such as an installed application running on a mobile device).
-Default is false.
+Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is `false`.
 
 ```yaml
 Type: PublicClientApplication
@@ -370,7 +353,7 @@ Accept wildcard characters: False
 
 Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
 
-This preconfiguration of required resource access drives the consent experience.
+This pre-configuration of required resource access drives the consent experience.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
@@ -474,7 +457,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### String
 
-### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.Add-in]
+### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
 
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 

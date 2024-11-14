@@ -26,21 +26,21 @@ Creates a device.
 ## Syntax
 
 ```powershell
-New-EntraDevice 
- -DisplayName <String> 
+New-EntraDevice
+ -DisplayName <String>
  -DeviceOSType <String>
  -AccountEnabled <Boolean>
  -DeviceId <String>
  -DeviceOSVersion <String>
  -AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>
- [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] 
- -DeviceTrustType <String>] 
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
+ [-DeviceTrustType <String>]
  [-DeviceMetadata <String>]
- [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-ApproximateLastLogonTimeStamp <DateTime>]
  [-IsManaged <Boolean>]
- [-DeviceObjectVersion <Int32>] 
- [-IsCompliant <Boolean>]  
- [-ProfileType <String>] 
+ [-DeviceObjectVersion <Int32>]
+ [-IsCompliant <Boolean>]
+ [-ProfileType <String>]
  [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
@@ -57,6 +57,7 @@ The calling user must be in one of the following Microsoft Entra roles: Intune A
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+
 $params = @{
     AccountEnabled = $true
     DisplayName = 'My new device'

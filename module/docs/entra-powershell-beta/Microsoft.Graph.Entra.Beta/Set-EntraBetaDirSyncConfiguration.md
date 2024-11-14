@@ -28,18 +28,18 @@ Modifies the directory synchronization settings.
 ### SetAccidentalDeletionThreshold (Default)
 
 ```powershell
-Set-EntraBetaDirSyncConfiguration 
- -AccidentalDeletionThreshold <UInt32> 
- [-Force] 
+Set-EntraBetaDirSyncConfiguration
+ -AccidentalDeletionThreshold <UInt32>
+ [-Force]
  [<CommonParameters>]
 ```
 
 ### All
 
 ```powershell
-Set-EntraBetaDirSyncConfiguration 
- [-TenantId <String>] 
- [-Force] 
+Set-EntraBetaDirSyncConfiguration
+ [-TenantId <String>]
+ [-Force]
  [<CommonParameters>]
 ```
 
@@ -53,7 +53,7 @@ The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchroniz
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold '600' -Force
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -Force
 ```
 
 This command sets directory synchronization settings.
@@ -65,9 +65,10 @@ This command sets directory synchronization settings.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$tenantID = (Get-EntraContext).TenantId
 $params = @{
     AccidentalDeletionThreshold = 600
-    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    TenantId = $tenantID
     Force = $true
 }
 
@@ -120,7 +121,7 @@ The unique ID of the tenant on which to perform the operation. If not provided, 
 
 ```yaml
 Type: System.String
-Parameter Sets: All
+Parameter Sets: SetAccidentalDeletionThreshold
 Aliases:
 
 Required: False
@@ -145,6 +146,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+- For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
 ## Related Links
 

@@ -19,7 +19,7 @@
             $params["Filter"] = $PSBoundParameters["Filter"]
             $filterApplied = '?$filter=' + $params["Filter"]
         }
-        if ($null -ne $PSBoundParameters["Top"]) {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $params["Top"] = $PSBoundParameters["Top"]
             $topCount = '?$top=' + $params["Top"]
         }

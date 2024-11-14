@@ -26,7 +26,7 @@ Gets an application policy.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationPolicy 
+Get-EntraBetaApplicationPolicy
  -Id <String> 
  [<CommonParameters>]
 ```

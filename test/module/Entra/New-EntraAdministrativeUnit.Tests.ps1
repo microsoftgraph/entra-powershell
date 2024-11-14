@@ -43,10 +43,13 @@ Describe "Tests for New-EntraAdministrativeUnit"{
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraAdministrativeUnit"
         $result = New-EntraAdministrativeUnit -DisplayName "DummyName"
-        $params = Get-Parameters -data $result.Parameters
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-    }
+        $result | Should -Not -BeNullOrEmpty
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraAdministrativeUnit"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
+    } 
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference

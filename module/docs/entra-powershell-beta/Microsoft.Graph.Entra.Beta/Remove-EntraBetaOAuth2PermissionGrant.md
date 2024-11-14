@@ -25,8 +25,8 @@ Removes an OAuth2PermissionGrant.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaOAuth2PermissionGrant 
- -ObjectId <String> 
+Remove-EntraBetaOAuth2PermissionGrant
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 

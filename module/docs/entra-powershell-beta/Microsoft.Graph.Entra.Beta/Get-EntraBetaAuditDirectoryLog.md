@@ -176,4 +176,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
+## Notes
+
+`Get-EntraBetaAuditDirectoryLogs` is an alias for `Get-EntraBetaAuditDirectoryLog`.
+
 ## Related Links

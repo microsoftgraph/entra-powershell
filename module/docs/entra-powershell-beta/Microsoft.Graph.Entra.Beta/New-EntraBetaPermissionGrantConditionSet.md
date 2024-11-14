@@ -26,17 +26,17 @@ Create a new Microsoft Entra ID permission grant condition set in a given policy
 ## Syntax
 
 ```powershell
-New-EntraBetaPermissionGrantConditionSet 
+New-EntraBetaPermissionGrantConditionSet
  -PolicyId <String>
  -ConditionSetType <String>
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
  [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>]
- [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>] 
- [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>] 
+ [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>]
+ [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>]
  [-ResourceApplication <String>]
  [-ClientApplicationPublisherIds <System.Collections.Generic.List`1[System.String]>]
- [-PermissionClassification <String>]  
- [-PermissionType <String>] 
+ [-PermissionClassification <String>]
+ [-PermissionType <String>]
  [<CommonParameters>]
 ```
 
@@ -66,7 +66,7 @@ Id                                   CertifiedClientApplicationsOnly ClientAppli
 aaaa0000-bb11-2222-33cc-444444dddddd False                           {all}                {all}                         {all}                      False                                       all                                  all                      delegated      {all}
 ```
 
- This command creates a basic permission grant condition set in an existing policy with all build in values.
+This command creates a basic permission grant condition set in an existing policy with all build in values.
 
 - `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
 - `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.

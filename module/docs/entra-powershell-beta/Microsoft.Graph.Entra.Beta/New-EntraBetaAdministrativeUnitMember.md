@@ -27,27 +27,27 @@ Currently only group objects are supported.
 ## Syntax
 
 ```powershell
-New-EntraBetaAdministrativeUnitMember 
- -Id <String>
+New-EntraBetaAdministrativeUnitMember
+ -AdministrativeUnitId <String>
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
  [-AssignedLabels <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]>]
- [-OdataType <String>] 
- [-Description <String>] 
- -SecurityEnabled <Boolean> 
+ [-OdataType <String>]
+ [-Description <String>]
+ -SecurityEnabled <Boolean>
  [-IsAssignableToRole <Boolean>]
- [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>] 
+ [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>]
  -DisplayName <String>
- [-Visibility <String>] 
- -MailEnabled <Boolean> 
- -MailNickname <String> 
+ [-Visibility <String>]
+ -MailEnabled <Boolean>
+ -MailNickname <String>
  [-MembershipRule <String>]
- [-MembershipRuleProcessingState <String>] 
+ [-MembershipRuleProcessingState <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID object as a member of an administrative unit. Specify `Id`, `DisplayName`, `MailNickname`, `SecurityEnabled` and `MailEnabled` parameters for create a new administrative unit member.
+The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID object as a member of an administrative unit. Specify `AdministrativeUnitId`, `DisplayName`, `MailNickname`, `SecurityEnabled` and `MailEnabled` parameters for create a new administrative unit member.
 
 Currently only Microsoft Entra ID groups are supported to create administrative unit members.
 
@@ -60,7 +60,7 @@ For information about creating dynamic groups, see Using attributes to create ad
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $params = @{
-    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    AdministrativeUnitId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     OdataType = 'Microsoft.Graph.Group'
     DisplayName = 'NewAUMember'
     Description = 'createdUnitMember'
@@ -95,14 +95,14 @@ Any users that don't qualify are removed from the group.
 
 ## Parameters
 
-### -Id
+### -AdministrativeUnitId
 
-Specifies the ID of a Microsoft Entra ID administrative unit.
+Specifies the AdministrativeUnitId of a Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

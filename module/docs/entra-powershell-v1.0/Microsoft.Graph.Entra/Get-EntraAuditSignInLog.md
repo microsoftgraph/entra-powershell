@@ -25,10 +25,11 @@ Get audit logs of sign-ins.
 ## Syntax
 
 ```powershell
-Get-EntraAuditSignInLog 
+Get-EntraAuditSignInLog
+ [-SignInId]
  [-All]
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
@@ -104,7 +105,33 @@ Get-EntraAuditSignInLog -Filter "createdDateTime ge 2024-07-01T00:00:00Z and cre
 
 This example shows how to retrieve sign-in logs between dates.
 
+### Example 5: List failed sign-ins for a user
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$failedSignIns = Get-EntraAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
+$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
+```
+
+This example demonstrates how to retrieve failed sign-ins for a user.
+
 ## Parameters
+
+### -SignInId
+
+Specifies unique ID of the Audit Log.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: Id
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -All
 
@@ -178,5 +205,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ## Outputs
+
+## Notes
+
+`Get-EntraAuditSignInLogs` is an alias for `Get-EntraAuditSignInLog`.
 
 ## Related Links

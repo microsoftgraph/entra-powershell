@@ -26,14 +26,14 @@ Removes a permission grant policy.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaPermissionGrantPolicy 
- -Id <String> 
+Remove-EntraBetaPermissionGrantPolicy
+ -Id <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaPermissionGrantPolicy` cmdlet removes an Microsoft Entra ID permission grant policy.
+The `Remove-EntraBetaPermissionGrantPolicy` cmdlet removes a Microsoft Entra ID permission grant policy.
 
 ## Examples
 

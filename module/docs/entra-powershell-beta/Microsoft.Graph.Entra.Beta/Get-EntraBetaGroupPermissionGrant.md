@@ -20,20 +20,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieve a list of permission grants consented for this group.
 
 ## Syntax
 
 ```powershell
 Get-EntraBetaGroupPermissionGrant
- -Id <String>
+ -GroupId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-Retrieves a list of permission grants that have been consented for this group.
+Retrieve a list of permission grants consented for this group.
 
 ## Examples
 
@@ -41,7 +41,7 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+Get-EntraBetaGroupPermissionGrant -GroupId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 ```Output
@@ -57,14 +57,14 @@ This cmdlet list existing permission grants for the specified group.
 
 ## Parameters
 
-### -Id
+### -GroupId
 
 The unique identifier of group.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -95,7 +95,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-### string
+### String
 
 ## Outputs
 

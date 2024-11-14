@@ -26,7 +26,7 @@ Retrieves a soft deleted directory object from the directory.
 
 ```powershell
 Get-EntraBetaDeletedDirectoryObject
- -Id <String>
+ -DirectoryObjectId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -44,7 +44,7 @@ Office 365 Groups).
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
-Get-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -55,18 +55,35 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 06-08-2024 04:23:34
 
 This example shows how to retrieve the deleted directory object from the directory.
 
+- `-DirectoryObjectId` parameter specifies the Id of the directory object to retrieve.
+
+### Example 2: Retrieve a deleted directory object with more details.
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
+Get-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type' -AutoSize
+```
+
+```Output
+Id                                   displayName           @odata.type
+--                                   -----------           -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Entra PowerShell App #microsoft.graph.application
+```
+
+This example shows how to retrieve the deleted directory object details from the directory.
+
 - `-Id` parameter specifies the Id of the directory object to retrieve.
 
 ## Parameters
 
-### -Id
+### -DirectoryObjectId
 
 The Id of the directory object to retrieve.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named

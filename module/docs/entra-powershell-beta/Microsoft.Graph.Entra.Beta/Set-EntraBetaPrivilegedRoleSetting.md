@@ -26,7 +26,7 @@ Update role setting.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPrivilegedRoleSetting 
+Set-EntraBetaPrivilegedRoleSetting
  [-ResourceId <String>]
  [-UserEligibleSettings <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]>]
  -Id <String>

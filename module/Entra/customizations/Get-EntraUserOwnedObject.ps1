@@ -7,11 +7,23 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if ($null -ne $PSBoundParameters["ObjectId"]) {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["UserId"]) {
+            $params["UserId"] = $PSBoundParameters["UserId"]
         }
         $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
@@ -31,7 +43,7 @@
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
 
         $Top = $null
-        if ($null -ne $PSBoundParameters["Top"]) {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $Top = $PSBoundParameters["Top"]
         }
 

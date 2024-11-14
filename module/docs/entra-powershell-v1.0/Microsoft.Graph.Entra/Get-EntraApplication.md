@@ -27,7 +27,7 @@ Gets an application.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraApplication 
+Get-EntraApplication
  [-Filter <String>]
  [-All]
  [-Top <Int32>]
@@ -38,7 +38,7 @@ Get-EntraApplication
 ### GetByValue
 
 ```powershell
-Get-EntraApplication 
+Get-EntraApplication
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,8 +48,8 @@ Get-EntraApplication
 ### GetById
 
 ```powershell
-Get-EntraApplication 
- -ObjectId <String>
+Get-EntraApplication
+ -ApplicationId <String>
  [-Property <String[]>]
  [-All]
  [<CommonParameters>]
@@ -61,11 +61,11 @@ The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
 
 ## Examples
 
-### Example 1: Get an application by ObjectId
+### Example 1: Get an application by ApplicationId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -193,14 +193,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

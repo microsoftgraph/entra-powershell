@@ -28,15 +28,15 @@ Retrieves the current password policy for the tenant or the specified domain.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaPasswordPolicy 
+Get-EntraBetaPasswordPolicy
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaPasswordPolicy 
- -DomainName <String> 
+Get-EntraBetaPasswordPolicy
+ -DomainName <String>
  [<CommonParameters>]
 ```
 

@@ -14,13 +14,19 @@ BeforeAll {
 Describe "Set-EntraAttributeSet" {
     Context "Test for Set-EntraAttributeSet" {
         It "Should return created AttributeSet" {
+            $result = Set-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should return created AttributeSet with alias" {
             $result = Set-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id parameter is empty" {
-            { Set-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
+        It "Should fail when AttributeSetId parameter is empty" {
+            { Set-EntraAttributeSet -AttributeSetId } | Should -Throw "Missing an argument for parameter 'AttributeSetId*"
         }
         It "Should fail when Description parameter is empty" {
             { Set-EntraAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
@@ -34,11 +40,26 @@ Describe "Set-EntraAttributeSet" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAttributeSet"
 
-            Set-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
+            Set-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { 
+                    Set-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 -Debug 
+                } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
+            }
+        } 
     }
 }

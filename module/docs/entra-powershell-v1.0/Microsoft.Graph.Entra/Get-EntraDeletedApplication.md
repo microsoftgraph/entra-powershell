@@ -133,7 +133,25 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications having specified display name.  
+This cmdlet retrieves deleted applications having specified display name.
+
+### Example 6: Get deleted applications with deletion age in days
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication |
+    Select-Object DisplayName, Id, AppId, SignInAudience, PublisherDomain, DeletedDateTime,
+        @{Name='DeletionAgeInDays'; Expression={(Get-Date) - $_.DeletedDateTime | Select-Object -ExpandProperty Days}} |
+    Format-Table -AutoSize
+```
+
+```Output
+DisplayName           Id                                   AppId                                SignInAudience PublisherDomain        DeletedDateTime      DeletionAgeInDays
+-----------           --                                   -----                                -------------- ---------------        ---------------      -----------------
+Entra PowerShell App aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com 9/18/2024 7:41:44 AM                 1
+```
+
+This cmdlet retrieves deleted applications with deletion age in days.
 
 ## Parameters
 

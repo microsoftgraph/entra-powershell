@@ -25,24 +25,26 @@ Updates an authorization policy.
 ## Syntax
 
 ```powershell
-Set-EntraBetaAuthorizationPolicy 
- -Id <String> 
+Set-EntraBetaAuthorizationPolicy
+ -Id <String>
  [-DisplayName <String>]
  [-EnabledPreviewFeatures <System.Collections.Generic.List`1[System.String]>]
- [-DefaultUserRolePermissions <DefaultUserRolePermissions>] 
+ [-DefaultUserRolePermissions <DefaultUserRolePermissions>]
  [-AllowedToSignUpEmailBasedSubscriptions <Boolean>]
  [-AllowedToUseSSPR <Boolean>]
  [-PermissionGrantPolicyIdsAssignedToDefaultUserRole <System.Collections.Generic.List`1[System.String]>]
- [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>] 
+ [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>]
  [-Description <String>]
- [-BlockMsolPowerShell <Boolean>] 
- [-GuestUserRoleId <String>] 
+ [-BlockMsolPowerShell <Boolean>]
+ [-GuestUserRoleId <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraBetaAuthorizationPolicy` cmdlet updates an Azure Active Directory authorization policy.
+The `Set-EntraBetaAuthorizationPolicy` cmdlet updates a Microsoft Entra ID authorization policy.
+
+For delegated scenarios, the user needs to have the `Privileged Role Administrator` Microsoft Entra role.
 
 ## Examples
 

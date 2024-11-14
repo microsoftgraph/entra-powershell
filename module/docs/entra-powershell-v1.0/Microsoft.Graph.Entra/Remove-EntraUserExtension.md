@@ -27,8 +27,8 @@ Removes a user extension.
 ### SetMultiple
 
 ```powershell
-Remove-EntraUserExtension 
- -ObjectId <String> 
+Remove-EntraUserExtension
+ -ObjectId <String>
  -ExtensionNames <System.Collections.Generic.List`1[System.String]>
  [<CommonParameters>]
 ```
@@ -36,30 +36,32 @@ Remove-EntraUserExtension
 ### SetSingle
 
 ```powershell
-Remove-EntraUserExtension 
- -ObjectId <String> 
+Remove-EntraUserExtension
+ -ObjectId <String>
  -ExtensionName <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID.
+The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID. Specify `ObjectId` and `ExtensionNames` parameters to remove a user extension.
 
 ## Examples
 
-### Example 1: Remove the "Test Extension" attribute from user: <TestUser@example.com>
+### Example 1: Remove the user extension
 
 ```powershell
-$params = @{
-    ObjectId = 'TestUser@example.com'
+$Params = @{
+    ObjectId = 'SawyerM@Contoso.com'
     ExtensionName = 'Test Extension'
 }
-
-Remove-EntraUserExtension @params
+Remove-EntraUserExtension @Params
 ```
 
-This will remove the "Test Extension" attribute from user: <TestUser@example.com>.
+This example demonstrates how to remove a user extension from Microsoft Entra ID.
+
+- `ObjectId` parameter specifies the user Object ID.
+- `ExtensionName` parameter specifies the user ExtentionName.
 
 ## Parameters
 

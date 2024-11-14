@@ -26,8 +26,8 @@ Delete an externalDomainFederation by external domain name.
 ## Syntax
 
 ```powershell
-Remove-EntraExternalDomainFederation 
- -ExternalDomainName <String> 
+Remove-EntraExternalDomainFederation
+ -ExternalDomainName <String>
  [<CommonParameters>]
 ```
 

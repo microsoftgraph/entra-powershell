@@ -10,7 +10,6 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaPermissionGrantConditionSet
@@ -27,18 +26,18 @@ Update an existing Microsoft Entra ID permission grant condition set.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPermissionGrantConditionSet 
+Set-EntraBetaPermissionGrantConditionSet
  -Id <String>
- -PolicyId <String> 
+ -PolicyId <String>
  -ConditionSetType <String>
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
  [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>]
- [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>] 
- [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>] 
+ [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>]
+ [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>]
  [-ResourceApplication <String>]
  [-ClientApplicationPublisherIds <System.Collections.Generic.List`1[System.String]>]
- [-PermissionClassification <String>] 
- [-PermissionType <String>] 
+ [-PermissionClassification <String>]
+ [-PermissionType <String>]
  [<CommonParameters>]
 ```
 

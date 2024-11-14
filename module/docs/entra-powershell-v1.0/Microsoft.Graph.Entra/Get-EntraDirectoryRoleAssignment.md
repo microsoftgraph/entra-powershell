@@ -39,7 +39,6 @@ Get-EntraDirectoryRoleAssignment
 
 ```powershell
 Get-EntraDirectoryRoleAssignment
- [-SearchString <String>]
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -49,7 +48,7 @@ Get-EntraDirectoryRoleAssignment
 
 ```powershell
 Get-EntraDirectoryRoleAssignment
- -Id <String>
+ -UnifiedRoleAssignmentId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -57,7 +56,7 @@ Get-EntraDirectoryRoleAssignment
 
 ## Description
 
-The `Get-EntraDirectoryRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
+The `Get-EntraDirectoryRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `UnifiedRoleAssignmentId` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
 
@@ -115,7 +114,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```Output
@@ -126,7 +125,7 @@ Id                                      PrincipalId                           Ro
 
 This command gets the role assignments using specified roleAssignment Id.
 
-- `Id` parameter specifies the roleAssignment object ID.
+- `UnifiedRoleAssignmentId` parameter specifies the roleAssignment object ID.
 
 ### Example 4: Get role assignments filter by principalId
 
@@ -181,14 +180,14 @@ This command gets top two role assignments.
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleAssignmentId
 
 The unique identifier of a Microsoft Entra ID roleAssignment object.
 
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -246,22 +245,6 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -SearchString
-
-Specifies a search string.
-
-```yaml
-Type: System.String
-Parameter Sets: GetValue
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -Property
 
 Specifies properties to be returned
@@ -289,6 +272,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
 ## Notes
+
+`Get-EntraRoleAssignment` is an alias for `Get-EntraDirectoryRoleAssignment`.
 
 ## Related Links
 

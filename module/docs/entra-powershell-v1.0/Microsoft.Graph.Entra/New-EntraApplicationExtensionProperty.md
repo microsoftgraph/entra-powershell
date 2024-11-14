@@ -26,11 +26,11 @@ Creates an application extension property.
 ## Syntax
 
 ```powershell
-New-EntraApplicationExtensionProperty 
- -ObjectId <String> 
+New-EntraApplicationExtensionProperty
+ -ApplicationId <String>
  -Name <String>
- [-DataType <String>]     
- [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ [-DataType <String>]
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 
@@ -44,12 +44,8 @@ The `New-EntraApplicationExtensionProperty` cmdlet creates an application extens
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
-    Name = 'NewAttribute'
-}
-
-New-EntraApplicationExtensionProperty @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute'
 ```
 
 ```Output
@@ -60,17 +56,15 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 This command creates an application extension property of the string type for the specified object.
 
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+
 ### Example 2: Create an extension property with data type parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
-    Name = 'NewAttribute'
-    DataType = 'Boolean'
-}
-
-New-EntraApplicationExtensionProperty @params
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute1' -DataType 'Boolean'
 ```
 
 ```Output
@@ -81,19 +75,18 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 This command creates an application extension property of the specified data type for the specified object.
 
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-DataType` parameter specifies the data type of the value the extension property can hold.
+
 ### Example 3: Create an extension property with targets parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
-$params = @{
-    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
-    Name = 'NewAttribute'
-    TargetObjects = $targets
-}
-
-New-EntraApplicationExtensionProperty @params
+New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute2' -TargetObjects $targets
 ```
 
 ```Output
@@ -103,6 +96,10 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 ```
 
 The example shows how to create an application extension property with the specified target objects for the specified object.
+
+- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-TargetObjects` parameter specifies the Microsoft Graph resources that use the extension property. All values must be in PascalCase.
 
 ## Parameters
 
@@ -131,7 +128,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Name of the extension property.
+Specifies the name of the extension property.
 
 ```yaml
 Type: System.String
@@ -145,14 +142,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

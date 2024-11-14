@@ -26,8 +26,8 @@ Displays the properties of the Microsoft Entra ID Federation Services 2.0 server
 ## Syntax
 
 ```powershell
-Get-EntraFederationProperty 
- -DomainName <String> 
+Get-EntraFederationProperty
+ -DomainName <String>
  [<CommonParameters>]
 ```
 

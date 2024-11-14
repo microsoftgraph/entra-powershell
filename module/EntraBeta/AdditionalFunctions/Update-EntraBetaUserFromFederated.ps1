@@ -80,3 +80,5 @@ function Update-EntraBetaUserFromFederated {
         $response
         }
 }
+Set-Alias -Name Convert-EntraBetaFederatedUser -Value Update-EntraBetaUserFromFederated -Scope Global -Force
+

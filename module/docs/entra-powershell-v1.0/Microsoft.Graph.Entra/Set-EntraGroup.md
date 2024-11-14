@@ -25,22 +25,22 @@ Sets the properties for an existing Microsoft Entra ID group.
 ## Syntax
 
 ```powershell
-Set-EntraGroup 
- -Id <String>
- [-DisplayName <String>] 
+Set-EntraGroup
+ -GroupId <String>
+ [-DisplayName <String>]
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
- [-SecurityEnabled <Boolean>]  
- [-Description <String>] 
+ [-SecurityEnabled <Boolean>]
+ [-Description <String>]
  [-MailEnabled <Boolean>]
- [-MailNickname <String>] 
- [-Visibility <String>] 
- [-IsAssignableToRole <Boolean>] 
+ [-MailNickname <String>]
+ [-Visibility <String>]
+ [-IsAssignableToRole <Boolean>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Set-EntraGroup cmdlet sets the properties for an existing Microsoft Entra ID group.
+The `Set-EntraGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `GroupId` parameter to set the properties for an existing Microsoft Entra ID group.
 
 ## Examples
 
@@ -48,7 +48,8 @@ The Set-EntraGroup cmdlet sets the properties for an existing Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'UPDATE helpdesk'
+$group = Get-EntraGroup -Filter "displayName eq 'HelpDesk Team Leaders'"
+Set-EntraGroup -GroupId $group.Id -DisplayName 'Global HelpDesk Team Leaders'
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.
@@ -57,7 +58,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
+Get-EntraGroup -Filter "displayName eq 'HelpDesk Team Leaders'" | Set-EntraGroup -Description 'HelpDesk Team Leaders Global'
 ```
 
 This example demonstrates how to update a group description.  
@@ -66,7 +67,8 @@ This example demonstrates how to update a group description.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Set-EntraGroup -GroupId $group.Id -MailNickName 'newnickname'
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.
@@ -75,7 +77,8 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Set-EntraGroup -GroupId $group.Id -SecurityEnabled $True
 ```
 
 This command updates the security enabled of a specified group in Microsoft Entra ID.
@@ -84,7 +87,8 @@ This command updates the security enabled of a specified group in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $false
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Set-EntraGroup -GroupId $group.Id -MailEnabled $False
 ```
 
 This example demonstrates how to update a group main enabled.  
@@ -92,7 +96,9 @@ This example demonstrates how to update a group main enabled.
 ### Example 6: Update a property for a group
 
 ```powershell
-Set-EntraGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Set-EntraGroup -GroupId $group.Id -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $True
 ```
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
@@ -148,14 +154,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
 Specifies the object ID of a group.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -259,7 +265,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -271,7 +277,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

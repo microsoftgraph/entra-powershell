@@ -7,6 +7,14 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Alias('ObjectId')]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $DirectoryRoleId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
@@ -19,10 +27,10 @@
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["DirectoryRoleId"])
         {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.ObjectId)/members?$properties"
+            $params["DirectoryRoleId"] = $PSBoundParameters["DirectoryRoleId"]
+            $URI = "$baseUri/$($params.DirectoryRoleId)/members?$properties"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug

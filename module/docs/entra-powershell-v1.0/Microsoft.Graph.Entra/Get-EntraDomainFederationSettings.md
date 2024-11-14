@@ -26,7 +26,7 @@ Retrieves settings for a federated domain.
 ## Syntax
 
 ```powershell
-Get-EntraDomainFederationSettings 
+Get-EntraDomainFederationSettings
  -DomainName <String>
  [-TenantId <String>]
  [<CommonParameters>]

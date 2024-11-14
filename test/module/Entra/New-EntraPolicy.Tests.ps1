@@ -49,13 +49,26 @@ Describe "New-EntraPolicy" {
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraPolicy"
-
-           New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://xyz.xmlsoap.org/ws/2005/05/pqr/claims/name\",\"JwtClaimType\":\"xyz\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://xxx.yyy.com/identity/claims/displayname\",\"JwtClaimType\":\"ppp\"}]}}" ], "displayName": "test Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName "Claimstest" -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-ccccccccc111" | Out-Null
-           
+            $result = New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://xyz.xmlsoap.org/ws/2005/05/pqr/claims/name\",\"JwtClaimType\":\"xyz\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://xxx.yyy.com/identity/claims/displayname\",\"JwtClaimType\":\"ppp\"}]}}" ], "displayName": "test Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName "Claimstest" -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-ccccccccc111"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraPolicy"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
-            }            
-        }   
+            }
+        } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://xyz.xmlsoap.org/ws/2005/05/pqr/claims/name\",\"JwtClaimType\":\"xyz\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://xxx.yyy.com/identity/claims/displayname\",\"JwtClaimType\":\"ppp\"}]}}" ], "displayName": "test Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName "Claimstest" -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-ccccccccc111" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }     
     }
 }

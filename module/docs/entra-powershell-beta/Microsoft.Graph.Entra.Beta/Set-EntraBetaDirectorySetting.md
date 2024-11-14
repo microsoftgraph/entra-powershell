@@ -26,8 +26,8 @@ Updates a directory setting in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Set-EntraBetaDirectorySetting 
- -DirectorySetting <DirectorySetting> 
+Set-EntraBetaDirectorySetting
+ -DirectorySetting <DirectorySetting>
  -Id <String>
  [<CommonParameters>]
 ```
