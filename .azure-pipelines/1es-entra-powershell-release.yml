@@ -70,7 +70,7 @@ extends:
           inputs:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(System.DefaultWorkingDirectory)/drop
+            targetPath: $(Pipeline.Workspace)/drop
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
@@ -78,7 +78,7 @@ extends:
             useDotNetTask: false
             # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             # packageParentPath: '$(Build.ArtifactStagingDirectory)'
-            packagesToPush: '$(System.DefaultWorkingDirectory)/**/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(System.DefaultWorkingDirectory)'
+            packagesToPush: '$(Pipeline.Workspace)/**/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
