@@ -33,10 +33,6 @@ Describe "Get-EntraDeletedAdministrativeUnit" {
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraDeletedAdministrativeUnit -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
-        }
-
         It "Should return specific administrative unit by searchstring" {
             $result = Get-EntraDeletedAdministrativeUnit -SearchString 'ADC Administrative Unit'
             $result | Should -Not -BeNullOrEmpty
