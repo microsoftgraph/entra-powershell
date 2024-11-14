@@ -44,7 +44,7 @@ extends:
 
       - job: release
         #dependsOn: approval
-        condition: succeeded('approval')
+        #condition: succeeded('approval')
         templateContext:
           type: releaseJob
           isProduction: true
