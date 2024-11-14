@@ -193,19 +193,6 @@ Set-StrictMode -Version 5
             return $subModules.Name
         }
     }
-  [string[]] GetSubModuleManifestFiles([string] $Module, [string]$DirectoryPath) {
-        # Check if the directory exists
-        # Define the pattern for matching submodule files
-        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
-            "Microsoft.Graph.Entra.Beta.*.psd1"
-        } else {
-            "Microsoft.Graph.Entra.*.psd1"
-        }
-
-        if (-Not (Test-Path -Path $DirectoryPath)) {
-            Log-Message "[EntraModuleBuilder]: Directory does not exist: $directoryPath" -ForegroundColor Red
-            return $null # Return null if directory does not exist
-        }
 
      [string[]] GetSubModuleFileNames([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
@@ -229,7 +216,6 @@ Set-StrictMode -Version 5
             Log-Message "[EntraModuleBuilder]: No .psd1 files found in the directory: $directoryPath" -Level 'INFO'
             return @() # Return an empty array if no files are found
         } else {
-
             # Return the names of the .psd1 files
             return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
         }
@@ -333,8 +319,7 @@ foreach (`$subModule in `$subModules) {
         }
         $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
 		
-        $subModules=$this.GetSubModuleManifestFiles($Module,$this.OutputDirectory)
-
+        $subModules=$this.GetSubModuleFileNames($Module,$this.OutputDirectory)
         $requiredModules=@()
         foreach($module in $subModules){
             if($module -ne $moduleName){
@@ -356,8 +341,6 @@ foreach (`$subModule in `$subModules) {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules=$requiredModules
-            NestedModules = $nestedModules
             NestedModules = @()
         }
         
@@ -368,7 +351,7 @@ foreach (`$subModule in `$subModules) {
         Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
         
         New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData -Verbose
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
          # Construct the entries for the RequiredModules section
         $requiredModulesEntries = $requiredModules | ForEach-Object {
@@ -528,6 +511,7 @@ $($requiredModulesEntries -join ",`n")
         try{
              New-ModuleManifest @moduleSettings
             Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+
              # Validate the module manifest
             $manifestValidationResult = Test-ModuleManifest -Path $manifestPath
 
@@ -546,6 +530,7 @@ $($requiredModulesEntries -join ",`n")
         }
        
     }
+
 
     #Create the Root Module Manifest
 
