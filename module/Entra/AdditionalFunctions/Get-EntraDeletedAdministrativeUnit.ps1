@@ -49,9 +49,11 @@ function Get-EntraDeletedAdministrativeUnit {
             $params["Filter"] = $TmpValue
         }
 
-        if ($null -ne $PSBoundParameters["SearchString"]) {
+        if($null -ne $PSBoundParameters["SearchString"])
+        {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $params["Filter"] = "(displayName eq '$TmpValue' or startswith(displayName,'$TmpValue'))"
+            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $params["Filter"] = $Value
         }
 
         # Debug logging for transformations
