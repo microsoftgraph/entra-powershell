@@ -25,11 +25,4 @@ if($Root){
 }
 
 
-if($Root){
-    $moduleBuilder.CreateRootModuleManifest($Module)
-}else{
-    $moduleBuilder.CreateModuleHelp($Module)
-    $moduleBuilder.CreateSubModuleFile($Module, $typeDefsPath)
-    $moduleBuilder.CreateModuleManifest($Module)
-}
 
