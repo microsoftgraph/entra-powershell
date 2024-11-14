@@ -33,27 +33,65 @@ function Get-EntraDeletedAdministrativeUnit {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ SearchString = "Filter" }
 
-        # Simplify parameter handling
-        foreach ($param in $PSBoundParameters.Keys) {
-            if ($null -ne $PSBoundParameters[$param]) {
-                $params[$param] = $PSBoundParameters[$param]
+        if ($null -ne $PSBoundParameters["ErrorAction"]) {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if ($null -ne $PSBoundParameters["AdministrativeUnitId"]) {
+            $params["DirectoryObjectId"] = $PSBoundParameters["AdministrativeUnitId"]
+        }
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        }
+        if ($null -ne $PSBoundParameters["OutVariable"]) {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if ($null -ne $PSBoundParameters["InformationAction"]) {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if ($null -ne $PSBoundParameters["WarningVariable"]) {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if ($null -ne $PSBoundParameters["SearchString"]) {
+            $TmpValue = $PSBoundParameters["SearchString"]
+            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $params["Filter"] = $Value
+        }
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if ($null -ne $PSBoundParameters["Top"]) {
+            $params["Top"] = $PSBoundParameters["Top"]
+        }
+        if ($null -ne $PSBoundParameters["OutBuffer"]) {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if ($null -ne $PSBoundParameters["All"]) {
+            if ($PSBoundParameters["All"]) {
+                $params["All"] = $PSBoundParameters["All"]
             }
         }
-
-        # Handle specific parameter transformations
+        if ($null -ne $PSBoundParameters["WarningAction"]) {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
         if ($null -ne $PSBoundParameters["Filter"]) {
             $TmpValue = $PSBoundParameters["Filter"]
             foreach ($i in $keysChanged.GetEnumerator()) {
                 $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
             }
-            $params["Filter"] = $TmpValue
-        }
-
-        if($null -ne $PSBoundParameters["SearchString"])
-        {
-            $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $Value = $TmpValue
             $params["Filter"] = $Value
+        }
+        if ($null -ne $PSBoundParameters["InformationVariable"]) {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+        if ($null -ne $PSBoundParameters["Property"]) {
+            $params["Property"] = $PSBoundParameters["Property"]
         }
 
         # Debug logging for transformations
