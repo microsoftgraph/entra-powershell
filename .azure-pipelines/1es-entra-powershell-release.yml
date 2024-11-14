@@ -48,15 +48,20 @@ extends:
         templateContext:
           type: releaseJob
           isProduction: true
-          inputs:
-          - input: pipelineArtifact
-            pipeline: _1es-EntraPowerShell-CI
-            artifactName: drop
-            targetPath: '$(System.ArtifactsDirectory)/drop'
+          # inputs:
+          # - input: pipelineArtifact
+          #   pipeline: _1es-EntraPowerShell-CI
+          #   artifactName: drop
+          #   targetPath: '$(System.ArtifactsDirectory)/drop'
         steps:
         # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/package/'
         # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/packages/'
         # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/'
+        - task: 1ES.DownloadPipelineArtifact@1
+          inputs:
+            pipeline: _1es-EntraPowerShell-CI
+            artifactName: drop
+            targetPath: $(System.DefaultWorkingDirectory)/drop
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
@@ -64,7 +69,7 @@ extends:
             useDotNetTask: false
             # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             # packageParentPath: '$(Build.ArtifactStagingDirectory)'
-            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(System.ArtifactsDirectory)'
+            packagesToPush: '$(System.DefaultWorkingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(System.DefaultWorkingDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
