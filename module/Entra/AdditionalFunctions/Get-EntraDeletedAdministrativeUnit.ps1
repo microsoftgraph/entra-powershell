@@ -55,18 +55,14 @@ function Get-EntraDeletedAdministrativeUnit {
         }
 
         # Debug logging for transformations
-        Write-Debug("============================ TRANSFORMATIONS ============================")
+        Write-Debug "============================ TRANSFORMATIONS ============================"
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug "=========================================================================`n"
 
         try {
             # Make the API call
             $response = Get-MgDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
-
-            # Process the response if needed
-            $processedResponse = $response | Select-Object -Property Id, DisplayName, DeletedDateTime, @{Name = "PermanentDeletionDate"; Expression = { $_.DeletedDateTime.AddDays(30) }}
-
-            return $processedResponse
+            return $response
         }
         catch {
             # Handle any errors that occur during the API call
