@@ -18,9 +18,11 @@ function Get-EntraDeletedUser {
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "ID of the user to retrieve.")]
         [System.String] $UserId,
 
+        [Alias('Limit')]
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [System.Nullable`1[System.Int32]] $Top,
-
+        
+        [Alias('Select')]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [System.String[]] $Property
     )
