@@ -530,6 +530,11 @@ $($requiredModulesEntries -join ",`n")
         }
        
     }
+
+
+    #Create the Root Module Manifest
+
+   # $this.CreateRootModuleManifest($module)
 }
 
 
