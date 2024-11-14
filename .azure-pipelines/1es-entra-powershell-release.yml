@@ -28,12 +28,12 @@ extends:
     #     os: windows
     pool:
       name: MSSecurity-1ES-Build-Agents-Pool
-      image: MSSecurity-1ES-Linux-2022
+      image: MSSecurity-1ES-Ubuntu-2204
       os: linux
     sdl:
       sourceAnalysisPool:
         name: MSSecurity-1ES-Build-Agents-Pool
-        image: MSSecurity-1ES-Linux-2022
+        image: MSSecurity-1ES-Ubuntu-2204
         os: linux
     stages:
     - stage: release
