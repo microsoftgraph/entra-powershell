@@ -29,18 +29,18 @@ extends:
     stages:
     - stage: release
       jobs:
-      - job: approval
-        displayName: Approval
-        pool: server
-        timeoutInMinutes: 720
-        templateContext:
-          type: releaseJob
-          isProduction: true
-        steps:
-        - task: ApprovalTask@1
-          inputs:
-            environment: Production
-            servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
+      # - job: approval
+      #   displayName: Approval
+      #   pool: server
+      #   timeoutInMinutes: 720
+      #   templateContext:
+      #     type: releaseJob
+      #     isProduction: true
+      #   steps:
+      #   - task: ApprovalTask@1
+      #     inputs:
+      #       environment: Production
+      #       servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
 
       - job: release
         dependsOn: approval
@@ -52,17 +52,19 @@ extends:
           - input: pipelineArtifact
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(Build.ArtifactStagingDirectory)/drop
+            targetPath: '$(System.ArtifactsDirectory)/drop'
         steps:
-        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/package/'
-        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/packages/'
-        - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/'
+        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/package/'
+        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/packages/'
+        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/'
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
             command: push
             useDotNetTask: false
-            packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(Build.ArtifactStagingDirectory)'
+            # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            # packageParentPath: '$(Build.ArtifactStagingDirectory)'
+            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
