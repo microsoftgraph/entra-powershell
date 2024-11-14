@@ -79,12 +79,11 @@ Get-EntraBetaDeletedUser
 ```
 
 ```Output
-Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------
-cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com                
-eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller  eeeeeeee444455556666ffffffffffffSawyerM@contoso.com                
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Alain Davignon aaaaaaaa000011112222bbbbbbbbbbbbAlainD@contoso.com                
+Id                                     DisplayName     UserPrincipalName                                               UserType  DeletedDateTime         PermanentDeletionDate
+--                                     -----------     -----------------                                               --------  ---------------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd   Angel Brown     cccccccc222233334444ddddddddddddAngelB@contoso.com  Member    11/6/2024 9:52:26 AM    12/6/2024 9:52:26 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
+eeeeeeee-4444-5555-6666-ffffffffffff   Sawyer Miller   eeeeeeee444455556666ffffffffffffSawyerM@contoso.com   Member    11/13/2024 3:23:14 PM   12/13/2024 3:23:14 PM
 ```
 
 This example shows how to retrieve all recoverable deleted users in the Microsoft Entra ID.  
@@ -97,12 +96,11 @@ Get-EntraBetaDeletedUser -All
 ```
 
 ```Output
-Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------
-cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com                
-eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller  eeeeeeee444455556666ffffffffffffSawyerM@contoso.com                
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Alain Davignon aaaaaaaa000011112222bbbbbbbbbbbbAlainD@contoso.com
+Id                                     DisplayName     UserPrincipalName                                               UserType  DeletedDateTime         PermanentDeletionDate
+--                                     -----------     -----------------                                               --------  ---------------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd   Angel Brown     cccccccc222233334444ddddddddddddAngelB@contoso.com  Member    11/6/2024 9:52:26 AM    12/6/2024 9:52:26 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
+eeeeeeee-4444-5555-6666-ffffffffffff   Sawyer Miller   eeeeeeee444455556666ffffffffffffSawyerM@contoso.com   Member    11/13/2024 3:23:14 PM   12/13/2024 3:23:14 PM
 ```
 
 This example shows how to retrieve all recoverable deleted users, using All parameter.  
@@ -115,10 +113,10 @@ Get-EntraBetaDeletedUser -Top 2 #alias: Limit e.g. -Limit 2
 ```
 
 ```Output
-Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------
-cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+Id                                     DisplayName     UserPrincipalName                                               UserType  DeletedDateTime         PermanentDeletionDate
+--                                     -----------     -----------------                                               --------  ---------------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd   Angel Brown     cccccccc222233334444ddddddddddddAngelB@contoso.com  Member    11/6/2024 9:52:26 AM    12/6/2024 9:52:26 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
 This example shows how to retrieve the top two recoverable deleted users in the directory. You can also use the alias `Limit`.
@@ -133,7 +131,7 @@ Get-EntraBetaDeletedUser -SearchString 'Avery Smith'
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
 --                                   -----------    -----------------                                      --------   ---------------   ---------------------              
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
 This example shows how to retrieve deleted users in the directory, containing the specified string.  
@@ -148,7 +146,7 @@ Get-EntraBetaDeletedUser -Filter "displayName eq 'Avery Smith'"
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
 --                                   -----------    -----------------                                      --------   ---------------   ---------------------              
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
 This example shows how to retrieve deleted users in the directory, having the specified display name.  
@@ -163,7 +161,7 @@ Get-EntraBetaDeletedUser -UserId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
 --                                   -----------    -----------------                                      --------   ---------------   ---------------------              
-dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
 This example shows how to retrieve the deleted user specified by UserId.
