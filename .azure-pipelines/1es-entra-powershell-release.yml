@@ -43,7 +43,7 @@ extends:
       #       servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
 
       - job: release
-        dependsOn: approval
+        #dependsOn: approval
         condition: succeeded('approval')
         templateContext:
           type: releaseJob
