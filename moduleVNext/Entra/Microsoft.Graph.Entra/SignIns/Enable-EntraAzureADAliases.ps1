@@ -2,6 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
+
 function Enable-EntraAzureADAliases {
    Set-Alias -Name Remove-AzureADOAuth2PermissionGrant -Value Remove-EntraOAuth2PermissionGrant -Scope Global -Force
    Set-Alias -Name Get-AzureADOAuth2PermissionGrant -Value Get-EntraOAuth2PermissionGrant -Scope Global -Force
