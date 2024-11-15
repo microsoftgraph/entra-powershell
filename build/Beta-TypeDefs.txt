@@ -4,17 +4,6 @@
 
 $def = @"
 
-namespace Microsoft.Open.MSGraph.Model{
-    public class MsRoleMemberInfo{
-        public System.String Id;
-    }
-
-    public class MsDirectoryObject{
-        public System.String Id;
-        public System.String OdataType;
-    }
-}
-
 namespace  Microsoft.Open.AzureAD.Graph.PowerShell.Custom
 {
 
@@ -152,8 +141,18 @@ namespace  Microsoft.Open.AzureAD.Model
 
 namespace  Microsoft.Open.MSGraph.Model
 {
-
+    
     using System.Linq;
+
+    public class MsRoleMemberInfo{
+        public System.String Id;
+    }
+
+    public class MsDirectoryObject{
+        public System.String Id;
+        public System.String OdataType;
+    }
+
     public class AddIn
     {
         public System.String Id;
