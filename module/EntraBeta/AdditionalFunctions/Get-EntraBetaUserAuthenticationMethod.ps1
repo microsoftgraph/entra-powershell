@@ -47,19 +47,12 @@ function Get-EntraBetaUserAuthenticationMethod {
                 $authMethodList += $authMethodType
             }
 
-            # Check if the user requested 'Format-List' or 'FL' to output all properties
-            $outputPreference = $PSCmdlet.MyInvocation.Line.ToLower()
-            if ($outputPreference.Contains("format-list") -or $outputPreference.Contains("fl")) {
-                # Return all properties
-                $authMethodList
-            }
-            else {
-                # Return default properties
-                $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType | Format-Table -AutoSize
-            }
+            return $authMethodList
         }
         catch {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
         }
     }
 }
+
+Update-FormatData -PrependPath .\Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod.format.ps1xml
