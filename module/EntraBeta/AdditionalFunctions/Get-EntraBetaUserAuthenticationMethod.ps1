@@ -14,7 +14,7 @@ function Get-EntraBetaUserAuthenticationMethod {
         try {
 
             # Load the format file
-            $formatFilePath = Join-Path -Path (Split-Path -Parent $MyInvocation.MyCommand.Path) -ChildPath "module\EntraBeta\output\Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod.format.ps1xml"
+            $formatFilePath = Join-Path -Path (Split-Path -Parent $MyInvocation.MyCommand.Path) -ChildPath "module\EntraBeta\output\AuthenticationMethod.format.ps1xml"
             if (Test-Path $formatFilePath) {
                 Update-FormatData -PrependPath $formatFilePath
             }

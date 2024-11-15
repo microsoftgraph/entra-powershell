@@ -1,7 +1,7 @@
 <Configuration>
   <ViewDefinitions>
     <View>
-      <Name>Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod</Name>
+      <Name>AuthenticationMethod</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod</TypeName>
       </ViewSelectedBy>
