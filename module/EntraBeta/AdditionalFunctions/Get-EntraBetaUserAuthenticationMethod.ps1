@@ -14,8 +14,13 @@ function Get-EntraBetaUserAuthenticationMethod {
         try {
 
             # Load the format file
-            $formatFilePath = "AuthenticationMethod.format.ps1xml"
-            Update-FormatData -PrependPath $formatFilePath
+            $formatFilePath = Join-Path -Path $PSScriptRoot -ChildPath "AuthenticationMethod.format.ps1xml"
+            if (Test-Path $formatFilePath) {
+                Update-FormatData -PrependPath $formatFilePath
+            }
+            else {
+                Write-Warning "Format file not found: $formatFilePath"
+            }
 
             # Initialize headers and URI
             $params = @{ }
