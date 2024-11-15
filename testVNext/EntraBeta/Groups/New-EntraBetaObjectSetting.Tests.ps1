@@ -5,6 +5,9 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Groups       
     }
+    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    }
     Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
     
     $scriptblock = {
@@ -40,7 +43,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
 }
 Describe "New-EntraBetaObjectSetting" {
