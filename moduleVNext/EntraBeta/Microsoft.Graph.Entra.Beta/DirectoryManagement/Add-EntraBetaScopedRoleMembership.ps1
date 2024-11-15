@@ -10,7 +10,7 @@ function Add-EntraBetaScopedRoleMembership {
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $AdministrativeUnitObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MsGraph.Model.MsRoleMemberInfo] $RoleMemberInfo,
+    [Microsoft.Open.MSGraph.Model.MsRoleMemberInfo] $RoleMemberInfo,
     [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId
