@@ -28,7 +28,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $TemplateScriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
 }
 Describe "Set-EntraBetaObjectSetting" {
