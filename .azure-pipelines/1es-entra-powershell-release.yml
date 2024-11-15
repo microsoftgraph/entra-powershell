@@ -26,34 +26,25 @@ extends:
         name: MSSecurity-1ES-Build-Agents-Pool
         image: MSSecurity-1ES-Windows-2022
         os: windows
-    # pool:
-    #   name: MSSecurity-1ES-Build-Agents-Pool
-    #   image: MSSecurity-1ES-Ubuntu-2204
-    #   os: linux
-    # sdl:
-    #   sourceAnalysisPool:
-    #     name: MSSecurity-1ES-Build-Agents-Pool
-    #     image: MSSecurity-1ES-Ubuntu-2204
-    #     os: linux
     stages:
     - stage: release
       jobs:
-      # - job: approval
-      #   displayName: Approval
-      #   pool: server
-      #   timeoutInMinutes: 720
-      #   templateContext:
-      #     type: releaseJob
-      #     isProduction: true
-      #   steps:
-      #   - task: ApprovalTask@1
-      #     inputs:
-      #       environment: Production
-      #       servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
+      - job: approval
+        displayName: Approval
+        pool: server
+        timeoutInMinutes: 720
+        templateContext:
+          type: releaseJob
+          isProduction: true
+        steps:
+        - task: ApprovalTask@1
+          inputs:
+            environment: Production
+            servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
 
       - job: release
-        #dependsOn: approval
-        #condition: succeeded('approval')
+        dependsOn: approval
+        condition: succeeded('approval')
         templateContext:
           type: releaseJob
           isProduction: true
@@ -62,7 +53,7 @@ extends:
           inputs:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(System.ArtifactsDirectory)/drop
+            targetPath: '$(System.ArtifactsDirectory)/drop'
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
