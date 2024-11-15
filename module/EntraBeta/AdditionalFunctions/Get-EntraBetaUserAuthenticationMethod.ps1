@@ -14,7 +14,8 @@ function Get-EntraBetaUserAuthenticationMethod {
         try {
 
             # Load the format file
-            $formatFilePath = ".\AuthenticationMethod.format.ps1xml"
+            $scriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Path
+            $formatFilePath = Join-Path -Path $scriptDirectory -ChildPath "AuthenticationMethod.format.ps1xml"
             Update-FormatData -PrependPath $formatFilePath
 
             # Initialize headers and URI
