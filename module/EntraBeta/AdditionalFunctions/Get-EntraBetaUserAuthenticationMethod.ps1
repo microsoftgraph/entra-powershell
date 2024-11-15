@@ -14,7 +14,7 @@ function Get-EntraBetaUserAuthenticationMethod {
         try {
 
             # Load the format file
-            $formatFilePath = ".\output\Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod.format.ps1xml"
+            $formatFilePath = ".\module\EntraBeta\output\Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod.format.ps1xml"
             Update-FormatData -PrependPath $formatFilePath
 
             # Initialize headers and URI
