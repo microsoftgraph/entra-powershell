@@ -68,7 +68,7 @@ extends:
           inputs:
             command: push
             useDotNetTask: false
-            packagesToPush: '$(BSystem.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
