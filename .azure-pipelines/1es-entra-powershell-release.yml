@@ -78,7 +78,8 @@ extends:
             useDotNetTask: false
             # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             # packageParentPath: '$(Build.ArtifactStagingDirectory)'
-            packagesToPush: '$(Pipeline.Workspace)/**/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(Pipeline.Workspace)'
+            #packagesToPush: '$(Pipeline.Workspace)/**/drop/Microsoft.Graph.Entra*.nupkg'
+            #packageParentPath: '$(Pipeline.Workspace)'
+            packagesToPush : '$(System.DefaultWorkingDirectory)/_1es-EntraPowerShell-CI/drop/Microsoft.Graph.Entra*.nupkg'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
