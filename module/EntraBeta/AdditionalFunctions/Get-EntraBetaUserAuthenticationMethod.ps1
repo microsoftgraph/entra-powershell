@@ -14,7 +14,7 @@ function Get-EntraBetaUserAuthenticationMethod {
         try {
 
             # Load the format file
-            $formatFilePath = ".\module\EntraBeta\output\AuthenticationMethod.format.ps1xml"
+            $formatFilePath = "AuthenticationMethod.format.ps1xml"
             Update-FormatData -PrependPath $formatFilePath
 
             # Initialize headers and URI
