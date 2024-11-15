@@ -57,7 +57,6 @@ extends:
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
-            command: push
             useDotNetTask: false
             packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             packageParentPath: '$(System.ArtifactsDirectory)'
