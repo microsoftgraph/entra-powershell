@@ -17,24 +17,24 @@ resources:
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
-    # pool:
-    #   name: MSSecurity-1ES-Build-Agents-Pool
-    #   image: MSSecurity-1ES-Windows-2022
-    #   os: windows
-    # sdl:
-    #   sourceAnalysisPool:
-    #     name: MSSecurity-1ES-Build-Agents-Pool
-    #     image: MSSecurity-1ES-Windows-2022
-    #     os: windows
     pool:
       name: MSSecurity-1ES-Build-Agents-Pool
-      image: MSSecurity-1ES-Ubuntu-2204
-      os: linux
+      image: MSSecurity-1ES-Windows-2022
+      os: windows
     sdl:
       sourceAnalysisPool:
         name: MSSecurity-1ES-Build-Agents-Pool
-        image: MSSecurity-1ES-Ubuntu-2204
-        os: linux
+        image: MSSecurity-1ES-Windows-2022
+        os: windows
+    # pool:
+    #   name: MSSecurity-1ES-Build-Agents-Pool
+    #   image: MSSecurity-1ES-Ubuntu-2204
+    #   os: linux
+    # sdl:
+    #   sourceAnalysisPool:
+    #     name: MSSecurity-1ES-Build-Agents-Pool
+    #     image: MSSecurity-1ES-Ubuntu-2204
+    #     os: linux
     stages:
     - stage: release
       jobs:
@@ -57,26 +57,18 @@ extends:
         templateContext:
           type: releaseJob
           isProduction: true
-          # inputs:
-          # - input: pipelineArtifact
-          #   pipeline: _1es-EntraPowerShell-CI
-          #   artifactName: drop
-          #   targetPath: '$(System.ArtifactsDirectory)/drop'
         steps:
         - task: 1ES.DownloadPipelineArtifact@1
           inputs:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(Pipeline.Workspace)/drop
+            targetPath: $(System.ArtifactsDirectory)/drop
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
             command: push
             useDotNetTask: false
-            # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
-            # packageParentPath: '$(Build.ArtifactStagingDirectory)'
-            #packagesToPush: '$(Pipeline.Workspace)/**/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(System.DefaultWorkingDirectory)/_1es-EntraPowerShell-CI'
-            packagesToPush : '$(System.DefaultWorkingDirectory)/_1es-EntraPowerShell-CI/drop/Microsoft.Graph.Entra*.nupkg'
+            packagesToPush: '$(BSystem.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
