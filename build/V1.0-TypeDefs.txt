@@ -136,16 +136,6 @@ namespace  Microsoft.Open.MSGraph.Model
 {
 
     using System.Linq;
-
-     public class MsRoleMemberInfo{
-        public System.String Id;
-    }
-
-    public class MsDirectoryObject{
-        public System.String Id;
-        public System.String OdataType;
-    }
-
     public class AddIn
     {
         public System.String Id;
@@ -647,7 +637,7 @@ namespace  Microsoft.Open.MSGraph.Model
     {
        public System.String Id;
     }
-    
+
     public class OptionalClaim
     {
         public System.String Name;
