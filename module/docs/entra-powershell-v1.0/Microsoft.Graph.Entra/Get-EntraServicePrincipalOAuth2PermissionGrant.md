@@ -43,8 +43,8 @@ The `Get-EntraServicePrincipalOAuth2PermissionGrant` cmdlet gets an oAuth2Permis
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipalId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```output
@@ -59,7 +59,8 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -All 
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
 ```
 
 ```Output
@@ -76,7 +77,8 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
 ```Output

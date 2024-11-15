@@ -54,11 +54,8 @@ The `Get-EntraServicePrincipalDelegatedPermissionClassification` cmdlet retrieve
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId
-}
-Get-EntraServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -76,12 +73,9 @@ This command retrieves all delegated permission classifications from the service
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId 
-  Id = '5XBeIKarUkypdm0tRsSAQwE'
-}
-Get-EntraServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$permissionClassification = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
+Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Id $permissionClassification.Id
 ```
 
 ```Output
@@ -99,12 +93,8 @@ This command retrieves the delegated permission classification by Id from the se
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
-$params = @{
-  ServicePrincipalId = $servicePrincipal.ObjectId  
-  Filter = "PermissionName eq 'Sites.Read.All'"
-}
-Get-EntraServicePrincipalDelegatedPermissionClassification @params
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
 ```
 
 ```Output

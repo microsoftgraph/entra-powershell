@@ -187,4 +187,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
+
 [New-EntraOAuth2PermissionGrant](New-EntraOauth2PermissionGrant.md)
+
+[Update-EntraOAuth2PermissionGrant](Update-EntraOauth2PermissionGrant.md)

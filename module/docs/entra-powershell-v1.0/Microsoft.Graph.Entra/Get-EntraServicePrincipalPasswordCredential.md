@@ -40,8 +40,8 @@ The `Get-EntraServicePrincipalPasswordCredential` cmdlet gets the password crede
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalPasswordCredential -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output

@@ -50,20 +50,24 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ## Examples
 
-### Example 1: Assign an app role to another service principal
+### Example 1: Assign an app role to a service principal
 
 ```powershell
- Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
- $appname = 'Box'
- $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
- $params = @{
-    ObjectId = $spo.ObjectId
-    ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].Id
-    PrincipalId = $spo.ObjectId
-}
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$clientServicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'" 
+$resourceServicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Microsoft Graph'"
+$appRole = $resourceServicePrincipal.AppRoles | Where-Object { $_.Value -eq "User.ReadBasic.All" }
 
-New-EntraServicePrincipalAppRoleAssignment @params
+New-EntraServicePrincipalAppRoleAssignment -ObjectId $clientServicePrincipal.Id -PrincipalId $clientServicePrincipal.Id -Id $appRole.Id -ResourceId $resourceServicePrincipal.Id
+```
+
+### Example 2: Assign an app role to another service principal
+
+```powershell
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$clientServicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+$servicePrincipalObject = Get-EntraServicePrincipal -Filter "displayName eq 'Box'"
+New-EntraServicePrincipalAppRoleAssignment -ObjectId $clientServicePrincipal.Id -PrincipalId $clientServicePrincipal.Id -ResourceId $servicePrincipalObject.Id -Id $servicePrincipalObject.Approles[1].Id
 ```
 
 ```Output
@@ -79,22 +83,18 @@ This example demonstrates how to assign an app role to another service principal
 - `-Id` parameter specifies the Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
 - `-PrincipalId` parameter specifies the ObjectId of the client service principal to which you're assigning the app role.
 
-### Example 2: Assign an app role to a user
+### Example 3: Assign an app role to a user
 
 ```powershell
- Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
- $appname = 'Box'
- $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
- $user = Get-EntraUser -SearchString 'Test Contoso'
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$servicePrincipalObject = Get-EntraServicePrincipal -Filter "displayName eq 'Box'"
+$user = Get-EntraUser -UserId 'PattiF@Contoso.com'
 
- $params = @{
-    ObjectId = $spo.ObjectId
-    ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].Id
-    PrincipalId = $user.ObjectId
-}
-
-New-EntraServicePrincipalAppRoleAssignment @params
+New-EntraServicePrincipalAppRoleAssignment `
+    -ObjectId $servicePrincipalObject.Id `
+    -ResourceId $servicePrincipalObject.Id `
+    -Id $servicePrincipalObject.Approles[1].Id `
+    -PrincipalId $user.Id
 ```
 
 ```Output
@@ -112,22 +112,18 @@ You can use the command `Get-EntraUser` to get a user Id.
 - `-Id` parameter specifies the Id of app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
 - `-PrincipalId` parameter specifies the ObjectId of a user to which you're assigning the app role.
 
-### Example 3: Assign an app role to a group
+### Example 4: Assign an app role to a group
 
 ```powershell
- Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
- $appname = 'Box'
- $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
- $group = Get-EntraGroup -SearchString 'testGroup'
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$servicePrincipalObject = Get-EntraServicePrincipal -Filter "displayName eq 'Box'"
+$group = Get-EntraGroup -Filter "displayName eq 'Contoso marketing'"
 
- $params = @{
-    ObjectId = $spo.ObjectId
-    ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].Id
-    PrincipalId = $group.ObjectId
- }
-
- New-EntraServicePrincipalAppRoleAssignment @params
+New-EntraServicePrincipalAppRoleAssignment `
+    -ObjectId $servicePrincipalObject.Id `
+    -ResourceId $servicePrincipalObject.Id `
+    -Id $servicePrincipalObject.Approles[1].Id `
+    -PrincipalId $group.Id
 ```
 
 ```Output

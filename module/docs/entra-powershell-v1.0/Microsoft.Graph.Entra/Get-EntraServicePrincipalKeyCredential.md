@@ -40,8 +40,8 @@ The `Get-EntraServicePrincipalKeyCredential` cmdlet gets the key credentials for
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
