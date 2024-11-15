@@ -63,9 +63,6 @@ extends:
           #   artifactName: drop
           #   targetPath: '$(System.ArtifactsDirectory)/drop'
         steps:
-        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/package/'
-        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/packages/'
-        # - pwsh: Invoke-WebRequest 'https://www.powershellgallery.com/api/v2/'
         - task: 1ES.DownloadPipelineArtifact@1
           inputs:
             pipeline: _1es-EntraPowerShell-CI
@@ -79,7 +76,7 @@ extends:
             # packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             # packageParentPath: '$(Build.ArtifactStagingDirectory)'
             #packagesToPush: '$(Pipeline.Workspace)/**/drop/Microsoft.Graph.Entra*.nupkg'
-            #packageParentPath: '$(Pipeline.Workspace)'
+            packageParentPath: '$(System.DefaultWorkingDirectory)/_1es-EntraPowerShell-CI'
             packagesToPush : '$(System.DefaultWorkingDirectory)/_1es-EntraPowerShell-CI/drop/Microsoft.Graph.Entra*.nupkg'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
