@@ -54,5 +54,3 @@ function Get-EntraBetaUserAuthenticationMethod {
         }
     }
 }
-
-Update-FormatData -PrependPath .\Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod.format.ps1xml
