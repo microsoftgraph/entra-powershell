@@ -147,12 +147,7 @@ namespace  Microsoft.Open.MSGraph.Model
     public class MsRoleMemberInfo{
         public System.String Id;
     }
-
-    public class MsDirectoryObject{
-        public System.String Id;
-        public System.String OdataType;
-    }
-
+    
     public class AddIn
     {
         public System.String Id;
