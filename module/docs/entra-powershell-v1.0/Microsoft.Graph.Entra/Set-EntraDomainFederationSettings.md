@@ -58,13 +58,10 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
-
-$params = @{
-    DomainName = 'contoso.com'
-    PreferredAuthenticationProtocol = 'WsFed'
-    PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
-}
-Set-EntraDomainFederationSettings @params
+$domain = 'contoso.com'
+$authProtocol = 'WsFed'
+$promptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
+Set-EntraDomainFederationSettings -DomainName $domain -PreferredAuthenticationProtocol $authProtocol -PromptLoginBehavior $promptLoginBehavior
 ```
 
 This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswordAuth`, `NativeSupport`, or `Disabled`. These possible values are described:

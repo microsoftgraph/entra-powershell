@@ -38,6 +38,11 @@ Gets the domain's service configuration records from the `serviceConfigurationRe
 
 After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Domain Name Administrator
+- Global Reader
+
 ## Examples
 
 ### Example 1: Retrieve domain service configuration records by Name
