@@ -40,6 +40,14 @@ New-EntraBetaOauth2PermissionGrant
 
 The `New-EntraBetaOauth2PermissionGrant` cmdlet creates a delegated permission grant using an oAuth2PermissionGrant object. This grant authorizes a client service principal to access a resource service principal on behalf of a signed-in user, with access limited to the specified delegated permissions.
 
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Application Developer  
+- Cloud Application Administrator  
+- Directory Writers  
+- User Administrator  
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: To grant authorization to impersonate all users

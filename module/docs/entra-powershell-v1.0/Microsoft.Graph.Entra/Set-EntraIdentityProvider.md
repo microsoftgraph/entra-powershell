@@ -41,17 +41,17 @@ The `Set-EntraIdentityProvider` cmdlet is used to update the properties of an ex
 
 The type of the identity provider can't be modified.
 
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- External Identity Provider Administrator
+
 ## Examples
 
 ### Example 1: Update client id of an identity provider
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    IdentityProviderBaseId = 'Google-OAuth'
-    ClientId = 'NewClientID'
-}
-Set-EntraIdentityProvider @params
+Set-EntraIdentityProvider -IdentityProviderBaseId 'Google-OAuth' -ClientId 'NewClientID'
 ```
 
 This example updates the client ID for the specified identity provider.
@@ -63,11 +63,7 @@ This example updates the client ID for the specified identity provider.
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    IdentityProviderBaseId = 'Google-OAuth'
-    ClientSecret = 'NewClientSecret'
-}
-Set-EntraIdentityProvider @params
+Set-EntraIdentityProvider -IdentityProviderBaseId 'Google-OAuth' -ClientSecret 'NewClientSecret'
 ```
 
 This example updates the client secret for the specified identity provider.
@@ -79,11 +75,7 @@ This example updates the client secret for the specified identity provider.
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-$params = @{
-    IdentityProviderBaseId = 'Google-OAuth'
-    Name = 'NewGoogleName'
-}
-Set-EntraIdentityProvider @params
+Set-EntraIdentityProvider -IdentityProviderBaseId 'Google-OAuth' -Name 'NewGoogleName'
 ```
 
 This example updates the display name for the specified identity provider.
