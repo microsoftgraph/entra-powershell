@@ -53,19 +53,8 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        if ($null -ne (Get-Module -Name Microsoft.Graph.Entra.Beta)) {
-            $entraVersion = (Get-Module -Name Microsoft.Graph.Entra.Beta | Select-Object -ExpandProperty Version).ToString()
-            $entraModuleName = "Microsoft.Graph.Entra.Beta"
-        }
-        elseif ($null -ne (Get-Module -Name Microsoft.Graph.Entra)) {
-            $entraVersion = (Get-Module -Name Microsoft.Graph.Entra | Select-Object -ExpandProperty Version).ToString()
-            $entraModuleName = "Microsoft.Graph.Entra"
-        }
-
-        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellName" -Value $entraModuleName
-        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value $entraVersion
-
-        return $response
+        $response
+        
     }
 }
 
