@@ -4,6 +4,7 @@
 function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (    
+    [Alias("Limit")]
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Alias("ObjectId")]

@@ -7,6 +7,7 @@ function Get-EntraAdministrativeUnit {
     [Alias("ObjectId")]
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
+    [Alias("Limit")]
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
