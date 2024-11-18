@@ -2,13 +2,11 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
-function Get-EntraAuditSignInLog {
+function Get-EntraAuditDirectoryLog {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("Id")]
-        [System.String] $SignInId,
+        [System.String] $Id,
 
         [Alias("Limit")]
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -25,33 +23,26 @@ function Get-EntraAuditSignInLog {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/signIns'
+        $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/directoryAudits'
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri"
-        $query = $null
+        $params["Uri"] = "$baseUri" + "?"
 
         if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
-                $query += "&`$top=999"
+                $params["Uri"] += "&`$top=999"
             } else {
-                $query += "&`$top=$topCount"
+                $params["Uri"] += "&`$top=$topCount"
             }
         }
-
-        if ($null -ne $PSBoundParameters["SignInId"]) {
-            $logId = $PSBoundParameters["SignInId"]
-            $params["Uri"] = "$baseUri/$($logId)"
+        if ($null -ne $PSBoundParameters["Id"]) {
+            $LogId = $PSBoundParameters["Id"]
+            $params["Uri"] = "$baseUri/$($LogId)"
         }
         if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
-            $f = '$filter'
-            $query += "&$f=$Filter"
-        }
-
-        if ($null -ne $query) {
-            $query = "?" + $query.TrimStart("&")
-            $params["Uri"] += $query
+            $f = '$Filter'
+            $params["Uri"] += "&$f=$Filter"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -59,9 +50,9 @@ function Get-EntraAuditSignInLog {
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        $data = $response | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
-            $data = $response.value | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
@@ -72,12 +63,13 @@ function Get-EntraAuditSignInLog {
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params
-                $data += $response.value | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
         } catch {}
+
         $userList = @()
         foreach ($response in $data) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphSignIn
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryAudit
             $response.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
                 $propertyValue = $_.Value
