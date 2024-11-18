@@ -32,7 +32,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
     Context "Test for Add-EntraBetaScopedRoleMembership" {
         It "Should add a user to the specified role within the specified administrative unit" {
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             $result = Add-EntraBetaScopedRoleMembership -AdministrativeUnitId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
@@ -43,7 +43,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
         }
         It "Should add a user to the specified role within the specified administrative unit with alias" {
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
@@ -72,7 +72,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
         }
         It "Result should contain Alias properties"{
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             $result = Add-EntraBetaScopedRoleMembership -AdministrativeUnitId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
             $result.ObjectId | should -Be "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
             $result.RoleObjectId | should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
@@ -92,7 +92,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
         }
         It "Should contain RoleId in parameters when passed RoleObjectId to it" {    
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
 
             $result = Add-EntraBetaScopedRoleMembership -AdministrativeUnitId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
             $params = Get-Parameters -data $result.Parameters
@@ -102,7 +102,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
             
             Add-EntraBetaScopedRoleMembership -AdministrativeUnitId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
 
