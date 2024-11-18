@@ -57,5 +57,4 @@ function Get-EntraContext {
         
     }
 }
-
 Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
