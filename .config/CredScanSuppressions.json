@@ -1,0 +1,9 @@
+{
+    "tool": "Credential Scanner",
+    "suppressions": [
+      {
+        "placeholder": "appStoreRequirePassword",
+        "_justification": "False Positive. This is a property value generated in the docstubs for the type appStoreRequirePassword not an actual password e.g. appStoreRequirePassword : Boolean"
+      }
+    ]
+}
