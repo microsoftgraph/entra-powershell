@@ -55,18 +55,15 @@ function Get-EntraContext {
         $response = Get-MgContext @params
         if ($null -ne (Get-Module -Name Microsoft.Graph.Entra.Beta)) {
             $entraPSVersion = (Get-Module -Name Microsoft.Graph.Entra.Beta | Select-Object -ExpandProperty Version).ToString()
-            $entraPSRelease = (Get-Module -Name Microsoft.Graph.Entra.Beta | Select-Object -ExpandProperty PreRelease).ToString()
             $entraPSModuleName = "Microsoft.Graph.Entra.Beta"
         }
         elseif ($null -ne (Get-Module -Name Microsoft.Graph.Entra)) {
             $entraPSVersion = (Get-Module -Name Microsoft.Graph.Entra | Select-Object -ExpandProperty Version).ToString()
-            $entraPSRelease = (Get-Module -Name Microsoft.Graph.Entra | Select-Object -ExpandProperty PreRelease).ToString()
             $entraPSModuleName = "Microsoft.Graph.Entra"
         }
 
         $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellModuleName" -Value $entraPSModuleName
         $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value $entraPSVersion
-        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellRelease" -Value $entraPSRelease
 
         $response
     }
