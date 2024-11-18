@@ -65,7 +65,7 @@ function Get-EntraContext {
         $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellName" -Value $entraModuleName
         $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value $entraVersion
 
-        $response
+        return $response
     }
 }
 
