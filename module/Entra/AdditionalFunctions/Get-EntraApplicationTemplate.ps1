@@ -18,6 +18,7 @@ function Get-EntraApplicationTemplate {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Filter,
 
+        [Alias("Select")]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [System.String[]] $Property
     )
