@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName New-MgDirectoryRole -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgDirectoryRole -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Enable-EntraDirectoryRole" {
@@ -17,7 +17,7 @@ Describe "Enable-EntraDirectoryRole" {
             $result = Enable-EntraDirectoryRole -RoleTemplateId 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when RoleTemplateId is empty" {
             { Enable-EntraDirectoryRole -RoleTemplateId } | Should -Throw "Missing an argument for parameter 'RoleTemplateId'*"
@@ -26,7 +26,7 @@ Describe "Enable-EntraDirectoryRole" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Enable-EntraDirectoryRole"
             Enable-EntraDirectoryRole -RoleTemplateId 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Enable-EntraDirectoryRole"
-            Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

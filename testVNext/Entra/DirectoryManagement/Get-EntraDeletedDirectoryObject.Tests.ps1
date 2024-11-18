@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -18,7 +18,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedDirectoryObject"{
@@ -49,7 +49,7 @@ Describe "Get-EntraDeletedDirectoryObject"{
         $result | Should -Not -BeNullOrEmpty
         $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
-        Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
     }
 
     It "Should fail when Property is empty" {
@@ -60,7 +60,7 @@ Describe "Get-EntraDeletedDirectoryObject"{
         $result =  Get-EntraDeletedDirectoryObject -DirectoryObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"    
-        Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

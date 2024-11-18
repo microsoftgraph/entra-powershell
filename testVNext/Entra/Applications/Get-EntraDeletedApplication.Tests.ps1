@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -48,7 +48,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
 
 Describe "Get-EntraDeletedApplication" {
@@ -56,7 +56,7 @@ Describe "Get-EntraDeletedApplication" {
         It "Should return all applications" {
             $result = Get-EntraDeletedApplication | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when All is empty" {
             { Get-EntraDeletedApplication -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -69,20 +69,20 @@ Describe "Get-EntraDeletedApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-test-App'
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-test-App'
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }  
         It "Should return top application" {
             $result = Get-EntraDeletedApplication -Top 1 | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }  
         It "Result should Contain ObjectId" {
             $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
@@ -98,7 +98,7 @@ Describe "Get-EntraDeletedApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-test-App"
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -109,7 +109,7 @@ Describe "Get-EntraDeletedApplication" {
             $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"    
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

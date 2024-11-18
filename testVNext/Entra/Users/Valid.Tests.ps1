@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if($null -eq (Get-Module -Name Microsoft.Graph.Entra)){
-        Import-Module Microsoft.Graph.Entra
+    if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Users)){
+        Import-Module Microsoft.Graph.Entra.Users
     }
-    Import-Module (Join-Path $psscriptroot ".\EntraCmdletsMap.ps1") -Force
+    Import-Module (Join-Path $psscriptroot "..\EntraCmdletsMap.ps1") -Force
 
-    $module = Get-Module -Name Microsoft.Graph.Entra
+    $module = Get-Module -Name Microsoft.Graph.Entra.Users
 }
 
 Describe "Valid parameter Tests"{
@@ -20,23 +20,23 @@ Describe "Valid parameter Tests"{
                 $command = Get-Command $_
                 if($command.Name.StartsWith('Remove')){
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | Select-Object -expand Name)
-                    if($params.count -eq 1 -and $params -eq 'Id'){
+                    if(($params -eq 'Id') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'Id')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
                         if($null -ne $filter){                             
                             try { 
                                 Write-Host "$command"                                
                                 $commandScriptBlock = [scriptblock]::Create("$commandName -Id 056b2531-005e-4f3e-be78-01a71ea30a04")                                
                                 if($filter.IsApi){                                     
-                                    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
+                                    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
-                                    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+                                    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
                                 }
                                 else {                                    
-                                    Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Graph.Entra    
+                                    Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Graph.Entra.Users    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
-                                    Should -Invoke -CommandName $filter.TargetName -ModuleName Microsoft.Graph.Entra -Times 1                                
+                                    Should -Invoke -CommandName $filter.TargetName -ModuleName Microsoft.Graph.Entra.Users -Times 1                                
                                 }
                             }
                             catch {
@@ -58,23 +58,23 @@ Describe "Valid parameter Tests"{
                 $command = Get-Command $_
                 if($command.Name.StartsWith('Remove')){
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | select -expand Name)
-                    if($params.count -eq 1 -and $params -eq 'ObjectId'){
+                    if(($params -eq 'ObjectId') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'ObjectId')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
                         if($null -ne $filter){                             
                             try {            
                                 Write-Host "$command"                   
                                 $commandScriptBlock = [scriptblock]::Create("$commandName -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04")                                
                                 if($filter.IsApi){                                     
-                                    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
+                                    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
-                                    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+                                    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
                                 }
                                 else {                                    
-                                    Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Graph.Entra    
+                                    Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Graph.Entra.Users    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
-                                    Should -Invoke -CommandName $filter.TargetName -ModuleName Microsoft.Graph.Entra -Times 1                                
+                                    Should -Invoke -CommandName $filter.TargetName -ModuleName Microsoft.Graph.Entra.Users -Times 1                                
                                 }
                             }
                             catch {

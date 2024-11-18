@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Users        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -42,7 +42,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgUserOwnedDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgUserOwnedDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
 }
 
 Describe "Get-EntraUserOwnedDevice" {
@@ -54,7 +54,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
             $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
 
-            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should get devices owned by a user with alias" {
@@ -64,7 +64,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
             $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
 
-            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Property parameter should work" {
@@ -85,7 +85,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Contain "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
 
-            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -99,7 +99,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-3333-4444-5555-bbbbbbbbbbbb"
             $result.AdditionalProperties.displayName | Should -Be "Sawyer Miller"
 
-            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserOwnedDevice  -ModuleName Microsoft.Graph.Entra.Users -Times 1
         }
 
         It "Should fail when Top is empty" {
@@ -121,7 +121,7 @@ Context "Test for Get-EntraUserOwnedDevice" {
             $result = Get-EntraUserOwnedDevice -UserId  "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOwnedDevice"
-            Should -Invoke -CommandName Get-MgUserOwnedDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserOwnedDevice -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
