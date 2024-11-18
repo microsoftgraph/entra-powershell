@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -25,7 +25,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgGroupAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgGroupAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
 
 Describe "New-EntraGroupAppRoleAssignment" {
@@ -39,7 +39,7 @@ Context "Test for New-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
 
-            Should -Invoke -CommandName New-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should return created Group AppRole Assignment with alias" {
             $result = New-EntraGroupAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -50,7 +50,7 @@ Context "Test for New-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
 
-            Should -Invoke -CommandName New-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when ObjectlId is empty" {
             { New-EntraGroupAppRoleAssignment -GroupId   -PrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -93,7 +93,7 @@ Context "Test for New-EntraGroupAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroupAppRoleAssignment"
 
-            Should -Invoke -CommandName New-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

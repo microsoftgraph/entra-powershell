@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -22,20 +22,20 @@ BeforeAll {
         )
     }    
 
-    Mock -CommandName New-MgPolicyPermissionGrantPolicyInclude -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgPolicyPermissionGrantPolicyInclude -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 
-    Mock -CommandName New-MgPolicyPermissionGrantPolicyExclude -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgPolicyPermissionGrantPolicyExclude -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 Describe "New-EntraPermissionGrantConditionSet"{
     It "Should not return empty object for condition set 'includes'"{
         $result = New-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -PermissionType "delegated"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
     }
     It "Should not return empty object for condition set 'excludes'"{
         $result = New-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "excludes" -PermissionType "delegated"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyExclude -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyExclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
     }
     It "Should fail when parameters are empty" {
         { New-EntraPermissionGrantConditionSet -PolicyId "" -ConditionSetType ""} | Should -Throw "Cannot bind argument to parameter*"
@@ -53,7 +53,7 @@ Describe "New-EntraPermissionGrantConditionSet"{
         $result = New-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -PermissionType "delegated"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraPermissionGrantConditionSet"
-        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

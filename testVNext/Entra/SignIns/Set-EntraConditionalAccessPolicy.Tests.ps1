@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra       
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Set-EntraConditionalAccessPolicy" {
@@ -19,7 +19,7 @@ Describe "Set-EntraConditionalAccessPolicy" {
             $result = Set-EntraConditionalAccessPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -DisplayName "test" -State enabled -Conditions $Condition -GrantControls $Controls -SessionControls $SessionControls
             $result | Should -BeNullOrEmpty
             
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should fail when PolicyId parameter is empty" {
@@ -63,7 +63,7 @@ Describe "Set-EntraConditionalAccessPolicy" {
         }
 
         It "Should contain ConditionalAccessPolicyId in parameters when passed PolicyId to it" {
-            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
             
             $result = Set-EntraConditionalAccessPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -DisplayName "test"
             $params = Get-Parameters -data $result
@@ -71,7 +71,7 @@ Describe "Set-EntraConditionalAccessPolicy" {
         }
 
         It "Should contain ClientAppTypes in parameters when passed Conditions to it" {
-            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
 
             $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
@@ -81,11 +81,11 @@ Describe "Set-EntraConditionalAccessPolicy" {
             $params = Get-Parameters -data $result
             $params.Conditions.ClientAppTypes | Should -Be @("mobileAppsAndDesktopClients","browser")
 
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should contain BuiltInControls in parameters when passed GrantControls to it" {
-            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
 
             $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
@@ -96,7 +96,7 @@ Describe "Set-EntraConditionalAccessPolicy" {
             $params = Get-Parameters -data $result
             $params.GrantControls.BuiltInControls | Should -Be @("mfa")
 
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -111,7 +111,7 @@ Describe "Set-EntraConditionalAccessPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraConditionalAccessPolicy"
 
-            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

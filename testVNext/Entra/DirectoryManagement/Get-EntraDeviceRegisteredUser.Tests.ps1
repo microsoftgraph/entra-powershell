@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra
+    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @{
@@ -28,7 +28,7 @@ BeforeAll {
     }
     
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 
@@ -40,14 +40,14 @@ Describe "Get-EntraDeviceRegisteredUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should return specific device registered User with alias" {
             $result = Get-EntraDeviceRegisteredUser -ObjectId "8542ebd1-3d49-4073-9dce-30f197c67755"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when DeviceId is empty" {
             { Get-EntraDeviceRegisteredUser -DeviceId   } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
@@ -60,7 +60,7 @@ Describe "Get-EntraDeviceRegisteredUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
        
         It "Should return top device registered owner" {
@@ -68,7 +68,7 @@ Describe "Get-EntraDeviceRegisteredUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when top is empty" {
             { Get-EntraDeviceRegisteredUser -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -115,7 +115,7 @@ Describe "Get-EntraDeviceRegisteredUser" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeviceRegisteredUser"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

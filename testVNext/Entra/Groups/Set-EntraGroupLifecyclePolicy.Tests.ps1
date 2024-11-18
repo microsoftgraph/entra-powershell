@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Groups      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -19,7 +19,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Update-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Set-EntraGroupLifecyclePolicy" {
@@ -32,7 +32,7 @@ Describe "Set-EntraGroupLifecyclePolicy" {
             $result.ManagedGroupTypes | should -Be "All"
             $result.AlternateNotificationEmails | should -Be "admingroup@contoso.com"
 
-            Should -Invoke -CommandName Update-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Set-EntraGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
@@ -68,7 +68,7 @@ Describe "Set-EntraGroupLifecyclePolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroupLifecyclePolicy"
 
-            Should -Invoke -CommandName Update-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -24,7 +24,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Get-EntraIdentityProvider" {
@@ -36,7 +36,7 @@ Context "Test for Get-EntraIdentityProvider" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.identityProviderType | Should -Be "Google"
 
-            Should -Invoke -CommandName Get-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should return specific identity provider with alias" {
             $result = Get-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" 
@@ -45,7 +45,7 @@ Context "Test for Get-EntraIdentityProvider" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.identityProviderType | Should -Be "Google"
 
-            Should -Invoke -CommandName Get-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraIdentityProvider -IdentityProviderBaseId   } | Should -Throw "Missing an argument for parameter 'IdentityProviderBaseId'*"
@@ -70,7 +70,7 @@ Context "Test for Get-EntraIdentityProvider" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -82,7 +82,7 @@ Context "Test for Get-EntraIdentityProvider" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraIdentityProvider"
 
-            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Authentication) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Authentication        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $mockResponse = {
         return @{
@@ -15,7 +15,7 @@ BeforeAll {
             }
         }
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Graph.Entra.Authentication
 }
 
 Describe "Revoke-EntraSignedInUserAllRefreshToken" {
@@ -25,7 +25,7 @@ Describe "Revoke-EntraSignedInUserAllRefreshToken" {
             $result | Should -Not -BeNullOrEmpty
             $result | Should -Be $true
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -35,7 +35,7 @@ Describe "Revoke-EntraSignedInUserAllRefreshToken" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Revoke-EntraSignedInUserAllRefreshToken"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Authentication -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

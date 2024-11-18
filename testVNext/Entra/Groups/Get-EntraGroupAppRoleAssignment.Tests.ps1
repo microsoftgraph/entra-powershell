@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -25,7 +25,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgGroupAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgGroupAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
 
 Describe "Get-EntraGroupAppRoleAssignment" {
@@ -39,7 +39,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should return specific Group AppRole Assignment with alias" {
             $result = Get-EntraGroupAppRoleAssignment -objectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -50,7 +50,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when ObjectlId is empty" {
             { Get-EntraGroupAppRoleAssignment -GroupId  } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -67,7 +67,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -81,7 +81,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -94,7 +94,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalDisplayName | Should -Be 'Mock-Group'
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -116,7 +116,7 @@ Context "Test for Get-EntraGroupAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupAppRoleAssignment"
 
-            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

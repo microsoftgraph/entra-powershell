@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
   
 Describe "Get-EntraPermissionGrantPolicy" {
@@ -31,7 +31,7 @@ Describe "Get-EntraPermissionGrantPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "microsoft-all-application-permissions"
 
-            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraPermissionGrantPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
@@ -53,7 +53,7 @@ Describe "Get-EntraPermissionGrantPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'All application'
 
-            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraPermissionGrantPolicy -Id "microsoft-all-application-permissions" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -66,7 +66,7 @@ Describe "Get-EntraPermissionGrantPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraPermissionGrantPolicy"
 
-            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

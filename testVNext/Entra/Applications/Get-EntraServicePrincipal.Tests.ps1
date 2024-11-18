@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -71,7 +71,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
   
 Describe "Get-EntraServicePrincipal" {
@@ -81,7 +81,7 @@ Describe "Get-EntraServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
 
         It "Should execute successfully with Alias" {
@@ -89,7 +89,7 @@ Describe "Get-EntraServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
 
         It "Should fail when ServicePrincipalId is empty" {
@@ -104,7 +104,7 @@ Describe "Get-EntraServicePrincipal" {
             $result = Get-EntraServicePrincipal -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -115,7 +115,7 @@ Describe "Get-EntraServicePrincipal" {
             $result = Get-EntraServicePrincipal -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -136,7 +136,7 @@ Describe "Get-EntraServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Windows Update for Business Deployment Service'
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         } 
 
         It "Should fail when searchstring is empty" {
@@ -148,7 +148,7 @@ Describe "Get-EntraServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Windows Update for Business Deployment Service'
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }  
 
         It "Should fail when filter is empty" {
@@ -177,7 +177,7 @@ Describe "Get-EntraServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Windows Update for Business Deployment Service"
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -191,7 +191,7 @@ Describe "Get-EntraServicePrincipal" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
 
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
