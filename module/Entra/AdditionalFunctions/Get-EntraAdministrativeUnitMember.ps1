@@ -1,17 +1,19 @@
 # ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+#  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (    
-    [Alias("Limit")]
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias("ObjectId")]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All
+    param (
+        [Alias("Limit")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.Int32]] $Top,
+
+        [Alias("ObjectId")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $AdministrativeUnitId,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All
     )
 
     PROCESS {
@@ -20,17 +22,17 @@ function Get-EntraAdministrativeUnitMember {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "/v1.0/directory/administrativeUnits/$AdministrativeUnitId/members?`$select=*"
         $params["Uri"] = "$baseUri"
-        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
-        {
+
+        if ($null -ne $PSBoundParameters["AdministrativeUnitId"]) {
             $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         }
+
         if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
                 $minTop = 999
                 $params["Uri"] += "&`$top=999"
-            }
-            else {
+            } else {
                 $params["Uri"] += "&`$top=$topCount"
             }
         }
@@ -39,7 +41,7 @@ function Get-EntraAdministrativeUnitMember {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
         try {
@@ -52,22 +54,22 @@ function Get-EntraAdministrativeUnitMember {
                     $topValue = [Math]::Min($increment, 999)
                     if ($minTop) {
                         $params["Uri"] = $params["Uri"].Replace("`$top=$minTop", "`$top=$topValue")
-                    }
-                    else {
+                    } else {
                         $params["Uri"] = $params["Uri"].Replace("`$top=$topCount", "`$top=$topValue")
                     }
                     $increment -= $topValue
                 }
-                $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
+                $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        }
-        catch {}
+        } catch {}
+
         $data | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
+
         if ($data) {
             $memberList = @()
             foreach ($response in $data) {
