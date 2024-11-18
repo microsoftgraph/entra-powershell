@@ -75,8 +75,8 @@ function Get-EntraContext {
             $entraPSModuleName = "Microsoft.Graph.Entra"
         }
 
-        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellModuleName" -Value $entraPSModuleName
-        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value $entraPSVersion
+        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellModuleName" -Value $entraPSModuleName -Force
+        $response | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value $entraPSVersion -Force
 
         $response
     }
