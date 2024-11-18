@@ -9,16 +9,21 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $UserId,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+
+        [Alias("Limit")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.Int32]] $Top,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
+
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -27,8 +32,7 @@
         }
         $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
@@ -36,18 +40,18 @@
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $Method = "GET"
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
 
         $Top = $null
         if ($PSBoundParameters.ContainsKey("Top")) {
             $Top = $PSBoundParameters["Top"]
         }
 
-        if($null -ne $Top){
+        if ($null -ne $Top) {
             $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
@@ -63,8 +67,7 @@
                 }
             }
             $userList
-        }
-        else {
+        } else {
             $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_) {

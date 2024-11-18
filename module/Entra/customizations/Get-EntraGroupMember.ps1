@@ -9,17 +9,22 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $GroupId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $GroupId,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+
+        [Alias("Limit")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.Int32]] $Top,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
-    PROCESS {    
+
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
@@ -27,51 +32,48 @@
         $properties = '$select=*'
         $Method = "GET"
 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        if($null -ne $PSBoundParameters["GroupId"])
-        {
+
+        if ($null -ne $PSBoundParameters["GroupId"]) {
             $params["GroupId"] = $PSBoundParameters["GroupId"]
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
-        if($null -ne $PSBoundParameters["All"])
-        {
+
+        if ($null -ne $PSBoundParameters["All"]) {
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
                 $minTop = 999
                 $URI = "$baseUri/$($params.GroupId)/members?`$top=999&$properties"
-            }
-            else{
+            } else {
                 $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
             }
         }
-    
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
+
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $data = $response
         try {
-            $data = @($response.value) 
+            $data = @($response.value)
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $URI = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
-                    if($minTop){
+                    if ($minTop) {
                         $URI = $URI.Replace("`$top=$minTop", "`$top=$topValue")
-                    }
-                    else{
+                    } else {
                         $URI = $URI.Replace("`$top=$topCount", "`$top=$topValue")
                     }
                     $increment -= $topValue
@@ -79,9 +81,9 @@
                 $response = Invoke-GraphRequest -Uri $URI -Method $Method
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {} 
+        } catch {}
         $data | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
@@ -90,34 +92,32 @@
             $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?$properties"
             $topCount = $Top - $data.count
             if ($PSBoundParameters.ContainsKey("Top") -and $topCount -gt 0) {
-                $increment = $topCount - $data.Count 
-                $increment = 1 
-                $hasNextLink = $false  
+                $increment = $topCount - $data.Count
+                $increment = 1
+                $hasNextLink = $false
 
-            do {
-                $topValue = [Math]::Min($topCount, 999)
-                $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topValue&$properties"
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
+                do {
+                    $topValue = [Math]::Min($topCount, 999)
+                    $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topValue&$properties"
+                    $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders
+                    $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $hasNextLink = $null -ne $response.PSObject.Properties.Match('@odata.nextLink')
+                    $increment--
+                } while ($increment -gt 0 -and $hasNextLink)
+            } elseif ($null -eq $PSBoundParameters["Top"]) {
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders
                 $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                $hasNextLink = $null -ne $response.PSObject.Properties.Match('@odata.nextLink')
-                $increment--
-            } while ($increment -gt 0 -and $hasNextLink)
             }
-            elseif($null -eq $PSBoundParameters["Top"]){
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
-                $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            }
-            try{
+            try {
                 $serviceprincipal | ForEach-Object {
-                    if($null -ne $_) {
+                    if ($null -ne $_) {
                         Add-Member -InputObject $_ -MemberType NoteProperty -Name '@odata.type' -Value '#microsoft.graph.servicePrincipal' -Force
                     }
                 }
                 $data += $serviceprincipal
-            }
-            catch {}
+            } catch {}
         }
-        if($data){
+        if ($data) {
             $userList = @()
             foreach ($response in $data) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
@@ -131,8 +131,8 @@
                 }
                 $userList += $userType
             }
-            $userList  
+            $userList
         }
-    }   
+    }
 '@
 }

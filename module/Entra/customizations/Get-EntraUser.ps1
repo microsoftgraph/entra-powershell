@@ -1,6 +1,9 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 @{
     SourceName   = "Get-AzureADUser"
     TargetName   = $null
@@ -9,19 +12,25 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias("ObjectId")]
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias("Limit")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.Int32]] $Top,
+
+        [Alias("ObjectId")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $UserId,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $SearchString,
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -76,7 +85,7 @@
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
         }    
-	    
+        
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
