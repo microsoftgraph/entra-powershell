@@ -48,8 +48,6 @@ function Get-EntraBetaUserAuthenticationMethod {
                 $authMethodList += $authMethodType
             }
 
-            $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType
-
             return $authMethodList
         }
         catch {
