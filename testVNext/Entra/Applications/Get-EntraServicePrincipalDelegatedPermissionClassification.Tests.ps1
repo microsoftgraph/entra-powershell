@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Applications      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -19,7 +19,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
   
 Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
@@ -29,7 +29,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
 
-            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is invalid" {
             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
@@ -61,7 +61,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             $result | Should -Not -BeNullOrEmpty
             $result.PermissionName | Should -Be 'LicenseManager.AccessAsUser'
 
-            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -74,7 +74,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
 
-            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

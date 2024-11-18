@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra       
+    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Groups       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Remove-EntraGroup" {
@@ -17,13 +17,13 @@ Describe "Remove-EntraGroup" {
             $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraGroup -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when GroupId is invalid" {
             { Remove-EntraGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
@@ -32,7 +32,7 @@ Describe "Remove-EntraGroup" {
             { Remove-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }    
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Groups
 
             $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
@@ -45,7 +45,7 @@ Describe "Remove-EntraGroup" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 
-            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,14 +2,14 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra        
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 
-    Mock -CommandName Remove-MgPolicyPermissionGrantPolicyExclude -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgPolicyPermissionGrantPolicyExclude -MockWith {} -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Remove-EntraPermissionGrantConditionSet"{
@@ -18,14 +18,14 @@ Describe "Remove-EntraPermissionGrantConditionSet"{
             $result = Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $result | Should -BeNullOrEmpty
             
-            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should delete a permission grant condition set 'excludes' from a policy"{
             $result = Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "excludes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyExclude -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyExclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
 
         It "Should fail when PolicyId parameter are invalid when ConditionSetType is includes" {
@@ -69,7 +69,7 @@ Describe "Remove-EntraPermissionGrantConditionSet"{
         }
 
         It "Should contain PermissionGrantPolicyId in parameters when passed PolicyId to it" {   
-            Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
 
             $result = Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $params = Get-Parameters -data $result
@@ -77,7 +77,7 @@ Describe "Remove-EntraPermissionGrantConditionSet"{
         }
 
         It "Should contain PermissionGrantConditionSetId in parameters when passed Id to it" {   
-            Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -MockWith {$args} -ModuleName Microsoft.Graph.Entra.SignIns
 
             $result = Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $params = Get-Parameters -data $result
@@ -91,7 +91,7 @@ Describe "Remove-EntraPermissionGrantConditionSet"{
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraPermissionGrantConditionSet"
 
-            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Groups      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
@@ -16,7 +16,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgUserMemberOfAsGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgUserMemberOfAsGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
 
 Describe "Select-EntraGroupIdsUserIsMemberOf" {
@@ -29,7 +29,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $result | Should -Not -BeNullOrEmpty      
             $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'     
 
-            Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when UserID is invalid " {
@@ -50,7 +50,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-entraGroupIdsUserIsMemberOf"
 
-            Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

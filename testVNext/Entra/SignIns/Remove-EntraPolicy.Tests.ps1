@@ -3,11 +3,11 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
 
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $ScriptBlock = {
         
@@ -18,13 +18,13 @@ BeforeAll {
             return $response
             
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 Describe "Test for Remove-EntraPolicy" {
     It "Should return empty object" {
         $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
         #$result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 2
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 2
     }
     It "Should fail when -Id is empty" {
         { Remove-EntraPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
@@ -40,7 +40,7 @@ Describe "Test for Remove-EntraPolicy" {
         $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraPolicy"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

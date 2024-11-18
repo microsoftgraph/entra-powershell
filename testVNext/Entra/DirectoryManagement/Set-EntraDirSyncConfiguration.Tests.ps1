@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra       
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
         return @(
             [PSCustomObject]@{
@@ -14,16 +14,16 @@ BeforeAll {
             }        
         )
         }
-    Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
     
-    Mock -CommandName Update-MgDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 Describe "Set-EntraDirSyncConfiguration" {
     Context "Test for Set-EntraDirSyncConfiguration" {
         It "Should Modifies the directory synchronization settings." {
             $result = Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
 
         It "Should fail when AccidentalDeletionThreshold is empty" {
@@ -52,7 +52,7 @@ Describe "Set-EntraDirSyncConfiguration" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirSyncConfiguration"
 
-            Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

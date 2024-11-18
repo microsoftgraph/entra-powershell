@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -24,7 +24,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "New-EntraIdentityProvider" {
@@ -36,7 +36,7 @@ Context "Test for New-EntraIdentityProvider" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.identityProviderType | Should -Be "Google"
 
-            Should -Invoke -CommandName New-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgIdentityProvider  -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
         }
         It "Should fail when Type is empty" {
             { New-EntraIdentityProvider -Type  -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"  } | Should -Throw "Missing an argument for parameter 'Type'*"
@@ -87,7 +87,7 @@ Context "Test for New-EntraIdentityProvider" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraIdentityProvider"
 
-            Should -Invoke -CommandName New-MgIdentityProvider -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgIdentityProvider -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

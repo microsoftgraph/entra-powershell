@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Graph.Entra.DirectoryManagement
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgDomain -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgDomain -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 }
 
 Describe "Remove-EntraDomain" {
@@ -16,7 +16,7 @@ Describe "Remove-EntraDomain" {
             $result = Remove-EntraDomain -Name "Contoso.com"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
         }
 
         It "Should fail when Name is empty" {
@@ -28,7 +28,7 @@ Describe "Remove-EntraDomain" {
         }   
 
         It "Should contain DomainId in parameters when passed Name to it" {
-            Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
 
             $result = Remove-EntraDomain -Name "Contoso.com"
             $params = Get-Parameters -data $result
@@ -42,7 +42,7 @@ Describe "Remove-EntraDomain" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
 
-            Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

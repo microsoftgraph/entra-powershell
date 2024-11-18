@@ -10,18 +10,29 @@ param(
 
 . "$psscriptroot/common-functions.ps1"
 
-$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
-$modulePath = Join-Path $modulePath (Get-ModuleName)
-$fullModuleName = Get-ModuleName
-if($fullModuleName -eq 'Microsoft.Graph.Entra'){
-	$moduleName = 'Entra'
+$fullModuleNames = @()
+$modName = Get-ModuleName
+
+if($modName -is [array]){
+	$fullModuleName = $modName[0]
+	$fullModuleNames = $modName
 }
 else{
+	$fullModuleName = $modName
+	$fullModuleNames += $modName
+}
+
+if($fullModuleName -like 'Microsoft.Graph.Entra.Beta*'){
 	$moduleName = 'EntraBeta'
+}
+else{
+	$moduleName = 'Entra'
 }
 
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
+$metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
+$metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
 if($moduleName -eq 'Entra'){
 	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
@@ -32,8 +43,37 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
-Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+foreach($module in $fullModuleNames){
+	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+		continue
+	}
+	$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
+	$modulePath = Join-Path $modulePath $module
+	Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
+	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+
+	if ($Install) {
+		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
+		Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
+	}
+}
+
+if($moduleName -eq 'Entra'){
+	$module = 'Microsoft.Graph.Entra'
+}
+else{
+	$module = 'Microsoft.Graph.Entra.Beta'
+}
+
+$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
+$modulePath = Join-Path $modulePath $module
+$modulePath = Join-Path $modulePath $metadata.version
+Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
+Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
+Publish-PSResource -Path $modulePath -Repository (Get-LocalPSRepoName) -SkipDependenciesCheck
 
 if ($Install) {
-	Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
+	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
+	Install-Module -Name $module -Repository (Get-LocalPSRepoName) -AllowClobber
 }

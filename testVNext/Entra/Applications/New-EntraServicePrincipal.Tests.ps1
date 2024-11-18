@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra    
+    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Applications    
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         # Write-Host "Mocking New-MgServicePrincipal with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -32,7 +32,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipal"{
@@ -52,7 +52,7 @@ Describe "New-EntraServicePrincipal"{
             $result.ServicePrincipalType | should -Be "Application"
             $result.ServicePrincipalNames | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
-            Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1
         }
         It "Should fail when AppID is empty" {
             { New-EntraServicePrincipal  -AppId  } | Should -Throw "Missing an argument for parameter 'AppId'.*"
@@ -98,7 +98,7 @@ Describe "New-EntraServicePrincipal"{
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipal"
 
-            Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

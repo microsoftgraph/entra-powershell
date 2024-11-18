@@ -3,10 +3,10 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra        
+    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Graph.Entra.Groups        
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         return @(
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
 }
   
 Describe "Get-EntraGroupMember" {
@@ -31,7 +31,7 @@ Describe "Get-EntraGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Contain 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
         It "Should fail when GroupId is invalid" {
             { Get-EntraGroupMember -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
@@ -52,7 +52,7 @@ Describe "Get-EntraGroupMember" {
             $result = Get-EntraGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -63,7 +63,7 @@ Describe "Get-EntraGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         } 
 
         It "Property parameter should work" {
@@ -71,7 +71,7 @@ Describe "Get-EntraGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -86,7 +86,7 @@ Describe "Get-EntraGroupMember" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaDeviceRegisteredUserByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
 }

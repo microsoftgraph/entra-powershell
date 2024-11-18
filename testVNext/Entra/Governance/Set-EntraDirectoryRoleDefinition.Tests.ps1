@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Governance) -eq $null){
         Import-Module Microsoft.Graph.Entra.Governance       
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {} -ModuleName Microsoft.Graph.Entra.Governance
 }

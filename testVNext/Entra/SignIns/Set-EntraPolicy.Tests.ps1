@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module Microsoft.Graph.Entra
+    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Graph.Entra.SignIns
     }
-    Import-Module (Join-Path $PSScriptRoot "..\..\build\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
         #Write-Host "Mocking set-EntraPolicy with parameters: $($args | ConvertTo-Json -Depth 3)"
         
@@ -15,7 +15,7 @@ BeforeAll {
 
         return $response
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
 }
 
 Describe "Test for Set-EntraPolicy" {
@@ -23,7 +23,7 @@ Describe "Test for Set-EntraPolicy" {
     It "Should return empty object" {
         $result = Set-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" 
         
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
     }
 
     It "Should fail when id is empty" {
@@ -50,23 +50,9 @@ Describe "Test for Set-EntraPolicy" {
 
         Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
 
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPolicy"
-
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
-        }
-    }
-    It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPartnerInformation"
-
-            Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPartnerInformation"
-
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
         }
     }
     It "Should execute successfully without throwing an error" {
