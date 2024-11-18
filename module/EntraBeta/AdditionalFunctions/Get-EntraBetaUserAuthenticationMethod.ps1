@@ -13,15 +13,6 @@ function Get-EntraBetaUserAuthenticationMethod {
     PROCESS {
         try {
 
-            # Load the format file
-            $formatFilePath = Join-Path -Path $PSScriptRoot -ChildPath "AuthenticationMethod.format.ps1xml"
-            if (Test-Path $formatFilePath) {
-                Update-FormatData -PrependPath $formatFilePath
-            }
-            else {
-                Write-Warning "Format file not found: $formatFilePath"
-            }
-
             # Initialize headers and URI
             $params = @{ }
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -56,6 +47,8 @@ function Get-EntraBetaUserAuthenticationMethod {
                 $authMethodType | Add-Member -MemberType AliasProperty -Name AuthenticationMethodType -Value '@odata.type'
                 $authMethodList += $authMethodType
             }
+
+            $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType
 
             return $authMethodList
         }
