@@ -21,6 +21,7 @@ function Get-EntraObjectSetting {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $TargetObjectId,
 
+        [Alias("Select")]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [System.String[]] $Property
     )

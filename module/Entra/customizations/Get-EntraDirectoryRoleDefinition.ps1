@@ -26,6 +26,7 @@
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UnifiedRoleDefinitionId,
 
+        [Alias("Select")]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [System.String[]] $Property
     )

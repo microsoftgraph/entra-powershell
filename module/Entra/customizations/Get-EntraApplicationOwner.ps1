@@ -19,7 +19,8 @@
         [Alias("Limit")]
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.Int32]] $Top,
-
+        
+        [Alias("Select")]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [System.String[]] $Property
     )

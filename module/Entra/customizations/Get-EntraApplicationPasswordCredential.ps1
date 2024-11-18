@@ -9,17 +9,18 @@
     CustomScript = @'
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ApplicationId,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $ApplicationId,
+
+        [Alias("Select")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-    if($null -ne $PSBoundParameters["Property"])
-    {
+    if ($null -ne $PSBoundParameters["Property"]) {
         $params["Property"] = $PSBoundParameters["Property"]
     }
 
@@ -27,11 +28,9 @@
 
     $response = (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).PasswordCredentials
 
-    if($null -ne $PSBoundParameters["Property"])
-    {
+    if ($null -ne $PSBoundParameters["Property"]) {
         $response | Select-Object $PSBoundParameters["Property"]
-    }
-    else {
+    } else {
         $response
     } 
 '@
