@@ -3,6 +3,8 @@
 # ------------------------------------------------------------------------------
 
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "", Scope="Function", Target="*")]
+param()
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta.Users    
