@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraUser {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingUsernameAndPasswordParams', 'PasswordProfile')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "PasswordProfile", Scope="Function")]
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
