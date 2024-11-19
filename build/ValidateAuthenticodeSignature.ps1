@@ -1,8 +1,8 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 
-# [cmdletbinding()]
-# param (
-#     [string]$Module = "Entra"
-# )
+Set-StrictMode -Version 5
 
 . "$psscriptroot/common-functions.ps1"
 
