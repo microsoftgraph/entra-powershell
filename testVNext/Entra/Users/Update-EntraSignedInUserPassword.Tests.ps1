@@ -2,6 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "", Scope="Function", Target="*")]
 BeforeAll{
     if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
         Import-Module Microsoft.Graph.Entra.Users      
