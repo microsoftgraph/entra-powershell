@@ -32,6 +32,14 @@
       {
         "file": "testVNext\\EntraBeta\\Users\\Update-EntraBetaUserFromFederated.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
+        "file": "test\\module\\Entra\\New-EntraUser.Tests.ps1",
+        "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
+        "file": "testVNext\\Entra\\Users\\New-EntraUser.Tests.ps1",
+        "_justification": "Unit test file has a sample Password used in mocking."
       }
     ]
 }
