@@ -37,7 +37,9 @@ extends:
         outputFormat: pre
         debugMode: false
         batchSize: 16
-        scanFolder: $(Build.SourcesDirectory)/moduleVNext
+      psscriptanalyzer:
+        break: false
+        enabled: true
     stages:
     - stage: build
       jobs:
