@@ -32,6 +32,14 @@ extends:
         name: MSSecurity-1ES-Build-Agents-Pool
         image: MSSecurity-1ES-Windows-2022
         os: windows
+      credscan:
+        suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+        outputFormat: pre
+        debugMode: false
+        batchSize: 16
+      psscriptanalyzer:
+        break: false
+        enabled: true
     stages:
     - stage: build
       jobs:
