@@ -9,15 +9,20 @@
     CustomScript = @'  
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $GroupId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $GroupId,
+        
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     ) 
     PROCESS {    
         $params = @{}
@@ -26,42 +31,38 @@
         $baseUri = 'https://graph.microsoft.com/beta/groups'
         $properties = '$select=*'
         $Method = "GET"        
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
         
-        if($null -ne $PSBoundParameters["GroupId"])
-        {
+        if ($null -ne $PSBoundParameters["GroupId"]) {
             $params["GroupId"] = $PSBoundParameters["GroupId"]
             $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
         
-        if($null -ne $PSBoundParameters["All"])
-        {
+        if ($null -ne $PSBoundParameters["All"]) {
             $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
         
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             $URI = "$baseUri/$($params.GroupId)/owners?`$top=$topCount&$properties"
         }        
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        if($response){
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
@@ -74,7 +75,6 @@
             }
             $userList
         }
-        }
+    }
 '@
-    
 }
