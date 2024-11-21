@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-#
+# ------------------------------------------------------------------------------
 
 [CmdletBinding()]
 param(
@@ -26,6 +26,7 @@ try {
     Write-Error -Message "Failed to load common-functions.ps1. Error: $_" -RecommendedAction "This script should be run from the 'build' folder. Ensure 'common-functions.ps1' exists and is accessible."
 }
 
+# Get module settings from the relevant ModuleSettings.json file.
 if ($ModuleSettingsPath) {
     $SettingsPath = $ModuleSettingsPath
 } else {
@@ -34,6 +35,7 @@ if ($ModuleSettingsPath) {
 $ModuleSettings = Get-Content -Path $SettingsPath | ConvertFrom-Json
 $RequiredVersion = $ModuleSettings.destinationModuleVersion
 
+# Do not check for installed modules if -Force is specified.
 if ($Force) {
     Write-Verbose 'Skipping the check for installed prerequisites. Forcing the installation of all required modules.'
 } else {
