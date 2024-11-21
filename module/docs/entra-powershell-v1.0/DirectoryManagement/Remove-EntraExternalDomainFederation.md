@@ -9,10 +9,10 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra-help.xml
-Module Name: Microsoft.Graph.Entra
+external help file: Microsoft.Entra-help.xml
+Module Name: Microsoft.Entra
 
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraExternalDomainFederation
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraExternalDomainFederation
 
 schema: 2.0.0
 ---

@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Authentication) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Authentication       
+    if ((Get-Module -Name Microsoft.Entra.Authentication) -eq $null) {
+        Import-Module Microsoft.Entra.Authentication       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
 
-    Mock -CommandName Revoke-MgUserSignInSession -MockWith {} -ModuleName Microsoft.Graph.Entra.Authentication
+    Mock -CommandName Revoke-MgUserSignInSession -MockWith {} -ModuleName Microsoft.Entra.Authentication
 }
 
 Describe "Revoke-EntraUserAllRefreshToken" {
@@ -16,12 +16,12 @@ Describe "Revoke-EntraUserAllRefreshToken" {
         It "Should return empty object" {
             $result = Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Entra.Authentication -Times 1
         }
         It "Should return empty object with alias" {
             $result = Revoke-EntraUserAllRefreshToken -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Graph.Entra.Authentication -Times 1
+            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Entra.Authentication -Times 1
         }
         It "Should fail when UserId is empty string" {
             { Revoke-EntraUserAllRefreshToken -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
@@ -30,7 +30,7 @@ Describe "Revoke-EntraUserAllRefreshToken" {
             { Revoke-EntraUserAllRefreshToken -UserId } | Should -Throw "Missing an argument for parameter*"
         }  
         It "Should contain Id in parameters when passed UserId to it" {
-            Mock -CommandName Revoke-MgUserSignInSession -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Authentication
+            Mock -CommandName Revoke-MgUserSignInSession -MockWith { $args } -ModuleName Microsoft.Entra.Authentication
 
             $result = Revoke-EntraUserAllRefreshToken -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
@@ -44,7 +44,7 @@ Describe "Revoke-EntraUserAllRefreshToken" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Revoke-EntraUserAllRefreshToken"
 
-            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Graph.Entra.Authentication -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Revoke-MgUserSignInSession -ModuleName Microsoft.Entra.Authentication -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

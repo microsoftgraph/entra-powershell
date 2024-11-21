@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -29,7 +29,7 @@ BeforeAll {
     }
     
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
 }
 
 
@@ -41,14 +41,14 @@ Describe "Get-EntraUserDirectReport" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should return specific user direct report with alias" {
             $result = Get-EntraUserDirectReport -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             { Get-EntraUserDirectReport -UserId   } | Should -Throw "Missing an argument for parameter 'UserId'*"
@@ -61,7 +61,7 @@ Describe "Get-EntraUserDirectReport" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -71,7 +71,7 @@ Describe "Get-EntraUserDirectReport" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when top is empty" {
             { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -84,7 +84,7 @@ Describe "Get-EntraUserDirectReport" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-User"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -115,7 +115,7 @@ Describe "Get-EntraUserDirectReport" {
             $result = Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserDirectReport"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

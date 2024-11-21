@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Groups        
+    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName New-MgGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName New-MgGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Add-EntraGroupOwner" {
@@ -16,7 +16,7 @@ Describe "Add-EntraGroupOwner" {
             $result = Add-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName New-MgGroupOwnerByRef -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -36,7 +36,7 @@ Describe "Add-EntraGroupOwner" {
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName New-MgGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Groups
+            Mock -CommandName New-MgGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Groups
 
             $result = Add-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
@@ -47,7 +47,7 @@ Describe "Add-EntraGroupOwner" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
             Add-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
-            Should -Invoke -CommandName New-MgGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgGroupOwnerByRef -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

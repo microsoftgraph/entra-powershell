@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -26,7 +26,7 @@ BeforeAll {
         
     }  
 
-    Mock -CommandName Get-MgContactMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgContactMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraContactMembership" {
@@ -37,7 +37,7 @@ Describe "Get-EntraContactMembership" {
             $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.DeletedDateTime | Should -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
 
         It "Should return specific Contact Membership with alias" {
@@ -46,7 +46,7 @@ Describe "Get-EntraContactMembership" {
             $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.DeletedDateTime | Should -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         
         It "Should fail when OrgContactId is invalid" {
@@ -57,7 +57,7 @@ Describe "Get-EntraContactMembership" {
             $result = Get-EntraContactMembership -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraContactMembership -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -67,7 +67,7 @@ Describe "Get-EntraContactMembership" {
             $result = Get-EntraContactMembership -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -94,7 +94,7 @@ Describe "Get-EntraContactMembership" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         
         It "Should fail when Property is empty" {
@@ -109,7 +109,7 @@ Describe "Get-EntraContactMembership" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContactMembership"
 
-            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

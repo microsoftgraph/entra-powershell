@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.Users      
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -49,7 +49,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "New-EntraBetaUser" {
@@ -114,7 +114,7 @@ Describe "New-EntraBetaUser" {
             $result.ImmutableId | Should -Be "1234567890"
             $result.Country | Should -Be "USA"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when parameters are empty" {
@@ -129,7 +129,7 @@ Describe "New-EntraBetaUser" {
              $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
              $result | Should -Not -BeNullOrEmpty
              $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
-             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -15,16 +15,16 @@ BeforeAll {
             }        
         )
         }
-    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     
-    Mock -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Set-EntraBetaDirSyncFeature" {
     Context "Test for Set-EntraBetaDirSyncFeature" {
         It "Should sets identity synchronization features for a tenant." {
             $result =  Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force -ErrorAction SilentlyContinue
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         
         It "Should fail when Feature is empty" {
@@ -58,7 +58,7 @@ Describe "Set-EntraBetaDirSyncFeature" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAttributeSet"
 
             Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force -ErrorAction SilentlyContinue | Out-Null
-            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

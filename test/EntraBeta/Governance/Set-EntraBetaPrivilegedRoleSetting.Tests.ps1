@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Governance       
+    if((Get-Module -Name Microsoft.Entra.Beta.Governance) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Governance       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
 
-    Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Governance
+    Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {} -ModuleName Microsoft.Entra.Beta.Governance
 }
 
 Describe "Set-EntraBetaPrivilegedRoleSetting" {
@@ -18,7 +18,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -RoleDefinitionId "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should return empty object for UserMemberSettings" {
             $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
@@ -29,7 +29,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -UserMemberSettings $temp
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should return empty object for AdminEligibleSettings" {
             $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
@@ -38,7 +38,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AdminEligibleSettings $setting
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should return empty object for UserEligibleSettings" {
             $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
@@ -52,7 +52,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -UserEligibleSettings $setting
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should return empty object for AdminMemberSettings" {
             $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
@@ -65,7 +65,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             $result =  Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AdminMemberSettings $temp
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when Id is empty" {
             { Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -98,14 +98,14 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             { Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -UserMemberSettings  } | Should -Throw "Missing an argument for parameter 'UserMemberSettings'*"
         }
         It "Should contain PrivilegedAccessId in parameters when passed ProviderId to it" {    
-            Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Governance
+            Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Governance
 
             $result = Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $params = Get-Parameters -data $result
             $params.PrivilegedAccessId | Should -Be "MockRoles"
         }
         It "Should contain GovernanceRoleSettingId in parameters when passed Id to it" {    
-            Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Governance
+            Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Governance
 
             $result = Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $params = Get-Parameters -data $result
@@ -118,7 +118,7 @@ Describe "Set-EntraBetaPrivilegedRoleSetting" {
             Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPrivilegedRoleSetting"
-            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

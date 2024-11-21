@@ -58,7 +58,12 @@ extends:
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
+<<<<<<< HEAD
             packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
             packageParentPath: '$(System.ArtifactsDirectory)'
+=======
+            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Entra*.nupkg'
+            packageParentPath: '$(Pipeline.Workspace)/drop'
+>>>>>>> e6ba625db (Rename module (#1223))
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery

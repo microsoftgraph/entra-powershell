@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -27,7 +27,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
   
 Describe "Get-EntraBetaDevice" {
@@ -38,13 +38,13 @@ Describe "Get-EntraBetaDevice" {
             $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | should -Be "Mock-Device"
 
-            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return specific device with Alias" {
             $result = Get-EntraBetaDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when DeviceId is empty" {
             { Get-EntraBetaDevice -DeviceId  } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
@@ -56,7 +56,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -All
             $result | Should -Not -BeNullOrEmpty  
 
-            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         } 
         It "Should fail when All is invalid" {
             { Get-EntraBetaDevice -All xy } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'*"
@@ -70,7 +70,7 @@ Describe "Get-EntraBetaDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         } 
         It "Should fail when searchstring is empty" {
             { Get-EntraBetaDevice -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
@@ -80,7 +80,7 @@ Describe "Get-EntraBetaDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }  
         It "Should fail when filter is empty" {
             { Get-EntraBetaDevice -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -90,7 +90,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }  
         It "Should fail when Top is empty" {
             { Get-EntraBetaDevice -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -124,7 +124,7 @@ Describe "Get-EntraBetaDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-Device'
 
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaDevice -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -137,7 +137,7 @@ Describe "Get-EntraBetaDevice" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDevice"
 
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $ScriptBlock = {        
@@ -14,7 +14,7 @@ BeforeAll {
 
         return $response            
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaPolicy" {
@@ -22,7 +22,7 @@ Describe "Remove-EntraBetaPolicy" {
         It "Should remove policy" {
             $result = Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             #$result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -38,7 +38,7 @@ Describe "Remove-EntraBetaPolicy" {
             
             Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' -eq $userAgentHeaderValue
                 $true
             }

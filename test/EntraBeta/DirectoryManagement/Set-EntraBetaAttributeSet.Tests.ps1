@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName  Update-MgBetaDirectoryAttributeSet -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName  Update-MgBetaDirectoryAttributeSet -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Set-EntraBetaAttributeSet" {
@@ -17,14 +17,14 @@ Describe "Set-EntraBetaAttributeSet" {
             $result = Set-EntraBetaAttributeSet -AttributeSetId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $result | Should -Be -NullOrEmpty
 
-            Should -Invoke -CommandName  Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should update attribute set with alias" {
             $result = Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $result | Should -Be -NullOrEmpty
 
-            Should -Invoke -CommandName  Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when AttributeSetId is empty" {
@@ -44,7 +44,7 @@ Describe "Set-EntraBetaAttributeSet" {
         }
 
         It "Should contain AttributeSetId in parameters when passed Id to it" {
-            Mock -CommandName Update-MgBetaDirectoryAttributeSet -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Update-MgBetaDirectoryAttributeSet -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $result = Set-EntraBetaAttributeSet -AttributeSetId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $params = Get-Parameters -data $result
@@ -56,7 +56,7 @@ Describe "Set-EntraBetaAttributeSet" {
             $result =  Set-EntraBetaAttributeSet -AttributeSetId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaAttributeSet"
-            Should -Invoke -CommandName Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

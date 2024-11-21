@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -24,7 +24,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
   }
   
   Describe "Get-EntraDirectoryRole" {
@@ -34,14 +34,14 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when DirectoryRoleId is empty" {
             { Get-EntraDirectoryRole -DirectoryRoleId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryRoleId' because it is an empty string."
@@ -51,7 +51,7 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Attribute Assignment Reader'
 
-            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }  
         It "Result should Contain DirectoryRoleId" {
             $result = Get-EntraDirectoryRole -DirectoryRoleId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -67,7 +67,7 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Attribute Assignment Reader'
 
-            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraDirectoryRole -DirectoryRoleId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -77,7 +77,7 @@ BeforeAll {
             $result = Get-EntraDirectoryRole -DirectoryRoleId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
-            Should -Invoke -CommandName Get-MgDirectoryRole -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDirectoryRole -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

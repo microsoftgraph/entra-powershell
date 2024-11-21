@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Applications
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
+        Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -106,7 +106,7 @@ BeforeAll{
                         }
     }
 
-    Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
 }
 Describe "New-EntraApplicationFromApplicationTemplateFromApplicationTemplate tests"{
     It "Should return created Application with service principal"{
@@ -114,7 +114,7 @@ Describe "New-EntraApplicationFromApplicationTemplateFromApplicationTemplate tes
         $result | Should -Not -BeNullOrEmpty
         $result.application.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
         $result.servicePrincipal.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
-        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when Id is empty" {
         { New-EntraApplicationFromApplicationTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"

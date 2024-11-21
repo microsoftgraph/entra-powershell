@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -32,7 +32,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgBetaApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName New-MgBetaApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "New-EntraBetaApplication"{
@@ -44,7 +44,7 @@ Describe "New-EntraBetaApplication"{
             $result.IsDeviceOnlyAuthSupported | should -Be "True"
             $result.IsFallbackPublicClient | should -Be "True"
             $result.SignInAudience | should -Be "AzureADandPersonalMicrosoftAccount" 
-            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when DisplayName is empty" {
             { New-EntraBetaApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter*"
@@ -57,7 +57,7 @@ Describe "New-EntraBetaApplication"{
             $result =  New-EntraBetaApplication -DisplayName "Mock-App"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaApplication"
-            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

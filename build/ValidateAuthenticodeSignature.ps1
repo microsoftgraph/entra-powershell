@@ -13,7 +13,7 @@ foreach($moduleName in $moduleNames){
     $modulePsd1 = $modulePath + ".psd1"
     ($modulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
     
-    if(($moduleName -eq 'Microsoft.Graph.Entra') -or ($moduleName -eq 'Microsoft.Graph.Entra.Beta')){
+    if(($moduleName -eq 'Microsoft.Entra') -or ($moduleName -eq 'Microsoft.Entra.Beta')){
 		continue
 	}
     $modulePsm1 = $modulePath + ".psm1"

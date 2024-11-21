@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups      
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -25,7 +25,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaDeletedGroup" {
@@ -37,7 +37,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should return specific Deleted Group with alias" {
             $result = Get-EntraBetaDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -46,7 +46,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when GroupId is empty" {
             { Get-EntraBetaDeletedGroup -GroupId    } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -58,7 +58,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result = Get-EntraBetaDeletedGroup  -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -70,7 +70,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -85,7 +85,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "Mock-App"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaDeletedGroup -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -97,7 +97,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result.MailNickname | Should -Be "Demo-Mock-App"
             $result.DisplayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when searchstring is empty" {
             { Get-EntraBetaDeletedGroup -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
@@ -107,7 +107,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -127,7 +127,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedGroup"
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

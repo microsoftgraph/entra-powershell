@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.Groups      
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Groups      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -19,7 +19,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Update-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Update-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Set-EntraBetaGroupLifecyclePolicy" {
@@ -32,7 +32,7 @@ Describe "Set-EntraBetaGroupLifecyclePolicy" {
             $result.ManagedGroupTypes | should -Be "All"
             $result.AlternateNotificationEmails | should -Be "admingroup@contoso.com"
 
-            Should -Invoke -CommandName Update-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Update-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Set-EntraBetaGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
@@ -65,7 +65,7 @@ Describe "Set-EntraBetaGroupLifecyclePolicy" {
             $result = Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

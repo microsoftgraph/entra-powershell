@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Governance       
+    if((Get-Module -Name Microsoft.Entra.Governance) -eq $null){
+        Import-Module Microsoft.Entra.Governance       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {} -ModuleName Microsoft.Graph.Entra.Governance
+    Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {} -ModuleName Microsoft.Entra.Governance
 }
   
 Describe "Set-EntraDirectoryRoleDefinition" {
@@ -18,7 +18,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
             $result = Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Entra.Governance -Times 1
         }
         It "Should execute successfully with Alias" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
@@ -26,7 +26,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
             $result = Set-EntraDirectoryRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 3
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Entra.Governance -Times 1
         }
         It "Should fail when UnifiedRoleDefinitionId is empty" {
             { Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId  -DisplayName 'Mock-App' -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'UnifiedRoleDefinitionId'*"
@@ -68,7 +68,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
             {Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Version } | Should -Throw "Missing an argument for parameter 'Version'*"
         }
         It "Should contain UnifiedRoleDefinitionId in parameters when passed Id to it" {
-            Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Governance
+            Mock -CommandName Update-MgRoleManagementDirectoryRoleDefinition -MockWith {$args} -ModuleName Microsoft.Entra.Governance
 
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
@@ -85,7 +85,7 @@ Describe "Set-EntraDirectoryRoleDefinition" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirectoryRoleDefinition"
 
-            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Entra.Governance -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

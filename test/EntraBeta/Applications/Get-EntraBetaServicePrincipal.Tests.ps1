@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -77,7 +77,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Get-MgBetaServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaServicePrincipal" {
@@ -86,7 +86,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result = Get-EntraBetaServicePrincipal
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
@@ -99,14 +99,14 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
            
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should get all service principal" {
             $result = Get-EntraBetaServicePrincipal -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -124,7 +124,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
            
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when ServicePrincipalId is empty" {
@@ -139,7 +139,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result = Get-EntraBetaServicePrincipal -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Top are empty" {
@@ -161,7 +161,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Filter are empty" {
@@ -172,7 +172,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result = Get-EntraBetaServicePrincipal -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Select are empty" {
@@ -190,7 +190,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when SearchString are empty" {
@@ -207,7 +207,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain filter in parameters when passed SearchString to it" {
@@ -215,7 +215,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Be "publisherName eq 'demo1' or (displayName eq 'demo1' or startswith(displayName,'demo1'))"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -223,7 +223,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result=  Get-EntraBetaServicePrincipal -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -237,7 +237,7 @@ Describe "Get-EntraBetaServicePrincipal" {
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be 'demo1'
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should execute successfully without throwing an error " {

@@ -58,7 +58,7 @@ extends:
               - template: .azure-pipelines/common-templates/esrp/codesign-nuget-migrate.yml@self
                 parameters:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
-                  Pattern: "Microsoft.Graph.Entra.*.nupkg"
+                  Pattern: "Microsoft.Entra.*.nupkg"
               - task: 1ES.PublishBuildArtifacts@1
                 displayName: Publish Module Artifacts
                 inputs:
@@ -68,7 +68,7 @@ extends:
                 displayName: Publish NuGet to preview feed
                 inputs:
                   useDotNetTask: false
-                  packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+                  packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Entra.*.nupkg
                   packageParentPath: '$(Build.ArtifactStagingDirectory)'
                   publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
                   nuGetFeedType: internal

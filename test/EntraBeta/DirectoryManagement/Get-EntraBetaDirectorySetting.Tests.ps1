@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -20,7 +20,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
   
 Describe "Get-EntraBetaDirectorySetting" {
@@ -33,7 +33,7 @@ Describe "Get-EntraBetaDirectorySetting" {
             $result.TemplateId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.Values | should -Be @("EnableAccessCheckForPrivilegedApplicationUpdates")
 
-            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -48,7 +48,7 @@ Describe "Get-EntraBetaDirectorySetting" {
             $result = Get-EntraBetaDirectorySetting -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -59,7 +59,7 @@ Describe "Get-EntraBetaDirectorySetting" {
             $result = Get-EntraBetaDirectorySetting -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -81,7 +81,7 @@ Describe "Get-EntraBetaDirectorySetting" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Application'
 
-            Should -Invoke -CommandName Get-MgBetaDirectorySetting  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -92,7 +92,7 @@ Describe "Get-EntraBetaDirectorySetting" {
             $result= Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySetting"
-            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

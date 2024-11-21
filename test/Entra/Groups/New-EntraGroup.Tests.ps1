@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Groups      
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Entra.Groups      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName New-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName New-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "New-EntraGroup" {
@@ -36,7 +36,7 @@ Describe "New-EntraGroup" {
             $result.SecurityEnabled | should -Be "True"
             $result.Description | should -Be "test" 
 
-            Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should fail when parameters are invalid" {
             { New-EntraGroup -DisplayName "" -MailEnabled "" -SecurityEnabled "" -MailNickName  "" -Description "" } | Should -Throw "Cannot bind argument to parameter*"
@@ -53,7 +53,7 @@ Describe "New-EntraGroup" {
             $result = New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroup"
-            Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

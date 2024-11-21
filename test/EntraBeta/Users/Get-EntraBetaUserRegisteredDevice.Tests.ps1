@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users       
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -32,7 +32,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaUserRegisteredDevice -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUserRegisteredDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserRegisteredDevice" {
@@ -44,7 +44,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserRegisteredDevice -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
@@ -56,7 +56,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -68,7 +68,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -86,7 +86,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -98,7 +98,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

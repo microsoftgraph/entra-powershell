@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.Groups        
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -20,7 +20,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaObjectSetting" {
@@ -30,7 +30,7 @@ Describe "Get-EntraBetaObjectSetting" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }        
         It "Should fail when TargetType is empty" {
             { Get-EntraBetaObjectSetting -TargetType } | Should -Throw "Missing an argument for parameter 'TargetType'*"
@@ -45,7 +45,7 @@ Describe "Get-EntraBetaObjectSetting" {
             $result = Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -56,7 +56,7 @@ Describe "Get-EntraBetaObjectSetting" {
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }  
 
         It "Should contain ID in parameters when passed TargetType TargetObjectId to it" {
@@ -73,7 +73,7 @@ Describe "Get-EntraBetaObjectSetting" {
             $result = Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaObjectSetting"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

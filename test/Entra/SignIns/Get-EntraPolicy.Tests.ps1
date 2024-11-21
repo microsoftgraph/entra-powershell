@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns      
+    if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.SignIns      
     }
     
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -42,7 +42,7 @@ BeforeAll {
         return $response
     }
    
-    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Get-EntraPolicy" {
     Context "Test for Get-EntraPolicy" {
@@ -52,20 +52,20 @@ Describe "Get-EntraPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Contain 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
         It "Should return all Policies" {
             $result = Get-EntraPolicy -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
         It "Should return all Policy" {
             $result = Get-EntraPolicy -Top 1
             $result | Should -Not -BeNullOrEmpty 
             $result | Should -HaveCount 1             
             
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
         It "Should fail when Id is invalid" {
             { Get-EntraPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
@@ -87,7 +87,7 @@ Describe "Get-EntraPolicy" {
             $result = Get-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

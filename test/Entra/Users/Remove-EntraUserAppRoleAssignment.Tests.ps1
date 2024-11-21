@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Users       
+    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+        Import-Module Microsoft.Entra.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {} -ModuleName Microsoft.Entra.Users
 }
   
 Describe "Remove-EntraUserAppRoleAssignment" {
@@ -16,7 +16,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
             $result = Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when ObjectId is invalid" {
@@ -36,7 +36,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
         } 
 
         It "Should contain UserId in parameters" {
-            Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Entra.Users
 
             $result = Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
             $params = Get-Parameters -data $result
@@ -50,7 +50,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserAppRoleAssignment"
 
-            Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

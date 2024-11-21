@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
@@ -32,7 +32,7 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
             $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
@@ -82,7 +82,7 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
 
             $params = @{
                 id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
@@ -105,7 +105,7 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should contain BodyParameter in parameters when passed PasswordSSOCredential to it" {
-            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
         
             $params = @{
                 id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
@@ -157,7 +157,7 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
             }
             $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPasswordSingleSignOnCredential"
-            Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

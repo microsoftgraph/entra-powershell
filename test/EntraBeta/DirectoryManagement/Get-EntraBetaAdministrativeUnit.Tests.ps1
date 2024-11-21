@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -24,7 +24,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaAdministrativeUnit -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaAdministrativeUnit -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaAdministrativeUnit" {
@@ -36,7 +36,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result.DisplayName | Should -Be "Mock-Administrative-unit"
             $result.Description | Should -Be "NewAdministrativeUnit"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return specific administrative unit with alias" {
             $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
@@ -45,7 +45,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result.DisplayName | Should -Be "Mock-Administrative-unit"
             $result.Description | Should -Be "NewAdministrativeUnit"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             { Get-EntraBetaAdministrativeUnit -AdministrativeUnitId  } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -57,7 +57,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result = Get-EntraBetaAdministrativeUnit -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraBetaAdministrativeUnit -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -66,7 +66,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result = Get-EntraBetaAdministrativeUnit -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaAdministrativeUnit -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -79,7 +79,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-Administrative-unit'
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaAdministrativeUnit -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -99,7 +99,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-Administrative-unit'
  
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaAdministrativeUnit -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -112,7 +112,7 @@ Describe "Get-EntraBetaAdministrativeUnit" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAdministrativeUnit"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

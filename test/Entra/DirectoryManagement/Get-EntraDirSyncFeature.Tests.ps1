@@ -2,8 +2,8 @@
 # #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # # ------------------------------------------------------------------------------
 # BeforeAll {  
-#     if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-#         Import-Module Microsoft.Graph.Entra.DirectoryManagement     
+#     if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+#         Import-Module Microsoft.Entra.DirectoryManagement     
 #     }
 #     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -34,7 +34,7 @@
 #             }
 #         )
 #     }    
-#     Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+#     Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 # }
 
 # Describe "Get-EntraDirSyncFeature" {
@@ -42,12 +42,12 @@
 #         It "Returns all the sync features" {
 #             $result = Get-EntraDirSyncFeature
 #             $result | Should -Not -BeNullOrEmpty
-#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
 #         }
 #         It "Returns specific sync feature" {
 #             $result = Get-EntraDirSyncFeature -Feature PasswordSync
 #             $result | Should -Not -BeNullOrEmpty
-#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
 #         }
 #         It "Should fail when TenantId is null" {
 #             { Get-EntraDirSyncFeature -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
@@ -63,7 +63,7 @@
 #             $result = Get-EntraDirSyncFeature -Feature PasswordSync
 #             $result | Should -Not -BeNullOrEmpty
 #             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirSyncFeature"
-#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+#             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
 #                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
 #                 $true
 #             }

@@ -22,7 +22,7 @@ else{
 	$fullModuleNames += $modName
 }
 
-if($fullModuleName -like 'Microsoft.Graph.Entra.Beta*'){
+if($fullModuleName -like 'Microsoft.Entra.Beta*'){
 	$moduleName = 'EntraBeta'
 }
 else{
@@ -44,7 +44,7 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 }
 
 foreach($module in $fullModuleNames){
-	if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+	if(($module -eq 'Microsoft.Entra') -or ($module -eq 'Microsoft.Entra.Beta')){
 		continue
 	}
 	$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
@@ -60,10 +60,10 @@ foreach($module in $fullModuleNames){
 }
 
 if($moduleName -eq 'Entra'){
-	$module = 'Microsoft.Graph.Entra'
+	$module = 'Microsoft.Entra'
 }
 else{
-	$module = 'Microsoft.Graph.Entra.Beta'
+	$module = 'Microsoft.Entra.Beta'
 }
 
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)

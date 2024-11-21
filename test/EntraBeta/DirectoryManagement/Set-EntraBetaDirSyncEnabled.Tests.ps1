@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -14,9 +14,9 @@ BeforeAll {
             }        
         )
         }
-    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     
-    Mock -CommandName Update-MgBetaOrganization -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Update-MgBetaOrganization -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Set-EntraBetaDirSyncEnabled" {
     Context "Test for Set-EntraBetaDirSyncEnabled" {
@@ -24,7 +24,7 @@ Describe "Set-EntraBetaDirSyncEnabled" {
             $result = Set-EntraBetaDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force
             write-host   $result
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgBetaOrganization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgBetaOrganization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when EnableDirsync is empty" {
@@ -50,7 +50,7 @@ Describe "Set-EntraBetaDirSyncEnabled" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDirSyncEnabled"
 
             Set-EntraBetaDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force | Out-Null
-            Should -Invoke -CommandName Update-MgBetaOrganization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaOrganization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

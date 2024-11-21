@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Reports) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Reports       
+    if((Get-Module -Name Microsoft.Entra.Beta.Reports) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Reports       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -27,7 +27,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Reports
+    Mock -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
 
 Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
@@ -39,7 +39,7 @@ Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.AppId | Should -Be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
 
-            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaApplicationSignInDetailedSummary -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -49,7 +49,7 @@ Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaApplicationSignInDetailedSummary -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -65,7 +65,7 @@ Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationSignInDetailedSummary"
 
-            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Entra.Beta.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement        
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -21,7 +21,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaAccountSku" {
@@ -36,7 +36,7 @@ Describe "Get-EntraBetaAccountSku" {
             $result.AccountId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AppliesTo | should -Be "User"
 
-            Should -Invoke -CommandName Get-MgBetaSubscribedSku -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaSubscribedSku -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when TenantId is empty" {
             { Get-EntraBetaAccountSku -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
@@ -53,7 +53,7 @@ Describe "Get-EntraBetaAccountSku" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAccountSku"
 
-            Should -Invoke -CommandName Get-MgBetaSubscribedSku -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaSubscribedSku -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

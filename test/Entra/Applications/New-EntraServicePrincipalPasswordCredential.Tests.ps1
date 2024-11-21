@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications    
+    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Add-MgServicePrincipalPassword -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Add-MgServicePrincipalPassword -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipalPasswordCredential"{
@@ -34,13 +34,13 @@ Describe "New-EntraServicePrincipalPasswordCredential"{
             $result.StartDate | should -Be "16/09/2024 14:14:14"
             $result.EndDate | should -Be "16/12/2024 13:14:14"
 
-            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should update the parameter with Alias" {
             $result =  New-EntraServicePrincipalPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
             $result | Should -Not -Be NullOrEmpty
 
-            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
             {New-EntraServicePrincipalPasswordCredential -ServicePrincipalId  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
@@ -73,7 +73,7 @@ Describe "New-EntraServicePrincipalPasswordCredential"{
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
 
-            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

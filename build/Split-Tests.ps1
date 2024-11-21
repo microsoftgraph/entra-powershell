@@ -21,13 +21,13 @@ function Split-Tests {
             $TestSourceDirectory = "../test_legacy/module/Entra"
             $MappingFilePath = '../module/Entra/config/moduleMapping.json'
             $OutputDirectory = '../test/Entra'
-            $modulePrefix = 'Microsoft.Graph.Entra'
+            $modulePrefix = 'Microsoft.Entra'
         }
         'EntraBeta' {
             $TestSourceDirectory = "../test_legacy/module/EntraBeta"
             $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
             $OutputDirectory = "../test/EntraBeta"
-            $modulePrefix = 'Microsoft.Graph.Entra.Beta'
+            $modulePrefix = 'Microsoft.Entra.Beta'
         }
         default {
             Log-Message -Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'

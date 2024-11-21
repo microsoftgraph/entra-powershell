@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users       
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -27,7 +27,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaUserMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUserMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserMembership" {
@@ -39,7 +39,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result.AdditionalProperties.DisplayName | Should -Be "Mock-Membership"
             $result.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.group"
 
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should return specific user membership with alias" {
             $result = Get-EntraBetaUserMembership -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -48,7 +48,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result.AdditionalProperties.DisplayName | Should -Be "Mock-Membership"
             $result.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.group"
 
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserMembership -UserId   } | Should -Throw "Missing an argument for parameter 'UserId'*"
@@ -60,7 +60,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
          It "Should fail when All is invalid" {
             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -70,7 +70,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
 
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -93,7 +93,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -105,7 +105,7 @@ Describe "Get-EntraBetaUserMembership" {
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserMembership"
-            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

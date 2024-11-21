@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -19,7 +19,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
   }
   
   Describe "Get-EntraApplicationExtensionProperty" {
@@ -28,13 +28,13 @@ BeforeAll {
             $result = Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraApplicationExtensionProperty -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
@@ -53,7 +53,7 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.Name | Should -Be 'extension_222_324_NewAttribute'
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -66,7 +66,7 @@ BeforeAll {
             $result =  Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

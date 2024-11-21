@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupAppRoleAssignment" {
@@ -16,13 +16,13 @@ Describe "Remove-EntraBetaGroupAppRoleAssignment" {
             $result = Remove-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should return empty object with Alias" {
             $result = Remove-EntraBetaGroupAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when GroupId is empty" {
             { Remove-EntraBetaGroupAppRoleAssignment -GroupId  -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -37,7 +37,7 @@ Describe "Remove-EntraBetaGroupAppRoleAssignment" {
             { Remove-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string."
         }
         It "Should contain GroupId in parameters when passed GroupId to it" { 
-            Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $params = Get-Parameters -data $result
@@ -47,7 +47,7 @@ Describe "Remove-EntraBetaGroupAppRoleAssignment" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupAppRoleAssignment"
             Remove-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
-            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

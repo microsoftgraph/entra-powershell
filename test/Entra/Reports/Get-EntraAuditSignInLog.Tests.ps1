@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Reports) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Reports        
+    if ((Get-Module -Name Microsoft.Entra.Reports) -eq $null) {
+        Import-Module Microsoft.Entra.Reports        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -42,7 +42,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Reports
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Reports
 }
   
 Describe "Get-EntraAuditSignInLog" {
@@ -51,13 +51,13 @@ Describe "Get-EntraAuditSignInLog" {
             $result = Get-EntraAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccc22"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc22'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1
         }    
         It "Should return specific Audit SignIn Logs with alias" {
             $result = Get-EntraAuditSignInLog -Id "bbbbbbbb-1111-2222-3333-cccccccccc22"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc22'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1
         }        
         It "Should fail when SignInId is empty" {
             { Get-EntraAuditSignInLog -SignInId } | Should -Throw "Missing an argument for parameter 'SignInId'*"
@@ -74,7 +74,7 @@ Describe "Get-EntraAuditSignInLog" {
         It "Should return all Audit SignIn Logs" {
             $result = Get-EntraAuditSignInLog -All 
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraAuditSignInLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -83,24 +83,24 @@ Describe "Get-EntraAuditSignInLog" {
             $result = Get-EntraAuditSignInLog -Filter "correlationId eq 'bbbbbbbb-1111-2222-3333-cccccccccc11'"
             $result | Should -Not -BeNullOrEmpty
             $result.id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc22'
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1
         }  
         It "Should return top Audit SignIn Logs" {
             $result = @(Get-EntraAuditSignInLog -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1
         }
         It "Should contain ID in parameters when passed Id to it" {
             $result = Get-EntraAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccc22"
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc22"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Reports
+            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Entra.Reports
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditSignInLog"
             $result =  Get-EntraAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }    

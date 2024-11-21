@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -37,7 +37,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MGBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName New-MGBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAdministrativeUnitMember" {
@@ -49,12 +49,12 @@ Describe "New-EntraBetaAdministrativeUnitMember" {
             $result.AdditionalProperties.DisplayName | Should -Be "Mock-Admin-UnitMember"
             $result.AdditionalProperties.Description | Should -Be "NewAdministrativeUnitMember"
 
-            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             {New-EntraBetaAdministrativeUnitMember -AdministrativeUnitId  -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -137,7 +137,7 @@ Describe "New-EntraBetaAdministrativeUnitMember" {
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAdministrativeUnitMember"
-            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Applications    
+    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -31,7 +31,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName New-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraApplication"{
@@ -44,7 +44,7 @@ Describe "New-EntraApplication"{
             $result.IsFallbackPublicClient | should -Be "True"
             $result.SignInAudience | should -Be "AzureADandPersonalMicrosoftAccount" 
 
-            Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when DisplayName is empty" {
             { New-EntraApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
@@ -54,7 +54,7 @@ Describe "New-EntraApplication"{
             $result = New-EntraApplication -DisplayName "Mock-App"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
-            Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

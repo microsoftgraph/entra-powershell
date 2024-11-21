@@ -2,35 +2,35 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Authentication)){
-    Import-Module Microsoft.Graph.Entra.Authentication -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Authentication)){
+    Import-Module Microsoft.Entra.Authentication -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Applications)){
-    Import-Module Microsoft.Graph.Entra.Applications -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Applications)){
+    Import-Module Microsoft.Entra.Applications -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement)){
-    Import-Module Microsoft.Graph.Entra.DirectoryManagement -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.DirectoryManagement)){
+    Import-Module Microsoft.Entra.DirectoryManagement -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Governance)){
-    Import-Module Microsoft.Graph.Entra.Governance -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Governance)){
+    Import-Module Microsoft.Entra.Governance -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Users)){
-    Import-Module Microsoft.Graph.Entra.Users -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Users)){
+    Import-Module Microsoft.Entra.Users -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Groups)){
-    Import-Module Microsoft.Graph.Entra.Groups -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Groups)){
+    Import-Module Microsoft.Entra.Groups -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.Reports)){
-    Import-Module Microsoft.Graph.Entra.Reports -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.Reports)){
+    Import-Module Microsoft.Entra.Reports -Force
 }
-if($null -eq (Get-Module -Name Microsoft.Graph.Entra.SignIns)){
-    Import-Module Microsoft.Graph.Entra.SignIns -Force
+if($null -eq (Get-Module -Name Microsoft.Entra.SignIns)){
+    Import-Module Microsoft.Entra.SignIns -Force
 }
 
 Import-Module Pester
 
-#$psmPath = (Get-Module Microsoft.Graph.Entra.Applications).Path
-$ps1FilesPath = join-path $psscriptroot "..\..\module\Entra\Microsoft.Graph.Entra"
+#$psmPath = (Get-Module Microsoft.Entra.Applications).Path
+$ps1FilesPath = join-path $psscriptroot "..\..\module\Entra\Microsoft.Entra"
 $testReportPath = join-path $psscriptroot "..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\test\Entra\*\*.Tests.ps1"
 

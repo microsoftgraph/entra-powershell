@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -26,7 +26,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaAdministrativeUnitMember" {
@@ -38,7 +38,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
             $result.AdditionalProperties.DisplayName | Should -Be "Mock-UnitMember"
             $result.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.user"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return specific administrative unit member with alias" {
             $result = Get-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa"
@@ -47,7 +47,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
             $result.AdditionalProperties.DisplayName | Should -Be "Mock-UnitMember"
             $result.AdditionalProperties."@odata.type" | Should -Be "#microsoft.graph.user"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             { Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -59,7 +59,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
             $result = Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
@@ -69,7 +69,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -92,7 +92,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.ID | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
  
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -105,7 +105,7 @@ Describe "Get-EntraBetaAdministrativeUnitMember" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAdministrativeUnitMember"
 
-            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
