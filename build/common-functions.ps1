@@ -92,7 +92,7 @@ function Update-ModuleVersion {
 	[cmdletbinding()]
 	param(
 		[switch] $Minor,
-		[switch] $Mayor,
+		[switch] $Major,
 		[switch] $Build
 	)
 
@@ -111,7 +111,7 @@ function Update-ModuleVersion {
 		$v.Minor++
 	}
 
-	if ($Mayor.IsPresent) {
+	if ($Major.IsPresent) {
 		$v.Major++
 	}
 
