@@ -153,13 +153,13 @@ class CompatibilityAdapterBuilder {
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
-        $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
     CompatibilityAdapterBuilder([string] $Module){        
-        $this.BasePath = (join-path $PSScriptRoot '../module/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/')    
         $this.BasePath = (join-path $this.BasePath $Module)
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
@@ -168,7 +168,7 @@ class CompatibilityAdapterBuilder {
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
         if($notRunningUT)
         {
-            $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
+            $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
             $this.HelpFolder = (join-path $this.BasePath './help')
             $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
         }                
@@ -586,7 +586,7 @@ public $($object.GetType().Name)()
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
-        if('Microsoft.Entra' -eq $this.ModuleName){
+        if('Microsoft.Graph.Entra' -eq $this.ModuleName){
             $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADGroup", "Remove-AzureADMSGroup", "Set-AzureADGroup")        
         }
         else{
@@ -642,20 +642,20 @@ function Get-EntraUnsupportedCommand {
             
             #Adding direct aliases 
             $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Entra')
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
             {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
             }
-            elseif ($this.ModuleName -eq 'Microsoft.Entra.Beta') {
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
             #Adding direct aliases 
             $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Entra')
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
             {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
             }
-            elseif ($this.ModuleName -eq 'Microsoft.Entra.Beta') {
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
 
@@ -785,7 +785,7 @@ $($Command.CustomScript)
         
         $customHeadersCommandName = "New-EntraCustomHeaders"
 
-        if($this.ModuleName -eq 'Microsoft.Entra.Beta')
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
         {
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }
