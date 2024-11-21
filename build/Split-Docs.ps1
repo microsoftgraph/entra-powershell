@@ -5,7 +5,7 @@
 #This function copies the docs using the moduleMapping.json into their submodule directories
 # i.e. For each entry, it will use the Key(cmdlet name) and map it to the Value(A subdirectory created in the respective docs directory)
 
-. ./common-functions.ps1
+. (Join-Path $psscriptroot "/common-functions.ps1")
 
 
 function Split-Docs {
