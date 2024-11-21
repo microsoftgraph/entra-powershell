@@ -1,6 +1,6 @@
 {
   "Add-EntraAdministrativeUnitMember": "DirectoryManagement",
-  "Add-EntraLifecyclePolicyGroup": "Groups",
+  "Add-EntraLifecyclePolicyGroup": "Groups",  
   "Get-EntraAccountSku": "DirectoryManagement",
   "Get-EntraAdministrativeUnit": "DirectoryManagement",
   "Get-EntraAdministrativeUnitMember": "DirectoryManagement",
