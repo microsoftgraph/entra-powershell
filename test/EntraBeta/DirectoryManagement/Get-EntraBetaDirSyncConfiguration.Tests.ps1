@@ -2,9 +2,9 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
 
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement     
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement     
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -17,14 +17,14 @@ BeforeAll {
             }
         }
     }
-    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Get-EntraBetaDirSyncConfiguration" {
     Context "Test for Get-EntraBetaDirSyncConfiguration" {
         It "Get irectory synchronization settings" {
             $result =  Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
          It "Should fail when TenantId is empty" {
              { Get-EntraBetaDirSyncConfiguration -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
@@ -46,7 +46,7 @@ Describe "Get-EntraBetaDirSyncConfiguration" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirSyncConfiguration"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

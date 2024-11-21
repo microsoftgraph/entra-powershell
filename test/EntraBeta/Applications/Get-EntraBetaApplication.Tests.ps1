@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -32,7 +32,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Get-MgBetaApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaApplication" {
@@ -41,12 +41,12 @@ Describe "Get-EntraBetaApplication" {
             $result = Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('aaaaaaaa-1111-1111-1111-000000000000')
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraBetaApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
@@ -54,7 +54,7 @@ Describe "Get-EntraBetaApplication" {
         It "Should return all applications" {
             $result = Get-EntraBetaApplication -All
             $result | Should -Not -BeNullOrEmpty  
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when All has argument" {
             { Get-EntraBetaAuditDirectoryLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
@@ -66,18 +66,18 @@ Describe "Get-EntraBetaApplication" {
             $result = Get-EntraBetaApplication -SearchString 'Mock-App'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraBetaApplication -Filter "DisplayName -eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }  
         It "Should return top application" {
             $result = Get-EntraBetaApplication -Top 1
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }  
         It "Result should Contain ApplicationId" {
             $result = Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
@@ -98,7 +98,7 @@ Describe "Get-EntraBetaApplication" {
             $result =  Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplication"
-            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -108,7 +108,7 @@ Describe "Get-EntraBetaApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
     
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
            }
     
            It "Should fail when Property is empty" {
@@ -136,7 +136,7 @@ Describe "Get-EntraBetaApplication" {
 
         It "Should return a list of applications by default" {
             $GetAzureADApplication = Get-Command Get-EntraBetaApplication
-            $GetAzureADApplication.ModuleName | Should -Be "Microsoft.Graph.Entra.Beta.Applications"
+            $GetAzureADApplication.ModuleName | Should -Be "Microsoft.Entra.Beta.Applications"
             $GetAzureADApplication.DefaultParameterSet | Should -Be "GetQuery"
         }    
         It 'Should have List parameterSet' {

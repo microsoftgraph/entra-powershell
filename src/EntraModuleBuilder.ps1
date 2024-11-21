@@ -125,9 +125,9 @@ Set-StrictMode -Version 5
     [void] CreateSubModuleFile([string]$Module, [string]$typedefsFilePath=$this.TypeDefsDirectory) {
         # Determine the output path based on the module
         $startDirectory = if ($Module -eq "Entra") {
-            (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Graph.Entra")
+            (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
         } else {
-            (Join-Path $PSScriptRoot "..\module\EntraBeta\Microsoft.Graph.Entra.Beta")
+            (Join-Path $PSScriptRoot "..\module\EntraBeta\Microsoft.Entra.Beta")
         }
         Log-Message "[EntraModuleBuilder] Starting CreateSubModuleFile script..."
 
@@ -170,10 +170,10 @@ Set-StrictMode -Version 5
  [string[]] GetSubModuleFiles([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
         # Define the pattern for matching submodule files
-        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
-            "Microsoft.Graph.Entra.Beta.*.psm1"
+        $pattern = if ($module -like "Microsoft.Entra.Beta.*") {
+            "Microsoft.Entra.Beta.*.psm1"
         } else {
-            "Microsoft.Graph.Entra.*.psm1"
+            "Microsoft.Entra.*.psm1"
         }
 
         if (-Not (Test-Path -Path $DirectoryPath)) {
@@ -197,10 +197,10 @@ Set-StrictMode -Version 5
      [string[]] GetSubModuleFileNames([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
         # Define the pattern for matching submodule files
-        $pattern = if ($module -like "Microsoft.Graph.Entra.Beta.*") {
-            "Microsoft.Graph.Entra.Beta.*.psd1"
+        $pattern = if ($module -like "Microsoft.Entra.Beta.*") {
+            "Microsoft.Entra.Beta.*.psd1"
         } else {
-            "Microsoft.Graph.Entra.*.psd1"
+            "Microsoft.Entra.*.psd1"
         }
 
         if (-Not (Test-Path -Path $DirectoryPath)) {
@@ -227,9 +227,9 @@ Set-StrictMode -Version 5
 [void] CreateRootModule([string] $Module) {
     # Determine the root module name based on the module type
     $rootModuleName = if ($Module -eq 'Entra') {
-        'Microsoft.Graph.Entra.psm1'
+        'Microsoft.Entra.psm1'
     } else {
-        'Microsoft.Graph.Entra.Beta.psm1'
+        'Microsoft.Entra.Beta.psm1'
     }
 
     # Get the list of submodules and exclude the root module
@@ -299,9 +299,9 @@ foreach (`$subModule in `$subModules) {
         }
       	
 		$moduleName=if($Module  -eq 'Entra'){
-			'Microsoft.Graph.Entra'
+			'Microsoft.Entra'
 		}else{
-			'Microsoft.Graph.Entra.Beta'
+			'Microsoft.Entra.Beta'
 		}
 		
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
@@ -395,9 +395,9 @@ $($requiredModulesEntries -join ",`n")
             (Join-Path $PSScriptRoot "../module/EntraBeta")
         }
     $moduleBasePath =if ($Module -eq "Entra") {
-            (Join-Path $rootPath "/Microsoft.Graph.Entra")
+            (Join-Path $rootPath "/Microsoft.Entra")
         } else {
-            (Join-Path $rootPath "/Microsoft.Graph.Entra.Beta")
+            (Join-Path $rootPath "/Microsoft.Entra.Beta")
     }
 
     $subDirectories = Get-ChildItem -Path $moduleBasePath -Directory
@@ -416,22 +416,22 @@ $($requiredModulesEntries -join ",`n")
         $moduleName = $subDir.Name
 
         $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName-Help.xml"
+            "Microsoft.Entra.$moduleName-Help.xml"
         } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName-Help.xml"
+            "Microsoft.Entra.Beta.$moduleName-Help.xml"
         }
 		
 		
         $manifestFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName.psd1"
+            "Microsoft.Entra.$moduleName.psd1"
         } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName.psd1"
+            "Microsoft.Entra.Beta.$moduleName.psd1"
         }
     
         $moduleFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$moduleName.psm1"
+            "Microsoft.Entra.$moduleName.psm1"
         } else {
-            "Microsoft.Graph.Entra.Beta.$moduleName.psm1"
+            "Microsoft.Entra.Beta.$moduleName.psm1"
         }
 
         # Log the start of processing for this module
@@ -589,9 +589,9 @@ $($requiredModulesEntries -join ",`n")
         }
 
         $helpFileName = if ($Module -eq "Entra") {
-            "Microsoft.Graph.Entra.$($subDirectory.Name)-Help.xml"
+            "Microsoft.Entra.$($subDirectory.Name)-Help.xml"
         } else {
-            "Microsoft.Graph.Entra.Beta.$($subDirectory.Name)-Help.xml"
+            "Microsoft.Entra.Beta.$($subDirectory.Name)-Help.xml"
         }
  
         $helpOutputFilePath = Join-Path -Path $this.OutputDirectory -ChildPath $helpFileName

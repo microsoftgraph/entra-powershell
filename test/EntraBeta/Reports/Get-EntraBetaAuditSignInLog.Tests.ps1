@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Reports) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Reports    
+    if((Get-Module -Name Microsoft.Entra.Beta.Reports) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Reports    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -180,7 +180,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaAuditLogSignIn -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Reports
+    Mock -CommandName Get-MgBetaAuditLogSignIn -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
   
 Describe "Get-EntraBetaAuditSignInLog" {
@@ -188,7 +188,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
         It "Should get all logs" {
             $result = Get-EntraBetaAuditSignInLog -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -208,7 +208,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result.UserPrincipalName | Should -Be "test@contoso.com"
             $result.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -232,7 +232,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result.UserPrincipalName | Should -Be "test@contoso.com"
             $result.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should get audit sign-in logs containing a given userPrincipalName" {
@@ -248,7 +248,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result.UserPrincipalName | Should -Be "test@contoso.com"
             $result.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should get audit sign-in logs containing a given appId" {
@@ -264,7 +264,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result.UserPrincipalName | Should -Be "test@contoso.com"
             $result.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should get audit sign-in logs containing a given appDisplayName" {
@@ -280,7 +280,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result.UserPrincipalName | Should -Be "test@contoso.com"
             $result.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should fail when Filter is empty" {
@@ -291,21 +291,21 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result = Get-EntraBetaAuditSignInLog -Filter "result eq 'success'" 
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should get all sign-in logs with a given result(failure)" {
             $result = Get-EntraBetaAuditSignInLog -Filter "result eq 'failure'" 
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         } 
         It "Property parameter should work" {
             $result = Get-EntraBetaAuditSignInLog -Property AppDisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be 'Azure Active Directory PowerShell'
     
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1
            }
     
         It "Should fail when Property is empty" {
@@ -317,7 +317,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
             $result= Get-EntraBetaAuditSignInLog
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLog"
-            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

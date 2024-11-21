@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+        Import-Module Microsoft.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgDomain -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Update-MgDomain -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }   
 
 Describe "Set-EntraDomain"{
@@ -17,7 +17,7 @@ Describe "Set-EntraDomain"{
             $result = Set-EntraDomain -Name "test.mail.onmicrosoft.com" -IsDefault $True -SupportedServices @("OrgIdAuthentication")
             $result | Should -BeNullOrEmpty           
 
-            Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Name is empty" {
             { Set-EntraDomain -Name   } | Should -Throw "Missing an argument for parameter 'Name'*"
@@ -40,7 +40,7 @@ Describe "Set-EntraDomain"{
 
         }
         It "Should contain DomainId in parameters when passed Name to it" {
-            Mock -CommandName Update-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+            Mock -CommandName Update-MgDomain -MockWith {$args} -ModuleName Microsoft.Entra.DirectoryManagement
 
             $result = Set-EntraDomain -Name "test.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result
@@ -53,7 +53,7 @@ Describe "Set-EntraDomain"{
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomain"
 
-            Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

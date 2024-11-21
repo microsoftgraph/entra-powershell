@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
 
-    Mock -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Remove-EntraBetaScopedRoleMembership" {
@@ -17,13 +17,13 @@ Describe "Remove-EntraBetaScopedRoleMembership" {
             $result = Remove-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return empty object" {
             $result = Remove-EntraBetaScopedRoleMembership -ObjectId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             { Remove-EntraBetaScopedRoleMembership -AdministrativeUnitId  -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"  } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -38,7 +38,7 @@ Describe "Remove-EntraBetaScopedRoleMembership" {
             { Remove-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId ""} | Should -Throw "Cannot bind argument to parameter 'ScopedRoleMembershipId' because it is an empty string."
         }
         It "Should contain AdministrativeUnitId in parameters when passed AdministrativeUnitId to it" {    
-            Mock -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $result = Remove-EntraBetaScopedRoleMembership -AdministrativeUnitId "dddddddd-1111-2222-3333-eeeeeeeeeeee" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
             $params = Get-Parameters -data $result
@@ -51,7 +51,7 @@ Describe "Remove-EntraBetaScopedRoleMembership" {
            
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaScopedRoleMembership"
-            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

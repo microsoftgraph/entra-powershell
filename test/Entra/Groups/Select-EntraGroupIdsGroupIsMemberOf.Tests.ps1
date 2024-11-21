@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Groups
+    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Groups
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -29,8 +29,8 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgGroupMemberOf -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
-    Mock -CommandName Get-MgGroup -MockWith $scriptblock2 -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName Get-MgGroupMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-MgGroup -MockWith $scriptblock2 -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Select-EntraGroupIdsGroupIsMemberOf" {
@@ -43,7 +43,7 @@ Describe "Select-EntraGroupIdsGroupIsMemberOf" {
             $result | Should -Not -BeNullOrEmpty
             $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when ObjectId is missing" {
@@ -77,7 +77,7 @@ Describe "Select-EntraGroupIdsGroupIsMemberOf" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsGroupIsMemberOf"
 
-            Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

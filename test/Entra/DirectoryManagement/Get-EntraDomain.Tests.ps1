@@ -2,9 +2,9 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
         
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+        Import-Module Microsoft.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -34,7 +34,7 @@ $scriptblock = {
 
 }
   
-    Mock -CommandName Get-MgDomain -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDomain -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }   
 
 Describe "Get-EntraDomain" {
@@ -44,7 +44,7 @@ Describe "Get-EntraDomain" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'test.mail.onmicrosoft.com'
 
-            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Name is empty" {
             { Get-EntraDomain -Name "" } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
@@ -53,13 +53,13 @@ Describe "Get-EntraDomain" {
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
             $result.ObjectId | should -Be "test.mail.onmicrosoft.com" 
 
-            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Result should Contain Name" {            
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
             $result.Name | should -Be "test.mail.onmicrosoft.com" 
 
-            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 
         }
         It "Should contain DomainId in parameters when passed Name to it" {
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
@@ -71,7 +71,7 @@ Describe "Get-EntraDomain" {
             $result | Should -Not -BeNullOrEmpty
             $result.AuthenticationType | Should -Be 'Managed'
 
-            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
              {Get-EntraDomain -Name "test.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -82,7 +82,7 @@ Describe "Get-EntraDomain" {
             Get-EntraDomain -Name "test.mail.onmicrosoft.com"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomain"
 
-            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

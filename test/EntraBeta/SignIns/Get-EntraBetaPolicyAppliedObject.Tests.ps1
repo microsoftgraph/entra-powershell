@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns       
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -28,7 +28,7 @@ $scriptblock = {
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Get-EntraBetaPolicyAppliedObject" {
@@ -40,7 +40,7 @@ Describe "Get-EntraBetaPolicyAppliedObject" {
             $result.displayName | Should -Be "Mock policy Object"
             $result.servicePrincipalNames | Should -be "Mock service principal"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraBetaPolicyAppliedObject -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -60,7 +60,7 @@ Describe "Get-EntraBetaPolicyAppliedObject" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPolicyAppliedObject"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

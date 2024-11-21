@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -14,16 +14,16 @@ BeforeAll {
             }        
         )
         }
-    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     
-    Mock -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Set-EntraBetaDirSyncConfiguration" {
     Context "Test for Set-EntraBetaDirSyncConfiguration" {
         It "Should Modifies the directory synchronization settings." {
             $result = Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when AccidentalDeletionThreshold is empty" {
@@ -52,7 +52,7 @@ Describe "Set-EntraBetaDirSyncConfiguration" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDirSyncConfiguration"
 
-            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

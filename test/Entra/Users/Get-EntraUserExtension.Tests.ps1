@@ -1,6 +1,6 @@
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -14,7 +14,7 @@ BeforeAll {
         }
     }    
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
 }
 Describe "Get-EntraUserExtension" {
     Context "Test for Get-EntraUserExtension" {
@@ -22,14 +22,14 @@ Describe "Get-EntraUserExtension" {
             $result = Get-EntraUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"            
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Get-EntraUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -37,7 +37,7 @@ Describe "Get-EntraUserExtension" {
             $result = Get-EntraUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -55,7 +55,7 @@ Describe "Get-EntraUserExtension" {
             $result = Get-EntraUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when Property is empty" {

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
             $result = Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
@@ -33,7 +33,7 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
         }   
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+            Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
 
             $result = Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -41,7 +41,7 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should contain Id in parameters when passed PasswordSSOObjectId to it" {
-            Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+            Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
 
             $result = Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -53,7 +53,7 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
             $result =  Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaPasswordSingleSignOnCredential"
-            Should -Invoke -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

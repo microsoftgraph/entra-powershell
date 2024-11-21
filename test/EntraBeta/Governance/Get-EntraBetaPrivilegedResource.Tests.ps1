@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Governance    
+    if((Get-Module -Name Microsoft.Entra.Beta.Governance) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Governance    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -28,7 +28,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaPrivilegedAccessResource -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Governance
+    Mock -CommandName Get-MgBetaPrivilegedAccessResource -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Governance
 }
 
 Describe "Get-EntraBetaPrivilegedResource" {
@@ -37,7 +37,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
 
         It "Should fail when ProviderId are empty" {
@@ -57,7 +57,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $result.ExternalId | Should -Be "/administrativeUnits/bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.DisplayName | Should -Be "new"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
 
         It "Should fail when Id are empty" {
@@ -72,7 +72,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
 
         It "Should fail when Top are empty" {
@@ -92,7 +92,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $result.ExternalId | Should -Be "/administrativeUnits/bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.DisplayName | Should -Be "new"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
 
         It "Should fail when Filter are empty" {
@@ -109,7 +109,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $params = Get-Parameters -data $result.Parameters
             $params.GovernanceResourceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
 
         It "Should contain PrivilegedAccessId in parameters when passed ProviderId to it" {
@@ -117,14 +117,14 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $params = Get-Parameters -data $result.Parameters
             $params.PrivilegedAccessId | Should -Be "aadRoles"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Property parameter should work" {
             $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'new'
     
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -134,7 +134,7 @@ Describe "Get-EntraBetaPrivilegedResource" {
             $result= Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedResource"
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Entra.Beta.Governance -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

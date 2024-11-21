@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -26,7 +26,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName  New-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName  New-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
@@ -45,7 +45,7 @@ Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
             $result.IsSearchable | should -Be $true
             $result.UsePreDefinedValuesOnly | should -Be $true
 
-            Should -Invoke -CommandName  New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when AttributeSet is empty" {
@@ -121,7 +121,7 @@ Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaCustomSecurityAttributeDefinition"
 
-            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

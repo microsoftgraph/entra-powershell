@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns      
+    if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -20,7 +20,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "New-EntraPolicy" {
@@ -35,7 +35,7 @@ Describe "New-EntraPolicy" {
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.IsOrganizationDefault | should -Be "False"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
         It "Should fail when parameters are invalid" {
             { New-EntraPolicy -Definition "" -DisplayName "" -Type "" -IsOrganizationDefault "" -AlternativeIdentifier "" } | Should -Throw "Cannot bind argument to parameter*"
@@ -52,7 +52,7 @@ Describe "New-EntraPolicy" {
             $result = New-EntraPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://xyz.xmlsoap.org/ws/2005/05/pqr/claims/name\",\"JwtClaimType\":\"xyz\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://xxx.yyy.com/identity/claims/displayname\",\"JwtClaimType\":\"ppp\"}]}}" ], "displayName": "test Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName "Claimstest" -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-ccccccccc111"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

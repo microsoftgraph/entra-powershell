@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -29,7 +29,7 @@ BeforeAll {
         )
     }     
 
-    Mock -CommandName New-MgDomain -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName New-MgDomain -MockWith $scriptBlock -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "New-EntraDomain" {
@@ -39,7 +39,7 @@ Describe "New-EntraDomain" {
             $result.ObjectId | should -Be "lala.uk" 
             $result.Name | should -Be "lala.uk" 
 
-            Should -Invoke -CommandName New-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
 
         It "Create a new Domain with a list of domain capabilities" {
@@ -88,7 +88,7 @@ Describe "New-EntraDomain" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDomain"
 
-            Should -Invoke -CommandName New-MgDomain -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

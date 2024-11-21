@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement        
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.DirectoryManagement        
     }
 
     $scriptblock = {
@@ -12,8 +12,8 @@ BeforeAll {
     }
 }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
-    Mock -CommandName Get-MgOrganization -MockWith {$scriptblock} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
-    Mock -CommandName Update-MgOrganization -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Get-MgOrganization -MockWith {$scriptblock} -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Update-MgOrganization -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Set-EntraTenantDetail" {
@@ -21,7 +21,7 @@ Describe "Set-EntraTenantDetail" {
         It "Should return empty object" {
             $result = Set-EntraTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgOrganization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when MarketingNotificationEmails is empty" {
             { Set-EntraTenantDetail -MarketingNotificationEmails  } | Should -Throw "Missing an argument for parameter 'MarketingNotificationEmails'.*"
@@ -42,7 +42,7 @@ Describe "Set-EntraTenantDetail" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraTenantDetail"
 
-            Should -Invoke -CommandName Update-MgOrganization -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgOrganization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

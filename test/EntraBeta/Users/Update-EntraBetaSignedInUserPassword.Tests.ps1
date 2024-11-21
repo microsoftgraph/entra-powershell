@@ -6,12 +6,12 @@
 param()
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users    
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Tests for Update-EntraBetaSignedInUserPassword"{
@@ -21,7 +21,7 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
             $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
             $result = Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when CurrentPassword is null" {
@@ -55,7 +55,7 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
             $result =  Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaSignedInUserPassword"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

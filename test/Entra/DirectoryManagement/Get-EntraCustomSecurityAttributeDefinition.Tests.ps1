@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement        
+    if ((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Entra.DirectoryManagement        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -25,7 +25,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraCustomSecurityAttributeDefinition" {
@@ -35,7 +35,7 @@ Describe "Get-EntraCustomSecurityAttributeDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'Engineering_Project'
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { Get-EntraCustomSecurityAttributeDefinition -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -45,7 +45,7 @@ Describe "Get-EntraCustomSecurityAttributeDefinition" {
         }
         It "Should contain 'User-Agent' header" {
             Get-EntraCustomSecurityAttributeDefinition -Id Engineering_Project | Out-Null
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Uri | Should -Match 'Engineering_Project'
                 $true
             }
@@ -55,7 +55,7 @@ Describe "Get-EntraCustomSecurityAttributeDefinition" {
             $result =  Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraCustomSecurityAttributeDefinition"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

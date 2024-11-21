@@ -586,7 +586,7 @@ public $($object.GetType().Name)()
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
-        if('Microsoft.Graph.Entra' -eq $this.ModuleName){
+        if('Microsoft.Entra' -eq $this.ModuleName){
             $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADGroup", "Remove-AzureADMSGroup", "Set-AzureADGroup")        
         }
         else{
@@ -642,20 +642,20 @@ function Get-EntraUnsupportedCommand {
             
             #Adding direct aliases 
             $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            if($this.ModuleName -eq 'Microsoft.Entra')
             {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
             }
-            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+            elseif ($this.ModuleName -eq 'Microsoft.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
             #Adding direct aliases 
             $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            if($this.ModuleName -eq 'Microsoft.Entra')
             {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
             }
-            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+            elseif ($this.ModuleName -eq 'Microsoft.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
 
@@ -785,7 +785,7 @@ $($Command.CustomScript)
         
         $customHeadersCommandName = "New-EntraCustomHeaders"
 
-        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        if($this.ModuleName -eq 'Microsoft.Entra.Beta')
         {
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }

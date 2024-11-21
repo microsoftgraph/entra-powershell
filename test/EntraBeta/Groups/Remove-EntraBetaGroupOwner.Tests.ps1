@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupOwner" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaGroupOwner" {
             $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -37,7 +37,7 @@ Describe "Remove-EntraBetaGroupOwner" {
         }   
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -45,7 +45,7 @@ Describe "Remove-EntraBetaGroupOwner" {
         }
 
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
-            Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -57,7 +57,7 @@ Describe "Remove-EntraBetaGroupOwner" {
             $result =  Remove-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupOwner"
-            Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

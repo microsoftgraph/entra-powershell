@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns       
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -31,7 +31,7 @@ $scriptblock = {
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Get-EntraBetaServicePrincipalPolicy" {
@@ -42,7 +42,7 @@ Describe "Get-EntraBetaServicePrincipalPolicy" {
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result.displayName | Should -Be "Mock policy"
             $result.ServicePrincipalType | Should -be "activityBasedTimeoutPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraBetaServicePrincipalPolicy -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -61,7 +61,7 @@ Describe "Get-EntraBetaServicePrincipalPolicy" {
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -28,8 +28,8 @@ function Get-ModuleBasePath {
 }
 
 function Get-ModuleVersion {
-	# Added -ErrorAction SilentlyContinue due to validation failure on Microsoft.Graph.Entra RequiredModules
-	# The RequiredModules are the Microsoft.Graph.Entra.* sub-modules
+	# Added -ErrorAction SilentlyContinue due to validation failure on Microsoft.Entra RequiredModules
+	# The RequiredModules are the Microsoft.Entra.* sub-modules
     (Get-ModuleManifestFile).FullName | Test-ModuleManifest -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Version
 }
 
@@ -167,7 +167,7 @@ function Create-ModuleFolder {
 		$destinationFileList = @()
 		$moduleFiles = @()
 
-		if(($module -eq 'Microsoft.Graph.Entra') -or ($module -eq 'Microsoft.Graph.Entra.Beta')){
+		if(($module -eq 'Microsoft.Entra') -or ($module -eq 'Microsoft.Entra.Beta')){
 			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psd1" }
 			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psm1" }
 		}

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -18,7 +18,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue" {
@@ -29,7 +29,7 @@ Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue" {
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.IsActive | Should -Be $true
 
-            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId are empty" {
@@ -67,7 +67,7 @@ Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue" {
             Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue"
-            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

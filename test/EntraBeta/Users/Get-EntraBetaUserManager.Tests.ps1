@@ -1,6 +1,6 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users    
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -82,7 +82,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaUserManager -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUserManager -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUserManager" {
@@ -103,7 +103,7 @@ Describe "Get-EntraBetaUserManager" {
             $result.identities[0].issuer | Should -Be "contoso.com"
             $result.identities[0].issuerAssignedId | Should -Be "MiriamG@contoso.com"
 
-            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
@@ -138,7 +138,7 @@ Describe "Get-EntraBetaUserManager" {
             $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
-            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

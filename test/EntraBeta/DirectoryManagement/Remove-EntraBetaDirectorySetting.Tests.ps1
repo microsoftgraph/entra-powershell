@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Remove-EntraBetaDirectorySetting" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaDirectorySetting" {
             $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -29,7 +29,7 @@ Describe "Remove-EntraBetaDirectorySetting" {
         }   
 
         It "Should contain DirectorySettingId in parameters when passed Id to it" {
-            Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -44,7 +44,7 @@ Describe "Remove-EntraBetaDirectorySetting" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaDirectorySetting"
 
-            Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

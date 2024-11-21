@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Authentication) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Authentication
+    if((Get-Module -Name Microsoft.Entra.Beta.Authentication) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Authentication
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -17,7 +17,7 @@ BeforeAll {
             }
          )
     }
-    Mock -CommandName Get-MgBetaUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Authentication
+    Mock -CommandName Get-MgBetaUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Entra.Beta.Authentication
 }
 
 Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
@@ -26,7 +26,7 @@ Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
         $result = Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com'
         $result | Should -BeNullOrEmpty
        
-        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Beta.Authentication -Times 1
+        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.Authentication -Times 1
     }
     It "Should fail when UserPrincipalName is empty" {
         { Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
@@ -39,14 +39,14 @@ Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraBetaStrongAuthenticationMethodByUpn"
 
         Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Beta.Authentication -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.Authentication -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }
     }
     It "Should contain 'User-Agent' header" {
         Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Beta.Authentication -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.Authentication -Times 1 -ParameterFilter {
             $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
             $true
         }

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupLifecyclePolicy" {
@@ -17,14 +17,14 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
             $result = Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Remove-EntraBetaGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
@@ -36,7 +36,7 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
         }  
 
         It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
-            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -48,7 +48,7 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
             $result = Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupLifecyclePolicy"
-            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

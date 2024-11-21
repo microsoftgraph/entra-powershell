@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications      
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Set-EntraBetaApplicationLogo"{
@@ -16,7 +16,7 @@ Describe "Set-EntraBetaApplicationLogo"{
         It "Should return empty object"{
             $result = Set-EntraBetaApplicationLogo -ApplicationId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
             { Set-EntraBetaApplicationLogo -ApplicationId ""  } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
@@ -32,7 +32,7 @@ Describe "Set-EntraBetaApplicationLogo"{
             $result = Set-EntraBetaApplicationLogo -ApplicationId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaApplicationLogo"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

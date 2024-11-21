@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 # BeforeAll {  
-#     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-#         Import-Module Microsoft.Graph.Entra        
+#     if((Get-Module -Name Microsoft.Entra) -eq $null){
+#         Import-Module Microsoft.Entra        
 #     }
 #     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -160,7 +160,7 @@
 #             }
 #         )
 #     }
-#     Mock -CommandName New-MgInvitation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+#     Mock -CommandName New-MgInvitation -MockWith $scriptblock -ModuleName Microsoft.Entra
 # }
 
 # Describe "New-EntraInvitation" {
@@ -179,7 +179,7 @@
 #             $result.SendInvitationMessage | Should -Be $true
 #             $result.InvitedUserDisplayName | Should -BeNullOrEmpty
 
-#             Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Graph.Entra -Times 1
+#             Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Entra -Times 1
 #         }
 
 #         It "Should fail when parameters are empty" {
@@ -208,7 +208,7 @@
 #             $result = New-EntraInvitation -InvitedUserEmailAddress SawyerM@contoso.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.contoso.com"
 #             $result | Should -Not -BeNullOrEmpty
 #             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraInvitation"
-#             Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+#             Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Entra -Times 1 -ParameterFilter {
 #                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
 #                 $true
 #             }

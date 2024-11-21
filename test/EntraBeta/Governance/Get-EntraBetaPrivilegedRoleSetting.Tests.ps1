@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Governance       
+    if((Get-Module -Name Microsoft.Entra.Beta.Governance) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Governance       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -60,7 +60,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaPrivilegedAccessRoleSetting -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Governance
+    Mock -CommandName Get-MgBetaPrivilegedAccessRoleSetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Governance
 }
 
 Describe "Get-EntraBetaPrivilegedRoleSetting" {
@@ -72,7 +72,7 @@ Describe "Get-EntraBetaPrivilegedRoleSetting" {
             $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result.roleDefinitionId | Should -Be "eeeeeeee-c632-46ae-9ee0-dddddddddddd"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
@@ -91,7 +91,7 @@ Describe "Get-EntraBetaPrivilegedRoleSetting" {
             $result | Should -Not -BeNullOrEmpty
             $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting  -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting  -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -104,7 +104,7 @@ Describe "Get-EntraBetaPrivilegedRoleSetting" {
             $result | Should -Not -BeNullOrEmpty
             $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter  } | Should -Throw "Missing an argument for parameter 'filter'*"
@@ -126,7 +126,7 @@ Describe "Get-EntraBetaPrivilegedRoleSetting" {
             $result | Should -Not -BeNullOrEmpty
             $result.resourceId | Should -Be 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -139,7 +139,7 @@ Describe "Get-EntraBetaPrivilegedRoleSetting" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedRoleSetting"
 
-            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Entra.Beta.Governance -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

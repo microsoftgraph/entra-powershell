@@ -41,7 +41,7 @@ extends:
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Graph.Entra*.nupkg'
+            packagesToPush: '$(Pipeline.Workspace)/drop/Microsoft.Entra*.nupkg'
             packageParentPath: '$(Pipeline.Workspace)/drop'
             nuGetFeedType: external
             allowPackageConflicts: true

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
             $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -37,7 +37,7 @@ Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
         }   
 
         It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -45,7 +45,7 @@ Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
         }
 
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
-            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -57,7 +57,7 @@ Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
             $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaFeatureRolloutPolicyDirectoryObject"
-            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

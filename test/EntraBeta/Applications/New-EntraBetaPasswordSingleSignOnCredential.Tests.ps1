@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -29,7 +29,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "New-EntraBetaPasswordSingleSignOnCredential" {
@@ -54,7 +54,7 @@ Describe "New-EntraBetaPasswordSingleSignOnCredential" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
@@ -143,7 +143,7 @@ Describe "New-EntraBetaPasswordSingleSignOnCredential" {
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
 
-            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain BodyParameter in parameters when passed PasswordSSOCredential to it" {
@@ -167,7 +167,7 @@ Describe "New-EntraBetaPasswordSingleSignOnCredential" {
             $result | Should -Not -BeNullOrEmpty
             $value | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -193,7 +193,7 @@ Describe "New-EntraBetaPasswordSingleSignOnCredential" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaPasswordSingleSignOnCredential"
 
-            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users    
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -20,7 +20,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaUserLicenseDetail -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUserLicenseDetail -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUserLicenseDetail" {
@@ -35,7 +35,7 @@ Describe "Get-EntraBetaUserLicenseDetail" {
             $result.SkuPartNumber | Should -Be "ENTERPRISEPREMIUM"
             $result.AdditionalProperties | Should -BeOfType [System.Collections.Hashtable]
 
-            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should return specific User License Detail alias" {
             $result = Get-EntraBetaUserLicenseDetail -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -47,7 +47,7 @@ Describe "Get-EntraBetaUserLicenseDetail" {
             $result.SkuPartNumber | Should -Be "ENTERPRISEPREMIUM"
             $result.AdditionalProperties | Should -BeOfType [System.Collections.Hashtable]
 
-            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when UserId is empty string" {
@@ -72,7 +72,7 @@ Describe "Get-EntraBetaUserLicenseDetail" {
             $result = Get-EntraBetaUserLicenseDetail -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserLicenseDetail"
-            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -87,7 +87,7 @@ BeforeAll {
             "Parameters"                                 = $args
         }
     }    
-    Mock -CommandName Get-MgBetaServicePrincipalOwnedObject -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName Get-MgBetaServicePrincipalOwnedObject -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaServicePrincipalOwnedObject" {
@@ -103,7 +103,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result.AdditionalProperties.appDisplayName | Should -Be "ToGraph_443democc3c"
             $result.AdditionalProperties.tags | Should -Be @('WindowsAzureActiveDirectoryIntegratedApp')
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should return specific device with Alias" {
             $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId  "bbbbbbbb-1111-2222-3333-cccccccccc40"
@@ -116,7 +116,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result.AdditionalProperties.appDisplayName | Should -Be "ToGraph_443democc3c"
             $result.AdditionalProperties.tags | Should -Be @('WindowsAzureActiveDirectoryIntegratedApp')
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId  are empty" {
             { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
@@ -130,7 +130,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result = Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Top are empty" {
@@ -145,7 +145,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result = Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40" -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -156,7 +156,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result = Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40"
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc58"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed Id to it" {
@@ -173,7 +173,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalOwnedObject"
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -183,7 +183,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             $result | Should -Not -BeNullOrEmpty
             $result.appDisplayName | Should -Be 'ToGraph_443democc3c'
 
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Property is empty" {

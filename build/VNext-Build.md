@@ -84,16 +84,16 @@ The generated modules are in the output folder `./bin`
 
 SubModule in this case is the name of the specific sub-module you want to use. They are: `Authentication,Users,DirectoryManagement, Groups, Applications,Governance,SignIns and Reports`
 
-In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.<SubModule>psd1 -Force`
+In order to import it, you need to run `Import-Module .\bin\Microsoft.Entra.<SubModule>psd1 -Force`
 
-Alternatively, import the root module(that encompases and includes all the sub-modules and their help and dependencies) `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
+Alternatively, import the root module(that encompases and includes all the sub-modules and their help and dependencies) `Import-Module .\bin\Microsoft.Entra.psd1 -Force`
 
 ## Usage
 
 Import the module and test the generated commands.
 
 ```powershell
-Import-Module .\bin\Microsoft.Graph.Entra.<SubModule>.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.<SubModule>.psd1 -Force
 Connect-MgGraph -Scopes "User.Read.All"
 Get-EntraUser -Top 10
 ```

@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null){
-        #Import-Module .\bin\Microsoft.Graph.Entra.DirectoryManagement.psm1 -Force
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement
+    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+        #Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psm1 -Force
+        Import-Module Microsoft.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Remove-EntraDeviceRegisteredOwner" {
@@ -17,13 +17,13 @@ Describe "Remove-EntraDeviceRegisteredOwner" {
             $result = Remove-EntraDeviceRegisteredOwner -DeviceId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraDeviceRegisteredOwner -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when DeviceId is empty" {
             { Remove-EntraDeviceRegisteredOwner -DeviceId   -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc" | Should -Throw "Missing an argument for parameter 'DeviceId'*" }
@@ -38,14 +38,14 @@ Describe "Remove-EntraDeviceRegisteredOwner" {
             { Remove-EntraDeviceRegisteredOwner -DeviceId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "" | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string.*" }
         }  
         It "Should contain DeviceId in parameters when passed OwnerId to it" {
-            Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+            Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.DirectoryManagement
 
             $result = Remove-EntraDeviceRegisteredOwner -DeviceId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.DeviceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         } 
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
-            Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+            Mock -CommandName Remove-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.DirectoryManagement
 
             $result = Remove-EntraDeviceRegisteredOwner -DeviceId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
@@ -59,7 +59,7 @@ Describe "Remove-EntraDeviceRegisteredOwner" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDeviceRegisteredOwner"
 
-            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

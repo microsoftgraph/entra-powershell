@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Groups      
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
+        Import-Module Microsoft.Entra.Groups      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -19,7 +19,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName New-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "New-EntraGroupLifecyclePolicy" {
@@ -32,7 +32,7 @@ Describe "New-EntraGroupLifecyclePolicy" {
             $result.ManagedGroupTypes | should -Be "Selected"
             $result.AlternateNotificationEmails | should -Be "example@contoso.com"
 
-            Should -Invoke -CommandName New-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName New-MgGroupLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should fail when GroupLifetimeInDays is invalid" {
             { New-EntraGroupLifecyclePolicy -GroupLifetimeInDays a -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Cannot process argument transformation on parameter 'GroupLifetimeInDays'.*"
@@ -64,7 +64,7 @@ Describe "New-EntraGroupLifecyclePolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroupLifecyclePolicy"
 
-            Should -Invoke -CommandName New-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgGroupLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

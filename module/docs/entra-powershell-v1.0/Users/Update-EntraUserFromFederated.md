@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Update-EntraUserFromFederated
+external help file: Microsoft.Entra-help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraUserFromFederated
 
 schema: 2.0.0
 ---

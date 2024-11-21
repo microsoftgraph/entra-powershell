@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -26,7 +26,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Get-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Get-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserAppRoleAssignment" {
@@ -45,7 +45,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
             $result.ResourceDisplayName | Should -Be "M365 License Manager"
             $result.ResourceId | Should -Be "bbbbbbbb-cccc-dddd-2222-333333333333"
 
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when ObjectId is empty string value" {
@@ -60,7 +60,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
         It "Should return all contact" {
             $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Entra.Users -Times 1
         }
         
         It "Should fail when All has an argument" {
@@ -71,7 +71,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
             $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Entra.Users -Times 1
         }    
 
         It "Should fail when top is empty" {
@@ -96,7 +96,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAppRoleAssignment"
 
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -108,7 +108,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalDisplayName | Should -Be "demo"
 
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when Property is empty" {

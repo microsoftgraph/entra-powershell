@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -26,7 +26,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName  Get-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName  Get-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
@@ -45,7 +45,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
             $result.IsSearchable | should -Be $true
             $result.UsePreDefinedValuesOnly | should -Be $true
 
-            Should -Invoke -CommandName  Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -72,7 +72,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
             $result | Should -Not -BeNullOrEmpty
             $result.Description | Should -Be 'Target completion date'
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -83,7 +83,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
             $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCustomSecurityAttributeDefinition"
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
             $true
             }

@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Users
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Set-MgUserPhotoContent -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Set-MgUserPhotoContent -MockWith {} -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserThumbnailPhoto" {
@@ -16,14 +16,14 @@ Describe "Set-EntraUserThumbnailPhoto" {
             $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should return specific User with alias" {
             $result = Set-EntraUserThumbnailPhoto -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when UserId is empty string value" {
@@ -39,7 +39,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
-            Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $params = Get-Parameters -data $result
@@ -47,7 +47,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         }
 
         It "Should contain InFile in parameters" {
-            Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Graph.Entra.Users
+            Mock -CommandName Set-MgUserPhotoContent -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $params = Get-Parameters -data $result
@@ -61,7 +61,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserThumbnailPhoto"
     
-            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

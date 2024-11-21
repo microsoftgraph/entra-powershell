@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement
+    if ((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -27,7 +27,7 @@ BeforeAll {
     }
     
 
-    Mock -CommandName Get-MgBetaDeviceRegisteredOwner -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDeviceRegisteredOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDeviceRegisteredOwner" {
@@ -37,14 +37,14 @@ Describe "Get-EntraBetaDeviceRegisteredOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return specific device registered owner with alias" {
             $result = Get-EntraBetaDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when DeviceId is empty" {
             { Get-EntraBetaDeviceRegisteredOwner -DeviceId   } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
@@ -57,7 +57,7 @@ Describe "Get-EntraBetaDeviceRegisteredOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         
         It "Should fail when All is invalid" {
@@ -68,7 +68,7 @@ Describe "Get-EntraBetaDeviceRegisteredOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when top is empty" {
             { Get-EntraBetaDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -88,7 +88,7 @@ Describe "Get-EntraBetaDeviceRegisteredOwner" {
             $result = Get-EntraBetaDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -99,7 +99,7 @@ Describe "Get-EntraBetaDeviceRegisteredOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.mobilePhone | Should -Be '425-555-0100'
 
-            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Property is empty" {

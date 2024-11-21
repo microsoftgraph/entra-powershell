@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -25,7 +25,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetaScopedRoleMembership" {
@@ -39,7 +39,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
             $result.RoleId | Should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
             $result.AdministrativeUnitId | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
 
-            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should add a user to the specified role within the specified administrative unit with alias" {
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
@@ -50,7 +50,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
             $result.RoleId | Should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
             $result.AdministrativeUnitId | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
 
-            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             { Add-EntraBetaScopedRoleMembership -AdministrativeUnitId  } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -108,7 +108,7 @@ Describe "Add-EntraBetaScopedRoleMembership" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
 
-            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgBetaGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Update-MgBetaGroup -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Set-EntraBetaGroup" {
@@ -17,14 +17,14 @@ Describe "Set-EntraBetaGroup" {
             $result = Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Set-EntraBetaGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -60,7 +60,7 @@ Describe "Set-EntraBetaGroup" {
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result
@@ -72,7 +72,7 @@ Describe "Set-EntraBetaGroup" {
             $result = Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaGroup"
-            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

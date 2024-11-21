@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -19,7 +19,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName  New-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName  New-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAttributeSet" {
@@ -31,7 +31,7 @@ Describe "New-EntraBetaAttributeSet" {
             $result.Description | should -Be "New AttributeSet"
             $result.MaxAttributesPerSet | should -Be 21
 
-            Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should create new attribute set with alias" {
@@ -41,7 +41,7 @@ Describe "New-EntraBetaAttributeSet" {
             $result.Description | should -Be "New AttributeSet"
             $result.MaxAttributesPerSet | should -Be 21
 
-            Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when AttributeSetId is empty" {
@@ -73,7 +73,7 @@ Describe "New-EntraBetaAttributeSet" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAttributeSet"
 
-            Should -Invoke -CommandName New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
