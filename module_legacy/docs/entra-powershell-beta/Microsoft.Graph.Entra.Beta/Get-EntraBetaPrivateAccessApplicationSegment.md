@@ -5,9 +5,9 @@ description: This article provides details on the Get-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -20,6 +20,15 @@ schema: 2.0.0
 
 Retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
+## Syntax
+
+```powershell
+Get-EntraBetaPrivateAccessApplicationSegment
+ -ApplicationId <String>
+ [-ApplicationSegmentId <String>]
+ [<CommonParameters>]
+```
+
 ## Description
 
 The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
@@ -30,8 +39,8 @@ The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of al
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
-Get-EntraBetaPrivateAccessApplicationSegment -ObjectId $ApplicationObjectId
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+Get-EntraBetaPrivateAccessApplicationSegment -ApplicationId $application.Id
 ```
 
 ```Output
@@ -49,14 +58,9 @@ This command retrieves all application segments for an application.
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
-
-$params = @{
-    ObjectId = $ApplicationObjectId
-    ApplicationSegmentId = 'cccc2222-dd33-4444-55ee-666666ffffff'
-}
-
-Get-EntraBetaPrivateAccessApplicationSegment @params
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$applicationSegment = Get-EntraBetaPrivateAccessApplicationSegment -ApplicationId $application.Id | Where-Object {$_.destinationType -eq 'fqdn'}
+Get-EntraBetaPrivateAccessApplicationSegment -ApplicationId $application.Id -ApplicationSegmentId $applicationSegment.Id
 ```
 
 ```Output
@@ -72,17 +76,17 @@ This example demonstrates how to retrieve information for a specific application
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The Object ID of a Private Access application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: AllApplicationSegments, SingleApplicationSegment
-Aliases: id
+Aliases: ObjectId
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -98,7 +102,7 @@ Parameter Sets: SingleApplicationSegment
 Aliases:
 
 Required: False
-Position: 2, Named
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -127,4 +131,3 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
-

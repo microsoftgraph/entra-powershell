@@ -5,7 +5,7 @@ description: This article provides details on the New-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 07/18/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
 author: andres-canello
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
@@ -20,6 +20,18 @@ schema: 2.0.0
 
 Creates an application segment associated to a Private Access application.
 
+## Syntax
+
+```powershell
+New-EntraBetaPrivateAccessApplicationSegment
+ -ApplicationId <String>
+ -DestinationHost <String>
+ -DestinationType <String>
+ [-Protocol <String>]
+ [-Ports <String>]
+ [<CommonParameters>]
+```
+
 ## Description
 
 The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application segment associated to a Private Access application.
@@ -30,16 +42,14 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
-
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
-    ObjectId = $ApplicationObjectId
+    ApplicationId = $application.Id
     DestinationHost = 'ssh.contoso.local'
     Ports = 22
     Protocol = 'TCP'
     DestinationType = 'FQDN'
 }
-
 New-EntraBetaPrivateAccessApplicationSegment @params
 ```
 
@@ -56,16 +66,14 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
-
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
-    ObjectId = $ApplicationObjectId
+    ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
     Ports = '22,3389'
     Protocol = 'TCP,UDP'
     DestinationType = 'ipRange'
 }
-
 New-EntraBetaPrivateAccessApplicationSegment @params
 ```
 
@@ -97,35 +105,34 @@ $variables = Import-Csv $csvFile
 
 # Loop through each row of the CSV and execute the command for each set of variables
 foreach ($variable in $variables) {
-    $AppObjectId = $variable.AppObjectId
-    $DestHost = $variable.DestHost
+    $appObjectId = $variable.AppObjectId
+    $destHost = $variable.DestHost
     $ports = $variable.ports -split ","
     $protocol = $variable.protocol -split ","
     $type = $variable.type
 
     # Execute the command
     $params = @{
-        ObjectId = $AppObjectId
-        DestinationHost = $DestHost
+        ApplicationId = $appObjectId
+        DestinationHost = $destHost
         Ports = $ports
         Protocol = $protocol
         DestinationType = $type
     }
-
     New-EntraBetaPrivateAccessApplicationSegment @params
 }
 ```
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The object ID of a Private Access application object.
 
 ```yaml
 Type: System.String
 Parameter Sets:
-Aliases: id
+Aliases: ObjectId
 
 Required: True
 Position: 1
