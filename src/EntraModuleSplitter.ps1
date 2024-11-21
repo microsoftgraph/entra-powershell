@@ -80,7 +80,7 @@ class EntraModuleSplitter {
     $functionContent = $function.Content
 
     # Append the function contents to the header
-    $ps1Content = $header + "`n" + $functionContent
+    $ps1Content = $header + "`n" + $functionContent+"`n"
 
     # Add the Enable-Entra*AzureADAlias function to the root of the module directory
     if ($functionName -eq $specificFunctionName) {
@@ -129,7 +129,7 @@ class EntraModuleSplitter {
         foreach ($functionContent in $functionContents) {
             # Construct the full path for the function file
             $functionName = $functionContent.Name
-            $headerPs1Content = $this.Header + "`n" + $functionContent.Content
+            $headerPs1Content = $this.Header + "`n" + $functionContent.Content+ "`n"+"`n"
             $functionFilePath = Join-Path -Path $subDir.FullName -ChildPath "$functionName.ps1"
 
             # Write the function to the specified file
