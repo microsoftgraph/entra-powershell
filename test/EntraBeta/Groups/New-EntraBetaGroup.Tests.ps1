@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -29,7 +29,7 @@ BeforeAll {
             } 
         )
     }
-    Mock -CommandName New-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName New-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "New-EntraBetaGroup" {
@@ -51,7 +51,7 @@ Describe "New-EntraBetaGroup" {
             $result.CreatedByAppId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when parameters are empty" {
@@ -79,7 +79,7 @@ Describe "New-EntraBetaGroup" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaGroup"
 
-            Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

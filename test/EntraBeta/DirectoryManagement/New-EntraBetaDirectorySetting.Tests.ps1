@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -49,9 +49,9 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock1 -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock1 -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
-    Mock -CommandName New-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName New-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaDirectorySetting" {
@@ -65,7 +65,7 @@ Describe "New-EntraBetaDirectorySetting" {
             $result.TemplateId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when DirectorySetting is empty" {
@@ -93,7 +93,7 @@ Describe "New-EntraBetaDirectorySetting" {
             $settingsCopy = $template.CreateDirectorySetting()
             New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
  
-            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

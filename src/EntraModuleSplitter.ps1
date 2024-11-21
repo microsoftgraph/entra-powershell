@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 . (Join-Path $PSScriptRoot "../build/common-functions.ps1")
-# This class splits the larger Microsoft.Graph.Entra.psm1 or Microsoft.Graph.Entra.Beta.psm1 into separate files and also constructrs the submodule directories
+# This class splits the larger Microsoft.Entra.psm1 or Microsoft.Entra.Beta.psm1 into separate files and also constructrs the submodule directories
 class EntraModuleSplitter {
     [string]$Header
 
@@ -166,7 +166,7 @@ class EntraModuleSplitter {
 
 		# Get the function contents for both New-EntraCustomHeaders and Get-EntraUnsupportedCommand
 
-		$functionNames =if($moduleName -eq 'Microsoft.Graph.Entra'){
+		$functionNames =if($moduleName -eq 'Microsoft.Entra'){
             @("New-EntraCustomHeaders", "Get-EntraUnsupportedCommand")
         }else{
             @("New-EntraBetaCustomHeaders","Get-EntraBetaUnsupportedCommand")
@@ -175,7 +175,7 @@ class EntraModuleSplitter {
 		$functionContents = $functions | Where-Object { $functionNames -contains $_.Name }
 
 		# Initialize a variable to track if the specific function is processed
-		$specificFunctionName = if ($moduleName -eq "Microsoft.Graph.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
+		$specificFunctionName = if ($moduleName -eq "Microsoft.Entra") { "Enable-EntraAzureADAlias" } else { "Enable-EntraBetaAzureADAliases" }
 
 		foreach ($function in $functions) {
                $this.ProcessFunction($function, $specificFunctionName, $moduleOutputDirectory, $jsonContent, $this.Header, $unmappedDirectory)
@@ -256,9 +256,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            (Join-Path $PSScriptRoot "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\")
+            (Join-Path $PSScriptRoot "..\module\EntraBeta\Microsoft.Entra.Beta\")
         } else {
-            (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Graph.Entra\")
+            (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra\")
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {

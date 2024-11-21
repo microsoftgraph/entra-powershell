@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement      
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
@@ -29,16 +29,16 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
-    Mock -CommandName Update-MgBetaDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Update-MgBetaDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Set-EntraBetaDomainFederationSettings" {
     Context "Test for Set-EntraBetaDomainFederationSettings" {
         It "Should Updates settings for a federated domain." {
             $result =  Set-EntraBetaDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Update-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         
         It "Should fail when DomainName is empty" {
@@ -56,7 +56,7 @@ Describe "Set-EntraBetaDomainFederationSettings" {
             {Set-EntraBetaDomainFederationSettings -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
         }   
         It "Should contain DomainId in parameters when DomainName to it" {
-            Mock -CommandName Update-MgBetaDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Update-MgBetaDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
             $result = Set-EntraBetaDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com"
             $params = Get-Parameters -data $result
             $a= $params | ConvertTo-json | ConvertFrom-Json
@@ -69,7 +69,7 @@ Describe "Set-EntraBetaDomainFederationSettings" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDomainFederationSettings"
 
-            Should -Invoke -CommandName Update-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

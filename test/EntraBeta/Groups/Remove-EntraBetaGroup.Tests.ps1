@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Remove-MgBetaGroup -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroup" {
@@ -17,14 +17,14 @@ Describe "Remove-EntraBetaGroup" {
             $result = Remove-EntraBetaGroup -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -36,7 +36,7 @@ Describe "Remove-EntraBetaGroup" {
         }   
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroup -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -51,7 +51,7 @@ Describe "Remove-EntraBetaGroup" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
 
-            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Groups        
+    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -22,7 +22,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Groups
+    Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Get-EntraGroup" {
@@ -32,7 +32,7 @@ Describe "Get-EntraGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Entra.Groups -Times 1
         }       
         It "Should fail when GroupId is empty" {
             { Get-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
@@ -53,7 +53,7 @@ Describe "Get-EntraGroup" {
             $result = Get-EntraGroup -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraGroup -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
@@ -63,20 +63,20 @@ Describe "Get-EntraGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Entra.Groups -Times 1
         } 
         It "Should return specific group by filter" {
             $result = Get-EntraGroup -Filter "DisplayName -eq 'demo'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Entra.Groups -Times 1
         }  
         It "Should return top group" {
             $result = Get-EntraGroup -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra.Groups -Times 1
+            Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Entra.Groups -Times 1
         }  
         It "Result should Contain ObjectId" {
             $result = Get-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -97,7 +97,7 @@ Describe "Get-EntraGroup" {
             $result = Get-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
-            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Graph.Entra.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

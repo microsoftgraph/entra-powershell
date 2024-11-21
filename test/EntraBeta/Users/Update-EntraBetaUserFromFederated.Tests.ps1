@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Users      
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
      $scriptblockForAuthenticationMethod = {
@@ -21,9 +21,9 @@ BeforeAll {
     )   
  }  
 
-    Mock -CommandName Get-MgBetaUserAuthenticationMethod -MockWith $scriptblockForAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Beta.Users
-    Mock -CommandName Get-MgBetaUser -MockWith $scriptblockForMgUser -ModuleName Microsoft.Graph.Entra.Beta.Users
-    Mock -CommandName Reset-MgBetaUserAuthenticationMethodPassword -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUserAuthenticationMethod -MockWith $scriptblockForAuthenticationMethod -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaUser -MockWith $scriptblockForMgUser -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Reset-MgBetaUserAuthenticationMethodPassword -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
 }
  
     Describe "Update-EntraBetaUserFromFederated" {
@@ -31,7 +31,7 @@ BeforeAll {
         It "Should sets identity synchronization features for a tenant" {
             $result = Update-EntraBetaUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserPrincipalName is empty" {
             {Update-EntraBetaUserFromFederated -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'. Specify a parameter*"
@@ -49,7 +49,7 @@ BeforeAll {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaUserFromFederated"
 
-            Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -11,9 +11,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraApplicationFromApplicationTemplate
+external help file: Microsoft.Entra-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationFromApplicationTemplate
 schema: 2.0.0
 ---
 

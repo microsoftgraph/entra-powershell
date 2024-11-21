@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaDevice -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Remove-MgBetaDevice -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Remove-EntraBetaDevice" {
@@ -17,13 +17,13 @@ Describe "Remove-EntraBetaDevice" {
             $result = Remove-EntraBetaDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Remove-EntraBetaDevice -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when DeviceId is invalid" {
             { Remove-EntraBetaDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
@@ -32,7 +32,7 @@ Describe "Remove-EntraBetaDevice" {
             { Remove-EntraBetaDevice -DeviceId } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
         }   
         It "Should contain DeviceId in parameters when passed DeviceId to it" {
-            Mock -CommandName Remove-MgBetaDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Remove-MgBetaDevice -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $result = Remove-EntraBetaDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
@@ -42,7 +42,7 @@ Describe "Remove-EntraBetaDevice" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaDevice"
             Remove-EntraBetaDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

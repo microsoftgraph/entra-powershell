@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaTrustFrameworkPolicy" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaTrustFrameworkPolicy" {
             $result = Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -29,7 +29,7 @@ Describe "Remove-EntraBetaTrustFrameworkPolicy" {
         }   
 
         It "Should contain TrustFrameworkPolicyId in parameters when passed Id to it" {
-            Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+            Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $params = Get-Parameters -data $result
@@ -41,7 +41,7 @@ Describe "Remove-EntraBetaTrustFrameworkPolicy" {
             $result =  Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaTrustFrameworkPolicy"
-            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

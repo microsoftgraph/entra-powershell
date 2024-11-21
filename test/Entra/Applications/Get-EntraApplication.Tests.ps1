@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Applications) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Applications      
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
+        Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1" ) -Force
     
@@ -31,7 +31,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Applications
+    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
 }
   
 Describe "Get-EntraApplication" {
@@ -41,7 +41,7 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
             { Get-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
@@ -53,7 +53,7 @@ Describe "Get-EntraApplication" {
             $result = Get-EntraApplication -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -75,21 +75,21 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraApplication -Filter "DisplayName -eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
         }  
         It "Should return top application" {
             $result = @(Get-EntraApplication -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
         }  
         It "Result should Contain ApplicationId" {
             $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -113,7 +113,7 @@ Describe "Get-EntraApplication" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
 
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -123,7 +123,7 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -147,7 +147,7 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
-            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
     }
 }

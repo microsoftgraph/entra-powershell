@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -20,7 +20,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Get-EntraFederationProperty" {
     Context "Test for Get-EntraFederationProperty" {
@@ -34,7 +34,7 @@ Describe "Get-EntraFederationProperty" {
             $result.PassiveSignInUri | Should -Be "https://sts.anmaji.myworkspace.microsoft.com/adfs/ls/"
             $result.SignOutUri | Should -Be "https://sts.anmaji.myworkspace.microsoft.com/adfs/ls/" 
             
-            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when DomainName is empty" {
             {Get-EntraBetaFederationProperty -DomainName} | Should -Throw "Missing an argument for parameter 'DomainName'. Specify a parameter*"
@@ -45,7 +45,7 @@ Describe "Get-EntraFederationProperty" {
         } 
 
         It "Should contain DomainId in parameters when DomainName to it" {
-        Mock -CommandName  Get-MgBetaDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+        Mock -CommandName  Get-MgBetaDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
         $result = Get-EntraBetaFederationProperty -DomainName "contoso.com"
         $params = Get-Parameters -data $result
         $params.DomainId | Should -Be "contoso.com"      
@@ -59,7 +59,7 @@ Describe "Get-EntraFederationProperty" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
 
-            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Reports) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Reports    
+    if((Get-Module -Name Microsoft.Entra.Beta.Reports) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Reports    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -41,7 +41,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaAuditLogDirectoryAudit -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Reports
+    Mock -CommandName Get-MgBetaAuditLogDirectoryAudit -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
   
 Describe "Get-EntraBetaAuditDirectoryLog" {
@@ -49,7 +49,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
         It "Should get all logs" {
             $result = Get-EntraBetaAuditDirectoryLog  -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
 
         It "Should fail when All has argument" {
@@ -66,7 +66,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
             $result.Id | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result.LoggedByService | Should -Be "Self-service Group Management"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should fail when top is empty" {
@@ -87,7 +87,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
             $result.Id | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result.LoggedByService | Should -Be "Self-service Group Management"
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should fail when Filter is empty" {
@@ -98,14 +98,14 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
             $result = Get-EntraBetaAuditDirectoryLog -Filter "result eq 'success'"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
 
         It "Should get all audit logs with a given result(failure)" {
             $result = Get-EntraBetaAuditDirectoryLog -Filter "result eq 'failure'" -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }  
         
         It "Property parameter should work" {
@@ -113,7 +113,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
             $result | Should -Not -BeNullOrEmpty
             $result.ActivityDisplayName | Should -Be 'GroupsODataV4_GetgroupLifecyclePolicies'
     
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaAuditDirectoryLog -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -124,7 +124,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
             $result= Get-EntraBetaAuditDirectoryLog
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditDirectoryLog"
-            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

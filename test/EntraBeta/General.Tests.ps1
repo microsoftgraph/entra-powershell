@@ -3,8 +3,8 @@
 # # ------------------------------------------------------------------------------
 
 # BeforeAll {
-#     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
-#         Import-Module Microsoft.Graph.Entra.Beta
+#     if((Get-Module -Name Microsoft.Entra.Beta) -eq $null){
+#         Import-Module Microsoft.Entra.Beta
 #     }
 # }
 
@@ -18,17 +18,17 @@
 
 # Describe 'Module checks' {
 #     It 'Module imported' {                
-#         $module = Get-Module -Name Microsoft.Graph.Entra.Beta
+#         $module = Get-Module -Name Microsoft.Entra.Beta
 #         $module | Should -Not -Be $null
 #     }
 
 #     It 'Have more that zero exported functions' {
-#         $module = Get-Module -Name Microsoft.Graph.Entra.Beta
+#         $module = Get-Module -Name Microsoft.Entra.Beta
 #         $module.ExportedCommands.Keys.Count | Should -BeGreaterThan 0
 #     }
 
 #     It 'Known number translated commands' {
-#         $module = Get-Module -Name Microsoft.Graph.Entra.Beta
+#         $module = Get-Module -Name Microsoft.Entra.Beta
 #         $module.ExportedCommands.Keys.Count | Should -Be 293
 #     }
 

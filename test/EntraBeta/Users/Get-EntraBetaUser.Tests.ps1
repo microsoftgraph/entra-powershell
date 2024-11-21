@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.Users) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.Users      
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -49,7 +49,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUser" {
@@ -60,7 +60,7 @@ Describe "Get-EntraBetaUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -68,7 +68,7 @@ Describe "Get-EntraBetaUser" {
             $result = Get-EntraBetaUser -Top 1
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUser"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -85,7 +85,7 @@ Describe "Get-EntraBetaUser" {
         It "Should return all contact" {
             $result = Get-EntraBetaUser -All
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -96,7 +96,7 @@ Describe "Get-EntraBetaUser" {
             $result = Get-EntraBetaUser -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when top is empty" {
@@ -112,7 +112,7 @@ Describe "Get-EntraBetaUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-User'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should return specific user by search string" {
@@ -120,7 +120,7 @@ Describe "Get-EntraBetaUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-User'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
 
         }
 
@@ -137,7 +137,7 @@ Describe "Get-EntraBetaUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-User'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -148,7 +148,7 @@ Describe "Get-EntraBetaUser" {
             $result = Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $UserId | Should -Be $null
                 $true
             }
@@ -172,7 +172,7 @@ Describe "Get-EntraBetaUser" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
     }
 }

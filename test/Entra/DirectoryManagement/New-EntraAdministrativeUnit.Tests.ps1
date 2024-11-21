@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll{
-    if ((Get-Module -Name Microsoft.Graph.Entra.DirectoryManagement) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.DirectoryManagement      
+    if ((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null) {
+        Import-Module Microsoft.Entra.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force    
 
@@ -21,7 +21,7 @@ BeforeAll{
         }
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Tests for New-EntraAdministrativeUnit"{
     It "Result should not be empty"{
@@ -29,7 +29,7 @@ Describe "Tests for New-EntraAdministrativeUnit"{
         $result | Should -Not -BeNullOrEmpty
         $result.id | should -Be @('aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb')
         $result.displayName | Should -Be "DummyName"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
     }
     It "Should fail when DisplayName is empty" {
         { New-EntraAdministrativeUnit -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName'*"
@@ -45,7 +45,7 @@ Describe "Tests for New-EntraAdministrativeUnit"{
         $result = New-EntraAdministrativeUnit -DisplayName "DummyName"
         $result | Should -Not -BeNullOrEmpty
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraAdministrativeUnit"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
         }

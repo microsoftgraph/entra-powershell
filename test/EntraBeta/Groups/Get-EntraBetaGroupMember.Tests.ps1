@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.Groups        
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaGroupMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Get-MgBetaGroupMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Get-EntraBetaGroupMember" {
@@ -31,7 +31,7 @@ Describe "Get-EntraBetaGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Contain 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when GroupId is invalid" {
             { Get-EntraBetaGroupMember -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
@@ -52,7 +52,7 @@ Describe "Get-EntraBetaGroupMember" {
             $result = Get-EntraBetaGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -63,7 +63,7 @@ Describe "Get-EntraBetaGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
-            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         } 
 
         It "Property parameter should work" {
@@ -71,7 +71,7 @@ Describe "Get-EntraBetaGroupMember" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -83,7 +83,7 @@ Describe "Get-EntraBetaGroupMember" {
             $result = Get-EntraBetaGroupMember -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

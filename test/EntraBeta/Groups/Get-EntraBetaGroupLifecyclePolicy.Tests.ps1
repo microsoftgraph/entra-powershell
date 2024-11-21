@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups        
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -19,7 +19,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName Get-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Get-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Get-EntraBetaGroupLifecyclePolicy" {
@@ -32,7 +32,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ManagedGroupTypes | Should -Be "All"    
             
-            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaGroupLifecyclePolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
@@ -49,7 +49,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ManagedGroupTypes | Should -Be "All"
 
-            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
@@ -71,7 +71,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
-            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -83,7 +83,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             $result = Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

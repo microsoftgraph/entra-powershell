@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.SignIns       
+    if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -17,7 +17,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
 
     
     $scriptblock2 = {
@@ -37,7 +37,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock2 -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock2 -ModuleName Microsoft.Entra.SignIns
 
     $scriptblock3 = {
         return @(
@@ -48,7 +48,7 @@ BeforeAll {
 
     }
 
-    Mock -CommandName Get-MgContext -MockWith $scriptblock3 -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName Get-MgContext -MockWith $scriptblock3 -ModuleName Microsoft.Entra.SignIns
 
 }
 
@@ -59,7 +59,7 @@ Describe "Remove-EntraTrustedCertificateAuthority" {
             $result = Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
         
         It "Should fail when CertificateAuthorityInformation is empty" {
@@ -77,7 +77,7 @@ Describe "Remove-EntraTrustedCertificateAuthority" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraTrustedCertificateAuthority"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaGroupMemberByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName Remove-MgBetaGroupMemberByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupMember" {
@@ -17,7 +17,7 @@ Describe "Remove-EntraBetaGroupMember" {
             $result = Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -37,7 +37,7 @@ Describe "Remove-EntraBetaGroupMember" {
         }   
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgBetaGroupMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupMemberByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
@@ -49,7 +49,7 @@ Describe "Remove-EntraBetaGroupMember" {
             $result =  Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupMember"
-            Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

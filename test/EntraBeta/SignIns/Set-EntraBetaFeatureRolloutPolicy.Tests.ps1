@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Set-EntraBetaFeatureRolloutPolicy" {
@@ -17,7 +17,7 @@ Describe "Set-EntraBetaFeatureRolloutPolicy" {
             $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Update-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Feature is empty" {
@@ -61,7 +61,7 @@ Describe "Set-EntraBetaFeatureRolloutPolicy" {
         }
 
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
-            Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+            Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $params = Get-Parameters -data $result
@@ -72,7 +72,7 @@ Describe "Set-EntraBetaFeatureRolloutPolicy" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaFeatureRolloutPolicy"
             Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaFeatureRolloutPolicy"
-            Should -Invoke -CommandName Update-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

@@ -153,13 +153,13 @@ class CompatibilityAdapterBuilder {
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
-        $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
     CompatibilityAdapterBuilder([string] $Module){        
-        $this.BasePath = (join-path $PSScriptRoot '../module/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/')    
         $this.BasePath = (join-path $this.BasePath $Module)
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
@@ -168,7 +168,7 @@ class CompatibilityAdapterBuilder {
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
         if($notRunningUT)
         {
-            $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
+            $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
             $this.HelpFolder = (join-path $this.BasePath './help')
             $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
         }                

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -25,7 +25,7 @@ BeforeAll {
                 }
             )
         }
-    Mock -CommandName  Get-MgBetaPolicyFeatureRolloutPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName  Get-MgBetaPolicyFeatureRolloutPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Get-EntraBetaFeatureRolloutPolicy" {
@@ -41,7 +41,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $result.AppliesTo | should -BeNullOrEmpty
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -56,7 +56,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $displayName = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policytest'"
             $displayName | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }  
 
         It "Should fail when Filter is empty" {
@@ -67,7 +67,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $searchString = Get-EntraBetaFeatureRolloutPolicy -SearchString "Feature-Rollout-Policytest"
             $searchString | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }  
 
         It "Should fail when SearchString is empty" {
@@ -97,7 +97,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Feature-Rollout-Policytest'
 
-            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy  -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy  -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -108,7 +108,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFeatureRolloutPolicy"
-            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
             $true
             }

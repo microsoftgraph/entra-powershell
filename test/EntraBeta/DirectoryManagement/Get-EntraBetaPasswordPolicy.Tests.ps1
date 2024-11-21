@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -17,7 +17,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDomain -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDomain -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaPasswordPolicy" {
@@ -28,7 +28,7 @@ Describe "Get-EntraBetaPasswordPolicy" {
             $result.NotificationDays.PasswordNotificationWindowInDays | Should -Be "14"
             $result.ValidityPeriod | Should -Be "2147483647"
 
-            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         
         It "Should fail when DomainName is empty" {
@@ -47,7 +47,7 @@ Describe "Get-EntraBetaPasswordPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPasswordPolicy"
 
-            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

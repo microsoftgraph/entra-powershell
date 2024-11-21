@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Governance) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Governance      
+    if((Get-Module -Name Microsoft.Entra.Governance) -eq $null){
+        Import-Module Microsoft.Entra.Governance      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -28,7 +28,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName New-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Governance
+    Mock -CommandName New-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Entra.Governance
 }
 
 Describe "New-EntraDirectoryRoleDefinition" {
@@ -45,7 +45,7 @@ Describe "New-EntraDirectoryRoleDefinition" {
             $result.Version | Should -Be 2
 
 
-            Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra.Governance -Times 1
+            Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Entra.Governance -Times 1
         }
         It "Should fail when RolePermissions is empty" {
             {New-EntraDirectoryRoleDefinition -RolePermissions  -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Version 2} | Should -Throw "Missing an argument for parameter 'RolePermissions'*"
@@ -105,7 +105,7 @@ Describe "New-EntraDirectoryRoleDefinition" {
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDirectoryRoleDefinition"
 
-            Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra.Governance -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Entra.Governance -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

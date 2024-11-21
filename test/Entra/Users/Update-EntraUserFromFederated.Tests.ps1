@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Users) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Users       
+    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+        Import-Module Microsoft.Entra.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
      $scriptblockForAuthenticationMethod = {
@@ -21,9 +21,9 @@ BeforeAll {
     )   
  }  
 
-    Mock -CommandName Get-MgUserAuthenticationMethod -MockWith $scriptblockForAuthenticationMethod -ModuleName Microsoft.Graph.Entra.Users
-    Mock -CommandName Get-MgUser -MockWith $scriptblockForMgUser -ModuleName Microsoft.Graph.Entra.Users
-    Mock -CommandName Reset-MgUserAuthenticationMethodPassword -MockWith {} -ModuleName Microsoft.Graph.Entra.Users
+    Mock -CommandName Get-MgUserAuthenticationMethod -MockWith $scriptblockForAuthenticationMethod -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-MgUser -MockWith $scriptblockForMgUser -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Reset-MgUserAuthenticationMethodPassword -MockWith {} -ModuleName Microsoft.Entra.Users
 }
  
     Describe "Update-EntraUserFromFederated" {
@@ -31,7 +31,7 @@ BeforeAll {
         It "Should sets identity synchronization features for a tenant." {
             $result = Update-EntraUserFromFederated -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Reset-MgUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Users -Times 1
+            Should -Invoke -CommandName Reset-MgUserAuthenticationMethodPassword -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserPrincipalName is empty" {
             {Update-EntraUserFromFederated -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'. Specify a parameter*"
@@ -50,7 +50,7 @@ BeforeAll {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraUserFromFederated"
 
-            Should -Invoke -CommandName Reset-MgUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Reset-MgUserAuthenticationMethodPassword -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

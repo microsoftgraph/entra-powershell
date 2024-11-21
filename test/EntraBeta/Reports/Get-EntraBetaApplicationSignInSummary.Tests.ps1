@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Reports) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Reports       
+    if((Get-Module -Name Microsoft.Entra.Beta.Reports) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Reports       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -28,7 +28,7 @@ $scriptblock = {
 
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Reports
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
 
 Describe "Get-EntraBetaApplicationSignInSummary" {
@@ -40,7 +40,7 @@ Describe "Get-EntraBetaApplicationSignInSummary" {
             $result.AppDisplayName | Should -Be "Mock Portal"
             $result.AppId | Should -be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when Days is empty" {
             { Get-EntraBetaApplicationSignInSummary -Days   } | Should -Throw "Missing an argument for parameter 'Days'*"
@@ -50,7 +50,7 @@ Describe "Get-EntraBetaApplicationSignInSummary" {
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Mock Portal"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaApplicationSignInDetailedSummary -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -60,7 +60,7 @@ Describe "Get-EntraBetaApplicationSignInSummary" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaApplicationSignInSummary -Days "7" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -73,7 +73,7 @@ Describe "Get-EntraBetaApplicationSignInSummary" {
 
             $result = Get-EntraBetaApplicationSignInSummary -Days "30"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.Reports -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 1 -ParameterFilter {
                 	$Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 	$true
             }

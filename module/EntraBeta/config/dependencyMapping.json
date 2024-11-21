@@ -1,10 +1,10 @@
 {
-    "Microsoft.Graph.Entra.Beta.Users":["Microsoft.Graph.Beta.Users","Microsoft.Graph.Beta.Users.Actions","Microsoft.Graph.Beta.Users.Functions"],
-    "Microsoft.Graph.Entra.Beta.Authentication":["Microsoft.Graph.Authentication"],
-    "Microsoft.Graph.Entra.Beta.Groups":["Microsoft.Graph.Beta.Groups"],
-    "Microsoft.Graph.Entra.Beta.DirectoryManagement":["Microsoft.Graph.Beta.Identity.DirectoryManagement"],
-    "Microsoft.Graph.Entra.Beta.Governance":["Microsoft.Graph.Beta.Identity.Governance"],
-    "Microsoft.Graph.Entra.Beta.SignIns":["Microsoft.Graph.Beta.Identity.SignIns"],
-    "Microsoft.Graph.Entra.Beta.Applications":["Microsoft.Graph.Beta.Applications"],
-    "Microsoft.Graph.Entra.Beta.Reports":["Microsoft.Graph.Beta.Reports"]
+    "Microsoft.Entra.Beta.Users":["Microsoft.Graph.Beta.Users","Microsoft.Graph.Beta.Users.Actions","Microsoft.Graph.Beta.Users.Functions"],
+    "Microsoft.Entra.Beta.Authentication":["Microsoft.Graph.Authentication"],
+    "Microsoft.Entra.Beta.Groups":["Microsoft.Graph.Beta.Groups"],
+    "Microsoft.Entra.Beta.DirectoryManagement":["Microsoft.Graph.Beta.Identity.DirectoryManagement"],
+    "Microsoft.Entra.Beta.Governance":["Microsoft.Graph.Beta.Identity.Governance"],
+    "Microsoft.Entra.Beta.SignIns":["Microsoft.Graph.Beta.Identity.SignIns"],
+    "Microsoft.Entra.Beta.Applications":["Microsoft.Graph.Beta.Applications"],
+    "Microsoft.Entra.Beta.Reports":["Microsoft.Graph.Beta.Reports"]
 }

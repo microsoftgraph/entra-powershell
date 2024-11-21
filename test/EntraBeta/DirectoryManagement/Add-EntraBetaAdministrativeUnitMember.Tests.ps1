@@ -2,13 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement       
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
 
-    Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetaAdministrativeUnitMember" {
@@ -17,13 +17,13 @@ Describe "Add-EntraBetaAdministrativeUnitMember" {
             $result = Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should return empty object with alias" {
             $result = Add-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when AdministrativeUnitId is empty" {
             { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId  -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
@@ -38,7 +38,7 @@ Describe "Add-EntraBetaAdministrativeUnitMember" {
             { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""} | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
         It "Should contain AdministrativeUnitId in parameters when passed AdministrativeUnitId to it" {    
-            Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
             $result = Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $params = Get-Parameters -data $result
             $params.AdministrativeUnitId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -50,7 +50,7 @@ Describe "Add-EntraBetaAdministrativeUnitMember" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaAdministrativeUnitMember"
 
-            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

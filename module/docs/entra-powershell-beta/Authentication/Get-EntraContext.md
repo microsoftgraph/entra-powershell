@@ -9,9 +9,9 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutung
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraContext
+external help file: Microsoft.Entra.Beta-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraContext
 
 schema: 2.0.0
 ---

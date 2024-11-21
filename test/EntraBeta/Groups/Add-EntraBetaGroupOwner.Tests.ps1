@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Groups) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Groups    
+    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+    Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Add-EntraBetaGroupOwner" {
@@ -17,7 +17,7 @@ Describe "Add-EntraBetaGroupOwner" {
             $result = Add-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
@@ -37,18 +37,18 @@ Describe "Add-EntraBetaGroupOwner" {
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
             $result = Add-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain BodyParameter in parameters when passed RefObjectId to it" {
-            Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.Groups
+            Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
             $result = Add-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $value = @{
                 "@odata.id" = "https://graph.microsoft.com/beta/users/bbbbcccc-1111-dddd-2222-eeee3333ffff"}
-            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
             $BodyParameter.AdditionalProperties.'@odata.id' | Should -Be $value.'@odata.id'
             Write-Host $BodyParameter.AdditionalProperties.'@odata.id'
             $true
@@ -61,7 +61,7 @@ Describe "Add-EntraBetaGroupOwner" {
             Add-EntraBetaGroupOwner -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupOwner"
-            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta.Groups -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

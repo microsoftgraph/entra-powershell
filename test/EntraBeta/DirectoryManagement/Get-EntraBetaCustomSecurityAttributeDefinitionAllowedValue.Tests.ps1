@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -18,7 +18,7 @@ BeforeAll {
             }
         )
     }    
-    Mock -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
@@ -27,7 +27,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $result = Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId are empty" {
@@ -44,7 +44,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.IsActive | Should -Be $true
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Id are empty" {
@@ -61,7 +61,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.IsActive | Should -Be $true
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Filter are empty" {
@@ -78,7 +78,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $params = Get-Parameters -data $result.Parameters
             $params.AllowedValueId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should contain value in parameters when passed Filter to it" {
@@ -88,7 +88,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $expectedFilter = "Id eq 'bbbbbbbb-1111-2222-3333-cccccccccc55'"
             $params.Filter | Should -Be $expectedFilter
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Property parameter should work" {
@@ -96,7 +96,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -108,7 +108,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             $result = Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
-            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
             $true
             }

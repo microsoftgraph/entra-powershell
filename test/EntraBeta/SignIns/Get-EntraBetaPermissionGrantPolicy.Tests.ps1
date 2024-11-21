@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns   
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns   
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -21,7 +21,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Get-MgBetaPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "Get-EntraBetaPermissionGrantPolicy" {
@@ -31,7 +31,7 @@ Describe "Get-EntraBetaPermissionGrantPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "microsoft-all-application-permissions"
 
-            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy  -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy  -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when Id is empty" {
             { Get-EntraBetaPermissionGrantPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
@@ -53,7 +53,7 @@ Describe "Get-EntraBetaPermissionGrantPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'All application'
 
-            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when Property is empty" {
              { Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -66,7 +66,7 @@ Describe "Get-EntraBetaPermissionGrantPolicy" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPermissionGrantPolicy"
 
-            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

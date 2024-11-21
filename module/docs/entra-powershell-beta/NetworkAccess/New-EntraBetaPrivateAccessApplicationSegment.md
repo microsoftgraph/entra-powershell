@@ -7,9 +7,15 @@ ms.date: 07/18/2024
 ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
+<<<<<<< HEAD
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
+=======
+author: andres-canello
+external help file: Microsoft.Entra.Beta-Help.xml
+Module Name: Microsoft.Entra.Beta
+>>>>>>> e6ba625db (Rename module (#1223))
 online version:
 schema: 2.0.0
 ---

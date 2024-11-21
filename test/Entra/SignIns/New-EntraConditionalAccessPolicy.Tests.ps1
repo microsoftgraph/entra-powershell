@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.SignIns) -eq $null){
-        Import-Module Microsoft.Graph.Entra.SignIns      
+    if((Get-Module -Name Microsoft.Entra.SignIns) -eq $null){
+        Import-Module Microsoft.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -39,7 +39,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName New-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.SignIns
+    Mock -CommandName New-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraConditionalAccessPolicy" {
@@ -62,7 +62,7 @@ Describe "New-EntraConditionalAccessPolicy" {
             $result.State | Should -Be "enabled"
 
 
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 1
         }
 
         It "Should fail when DisplayName parameter is empty" {
@@ -110,7 +110,7 @@ Describe "New-EntraConditionalAccessPolicy" {
             $params = Get-Parameters -data $result.Parameters
             $params.Conditions.Users.IncludeUsers | Should -Be "all"
 
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 1
         }
 
         It "Should contain BuiltInControls in parameters when passed GrantControls to it" {
@@ -128,7 +128,7 @@ Describe "New-EntraConditionalAccessPolicy" {
             $params = Get-Parameters -data $result.Parameters
             $params.GrantControls.BuiltInControls | Should -Be "mfa"
 
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -145,7 +145,7 @@ Describe "New-EntraConditionalAccessPolicy" {
             $result = New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraConditionalAccessPolicy"
-            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

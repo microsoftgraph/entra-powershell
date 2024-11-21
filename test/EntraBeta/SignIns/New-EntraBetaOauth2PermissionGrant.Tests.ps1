@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns      
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
@@ -23,7 +23,7 @@ BeforeAll {
         )
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "New-EntraBetaOauth2PermissionGrant" {
@@ -38,7 +38,7 @@ Describe "New-EntraBetaOauth2PermissionGrant" {
             $result.ResourceId | should -Be "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" 
             $result.Scope | should -Be "DelegatedPermissionGrant.ReadWrite.All" 
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
         It "Should fail when ClientId is invalid" {
             { New-EntraBetaOauth2PermissionGrant -ClientId "" } | Should -Throw "Cannot bind argument to parameter 'ClientId'*"
@@ -71,7 +71,7 @@ Describe "New-EntraBetaOauth2PermissionGrant" {
             $result= New-EntraBetaOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All" -StartTime $startTime -ExpiryTime $expiryTime
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaOauth2PermissionGrant"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

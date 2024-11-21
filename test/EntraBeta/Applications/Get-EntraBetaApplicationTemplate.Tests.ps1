@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.Applications    
+    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+        Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -32,7 +32,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName  Get-MgBetaApplicationTemplate -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.Applications
+    Mock -CommandName  Get-MgBetaApplicationTemplate -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaApplicationTemplate" {
@@ -43,7 +43,7 @@ Describe "Get-EntraBetaApplicationTemplate" {
             $result.DisplayName | should -Be 'FigBytes'
             $result.Description | should -Be  "Capture and manage your ESG data from across the organization in an integrated, cloud-based platform that connects organizational strategy, automates reporting, and simplifies stakeholder engagement."
 
-            Should -Invoke -CommandName  Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName  Get-MgBetaApplicationTemplate -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -58,14 +58,14 @@ Describe "Get-EntraBetaApplicationTemplate" {
             $result = Get-EntraBetaApplicationTemplate 
             $result | Should -Not -BeNullOrEmpty
         
-            Should -Invoke -CommandName  Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName  Get-MgBetaApplicationTemplate -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain Id in result" {
             $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result.Id | should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
 
-            Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         } 
 
         It "Should contain ApplicationTemplateId in parameters when passed Id to it" {
@@ -79,7 +79,7 @@ Describe "Get-EntraBetaApplicationTemplate" {
             $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationTemplate"
-            Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
            }
@@ -90,7 +90,7 @@ Describe "Get-EntraBetaApplicationTemplate" {
         $result | Should -Not -BeNullOrEmpty
         $result.DisplayName | Should -Be 'FigBytes'
 
-        Should -Invoke -CommandName Get-MgBetaApplicationTemplate  -ModuleName Microsoft.Graph.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Get-MgBetaApplicationTemplate  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
        }
 
        It "Should fail when Property is empty" {

@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -19,7 +19,7 @@ BeforeAll {
             }
         )
     }
-    Mock -CommandName  Get-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName  Get-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaAttributeSet" {
@@ -31,7 +31,7 @@ Describe "Get-EntraBetaAttributeSet" {
             $result.Description | should -Be "new test"
             $result.MaxAttributesPerSet | should -Be 22
 
-            Should -Invoke -CommandName  Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should get attribute set using alias" {
@@ -41,7 +41,7 @@ Describe "Get-EntraBetaAttributeSet" {
             $result.Description | should -Be "new test"
             $result.MaxAttributesPerSet | should -Be 22
 
-            Should -Invoke -CommandName  Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName  Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when AttributeSetId is empty" {
@@ -68,7 +68,7 @@ Describe "Get-EntraBetaAttributeSet" {
             $result = Get-EntraBetaAttributeSet -AttributeSetId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAttributeSet"
-            Should -Invoke -CommandName Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
             $true
             }
@@ -78,7 +78,7 @@ Describe "Get-EntraBetaAttributeSet" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryAttributeSet  -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryAttributeSet  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaAttributeSet -AttributeSetId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"

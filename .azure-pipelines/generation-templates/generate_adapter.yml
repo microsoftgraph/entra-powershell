@@ -64,8 +64,8 @@ steps:
       targetType: "inline"
       pwsh: true
       script: |
-        $ModulePsd1 = "bin/Microsoft.Graph.Entra.psd1"
-        $ModulePsm1 = "bin/Microsoft.Graph.Entra.psm1"
+        $ModulePsd1 = "bin/Microsoft.Entra.psd1"
+        $ModulePsm1 = "bin/Microsoft.Entra.psm1"
         ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
         ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
 - task: powershell@2
@@ -143,8 +143,8 @@ steps:
       targetType: "inline"
       pwsh: true
       script: |
-        $ModulePsd1 = "bin/Microsoft.Graph.Entra.Beta.psd1"
-        $ModulePsm1 = "bin/Microsoft.Graph.Entra.Beta.psm1"
+        $ModulePsd1 = "bin/Microsoft.Entra.Beta.psd1"
+        $ModulePsm1 = "bin/Microsoft.Entra.Beta.psm1"
         ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
         ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
 - task: powershell@2

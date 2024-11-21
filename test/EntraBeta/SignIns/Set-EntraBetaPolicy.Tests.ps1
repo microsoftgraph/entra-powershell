@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra.Beta.SignIns) -eq $null) {
-        Import-Module Microsoft.Graph.Entra.Beta.SignIns    
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -17,14 +17,14 @@ BeforeAll {
 
         return $response
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Set-EntraBetaPolicy" {
     Context "Test for Set-EntraBetaPolicy" {
         It "Should return updated Policy" {
             Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName "new update 13" -IsOrganizationDefault $false            
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -68,16 +68,16 @@ Describe "Set-EntraBetaPolicy" {
         } 
 
         It "Should return updated Policy when passes Type" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.SignIns
+            Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
             Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Type "HomeRealmDiscoveryPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
             Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' -eq $userAgentHeaderValue
                 $true
             }

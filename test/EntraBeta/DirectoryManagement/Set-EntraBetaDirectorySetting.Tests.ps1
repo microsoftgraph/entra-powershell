@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra.Beta.DirectoryManagement) -eq $null){
-        Import-Module Microsoft.Graph.Entra.Beta.DirectoryManagement    
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -27,9 +27,9 @@ BeforeAll {
         )
     } 
 
-    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
-    Mock -CommandName Update-MgBetaDirectorySetting -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+    Mock -CommandName Update-MgBetaDirectorySetting -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Set-EntraBetaDirectorySetting" {
@@ -41,7 +41,7 @@ Describe "Set-EntraBetaDirectorySetting" {
             $result = Set-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -DirectorySetting $settingsCopy 
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1
+            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should fail when Id is empty" {
@@ -70,7 +70,7 @@ Describe "Set-EntraBetaDirectorySetting" {
         } 
 
         It "Should contain BodyParameter in parameters when passed DirectorySetting to it" {
-            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $settingsCopy = $template.CreateDirectorySetting()
@@ -81,7 +81,7 @@ Describe "Set-EntraBetaDirectorySetting" {
         }        
         
         It "Should contain DirectorySettingId in parameters when passed Id to it" {
-            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
             $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $settingsCopy = $template.CreateDirectorySetting()
@@ -92,14 +92,14 @@ Describe "Set-EntraBetaDirectorySetting" {
         }        
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement
+            Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDirectorySetting"
             $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["EnableBannedPasswordCheckOnPremises"] = "False"
             Set-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -DirectorySetting $settingsCopy
  
-            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
