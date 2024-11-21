@@ -1,0 +1,16 @@
+{
+  "Authentication":"",
+  "Directory":"",
+  "Application":"",
+  "ApplicationProxy":"",
+  "User":"",
+  "Group":"",
+  "ServicePrincipal":"",
+  "AdministrativeUnit":"",
+  "Contact":"",
+  "Domain":"",
+  "Permission":"",
+  "Device":"",
+  "Policy":"",
+  "CertificateAuthority":""
+}

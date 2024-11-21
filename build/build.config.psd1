@@ -1,6 +1,6 @@
 ﻿@{
 	ModuleOutputSubdirectoryName = 'modules'
-	ModuleSubdirectoryName = 'module'
+	ModuleSubdirectoryName = 'module_legacy'
 	OutputPath = 'bin'
 	CustomizationPath = 'customizations'
 	docsPath = 'docs'

@@ -217,12 +217,12 @@ function Get-CustomizationFiles {
 	$path = Split-Path -Parent $psscriptroot
 
 	if ( -not $Directory ) {
-		$path = Join-Path $path 'module'
+		$path = Join-Path $path 'module_legacy'
 		$path = Join-Path $path $Module
 		$path = Join-Path $path (Get-ConfigValue -Name CustomizationPath)
 	}
 	else {
-		$path = Join-Path $path 'module'      
+		$path = Join-Path $path 'module_legacy'      
 		$path = Join-Path $path $Module
 		$path = Join-Path $path $Directory
 	}

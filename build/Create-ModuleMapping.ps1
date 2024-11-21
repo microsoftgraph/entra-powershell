@@ -14,12 +14,12 @@ function Get-DirectoryFileMap {
     # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
-            $RootDirectory = "../module/Entra/Microsoft.Graph.Entra/"
-            $OutputDirectory = '../module/Entra/config/'
+            $RootDirectory = "../module_legacy/Entra/Microsoft.Graph.Entra/"
+            $OutputDirectory = '../module_legacy/Entra/config/'
         }
         'EntraBeta' {
-            $RootDirectory = "../module/EntraBeta/Microsoft.Graph.Entra.Beta/"
-            $OutputDirectory = "../module/EntraBeta/config/"
+            $RootDirectory = "../module_legacy/EntraBeta/Microsoft.Graph.Entra.Beta/"
+            $OutputDirectory = "../module_legacy/EntraBeta/config/"
         }
         default {
             Log-Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." 'Error'
