@@ -2,43 +2,43 @@
     "tool": "Credential Scanner",
     "suppressions": [
       {
-        "file": "test\\module\\Entra\\Update-EntraSignedInUserPassword.Tests.ps1",
+        "file": "test_legacy\\module\\Entra\\Update-EntraSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\module\\Entra\\Update-EntraUserFromFederated.Tests.ps1",
+        "file": "test_legacy\\module\\Entra\\Update-EntraUserFromFederated.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\module\\EntraBeta\\Update-EntraBetaSignedInUserPassword.Tests.ps1",
+        "file": "test_legacy\\module\\EntraBeta\\Update-EntraBetaSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\module\\EntraBeta\\Update-EntraBetaUserFromFederated.Tests.ps1",
+        "file": "test_legacy\\module\\EntraBeta\\Update-EntraBetaUserFromFederated.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "testVNext\\Entra\\Users\\Update-EntraSignedInUserPassword.Tests.ps1",
+        "file": "test\\Entra\\Users\\Update-EntraSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "testVNext\\Entra\\Users\\Update-EntraUserFromFederated.Tests.ps1",
+        "file": "test\\Entra\\Users\\Update-EntraUserFromFederated.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "testVNext\\EntraBeta\\Users\\Update-EntraBetaSignedInUserPassword.Tests.ps1",
+        "file": "test\\EntraBeta\\Users\\Update-EntraBetaSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "testVNext\\EntraBeta\\Users\\Update-EntraBetaUserFromFederated.Tests.ps1",
+        "file": "test\\EntraBeta\\Users\\Update-EntraBetaUserFromFederated.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\module\\Entra\\New-EntraUser.Tests.ps1",
+        "file": "test_legacy\\module\\Entra\\New-EntraUser.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "testVNext\\Entra\\Users\\New-EntraUser.Tests.ps1",
+        "file": "test\\Entra\\Users\\New-EntraUser.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       }
     ]

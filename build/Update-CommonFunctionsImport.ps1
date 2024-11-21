@@ -10,9 +10,9 @@ function Update-CommonFunctionsImport {
     )
 
     $rootPath = if ($Module -eq 'Entra') {
-        "../testVNext/Entra"
+        "../test/Entra"
     } else {
-        "../testVNext/EntraBeta"
+        "../test/EntraBeta"
     }
     
     # Get all .Tests.ps1 files in the specified directory and its subdirectories
