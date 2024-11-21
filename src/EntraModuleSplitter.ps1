@@ -139,6 +139,13 @@ class EntraModuleSplitter {
     }
 }
 
+[string] GetModuleName([string] $Module="Entra"){
+     if ($Module -eq 'Entra') {
+            return "Microsoft.Entra"
+        } else {
+            return "Microsoft.Entra.Beta"
+        }
+}
 [void] SplitEntraModule([string]$Module = 'Entra') {
 
        $JsonFilePath=if($Module -eq 'Entra'){
@@ -155,7 +162,7 @@ class EntraModuleSplitter {
 		$this.CreateOutputDirectory($unmappedDirectory)
 
 		$jsonContent = $this.ReadJsonFile($JsonFilePath)
-		$moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
+		$moduleName = $this.GetModuleName($Module)
 		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
         
 		$this.CreateOutputDirectory($moduleOutputDirectory)

@@ -6,44 +6,26 @@ function New-EntraBetaServicePrincipal {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $AppId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $AlternativeNames,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Homepage,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AccountEnabled,
-                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $ServicePrincipalType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PublisherName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $Tags,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ErrorUrl,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $LogoutUrl,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]] $KeyCredentials,
+    [System.String] $DisplayName,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $SamlMetadataUrl,
+    [System.String] $Homepage,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $ServicePrincipalNames,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $PublisherName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $AlternativeNames,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $AppRoleAssignmentRequired,
@@ -52,40 +34,90 @@ function New-EntraBetaServicePrincipal {
     [System.Collections.Generic.List`1[System.String]] $ReplyUrls,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName
+    [System.String] $ErrorUrl,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $AccountEnabled,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $AppId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]] $KeyCredentials,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $SamlMetadataUrl,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $Tags
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["AppId"])
+    if ($null -ne $PSBoundParameters["ServicePrincipalType"])
     {
-        $params["AppId"] = $PSBoundParameters["AppId"]
+        $params["ServicePrincipalType"] = $PSBoundParameters["ServicePrincipalType"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
+    if ($null -ne $PSBoundParameters["LogoutUrl"])
     {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["LogoutUrl"] = $PSBoundParameters["LogoutUrl"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["AlternativeNames"])
+    if ($null -ne $PSBoundParameters["DisplayName"])
     {
-        $params["AlternativeNames"] = $PSBoundParameters["AlternativeNames"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
     }
     if ($null -ne $PSBoundParameters["Homepage"])
     {
         $params["Homepage"] = $PSBoundParameters["Homepage"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["ServicePrincipalNames"])
+    {
+        $params["ServicePrincipalNames"] = $PSBoundParameters["ServicePrincipalNames"]
+    }
+    if ($null -ne $PSBoundParameters["PublisherName"])
+    {
+        $params["PublisherName"] = $PSBoundParameters["PublisherName"]
+    }
+    if ($null -ne $PSBoundParameters["AlternativeNames"])
+    {
+        $params["AlternativeNames"] = $PSBoundParameters["AlternativeNames"]
+    }
+    if ($null -ne $PSBoundParameters["AppRoleAssignmentRequired"])
+    {
+        $params["AppRoleAssignmentRequired"] = $PSBoundParameters["AppRoleAssignmentRequired"]
+    }
+    if ($null -ne $PSBoundParameters["ReplyUrls"])
+    {
+        $params["ReplyUrls"] = $PSBoundParameters["ReplyUrls"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorUrl"])
+    {
+        $params["ErrorUrl"] = $PSBoundParameters["ErrorUrl"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if($null -ne $PSBoundParameters["AccountEnabled"])
     {
@@ -98,13 +130,9 @@ function New-EntraBetaServicePrincipal {
             }
         $params["AccountEnabled"] = $Value
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ServicePrincipalType"])
-    {
-        $params["ServicePrincipalType"] = $PSBoundParameters["ServicePrincipalType"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if($null -ne $PSBoundParameters["PasswordCredentials"])
     {
@@ -125,41 +153,21 @@ function New-EntraBetaServicePrincipal {
             $Value = $a
         $params["PasswordCredentials"] = $Value
     }
-    if ($null -ne $PSBoundParameters["PublisherName"])
+    if ($null -ne $PSBoundParameters["OutBuffer"])
     {
-        $params["PublisherName"] = $PSBoundParameters["PublisherName"]
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["AppId"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["Tags"])
-    {
-        $params["Tags"] = $PSBoundParameters["Tags"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorUrl"])
-    {
-        $params["ErrorUrl"] = $PSBoundParameters["ErrorUrl"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["LogoutUrl"])
-    {
-        $params["LogoutUrl"] = $PSBoundParameters["LogoutUrl"]
+        $params["AppId"] = $PSBoundParameters["AppId"]
     }
     if($null -ne $PSBoundParameters["KeyCredentials"])
     {
@@ -186,29 +194,21 @@ function New-EntraBetaServicePrincipal {
     {
         $params["SamlMetadataUrl"] = $PSBoundParameters["SamlMetadataUrl"]
     }
-    if ($null -ne $PSBoundParameters["ServicePrincipalNames"])
+    if ($null -ne $PSBoundParameters["InformationAction"])
     {
-        $params["ServicePrincipalNames"] = $PSBoundParameters["ServicePrincipalNames"]
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if ($null -ne $PSBoundParameters["AppRoleAssignmentRequired"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["AppRoleAssignmentRequired"] = $PSBoundParameters["AppRoleAssignmentRequired"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["ReplyUrls"])
+    if ($null -ne $PSBoundParameters["Tags"])
     {
-        $params["ReplyUrls"] = $PSBoundParameters["ReplyUrls"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+        $params["Tags"] = $PSBoundParameters["Tags"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

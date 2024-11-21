@@ -7,53 +7,23 @@ function Remove-EntraBetaPasswordSingleSignOnCredential {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.MSGraph.Model.PasswordSSOObjectId] $PasswordSSOObjectId,
+    [System.String] $ObjectId,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+    [Microsoft.Open.MSGraph.Model.PasswordSSOObjectId] $PasswordSSOObjectId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if($null -ne $PSBoundParameters["PasswordSSOObjectId"])
-    {
-        $TmpValue = $PSBoundParameters["PasswordSSOObjectId"]
-        $Value = $TmpValue.Id
-        $params["Id"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["ObjectId"])
-    {
-        $params["ServicePrincipalId"] = $PSBoundParameters["ObjectId"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["OutBuffer"])
     {
@@ -63,10 +33,6 @@ function Remove-EntraBetaPasswordSingleSignOnCredential {
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
@@ -74,6 +40,40 @@ function Remove-EntraBetaPasswordSingleSignOnCredential {
     if ($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["ObjectId"])
+    {
+        $params["ServicePrincipalId"] = $PSBoundParameters["ObjectId"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if($null -ne $PSBoundParameters["PasswordSSOObjectId"])
+    {
+        $TmpValue = $PSBoundParameters["PasswordSSOObjectId"]
+        $Value = $TmpValue.Id
+        $params["Id"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

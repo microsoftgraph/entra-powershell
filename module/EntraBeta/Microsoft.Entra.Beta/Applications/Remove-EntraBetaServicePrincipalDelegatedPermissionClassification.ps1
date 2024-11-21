@@ -7,10 +7,10 @@ function Remove-EntraBetaServicePrincipalDelegatedPermissionClassification {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId,
+    [System.String] $Id,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    [System.String] $ServicePrincipalId
     )
 
     PROCESS{

@@ -7,10 +7,10 @@ function Get-EntraBetaTrustedCertificateAuthority {
     param (
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TrustedIssuerSki,
+    [System.String] $TrustedIssuer,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TrustedIssuer,
+    [System.String] $TrustedIssuerSki,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )

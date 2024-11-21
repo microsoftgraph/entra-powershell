@@ -5,18 +5,18 @@
 function Get-EntraContract {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias('ObjectId')]            
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ContractId,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
                 
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-                
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
+                
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Alias('ObjectId')]            
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ContractId,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -25,33 +25,57 @@ function Get-EntraContract {
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $keysChanged = @{ObjectId = "Id"}
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if ($PSBoundParameters.ContainsKey("Top"))
+    {
+        $params["Top"] = $PSBoundParameters["Top"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if($null -ne $PSBoundParameters["Filter"])
+    {
+        $TmpValue = $PSBoundParameters["Filter"]
+        foreach($i in $keysChanged.GetEnumerator()){
+            $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
+        }
+        $Value = $TmpValue
+        $params["Filter"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if($null -ne $PSBoundParameters["All"])
+    {
+        if($PSBoundParameters["All"])
+        {
+            $params["All"] = $PSBoundParameters["All"]
+        }
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
     if ($null -ne $PSBoundParameters["ErrorAction"])
     {
@@ -65,37 +89,13 @@ function Get-EntraContract {
     {
         $params["ContractId"] = $PSBoundParameters["ContractId"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($PSBoundParameters.ContainsKey("Top"))
-    {
-        $params["Top"] = $PSBoundParameters["Top"]
-    }
-    if($null -ne $PSBoundParameters["All"])
-    {
-        if($PSBoundParameters["All"])
-        {
-            $params["All"] = $PSBoundParameters["All"]
-        }
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if($null -ne $PSBoundParameters["Filter"])
-    {
-        $TmpValue = $PSBoundParameters["Filter"]
-        foreach($i in $keysChanged.GetEnumerator()){
-            $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
-        }
-        $Value = $TmpValue
-        $params["Filter"] = $Value
     }
     if($null -ne $PSBoundParameters["Property"])
     {

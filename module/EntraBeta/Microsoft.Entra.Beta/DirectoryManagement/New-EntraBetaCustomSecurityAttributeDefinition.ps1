@@ -7,45 +7,97 @@ function New-EntraBetaCustomSecurityAttributeDefinition {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $AttributeSet,
+    [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
     [System.String] $Name,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $Type,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Nullable`1[System.Boolean]] $IsSearchable,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
+    [System.String] $Status,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $Status,
+    [System.Nullable`1[System.Boolean]] $IsCollection,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Nullable`1[System.Boolean]] $IsCollection
+    [System.Nullable`1[System.Boolean]] $IsSearchable,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $AttributeSet,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $Type
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
+    if ($null -ne $PSBoundParameters["UsePreDefinedValuesOnly"])
+    {
+        $params["UsePreDefinedValuesOnly"] = $PSBoundParameters["UsePreDefinedValuesOnly"]
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if ($null -ne $PSBoundParameters["Name"])
+    {
+        $params["Name"] = $PSBoundParameters["Name"]
+    }
+    if ($null -ne $PSBoundParameters["Status"])
+    {
+        $params["Status"] = $PSBoundParameters["Status"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["Description"])
+    {
+        $params["Description"] = $PSBoundParameters["Description"]
     }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
+    if ($null -ne $PSBoundParameters["IsCollection"])
+    {
+        $params["IsCollection"] = $PSBoundParameters["IsCollection"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["IsSearchable"])
+    {
+        $params["IsSearchable"] = $PSBoundParameters["IsSearchable"]
+    }
     if ($null -ne $PSBoundParameters["AttributeSet"])
     {
         $params["AttributeSet"] = $PSBoundParameters["AttributeSet"]
+    }
+    if ($null -ne $PSBoundParameters["Type"])
+    {
+        $params["Type"] = $PSBoundParameters["Type"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
@@ -55,65 +107,13 @@ function New-EntraBetaCustomSecurityAttributeDefinition {
     {
         $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["Name"])
-    {
-        $params["Name"] = $PSBoundParameters["Name"]
-    }
-    if ($null -ne $PSBoundParameters["Type"])
-    {
-        $params["Type"] = $PSBoundParameters["Type"]
-    }
-    if ($null -ne $PSBoundParameters["IsSearchable"])
-    {
-        $params["IsSearchable"] = $PSBoundParameters["IsSearchable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["UsePreDefinedValuesOnly"])
-    {
-        $params["UsePreDefinedValuesOnly"] = $PSBoundParameters["UsePreDefinedValuesOnly"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["Description"])
-    {
-        $params["Description"] = $PSBoundParameters["Description"]
-    }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["Status"])
-    {
-        $params["Status"] = $PSBoundParameters["Status"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["IsCollection"])
-    {
-        $params["IsCollection"] = $PSBoundParameters["IsCollection"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

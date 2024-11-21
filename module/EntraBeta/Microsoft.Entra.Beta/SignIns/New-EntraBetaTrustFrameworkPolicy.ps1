@@ -6,13 +6,13 @@ function New-EntraBetaTrustFrameworkPolicy {
     [CmdletBinding(DefaultParameterSetName = 'Content')]
     param (
                 
+    [Parameter(ParameterSetName = "Content", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Content,
+                
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Parameter(ParameterSetName = "Content")]
     [Parameter(ParameterSetName = "File")]
     [System.String] $OutputFilePath,
-                
-    [Parameter(ParameterSetName = "Content", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Content,
                 
     [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $InputFilePath

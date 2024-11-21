@@ -2,7 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-
 function Set-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
@@ -11,85 +10,77 @@ function Set-EntraGroup {
     [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $MailEnabled,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Description,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $GroupTypes,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $MailNickname,
+    [Alias('Id')]            
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $GroupId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Visibility,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $GroupTypes,
-    [Alias('Id')]            
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $GroupId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MailNickname,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $MailEnabled,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Description
+    [System.String] $DisplayName
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if ($null -ne $PSBoundParameters["SecurityEnabled"])
     {
         $params["SecurityEnabled"] = $PSBoundParameters["SecurityEnabled"]
     }
-    if ($null -ne $PSBoundParameters["IsAssignableToRole"])
+    if ($null -ne $PSBoundParameters["MailEnabled"])
     {
-        $params["IsAssignableToRole"] = $PSBoundParameters["IsAssignableToRole"]
+        $params["MailEnabled"] = $PSBoundParameters["MailEnabled"]
     }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    if ($null -ne $PSBoundParameters["Description"])
     {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["Description"] = $PSBoundParameters["Description"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["Visibility"])
-    {
-        $params["Visibility"] = $PSBoundParameters["Visibility"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if ($null -ne $PSBoundParameters["GroupTypes"])
     {
         $params["GroupTypes"] = $PSBoundParameters["GroupTypes"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["MailNickname"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["MailNickname"] = $PSBoundParameters["MailNickname"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
@@ -99,29 +90,37 @@ function Set-EntraGroup {
     {
         $params["GroupId"] = $PSBoundParameters["GroupId"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["IsAssignableToRole"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["IsAssignableToRole"] = $PSBoundParameters["IsAssignableToRole"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["Visibility"])
+    {
+        $params["Visibility"] = $PSBoundParameters["Visibility"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["DisplayName"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["MailNickname"])
-    {
-        $params["MailNickname"] = $PSBoundParameters["MailNickname"]
-    }
-    if ($null -ne $PSBoundParameters["MailEnabled"])
-    {
-        $params["MailEnabled"] = $PSBoundParameters["MailEnabled"]
-    }
-    if ($null -ne $PSBoundParameters["Description"])
-    {
-        $params["Description"] = $PSBoundParameters["Description"]
+        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

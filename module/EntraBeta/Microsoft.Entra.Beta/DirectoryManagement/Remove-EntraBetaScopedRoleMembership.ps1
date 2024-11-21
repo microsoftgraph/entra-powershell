@@ -5,53 +5,25 @@
 function Remove-EntraBetaScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ScopedRoleMembershipId,
     [Alias('ObjectId')]            
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId
+    [System.String] $AdministrativeUnitId,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ScopedRoleMembershipId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
-    {
-        $params["ScopedRoleMembershipId"] = $PSBoundParameters["ScopedRoleMembershipId"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["AdministrativeUnitId"])
-    {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["OutBuffer"])
     {
@@ -61,10 +33,6 @@ function Remove-EntraBetaScopedRoleMembership {
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
@@ -72,6 +40,38 @@ function Remove-EntraBetaScopedRoleMembership {
     if ($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["AdministrativeUnitId"])
+    {
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
+    {
+        $params["ScopedRoleMembershipId"] = $PSBoundParameters["ScopedRoleMembershipId"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

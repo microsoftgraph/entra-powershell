@@ -6,17 +6,17 @@ function Set-EntraBetaUserPassword {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Boolean] $ForceChangePasswordNextLogin,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Boolean] $EnforceChangePasswordPolicy,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Security.SecureString] $Password,
+    [System.String] $ObjectId,
                 
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Boolean] $ForceChangePasswordNextLogin
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Security.SecureString] $Password
     )
 
     PROCESS {    

@@ -5,67 +5,31 @@
 function New-EntraApplicationExtensionProperty {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
-    [Alias('ObjectId')]            
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ApplicationId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Name,
+    [System.String] $DataType,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $TargetObjects,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DataType
+    [System.String] $Name,
+    [Alias('ObjectId')]            
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
     if ($null -ne $PSBoundParameters["OutVariable"])
     {
         $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if ($null -ne $PSBoundParameters["DataType"])
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["ApplicationId"])
-    {
-        $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
-    }
-    if ($null -ne $PSBoundParameters["Name"])
-    {
-        $params["Name"] = $PSBoundParameters["Name"]
+        $params["DataType"] = $PSBoundParameters["DataType"]
     }
     if ($null -ne $PSBoundParameters["TargetObjects"])
     {
@@ -75,17 +39,53 @@ function New-EntraApplicationExtensionProperty {
     {
         $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if ($null -ne $PSBoundParameters["OutBuffer"])
     {
         $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
-    if ($null -ne $PSBoundParameters["DataType"])
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["DataType"] = $PSBoundParameters["DataType"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["Name"])
+    {
+        $params["Name"] = $PSBoundParameters["Name"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["ApplicationId"])
+    {
+        $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

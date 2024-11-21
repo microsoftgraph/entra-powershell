@@ -6,14 +6,17 @@ function Set-EntraBetaNamedLocationPolicy {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]] $IpRanges,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IncludeUnknownCountriesAndRegions,
+                
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $PolicyId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IncludeUnknownCountriesAndRegions,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IsTrusted,
@@ -25,10 +28,7 @@ function Set-EntraBetaNamedLocationPolicy {
     [System.String] $OdataType,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]] $CountriesAndRegions,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]] $IpRanges
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]] $CountriesAndRegions
     )
 
     PROCESS {    
