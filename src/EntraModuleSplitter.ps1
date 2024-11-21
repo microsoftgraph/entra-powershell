@@ -25,9 +25,9 @@ class EntraModuleSplitter {
 
     [string] GetModuleFilePath([string]$source) {
         if ($source -eq 'Entra') {
-            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Entra.psm1")
+            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Graph.Entra.psm1")
         } else {
-            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Entra.Beta.psm1")
+            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Graph.Entra.Beta.psm1")
         }
     }
 
