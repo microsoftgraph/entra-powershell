@@ -36,20 +36,14 @@ steps:
     targetType: inline
     script: Install-Module PlatyPS -scope currentuser -Force
     pwsh: true
-- task: powershell@2
-  displayName: 'Create Module Help Files Entra'
-  inputs:
-    targetType: inline
-    script: |
-      Import-Module PlatyPS
-      . ./build/common-functions.ps1
-      Create-ModuleHelp -Module Entra
-    pwsh: true
 # - task: powershell@2
-#   displayName: 'Build Entra'
+#   displayName: 'Create Module Help Files Entra'
 #   inputs:
 #     targetType: inline
-#     script: ./build/Create-CompatModule.ps1 -Module Entra -Verbose
+#     script: |
+#       Import-Module PlatyPS
+#       . ./build/common-functions.ps1
+#       Create-ModuleHelp -Module Entra
 #     pwsh: true
 - task: powershell@2
   displayName: '[Modularization ] Build Entra'
@@ -117,22 +111,14 @@ steps:
     script: |      
       ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
     pwsh: true
-- task: powershell@2
-  displayName: 'Create Module Help Files EntraBeta'
-  inputs:
-    targetType: inline
-    script: |
-      Import-Module PlatyPS
-      . ./build/common-functions.ps1
-      Create-ModuleHelp -Module EntraBeta
-    pwsh: true
 # - task: powershell@2
-#   displayName: 'Build EntraBeta'
+#   displayName: 'Create Module Help Files EntraBeta'
 #   inputs:
 #     targetType: inline
 #     script: |
-#       $MaximumFunctionCount=32768
-#       ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
+#       Import-Module PlatyPS
+#       . ./build/common-functions.ps1
+#       Create-ModuleHelp -Module EntraBeta
 #     pwsh: true
 - task: powershell@2
   displayName: '[Modularization ] Build EntraBeta'
@@ -191,39 +177,13 @@ steps:
     targetType: inline
     script: Install-Module Pester -scope currentuser -SkipPublisherCheck -Force
     pwsh: true
-# - task: powershell@2
-#   displayName: 'Run tests Entra'
-#   inputs:
-#     targetType: inline
-#     pwsh: true
-#     script: |
-#       cd test/module/entra
-#       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
-# - task: PublishTestResults@2
-#   inputs:
-#     testResultsFormat: NUnit
-#     testResultsFiles: "./test/results/pester-test-results-ad.xml"
-#     failTaskOnFailedTests: true
-# - task: powershell@2
-#   displayName: 'Run tests EntraBeta'  
-#   inputs:
-#     targetType: inline
-#     pwsh: true
-#     script: |
-#       cd test/module/entrabeta
-#       Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
-# - task: PublishTestResults@2
-#   inputs:
-#     testResultsFormat: NUnit
-#     testResultsFiles: "./test/results/pester-test-results-preview.xml"
-#     failTaskOnFailedTests: true
 - task: powershell@2
-  displayName: '[Modularization] Run tests Entra'
+  displayName: 'Run tests Entra'
   inputs:
     targetType: inline
     pwsh: true
     script: |
-      cd testVNext/Entra
+      cd test/Entra
       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:
@@ -231,12 +191,12 @@ steps:
     testResultsFiles: "./test/results/pester-test-results-ad.xml"
     failTaskOnFailedTests: true
 - task: powershell@2
-  displayName: '[Modularization] Run tests Entra Beta'
+  displayName: 'Run tests Entra Beta'
   inputs:
     targetType: inline
     pwsh: true
     script: |
-      cd testVNext/EntraBeta
+      cd test/EntraBeta
       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:

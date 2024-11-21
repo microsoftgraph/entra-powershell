@@ -18,15 +18,15 @@ function Split-Tests {
     
     switch ($Module) {
         'Entra' {
-            $TestSourceDirectory = "../test/module/Entra"
-            $MappingFilePath = '../moduleVNext/Entra/config/moduleMapping.json'
-            $OutputDirectory = '../testVNext/Entra'
+            $TestSourceDirectory = "../test_legacy/module/Entra"
+            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
+            $OutputDirectory = '../test/Entra'
             $modulePrefix = 'Microsoft.Graph.Entra'
         }
         'EntraBeta' {
-            $TestSourceDirectory = "../test/module/EntraBeta"
-            $MappingFilePath = "../moduleVNext/EntraBeta/config/moduleMapping.json"
-            $OutputDirectory = "../testVNext/EntraBeta"
+            $TestSourceDirectory = "../test_legacy/module/EntraBeta"
+            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
+            $OutputDirectory = "../test/EntraBeta"
             $modulePrefix = 'Microsoft.Graph.Entra.Beta'
         }
         default {

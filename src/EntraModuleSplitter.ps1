@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-. ../build/common-functions.ps1
+. (Join-Path $PSScriptRoot "../build/common-functions.ps1")
 # This class splits the larger Microsoft.Graph.Entra.psm1 or Microsoft.Graph.Entra.Beta.psm1 into separate files and also constructrs the submodule directories
 class EntraModuleSplitter {
     [string]$Header
@@ -25,17 +25,17 @@ class EntraModuleSplitter {
 
     [string] GetModuleFilePath([string]$source) {
         if ($source -eq 'Entra') {
-            return "..\bin\Microsoft.Graph.Entra.psm1"
+            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Graph.Entra.psm1")
         } else {
-            return "..\bin\Microsoft.Graph.Entra.Beta.psm1"
+            return (Join-Path $PSScriptRoot "..\bin\Microsoft.Graph.Entra.Beta.psm1")
         }
     }
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return "..\moduleVNext\Entra\"
+            return (Join-Path $PSScriptRoot "..\module\Entra\")
         } else {
-            return "..\moduleVNext\EntraBeta\"
+            return (Join-Path $PSScriptRoot "..\module\EntraBeta\")
         }
     }
 
@@ -142,9 +142,9 @@ class EntraModuleSplitter {
 [void] SplitEntraModule([string]$Module = 'Entra') {
 
        $JsonFilePath=if($Module -eq 'Entra'){
-          '../moduleVNext/Entra/config/moduleMapping.json'
+          (Join-Path $PSScriptRoot '../module/Entra/config/moduleMapping.json')
        }else{
-         '../moduleVNext/EntraBeta/config/moduleMapping.json'
+         (Join-Path $PSScriptRoot '../module/EntraBeta/config/moduleMapping.json')
        }
 		# Determine file paths and output directories
 		$psm1FilePath = $this.GetModuleFilePath($Module)
@@ -157,7 +157,7 @@ class EntraModuleSplitter {
 		$jsonContent = $this.ReadJsonFile($JsonFilePath)
 		$moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
 		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
-        Log-Message "ModuleOutputDirectry $moduleOutputDirectory" -Level 'ERROR'
+        
 		$this.CreateOutputDirectory($moduleOutputDirectory)
 
         Log-Message 'PSM1 Path $psm1FilePath' -Level 'WARNING'
@@ -256,9 +256,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta\"
+            (Join-Path $PSScriptRoot "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\")
         } else {
-            "..\moduleVNext\Entra\Microsoft.Graph.Entra\"
+            (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Graph.Entra\")
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {
