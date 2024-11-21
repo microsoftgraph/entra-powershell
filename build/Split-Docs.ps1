@@ -17,14 +17,14 @@ function Split-Docs {
     # Determine source directories and mapping file paths based on the Source parameter
     switch ($Module) {
         'Entra' {
-            $DocsSourceDirectory = "../module/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
-            $MappingFilePath = '../moduleVNext/Entra/config/moduleMapping.json'
-            $OutputDirectory='../moduleVNext/docs/entra-powershell-v1.0'
+            $DocsSourceDirectory = "../module_legacy/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
+            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
+            $OutputDirectory='../module/docs/entra-powershell-v1.0'
         }
         'EntraBeta' {
-            $DocsSourceDirectory = "../module/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
-            $MappingFilePath = "../moduleVNext/EntraBeta/config/moduleMapping.json"
-            $OutputDirectory="../moduleVNext/docs/entra-powershell-beta"
+            $DocsSourceDirectory = "../module_legacy/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
+            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
+            $OutputDirectory="../module/docs/entra-powershell-beta"
         }
         default {
             Log-Message -Message "[Split-Docs]: Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'

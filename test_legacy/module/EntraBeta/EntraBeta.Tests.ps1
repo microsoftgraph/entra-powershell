@@ -10,7 +10,7 @@ Import-Module Pester
 
 $psmPath = (Get-Module Microsoft.Graph.Entra.Beta).Path
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\EntraBeta"
-$mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\EntraBeta\*.Tests.ps1"
+$mockScriptsPath = join-path $psscriptroot "..\..\..\test_legacy\module\EntraBeta\*.Tests.ps1"
 
 $testOutputFile = "$testReportPath\TestResults.xml"
 if (!(test-path -path $testReportPath)) {new-item -path $testReportPath -itemtype directory}

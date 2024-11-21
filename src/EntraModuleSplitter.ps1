@@ -33,9 +33,9 @@ class EntraModuleSplitter {
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return "..\moduleVNext\Entra\"
+            return "..\module\Entra\"
         } else {
-            return "..\moduleVNext\EntraBeta\"
+            return "..\module\EntraBeta\"
         }
     }
 
@@ -142,9 +142,9 @@ class EntraModuleSplitter {
 [void] SplitEntraModule([string]$Module = 'Entra') {
 
        $JsonFilePath=if($Module -eq 'Entra'){
-          '../moduleVNext/Entra/config/moduleMapping.json'
+          '../module/Entra/config/moduleMapping.json'
        }else{
-         '../moduleVNext/EntraBeta/config/moduleMapping.json'
+         '../module/EntraBeta/config/moduleMapping.json'
        }
 		# Determine file paths and output directories
 		$psm1FilePath = $this.GetModuleFilePath($Module)
@@ -256,9 +256,9 @@ class EntraModuleSplitter {
 
     [string[]] GetModuleDirectories([string]$Module) {
         $startDirectory = if ($Module -eq 'EntraBeta') {
-            "..\moduleVNext\EntraBeta\Microsoft.Graph.Entra.Beta\"
+            "..\module\EntraBeta\Microsoft.Graph.Entra.Beta\"
         } else {
-            "..\moduleVNext\Entra\Microsoft.Graph.Entra\"
+            "..\module\Entra\Microsoft.Graph.Entra\"
         }
 
         $aliasFileName = if ($Module -eq 'EntraBeta') {

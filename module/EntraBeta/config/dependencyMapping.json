@@ -6,6 +6,5 @@
     "Microsoft.Graph.Entra.Beta.Governance":["Microsoft.Graph.Beta.Identity.Governance"],
     "Microsoft.Graph.Entra.Beta.SignIns":["Microsoft.Graph.Beta.Identity.SignIns"],
     "Microsoft.Graph.Entra.Beta.Applications":["Microsoft.Graph.Beta.Applications"],
-    "Microsoft.Graph.Entra.Beta.Reports":["Microsoft.Graph.Beta.Reports"],
-    "Microsoft.Graph.Entra.Beta.Invitations":["Microsoft.Graph.Beta.Identity.SignIns"]
+    "Microsoft.Graph.Entra.Beta.Reports":["Microsoft.Graph.Beta.Reports"]
 }

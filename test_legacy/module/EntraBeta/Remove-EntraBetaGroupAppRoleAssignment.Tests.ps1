@@ -5,7 +5,7 @@ BeforeAll {
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module .\test_legacy\module\Common-Functions.ps1 -Force
 
     Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }

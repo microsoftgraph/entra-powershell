@@ -30,9 +30,9 @@ if($null -eq (Get-Module -Name Microsoft.Graph.Entra.SignIns)){
 Import-Module Pester
 
 #$psmPath = (Get-Module Microsoft.Graph.Entra.Applications).Path
-$ps1FilesPath = join-path $psscriptroot "..\..\moduleVNext\Entra\Microsoft.Graph.Entra"
+$ps1FilesPath = join-path $psscriptroot "..\..\module\Entra\Microsoft.Graph.Entra"
 $testReportPath = join-path $psscriptroot "..\..\TestReport\Entra"
-$mockScriptsPath = join-path $psscriptroot "..\..\testVNext\Entra\*\*.Tests.ps1"
+$mockScriptsPath = join-path $psscriptroot "..\..\test\Entra\*\*.Tests.ps1"
 
 $testOutputFile = "$testReportPath\TestResults.xml"
 if (!(test-path -path $testReportPath)) {new-item -path $testReportPath -itemtype directory}
