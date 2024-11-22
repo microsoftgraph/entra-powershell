@@ -8,8 +8,8 @@ ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
+external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
+Module Name: Microsoft.Entra.Beta
 online version:
 schema: 2.0.0
 ---

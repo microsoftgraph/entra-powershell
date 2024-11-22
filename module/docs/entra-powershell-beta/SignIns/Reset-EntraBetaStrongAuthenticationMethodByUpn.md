@@ -1,6 +1,6 @@
 ---
-title: Reset-EntraStrongAuthenticationMethodByUpn
-description: This article provides details on the Reset-EntraStrongAuthenticationMethodByUpn command.
+title: Reset-EntraBetaStrongAuthenticationMethodByUpn
+description: This article provides details on the Reset-EntraBetaStrongAuthenticationMethodByUpn command.
 
 
 ms.topic: reference
@@ -10,14 +10,14 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Authentication-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Reset-EntraStrongAuthenticationMethodByUpn
+external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Reset-EntraBetaStrongAuthenticationMethodByUpn
 
 schema: 2.0.0
 ---
 
-# Reset-EntraStrongAuthenticationMethodByUpn
+# Reset-EntraBetaStrongAuthenticationMethodByUpn
 
 ## Synopsis
 
@@ -26,14 +26,14 @@ Resets the strong authentication method using the User Principal Name (UPN).
 ## Syntax
 
 ```powershell
-Reset-EntraStrongAuthenticationMethodByUpn
+Reset-EntraBetaStrongAuthenticationMethodByUpn
  -UserPrincipalName <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Reset-EntraStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN).
+The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN).
 
 ## Examples
 
@@ -41,7 +41,7 @@ The `Reset-EntraStrongAuthenticationMethodByUpn` cmdlet resets the strong authen
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite', 'UserAuthenticationMethod.ReadWrite.All'
-Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'SawyerM@contoso.com'
+Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'SawyerM@contoso.com'
 ```
 
 This example demonstrates how to reset the strong authentication method by using the User Principal Name (UPN).

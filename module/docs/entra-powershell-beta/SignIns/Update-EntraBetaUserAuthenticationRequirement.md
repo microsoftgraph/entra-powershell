@@ -9,7 +9,7 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.Applications-help.xml
+external help file: Microsoft.Entra.Beta.SignIns-help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Update-EntraBetaUserAuthenticationRequirement
 
