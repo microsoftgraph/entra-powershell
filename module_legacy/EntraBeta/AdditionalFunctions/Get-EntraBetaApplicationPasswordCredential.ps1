@@ -5,35 +5,35 @@
 function Get-EntraBetaApplicationPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("ObjectId")]
-    [System.String] $ApplicationId,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias('ObjectId')]
+        [System.String] $ApplicationId,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
 
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $baseUri = "https://graph.microsoft.com/beta/applications/$ApplicationId/passwordCredentials"
-        $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri"
+        $params['Method'] = 'GET'
+        $params['Uri'] = "$baseUri"
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
         try {
             $response = $response.value
+        } catch {
+            Write-Error $_.Exception.Message
         }
-        catch {}
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 $CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_.CustomKeyIdentifier)))
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $CustomKeyIdentifier -Force
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value endDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value startDateTime
             }
         }
-        if($response)
-        {
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential
@@ -43,14 +43,12 @@ function Get-EntraBetaApplicationPasswordCredential {
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
                 $userList += $userType
-            } 
-            if($null -ne $PSBoundParameters["Property"])
-            {
-                $userList | Select-Object $PSBoundParameters["Property"]
             }
-            else {
+            if ($null -ne $PSBoundParameters['Property']) {
+                $userList | Select-Object $PSBoundParameters['Property']
+            } else {
                 $userList
-            } 
+            }
         }
     }
 }
