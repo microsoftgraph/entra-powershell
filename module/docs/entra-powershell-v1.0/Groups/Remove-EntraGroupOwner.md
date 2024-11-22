@@ -8,7 +8,7 @@ ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-external help file: Microsoft.Entra-Help.xml
+external help file: Microsoft.Entra.Groups-Help.xml
 Module Name: Microsoft.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraGroupOwner
 

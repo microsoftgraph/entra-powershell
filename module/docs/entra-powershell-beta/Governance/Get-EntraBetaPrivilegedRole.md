@@ -1,5 +1,5 @@
 ---
-external help file: Microsoft.Entra.Beta-help.xml
+external help file: Microsoft.Entra.Beta.Governance-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivilegedRole
 

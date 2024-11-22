@@ -8,7 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Entra-Help.xml
+external help file: Microsoft.Entra.Users-Help.xml
 Module Name: Microsoft.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraUserAppRoleAssignment
 
