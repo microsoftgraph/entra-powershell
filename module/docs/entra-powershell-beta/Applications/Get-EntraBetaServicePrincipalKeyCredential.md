@@ -10,7 +10,7 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta-Help.xml
+external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalKeyCredential
 

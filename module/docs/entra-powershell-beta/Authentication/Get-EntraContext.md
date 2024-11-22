@@ -9,7 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutung
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Entra.Beta-Help.xml
+external help file: Microsoft.Entra.Beta.Authentication-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraContext
 

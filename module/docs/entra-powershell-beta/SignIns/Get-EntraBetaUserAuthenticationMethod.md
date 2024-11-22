@@ -1,6 +1,6 @@
 ---
-title: Get-EntraUserAuthenticationMethod
-description: This article provides details on the Get-EntraUserAuthenticationMethod command.
+title: Get-EntraBetaUserAuthenticationMethod
+description: This article provides details on the Get-EntraBetaUserAuthenticationMethod command.
 
 
 ms.topic: reference
@@ -9,14 +9,14 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserAuthenticationMethod
+external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserAuthenticationMethod
 
 schema: 2.0.0
 ---
 
-# Get-EntraUserAuthenticationMethod
+# Get-EntraBetaUserAuthenticationMethod
 
 ## Synopsis
 
@@ -25,14 +25,14 @@ Retrieve a list of a user's registered authentication methods.
 ## Syntax
 
 ```powershell
-Get-EntraUserAuthenticationMethod
+Get-EntraBetaUserAuthenticationMethod
  -UserId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraUserAuthenticationMethod` cmdlet retrieves a list of a user's registered authentication methods. An authentication method is a way for a user to verify their identity, such as a password, phone (SMS or voice), or FIDO2 security key.
+The `Get-EntraBetaUserAuthenticationMethod` cmdlet retrieves a list of a user's registered authentication methods. An authentication method is a way for a user to verify their identity, such as a password, phone (SMS or voice), or FIDO2 security key.
 
 In delegated scenarios involving work or school accounts, where the signed-in user is acting on behalf of another user, the signed-in user must be assigned either a supported Microsoft Entra role or a custom role with the necessary permissions. For this operation, the following least privileged roles are supported:
 
@@ -46,7 +46,7 @@ In delegated scenarios involving work or school accounts, where the signed-in us
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.Read.All'
-Get-EntraUserAuthenticationMethod -UserId 'SawyerM@Contoso.com' | Select-Object Id, DisplayName, AuthenticationMethodType
+Get-EntraBetaUserAuthenticationMethod -UserId 'SawyerM@Contoso.com' | Select-Object Id, DisplayName, AuthenticationMethodType
 ```
 
 ```Output

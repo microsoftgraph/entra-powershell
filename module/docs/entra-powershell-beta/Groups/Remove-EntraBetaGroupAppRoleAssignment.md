@@ -7,7 +7,7 @@ ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-external help file: Microsoft.Entra.Beta-Help.xml
+external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaGroupAppRoleAssignment
 
