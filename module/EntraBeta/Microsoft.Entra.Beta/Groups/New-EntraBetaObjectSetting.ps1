@@ -7,13 +7,13 @@ function New-EntraBetaObjectSetting {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $TargetType,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Microsoft.Open.MSGraph.Model.DirectorySetting] $DirectorySetting,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TargetObjectId,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TargetType
+    [System.String] $TargetObjectId
     )
 
     PROCESS {  

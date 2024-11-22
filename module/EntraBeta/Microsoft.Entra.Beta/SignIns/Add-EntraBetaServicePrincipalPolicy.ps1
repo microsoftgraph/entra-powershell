@@ -7,10 +7,10 @@ function Add-EntraBetaServicePrincipalPolicy {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [System.String] $RefObjectId,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $RefObjectId
+    [System.String] $Id
     )
 
     PROCESS {        

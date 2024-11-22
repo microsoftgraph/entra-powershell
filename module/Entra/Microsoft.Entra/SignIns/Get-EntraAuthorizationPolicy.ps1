@@ -52,4 +52,4 @@ function Get-EntraAuthorizationPolicy {
             $policyList 
         }
     }
-}# ------------------------------------------------------------------------------
+}

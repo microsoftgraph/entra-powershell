@@ -9,20 +9,20 @@ function New-EntraBetaPolicy {
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
                 
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $DisplayName,
+                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AlternativeIdentifier,
-                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
+    [System.Collections.Generic.List`1[System.String]] $Definition,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
     [System.String] $Type,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Collections.Generic.List`1[System.String]] $Definition
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $AlternativeIdentifier
     )
 
     PROCESS {    

@@ -7,10 +7,10 @@ function Update-EntraSignedInUserPassword {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Security.SecureString] $CurrentPassword,
+    [System.Security.SecureString] $NewPassword,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Security.SecureString] $NewPassword
+    [System.Security.SecureString] $CurrentPassword
     )
 
     PROCESS {    

@@ -7,13 +7,16 @@ function New-EntraPermissionGrantConditionSet {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds,
+    [System.Nullable`1[System.Boolean]] $ClientApplicationsFromVerifiedPublisherOnly,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $PolicyId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $Permissions,
+    [System.String] $PermissionType,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ResourceApplication,
+    [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ConditionSetType,
@@ -22,19 +25,16 @@ function New-EntraPermissionGrantConditionSet {
     [System.Collections.Generic.List`1[System.String]] $ClientApplicationIds,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PermissionType,
+    [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $ClientApplicationsFromVerifiedPublisherOnly,
+    [System.Collections.Generic.List`1[System.String]] $Permissions,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PermissionClassification,
+    [System.String] $ResourceApplication,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $PolicyId
+    [System.String] $PermissionClassification
     )
 
     PROCESS {    

@@ -7,9 +7,6 @@ function Set-EntraBetaTenantDetail {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $TechnicalNotificationMails,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $SecurityComplianceNotificationMails,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -19,7 +16,10 @@ function Set-EntraBetaTenantDetail {
     [System.Collections.Generic.List`1[System.String]] $MarketingNotificationEmails,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.AzureAD.Model.PrivacyProfile] $PrivacyProfile
+    [Microsoft.Open.AzureAD.Model.PrivacyProfile] $PrivacyProfile,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $TechnicalNotificationMails
     )
 
     PROCESS {

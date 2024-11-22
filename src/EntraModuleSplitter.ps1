@@ -80,7 +80,7 @@ class EntraModuleSplitter {
     $functionContent = $function.Content
 
     # Append the function contents to the header
-    $ps1Content = $header + "`n" + $functionContent
+    $ps1Content = $header + "`n" + $functionContent+"`n"
 
     # Add the Enable-Entra*AzureADAlias function to the root of the module directory
     if ($functionName -eq $specificFunctionName) {
@@ -129,7 +129,7 @@ class EntraModuleSplitter {
         foreach ($functionContent in $functionContents) {
             # Construct the full path for the function file
             $functionName = $functionContent.Name
-            $headerPs1Content = $this.Header + "`n" + $functionContent.Content
+            $headerPs1Content = $this.Header + "`n" + $functionContent.Content+ "`n"+"`n"
             $functionFilePath = Join-Path -Path $subDir.FullName -ChildPath "$functionName.ps1"
 
             # Write the function to the specified file
@@ -139,6 +139,13 @@ class EntraModuleSplitter {
     }
 }
 
+[string] GetModuleName([string] $Module="Entra"){
+     if ($Module -eq 'Entra') {
+            return "Microsoft.Entra"
+        } else {
+            return "Microsoft.Entra.Beta"
+        }
+}
 [void] SplitEntraModule([string]$Module = 'Entra') {
 
        $JsonFilePath=if($Module -eq 'Entra'){
@@ -155,7 +162,7 @@ class EntraModuleSplitter {
 		$this.CreateOutputDirectory($unmappedDirectory)
 
 		$jsonContent = $this.ReadJsonFile($JsonFilePath)
-		$moduleName = [System.IO.Path]::GetFileNameWithoutExtension($psm1FilePath)
+		$moduleName = $this.GetModuleName($Module)
 		$moduleOutputDirectory = Join-Path -Path $outputDirectory -ChildPath $moduleName
         
 		$this.CreateOutputDirectory($moduleOutputDirectory)

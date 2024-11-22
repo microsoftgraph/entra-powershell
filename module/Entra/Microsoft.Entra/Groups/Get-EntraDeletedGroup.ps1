@@ -4,6 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 
+
 function Get-EntraDeletedGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (

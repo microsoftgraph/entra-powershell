@@ -5,15 +5,15 @@
 function Get-EntraBetaServicePrincipal {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias('ObjectId')]            
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId,
                 
     [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $SearchString,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
+    [Alias('ObjectId')]            
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ServicePrincipalId,
                 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
@@ -27,28 +27,20 @@ function Get-EntraBetaServicePrincipal {
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{ObjectId = "Id"; SearchString = "Filter"}
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ServicePrincipalId"])
-    {
-        $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($null -ne $PSBoundParameters["SearchString"])
     {
         $TmpValue = $PSBoundParameters["SearchString"]
         $Value = "publisherName eq '$TmpValue' or (displayName eq '$TmpValue' or startswith(displayName,'$TmpValue'))"
         $params["Filter"] = $Value
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if($null -ne $PSBoundParameters["Filter"])
     {
@@ -59,40 +51,9 @@ function Get-EntraBetaServicePrincipal {
         $Value = $TmpValue
         $params["Filter"] = $Value
     }
-    if($null -ne $PSBoundParameters["All"])
-    {
-        if($PSBoundParameters["All"])
-        {
-            $params["All"] = $PSBoundParameters["All"]
-        }
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
     if ($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
@@ -101,6 +62,45 @@ function Get-EntraBetaServicePrincipal {
     if ($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["ServicePrincipalId"])
+    {
+        $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if($null -ne $PSBoundParameters["All"])
+    {
+        if($PSBoundParameters["All"])
+        {
+            $params["All"] = $PSBoundParameters["All"]
+        }
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
     if ($PSBoundParameters.ContainsKey("Top"))
     {

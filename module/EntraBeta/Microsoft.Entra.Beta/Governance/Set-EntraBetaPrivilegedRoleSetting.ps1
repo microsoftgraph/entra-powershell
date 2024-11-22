@@ -7,37 +7,37 @@ function Set-EntraBetaPrivilegedRoleSetting {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $AdminMemberSettings,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $RoleDefinitionId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ResourceId,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ProviderId,
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $UserEligibleSettings,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $UserMemberSettings,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $AdminEligibleSettings,
+    [System.String] $RoleDefinitionId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $UserEligibleSettings
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $AdminMemberSettings,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]] $AdminEligibleSettings,
+                
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ProviderId,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $ResourceId
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($null -ne $PSBoundParameters["AdminMemberSettings"])
+    if($null -ne $PSBoundParameters["UserEligibleSettings"])
     {
-        $TmpValue = $PSBoundParameters["AdminMemberSettings"]
+        $TmpValue = $PSBoundParameters["UserEligibleSettings"]
                     $a = @()
             foreach($setting in $TmpValue) {
               $Temp = $setting | ConvertTo-Json
@@ -45,55 +45,35 @@ function Set-EntraBetaPrivilegedRoleSetting {
             }
 
             $Value = $a  
-        $params["AdminMemberSettings"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["RoleDefinitionId"])
-    {
-        $params["RoleDefinitionId"] = $PSBoundParameters["RoleDefinitionId"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["ResourceId"])
-    {
-        $params["ResourceId"] = $PSBoundParameters["ResourceId"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["GovernanceRoleSettingId"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["ProviderId"])
-    {
-        $params["PrivilegedAccessId"] = $PSBoundParameters["ProviderId"]
+        $params["UserEligibleSettings"] = $Value
     }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if($PSBoundParameters.ContainsKey("Verbose"))
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["OutBuffer"])
     {
         $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if($null -ne $PSBoundParameters["UserMemberSettings"])
     {
@@ -107,17 +87,37 @@ function Set-EntraBetaPrivilegedRoleSetting {
             $Value = $a 
         $params["UserMemberSettings"] = $Value
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
+    if ($null -ne $PSBoundParameters["RoleDefinitionId"])
     {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        $params["RoleDefinitionId"] = $PSBoundParameters["RoleDefinitionId"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if($null -ne $PSBoundParameters["AdminMemberSettings"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $TmpValue = $PSBoundParameters["AdminMemberSettings"]
+                    $a = @()
+            foreach($setting in $TmpValue) {
+              $Temp = $setting | ConvertTo-Json
+              $a += $Temp
+            }
+
+            $Value = $a  
+        $params["AdminMemberSettings"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["Id"])
+    {
+        $params["GovernanceRoleSettingId"] = $PSBoundParameters["Id"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if($null -ne $PSBoundParameters["AdminEligibleSettings"])
     {
@@ -131,21 +131,21 @@ function Set-EntraBetaPrivilegedRoleSetting {
             $Value = $a  
         $params["AdminEligibleSettings"] = $Value
     }
-    if ($null -ne $PSBoundParameters["WarningAction"])
+    if ($null -ne $PSBoundParameters["ProviderId"])
     {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["PrivilegedAccessId"] = $PSBoundParameters["ProviderId"]
     }
-    if($null -ne $PSBoundParameters["UserEligibleSettings"])
+    if ($null -ne $PSBoundParameters["InformationAction"])
     {
-        $TmpValue = $PSBoundParameters["UserEligibleSettings"]
-                    $a = @()
-            foreach($setting in $TmpValue) {
-              $Temp = $setting | ConvertTo-Json
-              $a += $Temp
-            }
-
-            $Value = $a  
-        $params["UserEligibleSettings"] = $Value
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["ResourceId"])
+    {
+        $params["ResourceId"] = $PSBoundParameters["ResourceId"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")
