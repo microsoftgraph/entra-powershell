@@ -20,17 +20,49 @@ function New-EntraBetaGroupLifecyclePolicy {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
     if ($null -ne $PSBoundParameters["ManagedGroupTypes"])
     {
         $params["ManagedGroupTypes"] = $PSBoundParameters["ManagedGroupTypes"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["GroupLifetimeInDays"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["GroupLifetimeInDays"] = $PSBoundParameters["GroupLifetimeInDays"]
+    }
+    if ($null -ne $PSBoundParameters["AlternateNotificationEmails"])
+    {
+        $params["AlternateNotificationEmails"] = $PSBoundParameters["AlternateNotificationEmails"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
@@ -40,45 +72,13 @@ function New-EntraBetaGroupLifecyclePolicy {
     {
         $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["GroupLifetimeInDays"])
-    {
-        $params["GroupLifetimeInDays"] = $PSBoundParameters["GroupLifetimeInDays"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["AlternateNotificationEmails"])
-    {
-        $params["AlternateNotificationEmails"] = $PSBoundParameters["AlternateNotificationEmails"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

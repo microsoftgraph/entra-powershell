@@ -40,5 +40,6 @@ function Remove-EntraPolicy {
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response
     }     
-}# ------------------------------------------------------------------------------
+}
+
 

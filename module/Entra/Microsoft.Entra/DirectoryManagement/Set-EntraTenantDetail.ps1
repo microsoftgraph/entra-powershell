@@ -7,7 +7,7 @@ function Set-EntraTenantDetail {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.AzureAD.Model.PrivacyProfile] $PrivacyProfile,
+    [System.Collections.Generic.List`1[System.String]] $TechnicalNotificationMails,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $MarketingNotificationEmails,
@@ -19,7 +19,7 @@ function Set-EntraTenantDetail {
     [System.Collections.Generic.List`1[System.String]] $SecurityComplianceNotificationPhones,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $TechnicalNotificationMails
+    [Microsoft.Open.AzureAD.Model.PrivacyProfile] $PrivacyProfile
     )
 
     PROCESS {

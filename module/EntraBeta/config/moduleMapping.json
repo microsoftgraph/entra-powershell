@@ -287,5 +287,14 @@
   "Remove-EntraBetaDirectoryRoleDefinition": "Governance",
   "Remove-EntraBetaServicePrincipalAppRoleAssignment": "Applications",
   "Set-EntraBetaDirectoryRoleDefinition": "Governance",
-  "Update-EntraBetaUserFromFederated": "Users"
+  "Update-EntraBetaUserFromFederated": "Users",
+  "Enable-EntraBetaGlobalSecureAccessTenant":"NetworkAccess",
+  "Get-EntraBetaGlobalSecureAccessTenantStatus":"NetworkAccess",
+  "Get-EntraBetaPrivateAccessApplication":"NetworkAccess",
+  "Get-EntraBetaUserAuthenticationMethod":"SignIns",
+  "Get-EntraBetaUserAuthenticationRequirement":"SignIns",
+  "New-EntraBetaPrivateAccessApplication":"NetworkAccess",
+  "Update-EntraBetaOauth2PermissionGrant":"SignIns",
+  "Update-EntraBetaUserAuthenticationRequirement":"SignIns"
+
 }

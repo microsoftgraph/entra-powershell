@@ -6,12 +6,6 @@ function Set-EntraBetaUserThumbnailPhoto {
     [CmdletBinding(DefaultParameterSetName = 'File')]
     param (
                 
-    [Parameter(ParameterSetName = "Stream", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.IO.Stream] $FileStream,
-                
-    [Parameter(ParameterSetName = "ByteArray", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Byte[]] $ImageByteArray,
-                
     [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $FilePath,
     [Alias('ObjectId')]            
@@ -19,49 +13,19 @@ function Set-EntraBetaUserThumbnailPhoto {
     [Parameter(ParameterSetName = "Stream")]
     [Parameter(ParameterSetName = "File")]
     [Parameter(ParameterSetName = "ByteArray")]
-    [System.String] $UserId
+    [System.String] $UserId,
+                
+    [Parameter(ParameterSetName = "ByteArray", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Byte[]] $ImageByteArray,
+                
+    [Parameter(ParameterSetName = "Stream", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.IO.Stream] $FileStream
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["FileStream"])
-    {
-        $params["FileStream"] = $PSBoundParameters["FileStream"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ImageByteArray"])
-    {
-        $params["ImageByteArray"] = $PSBoundParameters["ImageByteArray"]
-    }
-    if ($null -ne $PSBoundParameters["FilePath"])
-    {
-        $params["InFile"] = $PSBoundParameters["FilePath"]
-    }
-    if ($null -ne $PSBoundParameters["UserId"])
-    {
-        $params["UserId"] = $PSBoundParameters["UserId"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
     if ($null -ne $PSBoundParameters["ProgressAction"])
     {
         $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
@@ -78,10 +42,6 @@ function Set-EntraBetaUserThumbnailPhoto {
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
@@ -89,6 +49,46 @@ function Set-EntraBetaUserThumbnailPhoto {
     if ($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["FilePath"])
+    {
+        $params["InFile"] = $PSBoundParameters["FilePath"]
+    }
+    if ($null -ne $PSBoundParameters["UserId"])
+    {
+        $params["UserId"] = $PSBoundParameters["UserId"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["ImageByteArray"])
+    {
+        $params["ImageByteArray"] = $PSBoundParameters["ImageByteArray"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["FileStream"])
+    {
+        $params["FileStream"] = $PSBoundParameters["FileStream"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -57,5 +57,5 @@ function Set-EntraFeatureRolloutPolicy {
         $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
         $response 
     }
-}# ------------------------------------------------------------------------------
+}
 

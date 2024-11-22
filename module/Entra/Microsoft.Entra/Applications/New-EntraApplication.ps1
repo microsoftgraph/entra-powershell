@@ -7,19 +7,40 @@ function New-EntraApplication {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
+    [System.String] $TokenEncryptionKeyId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.WebApplication] $Web,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $DisplayName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]] $AddIns,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
+    [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
@@ -28,66 +49,36 @@ function New-EntraApplication {
     [Microsoft.Open.MSGraph.Model.ParentalControlSettings] $ParentalControlSettings,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ApiApplication] $Api,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims,
+    [System.String] $GroupMembershipClaims,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $SignInAudience,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
+    [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $TokenEncryptionKeyId,
+    [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $GroupMembershipClaims,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.WebApplication] $Web
+    [Microsoft.Open.MSGraph.Model.ApiApplication] $Api
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($null -ne $PSBoundParameters["PasswordCredentials"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $TmpValue = $PSBoundParameters["PasswordCredentials"]
-                    $a = @()
-            $input = $TmpValue
-            foreach($v in $input)
-            {
-                $Temp = $v | ConvertTo-Json
-                $hash = @{}
-
-                (ConvertFrom-Json $Temp).psobject.properties | Foreach { if($null -ne $_.Value){ $hash[$_.Name] = $_.Value }}
-                $a += $hash
-            }
-
-            $Value = $a
-        $params["PasswordCredentials"] = $Value
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
+    if ($null -ne $PSBoundParameters["TokenEncryptionKeyId"])
     {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["TokenEncryptionKeyId"] = $PSBoundParameters["TokenEncryptionKeyId"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if($null -ne $PSBoundParameters["KeyCredentials"])
     {
@@ -111,6 +102,30 @@ function New-EntraApplication {
             $Value = $a
         $params["KeyCredentials"] = $Value
     }
+    if($null -ne $PSBoundParameters["Web"])
+    {
+        $TmpValue = $PSBoundParameters["Web"]
+                   $Temp = $TmpValue | ConvertTo-Json 
+            
+            $Value = $Temp
+        $params["Web"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["ProgressAction"])
+    {
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["DisplayName"])
+    {
+        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+    }
+    if ($null -ne $PSBoundParameters["IsDeviceOnlyAuthSupported"])
+    {
+        $params["IsDeviceOnlyAuthSupported"] = $PSBoundParameters["IsDeviceOnlyAuthSupported"]
+    }
     if($null -ne $PSBoundParameters["AppRoles"])
     {
         $TmpValue = $PSBoundParameters["AppRoles"]
@@ -128,9 +143,27 @@ function New-EntraApplication {
             $Value = $a
         $params["AppRoles"] = $Value
     }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["IdentifierUris"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        $params["IdentifierUris"] = $PSBoundParameters["IdentifierUris"]
+    }
+    if($null -ne $PSBoundParameters["RequiredResourceAccess"])
+    {
+        $TmpValue = $PSBoundParameters["RequiredResourceAccess"]
+                    $Value = $TmpValue | ConvertTo-Json
+        $params["RequiredResourceAccess"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["IsFallbackPublicClient"])
+    {
+        $params["IsFallbackPublicClient"] = $PSBoundParameters["IsFallbackPublicClient"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if($null -ne $PSBoundParameters["AddIns"])
     {
@@ -140,23 +173,50 @@ function New-EntraApplication {
             $Value = $Temp
         $params["AddIns"] = $Value
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["WarningVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if($null -ne $PSBoundParameters["RequiredResourceAccess"])
+    if($null -ne $PSBoundParameters["InformationalUrl"])
     {
-        $TmpValue = $PSBoundParameters["RequiredResourceAccess"]
-                    $Value = $TmpValue | ConvertTo-Json
-        $params["RequiredResourceAccess"] = $Value
+        $TmpValue = $PSBoundParameters["InformationalUrl"]
+                    $Temp = $TmpValue | ConvertTo-Json 
+            
+            $Value = $Temp
+        $params["Info"] = $Value
+    }
+    if($null -ne $PSBoundParameters["PasswordCredentials"])
+    {
+        $TmpValue = $PSBoundParameters["PasswordCredentials"]
+                    $a = @()
+            $input = $TmpValue
+            foreach($v in $input)
+            {
+                $Temp = $v | ConvertTo-Json
+                $hash = @{}
+
+                (ConvertFrom-Json $Temp).psobject.properties | Foreach { if($null -ne $_.Value){ $hash[$_.Name] = $_.Value }}
+                $a += $hash
+            }
+
+            $Value = $a
+        $params["PasswordCredentials"] = $Value
     }
     if ($null -ne $PSBoundParameters["Tags"])
     {
         $params["Tags"] = $PSBoundParameters["Tags"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if ($null -ne $PSBoundParameters["InformationAction"])
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
@@ -170,50 +230,17 @@ function New-EntraApplication {
             $Value = $Temp
         $params["ParentalControlSettings"] = $Value
     }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    if ($null -ne $PSBoundParameters["GroupMembershipClaims"])
     {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["GroupMembershipClaims"] = $PSBoundParameters["GroupMembershipClaims"]
     }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["SignInAudience"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["SignInAudience"] = $PSBoundParameters["SignInAudience"]
     }
     if ($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($null -ne $PSBoundParameters["Api"])
-    {
-        $TmpValue = $PSBoundParameters["Api"]
-                
-            $Temp = $TmpValue | ConvertTo-Json 
-            
-            $Value = $Temp
-        $params["Api"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["IsDeviceOnlyAuthSupported"])
-    {
-        $params["IsDeviceOnlyAuthSupported"] = $PSBoundParameters["IsDeviceOnlyAuthSupported"]
-    }
-    if($null -ne $PSBoundParameters["PublicClient"])
-    {
-        $TmpValue = $PSBoundParameters["PublicClient"]
-                    $Temp = $TmpValue | ConvertTo-Json 
-            
-            $Value = $Temp
-        $params["PublicClient"] = $Value
-    }
-    if($null -ne $PSBoundParameters["InformationalUrl"])
-    {
-        $TmpValue = $PSBoundParameters["InformationalUrl"]
-                    $Temp = $TmpValue | ConvertTo-Json 
-            
-            $Value = $Temp
-        $params["Info"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if($null -ne $PSBoundParameters["OptionalClaims"])
     {
@@ -223,49 +250,22 @@ function New-EntraApplication {
             $Value = $Temp
         $params["OptionalClaims"] = $Value
     }
-    if ($null -ne $PSBoundParameters["InformationAction"])
+    if($null -ne $PSBoundParameters["PublicClient"])
     {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["SignInAudience"])
-    {
-        $params["SignInAudience"] = $PSBoundParameters["SignInAudience"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["IsFallbackPublicClient"])
-    {
-        $params["IsFallbackPublicClient"] = $PSBoundParameters["IsFallbackPublicClient"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-    if ($null -ne $PSBoundParameters["TokenEncryptionKeyId"])
-    {
-        $params["TokenEncryptionKeyId"] = $PSBoundParameters["TokenEncryptionKeyId"]
-    }
-    if ($null -ne $PSBoundParameters["GroupMembershipClaims"])
-    {
-        $params["GroupMembershipClaims"] = $PSBoundParameters["GroupMembershipClaims"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["IdentifierUris"])
-    {
-        $params["IdentifierUris"] = $PSBoundParameters["IdentifierUris"]
-    }
-    if($null -ne $PSBoundParameters["Web"])
-    {
-        $TmpValue = $PSBoundParameters["Web"]
-                   $Temp = $TmpValue | ConvertTo-Json 
+        $TmpValue = $PSBoundParameters["PublicClient"]
+                    $Temp = $TmpValue | ConvertTo-Json 
             
             $Value = $Temp
-        $params["Web"] = $Value
+        $params["PublicClient"] = $Value
+    }
+    if($null -ne $PSBoundParameters["Api"])
+    {
+        $TmpValue = $PSBoundParameters["Api"]
+                
+            $Temp = $TmpValue | ConvertTo-Json 
+            
+            $Value = $Temp
+        $params["Api"] = $Value
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

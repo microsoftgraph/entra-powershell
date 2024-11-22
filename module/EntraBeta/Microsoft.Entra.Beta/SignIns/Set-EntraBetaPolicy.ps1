@@ -10,13 +10,13 @@ function Set-EntraBetaPolicy {
     [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $DisplayName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AlternativeIdentifier,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName,
+    [System.Collections.Generic.List`1[System.String]] $Definition,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
@@ -25,7 +25,7 @@ function Set-EntraBetaPolicy {
     [System.String] $Type,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $Definition
+    [System.String] $AlternativeIdentifier
     )
 
     PROCESS {    

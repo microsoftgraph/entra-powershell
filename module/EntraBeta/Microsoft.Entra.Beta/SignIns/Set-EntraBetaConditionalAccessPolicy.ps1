@@ -7,68 +7,64 @@ function Set-EntraBetaConditionalAccessPolicy {
     param (
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ModifiedDateTime,
+    [System.String] $State,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $PolicyId,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $State,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $CreatedDateTime,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls] $SessionControls,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $ModifiedDateTime,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Id,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions
+    [System.String] $CreatedDateTime
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["ModifiedDateTime"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["ModifiedDateTime"] = $PSBoundParameters["ModifiedDateTime"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+    }
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
         $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
     }
-    if ($null -ne $PSBoundParameters["PolicyId"])
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["ConditionalAccessPolicyId"] = $PSBoundParameters["PolicyId"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if ($null -ne $PSBoundParameters["State"])
     {
         $params["State"] = $PSBoundParameters["State"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
     if($null -ne $PSBoundParameters["GrantControls"])
     {
@@ -81,9 +77,17 @@ function Set-EntraBetaConditionalAccessPolicy {
             $Value = $hash
         $params["GrantControls"] = $Value
     }
-    if ($null -ne $PSBoundParameters["CreatedDateTime"])
+    if ($null -ne $PSBoundParameters["PolicyId"])
     {
-        $params["CreatedDateTime"] = $PSBoundParameters["CreatedDateTime"]
+        $params["ConditionalAccessPolicyId"] = $PSBoundParameters["PolicyId"]
+    }
+    if ($null -ne $PSBoundParameters["DisplayName"])
+    {
+        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if($null -ne $PSBoundParameters["SessionControls"])
     {
@@ -116,42 +120,6 @@ function Set-EntraBetaConditionalAccessPolicy {
             if($TmpValue.PersistentBrowser) { $hash["PersistentBrowser"] = $PersistentBrowser }
             $Value = $hash
         $params["SessionControls"] = $Value
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["Id"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
     if($null -ne $PSBoundParameters["Conditions"])
     {
@@ -192,6 +160,38 @@ function Set-EntraBetaConditionalAccessPolicy {
             if($TmpValue.Users) { $hash["Users"] = $Users }
             $Value = $hash
         $params["Conditions"] = $Value
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
+    }
+    if ($null -ne $PSBoundParameters["ModifiedDateTime"])
+    {
+        $params["ModifiedDateTime"] = $PSBoundParameters["ModifiedDateTime"]
+    }
+    if ($null -ne $PSBoundParameters["Id"])
+    {
+        $params["Id"] = $PSBoundParameters["Id"]
+    }
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    {
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationAction"])
+    {
+        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["CreatedDateTime"])
+    {
+        $params["CreatedDateTime"] = $PSBoundParameters["CreatedDateTime"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

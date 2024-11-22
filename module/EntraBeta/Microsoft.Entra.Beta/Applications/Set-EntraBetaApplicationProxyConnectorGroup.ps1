@@ -33,5 +33,5 @@ function Set-EntraBetaApplicationProxyConnectorGroup {
 
         Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body
     }        
-}# ------------------------------------------------------------------------------
+}
 

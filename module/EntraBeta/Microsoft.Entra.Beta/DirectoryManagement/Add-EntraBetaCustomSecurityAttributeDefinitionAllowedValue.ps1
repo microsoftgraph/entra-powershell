@@ -20,37 +20,33 @@ function Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue {
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["IsActive"])
-    {
-        $params["IsActive"] = $PSBoundParameters["IsActive"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
     if($PSBoundParameters.ContainsKey("Debug"))
     {
         $params["Debug"] = $PSBoundParameters["Debug"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["OutBuffer"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["IsActive"])
+    {
+        $params["IsActive"] = $PSBoundParameters["IsActive"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["OutVariable"])
+    {
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
@@ -60,25 +56,29 @@ function Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue {
     {
         $params["Id"] = $PSBoundParameters["Id"]
     }
-    if ($null -ne $PSBoundParameters["CustomSecurityAttributeDefinitionId"])
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["CustomSecurityAttributeDefinitionId"] = $PSBoundParameters["CustomSecurityAttributeDefinitionId"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["WarningAction"])
+    if ($null -ne $PSBoundParameters["ErrorAction"])
     {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
+    {
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if ($null -ne $PSBoundParameters["CustomSecurityAttributeDefinitionId"])
+    {
+        $params["CustomSecurityAttributeDefinitionId"] = $PSBoundParameters["CustomSecurityAttributeDefinitionId"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

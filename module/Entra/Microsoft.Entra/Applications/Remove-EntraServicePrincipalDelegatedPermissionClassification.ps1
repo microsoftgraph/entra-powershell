@@ -7,10 +7,10 @@ function Remove-EntraServicePrincipalDelegatedPermissionClassification {
     param (
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [System.String] $ServicePrincipalId,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId
+    [System.String] $Id
     )
 
     PROCESS{

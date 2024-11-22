@@ -6,20 +6,11 @@ function New-EntraBetaDirectoryRoleDefinition {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $TemplateId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.Nullable`1[System.Boolean]] $IsEnabled,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Version,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition]] $InheritsPermissionsFrom,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]] $RolePermissions,
                 
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $ResourceScopes,
@@ -27,49 +18,78 @@ function New-EntraBetaDirectoryRoleDefinition {
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
                 
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $TemplateId,
+                
     [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Nullable`1[System.Boolean]] $IsEnabled
+    [System.String] $DisplayName,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]] $RolePermissions,
+                
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition]] $InheritsPermissionsFrom
     )
 
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["WarningVariable"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["TemplateId"])
+    if ($null -ne $PSBoundParameters["IsEnabled"])
     {
-        $params["TemplateId"] = $PSBoundParameters["TemplateId"]
+        $params["IsEnabled"] = $PSBoundParameters["IsEnabled"]
     }
     if ($null -ne $PSBoundParameters["Version"])
     {
         $params["Version"] = $PSBoundParameters["Version"]
     }
-    if ($null -ne $PSBoundParameters["OutVariable"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+    }
+    if ($null -ne $PSBoundParameters["ErrorAction"])
+    {
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    }
+    if ($null -ne $PSBoundParameters["WarningVariable"])
+    {
+        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+    }
+    if ($null -ne $PSBoundParameters["WarningAction"])
+    {
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+    }
+    if ($null -ne $PSBoundParameters["ResourceScopes"])
+    {
+        $params["ResourceScopes"] = $PSBoundParameters["ResourceScopes"]
+    }
+    if ($null -ne $PSBoundParameters["Description"])
+    {
+        $params["Description"] = $PSBoundParameters["Description"]
+    }
+    if ($null -ne $PSBoundParameters["TemplateId"])
+    {
+        $params["TemplateId"] = $PSBoundParameters["TemplateId"]
     }
     if ($null -ne $PSBoundParameters["DisplayName"])
     {
         $params["DisplayName"] = $PSBoundParameters["DisplayName"]
     }
-    if ($null -ne $PSBoundParameters["InheritsPermissionsFrom"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["InheritsPermissionsFrom"] = $PSBoundParameters["InheritsPermissionsFrom"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
     if($null -ne $PSBoundParameters["RolePermissions"])
     {
@@ -81,45 +101,25 @@ function New-EntraBetaDirectoryRoleDefinition {
             $Value = $Temp 
         $params["RolePermissions"] = $Value
     }
-    if ($null -ne $PSBoundParameters["ResourceScopes"])
+    if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
-        $params["ResourceScopes"] = $PSBoundParameters["ResourceScopes"]
+        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["InformationVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["InheritsPermissionsFrom"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["Description"])
-    {
-        $params["Description"] = $PSBoundParameters["Description"]
+        $params["InheritsPermissionsFrom"] = $PSBoundParameters["InheritsPermissionsFrom"]
     }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["IsEnabled"])
-    {
-        $params["IsEnabled"] = $PSBoundParameters["IsEnabled"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -27,5 +27,5 @@ function New-EntraCustomHeaders {
     $customHeaders["User-Agent"] = $userAgentHeaderValue
     
     $customHeaders
-}# ------------------------------------------------------------------------------
+}
 

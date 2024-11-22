@@ -6,14 +6,14 @@ function Get-EntraServicePrincipalDelegatedPermissionClassification {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ServicePrincipalId,
                 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId,
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
     [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
     [System.String[]] $Property
     )
@@ -22,29 +22,34 @@ function Get-EntraServicePrincipalDelegatedPermissionClassification {
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $keysChanged = @{}
-    if ($null -ne $PSBoundParameters["InformationVariable"])
+    if ($null -ne $PSBoundParameters["ServicePrincipalId"])
     {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
     }
-    if ($null -ne $PSBoundParameters["WarningAction"])
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if ($null -ne $PSBoundParameters["PipelineVariable"])
     {
         $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+    }
+    if ($null -ne $PSBoundParameters["InformationVariable"])
+    {
+        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+    }
+    if($null -ne $PSBoundParameters["Filter"])
+    {
+        $TmpValue = $PSBoundParameters["Filter"]
+        foreach($i in $keysChanged.GetEnumerator()){
+            $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
+        }
+        $Value = $TmpValue
+        $params["Filter"] = $Value
+    }
+    if ($null -ne $PSBoundParameters["OutBuffer"])
+    {
+        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
     }
     if ($null -ne $PSBoundParameters["WarningVariable"])
     {
@@ -58,34 +63,29 @@ function Get-EntraServicePrincipalDelegatedPermissionClassification {
     {
         $params["DelegatedPermissionClassificationId"] = $PSBoundParameters["Id"]
     }
-    if($PSBoundParameters.ContainsKey("Debug"))
+    if ($null -ne $PSBoundParameters["ErrorVariable"])
     {
-        $params["Debug"] = $PSBoundParameters["Debug"]
+        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
     }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
+    if ($null -ne $PSBoundParameters["ErrorAction"])
     {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
     }
     if ($null -ne $PSBoundParameters["InformationAction"])
     {
         $params["InformationAction"] = $PSBoundParameters["InformationAction"]
     }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
+    if ($null -ne $PSBoundParameters["WarningAction"])
     {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
     }
-    if($null -ne $PSBoundParameters["Filter"])
+    if ($null -ne $PSBoundParameters["ProgressAction"])
     {
-        $TmpValue = $PSBoundParameters["Filter"]
-        foreach($i in $keysChanged.GetEnumerator()){
-            $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
-        }
-        $Value = $TmpValue
-        $params["Filter"] = $Value
+        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
     }
-    if ($null -ne $PSBoundParameters["ServicePrincipalId"])
+    if ($null -ne $PSBoundParameters["OutVariable"])
     {
-        $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
+        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
     }
     if($null -ne $PSBoundParameters["Property"])
     {
