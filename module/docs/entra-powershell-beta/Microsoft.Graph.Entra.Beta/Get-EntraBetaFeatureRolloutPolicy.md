@@ -78,7 +78,8 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$policy = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'FeatureRolloutPolicy'"
+Get-EntraBetaFeatureRolloutPolicy -Id $policy.Id
 ```
 
 ```Output

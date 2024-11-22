@@ -37,12 +37,17 @@ This cmdlet allows an admin to delete the Microsoft Entra ID named location poli
 
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. Supported roles include:
+
+- Security Administrator  
+- Conditional Access Administrator
+
 ## Examples
 
 ### Example 1: Deletes a named location policy in Microsoft Entra ID
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
 $policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 Remove-EntraBetaNamedLocationPolicy -PolicyId $policy.Id
 ```
