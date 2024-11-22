@@ -1,19 +1,24 @@
 # ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
 function Get-EntraAuditSignInLog {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("Id")]
-    [System.String] $SignInId,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Int32] $Top,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter
+        [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Id")]
+        [System.String] $SignInId,
+
+        [Alias("Limit")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Int32] $Top,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter
     )
 
     PROCESS {
@@ -25,37 +30,32 @@ function Get-EntraAuditSignInLog {
         $params["Uri"] = "$baseUri"
         $query = $null
 
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
                 $query += "&`$top=999"
-            }
-            else{
+            } else {
                 $query += "&`$top=$topCount"
             }
         }
 
-        if($null -ne $PSBoundParameters["SignInId"])
-        {
+        if ($null -ne $PSBoundParameters["SignInId"]) {
             $logId = $PSBoundParameters["SignInId"]
             $params["Uri"] = "$baseUri/$($logId)"
         }
-        if($null -ne $PSBoundParameters["Filter"])
-        {
+        if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$filter'
             $query += "&$f=$Filter"
         }
 
-        if($null -ne $query)
-        {
+        if ($null -ne $query) {
             $query = "?" + $query.TrimStart("&")
             $params["Uri"] += $query
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
