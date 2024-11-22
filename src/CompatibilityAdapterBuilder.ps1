@@ -5,10 +5,10 @@ Set-StrictMode -Version 5
 
 class CompatibilityAdapterBuilder {
     [string] $SourceModuleName
-    [string[]] $SourceModulePrefixs
+    [string[]] $SourceModulePrefixes
     [string] $NewPrefix
     [string[]] $DestinationModuleName
-    [string[]] $DestinationPrefixs
+    [string[]] $DestinationPrefixes
     [string] $ModuleName
     hidden [string[]] $MissingCommandsToMap = @()
     hidden [string[]] $TypesToCreate = @()
@@ -24,7 +24,7 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $HelperCmdletsToExport = @{}
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
-    hidden [string[]] $cmdtoSkipNameconverssion = @(
+    hidden [string[]] $cmdToSkipNameConversion = @(
         'Select-EntraGroupIdsGroupIsMemberOf',
         'Get-EntraUserAppRoleAssignment',
         'Get-EntraPermissionGrantConditionSet',
@@ -95,7 +95,7 @@ class CompatibilityAdapterBuilder {
         'New-EntraBetaUserAppRoleAssignment',
         'Get-EntraBetaTrustFrameworkPolicy',
         'Remove-EntraBetaObjectSetting',
-        'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue',
+        'Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
         'Get-EntraBetaUserOAuth2PermissionGrant',
         'New-EntraBetaApplicationKey',
         'Get-EntraBetaPolicy',
@@ -177,10 +177,10 @@ class CompatibilityAdapterBuilder {
         $settingPath = $ModuleSettingsPath
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $this.SourceModuleName = $content.sourceModule
-        $this.SourceModulePrefixs = $content.sourceModulePrefix
+        $this.SourceModulePrefixes = $content.sourceModulePrefix
         $this.NewPrefix = $content.newPrefix
         $this.DestinationModuleName = $content.destinationModuleName
-        $this.DestinationPrefixs = $content.destinationPrefix
+        $this.DestinationPrefixes = $content.destinationPrefix
         $this.ModuleName = $content.moduleName
         $this.TypePrefix = $content.typePrefix
         Import-Module $this.SourceModuleName -Force | Out-Null
@@ -309,11 +309,11 @@ class CompatibilityAdapterBuilder {
 
         $psm1FileContent += $this.GetUnsupportedCommand()
 
-        $psm1FileContent += $this.GetAlisesFunction()
+        $psm1FileContent += $this.GetAliasesFunction()
         foreach ($function in $this.HelperCmdletsToExport.GetEnumerator()) {
             $psm1FileContent += $function.Value
         }
-        $psm1FileContent += $this.GetExportMemeber()
+        $psm1FileContent += $this.GetExportMember()
         $psm1FileContent += $this.SetMissingCommands()
         $psm1FileContent += $this.LoadMessage
         $psm1FileContent += $this.GetTypesDefinitions()
@@ -368,7 +368,7 @@ class CompatibilityAdapterBuilder {
         $namespace = $null
         $def = @"
 # ------------------------------------------------------------------------------
-# Type definitios required for commands inputs
+# Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 
 `$def = @"
@@ -514,7 +514,7 @@ public $($object.GetType().Name)()
         public enum $($enumName){
 
 "@
-        [enum]::getvalues([type]$enumType) | ForEach-Object {
+        [enum]::GetValues([type]$enumType) | ForEach-Object {
             $def += "            $_ = $($_.value__),`n"
         }
         $def += @'
@@ -573,8 +573,8 @@ public $($object.GetType().Name)()
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
     hidden [MappedCmdCollection] Map() {
         $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
-        $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
-        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
+        $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixes, $true)
+        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixes, $true)
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
@@ -620,7 +620,7 @@ function Get-EntraUnsupportedCommand {
         return [scriptblock]::Create($unsupported)
     }
 
-    hidden [scriptblock] GetAlisesFunction() {
+    hidden [scriptblock] GetAliasesFunction() {
         if ($this.ModuleMap) {
             $aliases = ''
             foreach ($func in $this.ModuleMap.Commands) {
@@ -661,7 +661,7 @@ $($aliases)}
         return $null
     }
 
-    hidden [scriptblock] GetExportMemeber() {
+    hidden [scriptblock] GetExportMember() {
         $CommandsToExport = $this.ModuleMap.CommandsList
         $CommandsToExport += 'Get-EntraUnsupportedCommand'
         $CommandsToExport += 'Enable-EntraAzureADAlias'
@@ -698,9 +698,9 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command) {
         Write-Host "Creating custom function map for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
-        $ParamterTransformations = $this.GetParametersTransformations($Command)
+        $ParameterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id'))) {
+        if (($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id'))) {
             $function = @"
 function $($Command.Generate) {
 $($Command.CustomScript)
@@ -756,7 +756,7 @@ $($Command.CustomScript)
 
 
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
-        $ParamterTransformations = $this.GetParametersTransformations($Command)
+        $ParameterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
 
         if ($cmdLstToSkipKeyIdpair.Contains($Command.Generate)) {
@@ -783,7 +783,7 @@ $parameterDefinitions
     `$params = @{}
     `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
-$ParamterTransformations
+$ParameterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
@@ -812,12 +812,12 @@ $OutputTransformations
             $targetParam = $Command.Parameters[$paramKey]
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
-            $paramtypeToCreate = $param.ParameterType.ToString()
+            $paramTypeToCreate = $param.ParameterType.ToString()
             if ($param.Name -eq 'All') {
                 $paramType = 'switch'
             }
 
-            if ( ($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)) {
+            if ( ($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)) {
                 if ($targetParam.TargetName) {
                     $ParamAlias = $this.GetParameterAlias($param.Name)
                     $param.Name = $targetParam.TargetName
@@ -826,13 +826,13 @@ $OutputTransformations
             if (($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")) {
                 if ($paramType -like '*List*') {
                     $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
-                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                    $paramTypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 } elseif ($paramType -like '*Nullable*') {
                     $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
-                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                    $paramTypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if (!$this.TypesToCreate.Contains($paramtypeToCreate)) {
-                    $this.TypesToCreate += $paramtypeToCreate
+                if (!$this.TypesToCreate.Contains($paramTypeToCreate)) {
+                    $this.TypesToCreate += $paramTypeToCreate
                 }
             }
             $paramBlock = @"
@@ -846,9 +846,9 @@ $OutputTransformations
         $addProperty = $true
         if ('' -ne $Command.New) {
             $addProperty = $false
-            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
-            if ($null -ne $targetCmdparams) {
-                foreach ($param in $targetCmdparams) {
+            $targetCmdParams = $(Get-Command -Name $Command.New).Parameters.Keys
+            if ($null -ne $targetCmdParams) {
+                foreach ($param in $targetCmdParams) {
                     if ($param -eq 'Property') {
                         $addProperty = $true
                         break
@@ -933,7 +933,7 @@ $OutputTransformations
             if ([TransformationTypes]::None -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             } elseif ([TransformationTypes]::Name -eq $param.ConversionType) {
-                if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName) {
+                if (($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and ($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName) {
                     $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
                 } else {
                     $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
@@ -1154,8 +1154,8 @@ $($output)
         return $namesDic
     }
 
-    hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixs) {
-        foreach ($prefix in $Prefixs) {
+    hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixes) {
+        foreach ($prefix in $Prefixes) {
             $components = $name -split '-'
             $verb = $components[0]
             $prefixNoun = $components[1]
@@ -1190,7 +1190,7 @@ $($output)
         if ($this.CmdCustomizations.ContainsKey($SourceCmdName)) {
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
         } else {
-            foreach ($prefix in $this.DestinationPrefixs) {
+            foreach ($prefix in $this.DestinationPrefixes) {
                 foreach ($verb in $verbsEquivalence[$SourceCmdlet.Verb]) {
                     $tmpCmd = "$($verb)-$($prefix)$($SourceCmdlet.Noun)"
                     if ($TargetCmdlets.ContainsKey($tmpCmd)) {
@@ -1233,8 +1233,8 @@ $($output)
                 $cmd.CustomScript = $this.CmdCustomizations[$SourceCmdName].CustomScript
             }
             $cmd.Parameters = $this.GetCmdletParameters($cmd)
-            $defaulParam = $this.GetDefaultParameterSet($SourceCmdName)
-            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
+            $defaultParam = $this.GetDefaultParameterSet($SourceCmdName)
+            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaultParam'"
             return $cmd
         }
 
