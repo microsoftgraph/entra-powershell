@@ -536,14 +536,14 @@ public $($object.GetType().Name)()
             ReleaseNotes = $($content.releaseNotes)
             Prerelease   = $null
         }
-        $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
+        $manifestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
         $functions = $this.ModuleMap.CommandsList + 'Enable-EntraAzureADAlias' + 'Get-EntraUnsupportedCommand'
         $requiredModules = @()
         foreach ($module in $content.requiredModules) {
             $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion }
         }
         $moduleSettings = @{
-            Path                   = $manisfestPath
+            Path                   = $manifestPath
             GUID                   = $($content.guid)
             ModuleVersion          = "$($content.version)"
             FunctionsToExport      = $functions
@@ -567,7 +567,7 @@ public $($object.GetType().Name)()
 
         $this.LoadMessage = $this.LoadMessage.Replace('{VERSION}', $content.version)
         New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
     }
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
