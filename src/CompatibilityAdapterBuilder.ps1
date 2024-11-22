@@ -502,7 +502,7 @@ public $($object.GetType().Name)()
     catch { Write-Error $_.Exception.Message }
 
 # ------------------------------------------------------------------------------
-# End of Type definitios required for commands inputs
+# End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 "@
 
