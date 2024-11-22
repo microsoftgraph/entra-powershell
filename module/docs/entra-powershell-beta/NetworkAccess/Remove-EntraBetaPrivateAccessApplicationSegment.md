@@ -8,7 +8,7 @@ ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
 author: andres-canello
-external help file: Microsoft.Entra.Beta-Help.xml
+external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version:
 schema: 2.0.0

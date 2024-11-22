@@ -10,7 +10,7 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra-Help.xml
+external help file: Microsoft.Entra.Reports-Help.xml
 Module Name: Microsoft.Entra
 online version:
 schema: 2.0.0
