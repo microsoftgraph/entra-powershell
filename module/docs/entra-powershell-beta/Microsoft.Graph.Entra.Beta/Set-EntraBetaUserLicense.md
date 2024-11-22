@@ -26,7 +26,7 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ```powershell
 Set-EntraBetaUserLicense
- -ObjectId <String>
+ -UserId <String>
  -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]
 ```
@@ -50,13 +50,13 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'TemplateUser@contoso.com' 
+$LicensedUser = Get-EntraBetaUser -UserId 'TemplateUser@contoso.com' 
 $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.AddLicenses = $License 
 $Params = @{
-    ObjectId = 'SawyerM@contoso.com' 
+    UserId = 'SawyerM@contoso.com' 
     AssignedLicenses = $Licenses
 }
 Set-EntraBetaUserLicense @Params
@@ -82,15 +82,15 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user based on a template user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the Id of a user(as a UserPrincipalName or UserId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 2: Add a license to a user by copying license from another user
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'AdeleV@contoso.com'
-$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' 
+$LicensedUser = Get-EntraBetaUser -UserId 'AdeleV@contoso.com'
+$User = Get-EntraBetaUser -UserId 'SawyerM@contoso.com' 
 $License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
 $License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
@@ -101,7 +101,7 @@ $addLicensesArray += $License2
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.AddLicenses = $addLicensesArray
 $Params = @{
-    ObjectId = $User.ObjectId 
+    UserId = $User.UserId 
     AssignedLicenses = $Licenses
 }
 Set-EntraBetaUserLicense @Params
@@ -127,7 +127,7 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user by copying license from another user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the Id of a user(as a UserPrincipalName or UserId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 3: Remove an assigned User's License
@@ -135,11 +135,11 @@ This example demonstrates how to assign a license to a user by copying license f
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $UserPrincipalName = 'SawyerM@contoso.com'
-$User = Get-EntraBetaUser -ObjectId $UserPrincipalName
-$SkuId = (Get-EntraBetaUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
+$User = Get-EntraBetaUser -UserId $UserPrincipalName
+$SkuId = (Get-EntraBetaUserLicenseDetail -UserId $UserPrincipalName).SkuId
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
 $Licenses.RemoveLicenses = $SkuId 
-Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+Set-EntraBetaUserLicense -UserId $User.UserId -AssignedLicenses $Licenses
 ```
 
 ```Output
@@ -161,7 +161,7 @@ givenName                      Sawyer
 
 This example demonstrates how to remove a user's license by retrieving the user details.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the Id of a user(as a UserPrincipalName or UserId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ## Parameters
@@ -182,9 +182,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a UserPrincipalName or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
