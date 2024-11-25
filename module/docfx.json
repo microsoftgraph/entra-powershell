@@ -29,10 +29,10 @@
       "ms.devlang": "powershell",
       "ms.topic": "reference",
       "ms.author": "stevemutungi",
-      "author": "SteveMutungi254"
+      "author": "SteveMutungi254",
+      "uhfHeaderId": "MSDocsHeader-DotNet"
     },
     "template": [],
-    "uhfHeaderId": "MSDocsHeader-DotNet",
     "markdownEngineName": "markdig",
     "exportRawModel": true,
     "exportViewModel": true
