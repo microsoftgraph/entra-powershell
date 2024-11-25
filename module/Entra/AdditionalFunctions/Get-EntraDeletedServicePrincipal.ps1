@@ -102,7 +102,11 @@ function Get-EntraDeletedServicePrincipal {
         try {
             # Make the API call
             $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
-            return $response
+        
+            # Process the response if needed
+            $processedResponse = $response | Select-Object -Property Id, DisplayName, DeletedDateTime, @{Name = "PermanentDeletionDate"; Expression = { $_.DeletedDateTime.AddDays(30) } }
+        
+            return $processedResponse
         }
         catch {
             # Handle any errors that occur during the API call
