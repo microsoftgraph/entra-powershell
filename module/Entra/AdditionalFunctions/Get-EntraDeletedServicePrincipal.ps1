@@ -106,7 +106,7 @@ function Get-EntraDeletedServicePrincipal {
         }
         catch {
             # Handle any errors that occur during the API call
-            Write-Error "An error occurred while retrieving the deleted administrative units: $_"
+            Write-Error "An error occurred while retrieving the deleted service principals: $_"
         }
     }
 }
