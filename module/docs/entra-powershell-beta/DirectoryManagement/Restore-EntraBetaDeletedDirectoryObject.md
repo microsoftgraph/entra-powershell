@@ -152,4 +152,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraBetaDeletedApplication](../Applications/Get-EntraBetaDeletedApplication.md)
 
-[Get-EntraBetaDeletedDirectoryObject](../Applications/Get-EntraBetaDeletedDirectoryObject.md)
+[Get-EntraBetaDeletedDirectoryObject](Get-EntraBetaDeletedDirectoryObject.md)
