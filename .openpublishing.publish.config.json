@@ -13,7 +13,7 @@
         "PowershellModule": "Content",
         "PowershellCmdlet": "Content"
       },
-      "build_entry_point": "docs",
+      "build_entry_point": "module/docs",
       "template_folder": "_themes",
       "base_path": "powershell",
       "site_name": "Docs",
@@ -49,7 +49,7 @@
     }
   ],
   "monikerPath": [
-    "mapping/monikerMapping.json"
+    "module/mapping/monikerMapping.json"
   ],
   "need_generate_pdf_url_template": false
 }
