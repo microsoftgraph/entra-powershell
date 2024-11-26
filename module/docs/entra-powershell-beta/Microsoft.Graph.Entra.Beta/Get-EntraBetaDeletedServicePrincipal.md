@@ -240,6 +240,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ServicePrincipalId
+
+The unique ID of the deleted service principal to be retrieved.
+
+```yaml
+Type: System.String
+Parameter Sets: GetById
+Aliases: Id
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
