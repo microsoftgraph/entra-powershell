@@ -100,8 +100,13 @@ function Get-EntraBetaDeletedDevice {
         Write-Debug "=========================================================================`n"
 
         try {
-            # Make the API call
-            $response = Get-MgBetaDirectoryDeletedItemAsDevice @params -Headers $customHeaders        
+            # Make the API call with -PageSize 999 if -All is used
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgBetaDirectoryDeletedItemAsDevice @params -PageSize 999 -Headers $customHeaders
+            }
+            else {
+                $response = Get-MgBetaDirectoryDeletedItemAsDevice @params -Headers $customHeaders
+            }
 
             return $response
         }
