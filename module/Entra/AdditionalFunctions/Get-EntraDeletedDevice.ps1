@@ -101,7 +101,7 @@ function Get-EntraDeletedDevice {
 
         try {
             # Make the API call
-            $response = Get-MgDirectoryDeletedItemAsDevice @params -Headers $customHeaders        
+            $response = Get-MgDirectoryDeletedItemAsDevice -PageSize 999 @params -Headers $customHeaders        
 
             return $response
         }
