@@ -100,8 +100,12 @@ function Get-EntraDeletedDevice {
         Write-Debug "=========================================================================`n"
 
         try {
-            # Make the API call
-            $response = Get-MgDirectoryDeletedItemAsDevice -PageSize 999 @params -Headers $customHeaders        
+            # Make the API call with -PageSize 999 if -All is used
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgDirectoryDeletedItemAsDevice @params -PageSize 999 -Headers $customHeaders
+            } else {
+                $response = Get-MgDirectoryDeletedItemAsDevice @params -Headers $customHeaders
+            }
 
             return $response
         }
