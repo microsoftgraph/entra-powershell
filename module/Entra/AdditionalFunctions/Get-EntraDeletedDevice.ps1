@@ -103,7 +103,8 @@ function Get-EntraDeletedDevice {
             # Make the API call with -PageSize 999 if -All is used
             if ($PSBoundParameters.ContainsKey("All") -and $All) {
                 $response = Get-MgDirectoryDeletedItemAsDevice @params -PageSize 999 -Headers $customHeaders
-            } else {
+            }
+            else {
                 $response = Get-MgDirectoryDeletedItemAsDevice @params -Headers $customHeaders
             }
 
