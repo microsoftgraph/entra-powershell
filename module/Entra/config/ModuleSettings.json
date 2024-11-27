@@ -1,6 +1,6 @@
 {
     "sourceModule" : "AzureAD",
-    "moduleName" : "Microsoft.Graph.Entra",
+    "moduleName" : "Microsoft.Entra",
     "newPrefix" : "Entra",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
