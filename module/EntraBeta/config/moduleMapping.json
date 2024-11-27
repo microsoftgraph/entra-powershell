@@ -106,7 +106,7 @@
   "Remove-EntraBetaApplicationPolicy": "Applications",
   "Remove-EntraBetaApplicationVerifiedPublisher": "Applications",
   "Remove-EntraBetaDeletedApplication": "Applications",
-  "Remove-EntraBetaDeletedDirectoryObject": "Applications",
+  "Remove-EntraBetaDeletedDirectoryObject": "DirectoryManagement",
   "Remove-EntraBetaServicePrincipal": "Applications",
   "Remove-EntraBetaServicePrincipalDelegatedPermissionClassification": "Applications",
   "Remove-EntraBetaServicePrincipalOwner": "Applications",
