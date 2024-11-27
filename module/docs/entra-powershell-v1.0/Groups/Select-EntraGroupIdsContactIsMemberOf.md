@@ -98,4 +98,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraContact](Get-EntraContact.md)
+[Get-EntraContact](../DirectoryManagement/Get-EntraContact.md)
