@@ -33,9 +33,9 @@ class EntraModuleSplitter {
 
     [string] GetOutputDirectory([string]$source) {
         if ($source -eq 'Entra') {
-            return (Join-Path $PSScriptRoot "..\module-test\Entra\")
+            return (Join-Path $PSScriptRoot "..\module\Entra\")
         } else {
-            return (Join-Path $PSScriptRoot "..\module-test\EntraBeta\")
+            return (Join-Path $PSScriptRoot "..\module\EntraBeta\")
         }
     }
 
