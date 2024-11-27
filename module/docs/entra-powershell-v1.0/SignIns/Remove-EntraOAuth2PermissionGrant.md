@@ -89,6 +89,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 
-[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
+[Get-EntraServicePrincipal](../Applications/Get-EntraServicePrincipal.md)
 
 [Update-EntraOAuth2PermissionGrant](Update-EntraOauth2PermissionGrant.md)
