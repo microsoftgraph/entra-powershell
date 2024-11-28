@@ -5,36 +5,35 @@
 function Get-EntraDirectoryObjectOnPremisesProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
-        [Parameter(ParameterSetName = "GetById")][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId
+        [Parameter(ParameterSetName = 'GetById')][ValidateNotNullOrEmpty()][ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })][System.Guid] $TenantId
     )
-    PROCESS {    
+    PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-        if ($null -ne $PSBoundParameters["TenantId"]) {
-            $params["TenantId"] = $PSBoundParameters["TenantId"]
-        }        
-        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        if ($null -ne $PSBoundParameters['TenantId']) {
+            $params['TenantId'] = $PSBoundParameters['TenantId']
+        }
+        Write-Debug('============================ TRANSFORMATIONS ============================')
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $Object = @("users", "groups", "contacts")
+        $Object = @('users', 'groups', 'contacts')
         $response = @()
-        
+
         try {
             foreach ($obj in $object) {
                 $obj = ($obj | Out-String).trimend()
                 $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
                 $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
             }
+        } catch {
+            Write-Error $_.Exception.Message
         }
-        catch {}
         if ([string]::IsNullOrWhiteSpace($response)) {
-            write-host "False"
-        }
-        else {
+            Write-Host 'False'
+        } else {
             $response
         }
-        
+
     }
 }
 Set-Alias -Name Get-EntraHasObjectsWithDirSyncProvisioningError -Value Get-EntraDirectoryObjectOnPremisesProvisioningError -Scope Global -Force
-
