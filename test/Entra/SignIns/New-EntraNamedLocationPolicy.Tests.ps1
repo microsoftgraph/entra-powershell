@@ -6,6 +6,9 @@ BeforeAll {
         Import-Module Microsoft.Entra.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
+
+    $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+    $ipRanges.cidrAddress = "6.5.4.1/30"
     
     $scriptblock = {
         return @(
@@ -34,8 +37,6 @@ BeforeAll {
 Describe "New-EntraNamedLocationPolicy" {
 Context "Test for New-EntraNamedLocationPolicy" {
         It "Should return created Ms named location policy" {
-            $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
-            $ipRanges.cidrAddress = "6.5.4.1/30"
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
@@ -75,16 +76,12 @@ Context "Test for New-EntraNamedLocationPolicy" {
             { New-EntraNamedLocationPolicy -IncludeUnknownCountriesAndRegions xyz } | Should -Throw "Cannot process argument transformation on parameter 'IncludeUnknownCountriesAndRegions'*"
         }
         It "Result should Contain ObjectId" {
-            $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
-            $ipRanges.cidrAddress = "6.5.4.1/30"
             $result = New-EntraNamedLocationPolicy  -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         }
         It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
             Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
 
-            $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
-            $ipRanges.cidrAddress = "6.5.4.1/30"
             $result = New-EntraNamedLocationPolicy  -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
             $additionalProperties = $params[-1].AdditionalProperties 
