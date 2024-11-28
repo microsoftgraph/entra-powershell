@@ -22,12 +22,12 @@ function Split-Docs {
         'Entra' {
             $DocsSourceDirectory = (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-v1.0/Microsoft.Graph.Entra")
             $MappingFilePath =  (Join-Path $PSScriptRoot '../module/Entra/config/moduleMapping.json')
-            $OutputDirectory= (Join-Path $PSScriptRoot '../module-test/docs/entra-powershell-v1.0')
+            $OutputDirectory= (Join-Path $PSScriptRoot '../module/docs/entra-powershell-v1.0')
         }
         'EntraBeta' {
             $DocsSourceDirectory =  (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta")
             $MappingFilePath = (Join-Path $PSScriptRoot "../module/EntraBeta/config/moduleMapping.json")
-            $OutputDirectory= (Join-Path $PSScriptRoot "../module-test/docs/entra-powershell-beta")
+            $OutputDirectory= (Join-Path $PSScriptRoot "../module/docs/entra-powershell-beta")
         }
         default {
             Log-Message -Message "[Split-Docs]: Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'
@@ -53,32 +53,44 @@ function Split-Docs {
         Log-Message -Message "[Split-Docs]: Created directory: $TargetRootDirectory" -Level 'SUCCESS'
     }
 
-    # Iterate over each file-directory pair in the moduleMapping.json
-    foreach ($fileEntry in $moduleMapping.PSObject.Properties) {
-        $fileName = $fileEntry.Name      # Key (file name without extension)
-        $subDirName = $fileEntry.Value   # Value (sub-directory name)
+    # Ensure UnMappedDocs directory exists at the same level as the OutputDirectory
+    $unMappedDocsDirectory = Join-Path -Path (Split-Path $TargetRootDirectory) -ChildPath 'UnMappedDocs'
+    if (-not (Test-Path -Path $unMappedDocsDirectory -PathType Container)) {
+        New-Item -Path $unMappedDocsDirectory -ItemType Directory | Out-Null
+        Log-Message -Message "[Split-Docs]: Created 'UnMappedDocs' directory: $unMappedDocsDirectory" -Level 'SUCCESS'
+    }
 
-        # Create the sub-directory under the output root directory if it doesn't exist
-        $targetSubDir = Join-Path -Path $TargetRootDirectory -ChildPath $subDirName
+    # Iterate over each file in the DocsSourceDirectory
+    $filesInSource = Get-ChildItem -Path $DocsSourceDirectory -Filter "*.md"
 
-        if($subDirName -eq 'Migration' -or $subDirName -eq 'Invitations'){
-            Log-Message "[Split-Docs]: Skipping $subDirName" -Level 'WARNING'
-            continue
-        }
-        if (-not (Test-Path -Path $targetSubDir -PathType Container)) {
-            New-Item -Path $targetSubDir -ItemType Directory | Out-Null
-            Log-Message -Message "[Split-Docs]: Created sub-directory: $targetSubDir" -Level 'SUCCESS'
-        }
+    foreach ($file in $filesInSource) {
+        $fileNameWithoutExtension = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+        
+        # Check if the fileName exists in the mapping
+        $subDirName = $moduleMapping.PSObject.Properties.Name | Where-Object { $_ -eq $fileNameWithoutExtension }
+        
+        if ($subDirName) {
+            # If a subdir is mapped, proceed as before
+            $subDirName = $moduleMapping.$fileNameWithoutExtension
+            $targetSubDir = Join-Path -Path $TargetRootDirectory -ChildPath $subDirName
 
-        # Build the full source file path for the .md file
-        $sourceFile = Join-Path -Path $DocsSourceDirectory -ChildPath "$fileName.md"
-        if (Test-Path -Path $sourceFile -PathType Leaf) {
+            if($subDirName -eq 'Migration' -or $subDirName -eq 'Invitations'){
+                Log-Message "[Split-Docs]: Skipping $subDirName" -Level 'WARNING'
+                continue
+            }
+            if (-not (Test-Path -Path $targetSubDir -PathType Container)) {
+                New-Item -Path $targetSubDir -ItemType Directory | Out-Null
+                Log-Message -Message "[Split-Docs]: Created sub-directory: $targetSubDir" -Level 'SUCCESS'
+            }
+
             # Copy the .md file to the target sub-directory
-            Copy-Item -Path $sourceFile -Destination $targetSubDir
-            Log-Message -Message "[Split-Docs]: Copied '$sourceFile' to '$targetSubDir'" -Level 'SUCCESS'
-        } else {
-            # Log a warning if the .md file doesn't exist in the source directory
-            Log-Message -Message "[Split-Docs]: File '$fileName.md' not found in '$DocsSourceDirectory'" -Level 'WARNING'
+            Copy-Item -Path $file.FullName -Destination $targetSubDir
+            Log-Message -Message "[Split-Docs]: Copied '$file' to '$targetSubDir'" -Level 'SUCCESS'
+        }
+        else {
+            # If no mapping found, move it to UnMappedDocs
+            Copy-Item -Path $file.FullName -Destination $unMappedDocsDirectory
+            Log-Message -Message "[Split-Docs]: No mapping for '$fileNameWithoutExtension'. Moved to '$unMappedDocsDirectory'" -Level 'INFO'
         }
     }
 
