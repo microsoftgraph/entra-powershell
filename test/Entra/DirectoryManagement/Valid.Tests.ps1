@@ -32,7 +32,7 @@ Describe "Valid parameter Tests"{
                                     $result | Should -BeNullOrEmpty
                                     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
                                 }
-                                else {                                    
+                                else {
                                     Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
@@ -70,7 +70,7 @@ Describe "Valid parameter Tests"{
                                     $result | Should -BeNullOrEmpty
                                     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
                                 }
-                                else {                                    
+                                else {
                                     Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
