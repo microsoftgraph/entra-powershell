@@ -4,7 +4,13 @@
 
 #This function uses the moduleMapping.json to split the docs to subdirectories i.e. Key =SubModule name and
 # Value =an array of strings representing the files in that directory
-. ./common-functions.ps1
+
+param (
+    [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
+)
+
+. (Join-Path $psscriptroot "/common-functions.ps1")
+
 function Get-DirectoryFileMap {
     param (
         [string]$Source = 'Entra' # Default to 'Entra'
@@ -14,12 +20,12 @@ function Get-DirectoryFileMap {
     # Determine the root directory and the output based on the Source parameter
     switch ($Source) {
         'Entra' {
-            $RootDirectory = "../module_legacy/Entra/Microsoft.Graph.Entra/"
-            $OutputDirectory = '../module_legacy/Entra/config/'
+            $RootDirectory = (Join-Path $PSScriptRoot "../module/Entra/Microsoft.Entra/")
+            $OutputDirectory =  (Join-Path $PSScriptRoot '../module/Entra/config/')
         }
         'EntraBeta' {
-            $RootDirectory = "../module_legacy/EntraBeta/Microsoft.Graph.Entra.Beta/"
-            $OutputDirectory = "../module_legacy/EntraBeta/config/"
+            $RootDirectory =  (Join-Path $PSScriptRoot"../module/EntraBeta/Microsoft.Entra.Beta/")
+            $OutputDirectory =  (Join-Path $PSScriptRoot"../module/EntraBeta/config/")
         }
         default {
             Log-Message "Invalid Source specified. Use 'Entra' or 'EntraBeta'." 'Error'
@@ -47,7 +53,7 @@ function Get-DirectoryFileMap {
 
     # Get all the subdirectories under the root directory
     $subDirectories = Get-ChildItem -Path $RootDirectory -Directory
-
+    $filesToSkip=@('Enable-EntraAzureADAliases','Get-EntraUnsupportedCommand','New-EntraCustomHeaders','Enable-EntraBetaAzureADAliases','Get-EntraBetaUnsupportedCommand','New-EntraBetaCustomHeaders')
     foreach ($subDir in $subDirectories) {
         Log-Message "Processing subdirectory '$($subDir.Name)'." 'Info'
 
@@ -55,8 +61,10 @@ function Get-DirectoryFileMap {
         $files = Get-ChildItem -Path $subDir.FullName -File | ForEach-Object {
             $fileName = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
             # Map the file name to the directory name
-            $fileDirectoryMap[$fileName] = $subDir.Name
+            if($fileName -notin $filesToSkip){
+                $fileDirectoryMap[$fileName] = $subDir.Name
             Log-Message "Mapped file '$fileName' to directory '$($subDir.Name)'." 'Info'
+            }          
         }
     }
 
@@ -72,4 +80,4 @@ function Get-DirectoryFileMap {
     Log-Message "moduleMapping.json has been created at '$outputFilePath'." 'Info'
 }
 
-Get-DirectoryFileMap -Source 'Entra'
+Get-DirectoryFileMap -Source $Module

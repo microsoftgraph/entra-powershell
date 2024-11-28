@@ -305,15 +305,16 @@ class CompatibilityAdapterBuilder {
         $data = $this.Map()
 
         $psm1FileContent = $this.GetFileHeader()
+        $doubleSpace="`n`n"
         foreach($cmd in $data.Commands) {
-            $psm1FileContent += $cmd.CommandBlock
+            $psm1FileContent += $doubleSpace+$cmd.CommandBlock
         }
 
-        $psm1FileContent += $this.GetUnsupportedCommand()
+        $psm1FileContent +=$doubleSpace+ $this.GetUnsupportedCommand()
 
-        $psm1FileContent += $this.GetAlisesFunction()        
+        $psm1FileContent += $doubleSpace+$this.GetAlisesFunction()        
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
-            $psm1FileContent += $function.Value
+            $psm1FileContent += $doubleSpace+$function.Value
         }
         $psm1FileContent += $this.GetExportMemeber()        
         $psm1FileContent += $this.SetMissingCommands()

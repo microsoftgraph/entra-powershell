@@ -492,9 +492,9 @@ $($requiredModulesEntries -join ",`n")
             CompanyName = $($content.owners)
             FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")
             RootModule = "$moduleFileName"
-            Description = 'Microsoft Graph Entra PowerShell.'
-            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
-            PowerShellVersion = $([System.Version]::Parse('5.1'))
+            Description = $content.EntraDescription
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.DotNetVersion))
+            PowerShellVersion = $([System.Version]::Parse($content.PowershellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
             RequiredModules = $requiredModules
             NestedModules = @()
