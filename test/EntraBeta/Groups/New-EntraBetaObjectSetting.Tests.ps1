@@ -15,7 +15,7 @@ BeforeAll {
             [PSCustomObject]@{
               "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
               "templateId"                   = "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
-              "@odata.context"               = 'https://graph.microsoft.com/beta/$metadata#settings/$entity'
+              "@odata.context"               = 'https://graph.microsoft.com/beta/`$metadata#settings/`$entity'
               "displayName"                  = $null
               "values"                       = @{
                                                     "name"  = "AllowToAddGuests"

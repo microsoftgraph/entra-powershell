@@ -21,8 +21,8 @@ BeforeAll {
               "TemplateId"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
               "Version"                      = "2"
               "RoleDefinitionId"             = "00001111-aaaa-2222-bbbb-3333cccc4444"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleDefinitions/$entity"
-                                                 "inheritsPermissionsFrom@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleDefinitions('54d418b2-4cc0-47ee-9b39-e8f84ed8e073')/inheritsPermissionsFrom"
+              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#roleManagement/directory/roleDefinitions/`$entity"
+                                                 "inheritsPermissionsFrom@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#roleManagement/directory/roleDefinitions('54d418b2-4cc0-47ee-9b39-e8f84ed8e073')/inheritsPermissionsFrom"
                                                 }
               "Parameters"                   = $args
             }

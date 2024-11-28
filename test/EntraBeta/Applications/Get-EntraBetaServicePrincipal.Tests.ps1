@@ -64,7 +64,7 @@ BeforeAll {
                 "TokenLifetimePolicies"               = @()
                 "TransitiveMemberOf"                  = ''
                 "AdditionalProperties"                = @{
-                    "@odata.context"                        = 'https://graph.microsoft.com/beta/$metadata#servicePrincipals/$entity'
+                    "@odata.context"                        = 'https://graph.microsoft.com/beta/`$metadata#servicePrincipals/`$entity'
                     "createdDateTime"                       = '2023-09-26T16:09:16Z'
                     "isAuthorizationServiceEnabled"         = $false
                     "samlSLOBindingType"                    = 'httpRedirect'

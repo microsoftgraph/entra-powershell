@@ -154,7 +154,7 @@
 #                 "SendInvitationMessage"   = $true
 #                 "Status"                  = "PendingAcceptance"
 #                 "AdditionalProperties"    = @{
-#                                             "@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#invitations/$entity"
+#                                             "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#invitations/`$entity"
 #                 }
 #                 "Parameters"              = $args
 #             }

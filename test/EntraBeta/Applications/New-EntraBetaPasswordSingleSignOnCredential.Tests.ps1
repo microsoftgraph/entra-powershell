@@ -24,7 +24,7 @@ BeforeAll {
                     }
                 )
                 "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccc55"
-                "AdditionalProperties" = @{"@odata.context"='https://graph.microsoft.com/beta/$metadata#microsoft.graph.passwordSingleSignOnCredentialSet'}
+                "AdditionalProperties" = @{"@odata.context"='https://graph.microsoft.com/beta/`$metadata#microsoft.graph.passwordSingleSignOnCredentialSet'}
                 "Parameters"           = $args
             }
         )

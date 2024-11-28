@@ -23,7 +23,7 @@ BeforeAll {
               "PasswordValidityPeriodInDays"        = $null
               "ServiceConfigurationRecords"         = $null
               "SupportedServices"                   = @("Email", "OfficeCommunicationsOnline")
-              "AdditionalProperties"                = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#domains/$entity"}
+              "AdditionalProperties"                = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#domains/`$entity"}
               "Parameters"                          = $args
             }
         )

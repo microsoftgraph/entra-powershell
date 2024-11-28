@@ -15,7 +15,7 @@ BeforeAll {
               "CreatedDateTime"              = "14-05-2024 09:38:07"
               "ModifiedDateTime"             = "14-05-2024 09:38:07"
               "AdditionalProperties"         = @{
-                                                  "@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#identity/conditionalAccess/namedLocations/$entity"
+                                                  "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#identity/conditionalAccess/namedLocations/`$entity"
                                                   "@odata.type"    = "#microsoft.graph.ipNamedLocation"
                                                   "isTrusted"      = $true
                                                   "ipRanges"       = @{

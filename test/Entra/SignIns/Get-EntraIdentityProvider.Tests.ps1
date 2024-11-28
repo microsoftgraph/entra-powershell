@@ -13,7 +13,7 @@ BeforeAll {
               "Id"                           = "Google-OAUTH"
               "DisplayName"                  = "Mock-App"
               "AdditionalProperties"         = @{
-                                                  "@odata.context"       = 'https://graph.microsoft.com/v1.0/$metadata#identity/identityProviders/$entity'
+                                                  "@odata.context"       = 'https://graph.microsoft.com/v1.0/`$metadata#identity/identityProviders/`$entity'
                                                   "@odata.type"          = "#microsoft.graph.socialIdentityProvider"
                                                   "clientId"             = "Google123"
                                                   "clientSecret"         = "******"
