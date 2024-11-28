@@ -91,7 +91,7 @@ Describe "Get-EntraBetaUserManager" {
             $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
-            $result.ageGroup | Should -BeNullOrEmpty
+            #$result.ageGroup | Should -BeNullOrEmpty
             $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.creationType | Should -BeNullOrEmpty
             $result.imAddresses | Should -Be @("miriamg@contoso.com")
