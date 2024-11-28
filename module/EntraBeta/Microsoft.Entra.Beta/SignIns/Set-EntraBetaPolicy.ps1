@@ -69,7 +69,6 @@ function Set-EntraBetaPolicy {
                 catch {}
             }
             $policy = ($response.'@odata.context') -match 'policies/([^/]+)/\$entity'
-            $Matches = @{}
             $type = $Matches[1]
         }
 

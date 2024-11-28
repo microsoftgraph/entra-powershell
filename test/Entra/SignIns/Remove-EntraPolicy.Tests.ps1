@@ -18,13 +18,15 @@ BeforeAll {
             return $response
             
     }
-    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Entra.SignIns 
 }
 Describe "Test for Remove-EntraPolicy" {
     It "Should return empty object" {
-        $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
-        #$result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 2
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches } {
+            $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 2
+        }
     }
     It "Should fail when -Id is empty" {
         { Remove-EntraPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
@@ -36,28 +38,33 @@ Describe "Test for Remove-EntraPolicy" {
         { Remove-EntraPolicy -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraPolicy"
-        $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
-        $result | Should -Not -BeNullOrEmpty
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraPolicy"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
+        $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+        $customHeaders["User-Agent"] = $userAgentHeaderValue
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches; customHeaders = $customHeaders} {
+            $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $customHeaders["User-Agent"]
+                $true
+            }
         }
-    } 
+    }
     It "Should execute successfully without throwing an error " {
-        # Disable confirmation prompts       
-        $originalDebugPreference = $DebugPreference
-        $DebugPreference = 'Continue'
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches } {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
-        try {
-            # Act & Assert: Ensure the function doesn't throw an exception
-            { Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc -Debug } | Should -Not -Throw
-        } finally {
-            # Restore original confirmation preference            
-            $DebugPreference = $originalDebugPreference        
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
-    }   
+    }
 }
-
-
