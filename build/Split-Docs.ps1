@@ -5,26 +5,29 @@
 #This function copies the docs using the moduleMapping.json into their submodule directories
 # i.e. For each entry, it will use the Key(cmdlet name) and map it to the Value(A subdirectory created in the respective docs directory)
 
-. (Join-Path $psscriptroot "/common-functions.ps1")
+param (
+    [string]$Module = "Entra"  # Default to "Entra" if no argument is provided
+)
+
+.(Join-Path $psscriptroot "/common-functions.ps1")
 
 
 function Split-Docs {
     param (
-        [string]$Module = 'Entra',  # Default to 'Entra'
-        [string]$OutputDirectory    # Allow custom output directory
+        [string]$Module = 'Entra'
     )
 
     # Determine source directories and mapping file paths based on the Source parameter
     switch ($Module) {
         'Entra' {
-            $DocsSourceDirectory = "../module_legacy/docs/entra-powershell-v1.0/Microsoft.Graph.Entra"
-            $MappingFilePath = '../module/Entra/config/moduleMapping.json'
-            $OutputDirectory='../module/docs/entra-powershell-v1.0'
+            $DocsSourceDirectory = (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-v1.0/Microsoft.Graph.Entra")
+            $MappingFilePath =  (Join-Path $PSScriptRoot '../module/Entra/config/moduleMapping.json')
+            $OutputDirectory= (Join-Path $PSScriptRoot '../module-test/docs/entra-powershell-v1.0')
         }
         'EntraBeta' {
-            $DocsSourceDirectory = "../module_legacy/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta"
-            $MappingFilePath = "../module/EntraBeta/config/moduleMapping.json"
-            $OutputDirectory="../module/docs/entra-powershell-beta"
+            $DocsSourceDirectory =  (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta")
+            $MappingFilePath = (Join-Path $PSScriptRoot "../module/EntraBeta/config/moduleMapping.json")
+            $OutputDirectory= (Join-Path $PSScriptRoot "../module-test/docs/entra-powershell-beta")
         }
         default {
             Log-Message -Message "[Split-Docs]: Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'
@@ -81,3 +84,5 @@ function Split-Docs {
 
     Log-Message -Message "[Split-Docs]: Markdown file copying complete." -Level 'INFO'
 }
+
+Split-Docs -Module $Module

@@ -162,7 +162,7 @@
   "New-EntraOauth2PermissionGrant": "SignIns",
   "New-EntraConditionalAccessPolicy": "SignIns",
   "New-EntraIdentityProvider": "SignIns",
-  "New-EntraInvitation": "Invitations",
+  "New-EntraInvitation": "SignIns",
   "New-EntraPermissionGrantConditionSet": "SignIns",
   "New-EntraPermissionGrantPolicy": "SignIns",
   "Remove-EntraConditionalAccessPolicy": "SignIns",
@@ -189,6 +189,7 @@
   "Set-EntraTenantDetail": "DirectoryManagement",
   "Add-EntraScopedRoleMembership": "DirectoryManagement",
   "Get-EntraUser": "Users",
+  "Get-EntraUserAuthenticationMethod":"SignIns",
   "Get-EntraUserAppRoleAssignment": "Users",
   "Get-EntraUserCreatedObject": "Users",
   "Get-EntraUserDirectReport": "Users",
@@ -260,5 +261,6 @@
   "Remove-EntraServicePrincipalAppRoleAssignment": "Applications",
   "Set-EntraDirectoryRoleDefinition": "Governance",
   "Update-EntraUserFromFederated": "Users",
-  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement"
+  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement",
+  "Get-EntraUserAuthenticationRequirement":"SignIns"
 }
