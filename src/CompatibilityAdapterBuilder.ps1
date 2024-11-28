@@ -338,7 +338,7 @@ class CompatibilityAdapterBuilder {
             }
             elseif($_.PropertyType.Name -eq 'List`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
-                if(!$_.PropertyType.GenericTypeArguments.IsEnum){                
+                if(!$_.PropertyType.GenericTypeArguments.IsEnum){
                     if($name -like "$($this.TypePrefix)*") {    
                         if(!$this.TypesToCreate.Contains($name)){
                             $this.TypesToCreate += $name
@@ -348,7 +348,7 @@ class CompatibilityAdapterBuilder {
                 }
             }
             else {
-                if(!$_.PropertyType.IsEnum){                    
+                if(!$_.PropertyType.IsEnum){    
                     $name = $_.PropertyType.FullName
                     if($name -like "$($this.TypePrefix)*") {                        
                         if(!$this.TypesToCreate.Contains($name)){
@@ -442,7 +442,7 @@ $extraFunctions
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
-                if($_.PropertyType.GenericTypeArguments.IsEnum){                    
+                if($_.PropertyType.GenericTypeArguments.IsEnum){    
                     $name = $_.PropertyType.GenericTypeArguments.Name
                     if(!$enumsDefined.Contains($name)){
                         $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
@@ -1093,7 +1093,7 @@ $OutputTransformations
     
         if($this.CmdCustomizations.ContainsKey($Command.Old)) { 
             $cmd = $this.CmdCustomizations[$Command.Old] 
-            if($null -ne $cmd.Outputs){                   
+            if($null -ne $cmd.Outputs){   
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
                     if([TransformationTypes]::Name -eq $customOutput.ConversionType){
@@ -1316,7 +1316,7 @@ $($output)
                     if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
                     }
-                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){       
                         $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else

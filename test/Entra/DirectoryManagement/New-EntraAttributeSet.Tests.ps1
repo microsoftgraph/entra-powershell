@@ -14,7 +14,7 @@ BeforeAll {
                 "Description"     = "CustomAttributeSet"
                 "Id"              = "NewCustomAttributeSet"
                 "MaxAttributesPerSet"     = 125
-                "@odata.context" = 'https://graph.microsoft.com/v1.0/$metadata#directory/attributeSets/$entity'
+                "@odata.context" = 'https://graph.microsoft.com/v1.0/`$metadata#directory/attributeSets/`$entity'
             }
         )
     }

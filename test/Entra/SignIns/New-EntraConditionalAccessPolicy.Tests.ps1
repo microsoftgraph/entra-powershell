@@ -33,7 +33,7 @@ BeforeAll {
                 "State"                = "enabled"
                 "TemplateId"           = ""
                 "AdditionalProperties" = @{
-                    "@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#identity/conditionalAccess/policies/$entity"
+                    "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#identity/conditionalAccess/policies/`$entity"
                 }
                 "Parameters"          = $args
             }

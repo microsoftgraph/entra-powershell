@@ -23,7 +23,7 @@ BeforeAll {
                                             "BannedPasswordList" = $null 
                                            }
                 "AdditionalProperties"   = [PSCustomObject]@{
-                                            "@odata.context" = 'https://graph.microsoft.com/beta/$metadata#settings/$entity'
+                                            "@odata.context" = 'https://graph.microsoft.com/beta/`$metadata#settings/`$entity'
                                            }
                 "Parameters"             = $args
             }

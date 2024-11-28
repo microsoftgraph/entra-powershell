@@ -16,7 +16,7 @@ BeforeAll {
                 "isCollection"            = $False
                 "status"                  = "Available"
                 "isSearchable"            = $True
-                "@odata.context"          = 'https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions/$entity'
+                "@odata.context"          = 'https://graph.microsoft.com/v1.0/`$metadata#directory/customSecurityAttributeDefinitions/`$entity'
                 "name"                    = "Project"
                 "id"                      = "Engineering_Project"
                 "description"             = "Target completion date (YYYY/MM/DD)"
