@@ -15,7 +15,7 @@ Describe "Invalid Tests"{
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'TenantId'){
-                $commandScriptBlock = [scriptblock]::Create("$command -TenantId $objectId")
+                $commandScriptBlock = [scriptblock]::Create("$command -TenantId ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'TenantId'.*"
             }
         }
@@ -25,7 +25,7 @@ Describe "Invalid Tests"{
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'Id'){
-                $commandScriptBlock = [scriptblock]::Create("$command -Id $objectId")
+                $commandScriptBlock = [scriptblock]::Create("$command -Id ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'Id'.*"
             }
         }
@@ -35,7 +35,7 @@ Describe "Invalid Tests"{
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
             if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'ObjectId'){
-                $commandScriptBlock = [scriptblock]::Create("$command -ObjectId $objectId")
+                $commandScriptBlock = [scriptblock]::Create("$command -ObjectId ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
             }
         }
