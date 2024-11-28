@@ -24,6 +24,7 @@ function Remove-EntraPolicy {
         }
         $policy = ($response.'@odata.context') -match 'policies/([^/]+)/\$entity'
     
+        $Matches = @{}
         $policyType = $Matches[1]
 
         Write-Debug("============================ Matches ============================")

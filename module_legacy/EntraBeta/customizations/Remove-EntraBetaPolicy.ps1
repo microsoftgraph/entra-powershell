@@ -22,6 +22,7 @@
         }
         $policy = ($response.'@odata.context') -match 'policies/([^/]+)/\$entity'
     
+        $Matches = @{}
         $type = $Matches[1]
         if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $type )) {
             $URI = "https://graph.microsoft.com/beta/policies/" + $type + "/" + $id

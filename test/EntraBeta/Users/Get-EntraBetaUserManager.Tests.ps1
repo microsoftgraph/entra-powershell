@@ -20,6 +20,10 @@ BeforeAll {
                 displayName                     = 'Miriam Graham'
                 givenName                       = 'Miriam'
                 imAddresses                     = @('miriamg@contoso.com')
+                onPremisesLastSyncDateTime      = $null
+                preferredLanguage               = $null
+                ageGroup                        = $null
+                creationType                    = $null
                 infoCatalogs                    = @{}
                 isLicenseReconciliationNeeded   = $false
                 isManagementRestricted          = $false
@@ -91,7 +95,7 @@ Describe "Get-EntraBetaUserManager" {
             $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
-            #$result.ageGroup | Should -BeNullOrEmpty
+            $result.ageGroup | Should -BeNullOrEmpty
             $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.creationType | Should -BeNullOrEmpty
             $result.imAddresses | Should -Be @("miriamg@contoso.com")
