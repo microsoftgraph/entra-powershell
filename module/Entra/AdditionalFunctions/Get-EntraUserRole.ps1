@@ -20,7 +20,7 @@ function Get-EntraUserRole {
         [System.String] $UserId,
 
         [Alias('DirectoryObjectId')]
-        [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Directory Role ID to retrieve.")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Directory Role ID to retrieve.")]
         [System.String] $DirectoryRoleId,
 
         [Alias('Limit')]
