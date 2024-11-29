@@ -15,11 +15,11 @@ function Get-EntraUserRole {
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for user roles.")]
         [System.String] $SearchString,
 
-        [Alias('Id')]
+        [Alias('ObjectId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID to retrieve.")]
         [System.String] $UserId,
 
-        [Alias('DirectoryRoleId')]
+        [Alias('DirectoryObjectId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Directory Role ID to retrieve.")]
         [System.String] $DirectoryRoleId,
 
