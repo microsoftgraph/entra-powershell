@@ -2,7 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
 function Get-EntraUserRole {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -86,13 +85,8 @@ function Get-EntraUserRole {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["Filter"]) {
-            $TmpValue = $PSBoundParameters["Filter"]
-            foreach ($i in $keysChanged.GetEnumerator()) {
-                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
-            }
-            $Value = $TmpValue
-            $params["Filter"] = $Value
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
         }
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
