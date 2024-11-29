@@ -36,7 +36,9 @@ New-EntraDomain
 
 The `New-EntraDomain` cmdlet creates a domain in Microsoft Entra ID.
 
-The work or school account needs to belong to at least the Domain Name Administrator role.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Domain Name Administrator
 
 ## Examples
 
