@@ -24,7 +24,7 @@ function Get-EntraUserRole {
         [System.String] $DirectoryRoleId,
 
         [Alias('Limit')]
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('Select')]
