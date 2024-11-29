@@ -16,7 +16,7 @@ function Get-EntraUserRole {
         [System.String] $SearchString,
 
         [Alias('ObjectId')]
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID to retrieve.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID to retrieve.")]
         [System.String] $UserId,
 
         [Alias('DirectoryObjectId')]
