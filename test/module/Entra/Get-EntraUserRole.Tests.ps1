@@ -14,10 +14,10 @@ BeforeAll {
             [PSCustomObject]@{
                 "DisplayName"     = "Helpdesk Administrator"
                 "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "Description"  = "Can reset passwords for non-administrators and Helpdesk Administrators."
-                "Members"  = "null"
+                "Description"     = "Can reset passwords for non-administrators and Helpdesk Administrators."
+                "Members"         = "null"
                 "DeletedDateTime" = "10/28/2024 4:16:02 PM"
-                "RoleTemplateId"        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "RoleTemplateId"  = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             }
         )
     }
