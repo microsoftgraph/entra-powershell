@@ -28,31 +28,31 @@ BeforeAll {
 Describe "Get-EntraUserRole" {
     Context "Test for Get-EntraUserRole" {
         It "Should return all user roles" {
-            $result = Get-EntraUserRole
+            $result = Get-EntraUserRole -UserId 'SawyerM@contoso.com'
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should return top user role" {
-            $result = Get-EntraUserRole -Top 1
+            $result = Get-EntraUserRole -UserId 'SawyerM@contoso.com' -Top 1
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Property parameter should work" {
-            $result = Get-EntraUserRole -Property "DisplayName"
+            $result = Get-EntraUserRole -UserId 'SawyerM@contoso.com' -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Helpdesk Administrator"
             Should -Invoke -CommandName Get-MgUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraUserRole -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserRole -UserId 'SawyerM@contoso.com' -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserRole"
-            $result = Get-EntraUserRole -Filter "DisplayName -eq 'Helpdesk Administrator'"
+            $result = Get-EntraUserRole -UserId 'SawyerM@contoso.com'
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserRole"
             Should -Invoke -CommandName Get-MgUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
@@ -68,7 +68,7 @@ Describe "Get-EntraUserRole" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserRole -Debug } | Should -Not -Throw
+                { Get-EntraUserRole -UserId 'SawyerM@contoso.com' -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference

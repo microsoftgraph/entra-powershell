@@ -28,31 +28,31 @@ BeforeAll {
 Describe "Get-EntraBetaUserRole" {
     Context "Test for Get-EntraBetaUserRole" {
         It "Should return all user roles" {
-            $result = Get-EntraBetaUserRole
+            $result = Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com'
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should return top user role" {
-            $result = Get-EntraBetaUserRole -Top 1
+            $result = Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com' -Top 1
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Property parameter should work" {
-            $result = Get-EntraBetaUserRole -Property "DisplayName"
+            $result = Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com' -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Helpdesk Administrator"
             Should -Invoke -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraBetaUserRole -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com' -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRole"
-            $result = Get-EntraBetaUserRole -Filter "DisplayName -eq 'Helpdesk Administrator'"
+            $result = Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com'
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRole"
             Should -Invoke -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -68,7 +68,7 @@ Describe "Get-EntraBetaUserRole" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUserRole -Debug } | Should -Not -Throw
+                { Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com' -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference
