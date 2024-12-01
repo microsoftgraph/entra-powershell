@@ -46,13 +46,10 @@ Adds Microsoft Entra environment to the settings file.
 ### Example 1: Add a user defined environment
 
 ```powershell
-$params = @{
-    Name = 'Canary'
-    GraphEndpoint = 'https://canary.graph.microsoft.com'
-    AzureADEndpoint = 'https://login.microsoftonline.com'
-}
-
-Add-EntraEnvironment @params
+$name = 'Canary'
+$graphEndpoint = 'https://canary.graph.microsoft.com'
+$azureADEndpoint = 'https://login.microsoftonline.com'
+Add-EntraEnvironment -Name $name -GraphEndpoint $graphEndpoint -AzureADEndpoint $azureADEndpoint
 ```
 
 ```Output
