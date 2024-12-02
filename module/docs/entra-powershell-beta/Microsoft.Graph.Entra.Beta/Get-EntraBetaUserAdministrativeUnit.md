@@ -103,7 +103,7 @@ This cmdlet retrieves an administrative unit to which a specific user belongs.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Admin Unit'"
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Admin Unit'"
 Get-EntraBetaUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -AdministrativeUnitId $administrativeUnit.Id
 ```
 
