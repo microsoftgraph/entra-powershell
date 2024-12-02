@@ -110,7 +110,7 @@ function Get-EntraBetaUserAdministrativeUnit {
         }
         catch {
             # Handle any errors that occur during the API call
-            Write-Error "An error occurred while retrieving the user roles: $_"
+            Write-Error "An error occurred while retrieving the user's administrative units: $_"
         }
     }
 }
