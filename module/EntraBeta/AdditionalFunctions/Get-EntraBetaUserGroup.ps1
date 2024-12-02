@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Get-EntraUserGroup {
+function Get-EntraBetaUserGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
@@ -30,7 +30,7 @@ function Get-EntraUserGroup {
 
     PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ SearchString = "Filter" }
 
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
@@ -100,10 +100,10 @@ function Get-EntraUserGroup {
         try {
             # Make the API call with -PageSize 999 if -All is used
             if ($PSBoundParameters.ContainsKey("All") -and $All) {
-                $response = Get-MgUserMemberOfAsGroup @params -PageSize 999 -Headers $customHeaders
+                $response = Get-MgBetaUserMemberOfAsGroup @params -PageSize 999 -Headers $customHeaders
             }
             else {
-                $response = Get-MgUserMemberOfAsGroup @params -Headers $customHeaders
+                $response = Get-MgBetaUserMemberOfAsGroup @params -Headers $customHeaders
             }
 
             return $response
