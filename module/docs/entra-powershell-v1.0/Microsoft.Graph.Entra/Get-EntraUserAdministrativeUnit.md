@@ -40,7 +40,7 @@ Get-EntraUserAdministrativeUnit
 ```powershell
 Get-EntraUserAdministrativeUnit
  -UserId <String>
- [-AdministrativeUnitId <String>]
+ -AdministrativeUnitId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
