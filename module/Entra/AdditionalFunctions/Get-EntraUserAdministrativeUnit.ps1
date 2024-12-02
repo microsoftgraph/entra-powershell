@@ -12,7 +12,7 @@ function Get-EntraUserAdministrativeUnit {
         [switch] $All,
 
         [Alias('ObjectId')]
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID or UPN to retrieve.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID or UPN to retrieve.")]
         [System.String] $UserId,
 
         [Alias('DirectoryObjectId')]
