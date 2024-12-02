@@ -42,7 +42,7 @@ Describe "Get-EntraUserAdministrativeUnit" {
         It "Property parameter should work" {
             $result = Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "Helpdesk Administrator"
+            $result.DisplayName | Should -Be "Pacific Admin Unit"
             Should -Invoke -CommandName Get-MgUserMemberOfAsAdministrativeUnit -ModuleName Microsoft.Graph.Entra -Times 1
         }
 

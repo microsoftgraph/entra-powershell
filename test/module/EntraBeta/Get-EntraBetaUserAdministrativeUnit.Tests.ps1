@@ -42,7 +42,7 @@ Describe "Get-EntraBetaUserAdministrativeUnit" {
         It "Property parameter should work" {
             $result = Get-EntraBetaUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "Helpdesk Administrator"
+            $result.DisplayName | Should -Be "Pacific Admin Unit"
             Should -Invoke -CommandName Get-MgBetaUserMemberOfAsAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
