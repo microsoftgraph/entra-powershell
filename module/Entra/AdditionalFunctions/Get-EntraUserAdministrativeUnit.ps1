@@ -30,7 +30,7 @@ function Get-EntraUserAdministrativeUnit {
 
     PROCESS {
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ SearchString = "Filter" }
 
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
