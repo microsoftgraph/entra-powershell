@@ -4,38 +4,66 @@
 function New-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Description,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Description of the administrative unit.")]
+        [System.String] $Description,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "Display name of the administrative unit.")]
+        [System.String] $DisplayName,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule for the administrative unit.")]
+        [System.String] $MembershipRule,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule processing state for the administrative unit.")]
+        [System.String] $MembershipRuleProcessingState,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership type for the administrative unit.")]
+        [System.String] $MembershipType,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Visibility of the administrative unit.")]
+        [System.String] $Visibility
     )
 
     PROCESS {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if($null -ne $PSBoundParameters["Description"])
-        {
+
+        if ($null -ne $PSBoundParameters["Description"]) {
             $params["Description"] = $PSBoundParameters["Description"]
             $body["Description"] = $PSBoundParameters["Description"]
         }
-        if($null -ne $PSBoundParameters["DisplayName"])
-        {
+        if ($null -ne $PSBoundParameters["DisplayName"]) {
             $params["DisplayName"] = $PSBoundParameters["DisplayName"]
             $body["DisplayName"] = $PSBoundParameters["DisplayName"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRule"]) {
+            $params["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+            $body["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRuleProcessingState"]) {
+            $params["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+            $body["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipType"]) {
+            $params["MembershipType"] = $PSBoundParameters["MembershipType"]
+            $body["MembershipType"] = $PSBoundParameters["MembershipType"]
+        }
+        if ($null -ne $PSBoundParameters["Visibility"]) {
+            $params["Visibility"] = $PSBoundParameters["Visibility"]
+            $body["Visibility"] = $PSBoundParameters["Visibility"]
         }
 
         $uri = "/v1.0/directory/administrativeUnits"
         $body = $body | ConvertTo-Json
 
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug "============================ TRANSFORMATIONS ============================"
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug "=========================================================================`n"
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method POST -Body $body
         $response = $response | ConvertTo-Json | ConvertFrom-Json
         $auList = @()
-        foreach($data in $response){
+        foreach ($data in $response) {
             $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAdministrativeUnit
             $data.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
