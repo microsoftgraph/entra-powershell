@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraAdministrativeUnit co
 
 
 ms.topic: reference
-ms.date: 07/25/2024
+ms.date: 12/12/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -116,7 +116,7 @@ This example demonstrates how to create an administrative unit with detailed con
 
 ### -Description
 
-Specifies a description for the new administrative unit. This is an optional parameter.
+Specifies a description for the new administrative unit. This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -148,7 +148,7 @@ Accept wildcard characters: False
 
 ### -MembershipType
 
-Specifies the membership type of the administrative unit. Possible values are: `dynamic` and `assigned`. If not set, the default value is `null`, and the membership type defaults to `assigned`. This is an optional parameter.
+Specifies the membership type of the administrative unit. Possible values are: `dynamic` and `assigned`. If not set, the default value is `null`, and the membership type defaults to `assigned`. This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -164,7 +164,7 @@ Accept wildcard characters: False
 
 ### -MembershipRule
 
-Specifies the dynamic membership rule applied to the administrative unit. This is an optional parameter.
+Specifies the dynamic membership rule applied to the administrative unit. This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -180,7 +180,7 @@ Accept wildcard characters: False
 
 ### -MembershipRuleProcessingState
 
-Controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates. This is an optional parameter.
+Controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates. This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -196,7 +196,7 @@ Accept wildcard characters: False
 
 ### -Visibility
 
-Specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers. This is an optional parameter.
+Specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers. This parameter is optional.
 
 ```yaml
 Type: System.String
