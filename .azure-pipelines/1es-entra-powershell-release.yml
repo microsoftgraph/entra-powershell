@@ -33,6 +33,9 @@ extends:
         displayName: Approval
         pool: server
         timeoutInMinutes: 720
+        templateContext:
+          type: releaseJob
+          isProduction: true
         steps:
         - task: ApprovalTask@1
           inputs:
@@ -45,19 +48,17 @@ extends:
         templateContext:
           type: releaseJob
           isProduction: true
+        steps:
+        - task: 1ES.DownloadPipelineArtifact@1
           inputs:
-          - input: pipelineArtifact
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
-            targetPath: $(Build.ArtifactStagingDirectory)/drop
-        steps:
+            targetPath: '$(System.ArtifactsDirectory)/drop'
         - task: 1ES.PublishNuget@1
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(Build.ArtifactStagingDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
-            packageParentPath: '$(Build.ArtifactStagingDirectory)'
+            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Graph.Entra*.nupkg'
+            packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
-            allowPackageConflicts: true
-            publishPackageMetadata: true
             publishFeedCredentials: EntraPowerShell_PSGallery
