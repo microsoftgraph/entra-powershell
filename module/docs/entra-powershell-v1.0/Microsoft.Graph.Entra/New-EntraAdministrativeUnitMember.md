@@ -1,6 +1,6 @@
 ---
-title: Add-EntraAdministrativeUnitMember
-description: This article provides details on the Add-EntraAdministrativeUnitMember command.
+title: New-EntraAdministrativeUnitMember
+description: This article provides details on the New-EntraAdministrativeUnitMember command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraAdministrativeUnitMember
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraAdministrativeUnitMember
 
 schema: 2.0.0
 ---
 
-# Add-EntraAdministrativeUnitMember
+# New-EntraAdministrativeUnitMember
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Adds an administrative unit member.
 ## Syntax
 
 ```powershell
-Add-EntraAdministrativeUnitMember
+New-EntraAdministrativeUnitMember
  -RefObjectId <String>
  -AdministrativeUnitId <String>
  [<CommonParameters>]
@@ -34,11 +34,13 @@ Add-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
+The `New-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
 
 Administrative units enable more granular management of permissions and access, particularly in large organizations or where administrative responsibilities are divided across departments or regions.
 
-To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
+To add a user, group, or device to an administrative unit, the calling principal must be assigned at least one of the following roles:  
+
+- Privileged Role Administrator
 
 ## Examples
 
@@ -48,7 +50,7 @@ To add a user, group, or device to an administrative unit, the calling principal
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
+New-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
 ```
 
 This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraUser` to find the user ID.
@@ -100,8 +102,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Add-EntraAdministrativeUnitMember` is an alias for `New-EntraAdministrativeUnitMember`.
+
 ## Related Links
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
+
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
+
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
