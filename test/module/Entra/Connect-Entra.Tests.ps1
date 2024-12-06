@@ -14,7 +14,7 @@ BeforeAll{
 
 Describe "Connect-Entra Mock"{
     It "should return empty object"{
-        $result = Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c"
+        $result = Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "b4d54cfddfbfa1414b6ae3d74fdc082dcdb8ec55"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Connect-MgGraph -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -91,7 +91,7 @@ Describe "Connect-Entra ParameterSets"{
         
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            {  Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c" -Debug } | Should -Not -Throw
+            {  Connect-Entra -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -ApplicationId "00001111-aaaa-2222-bbbb-3333cccc4444" -CertificateThumbprint "b4d54cfddfbfa1414b6ae3d74fdc082dcdb8ec55" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
