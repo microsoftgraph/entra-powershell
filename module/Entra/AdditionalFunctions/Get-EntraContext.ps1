@@ -51,4 +51,4 @@ function Get-EntraContext {
     $context
 }
 
-Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
+# Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
