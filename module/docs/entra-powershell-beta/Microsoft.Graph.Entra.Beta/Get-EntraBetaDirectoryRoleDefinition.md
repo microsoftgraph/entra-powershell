@@ -94,7 +94,8 @@ This command returns all the role definitions present.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId '1a327991-10cb-4266-877a-998fb4df78ec'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId $role.Id
 ```
 
 ```Output
