@@ -3,71 +3,52 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraContext {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param ()
+    [CmdletBinding(DefaultParameterSetName='UserParameterSet', HelpUri='https://learn.microsoft.com/powershell/module/microsoft.graph.entra/get-entracontext')]
+    param()
 
-    PROCESS {
-        $params = @{}
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+    begin {
+        try {
+            $outBuffer = $null
+            if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
+                $PSBoundParameters['OutBuffer'] = 1
+            }
+
+            $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('Microsoft.Graph.Authentication\Get-MgContext', [System.Management.Automation.CommandTypes]::Cmdlet)
+            $scriptCmd = {& $wrappedCmd @PSBoundParameters }
+
+            $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
+            $steppablePipeline.Begin($PSCmdlet)
+        } catch {
+            throw
         }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["Confirm"])
-        {
-            $params["Confirm"] = $PSBoundParameters["Confirm"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        if($null -ne $PSBoundParameters["WhatIf"])
-        {
-            $params["WhatIf"] = $PSBoundParameters["WhatIf"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-    
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        
-        $response = Get-MgContext @params
-        $response
     }
-}
-Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
 
+    process {
+        try {
+            $steppablePipeline.Process($_)
+        } catch {
+            throw
+        }
+    }
+
+    end {
+        try {
+            $steppablePipeline.End()
+        } catch {
+            throw
+        }
+    }
+
+    clean {
+        if ($null -ne $steppablePipeline) {
+            $steppablePipeline.Clean()
+        }
+    }
+
+    # Add the Entra PowerShell version to the output
+    $context = Get-MgContext
+    $context | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
+    $context
+}
+
+Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
