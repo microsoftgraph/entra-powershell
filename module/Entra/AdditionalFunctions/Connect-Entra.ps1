@@ -1,19 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Connect-Entra {
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory=$false)]
-        [string]$Scopes
-    )
+$cmd = Get-Command  Connect-MgGraph -CommandType cmdlets
+$metaData = New-Object System.Management.Automation.CommandMetaData $cmd
 
-    if ($PSCmdlet.MyInvocation.BoundParameters.ContainsKey('Scopes')) {
-        Connect-MgGraph -Scopes $Scopes
-    } else {
-        Connect-MgGraph
-    }
-}
-
-# Export the function to make it available as a command
-Export-ModuleMember -Function Connect-Entra
+[System.Management.Automation.ProxyCommand]::Create($metaData) | Set-Item Path function:Connect-Entra
