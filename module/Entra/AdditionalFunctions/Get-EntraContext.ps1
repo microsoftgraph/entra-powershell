@@ -46,9 +46,9 @@ function Get-EntraContext {
     }
 
     # Add the Entra PowerShell version to the output
-    $context = Get-MgContext
-    $context | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
-    $context
+    # $context = Get-MgContext
+    #$context | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
+    # $context
 }
 
 # Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
