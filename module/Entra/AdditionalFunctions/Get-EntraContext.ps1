@@ -73,5 +73,5 @@ function Get-EntraContext {
         $response
     }
 }
-
 Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
+
