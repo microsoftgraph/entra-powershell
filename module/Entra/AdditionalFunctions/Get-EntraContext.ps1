@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraContext {
-    [CmdletBinding(DefaultParameterSetName='UserParameterSet', HelpUri='https://learn.microsoft.com/powershell/module/microsoft.graph.entra/get-entracontext')]
+    [CmdletBinding(DefaultParameterSetName='UserParameterSet', HelpUri='https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.authentication/get-mgcontext')]
     param()
 
     begin {
@@ -44,11 +44,4 @@ function Get-EntraContext {
             $steppablePipeline.Clean()
         }
     }
-
-    # Add the Entra PowerShell version to the output
-    # $context = Get-MgContext
-    #$context | Add-Member -MemberType NoteProperty -Name "EntraPowerShellVersion" -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
-    # $context
 }
-
-# Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
