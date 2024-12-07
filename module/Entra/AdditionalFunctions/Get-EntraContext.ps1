@@ -28,11 +28,12 @@ function Get-EntraContext {
             $result = $steppablePipeline.Process($_)
 
             # Add the EntraVersion property to the output object
-            if ($result -is [PSCustomObject]) {
-                $result | Add-Member -MemberType NoteProperty -Name EntraVersion -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
-            }else{
-                $result | Add-Member -MemberType NoteProperty -Name EntraVersion -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
-            }
+
+
+            $result | Add-Member -MemberType NoteProperty -Name "EntraVersion" -Value "0.19.0" -Force
+            
+            
+        }
 
             return $result
         } catch {
