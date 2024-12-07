@@ -30,6 +30,8 @@ function Get-EntraContext {
             # Add the EntraVersion property to the output object
             if ($result -is [PSCustomObject]) {
                 $result | Add-Member -MemberType NoteProperty -Name EntraVersion -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
+            }else{
+                $result | Add-Member -MemberType NoteProperty -Name EntraVersion -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
             }
 
             return $result
