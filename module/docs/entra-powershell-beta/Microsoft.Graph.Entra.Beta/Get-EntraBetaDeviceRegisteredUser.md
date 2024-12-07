@@ -38,14 +38,21 @@ Get-EntraBetaDeviceRegisteredUser
 
 The `Get-EntraBetaDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `DeviceId` parameter to get a registered user for a Microsoft Entra ID device.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
+
+- Directory Readers  
+- Global Reader  
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Retrieve the registered user of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-$DevId = (Get-EntraDevice -Top 1).ObjectId
-Get-EntraBetaDeviceRegisteredUser -DeviceId $DevId
+$device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+Get-EntraBetaDeviceRegisteredUser -DeviceId $device.ObjectId
 ```
 
 ```Output
@@ -63,7 +70,8 @@ This example demonstrates how to retrieve registered user for a specific Microso
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+$device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+Get-EntraBetaDeviceRegisteredUser -DeviceId $device.ObjectId -All 
 ```
 
 ```Output
@@ -83,7 +91,8 @@ This example demonstrates how to retrieve all registered users for a specified d
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+$device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+Get-EntraBetaDeviceRegisteredUser -DeviceId $device.ObjectId -Top 2
 ```
 
 ```Output

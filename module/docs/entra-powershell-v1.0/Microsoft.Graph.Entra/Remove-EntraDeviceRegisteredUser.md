@@ -35,15 +35,20 @@ Remove-EntraDeviceRegisteredUser
 
 The `Remove-EntraDeviceRegisteredUser` cmdlet removes a registered user from a Microsoft Entra ID device.
 
+In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
+
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Remove a registered user from a device
 
 ```Powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$Device = Get-EntraDevice -Top 1
-$User = Get-EntraDeviceRegisteredUser -DeviceId $Device.ObjectId
-Remove-EntraDeviceRegisteredUser -DeviceId $Device.ObjectId -UserId $User.ObjectId
+$device = Get-EntraDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+$user = Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId
+Remove-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -UserId $user.Id
 ```
 
 This example shows how to remove the registered user from device.

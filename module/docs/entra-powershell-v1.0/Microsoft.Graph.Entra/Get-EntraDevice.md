@@ -59,13 +59,22 @@ Get-EntraDevice
 
 The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `DeviceId` parameter to get a specific device.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
+
+- Cloud Device Administrator  
+- Intune Administrator  
+- Windows 365 Administrator  
+- Compliance Administrator  
+- Device Managers
+
 ## Examples
 
 ### Example 1: Get a device by ID
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDevice -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Get-EntraDevice -DeviceId $device.ObjectId
 ```
 
 ```Output

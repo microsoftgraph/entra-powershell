@@ -35,15 +35,20 @@ Remove-EntraDeviceRegisteredOwner
 
 The `Remove-EntraDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
+In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
+
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Remove an owner from a device
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$Device = Get-EntraDevice -Top 1
-$Owner = Get-EntraDeviceRegisteredOwner -DeviceId $Device.ObjectId
-Remove-EntraDeviceRegisteredOwner -DeviceId $Device.ObjectId -OwnerId $Owner.ObjectId
+$device = Get-EntraDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+$owner = Get-EntraDeviceRegisteredOwner -DeviceId $device.ObjectId
+Remove-EntraDeviceRegisteredOwner -DeviceId $device.ObjectId -OwnerId $owner.Id
 ```
 
 This examples shows how to remove the owner of a device.
