@@ -1,57 +1,77 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 
 function Get-EntraContext {
-    [CmdletBinding(DefaultParameterSetName='UserParameterSet', HelpUri='https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.authentication/get-mgcontext')]
-    param()
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param ()
 
-    begin {
-        try {
-            $outBuffer = $null
-            if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
-                $PSBoundParameters['OutBuffer'] = 1
-            }
-
-            $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('Microsoft.Graph.Authentication\Get-MgContext', [System.Management.Automation.CommandTypes]::Cmdlet)
-            $scriptCmd = {& $wrappedCmd @PSBoundParameters }
-
-            $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
-            $steppablePipeline.Begin($PSCmdlet)
-        } catch {
-            throw
+    PROCESS {
+        $params = @{}
+        if ($null -ne $PSBoundParameters["ErrorAction"]) {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
         }
-    }
-
-    process {
-        try {
-            $result = $steppablePipeline.Process($_)
-
-            # Add the EntraVersion property to the output object
-
-
-            $result | Add-Member -MemberType NoteProperty -Name "EntraVersion" -Value "0.19.0" -Force
-            
-            
-        return $result
-
-            
-        } catch {
-            throw
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
         }
-    }
-
-    end {
-        try {
-            $steppablePipeline.End()
-        } catch {
-            throw
+        if ($null -ne $PSBoundParameters["OutVariable"]) {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
-    }
-
-    clean {
-        if ($null -ne $steppablePipeline) {
-            $steppablePipeline.Clean()
+        if ($null -ne $PSBoundParameters["InformationAction"]) {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
         }
+        if ($null -ne $PSBoundParameters["WarningVariable"]) {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        }
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if ($null -ne $PSBoundParameters["Confirm"]) {
+            $params["Confirm"] = $PSBoundParameters["Confirm"]
+        }
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if ($null -ne $PSBoundParameters["OutBuffer"]) {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if ($null -ne $PSBoundParameters["WarningAction"]) {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
+        if ($null -ne $PSBoundParameters["WhatIf"]) {
+            $params["WhatIf"] = $PSBoundParameters["WhatIf"]
+        }
+        if ($null -ne $PSBoundParameters["InformationVariable"]) {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+
+        $response = Get-MgContext @params
+
+        $module = Get-Module -Name Microsoft.Graph.Entra.Beta -ErrorAction SilentlyContinue
+        if ($null -eq $module) {
+            $module = Get-Module -Name Microsoft.Graph.Entra -ErrorAction SilentlyContinue
+        }
+
+        if ($null -ne $module) {
+            $entraPSVersion = $module.Version.ToString()
+            $entraPSModuleName = $module.Name
+            $response | Add-Member -MemberType NoteProperty -Name "EntraPSModuleName" -Value $entraPSModuleName -Force
+            $response | Add-Member -MemberType NoteProperty -Name "EntraPSVersion" -Value $entraPSVersion -Force
+        }
+
+        $response
     }
 }
+
+Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
