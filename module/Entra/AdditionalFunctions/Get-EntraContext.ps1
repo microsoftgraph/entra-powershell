@@ -33,9 +33,9 @@ function Get-EntraContext {
             $result | Add-Member -MemberType NoteProperty -Name "EntraVersion" -Value "0.19.0" -Force
             
             
-        }
+        return $result
 
-            return $result
+            
         } catch {
             throw
         }
