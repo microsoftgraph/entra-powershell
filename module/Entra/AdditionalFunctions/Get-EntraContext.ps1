@@ -44,4 +44,9 @@ function Get-EntraContext {
             $steppablePipeline.Clean()
         }
     }
+
+        # Add the EntraVersion to the output
+    $context = Get-MgContext
+    $context | Add-Member -MemberType NoteProperty -Name "EntraVersion" -Value (Get-Module -Name Microsoft.Graph.Entra).Version.ToString() -Force
+    $context
 }
