@@ -107,6 +107,8 @@ function Get-EntraDeletedServicePrincipal {
             else {
                 $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
             }
+
+            return $response
         }
         catch {
             # Handle any errors that occur during the API call

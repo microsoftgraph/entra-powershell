@@ -107,6 +107,8 @@ function Get-EntraBetaDeletedServicePrincipal {
             else {
                 $response = Get-MgBetaDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
             }
+
+            return $response
         }
         catch {
             # Handle any errors that occur during the API call
