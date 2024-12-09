@@ -101,9 +101,12 @@ function Get-EntraBetaDeletedServicePrincipal {
 
         try {
             # Make the API call
-            $response = Get-MgBetaDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders        
-            
-            return $response
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgBetaDirectoryDeletedItemAsServicePrincipal @params -PageSize 999 -Headers $customHeaders
+            }
+            else {
+                $response = Get-MgBetaDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
+            }
         }
         catch {
             # Handle any errors that occur during the API call

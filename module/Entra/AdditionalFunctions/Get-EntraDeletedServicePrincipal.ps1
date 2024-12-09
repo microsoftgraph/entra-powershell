@@ -101,9 +101,12 @@ function Get-EntraDeletedServicePrincipal {
 
         try {
             # Make the API call
-            $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders        
-            
-            return $response
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -PageSize 999 -Headers $customHeaders
+            }
+            else {
+                $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
+            }
         }
         catch {
             # Handle any errors that occur during the API call
