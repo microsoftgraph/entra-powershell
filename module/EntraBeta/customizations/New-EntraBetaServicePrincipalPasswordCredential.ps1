@@ -35,6 +35,7 @@
             $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["StartDate"] = $PSBoundParameters["StartDate"]
             $params["EndDate"] = $PSBoundParameters["EndDate"]
+            $params["DisplayName"] = $PSBoundParameters["DisplayName"]
 
             $URI = "$baseUri/$($params.ServicePrincipalId)/addPassword"
             $body = @{
