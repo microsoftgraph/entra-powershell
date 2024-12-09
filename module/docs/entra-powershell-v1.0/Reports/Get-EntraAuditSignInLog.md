@@ -12,7 +12,7 @@ author: msewaweru
 
 external help file: Microsoft.Entra.Reports-Help.xml
 Module Name: Microsoft.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraAuditSignInLog
 schema: 2.0.0
 ---
 
