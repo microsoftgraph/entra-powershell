@@ -100,25 +100,20 @@ function Get-EntraDeletedUser {
         Write-Debug("=========================================================================`n")
 
         # Make the API call
-        $response = Get-MgDirectoryDeletedItemAsUser @params -Headers $customHeaders
-
-        # Process the response
-        foreach ($item in $response) {
-            if ($null -ne $item) {
-                $item | Add-Member -MemberType AliasProperty -Name ObjectId -Value $item.Id
+        try {
+            # Make the API call with -PageSize 999 if -All is used
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgDirectoryDeletedItemAsUser @params -PageSize 999 -Headers $customHeaders
             }
-        }
+            else {
+                $response = Get-MgDirectoryDeletedItemAsUser @params -Headers $customHeaders
+            }
 
-        # Check if the user requested 'Format-List' or 'FL' to output all properties
-        $outputPreference = $PSCmdlet.MyInvocation.Line.ToLower()
-        if ($outputPreference.Contains("format-list") -or $outputPreference.Contains("fl")) {
-            # Return all properties
-            $response
+            return $response
         }
-        else {
-            # Return default properties
-            $response | Select-Object -Property Id, DisplayName, UserPrincipalName, UserType, DeletedDateTime,
-            @{Name = "PermanentDeletionDate"; Expression = { $_.DeletedDateTime.AddDays(30) } } | Format-Table -AutoSize
+        catch {
+            # Handle any errors that occur during the API call
+            Write-Error "An error occurred while retrieving deleted users: $_"
         }
     }    
 }
