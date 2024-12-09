@@ -94,7 +94,7 @@ This command returns all the role definitions present.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId '1a327991-10cb-4266-877a-998fb4df78ec'
+Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId '2af84b1e-32c8-42b7-82bc-daa82404023b'
 ```
 
 ```Output
@@ -145,10 +145,12 @@ Get-EntraBetaDirectoryRoleDefinition -SearchString 'Global'
  ```
 
 ```Output
-DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
------------           --                                   ----------                           -----------                                                                       --------- ---------
-Global Administrator               00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identit…
-Global Reader                      11bb11bb-cc22-dd33-ee44-55ff55ff55ff f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.
+DisplayName                        Id                                   TemplateId                           Description                                                                                                                                                           IsBu
+                                                                                                                                                                                                                                                                                   iltI
+                                                                                                                                                                                                                                                                                   n
+-----------                        --                                   ----------                           -----------                                                                                                                                                           ----
+Global Administrator               62e90394-69f5-4237-9190-012177145e10 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.                                                              True
+Global Reader                      f2ef992c-3afb-46b9-b7cf-a126ee74c451 f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.                                                                                         True
 ```
 
 This command return all the role definitions containing the specified display name.
