@@ -101,7 +101,14 @@ function Get-EntraDeletedAdministrativeUnit {
 
         try {
             # Make the API call
-            $response = Get-MgDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
+
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgDirectoryDeletedItemAsAdministrativeUnit @params -PageSize 999 -Headers $customHeaders
+            }
+            else {
+                $response = Get-MgDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
+            }
+
             return $response
         }
         catch {

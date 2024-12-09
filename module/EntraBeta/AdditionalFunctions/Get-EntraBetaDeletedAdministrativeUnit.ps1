@@ -101,7 +101,13 @@ function Get-EntraBetaDeletedAdministrativeUnit {
 
         try {
             # Make the API call
-            $response = Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
+
+            if ($PSBoundParameters.ContainsKey("All") -and $All) {
+                $response = Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit @params -PageSize 999 -Headers $customHeaders
+            }
+            else {
+                $response = Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit @params -Headers $customHeaders
+            }
             return $response
         }
         catch {
