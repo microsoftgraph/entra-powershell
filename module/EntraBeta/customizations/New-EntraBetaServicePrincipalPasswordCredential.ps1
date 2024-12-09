@@ -20,7 +20,9 @@
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Value,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $EndDate
+    [System.Nullable`1[System.DateTime]] $EndDate,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $DisplayName
     )
 
     PROCESS{
@@ -33,12 +35,14 @@
             $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["StartDate"] = $PSBoundParameters["StartDate"]
             $params["EndDate"] = $PSBoundParameters["EndDate"]
+            $params["DisplayName"] = $PSBoundParameters["DisplayName"]
 
             $URI = "$baseUri/$($params.ServicePrincipalId)/addPassword"
             $body = @{
                 passwordCredential = @{
                     startDateTime = $PSBoundParameters["StartDate"];
                     endDateTime = $PSBoundParameters["EndDate"];
+                    displayName = $PSBoundParameters["DisplayName"];
                 }
             }
         }
