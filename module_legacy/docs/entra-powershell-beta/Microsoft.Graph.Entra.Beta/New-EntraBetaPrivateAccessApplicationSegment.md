@@ -10,7 +10,7 @@ manager: CelesteDG
 author: andres-canello
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+s
 schema: 2.0.0
 ---
 
