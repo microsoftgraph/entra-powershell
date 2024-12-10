@@ -9,9 +9,9 @@ ms.author: eunicewaweru
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUser
+external help file: Microsoft.Entra.Beta-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUser
 
 schema: 2.0.0
 ---
@@ -20,7 +20,7 @@ schema: 2.0.0
 
 Reference
 
-Module: **Microsoft.Graph.Entra.Beta**
+Module: **Microsoft.Entra.Beta**
 
 ## Synopsis
 

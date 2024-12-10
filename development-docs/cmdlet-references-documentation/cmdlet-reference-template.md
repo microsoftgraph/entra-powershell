@@ -10,9 +10,9 @@ manager: CelesteDG
 author: msewaweru
 ms.reviewer: stevemutungi
 
-external help file: Microsoft.Graph.Entra-Help.xml  //use `Microsoft.Graph.Entra.Beta-Help.xml` for beta commands
-Module Name: Microsoft.Graph.Entra  //use `Microsoft.Graph.Entra.Beta` for beta commands
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/<Command-Name> //use `https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/<Command-Name>` for beta commands
+external help file: Microsoft.Entra-Help.xml  //use `Microsoft.Entra.Beta-Help.xml` for beta commands
+Module Name: Microsoft.Entra  //use `Microsoft.Entra.Beta` for beta commands
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/<Command-Name> //use `https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/<Command-Name>` for beta commands
 
 schema: 2.0.0
 ---
