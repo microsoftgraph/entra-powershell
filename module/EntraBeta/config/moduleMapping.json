@@ -256,7 +256,7 @@
   "Add-EntraBetaScopedRoleMembership": "DirectoryManagement",
   "Confirm-EntraBetaDomain": "DirectoryManagement",
   "Get-EntraBetaConditionalAccessPolicy": "SignIns",
-  "Get-EntraBetaObjectByObjectId": "Groups",
+  "Get-EntraBetaObjectByObjectId": "DirectoryManagement",
   "Get-EntraBetaObjectSetting": "Groups",
   "Get-EntraBetaScopedRoleMembership": "DirectoryManagement",
   "Get-EntraBetaServicePrincipalPolicy": "SignIns",
@@ -296,5 +296,4 @@
   "New-EntraBetaPrivateAccessApplication":"NetworkAccess",
   "Update-EntraBetaOauth2PermissionGrant":"SignIns",
   "Update-EntraBetaUserAuthenticationRequirement":"SignIns"
-
 }
