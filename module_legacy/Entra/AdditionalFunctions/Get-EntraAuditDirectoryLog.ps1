@@ -5,14 +5,14 @@
 function Get-EntraAuditDirectoryLog {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Int32] $Top,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter
+        [Parameter(ParameterSetName = 'GetById', ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id,
+        [Parameter(ParameterSetName = 'GetQuery', ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Int32] $Top,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(ParameterSetName = 'GetQuery', ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter
     )
 
     PROCESS {
@@ -20,33 +20,29 @@ function Get-EntraAuditDirectoryLog {
         $params = @{}
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/directoryAudits'
-        $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri"+"?"
+        $params['Method'] = 'GET'
+        $params['Uri'] = "$baseUri" + '?'
 
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
-            $topCount = $PSBoundParameters["Top"]
+        if ($PSBoundParameters.ContainsKey('Top')) {
+            $topCount = $PSBoundParameters['Top']
             if ($topCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
-            }
-            else{
-                $params["Uri"] += "&`$top=$topCount"
+                $params['Uri'] += "&`$top=999"
+            } else {
+                $params['Uri'] += "&`$top=$topCount"
             }
         }
-        if($null -ne $PSBoundParameters["Id"])
-        {
-            $LogId = $PSBoundParameters["Id"]
-            $params["Uri"] = "$baseUri/$($LogId)"
+        if ($null -ne $PSBoundParameters['Id']) {
+            $LogId = $PSBoundParameters['Id']
+            $params['Uri'] = "$baseUri/$($LogId)"
         }
-        if($null -ne $PSBoundParameters["Filter"])
-        {
-            $Filter = $PSBoundParameters["Filter"]
+        if ($null -ne $PSBoundParameters['Filter']) {
+            $Filter = $PSBoundParameters['Filter']
             $f = '$Filter'
-            $params["Uri"] += "&$f=$Filter"
+            $params['Uri'] += "&$f=$Filter"
         }
 
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug('============================ TRANSFORMATIONS ============================')
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
@@ -56,16 +52,18 @@ function Get-EntraAuditDirectoryLog {
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
-                $params["Uri"] = $response.'@odata.nextLink'
+                $params['Uri'] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
+                    $params['Uri'] = $params['Uri'].Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}
+        } catch {
+            Write-Error $_.Exception.Message
+        }
 
         $userList = @()
         foreach ($response in $data) {

@@ -3,14 +3,14 @@
 # ------------------------------------------------------------------------------
 function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (    
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias("ObjectId")]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All
+    param (
+        [Parameter(ParameterSetName = 'GetQuery', ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $AdministrativeUnitId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All
     )
 
     PROCESS {
@@ -18,23 +18,21 @@ function Get-EntraAdministrativeUnitMember {
         $topCount = $null
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "/v1.0/directory/administrativeUnits/$AdministrativeUnitId/members?`$select=*"
-        $params["Uri"] = "$baseUri"
-        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
-        {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
+        $params['Uri'] = "$baseUri"
+        if ($null -ne $PSBoundParameters['AdministrativeUnitId']) {
+            $params['AdministrativeUnitId'] = $PSBoundParameters['AdministrativeUnitId']
         }
-        if ($PSBoundParameters.ContainsKey("Top")) {
-            $topCount = $PSBoundParameters["Top"]
+        if ($PSBoundParameters.ContainsKey('Top')) {
+            $topCount = $PSBoundParameters['Top']
             if ($topCount -gt 999) {
                 $minTop = 999
-                $params["Uri"] += "&`$top=999"
-            }
-            else {
-                $params["Uri"] += "&`$top=$topCount"
+                $params['Uri'] += "&`$top=999"
+            } else {
+                $params['Uri'] += "&`$top=$topCount"
             }
         }
 
-        Write-Debug("============================ TRANSFORMATIONS ============================")
+        Write-Debug('============================ TRANSFORMATIONS ============================')
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
@@ -46,22 +44,22 @@ function Get-EntraAdministrativeUnitMember {
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
-                $params["Uri"] = $response.'@odata.nextLink'
+                $params['Uri'] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
                     if ($minTop) {
-                        $params["Uri"] = $params["Uri"].Replace("`$top=$minTop", "`$top=$topValue")
-                    }
-                    else {
-                        $params["Uri"] = $params["Uri"].Replace("`$top=$topCount", "`$top=$topValue")
+                        $params['Uri'] = $params['Uri'].Replace("`$top=$minTop", "`$top=$topValue")
+                    } else {
+                        $params['Uri'] = $params['Uri'].Replace("`$top=$topCount", "`$top=$topValue")
                     }
                     $increment -= $topValue
                 }
                 $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
+        } catch {
+            Write-Error $_.Exception.Message
         }
-        catch {}
         $data | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
