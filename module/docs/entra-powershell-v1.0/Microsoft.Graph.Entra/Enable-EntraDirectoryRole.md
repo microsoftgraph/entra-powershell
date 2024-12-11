@@ -37,14 +37,18 @@ The `Enable-EntraDirectoryRole` cmdlet activates an existing directory role in M
 
 The Company Administrators and the default user directory roles (User, Guest User, and Restricted Guest User) are activated by default. To access and assign members to other directory roles, you must first activate them using their corresponding directory role template ID.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Enable a directory role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$InviterRole = Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
-Enable-EntraDirectoryRole -RoleTemplateId $InviterRole.ObjectId
+$guestRole = Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
+Enable-EntraDirectoryRole -RoleTemplateId $guestRole.Id
 ```
 
 ```Output

@@ -35,18 +35,19 @@ Remove-EntraDirectoryRoleMember
 
 The `Remove-EntraDirectoryRoleMember` cmdlet removes a member from a directory role in Microsoft Entra ID.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Remove a member from a directory role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$params = @{
-    DirectoryRoleId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-    MemberId = '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
-}
-
-Remove-EntraDirectoryRoleMember @params
+$directoryRole = Get-EntraDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
+$member = Get-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id | Select Id, DisplayName, '@odata.type' | Where-Object {$_.DisplayName -eq 'Sawyer Miller'}
+Remove-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -MemberId $member.Id
 ```
 
 This example removes the specified member from the specified role.

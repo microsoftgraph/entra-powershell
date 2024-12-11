@@ -35,17 +35,19 @@ Add-EntraBetaDirectoryRoleMember
 
 The `Add-EntraBetaDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Add a member to a Microsoft Entra ID role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$params = @{
-    DirectoryRoleId = '67efd1ad-1046-4fb8-bb57-1d2e4f66c74e'
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-Add-EntraBetaDirectoryRoleMember @params
+$directoryRole = Get-EntraBetaDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@Contoso.com'
+Add-EntraBetaDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -RefObjectId $user.Id
 ```
 
 This example adds a member to a directory role.
