@@ -261,5 +261,6 @@
   "Remove-EntraServicePrincipalAppRoleAssignment": "Applications",
   "Set-EntraDirectoryRoleDefinition": "Governance",
   "Update-EntraUserFromFederated": "Users",
-  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement"
+  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement",
+  "Get-EntraUserAuthenticationRequirement":"SignIns"
 }
