@@ -43,11 +43,8 @@ The `Set-EntraPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `Id` p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    DisplayName = 'NewUpdated'
-}
-Set-EntraPolicy @params 
+$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Set-EntraPolicy -Id $policy.Id -DisplayName 'NewUpdated' 
 ```
 
 This command updates display name of the specified policy in Microsoft Entra ID.
@@ -60,11 +57,8 @@ This command updates display name of the specified policy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-}
-Set-EntraPolicy @params
+$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Set-EntraPolicy -Id $policy.Id -Definition $definition
 ```
 
 This command updates definition of the specified policy in Microsoft Entra ID.
@@ -78,11 +72,8 @@ In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":t
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    IsOrganizationDefault = $false
-}
-Set-EntraPolicy @params
+$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Set-EntraPolicy -Id $policy.Id -IsOrganizationDefault $false
 ```
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
@@ -95,11 +86,8 @@ This command updates organization default of the specified policy in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    Type = 'ActivityBasedTimeoutPolicy'
-}
-Set-EntraPolicy @params
+$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Set-EntraPolicy -Id $policy.Id -Type 'ActivityBasedTimeoutPolicy'
 ```
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
