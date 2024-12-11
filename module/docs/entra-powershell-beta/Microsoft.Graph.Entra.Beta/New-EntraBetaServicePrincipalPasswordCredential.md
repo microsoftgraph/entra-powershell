@@ -44,7 +44,7 @@ The `New-EntraBetaServicePrincipalPasswordCredential` cmdlet creates a password 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -StartDate '2024-11-04T14:14:14Z'
+New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -DisplayName 'Helpdesk App Credential' -StartDate '2024-11-04T14:14:14Z'
 ```
 
 ```Output
@@ -64,6 +64,7 @@ EndDate             : 08-08-2026 10:30:00
 This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-DisplayName` parameter specifies a friendly name for the password.
 - `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
 ### Example 2: Create a password credential with EndDate
@@ -71,7 +72,7 @@ This example demonstrates how to create a password credential with StartDate for
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -EndDate '2024-11-04T14:14:14Z'
+New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -DisplayName 'Helpdesk App Credential' -EndDate '2024-11-04T14:14:14Z'
 ```
 
 ```Output
@@ -91,6 +92,7 @@ EndDate             : 08-08-2026 10:30:00
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
+- `-DisplayName` parameter specifies a friendly name for the password.
 - `-EndDate` parameter specifies the date and time at which the password expires represented using ISO 8601 format and is always in UTC time.
 
 ## Parameters
@@ -140,6 +142,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -DisplayName
+
+The friendly name for the password.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: 
 Accept wildcard characters: False
 ```
 
