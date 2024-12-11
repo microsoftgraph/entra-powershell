@@ -96,7 +96,7 @@ $params = @{
    ResourceScopes = '/'
    IsEnabled = $false
    RolePermissions = $RolePermissions
-   TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
+   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
    Version = 2
 }
 
