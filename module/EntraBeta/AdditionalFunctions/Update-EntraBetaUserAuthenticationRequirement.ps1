@@ -10,7 +10,6 @@ function Update-EntraBetaUserAuthenticationRequirement {
         [System.String] $UserId,
 
         [Parameter(Mandatory = $true, HelpMessage = "Specify the per-user MFA state. Valid values are 'enabled', 'disabled', or 'enforced'.")]
-        [ValidateSet("enabled", "disabled", "enforced")]
         [System.String] $PerUserMfaState
     )
 
@@ -23,7 +22,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
             if ($null -ne $PSBoundParameters["UserId"]) {
                 $params["UserId"] = $PSBoundParameters["UserId"]
             }
-            if ($null -ne $PSBoundParameters["CurrentPassword"]) {
+            if ($null -ne $PSBoundParameters["PerUserMfaState"]) {
                 $params["PerUserMfaState"] = $PSBoundParameters["PerUserMfaState"]
             }
 
