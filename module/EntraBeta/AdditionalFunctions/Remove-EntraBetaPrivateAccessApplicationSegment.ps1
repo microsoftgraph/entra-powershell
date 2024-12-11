@@ -3,19 +3,32 @@
 # ------------------------------------------------------------------------------
 function Remove-EntraBetaPrivateAccessApplicationSegment {
 
-	[CmdletBinding()]
-	param (
-		[Alias('ObjectId')]
-		[Parameter(Mandatory = $True, Position = 1)]
-		[string]
-		$ApplicationId,
-		[Parameter(Mandatory = $False, Position = 2)]
-		[string]
-		$ApplicationSegmentId
-	)
+    [CmdletBinding()]
+    param (
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $True)]
+        [System.String]
+        $ApplicationId,
 
-	PROCESS {
-		$customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-		Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
-	}
+        [Parameter(Mandatory = $False)]
+        [System.String]
+        $ApplicationSegmentId
+    )
+
+    PROCESS {
+        try {
+            # Create custom headers for the request
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+
+            # Construct the URI for the API request
+            $uri = "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
+
+            # Invoke the API request to delete the application segment
+            Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri $uri
+
+            Write-Output "Application segment with ID $ApplicationSegmentId has been removed successfully."
+        } catch {
+            Write-Error "Failed to remove the application segment: $_"
+        }
+    }
 }

@@ -4,9 +4,22 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraBetaGlobalSecureAccessTenantStatus {
-	PROCESS {
-		$customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-		$response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/networkAccess/tenantStatus"
-		$response
-	}
+    PROCESS {
+        try {
+            # Create custom headers for the request
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+
+            # Invoke the API request to get the tenant status
+            $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/networkAccess/tenantStatus"
+
+            # Check the response and provide feedback
+            if ($response) {
+                Write-Output $response
+            } else {
+                Write-Error "Failed to retrieve the Global Secure Access Tenant status."
+            }
+        } catch {
+            Write-Error "An error occurred while retrieving the Global Secure Access Tenant status: $_"
+        }
+    }
 }

@@ -5,9 +5,9 @@ description: This article provides details on the New-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 07/18/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -20,6 +20,18 @@ schema: 2.0.0
 
 Creates an application segment associated to a Private Access application.
 
+## Syntax
+
+```powershell
+New-EntraBetaPrivateAccessApplicationSegment
+ -ApplicationId <String>
+ -DestinationHost <String>
+ -DestinationType <String>
+ [-Protocol <String>]
+ [-Ports <String>]
+ [<CommonParameters>]
+```
+
 ## Description
 
 The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application segment associated to a Private Access application.
@@ -30,7 +42,7 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = 'ssh.contoso.local'
@@ -54,7 +66,7 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 
 ```powershell
 Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAccess_Application_DisplayName>'"
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
