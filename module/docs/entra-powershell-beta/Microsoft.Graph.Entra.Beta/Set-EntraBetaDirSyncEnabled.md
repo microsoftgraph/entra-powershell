@@ -66,7 +66,7 @@ This example turns on directory synchronization for a company.
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
 $params = @{
     EnableDirsync = $False 
-    TenantId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
     Force = $True
     
 }
