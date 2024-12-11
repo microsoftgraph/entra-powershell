@@ -12,6 +12,7 @@ function Get-EntraBetaUserAuthenticationMethod {
 
     PROCESS {
         try {
+
             # Initialize headers and URI
             $params = @{ }
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -47,16 +48,7 @@ function Get-EntraBetaUserAuthenticationMethod {
                 $authMethodList += $authMethodType
             }
 
-            # Check if the user requested 'Format-List' or 'FL' to output all properties
-            $outputPreference = $PSCmdlet.MyInvocation.Line.ToLower()
-            if ($outputPreference.Contains("format-list") -or $outputPreference.Contains("fl")) {
-                # Return all properties
-                $authMethodList
-            }
-            else {
-                # Return default properties
-                $authMethodList | Select-Object -Property Id, DisplayName, AuthenticationMethodType | Format-Table -AutoSize
-            }
+            return $authMethodList
         }
         catch {
             Write-Error "An error occurred while retrieving user authentication methods: $_"

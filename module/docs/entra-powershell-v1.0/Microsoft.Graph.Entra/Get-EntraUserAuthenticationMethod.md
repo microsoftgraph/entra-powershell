@@ -46,7 +46,7 @@ In delegated scenarios involving work or school accounts, where the signed-in us
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.Read.All'
-Get-EntraUserAuthenticationMethod -UserId 'SawyerM@Contoso.com'
+Get-EntraUserAuthenticationMethod -UserId 'SawyerM@Contoso.com' | Select-Object Id, DisplayName, AuthenticationMethodType
 ```
 
 ```Output
