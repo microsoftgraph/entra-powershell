@@ -42,7 +42,7 @@ The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory r
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraDirectoryRoleMember -DirectoryRoleId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
+Get-EntraDirectoryRoleMember -DirectoryRoleId '67efd1ad-1046-4fb8-bb57-1d2e4f66c74e'
 ```
 
 ```Output

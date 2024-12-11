@@ -123,13 +123,13 @@ This command creates a new role definition with ResourceScopes parameter.
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
 $rolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -TemplateId '4dd5aa9c-cf4d-4895-a993-740d342802b9'
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -TemplateId 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
 ```
 
 ```Output
 DisplayName      Id                                   TemplateId                           Description IsBuiltIn IsEnabled
 -----------      --                                   ----------                           ----------- --------- ---------
-MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 4dd5aa9c-cf4d-4895-a993-740d342802b9             False     False
+MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 f2ef992c-3afb-46b9-b7cf-a126ee74c451             False     False
 
 ```
 
@@ -152,7 +152,7 @@ New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnable
 ```Output
 DisplayName      Id                                   TemplateId                           Description IsBuiltIn IsEnabled
 -----------      --                                   ----------                           ----------- --------- ---------
-MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 b69d16e9-b3f9-4289-a87f-8f796bd9fa28             False     False
+MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 f2ef992c-3afb-46b9-b7cf-a126ee74c451             False     False
 
 ```
 
