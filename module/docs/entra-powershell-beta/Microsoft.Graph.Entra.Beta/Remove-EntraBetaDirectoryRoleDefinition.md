@@ -36,13 +36,18 @@ Delete a Microsoft Entra ID Directory roleDefinition object by ID.
 
 You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Remove a specified role definition
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-Remove-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Contoso Custom Role Definition'"
+Remove-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId $role.Id
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.

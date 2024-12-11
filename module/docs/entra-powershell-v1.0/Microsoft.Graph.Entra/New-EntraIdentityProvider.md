@@ -52,7 +52,9 @@ The current set of identity providers can be:
 - Amazon
 - LinkedIn
 
-The work or school account needs to belong to at least the External Identity Provider Administrator Microsoft Entra role.
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- External Identity Provider Administrator
 
 ## Examples
 
