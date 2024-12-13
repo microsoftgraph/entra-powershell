@@ -28,8 +28,8 @@ Sets a user extension.
 
 ```powershell
 Set-EntraBetaUserExtension
- -ExtensionName <String>
- -ObjectId <String>
+ -ExtensionId <String>
+ -UserId <String>
  -ExtensionValue <String>
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Set-EntraBetaUserExtension
 
 ```powershell
 Set-EntraBetaUserExtension
- -ObjectId <String>
+ -UserId <String>
  -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
  [<CommonParameters>]
 ```
@@ -54,8 +54,8 @@ The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft En
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-    ObjectId = 'SawyerM@contoso.com'
-    ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
+    UserId = 'SawyerM@contoso.com'
+    ExtensionId = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
     ExtensionValue = 'New Value'
 }
 Set-EntraBetaUserExtension @params
@@ -63,15 +63,15 @@ Set-EntraBetaUserExtension @params
 
 This example shows how to update the value of the extension attribute for a specified user.
 
-- `-ObjectId` parameter specifies the user Id.
-- `-ExtensionName` parameter specifies the name of an extension.
-- `-ExtensionValue` parameter specifies the extension name values.
+- `-UserId` parameter specifies the user Id.
+- `-ExtensionId` parameter specifies the Id of an extension.
+- `-ExtensionValue` parameter specifies the extension Id values.
 
 ## Parameters
 
-### -ExtensionName
+### -ExtensionId
 
-Specifies the name of an extension.
+Specifies the Id of an extension.
 
 ```yaml
 Type: System.String
@@ -117,9 +117,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of an object.
+Specifies the ID of a User.
 
 ```yaml
 Type: System.String
