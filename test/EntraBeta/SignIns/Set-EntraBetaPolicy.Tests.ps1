@@ -9,7 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
-        #Write-Host "Mocking set-EntraPolicy with parameters: $($args | ConvertTo-Json -Depth 3)"
+        #Write-Host "Mocking Set-EntraBetaPolicy with parameters: $($args | ConvertTo-Json -Depth 3)"
         
         $response = @{
             '@odata.context' = 'https://graph.microsoft.com/v1.0/`$metadata#policies/homeRealmDiscoveryPolicies/`$entity'            
@@ -22,9 +22,12 @@ BeforeAll {
 
 Describe "Set-EntraBetaPolicy" {
     Context "Test for Set-EntraBetaPolicy" {
-        It "Should return updated Policy" {
-            Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName "new update 13" -IsOrganizationDefault $false            
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
+        It "Should return empty object" {
+            $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+            InModuleScope 'Microsoft.Entra.Beta.SignIns' -Parameters @{ Matches = $matches } {
+                $result = Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName "new update 13" -IsOrganizationDefault $false
+                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
+            }
         }
 
         It "Should fail when Id is empty" {
@@ -72,30 +75,35 @@ Describe "Set-EntraBetaPolicy" {
             Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Type "HomeRealmDiscoveryPolicy"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
-
         It "Should contain 'User-Agent' header" {
+            $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
-            Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' -eq $userAgentHeaderValue
-                $true
+            $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+            $customHeaders["User-Agent"] = $userAgentHeaderValue
+            InModuleScope 'Microsoft.Entra.Beta.SignIns' -Parameters @{ Matches = $matches; customHeaders = $customHeaders} {
+                Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -type "HomeRealmDiscoveryPolicy"
+                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+                    $Headers.'User-Agent' | Should -Be $customHeaders["User-Agent"]
+                    $true
+                }
             }
-        } 
+        }
+        It "Should execute successfully without throwing an error" {
+            $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+            InModuleScope 'Microsoft.Entra.Beta.SignIns' -Parameters @{ Matches = $matches } {
+                # Disable confirmation prompts
+                $originalDebugPreference = $DebugPreference
+                $DebugPreference = 'Continue'
 
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-    
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
+                try {
+                    # Act & Assert: Ensure the function doesn't throw an exception
+                    { Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                } finally {
+                    # Restore original confirmation preference
+                    $DebugPreference = $originalDebugPreference
+                }
             }
-        } 
+        }
     }
 }
 
