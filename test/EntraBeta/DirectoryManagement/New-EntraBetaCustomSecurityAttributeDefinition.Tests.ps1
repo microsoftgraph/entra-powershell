@@ -21,7 +21,7 @@ BeforeAll {
                 "Status"                    = "Available"
                 "Type"                      = "String"
                 "UsePreDefinedValuesOnly"   = $true
-                "AdditionalProperties"      = @{"@odata.context" = 'https://graph.microsoft.com/beta/$metadata#directory/customSecurityAttributeDefinitions/$entity'}
+                "AdditionalProperties"      = @{"@odata.context" = 'https://graph.microsoft.com/beta/`$metadata#directory/customSecurityAttributeDefinitions/`$entity'}
                 "Parameters"                = $args
             }
         )

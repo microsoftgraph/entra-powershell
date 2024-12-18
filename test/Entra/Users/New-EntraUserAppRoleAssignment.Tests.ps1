@@ -23,7 +23,7 @@ BeforeAll {
                 AdditionalProperties = @(
                     @{
                         Name  = "@odata.context"
-                        Value = "https://graph.microsoft.com/v1.0/$metadata#users('aaaa0000-bb11-2222-33cc-444444dddddd')/appRoleAssignments/$entity"
+                        Value = "https://graph.microsoft.com/v1.0/`$metadata#users('aaaa0000-bb11-2222-33cc-444444dddddd')/appRoleAssignments/`$entity"
                     }
                 )
             }
@@ -49,7 +49,7 @@ Describe "New-EntraUserAppRoleAssignment" {
                 AdditionalProperties = @(
                     @{
                         Name  = "@odata.context"
-                        Value = "https://graph.microsoft.com/v1.0/$metadata#users('aaaa0000-bb11-2222-33cc-444444dddddd')/appRoleAssignments/$entity"
+                        Value = "https://graph.microsoft.com/v1.0/`$metadata#users('aaaa0000-bb11-2222-33cc-444444dddddd')/appRoleAssignments/`$entity"
                     }
                 )
             }

@@ -21,7 +21,7 @@ BeforeAll {
               "TemplateId"                   = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
               "Version"                      = "2"
               "RoleDefinitionId"             = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleDefinitions/$entity"
+              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#roleManagement/directory/roleDefinitions/`$entity"
                                                 }
               "Parameters"                   = $args
             }

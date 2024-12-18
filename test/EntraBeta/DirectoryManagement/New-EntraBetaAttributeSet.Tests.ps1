@@ -14,7 +14,7 @@ BeforeAll {
               "Id"                      = "bbbbbbbb-1111-2222-3333-cccccccccc55"
               "Description"             = "New AttributeSet"
               "MaxAttributesPerSet"     = 21
-              "AdditionalProperties"    = @{"[@odata.context" = 'https://graph.microsoft.com/beta/$metadata#directory/attributeSets/$entity'}
+              "AdditionalProperties"    = @{"[@odata.context" = 'https://graph.microsoft.com/beta/`$metadata#directory/attributeSets/`$entity'}
               "Parameters"              = $args
             }
         )

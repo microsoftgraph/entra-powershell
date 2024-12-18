@@ -64,7 +64,7 @@ BeforeAll {
             "TransitiveMemberOf"                = ""
             "VerifiedPublisher"                 = ""
             "AdditionalProperties"              = @{
-                                                    "@odata.context"    = "https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity"
+                                                    "@odata.context"    = "https://graph.microsoft.com/v1.0/`$metadata#servicePrincipals/`$entity"
                                                     "createdDateTime"   = "2023-07-07T14:07:33Z"
                                                 }
             "Parameters"                        = $args

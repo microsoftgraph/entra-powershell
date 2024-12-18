@@ -9,7 +9,7 @@ BeforeAll {
             [PSCustomObject]@{
                 DeletedDateTime                 = ''
                 Id                              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-                '@odata.context'                = 'https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity'
+                '@odata.context'                = 'https://graph.microsoft.com/beta/`$metadata#directoryObjects/`$entity'
                 '@odata.type'                   = '#microsoft.graph.user'
                 accountEnabled                  = $true
                 businessPhones                  = @('+1 858 555 0109')
@@ -20,6 +20,10 @@ BeforeAll {
                 displayName                     = 'Miriam Graham'
                 givenName                       = 'Miriam'
                 imAddresses                     = @('miriamg@contoso.com')
+                onPremisesLastSyncDateTime      = $null
+                preferredLanguage               = $null
+                ageGroup                        = $null
+                creationType                    = $null
                 infoCatalogs                    = @{}
                 isLicenseReconciliationNeeded   = $false
                 isManagementRestricted          = $false

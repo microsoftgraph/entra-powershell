@@ -22,17 +22,17 @@ Describe "Valid parameter Tests"{
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | Select-Object -expand Name)
                     if(($params -eq 'Id') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'Id')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
-                        if($null -ne $filter){                             
+                        if($null -ne $filter){             
                             try { 
                                 Write-Host "$command"                                
                                 $commandScriptBlock = [scriptblock]::Create("$commandName -Id 056b2531-005e-4f3e-be78-01a71ea30a04")                                
-                                if($filter.IsApi){                                     
+                                if($filter.IsApi){                     
                                     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Governance
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
                                     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Governance -Times 1
                                 }
-                                else {                                    
+                                else {
                                     Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Entra.Governance    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
@@ -60,17 +60,17 @@ Describe "Valid parameter Tests"{
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | select -expand Name)
                     if(($params -eq 'ObjectId') -or ($params -is [array] -and $params.count -eq 1 -and $params -eq 'ObjectId')){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
-                        if($null -ne $filter){                             
+                        if($null -ne $filter){             
                             try {            
                                 Write-Host "$command"                   
                                 $commandScriptBlock = [scriptblock]::Create("$commandName -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04")                                
-                                if($filter.IsApi){                                     
+                                if($filter.IsApi){                     
                                     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Governance
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty
                                     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Governance -Times 1
                                 }
-                                else {                                    
+                                else {
                                     Mock -CommandName $filter.TargetName -MockWith {} -ModuleName Microsoft.Entra.Governance    
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty

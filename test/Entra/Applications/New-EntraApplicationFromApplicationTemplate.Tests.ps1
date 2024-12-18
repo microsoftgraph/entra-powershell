@@ -8,7 +8,7 @@ BeforeAll{
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $response = @{
-        "@odata.context"   =  'https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.applicationServicePrincipal'
+        "@odata.context"   =  'https://graph.microsoft.com/v1.0/`$metadata#microsoft.graph.applicationServicePrincipal'
         "servicePrincipal" =  @{
                                  "oauth2PermissionScopes" = $null
                                  "servicePrincipalType" = "Application"

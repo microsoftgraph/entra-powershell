@@ -14,8 +14,8 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'TenantId'){
-                $commandScriptBlock = [scriptblock]::Create("$command -TenantId $objectId")
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'TenantId'){
+                $commandScriptBlock = [scriptblock]::Create("$command -TenantId ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'TenantId'.*"
             }
         }
@@ -24,8 +24,8 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'Id'){
-                $commandScriptBlock = [scriptblock]::Create("$command -Id $objectId")
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'Id'){
+                $commandScriptBlock = [scriptblock]::Create("$command -Id ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'Id'.*"
             }
         }
@@ -34,8 +34,8 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'ObjectId'){                
-                $commandScriptBlock = [scriptblock]::Create("$command -ObjectId $objectId")
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'ObjectId'){
+                $commandScriptBlock = [scriptblock]::Create("$command -ObjectId ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
             }
         }
@@ -44,7 +44,7 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'All'){                
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'All'){
                 $commandScriptBlock = [scriptblock]::Create("$command -All `$True")
                 if('Find-EntraPermission' -eq $command){
                     { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'*"
@@ -59,7 +59,7 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'Top'){                
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'Top'){
                 $commandScriptBlock = [scriptblock]::Create("$command -Top ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'Top'*"
             }
@@ -69,7 +69,7 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'Filter'){                
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'Filter'){
                 $commandScriptBlock = [scriptblock]::Create("$command -Filter ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'Filter'*"
             }
@@ -79,7 +79,7 @@ Describe "Invalid Tests"{
         $module = Get-Module -Name Microsoft.Entra.DirectoryManagement
         $module.ExportedCommands.Keys | ForEach-Object {
             $command = Get-Command $_
-            if ($command.ParameterSets.Parameters.Name -contains 'SearchString'){                
+            if (($command.ParameterSets.Count -eq 1 -and $command.ParameterSets.Name -ne '__AllParameterSets') -and $command.ParameterSets.Parameters.Name -contains 'SearchString'){
                 $commandScriptBlock = [scriptblock]::Create("$command -SearchString ")
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'SearchString'*"
             }

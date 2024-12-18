@@ -20,7 +20,7 @@ BeforeAll {
               "PrincipalId"                  = "aaaaaaaa-bbbb-cccc-1111-222222222222"
               "RoleDefinition"               = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphUnifiedRoleDefinition"
               "RoleDefinitionId"             = "1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleAssignments/$entity"}
+              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#roleManagement/directory/roleAssignments/`$entity"}
               "Parameters"                   = $args
             }
         )
