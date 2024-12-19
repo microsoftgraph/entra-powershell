@@ -104,7 +104,7 @@
         if($null -ne $PSBoundParameters["RequiredResourceAccess"])
         {
             $TmpValue = $PSBoundParameters["RequiredResourceAccess"]
-                        $Value = $TmpValue | ConvertTo-Json 
+            $Value = $TmpValue | ForEach-Object { $_ | ConvertTo-Json }
             $params["RequiredResourceAccess"] = $Value
         }
         if($null -ne $PSBoundParameters["PublicClient"])

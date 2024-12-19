@@ -42,7 +42,7 @@ The `Add-EntraBetaDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $params = @{
-    DirectoryRoleId = '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
+    DirectoryRoleId = '67efd1ad-1046-4fb8-bb57-1d2e4f66c74e'
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Add-EntraBetaDirectoryRoleMember @params
