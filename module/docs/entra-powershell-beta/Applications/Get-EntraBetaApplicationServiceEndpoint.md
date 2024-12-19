@@ -10,7 +10,7 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Module Name: Microsoft.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationServiceEndpoint
 schema: 2.0.0
 ---
 

@@ -106,7 +106,7 @@
   "Remove-EntraBetaApplicationPolicy": "Applications",
   "Remove-EntraBetaApplicationVerifiedPublisher": "Applications",
   "Remove-EntraBetaDeletedApplication": "Applications",
-  "Remove-EntraBetaDeletedDirectoryObject": "Applications",
+  "Remove-EntraBetaDeletedDirectoryObject": "DirectoryManagement",
   "Remove-EntraBetaServicePrincipal": "Applications",
   "Remove-EntraBetaServicePrincipalDelegatedPermissionClassification": "Applications",
   "Remove-EntraBetaServicePrincipalOwner": "Applications",
@@ -256,7 +256,7 @@
   "Add-EntraBetaScopedRoleMembership": "DirectoryManagement",
   "Confirm-EntraBetaDomain": "DirectoryManagement",
   "Get-EntraBetaConditionalAccessPolicy": "SignIns",
-  "Get-EntraBetaObjectByObjectId": "Groups",
+  "Get-EntraBetaObjectByObjectId": "DirectoryManagement",
   "Get-EntraBetaObjectSetting": "Groups",
   "Get-EntraBetaScopedRoleMembership": "DirectoryManagement",
   "Get-EntraBetaServicePrincipalPolicy": "SignIns",
@@ -296,5 +296,4 @@
   "New-EntraBetaPrivateAccessApplication":"NetworkAccess",
   "Update-EntraBetaOauth2PermissionGrant":"SignIns",
   "Update-EntraBetaUserAuthenticationRequirement":"SignIns"
-
 }

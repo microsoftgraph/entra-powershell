@@ -10,7 +10,7 @@ manager: CelesteDG
 author: andres-canello
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
 Module Name: Microsoft.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivateAccessApplicationSegment
 schema: 2.0.0
 ---
 
@@ -126,7 +126,7 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 
 ## RELATED LINKS
 
-[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
+[Get-EntraBetaApplication](../Applications/Get-EntraBetaApplication.md)
 
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 

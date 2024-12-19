@@ -64,7 +64,7 @@
   "Remove-EntraApplicationPasswordCredential": "Applications",
   "Remove-EntraApplicationVerifiedPublisher": "Applications",
   "Remove-EntraDeletedApplication": "Applications",
-  "Remove-EntraDeletedDirectoryObject": "Applications",
+  "Remove-EntraDeletedDirectoryObject": "DirectoryManagement",
   "Remove-EntraServicePrincipal": "Applications",
   "Remove-EntraServicePrincipalDelegatedPermissionClassification": "Applications",
   "Remove-EntraServicePrincipalKeyCredential": "Applications",
@@ -162,7 +162,7 @@
   "New-EntraOauth2PermissionGrant": "SignIns",
   "New-EntraConditionalAccessPolicy": "SignIns",
   "New-EntraIdentityProvider": "SignIns",
-  "New-EntraInvitation": "Invitations",
+  "New-EntraInvitation": "SignIns",
   "New-EntraPermissionGrantConditionSet": "SignIns",
   "New-EntraPermissionGrantPolicy": "SignIns",
   "Remove-EntraConditionalAccessPolicy": "SignIns",
@@ -189,6 +189,7 @@
   "Set-EntraTenantDetail": "DirectoryManagement",
   "Add-EntraScopedRoleMembership": "DirectoryManagement",
   "Get-EntraUser": "Users",
+  "Get-EntraUserAuthenticationMethod":"SignIns",
   "Get-EntraUserAppRoleAssignment": "Users",
   "Get-EntraUserCreatedObject": "Users",
   "Get-EntraUserDirectReport": "Users",
@@ -213,6 +214,7 @@
   "Set-EntraUserManager": "Users",
   "Set-EntraUserPassword": "Users",
   "Set-EntraUserThumbnailPhoto": "Users",
+  "Update-EntraOauth2PermissionGrant":"SignIns",
   "Update-EntraSignedInUserPassword": "Users",
   "Reset-EntraStrongAuthenticationMethodByUpn": "Authentication",
   "Get-EntraAttributeSet": "DirectoryManagement",
@@ -259,5 +261,6 @@
   "Remove-EntraServicePrincipalAppRoleAssignment": "Applications",
   "Set-EntraDirectoryRoleDefinition": "Governance",
   "Update-EntraUserFromFederated": "Users",
-  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement"
+  "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement",
+  "Get-EntraUserAuthenticationRequirement":"SignIns"
 }
