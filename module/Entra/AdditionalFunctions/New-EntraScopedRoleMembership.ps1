@@ -1,11 +1,11 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Add-EntraScopedRoleMembership {
+function New-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (   
     [Alias("ObjectId")] 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The Unique ID of the administrative unit.")]
     [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $RoleObjectId,
