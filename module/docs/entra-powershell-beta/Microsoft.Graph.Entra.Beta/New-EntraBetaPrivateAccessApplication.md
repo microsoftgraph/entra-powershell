@@ -5,9 +5,9 @@ description: This article provides details on the New-EntraBetaPrivateAccessAppl
 ms.topic: reference
 ms.date: 10/19/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -19,6 +19,15 @@ schema: 2.0.0
 ## Synopsis
 
 Creates a Private Access application and assigns a connector group to it.
+
+## Syntax
+
+```powershell
+New-EntraBetaPrivateAccessApplication
+ -ApplicationName <String>
+ [-ConnectorGroupId <String>]
+ [<CommonParameters>]
+```
 
 ## Description
 
@@ -57,7 +66,7 @@ Parameter Sets:
 Aliases: 
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -73,7 +82,7 @@ Parameter Sets:
 Aliases:
 
 Required: False
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
