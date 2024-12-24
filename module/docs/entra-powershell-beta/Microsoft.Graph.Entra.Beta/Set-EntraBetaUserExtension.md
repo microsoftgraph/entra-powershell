@@ -53,12 +53,9 @@ The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$params = @{
-    ObjectId = 'SawyerM@contoso.com'
-    ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
-    ExtensionValue = 'New Value'
-}
-Set-EntraBetaUserExtension @params
+$extensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8'
+$extensionValue = 'New Value'
+Set-EntraBetaUserExtension -ObjectId 'SawyerM@contoso.com' -ExtensionName $extensionName -ExtensionValue $extensionValue
 ```
 
 This example shows how to update the value of the extension attribute for a specified user.

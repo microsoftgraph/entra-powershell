@@ -51,11 +51,8 @@ The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft E
 ### Example 1: Remove the user extension
 
 ```powershell
-$Params = @{
-    ObjectId = 'SawyerM@Contoso.com'
-    ExtensionName = 'Test Extension'
-}
-Remove-EntraUserExtension @Params
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Remove-EntraUserExtension -ObjectId 'SawyerM@Contoso.com' -ExtensionName 'Test Extension'
 ```
 
 This example demonstrates how to remove a user extension from Microsoft Entra ID.

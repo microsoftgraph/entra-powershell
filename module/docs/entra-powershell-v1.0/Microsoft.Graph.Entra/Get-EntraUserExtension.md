@@ -41,8 +41,7 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-$UserId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
-Get-EntraUserExtension -UserId $UserId
+Get-EntraUserExtension -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -54,7 +53,7 @@ identities                  : {@{signInType=userPrincipalName; issuerAssignedId=
 userIdentities              : {@{signInType=userPrincipalName; issuerAssignedId=SawyerM@contoso.com; issuer=SawyerM@contoso.com}}
 ```
 
-This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
+This example shows how to retrieve the extension attributes for a specified user.
 
 - `-UserId` parameter specifies the user object Id.
 

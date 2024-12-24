@@ -51,11 +51,7 @@ The `Remove-EntraBetaUserExtension` cmdlet removes a user extension from Microso
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$Params = @{
-    ObjectId        = 'SawyerM@Contoso.com'
-    ExtensionName   = 'Test Extension'
-}
-Remove-EntraBetaUserExtension @Params
+Remove-EntraBetaUserExtension -ObjectId 'SawyerM@Contoso.com' -ExtensionName 'Test Extension'
 ```
 
 This example demonstrates how to remove a user extension from Microsoft Entra ID.
