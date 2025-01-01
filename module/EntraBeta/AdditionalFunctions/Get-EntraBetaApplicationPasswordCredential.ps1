@@ -1,15 +1,16 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
 function Get-EntraBetaApplicationPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("ObjectId")]
-    [System.String] $ApplicationId,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("ObjectId")]
+        [System.String] $ApplicationId,
+        
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {
