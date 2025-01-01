@@ -42,7 +42,7 @@ The `Get-EntraBetaDirectoryRoleMember` cmdlet retrieves the members of a directo
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRoleMember -DirectoryRoleId '1708c380-4b8a-4977-a46e-6031676f6b41'
+Get-EntraBetaDirectoryRoleMember -DirectoryRoleId '67efd1ad-1046-4fb8-bb57-1d2e4f66c74e'
 ```
 
 ```Output
