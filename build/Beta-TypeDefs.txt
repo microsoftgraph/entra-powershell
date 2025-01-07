@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Type definitios required for commands inputs
+# Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 
 $def = @"
@@ -962,9 +962,44 @@ namespace  Microsoft.Open.MSGraph.Model
     }
 }
 "@
-    try{ Add-Type -TypeDefinition $def }
-    catch{}
+
+# Extract namespaces and types from the type definitions
+$lines = $def -split "`n"
+$namespace = $null
+$types = @()
+
+foreach ($line in $lines) {
+    # Check for a namespace declaration
+    if ($line -match '^\s*namespace\s+([\w\.]+)') {
+        $namespace = $matches[1]
+    }
+    # Check for public classes or enums within a namespace
+    elseif ($line -match '^\s*public\s+(class|enum)\s+(\w+)') {
+        if ($namespace) {
+            $types += "$namespace.$($matches[2])"
+        }
+    }
+}
+
+# Check if each type exists in the currently loaded assemblies
+$missingTypes = @()
+foreach ($type in $types) {
+    if (-not [Type]::GetType($type, $false, $false)) {
+        $missingTypes += $type
+    }
+}
+
+# Add the $def if any type is missing
+if ($missingTypes.Count -gt 0) {
+    try {
+        # Define parameters for dynamic compilation
+        Add-Type -TypeDefinition $def
+    } catch {
+    }
+}
+
+#Don't add the types
 
 # ------------------------------------------------------------------------------
-# End of Type definitios required for commands inputs
+# End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
