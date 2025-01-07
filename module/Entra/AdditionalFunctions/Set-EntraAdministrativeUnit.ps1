@@ -12,7 +12,7 @@ function Set-EntraAdministrativeUnit {
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Description of the administrative unit.")]
         [System.String] $Description,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "Display name of the administrative unit.")]
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Display name of the administrative unit.")]
         [System.String] $DisplayName,
 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "The dynamic membership rule for the administrative unit.")]
