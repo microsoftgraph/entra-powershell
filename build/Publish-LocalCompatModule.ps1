@@ -46,9 +46,6 @@ if($moduleName -eq 'Entra'){
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-	   if(Get-Module -ListAvailable -Name $destinationModuleName){
-          Uninstall-Module -Name $destinationModuleName -Force -Verbose
-	   }
        Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
