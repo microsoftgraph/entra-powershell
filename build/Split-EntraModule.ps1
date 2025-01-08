@@ -9,6 +9,7 @@ param (
 # Import the necessary scripts
 . (Join-Path $psscriptroot "/common-functions.ps1")
 . (Join-Path $psscriptroot "../src/EntraModuleSplitter.ps1")
+.(Join-Path $psscriptroot "/Split-Docs.ps1")
 
 
 
@@ -18,3 +19,4 @@ param (
 $entraModuleSplitter = [EntraModuleSplitter]::new()
 $entraModuleSplitter.SplitEntraModule($Module)  # Pass the module argument
 $entraModuleSplitter.ProcessEntraAzureADAliases($Module)
+

@@ -4,30 +4,31 @@
 function Get-EntraCustomSecurityAttributeDefinition {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'GetById', Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
-        $Method = "GET"
-        $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/"
+        $Method = 'GET'
+        $Uri = 'https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/'
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        
-        if ($null -ne $PSBoundParameters["Id"]) {
+
+        if ($null -ne $PSBoundParameters['Id']) {
             $Uri += $Id
         }
 
-        Write-Debug("============================ TRANSFORMATIONS ============================")
+        Write-Debug('============================ TRANSFORMATIONS ============================')
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
+
         $response = (Invoke-GraphRequest -Uri $Uri -Method $Method -Headers $customHeaders) | ConvertTo-Json | ConvertFrom-Json
-        try {    
-            $response = $response.value 
+        try {
+            $response = $response.value
+        } catch {
+            Write-Error $_.Exception.Message
         }
-        catch {}
-        if($response){
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeDefinition
@@ -39,6 +40,6 @@ function Get-EntraCustomSecurityAttributeDefinition {
                 $userList += $userType
             }
             $userList
-        }        
+        }
     }
 }

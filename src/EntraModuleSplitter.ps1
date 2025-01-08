@@ -121,7 +121,13 @@ class EntraModuleSplitter {
 }
 
 
-    [void] AddFunctionsToAllDirectories([string]$moduleOutputDirectory, [PSCustomObject[]]$functionContents) {
+[void] AddFunctionsToAllDirectories([string]$moduleOutputDirectory, [PSCustomObject[]]$functionContents, [string]$Module = 'Entra') {
+    # Validate the module parameter
+    if ($Module -notin @('Entra', 'EntraBeta')) {
+        Write-Error "Invalid module specified. Please provide either 'Entra' or 'EntraBeta'."
+        return
+    }
+
     # Get all directories under the module output directory
     $subDirectories = Get-ChildItem -Path $moduleOutputDirectory -Directory
 
@@ -129,7 +135,30 @@ class EntraModuleSplitter {
         foreach ($functionContent in $functionContents) {
             # Construct the full path for the function file
             $functionName = $functionContent.Name
-            $headerPs1Content = $this.Header + "`n" + $functionContent.Content+ "`n"+"`n"
+            $headerPs1Content = $this.Header + "`n" + $functionContent.Content + "`n" + "`n"
+
+            # If the function is 'New-EntraCustomHeaders', modify the version line
+            if ($functionName -eq "New-EntraCustomHeaders") {
+                $currentSubDirName = $subDir.Name
+
+                # Search for the line containing the version line
+                if ($Module -eq 'Entra') {
+                    # For Entra module, look for 'Microsoft.Graph.Entra' in the version line
+                    if ($headerPs1Content -match "Microsoft.Graph.Entra") {
+                        # Replace 'Microsoft.Graph.Entra' with 'Microsoft.Entra.<SubDirectoryName>'
+                        $headerPs1Content = $headerPs1Content -replace "Microsoft.Graph.Entra", "Microsoft.Entra.$currentSubDirName"
+                    }
+                }
+                elseif ($Module -eq 'EntraBeta') {
+                    # For EntraBeta module, look for 'Microsoft.Graph.Entra.Beta' in the version line
+                    if ($headerPs1Content -match "Microsoft.Graph.Entra.Beta") {
+                        # Replace 'Microsoft.Graph.Entra.Beta' with 'Microsoft.Entra.Beta.<SubDirectoryName>'
+                        $headerPs1Content = $headerPs1Content -replace "Microsoft.Graph.Entra.Beta", "Microsoft.Entra.Beta.$currentSubDirName"
+                    }
+                }
+            }
+
+            # Construct the function file path
             $functionFilePath = Join-Path -Path $subDir.FullName -ChildPath "$functionName.ps1"
 
             # Write the function to the specified file
@@ -138,6 +167,7 @@ class EntraModuleSplitter {
         }
     }
 }
+
 
 [string] GetModuleName([string] $Module="Entra"){
      if ($Module -eq 'Entra') {
@@ -189,7 +219,7 @@ class EntraModuleSplitter {
 		}
 
 		# Call the new method to add functions to all directories
-		$this.AddFunctionsToAllDirectories($moduleOutputDirectory, $functionContents)
+		$this.AddFunctionsToAllDirectories($moduleOutputDirectory, $functionContents,$Module)
 
 		Log-Message "[EntraModuleSplitter] Splitting and organizing complete." -Level 'SUCCESS'
 	}
