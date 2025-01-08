@@ -7,10 +7,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
-    Mock -CommandName Invoke-GraphRequest -MockWith {
-        return @{ value = @() 
+    $scriptblock = {
+        return @{
+            value = @()
         }
-         -ModuleName Microsoft.Entra.DirectoryManagement
+    }
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
