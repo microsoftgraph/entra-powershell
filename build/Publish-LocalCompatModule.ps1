@@ -41,9 +41,8 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 }
 
 if($moduleName -eq 'Entra'){
-	if($null -eq (Find-Module -Name Microsoft.Graph.Authentication -MinimumVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName))){
+	   Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
        Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
-	}
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
