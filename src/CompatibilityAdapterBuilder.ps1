@@ -5,26 +5,26 @@ Set-StrictMode -Version 5
 
 class CompatibilityAdapterBuilder {
     [string] $SourceModuleName
-    [string[]] $SourceModulePrefixs
+    [string[]] $SourceModulePrefixes
     [string] $NewPrefix
     [string[]] $DestinationModuleName
-    [string[]] $DestinationPrefixs
+    [string[]] $DestinationPrefixes
     [string] $ModuleName
     hidden [string[]] $MissingCommandsToMap = @()
     hidden [string[]] $TypesToCreate = @()
-    hidden [string] $TypePrefix = ""
+    hidden [string] $TypePrefix = ''
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
     hidden [hashtable] $TypeCustomizations = @{}
-    hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
+    hidden [string] $OutputFolder = (Join-Path $PSScriptRoot '../bin')
     hidden [string] $HelpFolder = $null
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
     hidden [hashtable] $HelperCmdletsToExport = @{}
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
-    hidden [string[]] $cmdtoSkipNameconverssion =  @(
+    hidden [string[]] $cmdToSkipNameConversion = @(
         'Select-EntraGroupIdsGroupIsMemberOf',
         'Get-EntraUserAppRoleAssignment',
         'Get-EntraPermissionGrantConditionSet',
@@ -64,132 +64,131 @@ class CompatibilityAdapterBuilder {
         'New-EntraNamedLocationPolicy',
         'New-EntraServicePrincipalAppRoleAssignment',
         'Restore-EntraDeletedDirectoryObject',
-    'Restore-EntraBetaDeletedDirectoryObject',
-    'New-EntraBetaServicePrincipalAppRoleAssignment',
-    'New-EntraBetaNamedLocationPolicy',
-    'Get-EntraBetaPermissionGrantConditionSet',
-    'Get-EntraBetaPermissionGrantConditionSet',
-    'Get-EntraBetaApplicationKeyCredential',
-    'Get-EntraBetaPrivilegedRoleDefinition',
-    'Get-EntraBetaFeatureRolloutPolicy',
-    'Set-EntraBetaPermissionGrantPolicy',
-    'Remove-EntraBetaApplicationPassword',
-    'Get-EntraBetaServicePrincipalPolicy',
-    'Get-EntraBetaPrivilegedRoleAssignmentRequest',
-    'New-EntraBetaApplicationPassword',
-    'Set-EntraBetaPasswordSingleSignOnCredential',
-    'Get-EntraBetaObjectSetting',
-    'Add-EntraBetaApplicationPolicy',
-    'Add-EntraBetaFeatureRolloutPolicyDirectoryObject',
-    'Revoke-EntraBetaUserAllRefreshToken',
-    'Get-EntraBetaPrivilegedRole',
-    'Get-EntraBetaApplicationTemplate',
-    'Select-EntraBetaGroupIdsContactIsMemberOf',
-    'Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
-    'Set-EntraBetaUserLicense',
-    'Set-EntraBetaTrustFrameworkPolicy',
-    'Remove-EntraBetaUserAppRoleAssignment',
-    'Get-EntraBetaApplicationPolicy',
-    'Get-EntraBetaPermissionGrantPolicy',
-    'Select-EntraBetaGroupIdsGroupIsMemberOf',
-    'New-EntraBetaUserAppRoleAssignment',    
-    'Get-EntraBetaTrustFrameworkPolicy',
-    'Remove-EntraBetaObjectSetting',
-    'Add-EntraBetacustomSecurityAttributeDefinitionAllowedValue',
-    'Get-EntraBetaUserOAuth2PermissionGrant',
-    'New-EntraBetaApplicationKey',
-    'Get-EntraBetaPolicy',
-    'Get-EntraBetaDirectorySetting',
-    'New-EntraBetaServiceAppRoleAssignment',
-    'Get-EntraBetaObjectByObjectId',
-    'Remove-EntraBetaPasswordSingleSignOnCredential',
-    'Set-EntraBetaPermissionGrantConditionSet',
-    'Set-EntraBetaConditionalAccessPolicy',
-    'Get-EntraBetaPolicyAppliedObject',
-    'Remove-EntraBetaDeletedApplication',
-    'Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
-    'Get-EntraBetaUserAppRoleAssignment',
-    'Get-EntraBetaDirectorySettingTemplate',
-    'Remove-EntraBetaServicePrincipalPolicy',
-    'Get-EntraBetaPermissionGrantConditionSet',
-    'Set-EntraBetaObjectSetting',
-    'Remove-EntraBetaFeatureRolloutPolicyDirectoryObject',
-    'Get-EntraBetaAuthorizationPolicy',
-    'Remove-EntraBetaPermissionGrantPolicy',
-    'Set-EntraBetaDirectorySetting',
-    'Set-EntraBetaAuthorizationPolicy',
-    'Remove-EntraBetaDirectorySetting',
-    'Remove-EntraBetaApplicationPolicy',
-    'New-EntraBetaConditionalAccessPolicy',
-    'Set-EntraBetaPrivilegedRoleAssignmentRequest',
-    'Remove-EntraBetaTrustFrameworkPolicy',
-    'New-EntraBetaPasswordSingleSignOnCredential',
-    'Remove-EntraBetaPolicy',
-    'Set-EntraBetaPolicy',
-    'Set-EntraBetaCustomSecurityAttributeDefinition',
-    'Get-EntraBetaPrivilegedResource',
-    'Set-EntraBetaUserPassword',
-    'New-EntraBetaApplicationFromApplicationTemplate',
-    'Set-EntraBetaPrivilegedRoleSetting',
-    'Remove-EntraBetaApplicationKey',
-    'Get-EntraBetaPrivilegedRoleSetting',
-    'Remove-EntraBetaOAuth2PermissionGrant',
-    'Select-EntraBetaGroupIdsServicePrincipalIsMemberOf',
-    'Get-EntraBetaServicePrincipalDelegatedPermissionClassification',
-    'New-EntraBetaPrivilegedRoleAssignment',
-    'Get-EntraBetaPasswordSingleSignOnCredential',
-    'Set-EntraBetaFeatureRolloutPolicy',
-    'New-EntraBetaPermissionGrantPolicy',
-    'Remove-EntraBetaFeatureRolloutPolicy',
-    'Get-EntraBetaCustomSecurityAttributeDefinition',
-    'Remove-EntraBetaServicePrincipalDelegatedPermissionClassification',
-    'Select-EntraBetaGroupIdsUserIsMemberOf',
-    'Set-EntraBetaNamedLocationPolicy',    
-    'New-EntraBetaNamedLocationPolicy',
-    'Restore-EntraBetaDeletedApplication',    
-    'Remove-EntraBetaPermissionGrantConditionSet'
-        
+        'Restore-EntraBetaDeletedDirectoryObject',
+        'New-EntraBetaServicePrincipalAppRoleAssignment',
+        'New-EntraBetaNamedLocationPolicy',
+        'Get-EntraBetaPermissionGrantConditionSet',
+        'Get-EntraBetaPermissionGrantConditionSet',
+        'Get-EntraBetaApplicationKeyCredential',
+        'Get-EntraBetaPrivilegedRoleDefinition',
+        'Get-EntraBetaFeatureRolloutPolicy',
+        'Set-EntraBetaPermissionGrantPolicy',
+        'Remove-EntraBetaApplicationPassword',
+        'Get-EntraBetaServicePrincipalPolicy',
+        'Get-EntraBetaPrivilegedRoleAssignmentRequest',
+        'New-EntraBetaApplicationPassword',
+        'Set-EntraBetaPasswordSingleSignOnCredential',
+        'Get-EntraBetaObjectSetting',
+        'Add-EntraBetaApplicationPolicy',
+        'Add-EntraBetaFeatureRolloutPolicyDirectoryObject',
+        'Revoke-EntraBetaUserAllRefreshToken',
+        'Get-EntraBetaPrivilegedRole',
+        'Get-EntraBetaApplicationTemplate',
+        'Select-EntraBetaGroupIdsContactIsMemberOf',
+        'Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+        'Set-EntraBetaUserLicense',
+        'Set-EntraBetaTrustFrameworkPolicy',
+        'Remove-EntraBetaUserAppRoleAssignment',
+        'Get-EntraBetaApplicationPolicy',
+        'Get-EntraBetaPermissionGrantPolicy',
+        'Select-EntraBetaGroupIdsGroupIsMemberOf',
+        'New-EntraBetaUserAppRoleAssignment',
+        'Get-EntraBetaTrustFrameworkPolicy',
+        'Remove-EntraBetaObjectSetting',
+        'Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+        'Get-EntraBetaUserOAuth2PermissionGrant',
+        'New-EntraBetaApplicationKey',
+        'Get-EntraBetaPolicy',
+        'Get-EntraBetaDirectorySetting',
+        'New-EntraBetaServiceAppRoleAssignment',
+        'Get-EntraBetaObjectByObjectId',
+        'Remove-EntraBetaPasswordSingleSignOnCredential',
+        'Set-EntraBetaPermissionGrantConditionSet',
+        'Set-EntraBetaConditionalAccessPolicy',
+        'Get-EntraBetaPolicyAppliedObject',
+        'Remove-EntraBetaDeletedApplication',
+        'Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+        'Get-EntraBetaUserAppRoleAssignment',
+        'Get-EntraBetaDirectorySettingTemplate',
+        'Remove-EntraBetaServicePrincipalPolicy',
+        'Get-EntraBetaPermissionGrantConditionSet',
+        'Set-EntraBetaObjectSetting',
+        'Remove-EntraBetaFeatureRolloutPolicyDirectoryObject',
+        'Get-EntraBetaAuthorizationPolicy',
+        'Remove-EntraBetaPermissionGrantPolicy',
+        'Set-EntraBetaDirectorySetting',
+        'Set-EntraBetaAuthorizationPolicy',
+        'Remove-EntraBetaDirectorySetting',
+        'Remove-EntraBetaApplicationPolicy',
+        'New-EntraBetaConditionalAccessPolicy',
+        'Set-EntraBetaPrivilegedRoleAssignmentRequest',
+        'Remove-EntraBetaTrustFrameworkPolicy',
+        'New-EntraBetaPasswordSingleSignOnCredential',
+        'Remove-EntraBetaPolicy',
+        'Set-EntraBetaPolicy',
+        'Set-EntraBetaCustomSecurityAttributeDefinition',
+        'Get-EntraBetaPrivilegedResource',
+        'Set-EntraBetaUserPassword',
+        'New-EntraBetaApplicationFromApplicationTemplate',
+        'Set-EntraBetaPrivilegedRoleSetting',
+        'Remove-EntraBetaApplicationKey',
+        'Get-EntraBetaPrivilegedRoleSetting',
+        'Remove-EntraBetaOAuth2PermissionGrant',
+        'Select-EntraBetaGroupIdsServicePrincipalIsMemberOf',
+        'Get-EntraBetaServicePrincipalDelegatedPermissionClassification',
+        'New-EntraBetaPrivilegedRoleAssignment',
+        'Get-EntraBetaPasswordSingleSignOnCredential',
+        'Set-EntraBetaFeatureRolloutPolicy',
+        'New-EntraBetaPermissionGrantPolicy',
+        'Remove-EntraBetaFeatureRolloutPolicy',
+        'Get-EntraBetaCustomSecurityAttributeDefinition',
+        'Remove-EntraBetaServicePrincipalDelegatedPermissionClassification',
+        'Select-EntraBetaGroupIdsUserIsMemberOf',
+        'Set-EntraBetaNamedLocationPolicy',
+        'New-EntraBetaNamedLocationPolicy',
+        'Restore-EntraBetaDeletedApplication',
+        'Remove-EntraBetaPermissionGrantConditionSet'
+
     )
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
-    CompatibilityAdapterBuilder() {  
-        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
-        $this.HelpFolder = (join-path $this.BasePath './help')
-        $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
+    CompatibilityAdapterBuilder() {
+        $this.BasePath = (Join-Path $PSScriptRoot '../module_legacy/Entra/')
+        $this.HelpFolder = (Join-Path $this.BasePath './help')
+        $this.Configure((Join-Path $this.BasePath '/config/ModuleSettings.json'))
     }
 
-    CompatibilityAdapterBuilder([string] $Module){        
-        $this.BasePath = (join-path $PSScriptRoot '../module_legacy/')    
-        $this.BasePath = (join-path $this.BasePath $Module)
-        $this.HelpFolder = (join-path $this.BasePath './help')
-        $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
+    CompatibilityAdapterBuilder([string] $Module) {
+        $this.BasePath = (Join-Path $PSScriptRoot '../module_legacy/')
+        $this.BasePath = (Join-Path $this.BasePath $Module)
+        $this.HelpFolder = (Join-Path $this.BasePath './help')
+        $this.Configure((Join-Path $this.BasePath '/config/ModuleSettings.json'))
     }
 
-    CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
-        if($notRunningUT)
-        {
-            $this.BasePath = (join-path $PSScriptRoot '../module_legacy/Entra/')    
-            $this.HelpFolder = (join-path $this.BasePath './help')
-            $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
-        }                
+    CompatibilityAdapterBuilder([bool] $notRunningUT = $false) {
+        if ($notRunningUT) {
+            $this.BasePath = (Join-Path $PSScriptRoot '../module_legacy/Entra/')
+            $this.HelpFolder = (Join-Path $this.BasePath './help')
+            $this.Configure((Join-Path $this.BasePath '/config/ModuleSettings.json'))
+        }
     }
 
-    hidden Configure([string] $ModuleSettingsPath){
+    hidden Configure([string] $ModuleSettingsPath) {
         $settingPath = $ModuleSettingsPath
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $this.SourceModuleName = $content.sourceModule
-        $this.SourceModulePrefixs = $content.sourceModulePrefix
+        $this.SourceModulePrefixes = $content.sourceModulePrefix
         $this.NewPrefix = $content.newPrefix
         $this.DestinationModuleName = $content.destinationModuleName
-        $this.DestinationPrefixs = $content.destinationPrefix
+        $this.DestinationPrefixes = $content.destinationPrefix
         $this.ModuleName = $content.moduleName
         $this.TypePrefix = $content.typePrefix
         Import-Module $this.SourceModuleName -Force | Out-Null
-        foreach ($moduleName in $this.DestinationModuleName){
+        foreach ($moduleName in $this.DestinationModuleName) {
             Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion -Force | Out-Null
         }
 
-        if(!(Test-Path $this.OutputFolder)){
+        if (!(Test-Path $this.OutputFolder)) {
             New-Item -ItemType Directory -Path $this.OutputFolder | Out-Null
         }
 
@@ -198,56 +197,55 @@ class CompatibilityAdapterBuilder {
 
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
-        $this.WriteModuleFile()           
-        $this.WriteModuleManifest()             
+        $this.WriteModuleFile()
+        $this.WriteModuleManifest()
     }
-    
+
     AddTypes($types) {
         $this.TypeCustomizations = $types
-        foreach($type in $types.Keys){
+        foreach ($type in $types.Keys) {
             $this.TypesToCreate += $type
         }
     }
 
     # Add customization based on the the CommandMap object.
     AddCustomization([hashtable[]] $Commands) {
-        foreach($cmd in $Commands) {
+        foreach ($cmd in $Commands) {
             $parameters = $null
             $outputs = $null
-            if($null -ne $cmd.TargetName){
-                if($cmd.Parameters){
+            if ($null -ne $cmd.TargetName) {
+                if ($cmd.Parameters) {
                     $parameters = @{}
-                    foreach($param in $cmd.Parameters){
+                    foreach ($param in $cmd.Parameters) {
                         $parameters.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
-                
-                if($cmd.Outputs){
+
+                if ($cmd.Outputs) {
                     $outputs = @{}
-                    foreach($param in $cmd.Outputs){
+                    foreach ($param in $cmd.Outputs) {
                         $outputs.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
 
-                $customCommand = [CommandMap]::New($cmd.SourceName,$cmd.TargetName, $parameters, $outputs)
+                $customCommand = [CommandMap]::New($cmd.SourceName, $cmd.TargetName, $parameters, $outputs)
                 $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
-            }
-            else {
-                if($cmd.Parameters){
+            } else {
+                if ($cmd.Parameters) {
                     $parameters = @{}
-                    foreach($param in $cmd.Parameters){
+                    foreach ($param in $cmd.Parameters) {
                         $this.GenericParametersTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
-                
-                if($cmd.Outputs){
+
+                if ($cmd.Outputs) {
                     $outputs = @{}
-                    foreach($param in $cmd.Outputs){
+                    foreach ($param in $cmd.Outputs) {
                         $this.GenericOutputTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
 
-                if($null -ne $cmd.SourceName) {
+                if ($null -ne $cmd.SourceName) {
                     $scriptBlock = [Scriptblock]::Create($cmd.CustomScript)
                     $customCommand = [CommandMap]::New($cmd.SourceName, $scriptBlock)
                     $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
@@ -256,16 +254,16 @@ class CompatibilityAdapterBuilder {
         }
     }
 
-    AddHelperCommand([string] $FileName){
+    AddHelperCommand([string] $FileName) {
         $properties = Get-ItemProperty -Path $FileName
-        if($null -ne $properties){
-            $name = $properties.PSChildName.Replace(".ps1","")
+        if ($null -ne $properties) {
+            $name = $properties.PSChildName.Replace('.ps1', '')
             $this.HelperCmdletsToExport.Add($name, $(Get-Content -Path $FileName) -join "`n")
         }
     }
 
     hidden GenerateHelpFiles() {
-        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
+        foreach ($file in Get-ChildItem -Path $this.HelpFolder -Filter '*.xml') {
             Copy-Item $file.FullName $this.OutputFolder -Force
         }
         #$helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
@@ -275,31 +273,31 @@ class CompatibilityAdapterBuilder {
     }
 
     hidden [string] GetHelpHeader() {
-        $helpHeader = @"
+        $helpHeader = @'
 <?xml version="1.0" encoding="utf-8"?>
 <helpItems schema="maml" xmlns="http://msh">
-"@
+'@
         return $helpHeader
     }
 
     hidden [string] GetHelpCommandsFromFiles($filePath) {
-        $helpCommands = ""  
-        $replacePrefix = "-" + $this.NewPrefix
-        $oldPrefix = "-AzureAD"
-        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
-            (Get-Content $file.FullName | Select-Object -Skip 2 | Select-Object -SkipLast 1).Replace($oldPrefix,$replacePrefix) | Add-Content -Path $filePath
+        $helpCommands = ''
+        $replacePrefix = '-' + $this.NewPrefix
+        $oldPrefix = '-AzureAD'
+        foreach ($file in Get-ChildItem -Path $this.HelpFolder -Filter '*.xml') {
+            (Get-Content $file.FullName | Select-Object -Skip 2 | Select-Object -SkipLast 1).Replace($oldPrefix, $replacePrefix) | Add-Content -Path $filePath
         }
         return $helpCommands
     }
 
     hidden [string] GetHelpFooter() {
-        $helpHeader = @"
+        $helpHeader = @'
 </helpItems>
-"@
+'@
         return $helpHeader
     }
-    
-    hidden WriteModuleFile() {       
+
+    hidden WriteModuleFile() {
         $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
         #This call create the mapping used to create the final module.
         $data = $this.Map()
@@ -316,83 +314,81 @@ class CompatibilityAdapterBuilder {
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $psm1FileContent += $doubleSpace+$function.Value
         }
-        $psm1FileContent += $this.GetExportMemeber()        
+        $psm1FileContent += $this.GetExportMember()
         $psm1FileContent += $this.SetMissingCommands()
         $psm1FileContent += $this.LoadMessage
         $psm1FileContent += $this.GetTypesDefinitions()
         $psm1FileContent | Out-File -FilePath $filePath
     }
 
-    hidden GetInnerTypes([string] $type){
-        $object = New-Object -TypeName $type        
+    hidden GetInnerTypes([string] $type) {
+        $object = New-Object -TypeName $type
         $object.GetType().GetProperties() | ForEach-Object {
-            if($_.PropertyType.Name -eq 'Nullable`1') {
+            if ($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
-                if(!$_.PropertyType.GenericTypeArguments.IsEnum){
-                    if($name -like "$($this.TypePrefix)*") {    
-                        if(!$this.TypesToCreate.Contains($name)){
-                            $this.TypesToCreate += $name
-                            $this.GetInnerTypes($name)
-                        }           
-                    }
-                }
-            }
-            elseif($_.PropertyType.Name -eq 'List`1') {
-                $name = $_.PropertyType.GenericTypeArguments.FullName
-                if(!$_.PropertyType.GenericTypeArguments.IsEnum){                
-                    if($name -like "$($this.TypePrefix)*") {    
-                        if(!$this.TypesToCreate.Contains($name)){
-                            $this.TypesToCreate += $name
-                            $this.GetInnerTypes($name)
-                        }           
-                    }
-                }
-            }
-            else {
-                if(!$_.PropertyType.IsEnum){                    
-                    $name = $_.PropertyType.FullName
-                    if($name -like "$($this.TypePrefix)*") {                        
-                        if(!$this.TypesToCreate.Contains($name)){
+                if (!$_.PropertyType.GenericTypeArguments.IsEnum) {
+                    if ($name -like "$($this.TypePrefix)*") {
+                        if (!$this.TypesToCreate.Contains($name)) {
                             $this.TypesToCreate += $name
                             $this.GetInnerTypes($name)
                         }
                     }
                 }
-            }  
+            } elseif ($_.PropertyType.Name -eq 'List`1') {
+                $name = $_.PropertyType.GenericTypeArguments.FullName
+                if (!$_.PropertyType.GenericTypeArguments.IsEnum) {
+                    if ($name -like "$($this.TypePrefix)*") {
+                        if (!$this.TypesToCreate.Contains($name)) {
+                            $this.TypesToCreate += $name
+                            $this.GetInnerTypes($name)
+                        }
+                    }
+                }
+            } else {
+                if (!$_.PropertyType.IsEnum) {
+                    $name = $_.PropertyType.FullName
+                    if ($name -like "$($this.TypePrefix)*") {
+                        if (!$this.TypesToCreate.Contains($name)) {
+                            $this.TypesToCreate += $name
+                            $this.GetInnerTypes($name)
+                        }
+                    }
+                }
+            }
         }
     }
 
     hidden [string] GetTypesDefinitions() {
         $types = $this.TypesToCreate | Sort-Object -Unique
-        
-        foreach($type in $types) {
+
+        foreach ($type in $types) {
             $this.GetInnerTypes($type)
         }
 
-        $types = $this.TypesToCreate | Sort-Object -Unique        
+        $types = $this.TypesToCreate | Sort-Object -Unique
         $namespace = $null
         $def = @"
 # ------------------------------------------------------------------------------
-# Type definitios required for commands inputs
+# Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 
 `$def = @"
 
 "@
         Write-Host "Creating types definitions for $($types.Count) types."
-        foreach($type in $types) {
-        Write-Host "- Generating type for $type"
-        if($type.contains("+")){
-            $type = $type.Substring(0,$type.IndexOf("+"))
-            Write-Host "- Real type is $type"
-        }
-        $object = New-Object -TypeName $type
-        $namespaceNew = $object.GetType().Namespace
-        $enumsDefined = @()
+        foreach ($type in $types) {
+            Write-Host "- Generating type for $type"
+            if ($type.contains('+')) {
+                $type = $type.Substring(0, $type.IndexOf('+'))
+                Write-Host "- Real type is $type"
+            }
+            $object = New-Object -TypeName $type
+            $namespaceNew = $object.GetType().Namespace
+            $enumsDefined = @()
 
-        if($namespace -ne $namespaceNew){
-            if($null -ne $namespace){
-                $def += @"
+            if ($namespace -ne $namespaceNew) {
+                if ($null -ne $namespace) {
+                    $def += @"
 }
 
 namespace  $namespaceNew
@@ -401,117 +397,113 @@ namespace  $namespaceNew
     using System.Linq;
 
 "@
-            }
-            else {
-                $def += @"
+                } else {
+                    $def += @"
 
 namespace  $namespaceNew
 {
 
     using System.Linq;
-    
-"@        
-            }
-            $namespace = $object.GetType().Namespace
-        }
 
-        $name = $object.GetType().Name
-        if($object.GetType().IsEnum){ 
+"@
+                }
+                $namespace = $object.GetType().Namespace
+            }
+
             $name = $object.GetType().Name
-            if(!$enumsDefined.Contains($name)){
-                $def += $this.GetEnumString($name, $object.GetType().FullName)
-                $enumsDefined += $name
-                continue
-            }                    
-        }
-        $def += @"
+            if ($object.GetType().IsEnum) {
+                $name = $object.GetType().Name
+                if (!$enumsDefined.Contains($name)) {
+                    $def += $this.GetEnumString($name, $object.GetType().FullName)
+                    $enumsDefined += $name
+                    continue
+                }
+            }
+            $def += @"
     public class $name
     {
 
 "@
 
-        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
-            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
-            $def += @"
+            if ($this.TypeCustomizations.ContainsKey($object.GetType().FullName)) {
+                $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
+                $def += @"
 $extraFunctions
     }
 
 "@
-        }
-        else {
-                    
-        $object.GetType().GetProperties() | ForEach-Object {   
-            if($_.PropertyType.Name -eq 'Nullable`1') {
-                $name = $_.PropertyType.GenericTypeArguments.FullName
-                if($_.PropertyType.GenericTypeArguments.IsEnum){                    
-                    $name = $_.PropertyType.GenericTypeArguments.Name
-                    if(!$enumsDefined.Contains($name)){
-                        $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
-                        $enumsDefined += $name
-                    }                    
-                }
-                $name = "System.Nullable<$($name)>"
-            }
-            elseif ($_.PropertyType.Name -eq 'List`1') {
-                $name = $_.PropertyType.GenericTypeArguments.FullName
-                if($_.PropertyType.GenericTypeArguments.IsEnum){
-                    $name = $_.PropertyType.GenericTypeArguments.Name
-                    if(!$enumsDefined.Contains($name)){
-                        $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
-                        $enumsDefined += $name
+            } else {
+
+                $object.GetType().GetProperties() | ForEach-Object {
+                    if ($_.PropertyType.Name -eq 'Nullable`1') {
+                        $name = $_.PropertyType.GenericTypeArguments.FullName
+                        if ($_.PropertyType.GenericTypeArguments.IsEnum) {
+                            $name = $_.PropertyType.GenericTypeArguments.Name
+                            if (!$enumsDefined.Contains($name)) {
+                                $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
+                                $enumsDefined += $name
+                            }
+                        }
+                        $name = "System.Nullable<$($name)>"
+                    } elseif ($_.PropertyType.Name -eq 'List`1') {
+                        $name = $_.PropertyType.GenericTypeArguments.FullName
+                        if ($_.PropertyType.GenericTypeArguments.IsEnum) {
+                            $name = $_.PropertyType.GenericTypeArguments.Name
+                            if (!$enumsDefined.Contains($name)) {
+                                $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
+                                $enumsDefined += $name
+                            }
+                        }
+                        $name = "System.Collections.Generic.List<$($name)>"
+                    } else {
+                        $name = $_.PropertyType.FullName
+                        if ($_.PropertyType.IsEnum) {
+                            $name = $_.PropertyType.Name
+                            if (!$enumsDefined.Contains($name)) {
+                                $def += $this.GetEnumString($name, $_.PropertyType.FullName)
+                                $enumsDefined += $name
+                            }
+                        }
                     }
+                    $def += "        public $($name) $($_.Name);`n"
                 }
-                $name = "System.Collections.Generic.List<$($name)>"
-            }
-            else {
-                $name = $_.PropertyType.FullName
-                if($_.PropertyType.IsEnum){
-                    $name = $_.PropertyType.Name
-                    if(!$enumsDefined.Contains($name)){
-                        $def += $this.GetEnumString($name, $_.PropertyType.FullName)
-                        $enumsDefined += $name
-                    }
-                }                
-            }  
-            $def += "        public $($name) $($_.Name);`n"  
-        }
 
-        $constructor = ""
+                $constructor = ''
 
-        if(1 -eq $object.GetType().GetProperties().Count){
+                if (1 -eq $object.GetType().GetProperties().Count) {
 
-            $constructor = @"
+                    $constructor = @"
 public $($object.GetType().Name)()
-        {        
+        {
         }
-        
+
         public $($object.GetType().Name)($name value)
         {
             $($object.GetType().GetProperties()[0].Name) = value;
         }
 "@
-        }
+                }
 
-        $def += @"
+                $def += @"
         $constructor
     }
 
 "@
+            }
         }
-    }
 
-    $def += @"    
+        $def += @'
 }
-"@
+'@
 
         $def += @"
 
 `"@
     try{ Add-Type -TypeDefinition `$def }
-    catch{}
+    catch { Write-Error $_.Exception.Message }
 
 # ------------------------------------------------------------------------------
-# End of Type definitios required for commands inputs
+# End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 "@
 
@@ -523,140 +515,134 @@ public $($object.GetType().Name)()
         public enum $($enumName){
 
 "@
-            [enum]::getvalues([type]$enumType) | ForEach-Object { 
-                $def += "            $_ = $($_.value__),`n"
-            }
-            $def += @"           
+        [enum]::GetValues([type]$enumType) | ForEach-Object {
+            $def += "            $_ = $($_.value__),`n"
+        }
+        $def += @'
         }
 
-"@        
+'@
         return $def
     }
 
     hidden WriteModuleManifest() {
-        $settingPath = join-path $this.BasePath "./config/ModuleMetadata.json"        
+        $settingPath = Join-Path $this.BasePath './config/ModuleMetadata.json'
         $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1", "$($this.ModuleName)-Help.xml")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
-            Tags = $($content.tags)
-            LicenseUri = $($content.licenseUri)
-            ProjectUri = $($content.projectUri)
-            IconUri = $($content.iconUri)
+            Tags         = $($content.tags)
+            LicenseUri   = $($content.licenseUri)
+            ProjectUri   = $($content.projectUri)
+            IconUri      = $($content.iconUri)
             ReleaseNotes = $($content.releaseNotes)
-            Prerelease = $null
+            Prerelease   = $null
         }
-        $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
+        $manifestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
+        $functions = $this.ModuleMap.CommandsList + 'Enable-EntraAzureADAlias' + 'Get-EntraUnsupportedCommand'
         $requiredModules = @()
-        foreach($module in $content.requiredModules){
-            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion}
+        foreach ($module in $content.requiredModules) {
+            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion }
         }
         $moduleSettings = @{
-            Path = $manisfestPath
-            GUID = $($content.guid)
-            ModuleVersion = "$($content.version)"
-            FunctionsToExport = $functions
-            CmdletsToExport=@()
-            AliasesToExport=@()
-            Author =  $($content.authors)
-            CompanyName = $($content.owners)
-            FileList = $files
-            RootModule = "$($this.ModuleName).psm1" 
-            Description = 'Microsoft Graph Entra PowerShell.'    
-            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
-            PowerShellVersion = $([System.Version]::Parse('5.1'))
-            CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules =  $requiredModules
-            NestedModules = @()
+            Path                   = $manifestPath
+            GUID                   = $($content.guid)
+            ModuleVersion          = "$($content.version)"
+            FunctionsToExport      = $functions
+            CmdletsToExport        = @()
+            AliasesToExport        = @()
+            Author                 = $($content.authors)
+            CompanyName            = $($content.owners)
+            FileList               = $files
+            RootModule             = "$($this.ModuleName).psm1"
+            Description            = 'Microsoft Graph Entra PowerShell.'
+            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2'))
+            PowerShellVersion      = $([System.Version]::Parse('5.1'))
+            CompatiblePSEditions   = @('Desktop', 'Core')
+            RequiredModules        = $requiredModules
+            NestedModules          = @()
         }
-        
-        if($null -ne $content.Prerelease){
+
+        if ($null -ne $content.Prerelease) {
             $PSData.Prerelease = $content.Prerelease
         }
 
-        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
+        $this.LoadMessage = $this.LoadMessage.Replace('{VERSION}', $content.version)
         New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
+        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
     }
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
-    hidden [MappedCmdCollection] Map(){
+    hidden [MappedCmdCollection] Map() {
         $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
-        $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
-        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
+        $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixes, $true)
+        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixes, $true)
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
-        if('Microsoft.Graph.Entra' -eq $this.ModuleName){
-            $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADGroup", "Remove-AzureADMSGroup", "Set-AzureADGroup")        
+        if ('Microsoft.Graph.Entra' -eq $this.ModuleName) {
+            $cmdletsToSkip = @('Add-AzureADMSApplicationOwner', 'Get-AzureADMSApplication', 'Get-AzureADMSApplicationExtensionProperty', 'Get-AzureADMSApplicationOwner', 'New-AzureADApplication', 'New-AzureADMSApplicationExtensionProperty', 'Remove-AzureADMSApplication', 'Remove-AzureADMSApplicationExtensionProperty', 'Remove-AzureADMSApplicationOwner', 'Set-AzureADApplication', 'Set-AzureADMSApplicationLogo', 'Get-AzureADMSGroup', 'New-AzureADGroup', 'Remove-AzureADMSGroup', 'Set-AzureADGroup')
+        } else {
+            $cmdletsToSkip = @('Add-AzureADMSAdministrativeUnitMember', 'Add-AzureADMSScopedRoleMembership', 'Get-AzureADMSAdministrativeUnit', 'Get-AzureADMSAdministrativeUnitMember', 'Get-AzureADMSScopedRoleMembership', 'New-AzureADAdministrativeUnit', 'Remove-AzureADMSAdministrativeUnit', 'Remove-AzureADMSAdministrativeUnitMember', 'Remove-AzureADMSScopedRoleMembership', 'Set-AzureADAdministrativeUnit', 'Add-AzureADMSApplicationOwner', 'Get-AzureADMSApplication', 'Get-AzureADMSApplicationExtensionProperty', 'Get-AzureADMSApplicationOwner', 'New-AzureADApplication', 'New-AzureADMSApplicationExtensionProperty', 'Remove-AzureADMSApplication', 'Remove-AzureADMSApplicationExtensionProperty', 'Remove-AzureADMSApplicationOwner', 'Set-AzureADApplication', 'Set-AzureADMSApplicationLogo', 'Get-AzureADMSGroup', 'New-AzureADGroup', 'Remove-AzureADMSGroup', 'Set-AzureADGroup', 'Get-AzureADMSPrivilegedRoleAssignment', 'Get-AzureADMSServicePrincipal', 'Set-AzureADMSServicePrincipal', 'Get-AzureADMSUser', 'Set-AzureADMSUser', 'New-AzureADMSUser', 'New-AzureADMSServicePrincipal')
         }
-        else{
-            $cmdletsToSkip = @("Add-AzureADMSAdministrativeUnitMember", "Add-AzureADMSScopedRoleMembership", "Get-AzureADMSAdministrativeUnit", "Get-AzureADMSAdministrativeUnitMember", "Get-AzureADMSScopedRoleMembership", "New-AzureADAdministrativeUnit", "Remove-AzureADMSAdministrativeUnit", "Remove-AzureADMSAdministrativeUnitMember", "Remove-AzureADMSScopedRoleMembership", "Set-AzureADAdministrativeUnit", "Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication","New-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplication","Remove-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplicationOwner","Set-AzureADApplication","Set-AzureADMSApplicationLogo","Get-AzureADMSGroup","New-AzureADGroup","Remove-AzureADMSGroup","Set-AzureADGroup","Get-AzureADMSPrivilegedRoleAssignment","Get-AzureADMSServicePrincipal","Set-AzureADMSServicePrincipal","Get-AzureADMSUser","Set-AzureADMSUser","New-AzureADMSUser","New-AzureADMSServicePrincipal")
-        }
-        foreach ($cmd in $originalCmdlets.Keys){
+        foreach ($cmd in $originalCmdlets.Keys) {
             if ($cmdletsToSkip -contains $cmd) {
                 continue
             }
             $originalCmdlet = $originalCmdlets[$cmd]
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
-            if($newFunction){
+            if ($newFunction) {
                 $newCmdletData += $newFunction
-                $cmdletsToExport += $newFunction.Generate                
-            }
-            else{  
-                $missingCmdletsToExport += $cmd                          
+                $cmdletsToExport += $newFunction.Generate
+            } else {
+                $missingCmdletsToExport += $cmd
                 $this.MissingCommandsToMap += $cmd
-            } 
+            }
         }
 
-        foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
+        foreach ($function in $this.HelperCmdletsToExport.GetEnumerator()) {
             $cmdletsToExport += $function.Key
         }
-      
+
         $this.ModuleMap.CommandsList = $cmdletsToExport
         $this.ModuleMap.MissingCommandsList = $missingCmdletsToExport
         $this.ModuleMap.Commands = $this.NewModuleMap($newCmdletData)
 
         return $this.ModuleMap
-    }    
+    }
 
-    hidden [scriptblock] GetUnsupportedCommand(){
-        $unsupported = @"
+    hidden [scriptblock] GetUnsupportedCommand() {
+        $unsupported = @'
 function Get-EntraUnsupportedCommand {
     Throw [System.NotSupportedException] "This command is not supported by Microsoft Entra PowerShell."
 }
 
-"@
+'@
 
         return [scriptblock]::Create($unsupported)
     }
 
-    hidden [scriptblock] GetAlisesFunction() {
-        if($this.ModuleMap){
+    hidden [scriptblock] GetAliasesFunction() {
+        if ($this.ModuleMap) {
             $aliases = ''
-            foreach ($func in $this.ModuleMap.Commands) {       
+            foreach ($func in $this.ModuleMap.Commands) {
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
-            
-            #Adding direct aliases 
-            $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
-            {
+
+            #Adding direct aliases
+            $aliasDefinitionsPath = ''
+            if ($this.ModuleName -eq 'Microsoft.Graph.Entra') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
-            }
-            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+            } elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
-            #Adding direct aliases 
-            $aliasDefinitionsPath =""
-            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
-            {
+            #Adding direct aliases
+            $aliasDefinitionsPath = ''
+            if ($this.ModuleName -eq 'Microsoft.Graph.Entra') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
-            }
-            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+            } elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
 
@@ -665,7 +651,7 @@ function Get-EntraUnsupportedCommand {
                 $aliases += $directAliases  # Append the content to $aliases
             }
 
-    $aliasFunction = @"
+            $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
 
@@ -676,10 +662,10 @@ $($aliases)}
         return $null
     }
 
-    hidden [scriptblock] GetExportMemeber() {
+    hidden [scriptblock] GetExportMember() {
         $CommandsToExport = $this.ModuleMap.CommandsList
-        $CommandsToExport += "Get-EntraUnsupportedCommand"
-        $CommandsToExport += "Enable-EntraAzureADAlias"
+        $CommandsToExport += 'Get-EntraUnsupportedCommand'
+        $CommandsToExport += 'Enable-EntraAzureADAlias'
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -700,21 +686,20 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
 
     hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Commands) {
         [CommandTranslation[]] $translations = @()
-        foreach($Command in $Commands){
-            if('' -eq $command.New){
+        foreach ($Command in $Commands) {
+            if ('' -eq $command.New) {
                 $translations += $this.NewCustomFunctionMap($Command)
-            }
-            else {
+            } else {
                 $translations += $this.NewFunctionMap($Command)
-            }            
+            }
         }
         return $translations
     }
 
-    hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command){
+    hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command) {
         Write-Host "Creating custom function map for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
-        $ParamterTransformations = $this.GetParametersTransformations($Command)
+        $ParameterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $cmdletsToSuppress = @("New-EntraUser", "Set-EntraUser", "New-EntraBetaUser", "Set-EntraBetaUser")
         $suppress = ''
@@ -730,8 +715,7 @@ $($Command.CustomScript)
 }
 
 "@
-        }
-        else {
+        } else {
             $function = @"
 function $($Command.Generate) {
     $suppress
@@ -740,63 +724,61 @@ function $($Command.Generate) {
 $parameterDefinitions
     )
 
-$($Command.CustomScript)    
+$($Command.CustomScript)
 }
 
-"@   
+"@
         }
         $codeBlock = [Scriptblock]::Create($function)
-        return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
+        return [CommandTranslation]::New($Command.Generate, $Command.Old, $codeBlock)
     }
 
-    hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
+    hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command) {
         Write-Host "Creating new function for $($Command.Generate)"
-        
-        $cmdLstToSkipKeyIdpair=@(
-            "Get-EntraGroup",
-            "Get-EntraServicePrincipalDelegatedPermissionClassification",
-            "Get-EntraApplication",
-            "Get-EntraDeletedApplication",
-            "Get-EntraDeletedGroup",
-            "Get-EntraBetaDeletedGroup",
-            "Get-EntraRoleAssignment",
-            "Get-EntraContact",
-            "Get-EntraRoleDefinition",
-            "Get-EntraContract",
-            "Get-EntraDevice",
-            "Get-EntraDirectoryRole",
-            "Get-EntraServicePrincipal",
-            "Get-EntraAdministrativeUnit",
-            "Get-EntraDirectoryRoleAssignment",
-            "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue",
-            "Get-EntraBetaFeatureRolloutPolicy",
-            "Get-EntraBetaGroup",
-            "Get-EntraBetaPrivilegedResource",
-            "Get-EntraBetaServicePrincipal",
-            "Get-EntraBetaAdministrativeUnit",
-            "Get-EntraBetaAdministrativeUnit",
-            "Get-EntraBetaDevice", 
-            "Get-EntraBetaPrivilegedRoleDefinition"
-        )
-        
-        
-        $parameterDefinitions = $this.GetParametersDefinitions($Command)
-        $ParamterTransformations = $this.GetParametersTransformations($Command)
-        $OutputTransformations = $this.GetOutputTransformations($Command)
-        
-        if($cmdLstToSkipKeyIdpair.Contains($Command.Generate)) {
-            
-            $keyId = $this.GetKeyIdPair($Command)
-        }
-        else {
-            $keyId=''
-        }
-        
-        $customHeadersCommandName = "New-EntraCustomHeaders"
 
-        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
-        {
-            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        $cmdLstToSkipKeyIdpair = @(
+            'Get-EntraGroup',
+            'Get-EntraServicePrincipalDelegatedPermissionClassification',
+            'Get-EntraApplication',
+            'Get-EntraDeletedApplication',
+            'Get-EntraDeletedGroup',
+            'Get-EntraBetaDeletedGroup',
+            'Get-EntraRoleAssignment',
+            'Get-EntraContact',
+            'Get-EntraRoleDefinition',
+            'Get-EntraContract',
+            'Get-EntraDevice',
+            'Get-EntraDirectoryRole',
+            'Get-EntraServicePrincipal',
+            'Get-EntraAdministrativeUnit',
+            'Get-EntraDirectoryRoleAssignment',
+            'Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue',
+            'Get-EntraBetaFeatureRolloutPolicy',
+            'Get-EntraBetaGroup',
+            'Get-EntraBetaPrivilegedResource',
+            'Get-EntraBetaServicePrincipal',
+            'Get-EntraBetaAdministrativeUnit',
+            'Get-EntraBetaAdministrativeUnit',
+            'Get-EntraBetaDevice',
+            'Get-EntraBetaPrivilegedRoleDefinition'
+        )
+
+
+        $parameterDefinitions = $this.GetParametersDefinitions($Command)
+        $ParameterTransformations = $this.GetParametersTransformations($Command)
+        $OutputTransformations = $this.GetOutputTransformations($Command)
+
+        if ($cmdLstToSkipKeyIdpair.Contains($Command.Generate)) {
+
+            $keyId = $this.GetKeyIdPair($Command)
+        } else {
+            $keyId = ''
+        }
+
+        $customHeadersCommandName = 'New-EntraCustomHeaders'
+
+        if ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+            $customHeadersCommandName = 'New-EntraBetaCustomHeaders'
         }
 
         $cmdletsToSuppress = @("New-EntraUser", "Set-EntraUser", "New-EntraBetaUser", "Set-EntraBetaUser")
@@ -813,15 +795,15 @@ function $($Command.Generate) {
 $parameterDefinitions
     )
 
-    PROCESS {    
+    PROCESS {
     `$params = @{}
     `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
-$ParamterTransformations
+$ParameterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
-    
+
     `$response = $($Command.New) @params -Headers `$customHeaders
 $OutputTransformations
     `$response
@@ -830,77 +812,76 @@ $OutputTransformations
 
 "@
         $codeBlock = [Scriptblock]::Create($function)
-        return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
+        return [CommandTranslation]::New($Command.Generate, $Command.Old, $codeBlock)
     }
 
-    hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {                
-        $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
-        $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaPrivilegedRoleAssignment","Get-EntraBetaTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
+    hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
+        $commonParameterNames = @('ProgressAction', 'Verbose', 'Debug', 'ErrorAction', 'ErrorVariable', 'WarningAction', 'WarningVariable', 'OutBuffer', 'PipelineVariable', 'OutVariable', 'InformationAction', 'InformationVariable', 'WhatIf', 'Confirm')
+        $ignorePropertyParameter = @('Get-EntraBetaApplicationPolicy', 'Get-EntraBetaApplicationSignInSummary', 'Get-EntraBetaPrivilegedRoleAssignment', 'Get-EntraBetaTrustFrameworkPolicy', 'Get-EntraBetaPolicy', 'Get-EntraBetaPolicyAppliedObject', 'Get-EntraBetaServicePrincipalPolicy', 'Get-EntraApplicationLogo', 'Get-EntraBetaApplicationLogo', 'Get-EntraApplicationKeyCredential', 'Get-EntraBetaApplicationKeyCredential', 'Get-EntraBetaServicePrincipalKeyCredential', 'Get-EntraBetaServicePrincipalPasswordCredential', 'Get-EntraServicePrincipalKeyCredential', 'Get-EntraServicePrincipalPasswordCredential')
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
-        $ParamAlias=$null
+        $ParamAlias = $null
         foreach ($paramKey in $Command.Parameters.Keys) {
-            if($commonParameterNames.Contains($paramKey)) {
+            if ($commonParameterNames.Contains($paramKey)) {
                 continue
             }
             $targetParam = $Command.Parameters[$paramKey]
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
-            $paramtypeToCreate = $param.ParameterType.ToString()
-            if($param.Name -eq 'All'){
-                $paramType = "switch"
+            $paramTypeToCreate = $param.ParameterType.ToString()
+            if ($param.Name -eq 'All') {
+                $paramType = 'switch'
             }
-            
-            if( ($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)){
+
+            if ( ($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and (($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName)) {
                 if ($targetParam.TargetName) {
                     $ParamAlias = $this.GetParameterAlias($param.Name)
                     $param.Name = $targetParam.TargetName
-                }                
-            }  
-            if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
-                if($paramType -like "*List*"){
+                }
+            }
+            if (($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")) {
+                if ($paramType -like '*List*') {
                     $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
-                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
-                }
-                elseif($paramType -like "*Nullable*"){
+                    $paramTypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                } elseif ($paramType -like '*Nullable*') {
                     $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
-                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                    $paramTypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if(!$this.TypesToCreate.Contains($paramtypeToCreate)) {
-                    $this.TypesToCreate += $paramtypeToCreate
-                }                
-            }           
+                if (!$this.TypesToCreate.Contains($paramTypeToCreate)) {
+                    $this.TypesToCreate += $paramTypeToCreate
+                }
+            }
             $paramBlock = @"
-    $ParamAlias            
+    $ParamAlias
     $($this.GetParameterAttributes($Param))[$($paramType)] `$$($param.Name)
 "@
             $paramsList += $paramBlock
-            $ParamAlias=$null
+            $ParamAlias = $null
         }
 
         $addProperty = $true
-        if('' -ne $Command.New){
+        if ('' -ne $Command.New) {
             $addProperty = $false
-            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
-            if($null -ne $targetCmdparams){
-                foreach($param in $targetCmdparams) {
-                    if($param -eq 'Property') {
+            $targetCmdParams = $(Get-Command -Name $Command.New).Parameters.Keys
+            if ($null -ne $targetCmdParams) {
+                foreach ($param in $targetCmdParams) {
+                    if ($param -eq 'Property') {
                         $addProperty = $true
                         break
                     }
-                } 
-            }     
+                }
+            }
         }
 
-        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty){
+        if ('Get' -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty) {
             $paramsList += $this.GetPropertyParameterBlock()
         }
 
         return $paramsList -Join ",`n"
     }
 
-    hidden [string] GetPropertyParameterBlock(){
-        $propertyType = "System.String[]"
+    hidden [string] GetPropertyParameterBlock() {
+        $propertyType = 'System.String[]'
         $arrayAttrib = @()
         $arrayAttrib += "Mandatory = `$false"
         $arrayAttrib += "ValueFromPipeline = `$false"
@@ -913,48 +894,44 @@ $OutputTransformations
         return $propertyParamBlock
     }
 
-    hidden [string] GetParameterAlias($param){
+    hidden [string] GetParameterAlias($param) {
         return "[Alias('$param')]"
     }
 
-    hidden [string] GetParameterAttributes($param){
-        $attributesString = ""
+    hidden [string] GetParameterAttributes($param) {
+        $attributesString = ''
 
-        foreach($attrib in $param.Attributes){
+        foreach ($attrib in $param.Attributes) {
             $arrayAttrib = @()
-            
+
             try {
-                if($attrib.ParameterSetName -ne "__AllParameterSets"){
+                if ($attrib.ParameterSetName -ne '__AllParameterSets') {
                     $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
                 }
-            }
-            catch {}                
-            
-           try {
-                if($attrib.Mandatory){
+            } catch {}
+
+            try {
+                if ($attrib.Mandatory) {
                     $arrayAttrib += "Mandatory = `$true"
                 }
-           }
-           catch {}
-                
-           
-           try {
-                if($attrib.ValueFromPipeline){
+            } catch {}
+
+
+            try {
+                if ($attrib.ValueFromPipeline) {
                     $arrayAttrib += "ValueFromPipeline = `$true"
                 }
-           }
-           catch {}
-                
+            } catch {}
+
             try {
-                if($attrib.ValueFromPipelineByPropertyName){
+                if ($attrib.ValueFromPipelineByPropertyName) {
                     $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
                 }
-            }
-            catch {}
-           
+            } catch {}
+
             $strAttrib = $arrayAttrib -Join ', '
 
-            if($strAttrib.Length -gt 0){
+            if ($strAttrib.Length -gt 0) {
                 $attributesString += "[Parameter($strAttrib)]`n    "
             }
         }
@@ -963,92 +940,87 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersTransformations([PSCustomObject] $Command) {
-        $paramsList = ""
+        $paramsList = ''
 
-        foreach ($paramKey in $Command.Parameters.Keys) {        
+        foreach ($paramKey in $Command.Parameters.Keys) {
             $param = $Command.Parameters[$paramKey]
-            $paramBlock = ""
-            
-            if([TransformationTypes]::None -eq $param.ConversionType){
+            $paramBlock = ''
+
+            if ([TransformationTypes]::None -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
-            }
-            elseif([TransformationTypes]::Name -eq $param.ConversionType){
-                if(($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
+            } elseif ([TransformationTypes]::Name -eq $param.ConversionType) {
+                if (($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and ($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName) {
                     $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
-                }else{
+                } else {
                     $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
-                } 
-            }
-            elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
+                }
+            } elseif ([TransformationTypes]::Bool2Switch -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
-            }
-            elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
+            } elseif ([TransformationTypes]::SystemSwitch -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
-            }
-            elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
+            } elseif ([TransformationTypes]::ScriptBlock -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterCustom($param)
-            }
-            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+            } elseif ([TransformationTypes]::Remove -eq $param.ConversionType) {
                 $paramBlock = $this.GetParameterException($param)
             }
-            
-            $paramsList += $paramBlock            
+
+            $paramsList += $paramBlock
         }
 
-        if("Get" -eq $Command.Verb){
-            $paramsList += $this.GetCustomParameterTransformation("Property")
+        if ('Get' -eq $Command.Verb) {
+            $paramsList += $this.GetCustomParameterTransformation('Property')
         }
-            
+
         return $paramsList
     }
 
-    hidden [string] GetKeyIdPair($Command){        
+    hidden [string] GetKeyIdPair($Command) {
         $keys = @()
-        foreach ($paramKey in $Command.Parameters.Keys) {        
+        foreach ($paramKey in $Command.Parameters.Keys) {
             $param = $Command.Parameters[$paramKey]
-            if($param.NameChanged){
-                if($param.Name -eq "ObjectId"){
+            if ($param.NameChanged) {
+                if ($param.Name -eq 'ObjectId') {
                     $keys += "$($param.Name) = `"Id`""
-                }
-                elseif($param.Name -eq "Id"){
-                }
-                else{
+                } elseif ($param.Name -eq 'Id') {
+                } else {
                     $keys += "$($param.Name) = `"$($param.TargetName)`""
                 }
-            }            
+            }
         }
-            
-        return "`$keysChanged = @{$($keys -Join "; ")}"
+
+        return "`$keysChanged = @{$($keys -Join '; ')}"
     }
 
-    hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
-#         $paramBlock = @"
-#     if(`$null -ne `$PSBoundParameters["$($OldName)"])
-#     {
-#         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
-        
-#     }
+    hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName) {
+        #         $paramBlock = @"
+        #     if(`$null -ne `$PSBoundParameters["$($OldName)"])
+        #     {
+        #         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
 
-# "@
-        $paramBlock = if ($OldName -eq "Top") {@"
+        #     }
+
+        # "@
+        $paramBlock = if ($OldName -eq 'Top') {
+            @"
     if (`$PSBoundParameters.ContainsKey(`"Top`"))
     {
         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
 
 "@
-        } else {@"
+        } else {
+            @"
     if (`$null -ne `$PSBoundParameters["$($OldName)"])
     {
         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
 
 "@
-}
+        }
         return $paramBlock
     }
 
-    hidden [string] GetParameterTransformationBoolean2Switch([string] $OldName, [string] $NewName){
+    hidden [string] GetParameterTransformationBoolean2Switch([string] $OldName, [string] $NewName) {
         $paramBlock = @"
     if(`$null -ne `$PSBoundParameters["$($OldName)"])
     {
@@ -1062,7 +1034,7 @@ $OutputTransformations
         return $paramBlock
     }
 
-    hidden [string] GetParameterTransformationSystemSwitch([string] $Name){
+    hidden [string] GetParameterTransformationSystemSwitch([string] $Name) {
         $paramBlock = @"
     if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
@@ -1074,12 +1046,12 @@ $OutputTransformations
     }
 
 
-    hidden [string] GetParameterException([DataMap] $Param){
-        $paramBlock = ""
+    hidden [string] GetParameterException([DataMap] $Param) {
+        $paramBlock = ''
         return $paramBlock
     }
 
-    hidden [string] GetParameterCustom([DataMap] $Param){
+    hidden [string] GetParameterCustom([DataMap] $Param) {
         $paramBlock = @"
     if(`$null -ne `$PSBoundParameters["$($Param.Name)"])
     {
@@ -1092,7 +1064,7 @@ $OutputTransformations
         return $paramBlock
     }
 
-    hidden [string] GetCustomParameterTransformation([string] $ParameterName){
+    hidden [string] GetCustomParameterTransformation([string] $ParameterName) {
         $paramBlock = @"
     if(`$null -ne `$PSBoundParameters["$($ParameterName)"])
     {
@@ -1102,43 +1074,39 @@ $OutputTransformations
 "@
         return $paramBlock
     }
-    
+
     hidden [string] GetOutputTransformations([PSCustomObject] $Command) {
-        $responseVerbs = @("Get","Add","New")
-        $output = ""
-    
-        if($this.CmdCustomizations.ContainsKey($Command.Old)) { 
-            $cmd = $this.CmdCustomizations[$Command.Old] 
-            if($null -ne $cmd.Outputs){                   
-                foreach($key in $cmd.Outputs.GetEnumerator()) {
-                    $customOutput =  $cmd.Outputs[$key.Name]
-                    if([TransformationTypes]::Name -eq $customOutput.ConversionType){
+        $responseVerbs = @('Get', 'Add', 'New')
+        $output = ''
+
+        if ($this.CmdCustomizations.ContainsKey($Command.Old)) {
+            $cmd = $this.CmdCustomizations[$Command.Old]
+            if ($null -ne $cmd.Outputs) {
+                foreach ($key in $cmd.Outputs.GetEnumerator()) {
+                    $customOutput = $cmd.Outputs[$key.Name]
+                    if ([TransformationTypes]::Name -eq $customOutput.ConversionType) {
                         $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
-                    }
-                    elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
+                    } elseif ([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType) {
                         $output += $this.GetOutputTransformationCustom($customOutput)
-                    }
-                    elseif([TransformationTypes]::FlatObject -eq $customOutput.ConversionType){
+                    } elseif ([TransformationTypes]::FlatObject -eq $customOutput.ConversionType) {
                         $output += $this.GetOutputTransformationFlatObject($customOutput)
                     }
                 }
             }
         }
-        
-        foreach($key in $this.GenericOutputTransformations.GetEnumerator()) {
-            $customOutput =  $this.GenericOutputTransformations[$key.Name]
-            if(2 -eq $customOutput.ConversionType){
+
+        foreach ($key in $this.GenericOutputTransformations.GetEnumerator()) {
+            $customOutput = $this.GenericOutputTransformations[$key.Name]
+            if (2 -eq $customOutput.ConversionType) {
                 $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
-            }
-            elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
+            } elseif ([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType) {
                 $output += $this.GetOutputTransformationCustom($customOutput)
-            }
-            elseif([TransformationTypes]::FlatObject -eq $customOutput.ConversionType){
+            } elseif ([TransformationTypes]::FlatObject -eq $customOutput.ConversionType) {
                 $output += $this.GetOutputTransformationFlatObject($customOutput)
             }
-        }             
-                    
-        if("" -ne $output){
+        }
+
+        if ('' -ne $output) {
             $transform = @"
     `$response | ForEach-Object {
         if(`$null -ne `$_) {
@@ -1148,19 +1116,19 @@ $($output)
 "@
             return $transform
         }
-        return ""
+        return ''
     }
 
-    hidden [string] GetOutputTransformationName([string] $OldName, [string] $NewName){
-        $outputBlock =@"
+    hidden [string] GetOutputTransformationName([string] $OldName, [string] $NewName) {
+        $outputBlock = @"
         Add-Member -InputObject `$_ -MemberType AliasProperty -Name $($NewName) -Value $($OldName)
 
 "@
         return $outputBlock
     }
 
-    hidden [string] GetOutputTransformationCustom([DataMap] $Param){
-        $outputBlock =@"
+    hidden [string] GetOutputTransformationCustom([DataMap] $Param) {
+        $outputBlock = @"
         $($Param.SpecialMapping)
         Add-Member -InputObject `$_ -MemberType ScriptProperty -Name $($Param.TargetName) -Value `$Value
 
@@ -1168,218 +1136,209 @@ $($output)
         return $outputBlock
     }
 
-    hidden [string] GetOutputTransformationFlatObject([DataMap] $Param){
-        $outputBlock =@"
+    hidden [string] GetOutputTransformationFlatObject([DataMap] $Param) {
+        $outputBlock = @"
         Add-Member -InputObject `$_ -NotePropertyMembers `$_.$($Param.Name)
 
 "@
         return $outputBlock
     }
 
-    hidden [hashtable] GetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false){
-        
+    hidden [hashtable] GetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false) {
+
         $names = @()
         foreach ($moduleName in $ModuleNames) {
             $module = Get-Module -Name $moduleName
             $names += $module.ExportedCmdlets.Keys
             $names += $module.ExportedFunctions.Keys
         }
-    
+
         $namesDic = @{}
         foreach ($name in $names) {
             $cmdComponents = $this.GetParsedCmd($name, $Prefix)
-            if(!$cmdComponents){
+            if (!$cmdComponents) {
                 $this.MissingCommandsToMap += $name
                 continue
             }
-            if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
+            if ($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
                 continue
             }
 
             $namesDic.Add($name, $cmdComponents)
         }
-    
+
         return $namesDic
     }
 
-    hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixs){
-        foreach ($prefix in $Prefixs) {
-            $components = $name -split '-'      
+    hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixes) {
+        foreach ($prefix in $Prefixes) {
+            $components = $name -split '-'
             $verb = $components[0]
             $prefixNoun = $components[1]
             $components = $prefixNoun -split $prefix
-            if($components.Length -eq 1)
-            {
+            if ($components.Length -eq 1) {
                 continue
             }
             $noun = $prefixNoun.Substring($prefix.Length, $prefixNoun.Length - $prefix.Length)
-        
+
             return [PSCustomObject] @{
-                Verb = $verb
-                Noun = $noun
+                Verb   = $verb
+                Noun   = $noun
                 Prefix = $prefix
-            }                  
+            }
         }
         return $null
     }
 
-    hidden [PSCustomObject] GetNewCmdTranslation($SourceCmdName, $SourceCmdlet, $TargetCmdlets, $NewPrefix){
+    hidden [PSCustomObject] GetNewCmdTranslation($SourceCmdName, $SourceCmdlet, $TargetCmdlets, $NewPrefix) {
         $verbsEquivalence = @{
-            'Get' = @('Get')
-            'New' = @('New','Add')
-            'Add' = @('New','Add')
-            'Remove' = @('Remove','Delete')
-            'Delete' = @('Remove','Delete')
-            'Set' = @('Set','Update')
-            'Update' = @('Set','Update')
+            'Get'     = @('Get')
+            'New'     = @('New', 'Add')
+            'Add'     = @('New', 'Add')
+            'Remove'  = @('Remove', 'Delete')
+            'Delete'  = @('Remove', 'Delete')
+            'Set'     = @('Set', 'Update')
+            'Update'  = @('Set', 'Update')
             'Confirm' = @('Confirm')
-            'Enable' = @('New')
+            'Enable'  = @('New')
         }
         $targetCmd = $null
-        if($this.CmdCustomizations.ContainsKey($SourceCmdName)){
+        if ($this.CmdCustomizations.ContainsKey($SourceCmdName)) {
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
-        }
-        else {
-            foreach ($prefix in $this.DestinationPrefixs){
-                foreach ($verb in $verbsEquivalence[$SourceCmdlet.Verb]){
+        } else {
+            foreach ($prefix in $this.DestinationPrefixes) {
+                foreach ($verb in $verbsEquivalence[$SourceCmdlet.Verb]) {
                     $tmpCmd = "$($verb)-$($prefix)$($SourceCmdlet.Noun)"
-                    if($TargetCmdlets.ContainsKey($tmpCmd)){
-                        $targetCmd = $tmpCmd;
-                        break;
+                    if ($TargetCmdlets.ContainsKey($tmpCmd)) {
+                        $targetCmd = $tmpCmd
+                        break
                     }
                 }
             }
         }
-      
-        if($null -ne $targetCmd){
-            if($SourceCmdlet.Prefix.contains('MS')){
+
+        if ($null -ne $targetCmd) {
+            if ($SourceCmdlet.Prefix.contains('MS')) {
                 $Prefix = $NewPrefix
             } else {
                 $prefix = $NewPrefix
             }
 
-            $NewName = ""
+            $NewName = ''
             switch ($SourceCmdlet.Noun) {
-                "RoleDefinition" { $NewName = 'DirectoryRoleDefinition' }
-                "RoleAssignment" { $NewName = 'DirectoryRoleAssignment' }
-                "ServiceAppRoleAssignedTo" { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
-                "ServiceAppRoleAssignment" { $NewName = 'ServicePrincipalAppRoleAssignment' }
-                "CustomSecurityAttributeDefinitionAllowedValues" { $NewName = 'CustomSecurityAttributeDefinitionAllowedValue' }
-                "AuditSignInLogs" { $NewName = 'AuditSignInLog' }
-                "AuditDirectoryLogs" { $NewName = 'AuditDirectoryLog' }
+                'RoleDefinition' { $NewName = 'DirectoryRoleDefinition' }
+                'RoleAssignment' { $NewName = 'DirectoryRoleAssignment' }
+                'ServiceAppRoleAssignedTo' { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
+                'ServiceAppRoleAssignment' { $NewName = 'ServicePrincipalAppRoleAssignment' }
+                'CustomSecurityAttributeDefinitionAllowedValues' { $NewName = 'CustomSecurityAttributeDefinitionAllowedValue' }
+                'AuditSignInLogs' { $NewName = 'AuditSignInLog' }
+                'AuditDirectoryLogs' { $NewName = 'AuditDirectoryLog' }
                 default { $NewName = $SourceCmdlet.Noun }
             }
             $cmd = [PSCustomObject]@{
-                Old = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
-                New = $targetCmd
-                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $NewName
-                Noun = $SourceCmdlet.Noun
-                Verb = $SourceCmdlet.Verb
-                Parameters = $null
-                DefaultParameterSet = ""
-                CustomScript = $null
+                Old                 = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
+                New                 = $targetCmd
+                Generate            = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $NewName
+                Noun                = $SourceCmdlet.Noun
+                Verb                = $SourceCmdlet.Verb
+                Parameters          = $null
+                DefaultParameterSet = ''
+                CustomScript        = $null
             }
-            if('' -eq $targetCmd){
+            if ('' -eq $targetCmd) {
                 $cmd.CustomScript = $this.CmdCustomizations[$SourceCmdName].CustomScript
             }
             $cmd.Parameters = $this.GetCmdletParameters($cmd)
-            $defaulParam = $this.GetDefaultParameterSet($SourceCmdName)
-            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
+            $defaultParam = $this.GetDefaultParameterSet($SourceCmdName)
+            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaultParam'"
             return $cmd
         }
 
         return $null
     }
 
-    hidden [string] GetDefaultParameterSet($Cmdlet){
+    hidden [string] GetDefaultParameterSet($Cmdlet) {
         $sourceCmd = Get-Command -Name $Cmdlet
 
         return $sourceCmd.DefaultParameterSet
     }
 
-    hidden [hashtable] GetCmdletParameters($Cmdlet){
-        $Bool2Switch = @("All")
-        $SystemDebug = @("Verbose", "Debug")
-        $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")
+    hidden [hashtable] GetCmdletParameters($Cmdlet) {
+        $Bool2Switch = @('All')
+        $SystemDebug = @('Verbose', 'Debug')
+        $commonParameterNames = @('ErrorAction', 'ErrorVariable', 'WarningAction', 'WarningVariable', 'OutBuffer', 'PipelineVariable', 'OutVariable', 'InformationAction', 'InformationVariable')
         $sourceCmd = Get-Command -Name $Cmdlet.Old
         $targetCmd = $null
-        if('' -ne $Cmdlet.New){
-            $targetCmd = Get-Command -Name $Cmdlet.New                
-        } 
+        if ('' -ne $Cmdlet.New) {
+            $targetCmd = Get-Command -Name $Cmdlet.New
+        }
 
         $paramsList = @{}
         foreach ($paramKey in $sourceCmd.Parameters.Keys) {
             $param = $sourceCmd.Parameters[$paramKey]
             $paramObj = [DataMap]::New($param.Name)
-            
-            if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) {
+
+            if ($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) {
                 $custom = $this.CmdCustomizations[$Cmdlet.Old]
-                if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
+                if (($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))) {
                     $paramsList.Add($param.Name, $custom.Parameters[$param.Name])
                     continue
                 }
-                if($custom.SpecialMapping) {
-                    $paramObj.SetNone() 
+                if ($custom.SpecialMapping) {
+                    $paramObj.SetNone()
                     $paramsList.Add($param.Name, $paramObj)
                     continue
                 }
             }
-            
-            if($this.GenericParametersTransformations.ContainsKey($param.Name)) {
+
+            if ($this.GenericParametersTransformations.ContainsKey($param.Name)) {
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
-                if(5 -eq $genericParam.ConversionType){
+                if (5 -eq $genericParam.ConversionType) {
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($tempName)){
+                    if ($targetCmd.Parameters.ContainsKey($tempName)) {
                         $paramObj.SetTargetName($tempName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                    } elseif ($targetCmd.Parameters.ContainsKey($genericParam.TargetName)) {
                         $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    else
-                    {
+                    } else {
                         foreach ($key in $targetCmd.Parameters.Keys) {
-                            if($key.EndsWith($genericParam.TargetName)){
+                            if ($key.EndsWith($genericParam.TargetName)) {
                                 $paramObj.SetTargetName($key)
                                 break
                             }
                         }
                     }
-                    $paramsList.Add($paramObj.Name,$paramObj)                    
-                }else{
+                    $paramsList.Add($paramObj.Name, $paramObj)
+                } else {
                     $paramsList.Add($genericParam.Name, $genericParam)
-                }   
+                }
                 continue
             }
-            
-            if($commonParameterNames.Contains($param.Name)) {
+
+            if ($commonParameterNames.Contains($param.Name)) {
                 $paramObj.SetNone()
-            }
-            elseif($Bool2Switch.Contains($param.Name)) {
+            } elseif ($Bool2Switch.Contains($param.Name)) {
                 $paramObj.SetBool2Switch($param.Name)
-            }
-            elseif($SystemDebug.Contains($param.Name)) {
+            } elseif ($SystemDebug.Contains($param.Name)) {
                 $paramObj.SetSystemSwitch($param.Name)
-            }
-            else
-            {
-                if($targetCmd.Parameters.ContainsKey($param.Name)){
-                    $paramObj.SetNone()                       
+            } else {
+                if ($targetCmd.Parameters.ContainsKey($param.Name)) {
+                    $paramObj.SetNone()
                 }
             }
-        
-            $paramsList.Add($paramObj.Name,$paramObj)
+
+            $paramsList.Add($paramObj.Name, $paramObj)
         }
-    
-        return $paramsList        
+
+        return $paramsList
     }
 
-    hidden [string] GetFileHeader(){
-        return @"
+    hidden [string] GetFileHeader() {
+        return @'
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-"@
+'@
     }
 }
