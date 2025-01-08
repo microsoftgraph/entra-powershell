@@ -46,9 +46,10 @@ if($moduleName -eq 'Entra'){
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-	if($null -eq (Find-Module -Name $destinationModuleName -Repository (Get-LocalPSRepoName))){
+	   if(Get-Module -ListAvailable -Name $destinationModuleName){
+          Uninstall-Module -Name $destinationModuleName -Force -Verbose
+	   }
        Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
-	}
 }
 
 foreach($module in $fullModuleNames){
