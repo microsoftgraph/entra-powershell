@@ -8,10 +8,10 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
-        return @{
-            value = @(
-                 @{
-                    onPremisesProvisioningErrors= @()
+        return [PSCustomObject]@{
+            "value" = @(
+                 [PSCustomObject]@{
+                    "onPremisesProvisioningErrors"= @()
                  }
             )
         }
