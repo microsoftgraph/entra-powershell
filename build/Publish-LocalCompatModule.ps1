@@ -36,11 +36,11 @@ $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
 
 if($moduleName -eq 'Entra'){
-	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
+	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
+	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 foreach($module in $fullModuleNames){
@@ -51,7 +51,7 @@ foreach($module in $fullModuleNames){
 	$modulePath = Join-Path $modulePath $module
 	Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName) -Force -Verbose
 
 	if ($Install) {
 		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
