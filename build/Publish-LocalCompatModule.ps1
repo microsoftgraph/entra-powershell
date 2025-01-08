@@ -55,7 +55,7 @@ if($moduleName -eq 'Entra'){
 	Uninstall-Module -Name Microsoft.Graph.Beta.Identity.Governance -Force -Verbose 
 	Uninstall-Module -Name Microsoft.Graph.Beta.Identity.SignIns -Force -Verbose
 	Uninstall-Module -Name Microsoft.Graph.Beta.Applications -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Reports Force -Verbose
+	Uninstall-Module -Name Microsoft.Graph.Beta.Reports -Force -Verbose
 }
 
 if($moduleName -eq 'Entra'){
