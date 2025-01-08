@@ -9,9 +9,14 @@ BeforeAll {
     
     $scriptblock = {
         return @{
-            value = @()
+            value = @(
+                 @{
+                    onPremisesProvisioningErrors = @()
+                 }
+            )
         }
     }
+    
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
 

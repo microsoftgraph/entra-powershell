@@ -9,7 +9,11 @@ BeforeAll {
 
     $scriptblock = {
         return @{
-            value = @()
+            value = @(
+                 @{
+                    onPremisesProvisioningErrors = @()
+                 }
+            )
         }
     }
     
