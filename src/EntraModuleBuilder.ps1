@@ -337,10 +337,10 @@ foreach (`$subModule in `$subModules) {
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
-            Description = 'Microsoft Graph Entra PowerShell.'    
-            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
-            PowerShellVersion = $([System.Version]::Parse('5.1'))
-            CompatiblePSEditions = @('Desktop','Core')
+            Description = $content.description  
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
+            PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
+            CompatiblePSEditions = @('Desktop', 'Core')
             NestedModules = @()
         }
         
@@ -492,9 +492,9 @@ $($requiredModulesEntries -join ",`n")
             CompanyName = $($content.owners)
             FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")
             RootModule = "$moduleFileName"
-            Description = $content.EntraDescription
-            DotNetFrameworkVersion = $([System.Version]::Parse($content.DotNetVersion))
-            PowerShellVersion = $([System.Version]::Parse($content.PowershellVersion))
+            Description = $content.moduleName
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
+            PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
             RequiredModules = $requiredModules
             NestedModules = @()
