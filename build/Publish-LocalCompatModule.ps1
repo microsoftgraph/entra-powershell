@@ -51,7 +51,7 @@ foreach($module in $fullModuleNames){
 	$modulePath = Join-Path $modulePath $module
 	Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
 
 	if ($Install) {
 		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
