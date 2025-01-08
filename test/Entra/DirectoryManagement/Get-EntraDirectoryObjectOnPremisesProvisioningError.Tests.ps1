@@ -11,7 +11,7 @@ BeforeAll {
         return @{
             value = @(
                  @{
-                    onPremisesProvisioningErrors = @()
+                    "onPremisesProvisioningErrors"= @()
                  }
             )
         }
