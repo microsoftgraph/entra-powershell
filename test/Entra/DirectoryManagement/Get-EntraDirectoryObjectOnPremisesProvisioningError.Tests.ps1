@@ -17,7 +17,7 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
