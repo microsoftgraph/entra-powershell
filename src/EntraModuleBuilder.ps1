@@ -170,7 +170,7 @@ Set-StrictMode -Version 5
  [string[]] GetSubModuleFiles([string] $Module, [string]$DirectoryPath) {
         # Check if the directory exists
         # Define the pattern for matching submodule files
-        $pattern = if ($module -like "Microsoft.Entra.Beta.*") {
+        $pattern = if ($module -eq "EntraBeta") {
             "Microsoft.Entra.Beta.*.psm1"
         } else {
             "Microsoft.Entra.*.psm1"
