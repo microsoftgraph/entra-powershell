@@ -338,7 +338,7 @@ foreach (`$subModule in `$subModules) {
             CompanyName = $($content.owners)
             FileList = $files
             Description = $content.Description  
-            DotNetFrameworkVersion = $([System.Version]::Parse($content.DotNetVersion))
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
             PowerShellVersion = $([System.Version]::Parse($content.powerShellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
             NestedModules = @()
