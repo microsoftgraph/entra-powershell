@@ -44,14 +44,14 @@ Uninstall-Module -Name Microsoft.Graph.Identity.DirectoryManagement -Force -Verb
 Uninstall-Module -Name Microsoft.Graph.Identity.Governance -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Identity.SignIns -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Applications -Force -Verbose
-Uninstall-Module -Name Microsoft.Graph.Reports -Force-Verbose
+Uninstall-Module -Name Microsoft.Graph.Reports -Force -Verbose
 
 Uninstall-Module -Name Microsoft.Graph.Beta.Users -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Users.Actions -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Users.Functions -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Groups -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Identity.DirectoryManagement -Force -Verbose
-Uninstall-Module -Name Microsoft.Graph.Beta.Identity.Governance -Force Verbose 
+Uninstall-Module -Name Microsoft.Graph.Beta.Identity.Governance -Force -Verbose 
 Uninstall-Module -Name Microsoft.Graph.Beta.Identity.SignIns -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Applications -Force -Verbose
 Uninstall-Module -Name Microsoft.Graph.Beta.Reports Force -Verbose
