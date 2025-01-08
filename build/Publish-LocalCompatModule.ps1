@@ -41,13 +41,13 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 }
 
 if($moduleName -eq 'Entra'){
-	if($null -eq Find-Module -Name Microsoft.Graph.Authentication -Repository (Get-LocalPSRepoName)){
+	if($null -eq (Find-Module -Name Microsoft.Graph.Authentication -Repository (Get-LocalPSRepoName))){
        Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 	}
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-	if(if($null -eq Find-Module -Name $destinationModuleName -Repository (Get-LocalPSRepoName))){
+	if($null -eq (Find-Module -Name $destinationModuleName -Repository (Get-LocalPSRepoName))){
        Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 	}
 }
