@@ -491,10 +491,10 @@ $($requiredModulesEntries -join ",`n")
             Author = $($content.authors)
             CompanyName = $($content.owners)
             FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")
-            RootModule = "$moduleFileName"
+            RootModule = "$moduleFileName
             Description = $content.description
-            DotNetFrameworkVersion = $([System.Version]::Parse($content.DotNetVersion))
-            PowerShellVersion = $([System.Version]::Parse($content.PowershellVersion))
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
+            PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
             RequiredModules = $requiredModules
             NestedModules = @()

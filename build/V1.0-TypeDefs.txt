@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Type definitios required for commands inputs
+# Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 
 $def = @"
@@ -765,9 +765,14 @@ namespace  Microsoft.Open.MSGraph.Model
     }
 }
 "@
-    try{ Add-Type -TypeDefinition $def }
-    catch{}
+
+try {
+    Add-Type -TypeDefinition $def -ErrorAction SilentlyContinue
+} catch {
+    # No error message will be displayed, and type will be added if it doesn't exist
+}
+
 
 # ------------------------------------------------------------------------------
-# End of Type definitios required for commands inputs
+# End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
