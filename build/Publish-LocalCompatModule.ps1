@@ -34,12 +34,13 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 $metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
 $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
+Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
+
 if($moduleName -eq 'Entra'){
 	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-    Write-Verbose("Publishing Module $($destinationModuleName)")
 	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
