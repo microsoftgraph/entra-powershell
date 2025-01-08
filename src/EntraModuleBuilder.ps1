@@ -337,9 +337,9 @@ foreach (`$subModule in `$subModules) {
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
-            Description = $content.description  
-            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
-            PowerShellVersion = $([System.Version]::Parse($content.powerShellVersion))
+            Description = $content.Description  
+            DotNetFrameworkVersion = $([System.Version]::Parse($content.DotNetVersion))
+            PowerShellVersion = $([System.Version]::Parse($content.PowershellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
             NestedModules = @()
         }
@@ -491,8 +491,8 @@ $($requiredModulesEntries -join ",`n")
             Author = $($content.authors)
             CompanyName = $($content.owners)
             FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")
-            RootModule = "$moduleFileName
-            Description = $content.description
+            RootModule = "$moduleFileName"
+            Description = $content.moduleName
             DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
             PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
             CompatiblePSEditions = @('Desktop', 'Core')
