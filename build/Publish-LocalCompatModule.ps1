@@ -34,36 +34,13 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 $metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
 $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
-if($moduleName -eq 'Entra'){
-	Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
-    Uninstall-Module -Name Microsoft.Graph.DirectoryObjects -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Users -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Users.Actions -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Users.Functions -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Groups -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Identity.DirectoryManagement -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Identity.Governance -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Identity.SignIns -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Applications -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Reports -Force -Verbose
-}else{
-	Uninstall-Module -Name Microsoft.Graph.Beta.Users -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Users.Actions -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Users.Functions -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Groups -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Identity.DirectoryManagement -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Identity.Governance -Force -Verbose 
-	Uninstall-Module -Name Microsoft.Graph.Beta.Identity.SignIns -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Applications -Force -Verbose
-	Uninstall-Module -Name Microsoft.Graph.Beta.Reports -Force -Verbose
-}
 
 if($moduleName -eq 'Entra'){
-	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -AllowClobber -Verbose
 }
 
 foreach($module in $fullModuleNames){
