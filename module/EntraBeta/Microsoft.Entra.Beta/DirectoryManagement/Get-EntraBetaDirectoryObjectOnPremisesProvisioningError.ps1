@@ -6,12 +6,10 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     [OutputType([System.Object])]
     param (
-        [Parameter(ParameterSetName = 'GetById')]
-        [ValidateNotNullOrEmpty()]
+        [Parameter(ParameterSetName = 'GetById', HelpMessage = "The unique identifier of the tenant. Optional.")]
         [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })]
         [System.Guid] $TenantId
     )
-
     begin { }
 
     process {
@@ -27,7 +25,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
         $response = @()
 
         try {
-            foreach ($obj in $object) {
+            foreach ($obj in $Object) {
                 $obj = ($obj | Out-String).TrimEnd()
                 $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
                 $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
@@ -39,7 +37,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
 
     end {
         if ([string]::IsNullOrWhiteSpace($response)) {
-            Write-Host 'False'
+            Write-Output 'False'
         } else {
             $response
         }

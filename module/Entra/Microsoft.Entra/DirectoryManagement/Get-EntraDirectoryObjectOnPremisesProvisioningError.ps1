@@ -6,8 +6,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     [OutputType([System.Object])]
     param (
-        [Parameter(ParameterSetName = 'GetById')]
-        [ValidateNotNullOrEmpty()]
+        [Parameter(ParameterSetName = 'GetById', HelpMessage = "The unique identifier of the tenant. Optional.")]
         [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })]
         [System.Guid] $TenantId
     )
@@ -26,7 +25,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         $response = @()
 
         try {
-            foreach ($obj in $object) {
+            foreach ($obj in $Object) {
                 $obj = ($obj | Out-String).TrimEnd()
                 $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
                 $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors

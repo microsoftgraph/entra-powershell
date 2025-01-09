@@ -34,13 +34,21 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 $metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
 $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
+foreach ($destinationModuleName in $content.destinationModuleName){
+	if($moduleName -eq 'Entra'){
+        if(Get-Module -ListAvailable -Name $destinationModuleName){
+          Uninstall-Module -Name $destinationModuleName -Force -Verbose
+	}
+  }	
+}
+
 if($moduleName -eq 'Entra'){
-	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+	   Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
+       Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-    Write-Verbose("Publishing Module $($destinationModuleName)")
-	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+       Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 foreach($module in $fullModuleNames){
@@ -51,7 +59,8 @@ foreach($module in $fullModuleNames){
 	$modulePath = Join-Path $modulePath $module
 	Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 	Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
+
+	Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName) -Force -Verbose
 
 	if ($Install) {
 		Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
