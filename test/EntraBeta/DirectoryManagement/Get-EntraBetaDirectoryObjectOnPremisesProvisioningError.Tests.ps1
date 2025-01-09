@@ -8,19 +8,6 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-<<<<<<< HEAD
-    $scriptblock = {
-        return @{
-            value = @(
-                 @{
-                    onPremisesProvisioningErrors= @()
-                 }
-            )
-        }
-    }
-    
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
-=======
     $response = @{
         "@odata.context" = 'https://graph.microsoft.com/beta/$metadata#contacts(onPremisesProvisioningErrors)'
         "value"          = @{
@@ -29,7 +16,6 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
->>>>>>> ca4e47a748bc4b4d5d711e8f7dab028fd9aa8eef
 }
 
 Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
