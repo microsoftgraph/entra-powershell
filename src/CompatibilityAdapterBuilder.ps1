@@ -697,16 +697,24 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParameterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        if (($this.cmdToSkipNameConversion -notcontains $Command.Generate) -and ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id'))) {
+        $cmdletsToSuppress = @("New-EntraUser", "Set-EntraUser", "New-EntraBetaUser", "Set-EntraBetaUser")
+        $suppress = ''
+        if ($($Command.Generate) -in $cmdletsToSuppress){
+            $suppress = '[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]'
+        }
+
+        if (($this.cmdtoSkipNameconverssion -notcontains $Command.Generate) -and ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id'))) {
             $function = @"
 function $($Command.Generate) {
-$($Command.CustomScript)
+    $suppress
+$($Command.CustomScript)    
 }
 
 "@
         } else {
             $function = @"
 function $($Command.Generate) {
+    $suppress
     [CmdletBinding($($Command.DefaultParameterSet))]
     param (
 $parameterDefinitions
@@ -769,8 +777,15 @@ $($Command.CustomScript)
             $customHeadersCommandName = 'New-EntraBetaCustomHeaders'
         }
 
+        $cmdletsToSuppress = @("New-EntraUser", "Set-EntraUser", "New-EntraBetaUser", "Set-EntraBetaUser")
+        $suppress = ''
+        if ($($Command.Generate) -in $cmdletsToSuppress){
+            $suppress = '[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]'
+        }
+
         $function = @"
 function $($Command.Generate) {
+    $suppress
     [CmdletBinding($($Command.DefaultParameterSet))]
     param (
 $parameterDefinitions
