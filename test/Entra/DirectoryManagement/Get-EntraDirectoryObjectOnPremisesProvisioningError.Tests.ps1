@@ -9,11 +9,9 @@ BeforeAll {
 
     $response = @{
         "@odata.context" = 'https://graph.microsoft.com/v1.0/$metadata#contacts(onPremisesProvisioningErrors)'
-        "value"          = @(
-            @{
-                "onPremisesProvisioningErrors" = @{}
-            }
-        )
+        "value"          = @{
+            "onPremisesProvisioningErrors" = @{}
+        }
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.DirectoryManagement
