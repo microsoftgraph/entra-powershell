@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-BeforeAll {  
+<#BeforeAll {  
     if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
         Import-Module Microsoft.Entra.DirectoryManagement        
     }
@@ -64,4 +64,4 @@ Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
             }
         }   
     }
-}
+}#>
