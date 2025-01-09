@@ -12,7 +12,7 @@ BeforeAll {
             [PSCustomObject]@{
                 "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 "@odata.type"       = "#microsoft.graph.user"
-                "@odata.Context"    = 'https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity'
+                "@odata.Context"    = 'https://graph.microsoft.com/v1.0/`$metadata#directoryObjects/`$entity'
                 "displayName"       = "Mock-App"
                 "jobTitle"          = "TestMock"
                 "mail"              = "M365x99297270.onmicrosoft.com"

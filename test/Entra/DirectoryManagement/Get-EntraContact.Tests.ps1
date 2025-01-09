@@ -32,7 +32,7 @@ BeforeAll {
                                                 }
               "AdditionalProperties"            = @{
                                                     imAddresses = ""
-                                                    "@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#contacts/$entity"
+                                                    "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#contacts/`$entity"
                                                 }
               "Manager"                         = $null
               "OnPremisesSyncEnabled"           = @{}

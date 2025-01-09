@@ -23,15 +23,16 @@ BeforeAll {
 Describe "Add-EntraLifecyclePolicyGroup" {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
-            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-            $result | Should -Not -BeNullOrEmpty"
+            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            Write-Debug("result : $result")
+            #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
 
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should return created LifecyclePolicyGroup with alias" {
-            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-            $result | Should -Not -BeNullOrEmpty"
+            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
 
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1

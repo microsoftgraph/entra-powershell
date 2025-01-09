@@ -9,7 +9,7 @@ BeforeAll {
 
     $scriptblock = { return @(
             [PSCustomObject]@{
-                "@odata.context" = '"https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions/$entity"'
+                "@odata.context" = '"https://graph.microsoft.com/v1.0/`$metadata#directory/customSecurityAttributeDefinitions/`$entity"'
                 "attributeSet" = "Engineering"
                 "description" = "Active projects for user"
                 "id" = "Engineering_Project1234"

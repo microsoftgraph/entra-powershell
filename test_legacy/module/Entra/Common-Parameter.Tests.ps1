@@ -23,11 +23,11 @@ Describe "Valid parameter Tests"{
                     $params = ($command.ParameterSets.Parameters | Where-Object {$_.IsMandatory -eq $true} | select -expand Name)
                     if($params.count -eq 1 -and $params -eq 'Id'){
                         $filter = $cmdlets | Where-Object { $_.SourceName -eq $command }
-                        if($null -ne $filter){                             
+                        if($null -ne $filter){             
                             try { 
                                 Write-Host "$command"                                
                                 $commandScriptBlock = [scriptblock]::Create("$commandName -Id 056b2531-005e-4f3e-be78-01a71ea30a04 -Debug")                                
-                                if($filter.IsApi){                                     
+                                if($filter.IsApi){                     
                                     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
                                     $result = Invoke-Command -ScriptBlock $commandScriptBlock 
                                     $result | Should -BeNullOrEmpty

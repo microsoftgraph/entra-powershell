@@ -10,7 +10,7 @@ BeforeAll {
         #Write-Host "Mocking set-EntraPolicy with parameters: $($args | ConvertTo-Json -Depth 3)"
         
         $response = @{
-            '@odata.context' = 'https://graph.microsoft.com/v1.0/$metadata#policies/homeRealmDiscoveryPolicies/$entity'            
+            '@odata.context' = 'https://graph.microsoft.com/v1.0/`$metadata#policies/homeRealmDiscoveryPolicies/`$entity'            
         }
 
         return $response
@@ -21,9 +21,12 @@ BeforeAll {
 Describe "Test for Set-EntraPolicy" {
 
     It "Should return empty object" {
-        $result = Set-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" 
-        
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches } {
+            $result = Set-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" 
+            
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
+        }
     }
 
     It "Should fail when id is empty" {
@@ -46,16 +49,21 @@ Describe "Test for Set-EntraPolicy" {
     }
 
     It "Should contain 'User-Agent' header" {
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPolicy"
-
-        Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
-
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
+        $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+        $customHeaders["User-Agent"] = $userAgentHeaderValue
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches; customHeaders = $customHeaders} {
+            Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $customHeaders["User-Agent"]
+                $true
+            }
         }
     }
     It "Should execute successfully without throwing an error" {
+        $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
+        InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches } {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
@@ -66,7 +74,8 @@ Describe "Test for Set-EntraPolicy" {
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
-        }
+            }
+        }            
     } 
 }
 

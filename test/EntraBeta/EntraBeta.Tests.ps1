@@ -20,6 +20,9 @@ if($null -eq (Get-Module -Name Microsoft.Entra.Beta.Users)){
 if($null -eq (Get-Module -Name Microsoft.Entra.Beta.Groups)){
     Import-Module Microsoft.Entra.Beta.Groups -Force
 }
+if($null -eq (Get-Module -Name Microsoft.Entra.Beta.NetworkAccess)){
+    Import-Module Microsoft.Entra.Beta.NetworkAccess -Force
+}
 if($null -eq (Get-Module -Name Microsoft.Entra.Beta.Reports)){
     Import-Module Microsoft.Entra.Beta.Reports -Force
 }
