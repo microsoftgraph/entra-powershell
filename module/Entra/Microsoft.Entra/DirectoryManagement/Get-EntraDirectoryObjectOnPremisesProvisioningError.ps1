@@ -36,11 +36,5 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         }
     }
 
-    end {
-        if ([string]::IsNullOrWhiteSpace($response)) {
-            Write-Output 'False'
-        } else {
-            $response
-        }
-    }
+    $response
 }

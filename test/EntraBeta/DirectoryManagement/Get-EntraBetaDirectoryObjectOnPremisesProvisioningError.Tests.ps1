@@ -7,7 +7,7 @@ BeforeAll {
     $mockResponse = @{
         value = @(
             @{
-                "onPremisesProvisioningErrors" = @()
+                onPremisesProvisioningErrors = @()
             }
         )
     }
