@@ -36,5 +36,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         }
     }
 
-    $response
+    end {
+        $response
+    }
 }

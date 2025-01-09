@@ -38,10 +38,6 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
     }
 
     end {
-        if ([string]::IsNullOrWhiteSpace($response)) {
-            Write-Host 'False'
-        } else {
-            $response
-        }
+        $response
     }
 }
