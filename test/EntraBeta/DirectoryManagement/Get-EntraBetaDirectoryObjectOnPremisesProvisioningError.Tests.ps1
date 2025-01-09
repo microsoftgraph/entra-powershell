@@ -1,23 +1,20 @@
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-<#BeforeAll {  
+BeforeAll {  
     if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
         Import-Module Microsoft.Entra.Beta.DirectoryManagement      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @{
-            value = @(
-                 @{
-                    "onPremisesProvisioningErrors"= @()
-                 }
-            )
-        }
+    $mockResponse = @{
+        value = @(
+            @{
+                "onPremisesProvisioningErrors" = @()
+            }
+        )
     }
-    
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Invoke-GraphRequest -MockWith {
+        return $mockResponse
+    } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
@@ -43,11 +40,8 @@ Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
 
             Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectoryObjectOnPremisesProvisioningError"
-
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
+                $Headers.'User-Agent' -eq $userAgentHeaderValue
             }
         }
         It "Should execute successfully without throwing an error" {
@@ -64,5 +58,4 @@ Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
             }
         }
     }
-}#>
-
+}
