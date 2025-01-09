@@ -14,7 +14,7 @@ BeforeAll {
               "DeletedDateTime"              = $null
               "AdditionalProperties"         = @{
                                                     "@odata.type"            = "#microsoft.graph.device"
-                                                    "@odata.Context"         = "https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity"
+                                                    "@odata.Context"         = "https://graph.microsoft.com/v1.0/`$metadata#directoryObjects/`$entity"
                                                     "appId"                  = "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
                                                     "displayName"            = "Mock-App"
                                                     "identifierUris"         = @{}

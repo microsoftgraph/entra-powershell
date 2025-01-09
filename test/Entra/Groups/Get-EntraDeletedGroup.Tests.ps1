@@ -19,7 +19,7 @@ BeforeAll {
               "SecurityEnabled"              = $False
               "MailEnabled"                  = $True
               "Visibility"                   = "Public"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#groups/$entity"}
+              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#groups/`$entity"}
               "Parameters"                   = $args
             }
         )

@@ -35,7 +35,7 @@ BeforeAll {
         }
 
         $response = @{
-            '@odata.context' = 'https://graph.microsoft.com/v1.0/$metadata#policies'
+            '@odata.context' = 'https://graph.microsoft.com/v1.0/`$metadata#policies'
             Value            = $policyObject.value
         }
 

@@ -19,7 +19,7 @@ BeforeAll {
                 "IsAppliedToOrganization"           = $false
                 "IsEnabled"                         = $true
                 "AdditionalProperties"              = @{
-                    '@odata.context'                = 'https://graph.microsoft.com/beta/$metadata#policies/featureRolloutPolicies/$entity'
+                    '@odata.context'                = 'https://graph.microsoft.com/beta/`$metadata#policies/featureRolloutPolicies/`$entity'
                 }
                 "Parameters"            = $args
                 }

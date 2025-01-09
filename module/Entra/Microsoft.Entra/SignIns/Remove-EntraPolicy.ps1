@@ -41,5 +41,3 @@ function Remove-EntraPolicy {
         $response
     }     
 }
-
-
