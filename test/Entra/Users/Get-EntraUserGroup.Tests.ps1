@@ -7,16 +7,16 @@ BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users
     }
-    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "DisplayName"     = "Contoso Marketing Group"
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "Description"     = "Contoso Marketing Group"
-                "MailNickname"    = "contosomarketing"
-                "GroupTypes"      = "{Unified}"
+                "DisplayName"  = "Contoso Marketing Group"
+                "Id"           = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "Description"  = "Contoso Marketing Group"
+                "MailNickname" = "contosomarketing"
+                "GroupTypes"   = "{Unified}"
             }
         )
     }
