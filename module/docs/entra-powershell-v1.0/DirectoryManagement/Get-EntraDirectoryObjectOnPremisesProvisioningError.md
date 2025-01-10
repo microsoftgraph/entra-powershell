@@ -41,7 +41,6 @@ The `Get-EntraDirectoryObjectOnPremisesProvisioningError` returns whether Micros
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
-
 Get-EntraDirectoryObjectOnPremisesProvisioningError 
 ```
 
@@ -55,8 +54,8 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
-
-Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
+$tenant = Get-EntraTenantDetail
+Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId $tenant.Id
 ```
 
 ```Output
@@ -71,11 +70,7 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-
-If this isn't provided then the value defaults to the tenant of the current user.
-
-This parameter is only applicable to partner users.
+The unique ID of the tenant to operate on. If not provided, it defaults to the current user's tenant. This parameter applies only to partner users.
 
 ```yaml
 Type: System.String
