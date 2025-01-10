@@ -9,7 +9,7 @@
 #The entire risk arising out of the use or performance of the sample and documentation remains with you. 
 #In no event shall Microsoft, its authors, or anyone else involved in the creation, production, or delivery of the script be liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of  the use of or inability to use the sample or documentation, even if Microsoft has been advised of the possibility of such damages.
 #################################################################################
-Import-Module Microsoft.Graph.Entra
+Import-Module Microsoft.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
 Enable-EntraAzureADAlias #Activate aliasing
 
