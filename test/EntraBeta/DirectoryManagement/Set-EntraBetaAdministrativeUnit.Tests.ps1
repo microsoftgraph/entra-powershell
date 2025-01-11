@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Set-EntraBetaAdministrativeUnit" {
     Context "Test for Set-EntraBetaAdministrativeUnit" {
         It "Should return empty object" {
-            $result = Set-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted $true
+            $result = Set-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
@@ -30,12 +30,6 @@ Describe "Set-EntraBetaAdministrativeUnit" {
         }
         It "Should fail when Description is empty" {
             { Set-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description  } | Should -Throw "Missing an argument for parameter 'Description'*"
-        }
-        It "Should fail when IsMemberManagementRestricted is empty" {
-            { Set-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" --DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted   } | Should -Throw "Missing an argument for parameter 'IsMemberManagementRestricted'*"
-        }
-        It "Should fail when IsMemberManagementRestricted is invalid" {
-            { Set-EntraBetaAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName "Mock-Admin-Unit" -Description "NewAdministrativeUnit" -IsMemberManagementRestricted "" } | Should -Throw "Cannot process argument transformation on parameter 'IsMemberManagementRestricted'.*"
         }
         It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
             Mock -CommandName Update-MgBetaAdministrativeUnit -MockWith {$args} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
