@@ -29,6 +29,10 @@ Set-EntraAdministrativeUnit
  -AdministrativeUnitId <String>
  [-Description <String>]
  [-DisplayName <String>]
+ [-MembershipType <String>]
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>]
+ [-Visibility <String>]
  [<CommonParameters>]
 ```
 

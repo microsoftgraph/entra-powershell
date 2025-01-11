@@ -26,9 +26,12 @@ Updates the properties of an administrative unit.
 ```powershell
 Set-EntraBetaAdministrativeUnit
  -AdministrativeUnitId <String>
- [-IsMemberManagementRestricted <Boolean>]
  [-Description <String>]
  [-DisplayName <String>]
+ [-MembershipType <String>]
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>]
+ [-Visibility <String>]
  [<CommonParameters>]
 ```
 
