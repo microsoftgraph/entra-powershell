@@ -52,7 +52,7 @@ The following least-privileged roles are supported for this operation:
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description'
+Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description' -MembershipType 'Assigned'
 ```
 
 This Command update DisplayName of specific administrative unit.
