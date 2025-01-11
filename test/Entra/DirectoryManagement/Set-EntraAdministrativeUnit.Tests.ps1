@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null) {
         Import-Module Microsoft.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -46,7 +46,8 @@ Describe "Test for Set-EntraAdministrativeUnit" {
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { Set-EntraAdministrativeUnit -AdministrativeUnitId "bbbbbbbb-1111-1111-1111-cccccccccccc" -DisplayName "test" -Description "test" -Debug } | Should -Not -Throw
-        } finally {
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
