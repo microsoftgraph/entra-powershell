@@ -3,11 +3,11 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    if ($null -eq (Get-Module -Name Microsoft.Graph.Entra)) {
-        Import-Module Microsoft.Graph.Entra
+    if ($null -eq (Get-Module -Name Microsoft.Entra.Authentication)) {
+        Import-Module Microsoft.Entra.Authentication
     }
 
-    Mock -CommandName Connect-MgGraph -MockWith {} -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Connect-MgGraph -MockWith {} -ModuleName Microsoft.Entra.Authentication
 
     $ConnectEntraCommand = Get-Command Connect-Entra
 }
