@@ -1,213 +1,205 @@
 ---
-title: Get-EntraAdministrativeUnit
-description: This article provides details on the Get-EntraAdministrativeUnit command.
+title: New-EntraAdministrativeUnit
+description: This article provides details on the New-EntraAdministrativeUnit command.
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 12/12/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Module Name: Microsoft.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraAdministrativeUnit
+
 schema: 2.0.0
 ---
 
-# Get-EntraAdministrativeUnit
+# New-EntraAdministrativeUnit
 
 ## Synopsis
 
-Gets an administrative unit.
+Creates an administrative unit.
 
 ## Syntax
 
-### GetQuery (Default)
-
 ```powershell
-Get-EntraAdministrativeUnit
- [-Top <Int32>]
- [-All]
- [-Filter <String>]
- [-Property <String[]>]
- [<CommonParameters>]
-```
-
-### GetById
-
-```powershell
-Get-EntraAdministrativeUnit
- -AdministrativeUnitId <String>
- [-All]
- [-Property <String[]>]
+New-EntraAdministrativeUnit
+ -DisplayName <String>
+ [-Description <String>]
+ [-MembershipType <String>]
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>]
+ [-Visibility <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameter to get a specific administrative unit.
+The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
+
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The following least-privileged roles are supported for this operation:
+
+- Privileged Role Administrator
 
 ## Examples
 
-### Example 1: Get all administrative units
+### Example 1: Create an administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+New-EntraAdministrativeUnit -DisplayName 'TestAU'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description            DisplayName             Visibility
---------------- --                                   -----------            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee  Updated Description    Updated DisplayName
-                cccccccc-2222-3333-4444-dddddddddddd  testdemo               test1
-                bbbbbbbb-1111-2222-3333-cccccccccccc                         TestAU
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                         test_130624_09
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  demotest               test111
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc             TestAU
 ```
 
-This command gets all the administrative units.
+This example demonstrates how to create an administrative unit.
 
-### Example 2: Get all administrative units using '-All' parameter
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
+
+### Example 2: Create an administrative unit using '-Description' parameter
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -All 
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+New-EntraAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description            DisplayName             Visibility
---------------- --                                   -----------            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee  Updated Description    Updated DisplayName
-                cccccccc-2222-3333-4444-dddddddddddd  testdemo               test1
-                bbbbbbbb-1111-2222-3333-cccccccccccc                         TestAU
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                         test_130624_09
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  demotest               test111
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc Pacific Administrative Unit     test111     False
 ```
 
-This command gets all the administrative units.
+This example demonstrates how to create an administrative unit.
 
-### Example 3: Get a specific administrative unit
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
+- `-Description` parameter specifies a description for the Administrative unit object.
+
+### Example 3: Create an administrative unit with detailed configuration
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -AdministrativeUnitId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$displayName = 'Seattle District Technical Schools'
+$description = 'Seattle district technical schools administration'
+$membershipRule = '(user.country -eq "United States")'
+
+New-EntraAdministrativeUnit `
+    -DisplayName $displayName `
+    -Description $description `
+    -MembershipType 'Dynamic' `
+    -MembershipRule $membershipRule `
+    -MembershipRuleProcessingState 'On' `
+    -Visibility 'HiddenMembership'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description            DisplayName             Visibility
---------------- --                                   -----------            -----------             ----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Updated Description    Updated DisplayName
+DeletedDateTime Id                                   Description                                       DisplayName                        Visibility
+--------------- --                                   -----------                                       -----------                        ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc Seattle district technical schools administration Seattle District Technical Schools HiddenMembership
 ```
 
-This example returns the details of the specified administrative unit.
+This example demonstrates how to create an administrative unit with detailed configuration information.
 
-- `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-
-### Example 4: Get administrative units filter by display name
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
-```
-
-```Output
-DeletedDateTime Id                                   Description            DisplayName             Visibility
---------------- --                                   -----------            -----------             ----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
-```
-
-This example list of administrative units containing display name with the specified name.
-
-### Example 5: Get top one administrative unit
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -Top 1
-```
-
-```Output
-DeletedDateTime Id                                   Description            DisplayName             Visibility
---------------- --                                   -----------            -----------             ----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
-```
-
-This example returns the specified top administrative units.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
+- `-Description` parameter specifies a description for the Administrative unit object.
+- `-MembershipRule` parameter specifies the dynamic membership rule applied to the administrative unit.
+- `-MembershipType` parameter specifies the membership type of the administrative unit. Possible values are: dynamic and assigned. If not set, the default value is null, and the membership type defaults to assigned.
+- `-MembershipRuleProcessingState` parameter controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates.
+- `-Visibility` parameter specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers.
 
 ## Parameters
 
-### -All
+### -Description
 
-List all pages.
+Specifies a description for the new administrative unit. This parameter is optional.
 
 ```yaml
-Type: System.Management.Automation.SwitchParameter
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Filter
+### -DisplayName
 
-Specifies an OData v4.0 filter statement.
-This parameter filters which objects are returned.
+Specifies the display name of the new administrative unit.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetQuery
+Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -AdministrativeUnitId
-
-Specifies the ID of an administrative unit in Microsoft Entra ID.
-
-```yaml
-Type: System.String
-Parameter Sets: GetById
-Aliases: ObjectId
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Top
+### -MembershipType
 
-Specifies the maximum number of records to return.
+Specifies the membership type of the administrative unit. Possible values are: `dynamic` and `assigned`. If not set, the default value is `null`, and the membership type defaults to `assigned`. This parameter is optional.
 
 ```yaml
-Type: System.Int32
-Parameter Sets: GetQuery
+Type: System.String
+Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Property
+### -MembershipRule
 
-Specifies properties to be returned.
+Specifies the dynamic membership rule applied to the administrative unit. This parameter is optional.
 
 ```yaml
-Type: System.String[]
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRuleProcessingState
+
+Controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates. This parameter is optional.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Visibility
+
+Specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers. This parameter is optional.
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -230,7 +222,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
+[Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 
 [Remove-EntraAdministrativeUnit](Remove-EntraAdministrativeUnit.md)
 
