@@ -64,7 +64,7 @@ function New-EntraBetaAdministrativeUnit {
         $response = $response | ConvertTo-Json | ConvertFrom-Json
         $auList = @()
         foreach ($data in $response) {
-            $auType = New-Object Microsoft.Graph.Models.MicrosoftGraphAdministrativeUnit
+            $auType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit
             $data.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
                 $propertyValue = $_.Value
