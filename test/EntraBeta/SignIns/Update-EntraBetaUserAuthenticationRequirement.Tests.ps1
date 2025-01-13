@@ -3,12 +3,12 @@
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if (-not (Get-Module -Name Microsoft.Entra.Beta.Users -ListAvailable)) {
-        Import-Module Microsoft.Entra.Beta.Users
+    if (-not (Get-Module -Name Microsoft.Entra.Beta.SignIns -ListAvailable)) {
+        Import-Module Microsoft.Entra.Beta.SignIns
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Update-EntraBetaUserAuthenticationRequirement" {
@@ -16,7 +16,7 @@ Describe "Update-EntraBetaUserAuthenticationRequirement" {
         It "Should return empty object" {
             $result = Update-EntraBetaUserAuthenticationRequirement -UserId "SawyerM@Contoso.com" -PerUserMfaState "enabled"
             $result | Should -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should fail when UserId is empty" {
@@ -35,7 +35,7 @@ Describe "Update-EntraBetaUserAuthenticationRequirement" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaUserAuthenticationRequirement"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
