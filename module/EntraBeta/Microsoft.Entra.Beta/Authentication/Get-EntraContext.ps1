@@ -54,9 +54,9 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        $module = Get-Module -Name Microsoft.Graph.Entra.Beta -ErrorAction SilentlyContinue
+        $module = Get-Module -Name Microsoft.Entra.Beta -ErrorAction SilentlyContinue
         if ($null -eq $module) {
-            $module = Get-Module -Name Microsoft.Graph.Entra -ErrorAction SilentlyContinue
+            $module = Get-Module -Name Microsoft.Entra -ErrorAction SilentlyContinue
         }
 
         if ($null -ne $module) {
