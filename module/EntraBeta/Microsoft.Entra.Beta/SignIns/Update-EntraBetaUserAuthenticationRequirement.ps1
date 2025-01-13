@@ -1,7 +1,7 @@
-# ------------------------------------------------------------------------------ 
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
-#  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 function Update-EntraBetaUserAuthenticationRequirement {
     [CmdletBinding()]
     param (
@@ -9,8 +9,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
         [Alias("ObjectId")]
         [System.String] $UserId,
 
-        [Parameter(Mandatory = $true, HelpMessage = "Specify the per-user MFA state. Valid values are 'enabled', 'disabled', or 'enforced'.")]
-        [ValidateSet("enabled", "disabled", "enforced")]
+        [Parameter(Mandatory = $true, HelpMessage = "Specify the Multi-Factor Authentication (MFA) state for individual users. Valid values include 'Enabled', 'Disabled', and 'Enforced'.")]
         [System.String] $PerUserMfaState
     )
 
@@ -23,7 +22,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
             if ($null -ne $PSBoundParameters["UserId"]) {
                 $params["UserId"] = $PSBoundParameters["UserId"]
             }
-            if ($null -ne $PSBoundParameters["CurrentPassword"]) {
+            if ($null -ne $PSBoundParameters["PerUserMfaState"]) {
                 $params["PerUserMfaState"] = $PSBoundParameters["PerUserMfaState"]
             }
 
@@ -49,5 +48,4 @@ function Update-EntraBetaUserAuthenticationRequirement {
             Write-Error "An error occurred while updating user authentication requirements: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
