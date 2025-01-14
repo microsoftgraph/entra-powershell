@@ -5,42 +5,42 @@
 function Get-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias("ObjectId")]
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter
+        [Alias("ObjectId")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $AdministrativeUnitId,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter
     )
 
     PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $baseUri = "/v1.0/directory/administrativeUnits"
-    $properties = '$select=*'
-    $params["Uri"] = "$baseUri/?$properties"    
-    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
-    {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
-        $params["Uri"] = "$baseUri/$($params.AdministrativeUnitId)?$properties"
-    }    
-    if ($PSBoundParameters.ContainsKey("Top")) {
-        $topCount = $PSBoundParameters["Top"]
-        if ($topCount -gt 999) {
-            $params["Uri"] += "&`$top=999"
+        $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $baseUri = "/v1.0/directory/administrativeUnits"
+        $properties = '$select=*'
+        $params["Uri"] = "$baseUri/?$properties"    
+        if ($null -ne $PSBoundParameters["AdministrativeUnitId"]) {
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
+            $params["Uri"] = "$baseUri/$($params.AdministrativeUnitId)?$properties"
+        }    
+        if ($PSBoundParameters.ContainsKey("Top")) {
+            $topCount = $PSBoundParameters["Top"]
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else {
+                $params["Uri"] += "&`$top=$topCount"
+            }
+        }    
+        if ($null -ne $PSBoundParameters["Filter"]) {
+            $Filter = $PSBoundParameters["Filter"]
+            $f = '$' + 'Filter'
+            $params["Uri"] += "&$f=$Filter"
         }
-        else {
-            $params["Uri"] += "&`$top=$topCount"
-        }
-    }    
-    if ($null -ne $PSBoundParameters["Filter"]) {
-        $Filter = $PSBoundParameters["Filter"]
-        $f = '$' + 'Filter'
-        $params["Uri"] += "&$f=$Filter"
-    }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

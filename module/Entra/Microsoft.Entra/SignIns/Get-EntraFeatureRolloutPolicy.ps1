@@ -6,14 +6,15 @@
 function Get-EntraFeatureRolloutPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id,
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $SearchString,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -24,38 +25,33 @@ function Get-EntraFeatureRolloutPolicy {
         $params["Uri"] = "$baseUri"
         $query = $null
         
-        if($null -ne $PSBoundParameters["Id"])
-        {
+        if ($null -ne $PSBoundParameters["Id"]) {
             $Id = $PSBoundParameters["Id"]
             $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id"
         }
-        if($null -ne $PSBoundParameters["SearchString"])
-        {
+        if ($null -ne $PSBoundParameters["SearchString"]) {
             $FilterValue = $PSBoundParameters["SearchString"]
-            $filter="displayName eq '$FilterValue' or startswith(displayName,'$FilterValue')"
+            $filter = "displayName eq '$FilterValue' or startswith(displayName,'$FilterValue')"
             $f = '$' + 'Filter'
             $query += "&$f=$Filter"
         }
-        if($null -ne $PSBoundParameters["Filter"])
-        {
+        if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $query += "&$f=$Filter"
         } 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $query += "&`$select=$($selectProperties)"
         }
-        if($null -ne $query)
-        {
+        if ($null -ne $query) {
             $query = "?" + $query.TrimStart("&")
             $params["Uri"] += $query
         }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $data = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
@@ -64,8 +60,7 @@ function Get-EntraFeatureRolloutPolicy {
         }
         catch {}       
 
-        if($data)
-        {
+        if ($data) {
             $userList = @()
             foreach ($response in $data) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy

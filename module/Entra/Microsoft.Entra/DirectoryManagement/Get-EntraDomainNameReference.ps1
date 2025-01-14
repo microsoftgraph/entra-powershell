@@ -6,10 +6,11 @@ function Get-EntraDomainNameReference {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Name,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Name,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -18,19 +19,18 @@ function Get-EntraDomainNameReference {
         $baseUri = 'https://graph.microsoft.com/v1.0/domains'
         $properties = '$select=*'
         $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
-        if($null -ne $PSBoundParameters["Name"])
-        {
+        $keysChanged = @{ObjectId = "Id" }
+        if ($null -ne $PSBoundParameters["Name"]) {
             $params["DomainId"] = $PSBoundParameters["Name"]
             $URI = "$baseUri/$($params.DomainId)/domainNameReferences?$properties"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value deletedDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value onPremisesSyncEnabled
@@ -42,7 +42,7 @@ function Get-EntraDomainNameReference {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value externalUserStateChangeDate
             }
         }
-        if($response){
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject

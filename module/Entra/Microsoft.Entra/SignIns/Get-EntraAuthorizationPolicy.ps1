@@ -9,6 +9,7 @@ function Get-EntraAuthorizationPolicy {
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
         [System.String[]] $Property
     )
 
@@ -18,15 +19,13 @@ function Get-EntraAuthorizationPolicy {
         $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?"
         $params["Method"] = "GET"
     
-        if($null -ne $PSBoundParameters["Id"])
-        {
+        if ($null -ne $PSBoundParameters["Id"]) {
             $Id = $Id.Substring(0, 1).ToLower() + $Id.Substring(1)
             $Filter = "Id eq '$Id'"
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
         }
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
@@ -34,11 +33,11 @@ function Get-EntraAuthorizationPolicy {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
-        if($response){
+        if ($response) {
             $policyList = @()
             foreach ($data in $response) {
                 $policyType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAuthorizationPolicy

@@ -5,15 +5,17 @@
 function Get-EntraUserOwnedObject {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $UserId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
     PROCESS {
         $params = @{}
@@ -23,8 +25,7 @@ function Get-EntraUserOwnedObject {
         }
         $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
@@ -32,7 +33,7 @@ function Get-EntraUserOwnedObject {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $Method = "GET"
@@ -43,7 +44,7 @@ function Get-EntraUserOwnedObject {
             $Top = $PSBoundParameters["Top"]
         }
 
-        if($null -ne $Top){
+        if ($null -ne $Top) {
             $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
