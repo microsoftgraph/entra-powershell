@@ -119,7 +119,7 @@ The default is 100.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Limit
 
 Required: False
 Position: Named
@@ -135,7 +135,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: Select
 
 Required: False
 Position: Named

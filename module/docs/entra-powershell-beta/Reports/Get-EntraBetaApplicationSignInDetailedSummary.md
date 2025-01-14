@@ -107,9 +107,9 @@ This example returns top five sign ins to Microsoft Entra ID portal.
 The maximum number of records to return.
 
 ```yaml
-Type: Sysetm.Int32
+Type: System.Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Limit
 
 Required: False
 Position: Named

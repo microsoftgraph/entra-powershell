@@ -5,15 +5,17 @@
 function Get-EntraBetaUserOwnedObject {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $UserId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
     PROCESS {  
         $params = @{}
@@ -25,13 +27,11 @@ function Get-EntraBetaUserOwnedObject {
 
         $URI = "/beta/users/$($params.UserId)/ownedObjects/?"
 
-        if ($PSBoundParameters.ContainsKey("Top")) 
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $URI += "&`$top=$Top"
         }
 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
@@ -39,7 +39,7 @@ function Get-EntraBetaUserOwnedObject {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
@@ -48,7 +48,7 @@ function Get-EntraBetaUserOwnedObject {
         foreach ($res in $response) {
             $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
             $res.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                 $propertyValue = $_.Value
                 $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
