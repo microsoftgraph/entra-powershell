@@ -219,7 +219,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases:
+Aliases: Limit
 
 Required: False
 Position: Named
