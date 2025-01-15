@@ -5,31 +5,30 @@
 function New-EntraServicePrincipalPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Alias("ObjectId")]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Value,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $StartDate,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $CustomKeyIdentifier,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.DateTime]] $EndDate
+        [Alias("ObjectId")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $ServicePrincipalId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.DateTime]] $StartDate,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.DateTime]] $EndDate,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $DisplayName
     )
 
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $body = @{
         passwordCredential = @{
-            startDateTime = $PSBoundParameters["StartDate"];
-            endDateTime = $PSBoundParameters["EndDate"];
+            startDateTime = $PSBoundParameters["StartDate"]
+            endDateTime   = $PSBoundParameters["EndDate"]
+            displayName   = $PSBoundParameters["DisplayName"]
         }
     }
     $response = Add-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -BodyParameter $body
     $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+        if ($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
         }
     }
     $response    
