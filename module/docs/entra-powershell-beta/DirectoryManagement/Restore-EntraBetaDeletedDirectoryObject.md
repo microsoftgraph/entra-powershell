@@ -140,12 +140,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Remove-EntraBetaDeletedApplication](Remove-EntraBetaDeletedApplication.md)
+[Remove-EntraBetaDeletedApplication](../Applications/Remove-EntraBetaDeletedApplication.md)
 
-[Restore-EntraBetaDeletedApplication](Restore-EntraBetaDeletedApplication.md)
+[Restore-EntraBetaDeletedApplication](../Applications/Restore-EntraBetaDeletedApplication.md)
 
 [Remove-EntraBetaDeletedDirectoryObject](Remove-EntraBetaDeletedDirectoryObject.md)
 
-[Get-EntraBetaDeletedApplication](Get-EntraBetaDeletedApplication.md)
+[Get-EntraBetaDeletedApplication](../Applications/Get-EntraBetaDeletedApplication.md)
 
 [Get-EntraBetaDeletedDirectoryObject](Get-EntraBetaDeletedDirectoryObject.md)
