@@ -57,11 +57,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ### Example 1: Restore a deleted object with ID
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All' #administrativeUnit resource
-Connect-Entra -Scopes 'Application.ReadWrite.All' #application resource
-Connect-Entra -Scopes 'Group.ReadWrite.All' #group resource
-Connect-Entra -Scopes 'Application.ReadWrite.All' #servicePrincipal resource
-Connect-Entra -Scopes 'User.ReadWrite.All' #user resource
+Connect-Entra -Scopes 'User.ReadWrite.All', 'AdministrativeUnit.ReadWrite.All', 'Application.ReadWrite.All', 'Group.ReadWrite.All'  
 Restore-EntraDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
@@ -143,12 +139,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Remove-EntraDeletedApplication](../Applications/Remove-EntraDeletedApplication.md)
+[Remove-EntraDeletedApplication](Remove-EntraDeletedApplication.md)
 
-[Restore-EntraDeletedApplication](../Applications/Restore-EntraDeletedApplication.md)
+[Restore-EntraDeletedApplication](Restore-EntraDeletedApplication.md)
 
 [Remove-EntraDeletedDirectoryObject](Remove-EntraDeletedDirectoryObject.md)
 
-[Get-EntraDeletedApplication](../Applications/Get-EntraDeletedApplication.md)
+[Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
 
 [Get-EntraDeletedDirectoryObject](Get-EntraDeletedDirectoryObject.md)
