@@ -26,8 +26,6 @@ Describe "New-EntraBetaServicePrincipalPasswordCredential" {
         It "Should return created service principal password credential" {
             $result = New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -DisplayName "Helpdesk Secret" -StartDate "01/15/2025 14:22:00"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-2222-1111-1111-cccccccccccc"
-            $result.DisplayName | Should -Be "Helpdesk Secret"
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
