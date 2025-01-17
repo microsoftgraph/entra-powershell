@@ -508,7 +508,7 @@ $($requiredModulesEntries -join ",`n")
                 Author                 = $($content.authors)
                 CompanyName            = $($content.owners)
                 FileList               = @("$manifestFileName", "$moduleFileName", "$helpFileName")
-                FormatsToProcess       = @("$($subDir.FullName)\$($moduleFileName -replace '\.psm1$', '.format.ps1xml')")
+                FormatsToProcess       = @($($moduleFileName -replace '\.psm1$', '.format.ps1xml'))
                 RootModule             = "$moduleFileName"
                 Description            = $content.moduleName
                 DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
