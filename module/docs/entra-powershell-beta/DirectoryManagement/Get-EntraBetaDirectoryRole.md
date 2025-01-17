@@ -67,7 +67,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$directoryRole = Get-EntraDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
+$directoryRole = Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
 Get-EntraBetaDirectoryRole -DirectoryRoleId $directoryRole.Id
 ```
 
