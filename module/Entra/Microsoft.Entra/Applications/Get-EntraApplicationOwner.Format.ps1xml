@@ -1,0 +1,32 @@
+<ViewDefinitions>
+    <View>
+        <Name>Get-EntraApplicationOwner</Name>
+        <ViewSelectedBy>
+            <TypeName>Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject</TypeName>
+        </ViewSelectedBy>
+        <TableControl>
+            <TableHeaders>
+                <TableColumnHeader>
+                    <Label>Id</Label>
+                    <Width>20</Width>
+                </TableColumnHeader>
+                <TableColumnHeader>
+                    <Label>DisplayName</Label>
+                    <Width>50</Width>
+                </TableColumnHeader>
+            </TableHeaders>
+            <TableRowEntries>
+                <TableRowEntry>
+                    <TableColumnItems>
+                        <TableColumnItem>
+                            <PropertyName>Id</PropertyName>
+                        </TableColumnItem>
+                        <TableColumnItem>
+                            <PropertyName>DisplayName</PropertyName>
+                        </TableColumnItem>
+                    </TableColumnItems>
+                </TableRowEntry>
+            </TableRowEntries>
+        </TableControl>
+    </View>
+</ViewDefinitions>
