@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+    <ViewDefinitions>
+        <!-- Table View -->
+        <View>
+            <Name>Get-EntraApplicationOwnerTableView</Name>
+            <ViewSelectedBy>
+                <TypeName>Microsoft.Graph.PowerShell.Models.EntraApplicationOwner</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Label>Id</Label>
+                        <Width>30</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>DisplayName</Label>
+                        <Width>50</Width>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>DisplayName</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+
+        <!-- List View -->
+        <View>
+            <Name>Get-EntraApplicationOwnerListView</Name>
+            <ViewSelectedBy>
+                <TypeName>Microsoft.Graph.PowerShell.Models.EntraApplicationOwner</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>Id</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>DisplayName</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+
+        <!-- Wide View -->
+        <View>
+            <Name>Get-EntraApplicationOwnerWideView</Name>
+            <ViewSelectedBy>
+                <TypeName>Microsoft.Graph.PowerShell.Models.EntraApplicationOwner</TypeName>
+            </ViewSelectedBy>
+            <WideControl>
+                <WideEntries>
+                    <WideEntry>
+                        <WideItem>
+                            <PropertyName>Id</PropertyName>
+                        </WideItem>
+                        <WideItem>
+                            <PropertyName>DisplayName</PropertyName>
+                        </WideItem>
+                    </WideEntry>
+                </WideEntries>
+            </WideControl>
+        </View>
+    </ViewDefinitions>
+</Configuration>
