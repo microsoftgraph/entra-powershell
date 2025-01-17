@@ -1,173 +1,123 @@
-# ------------------------------------------------------------------------------ 
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
-#  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
-function Connect-Entra {    
-    [CmdletBinding(DefaultParameterSetName = 'UserParameterSet')]
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+function Connect-Entra {
+    [CmdletBinding(DefaultParameterSetName = 'UserParameterSet', HelpUri = 'https://learn.microsoft.com/powershell/module/microsoft.graph.entra/connect-entra')]
     param (
-        [Parameter(ParameterSetName = "UserParameterSet",Position = 1)]
-        [System.String[]] $Scopes,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 1)]
-        [Parameter(ParameterSetName = "UserParameterSet")]
-        [Parameter(ParameterSetName = "IdentityParameterSet")]
-        [Alias("AppId", "ApplicationId")][System.String] $ClientId,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
-        [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Parameter(ParameterSetName = "UserParameterSet",Position = 4)]
-        [Alias("Audience", "Tenant")][System.String] $TenantId,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
-        [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Parameter(ParameterSetName = "UserParameterSet")]
-        [Parameter(ParameterSetName = "IdentityParameterSet")]
-        [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
-        $ContextScope,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
-        [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Parameter(ParameterSetName = "AccessTokenParameterSet")]
-        [Parameter(ParameterSetName = "UserParameterSet")]
-        [Parameter(ParameterSetName = "IdentityParameterSet")]
-        [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
-        [ValidateNotNullOrEmpty()]
-        [Alias("EnvironmentName", "NationalCloud")][System.String] $Environment,
-        [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
-        [Switch] $EnvironmentVariable,
-        [Parameter(ParameterSetName = "UserParameterSet")]
-        [Alias("UseDeviceAuthentication", "DeviceCode", "DeviceAuth", "Device")][System.Management.Automation.SwitchParameter] $UseDeviceCode,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
-        [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Parameter(ParameterSetName = "AccessTokenParameterSet")]
-        [Parameter(ParameterSetName = "UserParameterSet")]
-        [Parameter(ParameterSetName = "IdentityParameterSet")]
-        [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
-        [ValidateNotNullOrEmpty()]
-        [Double] $ClientTimeout,
-        [Parameter()]
-        [Switch] $NoWelcome,
-        [Parameter(ParameterSetName = "IdentityParameterSet",Position = 1)]
-        [Alias("ManagedIdentity", "ManagedServiceIdentity", "MSI")][System.Management.Automation.SwitchParameter] $Identity,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 2)]
-        [Alias("CertificateSubject", "CertificateName")][System.String] $CertificateSubjectName,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 3)]
-        [System.String] $CertificateThumbprint,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
+        [Parameter(ParameterSetName = 'UserParameterSet', Position = 1, HelpMessage = 'An array of delegated permissions to consent to.')]
+        [string[]] $Scopes,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', Mandatory = $true, Position = 1, HelpMessage = 'The client ID of your application.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'The client ID of your application.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'The client ID to authenticate for a user assigned managed identity. For more information on user assigned managed identities see: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#how-a-user-assigned-managed-identity-works-with-an-azure-vmId. To use the SystemAssigned identity, leave this field blank.')]
+        [Alias('AppId', 'ApplicationId')]
+        [string] $ClientId,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', Position = 2, HelpMessage = 'The subject distinguished name of a certificate. The Certificate will be retrieved from the current user''s certificate store.')]
+        [Alias('CertificateSubject', 'CertificateName')]
+        [string] $CertificateSubjectName,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', Position = 3, HelpMessage = 'The thumbprint of your certificate. The Certificate will be retrieved from the current user''s certificate store.')]
+        [string] $CertificateThumbprint,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'An X.509 certificate supplied during invocation.')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
-        [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Alias("SecretCredential", "Credential")][System.Management.Automation.PSCredential] $ClientSecretCredential,
-        [Parameter(ParameterSetName = "AccessTokenParameterSet",Position = 1)]
-        [System.Security.SecureString] $AccessToken
-        )
 
-    PROCESS {    
-        $params = @{}
-        
-        if ($null -ne $PSBoundParameters["Scopes"]) {
-            $params["Scopes"] = $PSBoundParameters["Scopes"]
-        }
-        
-        if ($null -ne $PSBoundParameters["ClientId"]) {
-            $params["ClientId"] = $PSBoundParameters["ClientId"]
-        }
-        
-        if ($null -ne $PSBoundParameters["TenantId"]) {
-            $params["TenantId"] = $PSBoundParameters["TenantId"]
-        }
-        
-        if ($null -ne $PSBoundParameters["ContextScope"]) {
-            $params["ContextScope"] = $PSBoundParameters["ContextScope"]
-        }
-        
-        if ($null -ne $PSBoundParameters["Environment"]) {
-            $params["Environment"] = $PSBoundParameters["Environment"]
-        }
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The PSCredential object provides the application ID and client secret for service principal credentials. For more information about the PSCredential object, type Get-Help Get-Credential.')]
+        [Alias('SecretCredential', 'Credential')]
+        [pscredential] $ClientSecretCredential,
 
-        if ($PSBoundParameters.ContainsKey("EnvironmentVariable")) {
-            $params["EnvironmentVariable"] = $PSBoundParameters["EnvironmentVariable"]
+        [Parameter(ParameterSetName = 'AccessTokenParameterSet', Mandatory = $true, Position = 1, HelpMessage = 'Specifies a bearer token for Microsoft Graph service. Access tokens do timeout and you''ll have to handle their refresh.')]
+        [securestring] $AccessToken,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', Position = 4, HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Alias('Audience', 'Tenant')]
+        [string] $TenantId,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Microsoft.Graph.PowerShell.Authentication.ContextScope] $ContextScope,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Parameter(ParameterSetName = 'AccessTokenParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
+        [Alias('EnvironmentName', 'NationalCloud')]
+        [ValidateNotNullOrEmpty()] [string] $Environment,
+
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Use device code authentication instead of a browser control.')]
+        [Alias('UseDeviceAuthentication', 'DeviceCode', 'DeviceAuth', 'Device')]
+        [switch] $UseDeviceCode,
+
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [Parameter(ParameterSetName = 'AccessTokenParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Sets the HTTP client timeout in seconds.')]
+        [ValidateNotNullOrEmpty()] [double] $ClientTimeout,
+
+        [Parameter(ParameterSetName = 'IdentityParameterSet', Position = 1, HelpMessage = 'Login using a Managed Identity.')]
+        [Alias('ManagedIdentity', 'ManagedServiceIdentity', 'MSI')]
+        [switch] $Identity,
+
+        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Allows for authentication using environment variables configured on the host machine. See https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables.')]
+        [switch] $EnvironmentVariable,
+
+        [Parameter(HelpMessage = 'Hides the welcome message.')]
+        [switch] $NoWelcome,
+
+        [Parameter(HelpMessage = 'Wait for .NET debugger to attach')]
+        [switch] $Break
+    )
+
+    begin {
+        try {
+            $outBuffer = $null
+            if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
+                $PSBoundParameters['OutBuffer'] = 1
+            }
+
+            $wrappedCmd = $ExecutionContext.InvokeCommand.GetCommand('Microsoft.Graph.Authentication\Connect-MgGraph', [System.Management.Automation.CommandTypes]::Cmdlet)
+            $scriptCmd = { & $wrappedCmd @PSBoundParameters }
+
+            $steppablePipeline = $scriptCmd.GetSteppablePipeline($myInvocation.CommandOrigin)
+            $steppablePipeline.Begin($PSCmdlet)
         }
-        
-        if ($null -ne $PSBoundParameters["UseDeviceCode"]) {
-            $params["UseDeviceCode"] = $PSBoundParameters["UseDeviceCode"]
+        catch {
+            throw
         }
-        
-        if ($null -ne $PSBoundParameters["ClientTimeout"]) {
-            $params["ClientTimeout"] = $PSBoundParameters["ClientTimeout"]
-        }
-        
-        if ($PSBoundParameters.ContainsKey("NoWelcome")) {
-            $params["NoWelcome"] = $PSBoundParameters["NoWelcome"]
-        }
-        
-        if ($PSBoundParameters.ContainsKey("Identity")) {
-            $params["Identity"] = $PSBoundParameters["Identity"]
-        }
-        
-        if ($null -ne $PSBoundParameters["CertificateSubjectName"]) {
-            $params["CertificateSubjectName"] = $PSBoundParameters["CertificateSubjectName"]
-        }
-        
-        if ($null -ne $PSBoundParameters["CertificateThumbprint"]) {
-            $params["CertificateThumbprint"] = $PSBoundParameters["CertificateThumbprint"]
-        }
-        
-        if ($null -ne $PSBoundParameters["Certificate"]) {
-            $params["Certificate"] = $PSBoundParameters["Certificate"]
-        }
-        
-        if ($null -ne $PSBoundParameters["ClientSecretCredential"]) {
-            $params["ClientSecretCredential"] = $PSBoundParameters["ClientSecretCredential"]
-        }
-        
-        if ($null -ne $PSBoundParameters["AccessToken"]) {
-            $params["AccessToken"] = $PSBoundParameters["AccessToken"]
-        }
-        
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }        
-	    if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        Connect-MgGraph @params 
     }
-}# ------------------------------------------------------------------------------
 
+    process {
+        try {
+            $steppablePipeline.Process($_)
+        }
+        catch {
+            throw
+        }
+    }
+
+    end {
+        try {
+            $steppablePipeline.End()
+        }
+        catch {
+            throw
+        }
+    }
+
+    clean {
+        if ($null -ne $steppablePipeline) {
+            $steppablePipeline.Clean()
+        }
+    }
+}
