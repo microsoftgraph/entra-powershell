@@ -45,6 +45,14 @@ function Get-EntraUserRole {
         if ($null -ne $PSBoundParameters["UserId"]) {
             $params["UserId"] = $PSBoundParameters["UserId"]
         }
+        if ($null -ne $PSBoundParameters["Filter"]) {
+            $TmpValue = $PSBoundParameters["Filter"]
+            foreach ($i in $keysChanged.GetEnumerator()) {
+                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
+            }
+            $Value = $TmpValue
+            $params["Filter"] = $Value
+        }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
