@@ -35,7 +35,7 @@ Get-EntraBetaDeletedAdministrativeUnit
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraBetaDeletedAdministrativeUnit
