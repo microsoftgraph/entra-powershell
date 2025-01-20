@@ -35,7 +35,7 @@ Get-EntraBetaDeletedDevice
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraBetaDeletedDevice
