@@ -28,10 +28,7 @@ function Get-EntraBetaUserRole {
         [System.String[]] $Property,
 
         [Parameter(Mandatory = $false, HelpMessage = "Order items by property values.")]
-        [System.String[]] $Sort,
-
-        [Parameter(Mandatory = $false, HelpMessage = "Skip the first n items.")]
-        [System.Nullable`1[System.Int32]] $Skip
+        [System.String[]] $Sort
 
     )
 
@@ -84,9 +81,6 @@ function Get-EntraBetaUserRole {
         }
         if ($null -ne $PSBoundParameters["Sort"]) {
             $params["Sort"] = $PSBoundParameters["Sort"]
-        }
-        if ($null -ne $PSBoundParameters["Skip"]) {
-            $params["Skip"] = $PSBoundParameters["Skip"]
         }
         if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
