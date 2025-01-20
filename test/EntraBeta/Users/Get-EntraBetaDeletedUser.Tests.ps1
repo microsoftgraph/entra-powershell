@@ -50,6 +50,14 @@ Describe "Get-EntraBetaDeletedUser" {
         It "Should fail when All is invalid" {
             { Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
+        It "Should contain 'PageSize' parameter" {
+            $result = Get-EntraBetaDeletedUser -All
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+                $PageSize | Should -Be 999
+                $true
+            }
+        }
         It "Should return top 1 deleted user" {
             $result = Get-EntraBetaDeletedUser -Top 1
             $result | Should -Not -BeNullOrEmpty
