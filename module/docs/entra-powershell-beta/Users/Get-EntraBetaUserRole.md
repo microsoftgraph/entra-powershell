@@ -29,9 +29,20 @@ Retrieves the list of directory roles assigned to a user.
 ```powershell
 Get-EntraBetaUserRole
  -UserId <String>
- [-DirectoryRoleId <String>]
  [-All]
+ [-Filter <String>]
  [-Top <Int32>]
+ [-Property <String[]>]
+ [-Sort <String[]>]
+ [<CommonParameters>]
+```
+
+### GetById
+
+```powershell
+Get-EntraUserRole
+ -UserId <String>
+ -DirectoryRoleId <String>
  [-Property <String[]>]
  [<CommonParameters>]
 ```
