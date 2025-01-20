@@ -35,7 +35,7 @@ Get-EntraDeletedDevice
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraDeletedDevice
