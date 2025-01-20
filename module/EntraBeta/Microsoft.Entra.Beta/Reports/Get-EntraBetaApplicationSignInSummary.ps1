@@ -6,14 +6,15 @@ function Get-EntraBetaApplicationSignInSummary {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Days,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable`1[System.Int32]] $Days,
                 
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top
     )
 
     PROCESS {  
@@ -34,7 +35,7 @@ function Get-EntraBetaApplicationSignInSummary {
         }
         $Method = "GET"        
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $URI = "https://graph.microsoft.com/beta/reports/getAzureADApplicationSignInSummary(period='D{0}'){1}{2}" -f $Days, $filterApplied, $topCount
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
@@ -44,7 +45,7 @@ function Get-EntraBetaApplicationSignInSummary {
         foreach ($res in $data) {
             $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApplicationSignInSummary
             $res.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                 $propertyValue = $_.Value
                 $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
