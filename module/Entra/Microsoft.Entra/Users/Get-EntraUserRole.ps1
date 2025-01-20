@@ -11,9 +11,6 @@ function Get-EntraUserRole {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user roles.")]
         [switch] $All,
 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for user roles.")]
-        [System.String] $SearchString,
-
         [Alias('ObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID to retrieve.")]
         [System.String] $UserId,
@@ -70,11 +67,6 @@ function Get-EntraUserRole {
         }
         if ($null -ne $PSBoundParameters["PipelineVariable"]) {
             $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if ($null -ne $PSBoundParameters["SearchString"]) {
-            $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "displayName eq '$TmpValue' or startsWith(displayName,'$TmpValue')"
-            $params["Filter"] = $Value
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
