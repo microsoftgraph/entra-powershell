@@ -124,7 +124,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Limit
 Required: False
 Position: Named
 Default value: None
@@ -155,7 +155,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: Select
 
 Required: False
 Position: Named

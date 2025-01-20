@@ -193,7 +193,7 @@ Specifies the maximum number of records that this cmdlet gets. The default value
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases:
+Aliases: Limit
 
 Required: False
 Position: Named
@@ -241,7 +241,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: Select
 
 Required: False
 Position: Named
