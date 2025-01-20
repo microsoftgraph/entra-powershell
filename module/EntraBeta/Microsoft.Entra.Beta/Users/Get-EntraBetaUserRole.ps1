@@ -75,6 +75,9 @@ function Get-EntraBetaUserRole {
         if ($null -ne $PSBoundParameters["Top"]) {
             $params["Top"] = $PSBoundParameters["Top"]
         }
+        if ($null -ne $PSBoundParameters["Sort"]) {
+            $params["Sort"] = $PSBoundParameters["Sort"]
+        }
         if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
         }
