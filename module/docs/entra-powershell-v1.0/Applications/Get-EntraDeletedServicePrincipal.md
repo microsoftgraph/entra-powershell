@@ -35,7 +35,7 @@ Get-EntraDeletedServicePrincipal
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraDeletedServicePrincipal

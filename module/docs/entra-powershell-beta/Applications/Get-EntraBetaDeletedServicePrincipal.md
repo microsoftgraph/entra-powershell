@@ -35,7 +35,7 @@ Get-EntraBetaDeletedServicePrincipal
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraBetaDeletedServicePrincipal
