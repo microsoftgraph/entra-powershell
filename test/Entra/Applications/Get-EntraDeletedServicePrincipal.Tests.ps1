@@ -45,6 +45,15 @@ Describe "Get-EntraDeletedServicePrincipal" {
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
         }
 
+        It "Should contain 'PageSize' parameter" {
+            $result = Get-EntraDeletedServicePrincipal -All
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
+                $PageSize | Should -Be 999
+                $true
+            }
+        }
+
         It "Should return top service principal" {
             $result = Get-EntraDeletedServicePrincipal -Top 1
             $result | Should -Not -BeNullOrEmpty

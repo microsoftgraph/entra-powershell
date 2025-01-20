@@ -45,6 +45,15 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
+        It "Should contain 'PageSize' parameter" {
+            $result = Get-EntraBetaDeletedServicePrincipal -All
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+                $PageSize | Should -Be 999
+                $true
+            }
+        }
+
         It "Should return top service principal" {
             $result = Get-EntraBetaDeletedServicePrincipal -Top 1
             $result | Should -Not -BeNullOrEmpty
