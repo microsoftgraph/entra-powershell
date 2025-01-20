@@ -2,125 +2,77 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 function Set-EntraBetaAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Description,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipRule,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsMemberManagementRestricted,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipRuleProcessingState,
-    [Alias('Id')]            
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipType
+        [Alias("ObjectId")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier of the administrative unit.")]
+        [System.String] $AdministrativeUnitId,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Description of the administrative unit.")]
+        [System.String] $Description,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Display name of the administrative unit.")]
+        [System.String] $DisplayName,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "The dynamic membership rule for the administrative unit.")]
+        [System.String] $MembershipRule,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Controls whether the dynamic membership rule is actively processed e.g. On, Paused.")]
+        [System.String] $MembershipRuleProcessingState,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Indicates the membership type for the administrative unit. The possible values are: dynamic, assigned.")]
+        [System.String] $MembershipType,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "The visibility of the administrative unit. If not set, the default value is null and the default behavior is public.")]
+        [System.String] $Visibility
     )
 
-    PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-    
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["Description"])
-    {
-        $params["Description"] = $PSBoundParameters["Description"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipRule"])
-    {
-        $params["MembershipRule"] = $PSBoundParameters["MembershipRule"]
-    }
-    if ($null -ne $PSBoundParameters["IsMemberManagementRestricted"])
-    {
-        $params["IsMemberManagementRestricted"] = $PSBoundParameters["IsMemberManagementRestricted"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipRuleProcessingState"])
-    {
-        $params["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
-    }
-    if ($null -ne $PSBoundParameters["AdministrativeUnitId"])
-    {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipType"])
-    {
-        $params["MembershipType"] = $PSBoundParameters["MembershipType"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
+    PROCESS {
+        $params = @{}
+        $body = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = Update-MgBetaAdministrativeUnit @params -Headers $customHeaders
-    $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
+        if ($null -ne $PSBoundParameters["AdministrativeUnitId"]) {
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         }
-    }
-    $response
+        if ($null -ne $PSBoundParameters["DisplayName"]) {
+            $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+            $body["DisplayName"] = $PSBoundParameters["DisplayName"]
+        }
+        if ($null -ne $PSBoundParameters["Description"]) {
+            $params["Description"] = $PSBoundParameters["Description"]
+            $body["Description"] = $PSBoundParameters["Description"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRule"]) {
+            $params["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+            $body["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRuleProcessingState"]) {
+            $params["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+            $body["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipType"]) {
+            $params["MembershipType"] = $PSBoundParameters["MembershipType"]
+            $body["MembershipType"] = $PSBoundParameters["MembershipType"]
+        }
+        if ($null -ne $PSBoundParameters["Visibility"]) {
+            $params["Visibility"] = $PSBoundParameters["Visibility"]
+            $body["Visibility"] = $PSBoundParameters["Visibility"]
+        }
+
+        $uri = "/beta/directory/administrativeUnits/$($params.AdministrativeUnitId)"
+        $params["Uri"] = $uri
+
+        $body = $body | ConvertTo-Json
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+
+        Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method PATCH -Body $body
     }
 }
-
