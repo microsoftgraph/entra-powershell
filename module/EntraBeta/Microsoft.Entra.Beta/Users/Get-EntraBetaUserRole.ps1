@@ -16,7 +16,7 @@ function Get-EntraBetaUserRole {
         [System.String] $UserId,
 
         [Alias('DirectoryObjectId')]
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Directory Role ID to retrieve.")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Directory Role ID to retrieve.")]
         [System.String] $DirectoryRoleId,
 
         [Alias('Limit')]
@@ -25,7 +25,14 @@ function Get-EntraBetaUserRole {
 
         [Alias('Select')]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(Mandatory = $false, HelpMessage = "Order items by property values.")]
+        [System.String[]] $Sort,
+
+        [Parameter(Mandatory = $false, HelpMessage = "Skip the first n items.")]
+        [System.Nullable`1[System.Int32]] $Skip
+
     )
 
     PROCESS {
@@ -77,6 +84,9 @@ function Get-EntraBetaUserRole {
         }
         if ($null -ne $PSBoundParameters["Sort"]) {
             $params["Sort"] = $PSBoundParameters["Sort"]
+        }
+        if ($null -ne $PSBoundParameters["Skip"]) {
+            $params["Skip"] = $PSBoundParameters["Skip"]
         }
         if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
