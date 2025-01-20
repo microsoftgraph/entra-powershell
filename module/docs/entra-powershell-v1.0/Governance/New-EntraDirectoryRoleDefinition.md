@@ -120,9 +120,16 @@ This command creates a new role definition with ResourceScopes parameter.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$rolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-New-EntraDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -TemplateId 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
+$params = @{
+   RolePermissions = $RolePermissions
+   IsEnabled = $false
+   DisplayName = 'MyRoleDefinition'
+   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+}
+
+New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output

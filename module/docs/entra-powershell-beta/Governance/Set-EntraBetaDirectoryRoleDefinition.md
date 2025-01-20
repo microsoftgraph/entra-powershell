@@ -100,7 +100,7 @@ $params = @{
    DisplayName = 'Update'
    ResourceScopes = '/'
    IsEnabled = $false
-   RolePermissions = $rolePermissions
+   RolePermissions = $RolePermissions
    TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
    Version = 2
 }

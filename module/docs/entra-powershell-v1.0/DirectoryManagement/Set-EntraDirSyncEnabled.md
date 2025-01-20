@@ -36,8 +36,10 @@ Set-EntraDirSyncEnabled
 ## Description
 
 The `Set-EntraDirSyncEnabled` cmdlet turns directory synchronization on or off for a company.
+
 >[!IMPORTANT]
 >It may take up to 72 hours to complete deactivation once you have disabled DirSync through this cmdlet. The time depends on the number of objects that are in your cloud service subscription account. **You cannot cancel the disable action**. It will need to complete before you can take any other action, including re-enabling of DirSync. If you choose to re-enable DirSync, a full synchronization of your synced objects will happen. This may take a considerable time depending on the number of objects in your Microsoft Entra ID.
+
 >[!NOTE]
 >If you disable DirSync and you decide to re-enable it, and you have enabled the BlockCloudObjectTakeoverThroughHardMatch feature, OnPrem to cloud object takeover/update for all objects mastered in the Microsoft Entra ID will be blocked. If this is the case and you want to resume syncing Microsoft Entra ID mastered objects with Microsoft Entra ID, set **BlockCloudObjectTakeoverThroughHardMatch** feature to false.
 
@@ -47,11 +49,7 @@ The `Set-EntraDirSyncEnabled` cmdlet turns directory synchronization on or off f
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-$params = @{
-    EnableDirsync = $True 
-    Force = $True
-}
-Set-EntraDirSyncEnabled @params
+Set-EntraDirSyncEnabled -EnableDirsync $true -Force $true
 ```
 
 This example turns on directory synchronization for a company.
@@ -63,13 +61,8 @@ This example turns on directory synchronization for a company.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-$params = @{
-    EnableDirsync = $False 
-    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-    Force = $True
-    
-}
-Set-EntraDirSyncEnabled @params
+$tenantID = (Get-EntraContext).TenantId
+Set-EntraDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force $true
 ```
 
 This example turns off directory synchronization for a company.

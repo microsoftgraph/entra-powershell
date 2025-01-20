@@ -45,7 +45,7 @@ The `Remove-EntraBetaObjectSetting` cmdlet removes object settings in Microsoft 
 Connect-Entra -Scopes 'Directory.Read.All'
 $params = @{
     TargetType = 'Groups'
-    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    TargetObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 }
 Remove-EntraBetaObjectSetting @params

@@ -47,6 +47,10 @@ Set-EntraBetaDirSyncConfiguration
 
 The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchronization settings.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Global Administrator
+
 ## Examples
 
 ### Example 1: Set directory synchronization settings
@@ -66,13 +70,7 @@ This command sets directory synchronization settings.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-$params = @{
-    AccidentalDeletionThreshold = 600
-    TenantId = $tenantID
-    Force = $true
-}
-
-Set-EntraBetaDirSyncConfiguration @params
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force $true
 ```
 
 This command sets directory synchronization settings.
