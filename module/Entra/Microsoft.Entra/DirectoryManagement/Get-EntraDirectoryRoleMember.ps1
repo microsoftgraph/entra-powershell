@@ -5,11 +5,12 @@
 function Get-EntraDirectoryRoleMember {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $DirectoryRoleId,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $DirectoryRoleId,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
     PROCESS {
         $params = @{}
@@ -17,24 +18,22 @@ function Get-EntraDirectoryRoleMember {
         $baseUri = 'https://graph.microsoft.com/v1.0/directoryRoles'
         $properties = '$select=*'
         $Method = "GET"        
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        if($null -ne $PSBoundParameters["DirectoryRoleId"])
-        {
+        if ($null -ne $PSBoundParameters["DirectoryRoleId"]) {
             $params["DirectoryRoleId"] = $PSBoundParameters["DirectoryRoleId"]
             $URI = "$baseUri/$($params.DirectoryRoleId)/members?$properties"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
@@ -43,7 +42,7 @@ function Get-EntraDirectoryRoleMember {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones
             }
         }
-        if($response){
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject

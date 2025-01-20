@@ -5,13 +5,14 @@
 function Get-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (    
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias("ObjectId")]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AdministrativeUnitId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Alias("ObjectId")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $AdministrativeUnitId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All
     )
 
     PROCESS {
@@ -20,8 +21,7 @@ function Get-EntraAdministrativeUnitMember {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "/v1.0/directory/administrativeUnits/$AdministrativeUnitId/members?`$select=*"
         $params["Uri"] = "$baseUri"
-        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
-        {
+        if ($null -ne $PSBoundParameters["AdministrativeUnitId"]) {
             $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         }
         if ($PSBoundParameters.ContainsKey("Top")) {

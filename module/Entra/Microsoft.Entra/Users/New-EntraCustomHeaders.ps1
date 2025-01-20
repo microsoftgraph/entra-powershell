@@ -17,7 +17,7 @@ function New-EntraCustomHeaders {
     param (
         [Parameter(Mandatory = $true)]
         [string]
-		$Command
+        $Command
     )
     
     $psVersion = $global:PSVersionTable.PSVersion
