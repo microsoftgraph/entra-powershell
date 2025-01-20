@@ -6,6 +6,7 @@ function Get-EntraBetaServicePrincipalOwner {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -17,6 +18,7 @@ function Get-EntraBetaServicePrincipalOwner {
         [switch] $All,
         
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
         [System.String[]] $Property
     )
 
@@ -64,7 +66,8 @@ function Get-EntraBetaServicePrincipalOwner {
                         $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                         $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                     }
-                } catch {}
+                }
+                catch {}
             }
         }
         $response

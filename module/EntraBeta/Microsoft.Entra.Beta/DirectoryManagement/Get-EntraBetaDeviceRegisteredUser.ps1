@@ -5,102 +5,88 @@
 function Get-EntraBetaDeviceRegisteredUser {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias('ObjectId')]
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $DeviceId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $DeviceId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["DeviceId"])
-        {
+        if ($null -ne $PSBoundParameters["DeviceId"]) {
             $params["DeviceId"] = $PSBoundParameters["DeviceId"]
         }
-        if($null -ne $PSBoundParameters["All"])
-        {
-            if($PSBoundParameters["All"])
-            {
+        if ($null -ne $PSBoundParameters["All"]) {
+            if ($PSBoundParameters["All"]) {
                 $params["All"] = $PSBoundParameters["All"]
             }
         }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
+        if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
         }
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $params["Top"] = $PSBoundParameters["Top"]
         }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
+        if ($null -ne $PSBoundParameters["WarningVariable"]) {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
         }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
+        if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
+        if ($null -ne $PSBoundParameters["InformationAction"]) {
             $params["InformationAction"] = $PSBoundParameters["InformationAction"]
         }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
+        if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
+        if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
         }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
         }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
             $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
         }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
+        if ($null -ne $PSBoundParameters["ErrorAction"]) {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
         }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
+        if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Get-MgBetaDeviceRegisteredUser @params -Headers $customHeaders
         $properties = @{
-            ObjectId = "Id"
-            DeletionTimestamp = "deletedDateTime"
-            DirSyncEnabled = "onPremisesSyncEnabled"
-            ImmutableId = "onPremisesImmutableId"
-            LastDirSyncTime = "OnPremisesLastSyncDateTime"
-            Mobile = "mobilePhone"
+            ObjectId           = "Id"
+            DeletionTimestamp  = "deletedDateTime"
+            DirSyncEnabled     = "onPremisesSyncEnabled"
+            ImmutableId        = "onPremisesImmutableId"
+            LastDirSyncTime    = "OnPremisesLastSyncDateTime"
+            Mobile             = "mobilePhone"
             ProvisioningErrors = "onPremisesProvisioningErrors"
-            TelephoneNumber = "businessPhones"
+            TelephoneNumber    = "businessPhones"
         }
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties 
                 foreach ($prop in $properties.GetEnumerator()) {
                     $propertyName = $prop.Name
@@ -109,10 +95,10 @@ function Get-EntraBetaDeviceRegisteredUser {
                         $_ | Add-Member -MemberType AliasProperty -Name $propertyName -Value $propertyValue
                     }
                 }
-                $propsToConvert = @('AssignedPlans','assignedLicenses','deviceKeys','identities','provisionedPlans')
+                $propsToConvert = @('AssignedPlans', 'assignedLicenses', 'deviceKeys', 'identities', 'provisionedPlans')
                 foreach ($prop in $propsToConvert) {
                     try {
-                        if($_.PSObject.Properties.Match($prop)) {
+                        if ($_.PSObject.Properties.Match($prop)) {
                             $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                             $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force   
                         }
@@ -122,6 +108,6 @@ function Get-EntraBetaDeviceRegisteredUser {
             }
         }
         $response
-        }    
+    }    
 }
 

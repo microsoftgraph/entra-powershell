@@ -5,11 +5,12 @@
 function Get-EntraBetaApplicationPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("ObjectId")]
-    [System.String] $ApplicationId,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("ObjectId")]
+        [System.String] $ApplicationId,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -25,15 +26,14 @@ function Get-EntraBetaApplicationPasswordCredential {
         }
         catch {}
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 $CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_.CustomKeyIdentifier)))
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $CustomKeyIdentifier -Force
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value endDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value startDateTime
             }
         }
-        if($response)
-        {
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential
@@ -44,8 +44,7 @@ function Get-EntraBetaApplicationPasswordCredential {
                 }
                 $userList += $userType
             } 
-            if($null -ne $PSBoundParameters["Property"])
-            {
+            if ($null -ne $PSBoundParameters["Property"]) {
                 $userList | Select-Object $PSBoundParameters["Property"]
             }
             else {

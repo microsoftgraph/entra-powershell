@@ -5,19 +5,21 @@
 function Get-EntraBetaUser {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Alias("ObjectId")]
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
-    [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $SearchString,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Alias("ObjectId")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $UserId,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $SearchString,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -31,64 +33,58 @@ function Get-EntraBetaUser {
         $params["Uri"] = "$baseUri"
         $query = $null
         
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
             $query = "$properties"
         }
 
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
                 $query += "&`$top=999"
             }
-            else{
+            else {
                 $query += "&`$top=$topCount"
             }
         }
         
-        if($null -ne $PSBoundParameters["SearchString"])
-        {
+        if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
             $SearchString = "`$search=`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
             $query += "&$SearchString"
             $customHeaders['ConsistencyLevel'] = 'eventual'
         }
-        if($null -ne $PSBoundParameters["UserId"])
-        {
+        if ($null -ne $PSBoundParameters["UserId"]) {
             $UserId = $PSBoundParameters["UserId"]
-            if ($UserId -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'){
+            if ($UserId -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') {
                 $f = '$' + 'Filter'
                 $Filter = "UserPrincipalName eq '$UserId'"
                 $query += "&$f=$Filter"
                 $upnPresent = $true
             }
-            else{                
+            else {                
                 $params["Uri"] = "$baseUri/$($UserId)"
             }
         }
-        if($null -ne $PSBoundParameters["Filter"])
-        {
+        if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $query += "&$f=$Filter"
         }    
 
-        if($null -ne $query)
-        {
+        if ($null -ne $query) {
             $query = "?" + $query.TrimStart("&")
             $params["Uri"] += $query
         }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0)){
+        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0)) {
             Write-Error "Resource '$UserId' does not exist or one of its queried reference-property objects are not present.
 
 Status: 404 (NotFound)
@@ -109,7 +105,8 @@ ErrorCode: Request_ResourceNotFound"
                 $response = Invoke-GraphRequest @params 
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}        
+        }
+        catch {}        
         $data | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

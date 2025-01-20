@@ -6,22 +6,24 @@ function Get-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TargetType,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $TargetType,
                 
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All,
                 
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $TargetObjectId,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $TargetObjectId,
                 
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
-    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Nullable`1[System.Int32]] $Top,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Select")]
+        [System.String[]] $Property
     )
 
     PROCESS {    
@@ -30,34 +32,31 @@ function Get-EntraBetaObjectSetting {
         $topCount = $null
         $baseUri = "https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings"
         $params["Method"] = "GET"
-        $params["Uri"] = $baseUri+'?$select=*'
+        $params["Uri"] = $baseUri + '?$select=*'
 
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
-            $params["Uri"] = $baseUri+"?`$select=$($selectProperties)"
+            $params["Uri"] = $baseUri + "?`$select=$($selectProperties)"
         }
 
-        if($PSBoundParameters.ContainsKey("Top") -and  (-not $PSBoundParameters.ContainsKey("All")))
-        {
+        if ($PSBoundParameters.ContainsKey("Top") -and (-not $PSBoundParameters.ContainsKey("All"))) {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
                 $params["Uri"] += "&`$top=999"
             }
-            else{
+            else {
                 $params["Uri"] += "&`$top=$topCount"
             }
         }
 
-        if($null -ne $PSBoundParameters["Id"])
-        {
+        if ($null -ne $PSBoundParameters["Id"]) {
             $Id = $PSBoundParameters["Id"]
             $params["Uri"] = "$baseUri/$($Id)"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
@@ -76,14 +75,15 @@ function Get-EntraBetaObjectSetting {
                 $response = Invoke-GraphRequest @params 
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}        
+        }
+        catch {}        
 
         $targetTypeList = @()
 
-        foreach($res in $data){
+        foreach ($res in $data) {
             $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectorySetting
             $res.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                 $propertyValue = $_.Value
                 $target | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }

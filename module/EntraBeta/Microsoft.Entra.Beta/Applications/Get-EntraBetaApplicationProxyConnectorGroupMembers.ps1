@@ -5,15 +5,16 @@
 function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("Id")]
-    [System.String] $OnPremisesPublishingProfileId,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Int32] $Top,
-    [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Filter,
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [switch] $All
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Id")]
+        [System.String] $OnPremisesPublishingProfileId,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("Limit")]
+        [System.Int32] $Top,
+        [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Filter,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [switch] $All
     )
 
     PROCESS {    
@@ -22,27 +23,23 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
         $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
-        if($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId"))
-        {
+        if ($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId")) {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }
-        if($PSBoundParameters.ContainsKey("Filter"))
-        {
+        if ($PSBoundParameters.ContainsKey("Filter")) {
             $f = '$' + 'Filter'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
         }        
-        if($PSBoundParameters.ContainsKey("All"))
-        {
+        if ($PSBoundParameters.ContainsKey("All")) {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }        
-        if($PSBoundParameters.ContainsKey("top"))
-        {
+        if ($PSBoundParameters.ContainsKey("top")) {
             $t = '$' + 'Top'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$t=$top"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
@@ -53,17 +50,17 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
             $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
         
-            $targetList = @()
-            foreach ($res in $data) {
-                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnector
-                $res.PSObject.Properties | ForEach-Object {
-                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
-                    $propertyValue = $_.Value
-                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }
-                $targetList += $targetType
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnector
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
-            $targetList       
+            $targetList += $targetType
+        }
+        $targetList       
 
     }        
 }# ------------------------------------------------------------------------------
