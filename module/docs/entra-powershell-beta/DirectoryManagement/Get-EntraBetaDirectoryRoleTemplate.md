@@ -34,6 +34,10 @@ Get-EntraBetaDirectoryRoleTemplate
 
 The `Get-EntraBetaDirectoryRoleTemplate` cmdlet gets directory role templates in Microsoft Entra ID.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Global Reader
+
 ## Examples
 
 ### Example 1: Get role templates
