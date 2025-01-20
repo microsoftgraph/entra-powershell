@@ -35,7 +35,7 @@ Get-EntraDeletedAdministrativeUnit
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraDeletedAdministrativeUnit
