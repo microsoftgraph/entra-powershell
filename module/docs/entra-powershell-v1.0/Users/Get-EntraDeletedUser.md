@@ -35,7 +35,7 @@ Get-EntraDeletedUser
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraDeletedUser

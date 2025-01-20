@@ -35,7 +35,7 @@ Get-EntraBetaDeletedUser
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraBetaDeletedUser
