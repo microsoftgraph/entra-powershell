@@ -41,8 +41,7 @@ The `Remove-EntraServicePrincipal` cmdlet removes a service principal in Microso
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Remove-EntraServicePrincipal -ServicePrincipalId $servicePrincipal.ObjectId
+Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'" | Remove-EntraServicePrincipal
 ```
 
 This example demonstrates how to remove a service principal in Microsoft Entra ID.

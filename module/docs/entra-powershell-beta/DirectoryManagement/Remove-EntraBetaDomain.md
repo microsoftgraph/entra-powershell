@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDomain
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaDomain
 
 schema: 2.0.0
 ---
@@ -40,7 +40,9 @@ Important:
 - Deleted domains are not recoverable.
 - Attempts to delete will fail if there are any resources or objects still dependent on the domain.
 
-The work or school account needs to belong to at least the `Domain Name Administrator` Microsoft Entra role.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Domain Name Administrator
 
 ## Examples
 

@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 schema: 2.0.0
 ---
@@ -36,7 +36,9 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 The `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can be used:
+
+- Attribute Definition Administrator
 
 ## Examples
 
@@ -44,13 +46,8 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId = (Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>').Id
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
-    Id = 'Alpine'
-    IsActive = $true
-}
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine' -IsActive $true
 ```
 
 ```Output

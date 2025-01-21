@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPasswordPolicy
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaPasswordPolicy
 
 schema: 2.0.0
 ---
@@ -47,7 +47,7 @@ window or Password Expiry Notification window for a tenant or specified domain.
 
 When a domain name is specified, it must be a verified domain for the company.
 
-The work or school account needs to belong to one of the following Microsoft Entra roles:
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
 
 - Domain Name Administrator
 

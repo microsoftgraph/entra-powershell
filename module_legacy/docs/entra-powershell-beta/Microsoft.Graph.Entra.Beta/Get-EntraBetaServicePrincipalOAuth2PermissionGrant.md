@@ -44,8 +44,8 @@ The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2Pe
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -62,8 +62,8 @@ This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -All 
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
 ```
 
 ```Output
@@ -82,8 +82,8 @@ This example demonstrates how to get all OAuth2PermissionGrant objects for a ser
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
 ```Output

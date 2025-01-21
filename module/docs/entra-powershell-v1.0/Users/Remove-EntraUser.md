@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraUser
+Module Name: Microsoft.Entra.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Remove-EntraUser
 
 schema: 2.0.0
 ---
@@ -37,7 +37,6 @@ The `Remove-EntraUser` cmdlet removes a user in Microsoft Entra ID. Specify the 
 The calling user must be assigned at least one of the following Microsoft Entra roles:
 
 - User Administrator
-
 - Privileged Authentication Administrator
 
 ## Examples
@@ -47,6 +46,15 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 Remove-EntraUser -UserId 'SawyerM@Contoso.com'
+```
+
+This command removes the specified user in Microsoft Entra ID.
+
+### Example 2: Remove a user based on search results
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraUser -UserId 'SawyerM@Contoso.com' | Remove-EntraUser
 ```
 
 This command removes the specified user in Microsoft Entra ID.

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDevice
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraDevice
 
 schema: 2.0.0
 ---
@@ -59,13 +59,22 @@ Get-EntraDevice
 
 The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `DeviceId` parameter to get a specific device.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
+
+- Cloud Device Administrator  
+- Intune Administrator  
+- Windows 365 Administrator  
+- Compliance Administrator  
+- Device Managers
+
 ## Examples
 
 ### Example 1: Get a device by ID
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDevice -DeviceId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Get-EntraDevice -DeviceId $device.ObjectId
 ```
 
 ```Output
@@ -227,7 +236,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -243,7 +252,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryRoleAssignment
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Get-EntraDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
@@ -114,7 +114,10 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId '00001111-aaaa-2222-bbbb-3333cccc4444'
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$role = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+$assignment = Get-EntraDirectoryRoleAssignment -All | Where-Object {$_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id}
+Get-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
 ```
 
 ```Output
@@ -131,7 +134,8 @@ This command gets the role assignments using specified roleAssignment Id.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+$userId = (Get-EntraUser -UserId 'SawyerM@contoso.com').Id
+Get-EntraDirectoryRoleAssignment -Filter "principalId eq '$userId'"
 ```
 
 ```Output
@@ -147,7 +151,8 @@ This command gets the role assignments containing the specified principalId.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
+$roleId = (Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'").Id
+Get-EntraDirectoryRoleAssignment -Filter "roleDefinitionId eq '$roleId'"
 ```
 
 ```Output
@@ -219,7 +224,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -252,7 +257,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

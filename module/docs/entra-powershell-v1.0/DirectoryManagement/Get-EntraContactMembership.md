@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraContactMembership
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraContactMembership
 
 schema: 2.0.0
 ---
@@ -39,14 +39,22 @@ The `Get-EntraContactMembership` cmdlet gets a contact membership in Microsoft E
 
 This command is useful to administrators who need to understand which groups, roles, or administrative units a particular contact belongs to. This can be important for troubleshooting access issues, auditing memberships, and ensuring that contact memberships are correctly configured.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can be used:
+
+- Directory Readers  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Get the memberships of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id
 ```
 
 ```Output
@@ -63,8 +71,8 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId -All
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id -All
 ```
 
 ```Output
@@ -81,8 +89,8 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId -Top 2
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id -Top 2
 ```
 
 ```Output
@@ -135,7 +143,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -151,7 +159,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

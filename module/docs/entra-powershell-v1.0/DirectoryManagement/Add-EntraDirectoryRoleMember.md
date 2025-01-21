@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraDirectoryRoleMember
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraDirectoryRoleMember
 
 schema: 2.0.0
 ---
@@ -35,19 +35,17 @@ Add-EntraDirectoryRoleMember
 
 The `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
-
-- Privileged Role Administrator
-
 ## Examples
 
 ### Example 1: Add a member to a Microsoft Entra ID role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$directoryRole = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'"
-$user = Get-EntraUser -UserId 'SawyerM@Contoso.com'
-Add-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -RefObjectId $user.Id
+$params = @{
+    DirectoryRoleId = '67efd1ad-1046-4fb8-bb57-1d2e4f66c74e'
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Add-EntraDirectoryRoleMember @params
 ```
 
 This example adds a member to a directory role.

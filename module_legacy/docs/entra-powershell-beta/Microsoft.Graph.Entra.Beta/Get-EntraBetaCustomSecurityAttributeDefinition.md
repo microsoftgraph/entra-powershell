@@ -74,7 +74,8 @@ This example returns all custom security attribute definitions.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraBetaCustomSecurityAttributeDefinition -Id 'Engineering_ProjectDate'
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinition -Id $attributeDefinition.Id
 ```
 
 ```Output

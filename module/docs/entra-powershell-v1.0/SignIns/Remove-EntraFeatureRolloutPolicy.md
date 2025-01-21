@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraBetaFeatureRolloutPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Remove-EntraBetaFeatureRolloutPolicy
 schema: 2.0.0
 ---
 
@@ -42,8 +42,8 @@ Users in groups that were assigned to the policy falls back to the global authen
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$Policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
-Remove-EntraFeatureRolloutPolicy -Id $Policy.Id
+$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
+Remove-EntraFeatureRolloutPolicy -Id $policy.Id
 ```
 
 This example removes the policy for cloud authentication roll-out in Microsoft Entra ID.

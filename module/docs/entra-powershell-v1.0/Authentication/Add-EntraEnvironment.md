@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Authentication-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraEnvironment
+Module Name: Microsoft.Entra.Authentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Add-EntraEnvironment
 
 schema: 2.0.0
 ---
@@ -46,13 +46,10 @@ Adds Microsoft Entra environment to the settings file.
 ### Example 1: Add a user defined environment
 
 ```powershell
-$params = @{
-    Name = 'Canary'
-    GraphEndpoint = 'https://canary.graph.microsoft.com'
-    AzureADEndpoint = 'https://login.microsoftonline.com'
-}
-
-Add-EntraEnvironment @params
+$name = 'Canary'
+$graphEndpoint = 'https://canary.graph.microsoft.com'
+$azureADEndpoint = 'https://login.microsoftonline.com'
+Add-EntraEnvironment -Name $name -GraphEndpoint $graphEndpoint -AzureADEndpoint $azureADEndpoint
 ```
 
 ```Output

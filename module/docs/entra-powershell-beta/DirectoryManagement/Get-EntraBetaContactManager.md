@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaContactManager
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaContactManager
 
 schema: 2.0.0
 ---
@@ -34,14 +34,22 @@ Get-EntraBetaContactManager
 
 The `Get-EntraBetaContactManager` cmdlet gets the manager of a contact in Microsoft Entra ID.
 
+For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
+
+- Directory Readers: Read basic properties  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Get the manager of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Top 1
-Get-EntraBetaContactManager -OrgContactId $Contact.ObjectId
+$contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraBetaContactManager -OrgContactId $contact.Id
 ```
 
 The example demonstrates how to retrieve the manager of a contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
@@ -73,7 +81,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

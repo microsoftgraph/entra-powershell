@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationSignInDetailedSummary
+Module Name: Microsoft.Entra.Beta.Reports
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Reports/Get-EntraBetaApplicationSignInDetailedSummary
 
 schema: 2.0.0
 ---
@@ -107,9 +107,9 @@ This example returns top five sign ins to Microsoft Entra ID portal.
 The maximum number of records to return.
 
 ```yaml
-Type: System.Int32
+Type: Sysetm.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named

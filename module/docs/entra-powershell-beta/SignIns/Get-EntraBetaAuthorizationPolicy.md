@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaAuthorizationPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaAuthorizationPolicy
 
 schema: 2.0.0
 ---
@@ -43,6 +43,16 @@ Get-EntraBetaAuthorizationPolicy
 ## Description
 
 The `Get-EntraBetaAuthorizationPolicy` cmdlet gets a Microsoft Entra ID authorization policy.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. The least privileged roles for this operation are:
+
+- Global Reader  
+- Security Reader  
+- Security Operator  
+- Security Administrator  
+- Cloud Device Administrator  
+- License Administrator  
+- Privileged Role Administrator  
 
 ## Examples
 
@@ -124,7 +134,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

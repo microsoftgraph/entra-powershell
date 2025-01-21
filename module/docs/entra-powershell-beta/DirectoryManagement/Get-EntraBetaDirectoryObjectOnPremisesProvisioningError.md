@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
 
 schema: 2.0.0
 ---
@@ -41,6 +41,7 @@ The `Get-EntraBetaDirectoryObjectOnPremisesProvisioningError` returns whether Mi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+
 Get-EntraBetaDirectoryObjectOnPremisesProvisioningError 
 ```
 
@@ -54,8 +55,8 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
-$tenant = Get-EntraBetaTenantDetail
-Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId $tenant.Id
+
+Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
 ```
 
 ```Output

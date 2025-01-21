@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraNamedLocationPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraNamedLocationPolicy
 
 schema: 2.0.0
 ---
@@ -48,6 +48,14 @@ This cmdlet allows an admin to get the Microsoft Entra ID named location policie
 
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. The least privileged roles for this operation are:
+
+- Global Secure Access Administrator (read-only standard properties)  
+- Security Reader (read-only standard properties)  
+- Security Administrator (read-only standard properties)  
+- Global Reader  
+- Conditional Access Administrator
+
 ## Examples
 
 ### Example 1: Retrieves a list of all named location policies in Microsoft Entra ID
@@ -72,7 +80,8 @@ This command retrieves a list of all named location policies in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraNamedLocationPolicy -PolicyId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+$policy = Get-EntraNamedLocationPolicy | Where-Object {$_.DisplayName -eq 'Provisioning Workers'}
+Get-EntraNamedLocationPolicy -PolicyId $policy.Id
 ```
 
 ```Output
@@ -110,7 +119,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

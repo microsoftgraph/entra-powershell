@@ -34,7 +34,9 @@ Get-EntraDirSyncFeature
 
 ## Description
 
-The `Get-EntraDirSyncFeature` cmdlet checks the status of directory synchronization features for a tenant.
+The `Get-EntraDirSyncFeature` cmdlet checks the status of directory sync features for a tenant. If no features are specified, it returns a list of all features and their enabled or disabled status.
+
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
 
 Some of the features that can be used with this cmdlet include:
 
@@ -48,9 +50,7 @@ Some of the features that can be used with this cmdlet include:
 - **UnifiedGroupWriteback**
 - **UserWriteback**
 
-The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
-
-For delegated scenarios, the user needs to be assigned the Global Administrator role.
+To view all supported features, see the [complete feature list](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature#properties).
 
 ## Examples
 
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 
 ### -Feature
 
-The directory synchronization feature to check the status of.
+The directory sync feature to check. See the [complete feature list](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature#properties).
 
 ```yaml
 Type: System.String

@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserManager
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Set-EntraBetaUserManager
 
 schema: 2.0.0
 ---
@@ -41,11 +41,7 @@ The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $manager = Get-EntraBetaUser -UserId 'Manager@contoso.com'
-$params = @{
-    UserId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-    RefObjectId = '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
-}
-Set-EntraBetaUserManager @params
+Set-EntraBetaUserManager -UserId 'SawyerM@contoso.com' -RefObjectId $manager.Id
 ```
 
 This example demonstrates how to update the manager for the specified user.

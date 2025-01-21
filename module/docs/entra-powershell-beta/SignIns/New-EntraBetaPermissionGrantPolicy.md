@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPermissionGrantPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaPermissionGrantPolicy
 
 schema: 2.0.0
 ---
@@ -43,13 +43,7 @@ The `New-EntraBetaPermissionGrantPolicy` cmdlet creates a Microsoft Entra ID per
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$params = @{
-    Id = 'my_new_permission_grant_policy_id'
-    DisplayName = 'MyNewPermissionGrantPolicy'
-    Description = 'My new permission grant policy'
-}
-
-New-EntraBetaPermissionGrantPolicy @params
+New-EntraBetaPermissionGrantPolicy -Id 'my_new_permission_grant_policy_id' -DisplayName 'MyNewPermissionGrantPolicy' -Description 'My new permission grant policy'
 ```
 
 ```Output

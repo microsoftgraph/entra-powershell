@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Reports-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraAuditDirectoryLog
+Module Name: Microsoft.Entra.Reports
+online version:
 schema: 2.0.0
 ---
 
@@ -37,6 +37,12 @@ Get-EntraAuditDirectoryLog
 The `Get-EntraAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Reports Reader  
+- Security Administrator  
+- Security Reader
 
 ## Examples
 
@@ -124,7 +130,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -155,7 +161,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

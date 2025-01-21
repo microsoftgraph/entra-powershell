@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserDirectReport
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaUserDirectReport
 
 schema: 2.0.0
 ---
@@ -43,13 +43,16 @@ The `Get-EntraBetaUserDirectReport` cmdlet gets the direct reports for a user in
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com'
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' |
+    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+    Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
@@ -60,14 +63,16 @@ This example demonstrates how to retrieve direct reports for a user in Microsoft
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -All 
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -All |
+    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+    Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
@@ -78,14 +83,16 @@ This example demonstrates how to retrieve all direct reports for a user in Micro
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -Top 2
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -Top 2 |
+    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+    Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
@@ -133,7 +140,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -149,7 +156,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

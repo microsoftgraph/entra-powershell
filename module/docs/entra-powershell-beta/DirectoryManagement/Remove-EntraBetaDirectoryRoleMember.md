@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDirectoryRoleMember
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaDirectoryRoleMember
 
 schema: 2.0.0
 ---
@@ -35,19 +35,17 @@ Remove-EntraBetaDirectoryRoleMember
 
 The `Remove-EntraBetaDirectoryRoleMember` cmdlet removes a member from a directory role in Microsoft Entra ID.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
-
-- Privileged Role Administrator
-
 ## Examples
 
 ### Example 1: Remove a member from a directory role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$directoryRole = Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
-$member = Get-EntraBetaDirectoryRoleMember -DirectoryRoleId $directoryRole.Id | Select Id, DisplayName, '@odata.type' | Where-Object {$_.DisplayName -eq 'Sawyer Miller'}
-Remove-EntraBetaDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -MemberId $member.Id
+$params = @{
+    DirectoryRoleId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    MemberId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaDirectoryRoleMember @params
 ```
 
 This example removes the specified member from the specified role.

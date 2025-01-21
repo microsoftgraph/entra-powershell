@@ -7,10 +7,10 @@ ms.date: 06/26/2024
 ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivateAccessApplicationSegment
+Module Name: Microsoft.Entra.Beta.NetworkAccess
+online version:
 schema: 2.0.0
 ---
 
@@ -126,7 +126,7 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 
 ## RELATED LINKS
 
-[Get-EntraBetaApplication](../Applications/Get-EntraBetaApplication.md)
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 

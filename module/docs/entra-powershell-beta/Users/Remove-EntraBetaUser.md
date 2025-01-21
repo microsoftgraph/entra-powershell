@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaUser
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Remove-EntraBetaUser
 
 schema: 2.0.0
 ---
@@ -45,6 +45,15 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 Remove-EntraBetaUser -UserId 'SawyerM@Contoso.com'
+```
+
+This command removes the specified user in Microsoft Entra ID.
+
+### Example 2: Remove a user based on search results
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraBetaUser -UserId 'SawyerM@Contoso.com' | Remove-EntraBetaUser
 ```
 
 This command removes the specified user in Microsoft Entra ID.

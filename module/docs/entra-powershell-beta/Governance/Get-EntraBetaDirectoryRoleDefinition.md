@@ -9,9 +9,9 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
-external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryRoleDefinition
+external help file: Microsoft.Entra.Beta.Governance-help.xml
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Get-EntraBetaDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
@@ -94,7 +94,8 @@ This command returns all the role definitions present.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId '2af84b1e-32c8-42b7-82bc-daa82404023b'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+Get-EntraBetaDirectoryRoleDefinition -UnifiedRoleDefinitionId $role.Id
 ```
 
 ```Output
@@ -196,7 +197,7 @@ Specifies the maximum number of records that this cmdlet gets. The default value
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -244,7 +245,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

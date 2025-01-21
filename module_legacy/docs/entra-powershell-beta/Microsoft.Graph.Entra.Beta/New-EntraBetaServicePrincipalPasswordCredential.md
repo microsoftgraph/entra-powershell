@@ -43,12 +43,8 @@ The `New-EntraBetaServicePrincipalPasswordCredential` cmdlet creates a password 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-$Params = @{
-    ServicePrincipalId = $ServicePrincipal.ObjectId
-    StartDate = '2024-04-21T14:14:14Z'
-}
-New-EntraBetaServicePrincipalPasswordCredential @Params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -StartDate '2024-11-04T14:14:14Z'
 ```
 
 ```Output
@@ -70,16 +66,12 @@ This example demonstrates how to create a password credential with StartDate for
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 - `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
-### Example 2: Create a password credential with EndtDate
+### Example 2: Create a password credential with EndDate
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-$Params = @{
-    ServicePrincipalId = $ServicePrincipal.ObjectId
-    EndDate = '2030-03-21T14:14:14Z'
-}
-New-EntraBetaServicePrincipalPasswordCredential @Params
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+New-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -EndDate '2024-11-04T14:14:14Z'
 ```
 
 ```Output

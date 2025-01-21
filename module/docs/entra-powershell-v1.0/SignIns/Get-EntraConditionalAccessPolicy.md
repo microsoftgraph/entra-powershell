@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraConditionalAccessPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraConditionalAccessPolicy
 
 schema: 2.0.0
 ---
@@ -46,6 +46,14 @@ Get-EntraConditionalAccessPolicy
 This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
 Conditional access policies are custom rules that define an access scenario.
 
+In delegated scenarios involving work or school accounts, the signed-in user must have a Microsoft Entra role or a custom role with the required permissions to act on behalf of another user. The following least privileged roles support this operation:
+
+- Global Secure Access Administrator (read standard properties)  
+- Security Reader (read standard properties)  
+- Security Administrator (read standard properties)  
+- Global Reader  
+- Conditional Access Administrator  
+
 ## Examples
 
 ### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID
@@ -69,13 +77,14 @@ This example retrieves a list of all conditional access policies in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraConditionalAccessPolicy -PolicyId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'Multifactor authentication for Contoso partners and vendors'}
+Get-EntraConditionalAccessPolicy -PolicyId $policy.Id
 ```
 
 ```Output
-Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    TemplateId
---                                   ---------------      ----------- -----------                ----------------     -----    ----------
-eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
+Id                                    CreatedDateTime        Description                  DisplayName                  ModifiedDateTime       State     TemplateId
+--                                    ---------------        -----------                  -----------                  ----------------       -----     ----------
+eeeeeeee-4444-5555-6666-ffffffffffff  2/27/2024 6:23:21 AM   Multifactor authentication   2/29/2024 2:41:17 PM         disabled
 ```
 
 This example retrieves a specified conditional access policy in Microsoft Entra ID.
@@ -107,7 +116,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

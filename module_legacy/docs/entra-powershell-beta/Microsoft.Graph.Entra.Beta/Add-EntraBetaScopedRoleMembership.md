@@ -45,17 +45,12 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$User = Get-EntraBetaUser -SearchString 'MarkWood'
-$Role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
-$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-$RoleMember.ObjectId = $User.ObjectId
-$params = @{
-    AdministrativeUnitId = $Unit.ObjectId
-    RoleObjectId = $Role.ObjectId
-    RoleMemberInfo = $RoleMember
-}
-Add-EntraBetaScopedRoleMembership @params
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
+$roleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
+$roleMember.Id = $user.Id
+Add-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -RoleObjectId $role.Id -RoleMemberInfo $roleMember
 ```
 
 ```Output

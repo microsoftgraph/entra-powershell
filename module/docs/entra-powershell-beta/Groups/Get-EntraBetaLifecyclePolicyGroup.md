@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaLifecyclePolicyGroup
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Get-EntraBetaLifecyclePolicyGroup
 
 schema: 2.0.0
 ---
@@ -42,7 +42,8 @@ The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaLifecyclePolicyGroup -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaLifecyclePolicyGroup -GroupId $group.Id
 ```
 
 ```Output
@@ -80,7 +81,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

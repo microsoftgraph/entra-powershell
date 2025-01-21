@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraPartnerInformation
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraPartnerInformation
 
 schema: 2.0.0
 ---
@@ -86,11 +86,7 @@ This example shows how to update the support email addresses.
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
 $tenantId = (Get-EntraContext).TenantId
-$params = @{
-    PartnerSupportTelephones = '234234234'
-    TenantId = $tenantId
-}
-Set-EntraPartnerInformation @params
+Set-EntraPartnerInformation -PartnerSupportTelephones '234234234' -TenantId $tenantId
 ```
 
 This example shows how to update support telephone numbers.

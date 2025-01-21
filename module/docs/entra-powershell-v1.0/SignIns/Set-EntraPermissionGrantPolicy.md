@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraPermissionGrantPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Set-EntraPermissionGrantPolicy
 
 schema: 2.0.0
 ---
@@ -43,12 +43,7 @@ The `Set-EntraPermissionGrantPolicy` command updates a Microsoft Entra ID permis
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 $policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
-$params = @{
-    Id = $policy.Id
-    Description = 'Updated description'
-}
-
-Set-EntraPermissionGrantPolicy @params
+Set-EntraPermissionGrantPolicy -Id $policy.Id -Description 'Updated description'
 ```
 
 This command updates the description of the specified permission grant policy.
@@ -61,12 +56,7 @@ This command updates the description of the specified permission grant policy.
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 $policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
-$params = @{
-    Id = $policy.Id
-    DisplayName = 'Updated DisplayName'
-}
-
-Set-EntraPermissionGrantPolicy @params
+Set-EntraPermissionGrantPolicy -Id $policy.Id -DisplayName 'Updated DisplayName'
 ```
 
 This command updates the display name of the specified permission grant policy.

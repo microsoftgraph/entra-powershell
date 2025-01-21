@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaContact
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaContact
 
 schema: 2.0.0
 ---
@@ -41,8 +41,8 @@ The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
-Remove-EntraBetaContact -OrgContactId $Contact.ObjectId
+$contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'"
+Remove-EntraBetaContact -OrgContactId $contact.Id
 ```
 
 The example shows how to remove a contact.

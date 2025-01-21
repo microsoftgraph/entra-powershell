@@ -7,10 +7,10 @@ ms.date: 07/18/2024
 ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-s
+online version:
 schema: 2.0.0
 ---
 
@@ -70,8 +70,8 @@ $application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAc
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
-    Ports = '22,3389'
-    Protocol = 'TCP,UDP'
+    Ports = '22','3389'
+    Protocol = 'TCP','UDP'
     DestinationType = 'ipRange'
 }
 New-EntraBetaPrivateAccessApplicationSegment @params

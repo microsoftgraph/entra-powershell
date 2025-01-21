@@ -36,19 +36,20 @@ Add-EntraBetaDeviceRegisteredOwner
 
 The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
 
+In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
+
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Add a user as a registered owner
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-$params = @{
-    DeviceId = $Device.ObjectId 
-    RefObjectId = $User.ObjectId
-}
-Add-EntraBetaDeviceRegisteredOwner  @params
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+Add-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId -RefObjectId $user.Id
 ```
 
 This example shows how to add a registered owner to a device.

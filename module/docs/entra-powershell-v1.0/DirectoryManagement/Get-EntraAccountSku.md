@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraAccountSku
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraAccountSku
 
 schema: 2.0.0
 ---
@@ -46,12 +46,18 @@ The `Get-EntraAccountSku` retrieves the list of commercial subscriptions acquire
 
 For a list of license names in the Microsoft Entra or Microsoft 365 admin centers and their corresponding Microsoft Graph `skuId` and `skuPartNumber` properties, refer to the [mapping information](https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference).
 
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Dynamics 365 Business Central Administrator (read-only access to standard properties)  
+- Global Reader  
+- Directory Readers
+
 ## Examples
 
 ### Example 1: Gets a list of SKUs
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
 Get-EntraAccountSku
 ```
 
@@ -68,8 +74,9 @@ This command returns a list of SKUs.
 ### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
+$tenantId = (Get-EntraContext).TenantId
+Get-EntraAccountSku -TenantId $tenantId
 ```
 
 ```Output

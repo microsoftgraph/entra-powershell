@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Update-EntraBetaSignedInUserPassword
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Update-EntraBetaSignedInUserPassword
 
 schema: 2.0.0
 ---
@@ -42,13 +42,9 @@ Enable users to update their own passwords. Any user can change their password w
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$CurrentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$NewPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$params = @{
-    CurrentPassword = $CurrentPassword
-    NewPassword = $NewPassword
-}
-Update-EntraBetaSignedInUserPassword @params
+$currentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+$newPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+Update-EntraBetaSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
 ```
 
 This example shows how to update the password for the signed-in user.

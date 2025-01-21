@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraDomainFederationSettings
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraDomainFederationSettings
 
 schema: 2.0.0
 ---
@@ -58,13 +58,10 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 ```powershell
 Connect-Entra -Scopes 'Domain.ReadWrite.All'
-
-$params = @{
-    DomainName = 'contoso.com'
-    PreferredAuthenticationProtocol = 'WsFed'
-    PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
-}
-Set-EntraDomainFederationSettings @params
+$domain = 'contoso.com'
+$authProtocol = 'WsFed'
+$promptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
+Set-EntraDomainFederationSettings -DomainName $domain -PreferredAuthenticationProtocol $authProtocol -PromptLoginBehavior $promptLoginBehavior
 ```
 
 This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswordAuth`, `NativeSupport`, or `Disabled`. These possible values are described:

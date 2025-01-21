@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/New-EntraPolicy
 
 schema: 2.0.0
 ---
@@ -44,12 +44,8 @@ The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `Di
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-    DisplayName = 'NewPolicy'
-    Type = 'HomeRealmDiscoveryPolicy'
-}
-New-EntraPolicy @params
+$definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+New-EntraPolicy -Definition $definition -DisplayName 'NewPolicy' -Type 'HomeRealmDiscoveryPolicy'
 ```
 
 ```Output
@@ -69,13 +65,8 @@ This command creates a new policy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Definition = @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') 
-    DisplayName ='ClaimstestPolicy' 
-    Type = 'claimsMappingPolicies' 
-    IsOrganizationDefault = $false 
-}
-New-EntraPolicy @params
+$definition = @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }')
+New-EntraPolicy -Definition $definition -DisplayName 'ClaimstestPolicy' -Type 'claimsMappingPolicies' -IsOrganizationDefault $false
 ```
 
 ```Output
@@ -97,13 +88,8 @@ This command creates a ClaimsMappingPolicy using 'IsOrganizationDefault' paramet
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Definition = @('{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}')
-    DisplayName = 'TokenLifetimePolicy'
-    Type = 'TokenLifetimePolicy'
-    IsOrganizationDefault = $false
-}
-New-EntraPolicy @params
+$definition = @('{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}')
+New-EntraPolicy -Definition $definition -DisplayName 'TokenLifetimePolicy' -Type 'TokenLifetimePolicy' -IsOrganizationDefault $false
 ```
 
 ```Output
@@ -123,12 +109,8 @@ This command creates a TokenLifetimePolicy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Definition = @('{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly","EmitSAMLNameFormat":"true"}}')
-    DisplayName = 'tokenIssuance'
-    Type = 'TokenIssuancePolicy'
-}
-New-EntraPolicy @params
+$definition = @('{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly","EmitSAMLNameFormat":"true"}}')
+New-EntraPolicy -Definition $definition -DisplayName 'tokenIssuance' -Type 'TokenIssuancePolicy'
 ```
 
 ```Output
@@ -147,12 +129,8 @@ This command creates a TokenIssuancePolicy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-    DisplayName = 'ActivityBasedTimeoutPolicyname'
-    Type = 'ActivityBasedTimeoutPolicy'
-}
-New-EntraPolicy @params
+$definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+New-EntraPolicy -Definition $definition -DisplayName 'ActivityBasedTimeoutPolicyname' -Type 'ActivityBasedTimeoutPolicy'
 ```
 
 ```Output

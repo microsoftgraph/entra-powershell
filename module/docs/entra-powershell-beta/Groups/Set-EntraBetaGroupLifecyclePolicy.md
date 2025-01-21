@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaGroupLifecyclePolicy
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Set-EntraBetaGroupLifecyclePolicy
 
 schema: 2.0.0
 ---
@@ -42,14 +42,8 @@ The `Set-EntraBetaGroupLifecyclePolicy` command updates a specific group Lifecyc
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraBetaGroupLifecyclePolicy | Select-Object -First 1
-$params = @{
-    GroupLifecyclePolicyId = $policy.Id
-    GroupLifetimeInDays = 200 
-    AlternateNotificationEmails = 'example@contoso.com' 
-    ManagedGroupTypes = 'All'
-}
-Set-EntraBetaGroupLifecyclePolicy @params
+$policy = Get-EntraBetaGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'}
+Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId $policy.Id -GroupLifetimeInDays 200 -AlternateNotificationEmails 'example@contoso.com' -ManagedGroupTypes 'All'
 ```
 
 ```Output

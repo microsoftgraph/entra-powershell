@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDomainNameReference
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaDomainNameReference
 
 schema: 2.0.0
 ---
@@ -35,7 +35,10 @@ Get-EntraBetaDomainNameReference
 
 The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name. Specify `Name` parameter retrieve the objects.
 
-The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Domain Name Administrator
+- Global Reader
 
 ## Examples
 
@@ -43,18 +46,16 @@ The work or school account needs to belong to at least the Domain Name Administr
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraBetaDomainNameReference -Name contoso.com
+Get-EntraBetaDomainNameReference -Name contoso.com | Select Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-ffffffff-4444-5555-6666-gggggggggggg
-hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
+ID                                   Display Name              @odata.type               
+--                                   -------------             ------------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Sawyer MIller            #microsoft.graph.user     
+bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance              #microsoft.graph.user     
+ffffffff-4444-5555-6666-gggggggggggg Contoso marketing        #microsoft.graph.group    
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii Contoso App              #microsoft.graph.application
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
@@ -86,7 +87,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

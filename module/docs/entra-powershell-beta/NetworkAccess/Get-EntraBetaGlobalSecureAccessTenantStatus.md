@@ -9,8 +9,8 @@ reviewer: andres-canello
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaGlobalSecureAccessTenantStatus
+Module Name: Microsoft.Entra.Beta.NetworkAccess
+online version:
 schema: 2.0.0
 ---
 
@@ -75,7 +75,7 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 
 ## RELATED LINKS
 
-[Get-EntraBetaApplication](../Applications/Get-EntraBetaApplication.md)
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 
 [Get-EntraBetaPrivateAccessApplicationSegment](Get-EntraBetaPrivateAccessApplicationSegment.md)
 

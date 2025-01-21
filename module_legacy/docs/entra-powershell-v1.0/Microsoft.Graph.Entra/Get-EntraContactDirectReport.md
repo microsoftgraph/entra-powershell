@@ -38,14 +38,22 @@ Get-EntraContactDirectReport
 
 The `Get-EntraContactDirectReport` cmdlet gets the direct reports for a contact.
 
+For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
+
+- Directory Readers: Read basic properties  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Get the direct reports of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Top 1
-Get-EntraContactDirectReport -OrgContactId $Contact.ObjectId
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactDirectReport -OrgContactId $contact.Id
 ```
 
 This example shows how to retrieve direct reports for an organizational contact.
@@ -58,8 +66,8 @@ You can use the command `Get-EntraBetaContact` to get organizational contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Top 1
-Get-EntraContactDirectReport -OrgContactId $Contact.ObjectId -All
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactDirectReport -OrgContactId $contact.Id -All
 ```
 
 This example shows how to retrieve all direct reports for an organizational contact.
@@ -70,8 +78,8 @@ This example shows how to retrieve all direct reports for an organizational cont
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Top 1
-Get-EntraContactDirectReport -OrgContactId $Contact.ObjectId -Top 2
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactDirectReport -OrgContactId $contact.Id -Top 2
 ```
 
 This example shows how to retrieve top two direct reports for an organizational contact.

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaPolicy
 
 schema: 2.0.0
 ---
@@ -84,7 +84,8 @@ This example shows how to get a specific policy using Display Name.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraBetaPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$policy = Get-EntraBetaPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Get-EntraBetaPolicy -Id $policy.Id
 ```
 
 ```Output
@@ -169,7 +170,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named

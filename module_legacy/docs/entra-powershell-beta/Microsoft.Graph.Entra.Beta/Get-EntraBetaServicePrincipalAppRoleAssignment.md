@@ -54,9 +54,9 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ### Example 1: Retrieve the application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -72,9 +72,9 @@ This command gets application role assignments for specified service principal. 
 ### Example 2: Retrieve all application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId -All
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```Output
@@ -95,8 +95,8 @@ This command gets all application role assignments for specified service princip
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId -Top 3
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -Top 3
 ```
 
 ```Output

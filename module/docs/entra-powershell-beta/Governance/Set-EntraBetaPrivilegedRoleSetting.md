@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaPrivilegedRoleSetting
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Set-EntraBetaPrivilegedRoleSetting
 
 schema: 2.0.0
 ---

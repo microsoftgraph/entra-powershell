@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryRole
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaDirectoryRole
 
 schema: 2.0.0
 ---
@@ -47,34 +47,19 @@ Get-EntraBetaDirectoryRole
 
 The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID. Specify `DirectoryRoleId` parameter to get a directory role.
 
-In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
-
-- User Administrator  
-- Helpdesk Administrator  
-- Service Support Administrator  
-- Billing Administrator  
-- Directory Readers  
-- Directory Writers  
-- Application Administrator  
-- Security Reader  
-- Security Administrator  
-- Privileged Role Administrator  
-- Cloud Application Administrator
-
 ## Examples
 
 ### Example 1: Get a directory role by ID
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$directoryRole = Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
-Get-EntraBetaDirectoryRole -DirectoryRoleId $directoryRole.Id
+Get-EntraBetaDirectoryRole -DirectoryRoleId '56644e28-bf8b-4dad-8595-24448ffa3cb8'
 ```
 
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the specified directory role.
@@ -99,22 +84,22 @@ DeletedDateTime Id                                   Description
 
 This command gets all the directory roles.
 
-### Example 3: Get a directory role filter by Id
+### Example 3: Get a directory role filter by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRole -Filter "Id eq 'c0e36062-8c80-4d72-9bc3-cbb4efe03c21'"
+Get-EntraBetaDirectoryRole -Filter "ObjectId eq '56644e28-bf8b-4dad-8595-24448ffa3cb8'"
 ```
 
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
-This command gets the directory role by Id.
+This command gets the directory role by ObjectId.
 
-- `-Id` parameter specifies the ID of a directory role in Microsoft Entra ID.
+- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
 
 ### Example 4: Get a directory role filter by displayName
 
@@ -126,7 +111,7 @@ Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the directory role by display name.
@@ -173,7 +158,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

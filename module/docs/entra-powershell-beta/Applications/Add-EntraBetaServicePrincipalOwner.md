@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaServicePrincipalOwner
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Add-EntraBetaServicePrincipalOwner
 
 schema: 2.0.0
 ---
@@ -100,6 +100,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraBetaServicePrincipalOwner](Get-EntraBetaServicePrincipalOwner.md)
 
-[Get-EntraBetaUser](../Users/Get-EntraBetaUser.md)
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
 [Remove-EntraBetaServicePrincipalOwner](Remove-EntraBetaServicePrincipalOwner.md)

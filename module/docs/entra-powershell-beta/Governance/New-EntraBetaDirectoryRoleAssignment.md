@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaDirectoryRoleAssignment
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/New-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
@@ -36,19 +36,19 @@ New-EntraBetaDirectoryRoleAssignment
 
 The `New-EntraBetaDirectoryRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
-$params = @{
-    RoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
-    DirectoryScopeId = '/'
- }
-
-New-EntraBetaDirectoryRoleAssignment @params
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+New-EntraBetaDirectoryRoleAssignment -RoleDefinitionId $role.Id -PrincipalId $user.Id -DirectoryScopeId '/'
 ```
 
 ```Output

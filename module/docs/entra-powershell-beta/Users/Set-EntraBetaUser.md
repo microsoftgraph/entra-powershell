@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUser
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Set-EntraBetaUser
 
 schema: 2.0.0
 ---
@@ -68,12 +68,7 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$params = @{
-   UserId = $user.ObjectId
-   DisplayName = 'Updated user Name'
-}
-Set-EntraBetaUser @params
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
 This example updates the specified user's Display name parameter.
@@ -84,11 +79,7 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$params = @{
-   UserId = 'SawyerM@contoso.com'
-   AccountEnabled = $true
-}
-Set-EntraBetaUser @params
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -124,7 +115,7 @@ $params = @{
    JobTitle = 'Manager'
    MailNickName = 'Add mailnickname'
    Mobile = '9984534564'
-   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
+   OtherMails = 'test12@Contoso.com'
    PasswordPolicies = 'DisableStrongPassword'
    State = 'UP'
    StreetAddress = 'Add address'

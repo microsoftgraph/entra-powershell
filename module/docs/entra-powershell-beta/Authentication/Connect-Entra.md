@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Connect-Entra
+Module Name: Microsoft.Entra.Beta.Authentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Authentication/Connect-Entra
 
 schema: 2.0.0
 ---
@@ -255,7 +255,7 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
-For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/Microsoft.Entra/get-entracontext) command.
+For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/microsoft.graph.entra/get-entracontext) command.
 
 ### Example 12: Connecting to an environment or cloud
 

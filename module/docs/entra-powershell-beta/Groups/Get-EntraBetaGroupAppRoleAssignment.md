@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaGroupAppRoleAssignment
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Get-EntraBetaGroupAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -43,8 +43,8 @@ The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role a
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Get-EntraBetaGroupAppRoleAssignment -GroupId $GroupId
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id
 ```
 
 ```Output
@@ -63,7 +63,8 @@ This example retrieves the application role assignments of a group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id -All
 ```
 
 ```Output
@@ -82,7 +83,8 @@ This example retrieves all application role assignments of the specified group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -GroupId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id -Top 2
 ```
 
 ```Output
@@ -137,7 +139,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -153,7 +155,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPermissionGrantConditionSet
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaPermissionGrantConditionSet
 
 schema: 2.0.0
 ---
@@ -56,13 +56,8 @@ Get a Microsoft Entra ID permission grant condition set object by ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$params = @{
-    PolicyId = $permissionGrantPolicyId
-    ConditionSetType = 'includes'
-}
-
-Get-EntraBetaPermissionGrantConditionSet @params
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes'
 ```
 
 ```Output
@@ -80,13 +75,8 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$params = @{
-    PolicyId = $permissionGrantPolicyId
-    ConditionSetType = 'excludes'
-}
-
-Get-EntraBetaPermissionGrantConditionSet @params
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'excludes'
 ```
 
 ```Output
@@ -105,14 +95,9 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$params = @{
-    PolicyId = $permissionGrantPolicyId
-    ConditionSetType = 'includes'
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-}
-
-Get-EntraBetaPermissionGrantConditionSet @params
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$conditionSet = Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object {$_.PermissionType -eq 'delegated'}
+Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -Id $conditionSet.Id
 ```
 
 ```Output
@@ -184,7 +169,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

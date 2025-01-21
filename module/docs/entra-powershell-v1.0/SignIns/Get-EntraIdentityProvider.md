@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraIdentityProvider
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraIdentityProvider
 
 schema: 2.0.0
 ---
@@ -51,6 +51,10 @@ For example, an organization has resources in Office 365 that needs to be shared
 The Gmail user will use their Google account credentials to authenticate and access the documents.
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
+
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- External Identity Provider Administrator
 
 ## Examples
 
@@ -114,7 +118,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

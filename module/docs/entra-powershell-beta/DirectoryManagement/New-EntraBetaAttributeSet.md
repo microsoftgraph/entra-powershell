@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaAttributeSet
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/New-EntraBetaAttributeSet
 
 schema: 2.0.0
 ---
@@ -36,7 +36,9 @@ New-EntraBetaAttributeSet
 
 Adds a new Microsoft Entra ID attribute set object.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+The signed-in user must be assigned one of the following directory roles:
+
+- Attribute Definition Administrator
 
 ## Examples
 
@@ -44,13 +46,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$params = @{
-    AttributeSetId = 'Testing'
-    Description = 'Attributes for engineering team'
-    MaxAttributesPerSet = 10
-}
-
-New-EntraBetaAttributeSet @params
+New-EntraBetaAttributeSet -AttributeSetId 'ContosoSet' -Description 'Contoso Set' -MaxAttributesPerSet 15
 ```
 
 ```Output

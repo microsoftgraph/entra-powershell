@@ -9,10 +9,10 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
 
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraExternalDomainFederation
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Remove-EntraExternalDomainFederation
 
 schema: 2.0.0
 ---

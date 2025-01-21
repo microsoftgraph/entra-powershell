@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraPermissionGrantConditionSet
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/New-EntraPermissionGrantConditionSet
 
 schema: 2.0.0
 ---
@@ -50,14 +50,8 @@ Create a new Microsoft Entra ID permission grant condition set object in an exis
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$params = @{
-PolicyId = $permissionGrantPolicyId
-ConditionSetType = 'includes'
-PermissionType = 'delegated'
-}
-
-New-EntraPermissionGrantConditionSet @params
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+New-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -PermissionType 'delegated'
 ```
 
 ```Output
@@ -76,17 +70,9 @@ This command creates a basic permission grant condition set in an existing polic
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$permission = (Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles.Id
-$params = @{
-PolicyId = $permissionGrantPolicyId
-ConditionSetType = 'includes'
-PermissionType = 'delegated'
-Permissions = @($permission)
-ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-}
-
-New-EntraPermissionGrantConditionSet @params
+$permission = (Get-EntraServicePrincipal -Filter "DisplayName eq 'Box'").AppRoles.Id
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+New-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -PermissionType 'delegated' -Permissions @($permission) -ResourceApplication 'resource-application-id'
 ```
 
 ```Output
@@ -107,9 +93,9 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
 $params = @{
-PolicyId = $permissionGrantPolicyId
+PolicyId = $permissionGrantPolicy.Id
 ConditionSetType = 'excludes'
 PermissionType = 'delegated'
 Permissions = @('All')
@@ -146,10 +132,10 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
 $permission = (Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayname>'").AppRoles.Id
 $params = @{
-PolicyId = $permissionGrantPolicyId
+PolicyId = $permissionGrantPolicy.Id
 ConditionSetType = 'excludes'
 PermissionType = 'delegated'
 Permissions = @($permission)

@@ -22,12 +22,12 @@ function Split-Docs {
         'Entra' {
             $DocsSourceDirectory = (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-v1.0/Microsoft.Graph.Entra")
             $MappingFilePath =  (Join-Path $PSScriptRoot '../module/Entra/config/moduleMapping.json')
-            $OutputDirectory= (Join-Path $PSScriptRoot '../module/docs/entra-powershell-v1.0')
+            $OutputDirectory= (Join-Path $PSScriptRoot '../module/docs-temp/entra-powershell-v1.0')
         }
         'EntraBeta' {
             $DocsSourceDirectory =  (Join-Path $PSScriptRoot "../module_legacy/docs/entra-powershell-beta/Microsoft.Graph.Entra.Beta")
             $MappingFilePath = (Join-Path $PSScriptRoot "../module/EntraBeta/config/moduleMapping.json")
-            $OutputDirectory= (Join-Path $PSScriptRoot "../module/docs/entra-powershell-beta")
+            $OutputDirectory= (Join-Path $PSScriptRoot "../module/docs-temp/entra-powershell-beta")
         }
         default {
             Log-Message -Message "[Split-Docs]: Invalid Source specified. Use 'Entra' or 'EntraBeta'." -Level 'ERROR'

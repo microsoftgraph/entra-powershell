@@ -7,10 +7,10 @@ ms.date: 07/18/2024
 ms.author: eunicewaweru
 reviewer: andres-canello
 manager: CelesteDG
-author: andres-canello
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaPrivateAccessApplicationSegment
+online version:
 schema: 2.0.0
 ---
 

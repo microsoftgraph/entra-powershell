@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraCustomSecurityAttributeDefinition
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraCustomSecurityAttributeDefinition
 
 schema: 2.0.0
 ---
@@ -38,7 +38,9 @@ Set-EntraCustomSecurityAttributeDefinition
 
 Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+The signed-in user must be assigned one of the following directory roles:
+
+- Attribute Definition Administrator
 
 ## Examples
 
@@ -46,13 +48,8 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
-$params = @{
-    Id = 'Engineering_ProjectDate'
-    Description = 'Add-description'
-    Status = 'Available' 
-    UsePreDefinedValuesOnly = $False
-}
-Set-EntraCustomSecurityAttributeDefinition @params
+$attributeDefinition = Get-EntraCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Set-EntraCustomSecurityAttributeDefinition -Id $attributeDefinition.Id -Description 'Engineering Description' -Status 'Available' -UsePreDefinedValuesOnly $false
 ```
 
 This example update a custom security attribute.

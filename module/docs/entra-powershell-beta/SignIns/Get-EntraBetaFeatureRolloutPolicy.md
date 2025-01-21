@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaFeatureRolloutPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaFeatureRolloutPolicy
 
 schema: 2.0.0
 ---
@@ -78,7 +78,8 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$policy = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'FeatureRolloutPolicy'"
+Get-EntraBetaFeatureRolloutPolicy -Id $policy.Id
 ```
 
 ```Output
@@ -179,7 +180,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

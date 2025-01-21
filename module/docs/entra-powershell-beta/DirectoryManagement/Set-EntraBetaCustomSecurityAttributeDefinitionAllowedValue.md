@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 schema: 2.0.0
 ---
@@ -36,18 +36,18 @@ Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 The `Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
+The signed-in user must be assigned one of the following directory roles:
+
+- Attribute Definition Administrator
+
 ## Examples
 
 ### Example 1: Update a custom security attribute definition predefined value
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$params = @{
-    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
-    Id = 'Alpine'
-    IsActive = $true
-}
-Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine' -IsActive $true
 ```
 
 This example update a custom security attribute definition predefined value.

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraDeviceRegisteredOwner
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraDeviceRegisteredOwner
 
 schema: 2.0.0
 ---
@@ -35,19 +35,20 @@ Add-EntraDeviceRegisteredOwner
 
 The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
 
+In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
+
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Add a user as a registered user
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$Device = Get-EntraDevice -SearchString '<device-display-name>'
-$params = @{
-    DeviceId = $Device.ObjectId 
-    RefObjectId = $User.ObjectId
-}
-Add-EntraDeviceRegisteredOwner @params
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Add-EntraDeviceRegisteredOwner -DeviceId $device.ObjectId -RefObjectId $user.Id
 ```
 
 This example shows how to add a registered user to a device.

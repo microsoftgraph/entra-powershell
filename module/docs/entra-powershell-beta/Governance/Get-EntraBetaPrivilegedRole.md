@@ -1,17 +1,7 @@
 ---
-title: Get-EntraBetaPrivilegedRole
-description: This article provides details on the Get-EntraBetaPrivilegedRole command.
-
-
-ms.topic: reference
-ms.date: 07/19/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
-external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivilegedRole
+external help file: Microsoft.Entra.Beta.Governance-help.xml
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Get-EntraBetaPrivilegedRole
 
 schema: 2.0.0
 ---
@@ -92,7 +82,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

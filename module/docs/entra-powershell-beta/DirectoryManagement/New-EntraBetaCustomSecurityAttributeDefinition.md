@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaCustomSecurityAttributeDefinition
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/New-EntraBetaCustomSecurityAttributeDefinition
 
 schema: 2.0.0
 ---
@@ -43,7 +43,9 @@ The `New-EntraBetaCustomSecurityAttributeDefinition` cmdlet creates a new custom
 
 You can define up to 500 active objects in a tenant.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+The signed-in user must be assigned one of the following directory roles:
+
+- Attribute Definition Administrator
 
 ## Examples
 
@@ -51,13 +53,13 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
-$AttributeSet  = Get-EntraBetaAttributeSet -Id '<CustomAttributeSetId>'
+$attributeSet  = Get-EntraAttributeSet -Id 'ContosoSet'
 $params = @{
     Name = 'ProjectTest' 
     Description = 'Target completion'
     Type = 'String'
     Status = 'Available'
-    AttributeSet = $AttributeSet.Id 
+    AttributeSet = $attributeSet.Id 
     IsCollection = $False
     IsSearchable = $True 
     UsePreDefinedValuesOnly = $True

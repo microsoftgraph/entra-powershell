@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserThumbnailPhoto
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Set-EntraBetaUserThumbnailPhoto
 
 schema: 2.0.0
 ---
@@ -63,11 +63,7 @@ Updating any user's photo in the organization requires the User.ReadWrite.All pe
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
-$params = @{
-    UserId = 'SawyerM@contoso.com'
-    FilePath = 'D:\UserThumbnailPhoto.jpg'
-}
-Set-EntraBetaUserThumbnailPhoto @params
+Set-EntraBetaUserThumbnailPhoto -UserId -FilePath 'D:\UserThumbnailPhoto.jpg'
 ```
 
 This example sets the thumbnail photo of the user specified with the UserId parameter to the image specified with the FilePath parameter.

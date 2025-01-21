@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraContact
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraContact
 
 schema: 2.0.0
 ---
@@ -49,6 +49,14 @@ Get-EntraContact
 
 The `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
 
+For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
+
+- Directory Readers: Read basic properties  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Retrieve all contact objects in the directory
@@ -73,7 +81,8 @@ This example retrieves all contact objects in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContact -OrgContactId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContact -OrgContactId $contact.Id
 ```
 
 ```Output
@@ -124,7 +133,7 @@ This example retrieves top two contacts in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
 ```
 
 ```Output
@@ -196,7 +205,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -212,7 +221,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

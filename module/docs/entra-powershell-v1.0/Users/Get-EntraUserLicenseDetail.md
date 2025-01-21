@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUserLicenseDetail
+Module Name: Microsoft.Entra.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Get-EntraUserLicenseDetail
 
 schema: 2.0.0
 ---
@@ -34,6 +34,14 @@ Get-EntraUserLicenseDetail
 ## Description
 
 This cmdlet retrieves license details for a user.
+
+In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/users/licenseDetails/read` permission. The following least privileged roles support this operation:
+
+- Guest Inviter  
+- Directory Readers  
+- Directory Writers  
+- License Administrator  
+- User Administrator
 
 ## Examples
 
@@ -79,7 +87,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

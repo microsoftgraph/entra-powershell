@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraDirSyncConfiguration
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraDirSyncConfiguration
 
 schema: 2.0.0
 ---
@@ -37,10 +37,6 @@ Set-EntraDirSyncConfiguration
 
 The `Set-EntraDirSyncConfiguration` cmdlet modifies the directory synchronization settings.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
-
-- Global Administrator
-
 ## Examples
 
 ### Example 1: Set directory synchronization settings
@@ -60,7 +56,13 @@ This command sets directory synchronization settings.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force $true
+$params = @{
+    AccidentalDeletionThreshold = 600
+    TenantId = $tenantID
+    Force = $true
+}
+
+Set-EntraDirSyncConfiguration @params
 ```
 
 This command sets directory synchronization settings.

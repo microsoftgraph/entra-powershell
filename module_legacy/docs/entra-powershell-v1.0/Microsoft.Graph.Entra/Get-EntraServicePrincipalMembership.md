@@ -43,8 +43,8 @@ The `Get-EntraServicePrincipalMembership` cmdlet gets the memberships of a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
@@ -61,8 +61,8 @@ This cmdlet retrieves a specified service principal memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -All 
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -All 
 ```
 
 ```Output
@@ -81,8 +81,8 @@ This command gets all memberships of a specified service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -Top 2
 ```
 
 ```Output

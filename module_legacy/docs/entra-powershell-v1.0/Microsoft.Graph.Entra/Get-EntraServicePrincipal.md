@@ -82,13 +82,14 @@ This example retrieves all service principals from the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraServicePrincipal -ServicePrincipalId $servicePrincipal.Id
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This command retrieves specific service principal.
@@ -105,7 +106,7 @@ Get-EntraServicePrincipal -All
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ProvisioningPowerBi                 cccccccc-2222-3333-4444-dddddddddddd 22223333-cccc-4444-dddd-5555eeee6666                     Application
 ```
@@ -122,7 +123,7 @@ Get-EntraServicePrincipal -Top 2
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ```
 
@@ -132,28 +133,28 @@ This command retrieves top two service principals from the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -Filter "DisplayName eq 'M365 License Manager'"
+Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This example gets a service principal by its display name.
 
-### Example 6: Retrieve a list of all service principal, which has a display name that contains "M365 License Manager"
+### Example 6: Retrieve a list of all service principal, which has a display name that contains "Helpdesk Application"
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -SearchString 'M365 License Manager'
+Get-EntraServicePrincipal -SearchString 'Helpdesk Application'
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This example gets a list of service principal, which has the specified display name.

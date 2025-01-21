@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaPermissionGrantPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Set-EntraBetaPermissionGrantPolicy
 
 schema: 2.0.0
 ---
@@ -43,12 +43,7 @@ The `Set-EntraBetaPermissionGrantPolicy` command updates a Microsoft Entra ID pe
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 $policy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
-$params = @{
-    Id = $policy.Id
-    Description = 'Updated description'
-}
-
-Set-EntraBetaPermissionGrantPolicy @params
+Set-EntraBetaPermissionGrantPolicy -Id $policy.Id -Description 'Updated description'
 ```
 
 This command updates the description of the specified permission grant policy.
@@ -61,12 +56,7 @@ This command updates the description of the specified permission grant policy.
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 $policy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
-$params = @{
-    Id = $policy.Id
-    DisplayName = 'Updated DisplayName'
-}
-
-Set-EntraBetaPermissionGrantPolicy @params
+Set-EntraBetaPermissionGrantPolicy -Id $policy.Id -DisplayName 'Updated DisplayName'
 ```
 
 This command updates the display name of the specified permission grant policy.

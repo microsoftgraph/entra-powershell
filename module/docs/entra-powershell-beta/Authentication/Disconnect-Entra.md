@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Disconnect-Entra
+Module Name: Microsoft.Entra.Beta.Authentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Authentication/Disconnect-Entra
 
 schema: 2.0.0
 ---

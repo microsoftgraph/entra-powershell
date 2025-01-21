@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 schema: 2.0.0
 ---
@@ -59,8 +59,8 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinition.Id
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id
 ```
 
 ```Output
@@ -77,12 +77,8 @@ This example retrieves an all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
-    Id = 'Alpine'
-}
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine'
 ```
 
 ```Output
@@ -100,12 +96,8 @@ This example retrieves a specific predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
-    Filter = "Id eq 'Apline'"
-}
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Filter "Id eq 'Alpine'"
 ```
 
 ```Output
@@ -175,7 +167,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

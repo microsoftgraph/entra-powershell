@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaAdministrativeUnit
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Set-EntraBetaAdministrativeUnit
 
 schema: 2.0.0
 ---
@@ -19,31 +19,26 @@ schema: 2.0.0
 
 ## Synopsis
 
-Updates the properties of an administrative unit.
+Updates an administrative unit.
 
 ## Syntax
 
 ```powershell
 Set-EntraBetaAdministrativeUnit
  -AdministrativeUnitId <String>
+ [-IsMemberManagementRestricted <Boolean>]
  [-Description <String>]
  [-DisplayName <String>]
- [-MembershipType <String>]
- [-MembershipRule <String>]
- [-MembershipRuleProcessingState <String>]
- [-Visibility <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraBetaAdministrativeUnit` cmdlet updates the properties of an administrative unit in Microsoft Entra ID. Specify `AdministrativeUnitId` parameter to update a specific administrative unit.
+The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Specify `AdministrativeUnitId` parameter to update a specific administrative unit.
 
 In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission.
 
-The following least-privileged roles are supported for this operation:
-
-- Privileged Role Administrator
+The Privileged Role Administrator is the least privileged role required for this operation.
 
 ## Examples
 
@@ -52,7 +47,7 @@ The following least-privileged roles are supported for this operation:
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description' -MembershipType 'Assigned'
+Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -DisplayName 'Pacific Admin Unit' -Description 'Pacific Admin Unit Description'
 ```
 
 This Command update DisplayName of specific administrative unit.
@@ -61,11 +56,24 @@ This Command update DisplayName of specific administrative unit.
 - `-DisplayName` parameter specifies the display name for the administrative unit.
 - `-Description` parameter specifies the description for the administrative unit.
 
+### Example 2: Update IsMemberManagementRestricted
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
+Set-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -IsMemberManagementRestricted $True
+```
+
+This example shows how to update the `IsMemberManagementRestricted` setting for a specific administrative unit.
+
+- `-AdministrativeUnitId` parameter specifies the Id of an administrative unit.
+- `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
+
 ## Parameters
 
 ### -Description
 
-Specifies a description for the administrative unit.
+Specifies a description.
 
 ```yaml
 Type: System.String
@@ -81,10 +89,26 @@ Accept wildcard characters: False
 
 ### -DisplayName
 
-Specifies a display name for the administrative unit.
+Specifies a display name.
 
 ```yaml
 Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsMemberManagementRestricted
+
+Indicates whether the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
+
+```yaml
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -97,77 +121,17 @@ Accept wildcard characters: False
 
 ### -AdministrativeUnitId
 
-Specifies the ID of an administrative unit in Microsoft Entra ID.
+Specifies the Id of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: Id
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -MembershipType
-
-Specifies the membership type of the administrative unit. Possible values are: `dynamic` and `assigned`. If not set, the default value is `null`, and the membership type defaults to `assigned`. This parameter is optional.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRule
-
-Specifies the dynamic membership rule applied to the administrative unit. The possible values are: `dynamic`, `assigned`. If not set, the default value is `null` and the default behavior is `assigned`. This parameter is optional.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRuleProcessingState
-
-Controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates. This parameter is optional.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Visibility
-
-Specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers. This parameter is optional.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

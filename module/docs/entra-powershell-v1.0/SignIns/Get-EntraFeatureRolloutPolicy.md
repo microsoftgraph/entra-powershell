@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraFeatureRolloutPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraFeatureRolloutPolicy
 schema: 2.0.0
 ---
 
@@ -77,14 +77,15 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'FeatureRolloutPolicy'"
+Get-EntraFeatureRolloutPolicy -Id $policy.Id
 ```
 
 ```Output
 
 Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            ----------- -------            ----------------------- ---------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolicy      emailAsAlternateId False                   False
 
 ```
 
@@ -182,7 +183,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

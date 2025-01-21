@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Remove-EntraPolicy
 schema: 2.0.0
 ---
 
@@ -39,7 +39,8 @@ The `Remove-EntraPolicy` cmdlet removes a policy from Microsoft Entra ID. Specif
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration'
-Remove-EntraPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+Remove-EntraPolicy -Id $policy.Id
 ```
 
 This command removes the specified policy from Microsoft Entra ID.
