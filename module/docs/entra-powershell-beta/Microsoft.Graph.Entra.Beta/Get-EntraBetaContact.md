@@ -48,6 +48,14 @@ Get-EntraBetaContact
 
 The `Get-EntraBetaContact` cmdlet gets a contact from Microsoft Entra ID.
 
+For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
+
+- Directory Readers: Read basic properties  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Retrieve all contact objects in the directory
@@ -72,7 +80,8 @@ This example retrieves all contact objects in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraBetaContact -OrgContactId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraBetaContact -OrgContactId $contact.Id
 ```
 
 ```Output
@@ -123,7 +132,7 @@ This example retrieves top two contacts in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'"
 ```
 
 ```Output
