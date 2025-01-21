@@ -192,6 +192,7 @@ HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
 
 This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
 
+
 ### Example 8: Get groups with specific properties
 
 ```powershell
