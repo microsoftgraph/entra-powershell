@@ -219,7 +219,6 @@ Connect-Entra @params
 
 ```powershell
 $ClientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
-# Enter client_secret in the password prompt.
 Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $ClientSecretCredential
 ```
 
@@ -281,7 +280,7 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 13: Sets the HTTP client timeout in seconds
 
 ```powershell
- Connect-Entra -ClientTimeout 60
+Connect-Entra -ClientTimeout 60
 ```
 
 ```Output

@@ -183,14 +183,8 @@ To create a certificate, run the command:
 
 ```PowerShell
 $certname = 'Contoso Certificate'
-
-# Create a self-signed certificate
 $cert = New-SelfSignedCertificate -Subject "CN=$certname" -CertStoreLocation "Cert:\CurrentUser\My" -KeyExportPolicy 'Exportable' -KeySpec 'Signature' -KeyLength 2048 -KeyAlgorithm 'RSA' -HashAlgorithm 'SHA256'
-
-# Retrieve the certificate from the store using its thumbprint
 $store = Get-Item "Cert:\CurrentUser\My\$($cert.Thumbprint)"
-
-# Set the FriendlyName property
 $store.FriendlyName = 'Contoso Certificate'
 ```
 
@@ -220,7 +214,6 @@ Connect-Entra -ClientId $applicationId -TenantId $tenantId -Certificate $contoso
 
 ```powershell
 $clientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
-# Enter client_secret in the password prompt.
 Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $clientSecretCredential
 ```
 
