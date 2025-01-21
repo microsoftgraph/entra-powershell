@@ -194,7 +194,7 @@ This example demonstrates how to retrieve groups without members. By identifying
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -Property 'DisplayName'
+Get-EntraBetaGroup -Select 'DisplayName'
 ```
 
 ```Output
