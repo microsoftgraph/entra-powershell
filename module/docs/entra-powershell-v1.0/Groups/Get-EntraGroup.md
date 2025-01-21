@@ -192,25 +192,23 @@ HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
 
 This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
 
-### Example 8: Get groups and return only a certain property or properties
+### Example 8: Get groups with specific properties
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroup -Property 'DisplayName'
+Get-EntraGroup -Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName 
------------            
-Contoso Group          
-Crimson Eagle           
-Bold Falcon             
-Azure Panda             
-Misty Fox
+Id                                   DisplayName                            SecurityEnabled Visibility GroupTypes
+--                                   -----------                            --------------- ---------- ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb new new                                          False Public     {Unified}
+eeeeeeee-4444-5555-6666-ffffffffffff Testing Team                                     False Private    {Unified}
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq Azure ATP morrisavenue Users                      True            {}
 
 ```
 
-This example demonstrates how to return only a specific property of a group.
+This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
 
 ## Parameters
 
