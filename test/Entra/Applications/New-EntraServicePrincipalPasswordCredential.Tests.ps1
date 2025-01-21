@@ -1,12 +1,12 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-BeforeAll {  
+BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
-        Import-Module Microsoft.Entra.Applications       
+        Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
-    
+
     $response = @{
         "@odata.context"      = 'https://graph.microsoft.com/v1.0/`$metadata#microsoft.graph.passwordCredential'
         "customKeyIdentifier" = $null
@@ -45,23 +45,19 @@ Describe "New-EntraServicePrincipalPasswordCredential" {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        } 
+        }
         It "Should execute successfully without throwing an error" {
-            # Disable confirmation prompts       
+            # Disable confirmation prompts
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
-            
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -DisplayName "Helpdesk Secret" -StartDate "01/15/2025 14:22:00" -Debug } | Should -Not -Throw
             }
             finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
             }
         }
     }
-}   
-
-
-
+}
