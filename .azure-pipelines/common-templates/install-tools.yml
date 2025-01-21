@@ -8,9 +8,9 @@ steps:
       version: 2.x
 
   - task: UseDotNet@2
-    displayName: "Use .NET 6" # needed for ESRP v5 signing
+    displayName: "Use .NET 8" # needed for ESRP v5 signing
     inputs:
-      version: 6.x
+      version: 8.x
 
   - task: UseDotNet@2
     displayName: Use .NET SDK
