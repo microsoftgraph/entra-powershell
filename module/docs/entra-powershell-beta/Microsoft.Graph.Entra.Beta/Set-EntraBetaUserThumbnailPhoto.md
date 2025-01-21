@@ -63,11 +63,7 @@ Updating any user's photo in the organization requires the User.ReadWrite.All pe
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
-$params = @{
-    UserId = 'SawyerM@contoso.com'
-    FilePath = 'D:\UserThumbnailPhoto.jpg'
-}
-Set-EntraBetaUserThumbnailPhoto @params
+Set-EntraBetaUserThumbnailPhoto -UserId -FilePath 'D:\UserThumbnailPhoto.jpg'
 ```
 
 This example sets the thumbnail photo of the user specified with the UserId parameter to the image specified with the FilePath parameter.
