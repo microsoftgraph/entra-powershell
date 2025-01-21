@@ -194,21 +194,18 @@ This example demonstrates how to retrieve groups without members. By identifying
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Format-Table -AutoSize
+Get-EntraBetaGroup -Property Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Select-Object Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DisplayName                            SecurityEnabled Visibility GroupTypes
---                                   -----------                            --------------- ---------- ----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb new new                                          False Public     {Unified}
-eeeeeeee-4444-5555-6666-ffffffffffff Testing Team                                     False Private    {Unified}
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq Azure ATP morrisavenue Users                      True            {}
-
+Id                                   DisplayName                SecurityEnabled Visibility GroupTypes
+--                                   -----------                --------------- ---------- ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           Public     {Unified}
+eeeeeeee-4444-5555-6666-ffffffffffff My new group              False           Private    {Unified}
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {}         
 ```
 
 This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
-
-This example demonstrates how to return only a specific property of a group.
 
 ## Parameters
 
