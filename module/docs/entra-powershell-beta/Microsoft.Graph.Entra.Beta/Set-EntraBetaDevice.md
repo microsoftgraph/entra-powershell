@@ -49,7 +49,11 @@ Set-EntraBetaDevice
 
 The `Set-EntraBetaDevice` cmdlet updates a device in Microsoft Entra ID.
 
-The calling user must have at least the Intune Administrator role in Microsoft Entra. A user with the Cloud Device Administrator role can only enable or disable devices, while a user with the Windows 365 Administrator role can only update basic device properties.
+The calling user must have at least:
+
+- Intune Administrator role
+- Cloud Device Administrator role can only enable or disable devices
+- Windows 365 Administrator role can only update basic device properties.
 
 ## Examples
 
@@ -57,7 +61,8 @@ The calling user must have at least the Intune Administrator role in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DisplayName 'My OS/2 computer'
 ```
 
 This example shows how to update a display name of a specified.
@@ -69,7 +74,8 @@ Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 $NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
 $NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
 $NewId.type = 2
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AlternativeSecurityIds $NewId
 ```
 
 This example shows how to update an alternative security ID of a specified device.
@@ -78,7 +84,8 @@ This example shows how to update an alternative security ID of a specified devic
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AccountEnabled $true
 ```
 
 This example shows how to update an account enabled of a specified device.
@@ -87,7 +94,8 @@ This example shows how to update an account enabled of a specified device.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DeviceOSType Windows
 ```
 
 This example shows how to update an OS type of a specified device.
@@ -96,9 +104,9 @@ This example shows how to update an OS type of a specified device.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 $params = @{
-    DeviceObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DeviceObjectId = $device.ObjectId
     DeviceMetadata = 'Testdevice'
     DeviceObjectVersion = 4
     DevicePhysicalIds = '[GID]:g:1234567890123456'
