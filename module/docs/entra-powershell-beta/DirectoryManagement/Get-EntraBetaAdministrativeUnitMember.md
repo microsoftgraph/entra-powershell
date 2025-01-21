@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaAdministrativeUnitMember
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaAdministrativeUnitMember
 
 schema: 2.0.0
 ---
@@ -50,8 +50,8 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id
 ```
 
 ```Output
@@ -72,8 +72,8 @@ This example returns the list of administrative unit members from specified admi
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -All
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -All
 ```
 
 ```Output
@@ -94,8 +94,8 @@ This example returns the list of all administrative unit members from specified 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -Top 3
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -Top 3
 ```
 
 ```Output
@@ -151,7 +151,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -167,7 +167,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

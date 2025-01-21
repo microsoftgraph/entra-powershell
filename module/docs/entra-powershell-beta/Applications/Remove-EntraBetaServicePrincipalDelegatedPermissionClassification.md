@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaServicePrincipalDelegatedPermissionClassification
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 schema: 2.0.0
 ---
@@ -42,9 +42,12 @@ The `Remove-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet d
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$permissionClassification = Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id | Where-Object {$_.PermissionName -eq 'Sites.Read.All'}
-Remove-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Id $permissionClassification.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+    ServicePrincipalId = $ServicePrincipal.ObjectId
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+}
+Remove-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
 
 This command deletes the delegated permission classification by Id from the service principal.

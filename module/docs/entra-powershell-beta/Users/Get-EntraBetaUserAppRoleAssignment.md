@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserAppRoleAssignment
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaUserAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -140,7 +140,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -156,7 +156,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalKeyCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalKeyCredential
 
 schema: 2.0.0
 ---
@@ -40,8 +40,8 @@ The `Get-EntraServicePrincipalKeyCredential` cmdlet gets the key credentials for
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output

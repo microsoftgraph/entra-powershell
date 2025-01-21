@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalPasswordCredential
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalPasswordCredential
 
 schema: 2.0.0
 ---
@@ -41,8 +41,8 @@ The `Get-EntraBetaServicePrincipalPasswordCredential` cmdlet gets the password c
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalPasswordCredential -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output

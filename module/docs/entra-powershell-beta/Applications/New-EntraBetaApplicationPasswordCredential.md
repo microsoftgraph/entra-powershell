@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaApplicationPasswordCredential
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/New-EntraBetaApplicationPasswordCredential
 
 schema: 2.0.0
 ---
@@ -62,7 +62,11 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>'
+$parameters = @{
+    ApplicationId = $application.Id
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
 ```Output
@@ -82,8 +86,13 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$startDate = (Get-Date).AddYears(0)
-New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -StartDate $startDate
+$parameters = @{
+    ApplicationId = $application.Id
+    StartDate = (Get-Date).AddYears(0)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
 ```Output
@@ -102,8 +111,13 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
-$endDate = (Get-Date).AddYears(2)
-New-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -EndDate $endDate
+$parameters = @{
+    ApplicationId = $application.Id
+    EndDate = (Get-Date).AddYears(2)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
 ```Output

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraApplicationVerifiedPublisher
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Set-EntraApplicationVerifiedPublisher
 
 schema: 2.0.0
 ---
@@ -42,10 +42,15 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+$appObjId = $app.ObjectId
 $mpnId =  '0433167'
 $req =  @{verifiedPublisherId = $mpnId}
-Set-EntraApplicationVerifiedPublisher -AppObjectId $application.Id -SetVerifiedPublisherRequest $req
+$params = @{
+     AppObjectId = $appObjId
+     SetVerifiedPublisherRequest = $req
+}
+Set-EntraApplicationVerifiedPublisher @params
 ```
 
 This command sets the verified publisher of an application.

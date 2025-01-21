@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraServicePrincipal
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraServicePrincipal
 
 schema: 2.0.0
 ---
@@ -59,12 +59,12 @@ For single-tenant apps where the calling user is a non-admin user but is the own
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$MyApp=(Get-EntraApplication -Filter "DisplayName eq 'Demo App'")
 $params = @{
     AccountEnabled = $true 
-    AppId = $application.AppId 
+    AppId = $MyApp.AppId 
     AppRoleAssignmentRequired = $true 
-    DisplayName = $application.DisplayName 
+    DisplayName = $MyApp.DisplayName 
     Tags = {WindowsAzureActiveDirectoryIntegratedApp}
 }
 New-EntraServicePrincipal @params
@@ -73,7 +73,7 @@ New-EntraServicePrincipal @params
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraApplication` to get application app Id.
@@ -89,9 +89,9 @@ The tag `-Tags {WindowsAzureActiveDirectoryIntegratedApp}` is used to have this 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$MyApp=(Get-EntraApplication -Filter "DisplayName eq 'Demo App'")
 $params = @{
-    AppId = $application.AppId 
+    AppId = $MyApp.AppId 
     Homepage = 'https://localhost/home' 
     LogoutUrl = 'htpp://localhost/logout' 
     ReplyUrls = 'https://localhost/redirect'
@@ -102,7 +102,7 @@ New-EntraServicePrincipal @params
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraApplication` to get application app Id.
@@ -124,15 +124,18 @@ $creds.Type = 'Symmetric'
 $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes('strong-cred-value')
 $creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-
-New-EntraServicePrincipal -AppId $application.AppId -KeyCredentials $creds
+$MyApp=(Get-EntraApplication -Filter "DisplayName eq 'Demo App'")
+$params = @{
+    AppId = $MyApp.AppId  
+    KeyCredentials = $creds
+}
+New-EntraServicePrincipal @params
 ```
 
 ```Output
 DisplayName Id                                   AppId                                SignInAudience ServicePrincipalType
 ----------- --                                   -----                                -------------- --------------------
-Helpdesk Application    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
+Demo App    bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraApplication` to get application app Id.
@@ -144,14 +147,20 @@ This example demonstrates how to create a new service Principal in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-New-EntraServicePrincipal -AppId $application.AppId -AlternativeNames 'sktest2' -ServicePrincipalType 'Application' -ServicePrincipalNames $application.AppId
+$MyApp=(Get-EntraApplication -Filter "DisplayName eq 'Demo App'")
+$params = @{
+    AppId = $MyApp.AppId 
+    AlternativeNames = 'sktest2' 
+    ServicePrincipalType = 'Application' 
+    ServicePrincipalNames = $MyApp.AppId
+}
+New-EntraServicePrincipal @params
 ```
 
 ```Output
 DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
 ----------- --                                   -----                                --------------                     --------------------
-Helpdesk Application   bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADandPersonalMicrosoftAccount Application
+Demo App   bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADandPersonalMicrosoftAccount Application
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID. You can use the command `Get-EntraApplication` to get application app Id.

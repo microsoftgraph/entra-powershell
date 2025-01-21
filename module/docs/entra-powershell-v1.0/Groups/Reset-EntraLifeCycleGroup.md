@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Reset-EntraLifeCycleGroup
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Reset-EntraLifeCycleGroup
 
 schema: 2.0.0
 ---
@@ -42,13 +42,12 @@ When a group is renewed, the group expiration is extended by the number of days 
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Reset-EntraLifeCycleGroup -Id $group.Id
+Reset-EntraLifeCycleGroup -Id 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 ```
 
 This example demonstrates how to renew a specified group.
 
-- `-Id` - Specifies the group Object ID.
+- `-Id` - Specifies the lifecycle policy object ID.
 
 ## Parameters
 

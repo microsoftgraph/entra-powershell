@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Select-EntraGroupIdsServicePrincipalIsMemberOf
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Select-EntraGroupIdsServicePrincipalIsMemberOf
 
 schema: 2.0.0
 ---
@@ -42,17 +42,23 @@ The `Select-EntraGroupIdsServicePrincipalIsMemberOf` cmdlet selects the groups i
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$group.GroupIds = (Get-EntraGroup -Top 10).Id
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
-Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $group
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 10).ObjectId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraGroupIdsServicePrincipalIsMemberOf @params
 ```
 
 ```Output
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command gets the group membership of a group for a specified service principal. Use the command `Get-EntraGroup` to get group Id and `Get-EntraServicePrincipal` to get service principal Id.
+This command gets the group membership of a group for a specified service principal.  
+You can use the command `Get-EntraGroup` to get group Id.  
+You can use the command `Get-EntraServicePrincipal` to get service principal Id.
 
 - `-ObjectId` parameter specifies the service principal Id.
 - `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.

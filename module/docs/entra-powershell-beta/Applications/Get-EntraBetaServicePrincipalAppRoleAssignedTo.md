@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalAppRoleAssignedTo
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
 schema: 2.0.0
 ---
@@ -55,14 +55,14 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
 Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
 --                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
-1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Helpdesk Application                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Helpdesk Application 
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box 
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups, and other service principals.
@@ -73,8 +73,8 @@ This example shows how to get app role assignments for an app or service, grante
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -95,8 +95,8 @@ This command gets the all app role assignments for the service principal granted
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -Top 5
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipal.ObjectId -Top 5
 ```
 
 ```Output
@@ -154,7 +154,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -170,7 +170,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -198,7 +198,3 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 `Get-EntraBetaServiceAppRoleAssignedTo` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignedTo`.
 
 ## Related Links
-
-[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
-
-[Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)

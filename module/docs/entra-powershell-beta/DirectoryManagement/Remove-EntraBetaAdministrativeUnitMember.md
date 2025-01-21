@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru 
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaAdministrativeUnitMember
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaAdministrativeUnitMember
 
 schema: 2.0.0
 ---
@@ -43,9 +43,12 @@ To remove a member from an administrative unit, the calling principal must have 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-$adminUnitMember = Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id | Select-Object Id, DisplayName,'@odata.type' | Where-Object {$_.DisplayName -eq 'Saywer Miller'}
-Remove-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $adminUnitMember.Id
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
+}
+Remove-EntraBetaAdministrativeUnitMember @params
 ```
 
 This command removes a specified member (user or group) from a specified administrative unit.

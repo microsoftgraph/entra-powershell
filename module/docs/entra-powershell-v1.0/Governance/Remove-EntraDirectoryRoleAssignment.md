@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraDirectoryRoleAssignment
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Remove-EntraDirectoryRoleAssignment
 
 schema: 2.0.0
 ---

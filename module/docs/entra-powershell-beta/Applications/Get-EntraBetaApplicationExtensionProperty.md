@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationExtensionProperty
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaApplicationExtensionProperty
 
 schema: 2.0.0
 ---
@@ -41,8 +41,8 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+Get-EntraBetaApplicationExtensionProperty -ApplicationId $Application.Id
 ```
 
 ```Output
@@ -80,7 +80,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

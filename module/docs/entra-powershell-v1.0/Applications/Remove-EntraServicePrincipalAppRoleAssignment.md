@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraServicePrincipalAppRoleAssignment
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -55,16 +55,14 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$group = Get-EntraGroup -Filter "displayName eq 'Contoso marketing'"
-$assignment = Get-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id | Where-Object {$_.PrincipalId -eq $group.Id} 
-Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id  -AppRoleAssignmentId $assignment.Id
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Remove-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id  -AppRoleAssignmentId '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
 ```
 
-This example demonstrates how to remove a service principal application role assignment for a group in Microsoft Entra ID.
+This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
 
 - `-ServicePrincipalId` - specifies the unique identifier (Object ID) of the service principal or user from which you want to remove an app role assignment.
-- `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove.
+- `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove. The value `2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6` represents the ID of the specific app role assignment to be removed.
 
 ## Parameters
 

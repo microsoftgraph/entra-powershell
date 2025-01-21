@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalOAuth2PermissionGrant
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalOAuth2PermissionGrant
 
 schema: 2.0.0
 ---
@@ -43,8 +43,8 @@ The `Get-EntraServicePrincipalOAuth2PermissionGrant` cmdlet gets an oAuth2Permis
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id
+ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipalId
 ```
 
 ```output
@@ -59,8 +59,7 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -All 
 ```
 
 ```Output
@@ -77,8 +76,7 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -Top 2
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
 ```
 
 ```Output
@@ -131,7 +129,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -147,7 +145,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalOwnedObject
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalOwnedObject
 
 schema: 2.0.0
 ---
@@ -43,8 +43,8 @@ The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet retrieves an object owned 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -61,8 +61,8 @@ The command retrieves the owned objects of a service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -All
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipalId -All
 ```
 
 ```Output
@@ -76,12 +76,31 @@ This example retrieves an object owned by a service principal in Microsoft Entra
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
+### Example 2: Retrieve all owned objects of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId -All 
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+```
+
+The command receives the all owned objects of a service principal.
+
+- `-ServicePrincipalId` Parameter specifies the ID of a service principal.
+
 ### Example 3: Retrieve top one owned object of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -Top 1
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.ObjectId -Top 1
 ```
 
 ```Output
@@ -135,7 +154,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -151,7 +170,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationPasswordCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationPasswordCredential
 
 schema: 2.0.0
 ---
@@ -42,7 +42,7 @@ The `Get-EntraApplicationPasswordCredential` cmdlet receives the password creden
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationPasswordCredential -ApplicationId $application.Id
+Get-EntraApplicationPasswordCredential -ApplicationId $application.ObjectId
 ```
 
 ```Output
@@ -80,7 +80,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

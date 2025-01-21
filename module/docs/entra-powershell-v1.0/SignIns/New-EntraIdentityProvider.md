@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraIdentityProvider
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/New-EntraIdentityProvider
 
 schema: 2.0.0
 ---
@@ -60,7 +60,14 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-New-EntraIdentityProvider -Type 'LinkedIn' -Name 'LinkedInName' -ClientId 'LinkedInAppClientId' -ClientSecret 'LinkedInAppClientSecret'
+$params = @{
+    Type = 'LinkedIn'
+    Name = 'LinkedInName'
+    ClientId = 'LinkedInAppClientId'
+    ClientSecret = 'LinkedInAppClientSecret'
+}
+
+New-EntraIdentityProvider @params
 ```
 
 ```Output

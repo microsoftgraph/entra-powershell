@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaDirSyncFeature
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Set-EntraBetaDirSyncFeature
 
 schema: 2.0.0
 ---
@@ -36,21 +36,18 @@ Set-EntraBetaDirSyncFeature
 
 ## Description
 
-The `Set-EntraBetaDirSyncFeature` cmdlet sets identity synchronization features for a tenant.
+The `Set-EntraBetaDirSyncFeature` cmdlet sets identity synchronization features for a tenant.  
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+You can use the following synchronization features with this cmdlet:  
 
-- Global Administrator
+- **EnableSoftMatchOnUpn**: Soft match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud. When this feature is enabled, soft match is attempted using the standard logic, based on the primary SMTP address. If a match isn't found based on primary SMTP, then a match is attempted based on UserPrincipalName. Once this feature is enabled, it can't be disabled.
+- **PasswordSync**: Used to indicate on-premise password synchronization.
+- **SynchronizeUpnForManagedUsers**: Allows for the synchronization of UserPrincipalName updates from on-premises for managed (nonfederated) users that are assigned a license. These updates are blocked if this feature isn't enabled. Once this feature is enabled, it can't be disabled.
+- **BlockSoftMatch**: When this feature is enabled, it blocks the soft match feature. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching is completed and is no longer needed.
+- **BlockCloudObjectTakeoverThroughHardMatch**: Used to block cloud object takeover via source anchor hard match.
 
-**Note**: You can use the following synchronization features with this cmdlet:  
-
-- `EnableSoftMatchOnUpn`: Soft match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud. When this feature is enabled, soft match is attempted using the standard logic, based on the primary SMTP address. If a match isn't found based on primary SMTP, then a match is attempted based on UserPrincipalName. Once this feature is enabled, it can't be disabled.
-- `PasswordSync`: Used to indicate on-premise password synchronization.
-- `SynchronizeUpnForManagedUsers`: Allows for the synchronization of UserPrincipalName updates from on-premises for managed (nonfederated) users that are assigned a license. These updates are blocked if this feature isn't enabled. Once this feature is enabled, it can't be disabled.
-- `BlockSoftMatch`: When this feature is enabled, it blocks the soft match feature. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching is completed and is no longer needed.
-- `BlockCloudObjectTakeoverThroughHardMatch`: Used to block cloud object takeover via source anchor hard match.
-
-Enabling features like **EnableSoftMatchOnUpn** and **SynchronizationUpnForManagedUsers** is permanent and cannot be undone.
+Enabling some of these features, such as EnableSoftMatchOnUpn and SynchronizationUpnForManagedUsers, is a permanent operation.
+You can't disable these features once they're enabled.
 
 ## Examples
 
@@ -58,7 +55,12 @@ Enabling features like **EnableSoftMatchOnUpn** and **SynchronizationUpnForManag
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -Force $true
+$params = @{
+    Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
+    Enable = $True
+    Force = $true
+}
+Set-EntraBetaDirSyncFeature @params
 ```
 
 This command enables the SoftMatchOnUpn feature for the tenant.
@@ -71,7 +73,12 @@ This command enables the SoftMatchOnUpn feature for the tenant.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncFeature -Feature 'BlockSoftMatch' -Enable $true
+$params = @{
+    Feature = 'BlockSoftMatch'
+    Enable = $True
+}
+
+Set-EntraBetaDirSyncFeature @params
 ```
 
 This command enables the BlockSoftMatch feature for the tenant - effectively blocking the Soft Matching feature in the tenant.
@@ -84,7 +91,13 @@ This command enables the BlockSoftMatch feature for the tenant - effectively blo
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -TenantId $tenantID -Force $true
+$params = @{
+    Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
+    Enable = $True
+    TenantId = $tenantID
+}
+
+Set-EntraBetaDirSyncFeature @params
 ```
 
 This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.

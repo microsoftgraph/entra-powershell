@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraApplication
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraApplication
 
 schema: 2.0.0
 ---
@@ -39,20 +39,11 @@ The `Remove-EntraApplication` cmdlet deletes an application object identified by
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Remove-EntraApplication -ApplicationId $application.Id
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Remove-EntraApplication -ApplicationId $Application.ObjectId
 ```
 
 This example demonstrates how to delete an application object.
-
-### Example 2: Remove an application using pipelining
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'" | Remove-EntraApplication
-```
-
-This example demonstrates how to delete an application object using pipelining.
 
 ## Parameters
 

@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Select-EntraBetaGroupIdsUserIsMemberOf
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Select-EntraBetaGroupIdsUserIsMemberOf
 
 schema: 2.0.0
 ---
@@ -42,13 +42,9 @@ The `Select-EntraBetaGroupIdsUserIsMemberOf` cmdlet selects the groups that a us
 Connect-Entra -Scopes 'Application.Read.All'
 $myGroup = Get-EntraBetaGroup -Filter "DisplayName eq '<Group-DisplayName>'"
 $UserId = 'SawyerM@contoso.com'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = $myGroup.ObjectId
-$Params = @{
-    ObjectId = $UserId 
-    GroupIdsForMembershipCheck = $Groups
-}
-Select-EntraBetaGroupIdsUserIsMemberOf @Params
+$groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$groups.GroupIds = $myGroup.Id
+Select-EntraBetaGroupIdsUserIsMemberOf -ObjectId 'SawyerM@contoso.com' -GroupIdsForMembershipCheck $groups
 ```
 
 ```Output

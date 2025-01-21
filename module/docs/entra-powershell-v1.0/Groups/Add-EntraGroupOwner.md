@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraGroupOwner
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Add-EntraGroupOwner
 
 schema: 2.0.0
 ---
@@ -35,12 +35,9 @@ Add-EntraGroupOwner
 
 The `Add-EntraGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
 
-- Group owners
-- User Administrator
-- Directory Writers
-- Groups Administrator
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
 
 ## Examples
 
@@ -50,13 +47,15 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraGroupOwner -GroupId $group.Id -RefObjectId $user.Id
+$params = @{
+    GroupId = $group.ObjectId
+    RefObjectId = $user.ObjectId
+}
+
+Add-EntraGroupOwner @params
 ```
 
 This example demonstrates how to add an owner to a group.
-
-- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add an owner.
-- `-RefObjectId` - Specifies the unique identifier (Object ID) of the owner to be added to the group.
 
 ## Parameters
 

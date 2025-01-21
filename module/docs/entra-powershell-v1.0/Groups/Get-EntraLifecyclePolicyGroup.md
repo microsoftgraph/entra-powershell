@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraLifecyclePolicyGroup
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraLifecyclePolicyGroup
 
 schema: 2.0.0
 ---
@@ -41,8 +41,7 @@ The `Get-EntraLifecyclePolicyGroup` retrieves the lifecycle policy object to whi
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraLifecyclePolicyGroup -GroupId $group.Id
+Get-EntraLifecyclePolicyGroup -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -80,7 +79,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

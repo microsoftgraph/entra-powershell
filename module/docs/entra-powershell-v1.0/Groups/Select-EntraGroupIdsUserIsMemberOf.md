@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Select-EntraGroupIdsUserIsMemberOf
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Select-EntraGroupIdsUserIsMemberOf
 
 schema: 2.0.0
 ---
@@ -43,9 +43,13 @@ The `Select-EntraGroupIdsUserIsMemberOf` cmdlet selects the groups that a user i
 Connect-Entra -Scopes 'Application.Read.All'
 $myGroup = Get-EntraGroup -Filter "DisplayName eq '<Group-DisplayName>'"
 $UserId = 'SawyerM@contoso.com'
-$groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$groups.GroupIds = $myGroup.Id
-Select-EntraGroupIdsUserIsMemberOf -ObjectId 'SawyerM@contoso.com' -GroupIdsForMembershipCheck $groups
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = $myGroup.ObjectId
+$Params = @{
+    ObjectId = $UserId 
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraGroupIdsUserIsMemberOf @Params
 ```
 
 ```Output

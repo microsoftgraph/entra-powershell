@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Enable-EntraBetaDirectoryRole
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Enable-EntraBetaDirectoryRole
 
 schema: 2.0.0
 ---
@@ -37,18 +37,14 @@ The `Enable-EntraBetaDirectoryRole` cmdlet activates an existing directory role 
 
 The Company Administrators and the default user directory roles (User, Guest User, and Restricted Guest User) are activated by default. To access and assign members to other directory roles, you must first activate them using their corresponding directory role template ID.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
-
-- Privileged Role Administrator
-
 ## Examples
 
 ### Example 1: Enable a directory role
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$guestRole = Get-EntraBetaDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
-Enable-EntraBetaDirectoryRole -RoleTemplateId $guestRole.Id
+$InviterRole = Get-EntraBetaDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
+Enable-EntraBetaDirectoryRole -RoleTemplateId $InviterRole.ObjectId
 ```
 
 ```Output

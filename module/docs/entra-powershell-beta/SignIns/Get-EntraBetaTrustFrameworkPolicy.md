@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaTrustFrameworkPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaTrustFrameworkPolicy
 
 schema: 2.0.0
 ---
@@ -46,8 +46,6 @@ Get-EntraBetaTrustFrameworkPolicy
 ## Description
 
 The `Get-EntraBetaTrustFrameworkPolicy` cmdlet retrieves the trust framework policies that have been created in the directory.
-
-In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
 ## Examples
 
@@ -137,7 +135,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

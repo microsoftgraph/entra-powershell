@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationTemplate
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaApplicationTemplate
 
 schema: 2.0.0
 ---
@@ -61,8 +61,7 @@ This command gets all the application template objects
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$applicationTemplate = Get-EntraBetaApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
-Get-EntraBetaApplicationTemplate -Id $applicationTemplate.Id
+Get-EntraBetaApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -100,7 +99,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

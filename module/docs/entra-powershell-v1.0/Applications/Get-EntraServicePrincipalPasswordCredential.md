@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalPasswordCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalPasswordCredential
 
 schema: 2.0.0
 ---
@@ -40,8 +40,8 @@ The `Get-EntraServicePrincipalPasswordCredential` cmdlet gets the password crede
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalPasswordCredential -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output

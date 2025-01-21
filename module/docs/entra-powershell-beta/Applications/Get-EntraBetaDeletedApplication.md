@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDeletedApplication
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaDeletedApplication
 
 schema: 2.0.0
 ---
@@ -211,7 +211,7 @@ The default value is 100.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -227,7 +227,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

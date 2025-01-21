@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraConditionalAccessPolicy
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/New-EntraConditionalAccessPolicy
 
 schema: 2.0.0
 ---

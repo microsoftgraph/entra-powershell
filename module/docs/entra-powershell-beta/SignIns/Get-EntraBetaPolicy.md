@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Get-EntraBetaPolicy
 
 schema: 2.0.0
 ---
@@ -169,7 +169,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named

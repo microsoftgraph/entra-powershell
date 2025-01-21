@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaDeviceRegisteredUser
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Add-EntraBetaDeviceRegisteredUser
 
 schema: 2.0.0
 ---

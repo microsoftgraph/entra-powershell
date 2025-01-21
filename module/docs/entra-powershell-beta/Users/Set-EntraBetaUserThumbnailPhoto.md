@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserThumbnailPhoto
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Set-EntraBetaUserThumbnailPhoto
 
 schema: 2.0.0
 ---

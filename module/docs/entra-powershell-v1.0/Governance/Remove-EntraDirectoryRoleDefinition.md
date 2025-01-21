@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraDirectoryRoleDefinition
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Remove-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---

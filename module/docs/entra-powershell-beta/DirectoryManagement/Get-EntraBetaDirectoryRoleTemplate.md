@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryRoleTemplate
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaDirectoryRoleTemplate
 
 schema: 2.0.0
 ---
@@ -33,10 +33,6 @@ Get-EntraBetaDirectoryRoleTemplate
 ## Description
 
 The `Get-EntraBetaDirectoryRoleTemplate` cmdlet gets directory role templates in Microsoft Entra ID.
-
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
-
-- Global Reader
 
 ## Examples
 
@@ -83,7 +79,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

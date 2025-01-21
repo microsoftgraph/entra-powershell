@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraCustomSecurityAttributeDefinition
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraCustomSecurityAttributeDefinition
 
 schema: 2.0.0
 ---

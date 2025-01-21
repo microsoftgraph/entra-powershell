@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalAppRoleAssignment
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -54,9 +54,9 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ### Example 1: Retrieve the application role assignments for a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -72,9 +72,9 @@ This command gets application role assignments for specified service principal. 
 ### Example 2: Retrieve all application role assignments for a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -All
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId -All
 ```
 
 ```Output
@@ -95,8 +95,8 @@ This command gets all application role assignments for specified service princip
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id -Top 3
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $ServicePrincipal.ObjectId -Top 3
 ```
 
 ```Output
@@ -152,7 +152,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -168,7 +168,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

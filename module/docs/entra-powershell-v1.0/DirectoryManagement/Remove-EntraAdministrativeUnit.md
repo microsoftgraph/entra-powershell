@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraAdministrativeUnit
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Remove-EntraAdministrativeUnit
 
 schema: 2.0.0
 ---
@@ -42,8 +42,8 @@ To delete an administrative unit, the calling principal must have at least the P
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-Remove-EntraAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
+Remove-EntraAdministrativeUnit -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 This command removes the specified administrative unit from Microsoft Entra ID.

@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraAttributeSet
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraAttributeSet
 
 schema: 2.0.0
 ---

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraDirectoryRoleDefinition
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/New-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
@@ -143,7 +143,7 @@ $params = @{
    RolePermissions = $RolePermissions
    IsEnabled = $false
    DisplayName = 'MyRoleDefinition'
-   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+   TemplateId = '4dd5aa9c-cf4d-4895-a993-740d342802b9'
 }
 
 New-EntraDirectoryRoleDefinition @params
@@ -152,7 +152,7 @@ New-EntraDirectoryRoleDefinition @params
 ```Output
 DisplayName      Id                                   TemplateId                           Description IsBuiltIn IsEnabled
 -----------      --                                   ----------                           ----------- --------- ---------
-MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 f2ef992c-3afb-46b9-b7cf-a126ee74c451             False     False
+MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 4dd5aa9c-cf4d-4895-a993-740d342802b9             False     False
 
 ```
 

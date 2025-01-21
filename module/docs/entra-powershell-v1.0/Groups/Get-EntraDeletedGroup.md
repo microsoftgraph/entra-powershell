@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDeletedGroup
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraDeletedGroup
 
 schema: 2.0.0
 ---
@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieves soft-deleted groups in Microsoft Entra ID.
+This cmdlet is used to retrieve the soft deleted groups in a Microsoft Entra ID.
 
 ## Syntax
 
@@ -58,7 +58,7 @@ Get-EntraDeletedGroup
 ### GetVague
 
 ```powershell
-Get-EntraDeletedGroup
+Get-EntraBetaDeletedGroup
  [-All]
  [-SearchString <String>]
  [-Property <String[]>]
@@ -67,9 +67,9 @@ Get-EntraDeletedGroup
 
 ## Description
 
-The `Get-EntraDeletedGroup` cmdlet retrieves soft-deleted groups from the directory. Deleted groups can be recovered within 30 days, after which they are permanently deleted.
+This cmdlet retrieves soft-deleted groups from a directory. When a group is deleted, it is soft deleted and can be recovered within 30 days. After 30 days, the group is permanently deleted and cannot be recovered.
 
-Soft delete currently applies only to Unified Groups (Office 365 Groups).
+Please note that soft delete currently applies only to Unified Groups (also known as Office 365 Groups).
 
 ## Examples
 
@@ -249,7 +249,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -265,7 +265,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

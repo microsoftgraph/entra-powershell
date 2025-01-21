@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaLifecyclePolicyGroup
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Remove-EntraBetaLifecyclePolicyGroup
 
 schema: 2.0.0
 ---
@@ -43,12 +43,8 @@ The `Remove-EntraBetaLifecyclePolicyGroup` cmdlet removes a group from a lifecyc
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Office365 group'"
-$policy = Get-EntraBetaLifecyclePolicyGroup -Id $group.ObjectId
-$params = @{
-    GroupLifecyclePolicyId = $policy.Id
-    GroupId = $group.ObjectId
-}
-Remove-EntraBetaLifecyclePolicyGroup @params
+$policy = Get-EntraBetaLifecyclePolicyGroup -Id $group.Id
+Remove-EntraBetaLifecyclePolicyGroup -GroupLifecyclePolicyId $policy.Id -GroupId $group.Id
 ```
 
 ```Output

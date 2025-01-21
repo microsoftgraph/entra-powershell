@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationKeyCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationKeyCredential
 
 schema: 2.0.0
 ---
@@ -51,15 +51,17 @@ As part of the request validation, proof of possession of an existing key is ver
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+
+$AppId = (Get-EntraApplication -Top 1).Objectid
 $params = @{
-    ApplicationId = $application.Id
+    ApplicationId = $AppId
     CustomKeyIdentifier = 'EntraPowerShellKey'
     StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
     Usage = 'Sign'
     Value = '<my-value>'
 }
+
 New-EntraApplicationKeyCredential @params
 ```
 
@@ -88,7 +90,7 @@ You can use the `Get-EntraApplication` cmdlet to retrieve the application Object
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+
 $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
 $cer.Import('C:\Users\ContosoUser\appcert.cer') 
 $bin = $cer.GetRawCertData()
@@ -98,7 +100,7 @@ $base64Thumbprint = [System.Convert]::ToBase64String($bin)
 $keyid = [System.Guid]::NewGuid().ToString() 
 
 $params = @{
-    ApplicationId = $application.Id
+    ApplicationId = '22223333-cccc-4444-dddd-5555eeee6666'
     CustomKeyIdentifier = $base64Thumbprint
     Type = 'AsymmetricX509Cert'
     Usage = 'Verify'
@@ -106,6 +108,7 @@ $params = @{
     StartDate = $cer.GetEffectiveDateString()
     EndDate = $cer.GetExpirationDateString()
 }
+
 New-EntraApplicationKeyCredential @params
 ```
 

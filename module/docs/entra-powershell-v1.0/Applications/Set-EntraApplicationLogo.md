@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraApplicationLogo
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Set-EntraApplicationLogo
 
 schema: 2.0.0
 ---
@@ -59,8 +59,12 @@ The `Set-EntraApplicationLogo` cmdlet is used to set the logo for an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraApplicationLogo -ApplicationId $application.Id -FilePath 'D:\applogo.jpg'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Demo Application'"
+$params = @{
+    ObjectId = $application.ObjectId
+    FilePath = 'D:\applogo.jpg'
+}
+Set-EntraApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the `-ApplicationId` parameter to the image specified with the `-FilePath` parameter.

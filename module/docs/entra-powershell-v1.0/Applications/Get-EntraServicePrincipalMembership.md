@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalMembership
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalMembership
 
 schema: 2.0.0
 ---
@@ -43,8 +43,8 @@ The `Get-EntraServicePrincipalMembership` cmdlet gets the memberships of a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -61,8 +61,8 @@ This cmdlet retrieves a specified service principal memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -All 
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -81,8 +81,8 @@ This command gets all memberships of a specified service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -Top 2
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
@@ -138,7 +138,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -154,7 +154,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

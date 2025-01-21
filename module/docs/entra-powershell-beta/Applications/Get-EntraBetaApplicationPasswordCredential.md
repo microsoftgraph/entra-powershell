@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationPasswordCredential
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaApplicationPasswordCredential
 schema: 2.0.0
 ---
 
@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password cr
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id
+Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.ObjectId
 ```
 
 ```Output
@@ -78,7 +78,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

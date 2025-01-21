@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraIdentityProvider
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraIdentityProvider
 
 schema: 2.0.0
 ---
@@ -114,7 +114,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationProxyApplicationConnectorGroup
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaApplicationProxyApplicationConnectorGroup
 
 schema: 2.0.0
 ---
@@ -41,8 +41,7 @@ The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso App Proxy'"
-Get-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId $application.Id
+Get-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output

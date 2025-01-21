@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaServicePrincipalOwner
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaServicePrincipalOwner
 
 schema: 2.0.0
 ---
@@ -40,10 +40,14 @@ The `Remove-EntraBetaServicePrincipalOwner` cmdlet removes an owner from a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$ownership = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, userPrincipalName, DisplayName, '@odata.type'
-$owner = $ownership | Where-Object {$_.userPrincipalName -eq 'SawyerM@Contoso.com' }
-Remove-EntraBetaServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
+$owner = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+
+$params= @{
+    ServicePrincipalId = $servicePrincipal.Id 
+    OwnerId = $owner.Id
+}
+Remove-EntraBetaServicePrincipalOwner @params
 ```
 
 This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.

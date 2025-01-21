@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraGroupLifecyclePolicy
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/New-EntraGroupLifecyclePolicy
 
 schema: 2.0.0
 ---
@@ -42,7 +42,12 @@ Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Selected' -AlternateNotificationEmails 'example@contoso.com'
+$Params = @{
+    GroupLifetimeInDays = 99
+    ManagedGroupTypes = 'Selected'
+    AlternateNotificationEmails = 'example@contoso.com'
+}
+New-EntraGroupLifecyclePolicy @params
 ```
 
 ```Output

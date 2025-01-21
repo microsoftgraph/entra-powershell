@@ -1,17 +1,7 @@
 ---
-title: New-EntraBetaPrivilegedRoleAssigment
-description: This article provides details on the New-EntraBetaPrivilegedRoleAssignment command.
-
-
-ms.topic: reference
-ms.date: 07/19/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPrivilegedRoleAssignment
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/New-EntraBetaPrivilegedRoleAssignment
 
 schema: 2.0.0
 ---

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationExtensionProperty
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationExtensionProperty
 
 schema: 2.0.0
 ---
@@ -44,8 +44,13 @@ The `New-EntraApplicationExtensionProperty` cmdlet creates an application extens
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+$params = @{
+    ApplicationId = $Application.ObjectId
+    Name = 'NewAttribute'
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
 ```Output
@@ -63,8 +68,14 @@ This command creates an application extension property of the string type for th
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute1' -DataType 'Boolean'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+$params = @{
+    ApplicationId = $Application.ObjectId
+    Name = 'NewAttribute'
+    DataType = 'Boolean'
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
 ```Output
@@ -83,10 +94,16 @@ This command creates an application extension property of the specified data typ
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$Application = Get-EntraApplication -SearchString '<application-name>'
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
-New-EntraApplicationExtensionProperty -ApplicationId $application.Id -Name 'NewAttribute2' -TargetObjects $targets
+$params = @{
+    ApplicationId = $Application.ObjectId
+    Name = 'NewAttribute'
+    TargetObjects = $targets
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
 ```Output

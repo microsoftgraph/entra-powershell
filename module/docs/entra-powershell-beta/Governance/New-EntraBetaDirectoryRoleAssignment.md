@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaDirectoryRoleAssignment
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/New-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryRoleDefinition
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Get-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
@@ -93,7 +93,7 @@ This command returns all the role definitions present.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId '2af84b1e-32c8-42b7-82bc-daa82404023b'
+Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
@@ -144,12 +144,10 @@ Get-EntraDirectoryRoleDefinition -SearchString 'Global'
  ```
 
 ```Output
-DisplayName                        Id                                   TemplateId                           Description                                                                                                                                                           IsBu
-                                                                                                                                                                                                                                                                                   iltI
-                                                                                                                                                                                                                                                                                   n
------------                        --                                   ----------                           -----------                                                                                                                                                           ----
-Global Administrator               62e90394-69f5-4237-9190-012177145e10 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.                                                              True
-Global Reader                      f2ef992c-3afb-46b9-b7cf-a126ee74c451 f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.                                                                                         True
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Global Administrator               00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identit…
+Global Reader                      11bb11bb-cc22-dd33-ee44-55ff55ff55ff f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.
 ```
 
 This command return all the role definitions containing the specified display name.
@@ -195,7 +193,7 @@ Specifies the maximum number of records that this cmdlet gets. The default value
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -243,7 +241,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

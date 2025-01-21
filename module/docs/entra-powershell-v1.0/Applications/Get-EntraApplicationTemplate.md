@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationTemplate
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationTemplate
 schema: 2.0.0
 ---
 
@@ -62,8 +62,7 @@ This command gets all the application template objects
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$applicationTemplate = Get-EntraApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
-Get-EntraApplicationTemplate -Id $applicationTemplate.Id
+Get-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -134,7 +133,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -150,7 +149,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

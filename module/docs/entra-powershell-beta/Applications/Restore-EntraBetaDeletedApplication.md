@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Restore-EntraBetaDeletedApplication
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Restore-EntraBetaDeletedApplication
 
 schema: 2.0.0
 ---
@@ -50,8 +50,16 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application'
-Restore-EntraBetaDeletedApplication -ObjectId $deletedApplication.Id
+$application = Get-EntraBetaApplication -SearchString 'New Entra Application'
+
+# Delete a specific application
+Remove-EntraBetaApplication -ObjectId $application.ObjectId
+
+# Confirm deleted application
+Get-EntraBetaDeletedApplication -Filter "DisplayName eq 'New Entra Application'"
+
+# Restore a deleted application
+Restore-EntraBetaDeletedApplication -ObjectId $application.ObjectId
 ```
 
 ```Output

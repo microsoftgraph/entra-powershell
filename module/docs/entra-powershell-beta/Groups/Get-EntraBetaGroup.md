@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaGroup
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Get-EntraBetaGroup
 
 schema: 2.0.0
 ---
@@ -83,7 +83,8 @@ This example demonstrates how to get all groups from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Azure Panda'"
+Get-EntraBetaGroup -GroupId $group.Id
 ```
 
 ```Output
@@ -190,34 +191,6 @@ HelpDesk admin group  eeeeeeee-4444-5555-6666-ffffffffffff {}
 
 This example demonstrates how to retrieve groups without members. By identifying memberless groups, IT admins can identify and clean up unused or obsolete groups that no longer serve a purpose.
 
-### Example 8: Get groups with specific properties
-### Example 8: Get groups with specific properties
-
-```powershell
-Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -Property Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Format-Table -AutoSize
-Get-EntraBetaGroup -Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Select Id,DisplayName, SecurityEnabled,Visibility,GroupTypes | Format-Table -AutoSize
-```
-
-```Output
-Id                                   DisplayName                SecurityEnabled Visibility GroupTypes
---                                   -----------                --------------- ---------- ----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           Public     {Unified}
-eeeeeeee-4444-5555-6666-ffffffffffff My new group              False           Private    {Unified}
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {}         
-```
-Id                                   DisplayName                            SecurityEnabled Visibility GroupTypes
---                                   -----------                            --------------- ---------- ----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb new new                                          False Public     {Unified}
-eeeeeeee-4444-5555-6666-ffffffffffff Testing Team                                     False Private    {Unified}
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq Azure ATP morrisavenue Users                      True            {}
-
-```
-
-This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
-
-This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
-
 ## Parameters
 
 ### -All
@@ -292,7 +265,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -308,7 +281,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryObjectOnPremisesProvisioningError
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraDirectoryObjectOnPremisesProvisioningError
 
 schema: 2.0.0
 ---
@@ -41,6 +41,7 @@ The `Get-EntraDirectoryObjectOnPremisesProvisioningError` returns whether Micros
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+
 Get-EntraDirectoryObjectOnPremisesProvisioningError 
 ```
 
@@ -54,8 +55,8 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
-$tenant = Get-EntraTenantDetail
-Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId $tenant.Id
+
+Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
 ```
 
 ```Output

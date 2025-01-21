@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationPassword
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationPassword
 
 schema: 2.0.0
 ---
@@ -27,7 +27,7 @@ Adds a strong password to an application.
 
 ```powershell
 New-EntraApplicationPassword
- -ApplicationId <String>
+ -ObjectId <String>
  -PasswordCredential <PasswordCredential>
  [<CommonParameters>]
 ```
@@ -42,14 +42,19 @@ Adds a strong password to an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-$passwordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
-$passwordCredential.StartDateTime = Get-Date -Year 2024 -Month 10 -Day 23
-$passwordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
-$passwordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('Analytics App Password')
-$passwordCredential.Hint = 'analytics'
-$passwordCredential.DisplayName = 'Analytics App Password'
-New-EntraApplicationPassword -ApplicationId $application.Id -PasswordCredential $passwordCredential
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$PasswordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
+$PasswordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
+$PasswordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
+$PasswordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
+$PasswordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
+$PasswordCredential.Hint = 'b'
+$params = @{
+    ObjectId = $Application.ObjectId
+    PasswordCredential = $PasswordCredential
+}
+
+New-EntraApplicationPassword @params
 ```
 
 ```Output
@@ -60,19 +65,19 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This example adds a password to the specified application.
 
-- `-ApplicationId` parameter specifies the unique identifier of the application.
+- `-ObjectId` parameter specifies the unique identifier of the application.
 - `-PasswordCredential` parameter specifies a password credential associated with an application or a service principal.
 
 ## Parameters
 
-### -ApplicationId
+### -ObjectId
 
 The unique identifier of the application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases:
 
 Required: True
 Position: Named

@@ -9,9 +9,9 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
-external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaOauth2PermissionGrant
+external help file: Microsoft.Entra.Beta.SignIns-help.xml
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaOauth2PermissionGrant
 
 schema: 2.0.0
 ---

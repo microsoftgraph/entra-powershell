@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUser
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaUser
 
 schema: 2.0.0
 ---
@@ -146,7 +146,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraBetaUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -Property Id, DisplayName, UserPrincipalName -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
@@ -156,6 +156,9 @@ lastSuccessfulSignInDateTime      : 9/9/2024 1:12:13 PM
 lastNonInteractiveSignInDateTime  : 9/9/2024 1:12:13 PM
 lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
 lastSignInDateTime                : 9/7/2024 9:15:41 AM
+id                                : aaaaaaaa-bbbb-cccc-1111-222222222222
+displayName                       : Sawyer Miller
+userPrincipalName                 : SawyerM@contoso.com
 ```
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
@@ -383,7 +386,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -399,7 +402,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

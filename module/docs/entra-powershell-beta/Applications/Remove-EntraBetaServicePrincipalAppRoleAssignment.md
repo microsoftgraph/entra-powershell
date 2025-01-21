@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaServicePrincipalAppRoleAssignment
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -55,16 +55,20 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$group = Get-EntraBetaGroup -Filter "displayName eq 'Contoso marketing'"
-$assignment = Get-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id | Where-Object {$_.PrincipalId -eq $group.Id} 
-Remove-EntraBetaServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipal.Id  -AppRoleAssignmentId $assignment.Id
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+ ServicePrincipalId = $ServicePrincipal.ObjectId  
+ AppRoleAssignmentId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+}
+
+Remove-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
-This example demonstrates how to remove a service principal application role assignment for a group in Microsoft Entra ID.
+This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
 
 - `-ServicePrincipalId` - specifies the unique identifier (Object ID) of the service principal or user from which you want to remove an app role assignment.
-- `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove.
+
+- `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove. The value `2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6` represents the ID of the specific app role assignment to be removed.
 
 ## Parameters
 

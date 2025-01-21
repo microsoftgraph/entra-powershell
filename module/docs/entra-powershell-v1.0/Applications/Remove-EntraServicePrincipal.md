@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraServicePrincipal
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraServicePrincipal
 
 schema: 2.0.0
 ---
@@ -41,7 +41,8 @@ The `Remove-EntraServicePrincipal` cmdlet removes a service principal in Microso
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'" | Remove-EntraServicePrincipal
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Remove-EntraServicePrincipal -ServicePrincipalId $servicePrincipal.ObjectId
 ```
 
 This example demonstrates how to remove a service principal in Microsoft Entra ID.

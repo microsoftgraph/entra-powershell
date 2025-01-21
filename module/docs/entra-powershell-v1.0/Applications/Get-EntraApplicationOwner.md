@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationOwner
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationOwner
 
 schema: 2.0.0
 ---
@@ -44,8 +44,8 @@ The `Get-EntraApplicationOwner` cmdlet get an owner of an Microsoft Entra ID app
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId
 ```
 
 ```Output
@@ -93,8 +93,8 @@ This example demonstrates how to get the owners of an application in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id -All
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -All
 ```
 
 ```Output
@@ -114,8 +114,8 @@ This example demonstrates how to get the all owners of a specified application i
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id -Top 2
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -Top 2
 ```
 
 ```Output
@@ -170,7 +170,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -186,7 +186,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

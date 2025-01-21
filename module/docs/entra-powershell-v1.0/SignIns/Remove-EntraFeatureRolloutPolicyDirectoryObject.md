@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraFeatureRolloutPolicyDirectoryObject
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Remove-EntraFeatureRolloutPolicyDirectoryObject
 
 schema: 2.0.0
 ---

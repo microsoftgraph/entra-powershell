@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Users-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaUserExtension
+Module Name: Microsoft.Entra.Beta.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Remove-EntraBetaUserExtension
 
 schema: 2.0.0
 ---

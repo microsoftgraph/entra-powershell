@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraContract
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraContract
 
 schema: 2.0.0
 ---
@@ -49,7 +49,35 @@ Get-EntraContract
 
 The `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
 
-In delegated scenarios with work or school accounts, the `Directory Readers` role is the only least privileged role that supports this operation for the signed-in user
+The contract object contains the following attributes:
+
+- `contractType` - type of the contract.
+
+Possible values are:  
+
+1. SyndicationPartner - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
+They resell and support their customers.
+1. BreadthPartner - indicates that the partner has the ability to provide administrative support for this customer.
+However the partner isn't allowed to resell to the customer.
+1. ResellerPartner - indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
+
+- `customerContextId` - unique identifier for the customer tenant referenced by this partnership.
+
+Corresponds to the ObjectId property of the customer tenant's TenantDetail object.
+
+- `defaultDomainName` - a copy of the customer tenant's default domain name.
+The copy is made when the partnership with the customer is established.
+It isn't automatically updated if the customer tenant's default domain name changes.
+
+- `deletionTimestamp` - this property isn't valid for contracts and always returns null.
+
+- `displayName` - a copy of the customer tenant's display name.
+The copy is made when the partnership with the customer is established.
+It isn't automatically updated if the customer tenant's display name changes.
+
+- `objectType` - a string that identifies the object type. The value is always `Contract`.
+
+- `ContractId` - the unique identifier for the partnership.
 
 ## Examples
 
@@ -129,7 +157,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -145,7 +173,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -163,30 +191,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
-
-The contract object contains the following attributes:
-
-`contractType` - type of the contract.
-
-Possible values are:  
-
-**SyndicationPartner** - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
-They resell and support their customers.
-**BreadthPartner** - indicates that the partner has the ability to provide administrative support for this customer. However the partner isn't allowed to resell to the customer.
-**ResellerPartner** - indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
-
-`customerContextId` - unique identifier for the customer tenant referenced by this partnership.
-
-Corresponds to the ObjectId property of the customer tenant's TenantDetail object.
-
-`defaultDomainName` - a copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It isn't automatically updated if the customer tenant's default domain name changes.
-
-`deletionTimestamp` - this property isn't valid for contracts and always returns null.
-
-`displayName` - a copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It isn't automatically updated if the customer tenant's display name changes.
-
-`objectType` - a string that identifies the object type. The value is always `Contract`.
-
-`ContractId` - the unique identifier for the partnership.
 
 ## Related Links

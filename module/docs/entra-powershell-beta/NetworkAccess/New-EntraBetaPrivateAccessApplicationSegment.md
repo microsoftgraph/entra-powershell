@@ -9,8 +9,8 @@ reviewer: andres-canello
 manager: CelesteDG
 author: andres-canello
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPrivateAccessApplicationSegment
+Module Name: Microsoft.Entra.Beta.NetworkAccess
+s
 schema: 2.0.0
 ---
 
@@ -70,8 +70,8 @@ $application = Get-EntraBetaApplication -Filter "displayName eq '<GlobalSecureAc
 $params = @{
     ApplicationId = $application.Id
     DestinationHost = '192.168.1.100..192.168.1.110'
-    Ports = '22','3389'
-    Protocol = 'TCP','UDP'
+    Ports = '22,3389'
+    Protocol = 'TCP,UDP'
     DestinationType = 'ipRange'
 }
 New-EntraBetaPrivateAccessApplicationSegment @params
@@ -227,4 +227,4 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
 
-[Get-EntraBetaApplication](../Applications/Get-EntraBetaApplication.md)
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraOAuth2PermissionGrant
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Remove-EntraOAuth2PermissionGrant
 
 schema: 2.0.0
 ---
@@ -81,6 +81,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 
-[Get-EntraServicePrincipal](../Applications/Get-EntraServicePrincipal.md)
-
-[Update-EntraOAuth2PermissionGrant](Update-EntraOauth2PermissionGrant.md)
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

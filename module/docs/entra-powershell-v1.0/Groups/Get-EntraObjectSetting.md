@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraObjectSetting
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraObjectSetting
 schema: 2.0.0
 ---
 
@@ -55,8 +55,11 @@ The `Get-EntraObjectSetting` cmdlet retrieves an object setting from Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params
 ```
 
 ```Output
@@ -74,9 +77,12 @@ This command retrieves  object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-$setting = Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id | Where-Object {$_.displayName -eq 'Group.Unified.Guest'}
-Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -Id $setting.Id
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    Id ='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Get-EntraObjectSetting @params
 ```
 
 ```Output
@@ -95,8 +101,11 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -Top 1
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params -Top 1
 ```
 
 ```Output
@@ -114,8 +123,11 @@ This command retrieves top one object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -All
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params -All
 ```
 
 ```Output
@@ -128,25 +140,6 @@ This command retrieves all records of object setting from Microsoft Entra ID.
 
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
-
-### Example 5: Retrieve user object settings
-
-```powershell
-Connect-Entra -Scopes 'Directory.Read.All'
-$user = Get-EntraUser -UserId 'AdeleV@Contoso.com'
-Get-EntraObjectSetting -TargetType 'Users' -TargetObjectId $user.Id
-```
-
-```Output
-Id ContributionToContentDiscoveryAsOrganizationDisabled ContributionToContentDiscoveryDisabled
--- ---------------------------------------------------- --------------------------------------
-   False                                                False
-```
-
-This command retrieves user object setting.
-
-- `-TargetType` Parameter specifies the user target type.
-- `-TargetObjectId` Parameter specifies the ID of the user.
 
 ## Parameters
 
@@ -221,7 +214,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -237,7 +230,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

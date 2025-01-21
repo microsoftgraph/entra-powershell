@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Restore-EntraBetaDeletedDirectoryObject
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Restore-EntraBetaDeletedDirectoryObject
 
 schema: 2.0.0
 ---
@@ -58,7 +58,11 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ### Example 1: Restore a deleted object with ID
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'AdministrativeUnit.ReadWrite.All', 'Application.ReadWrite.All', 'Group.ReadWrite.All' 
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All' #administrativeUnit resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #application resource
+Connect-Entra -Scopes 'Group.ReadWrite.All' #group resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #servicePrincipal resource
+Connect-Entra -Scopes 'User.ReadWrite.All' #user resource
 Restore-EntraBetaDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
@@ -140,12 +144,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Remove-EntraBetaDeletedApplication](../Applications/Remove-EntraBetaDeletedApplication.md)
+[Remove-EntraBetaDeletedApplication](Remove-EntraBetaDeletedApplication.md)
 
-[Restore-EntraBetaDeletedApplication](../Applications/Restore-EntraBetaDeletedApplication.md)
+[Restore-EntraBetaDeletedApplication](Restore-EntraBetaDeletedApplication.md)
 
 [Remove-EntraBetaDeletedDirectoryObject](Remove-EntraBetaDeletedDirectoryObject.md)
 
-[Get-EntraBetaDeletedApplication](../Applications/Get-EntraBetaDeletedApplication.md)
+[Get-EntraBetaDeletedApplication](Get-EntraBetaDeletedApplication.md)
 
 [Get-EntraBetaDeletedDirectoryObject](Get-EntraBetaDeletedDirectoryObject.md)

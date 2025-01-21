@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalCreatedObject
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalCreatedObject
 
 schema: 2.0.0
 ---
@@ -44,8 +44,8 @@ The `Get-EntraBetaServicePrincipalCreatedObject` cmdlet gets an object created b
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraBetaServicePrincipal` to get service principal ID.
@@ -56,8 +56,8 @@ This example gets objects created by the service principal identified by $Servic
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -All
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -All
 ```
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
@@ -68,8 +68,8 @@ This example demonstrates how to get the all object created by a specified servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -Top 2
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
 ```
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
@@ -117,7 +117,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -133,7 +133,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalAppRoleAssignedTo
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalAppRoleAssignedTo
 
 schema: 2.0.0
 ---
@@ -53,9 +53,9 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ### Example 1: Retrieve the app role assignments
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $ServicePrincipalId
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
@@ -67,9 +67,8 @@ This example shows how to get app role assignments for an app or service, grante
 ### Example 2: Get all app role assignments
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All 
+ Connect-Entra -Scopes 'Application.Read.All'
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -All 
 ```
 
 ```output
@@ -87,8 +86,7 @@ This command gets the all app role assignments for the service principal granted
 ### Example 3: Get five app role assignments
 
 ```powershell
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -Top 5
+ Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId 00001111-aaaa-2222-bbbb-3333cccc4444 -Top 5
 ```
 
 ```Output
@@ -144,7 +142,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -160,7 +158,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -188,7 +186,3 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 `Get-EntraServiceAppRoleAssignedTo` is an alias for `Get-EntraServicePrincipalAppRoleAssignedTo`.
 
 ## Related Links
-
-[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-
-[Get-EntraServicePrincipalAppRoleAssignment](Get-EntraServicePrincipalAppRoleAssignment.md)

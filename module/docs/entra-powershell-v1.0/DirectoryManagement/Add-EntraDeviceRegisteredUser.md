@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraDeviceRegisteredUser
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraDeviceRegisteredUser
 
 schema: 2.0.0
 ---
@@ -107,6 +107,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
 
-[Get-EntraUser](../Users/Get-EntraUser.md)
+[Get-EntraUser](Get-EntraUser.md)
 
 [Remove-EntraDeviceRegisteredUser](Remove-EntraDeviceRegisteredUser.md)

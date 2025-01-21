@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaApplicationOwner
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Add-EntraBetaApplicationOwner
 
 schema: 2.0.0
 ---
@@ -41,9 +41,13 @@ The `Add-EntraBetaApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-Add-EntraBetaApplicationOwner -ApplicationId $application.Id -RefObjectId $user.Id
+$ApplicationId = (Get-EntraBetaApplication -SearchString '<application-name>').ObjectId
+$UserObjectId = (Get-EntraBetaUser -SearchString '<user-name>').ObjectId
+$params = @{
+    ApplicationId = $ApplicationId 
+    RefObjectId = $UserObjectId
+}
+Add-EntraBetaApplicationOwner @params
 ```
 
 This example demonstrates how to add an owner to an application in Microsoft Entra ID.

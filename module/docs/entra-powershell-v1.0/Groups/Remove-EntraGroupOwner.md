@@ -9,8 +9,8 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraGroupOwner
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Remove-EntraGroupOwner
 
 schema: 2.0.0
 ---
@@ -41,15 +41,14 @@ The `Remove-EntraGroupOwner` cmdlet removes an owner from a group in Microsoft E
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$groupOwner = Get-EntraGroup -GroupId $group.Id | Get-EntraGroupOwner | Where-Object {$_.displayName -eq 'Adele Vance'}
-Remove-EntraGroupOwner -GroupId $group.Id -OwnerId $groupOwner.Id
+Remove-EntraGroupOwner -GroupId $group.Id -OwnerId 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
-- `GroupId` - Specifies the ID of a group in Microsoft Entra ID.  
+GroupId - Specifies the ID of a group in Microsoft Entra ID.  
 
-- `OwnerId` - Specifies the ID of an owner.
+- `OwnerId` specifies the ID of an owner.
 
 ## Parameters
 

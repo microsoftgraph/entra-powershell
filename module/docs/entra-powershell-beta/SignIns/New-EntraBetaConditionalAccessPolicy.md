@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaConditionalAccessPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaConditionalAccessPolicy
 
 schema: 2.0.0
 ---

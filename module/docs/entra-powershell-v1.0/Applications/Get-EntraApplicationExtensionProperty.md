@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationExtensionProperty
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationExtensionProperty
 
 schema: 2.0.0
 ---
@@ -41,8 +41,8 @@ The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension pr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationExtensionProperty -ApplicationId $application.Id
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationExtensionProperty -ApplicationId $Application.Id
 ```
 
 ```Output
@@ -80,7 +80,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

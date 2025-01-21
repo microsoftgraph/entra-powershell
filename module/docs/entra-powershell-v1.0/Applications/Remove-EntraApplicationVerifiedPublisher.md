@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraApplicationVerifiedPublisher
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraApplicationVerifiedPublisher
 
 schema: 2.0.0
 ---
@@ -40,8 +40,8 @@ Removes the verified publisher from an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
-Remove-EntraApplicationVerifiedPublisher -AppObjectId $application.Id
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+Remove-EntraApplicationVerifiedPublisher -AppObjectId $app.ObjectId
 ```
 
 This command demonstrates how to remove the verified publisher from an application.  

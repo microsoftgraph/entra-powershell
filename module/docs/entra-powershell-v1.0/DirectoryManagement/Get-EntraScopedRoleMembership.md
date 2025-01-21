@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraScopedRoleMembership
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraScopedRoleMembership
 
 schema: 2.0.0
 ---
@@ -41,10 +41,12 @@ The `Get-EntraScopedRoleMembership` cmdlet lists Microsoft Entra role assignment
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$role = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-$roleMembership = Get-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id | Where-Object {$_.RoleId -eq $role.Id}
-Get-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -ScopedRoleMembershipId $roleMembership.Id
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+}
+Get-EntraScopedRoleMembership @params
 ```
 
 ```Output
@@ -62,8 +64,8 @@ This example gets scoped role administrator. You cane use the command `Get-Entra
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-Get-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraScopedRoleMembership -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 ```Output
@@ -117,7 +119,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

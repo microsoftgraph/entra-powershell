@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalDelegatedPermissionClassification
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalDelegatedPermissionClassification
 
 schema: 2.0.0
 ---
@@ -54,8 +54,11 @@ The `Get-EntraServicePrincipalDelegatedPermissionClassification` cmdlet retrieve
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
 ```Output
@@ -73,9 +76,12 @@ This command retrieves all delegated permission classifications from the service
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$permissionClassification = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Id $permissionClassification.Id
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId 
+  Id = '5XBeIKarUkypdm0tRsSAQwE'
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
 ```Output
@@ -93,8 +99,12 @@ This command retrieves the delegated permission classification by Id from the se
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id -Filter "PermissionName eq 'Sites.Read.All'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.ObjectId  
+  Filter = "PermissionName eq 'Sites.Read.All'"
+}
+Get-EntraServicePrincipalDelegatedPermissionClassification @params
 ```
 
 ```Output
@@ -166,7 +176,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

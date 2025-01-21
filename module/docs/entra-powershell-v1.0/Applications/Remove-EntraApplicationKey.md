@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraApplicationKey
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraApplicationKey
 
 schema: 2.0.0
 ---
@@ -27,7 +27,7 @@ Removes a key from an application.
 
 ```powershell
 Remove-EntraApplicationKey
- -ApplicationId <String>
+ -ObjectId <String>
  [-Proof <String>]
  [-KeyId <String>]
  [<CommonParameters>]
@@ -39,30 +39,36 @@ Removes a key from an application.
 
 ## Examples
 
-### Example 1: Remove a key credential from an application
+### Example 1: Removes a key credential from an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Remove-EntraApplicationKey -ApplicationId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333' -Proof '{token}'
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+$params = @{
+    ObjectId = $app.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+    Proof = {token}
+}
+
+Remove-EntraApplicationKey @params
 ```
 
 This command removes the specified key credential from the specified application.
 
-- `-ApplicationId` parameter specifies the unique identifier of an application.
+- `-ObjectId` parameter specifies the unique identifier of an application.
 - `-KeyId` parameter specifies the key Id corresponding to the key object to be removed.
 - `-Proof` parameter specifies the JWT token provided as a proof of possession.
 
 ## Parameters
 
-### -ApplicationId
+### -ObjectId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases:
 
 Required: True
 Position: Named

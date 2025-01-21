@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraServicePrincipalKeyCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraServicePrincipalKeyCredential
 
 schema: 2.0.0
 ---
@@ -40,13 +40,18 @@ The Remove-EntraServicePrincipalKeyCredential cmdlet removes a key credential fr
 ### Example 1: Remove a key credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All', 'Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$key = Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.Id
-Remove-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.Id -KeyId $key.Id
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$SPObjectID = (Get-EntraServicePrincipal -SearchString 'Entra Multi-Factor Auth Client').ObjectID
+Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $SPObjectID
+Remove-EntraServicePrincipalKeyCredential -ServicePrincipalId $SPObjectID -KeyId <PASTE_KEYID_VALUE>
 ```
 
 This example demonstrates how to remove a key credential from a service principal in Microsoft Entra ID.
+
+- First command stores the ObjectID of your service principal in the $SPObjectID variable.
+- The second command gets all the Key Credentials for the service principal. Copy the preferred KeyID associated with the certificate to be removed and paste it at the <PASTE_KEYID_VALUE> in the third command.
+- The last command removes the certificate (key credential) from the service principal configuration.
 
 ## Parameters
 

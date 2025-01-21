@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaDirSyncEnabled
+external help file: Microsoft.Entra.Beta.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Set-EntraBetaDirSyncEnabled
 
 schema: 2.0.0
 ---
@@ -48,7 +48,11 @@ The `Set-EntraBetaDirSyncEnabled` cmdlet turns directory synchronization on or o
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-Set-EntraBetaDirSyncEnabled -EnableDirsync $true -Force $true
+$params = @{
+    EnableDirsync = $True 
+    Force = $True
+}
+Set-EntraBetaDirSyncEnabled @params
 ```
 
 This example turns on directory synchronization for a company.
@@ -60,8 +64,13 @@ This example turns on directory synchronization for a company.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
-$tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force $true
+$params = @{
+    EnableDirsync = $False 
+    TenantId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    Force = $True
+    
+}
+Set-EntraBetaDirSyncEnabled @params
 ```
 
 This example turns off directory synchronization for a company.

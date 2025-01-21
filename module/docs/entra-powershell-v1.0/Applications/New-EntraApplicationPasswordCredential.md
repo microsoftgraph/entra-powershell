@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationPasswordCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationPasswordCredential
 
 schema: 2.0.0
 ---
@@ -63,7 +63,12 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>'
+$params = @{
+    ApplicationId = $application.Id
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```Output
@@ -82,8 +87,13 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-$startDate = (Get-Date).AddYears(0)
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -StartDate $startDate
+$params = @{
+    ApplicationId = $application.Id
+    StartDate = (Get-Date).AddYears(0)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```Output
@@ -102,8 +112,13 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-$endDate = (Get-Date).AddYears(2)
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -EndDate $endDate
+$params = @{
+    ApplicationId = $application.Id
+    EndDate = (Get-Date).AddYears(2)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```Output

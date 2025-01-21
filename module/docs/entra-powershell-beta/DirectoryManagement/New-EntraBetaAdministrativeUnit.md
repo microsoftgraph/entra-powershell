@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaAdministrativeUnit
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/New-EntraBetaAdministrativeUnit
 
 schema: 2.0.0
 ---
@@ -61,7 +61,11 @@ This example demonstrates how to create an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraBetaAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
+$params = @{
+    DisplayName = 'Pacific Administrative Unit'
+    Description = 'Administrative Unit for Pacific region'
+}
+New-EntraBetaAdministrativeUnit @params
 ```
 
 ```Output
@@ -79,7 +83,11 @@ This example demonstrates how to create an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraBetaAdministrativeUnit -DisplayName 'NewUnit' -IsMemberManagementRestricted $True
+$params = @{
+    DisplayName = 'NewUnit'
+    IsMemberManagementRestricted = $true
+}
+New-EntraBetaAdministrativeUnit @params
 ```
 
 ```Output

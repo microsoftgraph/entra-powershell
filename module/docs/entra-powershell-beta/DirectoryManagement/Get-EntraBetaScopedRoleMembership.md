@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaScopedRoleMembership
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Get-EntraBetaScopedRoleMembership
 
 schema: 2.0.0
 ---
@@ -43,10 +43,12 @@ The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assign
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-$roleMembership = Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id | Where-Object {$_.RoleId -eq $role.Id}
-Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -ScopedRoleMembershipId $roleMembership.Id
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+}
+Get-EntraBetaScopedRoleMembership @params
 ```
 
 ```Output
@@ -64,8 +66,8 @@ This example gets scoped role administrator. You cane use the command `Get-Entra
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaScopedRoleMembership -AdministrativeUnitId $AdministrativeUnit.ObjectId
 ```
 
 ```Output
@@ -119,7 +121,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

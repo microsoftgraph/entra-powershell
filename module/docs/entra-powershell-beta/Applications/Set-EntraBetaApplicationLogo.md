@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaApplicationLogo
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Set-EntraBetaApplicationLogo
 
 schema: 2.0.0
 ---
@@ -59,8 +59,12 @@ The `Set-EntraBetaApplicationLogo` cmdlet is used to set the logo for an applica
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraBetaApplicationLogo -ApplicationId $application.Id -FilePath 'D:\applogo.jpg'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Demo Application'"
+$params = @{
+    ObjectId = $application.ObjectId
+    FilePath = 'D:\applogo.jpg'
+}
+Set-EntraBetaApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the `-ApplicationId` parameter to the image specified with the `-FilePath` parameter.

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaObjectSetting
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Remove-EntraBetaObjectSetting
 
 schema: 2.0.0
 ---
@@ -45,7 +45,7 @@ The `Remove-EntraBetaObjectSetting` cmdlet removes object settings in Microsoft 
 Connect-Entra -Scopes 'Directory.Read.All'
 $params = @{
     TargetType = 'Groups'
-    TargetObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 }
 Remove-EntraBetaObjectSetting @params

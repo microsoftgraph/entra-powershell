@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUserOAuth2PermissionGrant
+Module Name: Microsoft.Entra.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Get-EntraUserOAuth2PermissionGrant
 
 schema: 2.0.0
 ---
@@ -51,7 +51,23 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ## Examples
 
-### Example 1: Retrieve the OAuth2 permission grants for a user using object ID parameter
+### Example 1: Retrieve the OAuth2 permission grants for a user
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -UserId 'SawyerM@contoso.com'
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
+```
+
+This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraUser` cmdlet to obtain the `UserId` value.
+
+### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -69,7 +85,7 @@ This example retrieves the OAuth2 permission grants for a user using object ID p
 
 - `-UserId` parameter specifies the user ID.
 
-### Example 2: Retrieve the OAuth2 permission grants for a user using All parameter
+### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -87,7 +103,7 @@ This example retrieves the OAuth2 permission grants for a user using All paramet
 
 - `-ObjectId` parameter specifies the user ID.
 
-### Example 3: Retrieve top one OAuth2 permission grant
+### Example 4: Retrieve top one OAuth2 permission grant
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -145,7 +161,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -161,7 +177,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

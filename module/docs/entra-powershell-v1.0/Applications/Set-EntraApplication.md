@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraApplication
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Set-EntraApplication
 
 schema: 2.0.0
 ---
@@ -59,14 +59,10 @@ Updates the properties of an application object.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
 $params = @{
-    ApplicationId = $application.Id
-    DisplayName = 'Contoso Entra PowerShell App Production'
-    IdentifierUris = 'https://contoso.com'
-    GroupMembershipClaims = 'SecurityGroup'
-    IsDeviceOnlyAuthSupported = $False
-    Tags = 'mytag'
+    ApplicationId = $application.ObjectId
+    DisplayName = 'New Demo Application'
 }
 Set-EntraApplication @params
 ```
@@ -77,8 +73,12 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraApplication -ApplicationId $application.Id -IdentifierUris 'https://mynewapp.contoso.com'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
+$params = @{
+    ApplicationId = $application.ObjectId
+    IdentifierUris = 'https://mynewapp.contoso.com'
+}
+Set-EntraApplication @params
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -87,8 +87,12 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraApplication -ApplicationId $application.Id -GroupMembershipClaims 'SecurityGroup'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
+$params = @{
+    ApplicationId = $application.ObjectId
+    GroupMembershipClaims = 'SecurityGroup'
+}
+Set-EntraApplication @params
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -97,8 +101,12 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraApplication -ApplicationId $application.Id -IsDeviceOnlyAuthSupported $False
+$application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
+$params = @{
+    ApplicationId = $application.ObjectId
+    IsDeviceOnlyAuthSupported = $false
+}
+Set-EntraApplication @params
 ```
 
 This command updates an application in Microsoft Entra ID.
@@ -107,8 +115,12 @@ This command updates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Set-EntraApplication -ApplicationId $application.Id -Tags 'mytag'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Original Demo Application'"
+$params = @{
+    ApplicationId = $application.ObjectId
+    Tags = 'mytag'
+}
+Set-EntraApplication @params
 ```
 
 This command updates an application in Microsoft Entra ID.

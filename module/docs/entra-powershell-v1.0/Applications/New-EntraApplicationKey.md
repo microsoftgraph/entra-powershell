@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationKey
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationKey
 
 schema: 2.0.0
 ---
@@ -44,9 +44,9 @@ Adds a new key to an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ApplicationId = $application.Id
+    ObjectId = $app.ObjectId
     KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
     PasswordCredential = @{ DisplayName = 'mypassword' }
     Proof = '{token}'

@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Authentication-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Revoke-EntraUserAllRefreshToken
+Module Name: Microsoft.Entra.Authentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Revoke-EntraUserAllRefreshToken
 schema: 2.0.0
 ---
 

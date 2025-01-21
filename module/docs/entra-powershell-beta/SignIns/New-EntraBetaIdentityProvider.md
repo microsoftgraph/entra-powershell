@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaIdentityProvider
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaIdentityProvider
 
 schema: 2.0.0
 ---
@@ -60,7 +60,14 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
-New-EntraBetaIdentityProvider -Type 'Google' -Name 'GoogleName' -ClientId 'Google123' -ClientSecret 'GoogleClientSecret'
+$params = @{
+    Type = 'Google'
+    Name = 'GoogleName'
+    ClientId = 'Google123'
+    ClientSecret = 'GoogleClientSecret'
+}
+
+New-EntraBetaIdentityProvider @params
 ```
 
 ```Output

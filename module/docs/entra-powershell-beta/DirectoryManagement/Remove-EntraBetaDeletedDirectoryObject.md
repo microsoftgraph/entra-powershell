@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDeletedDirectoryObject
+external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaDeletedDirectoryObject
 
 schema: 2.0.0
 ---
@@ -49,8 +49,8 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Group.ReadWrite.All','Application.ReadWrite.All','User.ReadWrite.All'
-$deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application'
-Remove-EntraBetaDeletedDirectoryObject -DirectoryObjectId $deletedApplication.Id
+
+Remove-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to permanently delete a previously deleted directory object by ID.

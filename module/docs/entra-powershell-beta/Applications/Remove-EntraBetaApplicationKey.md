@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaApplicationKey
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaApplicationKey
 
 schema: 2.0.0
 ---
@@ -39,12 +39,18 @@ Removes a key from an application.
 
 ## Examples
 
-### Example 1: Remove a key credential from an application
+### Example 1: Removes a key credential from an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Remove-EntraBetaApplicationKey -ObjectId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333' -Proof '{token}'
+$app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
+$params = @{
+    ObjectId = $app.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+    Proof = '{token}'
+}
+
+Remove-EntraBetaApplicationKey @params
 ```
 
 This command removes the specified key credential from the specified application.

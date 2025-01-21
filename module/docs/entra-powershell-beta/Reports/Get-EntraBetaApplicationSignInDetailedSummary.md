@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationSignInDetailedSummary
+Module Name: Microsoft.Entra.Beta.Reports
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Reports/Get-EntraBetaApplicationSignInDetailedSummary
 
 schema: 2.0.0
 ---
@@ -63,7 +63,10 @@ This example returns all sign ins to Microsoft Entra ID Portal.
 
 ```powershell
 Connect-Entra -Scopes 'Reports.Read.All'
-Get-EntraBetaApplicationSignInDetailedSummary -Filter "appDisplayName eq 'Azure Portal' AND aggregatedEventDateTime gt 2024-10-20 AND aggregatedEventDateTime lt 2024-10-22"
+$params = @{
+    Filter = "appDisplayName eq 'Azure Portal' AND aggregatedEventDateTime gt 2024-06-01 AND aggregatedEventDateTime lt 2024-07-01"
+}
+Get-EntraBetaApplicationSignInDetailedSummary @params
 ```
 
 ```Output
@@ -107,9 +110,9 @@ This example returns top five sign ins to Microsoft Entra ID portal.
 The maximum number of records to return.
 
 ```yaml
-Type: System.Int32
+Type: Sysetm.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named

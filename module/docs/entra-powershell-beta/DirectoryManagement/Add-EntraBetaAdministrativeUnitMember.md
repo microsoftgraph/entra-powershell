@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaAdministrativeUnitMember
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Add-EntraBetaAdministrativeUnitMember
 
 schema: 2.0.0
 ---
@@ -46,12 +46,16 @@ To add a user, group, or device to an administrative unit, the calling principal
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$User = Get-EntraBetaUser -SearchString '<user-name>'
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    RefObjectId = $User.ObjectId
+}
+Add-EntraBetaAdministrativeUnitMember @params
 ```
 
-This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaUser` to find the user ID.
+This example shows how to add an administrative unit member. You can use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraBetaUser` to get user ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
@@ -103,5 +107,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraBetaAdministrativeUnitMember](Get-EntraBetaAdministrativeUnitMember.md)
+
+[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
+
 [Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)
-[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)

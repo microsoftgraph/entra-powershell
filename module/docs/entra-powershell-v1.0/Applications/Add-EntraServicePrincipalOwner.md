@@ -9,8 +9,8 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraServicePrincipalOwner
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Add-EntraServicePrincipalOwner
 
 schema: 2.0.0
 ---
@@ -40,9 +40,13 @@ The `Add-EntraServicePrincipalOwner` cmdlet adds an owner to a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$owner = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -RefObjectId $owner.Id
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+$OwnerId = (Get-EntraUser -Top 1).ObjectId
+$Params = @{
+    ServicePrincipalId = $ServicePrincipalId 
+    RefObjectId = $OwnerId  
+}
+Add-EntraServicePrincipalOwner @Params
 ```
 
 This example demonstrates how to add an owner to a service principal.
@@ -100,6 +104,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraServicePrincipalOwner](Get-EntraServicePrincipalOwner.md)
 
-[Get-EntraUser](../Users/Get-EntraUser.md)
+[Get-EntraUser](Get-EntraUser.md)
 
 [Remove-EntraServicePrincipalOwner](Remove-EntraServicePrincipalOwner.md)

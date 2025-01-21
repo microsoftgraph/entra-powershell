@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaServicePrincipalAppRoleAssignment
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/New-EntraBetaServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -51,24 +51,20 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ## Examples
 
-### Example 1: Assign an app role to a service principal
+### Example 1: Assign an app role to another service principal
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$clientServicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'" 
-$resourceServicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Microsoft Graph'"
-$appRole = $resourceServicePrincipal.AppRoles | Where-Object { $_.Value -eq "User.ReadBasic.All" }
+ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+ $appname = 'Box'
+ $spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
+ $params = @{
+    ObjectId = $spo.ObjectId
+    ResourceId = $spo.ObjectId
+    Id = $spo.Approles[1].Id
+    PrincipalId = $spo.ObjectId
+}
 
-New-EntraBetaServicePrincipalAppRoleAssignment -ObjectId $clientServicePrincipal.Id -PrincipalId $clientServicePrincipal.Id -Id $appRole.Id -ResourceId $resourceServicePrincipal.Id
-```
-
-### Example 2: Assign an app role to another service principal
-
-```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$clientServicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$servicePrincipalObject = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Box'"
-New-EntraBetaServicePrincipalAppRoleAssignment -ObjectId $clientServicePrincipal.Id -PrincipalId $clientServicePrincipal.Id -ResourceId $servicePrincipalObject.Id -Id $servicePrincipalObject.Approles[1].Id
+New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -84,18 +80,22 @@ This example demonstrates how to assign an app role to another service principal
 - `-Id` parameter specifies the Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
 - `-PrincipalId` parameter specifies the ObjectId of the client service principal to which you're assigning the app role.
 
-### Example 3: Assign an app role to a user
+### Example 2: Assign an app role to a user
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$servicePrincipalObject = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Box'"
-$user = Get-EntraBetaUser -UserId 'PattiF@Contoso.com'
+ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+ $appname = 'Box'
+ $spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
+ $user = Get-EntraBetaUser -SearchString 'Test Contoso'
 
-New-EntraBetaServicePrincipalAppRoleAssignment `
-    -ObjectId $servicePrincipalObject.Id `
-    -ResourceId $servicePrincipalObject.Id `
-    -Id $servicePrincipalObject.Approles[1].Id `
-    -PrincipalId $user.Id
+ $params = @{
+    ObjectId = $spo.ObjectId
+    ResourceId = $spo.ObjectId
+    Id = $spo.Approles[1].Id
+    PrincipalId = $user.ObjectId
+}
+
+New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -113,18 +113,22 @@ You can use the command `Get-EntraBetaUser` to get a user Id.
 - `-Id` parameter specifies the Id of app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
 - `-PrincipalId` parameter specifies the ObjectId of a user to which you're assigning the app role.
 
-### Example 4: Assign an app role to a group
+### Example 3: Assign an app role to a group
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$servicePrincipalObject = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Box'"
-$group = Get-EntraBetaGroup -Filter "displayName eq 'Contoso marketing'"
+ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+ $appname = 'Box'
+ $spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
+ $group = Get-EntraBetaGroup -SearchString 'testGroup'
 
-New-EntraBetaServicePrincipalAppRoleAssignment `
-    -ObjectId $servicePrincipalObject.Id `
-    -ResourceId $servicePrincipalObject.Id `
-    -Id $servicePrincipalObject.Approles[1].Id `
-    -PrincipalId $group.Id
+ $params = @{
+    ObjectId = $spo.ObjectId
+    ResourceId = $spo.ObjectId
+    Id = $spo.Approles[1].Id
+    PrincipalId = $group.ObjectId
+ }
+
+ New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output

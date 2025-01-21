@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraGroupLifecyclePolicy
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Remove-EntraGroupLifecyclePolicy
 
 schema: 2.0.0
 ---
@@ -41,7 +41,7 @@ The `Remove-EntraGroupLifecyclePolicy` command deletes a groupLifecyclePolicies 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'} | Remove-EntraGroupLifecyclePolicy
+Remove-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID. You can use `Get-EntraGroupLifecyclePolicy` to get Id details.

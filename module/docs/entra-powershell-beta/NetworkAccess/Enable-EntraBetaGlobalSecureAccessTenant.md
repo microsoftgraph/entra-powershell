@@ -9,8 +9,8 @@ reviewer: andres-canello
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Enable-EntraBetaGlobalSecureAccessTenant
+Module Name: Microsoft.Entra.Beta.NetworkAccess
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.NetworkAccess/Enable-EntraBetaGlobalSecureAccessTenant
 schema: 2.0.0
 ---
 

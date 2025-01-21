@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraServicePrincipalPasswordCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraServicePrincipalPasswordCredential
 
 schema: 2.0.0
 ---
@@ -43,8 +43,12 @@ The `New-EntraServicePrincipalPasswordCredential` cmdlet creates a password cred
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-New-EntraServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -StartDate '2024-11-04T14:14:14Z'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$Params = @{
+    ServicePrincipalId = $ServicePrincipal.ObjectId
+    StartDate = '2024-04-21T14:14:14Z'
+}
+New-EntraServicePrincipalPasswordCredential @Params
 ```
 
 ```Output
@@ -66,12 +70,16 @@ This example demonstrates how to create a password credential with StartDate for
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 - `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
-### Example 2: Create a password credential with EndDate
+### Example 2: Create a password credential with EndtDate
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-New-EntraServicePrincipalPasswordCredential -ServicePrincipalId $servicePrincipal.Id -EndDate '2024-11-04T14:14:14Z'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$Params = @{
+    ServicePrincipalId = $ServicePrincipal.ObjectId
+    EndDate = '2030-03-21T14:14:14Z'
+}
+New-EntraServicePrincipalPasswordCredential @Params
 ```
 
 ```Output

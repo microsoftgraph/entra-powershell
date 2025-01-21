@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirSyncFeature
+external help file: Microsoft.Entra.DirectoryManagement-help.xml
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraDirSyncFeature
 
 schema: 2.0.0
 ---
@@ -34,9 +34,7 @@ Get-EntraDirSyncFeature
 
 ## Description
 
-The `Get-EntraDirSyncFeature` cmdlet checks the status of directory sync features for a tenant. If no features are specified, it returns a list of all features and their enabled or disabled status.
-
-For delegated scenarios, the user needs to be assigned the Global Administrator role.
+The `Get-EntraDirSyncFeature` cmdlet checks the status of directory synchronization features for a tenant.
 
 Some of the features that can be used with this cmdlet include:
 
@@ -50,7 +48,9 @@ Some of the features that can be used with this cmdlet include:
 - **UnifiedGroupWriteback**
 - **UserWriteback**
 
-To view all supported features, see the [complete feature list](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature#properties).
+The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
+
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
 
 ## Examples
 
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 
 ### -Feature
 
-The directory sync feature to check. See the [complete feature list](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature#properties).
+The directory synchronization feature to check the status of.
 
 ```yaml
 Type: System.String

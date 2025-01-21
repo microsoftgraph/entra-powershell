@@ -10,9 +10,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraDeletedApplication
+external help file: Microsoft.Entra.Applications-help.xml
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraDeletedApplication
 
 schema: 2.0.0
 ---
@@ -45,22 +45,13 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$deletedApplication = Get-EntraDeletedApplication -SearchString 'My PowerShell Application' 
-Remove-EntraDeletedApplication -ObjectId $deletedApplication.Id
+$App = Get-EntraDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraDeletedApplication -ObjectId $App.ObjectId
 ```
 
 This command removes recently deleted application. You can use the command  `Get-EntraDeletedApplication` to get deleted application Id.
 
 - `-ObjectId` parameter specifies the Id of a deleted application.
-
-### Example 2: Remove deleted application using pipelining
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Get-EntraDeletedApplication -Filter "DisplayName eq 'My PowerShell Application'" | Remove-EntraDeletedApplication
-```
-
-This command removes recently deleted application using pipelining.
 
 ## Parameters
 

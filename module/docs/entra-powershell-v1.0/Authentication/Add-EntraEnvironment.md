@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Authentication-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraEnvironment
+Module Name: Microsoft.Entra.Authentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Add-EntraEnvironment
 
 schema: 2.0.0
 ---

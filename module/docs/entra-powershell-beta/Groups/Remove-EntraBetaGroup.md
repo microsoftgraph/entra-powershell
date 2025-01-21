@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaGroup
+Module Name: Microsoft.Entra.Beta.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Remove-EntraBetaGroup
 
 schema: 2.0.0
 ---
@@ -49,8 +49,7 @@ The following conditions apply for apps to delete role-assignable groups:
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Remove-EntraBetaGroup -GroupId $group.Id
+Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'" | Remove-EntraBetaGroup
 ```
 
 This example demonstrates how to remove a group in Microsoft Entra ID.

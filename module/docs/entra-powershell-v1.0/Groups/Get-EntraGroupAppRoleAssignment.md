@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraGroupAppRoleAssignment
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraGroupAppRoleAssignment
 
 schema: 2.0.0
 ---
@@ -43,8 +43,8 @@ The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assig
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -SearchString 'Contoso marketing'
-Get-EntraGroupAppRoleAssignment -GroupId $group.Id
+$GroupId = (Get-EntraGroup -Top 1).ObjectId
+Get-EntraGroupAppRoleAssignment -GroupId $GroupId
 ```
 
 ```Output
@@ -63,8 +63,7 @@ This example retrieves the application role assignments of a group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -SearchString 'Contoso marketing'
-Get-EntraGroupAppRoleAssignment -GroupId $group.Id -All
+Get-EntraGroupAppRoleAssignment -GroupId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
 ```
 
 ```Output
@@ -83,8 +82,7 @@ This example retrieves all application role assignments of the specified group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$group = Get-EntraGroup -SearchString 'Contoso marketing'
-Get-EntraGroupAppRoleAssignment -GroupId $group.Id -Top 2
+Get-EntraGroupAppRoleAssignment -GroupId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
 ```
 
 ```Output
@@ -139,7 +137,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -155,7 +153,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

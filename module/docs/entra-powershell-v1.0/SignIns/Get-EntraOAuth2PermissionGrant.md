@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.SignIns-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraOAuth2PermissionGrant
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Get-EntraOAuth2PermissionGrant
 
 schema: 2.0.0
 ---
@@ -149,7 +149,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -165,7 +165,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -187,7 +187,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
-
 [New-EntraOAuth2PermissionGrant](New-EntraOauth2PermissionGrant.md)
-
-[Update-EntraOAuth2PermissionGrant](Update-EntraOauth2PermissionGrant.md)

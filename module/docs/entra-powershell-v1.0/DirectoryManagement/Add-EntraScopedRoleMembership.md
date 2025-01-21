@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraScopedRoleMembership
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraScopedRoleMembership
 
 schema: 2.0.0
 ---
@@ -43,12 +43,17 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$role = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-$roleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-$roleMember.Id = $user.Id
-Add-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -RoleObjectId $role.Id -RoleMemberInfo $roleMember
+$User = Get-EntraUser -SearchString 'MarkWood'
+$Role = Get-EntraDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectId
+$params = @{
+    AdministrativeUnitId = $Unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraScopedRoleMembership @params
 ```
 
 ```Output

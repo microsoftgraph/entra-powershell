@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.DirectoryManagement-help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraOauth2PermissionGrant
+external help file: Microsoft.Entra.SignIns-help.xml
+Module Name: Microsoft.Entra.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Update-EntraOauth2PermissionGrant
 
 schema: 2.0.0
 ---

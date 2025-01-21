@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipal
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipal
 
 schema: 2.0.0
 ---
@@ -71,7 +71,7 @@ Get-EntraBetaServicePrincipal
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ProvisioningPowerBi                 cccccccc-2222-3333-4444-dddddddddddd 22223333-cccc-4444-dddd-5555eeee6666                     Application
 ```
@@ -82,14 +82,13 @@ This example retrieves all service principals from the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipal -ServicePrincipalId $servicePrincipal.Id
+Get-EntraBetaServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This command retrieves specific service principal.
@@ -106,7 +105,7 @@ Get-EntraBetaServicePrincipal -All
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ProvisioningPowerBi                 cccccccc-2222-3333-4444-dddddddddddd 22223333-cccc-4444-dddd-5555eeee6666                     Application
 ```
@@ -123,7 +122,7 @@ Get-EntraBetaServicePrincipal -Top 2
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ```
 
@@ -133,28 +132,28 @@ This command retrieves top two service principals from the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'M365 License Manager'"
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This example gets a service principal by its display name.
 
-### Example 6: Retrieve a list of all service principal, which has a display name that contains "Helpdesk Application"
+### Example 6: Retrieve a list of all service principal, which has a display name that contains "M365 License Manager"
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaServicePrincipal -SearchString 'Helpdesk Application'
+Get-EntraBetaServicePrincipal -SearchString 'M365 License Manager'
 ```
 
 ```Output
 DisplayName                         Id                                   AppId                                SignInAudience      ServicePrincipalType
 -----------                         --                                   -----                                --------------      --------------------
-Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
+M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
 This example gets a list of service principal, which has the specified display name.
@@ -240,7 +239,7 @@ This example demonstrates how to retrieve all applications without user assignme
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "PreferredSingleSignOnMode eq 'saml'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "PreferredSingleSignOnMode eq 'saml'"
 $servicePrincipal | Select-Object Id, DisplayName, AccountEnabled, AppId, PreferredSingleSignOnMode, AppRoleAssignmentRequired, SignInAudience, NotificationEmailAddresses, PreferredTokenSigningKeyEndDateTime, PreferredTokenSigningKeyValid, ReplyUrls,LoginUrl, LogoutUrl | Format-Table -AutoSize
 ```
 
@@ -326,7 +325,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -342,7 +341,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

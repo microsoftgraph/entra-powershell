@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDeletedApplication
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaDeletedApplication
 
 schema: 2.0.0
 ---
@@ -45,22 +45,13 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
-Remove-EntraBetaDeletedApplication -ObjectId $deletedApplication.Id
+$App = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraBetaDeletedApplication -ObjectId $App.ObjectId
 ```
 
 This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
 
 - `-ObjectId` parameter specifies the Id of a deleted application.
-
-### Example 2: Remove deleted application using pipelining
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Get-EntraBetaDeletedApplication -Filter "DisplayName eq 'My PowerShell Application'" | Remove-EntraBetaDeletedApplication
-```
-
-This command removes recently deleted application using pipelining.
 
 ## Parameters
 

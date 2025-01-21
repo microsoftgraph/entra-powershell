@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraGroupLifecyclePolicy
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraGroupLifecyclePolicy
 
 schema: 2.0.0
 ---
@@ -68,8 +68,7 @@ This example demonstrates how to retrieve the properties and relationships of al
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$policy = Get-EntraGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'}
-Get-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId $policy.Id
+Get-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 ```Output
@@ -107,7 +106,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraLifecyclePolicyGroup
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Add-EntraLifecyclePolicyGroup
 
 schema: 2.0.0
 ---
@@ -44,7 +44,11 @@ The `Add-EntraLifecyclePolicyGroup` cmdlet adds a group to a lifecycle policy in
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
 $policy = Get-EntraGroupLifecyclePolicy | Select-Object -First 1
-Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId $policy.Id -GroupId $group.Id
+$params = @{
+    GroupLifecyclePolicyId = $policy.Id
+    groupId = $group.ObjectId
+}
+Add-EntraLifecyclePolicyGroup @params
 ```
 
 This example adds a group to the lifecycle policy.

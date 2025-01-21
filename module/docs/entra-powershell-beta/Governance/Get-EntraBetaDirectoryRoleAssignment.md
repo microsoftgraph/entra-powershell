@@ -9,9 +9,9 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
-external help file: Microsoft.Entra.Beta.Governance-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryRoleAssignment
+external help file: Microsoft.Entra.Beta.Governance-help.xml
+Module Name: Microsoft.Entra.Beta.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Get-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
@@ -236,7 +236,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -252,7 +252,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

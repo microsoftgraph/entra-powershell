@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraSignedInUserPassword
+Module Name: Microsoft.Entra.Users
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Update-EntraSignedInUserPassword
 
 schema: 2.0.0
 ---

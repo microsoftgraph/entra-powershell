@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationSignInSummary
+Module Name: Microsoft.Entra.Beta.Reports
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Reports/Get-EntraBetaApplicationSignInSummary
 
 schema: 2.0.0
 ---
@@ -142,7 +142,7 @@ The maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named

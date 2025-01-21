@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraGroupLifecyclePolicy
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Set-EntraGroupLifecyclePolicy
 
 schema: 2.0.0
 ---
@@ -42,8 +42,14 @@ The `Set-EntraGroupLifecyclePolicy` command updates a specific group Lifecycle P
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'}
-Set-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId $policy.Id -GroupLifetimeInDays 200 -AlternateNotificationEmails 'example@contoso.com' -ManagedGroupTypes 'All'
+$policy = Get-EntraGroupLifecyclePolicy | Select-Object -First 1
+$params = @{
+    GroupLifecyclePolicyId = $policy.Id
+    GroupLifetimeInDays = 200 
+    AlternateNotificationEmails = 'example@contoso.com' 
+    ManagedGroupTypes = 'All'
+}
+Set-EntraGroupLifecyclePolicy @params
 ```
 
 ```Output

@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaTrustFrameworkPolicy
+Module Name: Microsoft.Entra.Beta.SignIns
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaTrustFrameworkPolicy
 
 schema: 2.0.0
 ---
@@ -47,7 +47,9 @@ New-EntraBetaTrustFrameworkPolicy
 
 The `New-EntraBetaTrustFrameworkPolicy` cmdlet is used to create a trust framework policy in the directory.
 
-In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
+The contents of the trust framework policy to be created can be provided using a file or a command line variable.
+
+The contents of the created trust framework policy can be written to an output file or to the screen.
 
 ## Examples
 

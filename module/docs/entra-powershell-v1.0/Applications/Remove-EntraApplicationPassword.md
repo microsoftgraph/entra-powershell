@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraApplicationPassword
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraApplicationPassword
 
 schema: 2.0.0
 ---
@@ -41,9 +41,13 @@ Remove a password from an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-$applicationPassword = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'CRM Helpdesk App'}
-Remove-EntraApplicationPassword -ObjectId $application.Id -KeyId $applicationPassword.KeyId
+$application = Get-EntraApplication -Filter "DisplayName eq '<Application-DisplayName>'"
+$params = @{
+    ObjectId = $application.Id
+    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
+}
+
+Remove-EntraApplicationPassword @params
 ```
 
 This example removes the specified password from the specified application.

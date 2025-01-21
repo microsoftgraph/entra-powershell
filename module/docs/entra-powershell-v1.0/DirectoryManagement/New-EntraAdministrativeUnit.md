@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraAdministrativeUnit
+Module Name: Microsoft.Entra.DirectoryManagement
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/New-EntraAdministrativeUnit
 
 schema: 2.0.0
 ---
@@ -61,7 +61,12 @@ This example demonstrates how to create an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
+$params = @{
+    DisplayName = 'Pacific Administrative Unit'
+    Description = 'Administrative Unit for Pacific region'
+}
+
+New-EntraAdministrativeUnit @params
 ```
 
 ```Output

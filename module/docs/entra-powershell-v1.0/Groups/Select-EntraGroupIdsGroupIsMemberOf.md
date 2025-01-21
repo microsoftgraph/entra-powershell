@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Groups-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Select-EntraGroupIdsGroupIsMemberOf
+Module Name: Microsoft.Entra.Groups
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Select-EntraGroupIdsGroupIsMemberOf
 
 schema: 2.0.0
 ---
@@ -41,10 +41,10 @@ The `Select-EntraGroupIdsGroupIsMemberOf` cmdlet gets the groups that a specifie
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-$groupObject = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$groupObject.GroupIds = (Get-EntraGroup -Filter "displayName eq 'Tailspin Toys'").Id
-$group = Get-EntraGroup -Filter "displayName eq 'sg-Legal'"
-Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $group.Id -GroupIdsForMembershipCheck $groupObject
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+$GroupId = (Get-EntraGroup -Top 1).ObjectId
+Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
 This example gets the group membership of a group identified by $GroupId. Use `Get-EntraGroup` cmdlet to obtain group `ObjectId` value.

@@ -10,8 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationKeyCredential
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationKeyCredential
 
 schema: 2.0.0
 ---
@@ -41,7 +41,7 @@ The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraApplicationKeyCredential -ObjectId $application.Id
+Get-EntraApplicationKeyCredential -ObjectId $application.ObjectId
 ```
 
 ```Output

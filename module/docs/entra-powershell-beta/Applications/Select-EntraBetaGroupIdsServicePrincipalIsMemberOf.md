@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 
 schema: 2.0.0
 ---
@@ -42,17 +42,23 @@ The `Select-EntraBetaGroupIdsServicePrincipalIsMemberOf` cmdlet selects the grou
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$group.GroupIds = (Get-EntraBetaGroup -Top 10).Id
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
-Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $group
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraBetaGroup -Top 10).ObjectId
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$params = @{
+    ObjectId = $ServicePrincipal.ObjectId
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraBetaGroupIdsServicePrincipalIsMemberOf @params
 ```
 
 ```Output
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command gets the group membership of a group for a specified service principal. Use the command `Get-EntraBetaGroup` to get group Id and `Get-EntraBetaServicePrincipal` to get service principal Id.
+This command gets the group membership of a group for a specified service principal.  
+You can use the command `Get-EntraBetaGroup` to get group Id.  
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
 - `-ObjectId` parameter specifies the service principal Id.
 - `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.

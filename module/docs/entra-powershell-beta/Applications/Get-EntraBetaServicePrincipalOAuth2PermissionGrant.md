@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalOAuth2PermissionGrant
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
 schema: 2.0.0
 ---
@@ -44,8 +44,8 @@ The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2Pe
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -62,8 +62,8 @@ This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -82,8 +82,8 @@ This example demonstrates how to get all OAuth2PermissionGrant objects for a ser
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -Top 2
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $ServicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
@@ -138,7 +138,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -154,7 +154,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named

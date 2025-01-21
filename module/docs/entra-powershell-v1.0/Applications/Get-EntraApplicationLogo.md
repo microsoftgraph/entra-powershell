@@ -11,8 +11,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplicationLogo
+Module Name: Microsoft.Entra.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationLogo
 
 schema: 2.0.0
 ---
@@ -44,8 +44,7 @@ The `Get-EntraApplicationLogo` cmdlet retrieves the logo that is set for an appl
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationLogo -ApplicationId $application.Id -FilePath 'D:\outfile1.jpg'
+Get-EntraApplicationLogo -ApplicationId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.

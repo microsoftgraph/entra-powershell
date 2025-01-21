@@ -10,8 +10,8 @@ manager: CelesteDG
 author: msewaweru
 
 external help file: Microsoft.Entra.Governance-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraDirectoryRoleDefinition
+Module Name: Microsoft.Entra.Governance
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Set-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
@@ -96,7 +96,7 @@ $params = @{
    ResourceScopes = '/'
    IsEnabled = $false
    RolePermissions = $RolePermissions
-   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+   TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
    Version = 2
 }
 

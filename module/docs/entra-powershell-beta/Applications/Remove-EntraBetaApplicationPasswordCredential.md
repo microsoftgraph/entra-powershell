@@ -9,8 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaApplicationPasswordCredential
+Module Name: Microsoft.Entra.Beta.Applications
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaApplicationPasswordCredential
 
 schema: 2.0.0
 ---
@@ -40,9 +40,9 @@ The `Remove-EntraBetaApplicationPasswordCredential` cmdlet removes a password cr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk Application'"
-$applicationPassword = Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'ERP App Password'}
-Remove-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
+$application = Get-EntraBetaApplication -Filter "displayName eq 'Contoso Helpdesk App'"
+$KeyIDs = Get-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id
+Remove-EntraBetaApplicationPasswordCredential -ApplicationId $application.Id -KeyId $KeyIds[0].KeyId
 ```
 
 This example demonstrates how to remove the password credential for an application.
