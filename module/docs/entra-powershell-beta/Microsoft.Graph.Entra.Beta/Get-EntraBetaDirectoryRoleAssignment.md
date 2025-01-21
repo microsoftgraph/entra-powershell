@@ -114,7 +114,10 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId '00001111-aaaa-2222-bbbb-3333cccc4444'
+$user = Get-EntraBetaUser -UserId 'BiancaP@M365x80713871.OnMicrosoft.com'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+$assignment = Get-EntraBetaDirectoryRoleAssignment -All | Where-Object {$_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id}
+Get-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
 ```
 
 ```Output
@@ -131,7 +134,8 @@ This command gets the role assignments using specified roleAssignment Id.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+$userId = (Get-EntraBetaUser -UserId 'SawyerM@contoso.com').Id
+Get-EntraBetaDirectoryRoleAssignment -Filter "principalId eq '$userId'"
 ```
 
 ```Output
@@ -147,7 +151,8 @@ This command gets the role assignments containing the specified principalId.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
+$roleId = (Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'").Id
+Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq '$roleId'"
 ```
 
 ```Output
