@@ -167,7 +167,7 @@ For more information, see [Device Code flow](https://learn.microsoft.com/entra/i
 ### Example 5: App-only access: Using client credential with a Certificate thumbprint
 
 ```powershell
-$contosoCert = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq 'CN=Entra PowerShell Contoso Certificate'}
+$contosoCert = Get-ChildItem 'Cert:\CurrentUser\My' | Where-Object {$_.Subject -eq 'CN=Entra PowerShell Contoso Certificate'}
 $tenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 $applicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
 Connect-Entra -TenantId $tenantId -ApplicationId $applicationId -CertificateThumbprint $contosoCert.Thumbprint
