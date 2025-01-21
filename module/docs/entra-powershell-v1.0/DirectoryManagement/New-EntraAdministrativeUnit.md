@@ -84,6 +84,7 @@ This example demonstrates how to create an administrative unit.
 ### Example 3: Create an administrative unit with detailed configuration
 
 ```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $displayName = 'Seattle District Technical Schools'
 $description = 'Seattle district technical schools administration'
 $membershipRule = '(user.country -eq "United States")'
