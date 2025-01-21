@@ -69,7 +69,7 @@ Additionally, to reset the redemption status, the signed-in user must have the:
 Connect-Entra -Scopes 'User.Invite.All'
 $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
-$redirectUrl = 'https://myapps.onmicrosoft.com'
+$redirectUrl = 'https://myapps.contoso.com'
 New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl
 ```
 
