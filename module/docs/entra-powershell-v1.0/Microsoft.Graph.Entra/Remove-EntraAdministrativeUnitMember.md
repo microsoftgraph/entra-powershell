@@ -98,7 +98,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
+[New-EntraAdministrativeUnitMember](New-EntraAdministrativeUnitMember.md)
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
 
