@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Type definitios required for commands inputs
+# Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
 
 $def = @"
@@ -773,5 +773,5 @@ try {
 }
 
 # ------------------------------------------------------------------------------
-# End of Type definitios required for commands inputs
+# End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
