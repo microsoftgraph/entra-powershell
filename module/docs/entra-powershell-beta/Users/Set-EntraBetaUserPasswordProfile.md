@@ -35,9 +35,9 @@ Set-EntraBetaUserPasswordPofile
 
 ## Description
 
-The `Set-EntraBetaUserPasswordPofile` cmdlet sets the password for a user in Microsoft Entra ID.
+The `Set-EntraBetaUserPasswordPofile` cmdlet sets the password profile for a user in Microsoft Entra ID.
 
-Any user can update their password without belonging to any administrator role.
+Any user can update their password profile without belonging to any administrator role.
 
 ## Examples
 
