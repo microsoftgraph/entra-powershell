@@ -54,15 +54,12 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        $module = Get-Module -Name Microsoft.Entra.Beta -ErrorAction SilentlyContinue
-        if ($null -eq $module) {
-            $module = Get-Module -Name Microsoft.Entra -ErrorAction SilentlyContinue
-        }
+        $module = Get-Module -Name Microsoft.Entra.Authentication -ErrorAction SilentlyContinue
+        $entraPSModuleName = "Microsoft.Entra"
+        $response | Add-Member -MemberType NoteProperty -Name "EntraPSModuleName" -Value $entraPSModuleName -Force
 
         if ($null -ne $module) {
             $entraPSVersion = $module.Version.ToString()
-            $entraPSModuleName = $module.Name
-            $response | Add-Member -MemberType NoteProperty -Name "EntraPSModuleName" -Value $entraPSModuleName -Force
             $response | Add-Member -MemberType NoteProperty -Name "EntraPSVersion" -Value $entraPSVersion -Force
         }
 
