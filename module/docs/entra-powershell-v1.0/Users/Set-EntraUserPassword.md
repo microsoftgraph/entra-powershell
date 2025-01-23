@@ -1,6 +1,6 @@
 ---
-title: Set-EntraUserPassword
-description: This article provides details on the Set-EntraUserPassword command.
+title: Set-EntraUserPasswordPofile
+description: This article provides details on the Set-EntraUserPasswordPofile command.
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -11,12 +11,12 @@ author: msewaweru
 
 external help file: Microsoft.Entra.Users-Help.xml
 Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraUserPassword
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraUserPasswordPofile
 
 schema: 2.0.0
 ---
 
-# Set-EntraUserPassword
+# Set-EntraUserPasswordPofile
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Sets the password of a user.
 ## Syntax
 
 ```powershell
-Set-EntraUserPassword
+Set-EntraUserPasswordPofile
  [-ForceChangePasswordNextLogin <Boolean>]
  [-EnforceChangePasswordPolicy <Boolean>]
  -UserId <String>
@@ -35,7 +35,7 @@ Set-EntraUserPassword
 
 ## Description
 
-The `Set-EntraUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
+The `Set-EntraUserPasswordPofile` cmdlet sets the password for a user in Microsoft Entra ID.
 
 Any user can update their password without belonging to any administrator role.
 
@@ -47,7 +47,7 @@ Any user can update their password without belonging to any administrator role.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword = '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword
+Set-EntraUserPasswordPofile -UserId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
@@ -61,7 +61,7 @@ This command sets the specified user's password.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword -EnforceChangePasswordPolicy $True
+Set-EntraUserPasswordPofile -UserId 'SawyerM@contoso.com' -Password $securePassword -EnforceChangePasswordPolicy $True
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
@@ -76,7 +76,7 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextLogin $True
+Set-EntraUserPasswordPofile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextLogin $True
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.

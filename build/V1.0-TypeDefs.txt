@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# Type definitions required for commands inputs
+# Type definitios required for commands inputs
 # ------------------------------------------------------------------------------
 
 $def = @"
@@ -772,7 +772,6 @@ try {
     # No error message will be displayed, and type will be added if it doesn't exist
 }
 
-
 # ------------------------------------------------------------------------------
-# End of Type definitions required for commands inputs
+# End of Type definitios required for commands inputs
 # ------------------------------------------------------------------------------
