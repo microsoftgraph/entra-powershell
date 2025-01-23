@@ -10,7 +10,7 @@ function Connect-Entra {
 
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', Mandatory = $true, Position = 1, HelpMessage = 'The client ID of your application.')]
         [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'The client ID of your application.')]
-        [Parameter(ParameterSetName = 'IdentityParameterSet',git  HelpMessage = 'The client ID to authenticate for a user assigned managed identity. For more information on user assigned managed identities see: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#how-a-user-assigned-managed-identity-works-with-an-azure-vmId. To use the SystemAssigned identity, leave this field blank.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'The client ID to authenticate for a user assigned managed identity. For more information on user assigned managed identities see: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#how-a-user-assigned-managed-identity-works-with-an-azure-vmId. To use the SystemAssigned identity, leave this field blank.')]
         [Alias('AppId', 'ApplicationId')]
         [string] $ClientId,
 
