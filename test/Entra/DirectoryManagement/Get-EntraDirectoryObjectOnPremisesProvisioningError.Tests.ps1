@@ -7,11 +7,30 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $response = @{
-        "@odata.context" = 'https://graph.microsoft.com/v1.0/$metadata#contacts(onPremisesProvisioningErrors)'
-        "value"          = @{
-            "onPremisesProvisioningErrors" = @{}
+    $scriptblock = {
+        $errors = [PSCustomObject]@{
+            "category"               = "PropertyConflict"
+            "occurredDateTime"       =  "11/07/2024 23:11:06"
+            "propertyCausingError"   =  "ProxyAddresses"
+            "value"                  =  "SMTP:ConflictMail@contoso.com"
         }
+        $valueObject = [PSCustomObject]@{
+            "id"                           = "2ba6fbc5-e7e0-4d6d-9878-a147632d75ea"
+            "onPremisesSyncEnabled"        = $true
+            "proxyAddresses"               = {"smtp:ConflictMail1@contoso.com", "smtp:ConflictMail2@contoso.com"}
+            "displayName"                  = "ConflictMail2"
+            "mail"                         = $null
+            "onPremisesProvisioningErrors" = @($errors)
+        }
+
+        $response = @{
+            '@odata.context'        = 'Users()'
+            value                   = $valueObject
+        }
+
+        return @(
+            $response
+        )
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.DirectoryManagement
