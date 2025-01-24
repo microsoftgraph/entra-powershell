@@ -2,7 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-
 function Enable-EntraAzureADAlias {
    Set-Alias -Name Remove-AzureADMSRoleAssignment -Value Remove-EntraDirectoryRoleAssignment -Scope Global -Force
    Set-Alias -Name New-AzureADMSRoleDefinition -Value New-EntraDirectoryRoleDefinition -Scope Global -Force

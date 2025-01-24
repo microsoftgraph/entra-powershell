@@ -2,7 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-
 function Enable-EntraAzureADAlias {
    Set-Alias -Name Set-AzureADDomain -Value Set-EntraDomain -Scope Global -Force
    Set-Alias -Name Get-AzureADDirectoryRole -Value Get-EntraDirectoryRole -Scope Global -Force
