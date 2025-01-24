@@ -22,13 +22,18 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $Object = @('users', 'groups', 'contacts')
-        $response = @()
+        $data = @()
 
         try {
             foreach ($obj in $Object) {
-                $obj = ($obj | Out-String).TrimEnd()
-                $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
-                $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+                $uri = "https://graph.microsoft.com/v1.0/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category eq 'PropertyConflict')&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
+                $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                while ($response.ContainsKey('@odata.nextLink') -and $null -ne $response.'@odata.nextLink') {
+                    $uri = $response.'@odata.nextLink'
+                    $response = Invoke-GraphRequest -Uri $uri -Method GET
+                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                }
             }
         } catch {
             Write-Error $_.Exception.Message
@@ -36,10 +41,31 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
     }
 
     end {
-        if ([string]::IsNullOrWhiteSpace($response)) {
+        if ($data.Count -eq 0) {
             Write-Output 'False'
         } else {
-            $response
+            $Results = New-Object -TypeName System.Collections.Generic.List[PSObject]
+            foreach ($item in $data) {
+                $upn = ""
+                if($item | Get-Member userPrincipalName){
+                    $upn = $item.userPrincipalName
+                }
+                $Results.Add(
+                    [PSCustomObject]@{
+			            Id                    = $item.id
+                        PropertyCausingError  = $item.onPremisesProvisioningErrors.PropertyCausingError
+		                UserPrincipalName     = $upn
+                        Category              = $item.onPremisesProvisioningErrors.category
+                        Value                 = $item.onPremisesProvisioningErrors.Value
+                        OccurredDateTime      = $item.onPremisesProvisioningErrors.OccurredDateTime
+                        DisplayName           = $item.displayName
+                        OnPremisesSyncEnabled = $item.onPremisesSyncEnabled
+                        Mail                  = $item.mail
+                        proxyAddresses        = $item.proxyAddresses
+                    }
+                )
+            }
+            $Results
         }
     }
 }
