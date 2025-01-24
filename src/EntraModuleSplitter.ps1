@@ -274,7 +274,7 @@ class EntraModuleSplitter {
                     $this.CreateDirectory($targetSubDirectoryPath)
 
                     # Create the output file path in the target directory
-                    $outputFilePath = Join-Path -Path $targetSubDirectoryPath -ChildPath "Enable-EntraAzureADAliases.ps1"
+                    $outputFilePath = Join-Path -Path $targetSubDirectoryPath -ChildPath "Enable-EntraAzureADAlias.ps1"
 
                     # Write the filtered lines to the output file in the target directory
                     $this.WriteFilteredLines($outputFilePath, $filteredLines, $this.Header)
@@ -351,13 +351,14 @@ class EntraModuleSplitter {
     }
 
     [void] WriteFilteredLines([string]$outputFilePath, [string[]]$filteredLines, [string]$header) {
-        $functionWrapperStart = "`nfunction Enable-EntraAzureADAliases {" + "`n"
+        $functionWrapperStart = "`nfunction Enable-EntraAzureADAlias {" + "`n"
         $functionWrapperEnd = "`n`n}"
 
         $fileContent = $header + $functionWrapperStart + ($filteredLines -join "`n") + $functionWrapperEnd
 
         Set-Content -Path $outputFilePath -Value $fileContent
-        Log-Message "[EntraModuleSplitter] Filtered lines have been written and wrapped inside Enable-EntraAzureADAliases function to $outputFilePath" -Level 'SUCCESS'
+        Log-Message "[EntraModuleSplitter] Filtered lines have been written and wrapped inside Enable-EntraAzureADAlias
+         function to $outputFilePath" -Level 'SUCCESS'
     }
 
     [string[]] WriteUnmappedAliases([string[]]$aliasFileContent, [string[]]$allMappedAliases, [string]$targetDirectory) {

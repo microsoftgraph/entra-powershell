@@ -2,33 +2,36 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Enable-EntraAzureADAliases {
-   Set-Alias -Name Select-AzureADGroupIdsContactIsMemberOf -Value Select-EntraGroupIdsContactIsMemberOf -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSDeletedGroup -Value Get-EntraDeletedGroup -Scope Global -Force
-   Set-Alias -Name Remove-AzureADMSLifecyclePolicyGroup -Value Remove-EntraLifecyclePolicyGroup -Scope Global -Force
-   Set-Alias -Name Get-AzureADGroup -Value Get-EntraGroup -Scope Global -Force
-   Set-Alias -Name New-AzureADMSGroup -Value New-EntraGroup -Scope Global -Force
-   Set-Alias -Name Add-AzureADGroupOwner -Value Add-EntraGroupOwner -Scope Global -Force
-   Set-Alias -Name Select-AzureADGroupIdsGroupIsMemberOf -Value Select-EntraGroupIdsGroupIsMemberOf -Scope Global -Force
-   Set-Alias -Name Get-AzureADGroupOwner -Value Get-EntraGroupOwner -Scope Global -Force
-   Set-Alias -Name Remove-AzureADGroup -Value Remove-EntraGroup -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSGroupPermissionGrant -Value Get-EntraGroupPermissionGrant -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSGroupLifecyclePolicy -Value Get-EntraGroupLifecyclePolicy -Scope Global -Force
-   Set-Alias -Name Add-AzureADGroupMember -Value Add-EntraGroupMember -Scope Global -Force
-   Set-Alias -Name Remove-AzureADGroupAppRoleAssignment -Value Remove-EntraGroupAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name Set-AzureADMSGroup -Value Set-EntraGroup -Scope Global -Force
-   Set-Alias -Name New-AzureADGroupAppRoleAssignment -Value New-EntraGroupAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-AzureADGroupMember -Value Get-EntraGroupMember -Scope Global -Force
-   Set-Alias -Name Select-AzureADGroupIdsUserIsMemberOf -Value Select-EntraGroupIdsUserIsMemberOf -Scope Global -Force
-   Set-Alias -Name Reset-AzureADMSLifeCycleGroup -Value Reset-EntraLifeCycleGroup -Scope Global -Force
-   Set-Alias -Name Set-AzureADMSGroupLifecyclePolicy -Value Set-EntraGroupLifecyclePolicy -Scope Global -Force
-   Set-Alias -Name Remove-AzureADGroupMember -Value Remove-EntraGroupMember -Scope Global -Force
-   Set-Alias -Name Remove-AzureADGroupOwner -Value Remove-EntraGroupOwner -Scope Global -Force
-   Set-Alias -Name Add-AzureADMSLifecyclePolicyGroup -Value Add-EntraLifecyclePolicyGroup -Scope Global -Force
-   Set-Alias -Name Get-AzureADGroupAppRoleAssignment -Value Get-EntraGroupAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSLifecyclePolicyGroup -Value Get-EntraLifecyclePolicyGroup -Scope Global -Force
-   Set-Alias -Name New-AzureADMSGroupLifecyclePolicy -Value New-EntraGroupLifecyclePolicy -Scope Global -Force
-   Set-Alias -Name Remove-AzureADMSGroupLifecyclePolicy -Value Remove-EntraGroupLifecyclePolicy -Scope Global -Force
+
+function Enable-EntraAzureADAlias {
+   Set-Alias -Name New-AzureADMSInvitation -Value New-EntraInvitation -Scope Global -Force
+   Set-Alias -Name New-AzureADTrustedCertificateAuthority -Value New-EntraTrustedCertificateAuthority -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSIdentityProvider -Value Get-EntraIdentityProvider -Scope Global -Force
+   Set-Alias -Name New-AzureADMSNamedLocationPolicy -Value New-EntraNamedLocationPolicy -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSConditionalAccessPolicy -Value Get-EntraConditionalAccessPolicy -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSNamedLocationPolicy -Value Get-EntraNamedLocationPolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSConditionalAccessPolicy -Value Remove-EntraConditionalAccessPolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADOAuth2PermissionGrant -Value Remove-EntraOAuth2PermissionGrant -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSIdentityProvider -Value Remove-EntraIdentityProvider -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSNamedLocationPolicy -Value Remove-EntraNamedLocationPolicy -Scope Global -Force
+   Set-Alias -Name Get-AzureADTrustedCertificateAuthority -Value Get-EntraTrustedCertificateAuthority -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSIdentityProvider -Value Set-EntraIdentityProvider -Scope Global -Force
+   Set-Alias -Name Set-AzureADTrustedCertificateAuthority -Value Set-EntraTrustedCertificateAuthority -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSAuthorizationPolicy -Value Set-EntraAuthorizationPolicy -Scope Global -Force
+   Set-Alias -Name New-AzureADMSPermissionGrantPolicy -Value New-EntraPermissionGrantPolicy -Scope Global -Force
+   Set-Alias -Name New-AzureADMSIdentityProvider -Value New-EntraIdentityProvider -Scope Global -Force
+   Set-Alias -Name New-AzureADMSPermissionGrantConditionSet -Value New-EntraPermissionGrantConditionSet -Scope Global -Force
+   Set-Alias -Name New-AzureADMSConditionalAccessPolicy -Value New-EntraConditionalAccessPolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSPermissionGrantConditionSet -Value Remove-EntraPermissionGrantConditionSet -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSConditionalAccessPolicy -Value Set-EntraConditionalAccessPolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADTrustedCertificateAuthority -Value Remove-EntraTrustedCertificateAuthority -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSPermissionGrantPolicy -Value Remove-EntraPermissionGrantPolicy -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSPermissionGrantPolicy -Value Set-EntraPermissionGrantPolicy -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSPermissionGrantConditionSet -Value Set-EntraPermissionGrantConditionSet -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSNamedLocationPolicy -Value Set-EntraNamedLocationPolicy -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSPermissionGrantPolicy -Value Get-EntraPermissionGrantPolicy -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSPermissionGrantConditionSet -Value Get-EntraPermissionGrantConditionSet -Scope Global -Force
+   Set-Alias -Name Get-AzureADOAuth2PermissionGrant -Value Get-EntraOAuth2PermissionGrant -Scope Global -Force
    Set-Alias -Name Get-CrossCloudVerificationCode -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name Get-AzureADApplicationProxyApplication -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name New-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force

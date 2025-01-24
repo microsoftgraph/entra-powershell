@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Enable-EntraAzureADAliases {
+function Enable-EntraAzureADAlias {
    Set-Alias -Name Remove-AzureADApplication -Value Remove-EntraApplication -Scope Global -Force
    Set-Alias -Name New-AzureADMSApplicationKey -Value New-EntraApplicationKey -Scope Global -Force
    Set-Alias -Name Remove-AzureADMSApplicationVerifiedPublisher -Value Remove-EntraApplicationVerifiedPublisher -Scope Global -Force
