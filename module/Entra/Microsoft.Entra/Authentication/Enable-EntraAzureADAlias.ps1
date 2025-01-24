@@ -2,6 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
+
 function Enable-EntraAzureADAlias {
    Set-Alias -Name Revoke-AzureADUserAllRefreshToken -Value Revoke-EntraUserAllRefreshToken -Scope Global -Force
    Set-Alias -Name Revoke-AzureADSignedInUserAllRefreshToken -Value Revoke-EntraSignedInUserAllRefreshToken -Scope Global -Force
