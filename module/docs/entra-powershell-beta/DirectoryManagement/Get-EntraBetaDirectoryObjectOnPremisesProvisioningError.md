@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaDirectoryObjectOn
 
 
 ms.topic: reference
-ms.date: 08/19/2024
+ms.date: 01/26/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -51,9 +51,9 @@ cccccccc-2222-3333-4444-dddddddddddd ProxyAddresses                         Prop
 eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      PropertyConflict BlockSoftMatch1@contoso.com             7/4/2024 12:06:16 AM  BlockSoftMatch1                        True                
 ```
 
-This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+This command lists directory sync errors for `users`, `groups`, or `organizational contacts` during on-premises synchronization to Microsoft Entra ID.
 
-### Example 2: Return whether Microsoft Entra ID has objects with DirSync provisioning error
+### Example 2: Get directory synchronization errors for a specific tenant
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
@@ -68,7 +68,7 @@ cccccccc-2222-3333-4444-dddddddddddd ProxyAddresses                         Prop
 eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      PropertyConflict BlockSoftMatch1@contoso.com             7/4/2024 12:06:16 AM  BlockSoftMatch1                        True                
 ```
 
-This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+This command lists directory sync errors for `users`, `groups`, or `organizational contacts` during on-premises synchronization to Microsoft Entra ID.
 
 - `-TenantId` Specifies the unique ID of the tenant.
 
@@ -99,6 +99,13 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
 ## Outputs
+
+**Id**: Unique ID for the synchronization error.
+**Category**: Provisioning error category. Currently, the only value is `PropertyConflict`, which means a property value is not unique and is shared by other objects.
+**PropertyCausingError**: Name of the directory property causing the error. Current possible values: UserPrincipalName or ProxyAddress.
+**Value**: Value of the property causing the error.
+**OccurredDateTime**: The date and time at which the error occurred.
+**ObjectType**: The resource for which the error occurred e.g. `users`, `groups`, `organizational contacts`.
 
 ## Notes
 
