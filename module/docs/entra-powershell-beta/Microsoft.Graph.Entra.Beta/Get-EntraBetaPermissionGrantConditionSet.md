@@ -56,8 +56,13 @@ Get a Microsoft Entra ID permission grant condition set object by ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes'
+$permissionGrantPolicyId = 'policy1'
+$params = @{
+    PolicyId = $permissionGrantPolicyId
+    ConditionSetType = 'includes'
+}
+
+Get-EntraBetaPermissionGrantConditionSet @params
 ```
 
 ```Output
@@ -75,8 +80,13 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'excludes'
+$permissionGrantPolicyId = 'policy1'
+$params = @{
+    PolicyId = $permissionGrantPolicyId
+    ConditionSetType = 'excludes'
+}
+
+Get-EntraBetaPermissionGrantConditionSet @params
 ```
 
 ```Output
@@ -95,9 +105,14 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-$conditionSet = Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object {$_.PermissionType -eq 'delegated'}
-Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -Id $conditionSet.Id
+$permissionGrantPolicyId = 'policy1'
+$params = @{
+    PolicyId = $permissionGrantPolicyId
+    ConditionSetType = 'includes'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+
+Get-EntraBetaPermissionGrantConditionSet @params
 ```
 
 ```Output

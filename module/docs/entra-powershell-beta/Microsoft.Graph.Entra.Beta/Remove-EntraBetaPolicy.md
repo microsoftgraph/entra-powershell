@@ -40,8 +40,7 @@ The `Remove-EntraBetaPolicy` cmdlet removes a policy from Microsoft Entra ID. Sp
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration'
-$policy = Get-EntraBetaPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
-Remove-EntraBetaPolicy -Id $policy.Id
+Remove-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified policy from Microsoft Entra ID.

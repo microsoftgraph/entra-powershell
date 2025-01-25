@@ -54,7 +54,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
 $graphApp = Get-EntraBetaServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $params = @{
     ClientId = $servicePrincipal.Id
@@ -80,7 +80,7 @@ This command Grant authorization to impersonate all users.
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
 $graphApp = Get-EntraBetaServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{

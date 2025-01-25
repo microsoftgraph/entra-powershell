@@ -50,8 +50,12 @@ Users in groups assigned to the policy will start authenticating using the new m
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
-Set-EntraFeatureRolloutPolicy -Id $policy.Id -DisplayName 'Feature-Rollout-Policytest' -IsEnabled $false
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    DisplayName = 'Feature-Rollout-Policytest' 
+    IsEnabled = $false
+}
+Set-EntraFeatureRolloutPolicy  @params
 ```
 
 This command updates the policy for cloud authentication roll-out in Microsoft Entra ID.
@@ -64,8 +68,11 @@ This command updates the policy for cloud authentication roll-out in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
-Set-EntraFeatureRolloutPolicy -Id $policy.Id -Description 'Feature-Rollout-Policytest'
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    Description = 'Feature-Rollout-test'
+}
+Set-EntraFeatureRolloutPolicy  @params
 ```
 
 This command updates the `-Description` of policy for cloud authentication roll-out in Microsoft Entra ID.
@@ -77,11 +84,14 @@ This command updates the `-Description` of policy for cloud authentication roll-
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
-Set-EntraFeatureRolloutPolicy -Id $policy.Id -IsAppliedToOrganization $false
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    IsAppliedToOrganization = $false
+}
+Set-EntraFeatureRolloutPolicy  @params
 ```
 
-This command updates the `-IsAppliedToOrganization` parameter of policy for cloud authentication roll-out in Microsoft Entra ID to indicate that the feature should be applied to the entire organization.
+This command updates the `-IsAppliedToOrganization` parameter of policy for cloud authentication roll-out in Microsoft Entra ID.
 
 - `-Id` Specify the ID of cloud authentication roll-out policy.
 - `-IsAppliedToOrganization` Parameter determines whether a particular feature rollout policy should be applied to the entire organization or not.
@@ -124,15 +134,7 @@ Accept wildcard characters: False
 
 Specifies a feature assigned to the cloud authentication roll-out policy.
 
-Possible values are:
-
-- passthroughAuthentication  
-- seamlessSso  
-- passwordHashSync  
-- emailAsAlternateId  
-- unknownFutureValue  
-- certificateBasedAuthentication  
-- multiFactorAuthentication
+Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
 
 ```yaml
 Type: FeatureEnum
@@ -219,8 +221,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
-
-See more details - <https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy>
 
 ## Related Links
 

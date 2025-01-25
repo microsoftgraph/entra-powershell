@@ -51,9 +51,15 @@ Updates a Microsoft Entra ID permission grant condition set object identified by
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-$conditionSet = Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object {$_.PermissionType -eq 'delegated'}
-Set-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy -ConditionSetType 'includes' -Id $conditionSet.Id -PermissionClassification 'low' 
+$permissionGrantPolicyId = 'policy1'
+$params = @{
+    PolicyId = $permissionGrantPolicyId
+    ConditionSetType = 'includes'
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+    PermissionClassification = 'low'
+}
+
+Set-EntraBetaPermissionGrantConditionSet @params
 ```
 
 This command updates sets the specified permission grant set to classify as low.
@@ -67,12 +73,11 @@ This command updates sets the specified permission grant set to classify as low.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-$conditionSet = Get-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object {$_.PermissionType -eq 'delegated'}
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = $permissionGrantPolicy.Id
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
-    Id = $conditionSet.Id
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
     PermissionType = 'delegated'
     PermissionClassification = 'low'
     ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'

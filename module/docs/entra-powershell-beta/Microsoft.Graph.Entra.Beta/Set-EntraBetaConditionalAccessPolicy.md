@@ -45,22 +45,25 @@ This cmdlet allows an admin to update a conditional access policy in Microsoft E
 
 Conditional access policies are custom rules that define an access scenario.
 
-In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The least privileged roles for this operation are:
-
-- Security Administrator  
-- Conditional Access Administrator
-
 ## Examples
 
 ### Example 1: Update a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $cond = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $control = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 $session = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-Set-EntraBetaConditionalAccessPolicy -PolicyId $policy.Id -DisplayName 'MFA policy updated' -State 'Enabled' -Conditions $cond -GrantControls $control -SessionControls $session
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    DisplayName = 'MFA policy updated'
+    State = 'Enabled'
+    Conditions = $cond
+    GrantControls = $control
+    SessionControls = $session
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
 ```
 
 The example shows how to update a conditional access policy in Microsoft Entra ID.
@@ -75,9 +78,13 @@ The example shows how to update a conditional access policy in Microsoft Entra I
 ### Example 2: Update display name for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
-Set-EntraBetaConditionalAccessPolicy -PolicyId $policy.Id -DisplayName 'MFA policy updated'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    DisplayName = 'MFA policy updated'
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
 ```
 
 This command updates a conditional access policy in Microsoft Entra ID.
@@ -88,9 +95,13 @@ This command updates a conditional access policy in Microsoft Entra ID.
 ### Example 3: Update the state for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
-Set-EntraBetaConditionalAccessPolicy -PolicyId $policy.Id -State 'Enabled'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    State = 'Enabled'
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
 ```
 
 This command updates a conditional access policy in Microsoft Entra ID.
@@ -253,13 +264,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
-
-Learn more about:
-
-[Condition access policy](https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy)
-[Built controls](https://learn.microsoft.com/graph/api/resources/conditionalaccessgrantcontrols)
-[Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
-[Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
 ## Related Links
 

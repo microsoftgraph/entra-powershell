@@ -48,7 +48,12 @@ The policy admin can identify whether the users authenticate using password hash
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraBetaFeatureRolloutPolicy -Feature 'PassthroughAuthentication' -DisplayName 'Passthrough Authentication Rollout Policy' -IsEnabled $false
+$params = @{
+    Feature = 'PassthroughAuthentication'
+    DisplayName = 'Passthrough Authentication Rollout Policy'
+    IsEnabled = $false
+}
+New-EntraBetaFeatureRolloutPolicy @params
 ```
 
 ```Output
@@ -62,14 +67,22 @@ This example creates the policy for cloud authentication roll-out in Microsoft E
 
 - `-Feature` specifies a feature assigned to the cloud authentication roll-out policy.
 Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
+
 - `-DisplayName` specifies the display name of the cloud authentication roll-out policy.
+
 - `-IsEnabled` specifies the status of cloud authentication roll-out policy.
 
 ### Example 2: Creates the policy for cloud authentication roll-out in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraBetaFeatureRolloutPolicy -Feature 'PassthroughAuthentication' -DisplayName 'FeatureRolloutPolicy' -IsEnabled $false -IsAppliedToOrganization $false
+$params = @{
+    Feature = 'PassthroughAuthentication'
+    DisplayName = 'FeatureRolloutPolicy'
+    IsEnabled = $false
+    IsAppliedToOrganization = $false
+}
+New-EntraBetaFeatureRolloutPolicy @params
 ```
 
 ```Output
@@ -83,8 +96,11 @@ This command creates the policy for cloud authentication roll-out in Microsoft E
 
 - `-Feature` specifies a feature assigned to the cloud authentication roll-out policy.
 Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
+
 - `-DisplayName` specifies the display name of the cloud authentication roll-out policy.
+
 - `-IsEnabled` specifies the status of cloud authentication roll-out policy.
+
 - `-IsAppliedToOrganization` specifies if the cloud authentication roll-out policy applied to the entire organization.
 
 ## Parameters
@@ -109,15 +125,7 @@ Accept wildcard characters: False
 
 Specifies a feature assigned to the cloud authentication roll-out policy.
 
-Possible values are:
-
-- passthroughAuthentication  
-- seamlessSso  
-- passwordHashSync  
-- emailAsAlternateId  
-- unknownFutureValue  
-- certificateBasedAuthentication  
-- multiFactorAuthentication
+Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
 
 ```yaml
 Type: FeatureEnum
@@ -206,8 +214,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
 
 ## Notes
-
-See more details - <https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy>
 
 ## Related Links
 

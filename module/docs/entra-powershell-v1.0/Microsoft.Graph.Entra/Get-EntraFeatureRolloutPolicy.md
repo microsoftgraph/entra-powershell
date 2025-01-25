@@ -77,15 +77,14 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'FeatureRolloutPolicy'"
-Get-EntraFeatureRolloutPolicy -Id $policy.Id
+Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
 
 Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            ----------- -------            ----------------------- ---------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolicy      emailAsAlternateId False                   False
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
 
 ```
 

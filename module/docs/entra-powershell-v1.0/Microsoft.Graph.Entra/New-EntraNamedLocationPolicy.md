@@ -43,11 +43,6 @@ This cmdlet allows an admin to create new named location policy in Microsoft Ent
 
 Conditional access policies are custom rules that define an access scenario.
 
-In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. The least privileged roles for this operation are:
-
-- Security Administrator  
-- Conditional Access Administrator
-
 ## Examples
 
 ### Example 1: Creates a new Ip named location policy in Microsoft Entra ID
@@ -56,8 +51,14 @@ In delegated scenarios with work or school accounts, when acting on another user
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
 $ipRanges.cidrAddress = '6.5.4.3/32'
-$type = '#microsoft.graph.ipNamedLocation'
-New-EntraNamedLocationPolicy -OdataType $type -DisplayName 'IP named location policy' -IsTrusted $false -IpRanges $ipRanges
+$params = @{
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    DisplayName = 'IP named location policy'
+    IsTrusted = $false
+    IpRanges = $ipRanges
+}
+
+New-EntraNamedLocationPolicy @params
 ```
 
 ```Output
@@ -77,8 +78,14 @@ This command creates a new country named location policy in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-$type = '#microsoft.graph.countryNamedLocation'
-New-EntraNamedLocationPolicy -OdataType $type -DisplayName 'Country named location policy' -CountriesAndRegions 'IN' -IncludeUnknownCountriesAndRegions $false
+$params = @{
+    OdataType = '#microsoft.graph.countryNamedLocation'
+    DisplayName = 'Country named location policy'
+    CountriesAndRegions = 'IN'
+    IncludeUnknownCountriesAndRegions = $false
+}
+
+New-EntraNamedLocationPolicy @params
 ```
 
 ```Output

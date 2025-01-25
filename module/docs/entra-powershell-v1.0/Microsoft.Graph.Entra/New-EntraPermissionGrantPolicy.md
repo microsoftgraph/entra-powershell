@@ -43,7 +43,13 @@ The `New-EntraPermissionGrantPolicy` cmdlet creates a Microsoft Entra ID permiss
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-New-EntraPermissionGrantPolicy -Id 'my_new_permission_grant_policy_id' -DisplayName 'MyNewPermissionGrantPolicy' -Description 'My new permission grant policy'
+$params = @{
+    Id = 'my_new_permission_grant_policy_id'
+    DisplayName = 'MyNewPermissionGrantPolicy'
+    Description = 'My new permission grant policy'
+}
+
+New-EntraPermissionGrantPolicy @params
 ```
 
 ```Output

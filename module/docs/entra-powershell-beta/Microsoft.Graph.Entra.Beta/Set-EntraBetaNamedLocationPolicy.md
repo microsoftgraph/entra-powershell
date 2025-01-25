@@ -44,11 +44,6 @@ This cmdlet allows an admin to update a named location policy in Microsoft Entra
 
 Conditional access policies are custom rules that define an access scenario.
 
-In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. Supported roles include:
-
-- Security Administrator  
-- Conditional Access Administrator
-
 ## Examples
 
 ### Example 1: Update an IP named location policy in Microsoft Entra ID by PolicyId
@@ -58,8 +53,14 @@ Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
 $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
 $ipRanges.cidrAddress = '6.5.4.3/32'
-$type = '#microsoft.graph.ipNamedLocation'
-Set-EntraBetaNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -IsTrusted $false -IncludeUnknownCountriesAndRegions $false -IpRanges $ipRanges
+$params = @{
+    PolicyId = $policy.Id
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    IsTrusted = $false
+    IncludeUnknownCountriesAndRegions = $false
+    IpRanges = $ipRanges
+}
+Set-EntraBetaNamedLocationPolicy @params
 ```
 
 This example shows how to update an IP named location policy in Microsoft Entra ID by PolicyId.
@@ -75,8 +76,12 @@ This example shows how to update an IP named location policy in Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
-$type = '#microsoft.graph.countryNamedLocation'
-Set-EntraBetaNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -IncludeUnknownCountriesAndRegions $true
+$params = @{
+    PolicyId = $policy.Id
+    OdataType = '#microsoft.graph.countryNamedLocation'
+    IncludeUnknownCountriesAndRegions = $true
+}
+Set-EntraBetaNamedLocationPolicy @params
 ```
 
 This command updates a country named location policy in Microsoft Entra ID by PolicyId.
@@ -90,8 +95,12 @@ This command updates a country named location policy in Microsoft Entra ID by Po
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
 $policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
-$type = '#microsoft.graph.ipNamedLocation'
-Set-EntraBetaNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -DisplayName 'NewName'
+$params = @{
+    PolicyId = $policy.Id
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    DisplayName = 'NewName'
+}
+Set-EntraBetaNamedLocationPolicy @params
 ```
 
 This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
