@@ -22,24 +22,59 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $Object = @('users', 'groups', 'contacts')
-        $response = @()
+        $data = @()
 
         try {
             foreach ($obj in $Object) {
-                $obj = ($obj | Out-String).TrimEnd()
-                $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
-                $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+                $uri = "https://graph.microsoft.com/beta/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
+                $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
+                $response.value | ForEach-Object {
+                    $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force
+                    $data += $_
+                }
+                while ($response.ContainsKey('@odata.nextLink') -and $null -ne $response.'@odata.nextLink') {
+                    $uri = $response.'@odata.nextLink'
+                    $response = Invoke-GraphRequest -Uri $uri -Method GET
+                    $response.value | ForEach-Object {
+                        $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force
+                        $data += $_
+                    }
+                }
             }
-        } catch {
+        }
+        catch {
             Write-Error $_.Exception.Message
         }
     }
 
     end {
-        if ([string]::IsNullOrWhiteSpace($response)) {
-            Write-Output 'False'
-        } else {
-            $response
+        if ($data.Count -eq 0) {
+            Write-Output 'No data found'
+        }
+        else {
+            $Results = New-Object -TypeName System.Collections.Generic.List[PSObject]
+            foreach ($item in $data) {
+                $upn = ""
+                if ($item | Get-Member userPrincipalName) {
+                    $upn = $item.userPrincipalName
+                }
+                $Results.Add(
+                    [PSCustomObject]@{
+                        Id                    = $item.Id
+                        PropertyCausingError  = $item.onPremisesProvisioningErrors.PropertyCausingError
+                        UserPrincipalName     = $upn
+                        Category              = $item.onPremisesProvisioningErrors.category
+                        Value                 = $item.onPremisesProvisioningErrors.Value
+                        OccurredDateTime      = $item.onPremisesProvisioningErrors.OccurredDateTime
+                        DisplayName           = $item.displayName
+                        OnPremisesSyncEnabled = $item.onPremisesSyncEnabled
+                        Mail                  = $item.mail
+                        ProxyAddresses        = $item.proxyAddresses
+                        ObjectType            = $item.ObjectType
+                    }
+                )
+            }
+            $Results | Format-Table -AutoSize
         }
     }
 }

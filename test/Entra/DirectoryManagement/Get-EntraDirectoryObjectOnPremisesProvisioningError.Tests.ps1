@@ -44,15 +44,15 @@ Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should not return empty object when TenantId is passed" {
-            $result = Get-EntraDirectoryObjectOnPremisesProvisioningError  -TenantId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
+            $result = Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
         It "Should fail when TenantId is null" {
-            { Get-EntraDirectoryObjectOnPremisesProvisioningError  -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
+            { Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
         }
         It "Should fail when TenantId is empty" {
-            { Get-EntraDirectoryObjectOnPremisesProvisioningError  -TenantId "" } | Should -Throw "Cannot process argument transformation on parameter 'TenantId'.*"
+            { Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId "" } | Should -Throw "Cannot process argument transformation on parameter 'TenantId'.*"
         }
         It "Should fail when invalid paramter is passed" {
             { Get-EntraDirectoryObjectOnPremisesProvisioningError -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
@@ -75,7 +75,7 @@ Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDirectoryObjectOnPremisesProvisioningError  -Debug } | Should -Not -Throw
+                { Get-EntraDirectoryObjectOnPremisesProvisioningError -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

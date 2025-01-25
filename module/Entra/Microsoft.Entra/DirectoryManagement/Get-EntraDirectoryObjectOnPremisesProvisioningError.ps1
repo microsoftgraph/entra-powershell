@@ -26,46 +26,55 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
 
         try {
             foreach ($obj in $Object) {
-                $uri = "https://graph.microsoft.com/v1.0/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category eq 'PropertyConflict')&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
+                $uri = "https://graph.microsoft.com/v1.0/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
-                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                $response.value | ForEach-Object {
+                    $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force
+                    $data += $_
+                }
                 while ($response.ContainsKey('@odata.nextLink') -and $null -ne $response.'@odata.nextLink') {
                     $uri = $response.'@odata.nextLink'
                     $response = Invoke-GraphRequest -Uri $uri -Method GET
-                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $response.value | ForEach-Object {
+                        $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force
+                        $data += $_
+                    }
                 }
             }
-        } catch {
+        }
+        catch {
             Write-Error $_.Exception.Message
         }
     }
 
     end {
         if ($data.Count -eq 0) {
-            Write-Output 'False'
-        } else {
+            Write-Output 'No data found'
+        }
+        else {
             $Results = New-Object -TypeName System.Collections.Generic.List[PSObject]
             foreach ($item in $data) {
                 $upn = ""
-                if($item | Get-Member userPrincipalName){
+                if ($item | Get-Member userPrincipalName) {
                     $upn = $item.userPrincipalName
                 }
                 $Results.Add(
                     [PSCustomObject]@{
-			            Id                    = $item.id
+                        Id                    = $item.Id
                         PropertyCausingError  = $item.onPremisesProvisioningErrors.PropertyCausingError
-		                UserPrincipalName     = $upn
+                        UserPrincipalName     = $upn
                         Category              = $item.onPremisesProvisioningErrors.category
                         Value                 = $item.onPremisesProvisioningErrors.Value
                         OccurredDateTime      = $item.onPremisesProvisioningErrors.OccurredDateTime
                         DisplayName           = $item.displayName
                         OnPremisesSyncEnabled = $item.onPremisesSyncEnabled
                         Mail                  = $item.mail
-                        proxyAddresses        = $item.proxyAddresses
+                        ProxyAddresses        = $item.proxyAddresses
+                        ObjectType            = $item.ObjectType
                     }
                 )
             }
-            $Results
+            $Results | Format-Table -AutoSize
         }
     }
 }
