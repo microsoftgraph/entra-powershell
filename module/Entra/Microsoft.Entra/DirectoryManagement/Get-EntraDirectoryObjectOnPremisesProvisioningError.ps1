@@ -62,7 +62,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
                     [PSCustomObject]@{
                         Id                    = $item.Id
                         PropertyCausingError  = $item.onPremisesProvisioningErrors.PropertyCausingError
-                        UserPrincipalName     = $upn
+                        UserPrincipalName     = $item.userPrincipalName
                         Category              = $item.onPremisesProvisioningErrors.category
                         Value                 = $item.onPremisesProvisioningErrors.Value
                         OccurredDateTime      = $item.onPremisesProvisioningErrors.OccurredDateTime

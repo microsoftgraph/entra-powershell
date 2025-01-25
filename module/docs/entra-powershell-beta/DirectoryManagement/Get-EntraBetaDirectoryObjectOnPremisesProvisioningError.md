@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+Returns directory synchronization errors when synchronizing on-premises directories to Microsoft Entra ID.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
 
 ## Description
 
-The `Get-EntraBetaDirectoryObjectOnPremisesProvisioningError` returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+The `Get-EntraBetaDirectoryObjectOnPremisesProvisioningError` returns directory synchronization errors for the `user`, `group`, or `organizational contact` entities when synchronizing on-premises directories to Microsoft Entra ID.
 
 ## Examples
 
@@ -45,7 +45,10 @@ Get-EntraBetaDirectoryObjectOnPremisesProvisioningError
 ```
 
 ```Output
-False
+Id                                   PropertyCausingError UserPrincipalName Category         Value                                      OccurredDateTime      DisplayName           OnPremisesSyncEnabled Mail                
+--                                   -------------------- ----------------- --------         -----                                      ----------------      -----------           --------------------- ----                
+cccccccc-2222-3333-4444-dddddddddddd ProxyAddresses                         PropertyConflict SMTP:ConflictMail@contoso.com           3/14/2022 11:46:44 PM ConflictMail1                          True                
+eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      PropertyConflict BlockSoftMatch1@contoso.com             7/4/2024 12:06:16 AM  BlockSoftMatch1                        True                
 ```
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
@@ -59,7 +62,10 @@ Get-EntraBetaDirectoryObjectOnPremisesProvisioningError -TenantId $tenant.Id
 ```
 
 ```Output
-False
+Id                                   PropertyCausingError UserPrincipalName Category         Value                                      OccurredDateTime      DisplayName           OnPremisesSyncEnabled Mail                
+--                                   -------------------- ----------------- --------         -----                                      ----------------      -----------           --------------------- ----                
+cccccccc-2222-3333-4444-dddddddddddd ProxyAddresses                         PropertyConflict SMTP:ConflictMail@contoso.com           3/14/2022 11:46:44 PM ConflictMail1                          True                
+eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      PropertyConflict BlockSoftMatch1@contoso.com             7/4/2024 12:06:16 AM  BlockSoftMatch1                        True                
 ```
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
@@ -70,11 +76,7 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-
-If this isn't provided then the value defaults to the tenant of the current user.
-
-This parameter is only applicable to partner users.
+The unique tenant ID for the operation. If not provided, it defaults to the current user's tenant. This parameter is included for compatibility with legacy modules.
 
 ```yaml
 Type: System.String
