@@ -43,8 +43,8 @@ Users in groups that were assigned to the policy falls back to the global authen
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$Policy = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
-Remove-EntraBetaFeatureRolloutPolicy -Id $Policy.Id
+$policy = Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policy'"
+Remove-EntraBetaFeatureRolloutPolicy -Id $policy.Id
 ```
 
 This example removes the policy for cloud authentication roll-out in Microsoft Entra ID.

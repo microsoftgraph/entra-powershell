@@ -51,15 +51,9 @@ Updates a Microsoft Entra ID permission grant condition set object identified by
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$params = @{
-    PolicyId = $permissionGrantPolicyId
-    ConditionSetType = 'includes'
-    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-    PermissionClassification = 'low'
-}
-
-Set-EntraPermissionGrantConditionSet @params
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
+$conditionSet = Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object { $_.PermissionType -eq 'delegated' }
+Set-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy -ConditionSetType 'includes' -Id $conditionSet.Id -PermissionClassification 'low'
 ```
 
 This command updates sets the specified permission grant set to classify as low.
@@ -73,18 +67,19 @@ This command updates sets the specified permission grant set to classify as low.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
+$conditionSet = Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object { $_.PermissionType -eq 'delegated' }
 $params = @{
-    PolicyId = $permissionGrantPolicyId
-    ConditionSetType = 'includes'
-    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-    PermissionType = 'delegated'
-    PermissionClassification = 'low'
-    ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Permissions = @('All')
-    ClientApplicationIds = @('All')
-    ClientApplicationTenantIds = @('All')
-    ClientApplicationPublisherIds = @('All')
+    PolicyId                                    = $permissionGrantPolicy.Id
+    ConditionSetType                            = 'includes'
+    Id                                          = $conditionSet.Id
+    PermissionType                              = 'delegated'
+    PermissionClassification                    = 'low'
+    ResourceApplication                         = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Permissions                                 = @('All')
+    ClientApplicationIds                        = @('All')
+    ClientApplicationTenantIds                  = @('All')
+    ClientApplicationPublisherIds               = @('All')
     ClientApplicationsFromVerifiedPublisherOnly = $true
 }
 

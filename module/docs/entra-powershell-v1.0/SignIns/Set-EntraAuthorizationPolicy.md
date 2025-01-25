@@ -40,7 +40,9 @@ Set-EntraAuthorizationPolicy
 
 The `Set-EntraAuthorizationPolicy` cmdlet updates a Microsoft Entra ID authorization policy.
 
-For delegated scenarios, the user needs to have the `Privileged Role Administrator` Microsoft Entra role.
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The least privileged role for this operation is:
+
+- Privileged Role Administrator
 
 ## Examples
 
@@ -49,12 +51,12 @@ For delegated scenarios, the user needs to have the `Privileged Role Administrat
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.Authorization'
 $params = @{
-    DisplayName = 'Updated displayName'
-    Description = 'Updated Description'
-    BlockMsolPowerShell = $true
-    AllowedToUseSSPR = $false
+    DisplayName                               = 'Updated displayName'
+    Description                               = 'Updated Description'
+    BlockMsolPowerShell                       = $true
+    AllowedToUseSSPR                          = $false
     AllowEmailVerifiedUsersToJoinOrganization = $true
-    AllowedToSignUpEmailBasedSubscriptions = $true
+    AllowedToSignUpEmailBasedSubscriptions    = $true
 }
 
 Set-EntraAuthorizationPolicy @params
@@ -66,11 +68,11 @@ This example demonstrates how to update a Microsoft Entra ID authorization polic
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.Authorization'
-$DefaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
-$DefaultUserRolePermissions.AllowedToCreateApps = $false
-$DefaultUserRolePermissions.AllowedToCreateSecurityGroups = $false
-$DefaultUserRolePermissions.AllowedToReadOtherUsers = $false
-Set-EntraAuthorizationPolicy -DefaultUserRolePermissions $DefaultUserRolePermissions
+$defaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
+$defaultUserRolePermissions.AllowedToCreateApps = $false
+$defaultUserRolePermissions.AllowedToCreateSecurityGroups = $false
+$defaultUserRolePermissions.AllowedToReadOtherUsers = $false
+Set-EntraAuthorizationPolicy -DefaultUserRolePermissions $defaultUserRolePermissions
 ```
 
 This example demonstrates how to update a DefaultUserRolePermissions of authorization policy in Microsoft Entra ID.

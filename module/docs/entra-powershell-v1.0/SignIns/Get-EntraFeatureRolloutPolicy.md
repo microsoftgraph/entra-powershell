@@ -77,15 +77,14 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$policy = Get-EntraFeatureRolloutPolicy -Filter "DisplayName eq 'FeatureRolloutPolicy'"
+Get-EntraFeatureRolloutPolicy -Id $policy.Id
 ```
 
 ```Output
-
 Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            ----------- -------            ----------------------- ---------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
-
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolicy      emailAsAlternateId False                   False
 ```
 
 This example retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
@@ -102,7 +101,7 @@ Get-EntraFeatureRolloutPolicy -SearchString 'Feature-Rollout-Policy'
 ```Output
 Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            ----------- -------            ----------------------- ---------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolicy      emailAsAlternateId False                   False
 ```
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
@@ -115,11 +114,9 @@ Get-EntraFeatureRolloutPolicy -Filter "Description eq 'Feature-Rollout-Policy'"
 ```
 
 ```Output
-
 Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            ----------- -------            ----------------------- ---------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
-
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolicy      emailAsAlternateId False                   False
 ```
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.

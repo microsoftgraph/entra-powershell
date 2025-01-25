@@ -44,6 +44,16 @@ Get-EntraAuthorizationPolicy
 
 The `Get-EntraAuthorizationPolicy` cmdlet gets a Microsoft Entra ID authorization policy.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the required permissions. The least privileged roles for this operation are:
+
+- Global Reader  
+- Security Reader  
+- Security Operator  
+- Security Administrator  
+- Cloud Device Administrator  
+- License Administrator  
+- Privileged Role Administrator 
+
 ## Examples
 
 ### Example 1: Get all policies
