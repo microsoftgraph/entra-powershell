@@ -74,7 +74,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
                     }
                 )
             }
-            $Results | Format-Table -AutoSize
+            $Results
         }
     }
 }

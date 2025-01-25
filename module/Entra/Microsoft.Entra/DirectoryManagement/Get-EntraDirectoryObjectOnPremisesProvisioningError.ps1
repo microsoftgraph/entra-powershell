@@ -74,7 +74,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
                     }
                 )
             }
-            $Results | Format-Table -AutoSize
+            $Results
         }
     }
 }
