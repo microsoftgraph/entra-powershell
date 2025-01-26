@@ -38,23 +38,27 @@ Get-EntraDeviceRegisteredUser
 
 The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `DeviceId` parameter to get a registered user for a Microsoft Entra ID device.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
+
+- Directory Readers  
+- Global Reader  
+- Intune Administrator  
+- Windows 365 Administrator
+
 ## Examples
 
 ### Example 1: Retrieve the registered user of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-$DevId = (Get-EntraDevice -Top 1).ObjectId
-Get-EntraDeviceRegisteredUser -DeviceId $DevId
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-ffffffff-4444-5555-6666-gggggggggggg
+id                                   displayName   userPrincipalName                 @odata.type       
+--                                   -----------   -----------------                 -----------       
+bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
@@ -63,16 +67,14 @@ This example demonstrates how to retrieve registered user for a specific Microso
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -All | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-ffffffff-4444-5555-6666-gggggggggggg
+id                                   displayName   userPrincipalName                 @odata.type       
+--                                   -----------   -----------------                 -----------       
+bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve all registered users for a specified device.
@@ -83,14 +85,14 @@ This example demonstrates how to retrieve all registered users for a specified d
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredUser -DeviceId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+$device = Get-EntraDevice -SearchString '<device-display-name>'
+Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -Top 2 | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
+id                                   displayName   userPrincipalName                 @odata.type       
+--                                   -----------   -----------------                 -----------       
+bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve top two registered users for the specified device.

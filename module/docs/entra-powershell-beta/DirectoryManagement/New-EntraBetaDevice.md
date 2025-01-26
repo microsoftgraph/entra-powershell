@@ -49,24 +49,28 @@ New-EntraBetaDevice
 
 The `New-EntraBetaDevice` cmdlet creates a device in Microsoft Entra ID.
 
-The calling user must be in one of the following Microsoft Entra roles: Intune Administrator or Windows 365 Administrator.
+In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
+
+- Intune Administrator  
+- Windows 365 Administrator
 
 ## Examples
 
 ### Example 1: Create a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$newId = New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$newId.Key = [System.Text.Encoding]::UTF8.GetBytes('test')
+$newId.type = 2
 $params = @{
-    AccountEnabled = $true
-    DisplayName = 'My new device'
-    AlternativeSecurityIds = $altsecid
-    DeviceId = $guid
-    DeviceOSType = 'OS/2'
-    DeviceOSVersion = '9.3'
+    AccountEnabled         = $true
+    DisplayName            = 'My new device'
+    AlternativeSecurityIds = $newId
+    DeviceId               = $guid
+    DeviceOSType           = 'OS/2'
+    DeviceOSVersion        = '9.3'
 }
-
 New-EntraBetaDevice @params
 ```
 
@@ -98,7 +102,7 @@ Accept wildcard characters: False
 
 ### -AlternativeSecurityIds
 
-Specifies alternative security IDs.
+Specifies alternative security IDs. See more details on [security IDs](https://learn.microsoft.com/graph/api/resources/alternativesecurityid).
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]

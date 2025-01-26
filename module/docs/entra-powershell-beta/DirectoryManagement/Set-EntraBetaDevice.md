@@ -49,15 +49,20 @@ Set-EntraBetaDevice
 
 The `Set-EntraBetaDevice` cmdlet updates a device in Microsoft Entra ID.
 
-The calling user must have at least the Intune Administrator role in Microsoft Entra. A user with the Cloud Device Administrator role can only enable or disable devices, while a user with the Windows 365 Administrator role can only update basic device properties.
+The calling user must have at least:
+
+- Intune Administrator role
+- Cloud Device Administrator role can only enable or disable devices
+- Windows 365 Administrator role can only update basic device properties.
 
 ## Examples
 
 ### Example 1: Update a device display name
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DisplayName 'My OS/2 computer'
 ```
 
 This example shows how to update a display name of a specified.
@@ -65,11 +70,12 @@ This example shows how to update a display name of a specified.
 ### Example 2: Update a device alternative security ID
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-$NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
-$NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$NewId = New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$NewId.Key = [System.Text.Encoding]::UTF8.GetBytes('test')
 $NewId.type = 2
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AlternativeSecurityIds $NewId
 ```
 
 This example shows how to update an alternative security ID of a specified device.
@@ -77,8 +83,9 @@ This example shows how to update an alternative security ID of a specified devic
 ### Example 3: Update a device account enabled
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AccountEnabled $true
 ```
 
 This example shows how to update an account enabled of a specified device.
@@ -86,8 +93,9 @@ This example shows how to update an account enabled of a specified device.
 ### Example 4: Update a device OS type
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Set-EntraBetaDevice -DeviceObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DeviceOSType Windows
 ```
 
 This example shows how to update an OS type of a specified device.
@@ -95,16 +103,15 @@ This example shows how to update an OS type of a specified device.
 ### Example 5: Update a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 $params = @{
-    DeviceObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    DeviceMetadata = 'Testdevice'
+    DeviceObjectId      = $device.ObjectId
+    DeviceMetadata      = 'Testdevice'
     DeviceObjectVersion = 4
-    DevicePhysicalIds = '[GID]:g:1234567890123456'
-    IsCompliant = $false
+    DevicePhysicalIds   = '[GID]:g:1234567890123456'
+    IsCompliant         = $false
 }
-
 Set-EntraBetaDevice @params
 ```
 
