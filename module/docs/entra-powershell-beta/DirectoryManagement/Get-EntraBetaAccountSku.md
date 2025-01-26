@@ -46,12 +46,18 @@ The `Get-EntraBetaAccountSku` retrieves the list of commercial subscriptions acq
 
 For a list of license names in the Microsoft Entra or Microsoft 365 admin centers and their corresponding Microsoft Graph `skuId` and `skuPartNumber` properties, refer to the [mapping information](https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference).
 
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Dynamics 365 Business Central Administrator (read-only access to standard properties)  
+- Global Reader  
+- Directory Readers
+
 ## Examples
 
 ### Example 1: Gets a list of SKUs
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
 Get-EntraBetaAccountSku
 ```
 
@@ -68,8 +74,9 @@ This command returns a list of SKUs.
 ### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraBetaAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
+$tenantId = (Get-EntraContext).TenantId
+Get-EntraBetaAccountSku -TenantId $tenantId
 ```
 
 ```Output
@@ -88,9 +95,7 @@ This command returns a list of SKUs for a specified tenant.
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided, then the value will default to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique tenant ID for the operation. Defaults to the current user's tenant if not specified. This parameter is included for compatibility with legacy PowerShell modules
 
 ```yaml
 Type: System.String
