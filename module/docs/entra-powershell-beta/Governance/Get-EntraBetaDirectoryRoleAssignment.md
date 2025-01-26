@@ -114,7 +114,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
-$user = Get-EntraBetaUser -UserId 'BiancaP@M365x80713871.OnMicrosoft.com'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
 $assignment = Get-EntraBetaDirectoryRoleAssignment -All | Where-Object { $_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id }
 Get-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
