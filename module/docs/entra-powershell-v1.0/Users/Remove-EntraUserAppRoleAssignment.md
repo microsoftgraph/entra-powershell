@@ -53,7 +53,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $assignment = Get-EntraUserAppRoleAssignment -ObjectId 'SawyerM@Contoso.com' | 
-	Where-Object {$_.ResourceDisplayName -eq 'Helpdesk Application' -and $_.PrincipalType -eq 'User'}
+Where-Object { $_.ResourceDisplayName -eq 'Helpdesk Application' -and $_.PrincipalType -eq 'User' }
 Remove-EntraUserAppRoleAssignment -ObjectId 'SawyerM@Contoso.com' -AppRoleAssignmentId $assignment.Id
 ```
 

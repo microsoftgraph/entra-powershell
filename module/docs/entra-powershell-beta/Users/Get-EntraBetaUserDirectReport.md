@@ -42,14 +42,17 @@ The `Get-EntraBetaUserDirectReport` cmdlet gets the direct reports for a user in
 ### Example 1: Get a user's direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com'
+Connect-Entra -Scopes 'User.Read', 'User.Read.All'
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' |
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
@@ -59,15 +62,17 @@ This example demonstrates how to retrieve direct reports for a user in Microsoft
 ### Example 2: Get all direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -All 
+Connect-Entra -Scopes 'User.Read', 'User.Read.All'
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -All |
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
@@ -77,15 +82,17 @@ This example demonstrates how to retrieve all direct reports for a user in Micro
 ### Example 3: Get a top two direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -Top 2
+Connect-Entra -Scopes 'User.Read', 'User.Read.All'
+Get-EntraBetaUserDirectReport -UserId 'SawyerM@contoso.com' -Top 2 |
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id                                    displayName     userPrincipalName           createdDateTime       accountEnabled  userType
+--                                    -----------     -----------------           ---------------       --------------  --------
+bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com       10/7/2024 12:32:25 AM  True           Member
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.

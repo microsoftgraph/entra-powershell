@@ -44,8 +44,8 @@ The `Get-EntraUserMembership` cmdlet gets user memberships in Microsoft Entra ID
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserMembership -UserId 'SawyerM@contoso.com' |
-    Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -90,8 +90,8 @@ This example demonstrates how to retrieve user memberships in Microsoft Entra ID
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserMembership -UserId 'SawyerM@contoso.com' -All |
-    Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -109,8 +109,8 @@ This example demonstrates how to retrieve users all memberships in Microsoft Ent
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserMembership -UserId 'SawyerM@contoso.com' -Top 3 |
-    Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -128,23 +128,20 @@ This example demonstrates how to retrieve users top three memberships in Microso
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserMembership -UserId 'SawyerM@contoso.com' | 
-	Where-Object {$_.'@odata.type' -eq '#microsoft.graph.group'} |
-    Select-Object Id, displayName, createdDateTime, groupTypes, securityEnabled, visibility, '@odata.type' |
-    Format-Table -AutoSize
+Where-Object { $_.'@odata.type' -eq '#microsoft.graph.group' } |
+Select-Object Id, displayName, createdDateTime, groupTypes, securityEnabled, visibility, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
 Id                                   displayName                         createdDateTime      groupTypes securityEnabled visibility @odata.type
 --                                   -----------                         ---------------      ---------- --------------- ---------- -----------
 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso                             2024-10-06T08:49:16Z {Unified}            False Public     #microsoft.graph.group
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff Sales and Marketing                 2024-10-07T00:43:47Z {Unified}             True Public     #microsoft.graph.group
-22cc22cc-dd33-ee44-ff55-66aa66aa66aa Retail                              2024-10-07T00:44:06Z {Unified}             True Private    #microsoft.graph.groupp
-33dd33dd-ee44-ff55-aa66-77bb77bb77bb sg-Sales and Marketing              2024-10-07T00:45:16Z {}                    True            #microsoft.graph.group
-44ee44ee-ff55-aa66-bb77-88cc88cc88cc All Employees                       2024-10-07T00:57:05Z {}                   False            #microsoft.graph.group
-55ff55ff-aa66-bb77-cc88-99dd99dd99dd Communications                      2024-10-07T01:12:09Z {Unified}            False Private    #microsoft.graph.group
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff Mark 8 Project Team                 2024-10-07T00:43:59Z {Unified}             True Public     #microsoft.graph.group
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa Leadership                          2024-10-07T00:43:53Z {Unified}             True Private    #microsoft.graph.group
 ```
 
-This example demonstrates how to retrieve the groups that a user is a member of.
+This example shows how to retrieve the groups a user belongs to. You can also use `Get-EntraUserGroup -UserId 'SawyerM@contoso.com'` to achieve the same result.
 
 ## Parameters
 
@@ -223,3 +220,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraUserGroup](Get-EntraUserGroup.md)

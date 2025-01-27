@@ -73,11 +73,11 @@ The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = '<Password>'
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile.Password = '<Password>'
 $params = @{
     DisplayName = 'New User'
-    PasswordProfile = $PasswordProfile
+    PasswordProfile = $passwordProfile
     UserPrincipalName = 'NewUser@contoso.com'
     AccountEnabled = $true
     MailNickName = 'Newuser'
@@ -98,11 +98,11 @@ This command creates a new user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = '<Password>'
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile.Password = '<Password>'
 $params = @{
     DisplayName = 'New User'
-    PasswordProfile = $PasswordProfile
+    PasswordProfile = $passwordProfile
     UserPrincipalName = 'NewUser@contoso.com'
     AccountEnabled = $true
     MailNickName = 'Newuser'
@@ -124,11 +124,11 @@ This command creates a new user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = '<Password>'
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile.Password = '<Password>'
 $params = @{
     DisplayName = 'New User'
-    PasswordProfile = $PasswordProfile
+    PasswordProfile = $passwordProfile
     UserPrincipalName = 'NewUser@contoso.com'
     AccountEnabled = $true
     MailNickName = 'Newuser'
@@ -150,11 +150,11 @@ This command creates a new user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = '<Password>'
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile.Password = '<Password>'
 $params = @{
     DisplayName = 'New User'
-    PasswordProfile = $PasswordProfile
+    PasswordProfile = $passwordProfile
     UserPrincipalName = 'NewUser@contoso.com'
     AccountEnabled = $true
     MailNickName = 'Newuser'
@@ -176,11 +176,11 @@ This command creates a new user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = '<Password>'
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile.Password = '<Password>'
 $params = @{
     DisplayName = 'New User'
-    PasswordProfile = $PasswordProfile
+    PasswordProfile = $passwordProfile
     UserPrincipalName = 'NewUser@contoso.com'
     AccountEnabled = $true
     MailNickName = 'Newuser'
@@ -334,8 +334,7 @@ Accept wildcard characters: False
 
 ### -ImmutableId
 
-This property is used to associate an on-premises user account to their Microsoft Entra ID user object.
-This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property.
+This property links an on-premises user account to its Microsoft Entra ID object and is required when creating a new user in Microsoft Graph if the user's userPrincipalName (UPN) is in a federated domain.
 
 Important: The $ and _ characters can't be used when specifying this property.
 
@@ -458,19 +457,19 @@ The parameter type for this parameter is "PasswordProfile".
 
 In order to pass a parameter of this type, you first need to create a variable in PowerShell with that type:
 
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 
 Then you can proceed to set the value of the password in this variable:
 
-$PasswordProfile.Password = "\<Password\>"
+$passwordProfile.Password = "\<Password\>"
 
 And finally you can pass this variable to the cmdlet:
 
-New-EntraBetaUser -PasswordProfile $PasswordProfile ...
+New-EntraBetaUser -PasswordProfile $passwordProfile ...
 
 Other attributes that can be set in the PasswordProfile are
 
-- $PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.
+- $passwordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is `enabled` or `disabled` for this user $passwordProfile.
 
 - ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
 

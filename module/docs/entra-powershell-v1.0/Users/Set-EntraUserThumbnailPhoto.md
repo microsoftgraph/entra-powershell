@@ -62,7 +62,7 @@ Updating any user's photo in the organization requires the `User.ReadWrite.All` 
 ### Example 1: Sets the thumbnail photo
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
+Connect-Entra -Scopes 'User.ReadWrite', 'User.ReadWrite.All'
 Set-EntraUserThumbnailPhoto -UserId -FilePath 'D:\UserThumbnailPhoto.jpg'
 ```
 

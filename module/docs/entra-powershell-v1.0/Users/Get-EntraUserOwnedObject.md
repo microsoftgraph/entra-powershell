@@ -45,8 +45,8 @@ The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' | 
-	Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -67,8 +67,8 @@ This example retrieves objects owned by the specified user.
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All | 
-	Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -89,8 +89,8 @@ This example retrieves all the objects owned by the specified user.
 ```powershell
 Connect-Entra -Scopes 'User.Read'
 Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3 | 
-	Select-Object Id, displayName, createdDateTime, '@odata.type' |
-    Format-Table -AutoSize
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output

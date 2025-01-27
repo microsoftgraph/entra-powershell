@@ -44,8 +44,8 @@ The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserManager -UserId 'SawyerM@contoso.com' |
-    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
-    Format-Table -AutoSize
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -66,9 +66,9 @@ $allUsers = Get-EntraUser -All
 $usersWithoutManagers = foreach ($user in $allUsers) {
     $manager = Get-EntraUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
     if (-not $manager) {
-        [pscustomobject]@{
-            Id               = $user.Id
-            DisplayName      = $user.DisplayName
+        [PSCustomObject]@{
+            Id                = $user.Id
+            DisplayName       = $user.DisplayName
             UserPrincipalName = $user.UserPrincipalName
         }
     }

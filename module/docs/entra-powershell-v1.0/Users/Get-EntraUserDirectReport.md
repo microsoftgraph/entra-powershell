@@ -43,10 +43,10 @@ The `Get-EntraUserDirectReport` cmdlet gets the direct reports for a user in Mic
 ### Example 1: Get a user's direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
+Connect-Entra -Scopes 'User.Read', 'User.Read.All'
 Get-EntraUserDirectReport -UserId 'SawyerM@contoso.com' |
-    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
-    Format-Table -AutoSize
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -63,10 +63,10 @@ This example demonstrates how to retrieve direct reports for a user in Microsoft
 ### Example 2: Get all direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
+Connect-Entra -Scopes 'User.Read', 'User.Read.All'
 Get-EntraUserDirectReport -UserId 'SawyerM@contoso.com' -All |
-    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
-    Format-Table -AutoSize
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
@@ -83,10 +83,9 @@ This example demonstrates how to retrieve all direct reports for a user in Micro
 ### Example 3: Get a top two direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
 Get-EntraUserDirectReport -UserId 'SawyerM@contoso.com' -Top 2 |
-    Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
-    Format-Table -AutoSize
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
