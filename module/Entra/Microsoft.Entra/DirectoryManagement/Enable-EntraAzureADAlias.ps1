@@ -81,3 +81,4 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Value Add-EntraCustomSecurityAttributeDefinitionAllowedValue -Scope Global -Force
 
 }
+

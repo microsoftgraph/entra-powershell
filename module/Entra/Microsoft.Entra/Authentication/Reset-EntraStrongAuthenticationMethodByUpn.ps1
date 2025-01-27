@@ -54,5 +54,4 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
             $methods = Get-MgUserAuthenticationMethod -UserId $userId
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
