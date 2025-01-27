@@ -2,7 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Enable-EntraAzureADAliases {
+
+function Enable-EntraAzureADAlias {
    Set-Alias -Name Get-AzureADUserOwnedDevice -Value Get-EntraUserOwnedDevice -Scope Global -Force
    Set-Alias -Name Remove-AzureADUserManager -Value Remove-EntraUserManager -Scope Global -Force
    Set-Alias -Name Remove-AzureADUserExtension -Value Remove-EntraUserExtension -Scope Global -Force
