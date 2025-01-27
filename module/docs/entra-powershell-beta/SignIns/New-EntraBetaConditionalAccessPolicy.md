@@ -287,7 +287,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-Learn more about:
 
 [Condition access policy](https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy)
 [Built controls](https://learn.microsoft.com/graph/api/resources/conditionalaccessgrantcontrols)
