@@ -43,18 +43,17 @@ The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com'
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' |
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-22cc22cc-dd33-ee44-ff55-66aa66aa66aa
-33dd33dd-ee44-ff55-aa66-77bb77bb77bb
-44ee44ee-ff55-aa66-bb77-88cc88cc88cc
-55ff55ff-aa66-bb77-cc88-99dd99dd99dd
+Id                                   displayName                         createdDateTime      @odata.type
+--                                   -----------                         ---------------      -----------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso                             2024-10-06T08:49:16Z #microsoft.graph.group
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso marketing                   2024-10-07T01:17:28Z #microsoft.graph.group
+55ff55ff-aa66-bb77-cc88-99dd99dd99dd Pacific Admin Unit                                       #microsoft.graph.administrativeUnit
 ```
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
@@ -90,18 +89,17 @@ This example demonstrates how to retrieve user memberships in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' -All
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' -All |
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-22cc22cc-dd33-ee44-ff55-66aa66aa66aa
-33dd33dd-ee44-ff55-aa66-77bb77bb77bb
-44ee44ee-ff55-aa66-bb77-88cc88cc88cc
-55ff55ff-aa66-bb77-cc88-99dd99dd99dd
+Id                                   displayName                         createdDateTime      @odata.type
+--                                   -----------                         ---------------      -----------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso                             2024-10-06T08:49:16Z #microsoft.graph.group
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso marketing                   2024-10-07T01:17:28Z #microsoft.graph.group
+55ff55ff-aa66-bb77-cc88-99dd99dd99dd Pacific Admin Unit                                       #microsoft.graph.administrativeUnit
 ```
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
@@ -110,15 +108,17 @@ This example demonstrates how to retrieve users all memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -UserId 'SawyerM@contoso.com' -Top 3
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' -Top 3 |
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+Id                                   displayName                         createdDateTime      @odata.type
+--                                   -----------                         ---------------      -----------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso                             2024-10-06T08:49:16Z #microsoft.graph.group
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso marketing                   2024-10-07T01:17:28Z #microsoft.graph.group
+55ff55ff-aa66-bb77-cc88-99dd99dd99dd Pacific Admin Unit                                       #microsoft.graph.administrativeUnit
 ```
 
 This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
@@ -127,17 +127,21 @@ This example demonstrates how to retrieve users top three memberships in Microso
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-$groups = Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
-$groups | Select-Object DisplayName, Id, GroupTypes, Visibility | Format-Table -AutoSize
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' | 
+Where-Object { $_.'@odata.type' -eq '#microsoft.graph.group' } |
+Select-Object Id, displayName, createdDateTime, groupTypes, securityEnabled, visibility, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName       Id                                   GroupTypes  Visibility
------------       --                                   ----------  ----------
-Contoso Group     bbbbbbbb-1111-2222-3333-cccccccccccc  {Unified}  Public
+Id                                   displayName                         createdDateTime      groupTypes securityEnabled visibility @odata.type
+--                                   -----------                         ---------------      ---------- --------------- ---------- -----------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso                             2024-10-06T08:49:16Z {Unified}            False Public     #microsoft.graph.group
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff Mark 8 Project Team                 2024-10-07T00:43:59Z {Unified}             True Public     #microsoft.graph.group
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa Leadership                          2024-10-07T00:43:53Z {Unified}             True Private    #microsoft.graph.group
 ```
 
-This example demonstrates how to retrieve the groups that a user is a member of.
+This example shows how to retrieve the groups a user belongs to. You can also use `Get-EntraBetaUserGroup -UserId 'SawyerM@contoso.com'` to achieve the same result.
 
 ## Parameters
 
@@ -216,3 +220,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaUserGroup](Get-EntraBetaUserGroup.md)
