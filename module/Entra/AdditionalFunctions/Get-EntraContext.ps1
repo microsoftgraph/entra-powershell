@@ -54,10 +54,7 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        $module = Get-Module -Name Microsoft.Graph.Entra.Beta -ErrorAction SilentlyContinue
-        if ($null -eq $module) {
-            $module = Get-Module -Name Microsoft.Graph.Entra -ErrorAction SilentlyContinue
-        }
+        $module = $ExecutionContext.SessionState.Module
 
         if ($null -ne $module) {
             $entraPSVersion = $module.Version.ToString()
