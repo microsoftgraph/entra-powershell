@@ -1,15 +1,34 @@
 # ------------------------------------------------------------------------------ 
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
-function Enable-EntraAzureADAliases {
-   Set-Alias -Name Remove-AzureADMSRoleAssignment -Value Remove-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name New-AzureADMSRoleDefinition -Value New-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSRoleDefinition -Value Get-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name New-AzureADMSRoleAssignment -Value New-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-AzureADMSRoleAssignment -Value Get-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Remove-AzureADMSRoleDefinition -Value Remove-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Set-AzureADMSRoleDefinition -Value Set-EntraDirectoryRoleDefinition -Scope Global -Force
+# ------------------------------------------------------------------------------
+function Enable-EntraAzureADAlias {
+   Set-Alias -Name Select-AzureADGroupIdsContactIsMemberOf -Value Select-EntraGroupIdsContactIsMemberOf -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSDeletedGroup -Value Get-EntraDeletedGroup -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSLifecyclePolicyGroup -Value Remove-EntraLifecyclePolicyGroup -Scope Global -Force
+   Set-Alias -Name Get-AzureADGroup -Value Get-EntraGroup -Scope Global -Force
+   Set-Alias -Name New-AzureADMSGroup -Value New-EntraGroup -Scope Global -Force
+   Set-Alias -Name Add-AzureADGroupOwner -Value Add-EntraGroupOwner -Scope Global -Force
+   Set-Alias -Name Select-AzureADGroupIdsGroupIsMemberOf -Value Select-EntraGroupIdsGroupIsMemberOf -Scope Global -Force
+   Set-Alias -Name Get-AzureADGroupOwner -Value Get-EntraGroupOwner -Scope Global -Force
+   Set-Alias -Name Remove-AzureADGroup -Value Remove-EntraGroup -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSGroupPermissionGrant -Value Get-EntraGroupPermissionGrant -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSGroupLifecyclePolicy -Value Get-EntraGroupLifecyclePolicy -Scope Global -Force
+   Set-Alias -Name Add-AzureADGroupMember -Value Add-EntraGroupMember -Scope Global -Force
+   Set-Alias -Name Remove-AzureADGroupAppRoleAssignment -Value Remove-EntraGroupAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSGroup -Value Set-EntraGroup -Scope Global -Force
+   Set-Alias -Name New-AzureADGroupAppRoleAssignment -Value New-EntraGroupAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Get-AzureADGroupMember -Value Get-EntraGroupMember -Scope Global -Force
+   Set-Alias -Name Select-AzureADGroupIdsUserIsMemberOf -Value Select-EntraGroupIdsUserIsMemberOf -Scope Global -Force
+   Set-Alias -Name Reset-AzureADMSLifeCycleGroup -Value Reset-EntraLifeCycleGroup -Scope Global -Force
+   Set-Alias -Name Set-AzureADMSGroupLifecyclePolicy -Value Set-EntraGroupLifecyclePolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADGroupMember -Value Remove-EntraGroupMember -Scope Global -Force
+   Set-Alias -Name Remove-AzureADGroupOwner -Value Remove-EntraGroupOwner -Scope Global -Force
+   Set-Alias -Name Add-AzureADMSLifecyclePolicyGroup -Value Add-EntraLifecyclePolicyGroup -Scope Global -Force
+   Set-Alias -Name Get-AzureADGroupAppRoleAssignment -Value Get-EntraGroupAppRoleAssignment -Scope Global -Force
+   Set-Alias -Name Get-AzureADMSLifecyclePolicyGroup -Value Get-EntraLifecyclePolicyGroup -Scope Global -Force
+   Set-Alias -Name New-AzureADMSGroupLifecyclePolicy -Value New-EntraGroupLifecyclePolicy -Scope Global -Force
+   Set-Alias -Name Remove-AzureADMSGroupLifecyclePolicy -Value Remove-EntraGroupLifecyclePolicy -Scope Global -Force
    Set-Alias -Name Get-CrossCloudVerificationCode -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name Get-AzureADApplicationProxyApplication -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name New-AzureADApplicationProxyConnectorGroup -Value Get-EntraUnsupportedCommand -Scope Global -Force
@@ -42,12 +61,5 @@ function Enable-EntraAzureADAliases {
    Set-Alias -Name Set-AzureADApplicationProxyApplicationSingleSignOn -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name Get-AzureADMSAdministrativeUnitMember -Value Get-EntraUnsupportedCommand -Scope Global -Force
    Set-Alias -Name Set-AzureADApplicationProxyConnector -Value Get-EntraUnsupportedCommand -Scope Global -Force
-   Set-Alias -Name Remove-EntraRoleAssignment -Value Remove-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-EntraRoleAssignment -Value Get-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name New-EntraRoleAssignment -Value New-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Set-EntraRoleDefinition -Value Set-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Get-EntraRoleDefinition -Value Get-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Remove-EntraRoleDefinition -Value Remove-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name New-EntraRoleDefinition -Value New-EntraDirectoryRoleDefinition -Scope Global -Force
 
 }
