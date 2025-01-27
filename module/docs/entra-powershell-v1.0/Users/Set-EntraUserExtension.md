@@ -40,12 +40,9 @@ The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$params = @{
-    UserId = 'SawyerM@contoso.com'
-    ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
-    ExtensionValue = 'New Value'
-}
-Set-EntraUserExtension @params
+$extensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8'
+$extensionValue = 'New Value'
+Set-EntraUserExtension -ObjectId 'SawyerM@contoso.com' -ExtensionName $extensionName -ExtensionValue $extensionValue
 ```
 
 This example shows how to update the value of the extension attribute for a specified user.

@@ -36,13 +36,17 @@ New-EntraUserAppRoleAssignment
 
 The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
-To grant an app role assignment to a user, you need three identifiers:
-
-- PrincipalId: The Id of the user to whom you are assigning the app role.
-
-- ResourceId: The Id of the resource servicePrincipal that has defined the app role.
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. Supported roles include:
 
 - Id: The Id of the appRole (defined on the resource service principal) to assign to the user.
+- Directory Synchronization Accounts (for Entra Connect and Cloud Sync)
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
 
 ## Examples
 
@@ -53,14 +57,12 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
 $user = Get-EntraUser -SearchString '<UserPrincipalName>'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "appId eq '$appId'"
-
 $params = @{
-    ObjectId    = $user.ObjectId
-    PrincipalId = $user.ObjectId
-    ResourceId  = $servicePrincipal.ObjectId
+    ObjectId    = $user.Id
+    PrincipalId = $user.Id
+    ResourceId  = $servicePrincipal.Id
     Id          = [Guid]::Empty
 }
-
 New-EntraUserAppRoleAssignment @params
 ```
 
@@ -70,10 +72,7 @@ DeletedDateTime Id                                          AppRoleId           
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 UserPrincipalName          aaaaaaaa-bbbb-cccc-1111-222222222222 User          App-DisplayName 
 ```
 
-This command assigns a user to an application that doesn't have any roles.  
-You can use the command `Get-EntraUser` to get user object Id.  
-You can use the command `Get-EntraApplication` to get application Id.  
-You can use the command `Get-EntraServicePrincipal` to get service principal object Id.
+This command assigns a user to an application that doesn't have any roles.
 
 - `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
@@ -84,18 +83,14 @@ You can use the command `Get-EntraServicePrincipal` to get service principal obj
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$userName = 'SawyerM@contoso.com'
-$appName = 'Box'
-$spo = Get-EntraServicePrincipal -Filter "DisplayName eq '$appName'"
-$user = Get-EntraUser -Filter "userPrincipalName eq '$userName'"
-
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Box'"
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId    = $user.ObjectId
-    PrincipalId = $user.ObjectId
-    ResourceId  = $spo.ObjectId
-    Id          = $spo.AppRoles[1].Id
+    ObjectId    = $user.Id
+    PrincipalId = $user.Id
+    ResourceId  = $servicePrincipal.Id
+    Id          = $servicePrincipal.AppRoles[1].Id
 }
-
 New-EntraUserAppRoleAssignment @params
 ```
 
@@ -105,9 +100,7 @@ DeletedDateTime Id                                          AppRoleId           
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
-You can use the command `Get-EntraUser` to get user object Id.  
-You can use the command `Get-EntraServicePrincipal` to get service principal object Id.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID. 
 
 - `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.

@@ -35,17 +35,26 @@ Remove-EntraUserAppRoleAssignment
 
 The `Remove-EntraUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. Supported roles include:
+
+- Directory Synchronization Accounts (for Entra Connect and Cloud Sync)
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
+
 ## Examples
 
 ### Example 1: Remove user app role assignment
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$RemoveAppRoleParams = @{
-    ObjectId              = 'SawyerM@Contoso.com'
-    AppRoleAssignmentId   = 'C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w'
-}
-Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
+$assignment = Get-EntraUserAppRoleAssignment -ObjectId 'SawyerM@Contoso.com' | 
+Where-Object { $_.ResourceDisplayName -eq 'Helpdesk Application' -and $_.PrincipalType -eq 'User' }
+Remove-EntraUserAppRoleAssignment -ObjectId 'SawyerM@Contoso.com' -AppRoleAssignmentId $assignment.Id
 ```
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.

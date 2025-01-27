@@ -37,13 +37,16 @@ New-EntraBetaUserAppRoleAssignment
 
 The `New-EntraBetaUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
-To grant an app role assignment to a user, you need three identifiers:
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. Supported roles include:
 
-- PrincipalId: The ID of the user to whom you are assigning the app role.
-
-- ResourceId: The ID of the resource servicePrincipal that defines the app role.
-
-- Id: The ID of the appRole (defined on the resource service principal) to assign to the user.
+- Directory Synchronization Accounts (for Entra Connect and Cloud Sync)
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
 
 ## Examples
 
@@ -55,10 +58,10 @@ $appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
 $user = Get-EntraBetaUser -searchstring 'NewUser'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "appId eq '$appId'"
 $params = @{
-    ObjectId = $user.ObjectId 
-    PrincipalId = $user.ObjectId 
-    ResourceId = $servicePrincipal.ObjectId 
-    Id = ([Guid]::Empty)
+    ObjectId    = $user.Id 
+    PrincipalId = $user.Id 
+    ResourceId  = $servicePrincipal.Id 
+    Id          = ([Guid]::Empty)
 }
 New-EntraBetaUserAppRoleAssignment @params
 ```
@@ -69,10 +72,7 @@ Id                                          AppRoleId                           
 ZwFW_R__GkeNdDsAcKvOoerWWY8NKDJGlIgS4FjeyXQ 00000000-0000-0000-0000-000000000000 08-08-2024 05:40:06 Conf Room Adams      aaaaaaaa-bbbb-cccc-1111-222222222222 User          ResourceDisplayName             07188127-baa9-4f…
 ```
 
-This command assigns a user to an application that doesn't have any roles.  
-You can use the command `Get-EntraBetaUser` to get user object ID.  
-You can use the command `Get-EntraBetaApplication` to get application ID.  
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
+This command assigns a user to an application that doesn't have any roles.
 
 - `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
@@ -83,16 +83,13 @@ You can use the command `Get-EntraBetaServicePrincipal` to get service principal
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$userName = 'SawyerM@contoso.com'
-$appName = 'Box'
-$appId = Get-EntraBetaApplication -Filter "DisplayName eq '$appName'"
-$spo = Get-EntraBetaServicePrincipal -All | Where-Object {$_.AppId -eq $appId.AppId }
-$user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Box'"
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = $user.ObjectId
-    PrincipalId = $user.ObjectId
-    ResourceId = $spo.ObjectId
-    Id = $appId.AppRoles.Id
+    ObjectId    = $user.Id
+    PrincipalId = $user.Id
+    ResourceId  = $servicePrincipal.Id
+    Id          = $servicePrincipal.AppRoles[1].Id
 }
 New-EntraBetaUserAppRoleAssignment @params
 ```
@@ -103,9 +100,7 @@ Id                                          AppRoleId                           
 Idn1u1K7S0OWoJWIjkT69Stnjqd1iblKlg-GoqVkNlM cbbf6a32-6dcd-4f22-9be7-ffb128119fae 08-08-2024 08:13:26 Test One Updated     bbbbbbbb-cccc-dddd-2222-333333333333 User          M365 License Manager 0008861a-d455-4…
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
-You can use the command `Get-EntraBetaUser` to get user object ID.
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal object ID.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.
 
 - `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.

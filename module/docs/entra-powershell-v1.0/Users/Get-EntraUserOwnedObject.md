@@ -44,85 +44,61 @@ The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com'
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' | 
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-ffffffff-4444-5555-6666-gggggggggggg
-hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
+id                                    displayName                  createdDateTime           @odata.type
+--                                    -----------                  ---------------           -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Helpdesk Application         10/17/2024 5:05:54 AM     #microsoft.graph.application
+bbbbbbbb-1111-2222-3333-cccccccccccc  Contoso Group                10/21/2024 6:25:19 PM     #microsoft.graph.group
+cccccccc-2222-3333-4444-dddddddddddd  ClaimIssuancePolicy                                    #microsoft.graph.tokenLifetimePolicy
+ffffffff-4444-5555-6666-gggggggggggg  Contoso Marketing App        10/23/2024 3:17:14 PM     #microsoft.graph.application
 ```
 
 This example retrieves objects owned by the specified user.
 
 - `-UserId` Parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
-### Example 2: Get objects owned by a user with additional details
+### Example 2: Get all objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-$ownedObjects = Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com'
-
-$objectDetails = $ownedObjects | ForEach-Object {
-    $objectDetail = Get-EntraObjectByObjectId -ObjectIds $_.Id
-    [PSCustomObject]@{
-        odataType   = $objectDetail.'@odata.type'
-        displayName = $objectDetail.displayName
-        Id          = $objectDetail.Id
-    }
-}
-$objectDetails | Format-Table -Property odataType, displayName, Id -AutoSize
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All | 
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-odataType              displayName                         Id
----------              -----------                         --
-#microsoft.graph.group Contoso FTE Group                   bbbbbbbb-1111-2222-3333-cccccccccccc
-#microsoft.graph.group Digital Engineering Group           aaaaaaaa-1111-1111-1111-000000000000
-```
-
-This example retrieves objects owned by the specified user with more lookup details.
-
-### Example 3: Get all objects owned by a user
-
-```powershell
-Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All 
-```
-
-```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-ffffffff-4444-5555-6666-gggggggggggg
-hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
+id                                    displayName                  createdDateTime           @odata.type
+--                                    -----------                  ---------------           -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Helpdesk Application         10/17/2024 5:05:54 AM     #microsoft.graph.application
+bbbbbbbb-1111-2222-3333-cccccccccccc  Contoso Group                10/21/2024 6:25:19 PM     #microsoft.graph.group
+cccccccc-2222-3333-4444-dddddddddddd  ClaimIssuancePolicy                                    #microsoft.graph.tokenLifetimePolicy
+ffffffff-4444-5555-6666-gggggggggggg  Contoso Marketing App        10/23/2024 3:17:14 PM     #microsoft.graph.application
 ```
 
 This example retrieves all the objects owned by the specified user.
 
 - `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
 
-### Example 4: Get top three objects owned by a user
+### Example 3: Get top three objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3 | 
+Select-Object Id, displayName, createdDateTime, '@odata.type' |
+Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
+id                                    displayName                  createdDateTime           @odata.type
+--                                    -----------                  ---------------           -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Helpdesk Application         10/17/2024 5:05:54 AM     #microsoft.graph.application
+bbbbbbbb-1111-2222-3333-cccccccccccc  Contoso Group                10/21/2024 6:25:19 PM     #microsoft.graph.group
+cccccccc-2222-3333-4444-dddddddddddd  ClaimIssuancePolicy                                    #microsoft.graph.tokenLifetimePolicy
 ```
 
 This example retrieves the top three objects owned by the specified user.
