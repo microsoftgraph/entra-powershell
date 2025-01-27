@@ -116,3 +116,5 @@ function Get-EntraDeletedServicePrincipal {
         }
     }
 }
+
+
