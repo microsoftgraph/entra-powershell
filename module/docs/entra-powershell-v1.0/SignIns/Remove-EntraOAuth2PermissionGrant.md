@@ -36,15 +36,23 @@ The `Remove-EntraOAuth2PermissionGrant` cmdlet removes an OAuth2PermissionGrant 
 
 When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted OAuth2PermissionGrant.
 
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Application Developer  
+- Cloud Application Administrator  
+- Directory Writers  
+- User Administrator  
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Remove an OAuth2 permission grant
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$SharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq 'Microsoft.SharePoint'}
-$SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq 'AllSites.Read'}
-Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
+$sharePointSP = Get-EntraServicePrincipal | Where-Object { $_.DisplayName -eq 'Microsoft.SharePoint' }
+$sharePointOAuth2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object { $_.ResourceId -eq $sharePointSP.Id } | Where-Object { $_.Scope -eq 'AllSites.Read' }
+Remove-EntraOAuth2PermissionGrant -ObjectId $sharePointOAuth2AllSitesRead.Id
 ```
 
 This example shows how to remove an OAuth2PermissionGrant object in Microsoft Entra ID.

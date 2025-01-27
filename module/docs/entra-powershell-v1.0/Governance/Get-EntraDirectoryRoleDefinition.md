@@ -76,7 +76,7 @@ The least privileged roles for this operation, from least to most privileged, ar
 ### Example 1: Get all role definitions
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraDirectoryRoleDefinition
 ```
 
@@ -92,8 +92,9 @@ This command returns all the role definitions present.
 ### Example 2: Get a role definition by UnifiedRoleDefinitionId
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId '2af84b1e-32c8-42b7-82bc-daa82404023b'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
+$role = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+Get-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId $role.Id
 ```
 
 ```Output
@@ -109,7 +110,7 @@ This command returns a specified role definition.
 ### Example 3: Filter role definitions by display name
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraDirectoryRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
@@ -124,7 +125,7 @@ This command return all the role definitions containing the specified display na
 ### Example 4: Get top two role definition
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraDirectoryRoleDefinition -Top 2
 ```
 
@@ -139,7 +140,7 @@ This command return top two the role definitions in Microsoft Entra DirectoryRol
 ### Example 5: Filter role definitions by display name
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraDirectoryRoleDefinition -SearchString 'Global'
  ```
 

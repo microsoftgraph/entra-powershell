@@ -41,22 +41,19 @@ New-EntraBetaDirectoryRoleDefinition
 
 Create a new Microsoft Entra ID roleDefinition object.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Creates a new role definition
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-
-$params = @{
-   RolePermissions = $RolePermissions
-   IsEnabled = $false
-   DisplayName = 'MyRoleDefinition'
-}
-
-New-EntraBetaDirectoryRoleDefinition @params
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/basic/read")
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition'
 ```
 
 ```Output
@@ -77,16 +74,9 @@ This command creates a new role definition in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-$params = @{
-   RolePermissions = $RolePermissions
-   IsEnabled = $false
-   DisplayName = 'MyRoleDefinition'
-   Description = 'Role Definition demo'
-}
-
-New-EntraBetaDirectoryRoleDefinition @params
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/basic/read")
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -Description 'Role Definition demo'
 ```
 
 ```Output
@@ -108,16 +98,9 @@ This command creates a new role definition with Description parameter.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-$params = @{
-   RolePermissions = $RolePermissions
-   IsEnabled = $false
-   DisplayName = 'MyRoleDefinition'
-   ResourceScopes = '/'
-}
-
-New-EntraBetaDirectoryRoleDefinition @params
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/basic/read")
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -ResourceScopes '/'
 ```
 
 ```Output
@@ -138,16 +121,9 @@ This command creates a new role definition with ResourceScopes parameter.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-$params = @{
-   RolePermissions = $RolePermissions
-   IsEnabled = $false
-   DisplayName = 'MyRoleDefinition'
-   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
-}
-
-New-EntraBetaDirectoryRoleDefinition @params
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/basic/read")
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -TemplateId 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
 ```
 
 ```Output
@@ -168,22 +144,15 @@ This command creates a new role definition with TemplateId parameter.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-$params = @{
-   RolePermissions = $RolePermissions
-   IsEnabled = $false
-   DisplayName = 'MyRoleDefinition'
-   Version = '2'
-}
-
-New-EntraBetaDirectoryRoleDefinition @params
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/basic/read")
+New-EntraBetaDirectoryRoleDefinition -RolePermissions $rolePermissions -IsEnabled $false -DisplayName 'MyRoleDefinition' -Version '2'
 ```
 
 ```Output
 DisplayName      Id                                   TemplateId                           Description IsBuiltIn IsEnabled
 -----------      --                                   ----------                           ----------- --------- ---------
-MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 b69d16e9-b3f9-4289-a87f-8f796bd9fa28             False     False
+MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 f2ef992c-3afb-46b9-b7cf-a126ee74c451             False     False
 
 ```
 

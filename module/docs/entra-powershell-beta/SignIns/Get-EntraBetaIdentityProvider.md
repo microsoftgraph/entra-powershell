@@ -52,6 +52,10 @@ The Gmail user will use their Google account credentials to authenticate and acc
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- External Identity Provider Administrator
+
 ## Examples
 
 ### Example 1: Retrieve all identity providers

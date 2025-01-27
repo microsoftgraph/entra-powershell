@@ -1,40 +1,38 @@
 ---
-title: New-EntraBetaInvitation
-description: This article provides details on the New-EntraBetaInvitation command.
+title: New-EntraInvitation
+description: This article provides details on the New-EntraInvitation command.
 
 
 ms.topic: reference
-ms.date: 08/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Beta.SignIns-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaInvitation
+external help file: Microsoft.Entra.SignIns-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraInvitation
 
 schema: 2.0.0
 ---
 
-# New-EntraBetaInvitation
+# New-EntraInvitation
 
 ## Synopsis
 
-This cmdlet is used to invite a new external user to your directory
+Invite a new external user to your directory.
 
 ## Syntax
 
 ```powershell
-New-EntraBetaInvitation
+New-EntraInvitation
  [-InvitedUser <User>]
- [-InvitedUserMessageInfo <InvitedUserMessageInfo>]
  [-InvitedUserType <String>]
- [-SendInvitationMessage <Boolean>]
  -InvitedUserEmailAddress <String>
- [-ResetRedemption <Boolean>]
- [-InvitedUserDisplayName <String>]
+ [-SendInvitationMessage <Boolean>]
  -InviteRedirectUrl <String>
+ [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>]
  [<CommonParameters>]
 ```
 
@@ -70,7 +68,7 @@ Connect-Entra -Scopes 'User.Invite.All'
 $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
 $redirectUrl = 'https://myapps.contoso.com'
-New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl
+New-EntraInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl
 ```
 
 ```Output
@@ -93,7 +91,7 @@ $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
 $redirectUrl = 'https://myapps.onmicrosoft.com'
 $displayName = 'microsoftuser'
-New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName
+New-EntraInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName
 ```
 
 ```Output
@@ -123,7 +121,7 @@ $params = @{
     InvitedUserMessageInfo = $a
 }
 
-New-EntraBetaInvitation @params
+New-EntraInvitation @params
 ```
 
 ```Output
@@ -145,9 +143,9 @@ This example demonstrates how to invite a new external user to your directory wi
 Connect-Entra -Scopes 'User.Invite.All'
 $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
-$redirectUrl = 'https://myapps.contoso.com'
+$redirectUrl = 'https://myapps.onmicrosoft.com'
 $userType = 'Guest'
-New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserType $userType
+New-EntraInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserType $userType
 ```
 
 ```Output
@@ -157,28 +155,6 @@ Id                                   InviteRedeemUrl
 ```
 
 This example demonstrates how to invite a new external user to your directory with InvitedUserType parameter.
-
-### Example 5: Reset a Redemption for an external user
-
-```powershell
-Connect-Entra -Scopes 'User.Invite.All'
-$emailAddress = 'someexternaluser@externaldomain.com'
-$sendInvitationMessage = $True
-$redirectUrl = 'https://myapps.constoso.com'
-$displayName = 'microsoftuser'
-$resetRedemption = $True
-New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName -ResetRedemption $resetRedemption
-```
-
-```Output
-Id                                   InviteRedeemUrl
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
-```
-
-In this example, we show how an admin can reset the redemption for an external user in the `-InvitedUser` parameter.
-They need to pass the switch `-ResetRedemption` as true.
-Once reset, External user has to re-redeem the invitation to continue to access the resources.
 
 ## Parameters
 
@@ -282,25 +258,7 @@ Accept wildcard characters: False
 
 ### -SendInvitationMessage
 
-A Boolean parameter that indicates whether or not an invitation message will be sent to the invited user.
-
-```yaml
-Type: System.Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ResetRedemption
-
-Indicates whether the invite redemption on an existing external user should be removed so the user can re-redeem the account.
-
-By default, this is false and should only be set to true when passing in a valid external user to the InvitedUser property.
+A Boolean parameter that indicates whether or not an invitation message sent to the invited user.
 
 ```yaml
 Type: System.Boolean

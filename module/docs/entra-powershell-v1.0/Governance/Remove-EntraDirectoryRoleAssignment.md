@@ -34,13 +34,20 @@ Remove-EntraDirectoryRoleAssignment
 
 The `Remove-EntraDirectoryRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Remove a role assignment
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
-Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory', 'EntitlementManagement.ReadWrite.All'1
+$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$role = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+$assignment = Get-EntraDirectoryRoleAssignment -All | Where-Object { $_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id }
+Remove-EntraDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
 ```
 
 This example removes the specified role assignment from Microsoft Entra ID.
