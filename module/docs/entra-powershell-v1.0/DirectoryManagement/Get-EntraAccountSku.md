@@ -57,7 +57,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 ### Example 1: Gets a list of SKUs
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
 Get-EntraAccountSku
 ```
 
@@ -95,9 +95,7 @@ This command returns a list of SKUs for a specified tenant.
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided, then the value will default to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique tenant ID for the operation. Defaults to the current user's tenant if not specified. This parameter is included for compatibility with legacy PowerShell modules
 
 ```yaml
 Type: System.String

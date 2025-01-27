@@ -95,14 +95,14 @@ $roleDefinition = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq '
 $rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
 $rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
 $params = @{
-   UnifiedRoleDefinitionId = $roleDefinition.Id
-   Description = 'Update'
-   DisplayName = 'Update'
-   ResourceScopes = '/'
-   IsEnabled = $false
-   RolePermissions = $RolePermissions
-   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
-   Version = 2
+    UnifiedRoleDefinitionId = $roleDefinition.Id
+    Description             = 'Update'
+    DisplayName             = 'Update'
+    ResourceScopes          = '/'
+    IsEnabled               = $false
+    RolePermissions         = $rolePermissions
+    TemplateId              = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+    Version                 = 2
 }
 Set-EntraBetaDirectoryRoleDefinition @params
 ```

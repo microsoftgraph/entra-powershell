@@ -50,8 +50,8 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$sharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq 'Microsoft.SharePoint'}
-$sharePointOAuth2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $sharePointSP.Id} | Where-Object {$_.Scope -eq 'AllSites.Read'}
+$sharePointSP = Get-EntraServicePrincipal | Where-Object { $_.DisplayName -eq 'Microsoft.SharePoint' }
+$sharePointOAuth2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object { $_.ResourceId -eq $sharePointSP.Id } | Where-Object { $_.Scope -eq 'AllSites.Read' }
 Remove-EntraOAuth2PermissionGrant -ObjectId $sharePointOAuth2AllSitesRead.Id
 ```
 

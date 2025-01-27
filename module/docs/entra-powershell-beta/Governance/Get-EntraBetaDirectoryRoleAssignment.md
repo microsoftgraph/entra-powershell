@@ -113,10 +113,10 @@ This command gets all the role assignments in Microsoft Entra ID.
 ### Example 3: Get role assignments by Id
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-$user = Get-EntraBetaUser -UserId 'BiancaP@M365x80713871.OnMicrosoft.com'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
-$assignment = Get-EntraBetaDirectoryRoleAssignment -All | Where-Object {$_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id}
+$assignment = Get-EntraBetaDirectoryRoleAssignment -All | Where-Object { $_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id }
 Get-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
 ```
 
@@ -133,7 +133,7 @@ This command gets the role assignments using specified roleAssignment Id.
 ### Example 4: Get role assignments filter by principalId
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 $userId = (Get-EntraBetaUser -UserId 'SawyerM@contoso.com').Id
 Get-EntraBetaDirectoryRoleAssignment -Filter "principalId eq '$userId'"
 ```
@@ -150,7 +150,7 @@ This command gets the role assignments containing the specified principalId.
 ### Example 5: Get role assignments filter by roleDefinitionId
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 $roleId = (Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'").Id
 Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq '$roleId'"
 ```
@@ -170,7 +170,7 @@ This command gets the role assignments containing the specified roleDefinitionId
 ### Example 6: Get top two role assignments
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraBetaDirectoryRoleAssignment -Top 2
 ```
 

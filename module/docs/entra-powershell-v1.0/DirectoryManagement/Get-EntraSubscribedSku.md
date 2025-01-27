@@ -55,7 +55,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 ### Example 1: Get subscribed SKUs
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
 Get-EntraSubscribedSku
 ```
 
@@ -72,7 +72,7 @@ This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
 ### Example 2: Get subscribed SKUs by SubscribedSkuId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
 Get-EntraSubscribedSku -SubscribedSkuId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666'
 ```
 
@@ -89,7 +89,7 @@ This example demonstrates how to retrieve specified subscribed SKUs to Microsoft
 ### Example 3: Get available license plans
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Organization.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'Organization.Read.All', 'LicenseAssignment.Read.All'
 Get-EntraSubscribedSku | Select-Object -Property Sku*, ConsumedUnits -ExpandProperty PrepaidUnits
 ```
 
@@ -109,7 +109,7 @@ This example demonstrates how to retrieve available license plans.
 ### Example 4: Retrieve all users assigned a specific license
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
 $sku = Get-EntraSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'DEVELOPERPACK_E5' }
 $skuId = $sku.SkuId
 $usersWithDeveloperPackE5 = Get-EntraUser -All | Where-Object {
@@ -131,7 +131,7 @@ This example demonstrates how to retrieve all users assigned a specific license.
 ### Example 5: Get a list of users, their assigned licenses, and licensing source
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All','LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'User.Read.All', 'Group.Read.All', 'LicenseAssignment.Read.All'
 
 # Get all users with specified properties
 $Users = Get-EntraUser -All -Property AssignedLicenses, LicenseAssignmentStates, DisplayName, UserPrincipalName, ObjectId
@@ -157,7 +157,8 @@ foreach ($User in $SelectedUsers) {
         }
 
         $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue $GroupDisplayNames[$AssignedByGroup]
-    } catch {
+    }
+    catch {
         $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue 'N/A (Direct Assignment)'
     }
 
@@ -169,7 +170,8 @@ foreach ($User in $SelectedUsers) {
         }
 
         $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue $SkuPartNumbers[$SkuId]
-    } catch {
+    }
+    catch {
         $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue 'N/A'
     }
 }
