@@ -53,7 +53,23 @@ eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      Prop
 
 This command lists directory sync errors for `users`, `groups`, or `organizational contacts` during on-premises synchronization to Microsoft Entra ID.
 
-### Example 2: Get directory synchronization errors for a specific tenant
+### Example 2: Get directory synchronization errors with filtering
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+Get-EntraDirectoryObjectOnPremisesProvisioningError | where-Object propertyCausingError -eq 'UserPrincipalName' | Format-Table -AutoSize
+```
+
+```Output
+Id                                   PropertyCausingError UserPrincipalName Category         Value                                      OccurredDateTime      DisplayName           OnPremisesSyncEnabled Mail                
+--                                   -------------------- ----------------- --------         -----                                      ----------------      -----------           --------------------- ----                
+cccccccc-2222-3333-4444-dddddddddddd ProxyAddresses                         PropertyConflict SMTP:ConflictMail@contoso.com           3/14/2022 11:46:44 PM ConflictMail1                          True                
+eeeeeeee-4444-5555-6666-ffffffffffff UserPrincipalName                      PropertyConflict BlockSoftMatch1@contoso.com             7/4/2024 12:06:16 AM  BlockSoftMatch1                        True                
+```
+
+This command lists directory sync errors for `users`, `groups`, or `organizational contacts` during on-premises synchronization to Microsoft Entra ID.
+
+### Example 3: Get directory synchronization errors for a specific tenant
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
