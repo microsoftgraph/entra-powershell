@@ -71,5 +71,5 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
 
         Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
     }
-}# ---------------------------------------------------------------------------
+}
 

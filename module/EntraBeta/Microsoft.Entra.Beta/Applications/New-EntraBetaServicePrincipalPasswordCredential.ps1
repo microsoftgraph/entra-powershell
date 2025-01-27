@@ -66,3 +66,4 @@ function New-EntraBetaServicePrincipalPasswordCredential {
         }
     }
 }
+

@@ -172,5 +172,5 @@ function New-EntraBetaApplicationProxyApplication {
         
         $respType
         }        
-}# ------------------------------------------------------------------------------
+}
 
