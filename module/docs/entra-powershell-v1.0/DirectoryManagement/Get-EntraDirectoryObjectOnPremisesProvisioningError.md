@@ -100,13 +100,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
-**Id**: Unique ID for the synchronization error.
-**Category**: Provisioning error category. Currently, the only value is `PropertyConflict`, which means a property value is not unique and is shared by other objects.
-**PropertyCausingError**: Name of the directory property causing the error. Current possible values: UserPrincipalName or ProxyAddress.
-**Value**: Value of the property causing the error.
-**OccurredDateTime**: The date and time at which the error occurred.
-**ObjectType**: The resource for which the error occurred e.g. `users`, `groups`, `organizational contacts`.
-
 ## Notes
 
 ## Related Links
