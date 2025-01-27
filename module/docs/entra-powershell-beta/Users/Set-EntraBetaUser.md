@@ -143,7 +143,7 @@ $params = @{
         EnforceChangePasswordPolicy  = $false
     }
 }
-Set-EntraUser @params
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
