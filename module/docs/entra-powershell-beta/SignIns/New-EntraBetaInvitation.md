@@ -145,7 +145,7 @@ This example demonstrates how to invite a new external user to your directory wi
 Connect-Entra -Scopes 'User.Invite.All'
 $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
-$redirectUrl = 'https://myapps.onmicrosoft.com'
+$redirectUrl = 'https://myapps.contoso.com'
 $userType = 'Guest'
 New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserType $userType
 ```
