@@ -39,6 +39,12 @@ Get-EntraBetaAuditDirectoryLog
 The `Get-EntraBetaAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Reports Reader  
+- Security Administrator  
+- Security Reader
+
 ## Examples
 
 ### Example 1: Get all logs

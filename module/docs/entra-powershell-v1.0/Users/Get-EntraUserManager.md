@@ -43,21 +43,15 @@ The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserManager -UserId 'SawyerM@contoso.com'
+Get-EntraUserManager -UserId 'SawyerM@contoso.com' |
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
+Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime                 :
-Id                              : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
-@odata.type                     : #microsoft.graph.user
-accountEnabled                  : True
-businessPhones                  : {+1 858 555 0109}
-city                            : San Diego
-createdDateTime                 : 2023-07-07T14:18:05Z
-country                         : United States
-department                      : Sales & Marketing
-displayName                     : Sawyer Miller
+id                                    displayName     userPrincipalName                    createdDateTime           accountEnabled  userType
+--                                    -----------     -----------------                    ---------------           --------------  --------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee  Patti Fernandez PattiF@Contoso.com                 10/7/2024 12:32:01 AM      True           Member
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.
@@ -72,9 +66,9 @@ $allUsers = Get-EntraUser -All
 $usersWithoutManagers = foreach ($user in $allUsers) {
     $manager = Get-EntraUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
     if (-not $manager) {
-        [pscustomobject]@{
-            Id               = $user.Id
-            DisplayName      = $user.DisplayName
+        [PSCustomObject]@{
+            Id                = $user.Id
+            DisplayName       = $user.DisplayName
             UserPrincipalName = $user.UserPrincipalName
         }
     }

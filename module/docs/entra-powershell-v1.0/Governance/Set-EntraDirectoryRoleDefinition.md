@@ -41,6 +41,10 @@ Set-EntraDirectoryRoleDefinition
 
 Updates a Microsoft Entra roleDefinition object identified by ID. You can't update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Update an roleDefinition
@@ -87,19 +91,18 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $roleDefinition = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq '<Role-Definition-Name>'"
-$RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-$RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
+$rolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+$rolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
 $params = @{
-   UnifiedRoleDefinitionId = $roleDefinition.Id
-   Description = 'Update'
-   DisplayName = 'Update'
-   ResourceScopes = '/'
-   IsEnabled = $false
-   RolePermissions = $RolePermissions
-   TemplateId = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
-   Version = 2
+    UnifiedRoleDefinitionId = $roleDefinition.Id
+    Description             = 'Update'
+    DisplayName             = 'Update'
+    ResourceScopes          = '/'
+    IsEnabled               = $false
+    RolePermissions         = $rolePermissions
+    TemplateId              = 'f2ef992c-3afb-46b9-b7cf-a126ee74c451'
+    Version                 = 2
 }
-
 Set-EntraDirectoryRoleDefinition @params
 ```
 

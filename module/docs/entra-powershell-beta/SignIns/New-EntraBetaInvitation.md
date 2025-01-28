@@ -50,7 +50,16 @@ Invitation adds an external user to the organization. When creating a new invita
 
 To reset the redemption status for a guest user, the User.ReadWrite.All permission is the minimum required.
 
-For delegated scenarios, the signed-in user must have at least one of the following roles: Guest Inviter, Directory Writers, or User Administrator. Additionally, to reset the redemption status, the signed-in user must have the Helpdesk Administrator or User Administrator role.
+For delegated scenarios, the signed-in user must have at least one of the following roles:
+
+- Guest Inviter
+- Directory Writers
+- User Administrator
+
+Additionally, to reset the redemption status, the signed-in user must have the:
+
+- Helpdesk Administrator
+- User Administrator role
 
 ## Examples
 
@@ -58,13 +67,10 @@ For delegated scenarios, the signed-in user must have at least one of the follow
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
-$params = @{
-    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
-    SendInvitationMessage = $True
-    InviteRedirectUrl = 'https://myapps.onmicrosoft.com'
-}
-
-New-EntraBetaInvitation @params
+$emailAddress = 'someexternaluser@externaldomain.com'
+$sendInvitationMessage = $True
+$redirectUrl = 'https://myapps.contoso.com'
+New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl
 ```
 
 ```Output
@@ -83,14 +89,11 @@ When the user accepts the invitation, they're forwarded to the url as specified 
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
-$params = @{
-    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
-    SendInvitationMessage = $True
-    InviteRedirectUrl = 'https://myapps.onmicrosoft.com'
-    InvitedUserDisplayName = 'microsoftuser'
-}
-
-New-EntraBetaInvitation @params
+$emailAddress = 'someexternaluser@externaldomain.com'
+$sendInvitationMessage = $True
+$redirectUrl = 'https://myapps.onmicrosoft.com'
+$displayName = 'microsoftuser'
+New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName
 ```
 
 ```Output
@@ -140,14 +143,11 @@ This example demonstrates how to invite a new external user to your directory wi
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
-$params = @{
-    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
-    SendInvitationMessage = $True
-    InviteRedirectUrl = 'https://myapps.microsoft.com'
-    InvitedUserType = 'Guest'
-}
-
-New-EntraBetaInvitation @params
+$emailAddress = 'someexternaluser@externaldomain.com'
+$sendInvitationMessage = $True
+$redirectUrl = 'https://myapps.contoso.com'
+$userType = 'Guest'
+New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserType $userType
 ```
 
 ```Output
@@ -162,14 +162,12 @@ This example demonstrates how to invite a new external user to your directory wi
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
-$params = @{
-    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
-    SendInvitationMessage = $True
-    InviteRedirectUrl = 'https://myapps.onmicrosoft.com'
-    InvitedUserDisplayName = 'microsoftuser'
-    ResetRedemption = $true 
-}  
-New-EntraBetaInvitation @params
+$emailAddress = 'someexternaluser@externaldomain.com'
+$sendInvitationMessage = $True
+$redirectUrl = 'https://myapps.constoso.com'
+$displayName = 'microsoftuser'
+$resetRedemption = $True
+New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName -ResetRedemption $resetRedemption
 ```
 
 ```Output

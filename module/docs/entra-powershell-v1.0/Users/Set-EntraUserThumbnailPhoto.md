@@ -55,19 +55,15 @@ Set-EntraUserThumbnailPhoto
 
 The `Set-EntraUserThumbnailPhoto` cmdlet is used to set the thumbnail photo for a user.
 
-Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
+Updating any user's photo in the organization requires the `User.ReadWrite.All` permission. Updating only the signed-in user's photo requires the `User.ReadWrite` permission.
 
 ## Examples
 
 ### Example 1: Sets the thumbnail photo
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite','User.ReadWrite.All'
-$params = @{
-    UserId = 'SawyerM@contoso.com'
-    FilePath = 'D:\UserThumbnailPhoto.jpg'
-}
-Set-EntraUserThumbnailPhoto @params
+Connect-Entra -Scopes 'User.ReadWrite', 'User.ReadWrite.All'
+Set-EntraUserThumbnailPhoto -UserId -FilePath 'D:\UserThumbnailPhoto.jpg'
 ```
 
 This example sets the thumbnail photo of the user specified with the UserId parameter to the image specified with the FilePath parameter.

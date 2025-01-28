@@ -36,19 +36,19 @@ New-EntraBetaDirectoryRoleAssignment
 
 The `New-EntraBetaDirectoryRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory','EntitlementManagement.ReadWrite.All'
-$params = @{
-    RoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
-    DirectoryScopeId = '/'
- }
-
-New-EntraBetaDirectoryRoleAssignment @params
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory', 'EntitlementManagement.ReadWrite.All'
+$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
+$role = Get-EntraBetaDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
+New-EntraBetaDirectoryRoleAssignment -RoleDefinitionId $role.Id -PrincipalId $user.Id -DirectoryScopeId '/'
 ```
 
 ```Output
@@ -60,9 +60,7 @@ A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u aaaaaaaa-bbbb-cccc-1111-222222222222 a0a0a0a0-bbb
 This command creates a new role assignment in Microsoft Entra ID.
 
 - `-RoleDefinitionId` parameter specifies the ID of the role definition that you want to assign. Role definitions describe the permissions that are granted to users or groups by the role. This is the Identifier of the `unifiedRoleDefinition` the assignment is for.
-
 - `-PrincipalId` parameter specifies the ID of the principal (user, group, or service principal) to whom the role is being assigned.
-
 - `-DirectoryScopeId` parameter specifies the scope of the directory over which the role assignment is effective. The '/' value typically represents the root scope, meaning the role assignment is applicable across the entire directory.
 
 ## Parameters

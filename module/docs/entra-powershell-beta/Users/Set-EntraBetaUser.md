@@ -67,13 +67,8 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$params = @{
-   UserId = $user.ObjectId
-   DisplayName = 'Updated user Name'
-}
-Set-EntraBetaUser @params
+Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
 This example updates the specified user's Display name parameter.
@@ -83,12 +78,8 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
-$params = @{
-   UserId = 'SawyerM@contoso.com'
-   AccountEnabled = $true
-}
-Set-EntraBetaUser @params
+Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -99,9 +90,9 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
 Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object  { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+ForEach-Object { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -112,23 +103,23 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All','Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
 $params = @{
-   UserId = 'SawyerM@contoso.com'
-   City = 'Add city name'
-   CompanyName = 'Microsoft'
-   Country = 'Add country name'
-   Department = 'Add department name'
-   GivenName = 'Mircosoft'
-   ImmutableId = '#1' 
-   JobTitle = 'Manager'
-   MailNickName = 'Add mailnickname'
-   Mobile = '9984534564'
-   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
-   PasswordPolicies = 'DisableStrongPassword'
-   State = 'UP'
-   StreetAddress = 'Add address'
-   UserType = 'Member'
+    UserId           = 'SawyerM@contoso.com'
+    City             = 'Add city name'
+    CompanyName      = 'Microsoft'
+    Country          = 'Add country name'
+    Department       = 'Add department name'
+    GivenName        = 'Mircosoft'
+    ImmutableId      = '#1' 
+    JobTitle         = 'Manager'
+    MailNickName     = 'Add mailnickname'
+    Mobile           = '9984534564'
+    OtherMails       = 'test12@Contoso.com'
+    PasswordPolicies = 'DisableStrongPassword'
+    State            = 'UP'
+    StreetAddress    = 'Add address'
+    UserType         = 'Member'
 }
 Set-EntraBetaUser @params
 ```
@@ -144,13 +135,13 @@ This example updates the specified user's property.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params= @{
-UserId = 'SawyerM@contoso.com'
-PasswordProfile  = @{
-   Password= '*****'
-   ForceChangePasswordNextLogin = $true
-   EnforceChangePasswordPolicy = $false
-   }
+$params = @{
+    UserId          = 'SawyerM@contoso.com'
+    PasswordProfile = @{
+        Password                     = '*****'
+        ForceChangePasswordNextLogin = $true
+        EnforceChangePasswordPolicy  = $false
+    }
 }
 Set-EntraBetaUser @params
 ```
