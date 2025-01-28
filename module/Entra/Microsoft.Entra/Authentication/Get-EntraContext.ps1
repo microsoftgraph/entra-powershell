@@ -56,7 +56,7 @@ function Get-EntraContext {
 
         # $module = Get-Module -Name Microsoft.Entra.Authentication -ErrorAction SilentlyContinue
 
-        Write-Host ("ExecutionContext: {0}" -f $ExecutionContext)
+        Write-Host ("ExecutionContext: {0}" -f $ExecutionContext | Format-List -Property *)
         $module = $ExecutionContext.SessionState.Module
         Write-Host ("Module: {0}" -f $module)
         $entraPSModuleName = "Microsoft.Entra"
