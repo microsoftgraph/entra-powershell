@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -25,21 +25,21 @@ BeforeAll {
     }
     
     Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
-  }
+}
   
-  Describe "Get-EntraApplicationKeyCredential" {
+Describe "Get-EntraApplicationKeyCredential" {
     Context "Test for Get-EntraApplicationKeyCredential" {
         It "Should not return empty" {
-            $result = Get-EntraApplicationKeyCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraApplicationKeyCredential -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraApplicationKeyCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is empty" {
+            { Get-EntraApplicationKeyCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationKeyCredential"
-            $result = Get-EntraApplicationKeyCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraApplicationKeyCredential -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationKeyCredential"    
             Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
@@ -54,12 +54,13 @@ BeforeAll {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraApplicationKeyCredential -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraApplicationKeyCredential -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
         }     
     }
-  }
+}
 

@@ -21,21 +21,21 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieves the objects specified by the ObjectIds parameter.
+Retrieves directory objects based on a list of IDs.
 
 ## Syntax
 
 ```powershell
 Get-EntraObjectByObjectId
- -ObjectIds <System.Collections.Generic.List`1[String]>
- [-Types <System.Collections.Generic.List`1[String]>]
+ -DirectoryObjectId <System.Collections.Generic.List`1[String]>
+ [-ObjectType <System.Collections.Generic.List`1[String]>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraObjectByObjectId` cmdlet retrieves the objects specified by the ObjectIds parameter.
+The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
 
 ## Examples
 
@@ -43,7 +43,7 @@ The `Get-EntraObjectByObjectId` cmdlet retrieves the objects specified by the Ob
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId  -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraObjectByObjectId  -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -55,13 +55,13 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example demonstrates how to retrieve objects for a specified object Ids.
 
-- `ObjectIds` parameter specifies the One or more object IDs.
+- `DirectoryObjectId` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
 
 ### Example 2: Get an object by types
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Types User
+Get-EntraObjectByObjectId -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ObjectType User
 ```
 
 ```Output
@@ -72,19 +72,19 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to retrieve objects for a specified object type.
 
-- `-ObjectIds` parameter specifies the One or more object IDs.
-- `-Types` parameter specifies the type of object ID.
+- `-DirectoryObjectId` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
+- `-ObjectType` parameter specifies the type of object ID.
 
 ## Parameters
 
-### -ObjectIds
+### -DirectoryObjectId
 
 One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectIds
 
 Required: True
 Position: Named
@@ -93,14 +93,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Types
+### -ObjectType
 
 Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as user, group, and device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
 Parameter Sets: (All)
-Aliases:
+Aliases: Types
 
 Required: False
 Position: Named
