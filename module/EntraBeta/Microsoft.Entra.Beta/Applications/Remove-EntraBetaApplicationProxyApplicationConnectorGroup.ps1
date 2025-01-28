@@ -25,5 +25,5 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
 
         Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri
     }
-}# ------------------------------------------------------------------------------
+}
 
