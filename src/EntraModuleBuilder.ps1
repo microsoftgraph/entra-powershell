@@ -97,14 +97,18 @@ Set-StrictMode -Version 5
         Log-Message "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)"
         $fileContent = Get-Content -Path $ps1File.FullName
         $cleanedContent = $this.RemoveHeader($fileContent)
+        $psm1Content += "`n"  # Add an empty line at the beginning
         $psm1Content += $cleanedContent -join "`n"
+        $psm1Content += "`n"  # Add an empty line at the end
     }
 
     foreach ($ps1File in $enableEntraFiles) {
         Log-Message "[EntraModuleBuilder] Appending content from file: $($ps1File.Name)" -ForegroundColor Cyan
         $fileContent = Get-Content -Path $ps1File.FullName
         $cleanedContent = $this.RemoveHeader($fileContent)
+         $psm1Content += "`n"  # Add an empty line at the beginning
         $psm1Content += $cleanedContent -join "`n"
+        $psm1Content += "`n"  # Add an empty line at the end
     }
 
     # Add the Export-ModuleMember line to export functions

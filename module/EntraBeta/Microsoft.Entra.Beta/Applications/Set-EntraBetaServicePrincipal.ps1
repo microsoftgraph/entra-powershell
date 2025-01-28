@@ -165,5 +165,5 @@ function Set-EntraBetaServicePrincipal {
         $response = Invoke-GraphRequest @params -Headers $customHeaders
         $response
     }     
-}# ------------------------------------------------------------------------------
+}
 

@@ -73,3 +73,4 @@ function Set-EntraAdministrativeUnit {
         Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method PATCH -Body $body
     }
 }
+

@@ -100,5 +100,6 @@ function Find-EntraPermission {
         
         Find-MgGraphPermission @params 
         }        
-}# ------------------------------------------------------------------------------
+}
+
 

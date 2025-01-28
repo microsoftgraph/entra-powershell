@@ -24,5 +24,5 @@ function Remove-EntraBetaApplicationProxyConnectorGroup {
 
         Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri
     }
-}# ------------------------------------------------------------------------------
+}
 

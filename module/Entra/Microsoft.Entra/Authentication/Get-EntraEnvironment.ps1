@@ -62,5 +62,7 @@ function Get-EntraEnvironment{
 
         Get-MgEnvironment @params 
     }
-}# ------------------------------------------------------------------------------
+}
+
+
 

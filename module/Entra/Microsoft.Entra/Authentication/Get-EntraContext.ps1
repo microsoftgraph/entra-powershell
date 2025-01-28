@@ -67,3 +67,4 @@ function Get-EntraContext {
         $response
     }
 }
+

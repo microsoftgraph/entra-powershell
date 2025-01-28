@@ -35,5 +35,5 @@ function Set-EntraBetaApplicationProxyConnector {
 
         Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
     }
-}# ------------------------------------------------------------------------------
+}
 

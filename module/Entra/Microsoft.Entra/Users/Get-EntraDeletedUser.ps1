@@ -117,3 +117,4 @@ function Get-EntraDeletedUser {
         }
     }    
 }
+
