@@ -75,8 +75,8 @@ The example shows how to update a conditional access policy in Microsoft Entra I
 ### Example 2: Update display name for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'MFA policy' }
 Set-EntraBetaConditionalAccessPolicy -PolicyId $policy.Id -DisplayName 'MFA policy updated'
 ```
 
@@ -88,8 +88,8 @@ This command updates a conditional access policy in Microsoft Entra ID.
 ### Example 3: Update the state for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'MFA policy' }
 Set-EntraBetaConditionalAccessPolicy -PolicyId $policy.Id -State 'Enabled'
 ```
 

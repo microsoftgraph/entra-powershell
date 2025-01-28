@@ -80,7 +80,7 @@ This command retrieves a list of all named location policies in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-$policy = Get-EntraNamedLocationPolicy | Where-Object {$_.DisplayName -eq 'Provisioning Workers'}
+$policy = Get-EntraNamedLocationPolicy | Where-Object { $_.DisplayName -eq 'Provisioning Workers' }
 Get-EntraNamedLocationPolicy -PolicyId $policy.Id
 ```
 

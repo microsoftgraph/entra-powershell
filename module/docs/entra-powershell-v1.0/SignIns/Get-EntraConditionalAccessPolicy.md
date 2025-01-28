@@ -43,8 +43,15 @@ Get-EntraConditionalAccessPolicy
 
 ## Description
 
-This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
-Conditional access policies are custom rules that define an access scenario.
+This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy. Conditional access policies are custom rules that define an access scenario.
+
+In delegated scenarios involving work or school accounts, the signed-in user must have a Microsoft Entra role or a custom role with the required permissions to act on behalf of another user. The following least privileged roles support this operation:
+
+- Global Secure Access Administrator (read standard properties)  
+- Security Reader (read standard properties)  
+- Security Administrator (read standard properties)  
+- Global Reader  
+- Conditional Access Administrator 
 
 In delegated scenarios involving work or school accounts, the signed-in user must have a Microsoft Entra role or a custom role with the required permissions to act on behalf of another user. The following least privileged roles support this operation:
 
@@ -77,7 +84,7 @@ This example retrieves a list of all conditional access policies in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'Multifactor authentication for Contoso partners and vendors'}
+$policy = Get-EntraConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'Multifactor authentication for Contoso partners and vendors' }
 Get-EntraConditionalAccessPolicy -PolicyId $policy.Id
 ```
 

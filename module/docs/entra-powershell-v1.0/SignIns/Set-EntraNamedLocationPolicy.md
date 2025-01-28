@@ -55,7 +55,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+$policy = Get-EntraNamedLocationPolicy | Where-Object { "$_.DisplayName -eq 'IP named location policy'" }
 $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
 $ipRanges.cidrAddress = '6.5.4.3/32'
 $type = '#microsoft.graph.ipNamedLocation'
@@ -74,7 +74,7 @@ This example shows how to update an IP named location policy in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+$policy = Get-EntraNamedLocationPolicy | Where-Object { "$_.DisplayName -eq 'IP named location policy'" }
 $type = '#microsoft.graph.countryNamedLocation'
 Set-EntraNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -IncludeUnknownCountriesAndRegions $true
 ```
@@ -89,7 +89,7 @@ This command updates a country named location policy in Microsoft Entra ID by Po
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-$policy = Get-EntraNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+$policy = Get-EntraNamedLocationPolicy | Where-Object { "$_.DisplayName -eq 'IP named location policy'" }
 $type = '#microsoft.graph.ipNamedLocation'
 Set-EntraNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -DisplayName 'NewName'
 ```

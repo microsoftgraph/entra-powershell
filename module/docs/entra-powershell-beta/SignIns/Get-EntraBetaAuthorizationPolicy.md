@@ -52,7 +52,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Security Administrator  
 - Cloud Device Administrator  
 - License Administrator  
-- Privileged Role Administrator  
+- Privileged Role Administrator 
 
 ## Examples
 

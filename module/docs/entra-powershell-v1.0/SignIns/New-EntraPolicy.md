@@ -58,7 +58,6 @@ Definition                                                                     D
 This command creates a new policy in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
-
 - `-Type` Parameter specifies the type of policy.
 
 ### Example 2: Create a ClaimsMappingPolicy policy by 'IsOrganizationDefault' parameter
@@ -78,10 +77,8 @@ Definition
 This command creates a ClaimsMappingPolicy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
-
 - `-Type` - Parameter specifies the type of policy. In this example, `ClaimsMappingPolicy`
  represents the type of policy.
-
 - `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
 
 ### Example 3: Create a TokenLifetimePolicy
@@ -102,7 +99,6 @@ Definition                                                              DeletedD
 This command creates a TokenLifetimePolicy in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
-
 - `-Type` Parameter specifies the type of policy.
 
 ### Example 4: Create a TokenIssuancePolicy
@@ -122,7 +118,6 @@ Definition
 This command creates a TokenIssuancePolicy in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
-
 - `-Type` Parameter specifies the type of policy.
 
 ### Example 5: Create a ActivityBasedTimeoutPolicy
@@ -143,7 +138,6 @@ Definition                                                                      
 This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
-
 - `-Type` Parameter specifies the type of policy.
 
 ## Parameters

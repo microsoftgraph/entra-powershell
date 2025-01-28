@@ -125,7 +125,6 @@ Accept wildcard characters: False
 Specifies a feature assigned to the cloud authentication roll-out policy.
 
 Possible values are:
-
 - passthroughAuthentication  
 - seamlessSso  
 - passwordHashSync  

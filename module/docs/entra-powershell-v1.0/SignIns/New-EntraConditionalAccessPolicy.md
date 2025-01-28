@@ -101,7 +101,7 @@ Id                                   CreatedDateTime     Description DisplayName
 aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 07:31:25             MFA policy                   enabled
 ```
 
-This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions.
+This command creates a new Microsoft Entra ID conditional access policy to block access to Exchange Online from untrusted regions.
 
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.

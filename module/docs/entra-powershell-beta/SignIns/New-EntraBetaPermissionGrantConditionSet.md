@@ -70,20 +70,8 @@ This command creates a basic permission grant condition set in an existing polic
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'policy1'
-$permission = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles.Id
-$params = @{
-PolicyId = $permissionGrantPolicyId
-ConditionSetType = 'includes'
-PermissionType = 'delegated'
-Permissions = @($permission)
-ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-}
-
-New-EntraBetaPermissionGrantConditionSet @params
-
 $permission = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Box'").AppRoles.Id
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
 New-EntraBetaPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -PermissionType 'delegated' -Permissions @($permission) -ResourceApplication 'resource-application-id'
 ```
 
@@ -105,18 +93,18 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
 $params = @{
-PolicyId = $permissionGrantPolicy.Id
-ConditionSetType = 'excludes'
-PermissionType = 'delegated'
-Permissions = @('All')
-ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-PermissionClassification = 'low'
-ClientApplicationsFromVerifiedPublisherOnly = $true
-ClientApplicationIds = @('All')
-ClientApplicationTenantIds = @('All')
-ClientApplicationPublisherIds = @('All')
+    PolicyId                                    = $permissionGrantPolicy.Id
+    ConditionSetType                            = 'excludes'
+    PermissionType                              = 'delegated'
+    Permissions                                 = @('All')
+    ResourceApplication                         = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    PermissionClassification                    = 'low'
+    ClientApplicationsFromVerifiedPublisherOnly = $true
+    ClientApplicationIds                        = @('All')
+    ClientApplicationTenantIds                  = @('All')
+    ClientApplicationPublisherIds               = @('All')
 }
 New-EntraBetaPermissionGrantConditionSet @params
 ```
@@ -144,19 +132,19 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$permissionGrantPolicy = Get-EntraBetaPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
 $permission = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayname>'").AppRoles.Id
 $params = @{
-PolicyId = $permissionGrantPolicy.Id
-ConditionSetType = 'excludes'
-PermissionType = 'delegated'
-Permissions = @($permission)
-ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-PermissionClassification = 'low'
-ClientApplicationsFromVerifiedPublisherOnly = $true
-ClientApplicationIds = @('00001111-aaaa-2222-bbbb-3333cccc4444', '11112222-bbbb-3333-cccc-4444dddd5555')
-ClientApplicationTenantIds = @('aaaabbbb-0000-cccc-1111-dddd2222eeee', 'bbbbcccc-1111-dddd-2222-eeee3333ffff', 'ccccdddd-2222-eeee-3333-ffff4444aaaa')
-ClientApplicationPublisherIds = @('33334444-dddd-5555-eeee-6666ffff7777')
+    PolicyId                                    = $permissionGrantPolicy.Id
+    ConditionSetType                            = 'excludes'
+    PermissionType                              = 'delegated'
+    Permissions                                 = @($permission)
+    ResourceApplication                         = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    PermissionClassification                    = 'low'
+    ClientApplicationsFromVerifiedPublisherOnly = $true
+    ClientApplicationIds                        = @('00001111-aaaa-2222-bbbb-3333cccc4444', '11112222-bbbb-3333-cccc-4444dddd5555')
+    ClientApplicationTenantIds                  = @('aaaabbbb-0000-cccc-1111-dddd2222eeee', 'bbbbcccc-1111-dddd-2222-eeee3333ffff', 'ccccdddd-2222-eeee-3333-ffff4444aaaa')
+    ClientApplicationPublisherIds               = @('33334444-dddd-5555-eeee-6666ffff7777')
 }
 New-EntraBetaPermissionGrantConditionSet @params
 ```

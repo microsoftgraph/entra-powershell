@@ -53,8 +53,8 @@ In delegated scenarios with work or school accounts, when acting on another user
 ### Example 1: Update a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'MFA policy' }
 $cond = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $control = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 $session = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
@@ -73,8 +73,8 @@ The example shows how to update a conditional access policy in Microsoft Entra I
 ### Example 2: Update display name for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'MFA policy' }
 Set-EntraConditionalAccessPolicy -PolicyId $policy.Id -DisplayName 'MFA policy updated'
 ```
 
@@ -86,8 +86,8 @@ This command updates a conditional access policy in Microsoft Entra ID.
 ### Example 3: Update the state for a conditional access policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraConditionalAccessPolicy | Where-Object { $_.DisplayName -eq 'MFA policy' }
 Set-EntraConditionalAccessPolicy -PolicyId $policy.Id -State 'Enabled'
 ```
 

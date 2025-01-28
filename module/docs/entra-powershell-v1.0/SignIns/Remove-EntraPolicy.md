@@ -39,7 +39,7 @@ The `Remove-EntraPolicy` cmdlet removes a policy from Microsoft Entra ID. Specif
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration'
-$policy = Get-EntraPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+$policy = Get-EntraPolicy | Where-Object { $_.DisplayName -eq 'Microsoft User Default Recommended Policy' }
 Remove-EntraPolicy -Id $policy.Id
 ```
 

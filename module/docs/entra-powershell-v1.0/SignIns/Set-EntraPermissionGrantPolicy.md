@@ -42,7 +42,7 @@ The `Set-EntraPermissionGrantPolicy` command updates a Microsoft Entra ID permis
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+$policy = Get-EntraPermissionGrantPolicy | Where-Object { $_.DisplayName -eq 'Microsoft User Default Recommended Policy' }
 Set-EntraPermissionGrantPolicy -Id $policy.Id -Description 'Updated description'
 ```
 
@@ -55,7 +55,7 @@ This command updates the description of the specified permission grant policy.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$policy = Get-EntraPermissionGrantPolicy | Where-Object {$_.DisplayName -eq 'Microsoft User Default Recommended Policy'}
+$policy = Get-EntraPermissionGrantPolicy | Where-Object { $_.DisplayName -eq 'Microsoft User Default Recommended Policy' }
 Set-EntraPermissionGrantPolicy -Id $policy.Id -DisplayName 'Updated DisplayName'
 ```
 

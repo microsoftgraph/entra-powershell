@@ -56,7 +56,7 @@ Get a Microsoft Entra ID permission grant condition set object by ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
 Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes'
 ```
 
@@ -75,7 +75,7 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
 Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'excludes'
 ```
 
@@ -95,8 +95,8 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object {$_.Id -eq 'my-custom-consent-policy'}
-$conditionSet = Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object {$_.PermissionType -eq 'delegated'}
+$permissionGrantPolicy = Get-EntraPermissionGrantPolicy | Where-Object { $_.Id -eq 'my-custom-consent-policy' }
+$conditionSet = Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' | Where-Object { $_.PermissionType -eq 'delegated' }
 Get-EntraPermissionGrantConditionSet -PolicyId $permissionGrantPolicy.Id -ConditionSetType 'includes' -Id $conditionSet.Id
 ```
 

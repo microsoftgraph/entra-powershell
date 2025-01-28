@@ -51,12 +51,12 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.Authorization'
 $params = @{
-    DisplayName = 'Updated displayName'
-    Description = 'Updated Description'
-    BlockMsolPowerShell = $true
-    AllowedToUseSSPR = $false
+    DisplayName                               = 'Updated displayName'
+    Description                               = 'Updated Description'
+    BlockMsolPowerShell                       = $true
+    AllowedToUseSSPR                          = $false
     AllowEmailVerifiedUsersToJoinOrganization = $true
-    AllowedToSignUpEmailBasedSubscriptions = $true
+    AllowedToSignUpEmailBasedSubscriptions    = $true
 }
 
 Set-EntraAuthorizationPolicy @params

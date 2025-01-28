@@ -89,7 +89,7 @@ This command updates a country named location policy in Microsoft Entra ID by Po
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-$policy = Get-EntraBetaNamedLocationPolicy | Where-Object {"$_.DisplayName -eq 'IP named location policy'"}
+$policy = Get-EntraBetaNamedLocationPolicy | Where-Object { "$_.DisplayName -eq 'IP named location policy'" }
 $type = '#microsoft.graph.ipNamedLocation'
 Set-EntraBetaNamedLocationPolicy -PolicyId $policy.Id -OdataType $type -DisplayName 'NewName'
 ```

@@ -47,8 +47,8 @@ In delegated scenarios with work or school accounts, when acting on another user
 ### Example 1: Deletes a named location policy in Microsoft Entra ID
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
-$policy = Get-EntraNamedLocationPolicy | Where-Object {$_.DisplayName -eq 'IP named location policy'}
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All'
+$policy = Get-EntraNamedLocationPolicy | Where-Object { $_.DisplayName -eq 'IP named location policy' }
 Remove-EntraNamedLocationPolicy -PolicyId $policy.Id
 ```
 

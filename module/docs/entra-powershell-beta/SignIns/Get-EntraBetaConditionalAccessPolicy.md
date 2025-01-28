@@ -53,7 +53,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - Security Reader (read standard properties)  
 - Security Administrator (read standard properties)  
 - Global Reader  
-- Conditional Access Administrator  
+- Conditional Access Administrator 
 
 ## Examples
 
