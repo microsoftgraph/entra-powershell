@@ -7,8 +7,8 @@ param (
 )
 
 # Import the necessary scripts
-. (Join-Path $psscriptroot "/common-functions.ps1")
-. (Join-Path $psscriptroot "../src/EntraModuleSplitter.ps1")
+.(Join-Path $psscriptroot "/common-functions.ps1")
+.(Join-Path $psscriptroot "../src/EntraModuleSplitter.ps1")
 .(Join-Path $psscriptroot "/Split-Docs.ps1")
 
 

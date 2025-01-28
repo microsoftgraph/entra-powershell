@@ -14,13 +14,13 @@ BeforeAll {
     Mock -CommandName Update-MgUser -MockWith {} -ModuleName Microsoft.Entra.Users
 }
   
-Describe "Set-EntraUserPassword" {
-    Context "Test for Set-EntraUserPassword" {
+Describe "Set-EntraUserPasswordPofile" {
+    Context "Test for Set-EntraUserPasswordPofile" {
         It "Should return empty object" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+           $result = Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
            $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1
@@ -29,49 +29,49 @@ Describe "Set-EntraUserPassword" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId  -Password $secPassword } | Should -Throw "Missing an argument for parameter 'UserId'*"
+           { Set-EntraUserPasswordPofile -UserId  -Password $secPassword } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
         It "Should fail when UserId is invalid" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId "" -Password $secPassword } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
+           { Set-EntraUserPasswordPofile -UserId "" -Password $secPassword } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
         }
         It "Should fail when Password is empty" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
-           { Set-EntraUserPassword -UserId $userUPN -Password  } | Should -Throw "Missing an argument for parameter 'Password'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password  } | Should -Throw "Missing an argument for parameter 'Password'*"
         }
         It "Should fail when Password is invalid" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId $userUPN -Password "" } | Should -Throw "Cannot process argument transformation on parameter 'Password'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password "" } | Should -Throw "Cannot process argument transformation on parameter 'Password'*"
         }
         It "Should fail when ForceChangePasswordNextLogin  is empty" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin  } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin  } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when ForceChangePasswordNextLogin is invalid" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is empty" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy  } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy  } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is invalid" {
            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
            $newPassword="New@12345"
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-           { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
+           { Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
             Mock -CommandName Update-MgUser -MockWith {$args} -ModuleName Microsoft.Entra.Users
@@ -79,7 +79,7 @@ Describe "Set-EntraUserPassword" {
             $userUPN="mock106@M365x99297270.OnMicrosoft.com"
             $newPassword="New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
@@ -89,18 +89,18 @@ Describe "Set-EntraUserPassword" {
             $userUPN="mock106@M365x99297270.OnMicrosoft.com"
             $newPassword="New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordPofile"
             $userUPN="mock106@M365x99297270.OnMicrosoft.com"
             $newPassword="New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should  -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordPofile"
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -116,7 +116,7 @@ Describe "Set-EntraUserPassword" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true -Debug } | Should -Not -Throw
+                { Set-EntraUserPasswordPofile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

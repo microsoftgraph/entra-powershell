@@ -772,7 +772,6 @@ try {
     # No error message will be displayed, and type will be added if it doesn't exist
 }
 
-
 # ------------------------------------------------------------------------------
 # End of Type definitions required for commands inputs
 # ------------------------------------------------------------------------------
