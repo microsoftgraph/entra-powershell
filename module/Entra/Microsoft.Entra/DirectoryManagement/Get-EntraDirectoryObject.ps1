@@ -60,4 +60,5 @@ function Get-EntraDirectoryObject {
         }
     }    
 }
+Set-Alias -Name Get-EntraObjectByObjectId -Value Get-EntraDirectoryObject -Scope Global -Force
 
