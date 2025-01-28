@@ -58,7 +58,7 @@ extends:
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra*.nupkg'
+            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.Authentication.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.DirectoryManagement.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.Governance.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.Groups.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.NetworkAccess.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.Reports.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.SignIns.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Beta.Users.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.DirectoryManagement.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Governance.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Groups.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Reports.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.SignIns.1.0.1.nupkg;$(System.ArtifactsDirectory)/drop/Microsoft.Entra.Users.1.0.1.nupkg'
             packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
