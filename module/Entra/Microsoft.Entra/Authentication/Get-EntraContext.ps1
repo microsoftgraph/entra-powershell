@@ -8,6 +8,7 @@ function Get-EntraContext {
 
     PROCESS {
         $params = @{}
+        $entraPSModuleName = "Microsoft.Entra"
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
         }
@@ -54,8 +55,8 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        $module = Get-Module -Name Microsoft.Entra.Authentication -ErrorAction SilentlyContinue
-        $entraPSModuleName = "Microsoft.Entra"
+        $module = $ExecutionContext.SessionState.Module       
+
         $response | Add-Member -MemberType NoteProperty -Name "EntraPSModuleName" -Value $entraPSModuleName -Force
 
         if ($null -ne $module) {
