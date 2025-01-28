@@ -59,14 +59,14 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinition.Id
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves an all predefined values.
@@ -77,18 +77,14 @@ This example retrieves an all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
-    Id = 'Alpine'
-}
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine'
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves a specific predefined value.
@@ -100,18 +96,14 @@ This example retrieves a specific predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
-    Filter = "Id eq 'Apline'"
-}
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Filter "Id eq 'Alpine'"
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves a predefined value containing Id with the specified value.

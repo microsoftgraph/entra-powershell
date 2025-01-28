@@ -28,13 +28,13 @@ Adds Microsoft Entra environment to the settings file.
 
 ```powershell
 Add-EntraEnvironment
-   [-Name] <String>
-   [-AzureADEndpoint] <String>
-   [-GraphEndpoint] <String>
-   [-ProgressAction <ActionPreference>]
-   [-WhatIf]
-   [-Confirm]
-   [<CommonParameters>]
+ [-Name] <String>
+ [-AzureADEndpoint] <String>
+ [-GraphEndpoint] <String>
+ [-ProgressAction <ActionPreference>]
+ [-WhatIf]
+ [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -46,19 +46,16 @@ Adds Microsoft Entra environment to the settings file.
 ### Example 1: Add a user defined environment
 
 ```powershell
-$params = @{
-    Name = 'Canary'
-    GraphEndpoint = 'https://canary.graph.microsoft.com'
-    AzureADEndpoint = 'https://login.microsoftonline.com'
-}
-
-Add-EntraEnvironment @params
+$name = 'Canary'
+$graphEndpoint = 'https://canary.graph.microsoft.com'
+$azureADEndpoint = 'https://login.microsoftonline.com'
+Add-EntraEnvironment -Name $name -GraphEndpoint $graphEndpoint -AzureADEndpoint $azureADEndpoint
 ```
 
 ```Output
-Name     AzureADEndpoint                      GraphEndpoint                 Type
-----     ---------------                      -------------                 ----
-Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
+Name       AzureADEndpoint                      GraphEndpoint                 Type          
+----       ---------------                      -------------                 ----          
+Canary     https://login.microsoftonline.com    https://microsoftgraph.com    User-defined  
 ```
 
 Adds a user-defined Entra environment to the settings file.

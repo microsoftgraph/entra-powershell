@@ -39,22 +39,29 @@ The `Get-EntraContactMembership` cmdlet gets a contact membership in Microsoft E
 
 This command is useful to administrators who need to understand which groups, roles, or administrative units a particular contact belongs to. This can be important for troubleshooting access issues, auditing memberships, and ensuring that contact memberships are correctly configured.
 
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can be used:
+
+- Directory Readers  
+- Global Reader  
+- Directory Writers  
+- Intune Administrator  
+- User Administrator
+
 ## Examples
 
 ### Example 1: Get the memberships of a contact
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id | 
+Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Id                                   displayName   @odata.type            securityEnabled
+--                                   -----------   -----------            ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa All Employees #microsoft.graph.group           False
 ```
 
 This command gets all the memberships for specified contact.
@@ -63,16 +70,15 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId -All
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id -All | 
+Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Id                                   displayName   @odata.type            securityEnabled
+--                                   -----------   -----------            ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa All Employees #microsoft.graph.group           False
 ```
 
 This command gets all the memberships for specified contact.
@@ -81,15 +87,15 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $Contact.ObjectId -Top 2
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Get-EntraContactMembership -OrgContactId $contact.Id -Top 2 | 
+Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+Id                                   displayName   @odata.type            securityEnabled
+--                                   -----------   -----------            ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa All Employees #microsoft.graph.group           False
 ```
 
 This command gets top two memberships for specified contact.

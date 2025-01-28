@@ -36,7 +36,9 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 The `Add-EntraCustomSecurityAttributeDefinitionAllowedValue` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can be used:
+
+- Attribute Definition Administrator
 
 ## Examples
 
@@ -44,13 +46,8 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId = (Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>').Id
-$params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
-    Id = 'Alpine'
-    IsActive = $true
-}
-Add-EntraCustomSecurityAttributeDefinitionAllowedValue @params
+$attributeDefinition = Get-EntraCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine' -IsActive $true
 ```
 
 ```Output

@@ -40,8 +40,8 @@ The `Remove-EntraContact` removes a contact from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
-Remove-EntraContact -OrgContactId $Contact.ObjectId
+$contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
+Remove-EntraContact -OrgContactId $contact.Id
 ```
 
 The example shows how to remove a contact.
