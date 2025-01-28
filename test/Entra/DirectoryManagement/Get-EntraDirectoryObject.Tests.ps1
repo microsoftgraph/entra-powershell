@@ -42,7 +42,7 @@ Describe "Get-EntraDirectoryObject" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when -DirectoryObjectId is empty" {
             { Get-EntraDirectoryObject -DirectoryObjectId } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
         }
         It "Should fail when ObjectId is invalid" {
@@ -55,8 +55,8 @@ Describe "Get-EntraDirectoryObject" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
-        It "Should fail when DirectoryObjectId is empty" {
-            { Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ObjectType } | Should -Throw "Missing an argument for parameter 'Types'*"
+        It "Should fail when ObjectType is empty" {
+            { Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ObjectType "" } | Should -Throw "Missing an argument for parameter 'ObjectType'*"
         }
         It "Should contain Ids in parameters when passed Id to it" {              
             $result = Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"

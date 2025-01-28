@@ -43,7 +43,8 @@ The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a li
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId  -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraObjectByObjectId -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc' | 
+Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
@@ -61,7 +62,8 @@ This example demonstrates how to retrieve objects for a specified object Ids.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ObjectType User
+Get-EntraDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType User | 
+Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
