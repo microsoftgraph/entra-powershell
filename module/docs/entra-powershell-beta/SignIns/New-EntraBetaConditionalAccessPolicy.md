@@ -44,12 +44,17 @@ This cmdlet allows an admin to create new conditional access policy in Microsoft
 
 Conditional access policies are custom rules that define an access scenario.
 
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The least privileged roles for this operation are:
+
+- Security Administrator  
+- Conditional Access Administrator
+
 ## Examples
 
 ### Example 1: Creates a new conditional access policy in Microsoft Entra ID that require MFA to access Exchange Online
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
 $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
 $conditions.Applications.IncludeApplications = '00000002-0000-0ff1-ce00-000000000000'
@@ -58,14 +63,7 @@ $conditions.Users.IncludeUsers = 'all'
 $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 $controls._Operator = 'OR'
 $controls.BuiltInControls = 'mfa'
-$params = @{
-     DisplayName = 'MFA policy'
-     State = 'Enabled'
-     Conditions = $conditions
-     GrantControls = $controls
- }
-
-New-EntraBetaConditionalAccessPolicy @params
+New-EntraBetaConditionalAccessPolicy -DisplayName 'MFA policy' -State 'Enabled' -Conditions $conditions -GrantControls  $controls
 ```
 
 ```Output
@@ -85,7 +83,7 @@ This command creates a new conditional access policy in Microsoft Entra ID that 
 ### Example 2: Creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
 $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
 $conditions.Applications.IncludeApplications = '00000002-0000-0ff1-ce00-000000000000'
@@ -97,14 +95,7 @@ $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessG
 $controls._Operator = 'OR'
 $controls.BuiltInControls = 'block'
 
-$params = @{
-    DisplayName = 'MFA policy'
-    State = 'Enabled'
-    Conditions = $conditions
-    GrantControls = $controls
-}
-
-New-EntraBetaConditionalAccessPolicy @params
+New-EntraBetaConditionalAccessPolicy -DisplayName 'MFA policy' -State 'Enabled' -Conditions $conditions -GrantControls  $controls
 ```
 
 ```Output
@@ -123,7 +114,7 @@ This command creates a new conditional access policy in Microsoft Entra ID that 
 ### Example 3: Use all conditions and controls
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess','Policy.Read.All'
 
 $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
@@ -140,13 +131,7 @@ $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.Conditional
 $ApplicationEnforcedRestrictions = New-Object Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationEnforcedRestrictions
 $ApplicationEnforcedRestrictions.IsEnabled = $true
 $SessionControls.applicationEnforcedRestrictions = $ApplicationEnforcedRestrictions
-$params = @{
-     DisplayName = "ConditionalAccessPolicy"
-     Conditions = $conditions
-     GrantControls = $controls
-     SessionControls = $SessionControls
- }
-New-EntraBetaConditionalAccessPolicy @params
+New-EntraBetaConditionalAccessPolicy -DisplayName 'MFA policy' -SessionControls $SessionControls -Conditions $conditions -GrantControls  $controls
 ```
 
 ```Output
@@ -301,6 +286,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+
+[Condition access policy](https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy)
+[Built controls](https://learn.microsoft.com/graph/api/resources/conditionalaccessgrantcontrols)
+[Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
+[Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
 ## Related Links
 

@@ -83,7 +83,8 @@ This example shows how to get a specific policy using Display Name.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$policy = Get-EntraPolicy | Where-Object { $_.DisplayName -eq 'Microsoft User Default Recommended Policy' }
+Get-EntraPolicy -Id $policy.Id
 ```
 
 ```Output

@@ -52,7 +52,7 @@ The `New-EntraOauth2PermissionGrant` cmdlet creates a delegated permission grant
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
 $graphApp = Get-EntraServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $params = @{
     ClientId = $servicePrincipal.Id
@@ -78,17 +78,17 @@ This command Grant authorization to impersonate all users.
 
 ```powershell
 Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Hakeem Helpdesk'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
 $graphApp = Get-EntraServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-000000000000'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    ClientId = $servicePrincipal.Id
+    ClientId    = $servicePrincipal.Id
     ConsentType = 'Principal'
     PrincipalId = $user.Id
-    ResourceId = $graphApp.Id
-    Scope = 'Directory.Read.All'
-    StartTime = Get-Date
-    ExpiryTime = (Get-Date).AddYears(1)
+    ResourceId  = $graphApp.Id
+    Scope       = 'Directory.Read.All'
+    StartTime   = Get-Date
+    ExpiryTime  = (Get-Date).AddYears(1)
 }
 New-EntraOauth2PermissionGrant @params
 ```
