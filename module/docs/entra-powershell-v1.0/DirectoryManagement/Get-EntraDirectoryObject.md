@@ -48,10 +48,10 @@ Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
+id                                   displayName    @odata.type            
+--                                   -----------    -----------            
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance    #microsoft.graph.user  
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso User   #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve objects for a specified object Ids.
@@ -62,14 +62,15 @@ This example demonstrates how to retrieve objects for a specified object Ids.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType User | 
+Get-EntraDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType 'User' | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+id                                   displayName    @odata.type            
+--                                   -----------    -----------            
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance    #microsoft.graph.user  
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso User   #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve objects for a specified object type.
