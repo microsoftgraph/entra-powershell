@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 function Connect-Entra {
-    [CmdletBinding(DefaultParameterSetName = 'UserParameterSet', HelpUri = 'https://learn.microsoft.com/powershell/module/microsoft.graph.entra/connect-entra')]
+    [CmdletBinding(DefaultParameterSetName = 'UserParameterSet', HelpUri = 'https://learn.microsoft.com/powershell/module/microsoft.entra/connect-entra')]
     param (
         [Parameter(ParameterSetName = 'UserParameterSet', Position = 1, HelpMessage = 'An array of delegated permissions to consent to.')]
         [string[]] $Scopes,
@@ -115,9 +115,10 @@ function Connect-Entra {
         }
     }
 
-    clean {
-        if ($null -ne $steppablePipeline) {
-            $steppablePipeline.Clean()
-        }
-    }
+    # clean block only supported in PowerShell v7.3+
+    # clean {
+    #     if ($null -ne $steppablePipeline) {
+    #         $steppablePipeline.Clean()
+    #     }
+    # }
 }
