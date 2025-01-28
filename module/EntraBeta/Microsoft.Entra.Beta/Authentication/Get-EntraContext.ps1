@@ -54,7 +54,7 @@ function Get-EntraContext {
 
         $response = Get-MgContext @params
 
-        $module = Get-Module -Name Microsoft.Entra.Beta.Authentication -ErrorAction SilentlyContinue
+        $module = $ExecutionContext.SessionState.Module
         $entraPSModuleName = "Microsoft.Entra.Beta"
         $response | Add-Member -MemberType NoteProperty -Name "EntraPSModuleName" -Value $entraPSModuleName -Force
 

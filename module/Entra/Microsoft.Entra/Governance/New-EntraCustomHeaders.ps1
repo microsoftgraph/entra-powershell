@@ -21,7 +21,7 @@ function New-EntraCustomHeaders {
     )
     
     $psVersion = $global:PSVersionTable.PSVersion
-    $entraVersion = (Get-Module Microsoft.Entra.Governance | Select-Object version).Version.ToString()
+    $entraVersion = $ExecutionContext.SessionState.Module.Version.ToString()
     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
     $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
     $customHeaders["User-Agent"] = $userAgentHeaderValue
