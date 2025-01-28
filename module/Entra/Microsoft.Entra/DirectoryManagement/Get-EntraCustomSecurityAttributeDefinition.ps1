@@ -44,5 +44,3 @@ function Get-EntraCustomSecurityAttributeDefinition {
     }
 }
 
-
-
