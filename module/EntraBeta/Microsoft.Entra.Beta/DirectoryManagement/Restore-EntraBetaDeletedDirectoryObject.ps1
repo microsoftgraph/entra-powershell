@@ -48,3 +48,4 @@ function Restore-EntraBetaDeletedDirectoryObject {
         }
     }
 }
+
