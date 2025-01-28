@@ -46,11 +46,11 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraBetaDomainNameReference -Name contoso.com | Select Id, DisplayName, '@odata.type'
+Get-EntraBetaDomainNameReference -Name contoso.com | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-ID                                   Display Name              @odata.type               
+Id                                   displayName              @odata.type               
 --                                   -------------             ------------------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Sawyer MIller            #microsoft.graph.user     
 bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance              #microsoft.graph.user     
