@@ -15,11 +15,11 @@ function New-EntraBetaCustomHeaders {
     param (
         [Parameter(Mandatory = $true)]
         [string]
-		$Command
+        $Command
     )
     
     $psVersion = $global:PSVersionTable.PSVersion
-    $entraVersion = (Get-module Microsoft.Entra.Beta.Authentication | select version).Version.ToString()
+    $entraVersion = $ExecutionContext.SessionState.Module.Version.ToString()
     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
     $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
     $customHeaders["User-Agent"] = $userAgentHeaderValue
