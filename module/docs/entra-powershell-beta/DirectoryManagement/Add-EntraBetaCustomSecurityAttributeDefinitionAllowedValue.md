@@ -46,7 +46,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object { $_.Name -eq 'Engineering' }
 Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $attributeDefinition.Id -Id 'Alpine' -IsActive $true
 ```
 

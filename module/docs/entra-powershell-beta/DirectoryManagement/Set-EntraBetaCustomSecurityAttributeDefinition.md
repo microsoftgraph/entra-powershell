@@ -47,7 +47,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
-$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object {$_.Name -eq 'Engineering'}
+$attributeDefinition = Get-EntraBetaCustomSecurityAttributeDefinition | Where-Object { $_.Name -eq 'Engineering' }
 Set-EntraBetaCustomSecurityAttributeDefinition -Id $attributeDefinition.Id -Description 'Engineering Description' -Status 'Available' -UsePreDefinedValuesOnly $false
 ```
 

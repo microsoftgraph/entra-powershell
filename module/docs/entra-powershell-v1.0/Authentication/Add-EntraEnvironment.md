@@ -28,13 +28,13 @@ Adds Microsoft Entra environment to the settings file.
 
 ```powershell
 Add-EntraEnvironment
-   [-Name] <String>
-   [-AzureADEndpoint] <String>
-   [-GraphEndpoint] <String>
-   [-ProgressAction <ActionPreference>]
-   [-WhatIf]
-   [-Confirm]
-   [<CommonParameters>]
+ [-Name] <String>
+ [-AzureADEndpoint] <String>
+ [-GraphEndpoint] <String>
+ [-ProgressAction <ActionPreference>]
+ [-WhatIf]
+ [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -53,9 +53,9 @@ Add-EntraEnvironment -Name $name -GraphEndpoint $graphEndpoint -AzureADEndpoint 
 ```
 
 ```Output
-Name     AzureADEndpoint                      GraphEndpoint                 Type
-----     ---------------                      -------------                 ----
-Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
+Name       AzureADEndpoint                      GraphEndpoint                 Type          
+----       ---------------                      -------------                 ----          
+Canary     https://login.microsoftonline.com    https://microsoftgraph.com    User-defined  
 ```
 
 Adds a user-defined Entra environment to the settings file.

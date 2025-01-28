@@ -53,16 +53,16 @@ The signed-in user must be assigned one of the following directory roles:
 ### Example 1: Add a custom security attribute
 
 ```powershell
-Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
-$attributeSet  = Get-EntraAttributeSet -Id 'ContosoSet'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
+$attributeSet = Get-EntraAttributeSet -Id 'ContosoSet'
 $params = @{
-    Name = 'ProjectTest' 
-    Description = 'Target completion'
-    Type = 'String'
-    Status = 'Available'
-    AttributeSet = $attributeSet.Id 
-    IsCollection = $False
-    IsSearchable = $True 
+    Name                    = 'ProjectTest' 
+    Description             = 'Target completion'
+    Type                    = 'String'
+    Status                  = 'Available'
+    AttributeSet            = $attributeSet.Id 
+    IsCollection            = $False
+    IsSearchable            = $True 
     UsePreDefinedValuesOnly = $True
 }
 New-EntraCustomSecurityAttributeDefinition @params

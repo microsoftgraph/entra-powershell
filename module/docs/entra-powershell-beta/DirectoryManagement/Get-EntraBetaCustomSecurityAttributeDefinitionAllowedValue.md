@@ -64,9 +64,9 @@ Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttrib
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves an all predefined values.
@@ -82,9 +82,9 @@ Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttrib
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves a specific predefined value.
@@ -101,9 +101,9 @@ Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttrib
 ```
 
 ```Output
-Id      IsActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves a predefined value containing Id with the specified value.

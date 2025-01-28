@@ -62,9 +62,9 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeD
 ```
 
 ```Output
-Id    IsActive
---    --------
-Apline True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves an all predefined values.
@@ -80,9 +80,9 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeD
 ```
 
 ```Output
-id      isActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example retrieves a specific predefined value.
@@ -99,9 +99,9 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeD
 ```
 
 ```Output
-id      isActive
---      --------
-Apline      True
+Id        IsActive
+--        --------
+Apline    True
 ```
 
 This example Get a predefined value with Filter.
