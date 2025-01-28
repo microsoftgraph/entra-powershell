@@ -55,7 +55,6 @@ Add-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -RefObjectId $user.Id
 This example shows how to add a registered user to a device.
 
 - `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraDevice` to get device Id.
-
 - `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraUser` to get user Id.
 
 ## Parameters

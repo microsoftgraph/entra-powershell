@@ -59,19 +59,18 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 ### Example 1: Create a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-$newId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
-$newId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$newId = New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$newId.Key = [System.Text.Encoding]::UTF8.GetBytes('test')
 $newId.type = 2
 $params = @{
-    AccountEnabled = $true
-    DisplayName = 'My new device'
+    AccountEnabled         = $true
+    DisplayName            = 'My new device'
     AlternativeSecurityIds = $newId
-    DeviceId = $guid
-    DeviceOSType = 'OS/2'
-    DeviceOSVersion = '9.3'
+    DeviceId               = $guid
+    DeviceOSType           = 'OS/2'
+    DeviceOSVersion        = '9.3'
 }
-
 New-EntraBetaDevice @params
 ```
 

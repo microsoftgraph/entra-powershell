@@ -60,7 +60,7 @@ The calling user must have at least:
 ### Example 1: Update a device display name
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
 $device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DisplayName 'My OS/2 computer'
 ```
@@ -70,9 +70,9 @@ This example shows how to update a display name of a specified.
 ### Example 2: Update a device alternative security ID
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-$NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
-$NewId.Key =[System.Text.Encoding]::UTF8.GetBytes('test')
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$NewId = New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$NewId.Key = [System.Text.Encoding]::UTF8.GetBytes('test')
 $NewId.type = 2
 $device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AlternativeSecurityIds $NewId
@@ -83,7 +83,7 @@ This example shows how to update an alternative security ID of a specified devic
 ### Example 3: Update a device account enabled
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
 $device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -AccountEnabled $true
 ```
@@ -93,7 +93,7 @@ This example shows how to update an account enabled of a specified device.
 ### Example 4: Update a device OS type
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
 $device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 Set-EntraBetaDevice -DeviceObjectId $device.ObjectId -DeviceOSType Windows
 ```
@@ -103,16 +103,15 @@ This example shows how to update an OS type of a specified device.
 ### Example 5: Update a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
 $device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 $params = @{
-    DeviceObjectId = $device.ObjectId
-    DeviceMetadata = 'Testdevice'
+    DeviceObjectId      = $device.ObjectId
+    DeviceMetadata      = 'Testdevice'
     DeviceObjectVersion = 4
-    DevicePhysicalIds = '[GID]:g:1234567890123456'
-    IsCompliant = $false
+    DevicePhysicalIds   = '[GID]:g:1234567890123456'
+    IsCompliant         = $false
 }
-
 Set-EntraBetaDevice @params
 ```
 

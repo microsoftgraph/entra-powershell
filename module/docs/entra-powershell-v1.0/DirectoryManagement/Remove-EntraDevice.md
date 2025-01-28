@@ -45,7 +45,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ### Example 1: Remove a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
 $device = Get-EntraDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 Remove-EntraDevice -DeviceId $device.ObjectId
 ```
