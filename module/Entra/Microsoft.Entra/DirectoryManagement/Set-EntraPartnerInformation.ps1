@@ -5,8 +5,6 @@
 function Set-EntraPartnerInformation {    
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter( ValueFromPipelineByPropertyName = $true)]
-        [System.Guid] $ObjectId,
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $CompanyType,
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
@@ -59,9 +57,9 @@ function Set-EntraPartnerInformation {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $TenantID = ((Invoke-MgGraphRequest  -Method GET -Uri "https://graph.microsoft.com/v1.0/organization").value).id
+            $TenantID = ((Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/organization").value).Id
         }
         Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "https://graph.microsoft.com/v1.0/organization/$TenantID/partnerInformation" -Body $body
     }
-}# ------------------------------------------------------------------------------
+}
 

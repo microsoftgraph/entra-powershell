@@ -14,7 +14,9 @@ function Get-EntraUserAppRoleAssignment {
         [switch] $All,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $ObjectId,
+        [Alias("ObjectId")]
+        [System.String] $UserId,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property
@@ -59,8 +61,8 @@ function Get-EntraUserAppRoleAssignment {
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
         }
-        if ($null -ne $PSBoundParameters["ObjectId"]) {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["UserId"]) {
+            $params["UserId"] = $PSBoundParameters["UserId"]
         }
         if ($null -ne $PSBoundParameters["InformationAction"]) {
             $params["InformationAction"] = $PSBoundParameters["InformationAction"]
