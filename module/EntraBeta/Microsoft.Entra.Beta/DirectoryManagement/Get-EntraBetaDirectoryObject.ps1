@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Get-EntraDirectoryObject {
+function Get-EntraBetaDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
@@ -21,14 +21,14 @@ function Get-EntraDirectoryObject {
 
     PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}        
-        $URI = 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
+        $URI = 'https://graph.microsoft.com/beta/directoryObjects/microsoft.graph.getByIds?$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
+            $URI = "https://graph.microsoft.com/beta/directoryObjects/microsoft.graph.getByIds?$properties"
         }
         if ($null -ne $PSBoundParameters["ObjectType"]) {
             $body["Types"] = $PSBoundParameters["ObjectType"]
@@ -47,7 +47,7 @@ function Get-EntraDirectoryObject {
         if ($response) {
             $userList = @()
             foreach ($data in $response) {
-                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $userType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphDirectoryObject
                 $data.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name
                     $propertyValue = $_.Value
@@ -59,5 +59,5 @@ function Get-EntraDirectoryObject {
         }
     }    
 }
-Set-Alias -Name Get-EntraObjectByObjectId -Value Get-EntraDirectoryObject -Scope Global -Force
+Set-Alias -Name Get-EntraBetaObjectByObjectId -Value Get-EntraBetaDirectoryObject -Scope Global -Force
 

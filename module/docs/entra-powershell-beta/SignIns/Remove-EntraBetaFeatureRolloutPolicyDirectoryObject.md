@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraBetaFeatureRollout
 
 
 ms.topic: reference
-ms.date: 07/04/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -22,14 +22,13 @@ schema: 2.0.0
 ## Synopsis
 
 Allows an admin to remove a group from the cloud authentication rollout policy in Microsoft Entra ID.
-Users in this group revert back to the authenticating using the global policy (in most cases this will be federation).
 
 ## Syntax
 
 ```powershell
 Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
- -ObjectId <String>
- -Id <String>
+ -DirectoryObjectId <String>
+ -FeatureRolloutPolicyId <String>
  [<CommonParameters>]
 ```
 
@@ -38,7 +37,7 @@ Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
 An admin uses the `Remove-EntraBetaFeatureRolloutPolicyDirectoryObject` cmdlet to remove groups from the cloud authentication roll-out policy.
 
 Users in these groups start authenticating against the global authentication policy (for example,
-federation). Specify `ObjectId` and `Id` parameter to remove groups from the cloud authentication roll-out policy.
+federation). Specify `DirectoryObjectId` and `FeatureRolloutPolicyId` parameter to remove groups from the cloud authentication roll-out policy.
 
 ## Examples
 
@@ -46,28 +45,26 @@ federation). Specify `ObjectId` and `Id` parameter to remove groups from the clo
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$params = @{
-    Id = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-}
-Remove-EntraBetaFeatureRolloutPolicyDirectoryObject @params
+$policy = Get-EntraFeatureRolloutPolicy -Filter "displayName eq 'MFA Rollout Policy'"
+$group = Get-EntraGroup -Filter "displayName eq 'Sales and Marketing'"
+Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId $policy.Id  -DirectoryObjectId $group.Id
 ```
 
 This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
 
-- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
-- `-ObjectId` parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy.
+- `-FeatureRolloutPolicyId` Parameter specifies the ID of the cloud authentication roll-out policy.
+- `-DirectoryObjectId` parameter specifies the ID of the specific Microsoft Entra ID directory object that assigned to the cloud authentication roll-out policy.
 
 ## Parameters
 
-### -ID
+### -FeatureRolloutPolicyId
 
 The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -76,14 +73,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -DirectoryObjectId
 
 The unique identifier of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -104,4 +101,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraBetaFeatureRolloutPolicyDirectoryObject](Add-EntraBetaFeatureRolloutPolicyDirectoryObject.md)
+[New-EntraBetaFeatureRolloutPolicy](New-EntraBetaFeatureRolloutPolicy.md)
+
+[Get-EntraBetaFeatureRolloutPolicy](Get-EntraBetaFeatureRolloutPolicy.md)
