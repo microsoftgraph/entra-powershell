@@ -25,13 +25,13 @@ Gets the key credentials for an application.
 
 ```powershell
 Get-EntraBetaApplicationKeyCredential
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials for an application. Specify `ObjectId` parameter to retrieve the key credentials for an application.
+The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials for an application. Specify `ApplicationId` parameter to retrieve the key credentials for an application.
 
 ## Examples
 
@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Get-EntraBetaApplicationKeyCredential -ObjectId $application.Id
+Get-EntraBetaApplicationKeyCredential -ApplicationId $application.Id
 ```
 
 ```Output
@@ -50,18 +50,18 @@ CustomKeyIdentifier DisplayName     EndDateTime           Key KeyId             
 ```
 
 This command gets the key credentials for the specified application.
-`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+`-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies a unique ID of an application in Microsoft Entra ID to retrieve key credentials. Use `Get-EntraBetaApplication` for more details.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

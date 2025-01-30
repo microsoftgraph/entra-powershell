@@ -26,14 +26,14 @@ Removes the password Single-Sign-On (SSO) credentials.
 
 ```powershell
 Remove-EntraBetaPasswordSingleSignOnCredential
- -ObjectId <String>
+ -ServicePrincipalId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet enables users to remove their Password Single-Sign-On credentials for an application that they're part of. Specify `ObjectId` and `PasswordSSOCredential` parameters to remove specific SSO credentials.
+This cmdlet enables users to remove their Password Single-Sign-On credentials for an application that they're part of. Specify `ServicePrincipalId` and `PasswordSSOCredential` parameters to remove specific SSO credentials.
 Admin could remove the group credentials as well.
 
 ## Examples
@@ -43,28 +43,24 @@ Admin could remove the group credentials as well.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.ReadWrite.All'
 $servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
-$params = @{
-    ObjectId = $servicePrincipal.Id 
-    PasswordSSOCredential = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-Remove-EntraBetaPasswordSingleSignOnCredential @params
+Remove-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId $servicePrincipal.Id -PasswordSSOCredential 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This example removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+This example removes the password SSO credentials for the given ServicePrincipalId and PasswordSSOObjectId.
 
 - `-PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `-ObjectId` parameter specifies the object ID of a service principal.
+- `-ServicePrincipalId` parameter specifies the object ID of a service principal.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

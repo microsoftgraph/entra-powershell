@@ -26,14 +26,14 @@ Gets the password Single-Sign-On (SSO) credentials.
 
 ```powershell
 Get-EntraBetaPasswordSingleSignOnCredential
- -ObjectId <String>
+ -ServicePrincipalId <String>
  -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
 ## Description
 
-This cmdlet enables users to read their Password Single-Sign-On credentials for an application that they're part of. Specify `ObjectId` and `PasswordSSOCredential` parameters for retrieve SSO credentials.
+This cmdlet enables users to read their Password Single-Sign-On credentials for an application that they're part of. Specify `ServicePrincipalId` and `PasswordSSOCredential` parameters for retrieve SSO credentials.
 Admin could read the group credentials as well.
 Note that the password field is hidden for security purpose.
 
@@ -42,13 +42,9 @@ Note that the password field is hidden for security purpose.
 ### Example 1: Get password single-sign-on credentials
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.ReadWrite.All'
 $servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
-$params = @{
-    ObjectId = $servicePrincipal.Id
-    PasswordSSOObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-Get-EntraBetaPasswordSingleSignOnCredential @params
+Get-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId $servicePrincipal.Id -PasswordSSOObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -57,21 +53,21 @@ Id
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example returns a password SSO credential for the given ObjectId and PasswordSSOObjectId.
+This example returns a password SSO credential for the given ServicePrincipalId and PasswordSSOObjectId.
 
 - `PasswordSSOObjectId` parameter specifies the ID of the user or group this credential set belongs to.
-- `ObjectId` parameter specifies the ID of a service principal. You can use `Get-EntraBetaservicePrincipal` cmdlet to get service principal object ID.
+- `ServicePrincipalId` parameter specifies the ID of a service principal. You can use `Get-EntraBetaservicePrincipal` cmdlet to get service principal object ID.
 
 ## Parameters
 
-### -ObjectId
+### -ServicePrincipalId
 
 The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
