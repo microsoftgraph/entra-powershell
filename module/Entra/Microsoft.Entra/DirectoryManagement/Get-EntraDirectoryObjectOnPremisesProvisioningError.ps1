@@ -56,7 +56,7 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
             $Results = New-Object -TypeName System.Collections.Generic.List[PSObject]
             foreach ($item in $data) {
                 $upn = ""
-                if ($item | Get-Member userPrincipalName) {
+                if ($item.ContainsKey('userPrincipalName')) {
                     $upn = $item.userPrincipalName
                 }
                 $Results.Add(
