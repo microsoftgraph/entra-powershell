@@ -1,6 +1,6 @@
 {
     "sourceModule" : "AzureAD",
-    "moduleName" : "Microsoft.Graph.Entra",
+    "moduleName" : "Microsoft.Entra",
     "newPrefix" : "Entra",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
@@ -15,7 +15,7 @@
       "Microsoft.Graph.Applications",
       "Microsoft.Graph.Reports"
     ],
-    "destinationModuleVersion": "2.15.0",
+    "destinationModuleVersion": "2.25.0",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["Mg"],
     "loadMessage": ""

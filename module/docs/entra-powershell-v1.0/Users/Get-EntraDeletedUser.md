@@ -1,0 +1,288 @@
+---
+title: Get-EntraDeletedUser
+description: This article provides details on the Get-EntraDeletedUser command.
+
+
+ms.topic: reference
+ms.date: 11/11/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
+external help file: Microsoft.Entra.Users-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDeletedUser
+
+schema: 2.0.0
+---
+
+# Get-EntraDeletedUser
+
+## Synopsis
+
+Retrieves soft-deleted (recently deleted) users in Microsoft Entra ID.
+
+## Syntax
+
+### GetQuery (Default)
+
+```powershell
+Get-EntraDeletedUser
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetVague
+
+```powershell
+Get-EntraDeletedUser
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetById
+
+```powershell
+Get-EntraDeletedUser
+ -UserId <String>
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetVague
+
+```powershell
+Get-EntraDeletedUser
+ [-All]
+ [-SearchString <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+## Description
+
+The `Get-EntraDeletedUser` cmdlet retrieves soft-deleted (recently deleted) users from the directory. Deleted users can be recovered within 30 days, after which they're permanently deleted.
+
+## Examples
+
+### Example 1: Get deleted users in the directory
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com                
+eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller  eeeeeeee444455556666ffffffffffffSawyerM@contoso.com                
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Alain Davignon aaaaaaaa000011112222bbbbbbbbbbbbAlainD@contoso.com                
+```
+
+This example shows how to retrieve all recoverable deleted users in the Microsoft Entra ID.  
+
+### Example 2: Get deleted users in the directory using All parameter
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser -All 
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com                
+eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller  eeeeeeee444455556666ffffffffffffSawyerM@contoso.com                
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Alain Davignon aaaaaaaa000011112222bbbbbbbbbbbbAlainD@contoso.com
+```
+
+This example shows how to retrieve all recoverable deleted users, using All parameter.  
+
+### Example 3: Get top two deleted users
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser -Top 2 #alias: Limit e.g. -Limit 2
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown    cccccccc222233334444ddddddddddddAngelB@contoso.com                
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+```
+
+This example shows how to retrieve the top two recoverable deleted users in the directory. You can also use the alias `Limit`.
+
+### Example 4: Get deleted users containing string 'Avery Smith'
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser -SearchString 'Avery Smith'
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+```
+
+This example shows how to retrieve deleted users in the directory, containing the specified string.  
+
+### Example 5: Get deleted users filter by display name
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser -Filter "displayName eq 'Avery Smith'"
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+```
+
+This example shows how to retrieve deleted users in the directory, having the specified display name.  
+
+### Example 6: Get deleted user by UserId
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraDeletedUser -UserId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+```
+
+```Output
+Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com
+```
+
+This example shows how to retrieve the deleted user specified by UserId.
+
+- `-UserId` parameter specifies the deleted user UserId.
+
+## Parameters
+
+### -All
+
+List all pages.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -UserId
+
+The ObjectId or User Principal Name of the deleted user to be retrieved.
+
+```yaml
+Type: System.String
+Parameter Sets: GetById
+Aliases: Id
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -SearchString
+
+Specifies a search string.
+
+```yaml
+Type: System.String
+Parameter Sets: GetVague
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Top
+
+Specifies the maximum number of records to return.
+
+```yaml
+Type: System.Int32
+Parameter Sets: GetQuery
+Aliases: Limit
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases: Select
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+### System.String
+
+System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
+
+## Outputs
+
+### System.Object
+
+## Notes
+
+## Related Links

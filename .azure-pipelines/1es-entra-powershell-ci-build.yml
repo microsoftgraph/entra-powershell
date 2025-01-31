@@ -32,6 +32,14 @@ extends:
         name: MSSecurity-1ES-Build-Agents-Pool
         image: MSSecurity-1ES-Windows-2022
         os: windows
+      credscan:
+        suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+        outputFormat: pre
+        debugMode: false
+        batchSize: 16
+      psscriptanalyzer:
+        break: false
+        enabled: true
     stages:
     - stage: build
       jobs:
@@ -42,7 +50,7 @@ extends:
           - template: .azure-pipelines/common-templates/install-tools.yml@self
           - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
 
-          - template: .azure-pipelines/generation-templates/generate_adapter-migrate-1es.yml@self
+          - template: .azure-pipelines/generation-templates/generate_adapter-1es.yml@self
             parameters:
               Sign: ${{ parameters.Sign }}
 
@@ -50,7 +58,7 @@ extends:
               - template: .azure-pipelines/common-templates/esrp/codesign-nuget-migrate.yml@self
                 parameters:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
-                  Pattern: "Microsoft.Graph.Entra.*.nupkg"
+                  Pattern: "Microsoft.Entra.*.nupkg"
               - task: 1ES.PublishBuildArtifacts@1
                 displayName: Publish Module Artifacts
                 inputs:
@@ -60,7 +68,7 @@ extends:
                 displayName: Publish NuGet to preview feed
                 inputs:
                   useDotNetTask: false
-                  packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+                  packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Entra.*.nupkg
                   packageParentPath: '$(Build.ArtifactStagingDirectory)'
                   publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
                   nuGetFeedType: internal
