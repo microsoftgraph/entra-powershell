@@ -2,15 +2,18 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Get-EntraObjectByObjectId {
+function Get-EntraDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-        [System.Collections.Generic.List`1[System.String]] $Types,
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Resource types that specifies the set of resource collections, for example: user, group, and device objects. Default is directoryObject.")]
+        [Alias("Types")]
+        [System.Collections.Generic.List`1[System.String]] $ObjectTypes,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-        [System.Collections.Generic.List`1[System.String]] $ObjectIds,
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.")]
+        [Alias("ObjectIds")]
+        [System.Collections.Generic.List`1[System.String]] $DirectoryObjectIds,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property
@@ -27,11 +30,11 @@ function Get-EntraObjectByObjectId {
             $properties = "`$select=$($selectProperties)"
             $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
         }
-        if ($null -ne $PSBoundParameters["Types"]) {
-            $body["Types"] = $PSBoundParameters["Types"]
+        if ($null -ne $PSBoundParameters["ObjectTypes"]) {
+            $body["Types"] = $PSBoundParameters["ObjectTypes"]
         }
-        if ($null -ne $PSBoundParameters["ObjectIds"]) {
-            $body["Ids"] = $PSBoundParameters["ObjectIds"]
+        if ($null -ne $PSBoundParameters["DirectoryObjectIds"]) {
+            $body["Ids"] = $PSBoundParameters["DirectoryObjectIds"]
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
@@ -56,4 +59,5 @@ function Get-EntraObjectByObjectId {
         }
     }    
 }
+Set-Alias -Name Get-EntraObjectByObjectId -Value Get-EntraDirectoryObject -Scope Global -Force
 

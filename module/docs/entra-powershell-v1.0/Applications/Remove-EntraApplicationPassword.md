@@ -26,7 +26,7 @@ Remove a password from an application.
 
 ```powershell
 Remove-EntraApplicationPassword
- -ObjectId <String>
+ -ApplicationId <String>
  [-KeyId <String>]
  [<CommonParameters>]
 ```
@@ -43,24 +43,24 @@ Remove a password from an application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $applicationPassword = Get-EntraApplicationPasswordCredential -ApplicationId $application.Id | Where-Object {$_.DisplayName -eq 'CRM Helpdesk App'}
-Remove-EntraApplicationPassword -ObjectId $application.Id -KeyId $applicationPassword.KeyId
+Remove-EntraApplicationPassword -ApplicationId $application.Id -KeyId $applicationPassword.KeyId
 ```
 
 This example removes the specified password from the specified application.
 
-- `-ObjectId` parameter specifies the unique identifier of the application.
+- `-ApplicationId` parameter specifies the unique identifier of the application.
 - `-KeyId` parameter specifies the unique identifier of the PasswordCredential.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The unique identifier of the application.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

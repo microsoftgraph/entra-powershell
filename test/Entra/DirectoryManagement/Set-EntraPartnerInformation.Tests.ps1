@@ -12,7 +12,7 @@ BeforeAll {
         return @{
             value = @(
                 @{
-                    Id        = "fd560167-ff1f-471a-8d74-3b0070abcea1"
+                    Id         = "fd560167-ff1f-471a-8d74-3b0070abcea1"
                     Parameters = $args
                 }
             )
@@ -79,7 +79,8 @@ Describe "Set-EntraPartnerInformation" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -27,7 +27,7 @@ Selects the groups in which a service principal is a member.
 
 ```powershell
 Select-EntraGroupIdsServicePrincipalIsMemberOf
- -ObjectId <String>
+ -ServicePrincipalId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 $group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 $group.GroupIds = (Get-EntraGroup -Top 10).Id
 $servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Helpdesk Application'"
-Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $servicePrincipal.Id -GroupIdsForMembershipCheck $group
+Select-EntraGroupIdsServicePrincipalIsMemberOf -ServicePrincipalId $servicePrincipal.Id -GroupIdsForMembershipCheck $group
 ```
 
 ```Output
@@ -54,7 +54,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This command gets the group membership of a group for a specified service principal. Use the command `Get-EntraGroup` to get group Id and `Get-EntraServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the service principal Id.
+- `-ServicePrincipalId` parameter specifies the service principal Id.
 - `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.
 
 ## Parameters
@@ -75,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

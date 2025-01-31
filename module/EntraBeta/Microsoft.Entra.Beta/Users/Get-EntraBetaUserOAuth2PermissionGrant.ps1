@@ -7,7 +7,8 @@ function Get-EntraBetaUserOAuth2PermissionGrant {
     param (
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $ObjectId,
+        [Alias("ObjectId")]
+        [System.String] $UserId,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
@@ -15,6 +16,7 @@ function Get-EntraBetaUserOAuth2PermissionGrant {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property
@@ -42,8 +44,8 @@ function Get-EntraBetaUserOAuth2PermissionGrant {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["ObjectId"]) {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["UserId"]) {
+            $params["UserId"] = $PSBoundParameters["UserId"]
         }
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]

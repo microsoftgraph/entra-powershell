@@ -28,7 +28,7 @@ Restores a previously deleted application.
 ```powershell
 Restore-EntraDeletedApplication
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
@@ -51,7 +51,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $deletedApplication = Get-EntraDeletedApplication -SearchString 'My PowerShell Application'
-Restore-EntraDeletedApplication -ObjectId $deletedApplication.Id
+Restore-EntraDeletedApplication -ApplicationId $deletedApplication.Id
 ```
 
 ```Output
@@ -62,7 +62,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example shows how an application is deleted, then the deleted application is retrieved using the `Get-EntraDeletedApplication` cmdlet, and subsequently the application is restored by specifying the application's Object ID in the `Restore-EntraDeletedApplication` cmdlet.
 
-- `-ObjectId` parameter specifies the ObjectId of the deleted application that is to be restored.
+- `-ApplicationId` parameter specifies the ObjectId of the deleted application that is to be restored.
 
 ## Parameters
 
@@ -82,14 +82,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectId of the deleted application that is to be restored.
+The ApplicationId (Object Id) of the deleted application that is to be restored.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Object
 
 Required: True
 Position: Named

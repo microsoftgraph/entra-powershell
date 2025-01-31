@@ -26,7 +26,7 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ```powershell
 Set-EntraBetaUserLicense
- -ObjectId <String>
+ -UserId <String>
  -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]
 ```
@@ -179,7 +179,7 @@ $license2.SkuId = $skuId2
 $licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
 $licenses.AddLicenses = $license1, $license2
 # Assign the licenses to each user
-foreach ($user in $users$users) {
+foreach ($user in $users) {
     Set-EntraBetaUserLicense -UserId $user -AssignedLicenses $licenses
 }
 ```
@@ -202,14 +202,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

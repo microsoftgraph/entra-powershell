@@ -27,7 +27,7 @@ Restores a previously deleted application.
 
 ```powershell
 Restore-EntraBetaDeletedApplication
- -ObjectId <String>
+ -ApplicationId <String>
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
@@ -51,7 +51,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application'
-Restore-EntraBetaDeletedApplication -ObjectId $deletedApplication.Id
+Restore-EntraBetaDeletedApplication -ApplicationId $deletedApplication.Id
 ```
 
 ```Output
@@ -62,7 +62,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example shows how an application is deleted, then the deleted application is retrieved using the `Get-EntraBetaDeletedApplication` cmdlet, and subsequently the application is restored by specifying the application's Object ID in the `Restore-EntraBetaDeletedApplication` cmdlet.
 
-- `-ObjectId` parameter specifies the ObjectId of the deleted application that is to be restored.
+- `-ApplicationId` parameter specifies the ObjectId of the deleted application that is to be restored.
 
 ## Parameters
 
@@ -82,14 +82,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectId of the deleted application that is to be restored.
+The object ID of the deleted application that is to be restored.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

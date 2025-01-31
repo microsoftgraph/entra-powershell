@@ -39,7 +39,7 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name Remove-AzureADMSScopedRoleMembership -Value Remove-EntraScopedRoleMembership -Scope Global -Force
    Set-Alias -Name Get-AzureADDomainServiceConfigurationRecord -Value Get-EntraDomainServiceConfigurationRecord -Scope Global -Force
    Set-Alias -Name Get-AzureADDevice -Value Get-EntraDevice -Scope Global -Force
-   Set-Alias -Name Get-AzureADObjectByObjectId -Value Get-EntraObjectByObjectId -Scope Global -Force
+   Set-Alias -Name Get-AzureADObjectByObjectId -Value Get-EntraDirectoryObject -Scope Global -Force
    Set-Alias -Name Remove-AzureADContact -Value Remove-EntraContact -Scope Global -Force
    Set-Alias -Name New-AzureADDevice -Value New-EntraDevice -Scope Global -Force
    Set-Alias -Name Set-AzureADTenantDetail -Value Set-EntraTenantDetail -Scope Global -Force

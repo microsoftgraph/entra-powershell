@@ -5,22 +5,27 @@
 function Set-EntraBetaPartnerInformation {    
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter( ValueFromPipelineByPropertyName = $true)]
-        [System.Guid] $ObjectId,
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $CompanyType,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCommerceUrl,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCompanyName,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerHelpUrl,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportEmails,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportTelephones,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerSupportUrl,
+        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Guid] $TenantId
     )
@@ -60,9 +65,9 @@ function Set-EntraBetaPartnerInformation {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $TenantID = ((Invoke-MgGraphRequest  -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
+            $TenantID = ((Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
         }
         Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation" -Body $body
     }
-}# ------------------------------------------------------------------------------
+}
 

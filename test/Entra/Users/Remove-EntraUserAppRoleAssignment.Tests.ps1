@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -13,32 +13,32 @@ BeforeAll {
 Describe "Remove-EntraUserAppRoleAssignment" {
     Context "Test for Remove-EntraUserAppRoleAssignment" {
         It "Should return empty object" {
-            $result = Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
+            $result = Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraUserAppRoleAssignment -ObjectId ""  AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is invalid" {
+            { Remove-EntraUserAppRoleAssignment -UserId "" AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }   
 
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraUserAppRoleAssignment -ObjectId  -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"} | Should -Throw "Missing an argument for parameter*"
+        It "Should fail when UserId is empty" {
+            { Remove-EntraUserAppRoleAssignment -UserId -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should fail when AppRoleAssignmentId is invalid" {
-            { Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  AppRoleAssignmentId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" AppRoleAssignmentId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }   
 
         It "Should fail when AppRoleAssignmentId is empty" {
-            { Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId } | Should -Throw "Missing an argument for parameter*"
+            { Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should contain UserId in parameters" {
-            Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
-            $result = Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
+            $result = Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
             $params = Get-Parameters -data $result
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -46,7 +46,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserAppRoleAssignment"
             
             
-            Remove-EntraUserAppRoleAssignment  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
+            Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserAppRoleAssignment"
 
@@ -63,8 +63,9 @@ Describe "Remove-EntraUserAppRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

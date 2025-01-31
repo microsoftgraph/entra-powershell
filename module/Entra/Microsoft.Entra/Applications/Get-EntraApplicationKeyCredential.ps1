@@ -6,13 +6,14 @@ function Get-EntraApplicationKeyCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("ObjectId")]
+        [System.String] $ApplicationId
     )
 
-     PROCESS {
+    PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+        (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).KeyCredentials
     }    
 }
 

@@ -26,7 +26,7 @@ Get groups in which a contact is a member.
 
 ```powershell
 Select-EntraGroupIdsContactIsMemberOf
- -ObjectId <String>
+ -OrgContactId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
@@ -44,12 +44,12 @@ Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
 $group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 $group.GroupIds = (Get-EntraGroup -Filter "displayName eq 'Sales and Marketing'").Id
 $contact = Get-EntraContact -Filter "displayName eq 'Contoso Admin'"
-Select-EntraGroupIdsContactIsMemberOf -ObjectId $contact.Id -GroupIdsForMembershipCheck $group
+Select-EntraGroupIdsContactIsMemberOf -OrgContactId $contact.Id -GroupIdsForMembershipCheck $group
 ```
 
 This example demonstrates how to get groups in which a contact is a member.
 
-- `-ObjectId` parameter specifies the contact Object ID.
+- `-OrgContactId` parameter specifies the contact Object ID.
 - `-GroupIdsForMembershipCheck` parameter specifies the group Object ID.
 
 ## Parameters
@@ -70,14 +70,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -OrgContactId
 
 Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named
