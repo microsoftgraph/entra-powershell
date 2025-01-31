@@ -27,8 +27,8 @@ Retrieves directory objects based on a list of IDs.
 
 ```powershell
 Get-EntraObjectByObjectId
- -DirectoryObjectId <System.Collections.Generic.List`1[String]>
- [-ObjectType <System.Collections.Generic.List`1[String]>]
+ -DirectoryObjectIds <System.Collections.Generic.List`1[String]>
+ [-ObjectTypes <System.Collections.Generic.List`1[String]>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -44,7 +44,7 @@ The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a li
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $groups = Get-EntraGroup -Limit 4
-Get-EntraObjectByObjectId -DirectoryObjectId $groups.Id | 
+Get-EntraObjectByObjectId -DirectoryObjectIds $groups.Id | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
@@ -57,13 +57,13 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Contoso User   #microsoft.graph.user
 
 This example demonstrates how to retrieve objects for a specified object Ids.
 
-- `DirectoryObjectId` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
+- `DirectoryObjectIds` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
 
 ### Example 2: Get an object by types
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType 'User' | 
+Get-EntraDirectoryObject -DirectoryObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectTypes 'User' | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
@@ -76,12 +76,12 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Contoso User   #microsoft.graph.user
 
 This example demonstrates how to retrieve objects for a specified object type.
 
-- `-DirectoryObjectId` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
-- `-ObjectType` parameter specifies the type of object ID.
+- `-DirectoryObjectIds` parameter specifies a list of up to 1000 GUIDs (as strings) to retrieve objects for.
+- `-ObjectTypes` parameter specifies the type of object ID.
 
 ## Parameters
 
-### -DirectoryObjectId
+### -DirectoryObjectIds
 
 One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.
 
@@ -97,7 +97,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectType
+### -ObjectTypes
 
 Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as user, group, and device objects.
 

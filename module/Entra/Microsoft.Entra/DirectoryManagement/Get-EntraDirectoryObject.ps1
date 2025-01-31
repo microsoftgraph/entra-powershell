@@ -8,11 +8,11 @@ function Get-EntraDirectoryObject {
                 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Resource types that specifies the set of resource collections, for example: user, group, and device objects. Default is directoryObject.")]
         [Alias("Types")]
-        [System.Collections.Generic.List`1[System.String]] $ObjectType,
+        [System.Collections.Generic.List`1[System.String]] $ObjectTypes,
                 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
         [Alias("ObjectIds")]
-        [System.Collections.Generic.List`1[System.String]] $DirectoryObjectId,
+        [System.Collections.Generic.List`1[System.String]] $DirectoryObjectIds,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
@@ -30,11 +30,11 @@ function Get-EntraDirectoryObject {
             $properties = "`$select=$($selectProperties)"
             $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
         }
-        if ($null -ne $PSBoundParameters["ObjectType"]) {
-            $body["Types"] = $PSBoundParameters["ObjectType"]
+        if ($null -ne $PSBoundParameters["ObjectTypes"]) {
+            $body["Types"] = $PSBoundParameters["ObjectTypes"]
         }
-        if ($null -ne $PSBoundParameters["DirectoryObjectId"]) {
-            $body["Ids"] = $PSBoundParameters["DirectoryObjectId"]
+        if ($null -ne $PSBoundParameters["DirectoryObjectIds"]) {
+            $body["Ids"] = $PSBoundParameters["DirectoryObjectIds"]
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

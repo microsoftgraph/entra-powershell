@@ -12,7 +12,7 @@ function Get-EntraBetaDirectoryObject {
                 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
         [Alias("ObjectIds")]
-        [System.Collections.Generic.List`1[System.String]] $DirectoryObjectId,
+        [System.Collections.Generic.List`1[System.String]] $DirectoryObjectIds,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
@@ -30,11 +30,11 @@ function Get-EntraBetaDirectoryObject {
             $properties = "`$select=$($selectProperties)"
             $URI = "https://graph.microsoft.com/beta/directoryObjects/microsoft.graph.getByIds?$properties"
         }
-        if ($null -ne $PSBoundParameters["ObjectType"]) {
-            $body["Types"] = $PSBoundParameters["ObjectType"]
+        if ($null -ne $PSBoundParameters["ObjectTypes"]) {
+            $body["Types"] = $PSBoundParameters["ObjectTypes"]
         }
-        if ($null -ne $PSBoundParameters["DirectoryObjectId"]) {
-            $body["Ids"] = $PSBoundParameters["DirectoryObjectId"]
+        if ($null -ne $PSBoundParameters["DirectoryObjectIds"]) {
+            $body["Ids"] = $PSBoundParameters["DirectoryObjectIds"]
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
