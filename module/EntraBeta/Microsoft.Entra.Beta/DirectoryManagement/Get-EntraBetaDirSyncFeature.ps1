@@ -2,35 +2,26 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Get-EntraBetaObjectByObjectId {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+function Get-EntraBetaDirSyncFeature {
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-                
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-        [System.Collections.Generic.List`1[System.String]] $ObjectIds,
-                
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-        [System.Collections.Generic.List`1[System.String]] $Types,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-        [Alias("Select")]
-        [System.String[]] $Property
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String]$Feature
     )
-
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if ($null -ne $PSBoundParameters["Types"]) {
-            $params["Types"] = $PSBoundParameters["Types"]
-        }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["ObjectIds"]) {
-            $params["Ids"] = $PSBoundParameters["ObjectIds"]
+        if ($null -ne $PSBoundParameters["Feature"]) {
+            $Feature = $PSBoundParameters["Feature"]
+        }
+        if ($null -ne $PSBoundParameters["TenantId"]) {
+            $params["OnPremisesDirectorySynchronizationId"] = $PSBoundParameters["TenantId"]
+        }
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if ($null -ne $PSBoundParameters["WarningVariable"]) {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
@@ -59,29 +50,31 @@ function Get-EntraBetaObjectByObjectId {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
-        }
-
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-
-        $response = Get-MgBetaDirectoryObjectById @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
-                $dictionary = $_.AdditionalProperties
-
-                foreach ($key in $dictionary.Keys) {
-                    $value = ($dictionary[$key] | Convertto-json -Depth 10) | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $key -Value ($value) -Force
-                }
+        $jsonData = Get-MgBetaDirectoryOnPremiseSynchronization @params -Headers $customHeaders | ConvertTo-Json
+        $object = ConvertFrom-Json $jsonData
+        $table = @()
+        foreach ($featureName in $object.Features.PSObject.Properties.Name) {
+            $row = New-Object PSObject -Property @{
+                'DirSyncFeature' = $featureName -replace "Enabled", ""
+                'Enabled'        = $object.Features.$featureName
+            }
+            $table += $row
+        }
+        if ([string]::IsNullOrWhiteSpace($Feature)) {
+            $table | Format-Table -AutoSize
+        }
+        else {
+            $output = $table | Where-Object { $_.dirsyncFeature -eq $Feature }
+            if ($null -eq $output) {
+                Write-Error "Get-EntraBetaDirSyncFeature : Invalid value for parameter.  Parameter Name: Feature."
+            }
+            else {
+                $output
             }
         }
-
-        $response
-    }    
+    }
 }
 

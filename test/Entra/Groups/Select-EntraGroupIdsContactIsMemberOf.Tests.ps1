@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Groups
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,8 +10,8 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"               = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-              "Parameters"       = $args
+                "Id"         = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "Parameters" = $args
             }
         )
     }  
@@ -24,33 +24,33 @@ Describe "Select-EntraGroupIdsContactIsMemberOf" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $UserID = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            $result = Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+            $result = Select-EntraGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
             $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' 
             
             Should -Invoke -CommandName Get-MgContactMemberOfAsGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
-        It "Should fail when ObjectId is missing" {
+        It "Should fail when OrgContactId is missing" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            { Select-EntraGroupIdsContactIsMemberOf -ObjectId  -GroupIdsForMembershipCheck $Groups } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Select-EntraGroupIdsContactIsMemberOf -OrgContactId -GroupIdsForMembershipCheck $Groups } | Should -Throw "Missing an argument for parameter 'OrgContactId'*"
         }
 
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when OrgContactId is empty" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            { Select-EntraGroupIdsContactIsMemberOf -ObjectId "" -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Select-EntraGroupIdsContactIsMemberOf -OrgContactId "" -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'OrgContactId' because it is an empty string."
         }
 
         It "Should fail when GroupIdsForMembershipCheck is empty" {
             $UserID = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            { Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID  -GroupIdsForMembershipCheck  } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'*"
+            { Select-EntraGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'*"
         }
 
         It "Should fail when GroupIdsForMembershipCheck is invalid" {
             $UserID = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            { Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'.*"
+            { Select-EntraGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'.*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -58,7 +58,7 @@ Describe "Select-EntraGroupIdsContactIsMemberOf" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $UserID = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            $result = Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+            $result = Select-EntraGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsContactIsMemberOf"
@@ -78,8 +78,9 @@ Describe "Select-EntraGroupIdsContactIsMemberOf" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups -Debug } | Should -Not -Throw
-            } finally {
+                { Select-EntraGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck $Groups -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

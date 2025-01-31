@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -13,116 +13,116 @@ BeforeAll {
 
 Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
     Context "Test for Set-EntraBetaPasswordSingleSignOnCredential" {
-        It "Should sets the password sso credentials for the given ObjectId and PasswordSSOObjectId." {
+        It "Should sets the password sso credentials for the given ServicePrincipalId and PasswordSSOObjectId." {
             $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 credentials = @(
                     @{
                         fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
+                        type    = "text"
+                        value   = "test420"
                     }
                     @{
                         fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
+                        type    = "password"
+                        value   = "test2420"
                     }
                 )
             }
-            $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
+            $result = Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ServicePrincipalId is empty" {
             { $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-                credentials = @(
-                    @{
-                        fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
-                    }
-                    @{
-                        fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
-                    }
-                )
-            }
-            Set-EntraBetaPasswordSingleSignOnCredential -ObjectId -PasswordSSOCredential $params} | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+                    id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                    credentials = @(
+                        @{
+                            fieldId = "param_emailOrUserName"
+                            type    = "text"
+                            value   = "test420"
+                        }
+                        @{
+                            fieldId = "param_password"
+                            type    = "password"
+                            value   = "test2420"
+                        }
+                    )
+                }
+                Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId -PasswordSSOCredential $params } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
 
-        It "Should fail when ObjectId is Invalid" {
+        It "Should fail when ServicePrincipalId is Invalid" {
             { $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-                credentials = @(
-                    @{
-                        fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
-                    }
-                    @{
-                        fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
-                    }
-                )
-            }
-            Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "" -PasswordSSOCredential $params} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+                    id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                    credentials = @(
+                        @{
+                            fieldId = "param_emailOrUserName"
+                            type    = "text"
+                            value   = "test420"
+                        }
+                        @{
+                            fieldId = "param_password"
+                            type    = "password"
+                            value   = "test2420"
+                        }
+                    )
+                }
+                Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOCredential $params } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
         }
 
         It "Should fail when PasswordSSOCredential parameter are empty" {
-            { Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential  } | Should -Throw "Missing an argument for parameter 'PasswordSSOCredential'*"
+            { Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential } | Should -Throw "Missing an argument for parameter 'PasswordSSOCredential'*"
         }
 
         It "Should fail when PasswordSSOCredential parameter are Invalid" {
-            { Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential "" } | Should -Throw "Cannot process argument transformation on parameter 'PasswordSSOCredential'*"
+            { Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential "" } | Should -Throw "Cannot process argument transformation on parameter 'PasswordSSOCredential'*"
         }
 
-        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
+        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
+            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
 
             $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 credentials = @(
                     @{
                         fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
+                        type    = "text"
+                        value   = "test420"
                     }
                     @{
                         fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
+                        type    = "password"
+                        value   = "test2420"
                     }
                 )
             }
-            $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
+            $result = Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $params = Get-Parameters -data $result
             $params.ServicePrincipalId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
 
         It "Should contain BodyParameter in parameters when passed PasswordSSOCredential to it" {
-            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Applications
+            Mock -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
         
             $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 credentials = @(
                     @{
                         fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
+                        type    = "text"
+                        value   = "test420"
                     }
                     @{
                         fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
+                        type    = "password"
+                        value   = "test2420"
                     }
                 )
             }
-            $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
+            $result = Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $value = $params.credentials | ConvertTo-Json 
             $resultParams = Get-Parameters -data $result
             $expectedObject = $value | ConvertFrom-Json
@@ -141,21 +141,21 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPasswordSingleSignOnCredential"
             $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 credentials = @(
                     @{
                         fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
+                        type    = "text"
+                        value   = "test420"
                     }
                     @{
                         fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
+                        type    = "password"
+                        value   = "test2420"
                     }
                 )
             }
-            $result = Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
+            $result = Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPasswordSingleSignOnCredential"
             Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -165,17 +165,17 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
         
         It "Should execute successfully without throwing an error " {
             $params = @{
-                id = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 credentials = @(
                     @{
                         fieldId = "param_emailOrUserName"
-                        type = "text"
-                        value = "test420"
+                        type    = "text"
+                        value   = "test420"
                     }
                     @{
                         fieldId = "param_password"
-                        type = "password"
-                        value = "test2420"
+                        type    = "password"
+                        value   = "test2420"
                     }
                 )
             }
@@ -185,8 +185,9 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaPasswordSingleSignOnCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params -Debug } | Should -Not -Throw
-            } finally {
+                { Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PasswordSSOCredential $params -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

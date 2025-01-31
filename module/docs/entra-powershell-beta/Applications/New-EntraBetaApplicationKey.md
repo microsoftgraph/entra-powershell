@@ -27,7 +27,7 @@ Adds a new key to an application.
 
 ```powershell
 New-EntraBetaApplicationKey
- -ObjectId <String>
+ -ApplicationId <String>
  -KeyCredential <KeyCredential>
  -Proof <String>
  [-PasswordCredential <PasswordCredential>]
@@ -43,21 +43,20 @@ Adds a new key to an application.
 ### Example 1: Add a key credential to an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'Application.ReadWrite.OwnedBy'
 $app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = $app.Id
-    KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
+    ApplicationId      = $app.Id
+    KeyCredential      = @{ key = [System.Convert]::FromBase64String('{base64cert}') }
     PasswordCredential = @{ DisplayName = 'mypassword' }
-    Proof = '{token}'
+    Proof              = '{token}'
 }
-
 New-EntraBetaApplicationKey @params
 ```
 
 This command adds a key credential to an specified application.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 - `-KeyCredential` parameter specifies the application key credential to add.
 - `-PasswordCredential` parameter specifies the application password credential to add.
 - `-Proof` parameter specifies the signed JWT token used as a proof of possession of the existing keys.
@@ -82,14 +81,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 The unique identifier of the application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

@@ -27,7 +27,7 @@ Permanently delete a recently deleted application object from deleted items.
 
 ```powershell
 Remove-EntraBetaDeletedApplication
- [-ObjectId] <String>
+ [-ApplicationId] <String>
  [<CommonParameters>]
 ```
 
@@ -46,12 +46,12 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $deletedApplication = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
-Remove-EntraBetaDeletedApplication -ObjectId $deletedApplication.Id
+Remove-EntraBetaDeletedApplication -ApplicationId $deletedApplication.Id
 ```
 
 This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
 
-- `-ObjectId` parameter specifies the Id of a deleted application.
+- `-ApplicationId` parameter specifies the Id of a deleted application.
 
 ### Example 2: Remove deleted application using pipelining
 
@@ -64,14 +64,14 @@ This command removes recently deleted application using pipelining.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 The unique identifier of deleted application.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: 0

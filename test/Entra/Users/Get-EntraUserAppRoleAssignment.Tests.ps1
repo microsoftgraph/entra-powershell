@@ -32,7 +32,7 @@ BeforeAll {
 Describe "Get-EntraUserAppRoleAssignment" {
     Context "Test for Get-EntraUserAppRoleAssignment" {
         It "Should return specific User" {
-            $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
@@ -48,42 +48,42 @@ Describe "Get-EntraUserAppRoleAssignment" {
             Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when ObjectId is empty string value" {
-            { Get-EntraUserAppRoleAssignment -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when UserId is empty string value" {
+            { Get-EntraUserAppRoleAssignment -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraUserAppRoleAssignment -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        It "Should fail when UserId is empty" {
+            { Get-EntraUserAppRoleAssignment -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         
         It "Should return all contact" {
-            $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
         
         It "Should fail when All has an argument" {
-            { Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }
     
         It "Should return top user" {
-            $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserAppRoleAssignment  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }    
 
         It "Should fail when top is empty" {
-            { Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
-        It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        It "Should contain UserId in parameters when passed UserId to it" {
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
@@ -91,7 +91,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAppRoleAssignment"
 
-            $result = Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAppRoleAssignment"
@@ -104,7 +104,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
  
 
         It "Property parameter should work" {
-            $result =  Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property PrincipalDisplayName 
+            $result = Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property PrincipalDisplayName 
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalDisplayName | Should -Be "demo"
 
@@ -112,7 +112,7 @@ Describe "Get-EntraUserAppRoleAssignment" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should execute successfully without throwing an error" {
@@ -122,8 +122,9 @@ Describe "Get-EntraUserAppRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

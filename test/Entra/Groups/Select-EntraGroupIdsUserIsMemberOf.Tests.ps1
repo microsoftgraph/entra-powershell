@@ -10,8 +10,8 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"               = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-              "Parameters"       = $args
+                "Id"         = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "Parameters" = $args
             }
         )
     }
@@ -25,7 +25,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result = Select-entraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
+            $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty      
             $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'     
 
@@ -36,7 +36,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $UserID = ""
-            { Select-EntraGroupIdsUserIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Select-EntraGroupIdsUserIsMemberOf -UserId $UserID -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should contain 'User-Agent' header" {
@@ -45,7 +45,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result = Select-entraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
+            $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-entraGroupIdsUserIsMemberOf"
@@ -66,8 +66,9 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Select-entraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups -Debug } | Should -Not -Throw
-            } finally {
+                { Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

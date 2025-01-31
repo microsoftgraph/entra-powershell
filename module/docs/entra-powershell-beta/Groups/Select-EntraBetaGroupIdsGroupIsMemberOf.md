@@ -26,7 +26,7 @@ Gets group IDs that a group is a member of.
 
 ```powershell
 Select-EntraBetaGroupIdsGroupIsMemberOf
- -ObjectId <String>
+ -GroupId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
@@ -42,14 +42,14 @@ The `Select-EntraBetaGroupIdsGroupIsMemberOf` cmdlet gets the groups that a spec
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Select-EntraBetaGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
+$Groups.GroupIds = (Get-EntraBetaGroup -Top 1).Id
+$GroupId = (Get-EntraBetaGroup -Top 1).Id
+Select-EntraBetaGroupIdsGroupIsMemberOf -GroupId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
-This example gets the group membership of a group identified by $GroupId. Use `Get-EntraBetaGroup` cmdlet to obtain group `ObjectId` value.
+This example gets the group membership of a group identified by $GroupId. Use `Get-EntraBetaGroup` cmdlet to obtain group `GroupId` value.
 
-- `-ObjectId` parameter specifies the group ID.
+- `-GroupId` parameter specifies the group ID.
 - `-GroupIdsForMembershipCheck` Specifies an array of group object IDs.
 
 ## Parameters
@@ -70,14 +70,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

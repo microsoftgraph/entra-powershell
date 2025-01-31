@@ -6,49 +6,51 @@ function Set-EntraBetaUserLicense {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Microsoft.Open.AzureAD.Model.AssignedLicenses] $AssignedLicenses,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("ObjectId")]
+        [System.String] $UserId
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        if($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
-            $UserId = $PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["UserId"]) {
+            $params["UserId"] = $PSBoundParameters["UserId"]
+            $UserId = $PSBoundParameters["UserId"]
         }
         $jsonBody = @{
             addLicenses    = @(if ($PSBoundParameters.AssignedLicenses.AddLicenses) {
-                                $PSBoundParameters.AssignedLicenses.AddLicenses | Select-Object @{Name='skuId'; Expression={$_.'skuId' -replace 's', 's'.ToLower()}}
-                              } else {
-                                @()
-                              })
+                    $PSBoundParameters.AssignedLicenses.AddLicenses | Select-Object @{Name = 'skuId'; Expression = { $_.'skuId' -replace 's', 's'.ToLower() } }
+                }
+                else {
+                    @()
+                })
             removeLicenses = @(if ($PSBoundParameters.AssignedLicenses.RemoveLicenses) {
-                                   $PSBoundParameters.AssignedLicenses.RemoveLicenses
-                               } else {
-                                   @()
-                               })
+                    $PSBoundParameters.AssignedLicenses.RemoveLicenses
+                }
+                else {
+                    @()
+                })
         } | ConvertTo-Json
         
         $customHeaders['Content-Type'] = 'application/json'
 
         $graphApiEndpoint = "https://graph.microsoft.com/beta/users/$UserId/microsoft.graph.assignLicense"  
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $graphApiEndpoint -Method Post -Body $jsonBody
 
         $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
         $response
-        }      
+    }      
 }
 

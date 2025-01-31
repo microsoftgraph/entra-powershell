@@ -51,10 +51,10 @@ The `Set-EntraBetaApplicationProxyApplication` allows you to modify and set othe
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
-    InternalUrl = 'http://finance/'
-    ExternalAuthenticationType = 'AadPreAuthentication' 
+    ApplicationId                = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ExternalUrl                  = 'https://finance-awcycles.msappproxy.net/' 
+    InternalUrl                  = 'http://finance/'
+    ExternalAuthenticationType   = 'AadPreAuthentication' 
     IsTranslateHostHeaderEnabled = $false
 }
 Set-EntraBetaApplicationProxyApplication @params
@@ -91,14 +91,14 @@ This example update `ExternalUrl`, `InternalUrl`, `ExternalAuthenticationType`, 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
-    InternalUrl = 'http://finance/'
-    ExternalAuthenticationType = 'AadPreAuthentication' 
+    ApplicationId                = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ExternalUrl                  = 'https://finance-awcycles.msappproxy.net/' 
+    InternalUrl                  = 'http://finance/'
+    ExternalAuthenticationType   = 'AadPreAuthentication' 
     IsTranslateHostHeaderEnabled = $false
-    IsHttpOnlyCookieEnabled = $false 
-    IsSecureCookieEnabled = $false 
-    IsPersistentCookieEnabled = $false
+    IsHttpOnlyCookieEnabled      = $false 
+    IsSecureCookieEnabled        = $false 
+    IsPersistentCookieEnabled    = $false
 }
 Set-EntraBetaApplicationProxyApplication @params
 ```
@@ -137,13 +137,13 @@ This example update `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, and `IsP
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
-    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    ExternalUrl = 'https://finance-awcycles.msappproxy.net/' 
-    InternalUrl = 'http://finance/'
-    ExternalAuthenticationType = 'AadPreAuthentication' 
+    ApplicationId                = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ExternalUrl                  = 'https://finance-awcycles.msappproxy.net/' 
+    InternalUrl                  = 'http://finance/'
+    ExternalAuthenticationType   = 'AadPreAuthentication' 
     IsTranslateHostHeaderEnabled = $false
-    ApplicationServerTimeout = Long  
-    ConnectorGroupId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ApplicationServerTimeout     = Long  
+    ConnectorGroupId             = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Set-EntraBetaApplicationProxyApplication @params
 ```

@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.SignIns) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
         Import-Module Microsoft.Entra.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -14,26 +14,26 @@ BeforeAll {
 Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
     Context "Test for Remove-EntraFeatureRolloutPolicyDirectoryObject" {
         It "Should return empty object" {
-            $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -Id bbbbbbbb-1111-2222-3333-cccccccccccc -ObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+            $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
         }
-        It "Should fail when Id is invalid" {
-            { Remove-EntraFeatureRolloutPolicyDirectoryObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when FeatureRolloutPolicyId is invalid" {
+            { Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId "" } | Should -Throw "Cannot bind argument to parameter 'FeatureRolloutPolicyId' because it is an empty string."
         }
-        It "Should fail when Id is empty" {
-            { Remove-EntraFeatureRolloutPolicyDirectoryObject -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when FeatureRolloutPolicyId is empty" {
+            { Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId } | Should -Throw "Missing an argument for parameter 'FeatureRolloutPolicyId'*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraFeatureRolloutPolicyDirectoryObject -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DirectoryObjectId is invalid" {
+            { Remove-EntraFeatureRolloutPolicyDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraFeatureRolloutPolicyDirectoryObject -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DirectoryObjectId is empty" {
+            { Remove-EntraFeatureRolloutPolicyDirectoryObject -DirectoryObjectId } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
         }    
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraFeatureRolloutPolicyDirectoryObject"
-            $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -Id bbbbbbbb-1111-2222-3333-cccccccccccc -ObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
+            $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraFeatureRolloutPolicyDirectoryObject"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
@@ -48,8 +48,9 @@ Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraFeatureRolloutPolicyDirectoryObject -Id bbbbbbbb-1111-2222-3333-cccccccccccc -ObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

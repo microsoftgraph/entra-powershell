@@ -27,7 +27,7 @@ The `Set-EntraBetaApplicationProxyApplicationSingleSignOn` cmdlet allows you to 
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationSingleSignOn
- -ObjectId <String>
+ -ApplicationId <String>
  -SingleSignOnMode <SingleSignOnModeEnum>
  [-KerberosInternalApplicationServicePrincipalName <String>]
  [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>]
@@ -45,18 +45,19 @@ This is limited to setting No SSO, Kerberos Constrained Delegation (for applicat
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso App Proxy'"
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
-    SingleSignOnMode = 'OnPremisesKerberos' 
+    ApplicationId                                   = $application .Id 
+    SingleSignOnMode                                = 'OnPremisesKerberos' 
     KerberosInternalApplicationServicePrincipalName = 'https/www.adventure-works.com' 
-    KerberosDelegatedLoginIdentity = 'OnPremisesUserPrincipalName'
+    KerberosDelegatedLoginIdentity                  = 'OnPremisesUserPrincipalName'
 }
 Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 ```
 
 This example assigns an application to use Kerberos Constrained Delegation, and specify required parameters.
 
-- `-ObjectId` parameter specifies the application ID.
+- `-ApplicationId` parameter specifies the application ID.
 - `-SingleSignOnMode` parameter specifies the type of SSO.
 - `-KerberosInternalApplicationServicePrincipalName` parameter specifies the internal application ServicePrincipalName of the application server.
 - `-KerberosDelegatedLoginIdentity` parameter specifies the Connector group ID that assigned to this application.
@@ -65,16 +66,12 @@ This example assigns an application to use Kerberos Constrained Delegation, and 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
-    SingleSignOnMode = 'None' 
-}
-Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
+Set-EntraBetaApplicationProxyApplicationSingleSignOn -ApplicationId $application .Id -SingleSignOnMode None'
 ```
 
 This example demonstrates how to remove SSO from an application.
 
-- `-ObjectId` parameter specifies the application ID.
+- `-ApplicationId` parameter specifies the application ID.
 - `-SingleSignOnMode` parameter specifies the type of SSO.
 
 ## Parameters
@@ -113,7 +110,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 The unique application ID of the application that needs different SSO settings.
 ObjectId can be found using the `Get-EntraBetaApplication` command.
@@ -122,7 +119,7 @@ You can also find this in the Microsoft Portal by navigating to Microsoft Entra 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

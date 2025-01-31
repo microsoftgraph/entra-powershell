@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,17 +10,17 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "KeyCredentials"                    = @{
-                    "CustomKeyIdentifier"           = ""
-                    "DisplayName"                   = ""
-                    "EndDateTime"                   = "08-Feb-25 9:57:08 AM"
-                    "Key"                           = ""
-                    "KeyId"                         = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
-                    "StartDateTime"                 = "08-Feb-24 9:57:08 AM"
-                    "Type"                          = "Symmetric"
-                    "Usage"                         = "Sign"
-                    "AdditionalProperties"          = @{}
-                    "Parameters"                    = $args
+                "KeyCredentials" = @{
+                    "CustomKeyIdentifier"  = ""
+                    "DisplayName"          = ""
+                    "EndDateTime"          = "08-Feb-25 9:57:08 AM"
+                    "Key"                  = ""
+                    "KeyId"                = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
+                    "StartDateTime"        = "08-Feb-24 9:57:08 AM"
+                    "Type"                 = "Symmetric"
+                    "Usage"                = "Sign"
+                    "AdditionalProperties" = @{}
+                    "Parameters"           = $args
                 }    
             }
         )
@@ -31,8 +31,8 @@ BeforeAll {
 Describe "Get-EntraServicePrincipalKeyCredential" {
     Context "Test for Get-EntraServicePrincipalKeyCredential" {
         It "Should return specific principal key credential" {
-            $objectId = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $result = Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $objectId
+            $servicePrincipalObjectId = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipalObjectId
             $result | Should -Not -BeNullOrEmpty
             $result.KeyId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
@@ -40,8 +40,8 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
         }
 
         It "Should update the parameter with Alias" {
-            $objectId = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $result = Get-EntraServicePrincipalKeyCredential -ObjectId $objectId
+            $servicePrincipalObjectId = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraServicePrincipalKeyCredential -ObjectId $servicePrincipalObjectId
             $result | Should -Not -BeNullOrEmpty
             $result.KeyId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
@@ -84,8 +84,9 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraServicePrincipalKeyCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraServicePrincipalKeyCredential -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

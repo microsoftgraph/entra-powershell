@@ -6,16 +6,19 @@ function Remove-EntraFeatureRolloutPolicyDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Id,
+        [Alias("Id")]
+        [System.String] $FeatureRolloutPolicyId,
+        
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $ObjectId
+        [Alias("ObjectId")]
+        [System.String] $DirectoryObjectId
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $params["Uri"] = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $Id,$ObjectId
+        $params["Uri"] = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $FeatureRolloutPolicyId, $DirectoryObjectId
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -25,5 +28,5 @@ function Remove-EntraFeatureRolloutPolicyDirectoryObject {
         $response = Invoke-GraphRequest @params -Headers $customHeaders
         $response 
     }
-}# ------------------------------------------------------------------------------
+}
 

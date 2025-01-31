@@ -26,7 +26,7 @@ Selects the groups that a user is a member of.
 
 ```powershell
 Select-EntraGroupIdsUserIsMemberOf
- -ObjectId <String>
+ -UserId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ $myGroup = Get-EntraGroup -Filter "DisplayName eq '<Group-DisplayName>'"
 $UserId = 'SawyerM@contoso.com'
 $groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 $groups.GroupIds = $myGroup.Id
-Select-EntraGroupIdsUserIsMemberOf -ObjectId 'SawyerM@contoso.com' -GroupIdsForMembershipCheck $groups
+Select-EntraGroupIdsUserIsMemberOf -UserId 'SawyerM@contoso.com' -GroupIdsForMembershipCheck $groups
 ```
 
 ```Output
@@ -54,7 +54,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example retrieves the group membership of a group for a user.
 
-- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-GroupIdsForMembershipCheck` parameter specifies the group Object Ids.
 
 ## Parameters
@@ -75,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

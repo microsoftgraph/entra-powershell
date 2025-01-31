@@ -27,7 +27,7 @@ Removes a key from an application.
 
 ```powershell
 Remove-EntraBetaApplicationKey
- -ObjectId <String>
+ -ApplicationId <String>
  [-KeyId <String>]
  [-Proof <String>]
  [<CommonParameters>]
@@ -42,27 +42,27 @@ Removes a key from an application.
 ### Example 1: Remove a key credential from an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-Remove-EntraBetaApplicationKey -ObjectId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333' -Proof '{token}'
+Remove-EntraBetaApplicationKey -ApplicationId $application.Id -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333' -Proof '{token}'
 ```
 
 This command removes the specified key credential from the specified application.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 - `-KeyId` parameter specifies the key Id corresponding to the key object to be removed.
 - `-Proof` parameter specifies the JWT token provided as a proof of possession.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

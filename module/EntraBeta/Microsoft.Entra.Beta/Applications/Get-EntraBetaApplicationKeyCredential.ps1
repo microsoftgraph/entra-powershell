@@ -6,13 +6,14 @@ function Get-EntraBetaApplicationKeyCredential {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias("ObjectId")]
+        [System.String] $ApplicationId
     )
 
-     PROCESS {
+    PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        (Get-MgBetaApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+        (Get-MgBetaApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).KeyCredentials
     }    
 }
 

@@ -3,66 +3,44 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null){
-        Import-Module Microsoft.Entra.Beta.SignIns    
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
     Context "Test for Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
-        It "Should removes a group from the cloud authentication roll-out policy from Azure AD" {
-            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+        It "Should return empty object" {
+            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
-
-        It "Should fail when Id is empty" {
-            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id  -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" } | Should -Throw "Missing an argument for parameter 'Id'*"
-        }   
-
-        It "Should fail when Id is invalid" {
-            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
-        }   
-
-        It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
-        }   
-
-        It "Should fail when ObjectId is invalid" {
-            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
-        }   
-
-        It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
-
-            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $params = Get-Parameters -data $result
-            $params.DirectoryObjectId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+        It "Should fail when FeatureRolloutPolicyId is invalid" {
+            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId "" } | Should -Throw "Cannot bind argument to parameter 'FeatureRolloutPolicyId' because it is an empty string."
         }
-
-        It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
-            Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
-
-            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $params = Get-Parameters -data $result
-            $params.FeatureRolloutPolicyId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+        It "Should fail when FeatureRolloutPolicyId is empty" {
+            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId } | Should -Throw "Missing an argument for parameter 'FeatureRolloutPolicyId'*"
         }
-
+        It "Should fail when DirectoryObjectId is invalid" {
+            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId' because it is an empty string."
+        }
+        It "Should fail when DirectoryObjectId is empty" {
+            { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -DirectoryObjectId } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
+        }    
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaFeatureRolloutPolicyDirectoryObject"
-            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result = Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaFeatureRolloutPolicyDirectoryObject"
-            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
         } 
-
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
@@ -70,12 +48,13 @@ Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
-        } 
+        }   
     }
 }
 
