@@ -34,7 +34,7 @@ BeforeAll {
 Describe "Get-EntraDirectoryObject" {
     Context "Test for Get-EntraDirectoryObject" {
         It "Should return specific object by objectId" {
-            $result = Get-EntraDirectoryObject -DirectoryObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+            $result = Get-EntraDirectoryObject -DirectoryObjectIds '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.displayName | should -Be 'Mock-App'
@@ -42,14 +42,14 @@ Describe "Get-EntraDirectoryObject" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
-        It "Should fail when -DirectoryObjectId is empty" {
-            { Get-EntraDirectoryObject -DirectoryObjectId } | Should -Throw "Missing an argument for parameter 'DirectoryObjectId'*"
+        It "Should fail when -DirectoryObjectIds is empty" {
+            { Get-EntraDirectoryObject -DirectoryObjectIds } | Should -Throw "Missing an argument for parameter 'DirectoryObjectIds'*"
         }
         It "Should fail when ObjectId is invalid" {
-            { Get-EntraDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId' because it is an empty string*"
+            { Get-EntraDirectoryObject -DirectoryObjectIds "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectIds' because it is an empty string*"
         }
         It "Should return specific object by objectId and Types" {
-            $result = Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ObjectType "User"
+            $result = Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -ObjectTypes "User"
             $result | Should -Not -BeNullOrEmpty
             $result.userType | should -Be 'User'
 
@@ -57,13 +57,13 @@ Describe "Get-EntraDirectoryObject" {
         }
 
         It "Should contain Ids in parameters when passed Id to it" {              
-            $result = Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $para = $params | ConvertTo-json | ConvertFrom-Json
             $para.Body.Ids | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
         It "Property parameter should work" {
-            $result = Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property displayName 
+            $result = Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property displayName 
             $result | Should -Not -BeNullOrEmpty
             $result.displayName | Should -Be "Mock-App"
 
@@ -71,12 +71,12 @@ Describe "Get-EntraDirectoryObject" {
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryObject"
 
-            $result = Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryObject"
@@ -93,7 +93,7 @@ Describe "Get-EntraDirectoryObject" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDirectoryObject -DirectoryObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
