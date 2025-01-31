@@ -58,9 +58,7 @@ function Select-EntraBetaGroupIdsServicePrincipalIsMemberOf {
         Write-Debug("=========================================================================`n")
         $initalResponse = Get-MgBetaServicePrincipalMemberOf @params -Headers $customHeaders
         $response = $initalResponse | Where-Object -Filterscript { $_.Id -in ($GroupIdsForMembershipCheck.GroupIds) } 
-        if ($response) {
-            $response.Id
-        }
+        
     }     
 }
 
