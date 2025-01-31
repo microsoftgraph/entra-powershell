@@ -1,6 +1,6 @@
 ---
-title: Get-EntraDirectoryObject 
-description: This article provides details on the Get-EntraDirectoryObject  command.
+title: Get-EntraBetaDirectoryObject 
+description: This article provides details on the Get-EntraBetaDirectoryObject  command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraDirectoryObject 
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryObject 
 
 schema: 2.0.0
 ---
 
-# Get-EntraDirectoryObject 
+# Get-EntraBetaDirectoryObject 
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Retrieves directory objects based on a list of IDs.
 ## Syntax
 
 ```powershell
-Get-EntraDirectoryObject 
+Get-EntraBetaDirectoryObject 
  -DirectoryObjectId <System.Collections.Generic.List`1[String]>
  [-ObjectType <System.Collections.Generic.List`1[String]>]
  [-Property <String[]>]
@@ -35,7 +35,7 @@ Get-EntraDirectoryObject
 
 ## Description
 
-The `Get-EntraDirectoryObject ` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
+The `Get-EntraBetaDirectoryObject ` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
 
 ## Examples
 
@@ -43,7 +43,7 @@ The `Get-EntraDirectoryObject ` cmdlet retrieves directory objects based on a li
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraDirectoryObject  -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc' | 
+Get-EntraBetaDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc' | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
@@ -62,7 +62,7 @@ This example demonstrates how to retrieve objects for a specified object Ids.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType 'User' | 
+Get-EntraBetaDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb', 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectType 'User' | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
