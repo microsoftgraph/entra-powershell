@@ -43,7 +43,8 @@ The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a li
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc' | 
+$groups = Get-EntraGroup -Limit 4
+Get-EntraObjectByObjectId -DirectoryObjectId $groups.Id | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 

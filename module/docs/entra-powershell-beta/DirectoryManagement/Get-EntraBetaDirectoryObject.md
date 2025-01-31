@@ -43,7 +43,8 @@ The `Get-EntraBetaDirectoryObject ` cmdlet retrieves directory objects based on 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc' | 
+$groups = Get-EntraBetaGroup -Limit 4
+Get-EntraBetaDirectoryObject -DirectoryObjectId $groups.Id | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 
