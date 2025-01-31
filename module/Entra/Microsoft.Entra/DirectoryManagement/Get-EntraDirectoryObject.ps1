@@ -10,7 +10,7 @@ function Get-EntraDirectoryObject {
         [Alias("Types")]
         [System.Collections.Generic.List`1[System.String]] $ObjectTypes,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.")]
         [Alias("ObjectIds")]
         [System.Collections.Generic.List`1[System.String]] $DirectoryObjectIds,
 
