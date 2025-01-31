@@ -28,7 +28,7 @@ Retrieves directory objects based on a list of IDs.
 ```powershell
 Get-EntraBetaDirectoryObject 
  -DirectoryObjectIds <System.Collections.Generic.List`1[String]>
- [-ObjectType <System.Collections.Generic.List`1[String]>]
+ [-ObjectTypes <System.Collections.Generic.List`1[String]>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
