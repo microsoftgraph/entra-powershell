@@ -56,8 +56,7 @@ To perform this operation in delegated scenarios using work or school accounts, 
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All'
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-Get-EntraBetaUserAppRoleAssignment -UserId $user.Id
+Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -76,9 +75,8 @@ This example retrieves a user application role assignment for the user in $UserI
 ### Example 2: Get all application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All' 
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-Get-EntraBetaUserAppRoleAssignment -UserId $user.Id -All 
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All'
+Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -97,9 +95,8 @@ This example demonstrates how to retrieve all application role assignment for th
 ### Example 3: Get top two application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All' 
-$user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-Get-EntraBetaUserAppRoleAssignment -UserId $user.Id -Top 2
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All'
+Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -Top 2
 ```
 
 ```Output
