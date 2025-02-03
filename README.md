@@ -1,6 +1,6 @@
 ---
-title: About Microsoft Entra PowerShell.
-description: About Microsoft Entra PowerShell.
+title: About Microsoft Entra PowerShell
+description: About Microsoft Entra PowerShell
 
 
 ms.topic: reference
