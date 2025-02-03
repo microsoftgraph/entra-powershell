@@ -16,9 +16,9 @@ author: msewaweru
 [![PSGallery Platform](https://img.shields.io/powershellgallery/p/Microsoft.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Platform)](https://www.powershellgallery.com/packages/Microsoft.Entra)
 [![GitHub issues](https://img.shields.io/github/issues/microsoftgraph/entra-powershell)](https://github.com/microsoftgraph/entra-powershell/issues)
 
-# Microsoft Entra PowerShell (preview)
+# Microsoft Entra PowerShell
 
-[Microsoft Entra PowerShell][learn.microsoft], is a command-line tool that allows administrators to manage and automate Microsoft Entra resources programmatically.. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
+[Microsoft Entra PowerShell][learn.microsoft], is a command-line tool that allows administrators to manage and automate Microsoft Entra resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
 
 The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining. The module builds upon the Microsoft Graph PowerShell SDK. It’s fully interoperable with all cmdlets in the Microsoft Graph PowerShell SDK.
 

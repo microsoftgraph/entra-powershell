@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 Thanks for reporting the bug. Please ensure you've gone through the following checklist before opening an issue:
-- Make sure you can reproduce this issue using the latest released version of `Microsoft.Graph.Entra` or `Microsoft.Graph.Entra.Beta`.
+- Make sure you can reproduce this issue using the latest released version of `Microsoft.Entra` or `Microsoft.Entra.Beta`.
 - Please search the existing issues to see if there has been a similar issue filed.
 
 **Describe the bug**
@@ -27,7 +27,7 @@ Steps to reproduce the behavior:
 > ⚠ ATTENTION: Be sure to remove any sensitive information that may be in the logs.
 
 **Module Version**
-> Please run `Get-Module Microsoft.Graph.Entra*` after cmdlet execution and paste the output below.
+> Please run `Get-Module Microsoft.Entra*` after cmdlet execution and paste the output below.
 > If a module cannot be installed or imported, please run `Get-Module -ListAvailable` and paste the output.
 
 **Environment Data**
