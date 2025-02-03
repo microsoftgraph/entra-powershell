@@ -21,13 +21,13 @@ Microsoft Entra PowerShell is a part of our increased investment in Microsoft Gr
 
 ## Benefits of Microsoft Entra PowerShell
 
-- **Focus on usability and quality**: Microsoft Entra PowerShell offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
+- **Focus on usability**: Microsoft Entra PowerShell offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
-- **Backward compatibility with AzureAD module**: Microsoft Entra PowerShell accelerates migration from the recently announced AzureAD module deprecation.
+- **Backward compatibility with AzureAD PowerShell module**: Microsoft Entra PowerShell simplifies migration from the [retiring AzureAD PowerShell module][azureADRetirement].
 
-- **Flexible and granular authorization**: Consistent with Microsoft Graph PowerShell SDK, Microsoft Entra PowerShell enables administrative consent for the permissions you want to grant to the application and supports specifying your own application identity for maximum granularity in app permission assignment. You can also use certificate, Service Principal, or Managed Identity authentication patterns.
+- **Flexible and granular authorization**: Consistent with Microsoft Graph PowerShell SDK, Microsoft Entra PowerShell enables administrative consent for the permissions you want to grant to the application. It also supports running Microsoft Entra PowerShell using your own service principal or user-assigned managed identity.
 
-- **Open source**: The Microsoft Entra PowerShell module is open source, allowing contributions from the community to create great PowerShell experiences and share them with everyone. Open source promotes collaboration and facilitates the development of innovative business solutions. You can view Microsoft's customizations and adapt them to meet your needs.
+- **Open source**: The Microsoft Entra PowerShell module is open source, enabling community collaboration to enhance PowerShell and share innovations. You can explore Microsoft's customizations and adapt them to your needs.
 
 ### When to use which PowerShell module
 

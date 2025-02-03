@@ -35,49 +35,6 @@ The module help files are generated from markdown documentation (using platyPS m
 Install-Module -Name PlatyPS
 ```
 
-<details>
-
-<summary>v.10 version</summary>
-
-### You can add a header
-
-You can add text within a collapsed section.
-
-You can add an image or a code block, too.
-
-```powershell
-    . .\build\Common-functions.ps1
-    .\build\Create-EntraModule.ps1 -Module 'Entra'
-    .\build\Create-EntraModule.ps1 -Module 'Entra' -Root
-    Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.psd1 -Force
-```
-
-</details>
-
-<details>
-
-<summary>Tips for collapsed sections</summary>
-
-### You can add a header
-
-You can add text within a collapsed section.
-
-You can add an image or a code block, too.
-
-```ruby
-   puts "Hello World"
-```
-
-</details>
-
 ```powershell
 # Build help module for the Microsoft Entra Module
 . .\build\Common-functions.ps1
@@ -95,18 +52,18 @@ Use a clean PowerShell session when you're building the module. The building pro
 ### Build v1.0 module
 
 ```powershell
-    . .\build\Common-functions.ps1
-    .\build\Create-EntraModule.ps1 -Module 'Entra'
-    .\build\Create-EntraModule.ps1 -Module 'Entra' -Root
-    Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.psd1 -Force
+. .\build\Common-functions.ps1
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
 ```
 
 </details>
@@ -118,18 +75,18 @@ Use a clean PowerShell session when you're building the module. The building pro
 ### Build Beta module
 
 ```powershell
-    . .\build\Common-functions.ps1
-    .\build\Create-EntraModule.ps1 -Module 'Entra'
-    .\build\Create-EntraModule.ps1 -Module 'Entra' -Root
-    Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
-    Import-Module .\bin\Microsoft.Entra.psd1 -Force
+. .\build\Common-functions.ps1
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
 ```
 
 </details>
@@ -173,6 +130,7 @@ Get-AzureADUser -Top 1
 .\build\Install-Dependencies.ps1 -ModuleName Entra
 Install-Module -Name PlatyPS
 . .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra
 .\build\Create-EntraModule.ps1 -Module 'Entra'
 .\build\Create-EntraModule.ps1 -Module 'Entra' -Root
 Import-Module .\bin\Microsoft.Entra.Authentication.psd1 -Force
@@ -198,6 +156,7 @@ Import-Module .\bin\Microsoft.Entra.psd1 -Force
 .\build\Install-Dependencies.ps1 -ModuleName EntraBeta
 Install-Module -Name PlatyPS
 . .\build\Common-functions.ps1
+Create-ModuleHelp -Module EntraBeta
 .\build\Create-EntraModule.ps1 -Module 'EntraBeta'
 .\build\Create-EntraModule.ps1 -Module 'EntraBeta' -Root
 Import-Module .\bin\Microsoft.Entra.Beta.Authentication.psd1 -Force
