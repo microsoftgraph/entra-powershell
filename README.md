@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell.
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/03/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,7 +18,7 @@ author: msewaweru
 
 # Microsoft Entra PowerShell
 
-[Microsoft Entra PowerShell][learn.microsoft], is a command-line tool that allows administrators to manage and automate Microsoft Entra resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
+[Microsoft Entra PowerShell][learn.microsoft], is a command-line tool that allows administrators and developers to manage and automate Microsoft Entra resources programmatically. This module is developed based on customer feedback to meet usability needs. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators.
 
 The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining. The module builds upon the Microsoft Graph PowerShell SDK. It’s fully interoperable with all cmdlets in the Microsoft Graph PowerShell SDK.
 
