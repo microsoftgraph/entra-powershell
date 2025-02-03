@@ -1,16 +1,17 @@
-   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force
-   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force
-   Set-Alias -Name Remove-EntraRoleAssignment -Value Remove-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-EntraRoleAssignment -Value Get-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name New-EntraRoleAssignment -Value New-EntraDirectoryRoleAssignment -Scope Global -Force
-   Set-Alias -Name Set-EntraRoleDefinition -Value Set-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Get-EntraRoleDefinition -Value Get-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Remove-EntraRoleDefinition -Value Remove-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name New-EntraRoleDefinition -Value New-EntraDirectoryRoleDefinition -Scope Global -Force
-   Set-Alias -Name Get-EntraServiceAppRoleAssignedTo -Value Get-EntraServicePrincipalAppRoleAssignedTo -Scope Global -Force
-   Set-Alias -Name Remove-EntraServiceAppRoleAssignment -Value Remove-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name Get-EntraServiceAppRoleAssignment -Value Get-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name New-EntraServiceAppRoleAssignment -Value New-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
-   Set-Alias -Name Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Value Add-EntraCustomSecurityAttributeDefinitionAllowedValue -Scope Global -Force
-   Set-Alias -Name Get-EntraAuditDirectoryLogs -Value Get-EntraAuditDirectoryLog -Scope Global -Force
-   Set-Alias -Name Get-EntraAuditSignInLogs -Value Get-EntraAuditSignInLog -Scope Global -Force
+Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force
+Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force
+Set-Alias -Name Remove-EntraRoleAssignment -Value Remove-EntraDirectoryRoleAssignment -Scope Global -Force
+Set-Alias -Name Get-EntraRoleAssignment -Value Get-EntraDirectoryRoleAssignment -Scope Global -Force
+Set-Alias -Name New-EntraRoleAssignment -Value New-EntraDirectoryRoleAssignment -Scope Global -Force
+Set-Alias -Name Set-EntraRoleDefinition -Value Set-EntraDirectoryRoleDefinition -Scope Global -Force
+Set-Alias -Name Get-EntraRoleDefinition -Value Get-EntraDirectoryRoleDefinition -Scope Global -Force
+Set-Alias -Name Remove-EntraRoleDefinition -Value Remove-EntraDirectoryRoleDefinition -Scope Global -Force
+Set-Alias -Name New-EntraRoleDefinition -Value New-EntraDirectoryRoleDefinition -Scope Global -Force
+Set-Alias -Name Get-EntraServiceAppRoleAssignedTo -Value Get-EntraServicePrincipalAppRoleAssignedTo -Scope Global -Force
+Set-Alias -Name Remove-EntraServiceAppRoleAssignment -Value Remove-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
+Set-Alias -Name Get-EntraServiceAppRoleAssignment -Value Get-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
+Set-Alias -Name New-EntraServiceAppRoleAssignment -Value New-EntraServicePrincipalAppRoleAssignment -Scope Global -Force
+Set-Alias -Name Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Value Add-EntraCustomSecurityAttributeDefinitionAllowedValue -Scope Global -Force
+Set-Alias -Name Get-EntraAuditDirectoryLogs -Value Get-EntraAuditDirectoryLog -Scope Global -Force
+Set-Alias -Name Get-EntraAuditSignInLogs -Value Get-EntraAuditSignInLog -Scope Global -Force
+Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
