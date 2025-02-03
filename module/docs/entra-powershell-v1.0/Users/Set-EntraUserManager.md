@@ -26,13 +26,13 @@ Updates a user's manager.
 ```powershell
 Set-EntraUserManager
  -UserId <String>
- -ManagerUserId <String>
+ -ManagerId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `UserId` and `ManagerUserId` parameters to update the manager for a user in Microsoft Entra ID.
+The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `UserId` and `ManagerId` parameters to update the manager for a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -40,7 +40,7 @@ The `Set-EntraUserManager` cmdlet update the manager for a user in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserManager -UserId 'SawyerM@contoso.com' -ManagerUserId 'Manager@contoso.com'
+Set-EntraUserManager -UserId 'SawyerM@contoso.com' -ManagerId 'Manager@contoso.com'
 ```
 
 This example demonstrates how to update the manager for the specified user.
@@ -63,7 +63,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ManagerUserId
+### -ManagerId
 
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 

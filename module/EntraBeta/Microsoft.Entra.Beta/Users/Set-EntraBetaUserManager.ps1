@@ -7,7 +7,7 @@ function Set-EntraBetaUserManager {
     param (
         [Alias('RefObjectId')]         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID (User Principal Name or UserId).")]
-        [System.String] $ManagerUserId,
+        [System.String] $ManagerId,
 
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).")]
@@ -33,8 +33,8 @@ function Set-EntraBetaUserManager {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["RefObjectId"]) {
-            $TmpValue = $PSBoundParameters["RefObjectId"]
+        if ($null -ne $PSBoundParameters["ManagerId"]) {
+            $TmpValue = $PSBoundParameters["ManagerId"]
             $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
