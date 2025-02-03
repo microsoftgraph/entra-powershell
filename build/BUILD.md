@@ -1,6 +1,6 @@
 ## Building module
 
-Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.15.X** in order to build the module.
+Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.25.X** in order to build the module.
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
