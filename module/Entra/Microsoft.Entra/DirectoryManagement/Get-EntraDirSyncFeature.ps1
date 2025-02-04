@@ -73,7 +73,7 @@ function Get-EntraDirSyncFeature {
                 $table += $row
             }
             if([string]::IsNullOrWhiteSpace($Feature)) {
-                $table | Format-Table -AutoSize
+                $table
             }
             else {
                $output =  $table | Where-Object {$_.dirsyncFeature -eq $Feature}
