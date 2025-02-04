@@ -21,7 +21,22 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
                 }
                 '#microsoft.graph.phoneAuthenticationMethod' { 
                     Remove-MgBetaUserAuthenticationPhoneMethod -UserId $uid -PhoneAuthenticationMethodId $method.Id
-                }       
+                }
+                '#microsoft.graph.fido2AuthenticationMethod' { 
+                    Remove-MgBetaUserAuthenticationFido2Method -UserId $uid -Fido2AuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.softwareOathAuthenticationMethod' { 
+                    Remove-MgBetaUserAuthenticationSoftwareOathMethod -UserId $uid -SoftwareOathAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.temporaryAccessPassAuthenticationMethod' { 
+                    Remove-MgBetaUserAuthenticationTemporaryAccessPassMethod -UserId $uid -TemporaryAccessPassAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.windowsHelloForBusinessAuthenticationMethod' { 
+                    Remove-MgBetaUserAuthenticationWindowsHelloForBusinessMethod -UserId $uid -WindowsHelloForBusinessAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.microsoftAuthenticatorAuthenticationMethod' { 
+                    Remove-MgBetaUserAuthenticationPasswordlessMicrosoftAuthenticatorMethod -UserId $uid -PasswordlessMicrosoftAuthenticatorAuthenticationMethodId $method.Id
+                }
                 Default {
                     
                 }
