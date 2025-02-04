@@ -57,6 +57,20 @@ This example demonstrates adding an administrative unit member. Use `Get-EntraBe
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 - `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
+### Example 2: Add a group to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$group = Get-EntraBetaGroup -SearchString 'Sales and Marketing'
+Add-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -MemberId $group.Id
+```
+
+This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaGroup` to find the group ID.
+
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+
 ## Parameters
 
 ### -AdministrativeUnitId
