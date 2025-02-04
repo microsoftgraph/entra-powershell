@@ -57,7 +57,7 @@ This example demonstrates how to retrieve the manager of a specific user.
 
 - `-UserId` Parameter specifies UserId or User Principal Name of User.
 
-### Example 2: Retrieve users without managers
+### Example 2: List users without a manager
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
