@@ -182,12 +182,17 @@ Install a test version (optional), which is recommended if you're trying to test
 Create-ModuleFolder
 Register-LocalGallery
 .\build\Publish-LocalCompatModule.ps1 -Install
-Unregister-LocalGallery
 #When you install, you can load the module without the Path to the files.
-Import-Module Microsoft.Entra.psd1 -Force
+Import-Module Microsoft.Entra -Force
 ```
 
 The snippet in the optional testing section publishes the module to a local repository and installs the module.
+
+To unregister or remove a locally registered gallery, run:
+
+```PowerShell
+Unregister-LocalGallery
+```
 
 ## FAQs
 
