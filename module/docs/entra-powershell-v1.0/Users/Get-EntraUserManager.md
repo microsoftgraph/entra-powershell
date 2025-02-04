@@ -2,7 +2,6 @@
 title: Get-EntraUserManager
 description: This article provides details on the Get-EntraUserManager command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -64,23 +63,26 @@ This example demonstrates how to retrieve the manager of a specific user.
 Connect-Entra -Scopes 'User.Read.All'
 $allUsers = Get-EntraUser -All
 $usersWithoutManagers = foreach ($user in $allUsers) {
-    $manager = Get-EntraUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
+    $manager = Get-EntraUserManager -UserId $user.Id -ErrorAction SilentlyContinue
     if (-not $manager) {
         [PSCustomObject]@{
             Id                = $user.Id
             DisplayName       = $user.DisplayName
             UserPrincipalName = $user.UserPrincipalName
+            UserType          = $user.userType
+            AccountEnabled    = $user.accountEnabled
+            CreatedDateTime   = $user.createdDateTime
         }
     }
 }
-$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName -AutoSize
+$usersWithoutManagers | Format-Table Id, DisplayName, UserPrincipalName, CreatedDateTime, UserType, AccountEnabled  -AutoSize
 ```
 
 ```Output
-Id                                   DisplayName     UserPrincipalName
---                                   -----------     -----------------
-cccccccc-2222-3333-4444-dddddddddddd  New User       NewUser@tenant.com
-bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
+Id                                   DisplayName         UserPrincipalName                           CreatedDateTime           UserType   AccountEnabled
+--                                   -----------         -----------------                           ---------------           --------   --------------
+cccccccc-2222-3333-4444-dddddddddddd New User           NewUser@tenant.com                         10/7/2024 2:24:26 PM      Member     True
+bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller     SawyerM@contoso.com                        10/7/2024 12:33:36 AM     Member     True
 ```
 
 This example demonstrates how to retrieve users without managers.
