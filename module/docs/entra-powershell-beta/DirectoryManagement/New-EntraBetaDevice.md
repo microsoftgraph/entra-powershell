@@ -3,7 +3,7 @@ title: New-EntraBetaDevice
 description: This article provides details on the New-EntraBetaDevice command.
 
 ms.topic: reference
-ms.date: 08/12/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

@@ -3,7 +3,7 @@ title: Set-EntraBetaUserManager
 description: This article provides details on the Set-EntraBetaUserManager command.
 
 ms.topic: reference
-ms.date: 06/21/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

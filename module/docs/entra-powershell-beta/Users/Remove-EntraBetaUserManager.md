@@ -3,7 +3,7 @@ title: Remove-EntraBetaUserManager
 description: This article provides details on the Remove-EntraBetaUserManager command.
 
 ms.topic: reference
-ms.date: 06/20/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

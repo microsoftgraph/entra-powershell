@@ -3,7 +3,7 @@ title: Add-EntraBetaDeviceRegisteredUser
 description: This article provides details on the Add-EntraBetaDeviceRegisteredUser command.
 
 ms.topic: reference
-ms.date: 08/14/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

@@ -3,7 +3,7 @@ title: Get-EntraBetaApplicationOwner
 description: This article provides details on the Get-EntraBetaApplicationOwner command.
 
 ms.topic: reference
-ms.date: 08/06/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

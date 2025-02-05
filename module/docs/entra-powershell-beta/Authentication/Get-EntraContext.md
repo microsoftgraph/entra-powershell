@@ -3,7 +3,7 @@ title: Get-EntraContext
 description: This article provides details on the Get-EntraContext command.
 
 ms.topic: reference
-ms.date: 07/12/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutung
 manager: CelesteDG
