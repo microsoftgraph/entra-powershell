@@ -21,6 +21,7 @@ This module does not require the entire Microsoft Graph PowerShell SDK, only the
 - Microsoft.Graph.Identity.Governance
 - Microsoft.Graph.Identity.SignIns
 - Microsoft.Graph.Applications
+- Microsoft.Graph.Reports
 
 ### Beta
 
@@ -33,3 +34,4 @@ This module does not require the entire Microsoft Graph PowerShell SDK, only the
 - Microsoft.Graph.Beta.Identity.Governance
 - Microsoft.Graph.Beta.Identity.SignIns
 - Microsoft.Graph.Beta.Reports
+- Microsoft.Graph.Beta.DirectoryObjects
