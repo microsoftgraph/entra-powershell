@@ -2,7 +2,6 @@
 title: Add-EntraDeviceRegisteredOwner
 description: This article provides details on the Add-EntraDeviceRegisteredOwner command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -37,12 +36,12 @@ The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Micros
 
 In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
 
-- Intune Administrator  
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
 
-### Example 1: Add a user as a registered user
+### Example 1: Add a user as a registered owner
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
