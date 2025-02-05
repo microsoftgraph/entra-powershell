@@ -55,7 +55,7 @@ Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.
 This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaUser` to find the user ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+- `MemberId` parameter specifies the ID of the user you want to add as a member of the administrative unit.
 
 ### Example 2: Add a group to an administrative unit
 
@@ -63,13 +63,27 @@ This example demonstrates adding an administrative unit member. Use `Get-EntraBe
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $group = Get-EntraBetaGroup -SearchString 'Sales and Marketing'
-Add-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id -MemberId $group.Id
+Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $group.Id
 ```
 
 This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaGroup` to find the group ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+- `MemberId` parameter specifies the ID of the group you want to add as a member of the administrative unit.
+
+### Example 3: Add a device to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$device = Get-EntraBetaDevice -SearchString 'ContosoDesktop01'
+Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $device.Id
+```
+
+This example demonstrates adding an administrative unit member. Use `Get-EntraBetaAdministrativeUnit` to find the administrative unit ID and `Get-EntraBetaDevice` to find the device ID.
+
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `MemberId` parameter specifies the ID of the device you want to add as a member of the administrative unit.
 
 ## Parameters
 
