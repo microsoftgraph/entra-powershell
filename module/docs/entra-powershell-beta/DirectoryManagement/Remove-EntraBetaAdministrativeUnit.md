@@ -49,6 +49,15 @@ This command removes the specified administrative unit from Microsoft Entra ID.
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
+### Example 2: Remove an administrative unit through pipelining
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'" | Remove-EntraBetaAdministrativeUnit
+```
+
+This command removes the specified administrative unit from Microsoft Entra ID.
+
 ## Parameters
 
 ### -AdministrativeUnitId
