@@ -5,15 +5,18 @@
 function Get-EntraBetaDeviceRegisteredUser {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Device object ID to retrieve.")]
+        [System.String] $DeviceId,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all device's registered users.")]
+        [switch] $All,
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
-        [Alias('ObjectId')]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $DeviceId,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [switch] $All,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
