@@ -32,7 +32,7 @@ Add-EntraApplicationOwner
 
 ## Description
 
-The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
+The `Add-EntraApplicationOwner` adds an owner to a Microsoft Entra ID application. Only individual users are supported.
 
 ## Examples
 

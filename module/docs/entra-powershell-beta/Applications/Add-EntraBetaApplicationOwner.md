@@ -32,7 +32,7 @@ Add-EntraBetaApplicationOwner
 
 ## Description
 
-The `Add-EntraBetaApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
+The `Add-EntraBetaApplicationOwner` adds an owner to a Microsoft Entra ID application. Only individual users are supported.
 
 ## Examples
 
