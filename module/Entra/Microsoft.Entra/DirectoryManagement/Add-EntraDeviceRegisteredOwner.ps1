@@ -6,10 +6,10 @@ function Add-EntraDeviceRegisteredOwner {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
         [Alias('ObjectId')]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The device's unique ID (Device ID)")]
         [System.String] $DeviceId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of a user, or directory object to add as a registered owner of the device.")]
         [Alias('RefObjectId')]
         [System.String] $OwnerId
     )
