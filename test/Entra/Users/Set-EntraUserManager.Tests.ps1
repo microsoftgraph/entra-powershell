@@ -13,35 +13,35 @@ BeforeAll {
 Describe "Set-EntraUserManager" {
     Context "Test for Set-EntraUserManager" {
         It "Should return specific User" {
-            $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should return specific User with alias" {
-            $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when UserId is empty string value" {
-            { Set-EntraUserManager -UserId ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Set-EntraUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when UserId is empty" {
             { Set-EntraUserManager -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
-        It "Should fail when RefObjectId is invalid" {
-            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+        It "Should fail when ManagerId is invalid" {
+            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  ManagerId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }
 
         It "Should contain UserId in parameters when passed UserId to it" {
             Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
-            $result = Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
             $params.UserId | Should -Match "00001111-aaaa-2222-bbbb-3333cccc4444"
         }
@@ -49,7 +49,7 @@ Describe "Set-EntraUserManager" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
              
-            Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
     
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
     
@@ -66,8 +66,9 @@ Describe "Set-EntraUserManager" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
-            } finally {
+                { Set-EntraUserManager -UserId "00001111-aaaa-2222-bbbb-3333cccc4444" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
