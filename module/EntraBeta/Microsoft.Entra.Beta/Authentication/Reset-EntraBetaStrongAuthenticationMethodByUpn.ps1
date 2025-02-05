@@ -64,10 +64,6 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
             }
         }
         catch {}
-   
-        if($null -ne $methods){
-            $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId
-        }
     }
 }# ------------------------------------------------------------------------------
 

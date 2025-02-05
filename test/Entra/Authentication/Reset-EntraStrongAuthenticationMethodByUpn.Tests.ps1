@@ -11,13 +11,14 @@ BeforeAll {
             [PSCustomObject]@{
                 "Id" = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "AdditionalProperties"  = @{
-                    "@odata.type"  = "#microsoft.graph.passwordAuthenticationMethod";
+                    "@odata.type"  = "#microsoft.graph.phoneAuthenticationMethod";
                     createdDateTime= "2023-11-21T12:43:51Z";
                 }
             }
          )
     }
-    Mock -CommandName Get-MgUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Entra.Authentication
+    Mock -CommandName Get-MgUserAuthenticationMethod  -MockWith $scriptblock -ModuleName Microsoft.Entra.Authentication
+    Mock -CommandName Remove-MgUserAuthenticationPhoneMethod  -MockWith {} -ModuleName Microsoft.Entra.Authentication
 }
  
 Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
@@ -35,22 +36,32 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
     It "Should fail when Id is invalid" {
         { Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName "" } | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName' because it is an empty string."
     }  
-    It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraStrongAuthenticationMethodByUpn"
-
-        Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.Authentication -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
-        }
-    }  
-    It "Should contain 'User-Agent' header" {
-        Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
+    It "Should set correct UserId" {
+        Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
         Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.Authentication -Times 1 -ParameterFilter {
             $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
             $true
         }
-    }  
+    }
+    It "Should set correct PhoneAuthenticationMethodId" {
+        Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.Authentication -Times 1
+        Should -Invoke -CommandName Remove-MgUserAuthenticationPhoneMethod -ModuleName Microsoft.Entra.Authentication -Times 1 -ParameterFilter {
+            $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
+            $PhoneAuthenticationMethodId | Should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+            $true
+        }
+    }
+    It "Should contain 'User-Agent' header" {
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraStrongAuthenticationMethodByUpn"
+
+        # Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
+        Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+        Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.Authentication -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
+    }
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference

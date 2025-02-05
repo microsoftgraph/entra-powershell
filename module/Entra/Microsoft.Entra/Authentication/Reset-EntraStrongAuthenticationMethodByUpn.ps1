@@ -64,10 +64,6 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
             }
         }
         catch {}
-   
-        if($null -ne $methods){
-            $methods = Get-MgUserAuthenticationMethod -UserId $userId
-        }
     }
 }
 
