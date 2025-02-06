@@ -22,6 +22,21 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
                 '#microsoft.graph.phoneAuthenticationMethod' { 
                     Remove-MgUserAuthenticationPhoneMethod -UserId $uid -PhoneAuthenticationMethodId $method.Id
                 }
+                '#microsoft.graph.fido2AuthenticationMethod' { 
+                    Remove-MgUserAuthenticationFido2Method -UserId $uid -Fido2AuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.softwareOathAuthenticationMethod' { 
+                    Remove-MgUserAuthenticationSoftwareOathMethod -UserId $uid -SoftwareOathAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.temporaryAccessPassAuthenticationMethod' { 
+                    Remove-MgUserAuthenticationTemporaryAccessPassMethod -UserId $uid -TemporaryAccessPassAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.windowsHelloForBusinessAuthenticationMethod' { 
+                    Remove-MgUserAuthenticationWindowsHelloForBusinessMethod -UserId $uid -WindowsHelloForBusinessAuthenticationMethodId $method.Id
+                }
+                '#microsoft.graph.microsoftAuthenticatorAuthenticationMethod' { 
+                    Remove-MgUserAuthenticationMicrosoftAuthenticatorMethod -UserId $uid -MicrosoftAuthenticatorAuthenticationMethodId $method.Id
+                }
                 Default {
                     
                 }
@@ -49,10 +64,6 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
             }
         }
         catch {}
-   
-        if($null -ne $methods){
-            $methods = Get-MgUserAuthenticationMethod -UserId $userId
-        }
     }
 }
 
