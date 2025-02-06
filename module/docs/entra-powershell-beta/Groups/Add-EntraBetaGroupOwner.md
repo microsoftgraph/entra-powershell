@@ -2,7 +2,6 @@
 title: Add-EntraBetaGroupOwner
 description: This article provides details on the Add-EntraBetaGroupOwner command.
 
-
 ms.topic: reference
 ms.date: 06/17/2024
 ms.author: eunicewaweru
@@ -20,24 +19,27 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds an owner to a group.
+Add a user or service principal as an owner of a Microsoft 365 or security group.
 
 ## Syntax
 
 ```powershell
 Add-EntraBetaGroupOwner
  -GroupId <String>
- -RefObjectId <String>
+ -OwnerId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
+The `Add-EntraBetaGroupOwner` cmdlet adds a user or service principal as an owner of a Microsoft 365 or security group. Owners can modify the group.
 
-`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
 
-`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group (user or service principal).
+- Group owners
+- User Administrator
+- Directory Writers
+- Groups Administrator
 
 ## Examples
 
@@ -47,12 +49,7 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
-$params = @{
-    GroupId = $group.ObjectId
-    RefObjectId = $user.ObjectId
-}
-
-Add-EntraBetaGroupOwner @params
+Add-EntraBetaGroupOwner -GroupId $group.Id -OwnerId $user.Id
 ```
 
 This example demonstrates how to add an owner to a group.
@@ -75,14 +72,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -OwnerId
 
-Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.
+Specifies the Object ID of a user or service principal to assign as a group owner.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named
