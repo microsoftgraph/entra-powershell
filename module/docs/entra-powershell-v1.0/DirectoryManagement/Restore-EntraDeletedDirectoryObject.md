@@ -2,7 +2,6 @@
 title: Restore-EntraDeletedDirectoryObject
 description: This article provides details on the Restore-EntraDeletedDirectoryObject command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -57,8 +56,9 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ### Example 1: Restore a deleted object with ID
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'AdministrativeUnit.ReadWrite.All', 'Application.ReadWrite.All', 'Group.ReadWrite.All'  
-Restore-EntraDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'AdministrativeUnit.ReadWrite.All', 'Application.ReadWrite.All', 'Group.ReadWrite.All'
+$deletedUser = Get-EntraDeletedUser -Filter "DisplayName eq 'Adele Vance'"
+Restore-EntraDeletedDirectoryObject -Id $deletedUser.Id
 ```
 
 ```Output
@@ -75,7 +75,8 @@ This example shows how to restore a deleted object in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Restore-EntraDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -AutoReconcileProxyConflict
+$deletedUser = Get-EntraDeletedUser -Filter "DisplayName eq 'Adele Vance'"
+Restore-EntraDeletedDirectoryObject -Id $deletedUser.Id -AutoReconcileProxyConflict
 ```
 
 ```Output
