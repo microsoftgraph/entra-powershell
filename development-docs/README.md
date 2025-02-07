@@ -1,4 +1,4 @@
-# Entra PowerShell Developer Guide
+# Microsoft Entra PowerShell Developer Guide
 
 The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra PowerShell cmdlets. It provides information on setting up your environment, implementing cmdlets, creating and running tests, and writing cmdlet documentation.
 
