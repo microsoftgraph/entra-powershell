@@ -3,7 +3,7 @@ title: Remove-EntraBetaAdministrativeUnit
 description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
 
 ms.topic: reference
-ms.date: 07/03/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -48,6 +48,15 @@ Remove-EntraBetaAdministrativeUnit -AdministrativeUnitId $administrativeUnit.Id
 This command removes the specified administrative unit from Microsoft Entra ID.
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+
+### Example 2: Remove an administrative unit through pipelining
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'" | Remove-EntraBetaAdministrativeUnit
+```
+
+This command removes the specified administrative unit from Microsoft Entra ID.
 
 ## Parameters
 

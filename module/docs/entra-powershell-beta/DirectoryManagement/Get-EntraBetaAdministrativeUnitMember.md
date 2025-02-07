@@ -2,9 +2,8 @@
 title: Get-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
 
-
 ms.topic: reference
-ms.date: 07/04/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -51,17 +50,17 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id |
+Select-Object Id, DisplayName, '@odata.type', createdDateTime
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
+id                                   DisplayName         @odata.type              CreatedDateTime
+--                                   -----------         -----------              ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
+cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
+ffffffff-5555-6666-7777-aaaaaaaaaaaa Contoso Global     #microsoft.graph.group   10/27/2024 6:48:09 AM
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ObjectId.
@@ -73,17 +72,17 @@ This example returns the list of administrative unit members from specified admi
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -All
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -All |
+Select-Object Id, DisplayName, '@odata.type', createdDateTime
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
+id                                   DisplayName         @odata.type              CreatedDateTime
+--                                   -----------         -----------              ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
+cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
+ffffffff-5555-6666-7777-aaaaaaaaaaaa Contoso Global     #microsoft.graph.group   10/27/2024 6:48:09 AM
 ```
 
 This example returns the list of all administrative unit members from specified administrative unit ObjectId.
@@ -95,15 +94,16 @@ This example returns the list of all administrative unit members from specified 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -Top 3
+Get-EntraBetaAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -Top 3 |
+Select-Object Id, DisplayName, '@odata.type', createdDateTime
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
+id                                   DisplayName         @odata.type              CreatedDateTime
+--                                   -----------         -----------              ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
+cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
 ```
 
 This example returns top three administrative unit members from specified administrative unit ObjectId.

@@ -2,9 +2,8 @@
 title: Remove-EntraBetaUserManager
 description: This article provides details on the Remove-EntraBetaUserManager command.
 
-
 ms.topic: reference
-ms.date: 06/20/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,8 +39,7 @@ The `Remove-EntraBetaUserManager` cmdlet removes a user's manager in Microsoft E
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraBetaUser -UserId 'SawyerM@Contoso.com'
-Remove-EntraBetaUserManager -UserId $user.Id
+Remove-EntraBetaUserManager -UserId 'SawyerM@Contoso.com'
 ```
 
 This example shows how to remove a user's manager.

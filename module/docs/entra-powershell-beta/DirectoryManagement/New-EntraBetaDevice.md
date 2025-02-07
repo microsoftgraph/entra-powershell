@@ -2,9 +2,8 @@
 title: New-EntraBetaDevice
 description: This article provides details on the New-EntraBetaDevice command.
 
-
 ms.topic: reference
-ms.date: 08/12/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -51,7 +50,7 @@ The `New-EntraBetaDevice` cmdlet creates a device in Microsoft Entra ID.
 
 In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
 
-- Intune Administrator  
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
@@ -60,6 +59,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All', 'Device.ReadWrite.All'
+$guid = [guid]::NewGuid()
 $newId = New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
 $newId.Key = [System.Text.Encoding]::UTF8.GetBytes('test')
 $newId.type = 2
