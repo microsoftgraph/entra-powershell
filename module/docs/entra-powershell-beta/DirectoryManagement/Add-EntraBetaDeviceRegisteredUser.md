@@ -2,9 +2,8 @@
 title: Add-EntraBetaDeviceRegisteredUser
 description: This article provides details on the Add-EntraBetaDeviceRegisteredUser command.
 
-
 ms.topic: reference
-ms.date: 08/14/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -28,7 +27,7 @@ Adds a registered user for a device.
 ```powershell
 Add-EntraBetaDeviceRegisteredUser
  -DeviceId <String>
- -RefObjectId <String>
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -38,7 +37,7 @@ The `Add-EntraBetaDeviceRegisteredUser` cmdlet adds a registered user for a Micr
 
 In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
 
-- Intune Administrator  
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
@@ -49,13 +48,13 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 Connect-Entra -Scopes 'Device.ReadWrite.All'
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-Add-EntraBetaDeviceRegisteredUser -DeviceId $device.ObjectId -RefObjectId $user.Id
+Add-EntraBetaDeviceRegisteredUser -DeviceId $device.Id -UserId $user.Id
 ```
 
 This example shows how to add a registered user to a device.
 
-- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device Id.
-- `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraBetaUser` to get user Id.
+- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. You can use the command `Get-EntraBetaDevice` to get device Id.
+- `-UserId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. You can use the command `Get-EntraBetaUser` to get user Id.
 
 ## Parameters
 
@@ -75,14 +74,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -UserId
 
 Specifies the ID of the user.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named

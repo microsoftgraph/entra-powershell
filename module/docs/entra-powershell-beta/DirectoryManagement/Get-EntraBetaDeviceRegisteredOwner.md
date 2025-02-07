@@ -2,9 +2,8 @@
 title: Get-EntraBetaDeviceRegisteredOwner
 description: This article provides details on the Get-EntraBetaDeviceRegisteredOwner command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,9 +39,9 @@ The `Get-EntraBetaDeviceRegisteredOwner` cmdlet gets the registered owner of a d
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
 
-- Directory Readers  
-- Global Reader  
-- Intune Administrator  
+- Directory Readers
+- Global Reader
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
@@ -52,13 +51,16 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId
+Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.Id |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
+cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
 This example shows how to find the registered owner of a device..
@@ -70,14 +72,16 @@ This example shows how to find the registered owner of a device..
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId -All 
+Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.Id -All |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
+cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
 This command retrieves all the registered owners of a device.
@@ -89,13 +93,15 @@ This command retrieves all the registered owners of a device.
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
-Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId -Top 1
+Get-EntraBetaDeviceRegisteredOwner -DeviceId $device.ObjectId -Top 1 |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
 ```
 
 This command retrieves all the registered owners of a device.
@@ -141,7 +147,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: System.Int32  
+Type: System.Int32
 Parameter Sets: (All)
 Aliases: Limit
 

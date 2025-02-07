@@ -2,9 +2,8 @@
 title: Remove-EntraApplicationOwner
 description: This article provides details on the Remove-EntraApplicationOwner command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -41,7 +40,6 @@ The `Remove-EntraApplicationOwner` cmdlet removes an owner from an application i
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraApplicationOwner @params
 $application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 $owner = Get-EntraApplicationOwner -ApplicationId $application.Id | Where-Object {$_.userPrincipalName -eq 'SawyerM@contoso.com'}
 Remove-EntraApplicationOwner -ApplicationId $application.Id -OwnerId $owner.Id

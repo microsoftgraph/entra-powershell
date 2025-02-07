@@ -2,9 +2,8 @@
 title: Add-EntraApplicationOwner
 description: This article provides details on the Add-EntraApplicationOwner command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,13 +26,13 @@ Adds an owner to an application.
 ```powershell
 Add-EntraApplicationOwner
  -ApplicationId <String>
- -RefObjectId <String>
+ -OwnerId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
+The `Add-EntraApplicationOwner` adds an owner to a Microsoft Entra ID application. Only individual users are supported.
 
 ## Examples
 
@@ -43,13 +42,13 @@ The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID app
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraApplicationOwner -ApplicationId $application.Id -RefObjectId $user.Id
+Add-EntraApplicationOwner -ApplicationId $application.Id -OwnerId $user.Id
 ```
 
 This example demonstrates how to add an owner to an application in Microsoft Entra ID.
 
 - `-ApplicationId` parameter specifies the ID of an application.
-- `-RefObjectId` parameter specifies the ID of a user.
+- `-OwnerId` parameter specifies the ID of a user.
 
 ## Parameters
 
@@ -69,14 +68,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -OwnerId
 
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named

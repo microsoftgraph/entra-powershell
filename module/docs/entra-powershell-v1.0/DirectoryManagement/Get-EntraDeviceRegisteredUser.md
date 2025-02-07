@@ -2,9 +2,8 @@
 title: Get-EntraDeviceRegisteredUser
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,9 +39,9 @@ The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsof
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
 
-- Directory Readers  
-- Global Reader  
-- Intune Administrator  
+- Directory Readers
+- Global Reader
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
@@ -52,13 +51,16 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
-Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
+Get-EntraDeviceRegisteredUser -DeviceId $device.Id |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-id                                   displayName   userPrincipalName                 @odata.type       
---                                   -----------   -----------------                 -----------       
-bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
+cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
@@ -68,13 +70,16 @@ This example demonstrates how to retrieve registered user for a specific Microso
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
-Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -All | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
+Get-EntraDeviceRegisteredUser -DeviceId $device.Id -All |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-id                                   displayName   userPrincipalName                 @odata.type       
---                                   -----------   -----------------                 -----------       
-bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
+cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
 This example demonstrates how to retrieve all registered users for a specified device.
@@ -86,13 +91,16 @@ This example demonstrates how to retrieve all registered users for a specified d
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
-Get-EntraDeviceRegisteredUser -DeviceId $device.ObjectId -Top 2 | Select-Object Id, DisplayName, userPrincipalName, '@odata.type'
+Get-EntraDeviceRegisteredUser -DeviceId $device.Id -Top 2 |
+Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
+Format-Table -AutoSize
 ```
 
 ```Output
-id                                   displayName   userPrincipalName                 @odata.type       
---                                   -----------   -----------------                 -----------       
-bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller SawyerM@contoso.com              #microsoft.graph.user
+id                                   DisplayName      UserPrincipalName         CreatedDateTime       UserType AccountEnabled
+--                                   -----------      -----------------         ---------------       -------- --------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
+cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
 This example demonstrates how to retrieve top two registered users for the specified device.
@@ -138,7 +146,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: System.Int32 
+Type: System.Int32
 Parameter Sets: (All)
 Aliases: Limit
 

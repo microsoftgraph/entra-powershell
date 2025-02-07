@@ -2,9 +2,8 @@
 title: Add-EntraDeviceRegisteredOwner
 description: This article provides details on the Add-EntraDeviceRegisteredOwner command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,7 +26,7 @@ Adds a registered owner for a device.
 ```powershell
 Add-EntraDeviceRegisteredOwner
  -DeviceId <String>
- -RefObjectId <String>
+ -OwnerId <String>
  [<CommonParameters>]
 ```
 
@@ -37,24 +36,24 @@ The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Micros
 
 In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
 
-- Intune Administrator  
+- Intune Administrator
 - Windows 365 Administrator
 
 ## Examples
 
-### Example 1: Add a user as a registered user
+### Example 1: Add a user as a registered owner
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
-Add-EntraDeviceRegisteredOwner -DeviceId $device.ObjectId -RefObjectId $user.Id
+Add-EntraDeviceRegisteredOwner -DeviceId $device.Id -OwnerId $user.Id
 ```
 
 This example shows how to add a registered user to a device.
 
-- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraDevice` to get device Id.
-- `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraUser` to get user Id.
+- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. You can use the command `Get-EntraDevice` to get device Id.
+- `-OwnerId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. You can use the command `Get-EntraUser` to get user Id.
 
 ## Parameters
 
@@ -74,14 +73,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -OwnerId
 
 Specifies the ID of the Active Directory object to add.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named

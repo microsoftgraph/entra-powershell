@@ -2,9 +2,8 @@
 title: Remove-EntraUserManager
 description: This article provides details on the Remove-EntraUserManager command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -39,8 +38,7 @@ The `Remove-EntraUserManager` cmdlet removes a user's manager in Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraUser -UserId 'SawyerM@Contoso.com'
-Remove-EntraUserManager -UserId $user.Id
+Remove-EntraUserManager -UserId 'SawyerM@Contoso.com'
 ```
 
 This example shows how to remove a user's manager.
