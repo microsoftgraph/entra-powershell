@@ -2,9 +2,8 @@
 title: Add-EntraAdministrativeUnitMember
 description: This article provides details on the Add-EntraAdministrativeUnitMember command.
 
-
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,7 +26,7 @@ Adds an administrative unit member.
 
 ```powershell
 Add-EntraAdministrativeUnitMember
- -RefObjectId <String>
+ -MemberId <String>
  -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```
@@ -38,7 +37,9 @@ The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID adminis
 
 Administrative units enable more granular management of permissions and access, particularly in large organizations or where administrative responsibilities are divided across departments or regions.
 
-To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
+In delegated scenarios, adding a user, group, or device to an administrative unit requires:
+
+- Privileged Role Administrator
 
 ## Examples
 
@@ -48,13 +49,41 @@ To add a user, group, or device to an administrative unit, the calling principal
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -RefObjectId $user.Id
+Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $user.Id
 ```
 
 This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraUser` to find the user ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+
+### Example 2: Add a group to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$group = Get-EntraGroup -SearchString 'Sales and Marketing'
+Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $group.Id
+```
+
+This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraGroup` to find the group ID.
+
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+
+### Example 3: Add a device to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$device = Get-EntraDevice -SearchString 'ContosoDesktop01'
+Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $device.Id
+```
+
+This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraDevice` to find the device ID.
+
+- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
+- `MemberId` parameter specifies the ID of the device you want to add as a member of the administrative unit.
 
 ## Parameters
 
@@ -74,14 +103,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -MemberId
 
 Specifies the unique ID of the specific Microsoft Entra ID object that are as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named
@@ -103,5 +132,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
+
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
+
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)

@@ -9,7 +9,7 @@ function Restore-EntraDeletedApplication {
         [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
         [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )

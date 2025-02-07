@@ -3,7 +3,7 @@ title: Get-EntraBetaUserMembership
 description: This article provides details on the Get-EntraBetaUserMembership command.
 
 ms.topic: reference
-ms.date: 06/20/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -58,34 +58,7 @@ Id                                   displayName                         created
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
 
-### Example 2: Get user memberships with additional details
-
-```powershell
-Connect-Entra -Scopes 'User.Read'
-$userMemberships = Get-EntraBetaUserMembership -ObjectId 'SawyerM@contoso.com'
-$membershipDetails = $userMemberships | ForEach-Object {
-    $membershipDetail = Get-EntraBetaObjectByObjectId -ObjectIds $_.Id
-    [PSCustomObject]@{
-        odataType   = $membershipDetail.'@odata.type'
-        displayName = $membershipDetail.displayName
-        Id          = $membershipDetail.Id
-    }
-}
-$membershipDetails | Select-Object odataType, displayName, Id
-```
-
-```Output
-odataType                      displayName                         Id
----------                      -----------                         --
-#microsoft.graph.group         Contoso Group                       33dd33dd-ee44-ff55-aa66-77bb77bb77bb
-#microsoft.graph.group         Helpdesk Group                      55ff55ff-aa66-bb77-cc88-99dd99dd99dd
-#microsoft.graph.directoryRole Attribute Assignment Reader         22cc22cc-dd33-ee44-ff55-66aa66aa66aa
-#microsoft.graph.directoryRole Attribute Definition Reader         11bb11bb-cc22-dd33-ee44-55ff55ff55ff
-```
-
-This example demonstrates how to retrieve user memberships in Microsoft Entra ID with more lookup details.
-
-### Example 3: Get All memberships
+### Example 2: Get All memberships
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
@@ -104,7 +77,7 @@ Id                                   displayName                         created
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
 
-### Example 4: Get top three memberships
+### Example 3: Get top three memberships
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
@@ -123,11 +96,11 @@ Id                                   displayName                         created
 
 This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
 
-### Example 5: List groups that Sawyer Miller is a member of
+### Example 4: List groups that Sawyer Miller is a member of
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' | 
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' |
 Where-Object { $_.'@odata.type' -eq '#microsoft.graph.group' } |
 Select-Object Id, displayName, createdDateTime, groupTypes, securityEnabled, visibility, '@odata.type' |
 Format-Table -AutoSize
@@ -141,7 +114,45 @@ Id                                   displayName                         created
 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Leadership                          2024-10-07T00:43:53Z {Unified}             True Private    #microsoft.graph.group
 ```
 
-This example shows how to retrieve the groups a user belongs to. You can also use `Get-EntraBetaUserGroup -UserId 'SawyerM@contoso.com'` to achieve the same result.
+This example retrieves the groups a user belongs to. You can also use [Get-EntraBetaUserGroup](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetausergroup) for the same result.
+
+### Example 5: List a user's directory roles
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' |
+Where-Object { $_.'@odata.type' -eq '#microsoft.graph.directoryRole' } |
+Select-Object Id, displayName, Description, RoleTemplateId, '@odata.type' |
+Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName               Description                                                                                                     RoleTemplateId                       @odata.type
+--                                   -----------               -----------                                                                                                     --------------                       -----------
+bbbbbbbb-1111-2222-3333-ccccccccccc  Helpdesk Administrator    Can reset passwords for non-administrators and Helpdesk Administrators.                                        729827e3-9c14-49f7-bb1b-9608f156bbb8 #microsoft.graph.directoryRole
+dddddddd-3333-4444-5555-eeeeeeeeeeee Guest Inviter             Can invite guest users independent of the 'members can invite guests' setting.                                 95e79109-95c0-4d8e-aee3-d01accf2d47b #microsoft.graph.directoryRole
+```
+
+This example lists a user's assigned directory roles. You can also use [Get-EntraBetaUserRole](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetauserrole) for the same result.
+
+### Example 6: List a user's administrative units
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserMembership -UserId 'SawyerM@contoso.com' |
+Where-Object { $_.'@odata.type' -eq '#microsoft.graph.administrativeUnit' } |
+Select-Object Id, displayName, Description, MembershipRule, MembershipType, Visibility |
+Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName                     Description                     MembershipRule MembershipType Visibility
+--                                   -----------                     -----------                     -------------- -------------- ----------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Admin Unit              Pacific Administrative Unit
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit Engineering Admin Unit
+```
+
+This example lists a user's administrative units. You can also use [Get-EntraBetaUserAdministrativeUnit](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetauseradministrativeunit) for the same result.
 
 ## Parameters
 
