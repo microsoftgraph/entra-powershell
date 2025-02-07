@@ -3,7 +3,7 @@ title: Get-EntraBetaDeletedDirectoryObject
 description: This article provides details on the Get-EntraBetaDeletedDirectoryObject command.
 
 ms.topic: reference
-ms.date: 08/06/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

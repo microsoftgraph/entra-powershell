@@ -3,7 +3,7 @@ title: Get-EntraBetaAuditDirectoryLog
 description: This article provides details on the Get-EntraBetaAuditDirectoryLog command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
