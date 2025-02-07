@@ -2,9 +2,8 @@
 title: Get-EntraContext
 description: This article provides details on the Get-EntraContext command.
 
-
 ms.topic: reference
-ms.date: 07/12/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutung
 manager: CelesteDG
@@ -34,7 +33,7 @@ Get-EntraContext
 
 ## Description
 
-`Get-EntraContext` is used to retrieve the details about your current session, which include:  
+`Get-EntraContext` is used to retrieve the details about your current session, which include:
 
 - ClientID
 - TenantID
@@ -61,6 +60,8 @@ Get-EntraContext
 ```
 
 ```Output
+EntraPSModuleName     : Microsoft.Entra
+EntraPSVersion        : 1.0.1
 ClientId              : 11112222-bbbb-3333-cccc-4444dddd5555
 TenantId              : aaaabbbb-0000-cccc-1111-dddd2222eeee
 CertificateThumbprint :
@@ -73,7 +74,7 @@ AppName               : Microsoft Graph PowerShell
 ContextScope          : CurrentUser
 Certificate           :
 PSHostVersion         : 5.1.17763.1
-ClientTimeout         : 00:05:00                                                                                   
+ClientTimeout         : 00:05:00
 ```
 
 This example demonstrates how to retrieve the details of the current session.
@@ -94,7 +95,7 @@ Organization.Read.All
 profile
 RoleManagement.ReadWrite.Directory
 User.Read
-User.ReadWrite.All                                                                                     
+User.ReadWrite.All
 ```
 
 Retrieves all scopes.

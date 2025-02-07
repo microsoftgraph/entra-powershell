@@ -2,9 +2,8 @@
 title: Remove-EntraBetaContact
 description: This article provides details on the Remove-EntraBetaContact command.
 
-
 ms.topic: reference
-ms.date: 08/14/2024
+ms.date: 02/05/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -43,6 +42,15 @@ The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'"
 Remove-EntraBetaContact -OrgContactId $contact.Id
+```
+
+The example shows how to remove a contact.
+
+### Example 2: Remove a contact through pipelining
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'" | Remove-EntraBetaContact
 ```
 
 The example shows how to remove a contact.
