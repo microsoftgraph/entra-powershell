@@ -39,11 +39,9 @@ function Confirm-EntraViralTenant {
 
             if ($response.NameSpaceType -eq "Managed") {
                 $IsViralTenant = $false
-                Write-Output "The domain for $UserEmail is associated with a managed Microsoft Entra ID tenant."
             }
             elseif ($response.NameSpaceType -eq "Federated") {
                 $IsViralTenant = $false
-                Write-Output "The domain for $UserEmail is federated and not viral."
             }
             elseif ($response.NameSpaceType -eq "Unknown") {
                 $IsViralTenant = $false
