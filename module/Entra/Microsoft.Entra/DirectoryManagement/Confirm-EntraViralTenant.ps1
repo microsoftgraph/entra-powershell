@@ -40,16 +40,16 @@ function Confirm-EntraViralTenant {
             Write-Host "Response: $response"
 
             # Parse the response
-            if ($response.account_type -eq "Managed" -and $response.is_viral_tenant -eq $true) {
+            if ($response.NameSpaceType -eq "Managed" -and $response.is_viral_tenant -eq $true) {
                 Write-Output "The domain for $UserEmail is associated with a viral (unmanaged) Microsoft Entra ID tenant."
             }
-            elseif ($response.account_type -eq "Managed") {
+            elseif ($response.NameSpaceType -eq "Managed") {
                 Write-Output "The domain for $UserEmail is associated with a managed Microsoft Entra ID tenant."
             }
-            elseif ($response.account_type -eq "Federated") {
+            elseif ($response.NameSpaceType -eq "Federated") {
                 Write-Output "The domain for $UserEmail is federated and not viral."
             }
-            elseif ($response.account_type -eq "Unknown") {
+            elseif ($response.NameSpaceType -eq "Unknown") {
                 Write-Output "The domain for $UserEmail is unknown or not associated with any tenant."
             }
             else {
@@ -92,8 +92,8 @@ function Confirm-EntraViralTenant {
             Write-Host "Response: $response"
 
             # Parse the response and ensure its integrity
-            if ($response -and $response.account_type) {
-                switch ($response.account_type) {
+            if ($response -and $response.NameSpaceType) {
+                switch ($response.NameSpaceType) {
                     "Managed" {
                         if ($response.is_viral_tenant -eq $true) {
                             Write-Output "The domain for $UserEmail is associated with a viral (unmanaged) Microsoft Entra ID tenant."
