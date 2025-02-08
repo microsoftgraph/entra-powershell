@@ -21,7 +21,9 @@ function Get-EntraUserRealm {
     process {
         foreach ($user in $UserIds) {
             $baseUri = 'https://login.microsoftonline.com/common/userrealm/'
-            $uriUserRealm = "$baseUri/$($user)?$ApiVersion"
+            Write-Output  $baseUri
+            $uriUserRealm = "$baseUri/$($user)?api-version=$ApiVersion"
+            Write-Output  $uriUserRealm
             $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uriUserRealm
             Write-Output $Result
         }
