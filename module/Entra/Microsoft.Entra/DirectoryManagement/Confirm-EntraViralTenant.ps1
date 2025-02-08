@@ -20,7 +20,16 @@ function Confirm-EntraViralTenant {
             }
 
             # Build the URI for user realm discovery
-            $uri = "https://login.microsoftonline.com/common/userrealm/$UserEmail?api-version=2.1"
+            $uriBuilder = New-Object System.UriBuilder "https://login.microsoftonline.com/common/userrealm/$UserEmail"
+                
+            # Add the query string for the API version
+            if (![string]::IsNullOrWhiteSpace($uriBuilder.Query)) {
+                $uriBuilder.Query = $uriBuilder.Query.TrimStart('?') + "&api-version=$ApiVersion"
+            }
+            else {
+                $uriBuilder.Query = "api-version=$ApiVersion"
+            }
+            $uri = $uriBuilder.Uri.AbsoluteUri
 
             Write-Host "URI: $uri"
 
