@@ -26,6 +26,7 @@ function Get-EntraUserRealm {
                 $uriBuilder = New-Object System.UriBuilder "https://login.microsoftonline.com/common/userrealm/$user"
                 $uriBuilder.Query = [System.Web.HttpUtility]::ParseQueryString("api-version=$ApiVersion")
                 $uri = $uriBuilder.Uri.AbsoluteUri
+                Write-Host "URI value:  $uri"
                 $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uri
                 Write-Output $Result
             }
