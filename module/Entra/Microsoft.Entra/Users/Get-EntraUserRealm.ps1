@@ -19,15 +19,10 @@ function Get-EntraUserRealm {
     )
 
     process {
-        foreach ($_User in $UserIds) {
-            $uriUserRealm = New-Object System.UriBuilder 'https://login.microsoftonline.com/common/userrealm'
-            $uriUserRealm.Query = ConvertTo-QueryString @{
-                'api-version'              = $ApiVersion
-                'checkForMicrosoftAccount' = $CheckForMicrosoftAccount
-                'user'                     = $_User
-            }
-
-            $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uriUserRealm.Uri.AbsoluteUri
+        foreach ($user in $UserIds) {
+            $baseUri = 'https://login.microsoftonline.com/common/userrealm/'
+            $uriUserRealm = "$baseUri/$($user)?$ApiVersion"
+            $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uriUserRealm
             Write-Output $Result
         }
     }
