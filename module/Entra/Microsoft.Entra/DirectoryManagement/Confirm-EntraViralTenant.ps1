@@ -14,6 +14,7 @@ function Confirm-EntraViralTenant {
 
     process {
         try {
+            $ApiVersion = "2.1"
             # Validate email address format (defense in depth)
             if (-not $UserEmail -or -not $UserEmail.Contains("@")) {
                 throw "Invalid email address format: $UserEmail"
