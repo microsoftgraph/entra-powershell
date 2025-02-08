@@ -10,9 +10,11 @@ function Get-EntraUserRealm {
         [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true, HelpMessage = 'A list of UserIds or User Principal Names')]
         [ValidateNotNullOrEmpty()]
         [string[]] $UserIds,
+
         # Check For Microsoft Account
         [Parameter(Mandatory = $false, HelpMessage = 'Check for Microsoft Account')]
         [switch] $CheckForMicrosoftAccount,
+
         # API Version
         [Parameter(Mandatory = $false, HelpMessage = 'API Version, will default to 2.1')]
         [string] $ApiVersion = '2.1'
@@ -20,12 +22,16 @@ function Get-EntraUserRealm {
 
     process {
         foreach ($user in $UserIds) {
-            $baseUri = 'https://login.microsoftonline.com/common/userrealm/'
-            Write-Output  $baseUri
-            $uriUserRealm = "$baseUri/$($user)?api-version=$ApiVersion"
-            Write-Output  $uriUserRealm
-            $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uriUserRealm
-            Write-Output $Result
+            try {
+                $uriBuilder = New-Object System.UriBuilder "https://login.microsoftonline.com/common/userrealm/$user"
+                $uriBuilder.Query = [System.Web.HttpUtility]::ParseQueryString("api-version=$ApiVersion")
+                $uri = $uriBuilder.Uri.AbsoluteUri
+                $Result = Invoke-RestMethod -UseBasicParsing -Method Get -Uri $uri
+                Write-Output $Result
+            }
+            catch {
+                Write-Error "Failed to retrieve user realm information for $user $_"
+            }
         }
     }
 }
