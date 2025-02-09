@@ -43,6 +43,12 @@ jobs:
               ArtifactName: "drop"
               publishLocation: "Container"
 
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: '$(Pipeline.Workspace)'
+              artifact: 'symbols'
+              publishLocation: 'pipeline'
+
           - task: NuGetCommand@2
             displayName: Publish NuGet to preview feed
             inputs:
@@ -50,5 +56,18 @@ jobs:
               packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
               publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
               allowPackageConflicts: true
+
+          - task: PublishSymbols@2
+            displayName: Publish Symbols
+            inputs:
+              SymbolsFolder: '$(Build.ArtifactStagingDirectory)'
+              SearchPattern: '**/Microsoft.Graph.Entra.*.snupkg'
+              IndexSources: true
+              PublishSymbols: true
+              SymbolServerType: 'TeamServices'
+              SymbolExpirationInDays: '36530'
+              IndexableFileFormats: 'Default'
+              DetailedLog: true
+              SymbolsArtifactName: 'Symbols_$(BuildConfiguration)'
 
       - template: ./common-templates/security-post-checks.yml
