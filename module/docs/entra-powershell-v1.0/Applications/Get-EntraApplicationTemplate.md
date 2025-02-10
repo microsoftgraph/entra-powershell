@@ -133,6 +133,21 @@ This command gets an application template object for the specific application te
 
 - `-Id` Specifies the unique identifier of an application template.
 
+### Example 6: Get application templates in the CRM category
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate -Filter "Categories/any(c:c eq 'crm')" -Select Id, DisplayName, Publisher, Categories
+```
+
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+```
+
+This example shows how to retrieve application templates in the CRM category.
+
 ## Parameters
 
 ### -Id
