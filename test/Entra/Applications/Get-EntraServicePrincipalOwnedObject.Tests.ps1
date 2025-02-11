@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,14 +11,14 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{              
-              "Id"                           = "111cc9b5-fce9-485e-9566-c68debafac5f"
-              "DeletedDateTime"              = $null
-              "AdditionalProperties"         = @{
-                                                    accountEnabled = $true;
-                                                    appDisplayName = "ToGraph_443democc3c"
-                                                    servicePrincipalType = "Application"
-                                                }
-              "Parameters"                  = $args
+                "Id"                   = "111cc9b5-fce9-485e-9566-c68debafac5f"
+                "DeletedDateTime"      = $null
+                "AdditionalProperties" = @{
+                    accountEnabled       = $true;
+                    appDisplayName       = "ToGraph_443democc3c"
+                    servicePrincipalType = "Application"
+                }
+                "Parameters"           = $args
             }
         )
     }
@@ -44,7 +44,7 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId'*"
         }
         It "Should fail when ServicePrincipalId is null" {
-            { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
+            { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
         It "Should return all Owned Objects" {
             $result = Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All
@@ -88,7 +88,8 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraServicePrincipalOwnedObject -ServicePrincipalId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
