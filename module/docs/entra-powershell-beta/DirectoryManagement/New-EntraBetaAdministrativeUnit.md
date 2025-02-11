@@ -53,9 +53,14 @@ New-EntraBetaAdministrativeUnit -DisplayName 'TestAU'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName Visibility
---------------- --                                   ----------- ----------- ----------
-                bbbbbbbb-1111-2222-3333-cccccccccccc             TestAU
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : TestAU
+description                   :
+isMemberManagementRestricted  :
+membershipRule                :
+membershipRuleProcessingState :
+membershipType                :
+visibility                    :
 ```
 
 This example demonstrates how to create an administrative unit.
@@ -70,9 +75,14 @@ New-EntraBetaAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Desc
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
---------------- --                                   ----------- ----------- ---------------------------- ----------
-                bbbbbbbb-1111-2222-3333-cccccccccccc Pacific Administrative Unit     test111     False
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : Pacific Administrative Unit
+description                   : Administrative Unit for Pacific region
+isMemberManagementRestricted  :
+membershipRule                :
+membershipRuleProcessingState :
+membershipType                :
+visibility                    :
 ```
 
 This example demonstrates how to create an administrative unit.
@@ -98,9 +108,14 @@ New-EntraBetaAdministrativeUnit `
 ```
 
 ```Output
-DeletedDateTime Id                                   Description                                       DisplayName                        Visibility
---------------- --                                   -----------                                       -----------                        ----------
-                bbbbbbbb-1111-2222-3333-cccccccccccc Seattle district technical schools administration Seattle District Technical Schools HiddenMembership
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : Chester District Schools
+description                   : Chester District schools administration
+isMemberManagementRestricted  :
+membershipRule                : (user.country -eq "Australia")
+membershipRuleProcessingState : On
+membershipType                : Dynamic
+visibility                    : HiddenMembership
 ```
 
 This example demonstrates how to create an administrative unit with detailed configuration information.
