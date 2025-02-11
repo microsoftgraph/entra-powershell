@@ -67,7 +67,8 @@ function New-EntraBetaAdministrativeUnit {
         $filteredResponse = $response | Select-Object -Property Id, DisplayName, Description, IsMemberManagementRestricted, MembershipRule, MembershipRuleProcessingState, MembershipType, Visibility
         $filteredResponse
 
-        <#         $auList = @()
+        <#
+        $auList = @()
         foreach ($data in $response) {
             $auType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit
             $data.PSObject.Properties | ForEach-Object {
@@ -77,6 +78,7 @@ function New-EntraBetaAdministrativeUnit {
             }
             $auList += $auType
         }
-        $auList #>
+        $auList 
+        #>
     }
 }
