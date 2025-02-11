@@ -2,9 +2,8 @@
 title: Confirm-EntraBetaDomain
 description: This article provides details on the Confirm-EntraBetaDomain command.
 
-
 ms.topic: reference
-ms.date: 08/08/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -35,7 +34,9 @@ Confirm-EntraBetaDomain
 
 The `Confirm-EntraBetaDomain` cmdlet validates the ownership of an Microsoft Entra ID domain.
 
-The work or school account needs to belong to at least the **Domain Name Administrator** Microsoft Entra role.
+For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- Domain Name Administrator
 
 ## Examples
 

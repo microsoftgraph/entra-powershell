@@ -11,11 +11,11 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "value"= @{
-                    "DisplayName"     = "demo"
-                    "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                    "@odata.type"     = "#microsoft.graph.user"
-                    "Description"     = "test"
+                "value" = @{
+                    "DisplayName" = "demo"
+                    "Id"          = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                    "@odata.type" = "#microsoft.graph.user"
+                    "Description" = "test"
                 }
             }
         )
@@ -67,7 +67,7 @@ Describe "Get-EntraGroupMember" {
         } 
 
         It "Property parameter should work" {
-            $result =  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
+            $result = Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
@@ -75,7 +75,7 @@ Describe "Get-EntraGroupMember" {
         }
 
         It "Should fail when Property is empty" {
-             {  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         
         It "Should contain 'User-Agent' header" {
@@ -98,8 +98,9 @@ Describe "Get-EntraGroupMember" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

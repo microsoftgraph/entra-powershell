@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,24 +10,24 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-              "DeletedDateTime"              = $null
-              "AdditionalProperties"         = @{
-                                                    "@odata.type"            = "#microsoft.graph.device"
-                                                    "accountEnabled"         = $true
-                                                    "deviceId"               = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
-                                                    "createdDateTime"        = "2024-01-18T08:50:28Z"
-                                                    "deviceVersion"          = "2"
-                                                    "displayName"            = "Mock-App"
-                                                    "isCompliant"            = $false
-                                                    "isManaged"              = $true
-                                                    "operatingSystem"        = "WINDOWS"
-                                                    "operatingSystemVersion" = "10.0.22621.1700"
-                                                    "physicalIds"            = "[HWID]:h:6825786449406074"
-                                                    "systemLabels"           = @{}
-                                                    "extensionAttributes"    = $null
-                                                 }
-              "Parameters"                   = $args
+                "Id"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+                "DeletedDateTime"      = $null
+                "AdditionalProperties" = @{
+                    "@odata.type"            = "#microsoft.graph.device"
+                    "accountEnabled"         = $true
+                    "deviceId"               = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
+                    "createdDateTime"        = "2024-01-18T08:50:28Z"
+                    "deviceVersion"          = "2"
+                    "displayName"            = "Mock-App"
+                    "isCompliant"            = $false
+                    "isManaged"              = $true
+                    "operatingSystem"        = "WINDOWS"
+                    "operatingSystemVersion" = "10.0.22621.1700"
+                    "physicalIds"            = "[HWID]:h:6825786449406074"
+                    "systemLabels"           = @{}
+                    "extensionAttributes"    = $null
+                }
+                "Parameters"           = $args
             }
         )
     }
@@ -50,7 +50,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             { Get-EntraBetaUserRegisteredDevice -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
         It "Should fail when UserId is invalid" {
-            { Get-EntraBetaUserRegisteredDevice -UserId ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Get-EntraBetaUserRegisteredDevice -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
         It "Should return All user registered devices" {
             $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
@@ -89,12 +89,12 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
             
-            $result =  Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
@@ -111,7 +111,8 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
