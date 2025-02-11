@@ -53,7 +53,7 @@ function New-EntraBetaAdministrativeUnit {
             $body["Visibility"] = $PSBoundParameters["Visibility"]
         }
 
-        $uri = "/beta/directory/administrativeUnits"
+        $uri = "/beta/administrativeUnits"
         $body = $body | ConvertTo-Json
 
         Write-Debug "============================ TRANSFORMATIONS ============================"
