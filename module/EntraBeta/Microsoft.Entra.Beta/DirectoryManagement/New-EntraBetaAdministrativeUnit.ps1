@@ -63,7 +63,10 @@ function New-EntraBetaAdministrativeUnit {
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method POST -Body $body
         $response = $response | ConvertTo-Json | ConvertFrom-Json
 
-        <#         $targetList = @()
+        $filteredResponse = $response | Select-Object -Property Id, DisplayName, Description, IsMemberManagementRestricted, MembershipRule, MembershipRuleProcessingState, MembershipType, Visibility
+        $filteredResponse
+
+        <# $targetList = @()
         foreach ($res in $response) {
             $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
             $res.PSObject.Properties | ForEach-Object {
