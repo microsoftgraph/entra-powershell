@@ -2,9 +2,8 @@
 title: Get-EntraBetaGroupPermissionGrant
 description: This article provides details on the Get-EntraBetaGroupPermissionGrant command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -45,12 +44,12 @@ Get-EntraBetaGroupPermissionGrant -GroupId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 ```Output
-  Id             : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
-  ClientId       : 00001111-aaaa-2222-bbbb-3333cccc4444
-  ClientAppId    : 44445555-eeee-6666-ffff-7777aaaa8888
-  ResourceAppId  : bbbb1111-cc22-3333-44dd-555555eeeeee
-  PermissionType : Application
-  Permission     : Member.Read.Group
+Id             : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
+ClientId       : 00001111-aaaa-2222-bbbb-3333cccc4444
+ClientAppId    : 44445555-eeee-6666-ffff-7777aaaa8888
+ResourceAppId  : bbbb1111-cc22-3333-44dd-555555eeeeee
+PermissionType : Application
+Permission     : Member.Read.Group
 ```
 
 This cmdlet list existing permission grants for the specified group.

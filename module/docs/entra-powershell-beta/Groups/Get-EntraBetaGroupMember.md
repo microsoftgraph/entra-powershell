@@ -3,7 +3,7 @@ title: Get-EntraBetaGroupMember
 description: This article provides details on the Get-EntraBetaGroupMember command.
 
 ms.topic: reference
-ms.date: 06/24/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -55,81 +55,87 @@ To list members of a hidden group, the `Member.Read.Hidden` permission is also r
 
 ## Examples
 
-### Example 1: Get a group member by ID
+### Example 1: Retrieve and Select Group Member Properties
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroup -GroupId $group.Id | Get-EntraBetaGroupMember | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.servicePrincipal
+cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 ```
 
-This example demonstrates how to retrieve group member by ID.
+This example retrieves the members of a specified group by its `GroupId` and selects only the `Id`, `DisplayName` and `@odata.type` properties for each member.
 
-- `-GroupId` Specifies the ID of a group.
+- `-GroupId` specifies the ID of a group.
 
 ### Example 2: Get two group member
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -GroupId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupMember -GroupId $group.Id -Top 2 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-cccccccc-8888-9999-0000-dddddddddddd
-dddddddd-9999-0000-1111-eeeeeeeeeeee
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.servicePrincipal
 ```
 
-This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
+This example demonstrates how to retrieve top two groups from Microsoft Entra ID.
 
-- `-GroupId` specifies the ID of a group. 
+- `-GroupId` specifies the ID of a group.
 
 ### Example 3: Get all members within a group by group ID
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -GroupId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupMember -GroupId $group.Id -All | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
-bbbbbbbb-7777-8888-9999-cccccccccccc
-cccccccc-8888-9999-0000-dddddddddddd
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.servicePrincipal
+cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 ```
 
 This example retrieves all members within a group by group ID.
 
 - `-GroupId` specifies the ID of a group.
 
-### Example 4: Retrieve and Select Group Member Properties
+### Example 4: Get a group member by ID
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -GroupId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupMember -GroupId $group.Id | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-displayName                          @odata.type
------------                          -----------
-test1                                #microsoft.graph.user
-test2                                #microsoft.graph.user
-test2                                #microsoft.graph.servicePrincipal
-test3                                #microsoft.graph.servicePrincipal
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.servicePrincipal
+cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 ```
 
-This example retrieves the members of a specified group by its `GroupId` and selects only the `DisplayName` and `@odata.type` properties for each member.
+This example demonstrates how to retrieve group member by ID.
 
-- `-GroupId` specifies the ID of a group.
+- `-GroupId` Specifies the ID of a group.
 
 ## Parameters
 

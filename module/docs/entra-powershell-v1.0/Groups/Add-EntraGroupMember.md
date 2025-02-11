@@ -2,9 +2,8 @@
 title: Add-EntraGroupMember
 description: This article explains the Add-EntraGroupMember command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -20,20 +19,20 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds a member to a group.
+Add a member to a security or Microsoft 365 group.
 
 ## Syntax
 
 ```powershell
 Add-EntraGroupMember
  -GroupId <String>
- -RefObjectId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Add-EntraGroupMember cmdlet adds a member to a group.
+The `Add-EntraGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
@@ -50,13 +49,13 @@ In delegated scenarios, the signed-in user needs a supported Microsoft Entra rol
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraGroupMember -GroupId $group.Id -RefObjectId $user.Id
+Add-EntraGroupMember -GroupId $group.Id -MemberId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
 
 - `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
-- `-RefObjectId` - Specifies the unique identifier (Object ID) of the member to be added to the group.
+- `-MemberId` - Specifies the unique identifier (Object ID) of the member to be added to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.
 
 ## Parameters
 
@@ -76,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -MemberId
 
-Specifies the ID of the Microsoft Entra ID object that is assigned as an owner, manager, or member.
+Specifies the unique identifier (Object ID) of the member to be added to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named

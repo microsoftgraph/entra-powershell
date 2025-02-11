@@ -33,45 +33,46 @@ Describe "Restore-EntraDeletedDirectoryObject" {
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
-            It "Should return specific MS deleted directory object with AutoReconcileProxyConflict" {
-                $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AutoReconcileProxyConflict
-                $result | Should -Not -BeNullOrEmpty
-                $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        It "Should return specific MS deleted directory object with AutoReconcileProxyConflict" {
+            $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AutoReconcileProxyConflict
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
+        It "Should fail when Id is empty" {
+            { Restore-EntraDeletedDirectoryObject -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        }
+        It "Should fail when Id is invalid" {
+            { Restore-EntraDeletedDirectoryObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        }
+        It "Result should contain Alias properties" {
+            $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
+            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result."@odata.type" |  should -Be "#microsoft.graph.user"
+        }        
+        It "Should contain 'User-Agent' header" {           
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
+            Restore-EntraDeletedDirectoryObject -Id "11112222-bbbb-3333-cccc-4444dddd5555"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
             }
-            It "Should fail when Id is empty" {
-                { Restore-EntraDeletedDirectoryObject -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
-            }
-            It "Should fail when Id is invalid" {
-                { Restore-EntraDeletedDirectoryObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
-            }
-            It "Result should contain Alias properties" {
-                $result = Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
-                $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                $result."@odata.type" |  should -Be "#microsoft.graph.user"
-            }        
-            It "Should contain 'User-Agent' header" {           
-                $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
-               Restore-EntraDeletedDirectoryObject -Id "11112222-bbbb-3333-cccc-4444dddd5555"
-                $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedDirectoryObject"
-                Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
-                    $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                    $true
-                }
-            }
-            It "Should execute successfully without throwing an error " {
-                # Disable confirmation prompts       
-                $originalDebugPreference = $DebugPreference
-                $DebugPreference = 'Continue'
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
-                try {
-                    # Act & Assert: Ensure the function doesn't throw an exception
-                    { Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-                } finally {
-                    # Restore original confirmation preference            
-                    $DebugPreference = $originalDebugPreference        
-                }
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Restore-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
             }
+            finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }    
 

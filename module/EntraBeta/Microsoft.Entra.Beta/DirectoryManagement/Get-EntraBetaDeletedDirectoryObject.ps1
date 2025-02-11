@@ -5,10 +5,11 @@
 function Get-EntraBetaDeletedDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-        [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias('Id')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the directory object.")]
         [System.String] $DirectoryObjectId,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Select")]
         [System.String[]] $Property
     )

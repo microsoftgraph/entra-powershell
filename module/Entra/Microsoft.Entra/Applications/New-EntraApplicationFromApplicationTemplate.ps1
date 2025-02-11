@@ -5,37 +5,39 @@
 function New-EntraApplicationFromApplicationTemplate {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $DisplayName
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The ID of the application template to instantiate.')]
+        [Alias('Id')]
+        [System.String] $ApplicationTemplateId,
+
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The display name of the application.')]
+        [System.String] $DisplayName
     )
 
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["ApplicationTemplateId"] = $PSBoundParameters["Id"]
+        if ($null -ne $PSBoundParameters["ApplicationTemplateId"]) {
+            $params["ApplicationTemplateId"] = $PSBoundParameters["ApplicationTemplateId"]
         }
         if ($null -ne $PSBoundParameters["DisplayName"]) {
             $params["DisplayName"] = $PSBoundParameters["DisplayName"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $body = @{
             displayName = $DisplayName
         }
 
-        $uri = "https://graph.microsoft.com/v1.0/applicationTemplates/$Id/instantiate"
-        $response =  invoke-graphrequest -uri $uri -Headers $customHeaders -Body $body -Method POST | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+        $uri = "https://graph.microsoft.com/v1.0/applicationTemplates/$ApplicationTemplateId/instantiate"
+        $response = Invoke-GraphRequest -uri $uri -Headers $customHeaders -Body $body -Method POST | ConvertTo-Json -Depth 5 | ConvertFrom-Json
         $memberList = @()
-        foreach($data in $response){
+        foreach ($data in $response) {
             $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplicationServicePrincipal
-            if (-not ($data -is [psobject])) {
-                $data = [pscustomobject]@{ Value = $data }
+            if (-not ($data -is [PSObject])) {
+                $data = [PSCustomObject]@{ Value = $data }
             }
             $data.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
@@ -46,5 +48,5 @@ function New-EntraApplicationFromApplicationTemplate {
         }
         $memberList
     }
-}# ------------------------------------------------------------------------------
+}
 

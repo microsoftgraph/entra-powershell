@@ -2,9 +2,8 @@
 title: Get-EntraApplicationTemplate
 description: This article provides details on the Get-EntraApplicationTemplate command.
 
-
 ms.topic: reference
-ms.date: 07/17/2024
+ms.date: 02/17/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -20,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve a list of applicationTemplate objects.
+Retrieve application templates from the Microsoft Entra gallery.
 
 ## Syntax
 
@@ -45,7 +44,7 @@ Get-EntraApplicationTemplate
 
 ## Description
 
-The `Get-EntraApplicationTemplate` cmdlet allows users to get a list of all the application templates or a specific application template.
+The `Get-EntraApplicationTemplate` cmdlet retrieves application templates from the Microsoft Entra gallery.
 
 ## Examples
 
@@ -53,12 +52,70 @@ The `Get-EntraApplicationTemplate` cmdlet allows users to get a list of all the 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationTemplate
+Get-EntraApplicationTemplate -Select Id, DisplayName, Publisher, Categories
 ```
 
-This command gets all the application template objects
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+f447d87b-6e85-481d-90b2-bae3f42cb0f6 {businessMgmt, erp, finance}                     Xledger                                           Xledger Inc
+5979191c-86e6-40f7-87ac-0913dddd1f61 {businessMgmt}                                   FigBytes                                          Figbytes
+00000012-0000-0000-c000-000000000000 {}                                              Microsoft Azure Information Protection            Microsoft Corporation
+```
 
-### Example 2. Gets an application template object
+This command lists all the application template objects.
+
+### Example 2: Get a list of application templates using All parameter
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate -Select Id, DisplayName, Publisher, Categories -All
+```
+
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+f447d87b-6e85-481d-90b2-bae3f42cb0f6 {businessMgmt, erp, finance}                     Xledger                                           Xledger Inc
+5979191c-86e6-40f7-87ac-0913dddd1f61 {businessMgmt}                                   FigBytes                                          Figbytes
+00000012-0000-0000-c000-000000000000 {}                                              Microsoft Azure Information Protection            Microsoft Corporation
+```
+
+This cmdlet retrieves the list of application templates using All parameter.
+
+### Example 3: Get top two deleted application templates
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate -Top 2 -Select Id, DisplayName, Publisher, Categories
+```
+
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+f447d87b-6e85-481d-90b2-bae3f42cb0f6 {businessMgmt, erp, finance}                     Xledger                                           Xledger Inc
+```
+
+This cmdlet retrieves the top two application templates. `Limit` can be used as an alias for `Top`.
+
+### Example 4: Get a list of application templates filtered by display name
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
+```
+
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+```
+
+This example shows how to retrieve application templates with the specified display name.
+
+### Example 5. Get a specific application templates
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -72,9 +129,24 @@ Id                                   Categories                                 
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {businessMgmt, productivity, projectManagement} Cube is perfect for businesses
 ```
 
-This command gets an application template object for the given id.
+This command gets an application template object for the specific application template ID.
 
 - `-Id` Specifies the unique identifier of an application template.
+
+### Example 6: Get application templates in the CRM category
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate -Filter "Categories/any(c:c eq 'crm')" -Select Id, DisplayName, Publisher, Categories
+```
+
+```Output
+Id                                   Categories                                       DisplayName                                       Publisher
+--                                   ----------                                       -----------                                       ---------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt} Dynamics CRM Online                              Microsoft Corporation
+```
+
+This example shows how to retrieve application templates in the CRM category.
 
 ## Parameters
 
@@ -172,3 +244,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[New-EntraApplicationFromApplicationTemplate](New-EntraApplicationFromApplicationTemplate.md)

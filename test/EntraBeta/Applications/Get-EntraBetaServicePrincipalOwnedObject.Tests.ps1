@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -34,14 +34,14 @@ BeforeAll {
             'api'                                    = @{ 'resourceSpecificApplicationPermissions' = @() }
             'appRoles'                               = @(
                 @{
-                    'allowedMemberTypes'          = @('User')
-                    'description'                 = 'msiam_access'
-                    'displayName'                 = 'msiam_access'
-                    'id'                          = '643985ce-3eaf-4a67-9550-ecca25cb6814'
-                    'isEnabled'                   = $true
-                    'origin'                      = 'Application'
-                    'isPreAuthorizationRequired'  = $false
-                    'isPrivate'                   = $false
+                    'allowedMemberTypes'         = @('User')
+                    'description'                = 'msiam_access'
+                    'displayName'                = 'msiam_access'
+                    'id'                         = '643985ce-3eaf-4a67-9550-ecca25cb6814'
+                    'isEnabled'                  = $true
+                    'origin'                     = 'Application'
+                    'isPreAuthorizationRequired' = $false
+                    'isPrivate'                  = $false
                 }
             )
             'info'                                   = @{ 'logoUrl' = 'https://aadcdn.msftauthimages.net/c1c6b6c8-to49lv6wypmt9nbj9h-yeqnpoxuawhueygc1g-lkdu4/appbranding/wpnyxydq3vlekihhtujmmyy8n-0-4cx9y7wm-d9z4q/1033/bannerlogo?ts=638493625239351699' }
@@ -84,7 +84,7 @@ BeforeAll {
                 'resourceSpecificApplicationPermissions' = @{}
                 'verifiedPublisher'                      = @{}
             }
-            "Parameters"                                 = $args
+            "Parameters"                             = $args
         }
     }    
     Mock -CommandName Get-MgBetaServicePrincipalOwnedObject -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
@@ -119,7 +119,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId  are empty" {
-            { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
+            { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
 
         It "Should fail when ServicePrincipalId  is Invalid" {
@@ -134,7 +134,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
         }
 
         It "Should fail when Top are empty" {
-            { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
 
         It "Should fail when Top is Invalid" {
@@ -197,7 +197,8 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId  "bbbbbbbb-1111-2222-3333-cccccccccc40" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -2,9 +2,8 @@
 title: Add-EntraDirectoryRoleMember
 description: This article provides details on the Add-EntraDirectoryRoleMember command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/06/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,7 +26,7 @@ Adds a member to a directory role.
 ```powershell
 Add-EntraDirectoryRoleMember
  -DirectoryRoleId <String>
- -RefObjectId <String>
+ -MemberId <String>
  [<CommonParameters>]
 ```
 
@@ -47,13 +46,13 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $directoryRole = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'"
 $user = Get-EntraUser -UserId 'SawyerM@Contoso.com'
-Add-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -RefObjectId $user.Id
+Add-EntraDirectoryRoleMember -DirectoryRoleId $directoryRole.Id -MemberId $user.Id
 ```
 
 This example adds a member to a directory role.
 
 - `DirectoryRoleId` parameter specifies the ID of the directory role to which the member is added. Use the Get-EntraDirectoryRole command to retrieve the details of the directory role.
-- `RefObjectId` parameter specifies the ID of Microsoft Entra ID object to assign as owner/manager/member.
+- `MemberId` parameter specifies the ID of Microsoft Entra ID object to assign as owner/manager/member.
 
 ## Parameters
 
@@ -73,14 +72,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
+### -MemberId
 
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: RefObjectId
 
 Required: True
 Position: Named

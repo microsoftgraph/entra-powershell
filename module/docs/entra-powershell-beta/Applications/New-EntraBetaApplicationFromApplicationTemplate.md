@@ -1,11 +1,10 @@
 ---
 title: New-EntraBetaApplicationFromApplicationTemplate
-description: This article provides details on the New-EntraBetaApplicationFromApplicationTemplate command.
-
+description: This article provApplicationTemplateIdes details on the New-EntraBetaApplicationFromApplicationTemplate command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 07/10/2024
+ms.date: 02/10/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -14,43 +13,65 @@ author: msewaweru
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Module Name: Microsoft.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaApplicationFromApplicationTemplate
-
 schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationFromApplicationTemplate
 
 ## Synopsis
-Instantiates an application.
+
+Add an instance of an application from the Microsoft Entra gallery to your directory.
 
 ## Syntax
 
-```
-New-EntraBetaApplicationFromApplicationTemplate -Id <String> -DisplayName <ApplicationTemplateDisplayName>
+```powershell
+New-EntraBetaApplicationFromApplicationTemplate
+ -ApplicationTemplateId <String>
+ -DisplayName <ApplicationTemplateDisplayName>
  [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet allows users to create application from application template
+
+The `New-EntraBetaApplicationFromApplicationTemplate` cmdlet adds an instance of an application from the Microsoft Entra gallery to your directory.
+
+For non-gallery apps, use these application template IDs to configure SSO modes like SAML or password-based SSO:
+
+- Global service: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`
+- US government: `4602d0b4-76bb-404b-bca9-2652e1a39c6d`
+- China (21Vianet): `5a532e38-1581-4918-9658-008dc27c1d68`
 
 ## Examples
 
-### 1. Creates an application from application template
-```
-PS C:\> $instantiated_app = New-EntraBetaApplicationTemplate -Id  e8b7b394-057d-4203-a93a-1879c28ece38 -DisplayName bugzilla-copy1
+### Example 1: Creates an application from application template
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy' # Application.ReadWrite.OwnedBy is an app-only permission (non-interactive)
+$applicationTemplate = Get-EntraBetaApplicationTemplate -Filter "DisplayName eq 'SAP Fieldglass'"
+New-EntraBetaApplicationFromApplicationTemplate -ApplicationTemplateId $applicationTemplate.Id -DisplayName 'Contoso SAP App'
 ```
 
-This command instantiates a new application based on application template referenced by the id.
+```Output
+@odata.context                                                                         servicePrincipal
+--------------                                                                         ----------------
+https://graph.microsoft.com/beta/$metadata#microsoft.graph.applicationServicePrincipal @{oauth2PermissionScopes=System.Object[]; servicePrincipalType=Application; displ...}
+```
+
+This command instantiates a new application based on application template referenced by the ID.
+
+- `-ApplicationTemplateId` specifies Application TemplateId.
+- `-DisplayName` specifies application template display name.
 
 ## Parameters
 
-### -Id
-The unique identifier of an object in Azure Active Directory
+### -ApplicationTemplateId
+
+The ID parameter specifies Application TemplateId.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -60,10 +81,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-Application template display name
+
+Application template display name.
 
 ```yaml
-Type: ApplicationTemplateDisplayName
+Type: System.ApplicationTemplateDisplayName
 Parameter Sets: (All)
 Aliases:
 
@@ -75,12 +97,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ### Microsoft.Online.Administration.ApplicationTemplateCopy
+
 ## Notes
+
+Quickstart: [Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal).
+
 ## Related Links
+
+[Get-EntraBetaApplicationTemplate](Get-EntraBetaApplicationTemplate.md)

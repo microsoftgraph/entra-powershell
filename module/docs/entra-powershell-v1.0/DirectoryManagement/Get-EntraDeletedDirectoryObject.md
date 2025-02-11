@@ -2,9 +2,8 @@
 title: Get-EntraDeletedDirectoryObject
 description: This article provides details on the Get-EntraDeletedDirectoryObject command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -39,28 +38,11 @@ Office 365 Groups).
 
 ## Examples
 
-### Example 1: Retrieve a deleted directory object.
+### Example 1: Retrieve a deleted directory object with more details
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
-Get-EntraDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-```
-
-```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
-```
-
-This example shows how to retrieve the deleted directory object from the directory.
-
-- `-DirectoryObjectId` parameter specifies the Id of the directory object to retrieve.
-
-### Example 2: Retrieve a deleted directory object with more details.
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
-Get-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type' -AutoSize
+Get-EntraDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type' -AutoSize
 ```
 
 ```Output
@@ -71,7 +53,14 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Entra PowerShell App #microsoft.graph.appli
 
 This example shows how to retrieve the deleted directory object details from the directory.
 
-- `-Id` parameter specifies the Id of the directory object to retrieve.
+**Note**: You can use the following commands to retrieve specific deleted objects:
+
+- `Get-EntraDeletedUser` - to retrieve deleted users.
+- `Get-EntraDeletedAdministrativeUnit` - to retrieve deleted administrative units.
+- `Get-EntraDeletedApplication` - to retrieve deleted applications.
+- `Get-EntraDeletedDevice` - to retrieve deleted devices.
+- `Get-EntraDeletedGroup` - to retrieve deleted groups.
+- `Get-EntraDeletedServicePrincipal` - to retrieve deleted service principals.
 
 ## Parameters
 
@@ -120,3 +109,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraDeletedAdministrativeUnit](Get-EntraDeletedAdministrativeUnit.md)
+
+[Get-EntraDeletedDevice](Get-EntraDeletedDevice.md)

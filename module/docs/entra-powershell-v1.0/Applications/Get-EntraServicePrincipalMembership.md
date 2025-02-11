@@ -2,9 +2,8 @@
 title: Get-EntraServicePrincipalMembership
 description: This article provides details on the Get-EntraServicePrincipalMembership command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -44,13 +43,13 @@ The `Get-EntraServicePrincipalMembership` cmdlet gets the memberships of a servi
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $servicePrincipal.Id
+Get-EntraServicePrincipalMembership -ServicePrincipalId $servicePrincipal.Id | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-11112222-aaaa-3333-bbbb-4444cccc5555
+Id                                   displayName         @odata.type
+--                                   -----------         -----------
+11112222-aaaa-3333-bbbb-4444cccc5555 Sales and Marketing #microsoft.graph.group
 ```
 
 This cmdlet retrieves a specified service principal memberships in Microsoft Entra ID. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
@@ -62,15 +61,13 @@ This cmdlet retrieves a specified service principal memberships in Microsoft Ent
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -All 
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -All | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-11112222-aaaa-3333-bbbb-4444cccc5555
-22223333-cccc-4444-dddd-5555eeee6666
-33334444-dddd-5555-eeee-6666ffff7777
+Id                                   displayName         @odata.type
+--                                   -----------         -----------
+11112222-aaaa-3333-bbbb-4444cccc5555 Sales and Marketing #microsoft.graph.group
 ```
 
 This command gets all memberships of a specified service principal.
@@ -82,15 +79,13 @@ This command gets all memberships of a specified service principal.
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -Top 2
+Get-EntraServicePrincipalMembership -ServicePrincipalId $ServicePrincipal.Id -Top 2 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-11112222-aaaa-3333-bbbb-4444cccc5555
-22223333-cccc-4444-dddd-5555eeee6666
-
+Id                                   displayName         @odata.type
+--                                   -----------         -----------
+11112222-aaaa-3333-bbbb-4444cccc5555 Sales and Marketing #microsoft.graph.group
 ```
 
 This command gets top two memberships of a specified service principal.

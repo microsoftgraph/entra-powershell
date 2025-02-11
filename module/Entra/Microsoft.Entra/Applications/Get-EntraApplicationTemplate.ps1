@@ -5,16 +5,20 @@
 function Get-EntraApplicationTemplate {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application template.")]
         [System.String] $Id,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Number of records to return.")]
         [Alias("Limit")]
         [System.Int32] $Top,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Return all records.")]
         [switch] $All,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply.")]
         [System.String] $Filter,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to return.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
@@ -69,5 +73,5 @@ function Get-EntraApplicationTemplate {
         }
         $userList
     }
-}# ------------------------------------------------------------------------------
+}
 

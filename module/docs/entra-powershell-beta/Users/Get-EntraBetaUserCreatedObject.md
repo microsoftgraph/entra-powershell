@@ -3,7 +3,7 @@ title: Get-EntraBetaUserCreatedObject
 description: This article provides details on the  Get-EntraBetaUserCreatedObject Command.
 
 ms.topic: reference
-ms.date: 07/25/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -34,7 +34,7 @@ Get-EntraBetaUserCreatedObject
 
 ## Description
 
-The `Get-EntraBetaUserCreatedObject` cmdlet gets objects created by a user in Microsoft Entra ID.
+The `Get-EntraBetaUserCreatedObject` cmdlet retrieves directory objects created by a non-administrator user. Returns an empty object if the user has an admin role.
 
 ## Examples
 
@@ -42,16 +42,13 @@ The `Get-EntraBetaUserCreatedObject` cmdlet gets objects created by a user in Mi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com'
+Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com' | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Id                                   displayName    @odata.type
+--                                   -----------    -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 ```
 
 This example retrieves an object created by the specified user.
@@ -62,16 +59,13 @@ This example retrieves an object created by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com' -All
+Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com' -All | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Id                                   displayName    @odata.type
+--                                   -----------    -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 ```
 
 This example retrieves all objects created by the specified user.
@@ -82,13 +76,13 @@ This example retrieves all objects created by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com' -Top 1
+Get-EntraBetaUserCreatedObject -UserId 'SawyerM@contoso.com' -Top 1 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Id                                   displayName    @odata.type
+--                                   -----------    -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 ```
 
 This example retrieves top one object created by the specified user.

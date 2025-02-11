@@ -2,9 +2,8 @@
 title: Get-EntraUserRegisteredDevice
 description: This article provides details on the Get-EntraUserRegisteredDevice command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -43,14 +42,37 @@ The `Get-EntraUserRegisteredDevice` cmdlet gets devices registered by a user in 
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com'
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' | Select-Object Id -ExpandProperty AdditionalProperties
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+@odata.type                   : #microsoft.graph.device
+accountEnabled                : True
+approximateLastSignInDateTime : 1/6/2025 9:01:45 AM
+createdDateTime               : 11/13/2024 5:11:46 AM
+deviceCategory                : Digital IT Owned Device
+deviceId                      : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+deviceOwnership               : Company
+deviceVersion                 : 2
+displayName                   : Digital-IT-DevBox
+enrollmentType                : AzureDomainJoined
+isCompliant                   : False
+isManaged                     : True
+isRooted                      : False
+managementType                : MDM
+manufacturer                  : Microsoft Corporation
+mdmAppId                      : XXXXX-0000-0000-c000-000000000000
+model                         : Surface Pro X
+operatingSystem               : Windows
+operatingSystemVersion        : 10.0.22631.4460
+physicalIds                   : {[USER-GID]:xxxxxxxx}
+profileType                   : RegisteredDevice
+registrationDateTime          : 11/13/2024 5:11:44 AM
+systemLabels                  : {}
+trustType                     : AzureAd
+extensionAttributes           :
+alternativeSecurityIds        : {@{type=2; key=WAA1}}
+Id                            : 11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets the devices that are registered to the specified user.
@@ -59,14 +81,37 @@ This command gets the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -All 
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -All | Select-Object Id -ExpandProperty AdditionalProperties
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+@odata.type                   : #microsoft.graph.device
+accountEnabled                : True
+approximateLastSignInDateTime : 1/6/2025 9:01:45 AM
+createdDateTime               : 11/13/2024 5:11:46 AM
+deviceCategory                : Digital IT Owned Device
+deviceId                      : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+deviceOwnership               : Company
+deviceVersion                 : 2
+displayName                   : Digital-IT-DevBox
+enrollmentType                : AzureDomainJoined
+isCompliant                   : False
+isManaged                     : True
+isRooted                      : False
+managementType                : MDM
+manufacturer                  : Microsoft Corporation
+mdmAppId                      : XXXXX-0000-0000-c000-000000000000
+model                         : Surface Pro X
+operatingSystem               : Windows
+operatingSystemVersion        : 10.0.22631.4460
+physicalIds                   : {[USER-GID]:xxxxxxxx}
+profileType                   : RegisteredDevice
+registrationDateTime          : 11/13/2024 5:11:44 AM
+systemLabels                  : {}
+trustType                     : AzureAd
+extensionAttributes           :
+alternativeSecurityIds        : {@{type=2; key=WAA1}}
+Id                            : 11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets all the devices that are registered to the specified user.
@@ -75,13 +120,37 @@ This command gets all the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -Top 1
+Get-EntraUserRegisteredDevice -UserId 'SawyerM@contoso.com' -Top 1 | Select-Object Id -ExpandProperty AdditionalProperties
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+@odata.type                   : #microsoft.graph.device
+accountEnabled                : True
+approximateLastSignInDateTime : 1/6/2025 9:01:45 AM
+createdDateTime               : 11/13/2024 5:11:46 AM
+deviceCategory                : Digital IT Owned Device
+deviceId                      : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+deviceOwnership               : Company
+deviceVersion                 : 2
+displayName                   : Digital-IT-DevBox
+enrollmentType                : AzureDomainJoined
+isCompliant                   : False
+isManaged                     : True
+isRooted                      : False
+managementType                : MDM
+manufacturer                  : Microsoft Corporation
+mdmAppId                      : XXXXX-0000-0000-c000-000000000000
+model                         : Surface Pro X
+operatingSystem               : Windows
+operatingSystemVersion        : 10.0.22631.4460
+physicalIds                   : {[USER-GID]:xxxxxxxx}
+profileType                   : RegisteredDevice
+registrationDateTime          : 11/13/2024 5:11:44 AM
+systemLabels                  : {}
+trustType                     : AzureAd
+extensionAttributes           :
+alternativeSecurityIds        : {@{type=2; key=WAA1}}
+Id                            : 11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets the top one device that are registered to the specified user.

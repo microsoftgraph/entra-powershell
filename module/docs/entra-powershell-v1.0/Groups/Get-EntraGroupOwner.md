@@ -2,9 +2,8 @@
 title: Get-EntraGroupOwner
 description: This article provides details on the Get-EntraGroupOwner command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -53,13 +52,14 @@ In delegated scenarios, the signed-in user must have a supported Microsoft Entra
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraGroup -GroupId $group.Id | Get-EntraGroupOwner | Select-Object Id, DisplayName, '@odata.type' 
+Get-EntraGroup -GroupId $group.Id | Get-EntraGroupOwner | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-id                                   displayName       @odata.type
---                                   -----------       -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adele Vance #microsoft.graph.user
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve the owner of a specific group.
@@ -71,19 +71,17 @@ This example demonstrates how to retrieve the owner of a specific group.
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraGroupOwner -GroupId $group.Id -All
+Get-EntraGroupOwner -GroupId $group.Id -All | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
 ```
 
-This example demonstrates how to retrieve the all owner of a specific group.  
+This example demonstrates how to retrieve the all owner of a specific group.
 
 - `-GroupId` Parameter specifies the ID of a group.
 
@@ -92,14 +90,14 @@ This example demonstrates how to retrieve the all owner of a specific group.
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraGroupOwner -GroupId $group.Id -Top 2
+Get-EntraGroupOwner -GroupId $group.Id -Top 2 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Id                                   DisplayName       @odata.type
+------------------------------------ ----------------- -------------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.

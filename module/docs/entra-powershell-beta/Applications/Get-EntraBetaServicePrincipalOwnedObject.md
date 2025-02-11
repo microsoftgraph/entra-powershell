@@ -3,7 +3,7 @@ title: Get-EntraBetaServicePrincipalOwnedObject
 description: This article provides details on the Get-EntraBetaServicePrincipalOwnedObject command.
 
 ms.topic: reference
-ms.date: 08/13/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -44,13 +44,13 @@ The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet retrieves an object owned 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Id                                   displayName          @odata.type
+--                                   -----------          -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Application #microsoft.graph.servicePrincipal
 ```
 
 The command retrieves the owned objects of a service principal.
@@ -62,14 +62,13 @@ The command retrieves the owned objects of a service principal.
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -All
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -All | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
+Id                                   displayName          @odata.type
+--                                   -----------          -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Application #microsoft.graph.servicePrincipal
 ```
 
 This example retrieves an object owned by a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
@@ -81,13 +80,13 @@ This example retrieves an object owned by a service principal in Microsoft Entra
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -Top 1
+Get-EntraBetaServicePrincipalOwnedObject -ServicePrincipalId $ServicePrincipal.Id -Top 1 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Id                                   displayName          @odata.type
+--                                   -----------          -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Application #microsoft.graph.servicePrincipal
 ```
 
 This example retrieves the top one owned object of a specified service principal in Microsoft Entra ID.
@@ -169,6 +168,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+You can use the command `Add-EntraBetaServicePrincipalOwner` to add an owner to a service principal.
 
 ## Related Links
 

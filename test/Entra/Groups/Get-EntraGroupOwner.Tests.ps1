@@ -2,18 +2,18 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
-        $mockResponse = {
-            return @{
-                value = @(
-                    @{
-                    "DeletedDateTime"       = $null
-                    "Id"                    = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                    "AdditionalProperties"  = @{
+    $mockResponse = {
+        return @{
+            value = @(
+                @{
+                    "DeletedDateTime"      = $null
+                    "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                    "AdditionalProperties" = @{
                         "@odata.type"       = "#microsoft.graph.user"
                         "businessPhones"    = @("425-555-0100")
                         "displayName"       = "MOD Administrator"
@@ -23,12 +23,12 @@ BeforeAll {
                         "preferredLanguage" = "en"
                         "surname"           = "Administrator"
                         "userPrincipalName" = "admin@contoso.com"
-                        }
-                    "Parameters"             = $args
                     }
-                )
-            }    
-        }
+                    "Parameters"           = $args
+                }
+            )
+        }    
+    }
     Mock -CommandName  Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Groups
 }
   
@@ -67,7 +67,7 @@ Describe "Get-EntraGroupOwner" {
         }
 
         It "Should fail when All has an argument" {
-            {  Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"  -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"  -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }  
         
         It "Gets two group owners" {
@@ -82,7 +82,7 @@ Describe "Get-EntraGroupOwner" {
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain GroupId" {
@@ -93,12 +93,12 @@ Describe "Get-EntraGroupOwner" {
         It "Should contain GroupId in parameters when passed GroupId to it" {
             $result = Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $groupId= $params | ConvertTo-json | ConvertFrom-Json
+            $groupId = $params | ConvertTo-json | ConvertFrom-Json
             $groupId.Uri -match "bbbbbbbb-1111-2222-3333-cccccccccccc" | Should -BeTrue
         }
 
         It "Property parameter should work" {
-            $result =  Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id 
+            $result = Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
@@ -106,7 +106,7 @@ Describe "Get-EntraGroupOwner" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -131,7 +131,8 @@ Describe "Get-EntraGroupOwner" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraGroupOwner -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

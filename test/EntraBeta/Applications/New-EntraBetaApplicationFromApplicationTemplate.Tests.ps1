@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
-        Import-Module Microsoft.Entra.Applications
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -106,43 +106,43 @@ BeforeAll {
         }
     }
 
-    Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Beta.Applications
 }
-Describe "New-EntraApplicationFromApplicationTemplateFromApplicationTemplate tests" {
+Describe "New-EntraBetaApplicationFromApplicationTemplate tests" {
     It "Should return created Application with service principal" {
-        $result = New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId "aaaaaaaa-1111-1111-1111-cccccccccccc" -DisplayName "test app"
+        $result = New-EntraBetaApplicationFromApplicationTemplate -ApplicationTemplateId "aaaaaaaa-1111-1111-1111-cccccccccccc" -DisplayName "test app"
         $result | Should -Not -BeNullOrEmpty
         $result.application.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
         $result.servicePrincipal.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
-        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
     It "Should fail when ApplicationTemplateId is empty" {
-        { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationTemplateId'*"
+        { New-EntraBetaApplicationFromApplicationTemplate -ApplicationTemplateId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationTemplateId'*"
     }
     It "Should fail when ApplicationTemplateId is null" {
-        { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId } | Should -Throw "Missing an argument for parameter 'ApplicationTemplateId'.*"
+        { New-EntraBetaApplicationFromApplicationTemplate -ApplicationTemplateId } | Should -Throw "Missing an argument for parameter 'ApplicationTemplateId'.*"
     }
     It "Should fail when DisplayName is empty" {
-        { New-EntraApplicationFromApplicationTemplate -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName'*"
+        { New-EntraBetaApplicationFromApplicationTemplate -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName'*"
     }
     It "Should fail when DisplayName is null" {
-        { New-EntraApplicationFromApplicationTemplate -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
+        { New-EntraBetaApplicationFromApplicationTemplate -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
     }
     It "Should fail when invalid parameter is passed" {
-        { New-EntraApplicationFromApplicationTemplate -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
+        { New-EntraBetaApplicationFromApplicationTemplate -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should execute successfully without throwing an error " {
-        # Disable confirmation prompts
+        # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference
         $DebugPreference = 'Continue'
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId "aaaaaaaa-1111-1111-1111-cccccccccccc" -DisplayName "test app" -Debug } | Should -Not -Throw
+            { New-EntraBetaApplicationFromApplicationTemplate -ApplicationTemplateId "aaaaaaaa-1111-1111-1111-cccccccccccc" -DisplayName "test app" -Debug } | Should -Not -Throw
         }
         finally {
-            # Restore original confirmation preference
-            $DebugPreference = $originalDebugPreference
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
         }
     }
 }

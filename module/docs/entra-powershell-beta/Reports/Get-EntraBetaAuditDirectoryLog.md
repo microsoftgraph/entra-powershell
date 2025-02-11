@@ -2,9 +2,8 @@
 title: Get-EntraBetaAuditDirectoryLog
 description: This article provides details on the Get-EntraBetaAuditDirectoryLog command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/08/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -41,8 +40,8 @@ Retrieve audit logs from Microsoft Entra ID, covering logs from various services
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
 
-- Reports Reader  
-- Security Administrator  
+- Reports Reader
+- Security Administrator
 - Security Reader
 
 ## Examples
@@ -50,8 +49,8 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ### Example 1: Get all logs
 
 ```powershell
- Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
- Get-EntraBetaAuditDirectoryLog -All  
+Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
+Get-EntraBetaAuditDirectoryLog -All
 ```
 
 ```Output

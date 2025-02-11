@@ -1,11 +1,10 @@
 ---
 title: New-EntraApplicationFromApplicationTemplate
-description: This article provides details on the New-EntraApplicationFromApplicationTemplate command.
-
+description: This article provApplicationTemplateIdes details on the New-EntraApplicationFromApplicationTemplate command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 07/10/2024
+ms.date: 02/10/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -21,31 +20,35 @@ schema: 2.0.0
 
 ## Synopsis
 
-Add an instance of an application from the Microsoft Entra application gallery into your directory.
+Add an instance of an application from the Microsoft Entra gallery to your directory.
 
 ## Syntax
 
 ```powershell
 New-EntraApplicationFromApplicationTemplate
- -Id <String>
+ -ApplicationTemplateId <String>
  -DisplayName <ApplicationTemplateDisplayName>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `New-EntraApplicationFromApplicationTemplate` cmdlet adds an instance of an application from the Microsoft Entra application gallery into your directory.
+The `New-EntraApplicationFromApplicationTemplate` cmdlet adds an instance of an application from the Microsoft Entra gallery to your directory.
 
-The application template with ID `8adf8e6e-67b2-4cf2-a259-e3dc5476c621` can be used to add a non-gallery app that you can configure different single-sign on (SSO) modes like SAML SSO and password-based SSO.
+For non-gallery apps, use these application template IDs to configure SSO modes like SAML or password-based SSO:
+
+- Global service: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`
+- US government: `4602d0b4-76bb-404b-bca9-2652e1a39c6d`
+- China (21Vianet): `5a532e38-1581-4918-9658-008dc27c1d68`
 
 ## Examples
 
 ### Example 1: Creates an application from application template
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy' # Application.ReadWrite.OwnedBy is an app-only permission (non-interactive)
 $applicationTemplate = Get-EntraApplicationTemplate -Filter "DisplayName eq 'SAP Fieldglass'"
-New-EntraApplicationFromApplicationTemplate -Id $applicationTemplate.Id -DisplayName 'Contoso SAP App'
+New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId $applicationTemplate.Id -DisplayName 'Contoso SAP App'
 ```
 
 ```Output
@@ -56,19 +59,19 @@ https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.applicationServicePri
 
 This command instantiates a new application based on application template referenced by the ID.
 
-- `-Id` specifies Application TemplateId.
+- `-ApplicationTemplateId` specifies Application TemplateId.
 - `-DisplayName` specifies application template display name.
 
 ## Parameters
 
-### -Id
+### -ApplicationTemplateId
 
-The Id parameter specifies Application TemplateId.
+The ID parameter specifies Application TemplateId.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: Named
@@ -105,4 +108,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+Quickstart: [Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal).
+
 ## Related Links
+
+[Get-EntraApplicationTemplate](Get-EntraApplicationTemplate.md)

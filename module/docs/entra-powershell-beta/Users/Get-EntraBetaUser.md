@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaUser command.
 
 
 ms.topic: reference
-ms.date: 07/29/2024
+ms.date: 02/09/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -282,17 +282,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
 
 This example demonstrates how to retrieve users without managers.
 
-### Example 13: List failed sign-ins for a user
-
-```powershell
-Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-$failedSignIns = Get-EntraBetaAuditSignInLog -Filter "userPrincipalName eq 'SawyerM@contoso.com' and status/errorCode ne 0"
-$failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAddress, ClientAppUsed | Format-Table -AutoSize
-```
-
-This example demonstrates how to retrieve failed sign-ins for a user.
-
-### Example 14: List all guest users
+### Example 13: List all guest users
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'

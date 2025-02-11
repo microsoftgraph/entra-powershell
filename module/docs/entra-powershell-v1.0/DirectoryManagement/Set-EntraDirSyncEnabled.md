@@ -37,11 +37,13 @@ Set-EntraDirSyncEnabled
 
 The `Set-EntraDirSyncEnabled` cmdlet turns directory synchronization on or off for a company.
 
->[!IMPORTANT]
->It may take up to 72 hours to complete deactivation once you have disabled DirSync through this cmdlet. The time depends on the number of objects that are in your cloud service subscription account. **You cannot cancel the disable action**. It will need to complete before you can take any other action, including re-enabling of DirSync. If you choose to re-enable DirSync, a full synchronization of your synced objects will happen. This may take a considerable time depending on the number of objects in your Microsoft Entra ID.
+A new service principal appears in your tenant when you enable or reenable DirSync. It has the appId `6bf85cfa-ac8a-4be5-b5de-425a0d0dc016` and the display name **Microsoft Entra AD Synchronization Service**.
 
->[!NOTE]
->If you disable DirSync and you decide to re-enable it, and you have enabled the BlockCloudObjectTakeoverThroughHardMatch feature, OnPrem to cloud object takeover/update for all objects mastered in the Microsoft Entra ID will be blocked. If this is the case and you want to resume syncing Microsoft Entra ID mastered objects with Microsoft Entra ID, set **BlockCloudObjectTakeoverThroughHardMatch** feature to false.
+Deactivating DirSync may take up to 72 hours, depending on the number of objects in your cloud subscription. Once disabled, the process cannot be canceled and must complete before you can take further action, including re-enabling DirSync.
+
+If you re-enable DirSync, a full synchronization will occur, which may take significant time based on the number of objects in Microsoft Entra ID.
+
+Additionally, if `BlockCloudObjectTakeoverThroughHardMatch` is enabled, re-enabling DirSync will block On-Prem to cloud object takeover/updates for all Microsoft Entra ID–mastered objects. To allow syncing of these objects, set `BlockCloudObjectTakeoverThroughHardMatch` to false.
 
 ## Examples
 
