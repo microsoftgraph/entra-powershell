@@ -63,7 +63,7 @@ function New-EntraBetaAdministrativeUnit {
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method POST -Body $body
         $response = $response | ConvertTo-Json | ConvertFrom-Json
 
-        $targetList = @()
+        <#         $targetList = @()
         foreach ($res in $response) {
             $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
             $res.PSObject.Properties | ForEach-Object {
@@ -73,7 +73,7 @@ function New-EntraBetaAdministrativeUnit {
             }
             $targetList += $targetType
         }
-        $targetList
+        $targetList #>
         <#         $auList = @()
         foreach ($data in $response) {
             $auType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit
