@@ -1,27 +1,27 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-BeforeAll{
+BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $response = @{
-        "id" = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+        "id"                         = "aaaaaaaa-1111-2222-3333-cccccccccccc"
         "supportedSingleSignOnModes" = @{}
-        "publisher" = "test publisher"
-        "displayName" = "test name"
-        "homePageUrl" = "samplehomePageUrl"
-        "logoUrl" = "samplelogourl"
-        "categories" = @{}
-        "description" = ""
+        "publisher"                  = "test publisher"
+        "displayName"                = "test name"
+        "homePageUrl"                = "samplehomePageUrl"
+        "logoUrl"                    = "samplelogourl"
+        "categories"                 = @{}
+        "description"                = ""
         "supportedProvisioningTypes" = @{}
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
 }
-Describe "Get-EntraApplicationTemplate tests"{
+Describe "Get-EntraApplicationTemplate tests" {
     It "Should return specific application" {
         $result = Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc"
         $result | Should -Not -BeNullOrEmpty
@@ -50,7 +50,8 @@ Describe "Get-EntraApplicationTemplate tests"{
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-        } finally {
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
