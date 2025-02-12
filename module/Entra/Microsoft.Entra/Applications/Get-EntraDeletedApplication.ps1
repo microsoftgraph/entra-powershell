@@ -93,7 +93,7 @@ function Get-EntraDeletedApplication {
             }
         }
 
-        $data | Select-Object *, DeletionAgeInDays
+        $data
     }
 }
 
