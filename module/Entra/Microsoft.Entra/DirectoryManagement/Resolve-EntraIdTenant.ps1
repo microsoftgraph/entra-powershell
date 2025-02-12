@@ -16,7 +16,7 @@ function Resolve-EntraIdTenant {
             Position = 0,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Unique Id of the Tenant"
+            HelpMessage = "Unique Id of the Tenant",
             ParameterSetName = 'TenantId')]
         [ValidateScript({
             if ($_ -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$") {
