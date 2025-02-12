@@ -85,23 +85,15 @@ function Get-EntraDeletedApplication {
         }
         
         if ($data) {
-            $aulist = @()
+            # Add DeletionAgeInDays property
             foreach ($item in $data) {
-                $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDeleted, Microsoft.Graph.Applications.private, Culture=neutral, PublicKeyToken=31bf3856ad364e35
-                $item.PSObject.Properties | ForEach-Object {
-                    $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
-                    $propertyValue = $_.Value
-                    $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }
-
-                # Add DeletionAgeInDays property
                 if ($null -ne $item.DeletedDateTime) {
                     $deletionAgeInDays = (Get-Date) - ($item.DeletedDateTime)
-                    $auType | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    $item | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
                 }
-                $aulist += $auType
             }
-            $aulist
         }
+        $data
     }
 }
+
