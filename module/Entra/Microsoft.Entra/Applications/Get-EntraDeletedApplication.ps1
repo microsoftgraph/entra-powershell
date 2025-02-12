@@ -25,6 +25,7 @@ function Get-EntraDeletedApplication {
 
     PROCESS {    
         $params = @{}
+        $topCount = $null
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = "/v1.0/directory/deleteditems/microsoft.graph.application"
 
@@ -84,15 +85,6 @@ function Get-EntraDeletedApplication {
             Write-Error "An error occurred: $_"
         }
         
-        if ($data) {
-            # Add DeletionAgeInDays property
-            foreach ($item in $data) {
-                if ($null -ne $item.DeletedDateTime) {
-                    $deletionAgeInDays = (Get-Date) - ($item.DeletedDateTime)
-                    $item | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
-                }
-            }
-        }
         $data
     }
 }
