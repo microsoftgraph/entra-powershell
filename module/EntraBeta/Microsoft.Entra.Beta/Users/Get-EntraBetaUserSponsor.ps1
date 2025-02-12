@@ -1,4 +1,4 @@
-function Get-EntraUserSponsor {
+function Get-EntraBetaUserSponsor {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

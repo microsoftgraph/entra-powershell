@@ -31,15 +31,15 @@ BeforeAll {
 Describe "Get-EntraUserSponsor" {
     Context "Test for Get-EntraUserSponsor" {
         It "Should fail when UserId is empty string value" {
-            { Get-EntraUserSponsor -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Get-EntraBetaUserSponsor -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when UserId is empty" {
-            { Get-EntraUserSponsor -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
+            { Get-EntraBetaUserSponsor -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should return specific user sponsors" {
-            $result = Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
+            $result = Get-EntraBetaUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
             $result | Should -Not -BeNullOrEmpty
             $result[0].id | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
             $result[0].country | should -Be "United States"
@@ -54,24 +54,24 @@ Describe "Get-EntraUserSponsor" {
         }
 
         It "Should return top user sponsor" {
-            $result = Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Top 1
+            $result = Get-EntraBetaUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when top is empty" {
-            { Get-EntraUserSponsor -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaUserSponsor -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserSponsor -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaUserSponsor -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
         It 'should handle the Property parameter correctly' {
             $UserId = '00aa00aa-bb11-cc22-dd33-44ee44ee44e'
             $Property = @('id', 'mail')
-            $result = Get-EntraUserSponsor -UserId $UserId -Property $Property
+            $result = Get-EntraBetaUserSponsor -UserId $UserId -Property $Property
             $result | Should -Not -BeNullOrEmpty
             $result | ForEach-Object {
                 $_.PSObject.Properties.Name | Should -Contain 'id'
@@ -81,7 +81,7 @@ Describe "Get-EntraUserSponsor" {
 
         It 'should handle the All parameter correctly' {
             $UserId = '00aa00aa-bb11-cc22-dd33-44ee44ee44e'
-            $result = Get-EntraUserSponsor -UserId $UserId -All
+            $result = Get-EntraBetaUserSponsor -UserId $UserId -All
             $result | Should -Not -BeNullOrEmpty
         }
 
@@ -93,7 +93,7 @@ Describe "Get-EntraUserSponsor" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { 
-                    Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Debug 
+                    Get-EntraBetaUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Debug 
                 } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference
