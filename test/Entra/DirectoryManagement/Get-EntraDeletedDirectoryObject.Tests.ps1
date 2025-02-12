@@ -14,6 +14,7 @@ BeforeAll {
                 "AdditionalProperties" = @{DisplayName = "Test-App"; }
                 "DeletedDateTime"      = "2/2/2024 5:33:56 AM"
                 "Parameters"           = $args
+                "DeletionAgeInDays"    = 0
             }
         )
     }

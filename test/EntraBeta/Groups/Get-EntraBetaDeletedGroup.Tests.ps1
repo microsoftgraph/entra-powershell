@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,17 +10,18 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-              "DeletedDateTime"              = "10-05-2024 04:27:17"
-              "CreatedDateTime"              = "07-07-2023 14:31:41"
-              "DisplayName"                  = "Mock-App"
-              "MailNickname"                 = "Demo-Mock-App"
-              "GroupTypes"                   = "Unified"
-              "SecurityEnabled"              = $False
-              "MailEnabled"                  = $True
-              "Visibility"                   = "Public"
-              "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/beta/`$metadata#groups/`$entity"}
-              "Parameters"                   = $args
+                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeletedDateTime"      = "10-05-2024 04:27:17"
+                "CreatedDateTime"      = "07-07-2023 14:31:41"
+                "DisplayName"          = "Mock-App"
+                "MailNickname"         = "Demo-Mock-App"
+                "GroupTypes"           = "Unified"
+                "SecurityEnabled"      = $False
+                "MailEnabled"          = $True
+                "Visibility"           = "Public"
+                "AdditionalProperties" = @{"@odata.context" = "https://graph.microsoft.com/beta/`$metadata#groups/`$entity" }
+                "Parameters"           = $args
+                "DeletionAgeInDays"    = 0
             }
         )
     }
@@ -29,7 +30,7 @@ BeforeAll {
 }
 
 Describe "Get-EntraBetaDeletedGroup" {
-Context "Test for Get-EntraBetaDeletedGroup" {
+    Context "Test for Get-EntraBetaDeletedGroup" {
         It "Should return specific Deleted Group" {
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
@@ -49,12 +50,12 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when GroupId is empty" {
-            { Get-EntraBetaDeletedGroup -GroupId    } | Should -Throw "Missing an argument for parameter 'GroupId'*"
+            { Get-EntraBetaDeletedGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
         It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaDeletedGroup -GroupId  ""} | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
+            { Get-EntraBetaDeletedGroup -GroupId  "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }
-         It "Should return All deleted groups" {
+        It "Should return All deleted groups" {
             $result = Get-EntraBetaDeletedGroup  -All
             $result | Should -Not -BeNullOrEmpty
 
@@ -88,7 +89,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when filter is empty" {
-            { Get-EntraBetaDeletedGroup -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraBetaDeletedGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
         It "Should return specific deleted groupn by SearchString" {
             $result = Get-EntraBetaDeletedGroup -SearchString "Demo-Mock-App"
@@ -100,7 +101,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when searchstring is empty" {
-            { Get-EntraBetaDeletedGroup -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+            { Get-EntraBetaDeletedGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
@@ -110,7 +111,7 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain GroupId in parameters when passed Id to it" {              
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -140,7 +141,8 @@ Context "Test for Get-EntraBetaDeletedGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

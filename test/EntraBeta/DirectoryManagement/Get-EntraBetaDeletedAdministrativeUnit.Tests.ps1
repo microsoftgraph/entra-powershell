@@ -14,10 +14,11 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "DisplayName"     = "ADC Administrative Unit"
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime" = "10/21/2024 8:27:52 AM"
-                "Description"     = "ADC Administrative Unit"
+                "DisplayName"       = "ADC Administrative Unit"
+                "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeletedDateTime"   = "10/21/2024 8:27:52 AM"
+                "Description"       = "ADC Administrative Unit"
+                "DeletionAgeInDays" = 0
             }
         )
     }

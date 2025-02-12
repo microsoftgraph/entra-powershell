@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,40 +10,42 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "AddIns"                            = {}
-                "AppRoles"                          = {}
-                "GroupMembershipClaims"             = {}
-                "IdentifierUris"                    = {}
-                "Info"                              = @{
-                                                        LogoUrl="";
-                                                    }
-                "IsDeviceOnlyAuthSupported"         = $null
-                "KeyCredentials"                    = {}
-                "OptionalClaims"                    = {}
-                "ParentalControlSettings"           = @{
-                                                        CountriesBlockedForMinors=@{}; 
-                                                        LegalAgeGroupRule="Allow";
-                                                    }
-                "PasswordCredentials"               = {}
-                "Api"                               = @{
-                                                        KnownClientApplications=@{};
-                                                        PreAuthorizedApplications=@{};
-                                                    }
-                "PublicClient"                      = @{
-                                                        RedirectUris=@{};
-                                                    }
-                "PublisherDomain"                   = "contoso.com"
-                "Web"                               = @{
-                                                        HomePageUrl="";  
-                                                        LogoutUrl=""; 
-                                                        RedirectUris=@{};
-                                                        Oauth2AllowImplicitFlow=""
-                                                    }
-                "RequiredResourceAccess"            = $null                
-                "DisplayName"                       = "Mock-test-App"
-                "Id"                                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "Logo"                              = $null
-                "Parameters"                        = $args
+                "AddIns"                    = {}
+                "AppRoles"                  = {}
+                "GroupMembershipClaims"     = {}
+                "IdentifierUris"            = {}
+                "Info"                      = @{
+                    LogoUrl = "";
+                }
+                "IsDeviceOnlyAuthSupported" = $null
+                "KeyCredentials"            = {}
+                "OptionalClaims"            = {}
+                "ParentalControlSettings"   = @{
+                    CountriesBlockedForMinors = @{}; 
+                    LegalAgeGroupRule         = "Allow";
+                }
+                "PasswordCredentials"       = {}
+                "Api"                       = @{
+                    KnownClientApplications   = @{};
+                    PreAuthorizedApplications = @{};
+                }
+                "PublicClient"              = @{
+                    RedirectUris = @{};
+                }
+                "PublisherDomain"           = "contoso.com"
+                "Web"                       = @{
+                    HomePageUrl             = "";  
+                    LogoutUrl               = ""; 
+                    RedirectUris            = @{};
+                    Oauth2AllowImplicitFlow = ""
+                }
+                "RequiredResourceAccess"    = $null                
+                "DisplayName"               = "Mock-test-App"
+                "Id"                        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "Logo"                      = $null
+                "Parameters"                = $args
+                "DeletedDateTime"           = "02/12/2025 11:07:07"
+                "DeletionAgeInDays"         = 0
             }
         )
     }
@@ -59,7 +61,7 @@ Describe "Get-EntraDeletedApplication" {
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when All is empty" {
-            { Get-EntraDeletedApplication -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraDeletedApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }
         It "Should fail when invalid parameter is passed" {
             { Get-EntraDeletedApplication -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
@@ -89,7 +91,7 @@ Describe "Get-EntraDeletedApplication" {
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 5| ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-test-App"
         }
@@ -102,11 +104,11 @@ Describe "Get-EntraDeletedApplication" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraDeletedApplication  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraDeletedApplication  -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"
-            $result =  Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"    
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
@@ -121,8 +123,9 @@ Describe "Get-EntraDeletedApplication" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraDeletedApplication -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraDeletedApplication -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
