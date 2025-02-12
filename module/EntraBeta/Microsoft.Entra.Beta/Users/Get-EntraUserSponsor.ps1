@@ -58,22 +58,9 @@ function Get-EntraUserSponsor {
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
         } catch {}
-        
             foreach ($item in $data) {
                 if ($null -ne $item) {
-                    # Determine the type based on @odata.type
-                    switch ($item.'@odata.type') {
-                        '#microsoft.graph.user' {
-                            $directoryObject = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
-                        }
-                        '#microsoft.graph.group' {
-                            $directoryObject = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphGroup]::new()
-                        }
-                        default {
-                            Write-Warning "Unknown type: $($item.'@odata.type')"
-                            continue
-                        }
-                    }
+                    $directoryObject = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
                     $item.PSObject.Properties | ForEach-Object {
                         $propertyName = $_.Name
                         $propertyValue = $_.Value
