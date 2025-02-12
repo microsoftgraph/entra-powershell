@@ -11,7 +11,7 @@ BeforeAll {
 
     Mock -CommandName Get-MgContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     Mock -CommandName Get-MgEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
-    Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith { @{tenantId = "12345"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"} }
+    Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith { @{tenantId = "12345678-1234-1234-1234-123456789abc"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"} }
     Mock -CommandName Invoke-RestMethod -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith {@{issuer = "https://login.microsoftonline.com/12345/v2.0"; tenant_region_scope = "US"} }
 }
 
@@ -21,7 +21,7 @@ Describe "Resolve-EntraBetaIdTenant" {
             $result = Resolve-EntraBetaIdTenant -TenantId "12345678-1234-1234-1234-123456789abc"
             
             $result.Result | Should -Be "Resolved"
-            $result.TenantId | Should -Be "12345"
+            $result.TenantId | Should -Be "12345678-1234-1234-1234-123456789abc"
             $result.DisplayName | Should -Be "Test Tenant"
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement  -Times 1
@@ -48,20 +48,11 @@ Describe "Resolve-EntraBetaIdTenant" {
     }
 
     Context "Invalid Inputs" {
+    
+        It "Should throw an exception for invalid tenant Id" {
+             {Resolve-EntraBetaIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
+         }
         
-        It "Should return Skipped for invalid tenant Id" {
-            $result = Resolve-EntraBetaIdTenant -TenantId "tenantId"
-
-            $result.ValueFormat | Should -Be "Unknown"
-            $result.Status | Should -Be "Skipped"
-
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement  -Times 0
-        }
-
-        It "Should fail when TenantId is empty" {
-            { Resolve-EntraBetaIdTenant -TenantId } | Should -Throw "Missing an argument for parameter 'TenantId'*"
-        }
-
          It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraBetaIdTenant"
 

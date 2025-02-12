@@ -17,7 +17,13 @@ function Resolve-EntraBetaIdTenant {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ParameterSetName = 'TenantId')]
-        [ValidateScript({ $_ -match '^[0-9a-fA-F-]{36}$' })]
+        [ValidateScript({
+            if ($_ -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$") {
+                $true
+            } else {
+                throw "Invalid GUID format for TenantId"
+            }
+        })]
         [string]
         $TenantId,
 
@@ -27,7 +33,9 @@ function Resolve-EntraBetaIdTenant {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ParameterSetName = 'DomainName')]
-        [ValidateScript({ $_ -match "\A([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}\Z" })]
+        [ValidateScript({
+            $_ -match "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z]{2,})+$"
+        })]
         [string]
         $DomainName,
 
@@ -46,7 +54,6 @@ function Resolve-EntraBetaIdTenant {
     )
 
     begin {
-
         $graphEndpoint = (Get-MgEnvironment -Name $Environment).GraphEndpoint
         $azureAdEndpoint = (Get-MgEnvironment -Name $Environment).AzureAdEndpoint
 
@@ -55,19 +62,19 @@ function Resolve-EntraBetaIdTenant {
     }
 
     process {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $resolveUri = $null
         $resolvedTenant = [ordered]@{}
         $resolvedTenant.Environment = $Environment
 
         if ($PSCmdlet.ParameterSetName -eq 'TenantId') {
             Write-Verbose ("$(Get-Date -f T) - Attempting to resolve Azure AD Tenant by TenantId $TenantId")
-            $resolveUri = ("{0}/v1/tenantRelationships/findTenantInformationByTenantId(tenantId='{1}')" -f $graphEndpoint, $TenantId)
+            $resolveUri = ("{0}/beta/tenantRelationships/findTenantInformationByTenantId(tenantId='{1}')" -f $graphEndpoint, $TenantId)
             $resolvedTenant.ValueFormat = "TenantId"
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'DomainName') {
             Write-Verbose ("$(Get-Date -f T) - Attempting to resolve Azure AD Tenant by DomainName $DomainName")
-            $resolveUri = ("{0}/v1/tenantRelationships/findTenantInformationByDomainName(domainName='{1}')" -f $graphEndpoint, $DomainName)
+            $resolveUri = ("{0}/beta/tenantRelationships/findTenantInformationByDomainName(domainName='{1}')" -f $graphEndpoint, $DomainName)
             $resolvedTenant.ValueFormat = "DomainName"
         }
 
