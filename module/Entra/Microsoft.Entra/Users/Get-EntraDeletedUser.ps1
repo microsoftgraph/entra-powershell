@@ -111,9 +111,11 @@ function Get-EntraDeletedUser {
 
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    # Add DeletionAgeInDays property
-                    $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
-                    Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    if ($null -ne $_.DeletedDateTime) {
+                        # Add DeletionAgeInDays property
+                        $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                        Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    }
     
                 }
             }

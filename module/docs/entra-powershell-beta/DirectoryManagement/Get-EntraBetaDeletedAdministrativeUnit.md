@@ -2,7 +2,6 @@
 title: Get-EntraBetaDeletedAdministrativeUnit
 description: This article provides details on the Get-EntraBetaDeletedAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 11/14/2024
 ms.author: eunicewaweru
@@ -55,17 +54,16 @@ The `Get-EntraBetaDeletedAdministrativeUnit` cmdlet Retrieves the list of previo
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraBetaDeletedAdministrativeUnit
+Get-EntraBetaDeletedAdministrativeUnit -All | Select-Object Id, DisplayName, MembershipType, Visibility, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime         Id                                     Description                         DisplayName                  Visibility
----------------         --                                     -----------                         -----------                  ----------
-11/14/2024 6:37:49 AM   gggggggg-8888-9999-aaaa-hhhhhhhhhhhh   Americas Administrative Unit        Americas Administrative Unit
-10/21/2024 8:27:52 AM   cccccccc-4444-5555-6666-dddddddddddd   EMEA Administrative Unit ADC        Americas Administrative Unit
+Id                                   DisplayName                   MembershipType     Visibility         DeletedDateTime           DeletionAgeInDays
+--                                   -----------                   --------------     ----------         ---------------           -----------------
+gggggggg-8888-9999-aaaa-hhhhhhhhhhhh Pacific Administrative Unit   Dynamic           HiddenMembership   2/12/2025 12:40:52 PM     10
 ```
 
-This cmdlet retrieves the list of deleted administrative units.  
+This cmdlet retrieves the list of deleted administrative units.
 
 ### Example 2: Get list of deleted administrative units using All parameter
 
@@ -81,7 +79,7 @@ DeletedDateTime         Id                                     Description      
 10/21/2024 8:27:52 AM   cccccccc-4444-5555-6666-dddddddddddd   EMEA Administrative Unit ADC        Americas Administrative Unit
 ```
 
-This cmdlet retrieves the list of deleted administrative units using All parameter.  
+This cmdlet retrieves the list of deleted administrative units using All parameter.
 
 ### Example 3: Get top two deleted administrative units
 
@@ -112,7 +110,7 @@ DeletedDateTime         Id                                     Description      
 11/14/2024 6:37:49 AM   gggggggg-8888-9999-aaaa-hhhhhhhhhhhh   Americas Administrative Unit        Americas Administrative Unit
 ```
 
-This cmdlet retrieves deleted administrative units using SearchString parameter.  
+This cmdlet retrieves deleted administrative units using SearchString parameter.
 
 ### Example 5: Get deleted administrative units filter by display name
 
