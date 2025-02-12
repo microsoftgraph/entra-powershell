@@ -2,10 +2,14 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 function Get-EntraDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to retrieve.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
 
@@ -18,91 +22,86 @@ function Get-EntraDeletedApplication {
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for items using a string.")]
         [System.String] $SearchString,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specify properties to include in the response.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
 
-    PROCESS {    
-        $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "/v1.0/directory/deleteditems/microsoft.graph.application"
+    PROCESS {
+        try {
+            # Initialize parameters
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $baseUri = "/v1.0/directory/deleteditems/microsoft.graph.application"
+            $params = @{ Uri = $baseUri }
 
-        $properties = '$select=*'
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $selectProperties = $PSBoundParameters["Property"]
-            $selectProperties = $selectProperties -Join ','
-            $properties = "`$select=$($selectProperties)"
-        }
-        $params["Uri"] = $baseUri + "?$properties"
-
-        if ($PSBoundParameters.ContainsKey("Top")) {
-            $topCount = $PSBoundParameters["Top"]
-            if ($topCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
+            # Handle property selection
+            if ($Property) {
+                $properties = $Property -join ','
+                $params["Uri"] += "?`$select=$properties"
             }
             else {
-                $params["Uri"] += "&`$top=$topCount"
+                $params["Uri"] += "?`$select=*"
             }
-        }    
-        if ($null -ne $PSBoundParameters["Filter"]) {
-            $Filter = $PSBoundParameters["Filter"]
-            $f = '$' + 'Filter'
-            $params["Uri"] += "&$f=$Filter"
-        }
 
-        if ($null -ne $PSBoundParameters["SearchString"]) {
-            $TmpValue = $PSBoundParameters["SearchString"]
-            $SearchString = "`$search=""displayName:$TmpValue OR startsWith(displayName,'$TmpValue')"""
-            $params["Uri"] += "&$SearchString"
-            $customHeaders['ConsistencyLevel'] = 'eventual'
-        }
+            # Handle $Top parameter
+            if ($Top) {
+                $topValue = [Math]::Min($Top, 999)
+                $params["Uri"] += "&`$top=$topValue"
+            }
 
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            # Handle $Filter parameter
+            if ($Filter) {
+                $params["Uri"] += "&`$filter=$Filter"
+            }
 
-        try {
-            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $all = $All.IsPresent
-            $increment = $topCount - $data.Count
-            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
-                $params["Uri"] = $response.'@odata.nextLink'
-                if ($increment -gt 0) {
-                    $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
-                    $increment -= $topValue
+            # Handle $SearchString parameter
+            if ($SearchString) {
+                $searchQuery = "`$search=""displayName:$SearchString OR startsWith(displayName,'$SearchString')"""
+                $params["Uri"] += "&$searchQuery"
+                $customHeaders['ConsistencyLevel'] = 'eventual'
+            }
+
+            # Debug output
+            Write-Debug "Constructed URI: $($params["Uri"])"
+
+            # Fetch data using pagination
+            $allResults = @()
+            do {
+                $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params["Uri"] -Method GET
+                $allResults += $response.value
+
+                # Handle pagination
+                if ($response.'@odata.nextLink' -and $All) {
+                    $params["Uri"] = $response.'@odata.nextLink'
                 }
-                $response = Invoke-GraphRequest @params 
-                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            }
-        }
-        catch {} 
-        $data | ForEach-Object {
-            if ($null -ne $_) {
-                if ($null -ne $_.DeletedDateTime) {
+                else {
+                    break
+                }
+            } while ($true)
+
+            # Transform results
+            if ($allResults) {
+                $allResults | ForEach-Object {
+                    $result = $_
+
                     # Add DeletionAgeInDays property
-                    $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
-                    Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    if ($result.DeletedDateTime) {
+                        $deletionAgeInDays = (Get-Date) - [datetime]$result.DeletedDateTime
+                        $result | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    }
+
+                    $result.PSObject.Properties | ForEach-Object {
+                        $newName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                        $result | Add-Member -MemberType NoteProperty -Name $newName -Value $_.Value -Force
+                    }
                 }
             }
+
+            return $allResults
         }
-        
-        if ($data) {
-            $aulist = @()
-            foreach ($item in $data) {
-                $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
-                $item.PSObject.Properties | ForEach-Object {
-                    $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
-                    $propertyValue = $_.Value
-                    $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }
-                $aulist += $auType
-            }
-            $aulist
+        catch {
+            Write-Error "An error occurred: $_"
         }
     }
 }
+
