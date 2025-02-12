@@ -9,6 +9,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    Mock -CommandName Test-EntraBetaModulePrerequisites -MockWith { return $true } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     Mock -CommandName Get-MgContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} }
     Mock -CommandName Get-MgEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} }
     Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith { @{tenantId = "12345"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"} }

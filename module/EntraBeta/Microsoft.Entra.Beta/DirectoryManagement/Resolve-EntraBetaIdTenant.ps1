@@ -42,47 +42,11 @@ function Resolve-EntraBetaIdTenant {
 
     begin {
 
-        function Test-MgModulePrerequisites {   
-            [CmdletBinding()]
-            [OutputType([bool])]
-            param (
-                # The name of scope
-                [Parameter(Mandatory = $false, ValueFromPipeline = $true)]
-                [Alias('Permission')]
-                [string[]] $Scope
-            )
-
-            process {
-                ## Initialize
-                $result = $true
-  
-                ## Check MgModule Connection
-                $EntraContext = Get-MgContext
-                if ($EntraContext) {
-                    if ($Scope) {
-                        ## Check MgModule Consented Scopes
-                        [string[]] $ScopesMissing = Compare-Object $Scope -DifferenceObject $EntraContext.Scopes | Where-Object SideIndicator -EQ '<=' | Select-Object -ExpandProperty InputObject
-                        if ($ScopesMissing) {
-                            $Exception = New-Object System.Security.SecurityException -ArgumentList "Additional scope(s) needed, call Connect-Entra with all of the following scopes: $($ScopesMissing -join ', ')"
-                            Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::PermissionDenied) -ErrorId 'MgScopePermissionRequired' -RecommendedAction ("Connect-Beta -Scopes $($ScopesMissing -join ',')")
-                            $result = $false
-                        }
-                    }
-                }
-                else {
-                    $Exception = New-Object System.Security.Authentication.AuthenticationException -ArgumentList "Authentication needed, call Connect-Entra."
-                    Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::AuthenticationError) -CategoryReason 'AuthenticationException' -ErrorId 'AuthenticationRequired'
-                    $result = $false
-                }
-
-                return $result
-            }
-        }
-
+    
         ## Initialize Critical Dependencies
         $CriticalError = $null
-        if (!(Test-MgModulePrerequisites -ErrorVariable CriticalError)) { return }
-        try { Test-MgModulePrerequisites 'CrossTenantInformation.ReadBasic.All' -ErrorAction Stop | Out-Null }
+        if (!(Test-EntraBetaModulePrerequisites -ErrorVariable CriticalError)) { return }
+        try { Test-EntraBetaModulePrerequisites 'CrossTenantInformation.ReadBasic.All' -ErrorAction Stop | Out-Null }
         catch { Write-Warning $_.Exception.Message }
 
         $GraphEndPoint = (Get-MgEnvironment -Name $Environment).GraphEndpoint
