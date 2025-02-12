@@ -115,7 +115,7 @@ function Get-EntraDeletedServicePrincipal {
                     Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
     
                 }
-            }            
+            }
 
             return $response
         }

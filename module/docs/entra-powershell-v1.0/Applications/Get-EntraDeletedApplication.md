@@ -2,7 +2,6 @@
 title: Get-EntraDeletedApplication
 description: This article provides details on the Get-EntraDeletedApplication command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -69,7 +68,7 @@ TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-ggggggg
 TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves the list of deleted applications.  
+This cmdlet retrieves the list of deleted applications.
 
 ### Example 2: Get list of deleted applications using All parameter
 
@@ -87,7 +86,7 @@ TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-ggggggg
 TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves the list of deleted applications using All parameter.  
+This cmdlet retrieves the list of deleted applications using All parameter.
 
 ### Example 3: Get top two deleted applications
 
@@ -118,7 +117,7 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications using SearchString parameter.  
+This cmdlet retrieves deleted applications using SearchString parameter.
 
 ### Example 5: Get deleted applications filter by display name
 
@@ -139,16 +138,14 @@ This cmdlet retrieves deleted applications having specified display name.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraDeletedApplication |
-    Select-Object DisplayName, Id, AppId, SignInAudience, PublisherDomain, DeletedDateTime,
-        @{Name='DeletionAgeInDays'; Expression={(Get-Date) - $_.DeletedDateTime | Select-Object -ExpandProperty Days}} |
-    Format-Table -AutoSize
+Get-EntraDeletedApplication | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName           Id                                   AppId                                SignInAudience PublisherDomain        DeletedDateTime      DeletionAgeInDays
------------           --                                   -----                                -------------- ---------------        ---------------      -----------------
-Entra PowerShell App aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com 9/18/2024 7:41:44 AM                 1
+Id                                   DisplayName           AppId                                DeletedDateTime       DeletionAgeInDays
+--                                   -----------           -----                                ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-3333-cccccccccccc 2/14/2025 11:07:07 AM                 10
+cccccccc-4444-5555-6666-dddddddddddd New Entra Application bbbbbbbb-1111-2222-3333-cccccccccccc 2/12/2025 11:07:56 AM                 12
 ```
 
 This cmdlet retrieves deleted applications with deletion age in days.

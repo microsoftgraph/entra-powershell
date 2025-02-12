@@ -108,6 +108,15 @@ function Get-EntraBetaDeletedServicePrincipal {
                 $response = Get-MgBetaDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
             }
 
+            $response | ForEach-Object {
+                if ($null -ne $_) {
+                    # Add DeletionAgeInDays property
+                    $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                    Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+    
+                }
+            }
+
             return $response
         }
         catch {
