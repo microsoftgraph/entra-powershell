@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 
-function Resolve-EntraIdTenant {
+function Resolve-EntraBetaIdTenant {
     [CmdletBinding(DefaultParameterSetName = 'Parameter Set 1',
         SupportsShouldProcess = $false,
         PositionalBinding = $false,
@@ -55,23 +55,23 @@ function Resolve-EntraIdTenant {
             process {
                 ## Initialize
                 $result = $true
-
+  
                 ## Check MgModule Connection
-                $MgContext = Get-MgContext
-                if ($MgContext) {
+                $EntraContext = Get-MgBetaContext
+                if ($EntraContext) {
                     if ($Scope) {
                         ## Check MgModule Consented Scopes
-                        [string[]] $ScopesMissing = Compare-Object $Scope -DifferenceObject $MgContext.Scopes | Where-Object SideIndicator -EQ '<=' | Select-Object -ExpandProperty InputObject
+                        [string[]] $ScopesMissing = Compare-Object $Scope -DifferenceObject $EntraContext.Scopes | Where-Object SideIndicator -EQ '<=' | Select-Object -ExpandProperty InputObject
                         if ($ScopesMissing) {
                             $Exception = New-Object System.Security.SecurityException -ArgumentList "Additional scope(s) needed, call Connect-Entra with all of the following scopes: $($ScopesMissing -join ', ')"
-                            Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::PermissionDenied) -ErrorId 'MgScopePermissionRequired' -RecommendedAction ("Connect-Entra -Scopes $($ScopesMissing -join ',')")
+                            Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::PermissionDenied) -ErrorId 'MgScopePermissionRequired' -RecommendedAction ("Connect-Beta -Scopes $($ScopesMissing -join ',')")
                             $result = $false
                         }
                     }
                 }
                 else {
                     $Exception = New-Object System.Security.Authentication.AuthenticationException -ArgumentList "Authentication needed, call Connect-Entra."
-                    Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::AuthenticationError) -CategoryReason 'AuthenticationException' -ErrorId 'MgAuthenticationRequired'
+                    Write-Error -Exception $Exception -Category ([System.Management.Automation.ErrorCategory]::AuthenticationError) -CategoryReason 'AuthenticationException' -ErrorId 'AuthenticationRequired'
                     $result = $false
                 }
 
@@ -94,7 +94,7 @@ function Resolve-EntraIdTenant {
 
     process {
     
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
         function Test-IsGuid {
             [OutputType([bool])]
@@ -143,14 +143,14 @@ function Resolve-EntraIdTenant {
 
             if (Test-IsGuid -StringGuid $value) {
                 Write-Verbose ("$(Get-Date -f T) - Attempting to resolve AzureAD Tenant by TenantID {0}" -f $value)
-                $ResolveUri = ("{0}/v1/tenantRelationships/findTenantInformationByTenantId(tenantId='{1}')" -f $GraphEndPoint, $Value)
+                $ResolveUri = ("{0}/beta/tenantRelationships/findTenantInformationByTenantId(tenantId='{1}')" -f $GraphEndPoint, $Value)
                 $ResolvedTenant.ValueFormat = "TenantId"
             }
             else {
 
                 if (Test-IsDnsDomainName -StringDomainName $value) {
                     Write-Verbose ("$(Get-Date -f T) - Attempting to resolve AzureAD Tenant by DomainName {0}" -f $value)
-                    $ResolveUri = ("{0}/v1/tenantRelationships/findTenantInformationByDomainName(domainName='{1}')" -f $GraphEndPoint, $Value)
+                    $ResolveUri = ("{0}/beta/tenantRelationships/findTenantInformationByDomainName(domainName='{1}')" -f $GraphEndPoint, $Value)
                     $ResolvedTenant.ValueFormat = "DomainName"
 
                 }
@@ -160,7 +160,7 @@ function Resolve-EntraIdTenant {
                 try {
 
                     Write-Verbose ("$(Get-Date -f T) - Resolving Tenant Information using MS Graph API")
-                    $Resolve = Invoke-MgGraphRequest -Method Get -Uri $ResolveUri -ErrorAction Stop -Headers $customHeaders | Select-Object tenantId, displayName, defaultDomainName, federationBrandName
+                    $Resolve = Invoke-MgGraphRequest -Method Get -Uri $ResolveUri -ErrorAction Stop -Headers $customHeaders| Select-Object tenantId, displayName, defaultDomainName, federationBrandName
 
                     $ResolvedTenant.Result = "Resolved"
                     $ResolvedTenant.ResultMessage = "Resolved Tenant"
