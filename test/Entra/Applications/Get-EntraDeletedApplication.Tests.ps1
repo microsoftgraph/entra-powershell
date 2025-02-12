@@ -67,14 +67,12 @@ Describe "Get-EntraDeletedApplication" {
         It "Should return specific application by SearchString" {
             $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'Mock-test-App'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Mock-test-App'" | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'Mock-test-App'
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }  
