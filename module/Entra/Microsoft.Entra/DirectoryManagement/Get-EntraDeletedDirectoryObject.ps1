@@ -71,6 +71,10 @@ function Get-EntraDeletedDirectoryObject {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
 
+                # Add DeletionAgeInDays property
+                $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+
             }
         }
         $response
