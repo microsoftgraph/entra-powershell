@@ -72,22 +72,16 @@ function Get-EntraDeletedApplication {
                 $response = Invoke-GraphRequest @params 
                 $data += $response.value
 
-                # Add DeletionAgeInDays property
-                $data | ForEach-Object {
-                    if ($null -ne $_.DeletedDateTime) {
-                        $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
-                        $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
-                    }
-                }
+
             }
 
-            <# # Add DeletionAgeInDays property
+            # Add DeletionAgeInDays property
             $data | ForEach-Object {
                 if ($null -ne $_.DeletedDateTime) {
                     $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
                     $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
                 }
-            } #>
+            }
         }
         catch {
             Write-Error "An error occurred: $_"
