@@ -53,7 +53,7 @@ function Get-EntraDeletedApplication {
 
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $SearchString = "`$search=`"displayName:$TmpValue`" or startsWith(displayName,'$TmpValue')"
+            $SearchString = "`$search=""displayName:$TmpValue OR startsWith(displayName,'$TmpValue')"""
             $params["Uri"] += "&$SearchString"
             $customHeaders['ConsistencyLevel'] = 'eventual'
         }
