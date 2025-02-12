@@ -70,7 +70,7 @@ function Get-EntraDeletedApplication {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
+            while ($response.PSObject.Properties["@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
                 $params["Uri"] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
