@@ -57,7 +57,7 @@ function Resolve-EntraBetaIdTenant {
                 $result = $true
   
                 ## Check MgModule Connection
-                $EntraContext = Get-MgBetaContext
+                $EntraContext = Get-MgContext
                 if ($EntraContext) {
                     if ($Scope) {
                         ## Check MgModule Consented Scopes
