@@ -74,7 +74,7 @@ Describe "Resolve-EntraIdTenant" {
          It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
 
-            Remove-EntraIdTenant -TenantId "Contoso.com"
+            Resolve-EntraIdTenant -TenantId "Contoso.com"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
 
