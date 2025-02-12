@@ -12,12 +12,7 @@ function Resolve-EntraBetaIdTenant {
     [OutputType([String])]
     Param (
         # The TenantId in GUID format
-        [Parameter(Mandatory = $true,
-            Position = 0,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Unique Id of the Tenant",
-            ParameterSetName = 'TenantId')]
+        [Parameter(Mandatory = $true, Position = 0,ValueFromPipeline = $true,ValueFromPipelineByPropertyName = $true,HelpMessage = "Unique Id of the Tenant",ParameterSetName = 'TenantId')]
         [ValidateScript({
             if ($_ -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$") {
                 $true
@@ -29,12 +24,7 @@ function Resolve-EntraBetaIdTenant {
         $TenantId,
 
         # The TenantDomainName in DNS Name format
-        [Parameter(Mandatory = $true,
-            Position = 0,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Unique Domain Name of the Tenant",
-            ParameterSetName = 'DomainName')]
+        [Parameter(Mandatory = $true,Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique Domain Name of the Tenant", ParameterSetName = 'DomainName')]
         [ValidateScript({
             $_ -match "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z]{2,})+$"
         })]
@@ -42,11 +32,7 @@ function Resolve-EntraBetaIdTenant {
         $DomainName,
 
         # Environment to resolve Azure AD Tenant In (Global, USGov, China, USGovDoD, Germany)
-        [Parameter(Mandatory = $false,
-            Position = 1,
-            ValueFromPipeline = $true,
-            HelpMessage = "Tenant Environment Name."
-            ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $false,Position = 1,ValueFromPipeline = $true ,ValueFromPipelineByPropertyName = $true, HelpMessage = "Tenant Environment Name.")]
         [ValidateSet("Global", "USGov", "China", "USGovDoD", "Germany")]
         [string]
         $Environment = "Global",
