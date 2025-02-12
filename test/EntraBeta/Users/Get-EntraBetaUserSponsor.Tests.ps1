@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
         Import-Module Microsoft.Entra.Beta.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -25,11 +25,11 @@ BeforeAll {
     }
 }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
 }
 
-Describe "Get-EntraUserSponsor" {
-    Context "Test for Get-EntraUserSponsor" {
+Describe "Get-EntraBetaUserSponsor" {
+    Context "Test for Get-EntraBetaUserSponsor" {
         It "Should fail when UserId is empty string value" {
             { Get-EntraBetaUserSponsor -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
@@ -50,14 +50,14 @@ Describe "Get-EntraUserSponsor" {
             $result[1].id | should -Be "10aa00aa-bb11-cc22-dd33-44ee44ee44e"
             $result[1].mail | should -Be "d@microsoft.com"
             $result[1].'@odata.type'| should -Be  "#microsoft.graph.group"
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should return top user sponsor" {
             $result = Get-EntraBetaUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when top is empty" {
