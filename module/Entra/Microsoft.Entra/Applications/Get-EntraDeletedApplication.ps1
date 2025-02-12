@@ -125,11 +125,6 @@ function Get-EntraDeletedApplication {
                 $deletionAgeInDays = (New-TimeSpan -Start $_.DeletedDateTime -End (Get-Date)).Days
                 $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value $deletionAgeInDays -Force
 
-                if ($null -ne $_.LastModifiedDateTime) {
-                    $lastModified = (New-TimeSpan -Start $_.LastModifiedDateTime -End (Get-Date)).Days
-                    $_ | Add-Member -MemberType NoteProperty -Name LastModifiedDaysAgo -Value $lastModified -Force
-                }
-                
             }
                 
         }
