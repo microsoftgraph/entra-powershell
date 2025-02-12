@@ -1,6 +1,6 @@
 ---
-title: Get-EntraUserSponsor
-description: This article provides details on the Get-EntraUserSponsor command.
+title: Get-EntraBetaUserSponsor
+description: This article provides details on the Get-EntraBetaUserSponsor command.
 
 ms.topic: reference
 ms.date: 02/10/2025
@@ -12,7 +12,7 @@ author: msewaweru
 schema: 2.0.0
 ---
 
-# Get-EntraUserSponsor
+# Get-EntraBetaUserSponsor
 
 ## Synopsis
 
@@ -21,7 +21,7 @@ List sponsor for a user.
 ## Syntax
 
 ```powershell
-Get-EntraUserSponsor
+Get-EntraBetaUserSponsor
  -UserId <String>
  [-All]
  [-Property <String[]>]
@@ -30,7 +30,7 @@ Get-EntraUserSponsor
 
 ## Description
 
-The `Get-EntraUserSponsor` cmdlet gets a user sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
+The `Get-EntraBetaUserSponsor` cmdlet gets a user sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
 
 Specify `UserId` parameter to get the specific manager of user.
 
@@ -40,7 +40,7 @@ Specify `UserId` parameter to get the specific manager of user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' |
+Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' |
 Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
 Format-Table -AutoSize
 ```
@@ -61,7 +61,7 @@ This example demonstrates how to list the user sponsors.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -Top 1 | Select-Object Id, DisplayName, '@odata.type'
+Get-EntraBetaUserSponsor -UserId 'vwyerM@contoso.com' -Top 1 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
