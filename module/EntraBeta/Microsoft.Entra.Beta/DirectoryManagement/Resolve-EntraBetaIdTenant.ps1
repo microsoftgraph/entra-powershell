@@ -16,6 +16,7 @@ function Resolve-EntraBetaIdTenant {
             Position = 0,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Unique Id of the Tenant"
             ParameterSetName = 'TenantId')]
         [ValidateScript({
             if ($_ -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$") {
@@ -32,6 +33,7 @@ function Resolve-EntraBetaIdTenant {
             Position = 0,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Unique Domain Name of the Tenant",
             ParameterSetName = 'DomainName')]
         [ValidateScript({
             $_ -match "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z]{2,})+$"
@@ -43,6 +45,7 @@ function Resolve-EntraBetaIdTenant {
         [Parameter(Mandatory = $false,
             Position = 1,
             ValueFromPipeline = $true,
+            HelpMessage = "Tenant Environment Name."
             ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("Global", "USGov", "China", "USGovDoD", "Germany")]
         [string]
