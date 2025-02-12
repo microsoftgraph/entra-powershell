@@ -3,7 +3,7 @@ title: Get-EntraDeletedGroup
 description: This article provides details on the Get-EntraDeletedGroup command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

@@ -3,7 +3,7 @@ title: Get-EntraDeletedUser
 description: This article provides details on the Get-EntraDeletedUser command.
 
 ms.topic: reference
-ms.date: 11/11/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

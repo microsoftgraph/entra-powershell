@@ -3,7 +3,7 @@ title: Get-EntraDeletedDirectoryObject
 description: This article provides details on the Get-EntraDeletedDirectoryObject command.
 
 ms.topic: reference
-ms.date: 02/08/2025
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

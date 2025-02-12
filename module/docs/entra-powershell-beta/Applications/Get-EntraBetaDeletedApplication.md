@@ -3,7 +3,7 @@ title: Get-EntraBetaDeletedApplication
 description: This article provides details on the Get-EntraBetaDeletedApplication command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

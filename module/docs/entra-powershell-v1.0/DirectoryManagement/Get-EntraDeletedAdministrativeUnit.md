@@ -3,7 +3,7 @@ title: Get-EntraDeletedAdministrativeUnit
 description: This article provides details on the Get-EntraDeletedAdministrativeUnit command.
 
 ms.topic: reference
-ms.date: 11/14/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
