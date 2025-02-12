@@ -5,20 +5,20 @@
 function Get-EntraDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-                
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
-                
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Filter,
-                
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Return all items.")]
         [switch] $All,
-                
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter the results based on specific criteria.")]
+        [System.String] $Filter,
+
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for items using a string.")]
         [System.String] $SearchString,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
@@ -26,112 +26,83 @@ function Get-EntraDeletedApplication {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{SearchString = "Filter"; ObjectId = "Id" }
+        $baseUri = "/v1.0/directory/deleteditems/microsoft.graph.application"
+
+        $properties = '$select=*'
+        if ($null -ne $PSBoundParameters["Property"]) {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+        }
+        $params["Uri"] = $baseUri + "?$properties"
+
+        if ($PSBoundParameters.ContainsKey("Top")) {
+            $topCount = $PSBoundParameters["Top"]
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else {
+                $params["Uri"] += "&`$top=$topCount"
+            }
+        }    
+        if ($null -ne $PSBoundParameters["Filter"]) {
+            $Filter = $PSBoundParameters["Filter"]
+            $f = '$' + 'Filter'
+            $params["Uri"] += "&$f=$Filter"
+        }
 
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
-            $params["Filter"] = $Value
+            $SearchString = "`$search=`"displayName:$TmpValue`" or startsWith(displayName,'$TmpValue')"
+            $params["Uri"] += "&$SearchString"
+            $customHeaders['ConsistencyLevel'] = 'eventual'
         }
-        
-        if ($null -ne $PSBoundParameters["Filter"]) {
-            $TmpValue = $PSBoundParameters["Filter"]
-            foreach ($i in $keysChanged.GetEnumerator()) {
-                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
-            }
-            $Value = $TmpValue
-            $params["Filter"] = $Value
-        }
-        
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        
-        if ($null -ne $PSBoundParameters["All"]) {
-            if ($PSBoundParameters["All"]) {
-                $params["All"] = $PSBoundParameters["All"]
-            }
-        }
-        
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        
-        if ($PSBoundParameters.ContainsKey("Top")) {
-            $params["Top"] = $PSBoundParameters["Top"]
-        }
-        if ($null -ne $PSBoundParameters["WarningVariable"]) {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if ($null -ne $PSBoundParameters["InformationVariable"]) {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-        if ($null -ne $PSBoundParameters["InformationAction"]) {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if ($null -ne $PSBoundParameters["OutVariable"]) {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if ($null -ne $PSBoundParameters["OutBuffer"]) {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if ($null -ne $PSBoundParameters["ErrorAction"]) {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if ($null -ne $PSBoundParameters["WarningAction"]) {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
-        }
-    
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgDirectoryDeletedItemAsApplication @params -Headers $customHeaders
-        
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                
-                $propsToConvert = @(
-                    'AddIns', 'AppRoles', 'GroupMembershipClaims', 'IdentifierUris', 'Info',
-                    'IsDeviceOnlyAuthSupported', 'KeyCredentials', 'OptionalClaims',
-                    'ParentalControlSettings', 'PasswordCredentials', 'Api', 'PublicClient',
-                    'PublisherDomain', 'Web', 'RequiredResourceAccess')
-                     
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json -Depth 5 | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
-                }
-               
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name AppLogoUrl -Value Logo
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name InformationalUrls -Value Info
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name HomePage -Value Web.HomePageUrl
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name LogoutUrl -Value Web.LogoutUrl
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ReplyUrls -Value Web.RedirectUris
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name KnownClientApplications -Value Api.KnownClientApplications
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name PreAuthorizedApplications -Value	Api.PreAuthorizedApplications
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name Oauth2AllowImplicitFlow -Value Web.Oauth2AllowImplicitFlow
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
+        try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $all = $All.IsPresent
+            $increment = $topCount - $data.Count
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
+                $params["Uri"] = $response.'@odata.nextLink'
+                if ($increment -gt 0) {
+                    $topValue = [Math]::Min($increment, 999)
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
+                    $increment -= $topValue
+                }
+                $response = Invoke-GraphRequest @params 
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+        }
+        catch {} 
+        $data | ForEach-Object {
+            if ($null -ne $_) {
                 if ($null -ne $_.DeletedDateTime) {
                     # Add DeletionAgeInDays property
                     $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
                     Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
                 }
-
             }
-                
         }
         
-        $response
-    }    
+        if ($data) {
+            $aulist = @()
+            foreach ($item in $data) {
+                $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
+                $item.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $aulist += $auType
+            }
+            $aulist
+        }
+    }
 }
-

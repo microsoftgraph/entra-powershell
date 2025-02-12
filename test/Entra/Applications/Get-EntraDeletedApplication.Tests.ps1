@@ -55,7 +55,7 @@ BeforeAll {
 
 Describe "Get-EntraDeletedApplication" {
     Context "Test for Get-EntraDeletedApplication" {        
-        It "Should return all applications" {
+        It "Should return all deleted applications" {
             $result = Get-EntraDeletedApplication -All | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
