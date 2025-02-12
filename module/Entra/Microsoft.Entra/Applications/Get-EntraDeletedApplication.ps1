@@ -121,11 +121,9 @@ function Get-EntraDeletedApplication {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name PreAuthorizedApplications -Value	Api.PreAuthorizedApplications
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name Oauth2AllowImplicitFlow -Value Web.Oauth2AllowImplicitFlow
 
-                # Add DeletionAgeInDays property
-                if ($null -ne $_.DeletedDateTime) {
-                    $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
-                    Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
-                }
+                $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+
             }
                 
         }
