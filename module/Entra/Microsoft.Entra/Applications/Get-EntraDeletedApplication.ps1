@@ -85,6 +85,16 @@ function Get-EntraDeletedApplication {
             Write-Error "An error occurred: $_"
         }
         
+        # Add DeletionAgeInDays property
+        $data | ForEach-Object {
+            if ($null -ne $_.DeletedDateTime) {
+                $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+            }
+        }
+
+        $data | Select-Object *, DeletionAgeInDays
+
         $data
     }
 }
