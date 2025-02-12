@@ -15,9 +15,6 @@ function Get-EntraDeletedApplication {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter the results based on specific criteria.")]
         [System.String] $Filter,
 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for items using a string.")]
-        [System.String] $SearchString,
-
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Select")]
         [System.String[]] $Property
@@ -52,32 +49,26 @@ function Get-EntraDeletedApplication {
             $params["Uri"] += "&$f=$Filter"
         }
 
-        if ($null -ne $PSBoundParameters["SearchString"]) {
-            $TmpValue = $PSBoundParameters["SearchString"]
-            $SearchString = "`$search=""displayName:$TmpValue OR startsWith(displayName,'$TmpValue')"""
-            $params["Uri"] += "&$SearchString"
-            $customHeaders['ConsistencyLevel'] = 'eventual'
-        }
-
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response.value
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
         try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
+            while ($response.PSObject.Properties["@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
                 $params["Uri"] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params 
-                $data += $response.value
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
         }
         catch {
