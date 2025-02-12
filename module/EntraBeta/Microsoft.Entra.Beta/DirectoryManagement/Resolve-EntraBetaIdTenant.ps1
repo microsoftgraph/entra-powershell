@@ -12,7 +12,7 @@ function Resolve-EntraBetaIdTenant {
     [OutputType([String])]
     Param (
         # The TenantId in GUID format
-        [Parameter(Mandatory = $true, Position = 0,ValueFromPipeline = $true,ValueFromPipelineByPropertyName = $true,HelpMessage = "Unique Id of the Tenant",ParameterSetName = 'TenantId')]
+        [Parameter( ParameterSetName = 'DomainName',Mandatory = $true, Position = 0,ValueFromPipeline = $true,ValueFromPipelineByPropertyName = $true,HelpMessage = "Unique Id of the Tenant.")]
         [ValidateScript({
             if ($_ -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$") {
                 $true
@@ -24,7 +24,7 @@ function Resolve-EntraBetaIdTenant {
         $TenantId,
 
         # The TenantDomainName in DNS Name format
-        [Parameter(Mandatory = $true,Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique Domain Name of the Tenant", ParameterSetName = 'DomainName')]
+        [Parameter(ParameterSetName = 'DomainName',Mandatory = $true,Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique Domain Name of the Tenant.")]
         [ValidateScript({
             $_ -match "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z]{2,})+$"
         })]
