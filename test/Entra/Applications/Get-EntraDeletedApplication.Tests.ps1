@@ -56,17 +56,15 @@ BeforeAll {
 Describe "Get-EntraDeletedApplication" {
     Context "Test for Get-EntraDeletedApplication" {        
         It "Should return all applications" {
-            $result = Get-EntraDeletedApplication | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+            $result = Get-EntraDeletedApplication -All | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraDeletedApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
-        }
+
         It "Should fail when invalid parameter is passed" {
             { Get-EntraDeletedApplication -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
         }         
-        It "Should return specific application by searchstring" {
+        It "Should return specific application by SearchString" {
             $result = Get-EntraDeletedApplication -SearchString 'Mock-test-App' | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-test-App'

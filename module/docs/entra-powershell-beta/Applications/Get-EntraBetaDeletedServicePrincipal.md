@@ -155,7 +155,7 @@ Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa
 
 This cmdlet retrieves the deleted service principal specified by ServicePrincipalId.
 
-- `-ServicePrincipalId` parameter specifies the deleted service principal Id.
+- `-ServicePrincipalId` parameter specifies the deleted service principal ID.
 
 ## Parameters
 

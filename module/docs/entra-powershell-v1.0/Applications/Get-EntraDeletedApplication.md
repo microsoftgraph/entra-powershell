@@ -48,7 +48,7 @@ Get-EntraDeletedApplication
 
 The `Get-EntraDeletedApplication` cmdlet Retrieves the list of previously deleted applications.
 
-Note: Deleted security groups are permanently removed and cannot be retrieved.
+Note: Deleted security groups are permanently removed and can't be retrieved.
 
 ## Examples
 
