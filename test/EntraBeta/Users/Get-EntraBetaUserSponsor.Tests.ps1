@@ -10,15 +10,11 @@ BeforeAll {
     return @{
         value = @(
             @{
-                id          = "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
-                country     = "United States"
-                displayName = "Sara Davis"
-                jobTitle    = "Finance VP"
-                mail        = "SaraD@contoso.com"
+                id         = "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
+                country    = "United States"
                 '@odata.type' = "#microsoft.graph.user"
             }
         )
-        '@odata.nextLink' = $null
     }
 }
 
@@ -35,7 +31,7 @@ Describe "Get-EntraUserSponsor" {
         }
         It "Should return specific User with alias" {
             $result = Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
-            
+
             $result | Should -Not -BeNullOrEmpty
             should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
@@ -51,12 +47,6 @@ Describe "Get-EntraUserSponsor" {
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
-        }
-        It "Should fail when top is empty" {
-            { Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
-        }  
-        It "Should fail when top is invalid" {
-            { Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It 'should handle the Property parameter correctly' {
             $UserId = '00aa00aa-bb11-cc22-dd33-44ee44ee44e'

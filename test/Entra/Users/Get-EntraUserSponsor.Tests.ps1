@@ -15,7 +15,6 @@ BeforeAll {
                 '@odata.type' = "#microsoft.graph.user"
             }
         )
-        '@odata.nextLink' = $null
     }
 }
 
@@ -32,7 +31,7 @@ Describe "Get-EntraUserSponsor" {
         }
         It "Should return specific User with alias" {
             $result = Get-EntraUserSponsor -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44e"
-            
+
             $result | Should -Not -BeNullOrEmpty
             should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
