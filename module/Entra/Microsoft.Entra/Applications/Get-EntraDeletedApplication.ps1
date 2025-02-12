@@ -87,7 +87,7 @@ function Get-EntraDeletedApplication {
         if ($data) {
             $aulist = @()
             foreach ($item in $data) {
-                $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
+                $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDeleted, Microsoft.Graph.Applications.private, Culture=neutral, PublicKeyToken=31bf3856ad364e35
                 $item.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                     $propertyValue = $_.Value
