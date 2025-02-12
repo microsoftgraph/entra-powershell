@@ -3,7 +3,7 @@ title: Resolve-EntraIdTenant
 description: This article provides details on the Resolve-EntraIdTenant command.
 
 ms.topic: reference
-ms.date: 02/11/2025
+ms.date: 02/10/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -37,7 +37,7 @@ The `Resolve-EntraIdTenant` cmdlet resolves a Tenant ID or Domain Name to an Azu
 
 ```powershell
 Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-Resolve-EntraIdTenant -Tenant example.com
+Resolve-EntraIdTenant -TenantId example.com
 ```
 
 Resolves the tenant with domain `example.com`.
@@ -46,26 +46,26 @@ Resolves the tenant with domain `example.com`.
 
 ```powershell
 Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-Resolve-EntraIdTenant -TenantId c19543f3-d36c-435c-ad33-18f11b8c1a15
+Resolve-EntraIdTenant -TenantId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-Resolves the tenant with GUID `c19543f3-d36c-435c-ad33-18f11b8c1a15`.
+Resolves the tenant with GUID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
 ### Example 3: Resolve multiple tenants
 
 ```powershell
 Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-Resolve-EntraIdTenant -Tenant "example.com","c19543f3-d36c-435c-ad33-18f11b8c1a15"
+Resolve-EntraIdTenant -TenantId "example.com","aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ```
 
-Resolves both a domain (`example.com`) and a tenant GUID (`c19543f3-d36c-435c-ad33-18f11b8c1a15`).
+Resolves both a domain (`example.com`) and a tenant GUID (`aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`).
 
 ### Example 4: Resolve tenants from a file
 
 ```powershell
 Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
 $DomainList = Get-Content .\DomainList.txt
-Resolve-EntraIdTenant -Tenant $DomainList
+Resolve-EntraIdTenant -TenantId $DomainList
 ```
 
 Resolves multiple tenants from a file containing a list of domain names.
