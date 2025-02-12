@@ -29,6 +29,9 @@ function Get-EntraDeletedApplication {
         $properties = '$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
+            if (-not $selectProperties.Contains("DeletedDateTime")) {
+                $selectProperties += "DeletedDateTime"
+            }
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
@@ -54,21 +57,20 @@ function Get-EntraDeletedApplication {
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $data = $response.value
 
         try {
-            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.PSObject.Properties["@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
+            while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
                 $params["Uri"] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
+                    $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params 
-                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                $data += $response.value
             }
         }
         catch {
@@ -86,4 +88,3 @@ function Get-EntraDeletedApplication {
         $data
     }
 }
-
