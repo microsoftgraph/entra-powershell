@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
-        Import-Module Microsoft.Entra.Users      
+        Import-Module Microsoft.Entra.Beta.Users      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $scriptblock = {
