@@ -24,7 +24,7 @@ Resolves a Tenant ID or Domain Name to a Microsoft Entra ID Tenant.
 ## Syntax
 
 ```powershell
-Resolve-EntraBetaIdTenant -Tenant <String[]> [<CommonParameters>]
+Resolve-EntraBetaIdTenant -TenantId <String[]> [<CommonParameters>]
 ```
 
 ## Description
@@ -37,7 +37,7 @@ The `Resolve-EntraBetaIdTenant` cmdlet resolves a Tenant ID or Domain Name to an
 
 ```powershell
 Connect-Entra -Scopes "CrossTenantInformation.ReadBasic.All"
-Resolve-EntraBetaIdTenant -Tenant example.com
+Resolve-EntraBetaIdTenant -DomainName example.com
 ```
 
 Resolves the tenant with domain `example.com`.

@@ -9,9 +9,8 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Test-EntraModulePrerequisites -MockWith { return $true } -ModuleName Microsoft.Entra.DirectoryManagement
-    Mock -CommandName Get-MgContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} }
-    Mock -CommandName Get-MgEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} }
+    Mock -CommandName Get-EntraContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} } -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-EntraEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} } -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -MockWith { @{tenantId = "12345"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"} }
     Mock -CommandName Invoke-RestMethod -ModuleName Microsoft.Entra.DirectoryManagement -MockWith {@{issuer = "https://login.microsoftonline.com/12345/v2.0"; tenant_region_scope = "US"} }
 }
@@ -29,7 +28,7 @@ Describe "Resolve-EntraIdTenant" {
         }
 
         It "Should resolve tenant by domain name" {
-            $result = Resolve-EntraIdTenant -TenantId "test.onmicrosoft.com"
+            $result = Resolve-EntraIdTenant -DomainName "test.onmicrosoft.com"
 
             $result.Result | Should -Be "Resolved"
             $result.DefaultDomainName | Should -Be "test.onmicrosoft.com"
@@ -38,7 +37,7 @@ Describe "Resolve-EntraIdTenant" {
         }
 
         It "Should resolve tenant with OIDC metadata" {
-            $result = Resolve-EntraIdTenant -TenantId "test.onmicrosoft.com"
+            $result = Resolve-EntraIdTenant -DomainName "test.onmicrosoft.com"
 
             $result.OidcMetadataResult | Should -Be "Resolved"
             $result.OidcMetadataTenantId | Should -Be "12345"
@@ -51,7 +50,7 @@ Describe "Resolve-EntraIdTenant" {
     Context "Invalid Inputs" {
         
         It "Should return Skipped for invalid tenant Id" {
-            $result = Resolve-EntraIdTenant -TenantId "invalid_tenant_id"
+            $result = Resolve-EntraIdTenant -TenantId "tenantId"
 
             $result.ValueFormat | Should -Be "Unknown"
             $result.Status | Should -Be "Skipped"
@@ -66,7 +65,7 @@ Describe "Resolve-EntraIdTenant" {
          It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
 
-            Resolve-EntraIdTenant -TenantId "Contoso.com"
+            Resolve-EntraIdTenant -DomainName "Contoso.com"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
 

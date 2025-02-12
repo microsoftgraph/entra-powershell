@@ -37,7 +37,7 @@ The `Resolve-EntraIdTenant` cmdlet resolves a Tenant ID or Domain Name to an Azu
 
 ```powershell
 Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-Resolve-EntraIdTenant -TenantId example.com
+Resolve-EntraIdTenant -DomainName example.com
 ```
 
 Resolves the tenant with domain `example.com`.
