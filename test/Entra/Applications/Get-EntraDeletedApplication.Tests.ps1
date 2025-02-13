@@ -7,65 +7,6 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @( [PSCustomObject]@{
-                DeletionAgeInDays                 = 1
-                AddIns                            = @{}
-                Api                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication" }
-                AppId                             = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                AppManagementPolicies             = $null
-                AppRoles                          = @("9fbeb438-af48-4ae2-b860-f867f833d458")
-                ApplicationTemplateId             = "ed98cda1-8c4e-4e31-91f0-ef273e1bf3f1"
-                Certification                     = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphCertification" }
-                CreatedDateTime                   = "2/10/2025 6:57:27 PM"
-                CreatedOnBehalfOf                 = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject" }
-                DefaultRedirectUri                = $null
-                DeletedDateTime                   = "2/12/2025 11:07:07 AM"
-                Description                       = $null
-                DisabledByMicrosoftStatus         = $null
-                DisplayName                       = "Contoso Marketing"
-                ExtensionProperties               = $null
-                FederatedIdentityCredentials      = $null
-                GroupMembershipClaims             = $null
-                HomeRealmDiscoveryPolicies        = $null
-                Id                                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                IdentifierUris                    = @{}
-                Info                              = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphInformationalUrl" }
-                IsDeviceOnlyAuthSupported         = $null
-                IsFallbackPublicClient            = $false
-                KeyCredentials                    = @{}
-                Logo                              = $null
-                NativeAuthenticationApisEnabled   = $null
-                Notes                             = $null
-                Oauth2RequirePostResponse         = $null
-                OptionalClaims                    = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphOptionalClaims" }
-                Owners                            = $null
-                ParentalControlSettings           = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphParentalControlSettings" }
-                PasswordCredentials               = @{}
-                PublicClient                      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication" }
-                PublisherDomain                   = "contoso.com"
-                RequestSignatureVerification      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequestSignatureVerification" }
-                RequiredResourceAccess            = @{}
-                SamlMetadataUrl                   = $null
-                ServiceManagementReference        = $null
-                ServicePrincipalLockConfiguration = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphServicePrincipalLockConfiguration" }
-                SignInAudience                    = "AzureADMyOrg"
-                Spa                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphSpaApplication" }
-                Synchronization                   = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphSynchronization" }
-                Tags                              = @{}
-                TokenEncryptionKeyId              = $null
-                TokenIssuancePolicies             = $null
-                TokenLifetimePolicies             = $null
-                UniqueName                        = $null
-                VerifiedPublisher                 = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphVerifiedPublisher" }
-                Web                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphWebApplication" }
-                AdditionalProperties              = @{}
-
-            }
-
-        )
-    }
-
     $mockDeletedApplication = {
         return @( [PSCustomObject]@{
                 Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
