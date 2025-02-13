@@ -116,5 +116,4 @@ None.
 
 [Get-EntraUser](Get-EntraBetaUser.md)
 
-[Update-EntraUser](Update-EntraBetaUser.md)
-
+[Set-EntraUser](Set-EntraBetaUser.md)
