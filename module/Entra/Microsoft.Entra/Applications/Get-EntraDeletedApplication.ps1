@@ -109,10 +109,12 @@ function Get-EntraDeletedApplication {
 
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    if ($null -ne $_.DeletedDateTime) {
-                        # Add DeletionAgeInDays property
-                        $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
-                        Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    if ($null -ne $_.DeletedDateTime -and [datetime]::TryParse($_.DeletedDateTime, [ref]$null)) {
+                        $deletionAgeInDays = (Get-Date) - [datetime]$_.DeletedDateTime
+                        $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    }
+                    else {
+                        $_ | Add-Member -MemberType NoteProperty -Name DeletionAgeInDays -Value $null -Force
                     }
     
                 }
