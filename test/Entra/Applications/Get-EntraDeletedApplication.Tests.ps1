@@ -7,51 +7,62 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "AddIns"                    = {}
-                "AppRoles"                  = {}
-                "GroupMembershipClaims"     = {}
-                "IdentifierUris"            = {}
-                "Info"                      = @{
-                    LogoUrl = "";
-                }
-                "IsDeviceOnlyAuthSupported" = $null
-                "KeyCredentials"            = {}
-                "OptionalClaims"            = {}
-                "ParentalControlSettings"   = @{
-                    CountriesBlockedForMinors = @{}; 
-                    LegalAgeGroupRule         = "Allow";
-                }
-                "PasswordCredentials"       = {}
-                "Api"                       = @{
-                    KnownClientApplications   = @{};
-                    PreAuthorizedApplications = @{};
-                }
-                "PublicClient"              = @{
-                    RedirectUris = @{};
-                }
-                "PublisherDomain"           = "contoso.com"
-                "Web"                       = @{
-                    HomePageUrl             = "";  
-                    LogoutUrl               = ""; 
-                    RedirectUris            = @{};
-                    Oauth2AllowImplicitFlow = ""
-                }
-                "RequiredResourceAccess"    = $null                
-                "DisplayName"               = "Contoso Marketing"
-                "Id"                        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "Logo"                      = $null
-                "Parameters"                = $args
-                "DeletedDateTime"           = "02/12/2025 11:07:07"
-                "DeletionAgeInDays"         = 1
-                "AppId"                     = "00001111-aaaa-2222-bbbb-3333cccc4444"
-            }
-        )
+    $mockedDeletedApplication = [PSCustomObject]@{
+        DeletionAgeInDays                 = 1
+        AddIns                            = @{}
+        Api                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication" }
+        AppId                             = "8b7fd218-5fcd-4b7f-9ced-c578be3bb1b4"
+        AppManagementPolicies             = $null
+        AppRoles                          = @("9fbeb438-af48-4ae2-b860-f867f833d458")
+        ApplicationTemplateId             = "ed98cda1-8c4e-4e31-91f0-ef273e1bf3f1"
+        Certification                     = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphCertification" }
+        CreatedDateTime                   = "2/10/2025 6:57:27 PM"
+        CreatedOnBehalfOf                 = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject" }
+        DefaultRedirectUri                = $null
+        DeletedDateTime                   = "2/12/2025 11:07:07 AM"
+        Description                       = $null
+        DisabledByMicrosoftStatus         = $null
+        DisplayName                       = "Contoso Fieldglass"
+        ExtensionProperties               = $null
+        FederatedIdentityCredentials      = $null
+        GroupMembershipClaims             = $null
+        HomeRealmDiscoveryPolicies        = $null
+        Id                                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        IdentifierUris                    = @{}
+        Info                              = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphInformationalUrl" }
+        IsDeviceOnlyAuthSupported         = $null
+        IsFallbackPublicClient            = $false
+        KeyCredentials                    = @{}
+        Logo                              = $null
+        NativeAuthenticationApisEnabled   = $null
+        Notes                             = $null
+        Oauth2RequirePostResponse         = $null
+        OptionalClaims                    = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphOptionalClaims" }
+        Owners                            = $null
+        ParentalControlSettings           = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphParentalControlSettings" }
+        PasswordCredentials               = @{}
+        PublicClient                      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication" }
+        PublisherDomain                   = "357g72.onmicrosoft.com"
+        RequestSignatureVerification      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequestSignatureVerification" }
+        RequiredResourceAccess            = @{}
+        SamlMetadataUrl                   = $null
+        ServiceManagementReference        = $null
+        ServicePrincipalLockConfiguration = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphServicePrincipalLockConfiguration" }
+        SignInAudience                    = "AzureADMyOrg"
+        Spa                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphSpaApplication" }
+        Synchronization                   = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphSynchronization" }
+        Tags                              = @{}
+        TokenEncryptionKeyId              = $null
+        TokenIssuancePolicies             = $null
+        TokenLifetimePolicies             = $null
+        UniqueName                        = $null
+        VerifiedPublisher                 = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphVerifiedPublisher" }
+        Web                               = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphWebApplication" }
+        AdditionalProperties              = @{}
     }
+    
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $mockedDeletedApplication -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDeletedApplication" {
