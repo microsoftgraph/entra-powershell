@@ -32,11 +32,11 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         }
 
         if ($all) {
-            $invitedUsers = Get-EntraBetaUser -Filter $guestFilter -All -ExpandProperty sponsors
+            $invitedUsers = Get-EntraBetaUser -Filter $guestFilter -All -Select Sponsors
         }
         else {
             foreach ($user in $userId) {
-                $invitedUsers += Get-EntraBetaUser -UserId $user -ExpandProperty sponsors
+                $invitedUsers += Get-EntraBetaUser -UserId $user -Select Sponsors
             }
         }
 
