@@ -64,9 +64,16 @@ BeforeAll {
             }
 
         )
-    }    
+    }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    $mockDeletedApplication = [PSCustomObject]@{
+        Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        DisplayName       = "Test App"
+        DeletedDateTime   = (Get-Date).AddDays(-1)
+        DeletionAgeInDays = 1
+    }
+
+    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $mockDeletedApplication -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDeletedApplication" {
