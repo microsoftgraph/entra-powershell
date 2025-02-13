@@ -28,7 +28,7 @@ function Get-EntraDeletedApplication {
         $params = @{}
         $topCount = $null
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "/v1.0/directory/deleteditems/microsoft.graph.application"
+        $baseUri = "/v1.0/directory/deleteditems"
 
         $properties = '$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {
@@ -44,7 +44,7 @@ function Get-EntraDeletedApplication {
             $params["Uri"] = "$baseUri/$($PSBoundParameters["ApplicationId"])?" + $properties
         }
         else {
-            $params["Uri"] = "$baseUri?$properties"
+            $params["Uri"] = "$baseUri/microsoft.graph.application?$properties"
 
             if ($PSBoundParameters.ContainsKey("Top")) {
                 $topCount = $PSBoundParameters["Top"]
