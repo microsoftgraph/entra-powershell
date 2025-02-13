@@ -52,7 +52,7 @@ Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 Resolve-EntraBetaTenant -DomainName example.com
 ```
 
-```output
+```Output
 Environment                   : Global
 ValueFormat                   : DomainName
 Result                        : Resolved
@@ -77,7 +77,7 @@ $tenantId=(Get-EntraContext).TenantId
 Resolve-EntraBetaTenant -TenantId $tenantId
 ```
 
-```output
+```Output
 Environment                   : Global
 ValueFormat                   : TenantId
 Result                        : Resolved
@@ -102,7 +102,7 @@ $domainList = Get-Content .\DomainList.txt
 Resolve-EntraBetaTenant -DomainName $domainList
 ```
 
-```output
+```Output
 
 Environment                   : Global
 ValueToResolve                : Example1.com
@@ -142,7 +142,7 @@ $tenantList = Get-Content .\TenantIdList.txt
 Resolve-EntraBetaTenant -TenantId $tenantList
 ```
 
-```output
+```Output
 
 Environment                   : Global
 ValueToResolve                : Example1.com
