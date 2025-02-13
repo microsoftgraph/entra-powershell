@@ -44,6 +44,9 @@ BeforeAll {
                 "Id"                        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 "Logo"                      = $null
                 "Parameters"                = $args
+                "DeletedDateTime"           = "02/12/2025 11:07:07"
+                "DeletionAgeInDays"         = 1
+                "AppId"                     = "00001111-aaaa-2222-bbbb-3333cccc4444"
             }
         )
     }
