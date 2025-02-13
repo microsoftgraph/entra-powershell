@@ -56,9 +56,11 @@ BeforeAll {
 
 Describe "Get-EntraDeletedApplication" {
     Context "Test for Get-EntraDeletedApplication" {
-        It "Should return all the deleted applications" {
-            $result = Get-EntraDeletedApplication
+        It "Should return a specific deleted application" {
+            $result = Get-EntraDeletedApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
 
