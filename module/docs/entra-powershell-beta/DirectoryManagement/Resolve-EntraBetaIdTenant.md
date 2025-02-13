@@ -23,8 +23,16 @@ Resolves a Tenant ID or Domain Name to a Microsoft Entra ID Tenant.
 
 ## Syntax
 
+### TenantId(Default)
+
 ```powershell
-Resolve-EntraBetaIdTenant -TenantId <String[]> -DomainName <String[]> [<CommonParameters>]
+Resolve-EntraBetaIdTenant -TenantId <String[]> [<CommonParameters>]
+```
+
+### DomainName
+
+```powershell
+Resolve-EntraBetaIdTenant -DomainName <String[]> [<CommonParameters>]
 ```
 
 ## Description
@@ -61,7 +69,8 @@ Resolves the tenant with domain `example.com`.
 
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
-Resolve-EntraBetaIdTenant -TenantId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+$tenantId=(Get-EntraContext).TenantId
+Resolve-EntraBetaIdTenant -TenantId $tenantId
 ```
 
 ```output
@@ -85,8 +94,8 @@ Resolves the tenant with GUID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
-$DomainList = Get-Content .\DomainList.txt
-Resolve-EntraBetaIdTenant -DomainName $DomainList
+$domainList = Get-Content .\DomainList.txt
+Resolve-EntraBetaIdTenant -DomainName $domainList
 ```
 
 ```output
@@ -125,8 +134,8 @@ Resolves multiple tenants from a file containing a list of domain names.
 
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
-$TenantList = Get-Content .\TenantIdList.txt
-Resolve-EntraBetaIdTenant -TenantId $TenantList
+$tenantList = Get-Content .\TenantIdList.txt
+Resolve-EntraBetaIdTenant -TenantId $tenantList
 ```
 
 ```output
@@ -163,14 +172,30 @@ Resolves multiple tenants from a file containing a list of TenantIds.
 
 ## Parameters
 
-### -Tenant
+### -TenantId
 
-Specifies one or more domain names or Tenant IDs to resolve.
+Specifies one or more  Tenant IDs to resolve.
 
 ```yaml
 Type: System.String[]
-Parameter Sets: (All)
-Aliases: TenantId
+Parameter Sets: TenantId
+Aliases: 
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -DomainName
+
+Specifies one or more domain names to resolve.
+
+```yaml
+Type: System.String[]
+Parameter Sets: DomainName
+Aliases: 
 
 Required: True
 Position: Named
