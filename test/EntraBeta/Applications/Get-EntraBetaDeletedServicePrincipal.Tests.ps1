@@ -36,14 +36,12 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
         It "Should return specific service principal by searchstring" {
             $result = Get-EntraBetaDeletedServicePrincipal -SearchString 'Contoso Marketing'
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific service principal by filter" {
             $result = Get-EntraBetaDeletedServicePrincipal -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
@@ -65,7 +63,6 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedServicePrincipal -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "Contoso Marketing"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 

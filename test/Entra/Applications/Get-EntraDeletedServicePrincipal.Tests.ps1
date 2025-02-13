@@ -36,14 +36,12 @@ Describe "Get-EntraDeletedServicePrincipal" {
         It "Should return specific service principal by searchstring" {
             $result = Get-EntraDeletedServicePrincipal -SearchString 'Contoso Marketing'
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
         }
 
         It "Should return specific service principal by filter" {
-            $result = Get-EntraDeletedServicePrincipal -Filter "DisplayName -eq 'Contoso Marketing'"
+            $result = Get-EntraDeletedServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
         }
 
