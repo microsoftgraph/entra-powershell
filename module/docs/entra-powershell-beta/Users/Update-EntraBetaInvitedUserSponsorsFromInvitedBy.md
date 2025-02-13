@@ -9,9 +9,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra.Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraBetaInvitedUserSponsorsFromInvitedBy
+external help file: Microsoft.Entra.Beta.Users-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Beta.Entra/Update-EntraBetaInvitedUserSponsorsFromInvitedBy
 
 schema: 2.0.0
 ---
@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Updates the sponsors of invited users based on the user who invited them.
+Update the Sponsors attribute to include the user who initially invited them to the tenant using the InvitedBy property. 
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Update-EntraBetaInvitedUserSponsorsFromInvitedBy
 
 ## Description
 
-The `Update-EntraBetaInvitedUserSponsorsFromInvitedBy` cmdlet updates the sponsors for invited users based on the inviter's information in Microsoft Entra ID.
+The `Update-EntraBetaInvitedUserSponsorsFromInvitedBy` cmdlet updates the Sponsors attribute to include the user who initially invited them to the tenant using the InvitedBy property. This script can be used to backfill Sponsors attribute for existing users.
 
 The calling user must be assigned at least one of the following Microsoft Entra roles:
 
@@ -42,16 +42,25 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 
 ## Examples
 
-### Example 1: Update sponsors for a specific guest user
+### Example 1: Enumerate all invited users in the Tenant and update Sponsors using InvitedBy value
+
+```powershell
+ Connect-Entra -Scopes 'User.ReadWrite.All'
+ Update-EntraBetaInvitedUserSponsorsFromInvitedBy
+```
+
+Enumerate all invited users in the Tenant and update Sponsors using InvitedBy value
+
+### Example 2: Update sponsors for a specific guest user
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId 'guestuser@contoso.com'
+Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId 'guestuser@contoso.com','guestuser1@contoso.com'
 ```
 
 This command updates the sponsors for the specified guest user in Microsoft Entra ID.
 
-### Example 2: Update sponsors for all invited guest users
+### Example 3: Update sponsors for all invited guest users
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
@@ -100,11 +109,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-None.
-
 ## Outputs
-
-None.
 
 ## Notes
 

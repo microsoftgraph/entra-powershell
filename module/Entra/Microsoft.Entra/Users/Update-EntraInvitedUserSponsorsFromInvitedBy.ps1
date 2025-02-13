@@ -33,11 +33,11 @@ function Update-EntraInvitedUserSponsorsFromInvitedBy {
         }
 
         if ($All) {
-            $invitedUsers = Get-EntraUser -Filter $guestFilter -All -ExpandProperty Sponsors
+            $invitedUsers = Get-EntraUser -Filter $guestFilter -All -Select Sponsors
         }
         else {
             foreach ($user in $UserId) {
-                $invitedUsers += Get-EntraUser -UserId $user -ExpandProperty Sponsors
+                $invitedUsers += Get-EntraUser -UserId $user -Select Sponsors
             }
         }
 
