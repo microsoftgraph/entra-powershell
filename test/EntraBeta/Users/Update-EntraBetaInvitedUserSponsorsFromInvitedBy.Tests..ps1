@@ -15,7 +15,7 @@ BeforeAll {
     Mock -CommandName Invoke-MgGraphRequest -MockWith {
         @{ value = @{ id = "456" } }
     } -ModuleName Microsoft.Graph.Beta.Users
-    Mock -CommandName Update-EntraBetaUser -MockWith { $true } -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Set-EntraBetaUser -MockWith { $true } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Update-EntraBetaInvitedUserSponsorsFromInvitedBy" {
