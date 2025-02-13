@@ -57,9 +57,10 @@ function Get-EntraDeletedApplication {
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
         try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
@@ -70,9 +71,7 @@ function Get-EntraDeletedApplication {
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params 
-                $data += $response.value
-
-
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
 
         }
