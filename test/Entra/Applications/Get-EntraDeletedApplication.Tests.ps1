@@ -76,7 +76,7 @@ Describe "Get-EntraDeletedApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ModuleName Microsoft.Entra.Applications -Times 1
         }
 
         It "Should return specific deleted application by searchstring" {
