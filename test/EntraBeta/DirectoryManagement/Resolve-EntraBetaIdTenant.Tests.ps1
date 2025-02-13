@@ -46,7 +46,16 @@ Describe "Resolve-EntraBetaIdTenant" {
             Should -Invoke -CommandName Invoke-RestMethod -ModuleName Microsoft.Entra.Beta.DirectoryManagement  -Times 1
         }
 
-        
+    }
+
+    Context "Invalid Inputs" {
+    
+        It "Should throw an exception for invalid tenant Id" {
+             {Resolve-EntraBetaIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
+         }
+    }
+
+    Context "User-Agent Header"{
          It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraBetaIdTenant"
 
@@ -59,13 +68,6 @@ Describe "Resolve-EntraBetaIdTenant" {
             $true
             }
         } 
-    }
-
-    Context "Invalid Inputs" {
-    
-        It "Should throw an exception for invalid tenant Id" {
-             {Resolve-EntraBetaIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
-         }
     }
 }
 
