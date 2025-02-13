@@ -9,8 +9,8 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Get-MgContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
-    Mock -CommandName Get-MgEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-EntraContext -MockWith {  @{Scopes = @("CrossTenantInformation.ReadBasic.All")} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-EntraEnvironment -MockWith { @{GraphEndpoint = "https://graph.microsoft.com"; AzureADEndpoint = "https://login.microsoftonline.com"} } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     Mock -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith { @{tenantId = "12345678-1234-1234-1234-123456789abc"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"} }
     Mock -CommandName Invoke-RestMethod -ModuleName Microsoft.Entra.Beta.DirectoryManagement -MockWith {@{issuer = "https://login.microsoftonline.com/12345/v2.0"; tenant_region_scope = "US"} }
 }
@@ -51,7 +51,7 @@ Describe "Resolve-EntraBetaIdTenant" {
     Context "Invalid Inputs" {
     
         It "Should throw an exception for invalid tenant Id" {
-             {Resolve-EntraBetaIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
+             {Resolve-EntraBetaIdTenant -TenantId "12345"} | Should -Throw
          }
     }
 

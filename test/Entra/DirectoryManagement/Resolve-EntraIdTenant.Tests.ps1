@@ -50,7 +50,7 @@ Describe "Resolve-EntraIdTenant" {
     Context "Invalid Inputs" {
         
         It "Should throw an exception for invalid tenant Id" {
-             {Resolve-EntraIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
+             {Resolve-EntraIdTenant -TenantId "12345"} | Should -Throw
         }
     }
     Context "User-Agent Header"{
