@@ -23,7 +23,7 @@ BeforeAll {
                 DeletedDateTime                   = "2/12/2025 11:07:07 AM"
                 Description                       = $null
                 DisabledByMicrosoftStatus         = $null
-                DisplayName                       = "Contoso Fieldglass"
+                DisplayName                       = "Contoso Marketing"
                 ExtensionProperties               = $null
                 FederatedIdentityCredentials      = $null
                 GroupMembershipClaims             = $null
@@ -43,7 +43,7 @@ BeforeAll {
                 ParentalControlSettings           = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphParentalControlSettings" }
                 PasswordCredentials               = @{}
                 PublicClient                      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication" }
-                PublisherDomain                   = "357g72.onmicrosoft.com"
+                PublisherDomain                   = "contoso.com"
                 RequestSignatureVerification      = [PSCustomObject]@{ TypeName = "Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequestSignatureVerification" }
                 RequiredResourceAccess            = @{}
                 SamlMetadataUrl                   = $null
