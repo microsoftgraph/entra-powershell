@@ -59,7 +59,7 @@ function Get-EntraDeletedServicePrincipal {
         }
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $Value = "displayName eq '$TmpValue' or startsWith(displayName,'$TmpValue')"
             $params["Filter"] = $Value
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
