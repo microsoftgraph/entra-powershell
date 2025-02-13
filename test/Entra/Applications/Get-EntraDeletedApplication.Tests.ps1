@@ -68,8 +68,11 @@ BeforeAll {
 
     $mockDeletedApplication = [PSCustomObject]@{
         Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        DisplayName       = "Test App"
+        DisplayName       = "Contoso Marketing"
         DeletedDateTime   = (Get-Date).AddDays(-1)
+        AppId             = "00001111-aaaa-2222-bbbb-3333cccc4444"
+        SignInAudience    = "AzureADMyOrg"
+        PublisherDomain   = "contoso.com"
         DeletionAgeInDays = 1
     }
 
