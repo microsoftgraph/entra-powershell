@@ -15,10 +15,10 @@ BeforeAll {
     Mock -CommandName Invoke-RestMethod -ModuleName Microsoft.Entra.DirectoryManagement -MockWith {@{issuer = "https://login.microsoftonline.com/12345/v2.0"; tenant_region_scope = "US"} }
 }
 
-Describe "Resolve-EntraIdTenant" {
+Describe "Resolve-EntraTenant" {
     Context "Valid Inputs" {
         It "Should resolve tenant by GUID" {
-            $result = Resolve-EntraIdTenant -TenantId "12345678-1234-1234-1234-123456789abc"
+            $result = Resolve-EntraTenant -TenantId "12345678-1234-1234-1234-123456789abc"
             
             $result.Result | Should -Be "Resolved"
             $result.TenantId | Should -Be "12345678-1234-1234-1234-123456789abc"
@@ -28,7 +28,7 @@ Describe "Resolve-EntraIdTenant" {
         }
 
         It "Should resolve tenant by domain name" {
-            $result = Resolve-EntraIdTenant -DomainName "test.onmicrosoft.com"
+            $result = Resolve-EntraTenant -DomainName "test.onmicrosoft.com"
 
             $result.Result | Should -Be "Resolved"
             $result.DefaultDomainName | Should -Be "test.onmicrosoft.com"
@@ -37,7 +37,7 @@ Describe "Resolve-EntraIdTenant" {
         }
 
         It "Should resolve tenant with OIDC metadata" {
-            $result = Resolve-EntraIdTenant -DomainName "test.onmicrosoft.com"
+            $result = Resolve-EntraTenant -DomainName "test.onmicrosoft.com"
 
             $result.OidcMetadataResult | Should -Be "Resolved"
             $result.OidcMetadataTenantId | Should -Be "12345"
@@ -50,16 +50,16 @@ Describe "Resolve-EntraIdTenant" {
     Context "Invalid Inputs" {
         
         It "Should throw an exception for invalid tenant Id" {
-             {Resolve-EntraIdTenant -TenantId "12345"} | Should -Throw
+             {Resolve-EntraTenant -TenantId "12345"} | Should -Throw
         }
     }
     Context "User-Agent Header"{
          It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraTenant"
 
-            Resolve-EntraIdTenant -DomainName "Contoso.com"
+            Resolve-EntraTenant -DomainName "Contoso.com"
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraTenant"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue

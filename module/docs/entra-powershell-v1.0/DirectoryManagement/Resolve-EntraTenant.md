@@ -1,6 +1,6 @@
 ---
-title: Resolve-EntraBetaIdTenant
-description: This article provides details on the Resolve-EntraBetaIdTenant command.
+title: Resolve-EntraTenant
+description: This article provides details on the Resolve-EntraTenant command.
 
 ms.topic: reference
 ms.date: 02/10/2025
@@ -8,14 +8,14 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
-external help file: Microsoft.Entra.Beta-Help.xml
-Module Name: Microsoft.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Resolve-EntraIdTenant
+external help file: Microsoft.Entra-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Resolve-EntraTenant
 
 schema: 2.0.0
 ---
 
-# Resolve-EntraBetaIdTenant
+# Resolve-EntraTenant
 
 ## Synopsis
 
@@ -26,18 +26,22 @@ Resolves a Tenant ID or Domain Name to a Microsoft Entra ID Tenant.
 ### TenantId(Default)
 
 ```powershell
-Resolve-EntraBetaIdTenant -TenantId <String[]> [<CommonParameters>]
+Resolve-EntraTenant
+ -TenantId <String[]>
+ [<CommonParameters>]
 ```
 
 ### DomainName
 
 ```powershell
-Resolve-EntraBetaIdTenant -DomainName <String[]> [<CommonParameters>]
+Resolve-EntraTenant
+ -DomainName <String[]>
+ [<CommonParameters>]
 ```
 
 ## Description
 
-The `Resolve-EntraBetaIdTenant` cmdlet resolves a Tenant ID or Domain Name to an Azure AD tenant and retrieves metadata about the tenant.
+The `Resolve-EntraTenant` cmdlet resolves a Tenant ID or Domain Name to an Azure AD tenant and retrieves metadata about the tenant.
 
 ## Examples
 
@@ -45,7 +49,7 @@ The `Resolve-EntraBetaIdTenant` cmdlet resolves a Tenant ID or Domain Name to an
 
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
-Resolve-EntraBetaIdTenant -DomainName example.com
+Resolve-EntraTenant -DomainName example.com
 ```
 
 ```output
@@ -70,7 +74,7 @@ Resolves the tenant with domain `example.com`.
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 $tenantId=(Get-EntraContext).TenantId
-Resolve-EntraBetaIdTenant -TenantId $tenantId
+Resolve-EntraTenant -TenantId $tenantId
 ```
 
 ```output
@@ -90,16 +94,15 @@ OidcMetadataTenantRegionScope :
 
 Resolves the tenant with GUID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
-### Example 3: Resolve domain names from a file
+### Example 3: Resolve tenants from a file
 
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 $domainList = Get-Content .\DomainList.txt
-Resolve-EntraBetaIdTenant -DomainName $domainList
+Resolve-EntraTenant -DomainName $domainList
 ```
 
 ```output
-
 Environment                   : Global
 ValueToResolve                : Example1.com
 ValueFormat                   : DomainName
@@ -135,11 +138,10 @@ Resolves multiple tenants from a file containing a list of domain names.
 ```powershell
 Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 $tenantList = Get-Content .\TenantIdList.txt
-Resolve-EntraBetaIdTenant -TenantId $tenantList
+Resolve-EntraBetaTenant -TenantId $tenantList
 ```
 
 ```output
-
 Environment                   : Global
 ValueToResolve                : Example1.com
 ValueFormat                   : TenantId
@@ -174,7 +176,7 @@ Resolves multiple tenants from a file containing a list of TenantIds.
 
 ### -TenantId
 
-Specifies one or more  Tenant IDs to resolve.
+Specifies one or more Tenant IDs to resolve.
 
 ```yaml
 Type: System.String[]
