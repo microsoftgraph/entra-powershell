@@ -5,6 +5,10 @@
 function Get-EntraDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
+        [Alias("ObjectId")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID). Should be a valid GUID value.")]
+        [System.String] $ApplicationId,
+
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
@@ -50,6 +54,10 @@ function Get-EntraDeletedApplication {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
+        }
+        if ($null -ne $PSBoundParameters["ApplicationId"]) {
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
+            $params["Uri"] = "$baseUri/$($params.ApplicationId)?$properties"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
