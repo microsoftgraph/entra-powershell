@@ -29,27 +29,27 @@ Describe "Get-EntraBetaDeletedApplication" {
             $result = Get-EntraBetaDeletedApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific deleted application by searchstring" {
             $result = Get-EntraBetaDeletedApplication -SearchString 'Contoso Marketing'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Contoso Marketing'
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific deleted application by filter" {
             $result = Get-EntraBetaDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Contoso Marketing'
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain 'PageSize' parameter" {
             $result = Get-EntraBetaDeletedApplication -All
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $PageSize | Should -Be 999
                 $true
             }
@@ -58,14 +58,14 @@ Describe "Get-EntraBetaDeletedApplication" {
         It "Should return top 1 deleted application" {
             $result = Get-EntraBetaDeletedApplication -Top 1
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedApplication -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Contoso Marketing"
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -77,7 +77,7 @@ Describe "Get-EntraBetaDeletedApplication" {
             $result = Get-EntraBetaDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedApplication"
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
