@@ -57,7 +57,7 @@ function Get-EntraDeletedApplication {
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response.value
+        $data = $response
 
         try {
             $all = $All.IsPresent
