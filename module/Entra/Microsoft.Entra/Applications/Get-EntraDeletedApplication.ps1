@@ -39,25 +39,27 @@ function Get-EntraDeletedApplication {
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }
-        $params["Uri"] = $baseUri + "?$properties"
 
-        if ($PSBoundParameters.ContainsKey("Top")) {
-            $topCount = $PSBoundParameters["Top"]
-            if ($topCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
-            }
-            else {
-                $params["Uri"] += "&`$top=$topCount"
-            }
-        }    
-        if ($null -ne $PSBoundParameters["Filter"]) {
-            $Filter = $PSBoundParameters["Filter"]
-            $f = '$' + 'Filter'
-            $params["Uri"] += "&$f=$Filter"
-        }
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
-            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
-            $params["Uri"] = "$baseUri/$($params.ApplicationId)?$properties"
+            $params["Uri"] = "$baseUri/$($PSBoundParameters["ApplicationId"])?" + $properties
+        }
+        else {
+            $params["Uri"] = "$baseUri?$properties"
+
+            if ($PSBoundParameters.ContainsKey("Top")) {
+                $topCount = $PSBoundParameters["Top"]
+                if ($topCount -gt 999) {
+                    $params["Uri"] += "&`$top=999"
+                }
+                else {
+                    $params["Uri"] += "&`$top=$topCount"
+                }
+            }    
+            if ($null -ne $PSBoundParameters["Filter"]) {
+                $Filter = $PSBoundParameters["Filter"]
+                $f = '$' + 'Filter'
+                $params["Uri"] += "&$f=$Filter"
+            }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -65,23 +67,26 @@ function Get-EntraDeletedApplication {
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
         try {
-            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $all = $All.IsPresent
-            $increment = $topCount - $data.Count
-            while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
-                $params["Uri"] = $response.'@odata.nextLink'
-                if ($increment -gt 0) {
-                    $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
-                    $increment -= $topValue
-                }
-                $response = Invoke-GraphRequest @params 
-                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            if ($null -ne $PSBoundParameters["ApplicationId"]) {
+                $data = @($response)
             }
-
+            else {
+                $data = $response.value
+                $all = $All.IsPresent
+                $increment = $topCount - $data.Count
+                while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and ($increment -lt 0)) -or $increment -gt 0)) {
+                    $params["Uri"] = $response.'@odata.nextLink'
+                    if ($increment -gt 0) {
+                        $topValue = [Math]::Min($increment, 999)
+                        $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
+                        $increment -= $topValue
+                    }
+                    $response = Invoke-GraphRequest @params 
+                    $data += $response.value
+                }
+            }
         }
         catch {
             Write-Error "An error occurred: $_"
