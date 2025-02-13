@@ -52,7 +52,8 @@ Describe "Resolve-EntraIdTenant" {
         It "Should throw an exception for invalid tenant Id" {
              {Resolve-EntraIdTenant -TenantId "12345"} | Should -Throw "Cannot validate argument on parameter 'TenantId'. Invalid GUID format for TenantId"
         }
-
+    }
+    Context "User-Agent Header"{
          It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Resolve-EntraIdTenant"
 
