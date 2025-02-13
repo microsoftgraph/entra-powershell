@@ -36,8 +36,15 @@ The `Resolve-EntraIdTenant` cmdlet resolves a Tenant ID or Domain Name to an Azu
 ### Example 1: Resolve a tenant by domain name
 
 ```powershell
-Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 Resolve-EntraIdTenant -DomainName example.com
+```
+
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      DomainName   Resolved Resolved Tenant  aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+
 ```
 
 Resolves the tenant with domain `example.com`.
@@ -45,27 +52,33 @@ Resolves the tenant with domain `example.com`.
 ### Example 2: Resolve a tenant by GUID
 
 ```powershell
-Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 Resolve-EntraIdTenant -TenantId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      TenantId   Resolved Resolved Tenant  aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+
 ```
 
 Resolves the tenant with GUID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
-### Example 3: Resolve multiple tenants
+### Example 3: Resolve tenants from a file
 
 ```powershell
-Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-Resolve-EntraIdTenant -TenantId "example.com","aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
+$DomainList = Get-Content .\DomainList.txt
+Resolve-EntraIdTenant -DomainName $DomainList
 ```
 
-Resolves both a domain (`example.com`) and a tenant GUID (`aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`).
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      DomainName  Resolved Resolved Tenant    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+ Global      DomainName  Resolved Resolved Tenant    aaaaaaaa-0000-2222-3333-bbbbbbbbbbbb
 
-### Example 4: Resolve tenants from a file
-
-```powershell
-Connect-Entra -Scopes "`CrossTenantInformation.ReadBasic.All`"
-$DomainList = Get-Content .\DomainList.txt
-Resolve-EntraIdTenant -TenantId $DomainList
 ```
 
 Resolves multiple tenants from a file containing a list of domain names.
