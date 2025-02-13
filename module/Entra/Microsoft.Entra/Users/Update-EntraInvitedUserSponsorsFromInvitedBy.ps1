@@ -1,4 +1,3 @@
-
 # ------------------------------------------------------------------------------ 
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
@@ -10,22 +9,17 @@ function Update-EntraInvitedUserSponsorsFromInvitedBy {
         DefaultParameterSetName = 'AllInvitedGuests')]
     param (
 
-        # UserId of Guest User
-        [Parameter(ParameterSetName = 'ByUsers')]
+         # UserId of Guest User
+        [Parameter(ParameterSetName = 'ByUsers',HelpMessage ="The Unique ID of the User (User ID).")]
         [String[]]
         $UserId,
         # Enumerate and Update All Guest Users.
-        [Parameter(ParameterSetName = 'AllInvitedGuests')]
+        [Parameter(ParameterSetName = 'AllInvitedGuests',HelpMessage="A Flag indicating whether to include all invited guests.")]
         [switch]
         $All
     )
 
-    begin {
-       
-        ## Initialize Critical Dependencies
-        $CriticalError = $null
-        if (!(Test-EntraCommandPrerequisites 'Get-Mguser', 'Update-Mguser' -MinimumVersion 2.8.0 -ErrorVariable CriticalError)) { return }
-
+    begin {      
         $guestFilter = "(CreationType eq 'Invitation')"
     }
 
@@ -33,32 +27,31 @@ function Update-EntraInvitedUserSponsorsFromInvitedBy {
 
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-        if ($CriticalError) { return }
         if ($null -eq $UserId -and !$All) {
             Write-Error "Please specify either -UserId or -All"
             return
         }
 
         if ($All) {
-            $InvitedUsers = Get-MgUser -Filter $guestFilter -All -ExpandProperty Sponsors
+            $invitedUsers = Get-EntraUser -Filter $guestFilter -All -ExpandProperty Sponsors
         }
         else {
-            foreach ($user in $userId) {
-                $InvitedUsers += Get-MgUser -UserId $user -ExpandProperty Sponsors
+            foreach ($user in $UserId) {
+                $invitedUsers += Get-EntraUser -UserId $user -ExpandProperty Sponsors
             }
         }
 
-        if ($null -eq $InvitedUsers) {
+        if ($null -eq $invitedUsers) {
             Write-Error "No guest users to process"
         }
         else {
-            foreach ($InvitedUser in $InvitedUsers) {
+            foreach ($invitedUser in $invitedUsers) {
                 $invitedBy = $null
 
                 $splatArgumentsGetInvitedBy = @{
                     Method = 'Get'
-                    Uri    = ((Get-MgEnvironment -Name (Get-MgContext).Environment).GraphEndpoint +
-                        "/v1.0/users/" + $InvitedUser.Id + "/invitedBy")
+                    Uri    = ((Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint +
+                        "/v1.0/users/" + $invitedUser.id + "/invitedBy")
                 }
 
                 $invitedBy = Invoke-MgGraphRequest @splatArgumentsGetInvitedBy -Headers $customHeaders
@@ -66,32 +59,32 @@ function Update-EntraInvitedUserSponsorsFromInvitedBy {
                 Write-Verbose ($invitedBy | ConvertTo-Json -Depth 10)
 
                 if ($null -ne $invitedBy -and $null -ne $invitedBy.value -and $null -ne (Get-ObjectPropertyValue $invitedBy.value -Property 'id')) {
-                    Write-Verbose ("InvitedBy for Guest User {0}: {1}" -f $InvitedUser.DisplayName, $invitedBy.value.id)
+                    Write-Verbose ("InvitedBy for Guest User {0}: {1}" -f $invitedUser.displayName, $invitedBy.value.id)
 
-                    if (($null -like $InvitedUser.Sponsors) -or ($InvitedUser.Sponsors.id -notcontains $invitedBy.value.id)) {
+                    if (($null -like $invitedUser.sponsors) -or ($invitedUser.sponsors.id -notcontains $invitedBy.value.id)) {
                         Write-Verbose "Sponsors does not contain the user who invited them!"
 
-                        if ($PSCmdlet.ShouldProcess(("$($InvitedUser.displayName) ($($InvitedUser.UserPrincipalName) - $($InvitedUser.id))"), "Update Sponsors")) {
+                        if ($PSCmdlet.ShouldProcess(("$($invitedUser.displayName) ($($invitedUser.userPrincipalName) - $($invitedUser.id))"), "Update Sponsors")) {
                             try {
                                 $sponsorUrl = ("https://graph.microsoft.com/v1.0/users/{0}" -f $invitedBy.value.id)
                                 $dirObj = @{"sponsors@odata.bind" = @($sponsorUrl) }
                                 $sponsorsRequestBody = $dirObj | ConvertTo-Json
 
-                                Update-MgUser -UserId $InvitedUser.Id -BodyParameter $sponsorsRequestBody -Header $customHeaders
-                                Write-Output "$($InvitedUser.UserPrincipalName) - Sponsor updated succesfully for this user."
+                                Update-EntraUser -UserId $invitedUser.id -BodyParameter $sponsorsRequestBody -Header $customHeaders
+                                Write-Output "$($invitedUser.userPrincipalName) - Sponsor updated successfully for this user."
                             }
                             catch {
-                                Write-Output "$($InvitedUser.UserPrincipalName) - Failed updating sponsor for this user."
+                                Write-Output "$($invitedUser.userPrincipalName) - Failed updating sponsor for this user."
                                 Write-Error $_
                             }
                         }
                     }
                     else {
-                        Write-Output "$($InvitedUser.UserPrincipalName) - Sponsor already exists for this user."
+                        Write-Output "$($invitedUser.userPrincipalName) - Sponsor already exists for this user."
                     }
                 }
                 else {
-                    Write-Output "$($InvitedUser.UserPrincipalName) - Invited user information not available for this user."
+                    Write-Output "$($invitedUser.userPrincipalName) - Invited user information not available for this user."
                 }
             }
         }
@@ -101,4 +94,3 @@ function Update-EntraInvitedUserSponsorsFromInvitedBy {
         Write-Verbose "Complete!"
     }
 }
-

@@ -4,50 +4,50 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
-        Import-Module Microsoft.Entra.Users
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Get-EntraUser -MockWith {
+    Mock -CommandName Get-EntraBetaUser -MockWith {
         @{ Id = "123"; DisplayName = "Test Guest"; UserPrincipalName = "test@contoso.com"; Sponsors = $null }
-    } -ModuleName Microsoft.Entra.Users
+    } -ModuleName Microsoft.Entra.Beta.Users
     Mock -CommandName Invoke-MgGraphRequest -MockWith {
         @{ value = @{ id = "456" } }
-    } -ModuleName Microsoft.Entra.Users
-    Mock -CommandName Update-EntraUser -MockWith { $true } -ModuleName Microsoft.Entra.Users
+    } -ModuleName Microsoft.Graph.Beta.Users
+    Mock -CommandName Update-EntraBetaUser -MockWith { $true } -ModuleName Microsoft.Entra.Beta.Users
 }
 
-Describe "Update-EntraInvitedUserSponsorsFromInvitedBy" {
+Describe "Update-EntraBetaInvitedUserSponsorsFromInvitedBy" {
     Context "Valid Inputs" {
         It "Should update sponsor for a single user" {
-            Update-EntraInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor updated succesfully"
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor updated succesfully"
         }
 
         It "Should process all invited users when -All is specified" {
-            Update-EntraInvitedUserSponsorsFromInvitedBy -All -Confirm:$false | Should -Match "Sponsor updated succesfully"
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -All -Confirm:$false | Should -Match "Sponsor updated succesfully"
         }
     }
 
     Context "Invalid Inputs" {
         It "Should throw an error when neither -UserId nor -All is provided" {
-            { Update-EntraInvitedUserSponsorsFromInvitedBy } | Should -Throw "Please specify either -UserId or -All"
+            { Update-EntraBetaInvitedUserSponsorsFromInvitedBy } | Should -Throw "Please specify either -UserId or -All"
         }
     }
 
     Context "Edge Cases" {
         It "Should not update if sponsor already exists" {
-            Mock -CommandName Get-EntraUser -MockWith {
+            Mock -CommandName Get-EntraBetaUser -MockWith {
                 @{ Id = "123"; DisplayName = "Test Guest"; UserPrincipalName = "test@contoso.com"; Sponsors = @{ id = "456" } }
-            } -ModuleName Microsoft.Entra.Users
+            }
             
-            Update-EntraInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor already exists"
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor already exists"
         }
 
         It "Should handle missing invitedBy information" {
-            Mock -CommandName Invoke-MgGraphRequest -MockWith { @{ value = $null } } -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Invoke-MgGraphRequest -MockWith { @{ value = $null } } -ModuleName Microsoft.Entra.Beta.Users
             
-            Update-EntraInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Invited user information not available"
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Invited user information not available"
         }
     }
 
@@ -55,9 +55,9 @@ Describe "Update-EntraInvitedUserSponsorsFromInvitedBy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraInvitedUserSponsorsFromInvitedBy"
 
-            Update-EntraInvitedUserSponsorsFromInvitedBy -UserId "123"
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123"
             
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
