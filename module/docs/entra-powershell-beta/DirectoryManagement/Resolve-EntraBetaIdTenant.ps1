@@ -3,19 +3,19 @@ title: Resolve-EntraBetaIdTenant
 description: This article provides details on the Resolve-EntraBetaIdTenant command.
 
 ms.topic: reference
-ms.date: 02/11/2025
+ms.date: 02/10/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Entra-Help.xml
 Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Resolve-EntraBetaIdTenant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Resolve-EntraIdTenant
 
 schema: 2.0.0
 ---
 
-# Resolve-EntraBetaIdTenant
+# Resolve-EntraIdTenant
 
 ## Synopsis
 
@@ -24,7 +24,7 @@ Resolves a Tenant ID or Domain Name to a Microsoft Entra ID Tenant.
 ## Syntax
 
 ```powershell
-Resolve-EntraBetaIdTenant -TenantId <String[]> [<CommonParameters>]
+Resolve-EntraBetaIdTenant -Tenant <String[]> [<CommonParameters>]
 ```
 
 ## Description
@@ -36,8 +36,15 @@ The `Resolve-EntraBetaIdTenant` cmdlet resolves a Tenant ID or Domain Name to an
 ### Example 1: Resolve a tenant by domain name
 
 ```powershell
-Connect-Entra -Scopes "CrossTenantInformation.ReadBasic.All"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 Resolve-EntraBetaIdTenant -DomainName example.com
+```
+
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      DomainName   Resolved Resolved Tenant  aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+
 ```
 
 Resolves the tenant with domain `example.com`.
@@ -45,27 +52,33 @@ Resolves the tenant with domain `example.com`.
 ### Example 2: Resolve a tenant by GUID
 
 ```powershell
-Connect-Entra -Scopes "CrossTenantInformation.ReadBasic.All"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
 Resolve-EntraBetaIdTenant -TenantId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      TenantId   Resolved Resolved Tenant  aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+
 ```
 
 Resolves the tenant with GUID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
-### Example 3: Resolve multiple tenants
+### Example 3: Resolve tenants from a file
 
 ```powershell
-Connect-Entra -Scopes "CrossTenantInformation.ReadBasic.All"
-Resolve-EntraBetaIdTenant -TenantId "example.com","aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Connect-Entra -Scopes 'CrossTenantInformation.ReadBasic.All'
+$DomainList = Get-Content .\DomainList.txt
+Resolve-EntraBetaIdTenant -DomainName $DomainList
 ```
 
-Resolves both a domain (`example.com`) and a tenant GUID (`aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`).
+```output
+Environment  ValueFormat  Result    ResultMessage    TenantId
+-----------  -----------  ------    -------------    --------
+ Global      DomainName  Resolved Resolved Tenant    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+ Global      DomainName  Resolved Resolved Tenant    aaaaaaaa-0000-2222-3333-bbbbbbbbbbbb
 
-### Example 4: Resolve tenants from a file
-
-```powershell
-Connect-Entra -Scopes "CrossTenantInformation.ReadBasic.All"
-$DomainList = Get-Content .\DomainList.txt
-Resolve-EntraBetaIdTenant -TenantId $DomainList
 ```
 
 Resolves multiple tenants from a file containing a list of domain names.
