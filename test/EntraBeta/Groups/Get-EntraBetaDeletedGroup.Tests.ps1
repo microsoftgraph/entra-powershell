@@ -30,7 +30,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "Unified"
+            $result.GroupTypes | Should -Be "{Unified}"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -39,7 +39,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "Unified"
+            $result.GroupTypes | Should -Be "{Unified}"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -63,7 +63,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "Unified"
+            $result.GroupTypes | Should -Be "{Unified}"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -78,7 +78,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "Unified"
+            $result.GroupTypes | Should -Be "{Unified}"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
