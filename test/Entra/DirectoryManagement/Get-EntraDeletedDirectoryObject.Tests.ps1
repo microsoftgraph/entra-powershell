@@ -26,12 +26,14 @@ BeforeAll {
 Describe "Get-EntraDeletedDirectoryObject" {
     Context "Test for Get-EntraDeletedDirectoryObject" {
         
-        It "Should return all Deleted Directory Objects" {
-            $result = Get-EntraDeletedDirectoryObject
+        It "Should return specific Deleted Directory Object" {
+            $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+
             Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
-   
+
         It "Should fail when DirectoryObjectId is empty" {
             { Get-EntraDeletedDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId'*"
         }
@@ -41,13 +43,7 @@ Describe "Get-EntraDeletedDirectoryObject" {
         It "Should fail when invalid parameter is passed" {
             { Get-EntraDeletedDirectoryObject -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
         }
-        It "Should return specific Deleted Directory Object" {
-            $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
-        }
+        
         It "Property parameter should work" {
             $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
             $result | Should -Not -BeNullOrEmpty
