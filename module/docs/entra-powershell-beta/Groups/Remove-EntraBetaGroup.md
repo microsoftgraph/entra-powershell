@@ -57,6 +57,15 @@ This example demonstrates how to remove a group in Microsoft Entra ID.
 
 - `GroupId` parameter specifies the group ID .
 
+### Example 2: Remove a group using pipelining
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'" | Remove-EntraBetaGroup
+```
+
+This example demonstrates how to remove a group in Microsoft Entra ID.
+
 ## Parameters
 
 ### -GroupId
