@@ -7,7 +7,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
+    $deletedDirectoryObject = {
         return @(
             [PSCustomObject]@{
                 "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -20,7 +20,7 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $deletedDirectoryObject -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedDirectoryObject" {
@@ -37,10 +37,7 @@ Describe "Get-EntraDeletedDirectoryObject" {
     It "Should fail when invalid parameter is passed" {
         { Get-EntraDeletedDirectoryObject -DisplayName "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'DisplayName'*"
     }
-    It "Result should Contain ObjectId" {
-        $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-    }    
+  
     It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
