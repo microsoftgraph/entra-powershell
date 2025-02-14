@@ -9,20 +9,20 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"          = "Contoso Marketing"
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "AppId"                = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                "ServicePrincipalType" = "Application"
-                "DeletedDateTime"      = "02/12/2025 11:07:07"
-                "DeletionAgeInDays"    = 0
+    $mockDeletedServicePrincipal = {
+        return @( [PSCustomObject]@{
+                Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName          = "Contoso Marketing"
+                DeletedDateTime      = (Get-Date).AddDays(-1)
+                AppId                = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                SignInAudience       = "AzureADMyOrg"
+                ServicePrincipalType = "Application"
+                DeletionAgeInDays    = 1
             }
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -MockWith $mockDeletedServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaDeletedServicePrincipal" {
