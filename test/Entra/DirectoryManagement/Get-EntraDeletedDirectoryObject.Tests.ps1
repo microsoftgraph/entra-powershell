@@ -10,12 +10,13 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime"   = "2/2/2024 5:33:56 AM"
-                "Parameters"        = $args
-                "DeletionAgeInDays" = 2
-                "DisplayName"       = "Test-App"
-                "ObjectId"          = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeletedDateTime"      = "2/2/2024 5:33:56 AM"
+                "Parameters"           = $args
+                "DeletionAgeInDays"    = 2
+                "DisplayName"          = "Test-App"
+                "ObjectId"             = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "AdditionalProperties" = @{DisplayName = "Test-App"; }
             }
         )
     }
