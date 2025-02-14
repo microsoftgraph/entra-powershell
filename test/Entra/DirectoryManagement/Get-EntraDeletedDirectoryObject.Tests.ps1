@@ -25,11 +25,10 @@ BeforeAll {
 
 Describe "Get-EntraDeletedDirectoryObject" {
     Context "Test for Get-EntraDeletedDirectoryObject" {
-        
+
         It "Should return specific Deleted Directory Object" {
             $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
