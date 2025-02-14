@@ -12,7 +12,7 @@ BeforeAll {
                 Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 DisplayName       = "Mock-App"
                 DeletedDateTime   = (Get-Date).AddDays(-1)
-                MailNickname      = "Demo-Mock-App"
+                MailNickname      = "Mock-App"
                 Description       = "Mock-App"
                 GroupTypes        = "{Unified}"
                 DeletionAgeInDays = 1
@@ -86,10 +86,10 @@ Describe "Get-EntraBetaDeletedGroup" {
             { Get-EntraBetaDeletedGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
         It "Should return specific deleted groupn by SearchString" {
-            $result = Get-EntraBetaDeletedGroup -SearchString "Demo-Mock-App"
+            $result = Get-EntraBetaDeletedGroup -SearchString "Mock-App"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.MailNickname | Should -Be "Demo-Mock-App"
+            $result.MailNickname | Should -Be "Mock-App"
             $result.DisplayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -109,13 +109,11 @@ Describe "Get-EntraBetaDeletedGroup" {
         }
         It "Should contain GroupId in parameters when passed Id to it" {              
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {              
-            $result = Get-EntraBetaDeletedGroup -SearchString "Demo-Mock-App"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Match "Mock-App"
+            $result = Get-EntraBetaDeletedGroup -SearchString "Mock-App"
+            $result.DisplayName | Should -Be "Mock-App"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedGroup"

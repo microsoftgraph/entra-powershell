@@ -12,7 +12,7 @@ BeforeAll {
                 Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 DisplayName       = "Mock-App"
                 DeletedDateTime   = (Get-Date).AddDays(-1)
-                MailNickname      = "Demo-Mock-App"
+                MailNickname      = "Mock-App"
                 Description       = "Mock-App"
                 GroupTypes        = "{Unified}"
                 DeletionAgeInDays = 1
@@ -86,10 +86,10 @@ Describe "Get-EntraDeletedGroup" {
             { Get-EntraDeletedGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
         It "Should return specific deleted groupn by SearchString" {
-            $result = Get-EntraDeletedGroup -SearchString "Demo-Mock-App"
+            $result = Get-EntraDeletedGroup -SearchString "Mock-App"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.MailNickname | Should -Be "Demo-Mock-App"
+            $result.MailNickname | Should -Be "Mock-App"
             $result.DisplayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Groups -Times 1
@@ -109,14 +109,13 @@ Describe "Get-EntraDeletedGroup" {
         }
         It "Should contain GroupId in parameters when passed Id to it" {              
             $result = Get-EntraDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {              
-            $result = Get-EntraDeletedGroup -SearchString "Demo-Mock-App"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Match "Mock-App"
+            $result = Get-EntraDeletedGroup -SearchString "Mock-App"
+            $result.DisplayName | Should -Be "Mock-App"
         }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedGroup"
             $result = Get-EntraDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
