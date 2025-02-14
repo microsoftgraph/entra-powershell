@@ -12,12 +12,13 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "DisplayName"     = "iPhone 12 Pro"
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeviceCategory"  = "Test"
-                "AccountEnabled"  = "True"
-                "DeletedDateTime" = "10/28/2024 4:16:02 PM"
-                "DeviceId"        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DisplayName"       = "iPhone 12 Pro"
+                "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeviceCategory"    = "Test"
+                "AccountEnabled"    = "True"
+                "DeletedDateTime"   = "10/28/2024 4:16:02 PM"
+                "DeviceId"          = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "DeletionAgeInDays" = 0
             }
         )
     }

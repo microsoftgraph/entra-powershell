@@ -2,9 +2,8 @@
 title: Get-EntraBetaDeletedUser
 description: This article provides details on the Get-EntraBetaDeletedUser command.
 
-
 ms.topic: reference
-ms.date: 11/11/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -86,13 +85,13 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeee
 eeeeeeee-4444-5555-6666-ffffffffffff   Sawyer Miller   eeeeeeee444455556666ffffffffffffSawyerM@contoso.com   Member    11/13/2024 3:23:14 PM   12/13/2024 3:23:14 PM
 ```
 
-This example shows how to retrieve all recoverable deleted users in the Microsoft Entra ID.  
+This example shows how to retrieve all recoverable deleted users in the Microsoft Entra ID.
 
 ### Example 2: Get deleted users in the directory using All parameter
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaDeletedUser -All 
+Get-EntraBetaDeletedUser -All
 ```
 
 ```Output
@@ -103,7 +102,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeee
 eeeeeeee-4444-5555-6666-ffffffffffff   Sawyer Miller   eeeeeeee444455556666ffffffffffffSawyerM@contoso.com   Member    11/13/2024 3:23:14 PM   12/13/2024 3:23:14 PM
 ```
 
-This example shows how to retrieve all recoverable deleted users, using All parameter.  
+This example shows how to retrieve all recoverable deleted users, using All parameter.
 
 ### Example 3: Get top two deleted users
 
@@ -130,11 +129,11 @@ Get-EntraBetaDeletedUser -SearchString 'Avery Smith'
 
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
-This example shows how to retrieve deleted users in the directory, containing the specified string.  
+This example shows how to retrieve deleted users in the directory, containing the specified string.
 
 ### Example 5: Get deleted users filter by display name
 
@@ -145,11 +144,11 @@ Get-EntraBetaDeletedUser -Filter "displayName eq 'Avery Smith'"
 
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
-This example shows how to retrieve deleted users in the directory, having the specified display name.  
+This example shows how to retrieve deleted users in the directory, having the specified display name.
 
 ### Example 6: Get deleted user by UserId
 
@@ -160,7 +159,7 @@ Get-EntraBetaDeletedUser -UserId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 
 ```Output
 Id                                   DisplayName    UserPrincipalName                                      UserType   DeletedDateTime   PermanentDeletionDate
---                                   -----------    -----------------                                      --------   ---------------   ---------------------              
+--                                   -----------    -----------------                                      --------   ---------------   ---------------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee   Avery Smith     dddddddd333344445555eeeeeeeeeeeeAveryS@contoso.com   Member    11/13/2024 3:22:47 PM   12/13/2024 3:22:47 PM
 ```
 
