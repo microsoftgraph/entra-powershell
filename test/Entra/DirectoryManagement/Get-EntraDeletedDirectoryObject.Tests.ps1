@@ -20,7 +20,27 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $deletedDirectoryObject -ModuleName Microsoft.Entra.DirectoryManagement
+    $scriptblock = {
+        return @{
+            value = @(
+                @{
+                    "Id"                           = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
+                    "OnPremisesSyncEnabled"        = $null
+                    "userPrincipalName"            = "Adams@M365x99297270.OnMicrosoft.com"
+                    "accountEnabled"               = $true
+                    "usageLocation"                = "DE"
+                    "displayName"                  = "Mock-App"
+                    "userType"                     = "User"
+                    "OnPremisesLastSyncDateTime"   = $null
+                    "onPremisesProvisioningErrors" = @{}
+                    "Parameters"                   = $args
+                }
+            )
+        }
+    }
+    
+
+    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedDirectoryObject" {
