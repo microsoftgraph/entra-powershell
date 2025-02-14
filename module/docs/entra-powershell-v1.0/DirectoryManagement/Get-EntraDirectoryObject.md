@@ -1,6 +1,6 @@
 ---
-title: Get-EntraObjectByObjectId
-description: This article provides details on the Get-EntraObjectByObjectId command.
+title: Get-EntraDirectoryObject
+description: This article provides details on the Get-EntraDirectoryObject command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraObjectByObjectId
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryObject
 
 schema: 2.0.0
 ---
 
-# Get-EntraObjectByObjectId
+# Get-EntraDirectoryObject
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Retrieves directory objects based on a list of IDs.
 ## Syntax
 
 ```powershell
-Get-EntraObjectByObjectId
+Get-EntraDirectoryObject
  -DirectoryObjectIds <System.Collections.Generic.List`1[String]>
  [-ObjectTypes <System.Collections.Generic.List`1[String]>]
  [-Property <String[]>]
@@ -35,7 +35,7 @@ Get-EntraObjectByObjectId
 
 ## Description
 
-The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
+The `Get-EntraDirectoryObject` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
 
 ## Examples
 
@@ -44,7 +44,7 @@ The `Get-EntraObjectByObjectId` cmdlet retrieves directory objects based on a li
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $groups = Get-EntraGroup -Limit 4
-Get-EntraObjectByObjectId -DirectoryObjectIds $groups.Id | 
+Get-EntraDirectoryObject -DirectoryObjectIds $groups.Id | 
 Select-Object Id, DisplayName, '@odata.type'
 ```
 

@@ -68,7 +68,8 @@ This example demonstrates how to retrieve the properties and relationships of al
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+$policy = Get-EntraBetaGroupLifecyclePolicy | Where-Object {$_.AlternateNotificationEmails -eq 'example@contoso.com'}
+Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId $policy.Id
 ```
 
 ```Output

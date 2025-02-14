@@ -44,10 +44,9 @@ The `New-EntraBetaGroupAppRoleAssignment` cmdlet assigns a group of users to an 
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$appname = 'Box'
-$spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
-$group = Get-EntraBetaGroup -SearchString 'Contoso Team'
-New-EntraBetaGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -AppRoleId $spo.Approles[1].id
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "Displayname eq 'Box'"
+$group = Get-EntraBetaGroup -SearchString 'Contoso Global'
+New-EntraBetaGroupAppRoleAssignment -GroupId $group.Id -PrincipalId $group.Id -ResourceId $servicePrincipal.Id -AppRoleId $servicePrincipal.Approles[1].Id
 ```
 
 ```Output
