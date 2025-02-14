@@ -41,10 +41,10 @@ The `Select-EntraBetaGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All', 'Group.Read.All'
-$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -Filter "DisplayName eq 'Entra PowerShell Group'").Id
-$UserID = (Get-EntraBetaContact -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc').Id
-Select-EntraBetaGroupIdsContactIsMemberOf -OrgContactId $UserID -GroupIdsForMembershipCheck $Groups
+$group = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$group.GroupIds = (Get-EntraBetaGroup -Filter "displayName eq 'Sales and Marketing'").Id
+$contact = Get-EntraBetaContact -Filter "displayName eq 'Contoso Admin'"
+Select-EntraBetaGroupIdsContactIsMemberOf -OrgContactId $contact.Id -GroupIdsForMembershipCheck $group
 ```
 
 This example demonstrates how to get groups in which a contact is a member.
