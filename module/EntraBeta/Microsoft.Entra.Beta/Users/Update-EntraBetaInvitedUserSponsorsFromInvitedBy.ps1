@@ -32,11 +32,13 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         }
 
         if ($all) {
-            $invitedUsers = Get-EntraBetaUser -Filter $guestFilter -All -Select Sponsors
+            #TODO: Change to Get-EntraBetaUser when -ExpandProperty is implemented
+            $invitedUsers = Get-MgUser -Filter $guestFilter -All -ExpandProperty Sponsors
         }
         else {
             foreach ($user in $userId) {
-                $invitedUsers += Get-EntraBetaUser -UserId $user -Select Sponsors
+                  #TODO: Change to Get-EntraBetaUser when -ExpandProperty is implemented
+                $invitedUsers += Get-MgUser -UserId $user -ExpandProperty Sponsors
             }
         }
 
@@ -49,7 +51,7 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
 
                 $splatArgumentsGetInvitedBy = @{
                     Method = 'Get'
-                    Uri    = ((Get-MgEnvironment -Name (Get-EntraBetaContext).Environment).GraphEndpoint +
+                    Uri    = ((Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint +
                         "/beta/users/" + $invitedUser.id + "/invitedBy")
                 }
 
@@ -133,3 +135,4 @@ function Get-ObjectPropertyValue {
         }
     }
 }
+
