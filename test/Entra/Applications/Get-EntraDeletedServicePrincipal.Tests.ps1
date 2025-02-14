@@ -9,19 +9,6 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"          = "Contoso Marketing"
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "AppId"                = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                "ServicePrincipalType" = "Application"
-                "DeletedDateTime"      = "02/12/2025 11:07:07"
-                "DeletionAgeInDays"    = 0
-            }
-        )
-    }
-
     $mockDeletedServicePrincipal = {
         return @( [PSCustomObject]@{
                 Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
