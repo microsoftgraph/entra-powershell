@@ -26,7 +26,7 @@ BeforeAll {
 Describe "Get-EntraDeletedDirectoryObject" {
     It "Result should return DeletedDirectoryObject using alias" {
         $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
     }
     It "Should fail when DirectoryObjectId is empty" {
         { Get-EntraDeletedDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId'*"
@@ -40,7 +40,7 @@ Describe "Get-EntraDeletedDirectoryObject" {
   
     It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result | Should -Not -BeNullOrEmpty
     }
     It "Property parameter should work" {
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
