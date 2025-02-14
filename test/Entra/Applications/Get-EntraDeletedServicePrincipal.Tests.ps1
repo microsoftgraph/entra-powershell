@@ -22,7 +22,20 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    $mockDeletedServicePrincipal = {
+        return @( [PSCustomObject]@{
+                Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName          = "Contoso Marketing"
+                DeletedDateTime      = (Get-Date).AddDays(-1)
+                AppId                = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                SignInAudience       = "AzureADMyOrg"
+                ServicePrincipalType = "Application"
+                DeletionAgeInDays    = 1
+            }
+        )
+    }
+
+    Mock -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -MockWith $mockDeletedServicePrincipal -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDeletedServicePrincipal" {
