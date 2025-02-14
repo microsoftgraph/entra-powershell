@@ -7,26 +7,20 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime"      = "10-05-2024 04:27:17"
-                "CreatedDateTime"      = "07-07-2023 14:31:41"
-                "DisplayName"          = "Mock-App"
-                "MailNickname"         = "Demo-Mock-App"
-                "GroupTypes"           = "Unified"
-                "SecurityEnabled"      = $False
-                "MailEnabled"          = $True
-                "Visibility"           = "Public"
-                "AdditionalProperties" = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#groups/`$entity" }
-                "Parameters"           = $args
-                "DeletionAgeInDays"    = 0
+    $mockDeletedGroup = {
+        return @( [PSCustomObject]@{
+                Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName       = "Mock-App"
+                DeletedDateTime   = (Get-Date).AddDays(-1)
+                MailNickname      = "Demo-Mock-App"
+                Description       = "Mock-App"
+                GroupTypes        = "{Unified}"
+                DeletionAgeInDays = 1
             }
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-MgDirectoryDeletedItemAsGroup -MockWith $mockDeletedGroup -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Get-EntraDeletedGroup" {
