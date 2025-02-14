@@ -15,8 +15,7 @@ BeforeAll {
                 "Parameters"           = $args
                 "DeletionAgeInDays"    = 2
                 "DisplayName"          = "Test-App"
-                "AdditionalProperties" = @{appId = "2f9ce505-5855-47ad-b427-1ca1171a69ba"; createdDateTime = "2024-09-15T10:08:47Z" }
-                "appId"                = "2f9ce505-5855-47ad-b427-1ca1171a69ba"
+                "AdditionalProperties" = @{appId = "2f9ce505-5855-47ad-b427-1ca1171a69ba"; createdDateTime = "2024-09-15T10:08:47Z"; publisherDomain = "contoso.com" }
             }
         )
     }
