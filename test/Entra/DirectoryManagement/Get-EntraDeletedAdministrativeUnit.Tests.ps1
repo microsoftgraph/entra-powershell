@@ -11,19 +11,21 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"       = "ADC Administrative Unit"
-                "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime"   = "10/21/2024 8:27:52 AM"
-                "Description"       = "ADC Administrative Unit"
-                "DeletionAgeInDays" = 0
+    $mockDeletedAdministrativeUnit = {
+        return @( [PSCustomObject]@{
+                Id                           = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName                  = "ADC Administrative Unit"
+                DeletedDateTime              = (Get-Date).AddDays(-1)
+                Description                  = "ADC Administrative Unit"
+                IsMemberManagementRestricted = $false
+                MembershipRule               = "(user.country -eq 'Australia')"
+                DeletionAgeInDays            = 1
+                Visibility                   = "HiddenMembership"
             }
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -MockWith $mockDeletedAdministrativeUnit -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedAdministrativeUnit" {
