@@ -49,7 +49,6 @@ Get-EntraDeletedDevice
 ```powershell
 Get-EntraDeletedDevice
  -DeviceObjectId <String>
- [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

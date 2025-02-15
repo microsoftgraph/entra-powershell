@@ -40,7 +40,6 @@ Get-EntraBetaDeletedGroup
 ```powershell
 Get-EntraBetaDeletedGroup
  -GroupId <String>
- [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

@@ -49,7 +49,6 @@ Get-EntraDeletedGroup
 ```powershell
 Get-EntraDeletedGroup
  -GroupId <String>
- [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

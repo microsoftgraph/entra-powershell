@@ -34,6 +34,15 @@ Get-EntraBetaDeletedApplication
  [<CommonParameters>]
 ```
 
+### GetById
+
+```powershell
+Get-EntraBetaDeletedApplication
+ -ApplicationId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ### GetVague
 
 ```powershell

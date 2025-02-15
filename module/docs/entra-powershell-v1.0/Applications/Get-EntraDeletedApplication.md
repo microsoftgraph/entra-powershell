@@ -34,6 +34,15 @@ Get-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
+### GetById
+
+```powershell
+Get-EntraDeletedApplication
+ -ApplicationId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ### GetByValue
 
 ```powershell

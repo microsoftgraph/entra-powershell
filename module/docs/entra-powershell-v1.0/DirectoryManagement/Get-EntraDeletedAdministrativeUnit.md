@@ -34,6 +34,15 @@ Get-EntraDeletedAdministrativeUnit
  [<CommonParameters>]
 ```
 
+### GetById
+
+```powershell
+Get-EntraDeletedAdministrativeUnit
+ -AdministrativeUnitId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ### GetVague
 
 ```powershell

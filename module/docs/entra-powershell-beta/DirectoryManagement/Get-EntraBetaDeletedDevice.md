@@ -49,7 +49,6 @@ Get-EntraBetaDeletedDevice
 ```powershell
 Get-EntraBetaDeletedDevice
  -DeviceObjectId <String>
- [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

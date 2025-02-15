@@ -54,16 +54,6 @@ Get-EntraDeletedUser
  [<CommonParameters>]
 ```
 
-### GetVague
-
-```powershell
-Get-EntraDeletedUser
- [-All]
- [-SearchString <String>]
- [-Property <String[]>]
- [<CommonParameters>]
-```
-
 ## Description
 
 The `Get-EntraDeletedUser` cmdlet retrieves soft-deleted (recently deleted) users from the directory. Deleted users can be recovered within 30 days, after which they're permanently deleted.
