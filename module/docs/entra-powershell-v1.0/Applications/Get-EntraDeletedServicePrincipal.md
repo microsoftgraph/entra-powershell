@@ -108,7 +108,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-b
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb ProjectWorkManagement  22223333-cccc-4444-dddd-5555eeee6666 2/12/2025 11:07:56 AM                 8  ManagedIdentity
 ```
 
-This cmdlet retrieves top two deleted service principals.
+This cmdlet retrieves top two deleted service principals. You can also use the alias `Limit`.
 
 ### Example 4: Get deleted service principals using SearchString parameter
 

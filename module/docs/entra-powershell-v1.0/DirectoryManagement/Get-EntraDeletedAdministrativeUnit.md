@@ -102,7 +102,7 @@ Id                                   DisplayName                   MembershipTyp
 gggggggg-8888-9999-aaaa-hhhhhhhhhhhh Americas Administrative Unit   Dynamic           HiddenMembership   2/12/2025 12:40:52 PM     10
 ```
 
-This cmdlet retrieves top two deleted administrative units.
+This cmdlet retrieves top two deleted administrative units. You can also use the alias `Limit`.
 
 ### Example 4: Get deleted administrative units using SearchString parameter
 

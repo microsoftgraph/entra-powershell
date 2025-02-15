@@ -97,7 +97,7 @@ This cmdlet retrieves the list of deleted applications using All parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication -Limit 1 | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
+Get-EntraBetaDeletedApplication -Top 2 | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
@@ -107,7 +107,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-33
 cccccccc-4444-5555-6666-dddddddddddd New Entra Application dddddddd-5555-6666-7777-eeeeeeeeeeee 2/12/2025 11:07:56 AM                 5
 ```
 
-This cmdlet retrieves top two deleted applications.
+This cmdlet retrieves top two deleted applications. You can also use the alias `Limit`.
 
 ### Example 4: Get deleted applications using SearchString parameter
 
