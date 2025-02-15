@@ -9,21 +9,24 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"       = "iPhone 12 Pro"
-                "Id"                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeviceCategory"    = "Test"
-                "AccountEnabled"    = "True"
-                "DeletedDateTime"   = "10/28/2024 4:16:02 PM"
-                "DeviceId"          = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletionAgeInDays" = 0
+    $mockDeletedDevice = {
+        return @( [PSCustomObject]@{
+                Id                     = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName            = "ContosoDesktop23"
+                DeletedDateTime        = (Get-Date).AddDays(-1)
+                OperatingSystem        = "Windows"
+                OperatingSystemVersion = "10.0.19041"
+                AccountEnabled         = $false
+                DeviceId               = "bbbbbbbb-0000-1111-2222-cccccccccccc"
+                DeletionAgeInDays      = 1
+                DeviceVersion          = 2
+                ProfileType            = "RegisteredDevice"
+                TrustType              = "Workplace"
             }
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDirectoryDeletedItemAsDevice -MockWith $mockDeletedDevice -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedDevice" {
@@ -35,16 +38,16 @@ Describe "Get-EntraDeletedDevice" {
         }
 
         It "Should return specific device by searchstring" {
-            $result = Get-EntraDeletedDevice -SearchString 'iPhone 12 Pro'
+            $result = Get-EntraDeletedDevice -SearchString 'ContosoDesktop23'
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'iPhone 12 Pro'
+            $result.DisplayName | Should -Be 'ContosoDesktop23'
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
 
         It "Should return specific device by filter" {
-            $result = Get-EntraDeletedDevice -Filter "DisplayName -eq 'iPhone 12 Pro'"
+            $result = Get-EntraDeletedDevice -Filter "DisplayName -eq 'ContosoDesktop23'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'iPhone 12 Pro'
+            $result.DisplayName | Should -Be 'ContosoDesktop23'
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
 
@@ -57,7 +60,7 @@ Describe "Get-EntraDeletedDevice" {
         It "Property parameter should work" {
             $result = Get-EntraDeletedDevice -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "iPhone 12 Pro"
+            $result.DisplayName | Should -Be "ContosoDesktop23"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
         }
 
@@ -67,7 +70,7 @@ Describe "Get-EntraDeletedDevice" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDevice"
-            $result = Get-EntraDeletedDevice -Filter "DisplayName -eq 'iPhone 12 Pro'"
+            $result = Get-EntraDeletedDevice -Filter "DisplayName -eq 'ContosoDesktop23'"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDevice"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
