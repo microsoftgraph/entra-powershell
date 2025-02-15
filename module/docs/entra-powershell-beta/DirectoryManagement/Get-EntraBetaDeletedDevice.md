@@ -81,15 +81,15 @@ This cmdlet retrieves the list of deleted devices.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeletedDevice -All
+Get-EntraBetaDeletedDevice -All | Select-Object DeletedDateTime, Id, AccountEnabled, ApproximateLastSignInDateTime, DeviceId, DisplayName, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
----------------         --                                   -------------- ----------------------------- --------                             -----------
-11/11/2024 5:16:25 PM  bbbbbbbb-1111-2222-3333-cccccccccccc False          7/12/2024 8:36:17 PM          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Network
-11/6/2024 7:24:39 PM   dddddddd-3333-4444-5555-eeeeeeeeeeee True           10/29/2024 9:07:18 PM         eeeeeeee-4444-5555-6666-ffffffffffff iPhone 12 Pro
-10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName      DeletionAgeInDays
+---------------         --                                   -------------- ----------------------------- --------                             -----------      -------------------
+11/11/2024 5:16:25 PM  bbbbbbbb-1111-2222-3333-cccccccccccc False          7/12/2024 8:36:17 PM          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Network           10
+11/6/2024 7:24:39 PM   dddddddd-3333-4444-5555-eeeeeeeeeeee True           10/29/2024 9:07:18 PM         eeeeeeee-4444-5555-6666-ffffffffffff iPhone 12 Pro     15
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop   28
 ```
 
 This cmdlet retrieves the list of deleted devices using All parameter.
@@ -98,14 +98,14 @@ This cmdlet retrieves the list of deleted devices using All parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeletedDevice -Top 2
+Get-EntraBetaDeletedDevice -Top 2 | Select-Object DeletedDateTime, Id, AccountEnabled, ApproximateLastSignInDateTime, DeviceId, DisplayName, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
----------------         --                                   -------------- ----------------------------- --------                             -----------
-11/11/2024 5:16:25 PM  bbbbbbbb-1111-2222-3333-cccccccccccc False          7/12/2024 8:36:17 PM          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Network
-11/6/2024 7:24:39 PM   dddddddd-3333-4444-5555-eeeeeeeeeeee True           10/29/2024 9:07:18 PM         eeeeeeee-4444-5555-6666-ffffffffffff iPhone 12
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName      DeletionAgeInDays
+---------------         --                                   -------------- ----------------------------- --------                             -----------      -------------------
+11/11/2024 5:16:25 PM  bbbbbbbb-1111-2222-3333-cccccccccccc False          7/12/2024 8:36:17 PM          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Network           10
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop   28
 ```
 
 This cmdlet retrieves top two deleted devices.
@@ -114,13 +114,13 @@ This cmdlet retrieves top two deleted devices.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeletedDevice -SearchString 'Woodgrove Desktop'
+Get-EntraBetaDeletedDevice -SearchString 'Contoso Desktop' | Select-Object DeletedDateTime, Id, AccountEnabled, ApproximateLastSignInDateTime, DeviceId, DisplayName, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
----------------         --                                   -------------- ----------------------------- --------                             ------
-10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Woodgrove Desktop
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName      DeletionAgeInDays
+---------------         --                                   -------------- ----------------------------- --------                             -----------      -------------------
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop   28
 ```
 
 This cmdlet retrieves deleted devices using SearchString parameter.
@@ -129,13 +129,13 @@ This cmdlet retrieves deleted devices using SearchString parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeletedDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Get-EntraBetaDeletedDevice -Filter "DisplayName eq 'Contoso Desktop'" | Select-Object DeletedDateTime, Id, AccountEnabled, ApproximateLastSignInDateTime, DeviceId, DisplayName, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
----------------         --                                   -------------- ----------------------------- --------                             ------
-10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Woodgrove Desktop
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName      DeletionAgeInDays
+---------------         --                                   -------------- ----------------------------- --------                             -----------      -------------------
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop   28
 ```
 
 This cmdlet retrieves deleted devices having specified display name.
@@ -144,7 +144,7 @@ This cmdlet retrieves deleted devices having specified display name.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDeletedDevice -DeviceObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
+Get-EntraBetaDeletedDevice -DeviceObjectId 'cccccccc-2222-3333-4444-dddddddddddd' | Select-Object DeletedDateTime, Id, AccountEnabled, ApproximateLastSignInDateTime, DeviceId, DisplayName, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output

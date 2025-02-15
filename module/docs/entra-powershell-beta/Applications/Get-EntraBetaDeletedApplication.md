@@ -56,16 +56,14 @@ Note: Deleted security groups are permanently removed and cannot be retrieved.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication
+Get-EntraBetaDeletedApplication -Property Id, AppId, DisplayName, DeletedDateTime, DeletionAgeInDays | Select-Object Id, AppId, DisplayName, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   AppId                                SignInAudience PublisherDomain
------------ --                                   -----                                -------------- ---------------
-TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
-TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
-TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADMyOrg   contoso.com
-TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
+id                                   displayName           appId                                deletedDateTime       DeletionAgeInDays
+--                                   -----------           -----                                ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-3333-cccccccccccc 2/12/2025 11:07:07 AM                 5
+cccccccc-4444-5555-6666-dddddddddddd New Entra Application dddddddd-5555-6666-7777-eeeeeeeeeeee 2/12/2025 11:07:56 AM                 5
 ```
 
 This cmdlet retrieves the list of deleted applications.
@@ -74,16 +72,14 @@ This cmdlet retrieves the list of deleted applications.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication -All
+Get-EntraBetaDeletedApplication -All | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   AppId                                SignInAudience PublisherDomain
------------ --                                   -----                                -------------- ---------------
-TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
-TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
-TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADMyOrg   contoso.com
-TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
+id                                   displayName           appId                                deletedDateTime       DeletionAgeInDays
+--                                   -----------           -----                                ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-3333-cccccccccccc 2/12/2025 11:07:07 AM                 5
+cccccccc-4444-5555-6666-dddddddddddd New Entra Application dddddddd-5555-6666-7777-eeeeeeeeeeee 2/12/2025 11:07:56 AM                 5
 ```
 
 This cmdlet retrieves the list of deleted applications using All parameter.
@@ -92,14 +88,14 @@ This cmdlet retrieves the list of deleted applications using All parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication -Top 2
+Get-EntraBetaDeletedApplication -Limit 1 | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   AppId                                SignInAudience PublisherDomain
------------ --                                   -----                                -------------- ---------------
-TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
-TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
+id                                   displayName           appId                                deletedDateTime       DeletionAgeInDays
+--                                   -----------           -----                                ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-3333-cccccccccccc 2/12/2025 11:07:07 AM                 5
+cccccccc-4444-5555-6666-dddddddddddd New Entra Application dddddddd-5555-6666-7777-eeeeeeeeeeee 2/12/2025 11:07:56 AM                 5
 ```
 
 This cmdlet retrieves top two deleted applications.
@@ -123,29 +119,28 @@ This cmdlet retrieves deleted applications using SearchString parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication -Filter "DisplayName eq 'TestApp1'"
+Get-EntraBetaDeletedApplication -Filter "displayName eq 'Contoso Fieldglass'" | Select-Object Id, AppId, DisplayName, SignInAudience, PublisherDomain, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   AppId                                SignInAudience PublisherDomain
------------ --                                   -----                                -------------- ---------------
-TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
+id                                   appId                                displayName        signInAudience publisherDomain        deletedDateTime       DeletionAgeInDays
+--                                   -----                                -----------        -------------- ---------------        ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Fieldglass AzureADMyOrg   contoso.com          2/12/2025 11:07:07 AM  5
 ```
 
 This cmdlet retrieves deleted applications having specified display name.
 
-### Example 6: Get deleted applications with deletion age in days
+### Example 6: Get a specific deleted application using Application ID
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedApplication | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
+Get-EntraBetaDeletedApplication -ApplicationId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb | Select-Object Id, AppId, DisplayName, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
 Id                                   DisplayName           AppId                                DeletedDateTime       DeletionAgeInDays
 --                                   -----------           -----                                ---------------       -----------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-3333-cccccccccccc 2/14/2025 11:07:07 AM                 10
-cccccccc-4444-5555-6666-dddddddddddd New Entra Application bbbbbbbb-1111-2222-3333-cccccccccccc 2/12/2025 11:07:56 AM                 12
 ```
 
 This cmdlet retrieves deleted applications with deletion age in days.
