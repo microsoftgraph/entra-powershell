@@ -10,12 +10,12 @@ BeforeAll {
     $mockDeletedGroup = {
         return @( [PSCustomObject]@{
                 Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                DisplayName       = "Mock-App"
+                DisplayName       = "ADC Group"
                 DeletedDateTime   = (Get-Date).AddDays(-1)
-                MailNickname      = "Mock-App"
-                Description       = "Mock-App"
-                GroupTypes        = "{Unified}"
+                Description       = "ADC Group"
+                GroupTypes        = @("Unified")
                 DeletionAgeInDays = 1
+                MailNickname      = "ADCGroup"
             }
         )
     }
@@ -29,17 +29,17 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "{Unified}"
+            $result.DisplayName | Should -Be "ADC Group"
+            $result.GroupTypes | Should -Be "Unified"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
-        It "Should return specific Deleted Group with alias" {
+        It "Should return specific deleted Group with alias" {
             $result = Get-EntraBetaDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "{Unified}"
+            $result.DisplayName | Should -Be "ADC Group"
+            $result.GroupTypes | Should -Be "Unified"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -62,8 +62,8 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result = Get-EntraBetaDeletedGroup -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "{Unified}"
+            $result.DisplayName | Should -Be "ADC Group"
+            $result.GroupTypes | Should -Be "Unified"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -74,33 +74,33 @@ Describe "Get-EntraBetaDeletedGroup" {
             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific deleted group by filter" {
-            $result = Get-EntraBetaDeletedGroup -Filter "DisplayName eq 'Mock-App'"
+            $result = Get-EntraBetaDeletedGroup -Filter "DisplayName eq 'ADC Group'"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DisplayName | Should -Be "Mock-App"
-            $result.GroupTypes | Should -Be "{Unified}"
+            $result.DisplayName | Should -Be "ADC Group"
+            $result.GroupTypes | Should -Be "Unified"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaDeletedGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
-        It "Should return specific deleted groupn by SearchString" {
-            $result = Get-EntraBetaDeletedGroup -SearchString "Mock-App"
+        It "Should return specific deleted group by SearchString" {
+            $result = Get-EntraBetaDeletedGroup -SearchString "ADC Group"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.MailNickname | Should -Be "Mock-App"
-            $result.DisplayName | Should -Be "Mock-App"
+            $result.MailNickname | Should -Be "ADCGroup"
+            $result.DisplayName | Should -Be "ADC Group"
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
-        It "Should fail when searchstring is empty" {
+        It "Should fail when SearchString is empty" {
             { Get-EntraBetaDeletedGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Mock-App'
+            $result.DisplayName | Should -Be 'ADC Group'
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -112,8 +112,8 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.Id | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {              
-            $result = Get-EntraBetaDeletedGroup -SearchString "Mock-App"
-            $result.DisplayName | Should -Be "Mock-App"
+            $result = Get-EntraBetaDeletedGroup -SearchString "ADC Group"
+            $result.DisplayName | Should -Be "ADC Group"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedGroup"
