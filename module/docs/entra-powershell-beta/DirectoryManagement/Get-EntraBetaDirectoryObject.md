@@ -17,7 +17,7 @@ online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Be
 schema: 2.0.0
 ---
 
-# Get-EntraBetaDirectoryObject 
+# Get-EntraBetaDirectoryObject
 
 ## Synopsis
 
@@ -35,7 +35,7 @@ Get-EntraBetaDirectoryObject
 
 ## Description
 
-The `Get-EntraBetaDirectoryObject ` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
+The `Get-EntraBetaDirectoryObject` cmdlet retrieves directory objects based on a list of IDs (a list of up to 1000 GUIDs (as strings) to retrieve objects for).
 
 ## Examples
 
