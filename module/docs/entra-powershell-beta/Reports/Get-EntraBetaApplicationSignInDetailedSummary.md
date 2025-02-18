@@ -41,7 +41,7 @@ The `Get-EntraBetaApplicationSignInDetailedSummary` cmdlet gets Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Reports.Read.All'
-Get-EntraBetaApplicationSignInDetailedSummary 
+Get-EntraBetaApplicationSignInDetailedSummary
 ```
 
 ```Output
@@ -98,7 +98,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 20-06-2024 00:00:00     Azure Portal   3333
 eeeeeeee-4444-5555-6666-ffffffffffff 20-06-2024 00:00:00     Azure Portal   44445555-eeee-6666-ffff-7777aaaa8888 1
 ```
 
-This example returns top five sign ins to Microsoft Entra ID portal.
+This example returns top five sign ins to Microsoft Entra ID portal. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

@@ -2,7 +2,6 @@
 title: Get-EntraBetaPrivilegedRoleDefinition
 description: This article provides details on Get-EntraBetaPrivilegedRoleDefinition command.
 
-
 ms.topic: reference
 ms.date: 08/12/2024
 ms.author: eunicewaweru
@@ -142,7 +141,7 @@ Id                                   DisplayName                         Externa
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb custom proxy                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 aaaaaaaa-0000-1111-2222…
 ```
 
-This example retrieves a top one role definition.
+This example retrieves a top one role definition. You can use `-Limit` as an alias for `-Top`.
 
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 - `-ResourceId` Parameter specifies the ID of the specific resource.

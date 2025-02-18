@@ -2,7 +2,6 @@
 title: Get-EntraUserRole
 description: This article provides details on the Get-EntraUserRole command.
 
-
 ms.topic: reference
 ms.date: 12/02/2024
 ms.author: eunicewaweru
@@ -66,10 +65,10 @@ DeletedDateTime         Id                                   DisplayName        
                        bbbbbbbb-1111-2222-3333-ccccccccccc  Helpdesk Administrator    729827e3-9c14-49f7-bb1b-9608f156bbb8
                        dddddddd-3333-4444-5555-eeeeeeeeeeee Directory Readers         88d8e3e3-8f55-4a1e-953a-9b9898b8876b
                        cccccccc-2222-3333-4444-dddddddddddd Application Administrator 9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3
-                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Guest Inviter             95e79109-95c0-4d8e-aee3-d01accf2d47b  
+                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Guest Inviter             95e79109-95c0-4d8e-aee3-d01accf2d47b
 ```
 
-This cmdlet retrieves the list of directory roles for a specific user.  
+This cmdlet retrieves the list of directory roles for a specific user.
 
 ### Example 2: Get directory roles for a specific user using All parameter
 
@@ -87,7 +86,7 @@ DeletedDateTime         Id                                   DisplayName        
                        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Guest Inviter             95e79109-95c0-4d8e-aee3-d01accf2d47b
 ```
 
-This cmdlet retrieves the directory roles for a specific user using All parameter.  
+This cmdlet retrieves the directory roles for a specific user using All parameter.
 
 ### Example 3: Get top two directory roles for a specific user
 
@@ -100,10 +99,10 @@ Get-EntraUserRole -UserId 'SawyerM@contoso.com' -Top 2
 DeletedDateTime         Id                                   DisplayName               RoleTemplateId
 ---------------         --                                   -----------               --------------
                        bbbbbbbb-1111-2222-3333-ccccccccccc  Helpdesk Administrator    729827e3-9c14-49f7-bb1b-9608f156bbb8
-                       dddddddd-3333-4444-5555-eeeeeeeeeeee Directory Readers         88d8e3e3-8f55-4a1e-953a-9b9898b8876b  
+                       dddddddd-3333-4444-5555-eeeeeeeeeeee Directory Readers         88d8e3e3-8f55-4a1e-953a-9b9898b8876b
 ```
 
-This cmdlet retrieves top two directory roles for a specific user.
+This cmdlet retrieves top two directory roles for a specific user. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get assigned directory roles for a specific user by DirectoryRoleId
 

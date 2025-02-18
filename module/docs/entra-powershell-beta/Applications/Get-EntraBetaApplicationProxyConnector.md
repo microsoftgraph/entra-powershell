@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationProxyConnector
 description: This article provides details on the Get-EntraBetaApplicationProxyConnector command.
 
-
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru
@@ -105,7 +104,7 @@ Id                                   DeletedDateTime
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This example demonstrates how to Retrieve information for a top one connector.
+This example demonstrates how to Retrieve information for a top one connector. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Retrieve information with SearchString parameter
 

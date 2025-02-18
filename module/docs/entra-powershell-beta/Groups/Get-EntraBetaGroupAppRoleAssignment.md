@@ -94,7 +94,7 @@ MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin 
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This example retrieves top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group. You can use `-Limit` as an alias for `-Top`.
 
 - `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 

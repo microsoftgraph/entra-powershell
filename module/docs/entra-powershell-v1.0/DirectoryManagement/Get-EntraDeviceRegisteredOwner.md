@@ -104,7 +104,7 @@ id                                   DisplayName      UserPrincipalName         
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         10/7/2024 12:34:14 AM Member   True
 ```
 
-This command retrieves all the registered owners of a device.
+This command retrieves all the registered owners of a device. You can use `-Limit` as an alias for `-Top`.
 
 - `-DeviceId` parameter specifies the device's ID.
 

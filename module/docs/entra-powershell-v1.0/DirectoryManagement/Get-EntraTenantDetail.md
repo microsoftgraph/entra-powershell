@@ -2,7 +2,6 @@
 title: Get-EntraTenantDetail
 description: This article provides details on the Get-EntraTenantDetail command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -57,7 +56,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 ### Example 1: Get all tenant details
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All' 
+Connect-Entra -Scopes 'Organization.Read.All'
 Get-EntraTenantDetail -All
 ```
 
@@ -82,7 +81,7 @@ DisplayName Id                                   CountryLetterCode VerifiedDomai
 Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=contoso.onmicrosoft.com; Type=Managed; Addition…}}
 ```
 
-This example shows how to retrieve details of a top one tenant in Microsoft Entra ID.
+This example shows how to retrieve details of a top one tenant in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 3: Get directory tenant size quota
 

@@ -2,7 +2,6 @@
 title: Get-EntraUserOwnedObject
 description: This article provides details on the Get-EntraUserOwnedObject command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -44,7 +43,7 @@ The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' | 
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' |
 Select-Object Id, displayName, createdDateTime, '@odata.type' |
 Format-Table -AutoSize
 ```
@@ -66,7 +65,7 @@ This example retrieves objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All | 
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -All |
 Select-Object Id, displayName, createdDateTime, '@odata.type' |
 Format-Table -AutoSize
 ```
@@ -88,7 +87,7 @@ This example retrieves all the objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3 | 
+Get-EntraUserOwnedObject -UserId 'SawyerM@contoso.com' -Top 3 |
 Select-Object Id, displayName, createdDateTime, '@odata.type' |
 Format-Table -AutoSize
 ```
@@ -101,7 +100,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Contoso Group                10/21/2024 6:
 cccccccc-2222-3333-4444-dddddddddddd  ClaimIssuancePolicy                                    #microsoft.graph.tokenLifetimePolicy
 ```
 
-This example retrieves the top three objects owned by the specified user.
+This example retrieves the top three objects owned by the specified user. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the ID of a user as a UserPrincipalName or UserId.
 

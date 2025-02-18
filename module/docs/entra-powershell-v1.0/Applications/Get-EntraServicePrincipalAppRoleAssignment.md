@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipalAppRoleAssignment
 description: This article provides details on the Get-EntraServicePrincipalAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -106,7 +105,7 @@ DeletedDateTime Id                                          AppRoleId           
                 3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This command gets three application role assignments for specified service principal.
+This command gets three application role assignments for specified service principal. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 
