@@ -2,7 +2,6 @@
 title: Get-EntraGroup
 description: This article explains the Get-EntraGroup command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -113,7 +112,7 @@ Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda         
 Misty Fox               kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn mistyfox              Misty Fox Group
 ```
 
-This example demonstrates how to get top five groups.
+This example demonstrates how to get top five groups. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a group by DisplayName
 
@@ -204,7 +203,7 @@ Id                                   DisplayName                SecurityEnabled 
 --                                   -----------                --------------- ---------- ----------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           Public     {Unified}
 eeeeeeee-4444-5555-6666-ffffffffffff My new group              False           Private    {Unified}
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {}   
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {}
 ```
 
 This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.

@@ -2,7 +2,6 @@
 title: Get-EntraObjectSetting
 description: This article provides details on the Get-EntraObjectSetting command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -65,7 +64,7 @@ Id                                   DisplayName         TemplateId
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command retrieves  object setting from Microsoft Entra ID.
+This command retrieves object setting from Microsoft Entra ID.
 
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
@@ -105,7 +104,7 @@ Id                                   DisplayName         TemplateId
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command retrieves top one object setting from Microsoft Entra ID.
+This command retrieves top one object setting from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.

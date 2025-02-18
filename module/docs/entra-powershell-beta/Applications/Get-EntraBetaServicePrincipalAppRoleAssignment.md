@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalAppRoleAssignment
 description: This article provides details on the Get-EntraBetaServicePrincipalAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru
@@ -107,7 +106,7 @@ Id                                          AppRoleId                           
 3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User2          ProvisioningPowerBi 021510b7-e753-40…
 ```
 
-This command gets top three application role assignments for specified service principal.
+This command gets top three application role assignments for specified service principal. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the service principal Id.
 

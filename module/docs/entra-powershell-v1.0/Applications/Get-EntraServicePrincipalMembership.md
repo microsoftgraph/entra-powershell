@@ -88,7 +88,7 @@ Id                                   displayName         @odata.type
 11112222-aaaa-3333-bbbb-4444cccc5555 Sales and Marketing #microsoft.graph.group
 ```
 
-This command gets top two memberships of a specified service principal.
+This command gets top two memberships of a specified service principal. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 

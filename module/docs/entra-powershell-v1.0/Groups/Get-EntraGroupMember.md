@@ -91,7 +91,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
 aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb My Application    #microsoft.graph.servicePrincipal
 ```
 
-This example demonstrates how to retrieve top two groups from Microsoft Entra ID.
+This example demonstrates how to retrieve top two groups from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-GroupId` specifies the ID of a group.
 

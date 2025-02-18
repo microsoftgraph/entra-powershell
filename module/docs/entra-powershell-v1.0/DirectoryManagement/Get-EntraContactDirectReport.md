@@ -2,7 +2,6 @@
 title: Get-EntraContactDirectReport
 description: This article provides details on the Get-EntraContactDirectReport command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -40,10 +39,10 @@ The `Get-EntraContactDirectReport` cmdlet gets the direct reports for a contact.
 
 For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
 
-- Directory Readers: Read basic properties  
-- Global Reader  
-- Directory Writers  
-- Intune Administrator  
+- Directory Readers: Read basic properties
+- Global Reader
+- Directory Writers
+- Intune Administrator
 - User Administrator
 
 ## Examples
@@ -82,7 +81,7 @@ $contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
 Get-EntraContactDirectReport -OrgContactId $contact.Id -Top 2
 ```
 
-This example shows how to retrieve top two direct reports for an organizational contact.
+This example shows how to retrieve top two direct reports for an organizational contact. You can use `-Limit` as an alias for `-Top`.
 
 - `-OrgContactId` parameter specifies the contact Id.
 

@@ -2,7 +2,6 @@
 title: Get-EntraBetaDeletedApplication
 description: This article provides details on the Get-EntraBetaDeletedApplication command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -69,7 +68,7 @@ TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-ggggggg
 TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves the list of deleted applications.  
+This cmdlet retrieves the list of deleted applications.
 
 ### Example 2: Get list of deleted applications using All parameter
 
@@ -87,7 +86,7 @@ TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-ggggggg
 TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves the list of deleted applications using All parameter.  
+This cmdlet retrieves the list of deleted applications using All parameter.
 
 ### Example 3: Get top two deleted applications
 
@@ -103,7 +102,7 @@ TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-ccccccc
 TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves top two deleted applications.
+This cmdlet retrieves top two deleted applications. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted applications using SearchString parameter
 
@@ -118,7 +117,7 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications using SearchString parameter.  
+This cmdlet retrieves deleted applications using SearchString parameter.
 
 ### Example 5: Get deleted applications filter by display name
 
@@ -133,7 +132,7 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications having specified display name.  
+This cmdlet retrieves deleted applications having specified display name.
 
 ### Example 6: Get deleted applications with deletion age in days
 
