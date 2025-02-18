@@ -157,61 +157,22 @@ This cmdlet retrieves the deleted device specified by DeviceObjectId.
 
 - `-DeviceObjectId` parameter specifies the deleted device Id.
 
-### Example 7: List duplicate devices
+### Example 7: Get deleted device by DeviceId
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -All -Select DisplayName, OperatingSystem |
-Group-Object DisplayName |
-Where-Object { $_.Count -gt 1 } |
-Select-Object Name, @{Name = "OperatingSystem"; Expression = { ($_.Group | Select-Object -First 1).OperatingSystem } }, Count | Sort-Object Count -Descending |
-Format-Table Name, OperatingSystem, Count -AutoSize
+Get-EntraBetaDeletedDevice -Filter "deviceId eq 'bbbbbbbb-1111-2222-3333-cccccccccccc'"
 ```
 
 ```Output
-Name                       OperatingSystem Count
-----                       --------------- -----
-iPhone                     iOS               175
-samsungSM-S928B            Android            15
-woodgrove-win11-client     Windows             2
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
+---------------         --                                   -------------- ----------------------------- --------                             ------
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Woodgrove Desktop
 ```
 
-The output lists duplicate devices by display name, operating system, and count.
+This cmdlet retrieves the deleted device specified by DeviceId.
 
-### Example 8: List non-compliant devices
-
-```powershell
-Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -Filter "isCompliant eq false"
-```
-
-### Example 9: List jail broken devices
-
-```powershell
-Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -All | Where-Object { $_.isRooted -eq $true }
-```
-
-### Example 10: List managed devices
-
-```powershell
-Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -Filter "isManaged eq true"
-```
-
-### Example 11: List enabled devices
-
-```powershell
-Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -Filter "accountEnabled eq true" -All
-```
-
-### Example 12: List devices with specific operating system and version
-
-```powershell
-Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -Filter "operatingSystem eq 'Windows Server' and operatingSystemVersion eq '10.0.20348.3091'"
-```
+- `-DeviceId` parameter specifies the deleted device Id.
 
 ## Parameters
 

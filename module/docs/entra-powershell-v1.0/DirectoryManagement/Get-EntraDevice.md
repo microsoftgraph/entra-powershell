@@ -73,7 +73,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
-Get-EntraDevice -DeviceId $device.ObjectId
+Get-EntraDevice -ObjectId $device.ObjectId
 ```
 
 ```Output
@@ -84,7 +84,22 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example shows how to retrieve a device using its ID.
 
-### Example 2: Get all devices
+### Example 2: Get a device by DeviceID
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Filter "DeviceId eq 'eeeeeeee-4444-5555-6666-ffffffffffff'" 
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example shows how to retrieve a device using the DeviceID.
+
+### Example 3: Get all devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -100,7 +115,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example demonstrates how to retrieve all devices from Microsoft Entra ID.
 
-### Example 3: Get top two devices
+### Example 4: Get top two devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -116,7 +131,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example demonstrates how to retrieve top two devices from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
-### Example 4: Get a device by display name
+### Example 5: Get a device by display name
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -131,7 +146,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example demonstrates how to retrieve device using the display name.
 
-### Example 5: Get a device using display name
+### Example 6: Get a device using display name
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -146,7 +161,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example demonstrates how to retrieve all the devices whose display name starts with the word `Woodgrove`.
 
-### Example 6: Search among retrieved devices
+### Example 7: Search among retrieved devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -161,7 +176,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 
 This example shows how to retrieve devices containing the word 'DESKTOP'.
 
-### Example 7: List duplicate devices
+### Example 8: List duplicate devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -182,35 +197,35 @@ woodgrove-win11-client     Windows             2
 
 The output lists duplicate devices by display name, operating system, and count.
 
-### Example 8: List non-compliant devices
+### Example 9: List non-compliant devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDevice -Filter "isCompliant eq false"
 ```
 
-### Example 9: List jail broken devices
+### Example 10: List jail broken devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDevice -All | Where-Object { $_.isRooted -eq $true }
 ```
 
-### Example 10: List managed devices
+### Example 11: List managed devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDevice -Filter "isManaged eq true"
 ```
 
-### Example 11: List enabled devices
+### Example 12: List enabled devices
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDevice -Filter "accountEnabled eq true" -All
 ```
 
-### Example 12: List devices with specific operating system and version
+### Example 13: List devices with specific operating system and version
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
