@@ -2,7 +2,6 @@
 title: Get-EntraDevice
 description: This article provides details on the Get-EntraDevice command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -61,10 +60,10 @@ The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the 
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
 
-- Cloud Device Administrator  
-- Intune Administrator  
-- Windows 365 Administrator  
-- Compliance Administrator  
+- Cloud Device Administrator
+- Intune Administrator
+- Windows 365 Administrator
+- Compliance Administrator
 - Device Managers
 
 ## Examples
@@ -160,7 +159,28 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example shows how to retrieve devices containing the word 'DESKTOP.'
+This example shows how to retrieve devices containing the word 'DESKTOP'.
+
+### Example 7: List duplicate devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -All -Select DisplayName, OperatingSystem |
+Group-Object DisplayName |
+Where-Object { $_.Count -gt 1 } |
+Select-Object Name, @{Name = "OperatingSystem"; Expression = { ($_.Group | Select-Object -First 1).OperatingSystem } }, Count | Sort-Object Count -Descending |
+Format-Table Name, OperatingSystem, Count -AutoSize
+```
+
+```Output
+Name                       OperatingSystem Count
+----                       --------------- -----
+iPhone                     iOS               175
+samsungSM-S928B            Android            15
+woodgrove-win11-client     Windows             2
+```
+
+The output lists duplicate devices by display name, operating system, and count.
 
 ## Parameters
 
