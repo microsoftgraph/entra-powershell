@@ -157,6 +157,27 @@ This cmdlet retrieves the deleted device specified by DeviceObjectId.
 
 - `-DeviceObjectId` parameter specifies the deleted device Id.
 
+### Example 7: List duplicate devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -All -Select DisplayName, OperatingSystem |
+Group-Object DisplayName |
+Where-Object { $_.Count -gt 1 } |
+Select-Object Name, @{Name = "OperatingSystem"; Expression = { ($_.Group | Select-Object -First 1).OperatingSystem } }, Count | Sort-Object Count -Descending |
+Format-Table Name, OperatingSystem, Count -AutoSize
+```
+
+```Output
+Name                       OperatingSystem Count
+----                       --------------- -----
+iPhone                     iOS               175
+samsungSM-S928B            Android            15
+woodgrove-win11-client     Windows             2
+```
+
+The output lists duplicate devices by display name, operating system, and count.
+
 ## Parameters
 
 ### -All
