@@ -178,6 +178,41 @@ woodgrove-win11-client     Windows             2
 
 The output lists duplicate devices by display name, operating system, and count.
 
+### Example 8: List non-compliant devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -Filter "isCompliant eq false"
+```
+
+### Example 9: List jail broken devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -All | Where-Object { $_.isRooted -eq $true }
+```
+
+### Example 10: List managed devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -Filter "isManaged eq true"
+```
+
+### Example 11: List enabled devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -Filter "accountEnabled eq true" -All
+```
+
+### Example 12: List devices with specific operating system and version
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -Filter "operatingSystem eq 'Windows Server' and operatingSystemVersion eq '10.0.20348.3091'"
+```
+
 ## Parameters
 
 ### -All
