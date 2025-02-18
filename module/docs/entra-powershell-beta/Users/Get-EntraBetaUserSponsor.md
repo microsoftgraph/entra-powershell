@@ -16,7 +16,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-List sponsor for a user.
+Retrieve a user's sponsors (users or groups).
 
 ## Syntax
 
@@ -30,16 +30,21 @@ Get-EntraBetaUserSponsor
 
 ## Description
 
-The `Get-EntraBetaUserSponsor` cmdlet gets a user sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
+The `Get-EntraBetaUserSponsor` cmdlet retrieve a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
-Specify `UserId` parameter to get the specific manager of user.
+In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with `microsoft.directory/users/sponsors/read permission`. The least privileged supported roles are:
+
+- Guest Inviter
+- Directory Readers
+- Directory Writers
+- User Administrator
 
 ## Examples
 
 ### Example 1: Get the user sponsors
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
 Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' |
 Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
 Format-Table -AutoSize
@@ -53,14 +58,14 @@ c0c97c58-1895-4910-b1bb-58f96db771df Adele Vance     AdeleV@7svz8d.onmicrosoft.c
 406e3c9f-7a2d-4ef0-b1d4-69ddbd2719bb Diego Siciliani DiegoS@7svz8d.onmicrosoft.com 28/10/2024 09:50:46           True Member
 ```
 
-This example demonstrates how to list the user sponsors.
+This example shows how to list user sponsors.
 
-- `-UserId` Parameter specifies UserId or User Principal Name of User.
+- The `-UserId` parameter specifies the User ID or User Principal Name.
 
 ### Example 2: Get top one sponsor
 
 ```powershell
-Connect-Entra -Scopes 'User.Read','User.Read.All'
+Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
 Get-EntraBetaUserSponsor -UserId 'vwyerM@contoso.com' -Top 1 | Select-Object Id, DisplayName, '@odata.type'
 ```
 
@@ -70,9 +75,9 @@ Id                                   displayName    @odata.type
 cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 ```
 
-This example retrieves top one sponsor for the specified user.
+This example retrieves the top sponsor for the specified user.
 
-- `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
+- The `-UserId` parameter specifies the User ID or User Principal Name.
 
 ## Parameters
 
