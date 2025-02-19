@@ -238,11 +238,11 @@ Connect-Entra -Scopes 'User.Read.All'
 $guestUsers = Get-EntraBetaUser -Filter "userType eq 'Guest'" -All
 $guestUsersWithLicenses = foreach ($guest in $guestUsers) {
     if ($guest.AssignedLicenses.Count -gt 0) {
-        [pscustomobject]@{
-            Id               = $guest.Id
-            DisplayName      = $guest.DisplayName
+        [PSCustomObject]@{
+            Id                = $guest.Id
+            DisplayName       = $guest.DisplayName
             UserPrincipalName = $guest.UserPrincipalName
-            AssignedLicenses = ($guest.AssignedLicenses | ForEach-Object { $_.SkuId }) -join ", "
+            AssignedLicenses  = ($guest.AssignedLicenses | ForEach-Object { $_.SkuId }) -join ", "
         }
     }
 }
@@ -265,9 +265,9 @@ $allUsers = Get-EntraBetaUser -All
 $usersWithoutManagers = foreach ($user in $allUsers) {
     $manager = Get-EntraBetaUserManager -ObjectId $user.Id -ErrorAction SilentlyContinue
     if (-not $manager) {
-        [pscustomobject]@{
-            Id               = $user.Id
-            DisplayName      = $user.DisplayName
+        [PSCustomObject]@{
+            Id                = $user.Id
+            DisplayName       = $user.DisplayName
             UserPrincipalName = $user.UserPrincipalName
         }
     }
@@ -299,6 +299,12 @@ Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-
 ```
 
 This example demonstrates how to retrieve list all guest users.
+
+### Example 14: List five recently created users
+
+```powershell
+Get-EntraBetaUser -All | Sort-Object -Property createdDateTime -Descending | Select-Object -First 5
+```
 
 ## Parameters
 
@@ -417,3 +423,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Remove-EntraBetaUser](Remove-EntraBetaUser.md)
 
 [Set-EntraBetaUser](Set-EntraBetaUser.md)
+
+[Manage users](https://learn.microsoft.com/powershell/entra-powershell/manage-user)
