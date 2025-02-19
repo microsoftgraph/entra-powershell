@@ -14,9 +14,6 @@ function Get-EntraBetaUserSponsor {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's sponsors.")]
         [switch] $All,
 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $SearchString,
-
         [Alias('SponsorId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User Sponsor ID to retrieve.")]
         [System.String] $DirectoryObjectId,
@@ -57,11 +54,6 @@ function Get-EntraBetaUserSponsor {
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
         }
-        if ($null -ne $PSBoundParameters["SearchString"]) {
-            $TmpValue = $PSBoundParameters["SearchString"]
-            $SearchString = "`$search=`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
-            $params["Uri"] += "&$SearchString"
-        } 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")   
