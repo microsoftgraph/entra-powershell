@@ -2,7 +2,6 @@
 title: Get-EntraAdministrativeUnit
 description: This article provides details on the Get-EntraAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -73,7 +72,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -All 
+Get-EntraAdministrativeUnit -All
 ```
 
 ```Output
@@ -133,7 +132,7 @@ DeletedDateTime Id                                   Description            Disp
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
 ```
 
-This example returns the specified top administrative units.
+This example returns the specified top administrative units. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

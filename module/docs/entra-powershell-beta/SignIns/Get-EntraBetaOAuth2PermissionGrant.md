@@ -2,7 +2,6 @@
 title: Get-EntraBetaOAuth2PermissionGrant
 description: This article provides details on the Get-EntraBetaOAuth2PermissionGrant Command.
 
-
 ms.topic: reference
 ms.date: 10/16/2024
 ms.author: eunicewaweru
@@ -72,7 +71,7 @@ This command gets the OAuth2 permission grants.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaOAuth2PermissionGrant -All 
+Get-EntraBetaOAuth2PermissionGrant -All
 ```
 
 ```Output
@@ -122,7 +121,7 @@ A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipal
 C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w 00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM               b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
 ```
 
-This command gets top 2 OAuth2 permission grants records.
+This command gets top 2 OAuth2 permission grants records. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

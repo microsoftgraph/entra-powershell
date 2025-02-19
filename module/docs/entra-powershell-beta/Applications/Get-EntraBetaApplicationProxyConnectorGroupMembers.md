@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationProxyConnectorGroupMembers
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroupMembers.
 
-
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru
@@ -70,7 +69,7 @@ Id                                   ExternalIP    MachineName           Status 
 bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3437.0
 ```
 
-This example retrieves top one connector in the group.
+This example retrieves top one connector in the group. You can use `-Limit` as an alias for `-Top`.
 
 - `OnPremisesPublishingProfileId` parameter specifies the connector group ID.
 
@@ -121,7 +120,7 @@ Specifies an OData v4.0 filter statement. This parameter controls which objects 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named

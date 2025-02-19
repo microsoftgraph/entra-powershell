@@ -100,7 +100,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user
 eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user
 ```
 
-This example demonstrates how to retrieve the top two owners of a specific group.
+This example demonstrates how to retrieve the top two owners of a specific group. You can use `-Limit` as an alias for `-Top`.
 
 - `-GroupId` parameter specifies the ID of a group.
 

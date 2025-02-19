@@ -2,7 +2,6 @@
 title: Get-EntraContactMembership
 description: This article provides details on the Get-EntraContactMembership command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -41,10 +40,10 @@ This command is useful to administrators who need to understand which groups, ro
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles can be used:
 
-- Directory Readers  
-- Global Reader  
-- Directory Writers  
-- Intune Administrator  
+- Directory Readers
+- Global Reader
+- Directory Writers
+- Intune Administrator
 - User Administrator
 
 ## Examples
@@ -54,7 +53,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $contact.Id | 
+Get-EntraContactMembership -OrgContactId $contact.Id |
 Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
@@ -71,7 +70,7 @@ This command gets all the memberships for specified contact.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $contact.Id -All | 
+Get-EntraContactMembership -OrgContactId $contact.Id -All |
 Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
@@ -88,7 +87,7 @@ This command gets all the memberships for specified contact.
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
 $contact = Get-EntraContact -Filter "displayName eq 'Contoso Contact'"
-Get-EntraContactMembership -OrgContactId $contact.Id -Top 2 | 
+Get-EntraContactMembership -OrgContactId $contact.Id -Top 2 |
 Select-Object Id, DisplayName, '@odata.type', SecurityEnabled | Format-Table -AutoSize
 ```
 
@@ -98,7 +97,7 @@ Id                                   displayName   @odata.type            securi
 ffffffff-5555-6666-7777-aaaaaaaaaaaa All Employees #microsoft.graph.group           False
 ```
 
-This command gets top two memberships for specified contact.
+This command gets top two memberships for specified contact. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

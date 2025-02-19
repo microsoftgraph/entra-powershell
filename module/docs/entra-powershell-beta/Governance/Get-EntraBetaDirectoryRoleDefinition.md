@@ -2,7 +2,6 @@
 title: Get-EntraBetaDirectoryRoleDefinition
 description: This article provides details on the Get-EntraBetaDirectoryRoleDefinition command.
 
-
 ms.topic: reference
 ms.date: 07/22/2024
 ms.author: eunicewaweru
@@ -136,14 +135,14 @@ DisplayName           Id                                   TemplateId           
 Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
 ```
 
-This command return top two the role definitions in Microsoft Entra ID.
+This command return top two the role definitions in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 5: Filter role definitions by display name
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory', 'EntitlementManagement.Read.All'
 Get-EntraBetaDirectoryRoleDefinition -SearchString 'Global'
- ```
+```
 
 ```Output
 DisplayName                        Id                                   TemplateId                           Description                                                                                                                                                           IsBu

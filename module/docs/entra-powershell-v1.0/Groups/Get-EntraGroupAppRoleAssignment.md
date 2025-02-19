@@ -2,7 +2,6 @@
 title: Get-EntraGroupAppRoleAssignment
 description: This article provides details on the Get-EntraGroupAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -94,7 +93,7 @@ MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin 
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This example retrieves top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group. You can use `-Limit` as an alias for `-Top`.
 
 - `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
@@ -124,7 +123,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 Type: System.String
 Parameter Sets: (All)
 Aliases: ObjectId
- 
+
 Required: True
 Position: Named
 Default value: None

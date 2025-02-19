@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalAppRoleAssignedTo
 description: This article provides details on the Get-EntraBetaServicePrincipalAppRoleAssignedTo command.
 
-
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru
@@ -62,7 +61,7 @@ Get-EntraBetaServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrinc
 ```Output
 Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
 --                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
-1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Helpdesk Application                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Helpdesk Application 
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Helpdesk Application                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Helpdesk Application
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups, and other service principals.
@@ -109,7 +108,7 @@ Id                                          AppRoleId                           
 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 eeee4444-ff55-6666-77aa-888888bbbbbb
 ```
 
-This command gets the five app role assignments for the service principal granted to users, groups, and other service principals.
+This command gets the five app role assignments for the service principal granted to users, groups, and other service principals. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 

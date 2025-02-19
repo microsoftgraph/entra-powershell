@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipalOAuth2PermissionGrant
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -60,7 +59,7 @@ This example demonstrates how to get all oAuth2PermissionGrant object for a serv
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
+Get-EntraServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```Output
@@ -88,7 +87,7 @@ A1bC2dE3f...                                                      00001111-aaaa-
 A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      412be9d1-1460-4061-8eed-cca203fcb215 aaaaaaaa-bbbb-cccc-1111-222222222222 openid profile U...
 ```
 
-This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
+This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

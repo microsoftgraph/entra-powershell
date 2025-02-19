@@ -1,0 +1,10 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions & Discussions 💬
+    url: https://github.com/microsoftgraph/entra-powershell/discussions
+    about: Please use GitHub discussions for any questions or ideas.
+  - name: Documentation 📖
+    url: https://aka.ms/entra/ps/docs
+    about: Microsoft Entra PowerShell documentation
+  - name: Known Issues ⚠️
+    url: https://github.com/microsoftgraph/entra-powershell?tab=readme-ov-file#known-issues

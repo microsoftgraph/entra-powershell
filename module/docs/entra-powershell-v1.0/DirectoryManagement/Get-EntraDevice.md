@@ -129,7 +129,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 cccccccc-2222-3333-4444-dddddddddddd True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve top two devices from Microsoft Entra ID.
+This example demonstrates how to retrieve top two devices from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 5: Get a device by display name
 

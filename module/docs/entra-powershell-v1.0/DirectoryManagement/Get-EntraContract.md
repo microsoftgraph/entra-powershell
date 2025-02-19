@@ -2,7 +2,6 @@
 title: Get-EntraContract
 description: This article provides details on the Get-EntraContract command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -69,7 +68,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraContract -Top 2
 ```
 
-This command gets top two contracts in the Microsoft Entra ID.
+This command gets top two contracts in the Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 
@@ -168,7 +167,7 @@ The contract object contains the following attributes:
 
 `contractType` - type of the contract.
 
-Possible values are:  
+Possible values are:
 
 **SyndicationPartner** - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
 They resell and support their customers.

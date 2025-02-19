@@ -2,7 +2,6 @@
 title: Get-EntraApplicationServiceEndpoint
 description: This article provides details on the Get-EntraApplicationServiceEndpoint command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -60,7 +59,7 @@ This example demonstrates how to retrieve service endpoint of the application th
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Contoso Helpdesk App'"
-Get-EntraApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id -All 
+Get-EntraApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
@@ -75,7 +74,7 @@ $servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq 'Contoso H
 Get-EntraApplicationServiceEndpoint -ServicePrincipalId $servicePrincipal.Id -Top 5
 ```
 
-This example demonstrates how to retrieve five service endpoints of a specified application.
+This example demonstrates how to retrieve five service endpoints of a specified application. You can use `-Limit` as an alias for `-Top`.
 
 `-ServicePrincipalId` parameter specifies the ID of an application object in Microsoft Entra ID.
 

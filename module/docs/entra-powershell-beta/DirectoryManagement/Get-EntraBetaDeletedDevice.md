@@ -108,7 +108,7 @@ DeletedDateTime         Id                                   AccountEnabled Appr
 11/6/2024 7:24:39 PM   dddddddd-3333-4444-5555-eeeeeeeeeeee True           10/29/2024 9:07:18 PM         eeeeeeee-4444-5555-6666-ffffffffffff iPhone 12
 ```
 
-This cmdlet retrieves top two deleted devices.
+This cmdlet retrieves top two deleted devices. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted devices using SearchString parameter
 

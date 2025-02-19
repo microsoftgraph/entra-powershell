@@ -106,7 +106,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Application            00001111-aaaa-2222-b
 bbbbbbbb-1111-2222-3333-cccccccccccc Password Rule Settings 11112222-bbbb-3333-cccc-4444dddd5555
 ```
 
-This example gets top two directory setting.
+This example gets top two directory setting. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

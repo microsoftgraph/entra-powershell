@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 description: This article provides details on the Get-EntraBetaServicePrincipalOAuth2PermissionGrant command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
@@ -63,7 +62,7 @@ This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All 
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```Output
@@ -74,7 +73,7 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal
 A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      996d39aa-fdac-4d97-aa3d-c81fb47362ac aaaaaaaa-bbbb-cccc-1111-222222222222 PrivilegedAccess...
 ```
 
-This example demonstrates how to get all OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.  
+This example demonstrates how to get all OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
@@ -93,7 +92,7 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal
 A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      996d39aa-fdac-4d97-aa3d-c81fb47362ac aaaaaaaa-bbbb-cccc-1111-222222222222 PrivilegedAccess...
 ```
 
-This example demonstrates how to get top two OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.  
+This example demonstrates how to get top two OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 

@@ -2,7 +2,6 @@
 title: Get-EntraUserAdministrativeUnit
 description: This article provides details on the Get-EntraUserAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 12/02/2024
 ms.author: eunicewaweru
@@ -61,11 +60,11 @@ Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com'
 ```Output
 DeletedDateTime Id                                   Description                            DisplayName             Visibility
 --------------- --                                   -----------                            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit      
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit   
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit
 ```
 
-This cmdlet retrieves a list of administrative units to which a specific user belongs.  
+This cmdlet retrieves a list of administrative units to which a specific user belongs.
 
 ### Example 2: Get a list of administrative units to which a specific user belongs using the All parameter
 
@@ -77,11 +76,11 @@ Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -All
 ```Output
 DeletedDateTime Id                                   Description                            DisplayName             Visibility
 --------------- --                                   -----------                            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit      
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit  
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit
 ```
 
-This cmdlet retrieves a list of administrative units to which a specific user belongs using the All parameter.  
+This cmdlet retrieves a list of administrative units to which a specific user belongs using the All parameter.
 
 ### Example 3: Get an administrative unit to which a specific user belongs
 
@@ -93,11 +92,11 @@ Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -Top 1
 ```Output
 DeletedDateTime Id                                   Description                            DisplayName             Visibility
 --------------- --                                   -----------                            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit      
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit    
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit
 ```
 
-This cmdlet retrieves an administrative unit to which a specific user belongs.
+This cmdlet retrieves an administrative unit to which a specific user belongs. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a list of administrative units to which a specific user belongs using the Administrative Unit ID parameter
 
@@ -110,7 +109,7 @@ Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -AdministrativeUni
 ```Output
 DeletedDateTime Id                                   Description                            DisplayName             Visibility
 --------------- --                                   -----------                            -----------             ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit 
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
 ```
 
 This cmdlet retrieves a list of administrative units to which a specific user belongs using the Administrative Unit ID parameter.

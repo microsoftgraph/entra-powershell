@@ -103,7 +103,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com         1
 cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com        10/7/2024 12:34:14 AM Member   True
 ```
 
-This example demonstrates how to retrieve top two registered users for the specified device.
+This example demonstrates how to retrieve top two registered users for the specified device. You can use `-Limit` as an alias for `-Top`.
 
 - `-DeviceId` parameter specifies an object ID of a device, which you want to retrieve.
 

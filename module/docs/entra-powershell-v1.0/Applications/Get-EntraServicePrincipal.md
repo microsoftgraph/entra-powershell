@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipal
 description: This article provides details on the Get-EntraServicePrincipal command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -100,7 +99,7 @@ This command retrieves specific service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipal -All 
+Get-EntraServicePrincipal -All
 ```
 
 ```Output
@@ -127,7 +126,7 @@ Helpdesk Application                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 0000111
 Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 AzureADMultipleOrgs Application
 ```
 
-This command retrieves top two service principals from the directory.
+This command retrieves top two service principals from the directory. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 5: Get a service principal by display name
 

@@ -84,7 +84,7 @@ ObjectId                             DeviceId                             Displa
 bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
 ```
 
-This command gets top one registered device owned by the specified user.
+This command gets top one registered device owned by the specified user. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

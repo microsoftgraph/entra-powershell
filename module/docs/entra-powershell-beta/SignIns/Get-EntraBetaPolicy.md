@@ -2,7 +2,6 @@
 title: Get-EntraBetaPolicy
 description: This article provides details on the Get-EntraBetaPolicy command.
 
-
 ms.topic: reference
 ms.date: 07/02/2024
 ms.author: eunicewaweru
@@ -30,7 +29,7 @@ Gets a policy.
 ```powershell
 Get-EntraBetaPolicy
  [-Top <Int32>]
- [-All] 
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -127,7 +126,7 @@ Id                                   Description                     DisplayName
 bbbbbbbb-1111-2222-3333-cccccccccccc passwordHashSync rollout policy passwordHashSync rollout policy passwordHashSync False                   True
 ```
 
-This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
+This example demonstrates how to retrieve top one policies in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

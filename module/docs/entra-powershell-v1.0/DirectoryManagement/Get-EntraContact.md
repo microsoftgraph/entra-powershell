@@ -2,7 +2,6 @@
 title: Get-EntraContact
 description: This article provides details on the Get-EntraContact command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -51,10 +50,10 @@ The `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
 
 For delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles support this operation:
 
-- Directory Readers: Read basic properties  
-- Global Reader  
-- Directory Writers  
-- Intune Administrator  
+- Directory Readers: Read basic properties
+- Global Reader
+- Directory Writers
+- Intune Administrator
 - User Administrator
 
 ## Examples
@@ -99,7 +98,7 @@ This example retrieves specified contact in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContact -All 
+Get-EntraContact -All
 ```
 
 ```Output
@@ -127,7 +126,7 @@ Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com    
 Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
 ```
 
-This example retrieves top two contacts in the directory.
+This example retrieves top two contacts in the directory. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 5: Retrieve all contacts objects in the directory filter by DisplayName
 

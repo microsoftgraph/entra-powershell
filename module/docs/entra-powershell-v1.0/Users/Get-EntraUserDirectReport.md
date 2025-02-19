@@ -2,7 +2,6 @@
 title: Get-EntraUserDirectReport
 description: This article provides details on the Get-EntraUserDirectReport command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -95,7 +94,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Christie Cline  ChristieC@Contoso.com     
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Isaiah Langer   IsaiahL@Contoso.com         10/7/2024 12:33:16 AM  True           Member
 ```
 
-This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
+This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the ID of a user (UserPrincipalName or UserId).
 

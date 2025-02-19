@@ -70,7 +70,7 @@ $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk 
 Get-EntraServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
-This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
+This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 

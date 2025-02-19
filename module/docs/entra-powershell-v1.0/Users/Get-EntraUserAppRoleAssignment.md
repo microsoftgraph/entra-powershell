@@ -2,7 +2,6 @@
 title: Get-EntraUserAppRoleAssignment
 description: This article provides details on the Get-EntraUserAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -106,7 +105,7 @@ DeletedDateTime   Id                                        AppRoleId           
                   0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2
 ```
 
-This example demonstrates how to retrieve top two application role assignment for the specified user.
+This example demonstrates how to retrieve top two application role assignment for the specified user. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
