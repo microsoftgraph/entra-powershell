@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-BeforeAll{
+BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null) {
         Import-Module Microsoft.Entra.DirectoryManagement      
     }
@@ -9,22 +9,22 @@ BeforeAll{
 
     $scriptblock = {
         @{
-            "deletedDateTime" = $null
-            "visibility" = $null
-            "displayName" = "DummyName"            
-            "id" = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-            "@odata.context" = " https://graph.microsoft.com/v1.0/`$metadata#directory/administrativeUnits/`$entity"
-            "membershipType" = $null
-            "description" = $null
+            "deletedDateTime"               = $null
+            "visibility"                    = $null
+            "displayName"                   = "DummyName"            
+            "id"                            = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+            "@odata.context"                = " https://graph.microsoft.com/v1.0/`$metadata#directory/administrativeUnits/`$entity"
+            "membershipType"                = $null
+            "description"                   = $null
             "membershipRuleProcessingState" = $null
-            "Parameters" = $args
+            "Parameters"                    = $args
         }
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 }
-Describe "Tests for New-EntraAdministrativeUnit"{
-    It "Result should not be empty"{
+Describe "Tests for New-EntraAdministrativeUnit" {
+    It "Result should not be empty" {
         $result = New-EntraAdministrativeUnit -DisplayName "DummyName"
         $result | Should -Not -BeNullOrEmpty
         $result.id | should -Be @('aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb')
@@ -58,10 +58,10 @@ Describe "Tests for New-EntraAdministrativeUnit"{
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { New-EntraAdministrativeUnit -DisplayName "DummyName" -Debug } | Should -Not -Throw
-        } finally {
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
     }
 }
-
