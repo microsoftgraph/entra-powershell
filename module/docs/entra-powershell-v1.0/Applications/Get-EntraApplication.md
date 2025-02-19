@@ -191,6 +191,22 @@ Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wi
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
+### Example 8: List top 2 applications
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -Top 2
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
+-----------         --                                   -----                                --------------                     ---------------
+test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
+ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
+```
+
+This example shows how you can retrieve two applications. You can use `-Limit` as an alias for `-Top`.
+
 ## Parameters
 
 ### -All
