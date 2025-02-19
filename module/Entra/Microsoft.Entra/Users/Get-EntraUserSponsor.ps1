@@ -1,46 +1,71 @@
 function Get-EntraUserSponsor {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
+        [System.String] $Filter,
+
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID) of the user whose sponsor information you want to retrieve.")]
         [System.String] $UserId,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Int32] $Top,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Alias('Limit')]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
+        [System.Nullable`1[System.Int32]] $Top,
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's sponsors.")]
         [switch] $All,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $SearchString,
+
+        [Alias('SponsorId')]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User Sponsor ID to retrieve.")]
+        [System.String] $DirectoryObjectId,
+
+        [Alias('Select')]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [System.String[]] $Property
     )
 
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $Method = "GET"
-        $baseUri = 'https://graph.microsoft.com/v1.0/users'
+        $topCount = $null
+        $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId/sponsors"
         $properties = '$select=*'
-        if($null -ne $PSBoundParameters["Property"])
-        {
+        $params["Method"] = "GET"
+        $params["Uri"] = "$baseUri/?$properties"        
+        if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
+            $params["Uri"] = "$baseUri/?$properties"
         }
-        if($null -ne $PSBoundParameters["UserId"])
-        {
-            $params["UserId"] = $PSBoundParameters["UserId"]
-            $URI = "$baseUri/$($params.UserId)/sponsors?$properties"
-        }
-        if($null -ne $PSBoundParameters["All"])
-        {
-            $URI = "$baseUri/$($params.UserId)/sponsors?$properties"
-        }
-        if($PSBoundParameters.ContainsKey("Top"))
-        {
+        if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
-            $URI = "$baseUri/$($params.UserId)/sponsors?`$top=$topCount&$properties"
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else {
+                $params["Uri"] += "&`$top=$topCount"
+            }
+        }        
+        if ($null -ne $PSBoundParameters["DirectoryObjectId"]) {
+            $params["Uri"] += "&`$filter=id eq '$DirectoryObjectId'"
         }
+        if ($null -ne $PSBoundParameters["Filter"]) {
+            $Filter = $PSBoundParameters["Filter"]
+            $f = '$' + 'Filter'
+            $params["Uri"] += "&$f=$Filter"
+        }
+        if ($null -ne $PSBoundParameters["SearchString"]) {
+            $TmpValue = $PSBoundParameters["SearchString"]
+            $SearchString = "`$search=`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
+            $params["Uri"] += "&$SearchString"
+        } 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")   
-        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $directoryObjectList = @()
