@@ -9,13 +9,15 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
     param (
 
         # UserId of Guest User
-        [Parameter(ParameterSetName = 'ByUsers',HelpMessage ="The Unique ID of the User (User ID).")]
+        [Parameter(ParameterSetName = 'ByUsers', HelpMessage = "The Unique ID of the User (User ID).")]
+        [ValidateScript({ ($_ -ne $null -and $_.Count -gt 0) -or $PSCmdlet.MyInvocation.BoundParameters.ContainsKey('All') })]
         [String[]]
-        $userId,
+        $UserId,
+
         # Enumerate and Update All Guest Users.
-        [Parameter(ParameterSetName = 'AllInvitedGuests',HelpMessage="A Flag indicating whether to include all invited guests.")]
+        [Parameter(ParameterSetName = 'AllInvitedGuests', HelpMessage = "A Flag indicating whether to include all invited guests.")]
         [switch]
-        $all
+        $All
     )
 
     begin {      
@@ -26,17 +28,12 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
 
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        if ($null -eq $userId -and !$all) {
-            Write-Error "Please specify either -UserId or -All"
-            return
-        }
-
-        if ($all) {
+        if ($All) {
             #TODO: Change to Get-EntraBetaUser when -ExpandProperty is implemented
             $invitedUsers = Get-MgUser -Filter $guestFilter -All -ExpandProperty Sponsors
         }
         else {
-            foreach ($user in $userId) {
+            foreach ($user in $UserId) {
                   #TODO: Change to Get-EntraBetaUser when -ExpandProperty is implemented
                 $invitedUsers += Get-MgUser -UserId $user -ExpandProperty Sponsors
             }
