@@ -93,7 +93,7 @@ This example retrieves the top sponsor for the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
-Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -SponsorId c0c97c58-1895-4910-b1bb-58f96db771df | Select-Object Id, DisplayName, '@odata.type'
+Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -SponsorId cccccccc-2222-3333-4444-dddddddddddd | Select-Object Id, DisplayName, '@odata.type'
 ```
 
 ```Output
