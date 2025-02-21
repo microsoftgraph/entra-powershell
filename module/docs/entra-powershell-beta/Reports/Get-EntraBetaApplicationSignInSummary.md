@@ -95,7 +95,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer                         3   
 bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                           3                 99.15             350
 ```
 
-This example returns top two summaries sign ins from the past 30 days.
+This example returns top two summaries sign ins from the past 30 days. You can use `-Limit` as an alias for `-Top`.
 
 - `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 

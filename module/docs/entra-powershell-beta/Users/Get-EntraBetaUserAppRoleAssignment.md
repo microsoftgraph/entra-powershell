@@ -76,7 +76,7 @@ This example retrieves a user application role assignment for the user in $UserI
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All'
-Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -All 
+Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -103,10 +103,10 @@ Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -Top 2
 DeletedDateTime   Id                                        AppRoleId                              CreatedDateTime       PrincipalDisplayName  PrincipalId                          PrincipalType  ResourceDisplayName
 ---------------   --                                        ---------                              ---------------       --------------------  -----------                          -------------  -------------------
                   0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i            00001111-aaaa-2222-bbbb-3333cccc4444  31-07-2023 04:29:57  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-1
-                  0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2 
+                  0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k            11112222-bbbb-3333-cccc-4444dddd5555  12-07-2023 10:09:17  Sawyer Miller         aaaaaaaa-bbbb-cccc-1111-222222222222 User           Test-App-2
 ```
 
-This example demonstrates how to retrieve top two application role assignment for the specified user.
+This example demonstrates how to retrieve top two application role assignment for the specified user. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 

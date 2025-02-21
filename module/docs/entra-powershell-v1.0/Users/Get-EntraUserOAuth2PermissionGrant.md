@@ -2,7 +2,6 @@
 title: Get-EntraUserOAuth2PermissionGrant
 description: This article provides details on the Get-EntraUserOAuth2PermissionGrant command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -100,7 +99,7 @@ Id                                                               ClientId       
 HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
 ```
 
-This Example Retrieve top one the OAuth2 permission grant in Microsoft Entra ID.
+This Example Retrieve top one the OAuth2 permission grant in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the user ID.
 

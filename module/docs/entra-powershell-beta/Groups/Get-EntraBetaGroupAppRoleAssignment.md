@@ -43,8 +43,8 @@ The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role a
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Get-EntraBetaGroupAppRoleAssignment -GroupId $GroupId
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id
 ```
 
 ```Output
@@ -63,7 +63,8 @@ This example retrieves the application role assignments of a group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -GroupId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id -All
 ```
 
 ```Output
@@ -82,7 +83,8 @@ This example retrieves all application role assignments of the specified group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -GroupId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
+$group = Get-EntraBetaGroup -SearchString 'Contoso marketing'
+Get-EntraBetaGroupAppRoleAssignment -GroupId $group.Id -Top 2
 ```
 
 ```Output
@@ -92,7 +94,7 @@ MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin 
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This example retrieves top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group. You can use `-Limit` as an alias for `-Top`.
 
 - `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 

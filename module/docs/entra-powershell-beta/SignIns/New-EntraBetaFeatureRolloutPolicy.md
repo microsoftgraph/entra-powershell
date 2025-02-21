@@ -110,10 +110,6 @@ Accept wildcard characters: False
 Specifies a feature assigned to the cloud authentication roll-out policy.
 
 Possible values are:
-<<<<<<< HEAD
-
-=======
->>>>>>> 145170eb7 ([Modularize] Example improvements - SignIns category (#1310))
 - passthroughAuthentication  
 - seamlessSso  
 - passwordHashSync  
