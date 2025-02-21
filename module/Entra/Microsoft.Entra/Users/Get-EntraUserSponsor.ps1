@@ -46,8 +46,8 @@ function Get-EntraUserSponsor {
                 $params["Uri"] += "&`$top=$topCount"
             }
         }        
-        if ($null -ne $PSBoundParameters["DirectoryObjectId"]) {
-            $params["Uri"] += "&`$filter=id eq '$DirectoryObjectId'"
+        if ($null -ne $PSBoundParameters["SponsorId"]) {
+            $params["Uri"] += "&`$filter=id eq '$SponsorId'"
         }
         if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
