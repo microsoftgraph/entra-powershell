@@ -56,16 +56,14 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 ```powershell
 Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
 Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' |
-Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, userType |
-Format-Table -AutoSize
+Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
 
 ```Output
-id                                   displayName     userPrincipalName              createdDateTime     accountEnabled userType
---                                   -----------     -----------------             ---------------     -------------- --------
-c0c97c58-1895-4910-b1bb-58f96db771df Adele Vance     AdeleV@7svz8d.onmicrosoft.com 28/10/2024 09:50:43           True Member
-79984fce-9e33-497a-a5a2-b3c85e3fedcb Alex Wilber     AlexW@7svz8d.onmicrosoft.com  28/10/2024 09:50:46           True Member
-406e3c9f-7a2d-4ef0-b1d4-69ddbd2719bb Diego Siciliani DiegoS@7svz8d.onmicrosoft.com 28/10/2024 09:50:46           True Member
+id                                   displayName       @odata.type            createdDateTime
+--                                   -----------       -----------            ---------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown       #microsoft.graph.user  3/7/2024 3:10:31 AM
+eeeeeeee-4444-5555-6666-ffffffffffff Helpdesk Group    #microsoft.graph.group 8/7/2024 2:52:47 PM
 ```
 
 This example shows how to list user sponsors.
@@ -76,16 +74,17 @@ This example shows how to list user sponsors.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
-Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -Top 1 | Select-Object Id, DisplayName, '@odata.type'
+Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Top 1 |
+Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   displayName    @odata.type
---                                   -----------    -----------
-cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
+id                                   displayName       @odata.type            createdDateTime
+--                                   -----------       -----------            ---------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown       #microsoft.graph.user  3/7/2024 3:10:31 AM
 ```
 
-This example retrieves the top sponsor for the specified user.
+This example retrieves the top sponsor for the specified user. You can use `-Limit` as an alias for `-Top`.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name.
 
@@ -93,19 +92,21 @@ This example retrieves the top sponsor for the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
-Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -SponsorId cccccccc-2222-3333-4444-dddddddddddd | Select-Object Id, DisplayName, '@odata.type'
+Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -SponsorId 'cccccccc-2222-3333-4444-dddddddddddd' |
+Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
 
 ```Output
-Id                                   displayName    @odata.type
---                                   -----------    -----------
-cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
+id                                   displayName       @odata.type            createdDateTime
+--                                   -----------       -----------            ---------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown       #microsoft.graph.user  3/7/2024 3:10:31 AM
+eeeeeeee-4444-5555-6666-ffffffffffff Helpdesk Group    #microsoft.graph.group 8/7/2024 2:52:47 PM
 ```
 
 This example retrieves the assigned sponsor for the specified user.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name.
-- The `-SponsorId` parameter specifies the specific user's sponsor ID to retrieve.
+- The `-SponsorId` parameter specifies the specific user's sponsor ID to retrieve (user or group ID).
 
 ## Parameters
 
@@ -128,6 +129,21 @@ Accept wildcard characters: False
 ### -UserId
 
 Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -SponsorId
+
+Specifies the specific user's sponsor ID to retrieve (user or group ID).
 
 ```yaml
 Type: System.String
