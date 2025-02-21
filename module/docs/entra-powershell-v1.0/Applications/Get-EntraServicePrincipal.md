@@ -251,6 +251,24 @@ Id                                   DisplayName                           Accou
 
 This example demonstrates how to retrieve all SAML application details.
 
+### Example 13: List service principal app roles
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraServicePrincipal -SearchString 'Contoso Helpdesk Application'
+$servicePrincipal.AppRoles | Format-Table -AutoSize
+```
+
+```Output
+AllowedMemberTypes    Description        DisplayName       Id                                   IsEnabled  Origin       Value        
+------------------    -----------        -----------       --                                   ---------  ------       -----        
+{User, Application}   General All        General All       gggggggg-6666-7777-8888-hhhhhhhhhhhh  True       Application  Survey.Read  
+{Application}         General App Only   General Apponly   hhhhhhhh-7777-8888-9999-iiiiiiiiiiii  True       Application  Task.Write   
+{User}                General role       General           bbbbbbbb-1111-2222-3333-cccccccccccc  True       Application  General 
+```
+
+This example shows how you can retrieve app roles for a service principal.
+
 ## Parameters
 
 ### -All
