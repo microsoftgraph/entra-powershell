@@ -207,6 +207,24 @@ ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777
 
 This example shows how you can retrieve two applications. You can use `-Limit` as an alias for `-Top`.
 
+### Example 9: List application app roles
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$application = Get-EntraBetaApplication -SearchString 'Contoso Helpdesk Application'
+$application.AppRoles | Format-Table -AutoSize
+```
+
+```Output
+AllowedMemberTypes    Description        DisplayName       Id                                   IsEnabled  Origin       Value        
+------------------    -----------        -----------       --                                   ---------  ------       -----        
+{User, Application}   General All        General All       gggggggg-6666-7777-8888-hhhhhhhhhhhh  True       Application  Survey.Read  
+{Application}         General App Only   General Apponly   hhhhhhhh-7777-8888-9999-iiiiiiiiiiii  True       Application  Task.Write   
+{User}                General role       General           bbbbbbbb-1111-2222-3333-cccccccccccc  True       Application  General 
+```
+
+This example shows how you can retrieve app roles for an application.
+
 ## Parameters
 
 ### -All
