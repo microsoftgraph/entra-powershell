@@ -79,8 +79,8 @@ function Get-EntraUserSponsor {
             $memberList = @()
             foreach ($response in $data) {
                 $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
-                if (-not ($response -is [psobject])) {
-                    $response = [pscustomobject]@{ Value = $response }
+                if (-not ($response -is [PSObject])) {
+                    $response = [PSCustomObject]@{ Value = $response }
                 }
                 $response.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name
@@ -89,7 +89,7 @@ function Get-EntraUserSponsor {
                 }
                 $memberList += $memberType
             }
-            $memberList
+            return $memberList
         }
     }
 }

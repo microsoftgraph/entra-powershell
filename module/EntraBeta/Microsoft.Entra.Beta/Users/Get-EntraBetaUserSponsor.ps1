@@ -55,7 +55,7 @@ function Get-EntraBetaUserSponsor {
             $params["Uri"] += "&$f=$Filter"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")   
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
@@ -74,31 +74,24 @@ function Get-EntraBetaUserSponsor {
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}
-
-            foreach ($item in $data) {
-                if ($null -ne $item) {
-                    # Determine the type based on @odata.type
-                    switch ($item.'@odata.type') {
-                        '#microsoft.graph.user' {
-                            $directoryObject = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
-                        }
-                        '#microsoft.graph.group' {
-                            $directoryObject = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphGroup]::new()
-                        }
-                        default {
-                            Write-Warning "Unknown type: $($item.'@odata.type')"
-                            continue
-                        }
-                    }
-                    $item.PSObject.Properties | ForEach-Object {
-                        $propertyName = $_.Name
-                        $propertyValue = $_.Value
-                        $directoryObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                    }     
-                    $directoryObjectList += $directoryObject
-                }
-            }
-           $directoryObjectList
         }
+        catch {}
+
+        if ($data) {
+            $memberList = @()
+            foreach ($response in $data) {
+                $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                if (-not ($response -is [PSObject])) {
+                    $response = [PSCustomObject]@{ Value = $response }
+                }
+                $response.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $memberList += $memberType
+            }
+            return $memberList
+        }
+    }
 }
