@@ -28,6 +28,16 @@ Get-EntraUserSponsor
  [<CommonParameters>]
 ```
 
+### GetById
+
+```powershell
+Get-EntraUserSponsor
+ -UserId <String>
+ -SponsorId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ## Description
 
 The `Get-EntraUserSponsor` cmdlet retrieve a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
@@ -78,6 +88,24 @@ cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 This example retrieves the top sponsor for the specified user.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name.
+
+### Example 3: Retrieve the assigned sponsor for a specific user by their SponsorId
+
+```powershell
+Connect-Entra -Scopes 'User.Read', 'User.Read.All' # User.Read.All is application-only permission (non-interactive login)
+Get-EntraUserSponsor -UserId 'vwyerM@contoso.com' -SponsorId c0c97c58-1895-4910-b1bb-58f96db771df | Select-Object Id, DisplayName, '@odata.type'
+```
+
+```Output
+Id                                   displayName    @odata.type
+--                                   -----------    -----------
+cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
+```
+
+This example retrieves the assigned sponsor for the specified user.
+
+- The `-UserId` parameter specifies the User ID or User Principal Name.
+- The `-SponsorId` parameter specifies the specific user's sponsor ID to retrieve.
 
 ## Parameters
 
