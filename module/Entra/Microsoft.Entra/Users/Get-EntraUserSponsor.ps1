@@ -14,9 +14,9 @@ function Get-EntraUserSponsor {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's sponsors.")]
         [switch] $All,
 
-        [Alias('SponsorId')]
+        [Alias('DirectoryObjectId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User Sponsor ID to retrieve.")]
-        [System.String] $DirectoryObjectId,
+        [System.String] $SponsorId,
 
         [Alias('Select')]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
