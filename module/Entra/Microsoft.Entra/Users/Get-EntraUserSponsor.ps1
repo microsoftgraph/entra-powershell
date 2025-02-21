@@ -75,6 +75,21 @@ function Get-EntraUserSponsor {
             }
         }
         catch {}
-        
+        if ($data) {
+            $memberList = @()
+            foreach ($response in $data) {
+                $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                if (-not ($response -is [psobject])) {
+                    $response = [pscustomobject]@{ Value = $response }
+                }
+                $response.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $memberList += $memberType
+            }
+            $memberList
+        }
     }
 }
