@@ -24,7 +24,7 @@ function Get-EntraBetaUserSponsor {
     )
 
     PROCESS {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
         $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId/sponsors"
