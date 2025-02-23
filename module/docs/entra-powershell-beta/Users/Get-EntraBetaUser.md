@@ -324,7 +324,7 @@ cccccccc-2222-3333-4444-dddddddddddd Angel Brown   AngelB@contoso.com       3/7/
 dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith   AveryS@contoso.com       10/1/2024 9:47:06 AM     True
 ```
 
-This example shows how to list all users with a specific role, such as `Global Administrator`.
+This example shows how to list all users with a specific role, such as `Global Administrator`. Microsoft recommends assigning the Global Administrator role to fewer than five people for best practice. See [best practices](https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices).
 
 ## Parameters
 
