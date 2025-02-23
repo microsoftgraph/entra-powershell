@@ -269,6 +269,26 @@ AllowedMemberTypes    Description        DisplayName       Id                   
 
 This example shows how you can retrieve app roles for a service principal.
 
+### Example 14: List applications (service principals) outside my tenant
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$tenantId = Get-EntraContext | Select-Object -ExpandProperty TenantId
+$servicePrincipals = Get-EntraBetaServicePrincipal -All -Property AppOwnerOrganizationId, Id, DisplayName, AppId
+$externalServicePrincipals = $servicePrincipals | Where-Object { $_.AppOwnerOrganizationId -ne $tenantId }
+$externalServicePrincipals | Select-Object DisplayName, Id, AppId, AppOwnerOrganizationId | Format-Table -AutoSize
+```
+
+```Output
+DisplayName                                             Id                                   AppId                                AppOwnerOrganizationId
+-----------                                             --                                   -----                                ----------------------
+Azure MFA StrongAuthenticationService                   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 f8cdef31-a31e-4b4a-93e4-5f571e91255a
+M365 Label Analytics                                    bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 f8cdef31-a31e-4b4a-93e4-5f571e91255a
+PowerApps-Advisor                                       cccccccc-2222-3333-4444-dddddddddddd 22223333-cccc-4444-dddd-5555eeee6666 f8cdef31-a31e-4b4a-93e4-5f571e91255a 
+```
+
+This example shows how you can retrieve applications (service principals) outside my tenant.
+
 ## Parameters
 
 ### -All
