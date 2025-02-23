@@ -5,20 +5,22 @@
 
 function Get-EntraBetaDirectoryRole {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    param (                
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The filter to apply to the operation. Use the following format: e.g. PropertyName eq 'Value'")]
         [System.String] $Filter,
+        
         [Alias('ObjectId')]            
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The directory role's unique ID.")]
         [System.String] $DirectoryRoleId,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
 
     PROCESS {    
         $params = @{}
+        $keysChanged = @{DirectoryRoleId = "Id" }
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
