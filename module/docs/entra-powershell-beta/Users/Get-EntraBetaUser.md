@@ -306,6 +306,26 @@ This example demonstrates how to retrieve list all guest users.
 Get-EntraBetaUser -All | Sort-Object -Property createdDateTime -Descending | Select-Object -First 5
 ```
 
+### Example 15: List of users with Global Administrator role
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All', 'RoleManagement.Read.Directory'
+$roleId = Get-EntraBetaDirectoryRoleTemplate | Where-Object { $_.DisplayName -eq 'Global Administrator' } | Select-Object -ExpandProperty Id
+$globalAdmins = Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq '$roleId'" | ForEach-Object {
+    Get-EntraBetaUser -UserId $_.PrincipalId
+}
+$globalAdmins | Select-Object Id, DisplayName, UserPrincipalName, CreatedDateTime, AccountEnabled | Format-Table -AutoSize
+```
+
+```Output
+id                                   displayName   userPrincipalName        createdDateTime          accountEnabled
+--                                   -----------   -----------------        ---------------          --------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown   AngelB@contoso.com       3/7/2024 12:34:59 AM     True
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith   AveryS@contoso.com       10/1/2024 9:47:06 AM     True
+```
+
+This example shows how to list all users with a specific role, such as `Global Administrator`.
+
 ## Parameters
 
 ### -All
