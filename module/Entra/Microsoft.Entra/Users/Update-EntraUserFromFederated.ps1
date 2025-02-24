@@ -20,10 +20,9 @@ function Update-EntraUserFromFederated {
         # Define essential variables
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params = @{
-            "UserId" = $UserPrincipalName
-            "Url"   = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$($authenticationMethodId)/resetPassword"
-        }
+        $params = @{}
+        $params["UserId"] = $UserPrincipalName
+        $params["Url"] = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$($authenticationMethodId)/resetPassword"
 
         # Handle password conversion securely
         if ($PSBoundParameters.ContainsKey("NewPassword") -and $NewPassword) {
@@ -34,15 +33,15 @@ function Update-EntraUserFromFederated {
             } finally {
                 [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePtr)  # Securely free memory
             }
-        } else {
-            Write-Warning "NewPassword is missing. No password update will be performed."
-            return
-        }
 
-        # Create request body
-        $body = @{
-            newPassword = $params["NewPassword"]
-        } | ConvertTo-Json
+            # Create request body with new password
+            $body = @{
+                newPassword = $params["NewPassword"]
+            } | ConvertTo-Json
+        } else {
+            # Create an empty body
+            $body = @{} | ConvertTo-Json
+        }
 
         # Debugging output
         Write-Debug "============================ TRANSFORMATIONS ============================"
