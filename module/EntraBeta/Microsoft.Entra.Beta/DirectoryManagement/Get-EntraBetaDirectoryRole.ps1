@@ -20,7 +20,7 @@ function Get-EntraBetaDirectoryRole {
 
     PROCESS {    
         $params = @{}
-        $keysChanged = @{DirectoryRoleId = "Id" }
+        $keysChanged = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
