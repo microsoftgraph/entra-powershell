@@ -61,11 +61,11 @@ Format-Table -AutoSize
 ```
 
 ```Output
-id                                   displayName     userPrincipalName              createdDateTime     accountEnabled userType
---                                   -----------     -----------------             ---------------     -------------- --------
-c0c97c58-1895-4910-b1bb-58f96db771df Adele Vance     AdeleV@7svz8d.onmicrosoft.com 28/10/2024 09:50:43           True Member
-79984fce-9e33-497a-a5a2-b3c85e3fedcb Alex Wilber     AlexW@7svz8d.onmicrosoft.com  28/10/2024 09:50:46           True Member
-406e3c9f-7a2d-4ef0-b1d4-69ddbd2719bb Diego Siciliani DiegoS@7svz8d.onmicrosoft.com 28/10/2024 09:50:46           True Member
+id                                   displayName     userPrincipalName      createdDateTime        accountEnabled userType
+--                                   -----------     -----------------      ---------------        -------------- --------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown    AngelB@contoso.com     28/10/2024 09:50:43    True           Member  
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith    AveryS@contoso.com     28/10/2024 09:50:46    True           Member  
+eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller  SawyerM@contoso.com    28/10/2024 09:50:46    True           Member
 ```
 
 This example shows how to list user sponsors.
