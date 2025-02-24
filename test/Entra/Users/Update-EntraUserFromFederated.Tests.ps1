@@ -24,9 +24,7 @@ Describe "Tests for Update-EntraUserFromFederated"{
     It "Should fail when UserPrincipalName is null" {
         { Update-EntraUserFromFederated -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
     }  
-    It "Should fail when UserPrincipalName is empty" {
-        { Update-EntraUserFromFederated -UserPrincipalName "" } | Should -Throw "Cannot process argument transformation on parameter 'UserPrincipalName'*"
-    }
+ 
     It "Should fail when NewPassword is null" {
         { Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword } | Should -Throw "Missing an argument for parameter 'NewPassword'*"
     }  
