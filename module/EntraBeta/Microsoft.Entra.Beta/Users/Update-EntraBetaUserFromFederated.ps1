@@ -21,9 +21,9 @@ function Update-EntraBetaUserFromFederated {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
        
-        if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
-            $params["AuthenticationMethodId"] = "28c10230-6103-485e-b985-444c60001490"
-            $params["UserId"] = $PSBoundParameters["UserPrincipalName"]
+        $params = @{
+            "AuthenticationMethodId" = "28c10230-6103-485e-b985-444c60001490"
+            "UserId"                 = $UserPrincipalName
         }
         if ($PSBoundParameters.ContainsKey("NewPassword")) {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
