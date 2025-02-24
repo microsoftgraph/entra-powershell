@@ -13,7 +13,8 @@ function Update-EntraUserFromFederated {
         [SecureString] $NewPassword,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "TenantId of the user to update.")]
-        [guid] $TenantId          
+        [Obsolete("'TenantId' is for backward compatibility with Azure AD and MSOnline in partner scenarios. Operations run only on the logged-in tenant.")]
+        [guid] $TenantId      
     )
 
     PROCESS {    
