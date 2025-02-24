@@ -24,10 +24,20 @@ Updates a user in a domain that was recently converted from single sign-on (also
 
 ## Syntax
 
+### CloudOnlyPasswordScenarios (Default)
+
 ```powershell
-Update-EntraBetaUserFromFederated
+Update-EntraUserFromFederated
  -UserPrincipalName <String>
- [-NewPassword <SecureString>]
+ [<CommonParameters>]
+```
+
+### HybridPasswordScenarios
+
+```powershell
+Update-EntraUserFromFederated
+ -UserPrincipalName <String>
+ -NewPassword <SecureString>
  [<CommonParameters>]
 ```
 
@@ -57,9 +67,30 @@ Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
 Update-EntraBetaUserFromFederated -UserPrincipalName 'pattifuller@contoso.com'
 ```
 
-This command updates a user in a domain.
+```Output
+Name                           Value
+----                           -----
+newPassword                    HuHu8765
+@odata.context                 https://graph.microsoft.com/beta/$metadata#microsoft.graph.passwordResetResponse
+```
+
+This command updates a user in a domain. The system generates and returns a password.
 
 - `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
+
+### Example 2: Update user password in a domain
+
+```powershell
+Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
+$newPassword = '<strong-password>'
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+Update-EntraBetaUserFromFederated -UserPrincipalName 'pattifuller@contoso.com' -NewPassword $securePassword
+```
+
+This command updates a user in a domain by supplying a password for hybrid scenarios.
+
+- `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
+- `-NewPassword` parameter specifies the new password of the user.
 
 ## Parameters
 
