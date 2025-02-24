@@ -3,7 +3,6 @@
 # ------------------------------------------------------------------------------
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
 param()
-
 BeforeAll{
     if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
         Import-Module Microsoft.Entra.Users      
