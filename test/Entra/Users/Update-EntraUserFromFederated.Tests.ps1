@@ -4,7 +4,7 @@
 
 Describe "Tests for Update-EntraUserFromFederated" {
     BeforeAll {
-        if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
+        if ($null -eq (Get-Module -Name Microsoft.Entra.Users)) {
             Import-Module Microsoft.Entra.Users      
         }
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -28,17 +28,15 @@ Describe "Tests for Update-EntraUserFromFederated" {
     It "Result should not be empty" {
         $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Exactly 1
     }
 
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraUserFromFederated"
         $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraUserFromFederated"
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Exactly 1 -ParameterFilter {
+            $Headers.'User-Agent' -eq $userAgentHeaderValue
         }
     }
 
@@ -49,8 +47,9 @@ Describe "Tests for Update-EntraUserFromFederated" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Update-EntraUserFromFederated -Top 1 -Debug } | Should -Not -Throw
-        } finally {
+            { Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -Debug } | Should -Not -Throw
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
