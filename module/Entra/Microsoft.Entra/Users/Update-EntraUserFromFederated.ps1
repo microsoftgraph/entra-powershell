@@ -32,7 +32,7 @@ function Update-EntraUserFromFederated {
             $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
             $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
         
-            $params["Url"]  = "/users/$($UserId)/authentication/methods/$($authenticationMethodId)/resetPassword"
+            $params["Url"]  = "https://graph.microsoft.com/v1.0/users/$($UserId)/authentication/methods/$($authenticationMethodId)/resetPassword"
             $body = @{
                 newPassword = $new
             }
