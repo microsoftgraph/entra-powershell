@@ -101,7 +101,7 @@ The Microsoft Entra ID UserID for the user to convert.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: UserId
 
 Required: True
 Position: 1
