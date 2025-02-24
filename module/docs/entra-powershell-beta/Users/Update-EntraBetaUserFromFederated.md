@@ -27,7 +27,7 @@ Updates a user in a domain that was recently converted from single sign-on (also
 ```powershell
 Update-EntraBetaUserFromFederated
  -UserPrincipalName <String>
- [-NewPassword <String>]
+ [-NewPassword <SecureString>]
  [<CommonParameters>]
 ```
 
@@ -35,11 +35,18 @@ Update-EntraBetaUserFromFederated
 
 The `Update-EntraBetaUserFromFederated` cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
-This process writes the new password to Microsoft Entra ID and, if configured with password writeback, pushes it to on-premises Active Directory. The admin can provide a new password or let the system generate one. The user will be prompted to change their password at their next sign-in.
+This process updates the password in Microsoft Entra ID and, if password writeback is enabled, syncs it to on-premises Active Directory. The admin can set a new password or let the system generate one. The user must change it at next sign-in.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The least privileged roles for this operation are:
+
+- Authentication Administrator
+- Privileged Authentication Administrator
 
 For delegated scenarios, the administrator needs at least the Authentication Administrator or Privileged Authentication Administrator Microsoft Entra role.
 
-Admins with User Administrator, Helpdesk Administrator, or Password Administrator roles can also reset passwords for non-admin users and a limited set of admin roles.
+Admins with `User Administrator`, `Helpdesk Administrator`, or `Password Administrator` roles can reset passwords for non-admin users.
+
+The new password is required for hybrid password setups. If omitted for cloud-only passwords, a system-generated password is returned. It’s a Unicode string, validated against the tenant's banned password list, and must meet cloud and/or on-premises password policies.
 
 ## Examples
 

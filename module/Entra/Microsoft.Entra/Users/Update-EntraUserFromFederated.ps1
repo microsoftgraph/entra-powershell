@@ -6,24 +6,23 @@ function Update-EntraUserFromFederated {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $UserPrincipalName,
-        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true)][string] $NewPassword,
-        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true)][guid] $TenantId
-          
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
+        [Alias('UserId')]
+        [System.String] $UserPrincipalName,
+
+        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true, HelpMessage = "New password for the user.")]
+        [SecureString] $NewPassword,
+
+        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true, HelpMessage = "TenantId of the user to update.")]
+        [guid] $TenantId          
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
-            $UserPrincipalName = $PSBoundParameters.UserPrincipalName
-            $UserId = Get-MgUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual
-            if ($null -ne $UserId)
-            {
-                $AuthenticationMethodId = Get-MgUserAuthenticationMethod -UserId $UserId.Id
-                $params["AuthenticationMethodId"] = $AuthenticationMethodId.Id
-                $params["UserId"] = $UserId.Id
-            }
+            $params["AuthenticationMethodId"] = "28c10230-6103-485e-b985-444c60001490"
+            $params["UserId"] = $PSBoundParameters["UserPrincipalName"]
         }
         if ($PSBoundParameters.ContainsKey("NewPassword")) {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
