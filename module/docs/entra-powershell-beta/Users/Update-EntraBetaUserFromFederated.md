@@ -27,7 +27,7 @@ Updates a user in a domain that was recently converted from single sign-on (also
 ### CloudOnlyPasswordScenarios (Default)
 
 ```powershell
-Update-EntraUserFromFederated
+Update-EntraBetaUserFromFederated
  -UserPrincipalName <String>
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Update-EntraUserFromFederated
 ### HybridPasswordScenarios
 
 ```powershell
-Update-EntraUserFromFederated
+Update-EntraBetaUserFromFederated
  -UserPrincipalName <String>
  -NewPassword <SecureString>
  [<CommonParameters>]
