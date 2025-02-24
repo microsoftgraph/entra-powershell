@@ -38,7 +38,7 @@ Describe "Remove-EntraBetaUserSponsor" {
             $sponsorId = "10aa00aa-bb11-cc22-dd33-44ee44ee44e"
             
             Remove-EntraBetaUserSponsor -UserId $userId -SponsorId $sponsorId
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -Exactly
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -Exactly
         }
 
         It "Should accept DirectoryObjectId as alias for SponsorId" {
@@ -46,7 +46,7 @@ Describe "Remove-EntraBetaUserSponsor" {
             $dirObjectId = "10aa00aa-bb11-cc22-dd33-44ee44ee44e"
             
             Remove-EntraBetaUserSponsor -UserId $userId -DirectoryObjectId $dirObjectId
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -Exactly
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -Exactly
         }
     }
 }
