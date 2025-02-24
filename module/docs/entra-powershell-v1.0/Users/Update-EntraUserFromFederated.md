@@ -3,7 +3,7 @@ title: Update-EntraUserFromFederated
 description: This article provides details on the Update-EntraUserFromFederated command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/23/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
