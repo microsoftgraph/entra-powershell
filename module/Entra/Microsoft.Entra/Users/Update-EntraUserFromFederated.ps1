@@ -3,8 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Update-EntraUserFromFederated {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+        [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
         [Alias('UserId')]
@@ -17,69 +16,34 @@ function Update-EntraUserFromFederated {
         [guid] $TenantId          
     )
 
-    PROCESS {    
-        $params = @{}
-        $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        
-        if ($PSBoundParameters.ContainsKey("UserPrincipalName")) {
-            $params["UserId"] = $PSBoundParameters["UserPrincipalName"]
-            $params["AuthenticationMethodId "] = $authenticationMethodId
-        }
+        PROCESS {    
+            $params = @{}
+            $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-        if ($PSBoundParameters.ContainsKey("NewPassword")) {
-            $params["NewPassword"] = $PSBoundParameters["NewPassword"]
-        }
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        if($null -ne $AuthenticationMethodId)
-        {
-            $response = Reset-MgUserAuthenticationMethodPassword @params -Headers $customHeaders
-        }
-        $response
-        }
+            if ($null -ne $PSBoundParameters["UserId"]) {
+                $UserId = $PSBoundParameters["UserId"]
+            }
+            if($null -ne $PSBoundParameters["NewPassword"])
+            {
+                $params["NewPassword"] = $PSBoundParameters["NewPassword"]
+            }        
+        
+            $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
+            $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
+        
+            $params["Url"]  = "/users/$($UserId)/authentication/methods/$($authenticationMethodId)/resetPassword"
+            $body = @{
+                newPassword = $new
+            }
+            $body = $body | ConvertTo-Json
+        
+            Write-Debug("============================ TRANSFORMATIONS ============================")
+            $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+            Write-Debug("=========================================================================`n")
+            
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
+            $response
+        }   
 }
 
