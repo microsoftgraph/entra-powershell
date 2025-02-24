@@ -3,80 +3,54 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Update-EntraBetaUserFromFederated {
-        [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'CloudOnlyPasswordScenarios')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
         [Alias('UserId')]
         [System.String] $UserPrincipalName,
 
-        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true, HelpMessage = "New password for the user.")]
+        [Parameter(ParameterSetName = "HybridPasswordScenarios", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "New password for the user.")]
         [SecureString] $NewPassword,
 
-        [Parameter(Mandatory=$false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName=$true, HelpMessage = "TenantId of the user to update.")]
-        [guid] $TenantId
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "TenantId of the user to update.")]
+        [Obsolete("It ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in resource.")]
+        [guid] $TenantId      
     )
 
     PROCESS {    
-        $params = @{}
+        # Define essential variables
+        $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-       
-        $params = @{
-            "AuthenticationMethodId" = "28c10230-6103-485e-b985-444c60001490"
-            "UserId"                 = $UserPrincipalName
-        }
-        if ($PSBoundParameters.ContainsKey("NewPassword")) {
-            $params["NewPassword"] = $PSBoundParameters["NewPassword"]
-        }
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        if($null -ne $AuthenticationMethodId)
-        {
-            $response = Reset-MgBetaUserAuthenticationMethodPassword @params -Headers $customHeaders
-        }
-        $response
-        }
-}
+        $params = @{}
+        $params["UserId"] = $UserPrincipalName
+        $params["Url"] = "https://graph.microsoft.com/beta/users/$($UserPrincipalName)/authentication/methods/$($authenticationMethodId)/resetPassword"
 
+        # Handle password conversion securely
+        if ($PSBoundParameters.ContainsKey("NewPassword") -and $NewPassword) {
+            $newSecurePtr = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($NewPassword)
+            try {
+                $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newSecurePtr)
+                $params["NewPassword"] = $new
+            } finally {
+                [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePtr)  # Securely free memory
+            }
+
+            # Create request body with new password
+            $body = @{
+                newPassword = $params["NewPassword"]
+            } | ConvertTo-Json
+        } else {
+            # Create an empty body
+            $body = @{} | ConvertTo-Json
+        }
+
+        # Debugging output
+        Write-Debug "============================ TRANSFORMATIONS ============================"
+        $params.Keys | ForEach-Object { Write-Debug "$_ : $($params[$_])" }
+        Write-Debug "=========================================================================`n"
+
+        # Invoke request
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
+        return $response
+    }
+}
