@@ -19,11 +19,14 @@ function Update-EntraUserFromFederated {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-        $params = @{
-            "AuthenticationMethodId" = "28c10230-6103-485e-b985-444c60001490"
-            "UserId"                 = $UserPrincipalName
+        $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        
+        if ($PSBoundParameters.ContainsKey("UserPrincipalName")) {
+            $params["UserId"] = $PSBoundParameters["UserPrincipalName"]
+            $params["AuthenticationMethodId "] = $authenticationMethodId
         }
+
         if ($PSBoundParameters.ContainsKey("NewPassword")) {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
         }
