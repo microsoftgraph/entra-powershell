@@ -54,7 +54,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 For delegated scenarios, the administrator needs at least the Authentication Administrator or Privileged Authentication Administrator Microsoft Entra role.
 
-Admins with `User Administrator`, `Helpdesk Administrator`, or `Password Administrator` roles can reset passwords for non-admin users.
+Admins with `User Administrator`, `Helpdesk Administrator`, or `Password Administrator` roles can reset passwords for nonadmin users.
 
 The new password is required for hybrid password setups. If omitted for cloud-only passwords, a system-generated password is returned. It’s a Unicode string, validated against the tenant's banned password list, and must meet cloud and/or on-premises password policies.
 
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 
 The new password of the user.
 
-For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without additional encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
+For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without other encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
 
 ```yaml
 Type: System.String
