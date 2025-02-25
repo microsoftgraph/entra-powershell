@@ -60,10 +60,10 @@ Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -Au
 ```
 
 ```Output
-id                                   displayName       @odata.type            createdDateTime
---                                   -----------       -----------            ---------------
-cccccccc-2222-3333-4444-dddddddddddd Angel Brown       #microsoft.graph.user  3/7/2024 3:10:31 AM
-eeeeeeee-4444-5555-6666-ffffffffffff Helpdesk Group    #microsoft.graph.group 8/7/2024 2:52:47 PM
+id                                   displayName                 @odata.type                createdDateTime          
+--                                   -----------                 -----------                ---------------          
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown(Fabrikam)       #microsoft.graph.user      3/7/2024 3:10:31 AM      
+eeeeeeee-4444-5555-6666-ffffffffffff Fabrikam Helpdesk Group     #microsoft.graph.group     8/7/2024 2:52:47 PM 
 ```
 
 This example shows how to list user sponsors.
