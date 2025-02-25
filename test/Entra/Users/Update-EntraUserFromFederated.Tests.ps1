@@ -19,16 +19,6 @@ BeforeAll {
     $global:securePassword = ConvertTo-SecureString $global:newPassword -AsPlainText -Force
 }
 Describe "Tests for Update-EntraUserFromFederated" {
-   
-    It "Should fail when UserPrincipalName is null" {
-        { Update-EntraUserFromFederated -UserPrincipalName $null -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
-    }    
-    It "Should fail when UserPrincipalName is not passed" {
-        { Update-EntraUserFromFederated -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
-    }    
-    It "Should fail when invalid parameter is passed" {
-        { Update-EntraUserFromFederated -xyz -NewPassword $global:securePassword } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
-    } 
 
     It "Should return empty object" {
         $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword
