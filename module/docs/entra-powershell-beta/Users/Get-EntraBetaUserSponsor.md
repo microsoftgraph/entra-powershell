@@ -54,7 +54,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 ### Example 1: Get the user sponsors
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is application-only permission (non-interactive login)
+Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
 Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
@@ -73,7 +73,7 @@ This example shows how to list user sponsors.
 ### Example 2: Get top one sponsor
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is application-only permission (non-interactive login)
+Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
 Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Top 1 |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
@@ -91,7 +91,7 @@ This example retrieves the top sponsor for the specified user. You can use `-Lim
 ### Example 3: Retrieve the assigned sponsor for a specific user by their SponsorId
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is application-only permission (non-interactive login)
+Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
 Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -SponsorId 'cccccccc-2222-3333-4444-dddddddddddd' |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
