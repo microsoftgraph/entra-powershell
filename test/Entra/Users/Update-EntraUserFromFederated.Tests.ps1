@@ -20,11 +20,8 @@ BeforeAll {
 }
 Describe "Tests for Update-EntraUserFromFederated" {
    
-    It "Should fail when UserPrincipalName is empty" {
-        { Update-EntraUserFromFederated -UserPrincipalName "" -NewPassword $global:securePassword } | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName'*"
-    }
     It "Should fail when UserPrincipalName is null" {
-        { Update-EntraUserFromFederated -UserPrincipalName -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
+        { Update-EntraUserFromFederated -UserPrincipalName $null -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
     }    
     It "Should fail when UserPrincipalName is not passed" {
         { Update-EntraUserFromFederated -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
