@@ -55,7 +55,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 
 ```powershell
 Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
-Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' |
+Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -All |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
 
