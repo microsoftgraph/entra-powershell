@@ -1,6 +1,10 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+param()
+
 BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users      
@@ -15,24 +19,19 @@ BeforeAll {
     $global:securePassword = ConvertTo-SecureString $global:newPassword -AsPlainText -Force
 }
 Describe "Tests for Update-EntraUserFromFederated" {
-    <# It "Result should not be empty" {
-        $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com"
-        $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
-    }
    
-         It "Should fail when UserPrincipalName is empty" {
-        { Update-EntraUserFromFederated -UserPrincipalName "" } | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName'*"
+    It "Should fail when UserPrincipalName is empty" {
+        { Update-EntraUserFromFederated -UserPrincipalName "" -NewPassword $global:securePassword } | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName'*"
     }
     It "Should fail when UserPrincipalName is null" {
-        { Update-EntraUserFromFederated -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
+        { Update-EntraUserFromFederated -UserPrincipalName -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
     }    
     It "Should fail when UserPrincipalName is not passed" {
-        { Update-EntraUserFromFederated } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
+        { Update-EntraUserFromFederated -NewPassword $global:securePassword } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
     }    
     It "Should fail when invalid parameter is passed" {
-        { Update-EntraUserFromFederated -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
-    } #>
+        { Update-EntraUserFromFederated -xyz -NewPassword $global:securePassword } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
+    } 
 
     It "Should return empty object" {
         $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword
