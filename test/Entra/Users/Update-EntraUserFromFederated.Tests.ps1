@@ -11,6 +11,8 @@ BeforeAll {
 
     # Initialize the missing variable
     $global:AuthenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
+    $global:newPassword = 'test@123'
+    $global:securePassword = ConvertTo-SecureString $global:newPassword -AsPlainText -Force
 }
 Describe "Tests for Update-EntraUserFromFederated" {
     <# It "Result should not be empty" {
@@ -33,13 +35,13 @@ Describe "Tests for Update-EntraUserFromFederated" {
     } #>
 
     It "Should return empty object" {
-        $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword "test@123"
+        $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword
         $result | Should -BeNull
     }
     
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraUserFromFederated"
-        $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword "test@123"
+        $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword
         $result | Should -BeNull
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -53,7 +55,7 @@ Describe "Tests for Update-EntraUserFromFederated" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword "test@123" -Debug } | Should -Not -Throw
+            { Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword -Debug } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            
