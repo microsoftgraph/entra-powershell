@@ -38,7 +38,9 @@ The `Remove-EntraUserSponsor` cmdlet removes a sponsor relationship from a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraUserSponsor -UserId 'SawyerM@Contoso.com' -SponsorId cccccccc-2222-3333-4444-dddddddddddd
+$sponsor = Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Top 1 |
+Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
+Remove-EntraUserSponsor -UserId 'SawyerM@Contoso.com' -SponsorId $sponsor.Id
 ```
 
 This example demonstrates how to remove a user sponsor.
