@@ -79,9 +79,9 @@ Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -Au
 ```
 
 ```Output
-id                                   displayName       @odata.type            createdDateTime
---                                   -----------       -----------            ---------------
-cccccccc-2222-3333-4444-dddddddddddd Angel Brown       #microsoft.graph.user  3/7/2024 3:10:31 AM
+id                                   displayName                 @odata.type                createdDateTime          
+--                                   -----------                 -----------                ---------------          
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown(Fabrikam)       #microsoft.graph.user      3/7/2024 3:10:31 AM
 ```
 
 This example retrieves the top sponsor for the specified user. You can use `-Limit` as an alias for `-Top`.
