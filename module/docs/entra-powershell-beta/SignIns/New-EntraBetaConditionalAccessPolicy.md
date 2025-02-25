@@ -94,10 +94,6 @@ $conditions.Locations.IncludeLocations = '5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9'
 $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 $controls._Operator = 'OR'
 $controls.BuiltInControls = 'block'
-<<<<<<< HEAD
-=======
-
->>>>>>> 145170eb7 ([Modularize] Example improvements - SignIns category (#1310))
 New-EntraBetaConditionalAccessPolicy -DisplayName 'MFA policy' -State 'Enabled' -Conditions $conditions -GrantControls  $controls
 ```
 

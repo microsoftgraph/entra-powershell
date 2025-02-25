@@ -80,7 +80,7 @@ Directory_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb_8IAPT_617717139 17/07/2024 08:55:
 
 ```
 
-This example returns the first N logs.
+This example returns the first N logs. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 3: Get audit logs containing a given ActivityDisplayName
 
@@ -95,7 +95,7 @@ Id                                                                   ActivityDat
 Application Proxy_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 16/07/2024 05:13:49 Update rollout policy of feature Authentication aaaa0000-bb11-2222-33cc-444444dddddd
 ```
 
-This command shows how to get audit logs by ActivityDisplayName.
+This command shows how to get audit logs by ActivityDisplayName. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get all audit logs with a given result
 

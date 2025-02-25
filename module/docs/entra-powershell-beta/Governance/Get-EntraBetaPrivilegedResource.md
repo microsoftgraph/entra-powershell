@@ -2,7 +2,6 @@
 title: Get-EntraBetaPrivilegedResource
 description: This article provides details on Get-EntraBetaPrivilegedResource command.
 
-
 ms.topic: reference
 ms.date: 08/12/2024
 ms.author: eunicewaweru
@@ -128,7 +127,7 @@ Id                                   DisplayName ExternalId                     
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Test         /administrativeUnits/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                                  Active administrativeUnits
 ```
 
-This example retrieves top resources for aadRoles provider.
+This example retrieves top resources for aadRoles provider. You can use `-Limit` as an alias for `-Top`.
 
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 

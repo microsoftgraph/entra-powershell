@@ -2,7 +2,6 @@
 title: Get-EntraBetaDirectoryRoleAssignment
 description: This article provides details on the Get-EntraBetaDirectoryRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 07/19/2024
 ms.author: eunicewaweru
@@ -82,33 +81,33 @@ Get-EntraBetaDirectoryRoleAssignment
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
-This command gets the role assignments in Microsoft Entra ID.  
+This command gets the role assignments in Microsoft Entra ID.
 
 ### Example 2: Get role assignments using 'All' parameter
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaDirectoryRoleAssignment -All 
+Get-EntraBetaDirectoryRoleAssignment -All
 ```
 
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                 
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
-This command gets all the role assignments in Microsoft Entra ID.  
+This command gets all the role assignments in Microsoft Entra ID.
 
 ### Example 3: Get role assignments by Id
 
@@ -123,7 +122,7 @@ Get-EntraBetaDirectoryRoleAssignment -UnifiedRoleAssignmentId $assignment.Id
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                       
+00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
 This command gets the role assignments using specified roleAssignment Id.
@@ -141,11 +140,11 @@ Get-EntraBetaDirectoryRoleAssignment -Filter "principalId eq '$userId'"
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-11112222-bbbb-3333-cccc-4444dddd5555           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /        
+00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+11112222-bbbb-3333-cccc-4444dddd5555           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
-This command gets the role assignments containing the specified principalId.  
+This command gets the role assignments containing the specified principalId.
 
 ### Example 5: Get role assignments filter by roleDefinitionId
 
@@ -158,14 +157,14 @@ Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq '$roleId'"
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /            
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
-This command gets the role assignments containing the specified roleDefinitionId.  
+This command gets the role assignments containing the specified roleDefinitionId.
 
 ### Example 6: Get top two role assignments
 
@@ -177,11 +176,11 @@ Get-EntraBetaDirectoryRoleAssignment -Top 2
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-11112222-bbbb-3333-cccc-4444dddd5555           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /   
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
+11112222-bbbb-3333-cccc-4444dddd5555           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /
 ```
 
-This command gets top two role assignments.
+This command gets top two role assignments. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

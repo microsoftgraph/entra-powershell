@@ -51,11 +51,7 @@ The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft En
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    DisplayName = 'UPDATE HelpDesk Team Leaders'
-}
-Set-EntraBetaGroup @params
+Set-EntraBetaGroup -GroupId $group.Id -DisplayName 'Global HelpDesk Team Leaders'
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.
@@ -64,12 +60,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-$group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    Description = 'This is my new group'
-}
-Set-EntraBetaGroup @params
+Get-EntraBetaGroup -Filter "displayName eq 'HelpDesk Team Leaders'" | Set-EntraBetaGroup -Description 'HelpDesk Team Leaders Global'
 ```
 
 This example demonstrates how to update a group description.  
@@ -79,11 +70,7 @@ This example demonstrates how to update a group description.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    MailNickName = 'newnickname'
-}
-Set-EntraBetaGroup @params
+Set-EntraBetaGroup -GroupId $group.Id -MailNickName 'newnickname'
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.
@@ -93,11 +80,7 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    SecurityEnabled = $true
-}
-Set-EntraBetaGroup @params
+Get-EntraBetaGroup -Filter "displayName eq 'HelpDesk Team Leaders'" | Set-EntraBetaGroup -SecurityEnabled $true
 ```
 
 This command updates the security enabled of a specified group in Microsoft Entra ID.
@@ -107,11 +90,7 @@ This command updates the security enabled of a specified group in Microsoft Entr
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    MailEnabled = $false
-}
-Set-EntraBetaGroup @params
+Set-EntraBetaGroup -GroupId $group.Id -MailEnabled $False
 ```
 
 This example demonstrates how to update a group main enabled.  
@@ -121,13 +100,7 @@ This example demonstrates how to update a group main enabled.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    Visibility = 'Private'
-    GroupTypes = 'DynamicMembership'
-    IsAssignableToRole = $true
-}
-Set-EntraBetaGroup @params
+Set-EntraBetaGroup -GroupId $group.Id -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $True
 ```
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
@@ -137,11 +110,7 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-$params = @{
-    GroupId = $group.ObjectId
-    MembershipRule = '(user.UserType -contains "Member")'
-}
-Set-EntraBetaGroup @params
+Set-EntraBetaGroup -GroupId $group.Id -MembershipRule '(user.UserType -contains "Member")'
 ```
 
 This example demonstrates how to update the membership rule of a specified group in Microsoft Entra ID.
@@ -151,7 +120,7 @@ This example demonstrates how to update the membership rule of a specified group
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
-Set-EntraBetaGroup -GroupId $group.ObjectId -MembershipRuleProcessingState 'On'
+Set-EntraBetaGroup -GroupId $group.Id -MembershipRule '(user.UserType -contains "Member")'
 ```
 
 This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.

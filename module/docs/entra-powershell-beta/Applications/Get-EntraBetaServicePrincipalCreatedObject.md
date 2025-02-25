@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraBetaServicePrincipalCreatedObject command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
@@ -72,7 +71,7 @@ $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpd
 Get-EntraBetaServicePrincipalCreatedObject -ServicePrincipalId $servicePrincipal.Id -Top 2
 ```
 
-This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
+This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 

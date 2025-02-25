@@ -2,7 +2,6 @@
 title: Get-EntraOAuth2PermissionGrant
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-
 ms.topic: reference
 ms.date: 10/16/2024
 ms.author: eunicewaweru
@@ -71,7 +70,7 @@ This command gets the OAuth2 permission grants.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraOAuth2PermissionGrant -All 
+Get-EntraOAuth2PermissionGrant -All
 ```
 
 ```Output
@@ -107,7 +106,6 @@ AdditionalProperties : {}
 
 This example gets the OAuth2 permission grants for a user in a service principal.
 
-
 ### Example 4: Get top 2 OAuth2 permission grants record
 
 ```powershell
@@ -122,7 +120,7 @@ A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           00001111-aaaa-2222-bbbb-3333cccc4444 Al
 C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                       b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
 ```
 
-This command retrieves the top 2 OAuth2 permission grant records.
+This command retrieves the top 2 OAuth2 permission grant records. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

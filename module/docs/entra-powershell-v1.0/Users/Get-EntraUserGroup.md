@@ -2,7 +2,6 @@
 title: Get-EntraUserGroup
 description: This article provides details on the Get-EntraUserGroup command.
 
-
 ms.topic: reference
 ms.date: 12/02/2024
 ms.author: eunicewaweru
@@ -65,10 +64,10 @@ Contoso Marketing          hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq ContosoMarketing
 Mark 8 Project Team        pppppppp-4444-0000-8888-yyyyyyyyyyyy  Mark8ProjectTeam    Mark 8 Project Team       {Unified}
 Leadership                 tttttttt-0000-3333-9999-mmmmmmmmmmmm  Leadership          Leadership                {Unified}
 Sales and Marketing        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh  SalesAndMarketing   Sales and Marketing       {Unified}
-Retail                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Retail              Retail                    {Unified}  
+Retail                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Retail              Retail                    {Unified}
 ```
 
-This cmdlet retrieves a list of groups to which a specific user belongs.  
+This cmdlet retrieves a list of groups to which a specific user belongs.
 
 ### Example 2: Get a list of groups to which a specific user belongs using the All parameter
 
@@ -84,10 +83,10 @@ Contoso Marketing          hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq ContosoMarketing
 Mark 8 Project Team        pppppppp-4444-0000-8888-yyyyyyyyyyyy  Mark8ProjectTeam    Mark 8 Project Team       {Unified}
 Leadership                 tttttttt-0000-3333-9999-mmmmmmmmmmmm  Leadership          Leadership                {Unified}
 Sales and Marketing        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh  SalesAndMarketing   Sales and Marketing       {Unified}
-Retail                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Retail              Retail                    {Unified}  
+Retail                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Retail              Retail                    {Unified}
 ```
 
-This cmdlet retrieves a list of groups to which a specific user belongs using the All parameter.  
+This cmdlet retrieves a list of groups to which a specific user belongs using the All parameter.
 
 ### Example 3: Get a group to which a specific user belongs
 
@@ -99,10 +98,10 @@ Get-EntraUserGroup -UserId 'SawyerM@contoso.com' -Top 1
 ```Output
 DisplayName                Id                                   MailNickname        Description               GroupTypes
 -----------                --                                   ------------        -----------               ----------
-Contoso Marketing          hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq ContosoMarketing    Contoso Marketing         {Unified}  
+Contoso Marketing          hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq ContosoMarketing    Contoso Marketing         {Unified}
 ```
 
-This cmdlet retrieves a group to which a specific user belongs.
+This cmdlet retrieves a group to which a specific user belongs. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a list of groups to which a specific user belongs using the group ID parameter
 

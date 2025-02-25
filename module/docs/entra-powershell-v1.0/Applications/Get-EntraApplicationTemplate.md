@@ -98,7 +98,7 @@ Id                                   Categories                                 
 f447d87b-6e85-481d-90b2-bae3f42cb0f6 {businessMgmt, erp, finance}                     Xledger                                           Xledger Inc
 ```
 
-This cmdlet retrieves the top two application templates. `Limit` can be used as an alias for `Top`.
+This cmdlet retrieves the top two application templates. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a list of application templates filtered by display name
 

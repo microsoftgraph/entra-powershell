@@ -2,7 +2,6 @@
 title: Get-EntraBetaAdministrativeUnit
 description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/02/2024
 ms.author: eunicewaweru
@@ -77,7 +76,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraBetaAdministrativeUnit -All 
+Get-EntraBetaAdministrativeUnit -All
 ```
 
 ```Output
@@ -139,7 +138,7 @@ DeletedDateTime Id                                   Description          Displa
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
 ```
 
-This example returns the specified top administrative units.
+This example returns the specified top administrative units. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

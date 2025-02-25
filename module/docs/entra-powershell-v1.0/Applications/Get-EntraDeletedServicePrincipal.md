@@ -2,7 +2,6 @@
 title: Get-EntraDeletedServicePrincipal
 description: This article provides details on the Get-EntraDeletedServicePrincipal command.
 
-
 ms.topic: reference
 ms.date: 11/14/2024
 ms.author: eunicewaweru
@@ -76,7 +75,7 @@ ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc
 Enterprise App1              dddddddd-3333-4444-5555-eeeeeeeeeeee  33334444-dddd-5555-eeee-6666ffff7777 Application         ManagedIdentity
 ```
 
-This cmdlet retrieves the list of deleted service principals.  
+This cmdlet retrieves the list of deleted service principals.
 
 ### Example 2: Get list of deleted service principals using All parameter
 
@@ -93,7 +92,7 @@ ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc
 Enterprise App1              dddddddd-3333-4444-5555-eeeeeeeeeeee  33334444-dddd-5555-eeee-6666ffff7777 Application         ManagedIdentity
 ```
 
-This cmdlet retrieves the list of deleted service principals using All parameter.  
+This cmdlet retrieves the list of deleted service principals using All parameter.
 
 ### Example 3: Get top two deleted service principals
 
@@ -109,7 +108,7 @@ Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa
 ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc-4444-dddd-5555eeee6666 Application         ManagedIdentity
 ```
 
-This cmdlet retrieves top two deleted service principals.
+This cmdlet retrieves top two deleted service principals. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted service principals using SearchString parameter
 
@@ -124,7 +123,7 @@ DisplayName                  Id                                     AppId       
 Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
 ```
 
-This cmdlet retrieves deleted service principals using SearchString parameter.  
+This cmdlet retrieves deleted service principals using SearchString parameter.
 
 ### Example 5: Get deleted service principals filter by display name
 

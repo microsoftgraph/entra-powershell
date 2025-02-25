@@ -79,13 +79,13 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.  
+This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.
 
 ### Example 2: Get deleted groups in the directory using All parameter
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraBetaDeletedGroup -All 
+Get-EntraBetaDeletedGroup -All
 ```
 
 ```Output
@@ -97,7 +97,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the directory, using All parameter.  
+This cmdlet retrieves all recoverable deleted groups in the directory, using All parameter.
 
 ### Example 3: Get top two deleted groups
 
@@ -113,7 +113,7 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves top two deleted groups in the directory.  
+This cmdlet retrieves top two deleted groups in the directory. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted groups containing string 'test2'
 
@@ -131,7 +131,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves deleted groups in the directory, containing the specified string.  
+This cmdlet retrieves deleted groups in the directory, containing the specified string.
 
 ### Example 5: Get deleted groups filter by display name
 
@@ -146,7 +146,7 @@ DisplayName Id                                   MailNickname Description GroupT
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves deleted groups in the directory, having the specified display name.  
+This cmdlet retrieves deleted groups in the directory, having the specified display name.
 
 ### Example 6: Get deleted group by GroupId
 

@@ -2,7 +2,6 @@
 title: Get-EntraBetaPrivilegedRoleSetting
 description: This article provides details on Get-EntraBetaPrivilegedRoleSetting command.
 
-
 ms.topic: reference
 ms.date: 08/12/2024
 ms.author: eunicewaweru
@@ -114,7 +113,7 @@ Id                                   IsDefault LastUpdatedBy     LastUpdatedDate
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False     MG_graph_auth     06/08/2024 05:12:08 22223333-cccc-4444-dddd-5555eeee6666 44445555-eeee-6666-ffff-7777aaaa8888
 ```
 
-This example retrieves a top one specific role setting.
+This example retrieves a top one specific role setting. You can use `-Limit` as an alias for `-Top`.
 
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 

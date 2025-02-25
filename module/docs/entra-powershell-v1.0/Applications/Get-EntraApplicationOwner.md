@@ -98,7 +98,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance   AdeleV@contoso.com           
 dddddddd-3333-4444-5555-eeeeeeeeeeee Cameron White CameronW@contoso.com            10/7/2024 12:34:47 AM Member   True
 ```
 
-This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
+This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 

@@ -2,7 +2,6 @@
 title: Get-EntraDevice
 description: This article provides details on the Get-EntraDevice command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -61,10 +60,10 @@ The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the 
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
 
-- Cloud Device Administrator  
-- Intune Administrator  
-- Windows 365 Administrator  
-- Compliance Administrator  
+- Cloud Device Administrator
+- Intune Administrator
+- Windows 365 Administrator
+- Compliance Administrator
 - Device Managers
 
 ## Examples
@@ -115,7 +114,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 cccccccc-2222-3333-4444-dddddddddddd True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve top two devices from Microsoft Entra ID.
+This example demonstrates how to retrieve top two devices from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a device by display name
 

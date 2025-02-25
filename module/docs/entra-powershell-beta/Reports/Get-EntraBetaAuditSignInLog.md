@@ -51,7 +51,7 @@ In addition to delegated permissions, the signed-in user must belong to at least
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLog -All  
+Get-EntraBetaAuditSignInLog -All
 ```
 
 ```Output
@@ -75,11 +75,11 @@ Get-EntraBetaAuditSignInLog -Top 2
 ```Output
 Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
 --                                   --------------                     -----                                ------------------------ ------------------------- ----------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                               {}                     none                                   
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                               {}                     none
 bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222-bbbb-3333-cccc-4444dddd5555                               {}                     none
 ```
 
-This example returns the first two audit logs of sign-ins.
+This example returns the first two audit logs of sign-ins. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 3: Get audit logs containing a given AppDisplayName
 
@@ -91,10 +91,10 @@ Get-EntraBetaAuditSignInLog -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```Output
 Id                                   AppDisplayName                                                 AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
 --                                   --------------                                                 -----                                ------------------------ ------------------------- ----------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444   
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444
 ```
 
-This example demonstrates how to retrieve sign-in logs by AppDisplayName.
+This example demonstrates how to retrieve sign-in logs by AppDisplayName. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get all sign-in logs between dates
 
@@ -193,6 +193,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 `Get-EntraBetaAuditSignInLogs` is an alias for `Get-EntraBetaAuditSignInLog`.
-
 
 ## Related Links

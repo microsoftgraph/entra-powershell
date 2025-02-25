@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipalOwner
 description: This article provides details on the Get-EntraServicePrincipalOwner command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -92,7 +91,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AlexW@Contoso.com     Alex Wilber    #micro
 bbbbbbbb-1111-2222-3333-cccccccccccc ChristieC@Contoso.com Christie Cline #microsoft.graph.user
 ```
 
-This command gets top two owners of a service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID.
+This command gets top two owners of a service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
