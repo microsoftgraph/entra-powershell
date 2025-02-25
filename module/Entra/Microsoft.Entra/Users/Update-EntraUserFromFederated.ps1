@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Update-EntraUserFromFederated {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
     [CmdletBinding(DefaultParameterSetName = 'CloudOnlyPasswordScenarios')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
@@ -32,7 +32,8 @@ function Update-EntraUserFromFederated {
             try {
                 $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newSecurePtr)
                 $params["NewPassword"] = $new
-            } finally {
+            }
+            finally {
                 [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePtr)  # Securely free memory
             }
 
@@ -40,7 +41,8 @@ function Update-EntraUserFromFederated {
             $body = @{
                 newPassword = $params["NewPassword"]
             } | ConvertTo-Json
-        } else {
+        }
+        else {
             # Create an empty body
             $body = @{} | ConvertTo-Json
         }
