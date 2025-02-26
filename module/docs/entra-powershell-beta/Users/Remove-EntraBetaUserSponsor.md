@@ -34,7 +34,18 @@ The `Remove-EntraBetaUserSponsor` cmdlet removes a sponsor relationship from a u
 
 ## Examples
 
-### Example 1: Remove a user sponsor
+### Example 1: Remove a user sponsor via pipelining
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' | Where-Object { $_.displayName -eq 'Adele Vance (Fabrikam)' } | Remove-EntraBetaUserSponsor
+```
+
+This example demonstrates how to remove a user sponsor.
+
+- `UserId` parameter specifies the UserId or User Principal Name of the User.
+
+### Example 2: Remove a user sponsor
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
