@@ -20,9 +20,13 @@ Retrieve a user's sponsors (users or groups).
 
 ## Syntax
 
+### GetQuery
+
 ```powershell
 Get-EntraUserSponsor
  -UserId <String>
+ -Filter <String>
+ -Top <Int32>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -34,6 +38,7 @@ Get-EntraUserSponsor
 Get-EntraUserSponsor
  -UserId <String>
  -SponsorId <String>
+ [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
