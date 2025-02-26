@@ -11,7 +11,7 @@ function Get-EntraUserSponsor {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [System.Nullable`1[System.Int32]] $Top,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's sponsors.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's sponsors.")]
         [switch] $All,
 
         [Alias('DirectoryObjectId')]
