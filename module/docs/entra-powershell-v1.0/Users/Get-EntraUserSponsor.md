@@ -54,7 +54,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 ### Example 1: Get the user sponsors
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -All |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
