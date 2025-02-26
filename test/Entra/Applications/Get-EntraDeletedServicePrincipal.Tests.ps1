@@ -75,7 +75,6 @@ Describe "Get-EntraDeletedServicePrincipal" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedServicePrincipal"
             $result = Get-EntraDeletedServicePrincipal -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedServicePrincipal"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

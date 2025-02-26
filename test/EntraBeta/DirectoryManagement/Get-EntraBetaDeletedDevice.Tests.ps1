@@ -72,7 +72,6 @@ Describe "Get-EntraBetaDeletedDevice" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDevice"
             $result = Get-EntraBetaDeletedDevice -Filter "DisplayName -eq 'ContosoDesktop23'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDevice"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

@@ -71,7 +71,6 @@ Describe "Get-EntraBetaDeletedAdministrativeUnit" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedAdministrativeUnit"
             $result = Get-EntraBetaDeletedAdministrativeUnit -Filter "DisplayName -eq 'ADC Administrative Unit'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedAdministrativeUnit"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

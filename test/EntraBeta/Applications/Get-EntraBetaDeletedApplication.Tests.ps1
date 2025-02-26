@@ -76,7 +76,6 @@ Describe "Get-EntraBetaDeletedApplication" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedApplication"
             $result = Get-EntraBetaDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedApplication"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

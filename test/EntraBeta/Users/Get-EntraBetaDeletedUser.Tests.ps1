@@ -107,7 +107,6 @@ Describe "Get-EntraBetaDeletedUser" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedUser"
             $result = Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedUser"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

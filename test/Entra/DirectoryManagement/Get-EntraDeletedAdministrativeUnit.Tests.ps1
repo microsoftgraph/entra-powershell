@@ -71,7 +71,6 @@ Describe "Get-EntraDeletedAdministrativeUnit" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedAdministrativeUnit"
             $result = Get-EntraDeletedAdministrativeUnit -Filter "DisplayName -eq 'ADC Administrative Unit'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedAdministrativeUnit"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

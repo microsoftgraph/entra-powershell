@@ -59,8 +59,7 @@ Describe "Get-EntraBetaDeletedDirectoryObject" {
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDirectoryObject"
         $result = Get-EntraBetaDeletedDirectoryObject -DirectoryObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result | Should -Not -BeNullOrEmpty
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDirectoryObject"    
+        $result | Should -Not -BeNullOrEmpty    
         Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItem -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
