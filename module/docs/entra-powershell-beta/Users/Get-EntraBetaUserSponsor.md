@@ -40,7 +40,7 @@ Get-EntraBetaUserSponsor
 
 ## Description
 
-The `Get-EntraBetaUserSponsor` cmdlet retrieve a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
+The `Get-EntraBetaUserSponsor` cmdlet retrieves a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
 In delegated scenarios with work or school accounts, the signed-in user needs a supported Microsoft Entra role or a custom role with `microsoft.directory/users/sponsors/read permission`. The least privileged supported roles are:
 
