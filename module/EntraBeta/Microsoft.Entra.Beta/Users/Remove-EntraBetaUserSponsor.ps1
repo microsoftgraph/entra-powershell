@@ -24,6 +24,7 @@ function Remove-EntraBetaUserSponsor {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method $($params.Method)
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method $($params.Method)
+        $response
     }
 }
