@@ -91,7 +91,7 @@ This example retrieves the top sponsor for the specified user. You can use `-Lim
 ### Example 3: Retrieve the assigned sponsor for a specific user by their SponsorId
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -SponsorId 'cccccccc-2222-3333-4444-dddddddddddd' |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
