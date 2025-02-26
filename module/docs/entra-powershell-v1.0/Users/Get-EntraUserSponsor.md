@@ -73,7 +73,7 @@ This example shows how to list user sponsors.
 ### Example 2: Get top one sponsor
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' # User.Read.All is an application-only permission, which does not require a user to be signed in interactively
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Top 1 |
 Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
 ```
