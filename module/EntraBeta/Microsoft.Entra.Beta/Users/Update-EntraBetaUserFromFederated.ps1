@@ -28,12 +28,12 @@ function Update-EntraBetaUserFromFederated {
 
         # Handle password conversion securely
         if ($PSBoundParameters.ContainsKey("NewPassword") -and $NewPassword) {
-            $newSecurePtr = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($NewPassword)
+            $newSecurePassword = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($NewPassword)
             try {
-                $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newSecurePtr)
-                $params["NewPassword"] = $new
+                $newPasswordValue = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newSecurePassword)
+                $params["NewPassword"] = $newPasswordValue
             } finally {
-                [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePtr)  # Securely free memory
+                [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePassword)  # Securely free memory
             }
 
             # Create request body with new password
