@@ -2,7 +2,6 @@
 title: Get-EntraBetaDevice
 description: This article provides details on the Get-EntraBetaDevice command.
 
-
 ms.topic: reference
 ms.date: 06/17/2024
 ms.author: eunicewaweru
@@ -62,10 +61,10 @@ The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify 
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported:
 
-- Cloud Device Administrator  
-- Intune Administrator  
-- Windows 365 Administrator  
-- Compliance Administrator  
+- Cloud Device Administrator
+- Intune Administrator
+- Windows 365 Administrator
+- Compliance Administrator
 - Device Managers
 
 ## Examples
@@ -119,7 +118,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb MetaData
 ```
 
-This example demonstrates how to retrieve top two devices from Microsoft Entra ID.
+This example demonstrates how to retrieve top two devices from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a device by display name
 

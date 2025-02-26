@@ -154,7 +154,7 @@ alternativeSecurityIds        : {@{type=2; key=WAA1}}
 Id                            : 11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
-This command gets the top one device that are registered to the specified user.
+This command gets the top one device that are registered to the specified user. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

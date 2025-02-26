@@ -103,7 +103,7 @@ Id                                   UserPrincipalName                          
 dddddddd-3333-4444-5555-eeeeeeeeeeee dddddddd-3333-4444-5555-eeeeeeeeeeeeAveryS@contoso.com        Avery Smith   False          2/12/2025 1:15:34 PM  3                 Member
 ```
 
-This example shows how to retrieve the top two recoverable deleted users in the directory. You can also use the alias `Limit`.
+This example shows how to retrieve the top two recoverable deleted users in the directory. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted users containing string 'Avery Smith'
 

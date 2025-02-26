@@ -89,7 +89,7 @@ Id                                   displayName          @odata.type
 cccccccc-2222-3333-4444-dddddddddddd Contoso Application #microsoft.graph.servicePrincipal
 ```
 
-This example retrieves the top one owned object of a specified service principal in Microsoft Entra ID.
+This example retrieves the top one owned object of a specified service principal in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 

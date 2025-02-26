@@ -107,7 +107,7 @@ DeletedDateTime         Id                                   AccountEnabled Appr
 10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Desktop   28
 ```
 
-This cmdlet retrieves top two deleted devices. You can also use the alias `Limit`.
+This cmdlet retrieves top two deleted devices. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted devices using SearchString parameter
 

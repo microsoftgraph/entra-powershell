@@ -85,7 +85,7 @@ Id                                   displayName    @odata.type
 cccccccc-2222-3333-4444-dddddddddddd Contoso Group  #microsoft.graph.group
 ```
 
-This example retrieves top one object created by the specified user.
+This example retrieves top one object created by the specified user. You can use `-Limit` as an alias for `-Top`.
 
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 

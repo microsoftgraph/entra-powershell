@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
 
-
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru
@@ -106,7 +105,7 @@ Id                                   ConnectorGroupType IsDefault Name          
 bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test                       eur
 ```
 
-This example retrieves top one connector groups.
+This example retrieves top one connector groups. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Retrieve a connector groups with filter parameter
 

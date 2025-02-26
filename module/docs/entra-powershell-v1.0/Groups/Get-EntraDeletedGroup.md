@@ -114,7 +114,7 @@ Id                                   DisplayName    MailNickname GroupTypes Dele
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
-This cmdlet retrieves top two deleted groups in the directory. You can also use the alias `Limit`.
+This cmdlet retrieves top two deleted groups in the directory. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get deleted groups containing string 'test2'
 

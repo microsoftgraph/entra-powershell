@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipalAppRoleAssignedTo
 description: This article provides details on the Get-EntraServicePrincipalAppRoleAssignedTo command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -69,7 +68,7 @@ This example shows how to get app role assignments for an app or service, grante
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All 
+Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipal.Id -All
 ```
 
 ```output
@@ -101,7 +100,7 @@ DeletedDateTime Id                                          AppRoleId           
                 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
+This command gets the five app role assignments for the service principal granted to users, groups and other service principals. You can use `-Limit` as an alias for `-Top`.
 
 ## Parameters
 

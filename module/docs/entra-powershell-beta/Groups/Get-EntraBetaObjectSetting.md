@@ -2,7 +2,6 @@
 title: Get-EntraBetaObjectSetting
 description: This article provides details on the Get-EntraBetaObjectSetting command.
 
-
 ms.topic: reference
 ms.date: 08/05/2024
 ms.author: eunicewaweru
@@ -59,11 +58,8 @@ The `Get-EntraBetaObjectSetting` cmdlet retrieves an object setting from Microso
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$params = @{
-    TargetType = 'Groups'
-    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
-}
-Get-EntraBetaObjectSetting @params
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id
 ```
 
 ```Output
@@ -72,7 +68,7 @@ Id                                   DisplayName         TemplateId
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command retrieves  object setting from Microsoft Entra ID.
+This command retrieves object setting from Microsoft Entra ID.
 
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
@@ -81,12 +77,9 @@ This command retrieves  object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$params = @{
-    TargetType = 'Groups'
-    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
-    Id ='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-}
-Get-EntraBetaObjectSetting @params
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+$setting = Get-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id | Where-Object {$_.displayName -eq 'Group.Unified.Guest'}
+Get-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -Id $setting.Id
 ```
 
 ```Output
@@ -105,11 +98,8 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$params = @{
-    TargetType = 'Groups'
-    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
-}
-Get-EntraBetaObjectSetting @params -Top 1
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -Top 1
 ```
 
 ```Output
@@ -118,7 +108,7 @@ Id                                   DisplayName         TemplateId
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command retrieves top one object setting from Microsoft Entra ID.
+This command retrieves top one object setting from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
@@ -127,11 +117,8 @@ This command retrieves top one object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$params = @{
-    TargetType = 'Groups'
-    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
-}
-Get-EntraBetaObjectSetting @params -All
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaObjectSetting -TargetType 'Groups' -TargetObjectId $group.Id -All
 ```
 
 ```Output

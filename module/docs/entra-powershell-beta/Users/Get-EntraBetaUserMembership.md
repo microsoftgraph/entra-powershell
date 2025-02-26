@@ -94,7 +94,7 @@ Id                                   displayName                         created
 55ff55ff-aa66-bb77-cc88-99dd99dd99dd Pacific Admin Unit                                       #microsoft.graph.administrativeUnit
 ```
 
-This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
+This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: List groups that Sawyer Miller is a member of
 

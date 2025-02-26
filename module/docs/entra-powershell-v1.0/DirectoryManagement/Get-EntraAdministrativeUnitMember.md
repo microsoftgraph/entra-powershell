@@ -106,7 +106,7 @@ cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    
 dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
 ```
 
-This example returns top three administrative unit members from specified administrative unit AdministrativeUnitId.
+This example returns top three administrative unit members from specified administrative unit ID. You can use `-Limit` as an alias for `-Top`.
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 

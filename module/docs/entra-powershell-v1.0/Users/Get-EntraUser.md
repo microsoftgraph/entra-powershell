@@ -2,7 +2,6 @@
 title: Get-EntraUser
 description: This article provides details on the Get-EntraUser command.
 
-
 ms.topic: reference
 ms.date: 02/09/2025
 ms.author: eunicewaweru
@@ -76,7 +75,7 @@ Avery Smith      dddddddd-3333-4444-5555-eeeeeeeeeeee AveryS@contoso.com    Aver
 Sawyer Miller    eeeeeeee-4444-5555-6666-ffffffffffff SawyerM@contoso.com   SawyerM@contoso.com
 ```
 
-This example demonstrates how to get top three users from Microsoft Entra ID.
+This example demonstrates how to get top three users from Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 2: Get a user by ID
 
