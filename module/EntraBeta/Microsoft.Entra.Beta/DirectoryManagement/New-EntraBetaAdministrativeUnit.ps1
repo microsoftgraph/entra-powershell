@@ -67,7 +67,7 @@ function New-EntraBetaAdministrativeUnit {
         $filteredResponse = $response | Select-Object -Property Id, DisplayName, Description, IsMemberManagementRestricted, MembershipRule, MembershipRuleProcessingState, MembershipType, Visibility
         $filteredResponse
 
-        <#
+        <# Missing Assembly "Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit" dependencies
         $auList = @()
         foreach ($data in $response) {
             $auType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit
