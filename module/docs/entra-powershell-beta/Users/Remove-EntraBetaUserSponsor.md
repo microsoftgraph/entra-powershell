@@ -38,8 +38,7 @@ The `Remove-EntraBetaUserSponsor` cmdlet removes a sponsor relationship from a u
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$sponsor = Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Top 1 |
-Select-Object Id, DisplayName, '@odata.type', CreatedDateTime | Format-Table -AutoSize
+$sponsor = Get-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Top 1
 Remove-EntraBetaUserSponsor -UserId 'SawyerM@Contoso.com' -SponsorId $sponsor.Id
 ```
 
