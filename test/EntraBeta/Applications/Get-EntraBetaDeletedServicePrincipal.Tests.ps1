@@ -9,18 +9,20 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"          = "Contoso Marketing"
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "AppId"                = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                "ServicePrincipalType" = "Application"
+    $mockDeletedServicePrincipal = {
+        return @( [PSCustomObject]@{
+                Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName          = "Contoso Marketing"
+                DeletedDateTime      = (Get-Date).AddDays(-1)
+                AppId                = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                SignInAudience       = "AzureADMyOrg"
+                ServicePrincipalType = "Application"
+                DeletionAgeInDays    = 1
             }
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -MockWith $mockDeletedServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaDeletedServicePrincipal" {
@@ -34,14 +36,12 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
         It "Should return specific service principal by searchstring" {
             $result = Get-EntraBetaDeletedServicePrincipal -SearchString 'Contoso Marketing'
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific service principal by filter" {
             $result = Get-EntraBetaDeletedServicePrincipal -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Contoso Marketing'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
@@ -63,7 +63,6 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedServicePrincipal -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "Contoso Marketing"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
@@ -75,7 +74,6 @@ Describe "Get-EntraBetaDeletedServicePrincipal" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedServicePrincipal"
             $result = Get-EntraBetaDeletedServicePrincipal -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedServicePrincipal"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

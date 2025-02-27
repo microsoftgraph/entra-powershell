@@ -3,7 +3,7 @@ title: Get-EntraDeletedGroup
 description: This article provides details on the Get-EntraDeletedGroup command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -49,7 +49,6 @@ Get-EntraDeletedGroup
 ```powershell
 Get-EntraDeletedGroup
  -GroupId <String>
- [-All]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -76,16 +75,13 @@ Soft delete currently applies only to Unified Groups (Office 365 Groups).
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup
+Get-EntraDeletedGroup | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
-test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
-test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.
@@ -94,16 +90,13 @@ This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -All
+Get-EntraDeletedGroup -All | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
-test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
-test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the directory, using All parameter.
@@ -112,14 +105,13 @@ This cmdlet retrieves all recoverable deleted groups in the directory, using All
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -Top 2
+Get-EntraDeletedGroup -Top 2 | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves top two deleted groups in the directory. You can use `-Limit` as an alias for `-Top`.
@@ -128,16 +120,13 @@ This cmdlet retrieves top two deleted groups in the directory. You can use `-Lim
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -SearchString 'test2'
+Get-EntraDeletedGroup -SearchString 'Contoso Group' | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
-test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
-test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves deleted groups in the directory, containing the specified string.
@@ -146,13 +135,13 @@ This cmdlet retrieves deleted groups in the directory, containing the specified 
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -Filter "displayName eq 'test21'"
+Get-EntraDeletedGroup -Filter "displayName eq 'Contoso Group'" | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.
@@ -161,13 +150,13 @@ This cmdlet retrieves deleted groups in the directory, having the specified disp
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Select-Object Id, DisplayName, MailNickname, GroupTypes, DeletedDateTime, DeletionAgeInDays | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
+Id                                   DisplayName    MailNickname GroupTypes DeletedDateTime       DeletionAgeInDays
+--                                   -----------    ------------ ---------- ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Group contosogroup {Unified}  2/12/2025 12:34:13 PM                 10
 ```
 
 This cmdlet retrieves the deleted group specified by GroupId.

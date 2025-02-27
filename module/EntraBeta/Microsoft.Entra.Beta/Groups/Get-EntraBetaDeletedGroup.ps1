@@ -103,6 +103,12 @@ function Get-EntraBetaDeletedGroup {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
 
+                if ($null -ne $_.DeletedDateTime) {
+                    # Add DeletionAgeInDays property
+                    $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                    Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                }
+
             }
         }
         $response
