@@ -1,119 +1,84 @@
-# ------------------------------------------------------------------------------ 
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
-#  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 function New-EntraBetaAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Description,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipRule,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsMemberManagementRestricted,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipRuleProcessingState,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MembershipType
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Description of the administrative unit.")]
+        [System.String] $Description,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "Display name of the administrative unit.")]
+        [System.String] $DisplayName,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule for the administrative unit.")]
+        [System.String] $MembershipRule,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule processing state for the administrative unit.")]
+        [System.String] $MembershipRuleProcessingState,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership type for the administrative unit.")]
+        [System.String] $MembershipType,
+
+        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Visibility of the administrative unit.")]
+        [System.String] $Visibility
     )
 
-    PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-    
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["Description"])
-    {
-        $params["Description"] = $PSBoundParameters["Description"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipRule"])
-    {
-        $params["MembershipRule"] = $PSBoundParameters["MembershipRule"]
-    }
-    if ($null -ne $PSBoundParameters["IsMemberManagementRestricted"])
-    {
-        $params["IsMemberManagementRestricted"] = $PSBoundParameters["IsMemberManagementRestricted"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipRuleProcessingState"])
-    {
-        $params["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["MembershipType"])
-    {
-        $params["MembershipType"] = $PSBoundParameters["MembershipType"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
+    PROCESS {
+        $params = @{}
+        $body = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = New-MgBetaAdministrativeUnit @params -Headers $customHeaders
-    $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
+        if ($null -ne $PSBoundParameters["Description"]) {
+            $params["Description"] = $PSBoundParameters["Description"]
+            $body["Description"] = $PSBoundParameters["Description"]
         }
-    }
-    $response
+        if ($null -ne $PSBoundParameters["DisplayName"]) {
+            $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+            $body["DisplayName"] = $PSBoundParameters["DisplayName"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRule"]) {
+            $params["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+            $body["MembershipRule"] = $PSBoundParameters["MembershipRule"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipRuleProcessingState"]) {
+            $params["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+            $body["MembershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
+        }
+        if ($null -ne $PSBoundParameters["MembershipType"]) {
+            $params["MembershipType"] = $PSBoundParameters["MembershipType"]
+            $body["MembershipType"] = $PSBoundParameters["MembershipType"]
+        }
+        if ($null -ne $PSBoundParameters["Visibility"]) {
+            $params["Visibility"] = $PSBoundParameters["Visibility"]
+            $body["Visibility"] = $PSBoundParameters["Visibility"]
+        }
+
+        $uri = "/beta/administrativeUnits"
+        $body = $body | ConvertTo-Json
+
+        Write-Debug "============================ TRANSFORMATIONS ============================"
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug "=========================================================================`n"
+
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method POST -Body $body
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
+
+        # Workaround for the issue with the response object - missing assembly reference
+        $filteredResponse = $response | Select-Object -Property Id, DisplayName, Description, IsMemberManagementRestricted, MembershipRule, MembershipRuleProcessingState, MembershipType, Visibility
+        $filteredResponse
+
+        <# Missing Assembly "Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit" dependencies
+        $auList = @()
+        foreach ($data in $response) {
+            $auType = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphAdministrativeUnit
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $auList += $auType
+        }
+        $auList 
+        #>
     }
 }
-

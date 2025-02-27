@@ -3,7 +3,7 @@ title: Update-EntraBetaUserFromFederated
 description: This article provides details on the Update-EntraBetaUserFromFederated command.
 
 ms.topic: reference
-ms.date: 08/19/2024
+ms.date: 02/23/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -24,10 +24,20 @@ Updates a user in a domain that was recently converted from single sign-on (also
 
 ## Syntax
 
+### CloudOnlyPasswordScenarios (Default)
+
 ```powershell
 Update-EntraBetaUserFromFederated
  -UserPrincipalName <String>
- [-NewPassword <String>]
+ [<CommonParameters>]
+```
+
+### HybridPasswordScenarios
+
+```powershell
+Update-EntraBetaUserFromFederated
+ -UserPrincipalName <String>
+ -NewPassword <SecureString>
  [<CommonParameters>]
 ```
 
@@ -35,11 +45,18 @@ Update-EntraBetaUserFromFederated
 
 The `Update-EntraBetaUserFromFederated` cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
-This process writes the new password to Microsoft Entra ID and, if configured with password writeback, pushes it to on-premises Active Directory. The admin can provide a new password or let the system generate one. The user will be prompted to change their password at their next sign-in.
+This process updates the password in Microsoft Entra ID and, if password writeback is enabled, syncs it to on-premises Active Directory. The admin can set a new password or let the system generate one. The user must change it at next sign-in.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The least privileged roles for this operation are:
+
+- Authentication Administrator
+- Privileged Authentication Administrator
 
 For delegated scenarios, the administrator needs at least the Authentication Administrator or Privileged Authentication Administrator Microsoft Entra role.
 
-Admins with User Administrator, Helpdesk Administrator, or Password Administrator roles can also reset passwords for non-admin users and a limited set of admin roles.
+Admins with `User Administrator`, `Helpdesk Administrator`, or `Password Administrator` roles can reset passwords for nonadmin users.
+
+The new password is required for hybrid password setups. If omitted for cloud-only passwords, a system-generated password is returned. It’s a Unicode string, validated against the tenant's banned password list, and must meet cloud and/or on-premises password policies.
 
 ## Examples
 
@@ -50,9 +67,30 @@ Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
 Update-EntraBetaUserFromFederated -UserPrincipalName 'pattifuller@contoso.com'
 ```
 
-This command updates a user in a domain.
+```Output
+Name                           Value
+----                           -----
+newPassword                    HuHu8765
+@odata.context                 https://graph.microsoft.com/beta/$metadata#microsoft.graph.passwordResetResponse
+```
+
+This command updates a user in a domain. The system generates and returns a password.
 
 - `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
+
+### Example 2: Update user password in a domain
+
+```powershell
+Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
+$newPassword = '<strong-password>'
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+Update-EntraBetaUserFromFederated -UserPrincipalName 'pattifuller@contoso.com' -NewPassword $securePassword
+```
+
+This command updates a user in a domain by supplying a password for hybrid scenarios.
+
+- `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
+- `-NewPassword` parameter specifies the new password of the user.
 
 ## Parameters
 
@@ -63,7 +101,7 @@ The Microsoft Entra ID UserID for the user to convert.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: UserId
 
 Required: True
 Position: 1
@@ -76,7 +114,7 @@ Accept wildcard characters: False
 
 The new password of the user.
 
-For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without additional encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
+For tenants using hybrid password scenarios, specifying a new password is required. If you omit the password for a cloud-only account, the system generates one automatically. This generated password is a Unicode string without other encoding. Before acceptance, the password is validated against the tenant's banned password list and must meet the tenant's cloud and/or on-premises password requirements.
 
 ```yaml
 Type: System.String
