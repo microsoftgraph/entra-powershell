@@ -14,7 +14,7 @@ function Update-EntraUserFromFederated {
         [SecureString] $NewPassword,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "TenantId of the user to update.")]
-        [Obsolete("It ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in resource.")]
+        [Obsolete("Ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in resource.")]
         [guid] $TenantId      
     )
 
@@ -22,11 +22,12 @@ function Update-EntraUserFromFederated {
         # Define essential variables
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params = @{}
-        $params["UserId"] = $UserPrincipalName
-        $params["Url"] = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$($authenticationMethodId)/resetPassword"
+        $params = @{ "UserId" = $UserPrincipalName }
+        $params["Url"] = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
 
         # Handle password conversion securely
+        $passwordRedacted = $false
+        $newPasswordValue = $null
         if ($PSBoundParameters.ContainsKey("NewPassword") -and $NewPassword) {
             $newSecurePassword = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($NewPassword)
             try {
@@ -37,23 +38,41 @@ function Update-EntraUserFromFederated {
                 [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePassword)  # Securely free memory
             }
 
-            # Create request body with new password
-            $body = @{
-                newPassword = $params["NewPassword"]
-            } | ConvertTo-Json
+            # Mark for redaction
+            $passwordRedacted = $true
+        }
+
+        # Create JSON body
+        $body = if ($passwordRedacted) {
+            if ($DebugPreference -ne 'SilentlyContinue') {
+                # Redact password in debug mode
+                @{ newPassword = "[REDACTED]" } | ConvertTo-Json
+            }
+            else {
+                @{ newPassword = $newPasswordValue } | ConvertTo-Json
+            }
         }
         else {
-            # Create an empty body
-            $body = @{} | ConvertTo-Json
+            @{} | ConvertTo-Json
         }
 
-        # Debugging output
-        Write-Debug "============================ TRANSFORMATIONS ============================"
-        $params.Keys | ForEach-Object { Write-Debug "$_ : $($params[$_])" }
-        Write-Debug "=========================================================================`n"
+        # Debugging output with redaction
+        Write-Debug "========================= TRANSFORMATIONS ========================="
+        foreach ($key in $params.Keys) {
+            $value = if ($passwordRedacted -and $key -eq "NewPassword") { "[REDACTED]" } else { $params[$key] }
+            Write-Debug "$key : $value"
+        }
+        Write-Debug "JSON Body: $body"
+        Write-Debug "==================================================================`n"
 
         # Invoke request
-        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
-        return $response
+        try {
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
+            return $response
+        }
+        catch {
+            Write-Error "Failed to update user $($UserPrincipalName): $_"
+            return $null
+        }
     }
 }

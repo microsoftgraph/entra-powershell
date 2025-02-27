@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Update-EntraBetaUserFromFederated {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
     [CmdletBinding(DefaultParameterSetName = 'CloudOnlyPasswordScenarios')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
@@ -22,36 +22,57 @@ function Update-EntraBetaUserFromFederated {
         # Define essential variables
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $params = @{}
-        $params["UserId"] = $UserPrincipalName
-        $params["Url"] = "https://graph.microsoft.com/beta/users/$($UserPrincipalName)/authentication/methods/$($authenticationMethodId)/resetPassword"
+        $params = @{ "UserId" = $UserPrincipalName }
+        $params["Url"] = "https://graph.microsoft.com/beta/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
 
         # Handle password conversion securely
+        $passwordRedacted = $false
+        $newPasswordValue = $null
         if ($PSBoundParameters.ContainsKey("NewPassword") -and $NewPassword) {
             $newSecurePassword = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($NewPassword)
             try {
                 $newPasswordValue = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newSecurePassword)
                 $params["NewPassword"] = $newPasswordValue
-            } finally {
+            }
+            finally {
                 [System.Runtime.InteropServices.Marshal]::ZeroFreeGlobalAllocUnicode($newSecurePassword)  # Securely free memory
             }
 
-            # Create request body with new password
-            $body = @{
-                newPassword = $params["NewPassword"]
-            } | ConvertTo-Json
-        } else {
-            # Create an empty body
-            $body = @{} | ConvertTo-Json
+            # Mark for redaction
+            $passwordRedacted = $true
         }
 
-        # Debugging output
-        Write-Debug "============================ TRANSFORMATIONS ============================"
-        $params.Keys | ForEach-Object { Write-Debug "$_ : $($params[$_])" }
-        Write-Debug "=========================================================================`n"
+        # Create JSON body
+        $body = if ($passwordRedacted) {
+            if ($DebugPreference -ne 'SilentlyContinue') {
+                # Redact password in debug mode
+                @{ newPassword = "[REDACTED]" } | ConvertTo-Json
+            }
+            else {
+                @{ newPassword = $newPasswordValue } | ConvertTo-Json
+            }
+        }
+        else {
+            @{} | ConvertTo-Json
+        }
+
+        # Debugging output with redaction
+        Write-Debug "========================= TRANSFORMATIONS ========================="
+        foreach ($key in $params.Keys) {
+            $value = if ($passwordRedacted -and $key -eq "NewPassword") { "[REDACTED]" } else { $params[$key] }
+            Write-Debug "$key : $value"
+        }
+        Write-Debug "JSON Body: $body"
+        Write-Debug "==================================================================`n"
 
         # Invoke request
-        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
-        return $response
+        try {
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
+            return $response
+        }
+        catch {
+            Write-Error "Failed to update user $($UserPrincipalName): $_"
+            return $null
+        }
     }
 }
