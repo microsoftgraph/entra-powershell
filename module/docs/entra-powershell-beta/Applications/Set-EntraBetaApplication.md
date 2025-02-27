@@ -116,6 +116,30 @@ Set-EntraBetaApplication -ApplicationId $application.Id -Tags 'mytag'
 
 This command updates an application in Microsoft Entra ID.
 
+### Example 6: Add a role (AppRole) to an application
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -SearchString 'Contoso Helpdesk Application'
+$appRole = New-Object Microsoft.Open.MSGraph.Model.AppRole
+$appRole.AllowedMemberTypes = @("User", "Application")
+$appRole.Description = "General role"
+$appRole.DisplayName = "General"
+$appRole.Id = [guid]::NewGuid()
+$appRole.IsEnabled = $true
+$appRole.Value = "General"
+$tags = "WindowsAzureActiveDirectoryIntegratedApp"
+Set-EntraBetaApplication -ApplicationId $application.Id -AppRoles $appRole -Tags $tags
+```
+
+This command adds an app role to an application. To retain existing app roles, include them in your request. Any roles not included will be replaced. This object syncs with the corresponding service principal property in the tenant.
+
+The `AllowedMemberTypes` can take the values:
+
+- `@("User", "Application")` - for users, groups and applications.
+- `"User"` - for users and groups.
+- `"Application"` - for applications.
+
 ## Parameters
 
 ### -AddIns

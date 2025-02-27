@@ -156,6 +156,23 @@ This cmdlet retrieves the deleted device specified by DeviceObjectId.
 
 - `-DeviceObjectId` parameter specifies the deleted device Id.
 
+### Example 7: Get deleted device by DeviceId
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDeletedDevice -Filter "deviceId eq 'bbbbbbbb-1111-2222-3333-cccccccccccc'"
+```
+
+```Output
+DeletedDateTime         Id                                   AccountEnabled ApproximateLastSignInDateTime DeviceId                             DisplayName
+---------------         --                                   -------------- ----------------------------- --------                             ------
+10/28/2024 4:16:02 PM  cccccccc-2222-3333-4444-dddddddddddd True           6/24/2024 8:00:39 PM          bbbbbbbb-1111-2222-3333-cccccccccccc Woodgrove Desktop
+```
+
+This cmdlet retrieves the deleted device specified by DeviceId.
+
+- `-DeviceId` parameter specifies the deleted device Id.
+
 ## Parameters
 
 ### -All
