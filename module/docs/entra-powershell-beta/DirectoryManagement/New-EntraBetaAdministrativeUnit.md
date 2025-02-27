@@ -2,12 +2,12 @@
 title: New-EntraBetaAdministrativeUnit
 description: This article provides details on the New-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
-ms.date: 07/03/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Module Name: Microsoft.Entra.Beta
@@ -28,7 +28,10 @@ Creates an administrative unit.
 New-EntraBetaAdministrativeUnit
  -DisplayName <String>
  [-Description <String>]
- [-IsMemberManagementRestricted <Boolean>]
+ [-MembershipType <String>]
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>]
+ [-Visibility <String>]
  [<CommonParameters>]
 ```
 
@@ -36,7 +39,9 @@ New-EntraBetaAdministrativeUnit
 
 The `New-EntraBetaAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
 
-In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The following least-privileged roles are supported for this operation:
+
+- Privileged Role Administrator
 
 ## Examples
 
@@ -48,9 +53,14 @@ New-EntraBetaAdministrativeUnit -DisplayName 'TestAU'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
---------------- --                                   ----------- ----------- ---------------------------- ----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb             TestAU      False
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : TestAU
+description                   :
+isMemberManagementRestricted  :
+membershipRule                :
+membershipRuleProcessingState :
+membershipType                :
+visibility                    :
 ```
 
 This example demonstrates how to create an administrative unit.
@@ -65,39 +75,63 @@ New-EntraBetaAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Desc
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
---------------- --                                   ----------- ----------- ---------------------------- ----------
-                bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test1     False
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : Pacific Administrative Unit
+description                   : Administrative Unit for Pacific region
+isMemberManagementRestricted  :
+membershipRule                :
+membershipRuleProcessingState :
+membershipType                :
+visibility                    :
 ```
 
 This example demonstrates how to create an administrative unit.
 
 - `-DisplayName` parameter specifies the display name for the Administrative unit object.
-- `-Description` parameter specifies the description for the new administrative unit.
+- `-Description` parameter specifies a description for the Administrative unit object.
 
-### Example 3: Create an administrative unit using '-IsMemberManagementRestricted' parameter
+### Example 3: Create an administrative unit with detailed configuration
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraBetaAdministrativeUnit -DisplayName 'NewUnit' -IsMemberManagementRestricted $True
+$displayName = 'Seattle District Technical Schools'
+$description = 'Seattle district technical schools administration'
+$membershipRule = '(user.country -eq "United States")'
+
+New-EntraBetaAdministrativeUnit `
+    -DisplayName $displayName `
+    -Description $description `
+    -MembershipType 'Dynamic' `
+    -MembershipRule $membershipRule `
+    -MembershipRuleProcessingState 'On' `
+    -Visibility 'HiddenMembership'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
---------------- --                                   ----------- ----------- ---------------------------- ----------
-                cccccccc-2222-3333-4444-dddddddddddd             NewUnit     True
+id                            : bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                   : Chester District Schools
+description                   : Chester District schools administration
+isMemberManagementRestricted  :
+membershipRule                : (user.country -eq "Australia")
+membershipRuleProcessingState : On
+membershipType                : Dynamic
+visibility                    : HiddenMembership
 ```
 
-This example demonstrates how to create an administrative unit.
+This example demonstrates how to create an administrative unit with detailed configuration information.
 
 - `-DisplayName` parameter specifies the display name for the Administrative unit object.
-- `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
+- `-Description` parameter specifies a description for the Administrative unit object.
+- `-MembershipRule` parameter specifies the dynamic membership rule applied to the administrative unit.
+- `-MembershipType` parameter specifies the membership type of the administrative unit. Possible values are: dynamic and assigned. If not set, the default value is null, and the membership type defaults to assigned.
+- `-MembershipRuleProcessingState` parameter controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates.
+- `-Visibility` parameter specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers.
 
 ## Parameters
 
 ### -Description
 
-Specifies a description for the new administrative unit.
+Specifies a description for the new administrative unit. This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -127,13 +161,60 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsMemberManagementRestricted
+### -MembershipType
 
-Indicates whether the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
-If no value is specified, it defaults to false.
+Specifies the membership type of the administrative unit. Possible values are: `dynamic` and `assigned`. If not set, the default value is `null`, and the membership type defaults to `assigned`. This parameter is optional.
 
 ```yaml
-Type: System.Boolean
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRule
+
+Specifies the dynamic membership rule applied to the administrative unit. This parameter is optional.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRuleProcessingState
+
+Controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates. This parameter is optional.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Visibility
+
+Specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers. This parameter is optional.
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
