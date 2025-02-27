@@ -11,18 +11,21 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"     = "ADC Administrative Unit"
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime" = "10/21/2024 8:27:52 AM"
-                "Description"     = "ADC Administrative Unit"
+    $mockDeletedAdministrativeUnit = {
+        return @( [PSCustomObject]@{
+                Id                           = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName                  = "ADC Administrative Unit"
+                DeletedDateTime              = (Get-Date).AddDays(-1)
+                Description                  = "ADC Administrative Unit"
+                IsMemberManagementRestricted = $false
+                MembershipRule               = "(user.country -eq 'Australia')"
+                DeletionAgeInDays            = 1
+                Visibility                   = "HiddenMembership"
             }
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -MockWith $mockDeletedAdministrativeUnit -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedAdministrativeUnit" {
@@ -68,7 +71,6 @@ Describe "Get-EntraDeletedAdministrativeUnit" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedAdministrativeUnit"
             $result = Get-EntraDeletedAdministrativeUnit -Filter "DisplayName -eq 'ADC Administrative Unit'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedAdministrativeUnit"
             Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

@@ -9,20 +9,24 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "DisplayName"     = "iPhone 12 Pro"
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeviceCategory"  = "Test"
-                "AccountEnabled"  = "True"
-                "DeletedDateTime" = "10/28/2024 4:16:02 PM"
-                "DeviceId"        = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+    $mockDeletedDevice = {
+        return @( [PSCustomObject]@{
+                Id                     = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName            = "ContosoDesktop23"
+                DeletedDateTime        = (Get-Date).AddDays(-1)
+                OperatingSystem        = "Windows"
+                OperatingSystemVersion = "10.0.19041"
+                AccountEnabled         = $false
+                DeviceId               = "bbbbbbbb-0000-1111-2222-cccccccccccc"
+                DeletionAgeInDays      = 1
+                DeviceVersion          = 2
+                ProfileType            = "RegisteredDevice"
+                TrustType              = "Workplace"
             }
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -MockWith $mockDeletedDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDeletedDevice" {
@@ -34,16 +38,16 @@ Describe "Get-EntraBetaDeletedDevice" {
         }
 
         It "Should return specific device by searchstring" {
-            $result = Get-EntraBetaDeletedDevice -SearchString 'iPhone 12 Pro'
+            $result = Get-EntraBetaDeletedDevice -SearchString 'ContosoDesktop23'
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'iPhone 12 Pro'
+            $result.DisplayName | Should -Be 'ContosoDesktop23'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
         It "Should return specific device by filter" {
-            $result = Get-EntraBetaDeletedDevice -Filter "DisplayName -eq 'iPhone 12 Pro'"
+            $result = Get-EntraBetaDeletedDevice -Filter "DisplayName -eq 'ContosoDesktop23'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'iPhone 12 Pro'
+            $result.DisplayName | Should -Be 'ContosoDesktop23'
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
@@ -56,7 +60,7 @@ Describe "Get-EntraBetaDeletedDevice" {
         It "Property parameter should work" {
             $result = Get-EntraBetaDeletedDevice -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "iPhone 12 Pro"
+            $result.DisplayName | Should -Be "ContosoDesktop23"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
         }
 
@@ -66,9 +70,8 @@ Describe "Get-EntraBetaDeletedDevice" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDevice"
-            $result = Get-EntraBetaDeletedDevice -Filter "DisplayName -eq 'iPhone 12 Pro'"
+            $result = Get-EntraBetaDeletedDevice -Filter "DisplayName -eq 'ContosoDesktop23'"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedDevice"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

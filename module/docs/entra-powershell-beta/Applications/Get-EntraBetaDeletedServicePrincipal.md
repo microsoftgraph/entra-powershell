@@ -3,7 +3,7 @@ title: Get-EntraBetaDeletedServicePrincipal
 description: This article provides details on the Get-EntraBetaDeletedServicePrincipal command.
 
 ms.topic: reference
-ms.date: 11/14/2024
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -64,15 +64,15 @@ The `Get-EntraBetaDeletedServicePrincipal` cmdlet Retrieves the list of previous
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal
+Get-EntraBetaDeletedServicePrincipal | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
-ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc-4444-dddd-5555eeee6666 Application         ManagedIdentity
-Enterprise App1              dddddddd-3333-4444-5555-eeeeeeeeeeee  33334444-dddd-5555-eeee-6666ffff7777 Application         ManagedIdentity
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb ProjectWorkManagement  22223333-cccc-4444-dddd-5555eeee6666 2/12/2025 11:07:56 AM                 8  ManagedIdentity
+dddddddd-3333-4444-5555-eeeeeeeeeeee Enterprise App1        33334444-dddd-5555-eeee-6666ffff7777 2/11/2025 11:07:56 AM                 11 ManagedIdentity
 ```
 
 This cmdlet retrieves the list of deleted service principals.
@@ -81,15 +81,15 @@ This cmdlet retrieves the list of deleted service principals.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal -All
+Get-EntraBetaDeletedServicePrincipal -All | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
-ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc-4444-dddd-5555eeee6666 Application         ManagedIdentity
-Enterprise App1              dddddddd-3333-4444-5555-eeeeeeeeeeee  33334444-dddd-5555-eeee-6666ffff7777 Application         ManagedIdentity
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb ProjectWorkManagement  22223333-cccc-4444-dddd-5555eeee6666 2/12/2025 11:07:56 AM                 8  ManagedIdentity
+dddddddd-3333-4444-5555-eeeeeeeeeeee Enterprise App1        33334444-dddd-5555-eeee-6666ffff7777 2/11/2025 11:07:56 AM                 11 ManagedIdentity
 ```
 
 This cmdlet retrieves the list of deleted service principals using All parameter.
@@ -98,14 +98,14 @@ This cmdlet retrieves the list of deleted service principals using All parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal -Top 2
+Get-EntraBetaDeletedServicePrincipal -Top 2 | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
-ProjectWorkManagement        aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  22223333-cccc-4444-dddd-5555eeee6666 Application         ManagedIdentity
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb ProjectWorkManagement  22223333-cccc-4444-dddd-5555eeee6666 2/12/2025 11:07:56 AM                 8  ManagedIdentity
 ```
 
 This cmdlet retrieves top two deleted service principals. You can use `-Limit` as an alias for `-Top`.
@@ -114,13 +114,13 @@ This cmdlet retrieves top two deleted service principals. You can use `-Limit` a
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal -SearchString 'Contoso Marketing'
+Get-EntraBetaDeletedServicePrincipal -SearchString 'Contoso Marketing' | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
 ```
 
 This cmdlet retrieves deleted service principals using SearchString parameter.
@@ -129,13 +129,13 @@ This cmdlet retrieves deleted service principals using SearchString parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'"
+Get-EntraBetaDeletedServicePrincipal -Filter "DisplayName eq 'Contoso Marketing'" | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
 ```
 
 This cmdlet retrieves deleted service principals having specified display name.
@@ -144,13 +144,13 @@ This cmdlet retrieves deleted service principals having specified display name.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaDeletedServicePrincipal -ServicePrincipalId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaDeletedServicePrincipal -ServicePrincipalId 'bbbbbbbb-1111-2222-3333-cccccccccccc' | Select-Object Id, DisplayName, AppId, DeletedDateTime, DeletionAgeInDays, ServicePrincipalType | Format-Table -AutoSize
 ```
 
 ```Output
-DisplayName                  Id                                     AppId                                SignInAudience       ServicePrincipalType
------------                  --                                     -----                                --------------       --------------------
-Contoso Marketing            bbbbbbbb-1111-2222-3333-cccccccccccc  00001111-aaaa-2222-bbbb-3333cccc4444 Application         Application
+Id                                   DisplayName            AppId                                DeletedDateTime       DeletionAgeInDays ServicePrincipalType
+--                                   -----------            -----                                ---------------       ----------------- --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc Contoso Marketing      00001111-aaaa-2222-bbbb-3333cccc4444 2/10/2025 11:07:07 AM                 10 Application
 ```
 
 This cmdlet retrieves the deleted service principal specified by ServicePrincipalId.
