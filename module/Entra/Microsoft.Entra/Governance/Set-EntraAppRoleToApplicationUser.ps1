@@ -1,8 +1,12 @@
+# ------------------------------------------------------------------------------ 
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information. 
+# ------------------------------------------------------------------------------ 
 function Set-EntraAppRoleToApplicationUser {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, 
-            HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic'",
+            HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
             ParameterSetName = 'Default')]
         [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
@@ -14,7 +18,7 @@ function Set-EntraAppRoleToApplicationUser {
         [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
-        [string]$FileName,
+        [System.IO.FileInfo]$FileName,
 
         [Parameter(Mandatory = $true, 
             HelpMessage = "Name of the application (Service Principal) to assign roles for",
@@ -27,11 +31,10 @@ function Set-EntraAppRoleToApplicationUser {
             ParameterSetName = 'ExportResults',
             HelpMessage = "Switch to enable export of results into a CSV file")]
         [switch]$Export,
-
-        [Parameter(Mandatory = $false,
-            ParameterSetName = 'ExportResults',
-            HelpMessage = "Path for the export file e.g. EntraAppRoleAssignments_yyyyMMdd.csv . If not specified, uses current location")]
-        [string]$ExportFileName = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
+        
+        [Parameter(Mandatory = $false, ParameterSetName = 'ExportResults',
+            HelpMessage = "Path for the export file. Defaults to current directory.")]
+        [System.IO.FileInfo]$ExportFileName = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
     )
 
     process {
@@ -52,33 +55,13 @@ function Set-EntraAppRoleToApplicationUser {
             }
         }
 
-        function SanitizeInputParameter {
+        function SanitizeInput {
             param ([string]$Value)
-
-            try {
-                if ([string]::IsNullOrWhiteSpace($Value)) {
-                    Write-Warning "Input is empty or null."
-                    return $null
-                }
-
-                $cleanValue = $Value -replace "'", "''"
-                $cleanValue = $cleanValue -replace '\s+', ' '  # Replace multiple spaces with a single space
-                $cleanValue = $cleanValue.Trim().ToLower()      # Trim and convert to lowercase
-
-                if ([string]::IsNullOrWhiteSpace($cleanValue)) {
-                    Write-Warning "Input became empty after sanitization."
-                    return $null
-                }
-
-                return $cleanValue
-            }
-            catch {
-                Write-Error "Error cleaning value: $_"
-                return $null
-            }
+            if ([string]::IsNullOrWhiteSpace($Value)) { return $null }
+            return $Value -replace "'", "''" -replace '\s+', ' ' -replace "`n|`r", "" | ForEach-Object { $_.Trim().ToLower() }
         }
 
-        function CreateUserIfNotExistsNew {
+        function CreateUserIfNotExists {
             param (
                 [string]$UserPrincipalName,
                 [string]$DisplayName,
@@ -128,44 +111,6 @@ function Set-EntraAppRoleToApplicationUser {
             }
         }
         
-        function CreateUserIfNotExists {
-            param (
-                [string]$UserPrincipalName,
-                [string]$DisplayName,
-                [string]$MailNickname
-            )
-
-            Write-ColoredVerbose -Message "User details: DisplayName $DisplayName | UserPrincipalName: $UserPrincipalName | MailNickname: $MailNickname" -Color "Cyan"
-
-            try {
-                $existingUser = Get-EntraUser -Filter "userPrincipalName eq '$($UserPrincipalName)'" -ErrorAction SilentlyContinue
-                if ($existingUser) {
-                    Write-ColoredVerbose -Message "User $UserPrincipalName exists." -Color "Green"
-                    return $existingUser
-                }
-
-                $passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-                $passwordProfile.EnforceChangePasswordPolicy = $true
-                $passwordProfile.Password = -join (((48..90) + (96..122)) * 16 | Get-Random -Count 16 | % { [char]$_ })
-                $userParams = @{
-                    DisplayName       = $DisplayName
-                    PasswordProfile   = $passwordProfile
-                    UserPrincipalName = $UserPrincipalName
-                    AccountEnabled    = $false
-                    MailNickName      = $MailNickname
-                }
-
-                $newUser = New-EntraUser @userParams
-
-                Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
-                return $newUser
-            }
-            catch {
-                Write-Error "Failed to create or verify user $($UserPrincipalName) : $_"
-                return $null
-            }
-        }
-
         function CreateApplicationIfNotExists {
             param ([string]$DisplayName)
 
@@ -406,7 +351,7 @@ function Set-EntraAppRoleToApplicationUser {
         
                 # Extract unique roles
                 $users | ForEach-Object {
-                    $role = SanitizeInputParameter -Value $_.Role
+                    $role = SanitizeInput -Value $_.Role
                     if ($role -and $role -notin $uniqueRoles) {
                         $uniqueRoles += $role
                     }
@@ -433,8 +378,7 @@ function Set-EntraAppRoleToApplicationUser {
 
                 foreach ($user in $users) {
 
-                    #$cleanUserPrincipalName = SanitizeInputParameter($user.$sourceMatchPropertyName)
-                    $cleanUserPrincipalName = SanitizeInputParameter -Value $user.$sourceMatchPropertyName
+                    $cleanUserPrincipalName = SanitizeInput -Value $user.$sourceMatchPropertyName
                     Write-ColoredVerbose "UPN : $($cleanUserPrincipalName)" -Color "Green"
 
                     if (-not $cleanUserPrincipalName) { 
@@ -442,14 +386,14 @@ function Set-EntraAppRoleToApplicationUser {
                         continue 
                     }
     
-                    $cleanDisplayName = SanitizeInputParameter -Value $user.displayName
+                    $cleanDisplayName = SanitizeInput -Value $user.displayName
                     Write-ColoredVerbose "DisplayName : $($cleanDisplayName)" -Color "Green"
 
                     if (-not $cleanDisplayName) { 
                         Write-Warning "Skipping user due to invalid displayName: $($user.DisplayName)"
                         continue 
                     }
-                    $cleanMailNickname = SanitizeInputParameter -Value $user.mailNickname
+                    $cleanMailNickname = SanitizeInput -Value $user.mailNickname
                     Write-ColoredVerbose "Mail nickname : $($cleanMailNickname)" -Color "Green"
     
                     if (-not $cleanMailNickname) { 
@@ -458,7 +402,7 @@ function Set-EntraAppRoleToApplicationUser {
                     }
     
                     # Get the user's role
-                    $userRole = SanitizeInputParameter -Value $user.Role
+                    $userRole = SanitizeInput -Value $user.Role
                     Write-ColoredVerbose "Role : $($userRole)" -Color "Green"
                     if (-not $userRole) {
                         Write-Warning "Skipping user due to invalid Role: $($user.Role)"
@@ -468,7 +412,7 @@ function Set-EntraAppRoleToApplicationUser {
     
                     # Create user if they do not exist
                     Write-ColoredVerbose "Assigning roles to user $($cleanUserPrincipalName) "
-                    $userInfo = CreateUserIfNotExistsNew -UserPrincipalName $cleanUserPrincipalName -DisplayName $cleanDisplayName -MailNickname $cleanMailNickname
+                    $userInfo = CreateUserIfNotExists -UserPrincipalName $cleanUserPrincipalName -DisplayName $cleanDisplayName -MailNickname $cleanMailNickname
                    
                     if (-not $userInfo) { continue }
     
