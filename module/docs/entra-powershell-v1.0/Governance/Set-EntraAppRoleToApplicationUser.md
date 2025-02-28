@@ -218,6 +218,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraServicePrincipalAppRoleAssignedTo](Get-EntraServicePrincipalAppRoleAssignedTo.md)
+[Get-EntraServicePrincipalAppRoleAssignedTo](../Applications/Get-EntraServicePrincipalAppRoleAssignedTo.md)
 
-[New-EntraServicePrincipalAppRoleAssignment](New-EntraServicePrincipalAppRoleAssignment.md)
+[New-EntraServicePrincipalAppRoleAssignment](../Applications/New-EntraServicePrincipalAppRoleAssignment.md)
