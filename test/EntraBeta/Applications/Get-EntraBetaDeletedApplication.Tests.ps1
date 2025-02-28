@@ -2,8 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
-        Import-Module Microsoft.Entra.Applications
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -20,63 +20,63 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $mockDeletedApplication -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -MockWith $mockDeletedApplication -ModuleName Microsoft.Entra.Beta.Applications
 }
 
-Describe "Get-EntraDeletedApplication" {
-    Context "Test for Get-EntraDeletedApplication" {
+Describe "Get-EntraBetaDeletedApplication" {
+    Context "Test for Get-EntraBetaDeletedApplication" {
         It "Should return a specific deleted application" {
-            $result = Get-EntraDeletedApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result = Get-EntraBetaDeletedApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific deleted application by searchstring" {
-            $result = Get-EntraDeletedApplication -SearchString 'Contoso Marketing'
+            $result = Get-EntraBetaDeletedApplication -SearchString 'Contoso Marketing'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Contoso Marketing'
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should return specific deleted application by filter" {
-            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
+            $result = Get-EntraBetaDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Contoso Marketing'
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should contain 'PageSize' parameter" {
-            $result = Get-EntraDeletedApplication -All
+            $result = Get-EntraBetaDeletedApplication -All
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $PageSize | Should -Be 999
                 $true
             }
         }
 
         It "Should return top 1 deleted application" {
-            $result = Get-EntraDeletedApplication -Top 1
+            $result = Get-EntraBetaDeletedApplication -Top 1
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Property parameter should work" {
-            $result = Get-EntraDeletedApplication -Property "DisplayName"
+            $result = Get-EntraBetaDeletedApplication -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Contoso Marketing"
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraDeletedApplication -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaDeletedApplication -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedApplication"
-            $result = Get-EntraDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedApplication"
+            $result = Get-EntraBetaDeletedApplication -Filter "DisplayName -eq 'Contoso Marketing'"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -89,7 +89,7 @@ Describe "Get-EntraDeletedApplication" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDeletedApplication -Debug } | Should -Not -Throw
+                { Get-EntraBetaDeletedApplication -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference

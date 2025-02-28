@@ -3,7 +3,7 @@ title: Get-EntraBetaDeletedDirectoryObject
 description: This article provides details on the Get-EntraBetaDeletedDirectoryObject command.
 
 ms.topic: reference
-ms.date: 02/08/2025
+ms.date: 02/12/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -43,13 +43,13 @@ Office 365 Groups).
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
-Get-EntraBetaDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type' -AutoSize
+Get-EntraBetaDeletedDirectoryObject -DirectoryObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' | Format-Table -Property Id, displayName, '@odata.type', DeletedDateTime, DeletionAgeInDays -AutoSize
 ```
 
 ```Output
-Id                                   displayName           @odata.type
---                                   -----------           -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Entra PowerShell App #microsoft.graph.application
+Id                                   displayName           @odata.type                  DeletedDateTime       DeletionAgeInDays
+--                                   -----------           -----------                  ---------------       -----------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Entra PowerShell App #microsoft.graph.application 2/12/2025 11:07:56 AM                10
 ```
 
 This example shows how to retrieve the deleted directory object details from the directory.
