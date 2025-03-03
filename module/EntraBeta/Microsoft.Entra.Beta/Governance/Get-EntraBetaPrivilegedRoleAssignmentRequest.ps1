@@ -25,6 +25,7 @@ function Get-EntraBetaPrivilegedRoleAssignmentRequest {
 
     PROCESS {    
         $params = @{}
+        $keysChanged = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
         if ($null -ne $PSBoundParameters["ProgressAction"]) {

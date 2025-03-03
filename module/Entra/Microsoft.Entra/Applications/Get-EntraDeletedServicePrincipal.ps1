@@ -59,7 +59,7 @@ function Get-EntraDeletedServicePrincipal {
         }
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $Value = "displayName eq '$TmpValue' or startsWith(displayName,'$TmpValue')"
             $params["Filter"] = $Value
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
@@ -106,6 +106,17 @@ function Get-EntraDeletedServicePrincipal {
             }
             else {
                 $response = Get-MgDirectoryDeletedItemAsServicePrincipal @params -Headers $customHeaders
+            }
+
+            $response | ForEach-Object {
+                if ($null -ne $_) {
+                    if ($null -ne $_.DeletedDateTime) {
+                        # Add DeletionAgeInDays property
+                        $deletionAgeInDays = (Get-Date) - ($_.DeletedDateTime)
+                        Add-Member -InputObject $_ -MemberType NoteProperty -Name DeletionAgeInDays -Value ($deletionAgeInDays.Days) -Force
+                    }
+    
+                }
             }
 
             return $response

@@ -7,18 +7,23 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "Id"              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "DeletedDateTime" = "10-05-2024 04:27:17"
-                "CreatedDateTime" = "07-07-2023 14:31:41"
-                "DisplayName"     = "Raul Razo"
+    $mockDeletedUser = {
+        return @( [PSCustomObject]@{
+                Id                = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                DisplayName       = "Mercy Richardson"
+                DeletedDateTime   = (Get-Date).AddDays(-1)
+                AccountEnabled    = $true
+                Mail              = @("MercyRichardson@contoso.com")
+                DeletionAgeInDays = 1
+                MailNickname      = "mercyrichardson"
+                UsageLocation     = "US"
+                UserType          = "Member"
+                UserPrincipalName = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbbmercyrichardson@contoso.com"
             }
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsUser -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-MgBetaDirectoryDeletedItemAsUser -MockWith $mockDeletedUser -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaDeletedUser" {
@@ -71,7 +76,7 @@ Describe "Get-EntraBetaDeletedUser" {
             { Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific deleted user by filter" {
-            $result = Get-EntraBetaDeletedUser -Filter "DisplayName eq 'Raul Razo'"
+            $result = Get-EntraBetaDeletedUser -Filter "DisplayName eq 'Mercy Richardson'"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 1
@@ -80,7 +85,7 @@ Describe "Get-EntraBetaDeletedUser" {
             { Get-EntraBetaDeletedUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
         It "Should return specific deleted users by SearchString" {
-            $result = Get-EntraBetaDeletedUser -SearchString "Raul Razo"
+            $result = Get-EntraBetaDeletedUser -SearchString "Mercy Richardson"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 1
@@ -102,7 +107,6 @@ Describe "Get-EntraBetaDeletedUser" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedUser"
             $result = Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDeletedUser"
             Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

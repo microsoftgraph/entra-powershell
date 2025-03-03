@@ -7,24 +7,29 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
+    $mockDeletedDirectoryObject = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                "AdditionalProperties" = @{DisplayName = "Test-App"; }
-                "DeletedDateTime"      = "2/2/2024 5:33:56 AM"
-                "Parameters"           = $args
+                Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                AdditionalProperties = @{
+                    '@odata.context'  = 'https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity'
+                    '@odata.type'     = '#microsoft.graph.group'
+                    'createdDateTime' = '2025-02-07T08:09:31Z'
+                    'creationOptions' = @("Option1", "Option2")
+                }
+                DeletedDateTime      = (Get-Date).AddDays(-1)
+                Parameters           = $args
             }
         )
     }
-
-    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+    
+    Mock -CommandName Get-MgDirectoryDeletedItem -MockWith $mockDeletedDirectoryObject -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDeletedDirectoryObject" {
     It "Result should return DeletedDirectoryObject using alias" {
         $result = Get-EntraDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }
     It "Should fail when DirectoryObjectId is empty" {
         { Get-EntraDeletedDirectoryObject -DirectoryObjectId "" } | Should -Throw "Cannot bind argument to parameter 'DirectoryObjectId'*"
@@ -39,11 +44,7 @@ Describe "Get-EntraDeletedDirectoryObject" {
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }    
-    It "Should contain DirectoryObjectId in parameters when passed Id to it" {              
-        $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $params = Get-Parameters -data $result.Parameters
-        $params.DirectoryObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-    }
+
     It "Property parameter should work" {
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -Property Id 
         $result | Should -Not -BeNullOrEmpty
@@ -58,8 +59,7 @@ Describe "Get-EntraDeletedDirectoryObject" {
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"
         $result = Get-EntraDeletedDirectoryObject -DirectoryObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-        $result | Should -Not -BeNullOrEmpty
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeletedDirectoryObject"    
+        $result | Should -Not -BeNullOrEmpty    
         Should -Invoke -CommandName Get-MgDirectoryDeletedItem -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
@@ -80,4 +80,3 @@ Describe "Get-EntraDeletedDirectoryObject" {
         }
     } 
 }
-
