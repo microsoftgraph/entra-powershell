@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraAppRoleToApplicationUser {
-    [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, 
             HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
@@ -94,9 +94,7 @@ function Set-EntraAppRoleToApplicationUser {
                     MailNickName      = $MailNickname
                 }
         
-                if ($PSCmdlet.ShouldProcess("User '$UserPrincipalName'", "Create")) {
-                    $newUser = New-EntraUser @userParams
-                }
+                $newUser = New-EntraUser @userParams
                 Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
                 
                 return [PSCustomObject]@{
@@ -115,49 +113,35 @@ function Set-EntraAppRoleToApplicationUser {
         
         function CreateApplicationIfNotExists {
             param ([string]$DisplayName)
-        
+
             try {
                 # Check if application exists
+                
                 $existingApp = Get-EntraApplication -Filter "displayName eq '$DisplayName'" -ErrorAction SilentlyContinue
-        
+    
                 if (-not $existingApp) {
-                    if ($PSCmdlet.ShouldProcess("Application '$DisplayName'", "Create")) {
-                        $appParams = @{
-                            DisplayName    = $DisplayName
-                            SignInAudience = "AzureADMyOrg"
-                            Web            = @{ RedirectUris = @("https://localhost") }
+                    # Create new application
+                    $appParams = @{
+                        DisplayName    = $DisplayName
+                        SignInAudience = "AzureADMyOrg"
+                        Web            = @{
+                            RedirectUris = @("https://localhost")
                         }
-                        $newApp = New-EntraApplication @appParams
-                        Write-ColoredVerbose "Created new application: $DisplayName"
                     }
-                    else {
-                        # Handle -WhatIf scenario by returning a mock object
-                        $newApp = [PSCustomObject]@{
-                            Id          = "WhatIf-AppId"
-                            AppId       = "WhatIf-AppId"
-                            DisplayName = $DisplayName
-                        }
-                        Write-ColoredVerbose "WhatIf: Simulating creation of application: $DisplayName"
+    
+                    $newApp = New-EntraApplication @appParams
+                    Write-ColoredVerbose "Created new application: $DisplayName"
+    
+                    # Create service principal for the application
+                    $spParams = @{
+                        AppId       = $newApp.AppId
+                        DisplayName = $DisplayName
                     }
-        
-                    if ($PSCmdlet.ShouldProcess("Service principal '$DisplayName'", "Create")) {
-                        $spParams = @{
-                            AppId       = $newApp.AppId
-                            DisplayName = $DisplayName
-                        }
-                        $newSp = New-EntraServicePrincipal @spParams
-                        Write-ColoredVerbose "Created new service principal for application: $DisplayName"
-                    }
-                    else {
-                        # Handle -WhatIf scenario
-                        $newSp = [PSCustomObject]@{
-                            Id          = "WhatIf-ServicePrincipalId"
-                            DisplayName = $DisplayName
-                        }
-                        Write-ColoredVerbose "WhatIf: Simulating creation of service principal for application: $DisplayName"
-                    }
-        
-                    return [PSCustomObject]@{
+    
+                    $newSp = New-EntraServicePrincipal @spParams
+                    Write-ColoredVerbose "Created new service principal for application: $DisplayName"
+    
+                    [PSCustomObject]@{
                         ApplicationId               = $newApp.Id
                         ApplicationDisplayName      = $newApp.DisplayName
                         ServicePrincipalId          = $newSp.Id
@@ -167,31 +151,25 @@ function Set-EntraAppRoleToApplicationUser {
                     }
                 }
                 else {
+                    # Get existing service principal
                     $existingSp = Get-EntraServicePrincipal -Filter "appId eq '$($existingApp.AppId)'" -ErrorAction SilentlyContinue
-        
+    
                     if (-not $existingSp) {
-                        if ($PSCmdlet.ShouldProcess("Service principal '$DisplayName'", "Create")) {
-                            $spParams = @{
-                                AppId       = $existingApp.AppId
-                                DisplayName = $DisplayName
-                            }
-                            $newSp = New-EntraServicePrincipal @spParams
-                            Write-ColoredVerbose "Created new service principal for existing application: $DisplayName"
+                        # Create service principal if it doesn't exist
+                        $spParams = @{
+                            AppId       = $existingApp.AppId
+                            DisplayName = $DisplayName
                         }
-                        else {
-                            $newSp = [PSCustomObject]@{
-                                Id          = "WhatIf-ServicePrincipalId"
-                                DisplayName = $DisplayName
-                            }
-                            Write-ColoredVerbose "WhatIf: Simulating creation of service principal for existing application: $DisplayName"
-                        }
+    
+                        $newSp = New-EntraServicePrincipal @spParams
+                        Write-ColoredVerbose "Created new service principal for existing application: $DisplayName"
                     }
                     else {
                         $newSp = $existingSp
                         Write-ColoredVerbose "Service principal already exists for application: $DisplayName"
                     }
-        
-                    return [PSCustomObject]@{
+    
+                    [PSCustomObject]@{
                         ApplicationId               = $existingApp.Id
                         ApplicationDisplayName      = $existingApp.DisplayName
                         ServicePrincipalId          = $newSp.Id
@@ -206,7 +184,6 @@ function Set-EntraAppRoleToApplicationUser {
                 return $null
             }
         }
-        
 
         function AssignAppServicePrincipalRoleAssignmentIfNotExists {
 
@@ -239,10 +216,7 @@ function Set-EntraAppRoleToApplicationUser {
                 }
         
                 # Create new assignment
-                if ($PSCmdlet.ShouldProcess("Service Principal App Role assignment: AppRole - '$appRoleId' | UserId - '$UserId' | Service Principal - '$servicePrincipalObject.Id'", "Create")) {
-                    $newAssignment = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipalObject.Id -ResourceId $servicePrincipalObject.Id -Id $appRoleId -PrincipalId $UserId
-                }
-                
+                $newAssignment = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipalObject.Id -ResourceId $servicePrincipalObject.Id -Id $appRoleId -PrincipalId $UserId
                 Write-ColoredVerbose "Created new role assignment for user '$UserId' - AppName: '$ApplicationName' with role '$RoleDisplayName'" -Color "Green"
         
                 return [PSCustomObject]@{
@@ -308,7 +282,6 @@ function Set-EntraAppRoleToApplicationUser {
                     # Add to the typed list
                     $appRolesList.Add($appRole)
                     [void]$createdRoles.Add($appRole)
-
                     Write-ColoredVerbose "Created new role definition for '$roleName'" -Color "Green"
                 }
         
@@ -320,10 +293,7 @@ function Set-EntraAppRoleToApplicationUser {
                         Tags          = @("WindowsAzureActiveDirectoryIntegratedApp")
                     }
         
-                    
-                    if ($PSCmdlet.ShouldProcess("Update application '$DisplayName' with AppRole list - '$appRolesList'", "Update")) {
-                        Update-MgApplication @params
-                    }
+                    Update-MgApplication @params
                     Write-ColoredVerbose "Updated application with $($createdRoles.Count) new roles" -Color "Green"
         
                     return $createdRoles | ForEach-Object {
