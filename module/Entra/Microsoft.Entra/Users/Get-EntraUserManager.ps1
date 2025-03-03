@@ -10,7 +10,9 @@ function Get-EntraUserManager {
         [System.String] $UserId,
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [switch] $AppendSelected
     )
     PROCESS {
         $params = @{}
@@ -20,13 +22,18 @@ function Get-EntraUserManager {
         if ($null -ne $PSBoundParameters["UserId"]) {
             $params["UserId"] = $PSBoundParameters["UserId"]
         }
-        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
 
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $selectProperties = $PSBoundParameters["Property"]
-            $selectProperties = $selectProperties -Join ','
-            $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?$properties"
+        $defaultProperties = "id,displayName,givenName,jobTitle,mail,mobilePhone,officeLocation,preferredLanguage,surname,userPrincipalName,businessPhones"
+        $baseUri = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager"
+        $URI = $baseUri
+
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $selectProperties = $Property -Join ','
+            $URI = '{0}?$select={1}' -f $baseUri,$selectProperties
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $selectProperties = $defaultProperties + ',' +$selectProperties
+            $URI = '{0}?$select={1}' -f $baseUri,$selectProperties
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
