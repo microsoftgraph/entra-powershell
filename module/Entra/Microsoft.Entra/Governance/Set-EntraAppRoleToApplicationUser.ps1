@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraAppRoleToApplicationUser {
-    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, 
             HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
@@ -94,7 +94,9 @@ function Set-EntraAppRoleToApplicationUser {
                     MailNickName      = $MailNickname
                 }
         
-                $newUser = New-EntraUser @userParams
+                if ($PSCmdlet.ShouldProcess("User '$UserPrincipalName'", "Create")) {
+                    $newUser = New-EntraUser @userParams
+                }
                 Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
                 
                 return [PSCustomObject]@{
@@ -129,7 +131,10 @@ function Set-EntraAppRoleToApplicationUser {
                         }
                     }
     
-                    $newApp = New-EntraApplication @appParams
+                    if ($PSCmdlet.ShouldProcess("Application '$DisplayName'", "Create")) {
+                        $newApp = New-EntraApplication @appParams
+                    }
+
                     Write-ColoredVerbose "Created new application: $DisplayName"
     
                     # Create service principal for the application
@@ -138,7 +143,11 @@ function Set-EntraAppRoleToApplicationUser {
                         DisplayName = $DisplayName
                     }
     
-                    $newSp = New-EntraServicePrincipal @spParams
+                    
+
+                    if ($PSCmdlet.ShouldProcess("Service principal '$DisplayName'", "Create")) {
+                        $newSp = New-EntraServicePrincipal @spParams
+                    }
                     Write-ColoredVerbose "Created new service principal for application: $DisplayName"
     
                     [PSCustomObject]@{
@@ -161,7 +170,9 @@ function Set-EntraAppRoleToApplicationUser {
                             DisplayName = $DisplayName
                         }
     
-                        $newSp = New-EntraServicePrincipal @spParams
+                        if ($PSCmdlet.ShouldProcess("Service principal '$DisplayName'", "Create")) {
+                            $newSp = New-EntraServicePrincipal @spParams
+                        }
                         Write-ColoredVerbose "Created new service principal for existing application: $DisplayName"
                     }
                     else {
@@ -216,7 +227,10 @@ function Set-EntraAppRoleToApplicationUser {
                 }
         
                 # Create new assignment
-                $newAssignment = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipalObject.Id -ResourceId $servicePrincipalObject.Id -Id $appRoleId -PrincipalId $UserId
+                if ($PSCmdlet.ShouldProcess("Service Principal App Role assignment: AppRole - '$appRoleId' | UserId - '$UserId' | Service Principal - '$servicePrincipalObject.Id'", "Create")) {
+                    $newAssignment = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipalObject.Id -ResourceId $servicePrincipalObject.Id -Id $appRoleId -PrincipalId $UserId
+                }
+                
                 Write-ColoredVerbose "Created new role assignment for user '$UserId' - AppName: '$ApplicationName' with role '$RoleDisplayName'" -Color "Green"
         
                 return [PSCustomObject]@{
@@ -282,6 +296,7 @@ function Set-EntraAppRoleToApplicationUser {
                     # Add to the typed list
                     $appRolesList.Add($appRole)
                     [void]$createdRoles.Add($appRole)
+
                     Write-ColoredVerbose "Created new role definition for '$roleName'" -Color "Green"
                 }
         
@@ -293,7 +308,10 @@ function Set-EntraAppRoleToApplicationUser {
                         Tags          = @("WindowsAzureActiveDirectoryIntegratedApp")
                     }
         
-                    Update-MgApplication @params
+                    
+                    if ($PSCmdlet.ShouldProcess("Update application '$DisplayName' with AppRole list - '$appRolesList'", "Update")) {
+                        Update-MgApplication @params
+                    }
                     Write-ColoredVerbose "Updated application with $($createdRoles.Count) new roles" -Color "Green"
         
                     return $createdRoles | ForEach-Object {
