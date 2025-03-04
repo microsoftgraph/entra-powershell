@@ -9,7 +9,6 @@ function Set-EntraAppRoleToApplicationUser {
             HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
             ParameterSetName = 'Default')]
         [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ValidateAction')]
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
         [string]$DataSource,
 
@@ -17,7 +16,6 @@ function Set-EntraAppRoleToApplicationUser {
             HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv",
             ParameterSetName = 'Default')]
         [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ValidateAction')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FileName,
@@ -26,7 +24,6 @@ function Set-EntraAppRoleToApplicationUser {
             HelpMessage = "Name of the application (Service Principal) to assign roles for",
             ParameterSetName = 'Default')]
         [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ValidateAction')]
         [ValidateNotNullOrEmpty()]
         [string]$ApplicationName,
 
@@ -37,10 +34,7 @@ function Set-EntraAppRoleToApplicationUser {
         
         [Parameter(Mandatory = $false, ParameterSetName = 'ExportResults',
             HelpMessage = "Path for the export file. Defaults to current directory.")]
-        [System.IO.FileInfo]$ExportFileName = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv"),
-
-        [Parameter(Mandatory = $false, ParameterSetName = 'ValidateAction')]
-        [switch]$Validate
+        [System.IO.FileInfo]$ExportFileName = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
     )
 
     process {
@@ -136,7 +130,6 @@ function Set-EntraAppRoleToApplicationUser {
                     }
     
                     $newApp = New-EntraApplication @appParams
-                    $validationStatus += "New application will be created with displayName - '$DisplayName'"
                     Write-ColoredVerbose "Created new application: $DisplayName"
     
                     # Create service principal for the application
@@ -327,7 +320,6 @@ function Set-EntraAppRoleToApplicationUser {
         function StartOrchestration {
     
             try {
-                $validationStatus = @()
                 # Import users from the CSV file
                 Write-ColoredVerbose "Importing users from file: $FileName" -Color "Cyan"
                 $users = Import-Csv -Path $FileName
