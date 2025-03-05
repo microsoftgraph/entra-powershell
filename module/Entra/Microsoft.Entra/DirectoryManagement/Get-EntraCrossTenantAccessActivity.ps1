@@ -58,12 +58,10 @@ function Get-EntraCrossTenantAccessActivity {
 
                     $uri = $response.'@odata.nextLink'  # Get next page if available
                 } while ($uri)
-
                     # Group results by ResourceTenantID   
                     return $signIns
                 }
             catch {
-                Write-Error "Failed to fetch sign-ins: $_"
                 return @()
                 }
             }

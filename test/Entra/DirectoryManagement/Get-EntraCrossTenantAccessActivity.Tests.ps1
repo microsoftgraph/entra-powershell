@@ -1,12 +1,25 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 Describe "Get-EntraCrossTenantAccessActivity" {
     BeforeAll {
         if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
             Import-Module Microsoft.Entra.DirectoryManagement    
         }
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
+
+        Mock -CommandName Get-EntraContext -ModuleName Microsoft.Entra.DirectoryManagement  -MockWith {@{tenantId = "12345678-1234-1234-1234-123456789abc"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"}}
+        Mock Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement {
+            return [PSCustomObject]@{
+                'value' = @(
+                    [PSCustomObject]@{ id = "00000003-0000-0000-c000-000000000001" }
+                    [PSCustomObject]@{ id = "00000003-0000-0000-c000-000000000002" }
+                )
+                '@odata.context' = "https://graph.microsoft.com/v1.0/`$metadata#auditLogs/signIns"
+                '@odata.nextLink' = "https://graph.microsoft.com/v1.0/auditLogs/signIns?`$top=2&`$skiptoken=1234"
+            }
+        }
     }
 
     It "Calls Get-EntraCrossTenantAccessActivity with no parameters" {
@@ -89,5 +102,22 @@ Describe "Get-EntraCrossTenantAccessActivity" {
 
         $result.ExternalTenantId | Should -Match "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"  # Valid GUID pattern
         $result.ExternalTenantId.Length | Should -Be 36
+    }
+
+    It "Should contain 'User-Agent' header" {
+            Mock -CommandName Invoke-GraphRequest -MockWith { return 
+            [PSCustomObject]@{
+                value = @()
+                '@odata.context' = "https://graph.microsoft.com/v1.0/`$metadata#auditLogs/signIns"
+                '@odata.nextLink' = "https://graph.microsoft.com/v1.0/auditLogs/signIns?`$skiptoken=1234"
+              }
+            }-ModuleName Microsoft.Entra.DirectoryManagement
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraCrossTenantAccessActivity"
+            $result =  Get-EntraCrossTenantAccessActivity
+            
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }    
     }
 }
