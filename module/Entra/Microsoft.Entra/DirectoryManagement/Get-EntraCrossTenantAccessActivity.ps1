@@ -9,6 +9,7 @@ function Get-EntraCrossTenantAccessActivity {
         [string]$AccessDirection,
 
         [Parameter(Position = 1, HelpMessage = "Specify the external tenant ID (GUID) to filter sign-ins by a specific external tenant.")]
+        [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [guid]$ExternalTenantId,
 
         [Parameter(HelpMessage = "Include summary statistics for sign-ins.")]
