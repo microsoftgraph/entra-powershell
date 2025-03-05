@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 
+trigger: none
 pr:
   branches:
     include:
