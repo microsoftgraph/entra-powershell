@@ -38,7 +38,7 @@ function Get-EntraCrossTenantAccessActivity {
     process {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-        $baseUri = "https://graph.microsoft.com/v1.o/auditLogs/signIns"
+        $baseUri = "https://graph.microsoft.com/v1.0/auditLogs/signIns"
 
         function Get-SignIns {
          param (
