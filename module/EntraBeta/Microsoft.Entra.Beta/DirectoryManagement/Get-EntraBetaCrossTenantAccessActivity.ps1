@@ -166,7 +166,8 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
             #Combine outbound and inbound results
 
-            [array]$signIns = $outBound+$inBound
+            [array]$signIns = $outbound
+            $signIns += $inbound
           
         }
 

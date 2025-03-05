@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
 function Get-EntraCrossTenantAccessActivity {
     [CmdletBinding()]
     param(
@@ -167,7 +166,8 @@ function Get-EntraCrossTenantAccessActivity {
 
             #Combine outbound and inbound results
 
-            [array]$signIns = $outBound+$inBound
+            [array]$signIns = $outbound
+            $signIns += $inbound
           
         }
 
