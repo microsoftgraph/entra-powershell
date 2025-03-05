@@ -36,12 +36,10 @@ extends:
         enabled: true
     stages:
     - stage: Build
-      displayName: 'Build Compatibility Adapter'
       jobs:
-      - job: Build
+      - job: EntraPowerShellPRBuild
         displayName: Entra PowerShell PR Build
         steps:
           - template: .azure-pipelines/generation-templates/generate_adapter-1es.yml@self
             parameters:
               Sign: false
-              
