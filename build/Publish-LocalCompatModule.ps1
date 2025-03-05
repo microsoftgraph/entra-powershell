@@ -38,19 +38,21 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 	if($moduleName -eq 'Entra'){
         if(Get-Module -ListAvailable -Name $destinationModuleName){
           Uninstall-Module -Name $destinationModuleName -Force -Verbose
+		}
 	}
-  }	
 }
 
 if($moduleName -eq 'Entra'){
-	   Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
-       Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+	Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
+    Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
+# Publish Graph PowerShell modules (e.g Microsoft.Graph.User) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
-       Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+    Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
+# Publish Entra(Beta) sub-modules (e.g Microsoft.Entra.Users) to the Local gallery.
 foreach($module in $fullModuleNames){
 	if(($module -eq 'Microsoft.Entra') -or ($module -eq 'Microsoft.Entra.Beta')){
 		continue

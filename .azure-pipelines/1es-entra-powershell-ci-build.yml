@@ -55,7 +55,7 @@ extends:
               Sign: ${{ parameters.Sign }}
 
           - ${{ if and(eq(parameters.Pack, true), eq(parameters.Sign, true)) }}:
-              - template: .azure-pipelines/common-templates/esrp/codesign-nuget-migrate.yml@self
+              - template: .azure-pipelines/common-templates/esrp/codesign-nuget.yml@self
                 parameters:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
                   Pattern: "Microsoft.Entra.*.nupkg"
