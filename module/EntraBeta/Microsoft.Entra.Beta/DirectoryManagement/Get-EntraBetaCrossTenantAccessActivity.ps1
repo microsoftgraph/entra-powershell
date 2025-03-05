@@ -50,17 +50,16 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
             try {
                 do {
-                        $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
+                    $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
                        
-                        if ($response -and $response.value) {
-                        $SignIns += $response.value
+                    if ($response -and $response.value) {
+                    $SignIns += $response.value
                     }
 
                     $uri = $response.'@odata.nextLink'  # Get next page if available
                 } while ($uri)
 
-                    # Group results by ResourceTenantID
-             
+                    # Group results by ResourceTenantID            
                     return $signIns
                 }
             catch {

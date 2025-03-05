@@ -1,17 +1,16 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-Describe "Get-EntraBetaCrossTenantAccessActivity" {
+Describe "Get-EntraCrossTenantAccessActivity" {
     BeforeAll {
-        if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
-            Import-Module Microsoft.Entra.Beta.DirectoryManagement    
+        if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+            Import-Module Microsoft.Entra.DirectoryManagement    
         }
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     }
 
-    It "Calls Get-EntraBetaCrossTenantAccessActivity with no parameters" {
-        # Arrange
-        Mock Get-EntraBetaCrossTenantAccessActivity {
+    It "Calls Get-EntraCrossTenantAccessActivity with no parameters" {
+        Mock Get-EntraCrossTenantAccessActivity {
             @{
                 ExternalTenantId          = "12345678-90ab-cdef-1234-567890abcdef"
                 ExternalTenantName        = "Contoso Ltd."
@@ -34,18 +33,15 @@ Describe "Get-EntraBetaCrossTenantAccessActivity" {
             }
         } -Verifiable
 
-        # Act
-        $result = Get-EntraBetaCrossTenantAccessActivity
+        $result = Get-EntraCrossTenantAccessActivity
 
-        # Assert
-        Should -Invoke -CommandName Get-EntraBetaCrossTenantAccessActivity -Times 1
+        Should -Invoke -CommandName Get-EntraCrossTenantAccessActivity -Times 1
         $result.ExternalTenantId | Should -Be "12345678-90ab-cdef-1234-567890abcdef"
         $result.UserPrincipalName | Should -Be "jdoe@contoso.com"
     }
 
-    It "Calls Get-EntraBetaCrossTenantAccessActivity with -SummaryStats switch" {
-        # Arrange
-        Mock Get-EntraBetaCrossTenantAccessActivity {
+    It "Calls Get-EntraCrossTenantAccessActivity with -SummaryStats switch" {
+        Mock Get-EntraCrossTenantAccessActivity {
             @{
                 ExternalTenantId          = "12345678-90ab-cdef-1234-567890abcdef"
                 ExternalTenantName        = "Contoso Ltd."
@@ -59,10 +55,8 @@ Describe "Get-EntraBetaCrossTenantAccessActivity" {
             }
         }
 
-        # Act
-        $result = Get-EntraBetaCrossTenantAccessActivity -SummaryStats
+        $result = Get-EntraCrossTenantAccessActivity -SummaryStats
 
-        # Assert
         $result.ExternalTenantId | Should -Be "12345678-90ab-cdef-1234-567890abcdef"
         $result.ExternalTenantName | Should -Be "Contoso Ltd."
         $result.ExternalTenantRegionScope | Should -Be "EU"
@@ -75,30 +69,24 @@ Describe "Get-EntraBetaCrossTenantAccessActivity" {
     }
 
     It "Handles empty response gracefully" {
-        # Arrange
-        Mock Get-EntraBetaCrossTenantAccessActivity { @{} }
+        Mock Get-EntraCrossTenantAccessActivity { @{} }
 
-        # Act
-        $result = Get-EntraBetaCrossTenantAccessActivity
+        $result = Get-EntraCrossTenantAccessActivity
 
-        # Assert
         $result | Should -BeOfType Hashtable
         $result.Keys.Count | Should -Be 0
     }
 
     It "Ensures ExternalTenantId is a valid GUID and not empty when passed" {
-        # Arrange
-        Mock Get-EntraBetaCrossTenantAccessActivity {
+        Mock Get-EntraCrossTenantAccessActivity {
             @{
                 ExternalTenantId = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
                 ExternalTenantName = "Fabrikam Inc."
             }
         }
 
-        # Act
-        $result = Get-EntraBetaCrossTenantAccessActivity -ExternalTenantId "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        $result = Get-EntraCrossTenantAccessActivity -ExternalTenantId "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 
-        # Assert
         $result.ExternalTenantId | Should -Match "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"  # Valid GUID pattern
         $result.ExternalTenantId.Length | Should -Be 36
     }
