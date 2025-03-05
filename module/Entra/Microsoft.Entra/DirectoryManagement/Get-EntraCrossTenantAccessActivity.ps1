@@ -18,13 +18,15 @@ function Get-EntraCrossTenantAccessActivity {
         [switch]$ResolveTenantId
     )
 
-    begin {        
+    begin {
+        
+        $currentTenantId=(Get-EntraContext).TenantId        
         #External Tenant ID check
         if ($ExternalTenantId) {
             Write-Verbose -Message "$(Get-Date -f T) - Checking supplied external tenant ID - $ExternalTenantId..."
 
-            if ($ExternalTenantId -eq (Get-EntraContext).TenantId) {
-                Write-Error "$(Get-Date -f T) - Supplied external tenant ID ($ExternalTenantId) cannot match connected tenant ID ($((Get-EntraContext).TenantId)))" -ErrorAction Stop
+            if ($ExternalTenantId -eq $currentTenantId) {
+                Write-Error "$(Get-Date -f T) - Supplied external tenant ID ($ExternalTenantId) cannot match connected tenant ID ($currentTenantId))" -ErrorAction Stop
             }
             else {
                 Write-Verbose -Message "$(Get-Date -f T) - Supplied external tenant ID OK"
@@ -33,9 +35,9 @@ function Get-EntraCrossTenantAccessActivity {
     }
 
     process {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-        $baseUri = "https://graph.microsoft.com/beta/auditLogs/signIns"
+        $baseUri = "https://graph.microsoft.com/v1.o/auditLogs/signIns"
 
         function Get-SignIns {
          param (
@@ -47,7 +49,7 @@ function Get-EntraCrossTenantAccessActivity {
 
             try {
                 do {
-                        $response = Invoke-MgGraphRequest -Method GET -Uri $uri -Headers $customHeaders
+                        $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
                        
                         if ($response -and $response.value) {
                         $SignIns += $response.value
@@ -56,8 +58,7 @@ function Get-EntraCrossTenantAccessActivity {
                     $uri = $response.'@odata.nextLink'  # Get next page if available
                 } while ($uri)
 
-                    # Group results by ResourceTenantID
-             
+                    # Group results by ResourceTenantID   
                     return $signIns
                 }
             catch {
@@ -79,7 +80,7 @@ function Get-EntraCrossTenantAccessActivity {
                 Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Outbound' selected"
                 Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting external tenant IDs accessed by local users"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$((Get-EntraContext).TenantId)'"
+                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'"
             }
            
             }catch{
@@ -98,23 +99,26 @@ function Get-EntraCrossTenantAccessActivity {
                 Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Inbound' selected"
                 Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$((Get-EntraContext).TenantId)' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
             }
             }catch{
                 $_.Exception | ForEach-Object { $_ | Format-List * }
             }
         }
         else {
+            $inBound=@()
+            $outBound=$()
+
             if ($ExternalTenantId) {
                try{
                 Write-Verbose -Message "$(Get-Date -f T) - Default access direction 'Both'"
                 Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting sign-ins for local users accessing external tenant ID - $ExternalTenantId"
 
-                $outbound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$ExternalTenantId'" | Group-Object ResourceTenantID
+                $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$ExternalTenantId'" | Group-Object ResourceTenantID
 
                 Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting sign-ins for users accessing local tenant from external tenant ID - $ExternalTenantId"
 
-                $inbound = Get-SignIns  -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                $inBound = Get-SignIns  -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
                 }catch{
                 $_.Exception | ForEach-Object { $_ | Format-List * }
                 }
@@ -124,19 +128,19 @@ function Get-EntraCrossTenantAccessActivity {
                 Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting external tenant IDs accessed by local users"
                 try{
 
-                $outbound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$((Get-EntraContext).TenantId)'" | Group-Object ResourceTenantID
+                $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'" | Group-Object ResourceTenantID
 
                 Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
 
-                $inbound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$((Get-EntraContext).TenantId)' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                $inBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
                 }catch{
                   $_.Exception | ForEach-Object { $_ | Format-List * }
                 }
             }
 
             #Combine outbound and inbound results
-            [array]$signIns = $outbound
-            $signIns += $inbound          
+            [array]$signIns = $outBound
+            $signIns += $inBound          
         }
 
         #Analyse sign-in logs
@@ -198,11 +202,12 @@ function Get-EntraCrossTenantAccessActivity {
                 }
 
                 #Provide summary
+                $totalAnalysis=$()
                 if ($SummaryStats) {
                     Write-Verbose -Message "$(Get-Date -f T) - Creating summary stats for external tenant - $($tenantId.Name)"
                     #Handle resolving tenant ID
                     if ($ResolveTenantId) {
-                        $Analysis = [pscustomobject]@{
+                        $analysis = [pscustomobject]@{
                             ExternalTenantId          = $tenantId.Name
                             ExternalTenantName        = $externalTenantName
                             ExternalTenantRegionScope = $oidcMetadataTenantRegionScope
@@ -216,7 +221,7 @@ function Get-EntraCrossTenantAccessActivity {
                     }
                     else {
                         #Build custom output object
-                        $Analysis = [pscustomobject]@{
+                        $analysis = [pscustomobject]@{
                             ExternalTenantId = $tenantId.Name
                             AccessDirection  = $direction
                             SignIns          = ($tenantId).count
@@ -229,7 +234,7 @@ function Get-EntraCrossTenantAccessActivity {
 
                     Write-Verbose -Message "$(Get-Date -f T) - Adding stats for $($tenantId.Name) to total analysis object"
 
-                    [array]$TotalAnalysis += $Analysis
+                    [array]$totalAnalysis += $analysis
 
                 }
                 else {
@@ -239,7 +244,7 @@ function Get-EntraCrossTenantAccessActivity {
                     foreach ($event in $tenantID.group) {
                         if ($ResolveTenantId) {
 
-                            $CustomEvent = [pscustomobject]@{
+                            $customEvent = [pscustomobject]@{
                                 ExternalTenantId          = $tenantId.Name
                                 ExternalTenantName        = $externalTenantName
                                 ExternalDefaultDomain     = $defaultDomainName
@@ -259,10 +264,10 @@ function Get-EntraCrossTenantAccessActivity {
                                 StatusCode                = $event.Status.Errorcode
                                 StatusReason              = $event.Status.FailureReason
                             }
-                            $CustomEvent
+                            $customEvent
                         }
                         else {
-                            $CustomEvent = [pscustomobject]@{
+                            $customEvent = [pscustomobject]@{
                                 ExternalTenantId      = $tenantId.Name
                                 AccessDirection       = $direction
                                 UserDisplayName       = $event.UserDisplayName
@@ -279,7 +284,7 @@ function Get-EntraCrossTenantAccessActivity {
                                 StatusCode            = $event.Status.Errorcode
                                 StatusReason          = $event.Status.FailureReason
                             }
-                            $CustomEvent
+                            $customEvent
                         }
                     }
                 }
@@ -293,10 +298,10 @@ function Get-EntraCrossTenantAccessActivity {
             #Show array of summary objects for each external tenant
             Write-Verbose -Message "$(Get-Date -f T) - Displaying total analysis object"
             if (!$AccessDirection) {
-                $TotalAnalysis | Sort-Object ExternalTenantId
+                $totalAnalysis | Sort-Object ExternalTenantId
             }
             else {
-                $TotalAnalysis | Sort-Object SignIns -Descending
+                $totalAnalysis | Sort-Object SignIns -Descending
             }
         }
     }
