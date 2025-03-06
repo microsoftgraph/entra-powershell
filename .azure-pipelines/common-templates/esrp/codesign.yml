@@ -9,57 +9,60 @@ parameters:
       type: string
       default: ".*.dll"
 
+variables:
+    - group: OData-ESRP-CodeSigning
+
 steps:
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@5
       displayName: ESRP DLL CodeSigning
       inputs:
-          ConnectedServiceName: 'EntraPowerShell ESRP CodeSign and NUGET' 
-          AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
-          AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d' 
-          AuthAKVName: 'ODataESRPKeyVault' 
-          AuthCertName: 'ODataCodeSignAuth-AutoRotate'
-          AuthSignCertName: 'ODataCodeSigningCert2024'
-          FolderPath: ${{ parameters.FolderPath }}
-          Pattern: ${{ parameters.Pattern }}
-          SessionTimeout: 160
-          ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2' 
-          MaxConcurrency: 25
-          signConfigType: inlineSignParams
-          inlineOperation: |
-              [
-                  {
-                      "keyCode": "CP-230012",
-                      "operationSetCode": "SigntoolSign",
-                      "parameters": [
-                          {
-                              "parameterName": "OpusName",
-                              "parameterValue": "Microsoft"
-                          },
-                          {
-                              "parameterName": "OpusInfo",
-                              "parameterValue": "http://www.microsoft.com"
-                          },
-                          {
-                              "parameterName": "FileDigest",
-                              "parameterValue": "/fd \"SHA256\""
-                          },
-                          {
-                              "parameterName": "PageHash",
-                              "parameterValue": "/NPH"
-                          },
-                          {
-                              "parameterName": "TimeStamp",
-                              "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                          }
-                      ],
-                      "toolName": "sign",
-                      "toolVersion": "1.0"
-                  },
-                  {
-                      "keyCode": "CP-230012",
-                      "operationSetCode": "SigntoolVerify",
-                      "parameters": [],
-                      "toolName": "sign",
-                      "toolVersion": "1.0"
-                  }
-              ]
+        ConnectedServiceName: 'EntraPowerShell ESRP CodeSign and NUGET' 
+        AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+        AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+        AuthAKVName: $(ODataEsrpAuthAKVName)
+        AuthCertName: $(ODataEsrpAuthCertName)
+        AuthSignCertName: $(ODataEsrpAuthSignCertName)
+        ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
+        FolderPath: ${{ parameters.FolderPath }}
+        Pattern: ${{ parameters.Pattern }}
+        SessionTimeout: 160
+        MaxConcurrency: 25
+        signConfigType: inlineSignParams
+        inlineOperation: |
+            [
+                {
+                    "keyCode": "CP-230012",
+                    "operationSetCode": "SigntoolSign",
+                    "parameters": [
+                        {
+                            "parameterName": "OpusName",
+                            "parameterValue": "Microsoft"
+                        },
+                        {
+                            "parameterName": "OpusInfo",
+                            "parameterValue": "http://www.microsoft.com"
+                        },
+                        {
+                            "parameterName": "FileDigest",
+                            "parameterValue": "/fd \"SHA256\""
+                        },
+                        {
+                            "parameterName": "PageHash",
+                            "parameterValue": "/NPH"
+                        },
+                        {
+                            "parameterName": "TimeStamp",
+                            "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                        }
+                    ],
+                    "toolName": "sign",
+                    "toolVersion": "1.0"
+                },
+                {
+                    "keyCode": "CP-230012",
+                    "operationSetCode": "SigntoolVerify",
+                    "parameters": [],
+                    "toolName": "sign",
+                    "toolVersion": "1.0"
+                }
+            ]

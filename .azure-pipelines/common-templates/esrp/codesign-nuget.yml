@@ -9,20 +9,23 @@ parameters:
     type: string
     default: "*.nupkg"
 
+variables:
+    - group: OData-ESRP-CodeSigning
+
 steps:
   - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@5 
     displayName: 'NuGet CodeSigning' 
     inputs: 
-      ConnectedServiceName: 'EntraPowerShell ESRP CodeSign and NUGET' 
-      AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
-      AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d' 
-      AuthAKVName: 'ODataESRPKeyVault' 
-      AuthCertName: 'ODataCodeSignAuth-AutoRotate'
-      AuthSignCertName: 'ODataCodeSigningCert2024'
+      ConnectedServiceName: 'EntraPowerShell ESRP CodeSign and NUGET'
+      AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+      AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+      AuthAKVName: $(ODataEsrpAuthAKVName)
+      AuthCertName: $(ODataEsrpAuthCertName)
+      AuthSignCertName: $(ODataEsrpAuthSignCertName)
+      ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
       FolderPath: ${{ parameters.FolderPath }}
       Pattern: ${{ parameters.Pattern }}
-      SessionTimeout: 90 
-      ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2' 
+      SessionTimeout: 90
       MaxConcurrency: 25
       signConfigTYpe: 'inlineSignParams'
       inlineOperation: |
