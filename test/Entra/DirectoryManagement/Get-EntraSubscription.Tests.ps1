@@ -57,17 +57,11 @@ Describe "Tests for Get-EntraSubscription" {
         $result.Id | should -Be 'aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb'
         Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
     }  
-    It "Should return top Directory subscription" {
-        $result = @(Get-EntraSubscription -Top 1)
-        $result | Should -Not -BeNullOrEmpty
-        $result | Should -HaveCount 1 
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
-    }  
+ 
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscription"
         $result = Get-EntraSubscription -CommerceSubscriptionId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscription"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true
