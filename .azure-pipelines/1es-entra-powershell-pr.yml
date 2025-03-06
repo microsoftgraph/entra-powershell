@@ -37,28 +37,11 @@ extends:
         enabled: true
     stages:
     - stage: Build
-<<<<<<< HEAD
-<<<<<<< HEAD
       jobs:
       - job: EntraPowerShellPRBuild
-=======
-      displayName: 'Build Compatibility Adapter'
-      jobs:
-      - job: Build
->>>>>>> f9da0660a (1ES PR pipeline)
-=======
-      jobs:
-      - job: EntraPowerShellPRBuild
->>>>>>> bd60d5d71 (Update names)
         displayName: Entra PowerShell PR Build
         steps:
           - template: .azure-pipelines/generation-templates/generate_adapter-1es.yml@self
             parameters:
               Sign: false
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
               
->>>>>>> f9da0660a (1ES PR pipeline)
-=======
->>>>>>> bd60d5d71 (Update names)
