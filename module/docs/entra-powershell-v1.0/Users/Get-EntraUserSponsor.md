@@ -5,7 +5,7 @@ description: This article provides details on the Get-EntraUserSponsor command.
 ms.topic: reference
 ms.date: 03/06/2025
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: dbutoyi
 manager: CelesteDG
 author: msewaweru
 
