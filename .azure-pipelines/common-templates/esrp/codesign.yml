@@ -9,9 +9,6 @@ parameters:
       type: string
       default: ".*.dll"
 
-variables:
-    - group: OData-ESRP-CodeSigning
-
 steps:
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@5
       displayName: ESRP DLL CodeSigning
