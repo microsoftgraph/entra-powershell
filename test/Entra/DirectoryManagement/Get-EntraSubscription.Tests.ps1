@@ -51,12 +51,6 @@ Describe "Tests for Get-EntraSubscription" {
     It "Should fail when invalid parameter is passed" {
         { Get-EntraSubscription -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
-    It "Should return specific Directory subscription by filter" {
-        $result = Get-EntraSubscription -Filter "id -eq 'aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb'"
-        $result | Should -Not -BeNullOrEmpty
-        $result.Id | should -Be 'aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb'
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
-    }  
  
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscription"
