@@ -34,16 +34,16 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 $metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
 $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
-foreach ($destinationModuleName in $content.destinationModuleName){
-	if($moduleName -eq 'Entra'){
-        if(Get-Module -ListAvailable -Name $destinationModuleName){
-          Uninstall-Module -Name $destinationModuleName -Force -Verbose
-		}
-	}
-}
+# foreach ($destinationModuleName in $content.destinationModuleName){
+# 	if($moduleName -eq 'Entra'){
+#         if(Get-Module -ListAvailable -Name $destinationModuleName){
+#           Uninstall-Module -Name $destinationModuleName -Force -Verbose
+# 		}
+# 	}
+# }
 
 if($moduleName -eq 'Entra'){
-	Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
+	#Uninstall-Module -Name Microsoft.Graph.Authentication -Force -Verbose
     Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
