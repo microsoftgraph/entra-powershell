@@ -29,11 +29,7 @@ Describe "Tests for Get-EntraSubscription" {
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
     }
-    It "Result should not be empty objectid" {
-        $result = Get-EntraSubscription -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-        $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
-    }    
+
     It "Should fail when CommerceSubscriptionId is empty" {
         { Get-EntraSubscription -CommerceSubscriptionId "" } | Should -Throw "Cannot bind argument to parameter 'CommerceSubscriptionId'*"
     }
@@ -84,7 +80,7 @@ Describe "Tests for Get-EntraSubscription" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraSubscription -Top 1 -Debug } | Should -Not -Throw
+            { Get-EntraSubscription -CommerceSubscriptionId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference
