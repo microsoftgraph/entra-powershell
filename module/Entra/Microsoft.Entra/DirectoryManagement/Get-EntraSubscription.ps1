@@ -7,16 +7,17 @@ function Get-EntraSubscription {
     param (
         [Alias("ObjectId")]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique object ID of the subscription to retrieve.")]
+        [Alias('SubscriptionId')]
         [System.String] $CommerceSubscriptionId,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the number of objects to return.")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the number of objects to return.")]
         [Alias("Limit")]
-        [System.Nullable`1[System.Int32]] $Top,
+        [System.Int32] $Top,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all objects.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all objects.")]
         [switch] $All,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter the results based on the specified criteria.")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter the results based on the specified criteria.")]
         [System.String] $Filter,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the properties to include in the response.")]
