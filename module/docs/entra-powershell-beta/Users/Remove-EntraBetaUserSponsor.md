@@ -4,7 +4,7 @@ description:  This article provides details on the Remove-EntraBetaUserSponsor c
 
 
 ms.topic: reference
-ms.date: 02/24/2025
+ms.date: 03/06/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
