@@ -7,7 +7,7 @@ function Get-EntraSubscription {
     param (
         [Alias("ObjectId")]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique object ID of the subscription to retrieve.")]
-        [System.String] $SubscriptionId,
+        [System.String] $CommerceSubscriptionId,
 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the number of objects to return.")]
         [Alias("Limit")]
@@ -36,21 +36,21 @@ function Get-EntraSubscription {
             $properties = "`$select=$selectProperties"
         }
     
-        if ($PSBoundParameters.ContainsKey("SubscriptionId")) {
-            $SubscriptionId = $PSBoundParameters["SubscriptionId"]
-            $params["Uri"] = "$baseUri/$SubscriptionId?$properties"
+        if ($PSBoundParameters.ContainsKey("CommerceSubscriptionId")) {
+            $commerceSubscriptionId = $PSBoundParameters["CommerceSubscriptionId"]
+            $params["Uri"] = "${baseUri}/${commerceSubscriptionId}?$properties"
         }
         else {
-            $params["Uri"] = "$baseUri?$properties"
-        }
+            $params["Uri"] = "${baseUri}?$properties"
+            
+            if ($PSBoundParameters.ContainsKey("Top")) {
+                $topCount = $Top
+                $params["Uri"] += if ($topCount -gt 999) { "&`$top=999" } else { "&`$top=$topCount" }
+            }
     
-        if ($PSBoundParameters.ContainsKey("Top")) {
-            $topCount = $Top
-            $params["Uri"] += if ($topCount -gt 999) { "&`$top=999" } else { "&`$top=$topCount" }
-        }
-    
-        if ($PSBoundParameters.ContainsKey("Filter")) {
-            $params["Uri"] += "&`$filter=$Filter"
+            if ($PSBoundParameters.ContainsKey("Filter")) {
+                $params["Uri"] += "&`$filter=$Filter"
+            }
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -60,36 +60,36 @@ function Get-EntraSubscription {
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params["Uri"] -Method GET
     
         try {
-            $data = $response.value
-            $all = $All.IsPresent
-            $increment = $topCount - ($data.Count)
+            if ($PSBoundParameters.ContainsKey("CommerceSubscriptionId")) {
+                $data = @($response)
+            }
+            else {
+                $data = $response.value
+                $all = $All.IsPresent
+                $increment = $topCount - ($data.Count)
     
-            while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and $increment -lt 0) -or $increment -gt 0)) {
-                $params["Uri"] = $response.'@odata.nextLink'
-                if ($increment -gt 0) {
-                    $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
-                    $increment -= $topValue
+                while ($response.PSObject.Properties["`@odata.nextLink"] -and (($all -and $increment -lt 0) -or $increment -gt 0)) {
+                    $params["Uri"] = $response.'@odata.nextLink'
+                    if ($increment -gt 0) {
+                        $topValue = [Math]::Min($increment, 999)
+                        $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
+                        $increment -= $topValue
+                    }
+                    $response = Invoke-GraphRequest @params
+                    $data += $response.value
                 }
-                $response = Invoke-GraphRequest @params
-                $data += $response.value
             }
         }
         catch {
             Write-Error "An error occurred while retrieving data: $_"
         }
     
-        $data | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                if ($null -ne $_.NextLifecycleDateTime) {
-                    $nextLifecycleDaysRemaining = (New-TimeSpan -Start (Get-Date) -End $_.NextLifecycleDateTime).Days
-                    $_ | Add-Member -MemberType NoteProperty -Name NextLifecycleDaysRemaining -Value $nextLifecycleDaysRemaining -Force
-                }
-            }
+        if ($Property -and $Property.Count -gt 0) {
+            $data | Select-Object -Property $Property
         }
-    
-        return $data
+        else {
+            $data | Select-Object -Property *
+        }
     }
 }
-Set-Alias -Name Get-EntraDirectorySubscription -Value Get-EntraSubscription -Scope Global -Force
+Set-Alias -Name Get-EntraDirectorySubscription -Value Get-EntraSubscription -Description "Retrieves the organization's commercial subscriptions." -Scope Global -Force
