@@ -4,7 +4,7 @@ description:  This article provides details on the Remove-EntraUserSponsor comma
 
 
 ms.topic: reference
-ms.date: 03/06/2025
+ms.date: 03/07/2025
 ms.author: eunicewaweru
 ms.reviewer: dbutoyi
 manager: CelesteDG
