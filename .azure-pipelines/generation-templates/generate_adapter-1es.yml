@@ -36,17 +36,8 @@ steps:
     targetType: inline
     script: Install-Module PlatyPS -scope currentuser -Force
     pwsh: true
-# - task: powershell@2
-#   displayName: 'Create Module Help Files Entra'
-#   inputs:
-#     targetType: inline
-#     script: |
-#       Import-Module PlatyPS
-#       . ./build/common-functions.ps1
-#       Create-ModuleHelp -Module Entra
-#     pwsh: true
 - task: powershell@2
-  displayName: '[Modularization ] Build Entra'
+  displayName: 'Build Entra'
   inputs:
     targetType: inline
     script: |
@@ -54,7 +45,7 @@ steps:
       ./build/Create-EntraModule.ps1 -Module Entra -Root -Verbose
     pwsh: true
 - ${{ if eq(parameters.Sign, true) }}:
-  - template: ../common-templates/esrp/codesign-migrate.yml
+  - template: ../common-templates/esrp/codesign.yml
     parameters:
       FolderPath: "bin"
       Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
@@ -73,7 +64,7 @@ steps:
       Create-ModuleFolder
     pwsh: true
 - task: 1ES.PublishBuildArtifacts@1
-  displayName: 'Publish Module Files EntraBeta'
+  displayName: 'Publish Module Files Entra'
   inputs:
     PathtoPublish: 'bin'
     ArtifactName: 'Module Files'
@@ -111,17 +102,8 @@ steps:
     script: |      
       ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
     pwsh: true
-# - task: powershell@2
-#   displayName: 'Create Module Help Files EntraBeta'
-#   inputs:
-#     targetType: inline
-#     script: |
-#       Import-Module PlatyPS
-#       . ./build/common-functions.ps1
-#       Create-ModuleHelp -Module EntraBeta
-#     pwsh: true
 - task: powershell@2
-  displayName: '[Modularization ] Build EntraBeta'
+  displayName: 'Build EntraBeta'
   inputs:
     targetType: inline
     script: |
@@ -129,7 +111,7 @@ steps:
       ./build/Create-EntraModule.ps1 -Module EntraBeta -Root -Verbose
     pwsh: true
 - ${{ if eq(parameters.Sign, true) }}:
-  - template: ../common-templates/esrp/codesign-migrate.yml
+  - template: ../common-templates/esrp/codesign.yml
     parameters:
       FolderPath: "bin"
       Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
