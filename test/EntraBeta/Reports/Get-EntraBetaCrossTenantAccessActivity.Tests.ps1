@@ -2,28 +2,28 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-Describe "Get-EntraCrossTenantAccessActivity" {
+Describe "Get-EntraBetaCrossTenantAccessActivity" {
     BeforeAll {
-        if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
-            Import-Module Microsoft.Entra.DirectoryManagement    
+        if((Get-Module -Name Microsoft.Entra.Beta.Reports) -eq $null){
+            Import-Module Microsoft.Entra.Beta.Reports    
         }
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-        Mock -CommandName Get-EntraContext -ModuleName Microsoft.Entra.DirectoryManagement  -MockWith {@{tenantId = "12345678-1234-1234-1234-123456789abc"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"}}
-        Mock Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement {
+        Mock -CommandName Get-EntraContext -ModuleName Microsoft.Entra.Beta.Reports  -MockWith {@{tenantId = "12345678-1234-1234-1234-123456789abc"; displayName = "Test Tenant"; defaultDomainName = "test.onmicrosoft.com"; federationBrandName = "TestBrand"}}
+        Mock Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports {
             return [PSCustomObject]@{
                 'value' = @(
                     [PSCustomObject]@{ id = "00000003-0000-0000-c000-000000000001" }
                     [PSCustomObject]@{ id = "00000003-0000-0000-c000-000000000002" }
                 )
-                '@odata.context' = "https://graph.microsoft.com/v1.0/`$metadata#auditLogs/signIns"
-                '@odata.nextLink' = "https://graph.microsoft.com/v1.0/auditLogs/signIns?`$top=2&`$skiptoken=1234"
+                '@odata.context' = "https://graph.microsoft.com/beta/`$metadata#auditLogs/signIns"
+                '@odata.nextLink' = "https://graph.microsoft.com/beta/auditLogs/signIns?`$top=2&`$skiptoken=305e4b930704dcf74ca3b809620741"
             }
         }
     }
 
-    It "Calls Get-EntraCrossTenantAccessActivity with no parameters" {
-        Mock Get-EntraCrossTenantAccessActivity {
+    It "Calls Get-EntraBetaCrossTenantAccessActivity with no parameters" {
+        Mock Get-EntraBetaCrossTenantAccessActivity {
             @{
                 ExternalTenantId          = "12345678-90ab-cdef-1234-567890abcdef"
                 ExternalTenantName        = "Contoso Ltd."
@@ -46,15 +46,15 @@ Describe "Get-EntraCrossTenantAccessActivity" {
             }
         } -Verifiable
 
-        $result = Get-EntraCrossTenantAccessActivity
+        $result = Get-EntraBetaCrossTenantAccessActivity
 
-        Should -Invoke -CommandName Get-EntraCrossTenantAccessActivity -Times 1
+        Should -Invoke -CommandName Get-EntraBetaCrossTenantAccessActivity -Times 1
         $result.ExternalTenantId | Should -Be "12345678-90ab-cdef-1234-567890abcdef"
         $result.UserPrincipalName | Should -Be "jdoe@contoso.com"
     }
 
-    It "Calls Get-EntraCrossTenantAccessActivity with -SummaryStats switch" {
-        Mock Get-EntraCrossTenantAccessActivity {
+    It "Calls Get-EntraBetaCrossTenantAccessActivity with -SummaryStats switch" {
+        Mock Get-EntraBetaCrossTenantAccessActivity {
             @{
                 ExternalTenantId          = "12345678-90ab-cdef-1234-567890abcdef"
                 ExternalTenantName        = "Contoso Ltd."
@@ -68,7 +68,7 @@ Describe "Get-EntraCrossTenantAccessActivity" {
             }
         }
 
-        $result = Get-EntraCrossTenantAccessActivity -SummaryStats
+        $result = Get-EntraBetaCrossTenantAccessActivity -SummaryStats
 
         $result.ExternalTenantId | Should -Be "12345678-90ab-cdef-1234-567890abcdef"
         $result.ExternalTenantName | Should -Be "Contoso Ltd."
@@ -82,23 +82,23 @@ Describe "Get-EntraCrossTenantAccessActivity" {
     }
 
     It "Handles empty response gracefully" {
-        Mock Get-EntraCrossTenantAccessActivity { @{} }
+        Mock Get-EntraBetaCrossTenantAccessActivity { @{} }
 
-        $result = Get-EntraCrossTenantAccessActivity
+        $result = Get-EntraBetaCrossTenantAccessActivity
 
         $result | Should -BeOfType Hashtable
         $result.Keys.Count | Should -Be 0
     }
 
     It "Ensures ExternalTenantId is a valid GUID and not empty when passed" {
-        Mock Get-EntraCrossTenantAccessActivity {
+        Mock Get-EntraBetaCrossTenantAccessActivity {
             @{
                 ExternalTenantId = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
                 ExternalTenantName = "Fabrikam Inc."
             }
         }
 
-        $result = Get-EntraCrossTenantAccessActivity -ExternalTenantId "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        $result = Get-EntraBetaCrossTenantAccessActivity -ExternalTenantId "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 
         $result.ExternalTenantId | Should -Match "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"  # Valid GUID pattern
         $result.ExternalTenantId.Length | Should -Be 36
@@ -108,14 +108,14 @@ Describe "Get-EntraCrossTenantAccessActivity" {
             Mock -CommandName Invoke-GraphRequest -MockWith { return 
             [PSCustomObject]@{
                 value = @()
-                '@odata.context' = "https://graph.microsoft.com/v1.0/`$metadata#auditLogs/signIns"
-                '@odata.nextLink' = "https://graph.microsoft.com/v1.0/auditLogs/signIns?`$skiptoken=1234"
+                '@odata.context' = "https://graph.microsoft.com/beta/`$metadata#auditLogs/signIns"
+                '@odata.nextLink' = "https://graph.microsoft.com/beta/auditLogs/signIns?`$skiptoken=1234"
               }
-            }-ModuleName Microsoft.Entra.DirectoryManagement
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraCrossTenantAccessActivity"
-            $result =  Get-EntraCrossTenantAccessActivity
+            }-ModuleName Microsoft.Entra.Beta.Reports
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCrossTenantAccessActivity"
+            $result =  Get-EntraBetaCrossTenantAccessActivity
             
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }    
