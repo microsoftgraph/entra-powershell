@@ -133,6 +133,7 @@ Displays summary statistics for external tenants, ensuring output is in a table 
 ```powershell
 Get-EntraBetaCrossTenantAccessActivity -ExternalTenantId 3ce14667-9122-45f5-bcd4-f618957d9ba1
 ```
+
 ```Output
 ExternalTenantId          : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ExternalTenantName        : Example
@@ -143,7 +144,7 @@ UserDisplayName           : FNU LNU
 UserPrincipalName         : example.com
 UserId                    : aaaaaaaa-0000-1111-2222-cccccccccccc
 UserType                  : member
-CrossTenantAccessType     : b2bDirectConnect
+CrossTenantAccessType     : passthrough
 AppDisplayName            : Demo Example App
 AppId                     : cccccccc-2222-3333-4444-dddddddddddd
 ResourceDisplayName       : Microsoft Graph
@@ -173,7 +174,7 @@ UserDisplayName           : FNU LNU
 UserPrincipalName         : example.com
 UserId                    : aaaaaaaa-0000-1111-2222-cccccccccccc
 UserType                  : member
-CrossTenantAccessType     : b2bDirectConnect
+CrossTenantAccessType     : b2bCollaboration
 AppDisplayName            : Demo Example App
 AppId                     : cccccccc-2222-3333-4444-dddddddddddd
 ResourceDisplayName       : Microsoft Graph
