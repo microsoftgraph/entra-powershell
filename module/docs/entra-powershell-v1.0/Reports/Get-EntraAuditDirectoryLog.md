@@ -188,6 +188,25 @@ Get-EntraAuditDirectoryLog -Filter "result eq 'failure'" -All
 
 This command shows how to get audit logs by the result.
 
+### Example 9: Show when users were added to a group
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
+$groupId = (Get-EntraGroup -SearchString 'Contoso Group').Id
+Get-EntraAuditDirectoryLog -Filter "
+    activityDisplayName eq 'Add member to group' 
+    and targetResources/any(r:r/type eq 'User') 
+    and targetResources/any(r:r/id eq '$groupId' and r/type eq 'Group')"
+```
+
+```Output
+Id                                      ActivityDateTime      ActivityDisplayName   Category        CorrelationId                          LoggedByService   OperationType Result  ResultReason
+--                                      ----------------      -------------------   --------        -------------                          ---------------   ------------- ------  ------------
+Directory_{GUID}  03/07/2025 23:16:31   Add member to group   GroupManagement       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Core Directory   Assign        success
+```
+
+This command shows when users were added to a group.
+
 ## Parameters
 
 ### -All
