@@ -79,7 +79,7 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled:$true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -91,7 +91,7 @@ This example updates the specified user's AccountEnabled parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } |
 ForEach-Object { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
@@ -111,7 +111,7 @@ $params = @{
     Country          = 'Add country name'
     Department       = 'Add department name'
     GivenName        = 'Sawyer Miller G'
-    ImmutableId      = '#1' 
+    ImmutableId      = '#1'
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
@@ -300,7 +300,7 @@ Accept wildcard characters: False
 
 This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
 
-Important: Do not use the $ and _ characters when specifying this property.
+Important: Do not use the $ and \_ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -363,6 +363,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
+
 Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml

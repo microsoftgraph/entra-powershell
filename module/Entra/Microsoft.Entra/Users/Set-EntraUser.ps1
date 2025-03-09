@@ -9,7 +9,7 @@ function Set-EntraUser {
         [Parameter(ParameterSetName = 'UpdateExpanded', Mandatory = $true)]
         [Parameter(ParameterSetName = 'Update', Mandatory = $true)]
         [string]
-        [Alias('ObjectId', 'UserPrincipalName', 'UPN', 'Identity')]
+        [Alias('ObjectId', 'UPN', 'Identity')]
         ${UserId},
 
         [Parameter(ParameterSetName = 'UpdateViaIdentityExpanded', Mandatory = $true, ValueFromPipeline = $true)]
