@@ -158,6 +158,38 @@ This example updates the specified user's Usage Location for license management.
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
 
+### Example 7: Set user's extension properties
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name
+$additionalProperties = @{ $extensionName = "Survey.Report" }
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
+```
+
+This example updates the specified user's extension properties, for example, an app role for an application.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 8: update user's onPremisesExtension attributes properties
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$onPremisesExtensionAttributes = @{
+    "onPremisesExtensionAttributes" = @{
+        "extensionAttribute1" = "SOC Department"
+        "extensionAttribute2" = "Audit Role"
+    }
+} | ConvertTo-Json -Depth 2
+
+Set-EntraUser -UserId 'SawyerM@contoso.com' -BodyParameter $onPremisesExtensionAttributes
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
 ## Parameters
 
 ### -AccountEnabled
