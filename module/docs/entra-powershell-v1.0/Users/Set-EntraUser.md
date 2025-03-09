@@ -135,15 +135,10 @@ This example updates the specified user's property.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params= @{
-UserId = 'SawyerM@contoso.com'
-PasswordProfile  = @{
-   Password= '*****'
-   ForceChangePasswordNextLogin = $true
-   EnforceChangePasswordPolicy = $false
-   }
+Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
+    Password = '*****'
+    ForceChangePasswordNextSignIn = $true
 }
-Set-EntraUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
