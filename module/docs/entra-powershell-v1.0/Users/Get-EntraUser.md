@@ -325,6 +325,36 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith   AveryS@contoso.com       10/1
 
 This example shows how to list all users with a specific role, such as `Global Administrator`. Microsoft recommends assigning the Global Administrator role to fewer than five people for best practice. See [best practices](https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices).
 
+### Example 16: List of user's onPremisesExtensionAttributes
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraUser -UserId 'SawyerM@contoso.com' `
+    -Property onPremisesExtensionAttributes |
+Select-Object -ExpandProperty onPremisesExtensionAttributes |
+Format-List
+```
+
+```Output
+extensionAttribute7  :
+extensionAttribute11 :
+extensionAttribute9  :
+extensionAttribute12 :
+extensionAttribute6  :
+extensionAttribute10 :
+extensionAttribute14 :
+extensionAttribute2  : Audit Role
+extensionAttribute8  :
+extensionAttribute13 :
+extensionAttribute15 :
+extensionAttribute4  :
+extensionAttribute5  :
+extensionAttribute1  : SOC Department
+extensionAttribute3  : Digital Engineering
+```
+
+This example shows how to list a user's onPremisesExtensionAttributes.
+
 ## Parameters
 
 ### -All
