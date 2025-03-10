@@ -21,7 +21,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
     begin {
         
-        $currentTenantId=(Get-EntraContext).TenantId        
+        $currentTenantId = (Get-EntraContext).TenantId        
         #External Tenant ID check
         if ($ExternalTenantId) {
             Write-Verbose -Message "$(Get-Date -f T) - Checking supplied external tenant ID - $ExternalTenantId..."
@@ -41,99 +41,103 @@ function Get-EntraBetaCrossTenantAccessActivity {
         $baseUri = "https://graph.microsoft.com/beta/auditLogs/signIns"
 
         function Get-SignIns {
-         param (
-         [string]$Filter
-         )
+            param (
+                [string]$Filter
+            )
 
             $signIns = @()
-            $uri = "$baseUri"+"?"+"`$filter=$Filter"
+            $uri = "$baseUri" + "?" + "`$filter=$Filter"
 
             try {
                 do {
                     $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
                        
                     if ($response -and $response.value) {
-                    $SignIns += $response.value
+                        $SignIns += $response.value
                     }
 
                     $uri = $response.'@odata.nextLink'  # Get next page if available
                 } while ($uri)
-                    # Group results by ResourceTenantID            
-                    return $signIns
-                }
+                # Group results by ResourceTenantID            
+                return $signIns
+            }
             catch {
                 return @()
-                }
             }
+        }
 
         #Get filtered sign-in logs and handle parameters
         if ($AccessDirection -eq "Outbound") {          
-            try{
-            if ($ExternalTenantId) {
-                Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Outbound' selected"
-                Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting sign-ins for local users accessing external tenant ID - $ExternalTenantId"
+            try {
+                if ($ExternalTenantId) {
+                    Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Outbound' selected"
+                    Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting sign-ins for local users accessing external tenant ID - $ExternalTenantId"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId eq '$ExternalTenantId'"      
-            }
-            else {
-                Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Outbound' selected"
-                Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting external tenant IDs accessed by local users"
+                    $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId eq '$ExternalTenantId'"      
+                }
+                else {
+                    Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Outbound' selected"
+                    Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting external tenant IDs accessed by local users"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'"
-            }
+                    $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'"
+                }
            
-            }catch{
+            }
+            catch {
                 $_.Exception | ForEach-Object { $_ | Format-List * }
             }
         }
         elseif ($AccessDirection -eq 'Inbound') {
-           try{
-            if ($ExternalTenantId) {
-                Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Inbound' selected"
-                Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting sign-ins for users accessing local tenant from external tenant ID - $ExternalTenantId"
+            try {
+                if ($ExternalTenantId) {
+                    Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Inbound' selected"
+                    Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting sign-ins for users accessing local tenant from external tenant ID - $ExternalTenantId"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
-            }
-            else {
-                Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Inbound' selected"
-                Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
+                    $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                }
+                else {
+                    Write-Verbose -Message "$(Get-Date -f T) - Access direction 'Inbound' selected"
+                    Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
 
-                $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                    $signIns = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                }
             }
-            }catch{
+            catch {
                 $_.Exception | ForEach-Object { $_ | Format-List * }
             }
         }
         else {
-            $inBound=@()
-            $outBound=$()
+            $inBound = @()
+            $outBound = $()
 
             if ($ExternalTenantId) {
-               try{
-                Write-Verbose -Message "$(Get-Date -f T) - Default access direction 'Both'"
-                Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting sign-ins for local users accessing external tenant ID - $ExternalTenantId"
+                try {
+                    Write-Verbose -Message "$(Get-Date -f T) - Default access direction 'Both'"
+                    Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting sign-ins for local users accessing external tenant ID - $ExternalTenantId"
 
-                $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$ExternalTenantId'" | Group-Object ResourceTenantID
+                    $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$ExternalTenantId'" | Group-Object ResourceTenantID
 
-                Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting sign-ins for users accessing local tenant from external tenant ID - $ExternalTenantId"
+                    Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting sign-ins for users accessing local tenant from external tenant ID - $ExternalTenantId"
 
-                $inBound = Get-SignIns  -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
-                }catch{
-                $_.Exception | ForEach-Object { $_ | Format-List * }
+                    $inBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$ExternalTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                }
+                catch {
+                    $_.Exception | ForEach-Object { $_ | Format-List * }
                 }
             }
             else {
                 Write-Verbose -Message "$(Get-Date -f T) - Default access direction 'Both'"
                 Write-Verbose -Message "$(Get-Date -f T) - Outbound: getting external tenant IDs accessed by local users"
-                try{
+                try {
 
-                $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'" | Group-Object ResourceTenantID
+                    $outBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and ResourceTenantId ne '$currentTenantId'" | Group-Object ResourceTenantID
 
-                Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
+                    Write-Verbose -Message "$(Get-Date -f T) - Inbound: getting external tenant IDs for external users accessing local tenant"
 
-                $inBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
-                }catch{
-                  $_.Exception | ForEach-Object { $_ | Format-List * }
+                    $inBound = Get-SignIns -Filter "CrossTenantAccessType ne 'none' and HomeTenantId ne '$currentTenantId' and TokenIssuerType eq 'AzureAD'" | Group-Object HomeTenantID
+                }
+                catch {
+                    $_.Exception | ForEach-Object { $_ | Format-List * }
                 }
             }
 
@@ -160,9 +164,10 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
                     #Attempt to resolve tenant ID
                     try { 
-                       $resolvedTenant = Resolve-EntraBetaTenant -TenantId $tenantId.Name -ErrorAction Stop 
-                    }catch { 
-                       Write-Warning $_.Exception.Message; Write-Verbose -Message "$(Get-Date -f T) - Issue resolving external tenant - $($tenantId.Name)"
+                        $resolvedTenant = Resolve-EntraBetaTenant -TenantId $tenantId.Name -ErrorAction Stop 
+                    }
+                    catch { 
+                        Write-Warning $_.Exception.Message; Write-Verbose -Message "$(Get-Date -f T) - Issue resolving external tenant - $($tenantId.Name)"
                     }
                     if ($resolvedTenant) {
                         if ($resolvedTenant.Result -eq 'Resolved') {
@@ -201,12 +206,12 @@ function Get-EntraBetaCrossTenantAccessActivity {
                 }
 
                 #Provide summary
-                $totalAnalysis=$()
+                $totalAnalysis = $()
                 if ($SummaryStats) {
                     Write-Verbose -Message "$(Get-Date -f T) - Creating summary stats for external tenant - $($tenantId.Name)"
                     #Handle resolving tenant ID
                     if ($ResolveTenantId) {
-                        $analysis = [pscustomobject]@{
+                        $analysis = [PSCustomObject]@{
                             ExternalTenantId          = $tenantId.Name
                             ExternalTenantName        = $externalTenantName
                             ExternalTenantRegionScope = $oidcMetadataTenantRegionScope
@@ -220,7 +225,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
                     }
                     else {
                         #Build custom output object
-                        $analysis = [pscustomobject]@{
+                        $analysis = [PSCustomObject]@{
                             ExternalTenantId = $tenantId.Name
                             AccessDirection  = $direction
                             SignIns          = ($tenantId).count
@@ -243,7 +248,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
                     foreach ($event in $tenantID.group) {
                         if ($ResolveTenantId) {
 
-                            $customEvent = [pscustomobject]@{
+                            $customEvent = [PSCustomObject]@{
                                 ExternalTenantId          = $tenantId.Name
                                 ExternalTenantName        = $externalTenantName
                                 ExternalDefaultDomain     = $defaultDomainName
@@ -266,7 +271,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
                             $customEvent
                         }
                         else {
-                            $customEvent = [pscustomobject]@{
+                            $customEvent = [PSCustomObject]@{
                                 ExternalTenantId      = $tenantId.Name
                                 AccessDirection       = $direction
                                 UserDisplayName       = $event.UserDisplayName
