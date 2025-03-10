@@ -68,7 +68,30 @@ Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AAD        NL                {@
 
 This example shows how to retrieve all tenant details.
 
-### Example 2: Get top one tenant details
+### Example 2: Get all licenses in the tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraTenantDetail | Select-Object -ExpandProperty ProvisionedPlans
+```
+
+```Output
+CapabilityStatus ProvisioningStatus Service                       AdditionalProperties
+---------------- ------------------ -------                       --------------------
+Enabled          Success            SharePoint
+Enabled          Success            exchange
+Enabled          Success            exchange
+Enabled          Success            exchange
+Enabled          Success            SCO
+Enabled          Success            exchange
+Enabled          Success            SharePoint
+Enabled          Success            CloudPC-MX
+Enabled          Success            YammerEnterprise
+```
+
+This example shows how to retrieve all licenses in the tenant.
+
+### Example 3: Get top one tenant details
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -83,7 +106,7 @@ Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NL                {@{Capabiliti
 
 This example shows how to retrieve details of a top one tenant in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
-### Example 3: Get directory tenant size quota
+### Example 4: Get directory tenant size quota
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'

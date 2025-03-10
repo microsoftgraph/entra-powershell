@@ -64,7 +64,99 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Active Directory PowerShell  33334444
 
 This example returns all audit logs of sign-ins.
 
-### Example 2: Get the first two logs
+### Example 2: List sign-ins failing Conditional Access policies
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLog -Filter "conditionalAccessStatus eq 'failure'" -Limit 10 | Select-Object id, userDisplayName, createdDateTime, appDisplayName, status
+```
+
+```Output
+id              : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+userDisplayName : Saywer Miller
+createdDateTime : 03/08/2025 04:03:14
+appDisplayName  : Microsoft Edge
+status          : @{errorCode=50158; failureReason=External security challenge not satisfied. User will be redirected to another page or authentication provider to satisfy additional authentication challenges.; additionalDetails=The user is required to satisfy additional require
+                  ments before finishing authentication, and was redirected to another page (such as terms of use or a third party MFA provider). This code alone does not indicate a failure on your users part to sign in. The sign in logs may indicate that this challenge was succ
+                  esfully passed or failed.}
+```
+
+This example returns all audit logs of sign-ins failing Conditional Access policies.
+
+### Example 3: List sign-ins from non-compliant devices
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLog -Filter "deviceDetail/isCompliant eq false" -Top 1 | Select-Object id, userDisplayName, appDisplayName, clientAppUsed, conditionalAccessStatus, deviceDetail, status
+```
+
+```Output
+id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+userDisplayName         : Sawyer Miller
+appDisplayName          : Security Copilot
+clientAppUsed           : Browser
+conditionalAccessStatus : success
+deviceDetail            : @{operatingSystem=Windows10; trustType=Azure AD registered; 22223333-cccc-4444-dddd-5555eeee6666; isCompliant=False; isManaged=False; browser=Edge 133.0.0; displayName=devbox}
+status                  : @{errorCode=50011; failureReason=The {redirectTerm} '{replyAddress}' specified in the request does not match the {redirectTerm}s configured for the application '{identifier}'. Make sure the {redirectTerm} sent in the request matches one added to your ap
+                          plication in the Azure portal. Navigate to {akamsLink} to learn more about how to fix this. {detail}; additionalDetails=Developer error - the app is attempting to sign in without the necessary or correct authentication parameters.}
+```
+
+This example returns all audit logs of sign-ins from non-compliant devices.
+
+### Example 4: List sign-in failures due to a specific Conditional Access policy
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+$policyId = "dcf66a39-965f-4958-871f-f62613b6cabd"
+Get-EntraAuditSignInLog -Filter "
+    conditionalAccessStatus eq 'failure' 
+    and appliedConditionalAccessPolicies/any(c:c/id eq '$policyId' and c/result eq 'failure')" -Limit 1 | 
+Select-Object id, userDisplayName, appDisplayName, clientAppUsed, 
+              conditionalAccessStatus, status, appliedConditionalAccessPolicies
+```
+
+```Output
+id                               : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+userDisplayName                  : ASawyer Miller
+appDisplayName                   : Azure Portal
+clientAppUsed                    : Browser
+conditionalAccessStatus          : failure
+status                           : @{errorCode=50158; failureReason=External security challenge not satisfied. User will be redirected to another page or authentication provider to satisfy additional authentication challenges.; additionalDetails=The user is required to satisfy a
+                                   dditional requirements before finishing authentication, and was redirected to another page (such as terms of use or a third party MFA provider). This code alone does not indicate a failure on your users part to sign in. The sign in logs may ind
+                                   icate that this challenge was succesfully passed or failed.}
+appliedConditionalAccessPolicies : {@{id=22223333-cccc-4444-dddd-5555eeee6666; enforcedSessionControls=System.Object[]; displayName=CAX - All Contoso (and Guest) Users; result=failure; enforcedGrantControls=System.Object[]}, @{id=00001111-aaaa-2222-bbbb-3333cccc4444; enf
+                                   orcedSessionControls=System.Object[]; displayName=CA01 - MFA - All Apps - All Users; result=success; enforcedGrantControls=System.Object[]}, @{id=22223333-cccc-4444-dddd-5555eeee6666; enforcedSessionControl
+                                   s=System.Object[]; displayName=CA001 - Require Passwordless Auth and TAP - All Users; result=success; enforcedGrantControls=System.Object[]}, @{id=33334444-dddd-5555-eeee-6666ffff7777; enforcedSessionControls=System.Object[]; displayName=CA14 -
+                                    Require MFA for VPN Access; result=notApplied; enforcedGrantControls=System.Object[]}…}
+```
+
+This example returns all audit logs of sign-ins failures due to a specific Conditional Access policy.
+
+### Example 5: List risky sign-ins
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLog -Filter "
+    (riskLevelDuringSignIn ne 'none' or 
+    riskEventTypes_v2/any(r:r ne 'none'))
+" -Limit 1 | 
+Select-Object id, userDisplayName, appDisplayName, clientAppUsed, 
+              riskLevelDuringSignIn, riskEventTypes_v2
+```
+
+```Output
+id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+userDisplayName       : Sawyer Miller
+appDisplayName        : Security Copilot
+clientAppUsed         : Browser
+riskLevelDuringSignIn : low
+riskEventTypes_v2     : {unfamiliarFeatures}
+```
+
+This example returns all audit logs of risky sign-ins.
+
+
+### Example 6: Get the first two logs
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
@@ -80,7 +172,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222
 
 This example returns the first two audit logs of sign-ins. You can use `-Limit` as an alias for `-Top`.
 
-### Example 3: Get audit logs containing a given AppDisplayName
+### Example 7: Get audit logs containing a given AppDisplayName
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
@@ -95,7 +187,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer PowerShell  00001111-aaaa-22
 
 This example demonstrates how to retrieve sign-in logs by AppDisplayName. You can use `-Limit` as an alias for `-Top`.
 
-### Example 4: Get all sign-in logs between dates
+### Example 8: Get all sign-in logs between dates
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
@@ -104,7 +196,7 @@ Get-EntraAuditSignInLog -Filter "createdDateTime ge 2024-07-01T00:00:00Z and cre
 
 This example shows how to retrieve sign-in logs between dates.
 
-### Example 5: List failed sign-ins for a user
+### Example 9: List failed sign-ins for a user
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
