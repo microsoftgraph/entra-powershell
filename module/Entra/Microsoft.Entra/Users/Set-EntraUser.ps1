@@ -772,7 +772,7 @@ function Set-EntraUser {
 
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'' to authenticate."
+            Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All, Directory.AccessAsUser.All' to authenticate."
             return
         }
 
