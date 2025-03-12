@@ -1,10 +1,10 @@
 {
-    "Microsoft.Entra.Users":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions","Microsoft.Graph.Users.Functions"],
+    "Microsoft.Entra.Users":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions","Microsoft.Graph.Users.Functions","Microsoft.Entra.Authentication"],
     "Microsoft.Entra.Authentication":["Microsoft.Graph.Authentication"],
-    "Microsoft.Entra.Groups":["Microsoft.Graph.Groups"],
-    "Microsoft.Entra.DirectoryManagement":["Microsoft.Graph.Identity.DirectoryManagement"],
-    "Microsoft.Entra.Governance":["Microsoft.Graph.Identity.Governance"],
-    "Microsoft.Entra.SignIns":["Microsoft.Graph.Identity.SignIns"],
-    "Microsoft.Entra.Applications":["Microsoft.Graph.Applications"],
-    "Microsoft.Entra.Reports":["Microsoft.Graph.Reports"]
+    "Microsoft.Entra.Groups":["Microsoft.Graph.Groups","Microsoft.Entra.Authentication"],
+    "Microsoft.Entra.DirectoryManagement":["Microsoft.Graph.Identity.DirectoryManagement","Microsoft.Entra.Authentication"],
+    "Microsoft.Entra.Governance":["Microsoft.Graph.Identity.Governance","Microsoft.Entra.Authentication"],
+    "Microsoft.Entra.SignIns":["Microsoft.Graph.Identity.SignIns","Microsoft.Entra.Authentication"],
+    "Microsoft.Entra.Applications":["Microsoft.Graph.Applications","Microsoft.Entra.Authentication"],
+    "Microsoft.Entra.Reports":["Microsoft.Graph.Reports","Microsoft.Entra.Authentication"]
 }

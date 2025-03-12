@@ -479,7 +479,11 @@ $($requiredModulesEntries -join ",`n")
             
             if ($dependencyMapping.ContainsKey($keyModuleName)) {
                 foreach ($dependency in $dependencyMapping[$keyModuleName]) {
-                    $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                    if($dependency -eq 'Microsoft.Entra.Authentication' -or $dependency -eq 'Microsoft.Entra.Beta.Authentication'){
+                        $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredAuthModuleVersion }
+                    }else{
+                        $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                    }
                 }
             }
         }

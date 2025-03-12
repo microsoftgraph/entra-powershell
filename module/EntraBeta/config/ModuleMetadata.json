@@ -17,6 +17,7 @@
     "Microsoft.Graph.Beta.Reports"
   ],
   "requiredModulesVersion": "2.25.0",
+  "requiredAuthModuleVersion":"1.0.3",
   "compatibleEditions": [
     "Core",
     "Desktop"
