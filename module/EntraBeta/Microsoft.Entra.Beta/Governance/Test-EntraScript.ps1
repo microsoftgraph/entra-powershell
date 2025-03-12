@@ -108,3 +108,4 @@ function Test-EntraScript {
 		}
 	}
 }
+
