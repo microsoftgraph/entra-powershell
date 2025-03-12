@@ -40,6 +40,8 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
         $baseUri = "https://graph.microsoft.com/beta/auditLogs/signIns"
 
+        $firstExecution=$true
+
         function Get-SignIns {
             param (
                 [string]$Filter
@@ -50,8 +52,15 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
             try {
                 do {
-                    $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
-                       
+                    # If it's the first time we are calling Invoke-GraphRequest, pass customHeaders
+                    if($firstExecution){
+                         $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
+                         $firstExecution=$false
+                    }else{
+                        # No need to pass customHeaders
+                          $response = Invoke-GraphRequest -Method GET -Uri $uri
+                    }
+                   
                     if ($response -and $response.value) {
                         $SignIns += $response.value
                     }
