@@ -51,7 +51,7 @@ function Test-EntraScript {
 			foreach ($command in $allCommands) {
 				if ($command.CommandElements[0].Value -notin $ForbiddenCommands) { continue }
 				$findings += [PSCustomObject]@{
-					PSTypeName = 'Microsoft.Entra.CommandRequirement'
+					PSTypeName = 'Microsoft.Entra.Beta.CommandRequirement'
 					Name       = $Name
 					Line       = $command.Extent.StartLineNumber
 					Type       = 'UnsupportedCommand'
@@ -62,7 +62,7 @@ function Test-EntraScript {
 			foreach ($requiredCommand in $RequiredCommands) {
 				if ($requiredCommand -notin $allCommandNames) { continue }
 				$findings += [PSCustomObject]@{
-					PSTypeName = 'Microsoft.Entra.CommandRequirement'
+					PSTypeName = 'Microsoft.Entra.Beta.CommandRequirement'
 					Name       = $Name
 					Line       = -1
 					Type       = 'RequiredCommandMissing'
