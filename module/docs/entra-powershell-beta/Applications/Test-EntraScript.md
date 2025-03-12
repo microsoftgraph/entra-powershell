@@ -2,15 +2,17 @@
 title: Test-EntraScript
 description: This article provides details on the Test-EntraScript command.
 
+
 ms.topic: reference
-ms.date: 02/05/2025
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Module Name: Microsoft.Entra.Beta
-online version: <https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Test-EntraScript>
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Test-EntraScript
 
 schema: 2.0.0
 ---
@@ -19,73 +21,64 @@ schema: 2.0.0
 
 ## Synopsis
 
-Checks whether the provided script is using AzureAD commands that are not supported by Microsoft.Entra.Beta.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Syntax
 
-### TestQuery (Default)
-
 ```powershell
 Test-EntraScript
- [-Path <String>]
+ -Path <String[]>
  [-Content <String>]
- [-Quiet <Switch>]
+ [-Quiet]
  [<CommonParameters>]
 ```
 
 ## Description
 
-`Test-EntraScript` checks whether the provided script is using AzureAD commands that are not supported by Microsoft.Entra.Beta.Beta. This cmdlet can scan scripts from a file or from code content directly. It helps identify potential issues with using the Microsoft.Entra.Beta module instead of the AzureAD module.
+Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
 
 ## Examples
 
-### Example 1: Check if a script could run under Microsoft.Entra.Beta with quiet output
+### Example 1
 
 ```powershell
-PS C:\> Test-EntraScript -Path .\usercreation.ps1 -Quiet
+Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
-```Output
-$true
-```
+Returns whether the script `usercreation.ps1` could run under Microsoft.Entra.Beta.
 
-This example returns whether the script `usercreation.ps1` could run under the Microsoft.Entra.Beta module (`$true`) or not (`$false`).
-
-### Example 2: Check all scripts in a directory for compatibility with Microsoft.Entra
+### Example 2
 
 ```powershell
-PS C:\> Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
+Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
-```Output
-Test-EntraScript : The script 'usercreation.ps1' contains the following issues:
-Line 23: Using the AzureAD cmdlet 'Get-AzureADUser'.
-Line 42: Using the AzureAD cmdlet 'Set-AzureADUser'.
-```
-
-This example returns a list of all scripts that would not run under the Microsoft.Entra.Beta module, listing each issue with the line number and corresponding code.
+Returns a list of all scripts that wouldn't run under the Microsoft.Entra.Beta module, listing each issue with line and code.
 
 ## Parameters
 
 ### -Path
 
-Specifies the path to the script file(s) to scan. This is used when you are scanning one or more script files directly.
+Path to one or more script files to scan.
+Or name of the content, when also specifying -Content
 
 ```yaml
-Type: System.String
+Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: FullName, Name
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
 ### -Content
 
-Specifies the code content to scan. Use this parameter when scanning code that has no file representation, such as code directly from a repository.
+Code content to scan.
+Used when scanning code that has no file representation (for example,
+straight from a repository).
 
 ```yaml
 Type: System.String
@@ -93,7 +86,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -101,16 +94,16 @@ Accept wildcard characters: False
 
 ### -Quiet
 
-When specified, only returns `$true` or `$false`, indicating whether the script could run under Microsoft.Entra.Beta (`$true`) or not (`$false`).
+Only return $true or $ false, based on whether the script could run under Microsoft.Entra.Beta (`$true`) or not (`$false`)
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -121,20 +114,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-This cmdlet does not accept any specific input types other than the parameters listed.
-
 ## Outputs
-
-This cmdlet returns:
-
-- A boolean value (`$true` or `$false`) if the `-Quiet` parameter is used.
-- A list of issues, including line numbers and code, if the script is incompatible with Microsoft.Entra.Beta.
 
 ## Notes
 
-- The cmdlet checks for the usage of AzureAD-specific cmdlets and other compatibility issues.
-- It is useful for ensuring that scripts designed for AzureAD will run under the Microsoft.Entra.Beta module.
-
 ## Related Links
-
-- [Microsoft.Entra PowerShell Module](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/)
