@@ -45,7 +45,7 @@ foreach ($destinationModuleName in $content.destinationModuleName){
 		$repoPath = (Get-PSRepository -Name (Get-LocalPSRepoName)).SourceLocation
 		$authModulePath = Join-Path $repoPath $destinationModuleName
 		if (-not (Test-Path $authModulePath)) {
-			Write-Host "Module not found in the local repository: $modulePath"
+			Write-Host "Module not found in the local repository: $authModulePath"
 			#AuthModulePath doesn't exist in the local PS Gallery, so publish the module
 			 Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 		   }else{

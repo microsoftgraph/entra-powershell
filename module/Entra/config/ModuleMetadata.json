@@ -14,7 +14,8 @@
     "Microsoft.Graph.Identity.Governance",
     "Microsoft.Graph.Identity.SignIns",
     "Microsoft.Graph.Applications",
-    "Microsoft.Graph.Reports"
+    "Microsoft.Graph.Reports",
+    "Microsoft.Entra.Authentication"
   ],
   "requiredModulesVersion": "2.25.0",
   "requiredAuthModuleVersion":"1.0.3",
