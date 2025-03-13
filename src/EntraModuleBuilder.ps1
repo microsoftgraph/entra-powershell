@@ -541,6 +541,55 @@ $($requiredModulesEntries -join ",`n")
    # $this.CreateRootModuleManifest($module)
 }
 
+[void] InjectAzureAdAliases([string] $SubModulePath) {
+    $aliasFile = Join-Path -Path $SubModulePath -ChildPath "Enable-EntraAzureADAlias.ps1"
+
+    # Ensure the alias file exists
+    if (!(Test-Path $aliasFile)) {
+        Write-Host "[WARN] Alias file not found in $SubModulePath. Skipping..."
+        return
+    }
+
+    # Read all alias lines using regex
+    $pattern = "Set-Alias\s+-Name\s+([\w-]+)\s+-Value\s+([\w-]+)"
+    $aliasLines = @(Get-Content -Path $aliasFile | Where-Object { $_ -match $pattern })
+
+    
+    foreach ($alias in $aliasLines) {
+        Log-Message "[SUCCESS] [EntraModuleBuilder] $alias found."
+    }
+
+    if ($aliasLines.Count -eq 0) {
+        Log-Message "[INFO] [EntraModuleBuilder] [EntraModuleBuilder] No alias definitions found in $aliasFile. Skipping..."
+        return
+    }
+
+    # Get all .ps1 files in the submodule (excluding Enable-EntraAzureADAlias.ps1)
+    $ps1Files = Get-ChildItem -Path $SubModulePath -Filter "*.ps1" | Where-Object { $_.Name -ne "Enable-EntraAzureADAlias.ps1" }
+
+    foreach ($ps1File in $ps1Files) {
+        $cmdletName = [System.IO.Path]::GetFileNameWithoutExtension($ps1File.Name)
+
+        # Find alias lines that reference this cmdlet
+        $matchingAliases = @($aliasLines | Where-Object { $_ -match "Set-Alias\s+-Name\s+(\S+)\s+-Value\s+$cmdletName\b" })
+
+        if ($matchingAliases.Count -gt 0) {
+            Log-Message "[INFO] [EntraModuleBuilder] Injecting aliases for $cmdletName into $($ps1File.FullName)"
+
+            # Read existing content
+            $fileContent = Get-Content -Path $ps1File.FullName -Raw
+
+            # Ensure there's no extra blank line before appending
+            if ($fileContent -match "\S") {
+                Set-Content -Path $ps1File.FullName -Value ($fileContent.TrimEnd() + "`r`n" + $matchingAliases -join "`r`n")
+            } else {
+                Set-Content -Path $ps1File.FullName -Value ($matchingAliases -join "`r`n")
+            }
+        }
+    }
+
+    Log-Message "[INFO] AzureAD Aliases injection complete."
+}
 
 [void] CreateModuleHelp([string] $Module) {
 
