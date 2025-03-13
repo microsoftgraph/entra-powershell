@@ -466,12 +466,7 @@ $($requiredModulesEntries -join ",`n")
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
         #QuickFix: TODO: Generalize to use this with any sub-module, by auto-extracting the alias
-        $aliasesToExport=@()
-        $aliasesToExport=if($manifestFileName -eq "Microsoft.Entra.DirectoryManagement.psd1"){
-            @("Get-EntraObjectByObjectId")
-        }elseif($manifestFileName -eq "Microsoft.Entra.Beta.DirectoryManagement.psd1"){
-            @("Get-EntraBetaObjectByObjectId")
-        }
+        $aliasesToExport=$this.ExtractSubModuleAliases($subDir.FullName,$moduleName)
       
         # Collect required modules from dependency mapping
         $requiredModules = @()
@@ -549,6 +544,35 @@ $($requiredModulesEntries -join ",`n")
    # $this.CreateRootModuleManifest($module)
 }
 
+[string[]] ExtractSubModuleAliases([string] $SubModulePath, [string] $SubModuleName) {
+    $aliasesToExport = @()
+
+    Log-Message "[INFO] Extracting Aliases for $SubModuleName"
+    
+    # Get all .ps1 files in the submodule except Enable-EntraAzureADAlias.ps1
+    $ps1Files = Get-ChildItem -Path $SubModulePath -Filter "*.ps1" | Where-Object { $_.Name -ne "Enable-EntraAzureADAlias.ps1" }
+
+    foreach ($ps1File in $ps1Files) {
+        $cmdletName = [System.IO.Path]::GetFileNameWithoutExtension($ps1File.Name)
+        
+        # Read file contents and extract Set-Alias lines
+        $aliasLines = Select-String -Path $ps1File.FullName -Pattern "Set-Alias\s+-Name\s+(\S+)\s+-Value\s+(\S+)" -AllMatches
+        
+        foreach ($match in $aliasLines) {
+            $aliasName = $match.Matches[0].Groups[1].Value
+            $targetCmdlet = $match.Matches[0].Groups[2].Value
+            
+            Log-Message "[INFO] Found Alias $aliasName"
+
+            # Validate that the alias matches the current .ps1 file's cmdlet
+            if ($targetCmdlet -eq $cmdletName) {
+                $aliasesToExport += $aliasName
+            }
+        }
+    }
+
+    return $aliasesToExport
+}
 
 [void] CreateModuleHelp([string] $Module) {
 
