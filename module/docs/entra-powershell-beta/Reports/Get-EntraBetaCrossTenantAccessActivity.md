@@ -26,10 +26,10 @@ Get cross-tenant user sign-in activity.
 
 ```powershell
 Get-EntraBetaCrossTenantAccessActivity
- [-All]
- [-Top <Int32>]
- [-Filter <String>]
- [-Property <String[]>]
+ [-AccessDirection]
+ [-ExternalTenantId <String>]
+ [-SummaryStats]
+ [-ResolveTenantId]
  [<CommonParameters>]
 ```
 

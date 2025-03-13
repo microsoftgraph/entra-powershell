@@ -2,20 +2,20 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Get-EntraBetaCrossTenantAccessActivity {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param(
-        [Parameter(Position = 0, HelpMessage = "Specify the access direction: 'Inbound' for external users accessing your tenant, or 'Outbound' for your users accessing external tenants.")]
+        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Specify the access direction: 'Inbound' for external users accessing your tenant, or 'Outbound' for your users accessing external tenants.")]
         [ValidateSet('Inbound', 'Outbound')]
         [string]$AccessDirection,
 
-        [Parameter(Position = 1, HelpMessage = "Specify the external tenant ID (GUID) to filter sign-ins by a specific external tenant.")]
+        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Specify the external tenant ID (GUID) to filter sign-ins by a specific external tenant.")]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [guid]$ExternalTenantId,
 
-        [Parameter(HelpMessage = "Include summary statistics for sign-ins.")]
+        [Parameter(ParameterSetName = "GetQuery",HelpMessage = "Include summary statistics for sign-ins.")]
         [switch]$SummaryStats,
 
-        [Parameter(HelpMessage = "Resolve and display tenant details based on the provided tenant ID.")]
+        [Parameter(ParameterSetName = "GetQuery",HelpMessage = "Resolve and display tenant details based on the provided tenant ID.")]
         [switch]$ResolveTenantId
     )
 

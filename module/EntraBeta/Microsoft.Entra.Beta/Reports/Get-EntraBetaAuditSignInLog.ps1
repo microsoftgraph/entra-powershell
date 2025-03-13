@@ -98,4 +98,3 @@ function Get-EntraBetaAuditSignInLog {
         $response
     }     
 }
-
