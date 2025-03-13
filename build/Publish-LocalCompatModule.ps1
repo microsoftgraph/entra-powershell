@@ -40,11 +40,23 @@ if($moduleName -eq 'Entra'){
 
 # Publish Graph PowerShell modules (e.g Microsoft.Entra.Users) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
+	#Special case for the Auth Module since it's a required dependency for all the others
 	if($destinationModuleName -eq 'Microsoft.Entra.Authentication' -or $destinationModuleName -eq 'Microsoft.Entra.Beta.Authentication'){
-		$existsInGallery = Find-Module -Repository (Get-LocalPSRepoName) -Name $destinationModuleName -Verbose | Where-Object { $_.Version -eq $content.authModuleVersion }
-		if(-not $existsInGallery){
-             Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
-		}
+		$repoPath = (Get-PSRepository -Name (Get-LocalPSRepoName)).SourceLocation
+		$authModulePath = Join-Path $repoPath $destinationModuleName
+		if (-not (Test-Path $authModulePath)) {
+			Write-Host "Module not found in the local repository: $modulePath"
+			#AuthModulePath doesn't exist in the local PS Gallery, so publish the module
+			 Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+		   }else{
+			#It exists, check for the version before publishing
+			$existsInGallery = Find-Module -Repository (Get-LocalPSRepoName) -Name $destinationModuleName -Verbose | Where-Object { $_.Version -eq $content.authModuleVersion }
+			if(-not $existsInGallery){
+				Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+			}     
+			# else do nothing.       
+		  }
+	#Publish the other sub-Modules
 	}else{
         Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 	}
