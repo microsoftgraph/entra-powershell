@@ -40,7 +40,11 @@ if($moduleName -eq 'Entra'){
 
 # Publish Graph PowerShell modules (e.g Microsoft.Graph.User) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
-    Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+	if($destinationModuleName -eq 'Microsoft.Entra.Authentication' or $destinationModuleName -eq 'Microsoft.Entra.Beta.Authentication'){
+        Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+	}else{
+        Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+	}
 }
 
 # Publish Entra(Beta) sub-modules (e.g Microsoft.Entra.Users) to the Local gallery.
