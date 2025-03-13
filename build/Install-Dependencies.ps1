@@ -23,5 +23,9 @@ Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+	if($moduleName -eq "Microsoft.Entra.Authentication" -or $moduleName -eq "Microsoft.Entra.Beta.Authentication"){
+		Install-Module $moduleName -scope currentuser -RequiredVersion $content.authModuleVersion -Force -AllowClobber
+	}else{
+        Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+	}
 }
