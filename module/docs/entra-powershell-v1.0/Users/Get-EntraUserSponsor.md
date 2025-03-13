@@ -3,11 +3,15 @@ title: Get-EntraUserSponsor
 description: This article provides details on the Get-EntraUserSponsor command.
 
 ms.topic: reference
-ms.date: 02/10/2025
+ms.date: 03/06/2025
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: dbutoyi
 manager: CelesteDG
 author: msewaweru
+
+external help file: Microsoft.Entra.Users-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUserSponsor
 
 schema: 2.0.0
 ---
