@@ -38,10 +38,13 @@ if($moduleName -eq 'Entra'){
     Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
-# Publish Graph PowerShell modules (e.g Microsoft.Graph.User) to the the Local gallery.
+# Publish Graph PowerShell modules (e.g Microsoft.Entra.Users) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
 	if($destinationModuleName -eq 'Microsoft.Entra.Authentication' -or $destinationModuleName -eq 'Microsoft.Entra.Beta.Authentication'){
-        Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+		$existsInGallery = Find-Module -Repository (Get-LocalPSRepoName) -Name $destinationMoudleName -Verbose | Where-Object { $_.Version -eq $content.authModuleVersion }
+		if(-not $existsInGallery){
+             Publish-Module -Name $destinationModuleName -RequiredVersion $content.authModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+		}
 	}else{
         Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 	}
