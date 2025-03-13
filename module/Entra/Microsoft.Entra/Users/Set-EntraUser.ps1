@@ -776,6 +776,14 @@ function Set-EntraUser {
             return
         }
 
+        # Generate custom headers
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+
+
+        if ($null -ne $customHeaders) {
+            $PSBoundParameters['Headers'] = $customHeaders
+        }
+
         try {
             $outBuffer = $null
             if ($PSBoundParameters.TryGetValue('OutBuffer', [ref]$outBuffer)) {
