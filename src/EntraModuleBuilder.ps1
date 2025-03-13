@@ -465,6 +465,14 @@ $($requiredModulesEntries -join ",`n")
 
         $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
+        #QuickFix: TODO: Generalize to use this with any sub-module, by auto-extracting the alias
+        $aliasesToExport=@()
+        $aliasesToExport=if($manifestFileName -eq "Microsoft.Entra.DirectoryManagement.psd1"){
+            @("Get-EntraObjectByObjectId")
+        }elseif($manifestFileName -eq "Microsoft.Entra.Beta.DirectoryManagement.psd1"){
+            @("Get-EntraBetaObjectByObjectId")
+        }
+      
         # Collect required modules from dependency mapping
         $requiredModules = @()
         if (Test-Path $dependencyMappingPath) {
@@ -491,7 +499,7 @@ $($requiredModulesEntries -join ",`n")
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
             CmdletsToExport = @()
-            AliasesToExport = @()
+            AliasesToExport = $aliasesToExport
             Author = $($content.authors)
             CompanyName = $($content.owners)
             FileList = @("$manifestFileName", "$moduleFileName", "$helpFileName")

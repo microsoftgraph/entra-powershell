@@ -4,7 +4,6 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
-     [Alias("Get-EntraObjectByObjectId")]
     param (
                 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Resource types that specifies the set of resource collections, for example: user, group, and device objects. Default is directoryObject.")]
