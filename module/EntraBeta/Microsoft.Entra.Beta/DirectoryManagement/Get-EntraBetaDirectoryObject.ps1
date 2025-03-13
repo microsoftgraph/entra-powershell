@@ -4,6 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaDirectoryObject {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+     [Alias("Get-EntraBetaObjectByObjectId")]
     param (
                 
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Resource types that specifies the set of resource collections, for example: user, group, and device objects. Default is directoryObject.")]
