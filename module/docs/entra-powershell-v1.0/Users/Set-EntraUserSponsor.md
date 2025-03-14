@@ -34,7 +34,7 @@ Set-EntraUserSponsor
  [<CommonParameters>]
 ```
 
-### SetGroupSponsor
+### Group
 
 ```powershell
 Set-EntraUserSponsor
