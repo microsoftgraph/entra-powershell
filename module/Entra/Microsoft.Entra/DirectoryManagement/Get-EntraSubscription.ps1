@@ -5,7 +5,6 @@
 function Get-EntraSubscription {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Alias("ObjectId")]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique object ID of the subscription to retrieve.")]
         [Alias('SubscriptionId')]
         [System.String] $CommerceSubscriptionId,
