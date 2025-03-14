@@ -46,8 +46,8 @@ The `Get-EntraSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
 In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles support this operation:
 
-- Dynamics 365 Business Central Administrator (read-only access to standard properties)  
-- Global Reader  
+- Dynamics 365 Business Central Administrator (read-only access to standard properties)
+- Global Reader
 - Directory Readers
 
 ## Examples
@@ -233,3 +233,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraSubscription](Get-EntraSubscription.md)
