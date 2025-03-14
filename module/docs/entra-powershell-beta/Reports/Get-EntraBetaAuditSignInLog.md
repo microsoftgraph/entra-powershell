@@ -160,8 +160,7 @@ This example returns all audit logs of risky sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLog `
- -Filter "authenticationRequirement ne 'multiFactorAuthentication' and isInteractive eq true"
+Get-EntraBetaAuditSignInLog -Filter "authenticationRequirement ne 'multiFactorAuthentication' and isInteractive eq true"
 ```
 
 ```Output
