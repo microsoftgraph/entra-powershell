@@ -257,7 +257,25 @@ cccccccc-2222-3333-4444-dddddddddddd Sawyer Miller sawyerm_gmail.com#EXT#@contos
 
 This example demonstrates how to retrieve guest users with active licenses.
 
-### Example 12: Retrieve users without managers
+### Example 12: List users with a specific license
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$skuId = (Get-EntraBetaSubscribedSku | Where-Object { $_.SkuPartNumber -eq 'POWERAPPS_DEV' }).SkuId
+Get-EntraBetaUser -Filter "assignedLicenses/any(l:l/skuId eq $skuId)" -Select id, displayName, userPrincipalName, userType, accountEnabled, assignedLicenses |
+Select-Object id, displayName, userPrincipalName, userType, accountEnabled | Format-Table -AutoSize
+```
+
+```Output
+id                                   displayName     userPrincipalName        userType accountEnabled
+--                                   -----------     -----------------        -------- --------------
+cccccccc-2222-3333-4444-dddddddddddd Angel Brown     AngelB@contoso.com       Member   True
+dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith     AveryS@contoso.com       Member   True
+```
+
+This example demonstrates how to retrieve users with a specific license.
+
+### Example 13: Retrieve users without managers
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -284,7 +302,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
 
 This example demonstrates how to retrieve users without managers.
 
-### Example 13: List all guest users
+### Example 14: List all guest users
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -300,13 +318,13 @@ Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-
 
 This example demonstrates how to retrieve list all guest users.
 
-### Example 14: List five recently created users
+### Example 15: List five recently created users
 
 ```powershell
 Get-EntraBetaUser -All | Sort-Object -Property createdDateTime -Descending | Select-Object -First 5
 ```
 
-### Example 15: List of users with Global Administrator role
+### Example 16: List of users with Global Administrator role
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'RoleManagement.Read.Directory'
@@ -325,6 +343,24 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith   AveryS@contoso.com       10/1
 ```
 
 This example shows how to list all users with a specific role, such as `Global Administrator`. Microsoft recommends assigning the Global Administrator role to fewer than five people for best practice. See [best practices](https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices).
+
+### Example 17: List all Users with revoked sessions in the last 30 Days
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+$pastDate = (Get-Date).AddDays(-30).ToUniversalTime()
+Get-EntraBetaUser | Where-Object { $_.signInSessionsValidFromDateTime -ge $pastDate } |
+Select-Object DisplayName, UserPrincipalName, signInSessionsValidFromDateTime
+```
+
+```Output
+displayName     userPrincipalName      signInSessionsValidFromDateTime
+-----------     -----------------      -------------------------------
+Angel Brown     AngelB@contoso.com     03/03/2025 16:13:47
+Avery Smith     AveryS@contoso.com     03/03/2025 16:05:02
+```
+
+This example shows how to list all users with revoked sessions in the last 30 Days.
 
 ## Parameters
 
