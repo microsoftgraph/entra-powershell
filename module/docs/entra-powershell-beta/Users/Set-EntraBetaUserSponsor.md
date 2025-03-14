@@ -34,7 +34,7 @@ Set-EntraBetaUserSponsor
  [<CommonParameters>]
 ```
 
-### SetGroupSponsor
+### Group
 
 ```powershell
 Set-EntraBetaUserSponsor
