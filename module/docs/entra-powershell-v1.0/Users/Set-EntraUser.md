@@ -79,7 +79,7 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled:$true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -91,7 +91,7 @@ This example updates the specified user's AccountEnabled parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } |
 ForEach-Object { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
@@ -111,7 +111,6 @@ $params = @{
     Country          = 'Add country name'
     Department       = 'Add department name'
     GivenName        = 'Sawyer Miller G'
-    ImmutableId      = '#1' 
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
@@ -135,15 +134,10 @@ This example updates the specified user's property.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params= @{
-UserId = 'SawyerM@contoso.com'
-PasswordProfile  = @{
-   Password= '*****'
-   ForceChangePasswordNextLogin = $true
-   EnforceChangePasswordPolicy = $false
-   }
+Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
+    Password = '*****'
+    ForceChangePasswordNextSignIn = $true
 }
-Set-EntraUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
@@ -162,6 +156,38 @@ This example updates the specified user's Usage Location for license management.
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
+
+### Example 7: Set user's extension properties
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name
+$additionalProperties = @{ $extensionName = "Survey.Report" }
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
+```
+
+This example updates the specified user's extension properties, for example, an app role for an application.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 8: update user's onPremisesExtension attributes properties
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$onPremisesExtensionAttributes = @{
+    "onPremisesExtensionAttributes" = @{
+        "extensionAttribute1" = "SOC Department"
+        "extensionAttribute2" = "Audit Role"
+    }
+} | ConvertTo-Json -Depth 2
+
+Set-EntraUser -UserId 'SawyerM@contoso.com' -BodyParameter $onPremisesExtensionAttributes
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ## Parameters
 
@@ -300,7 +326,7 @@ Accept wildcard characters: False
 
 This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
 
-Important: Do not use the $ and _ characters when specifying this property.
+Important: Do not use the $ and \_ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -363,12 +389,13 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
+
 Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity
 
 Required: True
 Position: Named
