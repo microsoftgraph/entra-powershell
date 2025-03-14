@@ -60,4 +60,3 @@ function Get-EntraBetaDirectoryObject {
     }    
 }
 Set-Alias -Name Get-EntraBetaObjectByObjectId -Value Get-EntraBetaDirectoryObject -Scope Global -Force
-
