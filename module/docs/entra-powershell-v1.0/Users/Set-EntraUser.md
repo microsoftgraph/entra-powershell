@@ -79,7 +79,7 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled:$true
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -114,7 +114,7 @@ $params = @{
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
-    OtherMails       = 'test12@Contoso.com'
+    OtherMails       = 'johndoe@contosodev.com'
     PasswordPolicies = 'DisableStrongPassword'
     State            = 'UP'
     StreetAddress    = 'Add address'

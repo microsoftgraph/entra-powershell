@@ -5,10 +5,10 @@
 function Set-EntraUserExtension {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
-        [Alias('ObjectId')]            
         [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
         [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $UserId,
                 
         [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The dictionary of extension name and values. For example, @{extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup='Job Group N'; extension_d2ba83696c3f45429fbabb363ae391a0_JobTitle='Job Title N'}")]
@@ -88,13 +88,16 @@ function Set-EntraUserExtension {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
 
+        $uri = "https://graph.microsoft.com/v1.0/users/$UserId"
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         if ($PSCmdlet.ParameterSetName -eq "SetSingle") {
-            $additionalProperties = @{ $ExtensionName = $ExtensionValue }
-            $response = Set-EntraUser -UserId $UserId -AdditionalProperties $additionalProperties -Headers $customHeaders
+            $properties = @{ $ExtensionName = $ExtensionValue }
+            $jsonBody = $properties | ConvertTo-Json -Depth 2
+            $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
             return $response
         }
         elseif ($PSCmdlet.ParameterSetName -eq "SetMultiple") {
@@ -105,13 +108,11 @@ function Set-EntraUserExtension {
            
             # Convert hashtable to JSON
             $jsonBody = $properties | ConvertTo-Json -Depth 2
-
-            # Make the PATCH request to update the user properties
-            $uri = "https://graph.microsoft.com/v1.0/users/$UserId"
+            # Make the PATCH request to update the user properties            
             $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
             
             return $response
-        }    
+        }
     }
 
 }
