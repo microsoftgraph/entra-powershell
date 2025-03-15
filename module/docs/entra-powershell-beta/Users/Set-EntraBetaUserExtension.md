@@ -3,7 +3,7 @@ title: Set-EntraBetaUserExtension
 description: This article provides details on the Set-EntraBetaUserExtension command.
 
 ms.topic: reference
-ms.date: 07/26/2024
+ms.date: 03/16/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -24,12 +24,12 @@ Sets a user extension.
 
 ## Syntax
 
-### SetSingle
+### SetSingle (Default)
 
 ```powershell
 Set-EntraBetaUserExtension
+ -UserId <String>
  -ExtensionName <String>
- -ObjectId <String>
  -ExtensionValue <String>
  [<CommonParameters>]
 ```
@@ -38,8 +38,8 @@ Set-EntraBetaUserExtension
 
 ```powershell
 Set-EntraBetaUserExtension
- -ObjectId <String>
- -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
+ -UserId <String>
+ -ExtensionNameValues <String, String>
  [<CommonParameters>]
 ```
 
@@ -47,76 +47,61 @@ Set-EntraBetaUserExtension
 
 The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
 
+`Update-EntraBetaUserExtension` is an alias for `Set-EntraBetaUserExtension`.
+
 ## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$extensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8'
-$extensionValue = 'New Value'
-Set-EntraBetaUserExtension -ObjectId 'SawyerM@contoso.com' -ExtensionName $extensionName -ExtensionValue $extensionValue
+$extensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_JobGroup'
+$extensionValue = 'Job Group D'
+Set-EntraBetaUserExtension -UserId 'SawyerM@contoso.com' -ExtensionName $extensionName -ExtensionValue $extensionValue
 ```
 
 This example shows how to update the value of the extension attribute for a specified user.
 
-- `-ObjectId` parameter specifies the user Id.
+- `-UserId` parameter specifies the user Id.
 - `-ExtensionName` parameter specifies the name of an extension.
 - `-ExtensionValue` parameter specifies the extension name values.
 
+You can use the snippet next section to retrieve the extension name:
+
+```PowerShell
+Connect-Entra -Scopes 'Application.Read.All'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
+```
+
+### Example 2: Update multiple values using ExtensionNameValues parameter
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$userExtensionValues = New-Object 'System.Collections.Generic.Dictionary[String,String]'
+$userExtensionValues.Add("extension_d2ba83696c3f45429fbabb363ae391a0_Benefits", "Pension")
+$userExtensionValues.Add("extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup", "D")
+Set-EntraBetaUserExtension -UserId 'SawyerM@contoso.com' -ExtensionNameValues $userExtensionValues
+```
+
+This example shows how to update the value of the extension attribute for a specified user.
+
+- `-UserId` parameter specifies the user Id.
+- `-ExtensionNameValues` parameter specifies a dictionary of key-value pairs for the extension name and value pair.
+
+You can use the snippet in the next section to retrieve the extension name:
+
+```PowerShell
+Connect-Entra -Scopes 'Application.Read.All'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
+```
+
 ## Parameters
 
-### -ExtensionName
+### -UserId
 
-Specifies the name of an extension.
-
-```yaml
-Type: System.String
-Parameter Sets: SetSingle
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ExtensionNameValues
-
-Specifies extension name values.
-
-```yaml
-Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
-Parameter Sets: SetMultiple
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ExtensionValue
-
-Specifies an extension value.
-
-```yaml
-Type: System.String
-Parameter Sets: SetSingle
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ObjectId
-
-Specifies the ID of an object.
+Specifies the ID of the user.
 
 ```yaml
 Type: System.String
@@ -139,6 +124,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`Update-EntraBetaUserExtension` is an alias for `Set-EntraBetaUserExtension`.
 
 ## Related Links
 

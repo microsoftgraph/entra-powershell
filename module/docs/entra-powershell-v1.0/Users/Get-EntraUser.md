@@ -347,7 +347,7 @@ This example shows how to list all users with a specific role, such as `Global A
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -UserId 'user20@357g72.onmicrosoft.com' -Property onPremisesExtensionAttributes |
+Get-EntraUser -UserId 'SawyerM@contoso.com' -Property onPremisesExtensionAttributes |
 Select-Object -ExpandProperty onPremisesExtensionAttributes |
 Format-List
 ```
