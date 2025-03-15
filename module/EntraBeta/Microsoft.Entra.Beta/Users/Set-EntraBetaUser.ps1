@@ -174,7 +174,7 @@ function Set-EntraBetaUser {
     }
 
     process {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($UserProperties.Count -eq 0) {
             Write-Warning "No properties provided for update. Exiting."
             return
