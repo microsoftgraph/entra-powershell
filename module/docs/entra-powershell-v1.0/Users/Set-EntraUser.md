@@ -3,7 +3,7 @@ title: Set-EntraUser
 description: This article provides details on the Set-EntraUser command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 03/16/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -61,6 +61,8 @@ Set-EntraUser
 ## Description
 
 The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
+
+`Update-EntraUser` is an alias for `Set-EntraUser`.
 
 ## Examples
 
@@ -162,7 +164,7 @@ This example updates the specified user's Usage Location for license management.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
 $additionalProperties = @{ $extensionName = "Survey.Report" }
 Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
 ```
@@ -177,12 +179,11 @@ This example updates the specified user's extension properties, for example, an 
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $onPremisesExtensionAttributes = @{
     "onPremisesExtensionAttributes" = @{
-        "extensionAttribute1" = "SOC Department"
+        "extensionAttribute1" = "Job Group D"
         "extensionAttribute2" = "Audit Role"
     }
-} | ConvertTo-Json -Depth 2
-
-Set-EntraUser -UserId 'SawyerM@contoso.com' -BodyParameter $onPremisesExtensionAttributes
+}
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $onPremisesExtensionAttributes
 ```
 
 This example updates the specified user's onPremisesExtensionAttributes properties.
@@ -685,6 +686,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`Update-EntraUser` is an alias for `Set-EntraUser`.
 
 ## Related links
 
