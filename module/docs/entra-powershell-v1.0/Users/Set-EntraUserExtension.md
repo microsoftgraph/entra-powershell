@@ -39,7 +39,7 @@ Set-EntraUserExtension
 ```powershell
 Set-EntraUserExtension
  -UserId <String>
- -ExtensionNameValues <String, String>
+-ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
  [<CommonParameters>]
 ```
 
@@ -106,6 +106,54 @@ Specifies the ID of the user.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ExtensionName
+
+Specifies the name of an extension.
+
+```yaml
+Type: System.String
+Parameter Sets: SetSingle
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ExtensionNameValues
+
+Specifies extension name values.
+
+```yaml
+Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
+Parameter Sets: SetMultiple
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ExtensionValue
+
+Specifies an extension value.
+
+```yaml
+Type: System.String
+Parameter Sets: SetSingle
 Aliases:
 
 Required: True
