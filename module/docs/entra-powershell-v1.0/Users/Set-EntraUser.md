@@ -190,6 +190,23 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
+### Example 9: update user's phone details
+
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$params = @{
+    businessPhones = @(
+        "+1 425 555 0109"
+    )
+    officeLocation = "18/2111"
+}
+Set-EntraUser -UserId 'SawyerM@contoso.com' -BodyParameter $params
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
 ## Parameters
 
 ### -AccountEnabled
