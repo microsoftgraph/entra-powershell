@@ -335,10 +335,10 @@ foreach (`$subModule in `$subModules) {
     }
     
     # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
-   $functionsToExport= if($Module -eq 'Entra'){
-       @('Enable-EntraAzureADAlias')
-    }else{
+     $functionsToExport = if($Module -eq 'EntraBeta'){
         @()
+    }else{
+        @("Enable-EntraAzureADAlias")
     }
 
     $moduleSettings = @{
