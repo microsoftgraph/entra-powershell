@@ -229,15 +229,13 @@ Set-StrictMode -Version 5
 
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
-    if(-not $Module -eq 'Entra') return
-    # Determine the root module name based on the module type
-    
-    
-    $rootModuleName = 'Microsoft.Entra.psm1'
-   
+    #We only generate the .psm1 file with Enable-EntraAzureADAlias if it's 'Microsoft.Entra' module
+    if($Module -ne 'Entra'){
+        return
+    }
 
+    $rootModuleName = 'Microsoft.Entra.psm1'
     $startDirectory = (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
-   
 
     # Define the file paths
     $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
