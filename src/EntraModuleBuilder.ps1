@@ -239,7 +239,7 @@ Set-StrictMode -Version 5
 
     # Define the file paths
     $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
-    $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "UnMappedFiles\Enable-EntraAzureADAlias.ps1"
+    $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "Enable-EntraAzureADAlias.ps1"
 
     # Read the alias function content if it exists
     if (Test-Path $aliasFilePath) {
@@ -308,7 +308,11 @@ foreach (`$subModule in `$subModules) {
     $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json"
     
     # We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
-    $files = @("$($moduleName).psd1")
+    $files = if($Module -eq 'EntraBeta'){
+        @("$($moduleName).psd1")
+    }else{
+        @("$($moduleName).psd1","$($moduleName).psm1")
+    }
     $content = Get-Content -Path $settingPath | ConvertFrom-Json
     $PSData = @{
         Tags = $($content.tags)
@@ -330,10 +334,11 @@ foreach (`$subModule in `$subModules) {
         }    
     }
     
-    # Ensure Enable-EntraAzureADAlias is explicitly exported
-    $functionsToExport=@()
-    if($moduleName -eq 'Entra'){
-         $functionsToExport = @('Enable-EntraAzureADAlias')
+    # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
+   $functionsToExport= if($Module -eq 'Entra'){
+       @('Enable-EntraAzureADAlias')
+    }else{
+        @()
     }
 
     $moduleSettings = @{
