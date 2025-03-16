@@ -3,7 +3,7 @@ title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
 
 ms.topic: reference
-ms.date: 03/16/2025
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,42 +27,40 @@ Updates a user.
 Set-EntraBetaUser
  -UserId <String>
  [-PostalCode <String>]
- [-CompanyName <String>]
- [-GivenName <String>]
- [-Mobile <String>]
- [-PreferredLanguage <String>]
- [-CreationType <String>]
- [-UsageLocation <String>]
- [-UserType <String>]
- [-AgeGroup <String>]
  [-MailNickName <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-ConsentProvidedForMinor <String>]
- [-ImmutableId <String>]
- [-Country <String>]
- [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-Department <String>]
- [-StreetAddress <String>]
- [-PasswordPolicies <String>]
- [-JobTitle <String>]
- [-City <String>]
- [-OtherMails <System.Collections.Generic.List`1[System.String]>]
- [-UserPrincipalName <String>]
- [-DisplayName <String>]
- [-AccountEnabled <Boolean>]
- [-PasswordProfile <PasswordProfile>]
- [-State <String>]
- [-TelephoneNumber <String>]
- [-Surname <String>]
  [-ShowInAddressList <Boolean>]
+ [-Department <String>]
+ [-DisplayName <String>]
+ [-Mobile <String>]
+ [-JobTitle <String>]
+ [-ConsentProvidedForMinor <String>]
+ [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+ [-PasswordPolicies <String>]
+ [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+ [-PreferredLanguage <String>]
+ [-ImmutableId <String>]
+ [-City <String>]
+ [-AgeGroup <String>]
+ [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+ [-UsageLocation <String>]
+ [-State <String>]
+ [-AccountEnabled <Boolean>]
+ [-Country <String>]
+ [-UserPrincipalName <String>]
+ [-GivenName <String>]
+ [-PasswordProfile <PasswordProfile>]
+ [-UserType <String>]
+ [-StreetAddress <String>]
+ [-CompanyName <String>]
+ [-Surname <String>]
+ [-TelephoneNumber <String>]
+ [-CreationType <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
-
-`Update-EntraBetaUser` is an alias for `Set-EntraBetaUser`.
 
 ## Examples
 
@@ -112,11 +110,12 @@ $params = @{
     CompanyName      = 'Microsoft'
     Country          = 'Add country name'
     Department       = 'Add department name'
-    GivenName        = 'Sawyer Miller G'
+    GivenName        = 'Mircosoft'
+    ImmutableId      = '#1'
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
-    OtherMails       = 'johndoe@contosodev.com'
+    OtherMails       = 'test12@Contoso.com'
     PasswordPolicies = 'DisableStrongPassword'
     State            = 'UP'
     StreetAddress    = 'Add address'
@@ -136,10 +135,15 @@ This example updates the specified user's property.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
-    Password = '*****'
-    ForceChangePasswordNextSignIn = $true
+$params = @{
+    UserId          = 'SawyerM@contoso.com'
+    PasswordProfile = @{
+        Password                     = '*****'
+        ForceChangePasswordNextLogin = $true
+        EnforceChangePasswordPolicy  = $false
+    }
 }
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
@@ -158,54 +162,6 @@ This example updates the specified user's Usage Location for license management.
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
-
-### Example 7: Set user's extension properties
-
-```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
-$additionalProperties = @{ $extensionName = "Survey.Report" }
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
-```
-
-This example updates the specified user's extension properties, for example, an app role for an application.
-
-- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
-
-### Example 8: update user's onPremisesExtension attributes properties
-
-```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$onPremisesExtensionAttributes = @{
-    "onPremisesExtensionAttributes" = @{
-        "extensionAttribute1" = "Job Group D"
-        "extensionAttribute2" = "Audit Role"
-    }
-}
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $onPremisesExtensionAttributes
-```
-
-This example updates the specified user's onPremisesExtensionAttributes properties.
-
-- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
-
-### Example 9: update user's phone details
-
-```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params = @{
-    businessPhones = @(
-        "+1 425 555 0109"
-    )
-    officeLocation = "18/2111"
-}
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -BodyParameter $params
-```
-
-This example updates the specified user's onPremisesExtensionAttributes properties.
-
-- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ## Parameters
 
@@ -408,12 +364,12 @@ Accept wildcard characters: False
 
 ### -UserId
 
-Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId, UPN, Identity
+Aliases: ObjectId
 
 Required: True
 Position: Named
@@ -703,8 +659,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
-
-`Update-EntraBetaUser` is an alias for `Set-EntraBetaUser`.
 
 ## Related links
 
