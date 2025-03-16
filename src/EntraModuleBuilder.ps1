@@ -229,21 +229,24 @@ Set-StrictMode -Version 5
 
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
+    if(-not $Module -eq 'Entra') return
     # Determine the root module name based on the module type
-    $rootModuleName = if ($Module -eq 'Entra') {
-        'Microsoft.Entra.psm1'
-    } else {
-        'Microsoft.Entra.Beta.psm1'
-    }
+    
+    
+    $rootModuleName = 'Microsoft.Entra.psm1'
+   
+
+    $startDirectory = (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
+   
 
     # Define the file paths
     $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
-    $aliasFilePath = Join-Path -Path $this.OutputDirectory -ChildPath "UnMappedFiles\Enable-EntraAzureADAlias.ps1"
+    $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "UnMappedFiles\Enable-EntraAzureADAlias.ps1"
 
     # Read the alias function content if it exists
     if (Test-Path $aliasFilePath) {
         $aliasContent = Get-Content -Path $aliasFilePath -Raw
-        $exportAlias = "`nExport-ModuleMember -Function 'Enable-EntraAzureAlias'"
+        $exportAlias = "`nExport-ModuleMember -Function 'Enable-EntraAzureADAlias'"
     } else {
         throw "[Error]: Enable-EntraAzureADAlias.ps1 not found in UnMappedFiles."
     }
