@@ -69,7 +69,7 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
@@ -80,7 +80,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
@@ -92,9 +92,9 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } |
-ForEach-Object { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
+Get-EntraBetaUser -All | Where-Object -Property DisplayName -Match '(George|James|Education)' |
+ForEach-Object { Set-EntraBetaUser -UserId $($_.Id) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -105,7 +105,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
 $params = @{
     UserId           = 'SawyerM@contoso.com'
     City             = 'Add city name'
@@ -135,7 +135,7 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
     Password = '*****'
     ForceChangePasswordNextSignIn = $true
@@ -150,7 +150,7 @@ This example updates the specified user's PasswordProfile parameter.
 ### Example 6: Set user's usage location for license assignment
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
 ```
 
@@ -162,7 +162,7 @@ This example updates the specified user's Usage Location for license management.
 ### Example 7: Set user's extension properties
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $extensionName = (Get-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
 $additionalProperties = @{ $extensionName = "Survey.Report" }
@@ -176,14 +176,13 @@ This example updates the specified user's extension properties, for example, an 
 ### Example 8: update user's onPremisesExtension attributes properties
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$onPremisesExtensionAttributes = @{
-    "onPremisesExtensionAttributes" = @{
-        "extensionAttribute1" = "Job Group D"
-        "extensionAttribute2" = "Audit Role"
+Connect-Entra -Scopes 'User.ReadWrite'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties @{
+    onPremisesExtensionAttributes = @{
+        extensionAttribute1 = "Job Group D"
+        extensionAttribute2 = "Audit Role"
     }
 }
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $onPremisesExtensionAttributes
 ```
 
 This example updates the specified user's onPremisesExtensionAttributes properties.
@@ -193,14 +192,8 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 ### Example 9: update user's phone details
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params = @{
-    businessPhones = @(
-        "+1 425 555 0109"
-    )
-    officeLocation = "18/2111"
-}
-Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -BodyParameter $params
+Connect-Entra -Scopes 'User.ReadWrite'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -BusinessPhones '+1 425 555 0109' -OfficeLocation '18/2111'
 ```
 
 This example updates the specified user's onPremisesExtensionAttributes properties.
