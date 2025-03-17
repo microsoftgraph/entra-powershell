@@ -7,7 +7,7 @@ function Set-EntraUser {
     [CmdletBinding(DefaultParameterSetName = 'Default', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
-        [Alias("ObjectId", "UPN", "Identity")]
+        [Alias("ObjectId", "UPN", "Identity", "Id")]
         [ValidateNotNullOrEmpty()]
         [string]$UserId,
 
@@ -157,6 +157,11 @@ function Set-EntraUser {
         # Merge AdditionalProperties if provided
         foreach ($key in $AdditionalProperties.Keys) {
             $UserProperties[$key] = $AdditionalProperties[$key]
+        }
+
+        # Add PipelineVariable if provided
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
+            $UserProperties["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
         }
 
         # Convert final update properties to JSON

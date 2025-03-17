@@ -69,7 +69,7 @@ The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `Us
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
@@ -80,7 +80,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
@@ -92,7 +92,7 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } |
 ForEach-Object { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
@@ -105,7 +105,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
     UserId           = 'SawyerM@contoso.com'
     City             = 'Add city name'
