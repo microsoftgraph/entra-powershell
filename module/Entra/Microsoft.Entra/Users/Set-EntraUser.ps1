@@ -179,13 +179,7 @@ function Set-EntraUser {
                 Write-Verbose "Properties for user $UserId updated successfully. Updated properties: $($UserProperties | Out-String)"
             }
             catch {
-                $errorDetails = @{
-                    'ErrorMessage'  = $_.Exception.Message
-                    'RequestUri'    = $graphUri
-                    'RequestBody'   = $bodyJson
-                    'ErrorResponse' = $_.ErrorDetails.Message
-                }
-                Write-Debug "Error Details: $($errorDetails | ConvertTo-Json)"
+                Write-Debug "Error Details: $_"
                 Write-Error "Failed to update user properties: $_"
             }
         }
