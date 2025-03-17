@@ -147,9 +147,11 @@ function Set-EntraBetaUser {
         # Initialize hashtable for user properties
         $UserProperties = @{}
 
+        $CommonParameters = @("Verbose", "Debug", "WarningAction", "WarningVariable", "ErrorAction", "ErrorVariable", "OutVariable", "OutBuffer", "WhatIf", "Confirm")
+
         # Merge individual parameters into UserProperties
         foreach ($param in $PSBoundParameters.Keys) {
-            if ($param -ne "UserId" -and $param -ne "AdditionalProperties") {
+            if ($param -ne "UserId" -and $param -ne "AdditionalProperties" -and $CommonParameters -notcontains $param) {
                 $UserProperties[$param] = $PSBoundParameters[$param]
             }
         }
