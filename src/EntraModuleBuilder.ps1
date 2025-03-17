@@ -341,16 +341,9 @@ foreach (`$subModule in `$subModules) {
         @("Enable-EntraAzureADAlias")
     }
 
-    $rootModule=if($Module -eq 'Entra'){
-        "Microsoft.Entra.psm1"
-    }else{
-        ""
-    }
-
     $moduleSettings = @{
         Path = $manifestPath
         GUID = $($content.guid)
-        RootModule=$rootModule
         ModuleVersion = "$($content.version)"
         FunctionsToExport = $functionsToExport
         CmdletsToExport = @()
@@ -372,8 +365,9 @@ foreach (`$subModule in `$subModules) {
     Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
     
     New-ModuleManifest @moduleSettings
-    Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
 
+    Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+   
     # Construct the entries for the RequiredModules section
     $requiredModulesEntries = $requiredModules | ForEach-Object {
         "    @{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
@@ -395,14 +389,21 @@ $($requiredModulesEntries -join ",`n")
             # Uncomment and replace the line with the new RequiredModules content
             Log-Message "Found RequiredModule Section.."
             $fileContent[$i] = $requiredModulesText
+            
             break
         }
     }
     
+    # Inject RootModule section
+    if($moduleName -eq "Microsoft.Entra"){
+        $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.psm1'"
+        Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
+    }
     # Write the updated content back to the manifest file
     $fileContent | Set-Content -Path $manifestPath -Force
 
-    Write-Host "Manifest file updated successfully."
+    
+    Log-Message "[EntraModuleBuilder]:Manifest file updated successfully for requiredModules section."
 
     Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
 }
