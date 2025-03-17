@@ -6,71 +6,71 @@ $psVersion = $global:PSVersionTable.PSVersion
 
 # Entra
 
-if($null -ne (Get-Module -Name Microsoft.Entra)){
+if ($null -ne (Get-Module -Name Microsoft.Entra)) {
     $entraVersion = (Get-module Microsoft.Entra | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Applications)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Applications)) {
     $entraVersion = (Get-module Microsoft.Entra.Applications | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Authentication)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Authentication)) {
     $entraVersion = (Get-module Microsoft.Entra.Authentication | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.DirectoryManagement)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.DirectoryManagement)) {
     $entraVersion = (Get-module Microsoft.Entra.DirectoryManagement | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Governance)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Governance)) {
     $entraVersion = (Get-module Microsoft.Entra.Governance | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Users)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Users)) {
     $entraVersion = (Get-module Microsoft.Entra.Users | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Groups)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Groups)) {
     $entraVersion = (Get-module Microsoft.Entra.Groups | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Reports)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Reports)) {
     $entraVersion = (Get-module Microsoft.Entra.Reports | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.SignIns)){
-    $entraVersion = (Get-module Microsoft.Entra.SignIns | select version).Version.ToString()
+if ($null -ne (Get-Module -Name Microsoft.Entra.SignIns)) {
+    $entraVersion = (Get-module Microsoft.Entra.SignIns | Select-Object version).Version.ToString()
 }
 
 #EntraBeta
 
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Applications)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Applications)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Applications | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Authentication)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Authentication)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Authentication | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.DirectoryManagement | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Governance)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Governance)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Governance | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Users)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Users)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Users | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Groups)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Groups)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Groups | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.Reports)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.Reports)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.Reports | select version).Version.ToString() 
 }
-if($null -ne (Get-Module -Name Microsoft.Entra.Beta.SignIns)){
+if ($null -ne (Get-Module -Name Microsoft.Entra.Beta.SignIns)) {
     $entraVersion = (Get-module Microsoft.Entra.Beta.SignIns | select version).Version.ToString()
 }
 
 
-function Get-Parameters{
+function Get-Parameters {
     param(
         $data
     )
 
-    PROCESS{
+    PROCESS {
         $params = @{}
         for ($i = 0; $i -lt $data.Length; $i += 2) {
             $key = $data[$i] -replace '-', '' -replace ':', ''
