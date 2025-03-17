@@ -6,6 +6,9 @@
 param()
 
 BeforeAll {
+
+    $DebugPreference = 'SilentlyContinue'
+
     if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users      
     }
@@ -37,7 +40,7 @@ Describe "Tests for Set-EntraUser" {
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference
-        $DebugPreference = 'Continue'
+        $DebugPreference = 'SilentlyContinue'
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
