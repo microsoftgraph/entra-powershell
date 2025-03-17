@@ -341,9 +341,16 @@ foreach (`$subModule in `$subModules) {
         @("Enable-EntraAzureADAlias")
     }
 
+    $rootModule=if($Module -eq 'Entra'){
+        "Microsoft.Entra.psm1"
+    }else{
+        ""
+    }
+
     $moduleSettings = @{
         Path = $manifestPath
         GUID = $($content.guid)
+        RootModule=$rootModule
         ModuleVersion = "$($content.version)"
         FunctionsToExport = $functionsToExport
         CmdletsToExport = @()
