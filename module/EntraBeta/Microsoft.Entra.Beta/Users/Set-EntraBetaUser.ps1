@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaUser {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
     [CmdletBinding(DefaultParameterSetName = 'Default', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
@@ -140,18 +140,7 @@ function Set-EntraBetaUser {
     )
 
     begin {
-        # Ensure Microsoft Entra PowerShell module is installed
-        if (-not (Get-Module -ListAvailable -Name Microsoft.Entra.Beta.Users)) {
-            Write-Error "Microsoft.Entra.Beta.Users module is required. Install it using 'Install-Module Microsoft.Entra.Beta.Users'."
-            return
-        }
-
-        # Ensure user is authenticated using Get-EntraContext
-        if (-not (Get-EntraContext)) {
-            Write-Error "Authentication required. Run 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
-            return
-        }
-
+        
         # Microsoft Graph API URL for updating users
         $graphUri = "https://graph.microsoft.com/beta/users/$UserId"
 

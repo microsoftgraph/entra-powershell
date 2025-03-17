@@ -133,9 +133,6 @@ function Set-EntraUser {
         [Parameter(HelpMessage = "The state associated with the user.")]
         [string]$State,
 
-        [Parameter(HelpMessage = "Skip module and authentication checks (for testing purposes).")]
-        [switch]$SkipChecks,
-
         # New: Accepts a hashtable for bulk updates
         [Parameter(Mandatory = $false, HelpMessage = "A hashtable of additional user properties to update.")]
         [Alias("BodyParameter", "Body", "BodyParameters")]
@@ -143,20 +140,6 @@ function Set-EntraUser {
     )
 
     begin {
-
-        if (-not $SkipChecks) {
-            # Ensure Microsoft Entra PowerShell module is installed
-            if (-not (Get-Module -ListAvailable -Name Microsoft.Entra.Users)) {
-                Write-Error "Microsoft.Entra.Users module is required. Install it using 'Install-Module Microsoft.Entra.Users'."
-                return
-            }
-
-            # Ensure user is authenticated using Get-EntraContext
-            if (-not (Get-EntraContext)) {
-                Write-Error "Authentication required. Run 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
-                return
-            }
-        }
 
         # Microsoft Graph API URL for updating users
         $graphUri = "https://graph.microsoft.com/v1.0/users/$UserId"
