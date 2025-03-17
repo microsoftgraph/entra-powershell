@@ -21,20 +21,6 @@ function Set-EntraBetaUserExtension {
         [System.String] $ExtensionName
     )
 
-    begin {
-        # Ensure Microsoft Entra PowerShell module is available
-        if (-not (Get-Module -ListAvailable -Name Microsoft.Entra.Beta.Users)) {
-            Write-Error "Microsoft.Entra.Beta module is required. Install it using 'Install-Module Microsoft.Entra.Beta.Users'. See http://aka.ms/entra/ps/installation for more details."
-            return
-        }
-
-        # Ensure connection to Microsoft Entra
-        if (-not (Get-EntraContext)) {
-            Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
-            return
-        }
-    }
-
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
