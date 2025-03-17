@@ -147,9 +147,11 @@ function Set-EntraUser {
         # Initialize hashtable for user properties
         $UserProperties = @{}
 
+        $CommonParameters = @("Verbose", "Debug", "WarningAction", "WarningVariable", "ErrorAction", "ErrorVariable", "OutVariable", "OutBuffer", "WhatIf", "Confirm")
+
         # Merge individual parameters into UserProperties
         foreach ($param in $PSBoundParameters.Keys) {
-            if ($param -ne "UserId" -and $param -ne "AdditionalProperties") {
+            if ($param -ne "UserId" -and $param -ne "AdditionalProperties" -and $CommonParameters -notcontains $param) {
                 $UserProperties[$param] = $PSBoundParameters[$param]
             }
         }
@@ -157,11 +159,6 @@ function Set-EntraUser {
         # Merge AdditionalProperties if provided
         foreach ($key in $AdditionalProperties.Keys) {
             $UserProperties[$key] = $AdditionalProperties[$key]
-        }
-
-        # Add PipelineVariable if provided
-        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
-            $UserProperties["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
         }
 
         # Convert final update properties to JSON
@@ -182,6 +179,13 @@ function Set-EntraUser {
                 Write-Verbose "Properties for user $UserId updated successfully. Updated properties: $($UserProperties | Out-String)"
             }
             catch {
+                $errorDetails = @{
+                    'ErrorMessage'  = $_.Exception.Message
+                    'RequestUri'    = $graphUri
+                    'RequestBody'   = $bodyJson
+                    'ErrorResponse' = $_.ErrorDetails.Message
+                }
+                Write-Debug "Error Details: $($errorDetails | ConvertTo-Json)"
                 Write-Error "Failed to update user properties: $_"
             }
         }
