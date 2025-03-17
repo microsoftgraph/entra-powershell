@@ -37,11 +37,11 @@ Describe "Tests for Set-EntraUser" {
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference
-        $DebugPreference = 'Continue'
+        $DebugPreference = 'SilentlyContinue'
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Set-EntraUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M" -Confirm:$false -Debug } | Should -Not -Throw
+            { Set-EntraUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M" -Debug } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            
