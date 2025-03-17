@@ -69,7 +69,7 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
@@ -80,7 +80,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
@@ -92,7 +92,7 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Get-EntraBetaUser -All | Where-Object -Property DisplayName -Match '(George|James|Education)' |
 ForEach-Object { Set-EntraBetaUser -UserId $($_.Id) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
@@ -105,7 +105,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
     UserId           = 'SawyerM@contoso.com'
     City             = 'Add city name'
@@ -135,7 +135,7 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
     Password = '*****'
     ForceChangePasswordNextSignIn = $true
@@ -150,7 +150,7 @@ This example updates the specified user's PasswordProfile parameter.
 ### Example 6: Set user's usage location for license assignment
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
 ```
 
@@ -162,7 +162,7 @@ This example updates the specified user's Usage Location for license management.
 ### Example 7: Set user's extension properties
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $extensionName = (Get-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
 $additionalProperties = @{ $extensionName = "Survey.Report" }
@@ -176,7 +176,7 @@ This example updates the specified user's extension properties, for example, an 
 ### Example 8: update user's onPremisesExtension attributes properties
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties @{
     onPremisesExtensionAttributes = @{
         extensionAttribute1 = "Job Group D"
@@ -192,7 +192,7 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 ### Example 9: update user's phone details
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -BusinessPhones '+1 425 555 0109' -OfficeLocation '18/2111'
 ```
 
