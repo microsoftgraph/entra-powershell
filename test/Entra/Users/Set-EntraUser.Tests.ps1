@@ -6,6 +6,9 @@
 param()
 
 BeforeAll {
+
+    $DebugPreference = 'SilentlyContinue'
+
     if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users      
     }
