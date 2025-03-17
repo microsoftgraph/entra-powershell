@@ -291,7 +291,6 @@ foreach (`$subModule in `$subModules) {
 }
 
  [void] CreateRootModuleManifest([string] $Module) {
-	 
     # Update paths specific to this sub-directory
     $rootPath = if ($Module -eq "Entra") {
         (Join-Path $PSScriptRoot "../module/Entra")
@@ -402,7 +401,6 @@ $($requiredModulesEntries -join ",`n")
     # Write the updated content back to the manifest file
     $fileContent | Set-Content -Path $manifestPath -Force
 
-    
     Log-Message "[EntraModuleBuilder]:Manifest file updated successfully for requiredModules section."
 
     Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
