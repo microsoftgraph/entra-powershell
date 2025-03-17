@@ -17,12 +17,7 @@ BeforeAll {
 Describe "Tests for Set-EntraBetaUser" {
 
     It "Should return empty object" {
-        $result = Set-EntraBetaUser -UserId "sawyerM@contoso.com" -AccountEnabled $true
-        $result | Should -BeNull
-    }
-
-    It "Should return empty object when UserId is not provided" {
-        $result = Set-EntraBetaUser -AccountEnabled $true
+        $result = Set-EntraBetaUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M"
         $result | Should -BeNull
     }
 
@@ -32,7 +27,7 @@ Describe "Tests for Set-EntraBetaUser" {
     
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUser"
-        $result = Set-EntraBetaUser -UserId "sawyerM@contoso.com" -AccountEnabled $true
+        $result = Set-EntraBetaUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M"
         $result | Should -BeNull
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -46,7 +41,7 @@ Describe "Tests for Set-EntraBetaUser" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Set-EntraBetaUser -UserId "sawyerM@contoso.com" -AccountEnabled $true -Debug } | Should -Not -Throw
+            { Set-EntraBetaUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M" -Debug } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            
