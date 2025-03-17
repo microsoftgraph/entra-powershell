@@ -41,7 +41,7 @@ Describe "Tests for Set-EntraUser" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Set-EntraUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M" -Debug } | Should -Not -Throw
+            { Set-EntraUser -UserId "sawyerM@contoso.com" -DisplayName "Sawyer M" -Confirm:$false -Debug } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            
