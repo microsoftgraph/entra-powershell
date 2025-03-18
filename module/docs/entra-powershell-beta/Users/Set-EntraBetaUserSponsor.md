@@ -24,7 +24,7 @@ Sets a user's sponsors (users or groups).
 
 ## Syntax
 
-### SetUserSponsor
+### User (Default)
 
 ```powershell
 Set-EntraBetaUserSponsor
@@ -34,7 +34,7 @@ Set-EntraBetaUserSponsor
  [<CommonParameters>]
 ```
 
-### SetGroupSponsor
+### Group
 
 ```powershell
 Set-EntraBetaUserSponsor
