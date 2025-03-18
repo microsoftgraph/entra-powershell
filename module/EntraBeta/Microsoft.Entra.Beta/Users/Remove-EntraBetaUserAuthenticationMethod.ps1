@@ -7,7 +7,6 @@ function Remove-EntraBetaUserAuthenticationMethod {
         # The user UPN or ID to delete the authentication methods for.
         [string]
         [Parameter(ParameterSet="Default",HelpMessage="Specify the UserId for which the authentication methods will be removed.")]
-        [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [string]
         $UserId
     )
