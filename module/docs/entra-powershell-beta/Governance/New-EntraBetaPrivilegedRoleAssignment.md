@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaPrivilegedRoleAssigment
+title: New-EntraBetaPrivilegedRoleAssignment
 description: This article provides details on the New-EntraBetaPrivilegedRoleAssignment command.
 
 
