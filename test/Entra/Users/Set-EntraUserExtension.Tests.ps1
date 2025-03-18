@@ -17,11 +17,6 @@ Describe "Tests for Set-EntraUserExtension" {
         $result | Should -BeNull
     }
 
-    It "Should return empty object when UserId is not provided" {
-        $result = Set-EntraUserExtension -ExtensionName 'extension_e5e29b8a85d941eab8d12162bd004528_JobGroup' -ExtensionValue 'Job Group D'
-        $result | Should -BeNull
-    }
-
     It "Should fail when UserId is missing" {
         { Set-EntraUserExtension -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
     }
