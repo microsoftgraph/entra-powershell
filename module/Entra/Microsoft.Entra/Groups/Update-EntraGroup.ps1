@@ -44,12 +44,6 @@ function Update-EntraGroup {
 
     begin {
 
-        # Ensure Microsoft Entra PowerShell module is available
-        if (-not (Get-Module -ListAvailable -Name Microsoft.Entra.Groups)) {
-            Write-Error "Microsoft.Entra module is required. Install it using 'Install-Module Microsoft.Entra.Groups'. See http://aka.ms/entra/ps/installation for more details."
-            return
-        }
-
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
             Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
