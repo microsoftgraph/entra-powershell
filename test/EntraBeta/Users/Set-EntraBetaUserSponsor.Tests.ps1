@@ -58,28 +58,33 @@ Describe "Set-EntraBetaUserSponsor" {
             { Set-EntraBetaUserSponsor -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
-        It "Should not allow -User and -Group to be used together" {
-            { Set-EntraBetaUserSponsor -User -Group -UserId "user-123" -SponsorIds @("sponsor-1") } | 
-                Should -Throw  "Parameter set cannot be resolved using the specified named parameters. One or more parameters issued cannot be used together or an insufficient number of parameters were provided."
+        It "Should only allow User and Group for type" {
+            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type Group -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309  -Type Users  -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62"} | 
+                Should -Throw
         }
 
         It "Should accept both array and scalar values for SponsorIds parameter" {
-            { Set-EntraBetaUserSponsor -User -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
+            { Set-EntraBetaUserSponsor -Type User -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
                 Should -Not -Throw
-            
-            { Set-EntraBetaUserSponsor -Group -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
+            { Set-EntraBetaUserSponsor -Type User -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } |
+                Should -Not -Throw
+            { Set-EntraBetaUserSponsor -Type Group -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
+                Should -Not -Throw
+            { Set-EntraBetaUserSponsor -Type Group -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } |
                 Should -Not -Throw
         }
 
         It "Should not return anything for successful requests" {
-            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309  -User  -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62","b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
+            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309  -Type User  -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62","b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
             
             $result.Id | Should -Not -Contain "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62"
             $result.Id | Should -Not -Contain "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72"
         }
 
         It "Should only return failed responses" {
-            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309  -User  -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62","b9db38b9-e5b8-4b5e-ae78-9812230af58d","da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
+            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309  -Type User  -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62","b9db38b9-e5b8-4b5e-ae78-9812230af58d","da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
             $result | Should -Not -BeNullOrEmpty
             $result[0].Id | should -Be "b9db38b9-e5b8-4b5e-ae78-9812230af58d"
             $result[0].Error | should -Be "Resource 'b9db38b9-e5b8-4b5e-ae78-9812230af58d' does not exist or one of its queried reference-property objects are not present."

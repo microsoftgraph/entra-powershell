@@ -5,20 +5,15 @@
 
 function Set-EntraBetaUserSponsor {
     [CmdletBinding(DefaultParameterSetName = "User")]
-    param (            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "User", HelpMessage = "The unique identifier (User ID) of the user whose sponsor information you want to set.")]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "Group", HelpMessage = "The unique identifier (Group ID) of the group whose sponsor information you want to set.")]
+    param ( 
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID) of the user whose sponsor information you want to set.")]
         [System.String] $UserId,
-        
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "User", HelpMessage = "Assign a User as a sponsor.")]
-        [Switch] $User,
-        
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "Group", HelpMessage = "Assign a Group as a sponsor.")]
-        [Switch] $Group,
+
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Type of sponsor to assign to a User.")]
+        [ValidateSet("User", "Group")]
+        [System.String] $Type,
         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "List of sponsors to assign to the user.")]
-        [Parameter(ParameterSetName = "User")]
-        [Parameter(ParameterSetName = "Group")]
         [string[]] $SponsorIds
     )
 
@@ -33,7 +28,7 @@ function Set-EntraBetaUserSponsor {
         $requests = @()
         
         # Determine target endpoint based on parameter set
-        $targetResource = if ($PSCmdlet.ParameterSetName -eq "User") { "users" } else { "groups" }
+        $targetResource = if ($Type -eq "User") { "users" } else { "groups" }
         $targetEndpoint = "users/$UserId/sponsors/`$ref"
 
         foreach ($sponsorId in $SponsorIds) {
