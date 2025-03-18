@@ -1,3 +1,8 @@
+# ------------------------------------------------------------------------------ 
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information. 
+# ------------------------------------------------------------------------------ 
+
 function Update-EntraGroup {
     [CmdletBinding(SupportsShouldProcess,
         ConfirmImpact = 'Medium',
@@ -51,8 +56,6 @@ function Update-EntraGroup {
             return
         }
 
-        # Process business logic
-
         $graphUri = "https://graph.microsoft.com/v1.0/groups/$GroupId"
         $GroupProperties = @{}
     
@@ -68,13 +71,17 @@ function Update-EntraGroup {
             $GroupProperties[$key] = $AdditionalProperties[$key]
         }
     
+        if (-not $GroupProperties) { 
+            $GroupProperties = @{}  
+        }
+    
         $bodyJson = $GroupProperties | ConvertTo-Json -Depth 2
     }
 
     process {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-        if ($GroupProperties.Count -eq 0) {
+        if (-not $GroupProperties -or $GroupProperties.Count -eq 0) {
             Write-Warning "No properties provided for update. Exiting."
             return
         }
