@@ -70,7 +70,7 @@ Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, C:\temp\users.csv.
+- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 
 ### Example 2: Assign application users to app role assignments with verbose mode
@@ -83,7 +83,7 @@ Set-EntraAppRoleToApplicationUser -DataSource "SAPCloudIdentity" -FileName "C:\t
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, C:\temp\users.csv.
+- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 - `-Verbose` common parameter outputs the execution steps during processing.
 
@@ -97,7 +97,7 @@ Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, C:\temp\users.csv.
+- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 - `-Export` switch parameter enables export of results into a CSV file. If `ExportFileName` parameter isn't provided, results are exported in the current location.
 - `-Verbose` common parameter outputs the execution steps during processing.
@@ -112,7 +112,7 @@ Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, C:\temp\users.csv.
+- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 - `-Export` switch parameter enables export of results into a CSV file. If `ExportFileName` parameter isn't provided, results are exported in the current location.
 - `-ExportFileName` parameter specifies a specific filename and location to export results.
@@ -132,13 +132,13 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: 
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -FileName
 
-Specifies the path to the input file containing users, for example, C:\temp\users.csv.
+Specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 
 ```yaml
 Type: System.IO.FileInfo
@@ -174,7 +174,7 @@ Enables export of results into a CSV file. If `ExportFileName` parameter isn't p
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (ExportResults)
+Parameter Sets: ExportResults
 Aliases:
 
 Required: False
@@ -190,7 +190,7 @@ Specifies a specific filename and location to export results.
 
 ```yaml
 Type: System.IO.FileInfo
-Parameter Sets: (ExportResults)
+Parameter Sets: ExportResults
 Aliases:
 
 Required: False
@@ -214,7 +214,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-[Govern an application's existing users](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-existing-users)
+How to [Govern an application's existing users](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-existing-users)
 
 ## Related Links
 
