@@ -60,7 +60,7 @@ $extensionValue = 'Job Group D'
 Set-EntraUserExtension -UserId 'SawyerM@contoso.com' -ExtensionName $extensionName -ExtensionValue $extensionValue
 ```
 
-This example demonstrates how to update a user's extension attribute for a specified user. Use `(Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1` to retrieve the extension name.
+This example demonstrates how to update a user's extension attribute for a specified user. Use `(Get-EntraApplicationExtensionProperty -ApplicationId '{ApplicationId}').Name | Select-Object -First 1` to retrieve the extension name.
 
 - `-UserId` parameter specifies the user Id.
 - `-ExtensionName` parameter specifies the name of an extension.
@@ -76,7 +76,7 @@ $userExtensionValues.Add("extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup", 
 Set-EntraUserExtension -UserId 'SawyerM@contoso.com' -ExtensionNameValues $userExtensionValues
 ```
 
-This example demonstrates how to update a user's extension attribute. Use `(Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1` to retrieve the extension name.
+This example demonstrates how to update a user's extension attribute. Use `(Get-EntraApplicationExtensionProperty -ApplicationId '{ApplicationId}').Name | Select-Object -First 1` to retrieve the extension name.
 
 - `-UserId` parameter specifies the user Id.
 - `-ExtensionNameValues` parameter specifies a dictionary of key-value pairs for the extension name and value pair.
