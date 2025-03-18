@@ -13,7 +13,7 @@ function Remove-EntraBetaUserAuthenticationMethod {
 
     process{
 
-       $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
        
     function DeleteAuthMethod($uid, $method) {
         switch ($method.AdditionalProperties['@odata.type']) {
