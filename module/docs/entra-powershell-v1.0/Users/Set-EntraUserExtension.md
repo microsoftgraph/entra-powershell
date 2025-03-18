@@ -66,14 +66,6 @@ This example shows how to update the value of the extension attribute for a spec
 - `-ExtensionName` parameter specifies the name of an extension.
 - `-ExtensionValue` parameter specifies the extension name values.
 
-You can use the snippet next section to retrieve the extension name:
-
-```PowerShell
-Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
-```
-
 ### Example 2: Update multiple values using ExtensionNameValues parameter
 
 ```powershell
@@ -88,14 +80,6 @@ This example shows how to update the value of the extension attribute for a spec
 
 - `-UserId` parameter specifies the user Id.
 - `-ExtensionNameValues` parameter specifies a dictionary of key-value pairs for the extension name and value pair.
-
-You can use the snippet in the next section to retrieve the extension name:
-
-```PowerShell
-Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
-$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
-```
 
 ## Parameters
 
