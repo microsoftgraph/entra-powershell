@@ -109,7 +109,7 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
                                 $dirObj = @{"sponsors@odata.bind" = @($sponsorUrl) }
                                 $sponsorsRequestBody = $dirObj | ConvertTo-Json
 
-                                Set-EntraUser -UserId $invitedUser.id -BodyParameter $sponsorsRequestBody -Header $customHeaders
+                                Set-EntraBetaUser -UserId $invitedUser.id -BodyParameter $sponsorsRequestBody -Header $customHeaders
                                 Write-Output "$($invitedUser.userPrincipalName) - Sponsor updated successfully for this user."
                             }
                             catch {
