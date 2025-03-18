@@ -45,6 +45,7 @@ Connect-Entra
  [-ClientId] <String>
  [[-CertificateSubjectName] <String>]
  [[-CertificateThumbprint] <String>]
+ [-SendCertificateChain <Boolean>]
  [-Certificate <X509Certificate2>]
  [-TenantId <String>]
  [-ContextScope <ContextScope>]
@@ -330,22 +331,10 @@ Specifies the application ID of the service principal.
 
 ```yaml
 Type:  System.String
-Parameter Sets: UserParameterSet, IdentityParameterSet
+Parameter Sets: UserParameterSet, IdentityParameterSet, AppCertificateParameterSet
 Aliases: AppId, ApplicationId
 
 Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type:  System.String
-Parameter Sets: AppCertificateParameterSet
-Aliases: AppId, ApplicationId
-
-Required: True
 Position: 1
 Default value: None
 Accept pipeline input: False
@@ -548,6 +537,21 @@ Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SendCertificateChain
+
+Include x5c header in client claims when acquiring a token to enable subject name / issuer based authentication using given certificate.
+
+```yaml
+Type: Boolean
+Parameter Sets: AppCertificateParameterSet
+Aliases:
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
