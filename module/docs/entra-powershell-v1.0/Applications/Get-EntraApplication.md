@@ -1,0 +1,343 @@
+---
+title: Get-EntraApplication
+description: This article provides details on the Get-EntraApplication command.
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Entra.Applications-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraApplication
+
+schema: 2.0.0
+---
+
+# Get-EntraApplication
+
+## Synopsis
+
+Gets an application.
+
+## Syntax
+
+### GetQuery (Default)
+
+```powershell
+Get-EntraApplication
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetByValue
+
+```powershell
+Get-EntraApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### GetById
+
+```powershell
+Get-EntraApplication
+ -ApplicationId <String>
+ [-Property <String[]>]
+ [-All]
+ [<CommonParameters>]
+```
+
+## Description
+
+The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
+
+## Examples
+
+### Example 1: Get an application by ApplicationId
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience PublisherDomain
+-----------         --                                   -----                                -------------- ---------------
+ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
+```
+
+This example demonstrates how to retrieve specific application by providing ID.
+
+### Example 2: Get all applications
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -All
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
+-----------         --                                   -----                                --------------                     ---------------
+test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
+ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
+test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
+test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
+test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+```
+
+This example demonstrates how to get all applications from Microsoft Entra ID.
+
+### Example 3: Get applications with expiring secrets in 30 days
+
+```powershell
+$expirationThreshold = (Get-Date).AddDays(30)
+$appsWithExpiringPasswords = Get-EntraApplication -All | Where-Object { $_.PasswordCredentials } |
+ForEach-Object {
+    $app = $_
+    $app.PasswordCredentials | Where-Object { $_.EndDate -le $expirationThreshold } |
+    ForEach-Object {
+        [PSCustomObject]@{
+            DisplayName       = $app.DisplayName
+            AppId             = $app.AppId
+            SecretDisplayName = $_.DisplayName
+            KeyId             = $_.KeyId
+            ExpiringSecret    = $_.EndDate
+        }
+    }
+}
+$appsWithExpiringPasswords | Format-Table DisplayName, AppId, SecretDisplayName, KeyId, ExpiringSecret -AutoSize
+```
+
+```Output
+DisplayName             AppId                                SecretDisplayName    KeyId                                ExpiringSecret
+-----------             -----                                -----------------    -----                                --------------
+Helpdesk Application    dddddddd-5555-6666-7777-eeeeeeeeeeee Helpdesk Password    aaaaaaaa-0b0b-1c1c-2d2d-333333333333 11/18/2024
+```
+
+This example retrieves applications with expiring secrets within 30 days.
+
+### Example 4: Get applications with expiring certificates in 30 days
+
+```powershell
+$expirationThreshold = (Get-Date).AddDays(30)
+$appsWithExpiringKeys = Get-EntraApplication -All | Where-Object { $_.KeyCredentials } |
+ForEach-Object {
+    $app = $_
+    $app.KeyCredentials | Where-Object { $_.EndDate -le $expirationThreshold } |
+    ForEach-Object {
+        [PSCustomObject]@{
+            DisplayName            = $app.DisplayName
+            AppId                  = $app.AppId
+            CertificateDisplayName = $_.DisplayName
+            KeyId                  = $_.KeyId
+            ExpiringKeys           = $_.EndDate
+        }
+    }
+}
+$appsWithExpiringKeys | Format-Table DisplayName, AppId, CertificateDisplayName, KeyId, ExpiringKeys -AutoSize
+```
+
+```Output
+DisplayName             AppId                                CertificateDisplayName KeyId                                ExpiringKeys
+-----------             -----                                ---------------------- -----                                ------------
+Helpdesk Application dddddddd-5555-6666-7777-eeeeeeeeeeee My cert                aaaaaaaa-0b0b-1c1c-2d2d-333333333333 6/27/2024 11:49:17 AM
+```
+
+This example retrieves applications with expiring certificates within 30 days.
+
+### Example 5: Get an application by display name
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEMO'"
+```
+
+```Output
+DisplayName     Id                                   AppId                                SignInAudience PublisherDomain
+-----------     --                                   -----                                -------------- ---------------
+ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
+```
+
+In this example, we retrieve application by its display name from Microsoft Entra ID.
+
+### Example 6: Search among retrieved applications
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -SearchString 'My new application 2'
+```
+
+```Output
+DisplayName          Id                                   AppId                                SignInAudience                     PublisherDomain
+-----------          --                                   -----                                --------------                     ---------------
+My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
+```
+
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
+
+### Example 7: Retrieve an application by identifierUris
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wingtiptoysonline.com')"
+```
+
+This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
+
+### Example 8: List top 2 applications
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -Top 2
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
+-----------         --                                   -----                                --------------                     ---------------
+test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
+ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
+```
+
+This example shows how you can retrieve two applications. You can use `-Limit` as an alias for `-Top`.
+
+### Example 9: List application app roles
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$application = Get-EntraApplication -SearchString 'Contoso Helpdesk Application'
+$application.AppRoles | Format-Table -AutoSize
+```
+
+```Output
+AllowedMemberTypes    Description        DisplayName       Id                                   IsEnabled  Origin       Value        
+------------------    -----------        -----------       --                                   ---------  ------       -----        
+{User, Application}   General All        General All       gggggggg-6666-7777-8888-hhhhhhhhhhhh  True       Application  Survey.Read  
+{Application}         General App Only   General Apponly   hhhhhhhh-7777-8888-9999-iiiiiiiiiiii  True       Application  Task.Write   
+{User}                General role       General           bbbbbbbb-1111-2222-3333-cccccccccccc  True       Application  General 
+```
+
+This example shows how you can retrieve app roles for an application.
+
+## Parameters
+
+### -All
+
+List all pages.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ApplicationId
+
+Specifies the ID of an application in Microsoft Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: GetById
+Aliases: ObjectId
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -SearchString
+
+Specifies a search string.
+
+```yaml
+Type: System.String
+Parameter Sets: GetVague
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Top
+
+Specifies the maximum number of records to return.
+
+```yaml
+Type: System.Int32
+Parameter Sets: GetQuery
+Aliases: Limit
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases: Select
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+
+[New-EntraApplication](New-EntraApplication.md)
+
+[Remove-EntraApplication](Remove-EntraApplication.md)
+
+[Set-EntraApplication](Set-EntraApplication.md)

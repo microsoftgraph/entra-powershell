@@ -4,9 +4,9 @@ description: Microsoft Entra PowerShell installation and usage guide.
 
 
 ms.topic: reference
-ms.date: 04/05/2024
+ms.date: 02/03/2025
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 ---
@@ -28,13 +28,13 @@ Table of Contents
 Run the following command in a PowerShell session to install the Microsoft Entra PowerShell module:
 
 ```powershell
-Install-Module -Name Microsoft.Graph.Entra -AllowPrerelease -Repository PSGallery -Force
+Install-Module -Name Microsoft.Entra -Repository PSGallery -Scope CurrentUser -Force -AllowClobber
 ```
 
 To install the `beta` module, use:
 
 ```powershell
-Install-Module -Name Microsoft.Graph.Entra.Beta -AllowPrerelease -Repository PSGallery -Force
+Install-Module -Name Microsoft.Entra.Beta -Repository PSGallery -Scope CurrentUser -Force -AllowClobber
 ```
 
 [The latest version of PowerShell 7][PowerShellCore] is the recommended version of PowerShell for
@@ -45,7 +45,7 @@ If you have an earlier version of the Microsoft Entra PowerShell module installe
 and would like to update to the latest version, run the following command in a PowerShell session:
 
 ```powershell
-Update-Module -Name Microsoft.Graph.Entra -AllowPrerelease
+Update-Module -Name Microsoft.Entra -Force
 ```
 
 `Update-Module` installs the new version side-by-side with previous versions. It doesn't uninstall
@@ -93,7 +93,13 @@ search pattern:
 
 ```powershell
 # List all cmdlets in the Microsoft Entra PowerShell module
-Get-Command -Module Microsoft.Graph.Entra
+Get-Command -Module Microsoft.Entra*
+```
+
+To narrow this down, for instance, to find commands related to applications, run the following command.
+
+```powershell
+Get-Command -Module Microsoft.Entra* -Noun *application*
 ```
 
 ### Cmdlet help and examples
@@ -185,11 +191,11 @@ Microsoft Entra PowerShell collects telemetry data by default. We collection inf
 [PowerShellCore]: https://github.com/PowerShell/PowerShell/releases/latest
 [InstallationGuide]: https://learn.microsoft.com/powershell/entra-powershell/installation
 [GettingStartedGuide]: https://learn.microsoft.com/powershell/entra-powershell/quickstart-entra-powershell
-[Connect-Entra]:https://learn.microsoft.com/powershell/module/microsoft.graph.entra/connect-entra
+[Connect-Entra]:https://learn.microsoft.com/powershell/module/microsoft.entra/connect-entra
 [authentication-scenarios]:https://learn.microsoft.com/powershell/entra-powershell/authentication-scenarios
-[GitHubRepo]: https://github.com/microsoftgraph/entra-powershell/issues
+[GitHubRepo]: https://aka.ms/entra/ps/issues
 [debug-guide]: https://learn.microsoft.com/powershell/entra-powershell/entra-powershell-best-practices#use-the-debug-option
 [migrationGuideLink]: https://learn.microsoft.com/powershell/entra-powershell/migration-guide
-[enable-entraazureadalias]: https://learn.microsoft.com/powershell/module/microsoft.graph.entra/enable-entraazureadalias
+[enable-entraazureadalias]: https://learn.microsoft.com/powershell/module/microsoft.entra/enable-entraazureadalias
 [versioning-and-release-cadence]: https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence
 [navigate-the-module]: https://learn.microsoft.com/powershell/entra-powershell/navigate-entra-powershell

@@ -25,7 +25,7 @@ try{
     Write-Host "Successfully imported $($Policies.Count) policies"
 }catch{
     Write-Error "Error importing policies: $_"
-    exit
+    return
 }
 
 Write-Host "Starting to analyze policies"
@@ -38,7 +38,7 @@ foreach($Policy in $Policies){
             }
             catch {
                 Write-Error "Error getting policy details: $_"
-                exit
+                return
             }
 
         }

@@ -185,6 +185,6 @@ Significant contributions are credited in the [misc/acknowledgements](./../misc/
 [GA-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example.md
 [Beta-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example-beta.md
 [cmdlet-reference-template]: ./cmdlet-references-documentation/cmdlet-reference-template.md
-[cmdlet-references]: https://learn.microsoft.com/powershell/module/microsoft.graph.entra
+[cmdlet-references]: https://learn.microsoft.com/powershell/module/microsoft.entra
 [docs-folder]: https://github.com/microsoftgraph/entra-powershell/tree/main/module/docs
 [discussions]: https://github.com/microsoftgraph/entra-powershell/discussions
