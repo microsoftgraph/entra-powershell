@@ -4,9 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Update-EntraGroup {
-    [CmdletBinding(SupportsShouldProcess,
-        ConfirmImpact = 'Medium',
-        DefaultParameterSetName = 'Default')]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Medium', DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the group, such as its object ID.")]
         [Alias("ObjectId", "Id")]
@@ -49,6 +47,11 @@ function Update-EntraGroup {
             Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
             return
         }
+        
+    }
+
+    process {
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
         # Microsoft Graph API URL for updating group properties
         $graphUri = "https://graph.microsoft.com/v1.0/groups/$GroupId"
@@ -72,24 +75,23 @@ function Update-EntraGroup {
 
         # Convert final update properties to JSON
         $bodyJson = $GroupProperties | ConvertTo-Json -Depth 2
-    }
 
-    process {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($GroupProperties.Count -eq 0) {
             Write-Warning "No properties provided for update. Exiting."
             return
         }
 
     
-        try {
-            # Invoke Microsoft Graph API Request
-            Invoke-MgGraphRequest -Uri $graphUri -Method PATCH -Body $bodyJson -Headers $customHeaders
-            Write-Verbose "Properties for group $GroupId updated successfully. Updated properties: $($GroupProperties | Out-String)"
-        }
-        catch {
-            Write-Debug "Error Details: $_"
-            Write-Error "Failed to update group properties: $_"
+        if ($PSCmdlet.ShouldProcess("Group with ID '$GroupId'", "Update the following properties: $($GroupProperties.Keys -join ', ')")) {
+            try {
+                # Invoke Microsoft Graph API Request
+                Invoke-MgGraphRequest -Uri $graphUri -Method PATCH -Body $bodyJson -Headers $customHeaders
+                Write-Verbose "Properties for group $GroupId updated successfully. Updated properties: $($GroupProperties | Out-String)"
+            }
+            catch {
+                Write-Debug "Error Details: $_"
+                Write-Error "Failed to update group properties: $_"
+            }
         }
     }
 }
