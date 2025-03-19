@@ -29,6 +29,9 @@ function Update-EntraGroup {
         [Parameter(HelpMessage = "Specifies whether the group is a security group.")]
         [bool]$SecurityEnabled,
 
+        [Parameter(HelpMessage = "Specifies whether the group can be assigned to a Microsoft Entra role.")]
+        [bool]$IsAssignableToRole,
+
         [Parameter(HelpMessage = "A list of SMTP proxy addresses for the group, including the primary SMTP address.")]
         [string[]]$ProxyAddresses,
 
