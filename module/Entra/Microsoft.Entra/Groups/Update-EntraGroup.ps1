@@ -33,7 +33,7 @@ function Update-EntraGroup {
         [string[]]$ProxyAddresses,
 
         [Parameter(HelpMessage = "Specifies whether the group is visible in the address list.")]
-        [bool]$Visibility,
+        [string]$Visibility,
 
         [Parameter(Mandatory = $false, HelpMessage = "A hashtable of additional group properties to update.")]
         [Alias("BodyParameter", "Body", "BodyParameters")]
