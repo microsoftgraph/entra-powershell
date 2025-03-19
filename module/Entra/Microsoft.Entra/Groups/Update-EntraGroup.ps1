@@ -44,7 +44,8 @@ function Update-EntraGroup {
 
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            Write-Error "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
         
