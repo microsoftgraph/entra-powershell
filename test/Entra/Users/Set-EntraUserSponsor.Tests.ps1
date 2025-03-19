@@ -65,6 +65,20 @@ Describe "Set-EntraUserSponsor" {
                 Should -Throw
         }
 
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserSponsor"
+
+            $result = Set-EntraUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309  -Type User  -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62","b9db38b9-e5b8-4b5e-ae78-9812230af58d","da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserSponsor"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+
         It "Should accept both array and scalar values for SponsorIds parameter" {
             { Set-EntraUserSponsor -Type User -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
                 Should -Not -Throw
