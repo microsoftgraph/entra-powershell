@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Update the Sponsors attribute to include the user who initially invited them to the tenant using the InvitedBy property. 
+Update the Sponsors attribute to include the user who initially invited them to the tenant using the InvitedBy property. While new guests are sponsored automatically, the feature was only rolled out last year and did not backfill the sponsor info for previous guests that were invited.
 
 ## Syntax
 
@@ -49,6 +49,18 @@ The calling user must be assigned at least one of the following Microsoft Entra 
  Update-EntraBetaInvitedUserSponsorsFromInvitedBy
 ```
 
+```Output
+Confirm
+Are you sure you want to perform this action?
+Performing the operation "Update Sponsors" on target "externaluser_externaldomain.com"
+(externaluser_externaldomain.com#EXT#@contoso.com - 00aa00aa-bb11-cc22-dd33-44ee44ee44ee)".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): A
+
+externaluser1_externaldomain.com#EXT#@contoso.com - Sponsor updated successfully for this user.
+externaluser1_externaldomain#EXT#@contoso - Sponsor updated successfully for this user.
+externaluser1_externaldomain#EXT#@contoso - Sponsor updated successfully for this user.
+```
+
 Enumerate all invited users in the Tenant and update Sponsors using InvitedBy value
 
 ### Example 2: Update sponsors for a specific guest user
@@ -58,6 +70,16 @@ Connect-Entra -Scopes 'User.ReadWrite.All'
 Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId 'guestuser@contoso.com','guestuser1@contoso.com'
 ```
 
+```Output
+Confirm
+Are you sure you want to perform this action?
+Performing the operation "Update Sponsors" on target "externaluser_externaldomain.com"
+(externaluser_externaldomain.com#EXT#@contoso.com - 00aa00aa-bb11-cc22-dd33-44ee44ee44ee)".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): A
+
+externaluser1_externaldomain.com#EXT#@contoso.com - Sponsor updated successfully for this user.
+```
+
 This command updates the sponsors for the specified guest user in Microsoft Entra ID.
 
 ### Example 3: Update sponsors for all invited guest users
@@ -65,6 +87,18 @@ This command updates the sponsors for the specified guest user in Microsoft Entr
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 Update-EntraBetaInvitedUserSponsorsFromInvitedBy -All
+```
+
+```Output
+Confirm
+Are you sure you want to perform this action?
+Performing the operation "Update Sponsors" on target "externaluser_externaldomain.com"
+(externaluser_externaldomain.com#EXT#@contoso.com - 00aa00aa-bb11-cc22-dd33-44ee44ee44ee)".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"): A
+
+externaluser1_externaldomain.com#EXT#@contoso.com - Sponsor updated successfully for this user.
+externaluser1_externaldomain#EXT#@contoso - Sponsor updated successfully for this user.
+externaluser1_externaldomain#EXT#@contoso - Sponsor updated successfully for this user.
 ```
 
 This command updates the sponsors for all invited guest users in Microsoft Entra ID.
