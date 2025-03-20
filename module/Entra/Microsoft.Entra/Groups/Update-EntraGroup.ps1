@@ -17,7 +17,7 @@ function Update-EntraGroup {
         [Parameter(HelpMessage = "The display name of the group.")]
         [string]$DisplayName,
 
-        [Parameter(HelpMessage = "Specifies the group types and its membership. Possible values are 'Unified' or 'DynamicMembership'.")]
+        [Parameter(HelpMessage = "Defines the group type and membership. Possible values: 'Unified' (Microsoft 365 group) or 'DynamicMembership'. If not 'Unified', the group is a security or distribution group.")]
         [string[]]$GroupTypes,
 
         [Parameter(HelpMessage = "Specifies whether the group is mail-enabled.")]
@@ -29,11 +29,14 @@ function Update-EntraGroup {
         [Parameter(HelpMessage = "Specifies whether the group is a security group.")]
         [bool]$SecurityEnabled,
 
+        [Parameter(HelpMessage = "Indicates if the group can be assigned to a Microsoft Entra role (only for security groups). This setting is fixed at creation and cannot be changed.")]
+        [bool]$IsAssignableToRole,
+
         [Parameter(HelpMessage = "A list of SMTP proxy addresses for the group, including the primary SMTP address.")]
         [string[]]$ProxyAddresses,
 
         [Parameter(HelpMessage = "Specifies whether the group is visible in the address list.")]
-        [bool]$Visibility,
+        [string]$Visibility,
 
         [Parameter(Mandatory = $false, HelpMessage = "A hashtable of additional group properties to update.")]
         [Alias("BodyParameter", "Body", "BodyParameters")]
