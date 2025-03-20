@@ -67,7 +67,7 @@ Enumerate all invited users in the Tenant and update Sponsors using InvitedBy va
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId 'guestuser@contoso.com','guestuser1@contoso.com'
+Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId 'externaluser1_externaldomain.com','externaluser1_externaldomain.com'
 ```
 
 ```Output
