@@ -9,6 +9,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
     param (
         [Parameter(ParameterSetName = 'GetById', HelpMessage = "The unique identifier of the tenant. Optional.")]
         [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })]
+        [Obsolete('This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user''s tenant ID. It should not be used for any other purpose.')]
         [System.Guid] $TenantId
     )
     begin { }

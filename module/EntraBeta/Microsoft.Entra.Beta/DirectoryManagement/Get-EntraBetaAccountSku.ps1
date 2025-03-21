@@ -5,7 +5,9 @@
 function Get-EntraBetaAccountSku {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId
+        [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+        [System.Guid] $TenantId
         )
 
     PROCESS {    

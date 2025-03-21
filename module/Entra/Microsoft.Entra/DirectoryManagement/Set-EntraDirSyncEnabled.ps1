@@ -5,8 +5,13 @@
 function Set-EntraDirSyncEnabled {
     [CmdletBinding(DefaultParameterSetName = 'All')]
     param (
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
+        [System.Boolean] $EnableDirsync,
+
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+        [System.Guid] $TenantId,
+
         [switch] $Force
     )
 
@@ -21,7 +26,7 @@ function Set-EntraDirSyncEnabled {
             $body["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
         }        
         if ([string]::IsNullOrWhiteSpace($TenantId)) {           
-            $OrganizationId = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directory/onPremisesSynchronization/").value).id           
+            $OrganizationId = (Get-EntraContext).TenantId           
             $URL = "https://graph.microsoft.com/v1.0/organization/" + $OrganizationId
         }
         
@@ -44,5 +49,4 @@ function Set-EntraDirSyncEnabled {
         $response = Invoke-GraphRequest @params -Headers $customHeaders
         $response        
     }
-}# ------------------------------------------------------------------------------
-
+}
