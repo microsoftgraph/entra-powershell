@@ -4,6 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraUser {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [Alias("Get-AzureADUser")]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]

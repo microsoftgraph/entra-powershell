@@ -4,6 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Revoke-EntraUserAllRefreshToken {
     [CmdletBinding(DefaultParameterSetName = '')]
+    [Alias("Revoke-AzureADUserAllRefreshToken")]
     param (
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user's unique ID (User Principal Name or UserId)")]
