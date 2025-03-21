@@ -21,6 +21,9 @@ function Connect-Entra {
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', Position = 3, HelpMessage = 'The thumbprint of your certificate. The Certificate will be retrieved from the current user''s certificate store.')]
         [string] $CertificateThumbprint,
 
+        [Parameter(ParameterSetName='AppCertificateParameterSet', HelpMessage='Include x5c header in client claims when acquiring a token to enable subject name / issuer based authentication using given certificate.')]
+        [bool] ${SendCertificateChain},
+
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'An X.509 certificate supplied during invocation.')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
 

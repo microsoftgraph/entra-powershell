@@ -94,24 +94,23 @@ SimpleTestGrp                   eeeeeeee-4444-5555-6666-ffffffffffff NickName   
 
 This example demonstrates how to retrieve specific group by providing ID.
 
-### Example 3: Get top five groups
+### Example 3: Retrieve Microsoft 365 (Unified) groups
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -Top 5
+Get-EntraBetaGroup -Filter "groupTypes/any(g:g eq 'Unified')" -Top 4
 ```
 
 ```Output
-DisplayName                                     Id                                   MailNickname    Description       GroupTypes
------------                                     --                                   ------------    -----------       ----------
-SimpleTestGrp                                   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName                          {}
-SimpleGroup                                     bbbbbbbb-1111-2222-3333-cccccccccccc NickName                          {}
-testGroupInAU10                                 cccccccc-2222-3333-4444-dddddddddddd testGroupInAU10 testGroupInAU10   {DynamicMembership, Unified}
-My new group                                    dddddddd-3333-4444-5555-eeeeeeeeeeee NotSet          New created group {}
-SimpleGroup                                     eeeeeeee-4444-5555-6666-ffffffffffff NickName                          {}
+DisplayName        Id                                     MailNickname     GroupTypes
+-----------        --                                     ------------     ----------
+Contoso Group      hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq   contosogroup     {Unified}
+Crimson Eagle     pppppppp-4444-0000-8888-yyyyyyyyyyyy   crimsoneagle     {Unified}
+Bold Falcon      tttttttt-0000-3333-9999-mmmmmmmmmmmm   boldfalcon       {Unified}
+Misty Fox        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh   mistyfox         {Unified}
 ```
 
-This example demonstrates how to get top five groups. You can use `-Limit` as an alias for `-Top`.
+This example retrieves Microsoft 365 (Unified) groups. You can use `-Limit` as an alias for `-Top`.
 
 ### Example 4: Get a group by DisplayName
 
