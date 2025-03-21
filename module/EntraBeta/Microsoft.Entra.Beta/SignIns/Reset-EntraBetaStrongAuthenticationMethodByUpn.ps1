@@ -66,6 +66,8 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
         $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId -Headers $customHeaders
         # -1 to account for passwordAuthenticationMethod
 
+        $defaultMethod = $null
+
         foreach ($authMethod in $methods) {
             $deleted = DeleteAuthMethod -uid $userId -method $authMethod
             if (!$deleted) {
@@ -78,13 +80,40 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
         # Plus default method can only be deleted when it is the only (last) auth method for a user.
         # We need to use the error to identify and delete the default method.
         try {
-            $result = DeleteAuthMethod -uid $userId -method $defaultMethod
-            if (-not $result) {
-                Write-Warning "Could not delete the default authentication method with ID [$($defaultMethod.Id)] for user [$userId]."
+            if ($null -ne $defaultMethod) {
+                $result = DeleteAuthMethod -uid $userId -method $defaultMethod
+                if (-not $result) {
+                    Write-Warning "Could not delete the default authentication method with ID [$($defaultMethod.Id)] for user [$userId]."
+                }
+            }
+            else {
+                Write-Verbose "No default authentication method found or all methods were successfully deleted for user [$userId]."
             }
         }
         catch {
-            Write-Warning "Exception occurred while attempting to delete the default method: $_"
+            $errorMessage = "Exception occurred while attempting to delete the default method"
+            
+            # Extract method details if possible
+            if ($null -ne $defaultMethod) {
+                try {
+                    $methodType = $defaultMethod.AdditionalProperties['@odata.type']
+                    $methodId = $defaultMethod.Id
+                    $errorMessage += " of type [$methodType] with ID [$methodId]"
+                }
+                catch {
+                    # Couldn't extract method details
+                    $errorMessage += " (could not determine method type or ID)"
+                }
+            }
+            else {
+                $errorMessage += " (method object was null)"
+            }
+            
+            $errorMessage += ": $_"
+            Write-Warning $errorMessage
+            
+            # Add more detailed error info for debugging
+            Write-Debug "Exception details: $($_.Exception | ConvertTo-Json -Depth 2)"
         }
     }
 }
