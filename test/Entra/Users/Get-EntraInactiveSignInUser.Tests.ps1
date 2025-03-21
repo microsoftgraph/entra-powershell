@@ -9,7 +9,13 @@ BeforeAll {
 
         Mock -CommandName Get-Date -MockWith { [datetime]"2024-03-21T00:00:00Z" }
 
-        Mock -CommandName Get-MgUser -MockWith{
+        function New-FakeUser {
+            param (
+                [string] $userType = 'Member',
+                [datetime] $lastSignInDateTime = $null,
+                [datetime] $lastNonInteractive = $null,
+                [datetime] $created = $null
+            )
 
             return @{
                 Id                              = [guid]::NewGuid().ToString()
@@ -26,12 +32,15 @@ BeforeAll {
                 }
                 createdDateTime = $created
             }
+        }
+
+        Mock -CommandName Get-MgUser -MockWith{
+             New-FakeUser
+            }
         } -ModuleName Microsoft.Entra.User
     }
     
 Describe 'Get-EntraInactiveSignInUser' {
-
-
     Context "UserType Filtering" {
         It "returns all users when UserType is All" {
             $fakeUsers = @(
