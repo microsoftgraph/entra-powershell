@@ -3,16 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraServicePrincipalAppRoleAssignment {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.String] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.String] $ResourceId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.String] $Id,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

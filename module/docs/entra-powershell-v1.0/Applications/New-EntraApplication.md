@@ -25,6 +25,8 @@ Creates (registers) a new application object.
 
 ## Syntax
 
+### FromParameters
+
 ```powershell
 New-EntraApplication
  -DisplayName <String>
