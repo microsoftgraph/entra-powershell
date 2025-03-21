@@ -75,11 +75,14 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
         # Plus default method can only be deleted when it is the only (last) auth method for a user.
         # We need to use the error to identify and delete the default method.
         try {
-            if ($null -ne $defaultMethod) {
-                $result = DeleteAuthMethod -uid $userId -method $defaultMethod
+            $result = DeleteAuthMethod -uid $userId -method $defaultMethod
+            if (-not $result) {
+                Write-Warning "Could not delete the default authentication method with ID [$($defaultMethod.Id)] for user [$userId]."
             }
         }
-        catch {}
+        catch {
+            Write-Warning "Exception occurred while attempting to delete the default method: $_"
+        }
     }
 }
 
