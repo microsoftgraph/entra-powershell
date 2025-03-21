@@ -25,6 +25,8 @@ Add a classification for a delegated permission.
 
 ## Syntax
 
+### ByServicePrincipalAndPermissionInfo
+
 ```powershell
 Add-EntraBetaServicePrincipalDelegatedPermissionClassification
  -PermissionId <String>

@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraBetaApplicationProxyApplication {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]

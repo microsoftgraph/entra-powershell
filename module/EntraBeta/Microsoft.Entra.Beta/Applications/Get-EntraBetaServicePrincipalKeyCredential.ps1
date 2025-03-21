@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaServicePrincipalKeyCredential {
     function Get-EntraBetaServicePrincipalKeyCredential {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Alias("ObjectId")]

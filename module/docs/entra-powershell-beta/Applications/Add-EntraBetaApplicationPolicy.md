@@ -25,6 +25,8 @@ Adds an application policy.
 
 ## Syntax
 
+### ByApplicationIdAndPolicyId
+
 ```powershell
 Add-EntraBetaApplicationPolicy
  -Id <String>

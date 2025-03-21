@@ -3,16 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Add-EntraBetaServicePrincipalDelegatedPermissionClassification {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByServicePrincipalAndPermissionInfo')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "ByServicePrincipalAndPermissionInfo", Mandatory = $true)]
     [System.String] $PermissionId,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "ByServicePrincipalAndPermissionInfo", Mandatory = $true)]
     [System.String] $PermissionName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "ByServicePrincipalAndPermissionInfo", Mandatory = $true)]
     [System.Nullable`1[Microsoft.Open.MSGraph.Model.DelegatedPermissionClassification+ClassificationEnum]] $Classification,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

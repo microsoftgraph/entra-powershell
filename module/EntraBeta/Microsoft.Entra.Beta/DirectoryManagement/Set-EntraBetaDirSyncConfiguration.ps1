@@ -3,10 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaDirSyncConfiguration {
-    [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateDirectoryOnPremiseSynchronization')]
     param (
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.UInt32] $AccidentalDeletionThreshold,
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "UpdateDirectoryOnPremiseSynchronization", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.UInt32] $AccidentalDeletionThreshold,
+        [Parameter(ParameterSetName = "UpdateDirectoryOnPremiseSynchronization", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
         [switch] $Force
     )
 
