@@ -3,28 +3,28 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraInvitation {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
     [System.String] $InvitedUserEmailAddress,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $InvitedUserDisplayName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
     [System.String] $InviteRedirectUrl,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $SendInvitationMessage,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $InvitedUserType
     )
 

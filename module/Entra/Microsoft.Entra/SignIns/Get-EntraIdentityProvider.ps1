@@ -8,6 +8,7 @@ function Get-EntraIdentityProvider {
         [Alias('Id')]            
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $IdentityProviderBaseId,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Remove-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'default')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id

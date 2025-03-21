@@ -3,28 +3,28 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraNamedLocationPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $IncludeUnknownCountriesAndRegions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]] $CountriesAndRegions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]] $IpRanges,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $Id,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $IsTrusted,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $OdataType,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $DisplayName
     )
 

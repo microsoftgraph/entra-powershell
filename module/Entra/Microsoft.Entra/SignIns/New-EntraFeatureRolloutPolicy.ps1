@@ -4,19 +4,19 @@
 # ------------------------------------------------------------------------------ 
 
 function New-EntraFeatureRolloutPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.Nullable`1[System.Boolean]] $IsAppliedToOrganization,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.String] $Feature,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
         [System.Nullable`1[System.Boolean]] $IsEnabled,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]] $AppliesTo
     )
 

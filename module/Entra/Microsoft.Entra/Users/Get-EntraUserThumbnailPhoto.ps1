@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraUserThumbnailPhoto {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -11,12 +11,14 @@ function Get-EntraUserThumbnailPhoto {
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $FilePath,
+
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UserId,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Boolean] $View,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

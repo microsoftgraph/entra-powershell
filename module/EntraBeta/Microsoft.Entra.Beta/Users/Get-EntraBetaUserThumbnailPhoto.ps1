@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Get-EntraBetaUserThumbnailPhoto {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -12,12 +12,14 @@ function Get-EntraBetaUserThumbnailPhoto {
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $FilePath,
+
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UserId,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $FileName,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

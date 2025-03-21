@@ -3,28 +3,28 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraAuthorizationPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $AllowEmailVerifiedUsersToJoinOrganization,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions] $DefaultUserRolePermissions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $Description,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $AllowedToSignUpEmailBasedSubscriptions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $BlockMsolPowerShell,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.Nullable`1[System.Boolean]] $AllowedToUseSSPR,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $DisplayName
     )
 

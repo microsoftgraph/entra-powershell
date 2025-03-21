@@ -12,9 +12,11 @@ function Get-EntraUserMembership {
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
+
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UserId,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

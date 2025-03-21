@@ -4,19 +4,19 @@
 # ------------------------------------------------------------------------------ 
 
 function New-EntraIdentityProvider {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
     [System.String] $ClientSecret,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
     [System.String] $Type,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
     [System.String] $ClientId,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "FromParameters")]
     [System.String] $Name
     )
 

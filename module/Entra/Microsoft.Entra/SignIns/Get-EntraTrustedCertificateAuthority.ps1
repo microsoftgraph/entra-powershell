@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraTrustedCertificateAuthority {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'default')]
     param (
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -11,6 +11,7 @@ function Get-EntraTrustedCertificateAuthority {
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $TrustedIssuerSki,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

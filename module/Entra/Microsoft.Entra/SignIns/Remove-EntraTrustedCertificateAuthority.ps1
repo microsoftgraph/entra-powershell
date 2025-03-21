@@ -4,9 +4,8 @@
 # ------------------------------------------------------------------------------ 
 
 function Remove-EntraTrustedCertificateAuthority {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
+    [CmdletBinding(DefaultParameterSetName = 'default')]
+    param (     
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation] $CertificateAuthorityInformation
     )

@@ -3,21 +3,21 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraFeatureRolloutPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.Nullable`1[System.Boolean]] $IsAppliedToOrganization,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.String] $Feature,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.Nullable`1[System.Boolean]] $IsEnabled,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "FromParameters")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]] $AppliesTo
     )
 
