@@ -3,18 +3,24 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Reset-EntraStrongAuthenticationMethodByUpn {
-    [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
+    [CmdletBinding(DefaultParameterSetName = 'ResetAuthenticationMethod')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $UserPrincipalName,
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId
-        )
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The unique identifier for the user (User Principal Name or UserId) whose strong authentication method you want to reset.')]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserId')]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $UserPrincipalName,
+
+        [Parameter(ParameterSetName = "ResetAuthenticationMethod", ValueFromPipelineByPropertyName = $true, HelpMessage = 'The tenant ID.')]
+        [Obsolete("Ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in Tenant ID.")]
+        [System.Guid] $TenantId
+    )
 
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $userId = $PSBoundParameters.UserPrincipalName
         }
-        function DeleteAuthMethod($uid, $method){
+        function DeleteAuthMethod($uid, $method) {
             switch ($method.AdditionalProperties['@odata.type']) {
                 '#microsoft.graph.emailAuthenticationMethod' { 
                     Remove-MgUserAuthenticationEmailMethod -UserId $uid -EmailAuthenticationMethodId $method.Id
@@ -49,7 +55,7 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
 
         foreach ($authMethod in $methods) {
             $deleted = DeleteAuthMethod -uid $userId -method $authMethod
-            if(!$deleted){
+            if (!$deleted) {
                 # We need to use the error to identify and delete the default method.
                 $defaultMethod = $authMethod
             }
@@ -59,7 +65,7 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
         # Plus default method can only be deleted when it is the only (last) auth method for a user.
         # We need to use the error to identify and delete the default method.
         try {
-            if($null -ne $defaultMethod){
+            if ($null -ne $defaultMethod) {
                 $result = DeleteAuthMethod -uid $userId -method $defaultMethod
             }
         }
