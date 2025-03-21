@@ -10,7 +10,6 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
 
         # UserId of Guest User
         [Parameter(ParameterSetName = 'ByUsers', HelpMessage = "The Unique ID of the User (User ID).")]
-        [ValidateScript({ ($_ -ne $null -and $_.Count -gt 0) -or $PSCmdlet.MyInvocation.BoundParameters.ContainsKey('All') })]
         [String[]]
         $UserId,
 
@@ -28,47 +27,10 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
 
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        # Inline Helper function to extract deeply nested json values
-        function Get-ObjectPropertyValue {
-            [CmdletBinding()]
-            [OutputType([psobject])]
-            param (
-                # Object containing property values
-                [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
-                [AllowNull()]
-                [psobject] $InputObjects,
-                # Name of property. Specify an array of property names to tranverse nested objects.
-                [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
-                [string[]] $Property
-            )
-
-            process {
-                foreach ($InputObject in $InputObjects) {
-                    for ($iProperty = 0; $iProperty -lt $Property.Count; $iProperty++) {
-                        ## Get property value
-                        if ($InputObject -is [hashtable]) {
-                            if ($InputObject.ContainsKey($Property[$iProperty])) {
-                                $PropertyValue = $InputObject[$Property[$iProperty]]
-                            }
-                            else { $PropertyValue = $null }
-                        }
-                        else {
-                            $PropertyValue = Select-Object -InputObject $InputObject -ExpandProperty $Property[$iProperty] -ErrorAction Ignore
-                            if ($null -eq $PropertyValue) { break }
-                        }
-                        ## Check for more nested properties
-                        if ($iProperty -lt $Property.Count - 1) {
-                            $InputObject = $PropertyValue
-                            if ($null -eq $InputObject) { break }
-                        }
-                        else {
-                            Write-Output $PropertyValue
-                        }
-                    }
-                }
-            }
+      if ((-not $UserId -or $UserId.Count -eq 0) -and -not $All) {
+            throw "Please specify either -UserId or -All"
         }
-
+        $invitedUsers=@()
         if ($All) {
             #TODO: Change to Get-EntraBetaUser when -ExpandProperty is implemented
             $invitedUsers = Get-MgBetaUser -Filter $guestFilter -All -ExpandProperty Sponsors
@@ -86,18 +48,18 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         else {
             foreach ($invitedUser in $invitedUsers) {
                 $invitedBy = $null
-
+                $environment=(Get-EntraContext).Environment
+                $baseUri=(Get-EntraEnvironment -Name $environment).GraphEndpoint
                 $splatArgumentsGetInvitedBy = @{
                     Method = 'Get'
-                    Uri    = ((Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint +
-                        "/beta/users/" + $invitedUser.id + "/invitedBy")
+                    Uri    = $baseUri +"/beta/users/" + $invitedUser.id + "/invitedBy"
                 }
 
-                $invitedBy = Invoke-MgGraphRequest @splatArgumentsGetInvitedBy -Headers $customHeaders
+                $invitedBy = Invoke-GraphRequest @splatArgumentsGetInvitedBy -Headers $customHeaders
 
                 Write-Verbose ($invitedBy | ConvertTo-Json -Depth 10)
 
-                if ($null -ne $invitedBy -and $null -ne $invitedBy.value -and $null -ne (Get-ObjectPropertyValue $invitedBy.value -Property 'id')) {
+                if ($null -ne $invitedBy -and $null -ne $invitedBy.value -and $null -ne $invitedBy.value.id) {
                     Write-Verbose ("InvitedBy for Guest User {0}: {1}" -f $invitedUser.displayName, $invitedBy.value.id)
 
                     if (($null -like $invitedUser.sponsors) -or ($invitedUser.sponsors.id -notcontains $invitedBy.value.id)) {
