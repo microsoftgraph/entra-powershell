@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaPrivateAccessApplicationSegment {
 
-    [CmdletBinding()]
+    [CmdletBinding(parametersetname='default')]
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $True)]
@@ -32,5 +32,4 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
             Write-Error "Failed to remove the application segment: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}

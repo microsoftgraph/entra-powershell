@@ -7,11 +7,14 @@ function Get-EntraAuditDirectoryLog {
     param (
         [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
+
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]
         [System.Int32] $Top,
+
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
+
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Filter
     )
@@ -78,5 +81,4 @@ function Get-EntraAuditDirectoryLog {
         }
         $userList
     }
-}# ------------------------------------------------------------------------------
-
+}
