@@ -77,13 +77,13 @@ function Update-EntraGroup {
             $GroupProperties[$key] = $AdditionalProperties[$key]
         }
 
-        # Convert final update properties to JSON
-        $bodyJson = $GroupProperties | ConvertTo-Json -Depth 2
-
         if ($GroupProperties.Count -eq 0) {
             Write-Warning "No properties provided for update. Exiting."
             return
         }
+
+        # Convert final update properties to JSON
+        $bodyJson = $GroupProperties | ConvertTo-Json -Depth 2
 
     
         if ($PSCmdlet.ShouldProcess("Group with ID '$GroupId'", "Update the following properties: $($GroupProperties.Keys -join ', ')")) {

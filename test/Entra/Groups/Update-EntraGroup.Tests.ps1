@@ -32,9 +32,9 @@ Describe "Update-EntraGroup" {
         It "Should fail when GroupId is empty" {
             { Update-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
-        It "Should execute successfully with WhatIf parameter" {
+        It "Should not execute Invoke-MgGraphRequest with WhatIf parameter" {
             Update-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "demo" -WhatIf
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Groups -Times 1
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Groups -Times 0
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraGroup"
