@@ -19,6 +19,7 @@ BeforeAll {
     }
     Mock -CommandName Get-MgBetaUserAuthenticationMethod -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
     Mock -CommandName Remove-MgBetaUserAuthenticationPhoneMethod -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("UserAuthenticationMethod.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {

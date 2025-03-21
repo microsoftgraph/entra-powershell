@@ -14,6 +14,16 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
         [Obsolete("Ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in Tenant ID.")]
         [System.Guid] $TenantId
     )
+    begin {
+
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes UserAuthenticationMethod.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
+    }
 
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
