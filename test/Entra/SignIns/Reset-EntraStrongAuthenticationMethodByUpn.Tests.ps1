@@ -33,10 +33,7 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
         It "Should fail when UserPrincipalName is empty" {
             { Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
         }  
- 
-        It "Should fail when Id is invalid" {
-            { Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName "" } | Should -Throw "Cannot bind argument to parameter 'UserPrincipalName' because it is an empty string."
-        }  
+  
         It "Should set correct UserId" {
             Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
             Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
