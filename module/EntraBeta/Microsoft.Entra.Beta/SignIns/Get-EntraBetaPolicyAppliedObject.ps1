@@ -3,11 +3,11 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaPolicyAppliedObject {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'default')]
     param (
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id
     )
 
     PROCESS {
@@ -20,11 +20,11 @@ function Get-EntraBetaPolicyAppliedObject {
             $params["Uri"] = "https://graph.microsoft.com/beta/legacy/policies/$Id/appliesTo"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri | ConvertTo-Json  -Depth 10 | ConvertFrom-Json).value
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri | ConvertTo-Json -Depth 10 | ConvertFrom-Json).value
         $response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
-        if($response){
+        if ($response) {
             $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject

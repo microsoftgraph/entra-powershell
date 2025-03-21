@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaUserAuthenticationMethod {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to update.")]
         [Alias("ObjectId")]
@@ -54,5 +54,4 @@ function Get-EntraBetaUserAuthenticationMethod {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
