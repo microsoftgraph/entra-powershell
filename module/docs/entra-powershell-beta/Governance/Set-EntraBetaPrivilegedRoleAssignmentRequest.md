@@ -1,6 +1,6 @@
 ---
-title: Set-EntraBetaDirectoryRoleAssignmentRequest
-description: This article provides details on the Set-EntraBetaDirectoryRoleAssignmentRequest command.
+title: Set-EntraBetaPrivilegedRoleAssignmentRequest
+description: This article provides details on the Set-EntraBetaPrivilegedRoleAssignmentRequest command.
 
 
 ms.topic: reference
