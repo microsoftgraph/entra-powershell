@@ -4,7 +4,7 @@ description: This article provides details on the Reset-EntraBetaStrongAuthentic
 
 
 ms.topic: reference
-ms.date: 08/20/2024
+ms.date: 03/20/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
