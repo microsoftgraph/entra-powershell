@@ -21,5 +21,4 @@ function Enable-EntraBetaGlobalSecureAccessTenant {
             Write-Error "An error occurred while enabling the Global Secure Access Tenant: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}

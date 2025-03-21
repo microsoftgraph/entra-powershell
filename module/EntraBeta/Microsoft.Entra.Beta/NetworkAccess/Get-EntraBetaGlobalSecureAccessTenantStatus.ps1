@@ -21,5 +21,4 @@ function Get-EntraBetaGlobalSecureAccessTenantStatus {
             Write-Error "An error occurred while retrieving the Global Secure Access Tenant status: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}

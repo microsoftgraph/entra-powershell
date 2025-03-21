@@ -67,5 +67,4 @@ function New-EntraBetaPrivateAccessApplication {
             Write-Error "Failed to create the Private Access app. Error: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}

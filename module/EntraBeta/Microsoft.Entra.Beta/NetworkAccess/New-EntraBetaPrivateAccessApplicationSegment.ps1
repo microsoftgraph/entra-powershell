@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaPrivateAccessApplicationSegment {
 
-    [CmdletBinding()]
+    [CmdletBinding(parametersetname='default')]
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $True, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -84,5 +84,4 @@ function New-EntraBetaPrivateAccessApplicationSegment {
             Write-Error "Failed to create the application segment: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
