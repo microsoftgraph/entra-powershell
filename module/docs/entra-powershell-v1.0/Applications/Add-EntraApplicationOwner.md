@@ -21,7 +21,9 @@ schema: 2.0.0
 
 Adds an owner to an application.
 
-## Syntax
+## Syntax 
+
+### ByApplicationIdAndOwnerId
 
 ```powershell
 Add-EntraApplicationOwner
