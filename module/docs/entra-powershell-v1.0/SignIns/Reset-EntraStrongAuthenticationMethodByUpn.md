@@ -33,7 +33,9 @@ Reset-EntraStrongAuthenticationMethodByUpn
 
 ## Description
 
-The `Reset-EntraStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN).
+The `Reset-EntraStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN). It is recommended to use Temporary Access Pass (TAP) to allow a users to sign in temporarily without MFA instead of deleting all methods.
+
+Deleting all methods will force the user to re-register MFA next time they sign in.
 
 In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The least privileged roles for this operation are:
 
