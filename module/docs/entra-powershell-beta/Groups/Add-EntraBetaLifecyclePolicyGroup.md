@@ -1,6 +1,6 @@
 ---
-title: Add-EntraLifecyclePolicyGroup
-description: This article provides details on the Add-EntraLifecyclePolicyGroup command.
+title: Add-EntraBetaLifecyclePolicyGroup
+description: This article provides details on the Add-EntraBetaLifecyclePolicyGroup command.
 
 
 ms.topic: reference
