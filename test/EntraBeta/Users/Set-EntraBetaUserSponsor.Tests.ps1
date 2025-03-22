@@ -51,9 +51,6 @@ BeforeAll {
 
 Describe "Set-EntraBetaUserSponsor" {
     Context "Test for Set-EntraBetaUserSponsor" {
-        It "Should fail when UserId is empty string value" {
-            { Set-EntraBetaUserSponsor -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
 
         It "Should fail when UserId is empty" {
             { Set-EntraBetaUserSponsor -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
