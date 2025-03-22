@@ -53,7 +53,7 @@ Describe "Set-EntraDirSyncEnabled" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force -Debug } | Should -Not -Throw
+                { Set-EntraDirSyncEnabled -EnableDirsync $True -Force -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
