@@ -5,8 +5,12 @@
 function Set-EntraBetaDirSyncEnabled {
     [CmdletBinding(DefaultParameterSetName = 'All')]
     param (
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
+        [System.Boolean] $EnableDirsync,
+
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)]
+        [System.Guid] $TenantId,
+
         [switch] $Force
     )
 

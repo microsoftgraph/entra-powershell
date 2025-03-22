@@ -5,8 +5,13 @@
 function Set-EntraBetaDirSyncConfiguration {
     [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
     param (
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.UInt32] $AccidentalDeletionThreshold,
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
+        [System.UInt32] $AccidentalDeletionThreshold,
+
+        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+        [System.Guid] $TenantId,
+
         [switch] $Force
     )
 

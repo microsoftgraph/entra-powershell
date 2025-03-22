@@ -5,7 +5,9 @@
 function Get-EntraBetaPartnerInformation {
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param (
-            [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId
+            [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)]
+            [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+            [System.Guid] $TenantId
         )
 
         PROCESS {
@@ -19,9 +21,9 @@ function Get-EntraBetaPartnerInformation {
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
-                $TenantID = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
+                $TenantID = (Get-EntraContext).TenantId
             }
-            $response = invoke-mggraphrequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation"
+            $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation"
             # Create a custom table
             $customTable = [PSCustomObject]@{
                 "PartnerCompanyName"       = $response.companyName

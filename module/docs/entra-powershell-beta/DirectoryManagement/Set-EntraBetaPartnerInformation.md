@@ -175,9 +175,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-Specifies the unique ID of the tenant on which to perform the operation.
-The default value is the tenant of the current user.
-This parameter applies only to partner users.
+Specifies the unique ID of the tenant on which to perform the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
