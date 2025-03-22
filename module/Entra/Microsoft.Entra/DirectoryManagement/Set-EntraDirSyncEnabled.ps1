@@ -9,7 +9,6 @@ function Set-EntraDirSyncEnabled {
         [System.Boolean] $EnableDirsync,
 
         [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)]
-        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.Guid] $TenantId,
 
         [switch] $Force
