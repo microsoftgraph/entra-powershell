@@ -174,7 +174,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-Specifies the unique ID of the tenant on which to perform the operation. Defaults to the current user's tenant if not specified. This parameter is included for compatibility with legacy PowerShell modules.
+Specifies the unique ID of the tenant on which to perform the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
