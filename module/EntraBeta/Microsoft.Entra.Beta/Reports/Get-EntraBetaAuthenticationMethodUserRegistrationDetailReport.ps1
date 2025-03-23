@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
+function Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique object ID of the subscription to retrieve.")]
@@ -43,7 +43,7 @@ function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
         $params = @{}
         $topCount = 0
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/v1.0/reports/authenticationMethods/userRegistrationDetails"
+        $baseUri = "https://graph.microsoft.com/beta/reports/authenticationMethods/userRegistrationDetails"
         $properties = "`$select=*"
     
         if ($PSBoundParameters.ContainsKey("Property")) {
@@ -76,7 +76,7 @@ function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
     
-        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params["Uri"] -Method GET
+        $response = Invoke-MgGraphRequest -Headers $customHeaders -Uri $params["Uri"] -Method GET
     
         try {
             if ($PSBoundParameters.ContainsKey("UserRegistrationDetailsId")) {
@@ -94,7 +94,7 @@ function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
                         $params["Uri"] = $params["Uri"].Replace('`$top=999', "`$top=$topValue")
                         $increment -= $topValue
                     }
-                    $response = Invoke-GraphRequest @params
+                    $response = Invoke-MgGraphRequest @params
                     $data += $response.value
                 }
             }
@@ -111,4 +111,4 @@ function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
         }
     }
 }
-Set-Alias -Name Get-EntraAuthMethodUserRegistrationDetailReport -Value Get-EntraAuthenticationMethodUserRegistrationDetailReport -Description "Retrieves the user's registered authentication methods." -Scope Global -Force
+Set-Alias -Name Get-EntraBetaAuthMethodUserRegistrationDetailReport -Value Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -Description "Retrieves the user's registered authentication methods." -Scope Global -Force
