@@ -27,7 +27,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Reports
-    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AuditLog.Read.All") } } -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AuditLog.Read.All") } } -ModuleName Microsoft.Entra.Reports
 }
 Describe "Tests for Get-EntraAuthenticationMethodUserRegistrationDetailReport" {
     It "Result should not be empty" {
