@@ -62,7 +62,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All'
-Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -All
+Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -All | Format-Table -AutoSize
 ```
 
 ```Output
@@ -148,7 +148,7 @@ This example demonstrates how to retrieve a user's registered authentication met
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All'
-Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -All -Sort 'lastUpdatedDateTime desc' -Limit 4 | Format-Table -Autosize
+Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -All -Sort 'lastUpdatedDateTime desc' -Limit 4 | Format-Table -AutoSize
 ```
 
 ```Output
