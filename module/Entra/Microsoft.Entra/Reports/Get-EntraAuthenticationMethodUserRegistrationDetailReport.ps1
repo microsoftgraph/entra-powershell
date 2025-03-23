@@ -5,15 +5,15 @@
 function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique object ID of the subscription to retrieve.")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the user's registered authentication methods from the 'userRegistrationDetails' object.")]
         [Alias('Id')]
         [System.String] $UserRegistrationDetailsId ,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the number of objects to return.")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the number of items to return.")]
         [Alias("Limit")]
         [System.Int32] $Top,
 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all objects.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all items.")]
         [switch] $All,
 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter the results based on the specified criteria.")]
