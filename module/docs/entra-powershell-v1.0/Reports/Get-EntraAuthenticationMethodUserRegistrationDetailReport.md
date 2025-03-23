@@ -103,7 +103,7 @@ isSsprCapable                                 : False
 isMfaCapable                                  : False
 ```
 
-This example demonstrates how to retrieve specified the user's registered authentication methods by `UserRegistrationDetailsId`.
+This example shows how to retrieve a specific user's registered authentication methods by `UserRegistrationDetailsId`.
 
 - `-UserRegistrationDetailsId` parameter specifies the user's registered authentication methods.
 
@@ -123,7 +123,7 @@ cccccccc-2222-3333-4444-dddddddddddd False   False        False           False 
 dddddddd-3333-4444-5555-eeeeeeeeeeee False   False        False           False                 False 
 ```
 
-This example demonstrates how to retrieve specified the user's registered authentication methods with filtering `userType` property.
+This example demonstrates how to retrieve a user's registered authentication methods with filtering `userType` property.
 
 ### Example 4: Retrieve user's registered authentication methods properties
 
@@ -142,7 +142,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Christie Cline    member   False           
 aaaaaaaa-bbbb-cccc-1111-222222222222 Patti Fernandez   member   False            False
 ```
 
-This example demonstrates how to retrieve the user's registered authentication methods. You can use `-Select` as an alias for `-Property`.
+This example demonstrates how to retrieve a user's registered authentication methods. You can use `-Select` as an alias for `-Property`.
 
 ### Example 5: Get a list of recently updated user's registered authentication methods details using 'sort'
 
@@ -280,6 +280,66 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ## Outputs
+
+### isAdmin (Boolean)
+
+Shows if the user has an admin role in the tenant. Use this to check which authentication methods privileged accounts have registered and can use.
+
+### isMfaCapable (Boolean)
+
+Shows if the user has registered a strong MFA method that's allowed by the authentication methods policy. Supports `$filter (eq)`.
+
+### isMfaRegistered (Boolean)
+
+Shows if the user has registered a strong MFA method, even if it's not allowed by the authentication methods policy. Supports `$filter (eq)`.
+
+### isPasswordlessCapable (Boolean)
+
+Shows if the user has registered a passwordless strong authentication method (like FIDO2, Windows Hello for Business, or Microsoft Authenticator) that's allowed by the authentication methods policy. Supports `$filter (eq)`.
+
+### isSsprCapable (Boolean)
+
+Shows if the user has registered enough methods and is allowed to use self-service password reset based on policy. Supports `$filter (eq)`.
+
+### isSsprEnabled (Boolean)
+
+Shows if the user is allowed to use self-service password reset by policy, even if they haven’t registered enough authentication methods. Supports `$filter (eq)`.
+
+### isSsprRegistered (Boolean)
+
+Shows if the user has registered enough authentication methods for self-service password reset, even if they're not allowed to use it by policy. Supports `$filter (eq)`.
+
+### isSystemPreferredAuthenticationMethodEnabled (Boolean)
+
+Shows if system-preferred authentication is enabled. When enabled, the system picks the most secure method from those the user has registered. Supports `$filter (eq)`.
+
+### lastUpdatedDateTime (DateTimeOffset)
+
+The date and time (in UTC) when the report was last updated, in ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is shown as `2014-01-01T00:00:00Z`.
+
+### methodsRegistered (String collection)
+
+List of registered authentication methods, like mobilePhone, email, or passKeyDeviceBound. Supports `$filter` with `any` and `eq`.
+
+### systemPreferredAuthenticationMethods (String collection)
+
+List of the most secure second-factor authentication methods chosen by the system from the user's registered methods. Values include: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none. Supports `$filter` with `any` and `eq`.
+
+### userDisplayName (String)
+
+The user's display name, like "Sawyer Miller". Supports `$filter` (`eq`, `startsWith`) and `$orderby`.
+
+### userPreferredMethodForSecondaryAuthentication (userDefaultAuthenticationMethod)
+
+The user's chosen default method for second-factor authentication. Options include: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none. Used as the preferred MFA method when system-preferred authentication is off. Supports `$filter` with `any` and `eq`.
+
+### userPrincipalName (String)
+
+The user's sign-in name, like SawyerM@contoso.com. Supports `$filter` (`eq`, `startsWith`) and `$orderby`.
+
+### userType (signInUserType)
+
+Shows if the user is a member or guest in the tenant. Values: member, guest.
 
 ## Notes
 
