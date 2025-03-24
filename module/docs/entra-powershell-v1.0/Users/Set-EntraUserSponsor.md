@@ -188,3 +188,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraUserSponsor](Get-EntraUserSponsor.md)
+
+[Remove-EntraUserSponsor](Remove-EntraUserSponsor.md)
