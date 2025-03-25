@@ -3,40 +3,40 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDevice {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateDevice')]
     param (
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Nullable`1[System.Int32]] $DeviceObjectVersion,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DeviceOSVersion,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]] $AlternativeSecurityIds,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DeviceId,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Nullable`1[System.DateTime]] $ApproximateLastLogonTimeStamp,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Collections.Generic.List`1[System.String]] $DevicePhysicalIds,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Nullable`1[System.Boolean]] $IsCompliant,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DeviceTrustType,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Nullable`1[System.Boolean]] $IsManaged,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $ProfileType,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DeviceOSType,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DisplayName,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Nullable`1[System.Boolean]] $AccountEnabled,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.String] $DeviceMetadata,
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $DeviceObjectId,
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "UpdateDevice")]
     [System.Collections.Generic.List`1[System.String]] $SystemLabels
     )
 

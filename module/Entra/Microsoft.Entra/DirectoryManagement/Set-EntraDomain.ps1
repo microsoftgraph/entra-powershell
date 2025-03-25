@@ -3,19 +3,19 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDomain {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $IsDefault,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $SupportedServices,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Name,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $IsDefaultForCloudRedirections
     )
 

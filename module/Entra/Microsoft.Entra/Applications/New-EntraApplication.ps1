@@ -3,64 +3,64 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraApplication {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateApplication')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $TokenEncryptionKeyId,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.WebApplication] $Web,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true)]
     [System.String] $DisplayName,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]] $AddIns,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.ParentalControlSettings] $ParentalControlSettings,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $GroupMembershipClaims,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $SignInAudience,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.ApiApplication] $Api
     )
 

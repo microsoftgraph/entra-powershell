@@ -3,15 +3,18 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraCustomSecurityAttributeDefinition {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
-    [Parameter(ParameterSetName = "FromParameters")]
+    
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $Description,
-    [Parameter(ParameterSetName = "FromParameters")]
+
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
-    [Parameter(ParameterSetName = "FromParameters")]
+
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $Status
     )
 

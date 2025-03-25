@@ -3,48 +3,48 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraApplication {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateApplication')]
     param (
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.String] $TokenEncryptionKeyId,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.ApiApplication] $Api,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]] $AddIns,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.ParentalControlSettings] $ParentalControlSettings,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
         [Alias('ObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ApplicationId,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.String] $GroupMembershipClaims,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.WebApplication] $Web,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[System.String]] $Tags,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateApplication")]
         [System.String] $SignInAudience
     )
 

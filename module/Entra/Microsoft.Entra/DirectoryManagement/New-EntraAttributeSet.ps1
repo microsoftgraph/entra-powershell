@@ -3,14 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraAttributeSet {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "Default")]
         [Alias("Id")]
         [System.String] $AttributeSetId,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "Default")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "FromParameters")]
+        
+        [Parameter(ParameterSetName = "Default")]
         [System.Nullable`1[System.Int32]] $MaxAttributesPerSet
     )
 

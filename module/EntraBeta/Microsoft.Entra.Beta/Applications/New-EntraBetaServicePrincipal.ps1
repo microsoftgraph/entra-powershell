@@ -3,55 +3,55 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaServicePrincipal {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateServicePrincipal')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $ServicePrincipalType,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $LogoutUrl,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $DisplayName,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $Homepage,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ServicePrincipalNames,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $PublisherName,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $AlternativeNames,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Nullable`1[System.Boolean]] $AppRoleAssignmentRequired,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ReplyUrls,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $ErrorUrl,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $AccountEnabled,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateServicePrincipal", Mandatory = $true)]
     [System.String] $AppId,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $SamlMetadataUrl,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $Tags
     )
 

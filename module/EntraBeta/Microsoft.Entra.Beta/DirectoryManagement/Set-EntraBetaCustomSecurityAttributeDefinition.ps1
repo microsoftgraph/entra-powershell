@@ -3,16 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaCustomSecurityAttributeDefinition {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $Status,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $Description,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

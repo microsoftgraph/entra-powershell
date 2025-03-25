@@ -3,31 +3,31 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaCustomSecurityAttributeDefinition {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateCustomSecurityAttributeDefinition')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Name,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Status,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition")]
     [System.String] $Description,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $IsCollection,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $IsSearchable,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $AttributeSet,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Type
     )
 

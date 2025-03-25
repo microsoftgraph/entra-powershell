@@ -3,14 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaAttributeSet {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Alias('Id')]            
-    [Parameter(ParameterSetName = "FromParameters")]
-    [System.String] $AttributeSetId,                
-    [Parameter(ParameterSetName = "FromParameters")]
-    [System.Nullable`1[System.Int32]] $MaxAttributesPerSet,                
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "Default")]
+    [System.String] $AttributeSetId,
+    
+    [Parameter(ParameterSetName = "Default")]
+    [System.Nullable`1[System.Int32]] $MaxAttributesPerSet,
+
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $Description
     )
 
