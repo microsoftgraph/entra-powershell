@@ -41,7 +41,6 @@
 #>
 
 function Get-EntraUserCertificateUserIdsFromCertificate {
-    [CmdletBinding(HelpUri = 'https://azuread.github.io/MSIdentityTools/commands/Get-MsIdCBACertificateUserIdFromCertificate')]
     param (
         [Parameter(Mandatory = $false)]    
         [string]$Path,
