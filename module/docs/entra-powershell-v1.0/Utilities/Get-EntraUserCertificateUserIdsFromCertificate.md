@@ -56,6 +56,16 @@ Get-MsIdCBACertificateUserIdFromCertificate C:\path\to\certificate.cer -Certific
 X509:<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest
 ```
 
+### EXAMPLE 3
+```powershell
+$certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
+Get-MsIdCBACertificateUserIdFromCertificate -Certificate $certificate -CertificateMapping Subject
+```
+
+```Output
+X509:<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest
+```
+
 ## PARAMETERS
 ### -Path
 
@@ -72,6 +82,20 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+### -Certificate
+Certificate from which the certificateUserIDs mappings will be extracted
+
+```yaml
+Type: System.Security.Cryptography.X509Certificates.X509Certificate2
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
 
 ### -CertificateMapping
 One of the values `PrincipalName`, `RFC822Name`, `IssuerAndSubject`, `Subject`, `SKI`, `SHA1PublicKey`, and `IssuerAndSerialNumber`.
@@ -83,7 +107,7 @@ Parameter Sets: {PrincipalName | RFC822Name | IssuerAndSubject | Subject | SKI |
 Aliases:
 
 Required: False
-Position: 2
+Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
