@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 <#
 .SYNOPSIS
     Generates an object representing all the values contained in a certificate file that can be used in Entra ID for configuring CertificateUserIDs in Certificate-Based Authentication.
