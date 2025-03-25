@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Sets a user extension.
+Updates a user's extension.
 
 ## Syntax
 
@@ -45,7 +45,7 @@ Set-EntraUserExtension
 
 ## Description
 
-The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
+The `Set-EntraUserExtension` cmdlet updates a user's extension in Microsoft Entra ID.
 
 `Update-EntraUserExtension` is an alias for `Set-EntraUserExtension`.
 
@@ -62,7 +62,7 @@ Set-EntraUserExtension -UserId 'SawyerM@contoso.com' -ExtensionName $extensionNa
 
 This example demonstrates how to update a user's extension attribute for a specified user. Use `(Get-EntraApplicationExtensionProperty -ApplicationId '{ApplicationId}').Name | Select-Object -First 1` to retrieve the extension name.
 
-- `-UserId` parameter specifies the user Id.
+- `-UserId` parameter specifies the user Id (User Principal Name or UserId).
 - `-ExtensionName` parameter specifies the name of an extension.
 - `-ExtensionValue` parameter specifies the extension name values.
 
@@ -78,19 +78,19 @@ Set-EntraUserExtension -UserId 'SawyerM@contoso.com' -ExtensionNameValues $userE
 
 This example demonstrates how to update a user's extension attribute. Use `(Get-EntraApplicationExtensionProperty -ApplicationId '{ApplicationId}').Name | Select-Object -First 1` to retrieve the extension name.
 
-- `-UserId` parameter specifies the user Id.
+- `-UserId` parameter specifies the user Id (User Principal Name or UserId).
 - `-ExtensionNameValues` parameter specifies a dictionary of key-value pairs for the extension name and value pair.
 
 ## Parameters
 
 ### -UserId
 
-Specifies the ID of the user.
+Specifies the unique identifier for the user (User Principal Name or UserId).
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
