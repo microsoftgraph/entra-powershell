@@ -48,18 +48,27 @@ Set-EntraBetaUserSponsor
 
 The `Set-EntraBetaUserSponsor` cmdlet sets a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
+`Update-EntraBetaUserSponsor` is an alias for `Set-EntraBetaUserSponsor`.
+
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/users/sponsors/update` permission.
+
+The following least privileged roles support this operation:
+
+- Directory Writers
+- User Administrator
+
 ## Examples
 
 ### Example 1: Assign single user sponsor
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserSponsor -UserId 9abd2e2d-1678-43f9-bb09-d95f0024f309  -User  -SponsorIds 591c654d-bb97-4c1f-bc83-b9d4694f9338
+Set-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -User -SponsorIds 591c654d-bb97-4c1f-bc83-b9d4694f9338
 ```
 
 This example demonstrates how to assign a single user, as a sponsor to a target user account.
 
-- The `-UserId` parameter specifies the User ID or User Principal Name.
+- The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
 - The `-User` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
@@ -67,12 +76,12 @@ This example demonstrates how to assign a single user, as a sponsor to a target 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309  -Group  -SponsorIds 591l654d-bb97-4c1f-bc83-b9d4694f9338
+Set-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Group -SponsorIds 591l654d-bb97-4c1f-bc83-b9d4694f9338
 ```
 
 This example demonstrates how to assign a single group, as a sponsor to a target user account.
 
-- The `-UserId` parameter specifies the User ID or User Principal Name.
+- The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
 - The `-Group` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
@@ -80,12 +89,12 @@ This example demonstrates how to assign a single group, as a sponsor to a target
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserSponsor -UserId 9abd2e2d-1649-43f8-bb09-d95f0024f309  -User  -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
+Set-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -User -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
 ```
 
 This example demonstrates how to assign multiple users as sponsors to a target user account.
 
-- The `-UserId` parameter specifies the User ID or User Principal Name.
+- The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
 - The `-User` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
@@ -93,12 +102,12 @@ This example demonstrates how to assign multiple users as sponsors to a target u
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserSponsor -UserId 9abd2e2d-1649-43f8-bb09-d95f0024f309  -Group  -SponsorIds @("db0c6f50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5v8-4b5e-ae78-9812230af58d")
+Set-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Group -SponsorIds @("db0c6f50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5v8-4b5e-ae78-9812230af58d")
 ```
 
 This example demonstrates how to assign multiple groups as sponsors to a target user account.
 
-- The `-UserId` parameter specifies the User ID or User Principal Name.
+- The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
 - The `-Group` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
@@ -142,7 +151,8 @@ Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: User
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -177,3 +187,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaUserSponsor](Get-EntraBetaUserSponsor.md)
+
+[Remove-EntraBetaUserSponsor](Remove-EntraBetaUserSponsor.md)
