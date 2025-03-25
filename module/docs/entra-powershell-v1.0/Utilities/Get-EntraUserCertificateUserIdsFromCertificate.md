@@ -99,7 +99,7 @@ Accept wildcard characters: False
 
 ### -CertificateMapping
 One of the values `PrincipalName`, `RFC822Name`, `IssuerAndSubject`, `Subject`, `SKI`, `SHA1PublicKey`, and `IssuerAndSerialNumber`.
-The meaning of each value is describe in the official documentation of [certificateUserIds](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids). 
+The meaning of each value is describe in the official documentation of [certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids). 
 
 ```yaml
 Type: System.String
