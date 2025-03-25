@@ -3,44 +3,44 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraServicePrincipal {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateServicePrincipal')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $AlternativeNames,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $PublisherName,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ReplyUrls,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $DisplayName,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Nullable`1[System.Boolean]] $AppRoleAssignmentRequired,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]] $KeyCredentials,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ServicePrincipalNames,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $LogoutUrl,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $ErrorUrl,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $SamlMetadataUrl,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $AccountEnabled,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $ServicePrincipalType,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ServicePrincipalId,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $Homepage,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $AppId,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "UpdateServicePrincipal")]
     [System.String] $PreferredSingleSignOnMode
     )
 

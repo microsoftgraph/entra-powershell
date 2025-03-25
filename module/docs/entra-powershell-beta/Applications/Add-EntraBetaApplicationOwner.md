@@ -23,6 +23,8 @@ Adds an owner to an application.
 
 ## Syntax
 
+### ByApplicationIdAndOwnerId
+
 ```powershell
 Add-EntraBetaApplicationOwner
  -ApplicationId <String>

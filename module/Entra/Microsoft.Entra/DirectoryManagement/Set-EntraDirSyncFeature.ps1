@@ -3,11 +3,11 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDirSyncFeature {
-        [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+        [CmdletBinding(DefaultParameterSetName = 'Default')]
         param (
-            [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.String] $Feature,
-            [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.Boolean] $Enabled,
-            [Parameter(ParameterSetName = "GetQuery", ValueFromPipelineByPropertyName = $true)][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId,
+            [Parameter(ParameterSetName = "default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.String] $Feature,
+            [Parameter(ParameterSetName = "default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.Boolean] $Enabled,
+            [Parameter(ParameterSetName = "default", ValueFromPipelineByPropertyName = $true)][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId,
             [switch] $Force
         )
         PROCESS {
