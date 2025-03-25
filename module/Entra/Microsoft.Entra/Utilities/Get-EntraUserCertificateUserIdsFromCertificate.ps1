@@ -196,7 +196,12 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
 
     function Main
     {
-        $cert = Get-Certificate -filePath $Path
+        $cert = $Certificate
+        if ($null -eq $cert)
+        {
+            $cert = Get-Certificate -filePath $Path
+        }
+
         $mappings = Get-CertificateUserIds -cert $cert
         
         if ($CertificateMapping -eq "")
