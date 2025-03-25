@@ -89,7 +89,7 @@ Specifies the unique identifier for the user (User Principal Name or UserId).
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: SetSingle, SetMultiple
 Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
