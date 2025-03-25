@@ -28,6 +28,7 @@ Resets the strong authentication method using the User Principal Name (UPN).
 ```powershell
 Reset-EntraStrongAuthenticationMethodByUpn
  -UserPrincipalName <String>
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
@@ -67,6 +68,22 @@ Parameter Sets: (All)
 Aliases: UserId, Identity, UPN, ObjectId
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -TenantId
+
+The unique ID of the tenant to perform the operation on. The TenantID applies to the logged-in Tenant ID. Ensures backward compatibility with Azure AD and MSOnline for partner scenarios.
+
+```yaml
+Type: System.String
+Parameter Sets: 
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
