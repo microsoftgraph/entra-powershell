@@ -3,28 +3,28 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraDirectoryRoleDefinition {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateRoleDefinition')]
     param (
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateRoleDefinition", Mandatory = $true)]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]] $RolePermissions,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateRoleDefinition")]
     [System.Collections.Generic.List`1[System.String]] $ResourceScopes,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateRoleDefinition")]
     [System.String] $Description,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateRoleDefinition")]
     [System.String] $Version,
                 
-    [Parameter(ParameterSetName = "FromParameters")]
+    [Parameter(ParameterSetName = "CreateRoleDefinition")]
     [System.String] $TemplateId,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateRoleDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $IsEnabled,
                 
-    [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateRoleDefinition", Mandatory = $true)]
     [System.String] $DisplayName
     )
 

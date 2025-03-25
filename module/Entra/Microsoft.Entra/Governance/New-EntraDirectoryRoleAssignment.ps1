@@ -3,16 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraDirectoryRoleAssignment {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "default", Mandatory = $true)]
+    [Parameter(ParameterSetName = "Default", Mandatory = $true)]
     [System.String] $PrincipalId,
                 
-    [Parameter(ParameterSetName = "default")]
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $DirectoryScopeId,
                 
-    [Parameter(ParameterSetName = "default", Mandatory = $true)]
+    [Parameter(ParameterSetName = "Default", Mandatory = $true)]
     [System.String] $RoleDefinitionId
     )
 
