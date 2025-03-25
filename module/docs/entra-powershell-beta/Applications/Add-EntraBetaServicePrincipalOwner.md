@@ -23,6 +23,8 @@ Add an owner (user or service principal) to a service principal.
 
 ## Syntax
 
+### ByServicePrincipalIdAndOwnerId
+
 ```powershell
 Add-EntraBetaServicePrincipalOwner
  -ServicePrincipalId <String>
