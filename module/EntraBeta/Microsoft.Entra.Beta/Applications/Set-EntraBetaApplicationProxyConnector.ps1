@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaApplicationProxyConnector {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Alias("Id")]
