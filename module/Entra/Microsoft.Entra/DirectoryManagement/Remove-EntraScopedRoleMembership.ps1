@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraScopedRoleMembership {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Alias("ObjectId")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -39,5 +39,4 @@ function Remove-EntraScopedRoleMembership {
     }
     $response
     }
-}# ------------------------------------------------------------------------------
-
+}

@@ -3,20 +3,20 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaApplicationKey {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
         [System.String] $Proof,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $ApplicationId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
         [Microsoft.Open.MSGraph.Model.KeyCredential] $KeyCredential,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "Default")]
         [Microsoft.Open.MSGraph.Model.PasswordCredential] $PasswordCredential
     )
 
