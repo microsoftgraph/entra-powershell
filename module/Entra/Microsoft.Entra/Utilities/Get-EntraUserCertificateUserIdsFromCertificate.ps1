@@ -12,6 +12,9 @@
 .PARAMETER Path
     The path to the certificate file. The file can be in .cer or .pem format.
 
+.PARAMETER Certificate
+    An X509Certificate2 object
+
 .PARAMETER CertificateMapping
     The certificate mapping property to retrieve. Valid values are PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, and IssuerAndSerialNumber.
 
