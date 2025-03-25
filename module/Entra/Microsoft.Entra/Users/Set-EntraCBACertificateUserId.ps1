@@ -1,4 +1,5 @@
 function  Set-EntraCBACertificateUserId {
+    [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
         [string]$UserId,
@@ -10,7 +11,14 @@ function  Set-EntraCBACertificateUserId {
     )
 
     PROCESS {
-        Write-Debug "Setting certificateUserIds for user $UserId"
+        # Ensure all provided parameters are bound correctly
+        $params = @{}
+        foreach ($paramName in $PSBoundParameters.Keys) {
+            $params[$paramName] = $PSBoundParameters[$paramName]
+        }
+
+        Write-Verbose "Using parameters: $($params | ConvertTo-Json -Depth 2)"
+
         . "$PSScriptRoot/../Utilities/Get-EntraUserCertificateUserIdsFromCertificate.ps1"
         $certUserIdObj = Get-EntraUserCertificateUserIdsFromCertificate -Path $CertPath -CertificateMapping $CertificateMapping
 
