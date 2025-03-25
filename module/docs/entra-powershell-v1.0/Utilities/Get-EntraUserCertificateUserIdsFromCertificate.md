@@ -21,7 +21,7 @@ Generates an object representing all the values contained in a certificate file 
 
 ## SYNTAX
 ```syntax
-Get-MsIdCBACertificateUserIdFromCertificate [-Path] <string> [[-CertificateMapping] <string>] [<CommonParameters>]
+Get-MsIdCBACertificateUserIdFromCertificate [-Path] <string> [[-Certificate] <System.Security.Cryptography.X509Certificates.X509Certificate2> [-CertificateMapping] <string>] [<CommonParameters>]
 ```
 ## DESCRIPTION
 
