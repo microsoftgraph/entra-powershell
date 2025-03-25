@@ -26,3 +26,4 @@ function New-EntraBetaCustomHeaders {
 
     $customHeaders
 }
+

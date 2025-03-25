@@ -14,10 +14,12 @@ function Get-EntraBetaGlobalSecureAccessTenantStatus {
             # Check the response and provide feedback
             if ($response) {
                 Write-Output $response
-            } else {
+            }
+            else {
                 Write-Error "Failed to retrieve the Global Secure Access Tenant status."
             }
-        } catch {
+        }
+        catch {
             Write-Error "An error occurred while retrieving the Global Secure Access Tenant status: $_"
         }
     }

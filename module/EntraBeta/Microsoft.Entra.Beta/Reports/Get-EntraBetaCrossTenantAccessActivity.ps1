@@ -12,10 +12,10 @@ function Get-EntraBetaCrossTenantAccessActivity {
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [guid]$ExternalTenantId,
 
-        [Parameter(ParameterSetName = "GetQuery",HelpMessage = "Include summary statistics for sign-ins.")]
+        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Include summary statistics for sign-ins.")]
         [switch]$SummaryStats,
 
-        [Parameter(ParameterSetName = "GetQuery",HelpMessage = "Resolve and display tenant details based on the provided tenant ID.")]
+        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Resolve and display tenant details based on the provided tenant ID.")]
         [switch]$ResolveTenantId
     )
 
@@ -40,7 +40,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
 
         $baseUri = "https://graph.microsoft.com/beta/auditLogs/signIns"
 
-        $firstExecution=$true
+        $firstExecution = $true
 
         function Get-SignIns {
             param (
@@ -53,12 +53,13 @@ function Get-EntraBetaCrossTenantAccessActivity {
             try {
                 do {
                     # If it's the first time we are calling Invoke-GraphRequest, pass customHeaders
-                    if($firstExecution){
-                         $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
-                         $firstExecution=$false
-                    }else{
+                    if ($firstExecution) {
+                        $response = Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders
+                        $firstExecution = $false
+                    }
+                    else {
                         # No need to pass customHeaders
-                          $response = Invoke-GraphRequest -Method GET -Uri $uri
+                        $response = Invoke-GraphRequest -Method GET -Uri $uri
                     }
                    
                     if ($response -and $response.value) {

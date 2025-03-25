@@ -35,7 +35,8 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
                     break
                 }
             }
-        } catch {
+        }
+        catch {
             Write-Error "Failed to retrieve the application segment(s): $_"
         }
     }

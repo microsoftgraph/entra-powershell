@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaPrivateAccessApplicationSegment {
 
-    [CmdletBinding(parametersetname='default')]
+    [CmdletBinding(ParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $True)]
@@ -28,7 +28,8 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
             Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri $uri
 
             Write-Output "Application segment with ID $ApplicationSegmentId has been removed successfully."
-        } catch {
+        }
+        catch {
             Write-Error "Failed to remove the application segment: $_"
         }
     }
