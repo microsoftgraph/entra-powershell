@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDirSyncFeature {
-        [CmdletBinding(DefaultParameterSetName = 'default')]
+        [CmdletBinding(DefaultParameterSetName = 'Default')]
         param (
             [Parameter(ParameterSetName = "default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.String] $Feature,
             [Parameter(ParameterSetName = "default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.Boolean] $Enabled,

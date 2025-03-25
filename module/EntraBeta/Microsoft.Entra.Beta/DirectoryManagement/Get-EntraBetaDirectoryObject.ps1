@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaDirectoryObject {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
         [Parameter(ParameterSetName = "default", HelpMessage = "Resource types that specifies the set of resource collections, for example: user, group, and device objects. Default is directoryObject.")]

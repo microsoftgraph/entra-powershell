@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [Alias("ObjectId")]

@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Enable-EntraDirectoryRole {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
     [Parameter(ParameterSetName = "default")]

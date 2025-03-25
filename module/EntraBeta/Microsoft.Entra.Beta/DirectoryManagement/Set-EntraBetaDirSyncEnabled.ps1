@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaDirSyncEnabled {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = "default", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
         [Parameter(ParameterSetName = "default", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,

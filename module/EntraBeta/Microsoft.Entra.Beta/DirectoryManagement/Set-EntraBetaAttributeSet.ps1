@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraBetaAttributeSet {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
     [Alias("Id")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
