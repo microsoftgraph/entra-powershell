@@ -3,13 +3,12 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaPermissionGrantPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPermissioinGrantPolicyId')]
+    param (                
+        [Parameter(ParameterSetName = "ByPermissioinGrantPolicyId")]
         [System.String] $Description,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPermissioinGrantPolicyId")]
         [System.String] $DisplayName,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

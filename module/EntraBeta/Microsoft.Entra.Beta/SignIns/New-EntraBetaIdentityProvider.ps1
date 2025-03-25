@@ -3,19 +3,18 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaIdentityProvider {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByProviderCredentials')]
+    param (                
+        [Parameter(ParameterSetName = "ByProviderCredentials")]
         [System.String] $Name,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByProviderCredentials", Mandatory = $true)]
         [System.String] $ClientId,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByProviderCredentials", Mandatory = $true)]
         [System.String] $Type,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByProviderCredentials", Mandatory = $true)]
         [System.String] $ClientSecret
     )
 

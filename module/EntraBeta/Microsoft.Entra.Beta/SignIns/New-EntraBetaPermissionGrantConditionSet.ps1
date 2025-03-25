@@ -3,37 +3,36 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaPermissionGrantConditionSet {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyIdAndConditionSetType')]
+    param (                
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.Nullable`1[System.Boolean]] $ClientApplicationsFromVerifiedPublisherOnly,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.String] $PermissionType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationIds,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $PolicyId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.Collections.Generic.List`1[System.String]] $Permissions,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.String] $PermissionClassification,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ConditionSetType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetType")]
         [System.String] $ResourceApplication
     )
 

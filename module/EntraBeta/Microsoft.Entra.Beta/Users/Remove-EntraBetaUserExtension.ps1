@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaUserExtension {
     [CmdletBinding(DefaultParameterSetName = 'SetSingle')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ExtensionName,
     

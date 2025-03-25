@@ -3,40 +3,39 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaAuthorizationPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicySettings')]
+    param (               
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Nullable`1[System.Boolean]] $BlockMsolPowerShell,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Collections.Generic.List`1[System.String]] $PermissionGrantPolicyIdsAssignedToDefaultUserRole,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Nullable`1[System.Boolean]] $AllowedToUseSSPR,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.String] $Description,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.String] $GuestUserRoleId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Nullable`1[System.Boolean]] $AllowEmailVerifiedUsersToJoinOrganization,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Nullable`1[System.Boolean]] $AllowedToSignUpEmailBasedSubscriptions,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions] $DefaultUserRolePermissions,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicySettings")]
         [System.Collections.Generic.List`1[System.String]] $EnabledPreviewFeatures
     )
 

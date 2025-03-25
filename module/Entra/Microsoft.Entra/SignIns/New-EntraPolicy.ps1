@@ -3,24 +3,24 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByTypeAndDefinition')]
     param (
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
         [System.Collections.Generic.List`1[System.String]] $Definition,
 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
         [System.String] $DisplayName,
     
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
         [System.String] $Type,
 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
         [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
         [System.String] $AlternativeIdentifier
     )
 

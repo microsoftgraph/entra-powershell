@@ -4,40 +4,39 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraPermissionGrantConditionSet {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyIdAndConditionSetId')]
+    param (                
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.Nullable`1[System.Boolean]] $ClientApplicationsFromVerifiedPublisherOnly,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $PolicyId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.String] $PermissionType,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationTenantIds,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ConditionSetType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationIds,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.Collections.Generic.List`1[System.String]] $ClientApplicationPublisherIds,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.Collections.Generic.List`1[System.String]] $Permissions,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.String] $ResourceApplication,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyIdAndConditionSetId")]
         [System.String] $PermissionClassification
     )
 

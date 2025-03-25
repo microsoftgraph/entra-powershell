@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaOAuth2PermissionGrant {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
                 

@@ -3,25 +3,24 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaFeatureRolloutPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByFeatureRolloutProperties')]
+    param (                
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]] $AppliesTo,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.Nullable`1[System.Boolean]] $IsEnabled,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.String] $Description,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.Nullable`1[Microsoft.Open.MSGraph.Model.MsFeatureRolloutPolicy+FeatureEnum]] $Feature,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.Nullable`1[System.Boolean]] $IsAppliedToOrganization
     )
 

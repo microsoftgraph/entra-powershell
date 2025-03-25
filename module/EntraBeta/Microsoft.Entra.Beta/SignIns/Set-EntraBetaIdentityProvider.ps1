@@ -3,18 +3,22 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaIdentityProvider {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByIdentityProviderId')]
     param (
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByIdentityProviderId")]
         [System.String] $Type,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByIdentityProviderId")]
         [System.String] $ClientSecret,
+
         [Alias('Id')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $IdentityProviderBaseId,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByIdentityProviderId")]
         [System.String] $ClientId,
-        [Parameter(ParameterSetName = "FromParameters")]
+        
+        [Parameter(ParameterSetName = "ByIdentityProviderId")]
         [System.String] $Name
     )
     PROCESS {    

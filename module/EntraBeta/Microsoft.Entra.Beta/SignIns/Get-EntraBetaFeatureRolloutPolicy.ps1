@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaFeatureRolloutPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $SearchString,
                 

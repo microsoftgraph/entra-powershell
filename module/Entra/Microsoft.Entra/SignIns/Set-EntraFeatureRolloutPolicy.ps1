@@ -3,21 +3,27 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraFeatureRolloutPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByFeatureRolloutPolicyId')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.Nullable`1[System.Boolean]] $IsAppliedToOrganization,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.String] $Feature,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.Nullable`1[System.Boolean]] $IsEnabled,
-        [Parameter(ParameterSetName = "FromParameters")]
+        
+        [Parameter(ParameterSetName = "ByFeatureRolloutPolicyId")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]] $AppliesTo
     )
 

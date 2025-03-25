@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraUserThumbnailPhoto {
     [CmdletBinding(DefaultParameterSetName = 'File')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "Stream", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.IO.Stream] $FileStream,
                 

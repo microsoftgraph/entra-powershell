@@ -4,21 +4,27 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyId')]
     param (
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $AlternativeIdentifier,
+
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.Collections.Generic.List`1[System.String]] $Definition,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $Type,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
-        [Parameter(ParameterSetName = "FromParameters")]
+        
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.Nullable`1[System.Boolean]] $IsOrganizationDefault
     )
 

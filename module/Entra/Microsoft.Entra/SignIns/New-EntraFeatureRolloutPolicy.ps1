@@ -4,19 +4,24 @@
 # ------------------------------------------------------------------------------ 
 
 function New-EntraFeatureRolloutPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByFeatureRolloutProperties')]
     param (
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "FromParameters")]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.Nullable`1[System.Boolean]] $IsAppliedToOrganization,
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.String] $DisplayName,
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.String] $Feature,
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties", Mandatory = $true)]
         [System.Nullable`1[System.Boolean]] $IsEnabled,
-        [Parameter(ParameterSetName = "FromParameters")]
+        
+        [Parameter(ParameterSetName = "ByFeatureRolloutProperties")]
         [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]] $AppliesTo
     )
 

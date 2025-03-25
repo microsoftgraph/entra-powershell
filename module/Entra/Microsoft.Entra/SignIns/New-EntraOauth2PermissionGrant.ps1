@@ -3,21 +3,21 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraOauth2PermissionGrant {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByClientAndResourceIds')]
     param (
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ClientId,
 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
         [System.String] $ConsentType,
 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByClientAndResourceIds")]
         [System.String] $PrincipalId,
 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
         [System.String] $ResourceId,
         
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByClientAndResourceIds")]
         [System.String] $Scope
     )
 

@@ -3,31 +3,30 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaInvitation {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+    [CmdletBinding(DefaultParameterSetName = 'ByEmailAndRedirectUrl')]
+    param (                
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl", Mandatory = $true)]
         [System.String] $InviteRedirectUrl,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.String] $InvitedUserDisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl", Mandatory = $true)]
         [System.String] $InvitedUserEmailAddress,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.Nullable`1[System.Boolean]] $ResetRedemption,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.String] $InvitedUserType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.Nullable`1[System.Boolean]] $SendInvitationMessage
     )
 

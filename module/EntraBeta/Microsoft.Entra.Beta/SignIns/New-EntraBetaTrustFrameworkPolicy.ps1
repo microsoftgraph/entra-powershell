@@ -4,18 +4,17 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaTrustFrameworkPolicy {
     [CmdletBinding(DefaultParameterSetName = 'Content')]
-    param (
+    param (                
+        [Parameter(ParameterSetName = "Content", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Content,
                 
-    [Parameter(ParameterSetName = "Content", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Content,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "Content")]
+        [Parameter(ParameterSetName = "File")]
+        [System.String] $OutputFilePath,
                 
-    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Parameter(ParameterSetName = "Content")]
-    [Parameter(ParameterSetName = "File")]
-    [System.String] $OutputFilePath,
-                
-    [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $InputFilePath
+        [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $InputFilePath
     )
 
     PROCESS {
@@ -24,15 +23,15 @@ function New-EntraBetaTrustFrameworkPolicy {
         # Define a temporary file path
         $tempFilePath = [System.IO.Path]::GetTempFileName()
         
-        $outFile =  $tempFilePath
+        $outFile = $tempFilePath
         
-        if($null -ne $PSBoundParameters["OutputFilePath"]){
+        if ($null -ne $PSBoundParameters["OutputFilePath"]) {
             $outFile = $PSBoundParameters["OutputFilePath"]
         }
 
         $Body = $PSBoundParameters["Content"]
 
-        if($null -ne $PSBoundParameters["InputFilePath"]) {
+        if ($null -ne $PSBoundParameters["InputFilePath"]) {
             $Body = Get-Content -Path $PSBoundParameters["InputFilePath"]
         }
 
@@ -42,7 +41,7 @@ function New-EntraBetaTrustFrameworkPolicy {
 
         # Read the content from the temporary file
         # Display the content if output file path not specified
-        if($null -eq $PSBoundParameters["OutputFilePath"]){
+        if ($null -eq $PSBoundParameters["OutputFilePath"]) {
             $xmlContent = Get-Content -Path $tempFilePath
             $xmlContent
         }

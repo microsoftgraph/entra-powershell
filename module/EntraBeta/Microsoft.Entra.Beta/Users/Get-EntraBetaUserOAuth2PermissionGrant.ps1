@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaUserOAuth2PermissionGrant {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $UserId,

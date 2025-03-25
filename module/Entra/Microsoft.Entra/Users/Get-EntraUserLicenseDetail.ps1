@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Get-EntraUserLicenseDetail {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

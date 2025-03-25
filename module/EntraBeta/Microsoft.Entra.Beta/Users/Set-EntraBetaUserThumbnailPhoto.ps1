@@ -4,10 +4,10 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaUserThumbnailPhoto {
     [CmdletBinding(DefaultParameterSetName = 'File')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "File", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $FilePath,
+        
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Parameter(ParameterSetName = "Stream")]

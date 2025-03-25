@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Get-EntraAuthorizationPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,

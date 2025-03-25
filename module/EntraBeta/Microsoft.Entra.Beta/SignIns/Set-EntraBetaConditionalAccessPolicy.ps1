@@ -3,34 +3,33 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaConditionalAccessPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyId')]
+    param (                
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $State,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $PolicyId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls] $SessionControls,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $ModifiedDateTime,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $Id,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyId")]
         [System.String] $CreatedDateTime
     )
 

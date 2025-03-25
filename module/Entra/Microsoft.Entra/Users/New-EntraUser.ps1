@@ -4,109 +4,108 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraUser {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'CreateUser')]
+    param (                
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $State,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $FacsimileTelephoneNumber,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $UserType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $PreferredLanguage,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $StreetAddress,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $CreationType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $ImmutableId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $CompanyName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $PostalCode,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateUser", Mandatory = $true)]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $ConsentProvidedForMinor,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $Department,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $Mobile,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $UserStateChangedOn,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $GivenName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $Country,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $PasswordPolicies,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateUser", Mandatory = $true)]
         [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $MailNickName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $JobTitle,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $UserState,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $City,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $UsageLocation,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $Surname,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.Collections.Generic.List`1[System.String]] $OtherMails,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $UserPrincipalName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionProperty,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.Nullable`1[System.Boolean]] $IsCompromised,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $TelephoneNumber,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $PhysicalDeliveryOfficeName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.String] $AgeGroup,
                 
-        [Parameter(ParameterSetName = "FromParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateUser", Mandatory = $true)]
         [System.Nullable`1[System.Boolean]] $AccountEnabled,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.Nullable`1[System.Boolean]] $ShowInAddressList,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "CreateUser")]
         [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]] $SignInNames
     )
 

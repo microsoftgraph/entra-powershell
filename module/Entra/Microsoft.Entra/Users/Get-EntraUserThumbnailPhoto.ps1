@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraUserThumbnailPhoto {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $FileName,
                 

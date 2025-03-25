@@ -4,16 +4,15 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraPermissionGrantPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'ByPermissioinGrantPolicyId')]
+    param (                
+        [Parameter(ParameterSetName = "ByPermissioinGrantPolicyId")]
         [System.String] $Description,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPermissioinGrantPolicyId")]
         [System.String] $DisplayName
     )
 

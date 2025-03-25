@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraPermissionGrantPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
         

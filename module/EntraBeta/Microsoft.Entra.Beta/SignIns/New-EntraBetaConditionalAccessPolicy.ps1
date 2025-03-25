@@ -3,31 +3,31 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaConditionalAccessPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyConfiguration')]
     param (
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [System.String] $State,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls] $SessionControls,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [System.String] $ModifiedDateTime,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [System.String] $Id,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "ByPolicyConfiguration")]
         [System.String] $CreatedDateTime
     )
 

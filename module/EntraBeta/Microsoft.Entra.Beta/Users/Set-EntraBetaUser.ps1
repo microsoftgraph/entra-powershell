@@ -4,112 +4,111 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaUser {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
-    [CmdletBinding(DefaultParameterSetName = 'FromParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "FromParameters")]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateUser')]
+    param (               
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $CompanyName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $PostalCode,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $State,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $GivenName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $FacsimileTelephoneNumber,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $StreetAddress,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $PasswordPolicies,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $PhysicalDeliveryOfficeName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $UserType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $UserStateChangedOn,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $City,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $CreationType,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $ImmutableId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $ConsentProvidedForMinor,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Nullable`1[System.Boolean]] $ShowInAddressList,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Nullable`1[System.Boolean]] $AccountEnabled,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $Department,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]] $SignInNames,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $UsageLocation,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $PreferredLanguage,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $TelephoneNumber,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Collections.Generic.List`1[System.String]] $OtherMails,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $UserState,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionProperty,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $Surname,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $JobTitle,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $UserPrincipalName,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $Mobile,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $MailNickName,
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UserId,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $AgeGroup,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.String] $Country,
                 
-        [Parameter(ParameterSetName = "FromParameters")]
+        [Parameter(ParameterSetName = "UpdateUser")]
         [System.Nullable`1[System.Boolean]] $IsCompromised
     )
 
