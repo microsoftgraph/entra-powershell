@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaDomainFederationSettings {
-        [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+        [CmdletBinding(DefaultParameterSetName = 'Default')]
         param(
             [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)][string]$DomainName,
             [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$SigningCertificate,
