@@ -173,15 +173,15 @@ function Set-EntraUser {
         }
 
         
-            try {
-                # Invoke Microsoft Graph API Request
-                Invoke-MgGraphRequest -Uri $graphUri -Method PATCH -Body $bodyJson -Headers $customHeaders
-                Write-Verbose "Properties for user $UserId updated successfully. Updated properties: $($UserProperties | Out-String)"
-            }
-            catch {
-                Write-Debug "Error Details: $_"
-                Write-Error "Failed to update user properties: $_"
-            }
+        try {
+            # Invoke Microsoft Graph API Request
+            Invoke-MgGraphRequest -Uri $graphUri -Method PATCH -Body $bodyJson -Headers $customHeaders
+            Write-Verbose "Properties for user $UserId updated successfully. Updated properties: $($UserProperties | Out-String)"
+        }
+        catch {
+            Write-Debug "Error Details: $_"
+            Write-Error "Failed to update user properties: $_"
+        }
     }
 }
 Set-Alias -Name Update-EntraUser -Value Set-EntraUser -Scope Global -Force
