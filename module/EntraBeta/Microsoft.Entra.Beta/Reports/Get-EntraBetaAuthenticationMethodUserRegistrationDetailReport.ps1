@@ -98,17 +98,13 @@ function Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport {
                     $data += $response.value
                 }
             }
+
+            return $data | Select-Object *
         }
         catch {
             Write-Error "An error occurred while retrieving data: $_"
         }
     
-        if ($Property -and $Property.Count -gt 0) {
-            $data | Select-Object -Property $Property
-        }
-        else {
-            $data | Select-Object -Property *
-        }
     }
 }
 Set-Alias -Name Get-EntraBetaAuthMethodUserRegistrationDetailReport -Value Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -Description "Retrieves the user's registered authentication methods." -Scope Global -Force
