@@ -113,3 +113,4 @@ function Set-EntraUserExtension {
     }
 
 }
+Set-Alias -Name Update-EntraUserExtension -Value Set-EntraUserExtension -Scope Global -Force

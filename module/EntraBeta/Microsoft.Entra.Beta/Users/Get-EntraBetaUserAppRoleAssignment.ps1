@@ -5,8 +5,7 @@
 
 function Get-EntraBetaUserAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $UserId,

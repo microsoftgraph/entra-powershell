@@ -3,11 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaPolicy {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id
     )
 
     PROCESS {    
@@ -31,7 +30,7 @@ function Remove-EntraBetaPolicy {
         }
         $Method = "DELETE"
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response

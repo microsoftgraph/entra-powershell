@@ -111,6 +111,5 @@ function Set-EntraBetaUserExtension {
             return $response
         }
     }
-
 }
 Set-Alias -Name Update-EntraBetaUserExtension -Value Set-EntraBetaUserExtension -Scope Global -Force
