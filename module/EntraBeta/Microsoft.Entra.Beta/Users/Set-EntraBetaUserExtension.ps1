@@ -3,104 +3,113 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaUserExtension {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'SetSingle')]
     param (
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
+        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $UserId,
                 
-    [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ExtensionName,
-    [Alias('ObjectId')]            
-    [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The dictionary of extension name and values. For example, @{extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup='Job Group N'; extension_d2ba83696c3f45429fbabb363ae391a0_JobTitle='Job Title N'}")]
+        [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionNameValues,
                 
-    [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ExtensionValue,
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The value of the extension property to set. For example, 'Job Group N'")]
+        [System.String] $ExtensionValue,
                 
-    [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Collections.Generic.Dictionary`2[System.String,System.String]] $ExtensionNameValues
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The name of the extension property to set. For example, extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup")]
+        [System.String] $ExtensionName
     )
 
+    begin {
+
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
+    }
+
     PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["ExtensionName"])
-    {
-        $params["ExtensionName"] = $PSBoundParameters["ExtensionName"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["Id"] = $PSBoundParameters["Id"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["ExtensionValue"])
-    {
-        $params["ExtensionValue"] = $PSBoundParameters["ExtensionValue"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["ExtensionNameValues"])
-    {
-        $params["ExtensionNameValues"] = $PSBoundParameters["ExtensionNameValues"]
-    }
+        if ($null -ne $PSBoundParameters["UserId"]) {
+            $params["UserId"] = $PSBoundParameters["UserId"]
+        }
+        if ($null -ne $PSBoundParameters["ProgressAction"]) {
+            $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        }
+        if ($null -ne $PSBoundParameters["WarningVariable"]) {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if ($null -ne $PSBoundParameters["ExtensionNameValues"]) {
+            $params["ExtensionNameValues"] = $PSBoundParameters["ExtensionNameValues"]
+        }
+        if ($null -ne $PSBoundParameters["ExtensionValue"]) {
+            $params["ExtensionValue"] = $PSBoundParameters["ExtensionValue"]
+        }
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if ($null -ne $PSBoundParameters["ExtensionName"]) {
+            $params["ExtensionName"] = $PSBoundParameters["ExtensionName"]
+        }
+        if ($null -ne $PSBoundParameters["OutBuffer"]) {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if ($null -ne $PSBoundParameters["ErrorAction"]) {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if ($null -ne $PSBoundParameters["InformationVariable"]) {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+        if ($null -ne $PSBoundParameters["InformationAction"]) {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if ($null -ne $PSBoundParameters["WarningAction"]) {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
+        if ($null -ne $PSBoundParameters["OutVariable"]) {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        }
 
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = Update-MgBetaUserExtension @params -Headers $customHeaders
-    $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+        $uri = "https://graph.microsoft.com/beta/users/$UserId"
 
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+
+        if ($PSCmdlet.ParameterSetName -eq "SetSingle") {
+            $properties = @{ $ExtensionName = $ExtensionValue }
+            $jsonBody = $properties | ConvertTo-Json -Depth 2
+            $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
+            return $response
+        }
+        elseif ($PSCmdlet.ParameterSetName -eq "SetMultiple") {
+            $properties = @{}
+            foreach ($key in $ExtensionNameValues.Keys) {
+                $properties[$key] = $ExtensionNameValues[$key]
+            }
+           
+            # Convert hashtable to JSON
+            $jsonBody = $properties | ConvertTo-Json -Depth 2
+            # Make the PATCH request to update the user properties            
+            $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
+            
+            return $response
         }
     }
-    $response
-    }
 }
-
+Set-Alias -Name Update-EntraBetaUserExtension -Value Set-EntraBetaUserExtension -Scope Global -Force

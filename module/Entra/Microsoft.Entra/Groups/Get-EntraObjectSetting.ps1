@@ -9,12 +9,16 @@ function Get-EntraObjectSetting {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]
         [System.Int32] $Top,
+
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
+
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $TargetType,
+
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $TargetObjectId,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

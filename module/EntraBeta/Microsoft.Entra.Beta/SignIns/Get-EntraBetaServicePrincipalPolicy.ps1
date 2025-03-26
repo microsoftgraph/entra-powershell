@@ -3,11 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaServicePrincipalPolicy {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id
     )
 
     PROCESS {  
@@ -18,7 +17,7 @@ function Get-EntraBetaServicePrincipalPolicy {
         }
         $Method = "GET"        
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $URI = "https://graph.microsoft.com/beta/serviceprincipals/$Id/policies"
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json -Depth 20 | ConvertFrom-Json).value
@@ -31,10 +30,11 @@ function Get-EntraBetaServicePrincipalPolicy {
                 $propertyName = $_.Name
                 $propertyValue = $_.Value
 
-                if($_.Name -eq 'type'){
+                if ($_.Name -eq 'type') {
                     $userType | Add-Member -MemberType NoteProperty -Name 'ServicePrincipalType' -Value $propertyValue -Force
 
-                }else{
+                }
+                else {
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
             }
