@@ -5,7 +5,7 @@
 function Get-EntraBetaUserAuthenticationMethod {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to update.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to update.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
         [ValidateNotNullOrEmpty()]
         [System.String] $UserId
@@ -40,7 +40,7 @@ function Get-EntraBetaUserAuthenticationMethod {
             Write-Debug("=========================================================================`n")
 
             # Make the API call
-            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method GET
+            $response = Invoke-MgGraphRequest -Headers $customHeaders -Uri $params.Url -Method GET
 
             if ($response.ContainsKey('value')) {
                 $response = $response.value
