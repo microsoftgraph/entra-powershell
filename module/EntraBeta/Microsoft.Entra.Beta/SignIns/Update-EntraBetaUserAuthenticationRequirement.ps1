@@ -56,7 +56,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
             Write-Debug("Body: $body")
             Write-Debug("=========================================================================`n")
 
-            # Make the API call - FIXED: Using $uri instead of $params.Url
+            # Make the API call
             $response = Invoke-MgGraphRequest -Headers $customHeaders -Uri $uri -Method PATCH -Body $body
 
             # Return the response
