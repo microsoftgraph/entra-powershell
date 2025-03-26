@@ -30,7 +30,7 @@ Sets a user's sponsors (users or groups).
 Set-EntraBetaUserSponsor
  -UserId <String>
  -Type User
- -SponsorIds
+ -SponsorIds <String[]>
  [<CommonParameters>]
 ```
 
