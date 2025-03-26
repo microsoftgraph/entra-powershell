@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaPermissionGrantConditionSet {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $PolicyId,
                 
@@ -14,6 +13,7 @@ function Get-EntraBetaPermissionGrantConditionSet {
                 
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property
