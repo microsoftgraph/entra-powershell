@@ -3,12 +3,12 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDirSyncEnabled {
-    [CmdletBinding(DefaultParameterSetName = 'All')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
         [System.Boolean] $EnableDirsync,
 
-        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true)]
         [System.Guid] $TenantId,
 
         [switch] $Force

@@ -3,17 +3,20 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDirSyncFeature {
-        [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+        [CmdletBinding(DefaultParameterSetName = 'Default')]
         param (
-            [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.String] $Feature,
+            [Parameter(ParameterSetName = "Default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+            [System.String] $Feature,
 
-            [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipelineByPropertyName = $true)][System.Boolean] $Enabled,
+            [Parameter(ParameterSetName = "Default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+            [System.Boolean] $Enabled,
 
-            [Parameter(ParameterSetName = "GetQuery", ValueFromPipelineByPropertyName = $true)]
+            [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})]
             [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
             [System.Guid] $TenantId,
+
             [switch] $Force
         )
         PROCESS {

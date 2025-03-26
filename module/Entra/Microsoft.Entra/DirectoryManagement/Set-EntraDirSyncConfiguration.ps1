@@ -3,12 +3,12 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraDirSyncConfiguration {
-    [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
+    [CmdletBinding(DefaultParameterSetName = 'UpdateDirectoryOnPremiseSynchronization')]
     param (
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
+        [Parameter(ParameterSetName = "UpdateDirectoryOnPremiseSynchronization", ValueFromPipelineByPropertyName = $true, Mandatory = $true)]
         [System.UInt32] $AccidentalDeletionThreshold,
 
-        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "UpdateDirectoryOnPremiseSynchronization", ValueFromPipelineByPropertyName = $true)]
         [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.Guid] $TenantId,
 

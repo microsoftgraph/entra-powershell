@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraPartnerInformation {    
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'SetPartnerInformation')]
     param (
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $CompanyType,

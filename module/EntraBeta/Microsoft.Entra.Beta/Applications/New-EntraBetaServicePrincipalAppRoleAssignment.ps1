@@ -3,21 +3,21 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaServicePrincipalAppRoleAssignment {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $ServicePrincipalId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
         [Alias("Id")]
         [System.String] $AppRoleId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
         [System.String] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
         [System.String] $ResourceId
     )
 

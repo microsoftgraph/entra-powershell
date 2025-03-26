@@ -28,8 +28,8 @@ Describe "Disconnect-Entra ParameterSets"{
         $command | Should -Not -BeNullOrEmpty
         $command.ParameterSets | Should -HaveCount 1
     }
-    It 'Should have GetQuery' {
-        $UserParameterSet = $command.ParameterSets | Where-Object Name -eq 'GetQuery'
+    It 'Should have default ParameterSet' {
+        $UserParameterSet = $command.ParameterSets | Where-Object Name -eq 'default'
         $UserParameterSet | Should -Not -BeNull
         $UserParameterSet.IsDefault | Should -BeTrue
     }

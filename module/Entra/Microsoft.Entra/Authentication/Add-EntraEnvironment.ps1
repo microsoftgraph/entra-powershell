@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Add-EntraEnvironment {
-    [CmdletBinding(DefaultParameterSetName = 'AddQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
       param (
       [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
       [System.String] $Name,

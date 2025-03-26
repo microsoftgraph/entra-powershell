@@ -38,3 +38,4 @@ function Get-EntraPartnerInformation {
             $customTable 
         }
     }
+

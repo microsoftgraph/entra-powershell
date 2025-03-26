@@ -3,22 +3,22 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraTenantDetail {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $TechnicalNotificationMails,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $MarketingNotificationEmails,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $SecurityComplianceNotificationMails,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $SecurityComplianceNotificationPhones,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [Microsoft.Open.AzureAD.Model.PrivacyProfile] $PrivacyProfile
     )
 

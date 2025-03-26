@@ -3,31 +3,31 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaCustomSecurityAttributeDefinition {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateCustomSecurityAttributeDefinition')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $UsePreDefinedValuesOnly,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Name,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Status,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition")]
     [System.String] $Description,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $IsCollection,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $IsSearchable,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $AttributeSet,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateCustomSecurityAttributeDefinition", Mandatory = $true)]
     [System.String] $Type
     )
 

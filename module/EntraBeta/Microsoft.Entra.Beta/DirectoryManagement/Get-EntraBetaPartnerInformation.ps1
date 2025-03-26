@@ -37,5 +37,4 @@ function Get-EntraBetaPartnerInformation {
             }
             $customTable
         }
-    }# ------------------------------------------------------------------------------
-
+    }
