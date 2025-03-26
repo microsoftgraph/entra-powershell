@@ -3,8 +3,8 @@
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {
-    if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Entra.SignIns      
+    if ((Get-Module -Name Microsoft.Entra.Beta.SignIns) -eq $null) {
+        Import-Module Microsoft.Entra.Beta.SignIns      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -21,38 +21,38 @@ BeforeAll {
         }
     }
     
-    Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
-    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("UserAuthenticationMethod.Read.All") } } -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("UserAuthenticationMethod.Read.All") } } -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
-Describe "Get-EntraUserAuthenticationMethod" {
-    Context "Test for Get-EntraUserAuthenticationMethod" {
+Describe "Get-EntraBetaUserAuthenticationMethod" {
+    Context "Test for Get-EntraBetaUserAuthenticationMethod" {
         
         It "Should fail when UserId is empty" {
-            { Get-EntraUserAuthenticationMethod -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
+            { Get-EntraBetaUserAuthenticationMethod -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
               
         It "Should return all user authentication methods" {
-            $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com" 
+            $result = Get-EntraBetaUserAuthenticationMethod -UserId "SawyerM@Contoso.com" 
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
 
         It "Should return all user authentication methods with an alias" {
-            $result = Get-EntraUserAuthenticationMethod -ObjectId "SawyerM@Contoso.com" 
+            $result = Get-EntraBetaUserAuthenticationMethod -ObjectId "SawyerM@Contoso.com" 
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
         }
       
         It "Should contain 'User-Agent' header" {
             
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAuthenticationMethod"
-            $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserAuthenticationMethod"
+            $result = Get-EntraBetaUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -65,7 +65,7 @@ Describe "Get-EntraUserAuthenticationMethod" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUserAuthenticationMethod -UserId "SawyerM@Contoso.com" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
