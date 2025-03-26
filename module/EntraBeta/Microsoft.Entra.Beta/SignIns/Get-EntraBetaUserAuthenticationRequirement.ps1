@@ -52,34 +52,9 @@ function Get-EntraBetaUserAuthenticationRequirement {
             return $response
         }
         catch {
-            $errorObj = $_
             $statusCode = $null
-            $errorMessage = $errorObj.Exception.Message
-
-            # Extract status code using different approaches based on error structure
-            if ($errorObj.Exception.Response) {
-                try {
-                    $statusCode = $errorObj.Exception.Response.StatusCode.value__
-                }
-                catch {
-                    # If StatusCode property doesn't exist
-                }
-            }
-            
-            # Try to get status code from ErrorDetails if available
-            if (-not $statusCode -and $errorObj.ErrorDetails) {
-                try {
-                    $errorContent = $errorObj.ErrorDetails | ConvertFrom-Json -ErrorAction SilentlyContinue
-                    if ($errorContent.error.code) {
-                        $statusCode = $errorContent.error.code
-                    }
-                    if ($errorContent.error.message) {
-                        $errorMessage = $errorContent.error.message
-                    }
-                }
-                catch {
-                    # If conversion fails
-                }
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+                $statusCode = $_.Exception.Response.StatusCode.value__
             }
             
             # Handle different error scenarios
