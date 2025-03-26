@@ -34,12 +34,13 @@ function Get-EntraUserAuthenticationMethod {
             }
             
             # Initialize headers and URI
+            $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
             $uri = "https://graph.microsoft.com/v1.0/users/$encodedUserId/authentication/methods"
 
             Write-Debug("============================ REQUEST DETAILS ============================")
-            Write-Debug("URI: $uri")
+            $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
 
             # Make the API call
@@ -68,49 +69,23 @@ function Get-EntraUserAuthenticationMethod {
             return $authMethodList
         }
         catch {
-            $errorObj = $_
             $statusCode = $null
-            $errorMessage = $errorObj.Exception.Message
-
-            # Extract status code using different approaches based on error structure
-            if ($errorObj.Exception.Response) {
-                try {
-                    $statusCode = $errorObj.Exception.Response.StatusCode.value__
-                }
-                catch {
-                    # If StatusCode property doesn't exist
-                }
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+                $statusCode = $_.Exception.Response.StatusCode.value__
             }
             
-            # Try to get status code from ErrorDetails if available
-            if (-not $statusCode -and $errorObj.ErrorDetails) {
-                try {
-                    $errorContent = $errorObj.ErrorDetails | ConvertFrom-Json -ErrorAction SilentlyContinue
-                    if ($errorContent.error.code) {
-                        $statusCode = $errorContent.error.code
-                    }
-                    if ($errorContent.error.message) {
-                        $errorMessage = $errorContent.error.message
-                    }
-                }
-                catch {
-                    # If conversion fails
-                }
-            }
-            
-            # Handle different error scenarios
-            if ($statusCode -eq 404 -or $errorMessage -match "ResourceNotFound" -or $errorMessage -match "not found") {
+            if ($statusCode -eq 404) {
                 Write-Error "User with ID '$UserId' not found or you don't have permissions to access their authentication methods."
             } 
-            elseif ($statusCode -eq 403 -or $errorMessage -match "Authorization_RequestDenied") {
-                Write-Error "Insufficient permissions. Ensure you have UserAuthenticationMethod.Read.All scopes."
+            elseif ($statusCode -eq 403) {
+                Write-Error "Insufficient permissions. Ensure you have `UserAuthenticationMethod.Read.All` scopes."
             }
-            elseif ($statusCode -eq 401 -or $errorMessage -match "Authentication_MissingOrMalformed") {
-                Write-Error "Unauthorized access. Please run Connect-Entra -Scopes UserAuthenticationMethod.Read.All to authenticate."
+            elseif ($statusCode -eq 401) {
+                Write-Error "Unauthorized access. Please run `Connect-Entra -Scopes UserAuthenticationMethod.Read.All` to authenticate."
             }
             else {
-                Write-Error "An error occurred retrieving authentication methods: $errorMessage"
-            }
+                Write-Error "An error occurred: $($_.Exception.Message)"
+            } 
         }
     }
 }

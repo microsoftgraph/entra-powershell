@@ -84,7 +84,7 @@ function Get-EntraBetaUserAuthenticationRequirement {
             
             # Handle different error scenarios
             if ($statusCode -eq 404 -or $errorMessage -match "ResourceNotFound" -or $errorMessage -match "not found") {
-                Write-Error "User with ID '$UserId' not found or you don't have permissions to access their authentication methods."
+                Write-Error "User with ID '$UserId' not found or you don't have permissions to access their authentication requirements."
             } 
             elseif ($statusCode -eq 403 -or $errorMessage -match "Authorization_RequestDenied") {
                 Write-Error "Insufficient permissions. Ensure you have Policy.Read.All scopes."
