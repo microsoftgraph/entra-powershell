@@ -29,7 +29,7 @@ Sets a user's sponsors (users or groups).
 ```powershell
 Set-EntraBetaUserSponsor
  -UserId <String>
- -Type User
+ -Type <String>
  -SponsorIds <String[]>
  [<CommonParameters>]
 ```
