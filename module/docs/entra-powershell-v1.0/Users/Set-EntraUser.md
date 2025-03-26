@@ -135,7 +135,7 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
     Password = '*****'
     ForceChangePasswordNextSignIn = $true
@@ -150,7 +150,7 @@ This example updates the specified user's PasswordProfile parameter.
 ### Example 6: Set user's usage location for license assignment
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
 ```
 
@@ -162,7 +162,7 @@ This example updates the specified user's Usage Location for license management.
 ### Example 7: Set user's extension properties
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
 $extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
 $additionalProperties = @{ $extensionName = "Survey.Report" }
@@ -176,7 +176,7 @@ This example updates the specified user's extension properties, for example, an 
 ### Example 8: update user's onPremisesExtension attributes properties
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties @{
     onPremisesExtensionAttributes = @{
         extensionAttribute1 = "Job Group D"
@@ -192,7 +192,7 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 ### Example 9: update user's phone details
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -BusinessPhones '+1 425 555 0109' -OfficeLocation '18/2111'
 ```
 
