@@ -187,7 +187,7 @@ This command gets the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -Filter "startswith(MailNickname,'Ada')"
+Get-EntraBetaUser -Filter "startsWith(MailNickname,'Ada')"
 ```
 
 ```Output
