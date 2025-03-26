@@ -163,14 +163,14 @@ This example updates the specified user's Usage Location for license management.
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
 
-### Example 7: Update user's password profile
+### Example 7: Update user's password policy
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 Get-EntraUser -UserId 'SawyerM@contoso.com' | Set-EntraUser -PasswordPolicies DisablePasswordExpiration
 ```
 
-This example updates the specified user's password profile.
+This example updates the specified user's password policy.
 
 ## Parameters
 
