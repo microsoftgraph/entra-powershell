@@ -40,7 +40,7 @@ Describe "Get-EntraBetaUserAuthenticationMethod" {
         }
 
         It "Should return all user authentication methods with an alias" {
-            $result = Get-EntraBetaUserAuthenticationMethod -ObjectId "SawyerM@Contoso.com" 
+            $result = Get-EntraBetaUserAuthenticationMethod -UserId "SawyerM@Contoso.com" 
             $result | Should -Not -BeNullOrEmpty
             
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
