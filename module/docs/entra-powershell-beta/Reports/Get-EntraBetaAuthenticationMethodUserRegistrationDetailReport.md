@@ -283,19 +283,19 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### isAdmin (Boolean)
 
-Shows if the user has an admin role in the tenant. Use this to check which authentication methods privileged accounts have registered and can use.
+Shows whether the user has an admin role in the tenant. Use it to check which authentication methods privileged accounts register and use.
 
 ### isMfaCapable (Boolean)
 
-Shows if the user has registered a strong MFA method that's allowed by the authentication methods policy. Supports `$filter (eq)`.
+Indicates that the user uses a strong MFA method allowed by the authentication methods policy. Supports `$filter (eq)`.
 
 ### isMfaRegistered (Boolean)
 
-Shows if the user has registered a strong MFA method, even if it's not allowed by the authentication methods policy. Supports `$filter (eq)`.
+Indicates whether the user registers a strong MFA method, even if the authentication methods policy doesn't allow it. Supports `$filter (eq)`.
 
 ### isPasswordlessCapable (Boolean)
 
-Shows if the user has registered a passwordless strong authentication method (like FIDO2, Windows Hello for Business, or Microsoft Authenticator) that's allowed by the authentication methods policy. Supports `$filter (eq)`.
+Shows if the user registers a passwordless strong authentication method—like FIDO2, Windows Hello for Business, or Microsoft Authenticator—that the policy allows. Supports `$filter (eq)`.
 
 ### isSsprCapable (Boolean)
 
@@ -307,11 +307,11 @@ Shows if the user is allowed to use self-service password reset by policy, even 
 
 ### isSsprRegistered (Boolean)
 
-Shows if the user has registered enough authentication methods for self-service password reset, even if they're not allowed to use it by policy. Supports `$filter (eq)`.
+Shows if the user registers enough authentication methods for self-service password reset, even if the policy doesn't allow them to use it. Supports `$filter (eq)`.
 
 ### isSystemPreferredAuthenticationMethodEnabled (Boolean)
 
-Shows if system-preferred authentication is enabled. When enabled, the system picks the most secure method from those the user has registered. Supports `$filter (eq)`.
+Shows if system-preferred authentication is on. When enabled, the system selects the most secure method from the ones the user registers. Supports `$filter (eq)`.
 
 ### lastUpdatedDateTime (DateTimeOffset)
 
@@ -327,7 +327,7 @@ List of the most secure second-factor authentication methods chosen by the syste
 
 ### userDisplayName (String)
 
-The user's display name, like "Sawyer Miller". Supports `$filter` (`eq`, `startsWith`) and `$orderby`.
+The user's display name, like "Sawyer Miller." Supports `$filter` (`eq`, `startsWith`) and `$orderby`.
 
 ### userPreferredMethodForSecondaryAuthentication (userDefaultAuthenticationMethod)
 
