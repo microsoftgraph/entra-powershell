@@ -3,26 +3,25 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
-    param (
+    [CmdletBinding(DefaultParameterSetName = 'ByTypeAndDefinition')]
+    param (                
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
+        [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
+        [System.String] $DisplayName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $DisplayName,
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
+        [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
+        [System.Collections.Generic.List`1[System.String]] $Definition,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.Collections.Generic.List`1[System.String]] $Definition,
+        [Parameter(ParameterSetName = "ByTypeAndDefinition", Mandatory = $true)]
+        [System.String] $Type,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
-    [System.String] $Type,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AlternativeIdentifier
+        [Parameter(ParameterSetName = "ByTypeAndDefinition")]
+        [System.String] $AlternativeIdentifier
     )
 
     PROCESS {    
@@ -31,8 +30,8 @@ function New-EntraBetaPolicy {
         $params["Type"] = $Type        
         $respType = $null
 
-        if($params.type -eq "activityBasedTimeoutPolicy" ) {
-            $params.type  = "activityBasedTimeoutPolicies"    
+        if ($params.type -eq "activityBasedTimeoutPolicy" ) {
+            $params.type = "activityBasedTimeoutPolicies"    
             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphActivityBasedTimeoutPolicy    
         }
         elseif ($params.type -eq "appManagementPolicy") {
@@ -40,16 +39,16 @@ function New-EntraBetaPolicy {
             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppManagementPolicy
         }
         elseif ($params.type -eq "claimsMappingPolicies") {
-             $params.type = "claimsMappingPolicies"         
-             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy     
+            $params.type = "claimsMappingPolicies"         
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy     
         } 
         elseif ($params.type -eq "featureRolloutPolicy") {
             $params.type = "featureRolloutPolicies"
             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy   
         }
         elseif ($params.type -eq "HomeRealmDiscoveryPolicy") {
-             $params.type = "homeRealmDiscoveryPolicies"
-             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy 
+            $params.type = "homeRealmDiscoveryPolicies"
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy 
         }
         elseif ($params.type -eq "tokenIssuancePolicy") {
             $params.type = "tokenIssuancePolicies"
@@ -65,24 +64,24 @@ function New-EntraBetaPolicy {
         }
 
         $params["Uri"] = "https://graph.microsoft.com/beta/policies/" + $params.type
-        $Definition =$PSBoundParameters["Definition"]
-        $DisplayName=$PSBoundParameters["DisplayName"]
+        $Definition = $PSBoundParameters["Definition"]
+        $DisplayName = $PSBoundParameters["DisplayName"]
         $AlternativeIdentifier = $PSBoundParameters["AlternativeIdentifier"]
         $KeyCredentials = $PSBoundParameters["KeyCredentials"]
-        $IsOrganizationDefault =$PSBoundParameters["IsOrganizationDefault"]
+        $IsOrganizationDefault = $PSBoundParameters["IsOrganizationDefault"]
         $params["Method"] = "POST"
        
         $body = @{
-            Definition = $Definition
-            DisplayName = $DisplayName
+            Definition            = $Definition
+            DisplayName           = $DisplayName
             IsOrganizationDefault = $IsOrganizationDefault
-            AlternativeIdentifier =$AlternativeIdentifier
-            KeyCredentials = $KeyCredentials
-            Type = $Type
+            AlternativeIdentifier = $AlternativeIdentifier
+            KeyCredentials        = $KeyCredentials
+            Type                  = $Type
         }
         $body = $body | ConvertTo-Json        
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
 

@@ -3,10 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaUserAuthenticationRequirement {
-    [CmdletBinding(DefaultParameterSetName = 'UserRequirements')]
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias("ObjectId")]
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to retrieve.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to retrieve.")]
         [System.String] $UserId
     )
 
@@ -32,5 +32,4 @@ function Get-EntraBetaUserAuthenticationRequirement {
             Write-Error "An error occurred while retrieving user authentication requirements: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
