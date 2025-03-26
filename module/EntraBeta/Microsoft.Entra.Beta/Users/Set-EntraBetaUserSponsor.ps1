@@ -16,7 +16,7 @@ function Set-EntraBetaUserSponsor {
         [System.String] $Type,
         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "List of sponsors to assign to the user.")]
-        [string[]] $SponsorIds
+        [System.String[]] $SponsorIds
     )
 
     begin {
