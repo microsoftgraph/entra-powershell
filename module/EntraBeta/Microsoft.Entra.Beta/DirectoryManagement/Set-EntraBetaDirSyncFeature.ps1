@@ -73,11 +73,13 @@ function Set-EntraBetaDirSyncFeature {
     process {
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
             $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
-        } else {
+        }
+        else {
             $OnPremisesDirectorySynchronizationId = Get-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $TenantId -ErrorAction SilentlyContinue -ErrorVariable er
             if ([string]::IsNullOrWhiteSpace($er)) {
                 $OnPremisesDirectorySynchronizationId = $OnPremisesDirectorySynchronizationId.Id
-            } else {
+            }
+            else {
                 throw "Set-EntraBetaDirSyncFeature :$er"
                 break
             }
@@ -90,7 +92,8 @@ function Set-EntraBetaDirSyncFeature {
         if ($Force) {
             # If -Force is used, skip confirmation and proceed with the action.
             $decision = 0
-        } else {
+        }
+        else {
             $title = 'Confirm'
             $question = 'Do you want to continue?'
             $Suspend = New-Object System.Management.Automation.Host.ChoiceDescription '&Suspend', 'S'
@@ -105,12 +108,14 @@ function Set-EntraBetaDirSyncFeature {
             break
             if ([string]::IsNullOrWhiteSpace($er)) {
                 $response
-            } else {
+            }
+            else {
                 Write-Error "Cannot bind parameter 'TenantId'. Cannot convert value `"$TenantId`" to type
                     `"System.Guid`". Error: `"Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).`""
             }
 
-        } else {
+        }
+        else {
             return
         }
     }

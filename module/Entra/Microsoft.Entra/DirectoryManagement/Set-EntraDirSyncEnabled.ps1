@@ -17,12 +17,12 @@ function Set-EntraDirSyncEnabled {
     PROCESS {
         $params = @{}
         $body = @{}
-        $OrganizationId=''
+        $OrganizationId = ''
         $params["Method"] = "PATCH"
         $URL = "https://graph.microsoft.com/v1.0/organization/" + $TenantId
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($EnableDirsync -or (-not($EnableDirsync))) {
-            $body["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
+            $body["OnPremisesSyncEnabled"] = $PSBoundParameters["EnableDirsync"]
         }        
         if ([string]::IsNullOrWhiteSpace($TenantId)) {           
             $OrganizationId = (Get-EntraContext).TenantId           
