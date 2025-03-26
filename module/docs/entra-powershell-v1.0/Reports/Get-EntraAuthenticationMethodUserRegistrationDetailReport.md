@@ -230,7 +230,7 @@ List all pages.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: GetQuery
 Aliases:
 
 Required: False
