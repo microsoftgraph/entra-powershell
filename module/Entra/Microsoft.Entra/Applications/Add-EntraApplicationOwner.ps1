@@ -11,7 +11,7 @@ function Add-EntraApplicationOwner {
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the user, group, or service principal to be added as an owner of the application.")]
         [Alias('RefObjectId')]
-        [System.String] $OwnerId
+        [System.String] $OwnerIdBuild
     )
     PROCESS {
         $params = @{}
