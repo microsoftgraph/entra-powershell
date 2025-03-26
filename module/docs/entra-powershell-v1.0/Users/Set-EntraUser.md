@@ -67,7 +67,7 @@ The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `Us
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
@@ -78,7 +78,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
@@ -90,7 +90,7 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
 ForEach-Object { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
@@ -103,7 +103,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
     UserId           = 'SawyerM@contoso.com'
     City             = 'Add city name'
@@ -134,7 +134,7 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $params= @{
 UserId = 'SawyerM@contoso.com'
 PasswordProfile  = @{
@@ -154,7 +154,7 @@ This example updates the specified user's PasswordProfile parameter.
 ### Example 6: Set user's usage location for license assignment
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
 ```
 
@@ -162,6 +162,15 @@ This example updates the specified user's Usage Location for license management.
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
+
+### Example 7: Update user's password profile
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraUser -UserId 'SawyerM@contoso.com' | Set-EntraUser -PasswordPolicies DisablePasswordExpiration
+```
+
+This example updates the specified user's password profile.
 
 ## Parameters
 
