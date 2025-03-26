@@ -81,5 +81,4 @@ function New-EntraCustomSecurityAttributeDefinition {
         }
         $targetList
     }
-}# ------------------------------------------------------------------------------
-
+}
