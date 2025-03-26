@@ -30,7 +30,7 @@ Sets a user's sponsors (users or groups).
 Set-EntraUserSponsor
  -UserId <String>
  -Type <String>
- -SponsorIds
+ -SponsorIds <String[]>
  [<CommonParameters>]
 ```
 
