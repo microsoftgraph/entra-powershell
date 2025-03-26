@@ -401,7 +401,7 @@ Accept wildcard characters: False
 
 ### -UserId
 
-Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

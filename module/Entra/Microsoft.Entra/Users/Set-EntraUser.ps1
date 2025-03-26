@@ -141,6 +141,17 @@ function Set-EntraUser {
 
     begin {
 
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
+    process {
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+
         # Microsoft Graph API URL for updating users
         $graphUri = "https://graph.microsoft.com/v1.0/users/$UserId"
 
@@ -163,10 +174,6 @@ function Set-EntraUser {
 
         # Convert final update properties to JSON
         $bodyJson = $UserProperties | ConvertTo-Json -Depth 2
-    }
-
-    process {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($UserProperties.Count -eq 0) {
             Write-Warning "No properties provided for update. Exiting."
             return
