@@ -3,9 +3,8 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaUserAppRoleAssignment {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $UserId,

@@ -3,25 +3,22 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Update-EntraBetaSignedInUserPassword {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Security.SecureString] $NewPassword,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Security.SecureString] $NewPassword,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Security.SecureString] $CurrentPassword
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.Security.SecureString] $CurrentPassword
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        if($null -ne $PSBoundParameters["NewPassword"])
-        {
+        if ($null -ne $PSBoundParameters["NewPassword"]) {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
         }
-        if($null -ne $PSBoundParameters["CurrentPassword"])
-        {
+        if ($null -ne $PSBoundParameters["CurrentPassword"]) {
             $params["CurrentPassword"] = $PSBoundParameters["CurrentPassword"]
         } 
         $currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.CurrentPassword)
@@ -30,15 +27,15 @@ function Update-EntraBetaSignedInUserPassword {
         $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
         $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
     
-        $params["Url"]  = "https://graph.microsoft.com/beta/me/changePassword"
+        $params["Url"] = "https://graph.microsoft.com/beta/me/changePassword"
         $body = @{
             currentPassword = $curr
-            newPassword = $new 
+            newPassword     = $new 
         }
         $body = $body | ConvertTo-Json
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================
 ")
         
