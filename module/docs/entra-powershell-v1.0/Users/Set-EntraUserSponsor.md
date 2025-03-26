@@ -34,16 +34,6 @@ Set-EntraUserSponsor
  [<CommonParameters>]
 ```
 
-### Group
-
-```powershell
-Set-EntraUserSponsor
- -UserId <String>
- -Type Group
- -SponsorIds
- [<CommonParameters>]
-```
-
 ## Description
 
 The `Set-EntraUserSponsor` cmdlet sets a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
