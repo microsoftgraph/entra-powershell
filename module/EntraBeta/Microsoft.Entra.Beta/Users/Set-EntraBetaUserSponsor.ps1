@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraBetaUserSponsor {
-    [CmdletBinding(DefaultParameterSetName = "User")]
+    [CmdletBinding(DefaultParameterSetName = "SetUserSponsor")]
     param (            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID or User Principal Name) of the user whose sponsor information you want to set.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
