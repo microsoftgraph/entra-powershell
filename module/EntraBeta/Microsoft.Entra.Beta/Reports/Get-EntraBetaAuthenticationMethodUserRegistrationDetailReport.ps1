@@ -13,7 +13,7 @@ function Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport {
         [Alias("Limit")]
         [System.Int32] $Top,
 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all items.")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether to return all items.")]
         [switch] $All,
 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter the results based on the specified criteria.")]
