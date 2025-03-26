@@ -41,9 +41,9 @@ function Get-EntraBetaPrivateAccessApplication {
                     break
                 }
             }
-        } catch {
+        }
+        catch {
             Write-Error "Failed to retrieve the application(s): $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
