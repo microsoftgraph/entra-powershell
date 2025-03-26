@@ -37,7 +37,7 @@ function Get-EntraBetaUserAuthenticationRequirement {
             # Initialize parameters and headers
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-            encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
+            $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
             $baseUri = "https://graph.microsoft.com/beta/users/$encodedUserId"
             $params["Uri"] = "$baseUri/authentication/requirements"
 
@@ -52,22 +52,48 @@ function Get-EntraBetaUserAuthenticationRequirement {
             return $response
         }
         catch {
+            $errorObj = $_
             $statusCode = $null
-            if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
-                $statusCode = $_.Exception.Response.StatusCode.value__
+            $errorMessage = $errorObj.Exception.Message
+
+            # Extract status code using different approaches based on error structure
+            if ($errorObj.Exception.Response) {
+                try {
+                    $statusCode = $errorObj.Exception.Response.StatusCode.value__
+                }
+                catch {
+                    # If StatusCode property doesn't exist
+                }
             }
             
-            if ($statusCode -eq 404) {
-                Write-Error "User with ID '$UserId' not found or you don't have permissions to access their authentication requirements."
-            } 
-            elseif ($statusCode -eq 403) {
-                Write-Error "Insufficient permissions. Ensure you have `Policy.Read.All` scopes."
+            # Try to get status code from ErrorDetails if available
+            if (-not $statusCode -and $errorObj.ErrorDetails) {
+                try {
+                    $errorContent = $errorObj.ErrorDetails | ConvertFrom-Json -ErrorAction SilentlyContinue
+                    if ($errorContent.error.code) {
+                        $statusCode = $errorContent.error.code
+                    }
+                    if ($errorContent.error.message) {
+                        $errorMessage = $errorContent.error.message
+                    }
+                }
+                catch {
+                    # If conversion fails
+                }
             }
-            elseif ($statusCode -eq 401) {
-                Write-Error "Unauthorized access. Please run `Connect-Entra -Scopes Policy.Read.All` to authenticate."
+            
+            # Handle different error scenarios
+            if ($statusCode -eq 404 -or $errorMessage -match "ResourceNotFound" -or $errorMessage -match "not found") {
+                Write-Error "User with ID '$UserId' not found or you don't have permissions to access their authentication methods."
+            } 
+            elseif ($statusCode -eq 403 -or $errorMessage -match "Authorization_RequestDenied") {
+                Write-Error "Insufficient permissions. Ensure you have Policy.Read.All scopes."
+            }
+            elseif ($statusCode -eq 401 -or $errorMessage -match "Authentication_MissingOrMalformed") {
+                Write-Error "Unauthorized access. Please run Connect-Entra -Scopes Policy.Read.All to authenticate."
             }
             else {
-                Write-Error "An error occurred: $($_.Exception.Message)"
+                Write-Error "An error occurred retrieving authentication requirements: $errorMessage"
             }
         }
     }
