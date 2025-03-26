@@ -110,7 +110,7 @@ New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName.
 
-### Example 4: Retrieve user's password profile
+### Example 4: Retrieve user's password policy
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -129,7 +129,7 @@ userPrincipalName            PasswordNeverExpires
 SawyerM@contoso.com                 True
 ```
 
-This example shows how to get a user's password profile. To update it, run `Get-EntraUser -UserId SawyerM@contoso.com | Set-EntraUser -PasswordPolicies DisablePasswordExpiration`.
+This example shows how to get a user's password policy. To update it, run `Get-EntraUser -UserId SawyerM@contoso.com | Set-EntraUser -PasswordPolicies DisablePasswordExpiration`.
 
 ### Example 5: Per-user MFA report
 
