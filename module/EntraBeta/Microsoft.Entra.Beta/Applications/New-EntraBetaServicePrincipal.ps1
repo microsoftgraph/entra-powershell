@@ -3,55 +3,55 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaServicePrincipal {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateServicePrincipal')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $ServicePrincipalType,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $LogoutUrl,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $DisplayName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $Homepage,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ServicePrincipalNames,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $PublisherName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $AlternativeNames,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Nullable`1[System.Boolean]] $AppRoleAssignmentRequired,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $ReplyUrls,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $ErrorUrl,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $AccountEnabled,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateServicePrincipal", Mandatory = $true)]
     [System.String] $AppId,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.String] $SamlMetadataUrl,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateServicePrincipal")]
     [System.Collections.Generic.List`1[System.String]] $Tags
     )
 
