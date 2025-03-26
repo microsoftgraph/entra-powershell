@@ -9,9 +9,9 @@ ms.reviewer: dbutoyi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Entra..Users-Help.xml
-Module Name: Microsoft.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra./Set-EntraUserSponsor
+external help file: Microsoft.Entra.Beta.Users-Help.xml
+Module Name: Microsoft.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraUserSponsor
 
 schema: 2.0.0
 ---
@@ -29,7 +29,7 @@ Sets a user's sponsors (users or groups).
 ```powershell
 Set-EntraUserSponsor
  -UserId <String>
- -User
+ -Type User
  -SponsorIds
  [<CommonParameters>]
 ```
@@ -39,7 +39,7 @@ Set-EntraUserSponsor
 ```powershell
 Set-EntraUserSponsor
  -UserId <String>
- -Group
+ -Type Group
  -SponsorIds
  [<CommonParameters>]
 ```
@@ -48,7 +48,7 @@ Set-EntraUserSponsor
 
 The `Set-EntraUserSponsor` cmdlet sets a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
-`Update-EntraUserSponsor` is an alias for `Set-EntraUserSponsor`.
+`Update-EntraBetaUserSponsor` is an alias for `Set-EntraUserSponsor`.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/users/sponsors/update` permission.
 
@@ -63,86 +63,68 @@ The following least privileged roles support this operation:
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -User -SponsorIds 591c654d-bb97-4c1f-bc83-b9d4694f9338
+Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type User -SponsorIds 591c654d-bb97-4c1f-bc83-b9d4694f9338
 ```
 
 This example demonstrates how to assign a single user, as a sponsor to a target user account.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
-- The `-User` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
+- The `-Type` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (User or Group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
 ### Example 2: Assign single group sponsor
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Group -SponsorIds 591l654d-bb97-4c1f-bc83-b9d4694f9338
+Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type Group -SponsorIds 591l654d-bb97-4c1f-bc83-b9d4694f9338
 ```
 
 This example demonstrates how to assign a single group, as a sponsor to a target user account.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
-- The `-Group` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
+- The `-Type` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (User or Group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
 ### Example 3: Assign multiple user sponsors
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -User -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
+Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type User -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
 ```
 
 This example demonstrates how to assign multiple users as sponsors to a target user account.
 
 - The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
-- The `-User` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
+- The `-Type` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (User or Group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
 ### Example 4: Assign multiple group sponsors
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Group -SponsorIds @("db0c6f50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5v8-4b5e-ae78-9812230af58d")
+Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type Group -SponsorIds @("db0c6f50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5v8-4b5e-ae78-9812230af58d")
 ```
 
 This example demonstrates how to assign multiple groups as sponsors to a target user account.
 
-- The `-UserId` parameter specifies the User ID or User Principal Name.  You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
-
-- The `-Group` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (user or group).
+- The `-UserId` parameter specifies the User ID or User Principal Name. You can use `-UserPrincipalName`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserId`.
+- The `-Type` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (User or Group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
 ## Parameters
 
-### -User
+### -Type
 
-Specifies that the sponsors being assigned are users.
+Specifies the type of sponsors being assigned to the user. Supported sponsor types are (User or Group).
 
 ```yaml
-Type: System.Management.Automation.SwitchParameter
+Type: System.String
 Parameter Sets: User
-Aliases:
 
 Required: True
 Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Group
-
-Specifies that the sponsors being assigned are groups.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: Group
-Aliases:
-
-Required: True
-Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
