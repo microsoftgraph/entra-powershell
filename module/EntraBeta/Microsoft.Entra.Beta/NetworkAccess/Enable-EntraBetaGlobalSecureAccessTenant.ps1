@@ -14,12 +14,14 @@ function Enable-EntraBetaGlobalSecureAccessTenant {
             # Check the response and provide feedback
             if ($response) {
                 Write-Output "Global Secure Access Tenant has been successfully enabled."
-            } else {
+            }
+            else {
                 Write-Error "Failed to enable Global Secure Access Tenant."
             }
-        } catch {
+        }
+        catch {
             Write-Error "An error occurred while enabling the Global Secure Access Tenant: $_"
         }
     }
-}# ------------------------------------------------------------------------------
+}
 
