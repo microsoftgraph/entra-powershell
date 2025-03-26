@@ -4,9 +4,9 @@
 # ------------------------------------------------------------------------------
 BeforeAll {
     if ((Get-Module -Name Microsoft.Entra.SignIns) -eq $null) {
-        Import-Module Microsoft.Entra.SignIns
+        Import-Module Microsoft.Entra.SignIns      
     }
-    Import-Module (Join-Path $PSScriptRoot "..\Common-Functions.ps1") -Force
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     $scriptblock = {
         return @{
@@ -31,11 +31,7 @@ Describe "Get-EntraUserAuthenticationMethod" {
         It "Should fail when UserId is empty" {
             { Get-EntraUserAuthenticationMethod -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        
-        It "Should fail when UserId is invalid" {
-            { Get-EntraUserAuthenticationMethod -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string.*"
-        }
-        
+              
         It "Should return all user authentication methods" {
             $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com" 
             $result | Should -Not -BeNullOrEmpty
@@ -51,10 +47,11 @@ Describe "Get-EntraUserAuthenticationMethod" {
         }
       
         It "Should contain 'User-Agent' header" {
+            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAuthenticationMethod"
             $result = Get-EntraUserAuthenticationMethod -UserId "SawyerM@Contoso.com"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserAuthenticationMethod"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

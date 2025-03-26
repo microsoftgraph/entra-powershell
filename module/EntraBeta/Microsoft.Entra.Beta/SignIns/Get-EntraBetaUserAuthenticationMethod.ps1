@@ -15,7 +15,7 @@ function Get-EntraBetaUserAuthenticationMethod {
 
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes UserAuthenticationMethod.Read.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
