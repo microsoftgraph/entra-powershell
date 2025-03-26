@@ -3,11 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaTrustedCertificateAuthority {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation] $CertificateAuthorityInformation
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation] $CertificateAuthorityInformation
     )
 
     PROCESS {
@@ -20,15 +19,15 @@ function Set-EntraBetaTrustedCertificateAuthority {
         $modifiedCert = $PSBoundParameters["CertificateAuthorityInformation"]
         $previusCerts = @()
         Get-EntraBetaTrustedCertificateAuthority | ForEach-Object {
-            if(($_.TrustedIssuer -eq $modifiedCert.TrustedIssuer) -and ($_.TrustedIssuerSki -eq $modifiedCert.TrustedIssuerSki)){
+            if (($_.TrustedIssuer -eq $modifiedCert.TrustedIssuer) -and ($_.TrustedIssuerSki -eq $modifiedCert.TrustedIssuerSki)) {
                 $previusCerts += $modifiedCert
                 $certNotFound = $false
             }
-            else{
+            else {
                 $previusCerts += $_
             }
         }
-        if($certNotFound){
+        if ($certNotFound) {
             Throw [System.Management.Automation.PSArgumentException] "Provided certificate authority not found on the server. Please make sure you have provided the correct information in trustedIssuer and trustedIssuerSki fields."
         }
         $body = @{
@@ -36,34 +35,34 @@ function Set-EntraBetaTrustedCertificateAuthority {
         }
         $previusCerts | ForEach-Object {
             $isRoot = $false
-            if("RootAuthority" -eq $_.AuthorityType){
+            if ("RootAuthority" -eq $_.AuthorityType) {
                 $isRoot = $true
             }
             $cert = @{
-                isRootAuthority = $isRoot
-                certificateRevocationListUrl = $_.CrlDistributionPoint
+                isRootAuthority                   = $isRoot
+                certificateRevocationListUrl      = $_.CrlDistributionPoint
                 deltaCertificateRevocationListUrl = $_.DeltaCrlDistributionPoint
-                certificate = [convert]::tobase64string($_.TrustedCertificate)
+                certificate                       = [convert]::tobase64string($_.TrustedCertificate)
             }
             $body.certificateAuthorities += $cert
         }
         $params["Body"] = ConvertTo-Json $body
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = Invoke-GraphRequest @params -Headers $customHeaders
 
         $customObject = [PSCustomObject]@{
-            "@odata.context" = $response["@odata.context"]
+            "@odata.context"       = $response["@odata.context"]
             certificateAuthorities = @{
-                AuthorityType = if ($response.certificateAuthorities.isRootAuthority) { "RootAuthority" } else { "" }
-                CrlDistributionPoint = $response.certificateAuthorities.certificateRevocationListUrl
+                AuthorityType             = if ($response.certificateAuthorities.isRootAuthority) { "RootAuthority" } else { "" }
+                CrlDistributionPoint      = $response.certificateAuthorities.certificateRevocationListUrl
                 DeltaCrlDistributionPoint = $response.certificateAuthorities.deltaCertificateRevocationListUrl
-                TrustedCertificate = [Convert]::FromBase64String($response.certificateAuthorities.certificate)
-                TrustedIssuer = $response.certificateAuthorities.issuer
-                TrustedIssuerSki = $response.certificateAuthorities.issuerSki
+                TrustedCertificate        = [Convert]::FromBase64String($response.certificateAuthorities.certificate)
+                TrustedIssuer             = $response.certificateAuthorities.issuer
+                TrustedIssuerSki          = $response.certificateAuthorities.issuerSki
             }
-            Id = $response.id
+            Id                     = $response.id
         }
         $customObject = $customObject | ConvertTo-Json -depth 5 | ConvertFrom-Json
         $certificateList = @()

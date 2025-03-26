@@ -3,104 +3,91 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraConditionalAccessPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
-    param (
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyId')]
+    param (                
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls] $GrantControls,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $PolicyId,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $PolicyId,
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $State,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $State,
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $Id,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Id,
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls] $SessionControls,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls] $SessionControls,
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet] $Conditions,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $DisplayName
     )
 
     PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if($null -ne $PSBoundParameters["GrantControls"])
-    {
-        $TmpValue = $PSBoundParameters["GrantControls"]
-                    $hash = @{}
-            if($TmpValue._Operator) { $hash["Operator"] = $TmpValue._Operator }
-            if($TmpValue.BuiltInControls) { $hash["BuiltInControls"] = $TmpValue.BuiltInControls }
-            if($TmpValue.CustomAuthenticationFactors) { $hash["CustomAuthenticationFactors"] = $TmpValue.CustomAuthenticationFactors }
-            if($TmpValue.TermsOfUse) { $hash["TermsOfUse"] = $TmpValue.TermsOfUse }
+        if ($null -ne $PSBoundParameters["OutVariable"]) {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if ($null -ne $PSBoundParameters["GrantControls"]) {
+            $TmpValue = $PSBoundParameters["GrantControls"]
+            $hash = @{}
+            if ($TmpValue._Operator) { $hash["Operator"] = $TmpValue._Operator }
+            if ($TmpValue.BuiltInControls) { $hash["BuiltInControls"] = $TmpValue.BuiltInControls }
+            if ($TmpValue.CustomAuthenticationFactors) { $hash["CustomAuthenticationFactors"] = $TmpValue.CustomAuthenticationFactors }
+            if ($TmpValue.TermsOfUse) { $hash["TermsOfUse"] = $TmpValue.TermsOfUse }
             $Value = $hash
-        $params["GrantControls"] = $Value
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["PolicyId"])
-    {
-        $params["ConditionalAccessPolicyId"] = $PSBoundParameters["PolicyId"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if ($null -ne $PSBoundParameters["State"])
-    {
-        $params["State"] = $PSBoundParameters["State"]
-    }
-    if ($null -ne $PSBoundParameters["Id"])
-    {
-        $params["Id"] = $PSBoundParameters["Id"]
-    }
-    if($null -ne $PSBoundParameters["SessionControls"])
-    {
-        $TmpValue = $PSBoundParameters["SessionControls"]
-                    if($TmpValue.ApplicationEnforcedRestrictions){
+            $params["GrantControls"] = $Value
+        }
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if ($null -ne $PSBoundParameters["PipelineVariable"]) {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if ($null -ne $PSBoundParameters["PolicyId"]) {
+            $params["ConditionalAccessPolicyId"] = $PSBoundParameters["PolicyId"]
+        }
+        if ($null -ne $PSBoundParameters["InformationVariable"]) {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+        if ($null -ne $PSBoundParameters["OutBuffer"]) {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if ($null -ne $PSBoundParameters["WarningVariable"]) {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        }
+        if ($null -ne $PSBoundParameters["State"]) {
+            $params["State"] = $PSBoundParameters["State"]
+        }
+        if ($null -ne $PSBoundParameters["Id"]) {
+            $params["Id"] = $PSBoundParameters["Id"]
+        }
+        if ($null -ne $PSBoundParameters["SessionControls"]) {
+            $TmpValue = $PSBoundParameters["SessionControls"]
+            if ($TmpValue.ApplicationEnforcedRestrictions) {
                 $ApplicationEnforcedRestrictions = @{}
                 $ApplicationEnforcedRestrictions["IsEnabled"] = $TmpValue.ApplicationEnforcedRestrictions.IsEnabled
             }
-            if($TmpValue.CloudAppSecurity){
+            if ($TmpValue.CloudAppSecurity) {
                 $CloudAppSecurity = @{}
                 $CloudAppSecurity["IsEnabled"] = $TmpValue.CloudAppSecurity.IsEnabled
                 $CloudAppSecurity["CloudAppSecurityType"] = $TmpValue.CloudAppSecurity.CloudAppSecurityType
             }
-            if($TmpValue.PersistentBrowser){
+            if ($TmpValue.PersistentBrowser) {
                 $PersistentBrowser = @{}
                 $PersistentBrowser["IsEnabled"] = $TmpValue.PersistentBrowser.IsEnabled
                 $PersistentBrowser["Mode"] = $TmpValue.PersistentBrowser.Mode
             }
-            if($TmpValue.SignInFrequency){
+            if ($TmpValue.SignInFrequency) {
                 $SignInFrequency = @{}
                 $SignInFrequency["IsEnabled"] = $TmpValue.SignInFrequency.IsEnabled
                 $SignInFrequency["Type"] = $TmpValue.SignInFrequency.Type
@@ -108,38 +95,36 @@ function Set-EntraConditionalAccessPolicy {
             }
     
             $hash = @{}
-            if($TmpValue.ApplicationEnforcedRestrictions) { $hash["ApplicationEnforcedRestrictions"] = $ApplicationEnforcedRestrictions }
-            if($TmpValue.CloudAppSecurity) { $hash["CloudAppSecurity"] = $CloudAppSecurity }
-            if($TmpValue.SignInFrequency) { $hash["SignInFrequency"] = $SignInFrequency }
-            if($TmpValue.PersistentBrowser) { $hash["PersistentBrowser"] = $PersistentBrowser }
+            if ($TmpValue.ApplicationEnforcedRestrictions) { $hash["ApplicationEnforcedRestrictions"] = $ApplicationEnforcedRestrictions }
+            if ($TmpValue.CloudAppSecurity) { $hash["CloudAppSecurity"] = $CloudAppSecurity }
+            if ($TmpValue.SignInFrequency) { $hash["SignInFrequency"] = $SignInFrequency }
+            if ($TmpValue.PersistentBrowser) { $hash["PersistentBrowser"] = $PersistentBrowser }
             $Value = $hash
-        $params["SessionControls"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if($null -ne $PSBoundParameters["Conditions"])
-    {
-        $TmpValue = $PSBoundParameters["Conditions"]
-                    if($TmpValue.Applications){
-                $Applications=@{}
+            $params["SessionControls"] = $Value
+        }
+        if ($null -ne $PSBoundParameters["ErrorVariable"]) {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if ($null -ne $PSBoundParameters["Conditions"]) {
+            $TmpValue = $PSBoundParameters["Conditions"]
+            if ($TmpValue.Applications) {
+                $Applications = @{}
                 $Applications["IncludeApplications"] = $TmpValue.Applications.IncludeApplications
                 $Applications["ExcludeApplications"] = $TmpValue.Applications.ExcludeApplications
                 $Applications["IncludeUserActions"] = $TmpValue.Applications.IncludeUserActions
                 $Applications["IncludeProtectionLevels"] = $TmpValue.Applications.IncludeProtectionLevels
             }
-            if($TmpValue.Locations){
+            if ($TmpValue.Locations) {
                 $Locations = @{}
                 $Locations["IncludeLocations"] = $TmpValue.Locations.IncludeLocations
                 $Locations["ExcludeLocations"] = $TmpValue.Locations.ExcludeLocations
             }
-            if($TmpValue.Platforms){
+            if ($TmpValue.Platforms) {
                 $Platforms = @{}
                 $Platforms["IncludePlatforms"] = $TmpValue.Platforms.IncludePlatforms
                 $Platforms["ExcludePlatforms"] = $TmpValue.Platforms.ExcludePlatforms
             }
-            if($TmpValue.Users){
+            if ($TmpValue.Users) {
                 $Users = @{}
                 $Users["IncludeUsers"] = $TmpValue.Users.IncludeUsers
                 $Users["ExcludeUsers"] = $TmpValue.Users.ExcludeUsers
@@ -150,48 +135,43 @@ function Set-EntraConditionalAccessPolicy {
             }
        
             $hash = @{}                    
-            if($TmpValue.Applications) {$hash["Applications"] = $Applications }
-            if($TmpValue.ClientAppTypes) { $hash["ClientAppTypes"] = $TmpValue.ClientAppTypes }
-            if($TmpValue.Locations) { $hash["Locations"] = $Locations }
-            if($TmpValue.Platforms) { $hash["Platforms"] = $Platforms }
-            if($TmpValue.SignInRiskLevels) { $hash["SignInRiskLevels"] = $TmpValue.SignInRiskLevels }
-            if($TmpValue.Users) { $hash["Users"] = $Users }
+            if ($TmpValue.Applications) { $hash["Applications"] = $Applications }
+            if ($TmpValue.ClientAppTypes) { $hash["ClientAppTypes"] = $TmpValue.ClientAppTypes }
+            if ($TmpValue.Locations) { $hash["Locations"] = $Locations }
+            if ($TmpValue.Platforms) { $hash["Platforms"] = $Platforms }
+            if ($TmpValue.SignInRiskLevels) { $hash["SignInRiskLevels"] = $TmpValue.SignInRiskLevels }
+            if ($TmpValue.Users) { $hash["Users"] = $Users }
             $Value = $hash
-        $params["Conditions"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = Update-MgIdentityConditionalAccessPolicy @params -Headers $customHeaders
-    $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
+            $params["Conditions"] = $Value
         }
-    }
-    $response
+        if ($null -ne $PSBoundParameters["ErrorAction"]) {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if ($null -ne $PSBoundParameters["InformationAction"]) {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if ($null -ne $PSBoundParameters["WarningAction"]) {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
+        if ($null -ne $PSBoundParameters["ProgressAction"]) {
+            $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
+        }
+        if ($null -ne $PSBoundParameters["DisplayName"]) {
+            $params["DisplayName"] = $PSBoundParameters["DisplayName"]
+        }
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+    
+        $response = Update-MgIdentityConditionalAccessPolicy @params -Headers $customHeaders
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+
+            }
+        }
+        $response
     }
 }
 

@@ -4,11 +4,12 @@
 # ------------------------------------------------------------------------------ 
 
 function Get-EntraUserLicenseDetail {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $UserId,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

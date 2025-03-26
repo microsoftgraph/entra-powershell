@@ -8,10 +8,13 @@ function Get-EntraFeatureRolloutPolicy {
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Id,
+
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $SearchString,
+
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Filter,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

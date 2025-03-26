@@ -3,9 +3,8 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaUserPassword {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Boolean] $ForceChangePasswordNextLogin,
                 

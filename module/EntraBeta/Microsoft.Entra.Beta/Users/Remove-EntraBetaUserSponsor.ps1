@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaUserSponsor {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID) of the user whose sponsor you want to remove.")]
         [System.String] $UserId,
@@ -21,7 +21,7 @@ function Remove-EntraBetaUserSponsor {
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method $($params.Method)
