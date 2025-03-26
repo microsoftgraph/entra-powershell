@@ -24,7 +24,7 @@ Sets a user's sponsors (users or groups).
 
 ## Syntax
 
-### User (Default)
+### SetUserSponsor (Default)
 
 ```powershell
 Set-EntraUserSponsor
