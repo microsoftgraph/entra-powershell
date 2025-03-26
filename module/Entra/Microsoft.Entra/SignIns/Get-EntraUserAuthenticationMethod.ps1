@@ -5,10 +5,22 @@
 function Get-EntraUserAuthenticationMethod {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Enter the User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to update.")]
-        [Alias("ObjectId")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User ID (ObjectId or UserPrincipalName) of the user whose authentication requirements you want to update.")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $UserId
     )
+
+    begin {
+
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
+    }
 
     PROCESS {
         try {
@@ -53,5 +65,5 @@ function Get-EntraUserAuthenticationMethod {
             Write-Error "An error occurred while retrieving user authentication methods: $_"
         }
     }
-}# ------------------------------------------------------------------------------
+}
 
