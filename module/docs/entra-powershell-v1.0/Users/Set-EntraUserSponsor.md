@@ -109,7 +109,7 @@ Specifies the type of sponsors being assigned to the user. Supported sponsor typ
 
 ```yaml
 Type: System.String
-Parameter Sets: User
+Parameter Sets: (All)
 
 Required: True
 Position: Named
