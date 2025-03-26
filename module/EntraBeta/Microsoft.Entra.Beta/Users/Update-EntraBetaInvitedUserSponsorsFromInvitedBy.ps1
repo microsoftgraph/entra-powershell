@@ -26,6 +26,8 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
     process {
 
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $environment=(Get-EntraContext).Environment
+        $baseUri=(Get-EntraEnvironment -Name $environment).GraphEndpoint
 
       if ((-not $UserId -or $UserId.Count -eq 0) -and -not $All) {
             throw "Please specify either -UserId or -All"
@@ -48,8 +50,6 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         else {
             foreach ($invitedUser in $invitedUsers) {
                 $invitedBy = $null
-                $environment=(Get-EntraContext).Environment
-                $baseUri=(Get-EntraEnvironment -Name $environment).GraphEndpoint
                 $splatArgumentsGetInvitedBy = @{
                     Method = 'Get'
                     Uri    = $baseUri +"/beta/users/" + $invitedUser.id + "/invitedBy"
