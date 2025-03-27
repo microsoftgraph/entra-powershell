@@ -3,16 +3,15 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraUserAppRoleAssignment {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
-    param (
-                
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [CmdletBinding(DefaultParameterSetName = 'ByUserIdAndRoleParameters')]
+    param (                
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
         [System.String] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
         [System.String] $ResourceId,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
         [Alias("Id")]
         [System.String] $AppRoleId,
                 

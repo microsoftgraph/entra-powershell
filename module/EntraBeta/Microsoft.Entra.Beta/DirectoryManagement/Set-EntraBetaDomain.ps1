@@ -4,19 +4,19 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraBetaDomain {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $IsDefault,
                 
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Name,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Nullable`1[System.Boolean]] $IsDefaultForCloudRedirections,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
     [System.Collections.Generic.List`1[System.String]] $SupportedServices
     )
 

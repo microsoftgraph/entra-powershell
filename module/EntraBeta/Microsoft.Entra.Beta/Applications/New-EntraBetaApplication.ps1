@@ -3,70 +3,70 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaApplication {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateApplication')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.PublicClientApplication] $PublicClient,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true)]
     [System.String] $DisplayName,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.InformationalUrl] $InformationalUrl,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]] $PreAuthorizedApplications,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.ParentalControlSettings] $ParentalControlSettings,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[System.String]] $OrgRestrictions,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $SignInAudience,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.WebApplication] $Web,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]] $AddIns,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]] $PasswordCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]] $AppRoles,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $TokenEncryptionKeyId,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.String] $GroupMembershipClaims,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]] $RequiredResourceAccess,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.ApiApplication] $Api,
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateApplication")]
     [Microsoft.Open.MSGraph.Model.OptionalClaims] $OptionalClaims
     )
 

@@ -3,8 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Revoke-EntraUserAllRefreshToken {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    [Alias("Revoke-AzureADUserAllRefreshToken")]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user's unique ID (User Principal Name or UserId)")]

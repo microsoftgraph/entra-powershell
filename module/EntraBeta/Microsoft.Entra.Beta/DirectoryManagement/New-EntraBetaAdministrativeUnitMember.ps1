@@ -3,36 +3,36 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaAdministrativeUnitMember {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateAdminUnit')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateAdminUnit", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $MailEnabled,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.Collections.Generic.List`1[System.String]] $GroupTypes,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateAdminUnit", Mandatory = $true)]
     [System.String] $DisplayName,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.String] $Description,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.String] $MembershipRule,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateAdminUnit", Mandatory = $true)]
     [System.Nullable`1[System.Boolean]] $SecurityEnabled,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.Collections.Generic.List`1[System.String]] $ProxyAddresses,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.String] $Visibility,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.String] $MembershipRuleProcessingState,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "CreateAdminUnit", Mandatory = $true)]
     [System.String] $MailNickname,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.String] $OdataType,
     [Alias("Id")]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "CreateAdminUnit")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]] $AssignedLabels
     )
 

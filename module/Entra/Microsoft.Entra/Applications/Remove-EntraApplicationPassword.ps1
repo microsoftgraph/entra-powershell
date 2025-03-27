@@ -3,10 +3,10 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraApplicationPassword {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "default")]
         [System.String] $KeyId,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

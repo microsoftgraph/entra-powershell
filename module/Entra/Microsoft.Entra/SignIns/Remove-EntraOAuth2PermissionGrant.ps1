@@ -3,9 +3,8 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraOAuth2PermissionGrant {
-    [CmdletBinding(DefaultParameterSetName = '')]
-    param (
-                
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $OAuth2PermissionGrantId
