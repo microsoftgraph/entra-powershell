@@ -53,7 +53,8 @@ The following least privileged roles support this operation:
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserSponsor -UserId 'SawyerM@contoso.com' -Type User -SponsorIds 591c654d-bb97-4c1f-bc83-b9d4694f9338
+$sponsor = Get-EntraBetaUser -UserId 'SponsorEmail@contoso.com'
+Set-EntraBetaUserSponsor -UserId 'JohnstoneH@fabrikam.com' -Type User -SponsorIds $sponsor.Id
 ```
 
 This example demonstrates how to assign a single user, as a sponsor to a target user account.
