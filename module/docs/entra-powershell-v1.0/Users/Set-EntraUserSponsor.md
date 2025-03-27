@@ -38,7 +38,7 @@ Set-EntraUserSponsor
 
 The `Set-EntraUserSponsor` cmdlet sets a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
-`Update-EntraBetaUserSponsor` is an alias for `Set-EntraUserSponsor`.
+`Update-EntraUserSponsor` is an alias for `Set-EntraUserSponsor`.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/users/sponsors/update` permission.
 
