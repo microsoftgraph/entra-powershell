@@ -172,6 +172,13 @@ Get-EntraUser -UserId 'SawyerM@contoso.com' | Set-EntraUser -PasswordPolicies Di
 
 This example updates the specified user's password policy.
 
+Possible values for password policy include:
+
+- `DisableStrongPassword`: Allows weaker passwords than the default policy.
+- `DisablePasswordExpiration`: Prevents passwords from expiring.
+
+You can specify both values together, for example: `DisablePasswordExpiration` and `DisableStrongPassword`. For example, `Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordPolicies "DisablePasswordExpiration,DisableStrongPassword"`.
+
 ## Parameters
 
 ### -AccountEnabled
