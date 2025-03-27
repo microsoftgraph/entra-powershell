@@ -66,8 +66,9 @@ This example demonstrates how to assign a single user, as a sponsor to a target 
 ### Example 2: Assign single group sponsor
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type Group -SponsorIds 591l654d-bb97-4c1f-bc83-b9d4694f9338
+Connect-Entra -Scopes 'User.ReadWrite.All', 'GroupMember.Read.All'
+$group = Get-EntraGroup -SearchString 'Sales and Marketing'
+Set-EntraUserSponsor -UserId 'JohnstoneH@fabrikam.com' -Type Group -SponsorIds $group.Id
 ```
 
 This example demonstrates how to assign a single group, as a sponsor to a target user account.
