@@ -81,7 +81,7 @@ This example demonstrates how to assign a single group, as a sponsor to a target
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraUserSponsor -UserId 'SawyerM@contoso.com' -Type User -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
+Set-EntraUserSponsor -UserId 'JohnstoneH@fabrikam.com' -Type User -SponsorIds @("db0c6l50-93ee-4b22-9bb9-c8454875d990","c9db38b9-e5b8-4b5e-ak78-9812230af58d")
 ```
 
 This example demonstrates how to assign multiple users as sponsors to a target user account.
