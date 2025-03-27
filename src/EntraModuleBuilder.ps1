@@ -76,7 +76,11 @@ Set-StrictMode -Version 5
     Log-Message "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath"
 
     $psm1Content = $this.headerText + "`n"  # Add a newline after the header
-    $ps1Files = Get-ChildItem -Path $currentDirPath -Filter "*.ps1"
+
+    # Get-ChildItem returns different types depending on the number of items it finds.
+    # When there is only one item, it returns a single object rather than an array
+    # Using @() we force the result to be treated as an array, even if there is only one item.
+    $ps1Files = @(Get-ChildItem -Path $currentDirPath -Filter "*.ps1")
 
     if ($ps1Files.Count -eq 0) {
         Log-Message "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -Level 'ERROR'
