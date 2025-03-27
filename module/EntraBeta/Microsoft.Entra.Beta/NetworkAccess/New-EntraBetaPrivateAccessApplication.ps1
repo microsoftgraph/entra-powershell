@@ -29,7 +29,7 @@ function New-EntraBetaPrivateAccessApplication {
             # Prepare the request body for setting the app to be accessible via the ZTNA client
             $bodyJson = @{
                 "onPremisesPublishing" = @{
-                    "applicationType" = "nonwebapp"
+                    "applicationType"           = "nonwebapp"
                     "isAccessibleViaZTNAClient" = $true
                 }
             } | ConvertTo-Json -Depth 99 -Compress
@@ -38,10 +38,10 @@ function New-EntraBetaPrivateAccessApplication {
 
             # Set the Private Access app to be accessible via the ZTNA client
             $params = @{
-                Method = 'PATCH'
-                Uri = "https://graph.microsoft.com/beta/applications/$newAppId/"
+                Method  = 'PATCH'
+                Uri     = "https://graph.microsoft.com/beta/applications/$newAppId/"
                 Headers = $customHeaders
-                Body = $bodyJson
+                Body    = $bodyJson
             }
 
             Invoke-GraphRequest @params
@@ -53,19 +53,19 @@ function New-EntraBetaPrivateAccessApplication {
                 } | ConvertTo-Json -Depth 99 -Compress
                 
                 $params = @{
-                    Method = 'PUT'
-                    Uri = "https://graph.microsoft.com/beta/applications/$newAppId/connectorGroup/`$ref"
+                    Method  = 'PUT'
+                    Uri     = "https://graph.microsoft.com/beta/applications/$newAppId/connectorGroup/`$ref"
                     Headers = $customHeaders
-                    Body = $bodyJson
+                    Body    = $bodyJson
                 }
                     
                 Invoke-GraphRequest @params
             }
 
             Write-Output "Private Access application '$ApplicationName' has been successfully created and configured."
-        } catch {
+        }
+        catch {
             Write-Error "Failed to create the Private Access app. Error: $_"
         }
     }
-}# ------------------------------------------------------------------------------
-
+}

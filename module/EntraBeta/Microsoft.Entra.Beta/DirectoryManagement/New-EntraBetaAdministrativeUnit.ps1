@@ -2,24 +2,24 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function New-EntraBetaAdministrativeUnit {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Description of the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Description of the administrative unit.")]
         [System.String] $Description,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true, HelpMessage = "Display name of the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Display name of the administrative unit.")]
         [System.String] $DisplayName,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule for the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Membership rule for the administrative unit.")]
         [System.String] $MembershipRule,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership rule processing state for the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Membership rule processing state for the administrative unit.")]
         [System.String] $MembershipRuleProcessingState,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Membership type for the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Membership type for the administrative unit.")]
         [System.String] $MembershipType,
 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters", HelpMessage = "Visibility of the administrative unit.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Visibility of the administrative unit.")]
         [System.String] $Visibility
     )
 

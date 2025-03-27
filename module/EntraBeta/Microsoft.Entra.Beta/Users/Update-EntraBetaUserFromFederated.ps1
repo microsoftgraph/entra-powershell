@@ -15,7 +15,7 @@ function Update-EntraBetaUserFromFederated {
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "TenantId of the user to update.")]
         [Obsolete("It ensures backward compatibility with Azure AD and MSOnline for partner scenarios. The TenantID applies to the logged-in resource.")]
-        [guid] $TenantId      
+        [guid] $TenantId
     )
 
     PROCESS {    

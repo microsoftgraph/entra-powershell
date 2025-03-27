@@ -3,14 +3,16 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraAttributeSet {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "Default")]
         [Alias("Id")]
         [System.String] $AttributeSetId,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+
+        [Parameter(ParameterSetName = "Default")]
         [System.String] $Description,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        
+        [Parameter(ParameterSetName = "Default")]
         [System.Nullable`1[System.Int32]] $MaxAttributesPerSet
     )
 
