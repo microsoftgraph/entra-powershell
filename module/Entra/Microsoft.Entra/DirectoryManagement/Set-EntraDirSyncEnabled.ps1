@@ -9,6 +9,8 @@ function Set-EntraDirSyncEnabled {
         [System.Boolean] $EnableDirsync,
 
         [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })]
         [System.Guid] $TenantId,
 
         [switch] $Force
@@ -17,7 +19,6 @@ function Set-EntraDirSyncEnabled {
     PROCESS {
         $params = @{}
         $body = @{}
-        $OrganizationId = ''
         $params["Method"] = "PATCH"
         $URL = "https://graph.microsoft.com/v1.0/organization/" + $TenantId
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -25,8 +26,8 @@ function Set-EntraDirSyncEnabled {
             $body["OnPremisesSyncEnabled"] = $PSBoundParameters["EnableDirsync"]
         }        
         if ([string]::IsNullOrWhiteSpace($TenantId)) {           
-            $OrganizationId = (Get-EntraContext).TenantId           
-            $URL = "https://graph.microsoft.com/v1.0/organization/" + $OrganizationId
+            $TenantId = (Get-EntraContext).TenantId            
+            $URL = "https://graph.microsoft.com/v1.0/organization/" + $TenantId
         }
         
         $params["Uri"] = $URL
