@@ -58,7 +58,7 @@ Enabling features like **EnableSoftMatchOnUpn** and **SynchronizationUpnForManag
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -Force $true
+Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -Force
 ```
 
 This command enables the SoftMatchOnUpn feature for the tenant.
@@ -84,7 +84,7 @@ This command enables the BlockSoftMatch feature for the tenant - effectively blo
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -TenantId $tenantID -Force $true
+Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -TenantId $tenantID -Force
 ```
 
 This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.

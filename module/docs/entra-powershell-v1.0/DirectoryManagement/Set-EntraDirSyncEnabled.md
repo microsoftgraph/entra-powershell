@@ -64,7 +64,7 @@ This example turns on directory synchronization for a company.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force $true
+Set-EntraDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force
 ```
 
 This example turns off directory synchronization for a company.

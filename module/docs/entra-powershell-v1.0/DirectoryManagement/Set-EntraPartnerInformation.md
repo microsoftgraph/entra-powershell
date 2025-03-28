@@ -85,6 +85,7 @@ This example shows how to update the support email addresses.
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
+$tenantId = (Get-EntraContext).TenantId
 Set-EntraPartnerInformation -PartnerSupportTelephones '234234234' -TenantId $tenantId
 ```
 
