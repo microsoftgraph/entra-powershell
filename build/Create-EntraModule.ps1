@@ -17,6 +17,7 @@ if($Module -eq 'Entra'){
     $typeDefsPath=(Join-Path $PSScriptRoot "/Beta-TypeDefs.txt")
 }
 if($Root){
+    $moduleBuilder.CreateRootModule($Module)
     $moduleBuilder.CreateRootModuleManifest($Module)
 }else{
     $moduleBuilder.CreateModuleHelp($Module)
