@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Get-EntraBetaUserAuthenticationMethod {
+function Get-EntraUserAuthenticationMethod {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User ID (ObjectId or UserPrincipalName) of the user whose authentication methods you want to retrieve.")]
@@ -35,9 +35,9 @@ function Get-EntraBetaUserAuthenticationMethod {
             
             # Initialize headers and URI
             $params = @{}
-            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
-            $uri = "https://graph.microsoft.com/beta/users/$encodedUserId/authentication/methods"
+            $uri = "https://graph.microsoft.com/v1.0/users/$encodedUserId/authentication/methods"
 
             Write-Debug("============================ REQUEST DETAILS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
@@ -56,7 +56,7 @@ function Get-EntraBetaUserAuthenticationMethod {
             # Create a properly formatted object list
             $authMethodList = @()
             foreach ($res in $data) {
-                $authMethodType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAuthenticationMethod
+                $authMethodType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAuthenticationMethod
                 $res.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                     $propertyValue = $_.Value
