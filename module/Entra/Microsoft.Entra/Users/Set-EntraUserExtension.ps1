@@ -5,20 +5,33 @@
 function Set-EntraUserExtension {
     [CmdletBinding(DefaultParameterSetName = 'SetSingle')]
     param (
-        [Alias('ObjectId')]            
-        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
+        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $UserId,
                 
-        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The dictionary of extension name and values. For example, @{extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup='Job Group N'; extension_d2ba83696c3f45429fbabb363ae391a0_JobTitle='Job Title N'}")]
         [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionNameValues,
                 
-        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The value of the extension property to set. For example, 'Job Group N'")]
         [System.String] $ExtensionValue,
                 
-        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The name of the extension property to set. For example, extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup")]
         [System.String] $ExtensionName
     )
+
+    begin {
+
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
+    }
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -72,18 +85,32 @@ function Set-EntraUserExtension {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
 
+        $uri = "https://graph.microsoft.com/v1.0/users/$UserId"
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
-        $response = Update-MgUserExtension @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserId -Value Id
 
-            }
+        if ($PSCmdlet.ParameterSetName -eq "SetSingle") {
+            $properties = @{ $ExtensionName = $ExtensionValue }
+            $jsonBody = $properties | ConvertTo-Json -Depth 2
+            $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
+            return $response
         }
-        $response
-    }    
-}
+        elseif ($PSCmdlet.ParameterSetName -eq "SetMultiple") {
+            $properties = @{}
+            foreach ($key in $ExtensionNameValues.Keys) {
+                $properties[$key] = $ExtensionNameValues[$key]
+            }
+           
+            # Convert hashtable to JSON
+            $jsonBody = $properties | ConvertTo-Json -Depth 2
+            # Make the PATCH request to update the user properties            
+            $response = Invoke-MgGraphRequest -Method PATCH -Uri $uri -Body $jsonBody -ContentType "application/json" -Headers $customHeaders
+            
+            return $response
+        }
+    }
 
+}
+Set-Alias -Name Update-EntraUserExtension -Value Set-EntraUserExtension -Scope Global -Force
