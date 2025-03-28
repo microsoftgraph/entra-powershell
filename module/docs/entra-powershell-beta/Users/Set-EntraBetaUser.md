@@ -159,7 +159,23 @@ This example updates the specified user's Usage Location for license management.
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
 
-### Example 7: Set user's extension properties
+### Example 7: Update user's password policy
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com' | Set-EntraBetaUser -PasswordPolicies DisablePasswordExpiration
+```
+
+This example updates the specified user's password policy.
+
+Possible values for password policy include:
+
+- `DisableStrongPassword`: Allows weaker passwords than the default policy.
+- `DisablePasswordExpiration`: Prevents passwords from expiring.
+
+You can specify both values together, for example: `DisablePasswordExpiration` and `DisableStrongPassword`. For example, `Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordPolicies "DisablePasswordExpiration,DisableStrongPassword"`.
+
+### Example 8: Set user's extension properties
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
@@ -173,7 +189,7 @@ This example updates the specified user's extension properties, for example, an 
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
-### Example 8: update user's onPremisesExtension attributes properties
+### Example 9: update user's onPremisesExtension attributes properties
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
@@ -189,7 +205,7 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
-### Example 9: update user's phone details
+### Example 10: update user's phone details
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
