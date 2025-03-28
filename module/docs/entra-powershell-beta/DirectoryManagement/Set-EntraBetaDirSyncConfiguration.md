@@ -70,7 +70,7 @@ This command sets directory synchronization settings.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force $true
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force
 ```
 
 This command sets directory synchronization settings.
