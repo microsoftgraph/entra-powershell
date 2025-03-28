@@ -3,7 +3,7 @@ title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
 
 ms.topic: reference
-ms.date: 07/29/2024
+ms.date: 03/16/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,40 +27,42 @@ Updates a user.
 Set-EntraBetaUser
  -UserId <String>
  [-PostalCode <String>]
- [-MailNickName <String>]
- [-ShowInAddressList <Boolean>]
- [-Department <String>]
- [-DisplayName <String>]
- [-Mobile <String>]
- [-JobTitle <String>]
- [-ConsentProvidedForMinor <String>]
- [-OtherMails <System.Collections.Generic.List`1[System.String]>]
- [-PasswordPolicies <String>]
- [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-PreferredLanguage <String>]
- [-ImmutableId <String>]
- [-City <String>]
- [-AgeGroup <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-UsageLocation <String>]
- [-State <String>]
- [-AccountEnabled <Boolean>]
- [-Country <String>]
- [-UserPrincipalName <String>]
- [-GivenName <String>]
- [-PasswordProfile <PasswordProfile>]
- [-UserType <String>]
- [-StreetAddress <String>]
  [-CompanyName <String>]
- [-Surname <String>]
- [-TelephoneNumber <String>]
+ [-GivenName <String>]
+ [-Mobile <String>]
+ [-PreferredLanguage <String>]
  [-CreationType <String>]
+ [-UsageLocation <String>]
+ [-UserType <String>]
+ [-AgeGroup <String>]
+ [-MailNickName <String>]
+ [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+ [-ConsentProvidedForMinor <String>]
+ [-ImmutableId <String>]
+ [-Country <String>]
+ [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+ [-Department <String>]
+ [-StreetAddress <String>]
+ [-PasswordPolicies <String>]
+ [-JobTitle <String>]
+ [-City <String>]
+ [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+ [-UserPrincipalName <String>]
+ [-DisplayName <String>]
+ [-AccountEnabled <Boolean>]
+ [-PasswordProfile <PasswordProfile>]
+ [-State <String>]
+ [-TelephoneNumber <String>]
+ [-Surname <String>]
+ [-ShowInAddressList <Boolean>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
+
+`Update-EntraBetaUser` is an alias for `Set-EntraBetaUser`.
 
 ## Examples
 
@@ -91,8 +93,8 @@ This example updates the specified user's AccountEnabled parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+Get-EntraBetaUser -All | Where-Object -Property DisplayName -Match '(George|James|Education)' |
+ForEach-Object { Set-EntraBetaUser -UserId $($_.Id) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -110,12 +112,11 @@ $params = @{
     CompanyName      = 'Microsoft'
     Country          = 'Add country name'
     Department       = 'Add department name'
-    GivenName        = 'Mircosoft'
-    ImmutableId      = '#1' 
+    GivenName        = 'Sawyer Miller G'
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
-    OtherMails       = 'test12@Contoso.com'
+    OtherMails       = 'johndoe@contosodev.com'
     PasswordPolicies = 'DisableStrongPassword'
     State            = 'UP'
     StreetAddress    = 'Add address'
@@ -135,15 +136,10 @@ This example updates the specified user's property.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$params = @{
-    UserId          = 'SawyerM@contoso.com'
-    PasswordProfile = @{
-        Password                     = '*****'
-        ForceChangePasswordNextLogin = $true
-        EnforceChangePasswordPolicy  = $false
-    }
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
+    Password = '*****'
+    ForceChangePasswordNextSignIn = $true
 }
-Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
@@ -178,6 +174,47 @@ Possible values for password policy include:
 - `DisablePasswordExpiration`: Prevents passwords from expiring.
 
 You can specify both values together, for example: `DisablePasswordExpiration` and `DisableStrongPassword`. For example, `Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -PasswordPolicies "DisablePasswordExpiration,DisableStrongPassword"`.
+
+### Example 8: Set user's extension properties
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$extensionName = (Get-EntraBetaApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
+$additionalProperties = @{ $extensionName = "Survey.Report" }
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
+```
+
+This example updates the specified user's extension properties, for example, an app role for an application.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 9: update user's onPremisesExtension attributes properties
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -AdditionalProperties @{
+    onPremisesExtensionAttributes = @{
+        extensionAttribute1 = "Job Group D"
+        extensionAttribute2 = "Audit Role"
+    }
+}
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 10: update user's phone details
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraBetaUser -UserId 'SawyerM@contoso.com' -BusinessPhones '+1 425 555 0109' -OfficeLocation '18/2111'
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ## Parameters
 
@@ -316,7 +353,7 @@ Accept wildcard characters: False
 
 This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
 
-Important: Do not use the $ and _ characters when specifying this property.
+Important: Do not use the $ and \_ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -385,7 +422,7 @@ Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity
 
 Required: True
 Position: Named
@@ -675,6 +712,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`Update-EntraBetaUser` is an alias for `Set-EntraBetaUser`.
 
 ## Related links
 
