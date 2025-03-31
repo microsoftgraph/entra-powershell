@@ -9,6 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Policy.ReadWrite.AuthenticationMethod") } } -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Update-EntraBetaUserAuthenticationRequirement" {
