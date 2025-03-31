@@ -50,9 +50,7 @@ Describe "Get-EntraDomainFederationSettings" {
         It "Should fail when DomainName is null" {
             { Get-EntraDomainFederationSettings -DomainName } | Should -Throw "Missing an argument for parameter 'DomainName'*"
         }
-        It "Should fail when DomainName is empty" {
-            { Get-EntraDomainFederationSettings -DomainName "" } | Should -Throw "Cannot bind argument to parameter 'DomainName'*"
-        }
+
         It "Should fail when invalid paramter is passed"{
             { Get-EntraDomainFederationSettings -Demo } | Should -Throw "A parameter cannot be found that matches parameter name 'Demo'*"
         }

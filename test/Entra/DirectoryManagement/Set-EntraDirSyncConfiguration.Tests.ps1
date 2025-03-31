@@ -64,7 +64,7 @@ Describe "Set-EntraDirSyncConfiguration" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force -Debug } | Should -Not -Throw
+                { Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold "111" -Force -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

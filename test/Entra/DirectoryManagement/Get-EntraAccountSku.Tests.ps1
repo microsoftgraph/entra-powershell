@@ -65,7 +65,7 @@ Describe "Get-EntraAccountSku" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
+                { Get-EntraAccountSku -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

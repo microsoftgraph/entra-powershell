@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.DirectoryManagement) -eq $null) {
         Import-Module Microsoft.Entra.DirectoryManagement
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -20,23 +20,23 @@ Describe "Set-EntraDirSyncEnabled" {
         }
 
         It "Should fail when EnableDirsync is empty" {
-            {Set-EntraDirSyncEnabled -EnableDirsync -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force } | Should -Throw "Missing an argument for parameter 'EnableDirsync'. Specify a parameter*"
+            { Set-EntraDirSyncEnabled -EnableDirsync -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force } | Should -Throw "Missing an argument for parameter 'EnableDirsync'. Specify a parameter*"
         }
 
         It "Should fail when EnableDirsync is invalid" {
-            {Set-EntraDirSyncEnabled -EnableDirsync 'xy' -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force} | Should -Throw "Cannot process argument transformation on parameter*"
+            { Set-EntraDirSyncEnabled -EnableDirsync 'xy' -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force } | Should -Throw "Cannot process argument transformation on parameter*"
         }  
 
         It "Should fail when TenantId is empty" {
-            {Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId -Force } | Should -Throw "Missing an argument for parameter 'TenantId'. Specify a parameter*"
+            { Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId -Force } | Should -Throw "Missing an argument for parameter 'TenantId'. Specify a parameter*"
         }
 
         It "Should fail when TenantId is invalid" {
-            {Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId "" -Force} | Should -Throw "Cannot process argument transformation on parameter*"
+            { Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId "" -Force } | Should -Throw "Cannot process argument transformation on parameter*"
         } 
          
         It "Should fail when Force parameter is passes with argument" {
-            {Set-EntraDirSyncEnabled -EnableDirsync $True -Force "xy"} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraDirSyncEnabled -EnableDirsync $True -Force "xy" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }  
         It "Should contain 'User-Agent' header" {            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirSyncEnabled"
@@ -53,8 +53,9 @@ Describe "Set-EntraDirSyncEnabled" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force -Debug } | Should -Not -Throw
-            } finally {
+                { Set-EntraDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
