@@ -3,29 +3,31 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraAppRoleToApplicationUser {
-    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'ExportResults')]
     param (
         [Parameter(Mandatory = $true, 
             HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
-            ParameterSetName = 'Default')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
+            ParameterSetName = 'ExportResults')]
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
         [string]$DataSource,
 
         [Parameter(Mandatory = $true, 
             HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv",
-            ParameterSetName = 'Default')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
+            ParameterSetName = 'ExportResults')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FileName,
 
         [Parameter(Mandatory = $true, 
             HelpMessage = "Name of the application (Service Principal) to assign roles for",
-            ParameterSetName = 'Default')]
-        [Parameter(Mandatory = $true, ParameterSetName = 'ExportResults')]
+            ParameterSetName = 'ExportResults')]
         [ValidateNotNullOrEmpty()]
         [string]$ApplicationName,
+
+        [Parameter(Mandatory = $false,
+            HelpMessage = "Specifies what Microsoft accounts are supported for the application",
+            ParameterSetName = 'ExportResults')]
+        [string]$SignInAudience = "AzureADMyOrg",
 
         [Parameter(Mandatory = $true,
             ParameterSetName = 'ExportResults',
@@ -112,7 +114,10 @@ function Set-EntraAppRoleToApplicationUser {
         }
         
         function CreateApplicationIfNotExists {
-            param ([string]$DisplayName)
+            param (
+                [string]$DisplayName,
+                [string]$SignInAudience
+                )
 
             try {
                 # Check if application exists
@@ -123,7 +128,7 @@ function Set-EntraAppRoleToApplicationUser {
                     # Create new application
                     $appParams = @{
                         DisplayName    = $DisplayName
-                        SignInAudience = "AzureADMyOrg"
+                        SignInAudience = $SignInAudience
                         Web            = @{
                             RedirectUris = @("https://localhost")
                         }
@@ -340,7 +345,7 @@ function Set-EntraAppRoleToApplicationUser {
 
                 # Get or create the application and service principal once
                 Write-ColoredVerbose -Message "Checking if application exists for: $ApplicationName" -Color "Cyan"
-                $application = CreateApplicationIfNotExists -DisplayName $ApplicationName
+                $application = CreateApplicationIfNotExists -DisplayName $ApplicationName -SignInAudience $SignInAudience
                 if (-not $application) {
                     Write-Error "Failed to retrieve or create application: $ApplicationName"
                     return
