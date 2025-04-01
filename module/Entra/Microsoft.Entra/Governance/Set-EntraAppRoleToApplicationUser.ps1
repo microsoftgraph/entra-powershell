@@ -11,10 +11,10 @@ function Set-EntraAppRoleToApplicationUser {
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
         [string]$DataSource,
 
-        [Parameter(Mandatory = $true, 
+        [Parameter(Mandatory = $true,
             HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv",
             ParameterSetName = 'ExportResults')]
-        [ValidateNotNullOrEmpty()]
+        #[ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FileName,
 
@@ -29,7 +29,7 @@ function Set-EntraAppRoleToApplicationUser {
             ParameterSetName = 'ExportResults')]
         [string]$SignInAudience = "AzureADMyOrg",
 
-        [Parameter(Mandatory = $true,
+        [Parameter(Mandatory = $false,
             ParameterSetName = 'ExportResults',
             HelpMessage = "Switch to enable export of results into a CSV file")]
         [switch]$Export,
@@ -257,7 +257,10 @@ function Set-EntraAppRoleToApplicationUser {
                 }
         
                 # Ensure the existing AppRoles are properly formatted
-                $existingRoles = $application.AppRoles ?? @()
+                $existingRoles = @()
+                if($null -ne $application.AppRoles){
+                    $existingRoles = $application.AppRoles
+                }
                 $appRolesList = New-Object 'System.Collections.Generic.List[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]'
         
                 foreach ($role in $existingRoles) {
