@@ -15,7 +15,7 @@ function Get-EntraDeletedUser {
         [System.String] $SearchString,
 
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "ID of the user to retrieve.")]
-        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName', 'Id')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
