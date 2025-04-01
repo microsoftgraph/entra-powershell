@@ -18,7 +18,6 @@ BeforeAll {
 
     # Mock Invoke-GraphRequest for GET with the user filter and expand parameters
     Mock -CommandName Invoke-GraphRequest -MockWith {
-        Write-Output "Mock called"
         @{
             value = @(
                 @{ 
@@ -80,12 +79,6 @@ BeforeAll {
         'User-Agent' = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
     }
    } -ModuleName Microsoft.Entra.Beta.Users
-
-
-
-    Mock -CommandName Set-EntraBetaUser -MockWith { $true } -ModuleName Microsoft.Entra.Beta.Users
-
-    Mock -CommandName Update-MgBetaUser -MockWith {"Sponsor updated successfully for user 123"} -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Update-EntraBetaInvitedUserSponsorsFromInvitedBy" {
@@ -111,16 +104,18 @@ Describe "Update-EntraBetaInvitedUserSponsorsFromInvitedBy" {
             Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor updated successfully"
         }
     }
-    It "Should contain 'User-Agent' header" {
-    $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
-    
-    # Call the function
-    Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false
 
-    # Verify that Invoke-GraphRequest was called with the correct User-Agent header
-    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
-        $Headers.'User-Agent' -eq $userAgentHeaderValue
+    Context "User-Agent Header" {
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
+            
+            # Call the function
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false
+
+            # Verify that Invoke-GraphRequest was called with the correct User-Agent header
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' -eq $userAgentHeaderValue
+            }
+        }
     }
-}
-
 }
