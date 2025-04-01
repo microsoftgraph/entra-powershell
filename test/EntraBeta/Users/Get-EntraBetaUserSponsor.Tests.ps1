@@ -44,7 +44,7 @@ Describe "Get-EntraBetaUserSponsor" {
             $result[0].mail | should -Be "sarad@contoso.com"
             $result[0].'@odata.type' | should -Be "#microsoft.graph.user"
             
-            $result[1].id | should -Be "10aa00aa-bb11-cc22-dd33-44ee44ee44e"
+            $result[1].id | should -Be "d32766cb-1420-4c0c-986a-d67bedc4014e"
             $result[1].mail | should -Be "d@microsoft.com"
             $result[1].'@odata.type' | should -Be "#microsoft.graph.group"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
