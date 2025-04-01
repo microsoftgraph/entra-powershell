@@ -229,38 +229,35 @@ Set-StrictMode -Version 5
 
 # Main function to create the root module
 [void] CreateRootModule([string] $Module) {
-    # Determine the root module name based on the module type
-    $rootModuleName = if ($Module -eq 'Entra') {
-        'Microsoft.Entra.psm1'
-    } else {
-        'Microsoft.Entra.Beta.psm1'
+    #We only generate the .psm1 file with Enable-EntraAzureADAlias if it's 'Microsoft.Entra' module
+    if($Module -ne 'Entra'){
+        return
     }
 
-    # Get the list of submodules and exclude the root module
-    $subModuleFiles = $this.GetSubModuleFiles($Module, $this.OutputDirectory)
-    $subModules = @()
-    
-    # Prevents the old root module from being added to avoid cyclic dependencies
-    foreach ($module in $subModuleFiles) {
-        if ($module -ne $rootModuleName) {
-            $subModules += $module
-        }
-    }
-
-    # Build the code snippet using the GetCodeSnippet function
-    $codeSnippet = $this.GetCodeSnippet($subModules)
-
-    # Combine the header text and the code snippet for the root module
-    $rootModuleContent = $this.headerText + "`n" + $codeSnippet
+    $rootModuleName = 'Microsoft.Entra.psm1'
+    $startDirectory = (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
 
     # Define the file paths
     $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
+    $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "Enable-EntraAzureADAlias.ps1"
+
+    # Read the alias function content if it exists
+    if (Test-Path $aliasFilePath) {
+        $aliasContent = Get-Content -Path $aliasFilePath -Raw
+        $exportAlias = "`nExport-ModuleMember -Function 'Enable-EntraAzureADAlias'"
+    } else {
+        throw "[Error]: Enable-EntraAzureADAlias.ps1 not found in UnMappedFiles."
+    }
+
+    # Combine header, alias function, and export statement
+    $rootModuleContent = $this.headerText + "`n" + $aliasContent + "`n" + $exportAlias
 
     # Write the root module content (psm1)
     $rootModuleContent | Out-File -FilePath $rootModulePath -Encoding utf8
 
-    Log-Message "[EntraModuleBuilder]: Root Module successfully created" -Level 'SUCCESS'
+    Log-Message "[EntraModuleBuilder]: Root Module successfully created with Enable-EntraAzureADAlias" -Level 'SUCCESS'
 }
+
 
 [string] GetCodeSnippet([Array] $subModules) {
     $codeSnippet = @"
@@ -293,103 +290,122 @@ foreach (`$subModule in `$subModules) {
     return $codeSnippet
 }
 
-  [void] CreateRootModuleManifest([string] $Module) {
-	 
-	    # Update paths specific to this sub-directory
-        $rootPath=if ($Module -eq "Entra") {
-           (Join-Path $PSScriptRoot "../module/Entra")
-        } else {
-            (Join-Path $PSScriptRoot "../module/EntraBeta")
-        }
-      	
-		$moduleName=if($Module  -eq 'Entra'){
-			'Microsoft.Entra'
-		}else{
-			'Microsoft.Entra.Beta'
-		}
-		
-        $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json" 
-		
-		#We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
-        $files = @("$($moduleName).psd1")
-        $content = Get-Content -Path $settingPath | ConvertFrom-Json
-        $PSData = @{
-            Tags = $($content.tags)
-            LicenseUri = $($content.licenseUri)
-            ProjectUri = $($content.projectUri)
-            IconUri = $($content.iconUri)
-            ReleaseNotes = $($content.releaseNotes)
-            Prerelease = $null
-        }
-        $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
-		
-        $subModules=$this.GetSubModuleFileNames($Module,$this.OutputDirectory)
-        $requiredModules=@()
-        foreach($module in $subModules){
-            if($module -ne $moduleName){
-                Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
-               $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
-            }	
-        }
-        $moduleSettings = @{
-            Path = $manifestPath
-            GUID = $($content.guid)
-            ModuleVersion = "$($content.version)"
-            FunctionsToExport =@()
-            CmdletsToExport=@()
-            AliasesToExport=@()
-            Author =  $($content.authors)
-            CompanyName = $($content.owners)
-            FileList = $files
-            Description = $content.description  
-            DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
-            PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
-            CompatiblePSEditions = @('Desktop', 'Core')
-            NestedModules = @()
-        }
-        
-        if($null -ne $content.Prerelease){
-            $PSData.Prerelease = $content.Prerelease
-        }
+ [void] CreateRootModuleManifest([string] $Module) {
+    # Update paths specific to this sub-directory
+    $rootPath = if ($Module -eq "Entra") {
+        (Join-Path $PSScriptRoot "../module/Entra")
+    } else {
+        (Join-Path $PSScriptRoot "../module/EntraBeta")
+    }
+    
+    $moduleName = if ($Module -eq 'Entra') {
+        'Microsoft.Entra'
+    } else {
+        'Microsoft.Entra.Beta'
+    }
+    
+    $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json"
+    
+    # We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
+    $files = if($Module -eq 'EntraBeta'){
+        @("$($moduleName).psd1")
+    }else{
+        @("$($moduleName).psd1","$($moduleName).psm1")
+    }
+    $content = Get-Content -Path $settingPath | ConvertFrom-Json
+    $PSData = @{
+        Tags = $($content.tags)
+        LicenseUri = $($content.licenseUri)
+        ProjectUri = $($content.projectUri)
+        IconUri = $($content.iconUri)
+        ReleaseNotes = $($content.releaseNotes)
+        Prerelease = $null
+    }
+    
+    $manifestPath = Join-Path $this.OutputDirectory -ChildPath "$($moduleName).psd1"
+    
+    $subModules = $this.GetSubModuleFileNames($Module, $this.OutputDirectory)
+    $requiredModules = @()
+    foreach ($module in $subModules) {
+        if ($module -ne $moduleName) {
+            Log-Message "Adding $module to Root Module Nested Modules" -Level 'INFO'
+            $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
+        }    
+    }
+    
+    # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
+     $functionsToExport = if($Module -eq 'EntraBeta'){
+        @()
+    }else{
+        @("Enable-EntraAzureADAlias")
+    }
 
-        Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
-        
-        New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+    $moduleSettings = @{
+        Path = $manifestPath
+        GUID = $($content.guid)
+        ModuleVersion = "$($content.version)"
+        FunctionsToExport = $functionsToExport
+        CmdletsToExport = @()
+        AliasesToExport = @()
+        Author =  $($content.authors)
+        CompanyName = $($content.owners)
+        FileList = $files
+        Description = $content.description  
+        DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
+        PowerShellVersion = $([System.Version]::Parse($content.powershellVersion))
+        CompatiblePSEditions = @('Desktop', 'Core')
+        NestedModules = @()
+    }
+    
+    if ($null -ne $content.Prerelease) {
+        $PSData.Prerelease = $content.Prerelease
+    }
 
-         # Construct the entries for the RequiredModules section
-        $requiredModulesEntries = $requiredModules | ForEach-Object {
-            "    @{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
-        }
+    Log-Message "[EntraModuleBuilder]: Starting Root Module Manifest generation" -Level 'INFO'
+    
+    New-ModuleManifest @moduleSettings
 
-# Join the entries with commas and new lines for a properly formatted block
-$requiredModulesText = @"
+    Update-ModuleManifest -Path $manifestPath -PrivateData $PSData
+   
+    # Construct the entries for the RequiredModules section
+    $requiredModulesEntries = $requiredModules | ForEach-Object {
+        "    @{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
+    }
+
+    # Join the entries with commas and new lines for a properly formatted block
+    $requiredModulesText = @"
 RequiredModules = @(
 $($requiredModulesEntries -join ",`n")
 )
 "@.Trim() # Trim to remove any leading or trailing newlines
 
-        # Read the existing manifest file content as an array of lines
-        $fileContent = Get-Content -Path $manifestPath
+    # Read the existing manifest file content as an array of lines
+    $fileContent = Get-Content -Path $manifestPath
 
-        # Find and update the `# RequiredModules` line
-        for ($i = 0; $i -lt $fileContent.Count; $i++) {
-            if ($fileContent[$i] -match '^#\s*RequiredModules') {
-                # Uncomment and replace the line with the new RequiredModules content
-                Log-Message "Found RequiredModule Section.."
-                $fileContent[$i] = $requiredModulesText
-                break
-            }
+    # Find and update the `# RequiredModules` line
+    for ($i = 0; $i -lt $fileContent.Count; $i++) {
+        if ($fileContent[$i] -match '^#\s*RequiredModules') {
+            # Uncomment and replace the line with the new RequiredModules content
+            Log-Message "Found RequiredModule Section.."
+            $fileContent[$i] = $requiredModulesText
+            
+            break
         }
-        
-        # Write the updated content back to the manifest file
-        $fileContent | Set-Content -Path $manifestPath -Force
+    }
+    
+    # Inject RootModule section
+    if($moduleName -eq "Microsoft.Entra"){
+        $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.psm1'"
+        Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
+    }
+    # Write the updated content back to the manifest file
+    $fileContent | Set-Content -Path $manifestPath -Force
 
-        Write-Host "Manifest file updated successfully."
+    Log-Message "[EntraModuleBuilder]:Manifest file updated successfully for requiredModules section."
 
-	
-		Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
- }
+    Log-Message "[EntraModuleBuilder]: Root Module Manifest successfully created" -Level 'INFO'
+}
+
 
  [void] CreateModuleManifest($module) {
     # Update paths specific to this sub-directory
