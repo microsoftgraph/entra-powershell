@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraBetaInactiveSignInUser {
+function Get-EntraInactiveSignInUser {
     [CmdletBinding()]
     [OutputType([string])]
     param (
@@ -17,73 +17,64 @@ function Get-EntraBetaInactiveSignInUser {
     )
 
     process {
-
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand 
-        $queryDate = Get-Date (Get-Date).AddDays($(0 - $LastSignInBeforeDaysAgo)) -UFormat %Y-%m-%dT00:00:00Z
+        $queryDate = (Get-Date).AddDays(-$LastSignInBeforeDaysAgo).ToString("yyyy-MM-ddTHH:mm:ssZ")
+        $inactiveFilter = "(signInActivity/lastSignInDateTime le $queryDate)"
 
-        $inactiveFilter = ("(signInActivity/lastSignInDateTime le {0})" -f $queryDate)
 
-        $queryFilter = $inactiveFilter
+        $baseUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+        $uri = "$baseUri/beta/users?`$filter=$inactiveFilter&`$select=signInActivity,UserPrincipalName,Id,DisplayName,mail,userType,createdDateTime,accountEnabled"
 
-        # Using Date scope here, since conflict with service side odata filter on userType.
-        Write-Debug ("Retrieving Users with Filter {0}" -f $queryFilter)
-        $queryUsers = Get-MgBetaUser -Filter $queryFilter -All:$true -Property signInActivity, UserPrincipalName, Id, DisplayName, mail, userType, createdDateTime, accountEnabled -Headers $customHeaders
+        Write-Debug ("Retrieving Users with Filter {0}" -f $inactiveFilter)
+        $queryUsers = (Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders).value
 
         switch ($UserType) {
-            "Member" {
-                $users = $queryUsers | Where-Object -FilterScript { $_.userType -eq 'Member' }
-            }
-            "Guest" {
-                $users = $queryUsers | Where-Object -FilterScript { $_.userType -eq 'Guest' }
-
-            }
-            "All" {
-                $users = $queryUsers
-            }
+            "Member" { $users = $queryUsers | Where-Object { $_.userType -eq 'Member' } }
+            "Guest" { $users = $queryUsers | Where-Object { $_.userType -eq 'Guest' } }
+            "All" { $users = $queryUsers }
         }
 
         foreach ($userObject in $users) {
-            $checkedUser = [ordered] @{}
-            $checkedUser.UserID = $userObject.Id
-            $checkedUser.DisplayName = $userObject.DisplayName
-            $checkedUser.UserPrincipalName = $userObject.UserPrincipalName
-            $checkedUser.Mail = $userObject.Mail
-            $checkedUser.UserType = $userObject.UserType
-            $checkedUser.AccountEnabled = $userObject.AccountEnabled
+            $checkedUser = [ordered] @{
+                UserID = $userObject.Id
+                DisplayName = $userObject.DisplayName
+                UserPrincipalName = $userObject.UserPrincipalName
+                Mail = $userObject.Mail
+                UserType = $userObject.UserType
+                AccountEnabled = $userObject.AccountEnabled
+            }
 
             If ($null -eq $userObject.signInActivity.LastSignInDateTime) {
-                $checkedUser.LastSignInDateTime = "Unknown"
-                $checkedUser.LastSigninDaysAgo = "Unknown"
-                $checkedUser.lastNonInteractiveSignInDateTime = "Unknown"
+                $checkedUser["LastSignInDateTime"] = "Unknown"
+                $checkedUser["LastSigninDaysAgo"] = "Unknown"
+                $checkedUser["lastNonInteractiveSignInDateTime"] = "Unknown"
             }
             else {
-                $checkedUser.LastSignInDateTime = $userObject.signInActivity.LastSignInDateTime
-                $checkedUser.LastSigninDaysAgo = (New-TimeSpan -Start $checkedUser.LastSignInDateTime -End (Get-Date)).Days
-                $checkedUser.lastSignInRequestId = $userObject.signInActivity.lastSignInRequestId
+                $checkedUser["LastSignInDateTime"] = $userObject.signInActivity.LastSignInDateTime
+                $checkedUser["LastSigninDaysAgo"] = (New-TimeSpan -Start $checkedUser.LastSignInDateTime -End (Get-Date)).Days
+                $checkedUser["lastSignInRequestId"] = $userObject.signInActivity.lastSignInRequestId
 
-                #lastNonInteractiveSignInDateTime is NULL
-                If ($null -eq $userObject.signInActivity.lastNonInteractiveSignInDateTime){
-                    $checkedUser.lastNonInteractiveSignInDateTime = "Unknown"
-                    $checkedUser.LastNonInteractiveSigninDaysAgo = "Unknown"
-
+                If ($null -eq $userObject.signInActivity.lastNonInteractiveSignInDateTime) {
+                    $checkedUser["lastNonInteractiveSignInDateTime"] = "Unknown"
+                    $checkedUser["LastNonInteractiveSigninDaysAgo"] = "Unknown"
                 } else {
-                    $checkedUser.lastNonInteractiveSignInDateTime = $userObject.signInActivity.lastNonInteractiveSignInDateTime
-                    $checkedUser.LastNonInteractiveSigninDaysAgo = (New-TimeSpan -Start $checkedUser.lastNonInteractiveSignInDateTime -End (Get-Date)).Days
-                    $checkedUser.lastNonInteractiveSignInRequestId = $userObject.signInActivity.lastNonInteractiveSignInRequestId
+                    $checkedUser["lastNonInteractiveSignInDateTime"] = $userObject.signInActivity.lastNonInteractiveSignInDateTime
+                    $checkedUser["LastNonInteractiveSigninDaysAgo"] = (New-TimeSpan -Start $checkedUser.lastNonInteractiveSignInDateTime -End (Get-Date)).Days
+                    $checkedUser["lastNonInteractiveSignInRequestId"] = $userObject.signInActivity.lastNonInteractiveSignInRequestId
                 }
             }
+
             If ($null -eq $userObject.CreatedDateTime) {
-                $checkedUser.CreatedDateTime = "Unknown"
-                $checkedUser.CreatedDaysAgo = "Unknown"
+                $checkedUser["CreatedDateTime"] = "Unknown"
+                $checkedUser["CreatedDaysAgo"] = "Unknown"
             }
             else {
-                $checkedUser.CreatedDateTime = $userObject.CreatedDateTime
-                $checkedUser.CreatedDaysAgo = (New-TimeSpan -Start $userObject.CreatedDateTime -End (Get-Date)).Days
+                $checkedUser["CreatedDateTime"] = $userObject.CreatedDateTime
+                $checkedUser["CreatedDaysAgo"] = (New-TimeSpan -Start $userObject.CreatedDateTime -End (Get-Date)).Days
             }
 
             Write-Output ([PSCustomObject]$checkedUser)
         }
-
     }
 }
 
