@@ -14,11 +14,9 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         [switch] $All
     )
 
-    begin {
-        $guestFilter = "(CreationType eq 'Invitation')"
-    }
-
     process {
+        $guestFilter = "(CreationType eq 'Invitation')"
+        $expand = "sponsors"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $environment = (Get-EntraContext).Environment
         $baseUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
@@ -28,7 +26,7 @@ function Update-EntraBetaInvitedUserSponsorsFromInvitedBy {
         }
 
         $invitedUsers = @()
-        $uri = $baseUri+"/beta/users?$filter=$($guestFilter)&$expand=sponsors"
+       $uri = "$baseUri/beta/users?`$filter=$guestFilter&`$expand=sponsors"
 
         if ($All) {
             $invitedUsers = (Invoke-GraphRequest -Method GET -Uri $uri).value

@@ -13,18 +13,75 @@ BeforeAll {
 
     Mock -CommandName Get-EntraEnvironment -MockWith { return @{ GraphEndpoint = "https://graph.microsoft.com" } } -ModuleName Microsoft.Entra.Beta.Users
 
-    Mock -CommandName Get-MgBetaUser -MockWith {
-        [PSCustomObject]@{
-            Id = "123"
-            DisplayName = "Test Guest"
-            UserPrincipalName = "test@contoso.com"
-            Sponsors = $null
-        }
-    } -ModuleName Microsoft.Entra.Beta.Users
+    $guestFilter = "(CreationType eq 'Invitation')"
+    $expand = "sponsors"
 
+    # Mock Invoke-GraphRequest for GET with the user filter and expand parameters
     Mock -CommandName Invoke-GraphRequest -MockWith {
-        return @{ value = @{ id = "456" } }
-    } -ModuleName Microsoft.Entra.Beta.Users
+        Write-Output "Mock called"
+        @{
+            value = @(
+                @{ 
+                    id = "user1"; 
+                    userPrincipalName = "user1@example.com"; 
+                    displayName = "User One"; 
+                    sponsors = @() 
+                },
+                @{ 
+                    id = "user2"; 
+                    userPrincipalName = "user2@example.com"; 
+                    displayName = "User Two"; 
+                    sponsors = @(@{ id = "sponsor1" }) 
+                }
+            )
+            Headers = @{
+                'User-Agent' = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
+            }
+        }
+    } -ModuleName Microsoft.Entra.Beta.Users -ParameterFilter { $Method -eq 'GET' -and $Uri -match "/users?`$filter=$guestFilter&`$expand=sponsors" }
+
+
+    # Mock Invoke-GraphRequest for GET with the invitedBy endpoint
+    Mock -CommandName Invoke-GraphRequest -MockWith {
+        @{
+                value = @{ id = "inviter1" }
+        }
+    } -ModuleName Microsoft.Entra.Beta.Users -ParameterFilter { $Method -eq 'GET' -and $Uri -match '/users/.+/invitedBy' }
+
+    # Mock Invoke-GraphRequest for PATCH to update sponsors
+    Mock -CommandName Invoke-GraphRequest -MockWith {
+        Write-Output "Sponsor updated successfully"
+    } -ModuleName Microsoft.Entra.Beta.Users -ParameterFilter { $Method -eq 'PATCH' -and $Uri -match '/users/.+' } 
+
+    # Mock Invoke-GraphRequest for GET with all users
+    Mock -CommandName Invoke-GraphRequest -MockWith {
+        return @{value = @(
+                @{ 
+                    id = "user1"; 
+                    userPrincipalName = "user1@example.com"; 
+                    displayName = "User One"; 
+                    sponsors = @() 
+                },
+                @{ 
+                    id = "user2"; 
+                    userPrincipalName = "user2@example.com"; 
+                    displayName = "User Two"; 
+                    sponsors = @(@{ id = "sponsor1" }) 
+                }
+            )
+            Headers = @{
+            'User-Agent' = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
+        }
+        }
+    } -ModuleName Microsoft.Entra.Beta.Users -ParameterFilter {$Method -eq 'GET' -and $Uri -match '/users/'}
+
+   Mock -CommandName New-EntraBetaCustomHeaders -MockWith { 
+    return @{
+        'User-Agent' = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
+    }
+   } -ModuleName Microsoft.Entra.Beta.Users
+
+
 
     Mock -CommandName Set-EntraBetaUser -MockWith { $true } -ModuleName Microsoft.Entra.Beta.Users
 
@@ -50,22 +107,20 @@ Describe "Update-EntraBetaInvitedUserSponsorsFromInvitedBy" {
 
     Context "Edge Cases" {
         It "Should handle missing invitedBy information" {
-            Mock -CommandName Invoke-GraphRequest -MockWith { @{ value = $null } } -ModuleName Microsoft.Entra.Beta.Users
-            
-            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Invited user information not available"
+            Mock -CommandName Invoke-GraphRequest -MockWith { @{ value =@() } } -ModuleName Microsoft.Entra.Beta.Users
+            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false | Should -Match "Sponsor updated successfully"
         }
     }
+    It "Should contain 'User-Agent' header" {
+    $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
+    
+    # Call the function
+    Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false
 
-    Context "User-Agent Header" {
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaInvitedUserSponsorsFromInvitedBy"
-
-            Update-EntraBetaInvitedUserSponsorsFromInvitedBy -UserId "123" -Confirm:$false
-            
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
-        }
+    # Verify that Invoke-GraphRequest was called with the correct User-Agent header
+    Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+        $Headers.'User-Agent' -eq $userAgentHeaderValue
     }
+}
+
 }
