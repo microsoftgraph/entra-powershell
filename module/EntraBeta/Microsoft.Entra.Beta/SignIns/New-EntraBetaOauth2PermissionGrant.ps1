@@ -3,22 +3,28 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaOauth2PermissionGrant {
-    [CmdletBinding(DefaultParameterSetName = 'CreateExpanded')]
+    [CmdletBinding(DefaultParameterSetName = 'ByClientAndResourceIds')]
     param (
-    [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ClientId,
-    [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
-    [System.String] $ConsentType,
-    [Parameter(ParameterSetName = "CreateExpanded")]
-    [System.String] $PrincipalId,
-    [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
-    [System.String] $ResourceId,
-    [Parameter(ParameterSetName = "CreateExpanded")]
-    [System.String] $Scope,
-    [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
-    [System.Nullable`1[System.DateTime]]$StartTime,
-    [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
-    [System.Nullable`1[System.DateTime]]$ExpiryTime
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $ClientId,
+
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
+        [System.String] $ConsentType,
+
+        [Parameter(ParameterSetName = "ByClientAndResourceIds")]
+        [System.String] $PrincipalId,
+
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
+        [System.String] $ResourceId,
+
+        [Parameter(ParameterSetName = "ByClientAndResourceIds")]
+        [System.String] $Scope,
+
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
+        [System.Nullable`1[System.DateTime]]$StartTime,
+        
+        [Parameter(ParameterSetName = "ByClientAndResourceIds", Mandatory = $true)]
+        [System.Nullable`1[System.DateTime]]$ExpiryTime
     )
 
     PROCESS {
@@ -28,42 +34,35 @@ function New-EntraBetaOauth2PermissionGrant {
         $params["Method"] = "POST"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        if($null -ne $PSBoundParameters["ClientId"])
-        {
+        if ($null -ne $PSBoundParameters["ClientId"]) {
             $body["clientId"] = $PSBoundParameters["ClientId"]
         }
-        if($null -ne $PSBoundParameters["ConsentType"])
-        {
+        if ($null -ne $PSBoundParameters["ConsentType"]) {
             $body["consentType"] = $PSBoundParameters["ConsentType"]
         }
-        if($null -ne $PSBoundParameters["PrincipalId"])
-        {
+        if ($null -ne $PSBoundParameters["PrincipalId"]) {
             $body["principalId"] = $PSBoundParameters["PrincipalId"]
         }
-        if($null -ne $PSBoundParameters["ResourceId"])
-        {
+        if ($null -ne $PSBoundParameters["ResourceId"]) {
             $body["resourceId"] = $PSBoundParameters["ResourceId"]
         }
-        if($null -ne $PSBoundParameters["Scope"])
-        {
+        if ($null -ne $PSBoundParameters["Scope"]) {
             $body["scope"] = $PSBoundParameters["Scope"]
         }
-        if($null -ne $PSBoundParameters["ExpiryTime"])
-        {
+        if ($null -ne $PSBoundParameters["ExpiryTime"]) {
             $body["expiryTime"] = $PSBoundParameters["ExpiryTime"]
         }
-        if($null -ne $PSBoundParameters["StartTime"])
-        {
+        if ($null -ne $PSBoundParameters["StartTime"]) {
             $body["startTime"] = $PSBoundParameters["StartTime"]
         }
         $params["Body"] = $body
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        if($response){
+        if ($response) {
             $response = $response | ConvertTo-Json | ConvertFrom-Json
             $response | ForEach-Object {
                 if ($null -ne $_) {

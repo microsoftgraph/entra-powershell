@@ -4,16 +4,16 @@
 # ------------------------------------------------------------------------------ 
 
 function Remove-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $policyTypes = "activityBasedTimeoutPolicies", "defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy", "claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies"
+        $policyTypes = "activityBasedTimeoutPolicies", "DefaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy", "claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies"
     
         foreach ($policyType in $policyTypes) {
             $uri = "https://graph.microsoft.com/v1.0/policies/" + $policyType + "/" + $id
@@ -36,7 +36,7 @@ function Remove-EntraPolicy {
         }
         $Method = "DELETE"
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response

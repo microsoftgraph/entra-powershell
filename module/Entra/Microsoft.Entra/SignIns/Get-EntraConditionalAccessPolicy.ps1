@@ -3,14 +3,12 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 
-
-
 function Get-EntraConditionalAccessPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $PolicyId,
+        
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property

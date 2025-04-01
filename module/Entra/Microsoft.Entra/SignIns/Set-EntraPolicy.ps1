@@ -4,22 +4,28 @@
 # ------------------------------------------------------------------------------ 
 
 function Set-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'ByPolicyId')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AlternativeIdentifier,
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $Definition,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Type,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsOrganizationDefault
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $AlternativeIdentifier,
+
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id,
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.Collections.Generic.List`1[System.String]] $Definition,
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $DisplayName,
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.String] $Type,
+
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
+        
+        [Parameter(ParameterSetName = "ByPolicyId")]
+        [System.Nullable`1[System.Boolean]] $IsOrganizationDefault
     )
 
     PROCESS {    
@@ -29,15 +35,15 @@ function Set-EntraPolicy {
         $policyTypeMap = @{
             "ActivityBasedTimeoutPolicy"  = "activityBasedTimeoutPolicies"
             "ApplicationManagementPolicy" = "appManagementPolicies"
-            "DefaultAppManagementPolicy" = "defaultAppManagementPolicy"
-            "AuthenticationFlowsPolicy" = "authenticationFlowsPolicy"
+            "DefaultAppManagementPolicy"  = "defaultAppManagementPolicy"
+            "AuthenticationFlowsPolicy"   = "authenticationFlowsPolicy"
             "AuthenticationMethodsPolicy" = "authenticationMethodsPolicy"
-            "ClaimsMappingPolicy" = "claimsMappingPolicies"
-            "FeatureRolloutPolicy" = "featureRolloutPolicies"
-            "HomeRealmDiscoveryPolicy" = "homeRealmDiscoveryPolicies"
-            "PermissionGrantPolicy" = "permissionGrantPolicies"
-            "TokenIssuancePolicy" = "tokenIssuancePolicies"
-            "TokenLifetimePolicy" = "tokenLifetimePolicies"
+            "ClaimsMappingPolicy"         = "claimsMappingPolicies"
+            "FeatureRolloutPolicy"        = "featureRolloutPolicies"
+            "HomeRealmDiscoveryPolicy"    = "homeRealmDiscoveryPolicies"
+            "PermissionGrantPolicy"       = "permissionGrantPolicies"
+            "TokenIssuancePolicy"         = "tokenIssuancePolicies"
+            "TokenLifetimePolicy"         = "tokenLifetimePolicies"
         }
 
         $policyTypes = $policyTypeMap.Values
@@ -49,11 +55,12 @@ function Set-EntraPolicy {
                 Message: Invalid value specified for property 'type' of resource 'Policy'."
                 return;  
             }
-        } else {
+        }
+        else {
             $type = $null
         }                
         
-        if(!$type) {
+        if (!$type) {
             foreach ($pType in $policyTypes) {
                 $uri = "https://graph.microsoft.com/v1.0/policies/" + $pType + "/" + $id
                 try {
@@ -66,7 +73,7 @@ function Set-EntraPolicy {
             $type = $Matches[1]
         }
         
-        if($policyTypes -notcontains $type) {
+        if ($policyTypes -notcontains $type) {
             Write-Error "Set-AzureADPolicy : Error occurred while executing SetPolicy 
             Code: Request_BadRequest
             Message: Invalid value specified for property 'type' of resource 'Policy'."
@@ -90,12 +97,12 @@ function Set-EntraPolicy {
             
             $Method = "PATCH"
                     
-                Write-Debug("============================ TRANSFORMATIONS ============================")
-                $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-                Write-Debug("=========================================================================`n")
+            Write-Debug("============================ TRANSFORMATIONS ============================")
+            $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+            Write-Debug("=========================================================================`n")
             
-                $body = $params | ConvertTo-Json
-               Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Body $body -Method $Method
+            $body = $params | ConvertTo-Json
+            Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Body $body -Method $Method
                
         }
         
