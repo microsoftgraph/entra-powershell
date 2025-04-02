@@ -21,7 +21,7 @@ Describe "Add-EntraGroupMember" {
         }
 
         It "Should fail when GroupId is empty" {
-            { Add-EntraGroupMember -ObjectId -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraGroupMember -GroupId -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
         It "Should fail when MemberId is empty" {
