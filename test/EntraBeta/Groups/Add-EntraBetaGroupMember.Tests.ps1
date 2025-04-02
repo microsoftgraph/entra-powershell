@@ -9,6 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName New-MgBetaGroupMember -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Add-EntraBetaGroupMember" {
@@ -21,7 +22,7 @@ Describe "Add-EntraBetaGroupMember" {
         }
 
         It "Should fail when GroupId is empty" {
-            { Add-EntraBetaGroupMember -GroupId  -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraBetaGroupMember -GroupId -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
         It "Should fail when GroupId is invalid" {

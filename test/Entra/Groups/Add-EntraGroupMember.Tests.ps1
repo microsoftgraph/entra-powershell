@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName New-MgGroupMember -MockWith {} -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Add-EntraGroupMember" {
@@ -20,7 +21,7 @@ Describe "Add-EntraGroupMember" {
         }
 
         It "Should fail when GroupId is empty" {
-            { Add-EntraGroupMember -ObjectId  -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraGroupMember -ObjectId -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
         It "Should fail when GroupId is invalid" {
