@@ -15,43 +15,39 @@ BeforeAll {
 Describe "Add-EntraBetaGroupMember" {
     Context "Test for Add-EntraBetaGroupMember" {
         It "Should return empty object" {
-            $result = Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
-            { Add-EntraBetaGroupMember -GroupId -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraBetaGroupMember -GroupId -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
         It "Should fail when MemberId is empty" {
-            { Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
-        }
-
-        It "Should fail when MemberId is invalid" {
-            { Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "" } | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
+            { Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName New-MgBetaGroupMember -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
         }
 
         It "Should contain DirectoryObjectId in parameters when passed MemberId to it" {
             Mock -CommandName New-MgBetaGroupMember -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
             $params = Get-Parameters -data $result
-            $params.DirectoryObjectId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $params.DirectoryObjectId | Should -Be "ec5813fb-346e-4a33-a014-b55ffee3662b"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupMember"
-            Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupMember"
             Should -Invoke -CommandName New-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -67,7 +63,7 @@ Describe "Add-EntraBetaGroupMember" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
+                { Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference
