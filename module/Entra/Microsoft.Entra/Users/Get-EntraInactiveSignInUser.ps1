@@ -21,9 +21,7 @@ function Get-EntraInactiveSignInUser {
         $queryDate = (Get-Date).AddDays(-$LastSignInBeforeDaysAgo).ToString("yyyy-MM-ddTHH:mm:ssZ")
         $inactiveFilter = "(signInActivity/lastSignInDateTime le $queryDate)"
 
-
-        $baseUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
-        $uri = "$baseUri/v1.0/users?`$filter=$inactiveFilter&`$select=signInActivity,UserPrincipalName,Id,DisplayName,mail,userType,createdDateTime,accountEnabled"
+        $uri = "/v1.0/users?`$filter=$inactiveFilter&`$select=signInActivity,UserPrincipalName,Id,DisplayName,mail,userType,createdDateTime,accountEnabled"
 
         Write-Debug ("Retrieving Users with Filter {0}" -f $inactiveFilter)
         $queryUsers = (Invoke-GraphRequest -Method GET -Uri $uri -Headers $customHeaders).value

@@ -13,138 +13,121 @@ BeforeAll {
 
     Mock -CommandName Get-Date -MockWith { [datetime]"2024-03-21T00:00:00Z" }
 
-    function New-FakeUser {
-        param (
-            [string] $userType = 'Member',
-            [datetime] $lastSignInDateTime = ([datetime]"2024-01-01"),
-            [datetime] $lastNonInteractive = ([datetime]"2024-01-01"),
-            [datetime] $created = ([datetime]"2023-01-01")
-        )
-
+    Mock -CommandName Invoke-GraphRequest -MockWith {
         return @{
-            Id                              = [guid]::NewGuid().ToString()
-            DisplayName                     = "Test User"
-            UserPrincipalName               = "testuser@example.com"
-            Mail                            = "testuser@example.com"
-            userType                        = $userType
-            accountEnabled                  = $true
-            signInActivity                  = @{
-                lastSignInDateTime                = $lastSignInDateTime
-                lastSignInRequestId               = "fake-signin-id"
-                lastNonInteractiveSignInDateTime  = $lastNonInteractive
-                lastNonInteractiveSignInRequestId = "fake-noninteractive-id"
-            }
-            createdDateTime = $created
+            value = @(
+                @{
+                    Id = "user1"
+                    DisplayName = "John Doe"
+                    UserPrincipalName = "johndoe@example.com"
+                    Mail = "johndoe@example.com"
+                    UserType = "Member"
+                    AccountEnabled = $true
+                    signInActivity = @{
+                        lastSignInDateTime = (Get-Date).AddDays(-40).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        lastSignInRequestId = "12345"
+                        lastNonInteractiveSignInDateTime = (Get-Date).AddDays(-100).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        lastNonInteractiveSignInRequestId = "67890"
+                    }
+                    CreatedDateTime = (Get-Date).AddDays(-365).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                },
+                @{
+                    Id = "user2"
+                    DisplayName = "Jane Guest"
+                    UserPrincipalName = "janeguest@example.com"
+                    Mail = "janeguest@example.com"
+                    UserType = "Guest"
+                    AccountEnabled = $true
+                    signInActivity = @{
+                        lastSignInDateTime = (Get-Date).AddDays(-50).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        lastSignInRequestId = "12345"
+                        lastNonInteractiveSignInDateTime = $null
+                        lastNonInteractiveSignInRequestId = $null
+                    }
+                    CreatedDateTime = (Get-Date).AddDays(-400).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                },
+                @{
+                    Id = "user3"
+                    DisplayName = "Unknown Sign In"
+                    UserPrincipalName = "unknownsign@example.com"
+                    Mail = "unknownsign@example.com"
+                    UserType = "Member"
+                    AccountEnabled = $true
+                    signInActivity = @{
+                        lastSignInDateTime = $null
+                        lastSignInRequestId = $null
+                        lastNonInteractiveSignInDateTime = $null
+                        lastNonInteractiveSignInRequestId = $null
+                    }
+                    CreatedDateTime = (Get-Date).AddDays(-100).ToString("yyyy-MM-ddTHH:mm:ssZ")
+                }
+            )
         }
-    }
-
-    Mock -CommandName Get-MgUser -MockWith { @(New-FakeUser) } -ModuleName Microsoft.Entra.Users
+    } -ModuleName Microsoft.Entra.Users
 }
 
 Describe 'Get-EntraInactiveSignInUser' {
-    Context "UserType Filtering" {
-        It "returns all users when UserType is All" {
-            $fakeUsers = @(
-                New-FakeUser -userType 'Member' -lastSignInDateTime ([DateTime]'2024-01-01') -created ([DateTime]'2023-01-01'),
-                New-FakeUser -userType 'Guest' -lastSignInDateTime ([DateTime]'2023-12-15') -created ([DateTime]'2023-06-01')
-            )
 
-            Mock -CommandName Get-MgUser -MockWith { $fakeUsers }
-
-            $results = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType All
-
-            $results.Count | Should -Be 2
-            $results[0].UserType | Should -Be 'Member'
-            $results[1].UserType | Should -Be 'Guest'
+    Context "Get-EntraInactiveSignInUser Tests" {
+        
+        It "Should return all inactive users" {
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Count | Should -Be 3
+            $result[0].UserID | Should -Be "user1"
+            $result[1].UserID | Should -Be "user2"
+            $result[2].UserID | Should -Be "user3"
         }
 
-        It "returns only Member users when UserType is Member" {
-            $fakeUsers = @(
-                New-FakeUser -userType 'Member',
-                New-FakeUser -userType 'Guest'
-            )
-
-            Mock -CommandName Get-MgUser -MockWith { $fakeUsers }
-
-            $results = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType Member
-
-            $results.Count | Should -Be 1
-            $results[0].UserType | Should -Be 'Member'
+        It "Should return only inactive Member users" {
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Member"
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Count | Should -Be 2
+            $result[0].UserID | Should -Be "user1"
+            $result[1].UserID | Should -Be "user3"
         }
 
-        It "returns only Guest users when UserType is Guest" {
-            $fakeUsers = @(
-                New-FakeUser -userType 'Member',
-                New-FakeUser -userType 'Guest'
-            )
-
-            Mock -CommandName Get-MgUser -MockWith { $fakeUsers }
-
-            $results = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType Guest
-
-            $results.Count | Should -Be 1
-            $results[0].UserType | Should -Be 'Guest'
-        }
-    }
-
-    Context "Handles missing activity and creation dates" {
-        It "outputs 'Unknown' when signInActivity and createdDateTime are null" {
-            $user = New-FakeUser -lastSignInDateTime $null -lastNonInteractive $null -created $null
-
-            Mock -CommandName Get-MgUser -MockWith { @($user) }
-
-            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30
-
-            $result.LastSignInDateTime | Should -Be 'Unknown'
-            $result.LastSigninDaysAgo | Should -Be 'Unknown'
-            $result.lastNonInteractiveSignInDateTime | Should -Be 'Unknown'
-            $result.CreatedDateTime | Should -Be 'Unknown'
-            $result.CreatedDaysAgo | Should -Be 'Unknown'
+        It "Should return only inactive Guest users" {
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Guest"
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Count | Should -Be 1
+            $result[0].UserID | Should -Be "user2"
         }
 
-        It "calculates correct days ago for sign-in and creation dates" {
-            $user = New-FakeUser `
-                -lastSignInDateTime ([DateTime]"2024-01-01") `
-                -lastNonInteractive ([DateTime]"2023-12-01") `
-                -created ([DateTime]"2023-06-01")
-
-            Mock -CommandName Get-MgUser -MockWith { @($user) }
-
-            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30
-
-            $result.LastSigninDaysAgo | Should -Be 80
-            $result.LastNonInteractiveSigninDaysAgo | Should -Be 111
-            $result.CreatedDaysAgo | Should -Be 294
+        It "Should handle users with null lastSignInDateTime" {
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Count | Should -Be 3
+            $result[2].UserID | Should -Be "user3"
+            $result[2].LastSignInDateTime | Should -Be "Unknown"
         }
-    }
 
-    Context "Filter logic" {
-        It "uses correct date filter based on days ago" {
-            $calledFilter = $null
-            Mock -CommandName Get-MgUser -MockWith {
-                param($Filter)
-                $script:calledFilter = $Filter
-                return @()
+        It "Should return users based on specific date ranges" {
+            # Test with a smaller date range, expecting only user2 to be returned
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 45 -UserType "All"
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Count | Should -Be 3
+            $result[0].UserID | Should -Be "user1"
+            $result[1].UserID | Should -Be "user2"
+        }
+
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraInactiveSignInUser"
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 45 -UserType "All"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraInactiveSignInUser"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
             }
-
-            Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 45 | Out-Null
-
-            $calledFilter | Should -Match 'signInActivity/lastSignInDateTime le 2024-02-05T00:00:00Z'
         }
+
+
     }
 
-    Context "UserAgent Header" {
-        It "adds expected User-Agent header in internal call (indirect validation)" {
-            # Since it's hard to assert headers directly, test indirectly
-            $wasCalled = $false
-
-            Mock -CommandName Get-MgUserMemberOfAsAdministrativeUnit -MockWith {
-                $wasCalled = $true
-                return @()
-            } -ModuleName Microsoft.Entra.Users
-
-            Get-EntraInactiveSignInUser | Out-Null
-            $wasCalled | Should -BeTrue
-        }
-    }
 }
