@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Disconnect-Entra { 
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param ()   
     Disconnect-MgGraph
 }

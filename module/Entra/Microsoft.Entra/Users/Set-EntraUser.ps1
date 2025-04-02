@@ -3,327 +3,192 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraUser {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope="Function", Target="*")]
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $State,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $FacsimileTelephoneNumber,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PreferredLanguage,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $StreetAddress,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $CreationType,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ImmutableId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $CompanyName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PostalCode,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $DisplayName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $ConsentProvidedForMinor,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Department,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Mobile,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserStateChangedOn,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $GivenName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Country,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PasswordPolicies,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]] $SignInNames,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $MailNickName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $JobTitle,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserState,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $City,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UsageLocation,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Surname,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.List`1[System.String]] $OtherMails,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $UserPrincipalName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Collections.Generic.Dictionary`2[System.String,System.String]] $ExtensionProperty,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $TelephoneNumber,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $PhysicalDeliveryOfficeName,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AgeGroup,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $AccountEnabled,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $ShowInAddressList,
-    [Alias('ObjectId')]            
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $UserId,
-                
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.Nullable`1[System.Boolean]] $IsCompromised
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
+        [Alias("ObjectId", "UPN", "Identity", "Id")]
+        [ValidateNotNullOrEmpty()]
+        [string]$UserId,
+
+        [Parameter(HelpMessage = "A short biography or description about the user.")]
+        [string]$aboutMe,
+
+        [Parameter(HelpMessage = "Indicates whether the account is enabled. true if enabled; otherwise, false.")]
+        [bool]$accountEnabled,
+
+        [Parameter(HelpMessage = "The user's age group. Allowed values: minor, notAdult, adult.")]
+        [ValidateSet("minor", "notAdult", "adult")]
+        [string]$ageGroup,
+
+        [Parameter(HelpMessage = "The user's birthday.")]
+        [datetime]$birthday,
+
+        [Parameter(HelpMessage = "The user's business phone numbers.")]
+        [string[]]$businessPhones,
+
+        [Parameter(HelpMessage = "The city where the user is located.")]
+        [string]$city,
+
+        [Parameter(HelpMessage = "The company name associated with the user.")]
+        [string]$companyName,
+
+        [Parameter(HelpMessage = "Indicates if consent has been obtained for minors. Allowed values: Granted, Denied, NotRequired.")]
+        [ValidateSet("Granted", "Denied", "NotRequired")]
+        [string]$consentProvidedForMinor,
+
+        [Parameter(HelpMessage = "The country/region where the user is located.")]
+        [string]$country,
+
+        [Parameter(HelpMessage = "The department where the user works.")]
+        [string]$department,
+
+        [Parameter(HelpMessage = "The name displayed in the address book for the user.")]
+        [string]$displayName,
+
+        [Parameter(HelpMessage = "The date and time when the user was hired.")]
+        [datetime]$employeeHireDate,
+
+        [Parameter(HelpMessage = "The date and time when the user will leave the company.")]
+        [datetime]$employeeLeaveDateTime,
+
+        [Parameter(HelpMessage = "The employee identifier assigned to the user.")]
+        [string]$employeeId,
+
+        [Parameter(HelpMessage = "The organization data related to the user.")]
+        [hashtable]$employeeOrgData,
+
+        [Parameter(HelpMessage = "Captures enterprise worker type: Employee, Contractor, Consultant, Vendor, etc.")]
+        [string]$employeeType,
+
+        [Parameter(HelpMessage = "The user's fax number.")]
+        [string]$faxNumber,
+
+        [Parameter(HelpMessage = "The given name (first name) of the user.")]
+        [string]$givenName,
+
+        [Parameter(HelpMessage = "The hire date of the user.")]
+        [datetime]$hireDate,
+
+        [Parameter(HelpMessage = "The instant message addresses for the user.")]
+        [string[]]$imAddresses,
+
+        [Parameter(HelpMessage = "A list of interests for the user.")]
+        [string[]]$interests,
+
+        [Parameter(HelpMessage = "The user's job title.")]
+        [string]$jobTitle,
+
+        [Parameter(HelpMessage = "Specifies the legal age group classification.")]
+        [string]$legalAgeGroupClassification,
+
+        [Parameter(HelpMessage = "The SMTP address for the user.")]
+        [string]$mail,
+
+        [Parameter(HelpMessage = "The mail alias for the user.")]
+        [string]$mailNickname,
+
+        [Parameter(HelpMessage = "The primary cellular telephone number for the user.")]
+        [string]$mobilePhone,
+
+        [Parameter(HelpMessage = "The URL for the user's personal site.")]
+        [string]$mySite,
+
+        [Parameter(HelpMessage = "The office location in the user's place of business.")]
+        [string]$officeLocation,
+
+        [Parameter(HelpMessage = "A collection of other email addresses for the user.")]
+        [string[]]$otherMails,
+
+        [Parameter(HelpMessage = "Specifies password policies for the user.")]
+        [string]$passwordPolicies,
+
+        [Parameter(HelpMessage = "Specifies the password profile for the user.")]
+        [hashtable]$passwordProfile,
+
+        [Parameter(HelpMessage = "The postal code for the user's postal address.")]
+        [string]$postalCode,
+
+        [Parameter(HelpMessage = "The preferred data location for the user.")]
+        [string]$preferredDataLocation,
+
+        [Parameter(HelpMessage = "The preferred language for the user.")]
+        [string]$preferredLanguage,
+
+        [Parameter(HelpMessage = "The user's surname (last name).")]
+        [string]$surname,
+
+        [Parameter(HelpMessage = "A two-letter country code (ISO 3166). Required for users who will be assigned licenses.")]
+        [string]$usageLocation,
+
+        [Parameter(HelpMessage = "The user principal name (UPN) of the user.")]
+        [string]$userPrincipalName,
+
+        [Parameter(HelpMessage = "The type of user.")]
+        [string]$UserType,
+
+        [Parameter(HelpMessage = "The street address for the user.")]
+        [string]$StreetAddress,
+
+        [Parameter(HelpMessage = "The state associated with the user.")]
+        [string]$State,
+
+        # New: Accepts a hashtable for bulk updates
+        [Parameter(Mandatory = $false, HelpMessage = "A hashtable of additional user properties to update.")]
+        [Alias("BodyParameter", "Body", "BodyParameters")]
+        [hashtable]$AdditionalProperties = @{}  # Default to an empty hashtable if not provided
     )
 
-    PROCESS {    
-    $params = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    
-    if ($null -ne $PSBoundParameters["State"])
-    {
-        $params["State"] = $PSBoundParameters["State"]
-    }
-    if ($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-    }
-    if ($null -ne $PSBoundParameters["FacsimileTelephoneNumber"])
-    {
-        $params["FacsimileTelephoneNumber"] = $PSBoundParameters["FacsimileTelephoneNumber"]
-    }
-    if ($null -ne $PSBoundParameters["UserType"])
-    {
-        $params["UserType"] = $PSBoundParameters["UserType"]
-    }
-    if ($null -ne $PSBoundParameters["PreferredLanguage"])
-    {
-        $params["PreferredLanguage"] = $PSBoundParameters["PreferredLanguage"]
-    }
-    if ($null -ne $PSBoundParameters["StreetAddress"])
-    {
-        $params["StreetAddress"] = $PSBoundParameters["StreetAddress"]
-    }
-    if ($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if ($null -ne $PSBoundParameters["CreationType"])
-    {
-        $params["CreationType"] = $PSBoundParameters["CreationType"]
-    }
-    if ($null -ne $PSBoundParameters["ImmutableId"])
-    {
-        $params["OnPremisesImmutableId"] = $PSBoundParameters["ImmutableId"]
-    }
-    if ($null -ne $PSBoundParameters["ProgressAction"])
-    {
-        $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-    }
-    if ($null -ne $PSBoundParameters["CompanyName"])
-    {
-        $params["CompanyName"] = $PSBoundParameters["CompanyName"]
-    }
-    if ($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if ($null -ne $PSBoundParameters["PostalCode"])
-    {
-        $params["PostalCode"] = $PSBoundParameters["PostalCode"]
-    }
-    if ($null -ne $PSBoundParameters["DisplayName"])
-    {
-        $params["DisplayName"] = $PSBoundParameters["DisplayName"]
-    }
-    if ($null -ne $PSBoundParameters["ConsentProvidedForMinor"])
-    {
-        $params["ConsentProvidedForMinor"] = $PSBoundParameters["ConsentProvidedForMinor"]
-    }
-    if ($null -ne $PSBoundParameters["Department"])
-    {
-        $params["Department"] = $PSBoundParameters["Department"]
-    }
-    if ($null -ne $PSBoundParameters["Mobile"])
-    {
-        $params["MobilePhone"] = $PSBoundParameters["Mobile"]
-    }
-    if ($null -ne $PSBoundParameters["UserStateChangedOn"])
-    {
-        $params["ExternalUserStateChangeDateTime"] = $PSBoundParameters["UserStateChangedOn"]
-    }
-    if ($null -ne $PSBoundParameters["GivenName"])
-    {
-        $params["GivenName"] = $PSBoundParameters["GivenName"]
-    }
-    if ($null -ne $PSBoundParameters["Country"])
-    {
-        $params["Country"] = $PSBoundParameters["Country"]
-    }
-    if ($null -ne $PSBoundParameters["PasswordPolicies"])
-    {
-        $params["PasswordPolicies"] = $PSBoundParameters["PasswordPolicies"]
-    }
-    if($null -ne $PSBoundParameters["PasswordProfile"])
-    {
-        $TmpValue = $PSBoundParameters["PasswordProfile"]
-        $Value = @{
-            forceChangePasswordNextSignIn = $TmpValue.ForceChangePasswordNextLogin
-            forceChangePasswordNextSignInWithMfa = $TmpValue.EnforceChangePasswordPolicy
-            password = $TmpValue.Password 
-        }
-        $params["PasswordProfile"] = $Value
-    }
-    if ($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if ($null -ne $PSBoundParameters["SignInNames"])
-    {
-        $params["Identities"] = $PSBoundParameters["SignInNames"]
-    }
-    if ($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if ($null -ne $PSBoundParameters["MailNickName"])
-    {
-        $params["MailNickName"] = $PSBoundParameters["MailNickName"]
-    }
-    if ($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if ($null -ne $PSBoundParameters["JobTitle"])
-    {
-        $params["JobTitle"] = $PSBoundParameters["JobTitle"]
-    }
-    if ($null -ne $PSBoundParameters["UserState"])
-    {
-        $params["ExternalUserState"] = $PSBoundParameters["UserState"]
-    }
-    if ($null -ne $PSBoundParameters["City"])
-    {
-        $params["City"] = $PSBoundParameters["City"]
-    }
-    if ($null -ne $PSBoundParameters["UsageLocation"])
-    {
-        $params["UsageLocation"] = $PSBoundParameters["UsageLocation"]
-    }
-    if ($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if ($null -ne $PSBoundParameters["Surname"])
-    {
-        $params["Surname"] = $PSBoundParameters["Surname"]
-    }
-    if ($null -ne $PSBoundParameters["OtherMails"])
-    {
-        $params["OtherMails"] = $PSBoundParameters["OtherMails"]
-    }
-    if ($null -ne $PSBoundParameters["UserPrincipalName"])
-    {
-        $params["UserPrincipalName"] = $PSBoundParameters["UserPrincipalName"]
-    }
-    if ($null -ne $PSBoundParameters["ExtensionProperty"])
-    {
-        $params["ExtensionProperty"] = $PSBoundParameters["ExtensionProperty"]
-    }
-    if ($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $PSBoundParameters["Verbose"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $PSBoundParameters["Debug"]
-    }
-    if ($null -ne $PSBoundParameters["TelephoneNumber"])
-    {
-        $params["BusinessPhones"] = $PSBoundParameters["TelephoneNumber"]
-    }
-    if ($null -ne $PSBoundParameters["PhysicalDeliveryOfficeName"])
-    {
-        $params["PhysicalDeliveryOfficeName"] = $PSBoundParameters["PhysicalDeliveryOfficeName"]
-    }
-    if ($null -ne $PSBoundParameters["AgeGroup"])
-    {
-        $params["AgeGroup"] = $PSBoundParameters["AgeGroup"]
-    }
-    if ($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if ($null -ne $PSBoundParameters["AccountEnabled"])
-    {
-        $params["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]
-    }
-    if ($null -ne $PSBoundParameters["ShowInAddressList"])
-    {
-        $params["ShowInAddressList"] = $PSBoundParameters["ShowInAddressList"]
-    }
-    if ($null -ne $PSBoundParameters["UserId"])
-    {
-        $params["UserId"] = $PSBoundParameters["UserId"]
-    }
-    if ($null -ne $PSBoundParameters["IsCompromised"])
-    {
-        $params["IsCompromised"] = $PSBoundParameters["IsCompromised"]
-    }
+    begin {
 
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = Update-MgUser @params -Headers $customHeaders
-    $response | ForEach-Object {
-        if($null -ne $_) {
-        Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
         }
     }
-    $response
+
+    process {
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+
+        # Microsoft Graph API URL for updating users
+        $graphUri = "https://graph.microsoft.com/v1.0/users/$UserId"
+
+        # Initialize hashtable for user properties
+        $UserProperties = @{}
+
+        $CommonParameters = @("Verbose", "Debug", "WarningAction", "WarningVariable", "ErrorAction", "ErrorVariable", "OutVariable", "OutBuffer", "WhatIf", "Confirm")
+
+        # Merge individual parameters into UserProperties
+        foreach ($param in $PSBoundParameters.Keys) {
+            if ($param -ne "UserId" -and $param -ne "AdditionalProperties" -and $CommonParameters -notcontains $param) {
+                $UserProperties[$param] = $PSBoundParameters[$param]
+            }
+        }
+
+        # Merge AdditionalProperties if provided
+        foreach ($key in $AdditionalProperties.Keys) {
+            $UserProperties[$key] = $AdditionalProperties[$key]
+        }
+
+        # Convert final update properties to JSON
+        $bodyJson = $UserProperties | ConvertTo-Json -Depth 2
+        if ($UserProperties.Count -eq 0) {
+            Write-Warning "No properties provided for update. Exiting."
+            return
+        }
+
+        
+        try {
+            # Invoke Microsoft Graph API Request
+            Invoke-MgGraphRequest -Uri $graphUri -Method PATCH -Body $bodyJson -Headers $customHeaders
+            Write-Verbose "Properties for user $UserId updated successfully. Updated properties: $($UserProperties | Out-String)"
+        }
+        catch {
+            Write-Debug "Error Details: $_"
+            Write-Error "Failed to update user properties: $_"
+        }
     }
 }
-
+Set-Alias -Name Update-EntraUser -Value Set-EntraUser -Scope Global -Force

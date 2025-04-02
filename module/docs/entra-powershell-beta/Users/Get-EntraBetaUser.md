@@ -111,7 +111,64 @@ New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName.
 
-### Example 4: Get a user by userPrincipalName
+### Example 4: Retrieve user's password policy
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com' `
+              -Property UserPrincipalName, PasswordPolicies | 
+    Select-Object UserPrincipalName, 
+                  @{
+                      Name = "PasswordNeverExpires"
+                      Expression = { $_.PasswordPolicies -contains "DisablePasswordExpiration" }
+                  }
+```
+
+```Output
+userPrincipalName            PasswordNeverExpires
+-----------------            --------------------
+SawyerM@contoso.com                 True
+```
+
+This example shows how to get a user's password policy. To update it, run `Get-EntraBetaUser -UserId SawyerM@contoso.com | Set-EntraBetaUser -PasswordPolicies DisablePasswordExpiration`.
+
+### Example 5: Per-user MFA report
+
+```powershell
+Connect-Entra -scope 'User.Read.All', 'UserAuthenticationMethod.Read.All'
+$users = Get-EntraBetaUser -All -Select Id, UserPrincipalName, DisplayName 
+Write-Output "Amount of requests within `"fetchAll`": $($users.Count)" 
+$usersReport = [System.Collections.ArrayList]::new()
+$users | ForEach-Object { 
+
+    $userProperties = @{
+        Id                = $_.Id
+        DisplayName       = $_.DisplayName
+        UserPrincipalName = $_.UserPrincipalName
+        PerUserMFAState   = (Get-EntraBetaUserAuthenticationRequirement -UserId $_.Id).PerUserMFAState
+    }
+    
+    [void]$usersReport.Add([PSCustomObject]$userProperties)
+} 
+
+$usersReport | Format-Table -AutoSize
+```
+
+```Output
+UserPrincipalName       DisplayName       PerUserMFAState Id                                    
+-----------------       -----------       --------------- --                                    
+AngelB@contoso.com      Angel Brown       enforced        cccccccc-2222-3333-4444-dddddddddddd  
+AveryS@contoso.com      Avery Smith       disabled        dddddddd-3333-4444-5555-eeeeeeeeeeee  
+SawyerM@contoso.com     Sawyer Miller     enforced        eeeeeeee-4444-5555-6666-ffffffffffff  
+ChristieC@contoso.com   Christie Cline    enabled         bbbbbbbb-1111-2222-3333-cccccccccccc  
+PattiF@contoso.com      Patti Fernandez   disabled        aaaaaaaa-bbbb-cccc-1111-222222222222  
+```
+
+This example shows a report of per-user MFA state.
+
+**Note**: Microsoft recommends using Conditional Access policies and security defaults to manage multi-factor authentication (MFA) instead of relying on legacy per-user MFA.
+
+### Example 6: Get a user by userPrincipalName
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -126,11 +183,11 @@ Sawyer Miller    cccccccc-2222-3333-4444-dddddddddddd      SawyerM@contoso.com
 
 This command gets the specified user.
 
-### Example 5: Get a user by MailNickname
+### Example 7: Get a user by MailNickname
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -Filter "startswith(MailNickname,'Ada')"
+Get-EntraBetaUser -Filter "startsWith(MailNickname,'Ada')"
 ```
 
 ```Output
@@ -141,7 +198,7 @@ Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.
 
 In this example, we retrieve all users whose MailNickname starts with Ada.
 
-### Example 6: Get SignInActivity of a User
+### Example 8: Get SignInActivity of a User
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
@@ -162,7 +219,7 @@ userPrincipalName                 : SawyerM@contoso.com
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
 
-### Example 7: List users with disabled accounts
+### Example 9: List users with disabled accounts
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -177,7 +234,7 @@ New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
 
 This example demonstrates how to retrieve all users with disabled accounts.
 
-### Example 8: List users based in a specific country
+### Example 10: List users based in a specific country
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -193,7 +250,7 @@ cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com        23/
 
 This example demonstrates how to retrieve all users based in Canada.
 
-### Example 9: List user count per department
+### Example 11: List user count per department
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -213,7 +270,7 @@ HR                             1
 
 This example demonstrates how to retrieve user count in each department.
 
-### Example 10: List disabled users with active licenses
+### Example 12: List disabled users with active licenses
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -231,7 +288,7 @@ cccccccc-2222-3333-4444-dddddddddddd  New User     NewUser@tenant.com          F
 
 This example demonstrates how to retrieve disabled users with active licenses.
 
-### Example 11: Retrieve guest users with active licenses
+### Example 13: Retrieve guest users with active licenses
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -257,7 +314,7 @@ cccccccc-2222-3333-4444-dddddddddddd Sawyer Miller sawyerm_gmail.com#EXT#@contos
 
 This example demonstrates how to retrieve guest users with active licenses.
 
-### Example 12: List users with a specific license
+### Example 14: List users with a specific license
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -275,7 +332,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith     AveryS@contoso.com       Me
 
 This example demonstrates how to retrieve users with a specific license.
 
-### Example 13: Retrieve users without managers
+### Example 15: Retrieve users without managers
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -302,7 +359,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc  Sawyer Miller  SawyerM@contoso.com
 
 This example demonstrates how to retrieve users without managers.
 
-### Example 14: List all guest users
+### Example 16: List all guest users
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
@@ -318,13 +375,25 @@ Sawyer Miller   sawyerm_gmail.com#EXT#@contoso.com                bbbbbbbb-1111-
 
 This example demonstrates how to retrieve list all guest users.
 
-### Example 15: List five recently created users
+### Example 17: List five recently created users
 
 ```powershell
 Get-EntraBetaUser -All | Sort-Object -Property createdDateTime -Descending | Select-Object -First 5
 ```
 
-### Example 16: List of users with Global Administrator role
+```Output
+DisplayName       Id                                   Mail                  UserPrincipalName     
+-----------       --                                   ----                  -----------------     
+Angel Brown       cccccccc-2222-3333-4444-dddddddddddd  AngelB@contoso.com    AngelB@contoso.com     
+Avery Smith       dddddddd-3333-4444-5555-eeeeeeeeeeee  AveryS@contoso.com    AveryS@contoso.com     
+Sawyer Miller     eeeeeeee-4444-5555-6666-ffffffffffff  SawyerM@contoso.com   SawyerM@contoso.com    
+Christie Cline    bbbbbbbb-1111-2222-3333-cccccccccccc  ChristieC@contoso.com ChristieC@contoso.com  
+Patti Fernandez   aaaaaaaa-bbbb-cccc-1111-222222222222  PattiF@contoso.com    PattiF@contoso.com     
+```
+
+This example shows how to retrieve the recently created users.
+
+### Example 18: List of users with Global Administrator role
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'RoleManagement.Read.Directory'
@@ -344,7 +413,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Avery Smith   AveryS@contoso.com       10/1
 
 This example shows how to list all users with a specific role, such as `Global Administrator`. Microsoft recommends assigning the Global Administrator role to fewer than five people for best practice. See [best practices](https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices).
 
-### Example 17: List all Users with revoked sessions in the last 30 Days
+### Example 19: List all Users with revoked sessions in the last 30 Days
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'

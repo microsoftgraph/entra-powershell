@@ -4,10 +4,10 @@
 # ------------------------------------------------------------------------------ 
 
 function Enable-EntraDirectoryRole {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "default")]
     [System.String] $RoleTemplateId
     )
 
