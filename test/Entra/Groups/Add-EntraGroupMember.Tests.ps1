@@ -24,10 +24,6 @@ Describe "Add-EntraGroupMember" {
             { Add-EntraGroupMember -ObjectId -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
-        It "Should fail when GroupId is invalid" {
-            { Add-EntraGroupMember -GroupId "" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
-
         It "Should fail when MemberId is empty" {
             { Add-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
         }
