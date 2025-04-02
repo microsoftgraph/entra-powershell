@@ -7,10 +7,14 @@ function Add-EntraGroupMember {
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "GroupId must be of type [System.Guid]." } })]
         [System.String] $GroupId,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the member to add to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.")]
         [Alias('RefObjectId')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "MemberId must be of type [System.Guid]." } })]
         [System.String] $MemberId
     )
 
