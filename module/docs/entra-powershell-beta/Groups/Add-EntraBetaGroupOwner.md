@@ -34,6 +34,8 @@ Add-EntraBetaGroupOwner
 
 The `Add-EntraBetaGroupOwner` cmdlet adds a user or service principal as an owner of a Microsoft 365 or security group. Owners can modify the group.
 
+`New-EntraBetaGroupOwner` is an alias of `Add-EntraBetaGroupOwner`.
+
 In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
 
 - Group owners

@@ -35,7 +35,7 @@ Add-EntraBetaGroupMember
 
 The `Add-EntraBetaGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
 
-`Update-EntraBetaGroupMember` is an alias of `Add-EntraBetaGroupMember`.
+`New-EntraBetaGroupMember` is an alias of `Add-EntraBetaGroupMember`.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
