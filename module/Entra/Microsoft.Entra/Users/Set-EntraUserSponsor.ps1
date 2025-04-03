@@ -50,7 +50,7 @@ function Set-EntraUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" =  "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
+                    "@odata.id" = "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"
