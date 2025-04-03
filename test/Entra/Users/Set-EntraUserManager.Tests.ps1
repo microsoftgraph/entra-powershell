@@ -8,7 +8,9 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Set-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Users
-    Mock -CommandName Get-EntraContext -MockWith {Environment="Global"} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith {return @{
+        Environment = "Global"
+    }} -ModuleName Microsoft.Entra.Users
     Mock -CommandName Get-EntraEnvironment -MockWith {GraphEndpoint="https://graph.microsoft.com"} -ModuleName Microsoft.Entra.Users
 }
 

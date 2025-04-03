@@ -33,7 +33,9 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-EntraContext -MockWith {Environment="Global"} -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-EntraContext -MockWith {return @{
+        Environment = "Global"
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Get-EntraEnvironment -MockWith {GraphEndpoint="https://graph.microsoft.com"} -ModuleName Microsoft.Entra.DirectoryManagement
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement

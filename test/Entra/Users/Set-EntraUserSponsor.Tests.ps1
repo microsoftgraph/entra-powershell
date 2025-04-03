@@ -48,8 +48,8 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
     Mock -CommandName Get-EntraContext -MockWith { 
         @{
-           Environment="Global"
-           Scopes = @("User.ReadWrite.All") 
+            Environment = "Global"           
+            Scopes = @("User.ReadWrite.All") 
         } 
     } -ModuleName Microsoft.Entra.Users
 
