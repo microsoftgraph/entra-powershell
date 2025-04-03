@@ -13,7 +13,7 @@ function Get-EntraAttributeSet {
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
+        $params["Uri"] = "/v1.0/directory/attributeSets/"
         $params["Method"] = "GET"
         if ($null -ne $PSBoundParameters["AttributeSetId"]) {
             $params["Uri"] += $AttributeSetId

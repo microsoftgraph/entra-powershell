@@ -35,7 +35,7 @@ function Set-EntraUserSponsor {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand     
         $customHeaders['Content-Type'] = 'application/json'
 
-        $batchEndpoint = "https://graph.microsoft.com/v1.0/`$batch"
+        $batchEndpoint = "/v1.0/`$batch"
         
         # Initialize request collection
         $requests = @()
@@ -50,7 +50,7 @@ function Set-EntraUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" = "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
+                    "@odata.id" = "/v1.0/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"

@@ -23,9 +23,9 @@ function Add-EntraBetaApplicationPolicy {
         if ($null -ne $PSBoundParameters["RefObjectId"]) {
             $RefObjectId = $PSBoundParameters["RefObjectId"]
         }
-        $uri = "https://graph.microsoft.com/beta/applications/$id/Policies/" + '$ref'
+        $uri = "/beta/applications/$id/Policies/" + '$ref'
         $body = @{
-            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/$RefObjectId"
+            "@odata.id" = "/beta/legacy/policies/$RefObjectId"
         }
         $body = $body | ConvertTo-Json
         Write-Debug("============================ TRANSFORMATIONS ============================")

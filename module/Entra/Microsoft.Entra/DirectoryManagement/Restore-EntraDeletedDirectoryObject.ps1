@@ -16,7 +16,7 @@ function Restore-EntraDeletedDirectoryObject {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = 'https://graph.microsoft.com/v1.0/directory/deletedItems/'   
+        $params["Uri"] = '/v1.0/directory/deletedItems/'   
         $params["Method"] = "POST"    
         if ($null -ne $PSBoundParameters["Id"]) {
             $params["Uri"] += $Id + "/microsoft.graph.restore"      

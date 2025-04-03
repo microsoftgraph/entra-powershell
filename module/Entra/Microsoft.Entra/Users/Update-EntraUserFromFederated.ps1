@@ -23,7 +23,7 @@ function Update-EntraUserFromFederated {
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{ "UserId" = $UserPrincipalName }
-        $params["Url"] = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
+        $params["Url"] = "/v1.0/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
 
         # Handle password conversion securely
         $passwordRedacted = $false

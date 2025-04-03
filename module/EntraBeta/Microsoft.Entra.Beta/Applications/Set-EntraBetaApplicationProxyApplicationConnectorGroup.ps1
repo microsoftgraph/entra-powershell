@@ -20,12 +20,12 @@ function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
         $body = @{}
         if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$OnPremisesPublishingProfileId/connectorGroup/" + '$ref'
+            $params["Uri"] = "/beta/applications/$OnPremisesPublishingProfileId/connectorGroup/" + '$ref'
         }
         if($null -ne $PSBoundParameters["ConnectorGroupId"])
         {
             $body = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                "@odata.id" = "/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
             }
             $body = $body | ConvertTo-Json
         }
@@ -48,7 +48,7 @@ function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = 'https://graph.microsoft.com/beta/directory/deletedItems/'   
+        $params["Uri"] = '/beta/directory/deletedItems/'   
         $params["Method"] = "POST"    
         if($null -ne $PSBoundParameters["Id"])
         {

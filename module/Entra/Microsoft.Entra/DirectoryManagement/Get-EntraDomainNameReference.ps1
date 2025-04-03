@@ -16,7 +16,7 @@ function Get-EntraDomainNameReference {
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
-        $baseUri = 'https://graph.microsoft.com/v1.0/domains'
+        $baseUri = '/v1.0/domains'
         $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id" }

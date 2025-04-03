@@ -35,7 +35,7 @@ function Add-EntraBetaGroupOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/beta/users/$TmpValue" }
+            $Value = @{ "@odata.id" = "/beta/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["GroupId"]) {

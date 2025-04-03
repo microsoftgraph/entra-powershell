@@ -22,9 +22,9 @@ function Add-EntraBetaServicePrincipalPolicy {
         if ($null -ne $PSBoundParameters["RefObjectId"]) {
             $RefObjectId = $PSBoundParameters["RefObjectId"]
         }
-        $uri = "https://graph.microsoft.com/beta/serviceprincipals/$id/Policies/" + '$ref'
+        $uri = "/beta/serviceprincipals/$id/Policies/" + '$ref'
         $body = @{
-            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/$RefObjectId"
+            "@odata.id" = "/beta/legacy/policies/$RefObjectId"
         }
         $body = $body | ConvertTo-Json
         

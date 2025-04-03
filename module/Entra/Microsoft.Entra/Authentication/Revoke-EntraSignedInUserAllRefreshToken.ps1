@@ -14,7 +14,7 @@ function Revoke-EntraSignedInUserAllRefreshToken {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/me/revokeSignInSessions' -Method POST).value
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri '/v1.0/me/revokeSignInSessions' -Method POST).value
         if ($response) {
             $responseType = New-Object Microsoft.Graph.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema
             $responseType.Value = $response

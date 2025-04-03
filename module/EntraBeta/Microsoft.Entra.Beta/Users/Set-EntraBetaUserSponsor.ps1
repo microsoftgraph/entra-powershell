@@ -35,7 +35,7 @@ function Set-EntraBetaUserSponsor {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand     
         $customHeaders['Content-Type'] = 'application/json'
 
-        $batchEndpoint = "https://graph.microsoft.com/beta/`$batch"
+        $batchEndpoint = "/beta/`$batch"
         
         # Initialize request collection
         $requests = @()
@@ -50,7 +50,7 @@ function Set-EntraBetaUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" = "https://graph.microsoft.com/beta/$targetResource/$sponsorId"
+                    "@odata.id" = "/beta/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"

@@ -19,12 +19,12 @@ function Set-EntraBetaApplicationProxyConnector {
         $body = @{}
         if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId/memberOf/" + '$ref'
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId/memberOf/" + '$ref'
         }
         if($null -ne $PSBoundParameters["ConnectorGroupId"])
         {
             $body = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$ConnectorGroupId"
+                "@odata.id" = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$ConnectorGroupId"
             }
             $body = $body | ConvertTo-Json
         }

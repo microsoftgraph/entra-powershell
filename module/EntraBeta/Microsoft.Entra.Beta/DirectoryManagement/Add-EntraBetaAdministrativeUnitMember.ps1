@@ -25,7 +25,7 @@ function Add-EntraBetaAdministrativeUnitMember {
         }
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "/v1.0/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {

@@ -24,7 +24,7 @@ function Get-EntraBetaUserDirectReport {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/beta/users'
+        $baseUri = '/beta/users'
         $properties = '$select=*'
         $Method = "GET"
        

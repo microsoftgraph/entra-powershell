@@ -59,7 +59,7 @@ function Add-EntraDeviceRegisteredUser {
         }
         if ($null -ne $PSBoundParameters["UserId"]) {
             $TmpValue = $PSBoundParameters["UserId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "/v1.0/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 

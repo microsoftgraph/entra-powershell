@@ -35,7 +35,7 @@ function Add-EntraBetaApplicationOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue"
+            $Value = "/v1.0/directoryObjects/$TmpValue"
             $params["OdataId"] = $Value
         }
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
