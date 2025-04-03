@@ -10,7 +10,7 @@ BeforeAll {
     Mock -CommandName Set-MgBetaUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
     Mock -CommandName Get-EntraContext -MockWith { @{
         Environment = "Global"
-    }} -ModuleName Microsoft.Entra.Beta.User
+    }} -ModuleName Microsoft.Entra.Beta.Users
     Mock -CommandName Get-EntraEnvironment -MockWith {return @{
         GraphEndpoint = "https://graph.microsoft.com"
     }} -ModuleName Microsoft.Entra.Beta.Users
