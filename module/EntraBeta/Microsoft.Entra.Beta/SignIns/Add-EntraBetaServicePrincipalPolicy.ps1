@@ -16,6 +16,8 @@ function Add-EntraBetaServicePrincipalPolicy {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["ID"]) {
             $id = $PSBoundParameters["ID"]
         }
@@ -24,7 +26,7 @@ function Add-EntraBetaServicePrincipalPolicy {
         }
         $uri = "/beta/serviceprincipals/$id/Policies/" + '$ref'
         $body = @{
-            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/$RefObjectId"
+            "@odata.id"="$rootUri/beta/legacy/policies/$RefObjectId"
         }
         $body = $body | ConvertTo-Json
         

@@ -20,6 +20,9 @@ function New-EntraBetaPrivateAccessApplication {
             # Create custom headers for the request
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
+            $environment = (Get-EntraContext).Environment
+            $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+
             # Prepare the request body for instantiating the Private Access app
             $bodyJson = @{ displayName = $ApplicationName } | ConvertTo-Json -Depth 99 -Compress
 
@@ -49,7 +52,7 @@ function New-EntraBetaPrivateAccessApplication {
             # If ConnectorGroupId has been specified, assign the connector group to the app
             if ($ConnectorGroupId) {
                 $bodyJson = @{
-                    "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                    "@odata.id"="$rootUri/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
                 } | ConvertTo-Json -Depth 99 -Compress
                 
                 $params = @{
