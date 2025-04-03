@@ -52,7 +52,7 @@ Describe "Add-EntraGroupOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "ec5813fb-346e-4a33-a014-b55ffee3662b" -Debug } | Should -Not -Throw
+                { Add-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
