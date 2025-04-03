@@ -20,7 +20,7 @@ function Remove-EntraDeletedDirectoryObject {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = "https://graph.microsoft.com/v1.0/directory/deletedItems/$DirectoryObjectId"
+        $URI = "/v1.0/directory/deletedItems/$DirectoryObjectId"
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response
     }    

@@ -28,7 +28,7 @@ function Get-EntraBetaSubscription {
         $params = @{}
         $topCount = 0
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/beta/directory/subscriptions"
+        $baseUri = "/beta/directory/subscriptions"
         $properties = "`$select=*"
     
         if ($PSBoundParameters.ContainsKey("Property")) {

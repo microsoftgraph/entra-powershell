@@ -18,6 +18,9 @@ function Set-EntraBetaUserManager {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }
@@ -35,7 +38,7 @@ function Set-EntraBetaUserManager {
         }
         if ($null -ne $PSBoundParameters["ManagerId"]) {
             $TmpValue = $PSBoundParameters["ManagerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/users/$TmpValue" }
+            $Value = @{ "@odata.id"="$rootUri/v1.0/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["UserId"]) {

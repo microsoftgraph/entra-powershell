@@ -18,6 +18,8 @@ function Add-EntraBetaServicePrincipalOwner {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }
@@ -35,7 +37,7 @@ function Add-EntraBetaServicePrincipalOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/beta/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["ServicePrincipalId"]) {

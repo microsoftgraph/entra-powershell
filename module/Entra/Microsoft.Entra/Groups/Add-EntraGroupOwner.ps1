@@ -17,7 +17,9 @@ function Add-EntraGroupOwner {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    
+        
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -59,7 +61,7 @@ function Add-EntraGroupOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/beta/users/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/beta/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 

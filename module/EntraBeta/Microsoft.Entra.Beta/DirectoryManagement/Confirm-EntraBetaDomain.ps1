@@ -15,7 +15,7 @@ function Confirm-EntraBetaDomain {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
-        $params["Uri"] = "https://graph.microsoft.com/beta/domains/$DomainName/verify"
+        $params["Uri"] = "/beta/domains/$DomainName/verify"
         $params["Method"] = "POST"
         
         if ($null -ne $PSBoundParameters["ForceTakeover"]) {

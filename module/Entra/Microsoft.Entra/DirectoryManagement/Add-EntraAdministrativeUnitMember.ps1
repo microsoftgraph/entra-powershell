@@ -21,9 +21,11 @@ function Add-EntraAdministrativeUnitMember {
             $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
             $Uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)/members/" + '$ref'
         }
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/v1.0/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 

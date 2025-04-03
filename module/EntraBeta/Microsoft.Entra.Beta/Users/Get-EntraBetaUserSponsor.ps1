@@ -32,7 +32,7 @@ function Get-EntraBetaUserSponsor {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/beta/users/$UserId/sponsors"
+        $baseUri = "/beta/users/$UserId/sponsors"
         $properties = '$select=*'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri/?$properties"        

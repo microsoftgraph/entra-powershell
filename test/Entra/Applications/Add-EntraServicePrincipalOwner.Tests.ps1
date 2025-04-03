@@ -7,6 +7,13 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = "Global"
+    }} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
+        GraphEndpoint = "https://graph.microsoft.com"
+    }} -ModuleName Microsoft.Entra.Applications
+
     Mock -CommandName New-MgServicePrincipalOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Applications
 }
 

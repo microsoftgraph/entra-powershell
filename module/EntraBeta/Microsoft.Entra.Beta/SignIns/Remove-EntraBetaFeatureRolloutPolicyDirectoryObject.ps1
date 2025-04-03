@@ -18,7 +18,7 @@ function Remove-EntraBetaFeatureRolloutPolicyDirectoryObject {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $params["Uri"] = 'https://graph.microsoft.com/beta/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $FeatureRolloutPolicyId, $DirectoryObjectId
+        $params["Uri"] = '/beta/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $FeatureRolloutPolicyId, $DirectoryObjectId
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

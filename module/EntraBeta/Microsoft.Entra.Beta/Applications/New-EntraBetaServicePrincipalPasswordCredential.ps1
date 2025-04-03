@@ -24,7 +24,7 @@ function New-EntraBetaServicePrincipalPasswordCredential {
             DisplayName        = $DisplayName
         }
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
+        $baseUri = '/beta/servicePrincipals'
         $URI = "$baseUri/$ServicePrincipalId/addPassword"
         $body = @{
             passwordCredential = @{

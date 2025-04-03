@@ -19,7 +19,7 @@ function Get-EntraBetaPolicy {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUrl = "https://graph.microsoft.com/beta/policies/"
+        $baseUrl = "/beta/policies/"
         $endpoints = @("homeRealmDiscoveryPolicies", 
             "claimsMappingPolicies",
             "tokenIssuancePolicies", 

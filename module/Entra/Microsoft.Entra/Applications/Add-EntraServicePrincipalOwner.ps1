@@ -18,6 +18,8 @@ function Add-EntraServicePrincipalOwner {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -59,7 +61,7 @@ function Add-EntraServicePrincipalOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/v1.0/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 
