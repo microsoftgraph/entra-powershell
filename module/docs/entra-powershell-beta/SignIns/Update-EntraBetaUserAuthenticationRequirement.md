@@ -64,8 +64,8 @@ Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft E
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
-Aliases: ObjectId
+Parameter Sets: Default
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -86,7 +86,7 @@ The user's status for per-user multifactor authentication, with possible values:
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: Default
 Aliases:
 
 Required: True
