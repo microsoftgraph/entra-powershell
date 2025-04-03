@@ -73,38 +73,57 @@ function Set-EntraAppRoleToApplicationUser {
             Write-ColoredVerbose -Message "User details: DisplayName $DisplayName | UserPrincipalName: $UserPrincipalName | MailNickname: $MailNickname" -Color "Cyan"
         
             try {
-                $existingUser = Get-EntraUser -Filter "userPrincipalName eq '$UserPrincipalName'" -ErrorAction SilentlyContinue
-                if ($existingUser) {
-                    Write-ColoredVerbose -Message "User $UserPrincipalName exists." -Color "Green"
+                $params = @{}
+                $baseUri = "/v1.0/users"
+                $query = "?`$filter=userPrincipalName eq '$UserPrincipalName'&`$select=Id,CreationType,DisplayName,GivenName,Mail,MailNickName,MobilePhone,OtherMails, UserPrincipalName,EmployeeId,JobTitle"
+                $params["Method"] = "GET"
+                $params["Uri"] = $baseUri+$query
+                $getUserResponse = Invoke-GraphRequest @params
+
+                # User doesn't exist
+                if($null -eq $getUserResponse.value -or $getUserResponse.value.Count -eq 0){
+                    $passwordProfile = @{
+                        ForceChangePasswordNextSignIn = $true
+                        Password = -join (((48..90) + (96..122)) * 16 | Get-Random -Count 16 | % { [char]$_ })
+
+                    }
+
+                    $userParams = @{
+                        displayName       = $DisplayName
+                        passwordProfile   = $passwordProfile
+                        userPrincipalName = $UserPrincipalName
+                        accountEnabled    = $false
+                        mailNickName      = $MailNickname
+                        mail              = $UserPrincipalName
+                    }
+
+                    $userParams = $userParams | ConvertTo-Json
+
+                    $newUserResponse = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $userParams
+                    $newUserResponse = $newUserResponse | ConvertTo-Json | ConvertFrom-Json
+
+                    Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
+
                     return [PSCustomObject]@{
-                        Id                = $existingUser.Id
-                        UserPrincipalName = $existingUser.UserPrincipalName
-                        DisplayName       = $existingUser.DisplayName
-                        MailNickname      = $existingUser.MailNickname
-                        Status            = 'Exists'
+                        Id                = $newUserResponse.Id
+                        UserPrincipalName = $newUserResponse.UserPrincipalName
+                        DisplayName       = $newUserResponse.DisplayName
+                        MailNickname      = $newUserResponse.MailNickname
+                        Mail              = $newUserResponse.Mail
+                        Status            = 'Created'
                     }
                 }
-        
-                $passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-                $passwordProfile.EnforceChangePasswordPolicy = $true
-                $passwordProfile.Password = -join (((48..90) + (96..122)) * 16 | Get-Random -Count 16 | % { [char]$_ })
-                $userParams = @{
-                    DisplayName       = $DisplayName
-                    PasswordProfile   = $passwordProfile
-                    UserPrincipalName = $UserPrincipalName
-                    AccountEnabled    = $false
-                    MailNickName      = $MailNickname
-                }
-        
-                $newUser = New-EntraUser @userParams
-                Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
-                
-                return [PSCustomObject]@{
-                    Id                = $newUser.Id
-                    UserPrincipalName = $newUser.UserPrincipalName
-                    DisplayName       = $newUser.DisplayName
-                    MailNickname      = $newUser.MailNickname
-                    Status            = 'Created'
+                else{
+                    # User exists
+                    Write-ColoredVerbose -Message "User $UserPrincipalName exists." -Color "Green"
+                    return [PSCustomObject]@{
+                        Id                = $getUserResponse.value.id
+                        UserPrincipalName = $getUserResponse.value.userPrincipalName
+                        DisplayName       = $getUserResponse.value.displayName
+                        MailNickname      = $getUserResponse.value.mailNickname
+                        Mail              = $getUserResponse.value.mail
+                        Status            = 'Exists'
+                    }
                 }
             }
             catch {
