@@ -28,6 +28,7 @@ Add-EntraBetaGroupOwner
  -GroupId <String>
  -OwnerId <String>
  [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 

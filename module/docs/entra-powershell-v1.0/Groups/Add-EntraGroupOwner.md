@@ -28,6 +28,7 @@ Add-EntraGroupOwner
  -GroupId <String>
  -OwnerId <String>
  [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 

@@ -28,6 +28,7 @@ Add-EntraBetaGroupMember
  -GroupId <String>
  -MemberId <String>
  [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 

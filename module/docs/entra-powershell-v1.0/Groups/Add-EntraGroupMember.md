@@ -28,6 +28,7 @@ Add-EntraGroupMember
  -GroupId <String>
  -MemberId <String>
  [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
