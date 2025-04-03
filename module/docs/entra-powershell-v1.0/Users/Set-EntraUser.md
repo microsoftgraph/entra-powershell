@@ -3,7 +3,7 @@ title: Set-EntraUser
 description: This article provides details on the Set-EntraUser command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 03/16/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -62,12 +62,14 @@ Set-EntraUser
 
 The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
 
+`Update-EntraUser` is an alias for `Set-EntraUser`.
+
 ## Examples
 
 ### Example 1: Update a user
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -DisplayName 'Updated user Name'
 ```
 
@@ -78,7 +80,7 @@ This example updates the specified user's Display name parameter.
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -AccountEnabled $true
 ```
 
@@ -90,9 +92,9 @@ This example updates the specified user's AccountEnabled parameter.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
-Get-EntraUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraUser -All | Where-Object -Property DisplayName -Match '(George|James|Education)' |
+ForEach-Object { Set-EntraUser -UserId $($_.Id) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -103,7 +105,7 @@ This example updates the specified user's as minors with parental consent.
 ### Example 4: Set the specified user's property
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
     UserId           = 'SawyerM@contoso.com'
     City             = 'Add city name'
@@ -111,11 +113,10 @@ $params = @{
     Country          = 'Add country name'
     Department       = 'Add department name'
     GivenName        = 'Sawyer Miller G'
-    ImmutableId      = '#1' 
     JobTitle         = 'Manager'
     MailNickName     = 'Add mailnickname'
     Mobile           = '9984534564'
-    OtherMails       = 'test12@Contoso.com'
+    OtherMails       = 'johndoe@contosodev.com'
     PasswordPolicies = 'DisableStrongPassword'
     State            = 'UP'
     StreetAddress    = 'Add address'
@@ -134,16 +135,11 @@ This example updates the specified user's property.
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params= @{
-UserId = 'SawyerM@contoso.com'
-PasswordProfile  = @{
-   Password= '*****'
-   ForceChangePasswordNextLogin = $true
-   EnforceChangePasswordPolicy = $false
-   }
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordProfile @{
+    Password = '*****'
+    ForceChangePasswordNextSignIn = $true
 }
-Set-EntraUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
@@ -154,7 +150,7 @@ This example updates the specified user's PasswordProfile parameter.
 ### Example 6: Set user's usage location for license assignment
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'User.ReadWrite.All'
 Set-EntraUser -UserId 'SawyerM@contoso.com' -UsageLocation 'US'
 ```
 
@@ -162,6 +158,63 @@ This example updates the specified user's Usage Location for license management.
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UsageLocation` specifies the user's usage location. Two-letter ISO 3166 country code. Required for licensed users to check service availability. Examples: US, JP, GB. Not nullable.
+
+### Example 7: Update user's password policy
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Get-EntraUser -UserId 'SawyerM@contoso.com' | Set-EntraUser -PasswordPolicies DisablePasswordExpiration
+```
+
+This example updates the specified user's password policy.
+
+Possible values for password policy include:
+
+- `DisableStrongPassword`: Allows weaker passwords than the default policy.
+- `DisablePasswordExpiration`: Prevents passwords from expiring.
+
+You can specify both values together, for example: `DisablePasswordExpiration` and `DisableStrongPassword`. For example, `Set-EntraUser -UserId 'SawyerM@contoso.com' -PasswordPolicies "DisablePasswordExpiration,DisableStrongPassword"`.
+
+### Example 8: Set user's extension properties
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
+$extensionName = (Get-EntraApplicationExtensionProperty -ApplicationId $application.Id).Name | Select-Object -First 1
+$additionalProperties = @{ $extensionName = "Survey.Report" }
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties $additionalProperties
+```
+
+This example updates the specified user's extension properties, for example, an app role for an application.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 9: update user's onPremisesExtension attributes properties
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraUser -UserId 'SawyerM@contoso.com' -AdditionalProperties @{
+    onPremisesExtensionAttributes = @{
+        extensionAttribute1 = "Job Group D"
+        extensionAttribute2 = "Audit Role"
+    }
+}
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
+
+### Example 10: update user's phone details
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraUser -UserId 'SawyerM@contoso.com' -BusinessPhones '+1 425 555 0109' -OfficeLocation '18/2111'
+```
+
+This example updates the specified user's onPremisesExtensionAttributes properties.
+
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ## Parameters
 
@@ -300,7 +353,7 @@ Accept wildcard characters: False
 
 This property links an on-premises Active Directory user account to its Microsoft Entra ID user object. You must specify this property when creating a new user account in Graph if the user's userPrincipalName uses a federated domain.
 
-Important: Do not use the $ and _ characters when specifying this property.
+Important: Do not use the $ and \_ characters when specifying this property.
 
 ```yaml
 Type: System.String
@@ -363,12 +416,13 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
+
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity
 
 Required: True
 Position: Named
@@ -658,6 +712,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+`Update-EntraUser` is an alias for `Set-EntraUser`.
 
 ## Related links
 
