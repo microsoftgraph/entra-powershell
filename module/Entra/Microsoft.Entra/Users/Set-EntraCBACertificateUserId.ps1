@@ -9,7 +9,7 @@ function  Set-EntraCBACertificateUserId {
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Cert,
         [Parameter(Mandatory = $true)]
         [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject", "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
-        [string]$CertificateMapping
+        [string[]]$CertificateMapping
     )
 
     PROCESS {
@@ -26,15 +26,22 @@ function  Set-EntraCBACertificateUserId {
 
         if ($Cert -eq $null) {
             # If it's a valid file path, pass it as -Path
-            $certUserIdObj = Get-EntraUserCertificateUserIdsFromCertificate -Path $CertPath -CertificateMapping $CertificateMapping
+            $allCertUserIds = Get-EntraUserCertificateUserIdsFromCertificate -Path $CertPath
         } elseif ($CertPath -eq $null)
         {
-            # If it's already a certificate object, pass it as -CertificateMapping
-            $certUserIdObj = Get-EntraUserCertificateUserIdsFromCertificate -Certificate $Cert -CertificateMapping $CertificateMapping
+            # If it's already a certificate object, pass it as -Certificate
+            $allCertUserIds = Get-EntraUserCertificateUserIdsFromCertificate -Certificate $Cert
         } else {
             throw "Invalid certificate object or path."
         }
 
+        # Filter the certificate user IDs based on the requested mappings
+        $certUserIdObj = @()
+        foreach ($mapping in $CertificateMapping) {
+            if ($allCertUserIds.$mapping) {
+                $certUserIdObj += $allCertUserIds.$mapping
+            }
+        }
 
         $userList = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/users?`$select=id"
         $userIdPattern = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
@@ -48,10 +55,9 @@ function  Set-EntraCBACertificateUserId {
         # Prepare the request body
         $body = @{
             authorizationInfo = @{
-                certificateUserIds = @($certUserIdObj) 
+                certificateUserIds = $certUserIdObj
             }
         } | ConvertTo-Json
-
 
         $apiCallUrl = "https://graph.microsoft.com/v1.0/users/$($UserId)?`$select=authorizationInfo"
         $response = Invoke-GraphRequest -Uri $apiCallUrl -Method PATCH -Body $body
