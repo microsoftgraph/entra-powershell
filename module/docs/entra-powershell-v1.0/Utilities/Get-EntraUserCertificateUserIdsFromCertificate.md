@@ -21,7 +21,7 @@ Generates an object representing all the values contained in a certificate file 
 
 ## SYNTAX
 ```syntax
-Get-MsIdCBACertificateUserIdFromCertificate [-Path] <string> [[-Certificate] <System.Security.Cryptography.X509Certificates.X509Certificate2> [-CertificateMapping] <string>] [<CommonParameters>]
+Get-EntraUserCertificateUserIdsFromCertificate [-Path] <string> [[-Certificate] <System.Security.Cryptography.X509Certificates.X509Certificate2> [-CertificateMapping] <string>] [<CommonParameters>]
 ```
 ## DESCRIPTION
 
@@ -32,7 +32,7 @@ Returns an object containing the certificateUserIDs configurations for Certifica
 
 ### EXAMPLE 1
 ```powershell
-Get-MsIdCBACertificateUserIdFromCertificate C:\path\to\certificate.cer
+Get-EntraUserCertificateUserIdsFromCertificate C:\path\to\certificate.cer
 ```
 
 ```Output
@@ -49,7 +49,7 @@ PrincipalName                  X509:<PN>bob@woodgrove.com
 
 ### EXAMPLE 2
 ```powershell
-Get-MsIdCBACertificateUserIdFromCertificate C:\path\to\certificate.cer -CertificateMapping Subject
+Get-EntraUserCertificateUserIdsFromCertificate C:\path\to\certificate.cer -CertificateMapping Subject
 ```
 
 ```Output
@@ -59,7 +59,7 @@ X509:<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest
 ### EXAMPLE 3
 ```powershell
 $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
-Get-MsIdCBACertificateUserIdFromCertificate -Certificate $certificate -CertificateMapping Subject
+Get-EntraUserCertificateUserIdsFromCertificate -Certificate $certificate -CertificateMapping Subject
 ```
 
 ```Output
