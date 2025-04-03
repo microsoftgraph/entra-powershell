@@ -59,7 +59,7 @@ function Add-EntraGroupOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id" = "/beta/users/$TmpValue" }
+            $Value = @{ "@odata.id" ="https://graph.microsoft.com/beta/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 
