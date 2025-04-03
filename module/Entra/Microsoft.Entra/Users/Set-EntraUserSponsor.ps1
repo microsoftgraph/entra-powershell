@@ -40,6 +40,9 @@ function Set-EntraUserSponsor {
         # Initialize request collection
         $requests = @()
         
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        
         # Determine target endpoint based on parameter set
         $targetResource = if ($Type -eq "User") { "users" } else { "groups" }
         $targetEndpoint = "users/$UserId/sponsors/`$ref"
@@ -50,7 +53,7 @@ function Set-EntraUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" = "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
+                    "@odata.id" = "$rootUri/v1.0/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"

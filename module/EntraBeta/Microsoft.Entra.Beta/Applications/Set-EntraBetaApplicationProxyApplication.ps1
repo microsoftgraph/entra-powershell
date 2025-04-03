@@ -46,6 +46,9 @@ function Set-EntraBetaApplicationProxyApplication {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
+
+        $environment = (Get-EntraContext).Environment
+        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
             $ApplicationId = $PSBoundParameters["ApplicationId"]
         }
@@ -115,7 +118,7 @@ function Set-EntraBetaApplicationProxyApplication {
         if ($null -ne $PSBoundParameters["ConnectorGroupId"]) {
             $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
             $ConnectorGroupBody = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                "@odata.id" = "$rootUri/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
             }
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "/beta/applications/$ApplicationId/connectorGroup/" + '$ref'
