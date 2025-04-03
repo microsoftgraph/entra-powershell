@@ -21,7 +21,7 @@ function Set-EntraDirSyncEnabled {
             $body["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
         }        
         if ([string]::IsNullOrWhiteSpace($TenantId)) {           
-            $OrganizationId = ((invoke-mggraphrequest -Method GET -Uri "/v1.0/directory/onPremisesSynchronization/").value).id           
+            $OrganizationId = ((Invoke-MgGraphRequest -Method GET -Uri "/v1.0/directory/onPremisesSynchronization/").value).id           
             $URL = "/v1.0/organization/" + $OrganizationId
         }
         
