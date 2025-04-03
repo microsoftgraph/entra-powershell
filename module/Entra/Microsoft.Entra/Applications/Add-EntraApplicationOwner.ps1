@@ -24,6 +24,7 @@ function Add-EntraApplicationOwner {
 
         $environment = (Get-EntraContext).Environment
         $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $newOwner["@odata.id"] = "$rootUri/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
             $params["BodyParameter"] = $newOwner

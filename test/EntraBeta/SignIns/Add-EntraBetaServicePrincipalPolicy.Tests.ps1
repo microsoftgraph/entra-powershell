@@ -9,6 +9,8 @@ BeforeAll {
     
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Get-EntraContext -MockWith {Environment="Global"} -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Get-EntraEnvironment -MockWith {GraphEndpoint="https://graph.microsoft.com"} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Add-EntraBetaServicePrincipalPolicy" {

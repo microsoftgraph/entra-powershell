@@ -8,6 +8,8 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    Mock -CommandName Get-EntraContext -MockWith {Environment="Global"} -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraEnvironment -MockWith {GraphEndpoint="https://graph.microsoft.com"} -ModuleName Microsoft.Entra.Beta.Groups
     Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
 }
 
