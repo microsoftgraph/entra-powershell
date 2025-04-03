@@ -49,7 +49,7 @@ function New-EntraBetaPrivateAccessApplication {
             # If ConnectorGroupId has been specified, assign the connector group to the app
             if ($ConnectorGroupId) {
                 $bodyJson = @{
-                    "@odata.id" = "/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                    "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
                 } | ConvertTo-Json -Depth 99 -Compress
                 
                 $params = @{

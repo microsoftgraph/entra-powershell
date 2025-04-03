@@ -25,7 +25,7 @@ function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
         if($null -ne $PSBoundParameters["ConnectorGroupId"])
         {
             $body = @{
-                "@odata.id" = "/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
             }
             $body = $body | ConvertTo-Json
         }

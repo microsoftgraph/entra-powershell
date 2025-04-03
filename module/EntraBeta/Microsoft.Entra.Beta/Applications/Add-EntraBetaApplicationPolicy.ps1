@@ -25,7 +25,7 @@ function Add-EntraBetaApplicationPolicy {
         }
         $uri = "/beta/applications/$id/Policies/" + '$ref'
         $body = @{
-            "@odata.id" = "/beta/legacy/policies/$RefObjectId"
+            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/$RefObjectId"
         }
         $body = $body | ConvertTo-Json
         Write-Debug("============================ TRANSFORMATIONS ============================")
