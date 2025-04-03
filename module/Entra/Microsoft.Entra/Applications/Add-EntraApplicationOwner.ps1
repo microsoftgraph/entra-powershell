@@ -23,7 +23,7 @@ function Add-EntraApplicationOwner {
         $newOwner = @{}
 
         if ($null -ne $PSBoundParameters["OwnerId"]) {
-            $newOwner["@odata.id"] = "/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
+            $newOwner["@odata.id"] = "https://graph.microsoft.com/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
             $params["BodyParameter"] = $newOwner
         }
         if ($null -ne $PSBoundParameters["WarningVariable"]) {
