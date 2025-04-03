@@ -53,7 +53,9 @@ BeforeAll {
         } 
     } -ModuleName Microsoft.Entra.Users
 
-    Mock -CommandName Get-EntraEnvironment -MockWith {GraphEndpoint="https://graph.microsoft.com"} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
+        GraphEndpoint = "https://graph.microsoft.com"
+    }} -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserSponsor" {
