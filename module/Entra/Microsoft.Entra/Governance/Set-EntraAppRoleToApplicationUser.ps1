@@ -14,7 +14,7 @@ function Set-EntraAppRoleToApplicationUser {
         [Parameter(Mandatory = $true,
             HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv",
             ParameterSetName = 'ExportResults')]
-        #[ValidateNotNullOrEmpty()]
+        [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FileName,
 

@@ -48,7 +48,7 @@ BeforeAll {
                 "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "DeletedDateTime"           = $null
                 "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                "DisplayName"               = "Mock-App"
+                " DisplayName"               = "Mock-App"
                 "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
                 "IsDeviceOnlyAuthSupported" = $True
                 "IsFallbackPublicClient"    = $true
@@ -144,25 +144,41 @@ BeforeAll {
             }
         )
     }
+    $csv = {
+        $object1 = [PSCustomObject]@{
+                userPrincipalName = 'user1@contoso.com'
+                displayName	= 'User 1'
+                mailNickname = 'user1'
+                Role = 'Admin'
+                memberType = 'users+groups'
+            }
+
+        $arr += $object1
+        return $arr
+    }
 
     Mock -CommandName Get-EntraUser -MockWith {} -ModuleName Microsoft.Entra.Governance
     Mock -CommandName New-EntraUser -MockWith { $newUserScriptblock } -ModuleName Microsoft.Entra.Governance
     Mock -CommandName Get-EntraApplication -MockWith { $getApplicationScriptblock } -ModuleName Microsoft.Entra.Governance
+    Mock -CommandName Get-MgApplication -MockWith { $getApplicationScriptblock } -ModuleName Microsoft.Entra.Governance
     Mock -CommandName New-EntraApplication -MockWith {} -ModuleName Microsoft.Entra.Governance
     Mock -CommandName New-EntraServicePrincipal -MockWith {} -ModuleName Microsoft.Entra.Governance
     Mock -CommandName Get-EntraServicePrincipal -MockWith { $getServicePrincipalScriptblock } -ModuleName Microsoft.Entra.Governance
     Mock -CommandName Get-EntraServicePrincipalAppRoleAssignedTo -MockWith {} -ModuleName Microsoft.Entra.Governance
     Mock -CommandName New-EntraServicePrincipalAppRoleAssignment -MockWith { $newServicePrincipalAppRoleAssignmentScriptblock } -ModuleName Microsoft.Entra.Governance
+    Mock Test-Path { return $true } -ModuleName Microsoft.Entra.Governance
+    Mock Import-Csv { $csv } -ModuleName Microsoft.Entra.Governance
 }
   
-Describe "Set-EntraDirectoryRoleDefinition" {
-    Context "Test for Set-EntraDirectoryRoleDefinition" {
+Describe "Set-EntraAppRoleToApplicationUser" {
+    Context "Test for Set-EntraAppRoleToApplicationUser" {
         It "Should return empty object" {
-            $result =  Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\Path\To\users.csv" -ApplicationName "TestApp"
+            $path = "C:\Path\To\users.csv"
+            $result =  Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName $path -ApplicationName "Mock-App"
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName New-EntraUser -ModuleName Microsoft.Entra.Governance -Times 1
             Should -Invoke -CommandName Get-EntraApplication -ModuleName Microsoft.Entra.Governance -Times 1
+            Should -Invoke -CommandName New-EntraUser -ModuleName Microsoft.Entra.Governance -Times 1            
             Should -Invoke -CommandName Get-EntraServicePrincipal -ModuleName Microsoft.Entra.Governance -Times 1
             Should -Invoke -CommandName New-EntraServicePrincipalAppRoleAssignment -ModuleName Microsoft.Entra.Governance -Times 1
         }
