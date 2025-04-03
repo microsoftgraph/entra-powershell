@@ -27,6 +27,7 @@ Add a user or service principal as an owner of a Microsoft 365 or security group
 Add-EntraGroupOwner
  -GroupId <String>
  -OwnerId <String>
+ [-WhatIf]
  [<CommonParameters>]
 ```
 

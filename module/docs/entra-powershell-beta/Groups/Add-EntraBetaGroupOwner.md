@@ -27,6 +27,7 @@ Add a user or service principal as an owner of a Microsoft 365 or security group
 Add-EntraBetaGroupOwner
  -GroupId <String>
  -OwnerId <String>
+ [-WhatIf]
  [<CommonParameters>]
 ```
 
