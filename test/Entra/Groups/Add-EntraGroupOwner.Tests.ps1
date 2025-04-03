@@ -39,7 +39,6 @@ Describe "Add-EntraGroupOwner" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
             Add-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "ec5813fb-346e-4a33-a014-b55ffee3662b"
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
             Should -Invoke -CommandName New-MgGroupOwnerByRef -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
