@@ -310,7 +310,12 @@ function Set-EntraAppRoleToApplicationUser {
         
             try {
                 # Get existing application
-                $application = Get-MgApplication -ApplicationId $ApplicationId -ErrorAction Stop
+
+                $params = @{}
+                $params["Uri"] = "/v1.0/applications/$ApplicationId"
+                $params["Method"] = "GET"
+                $application = Invoke-GraphRequest @params
+
                 if (-not $application) {
                     Write-Error "Application not found with ID: $ApplicationId"
                     return $null
@@ -321,13 +326,13 @@ function Set-EntraAppRoleToApplicationUser {
                 if($null -ne $application.AppRoles){
                     $existingRoles = $application.AppRoles
                 }
-                $appRolesList = New-Object 'System.Collections.Generic.List[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]'
+                $appRolesList = New-Object System.Collections.ArrayList
         
                 foreach ($role in $existingRoles) {
                     $appRolesList.Add($role)
                 }
         
-                $allowedMemberTypes = @("User")  # Define allowed member types
+                $allowedMemberTypes = @("User","Application")  # Define allowed member types
                 $createdRoles = [System.Collections.ArrayList]::new()
         
                 foreach ($roleName in $UniqueRoles) {
@@ -338,13 +343,13 @@ function Set-EntraAppRoleToApplicationUser {
                     }
         
                     # Create new AppRole object
-                    $appRole = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]@{
-                        AllowedMemberTypes = $allowedMemberTypes
-                        Description        = $roleName
-                        DisplayName        = $roleName
-                        Id                 = [Guid]::NewGuid()
-                        IsEnabled          = $true
-                        Value              = $roleName
+                    $appRole = @{
+                        allowedMemberTypes = $allowedMemberTypes
+                        description        = $roleName
+                        displayName        = $roleName
+                        id                 = [Guid]::NewGuid()
+                        isEnabled          = $true
+                        value              = $roleName
                     }
         
                     # Add to the typed list
@@ -356,21 +361,24 @@ function Set-EntraAppRoleToApplicationUser {
                 if ($createdRoles.Count -gt 0) {
                     # Update application with the new typed list
                     $params = @{
-                        ApplicationId = $ApplicationId
-                        AppRoles      = $appRolesList
-                        Tags          = @("WindowsAzureActiveDirectoryIntegratedApp")
+                        appRoles      = $appRolesList
+                        tags          = @("WindowsAzureActiveDirectoryIntegratedApp")
                     }
+
+                    $params = $params | ConvertTo-Json -Depth 10
+
+                    $patchResponse = Invoke-GraphRequest -Uri "/v1.0/applications/$ApplicationId" -Method PATCH -Body $params
+                    $patchResponse = $patchResponse | ConvertTo-Json | ConvertFrom-Json
         
-                    Update-MgApplication @params
                     Write-ColoredVerbose "Updated application with $($createdRoles.Count) new roles" -Color "Green"
         
                     return $createdRoles | ForEach-Object {
                         [PSCustomObject]@{
                             ApplicationId = $ApplicationId
-                            RoleId        = $_.Id
-                            DisplayName   = $_.DisplayName
-                            Description   = $_.Description
-                            Value         = $_.Value
+                            RoleId        = $_.id
+                            DisplayName   = $_.displayName
+                            Description   = $_.description
+                            Value         = $_.value
                             IsEnabled     = $true
                         }
                     }
