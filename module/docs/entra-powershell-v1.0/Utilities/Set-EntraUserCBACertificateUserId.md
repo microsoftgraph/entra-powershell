@@ -1,0 +1,142 @@
+---
+title: Set-EntraUserCBACertificateUserId
+description: Sets certificate-based authentication user IDs for a user in Microsoft Entra ID
+ms.topic: reference
+ms.date: 04/03/2025
+ms.author: eunicewaweru
+manager: vimrang
+author: peichensun
+ms.reviewer: peichensun
+
+external help file: Microsoft.Entra.Utilities-Help.xml
+Module Name: Microsoft.Entra.Utilities
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Utilities/Set-EntraUserCBACertificateUserId
+
+schema: 2.0.0
+---
+
+# Set-EntraUserCBACertificateUserId
+
+## Synopsis
+
+Sets certificate-based authentication user IDs for a user in Entra ID using a certificate file or object.
+
+## Syntax
+
+```powershell
+Set-EntraUserCBACertificateUserId
+ -UserId <string>
+ [-CertPath <string>]
+ [-Cert <System.Security.Cryptography.X509Certificates.X509Certificate2>]
+ -CertificateMapping <string[]>
+ [<CommonParameters>]
+```
+
+## Description
+
+Configures certificate-based authentication user IDs for a user in Entra ID. The cmdlet accepts either a certificate file path or a certificate object, along with one or more certificate mapping types to be applied to the user's authorization information.
+
+In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
+
+- Privileged Authentication Administrator  (for Cloud-only users)
+- Hybrid Identity Administrator (for synchronized users)
+
+## Examples
+
+### Example 1: Update user's certificate 
+
+```powershell
+Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
+```
+
+This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields.
+
+### Example 2
+
+```powershell
+$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
+Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
+```
+
+This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields.
+
+## Parameters
+
+### -UserId
+
+The unique identifier of the user in Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: ObjectId, UPN, Identity, UserId
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CertPath
+
+Path to the certificate file.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: CertificatePath
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Cert
+
+Certificate object from which the certificate user IDs will be extracted.
+
+```yaml
+Type: System.Security.Cryptography.X509Certificates.X509Certificate2
+Parameter Sets: (All)
+Aliases: CertificateObject
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CertificateMapping
+
+One or more certificate mapping types to be applied. Valid values are: PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, and IssuerAndSerialNumber.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+
+[https://aka.ms/aadcba](https://aka.ms/aadcba)
+[certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids) 
