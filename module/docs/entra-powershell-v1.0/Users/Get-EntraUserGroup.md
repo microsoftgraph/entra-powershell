@@ -123,6 +123,22 @@ This cmdlet retrieves a list of groups to which a specific user belongs using th
 
 ## Parameters
 
+### -UserId
+
+Specifies the ID of a user's UserPrincipalName or UserId in Microsoft Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -All
 
 List all pages.

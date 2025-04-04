@@ -63,7 +63,7 @@ The object ID of the user for which the thumbnail photo is retrieved.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named

@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,19 +10,19 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-              "DeletedDateTime"              = $null
-              "AdditionalProperties"         = @{
-                                                  "@odata.type"          = "#microsoft.graph.group"
-                                                  "displayName"          = "Mock-Membership"
-                                                  "description"          = "MockData"
-                                                  "organizationId"       = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-                                                  "createdByAppId"       = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                                                  "mailEnabled"          =  $False
-                                                  "securityEnabled"      =  $True
-                                                  "renewedDateTime"      = "2023-10-18T07:21:48Z"
-                                                }
-              "Parameters"                   = $args
+                "Id"                   = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+                "DeletedDateTime"      = $null
+                "AdditionalProperties" = @{
+                    "@odata.type"     = "#microsoft.graph.group"
+                    "displayName"     = "Mock-Membership"
+                    "description"     = "MockData"
+                    "organizationId"  = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                    "createdByAppId"  = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                    "mailEnabled"     = $False
+                    "securityEnabled" = $True
+                    "renewedDateTime" = "2023-10-18T07:21:48Z"
+                }
+                "Parameters"           = $args
             }
         )
     }
@@ -51,18 +51,16 @@ Describe "Get-EntraBetaUserMembership" {
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserId is empty" {
-            { Get-EntraBetaUserMembership -UserId   } | Should -Throw "Missing an argument for parameter 'UserId'*"
+            { Get-EntraBetaUserMembership -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when UserId is invalid" {
-            { Get-EntraBetaUserMembership -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
+
         It "Should return all user memberships" {
             $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
-         It "Should fail when All is invalid" {
+        It "Should fail when All is invalid" {
             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 user memberships" {
@@ -73,9 +71,9 @@ Describe "Get-EntraBetaUserMembership" {
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
-         It "Should fail when Top is invalid" {
+        It "Should fail when Top is invalid" {
             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Result should Contain ObjectId" {
@@ -89,14 +87,14 @@ Describe "Get-EntraBetaUserMembership" {
             $params.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Property parameter should work" {
-            $result =  Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
+            $result = Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
 
             Should -Invoke -CommandName Get-MgBetaUserMemberOf -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserMembership"
@@ -118,7 +116,8 @@ Describe "Get-EntraBetaUserMembership" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaUserMembership -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

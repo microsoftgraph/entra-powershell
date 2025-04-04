@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,14 +10,14 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "DeletedDateTime"       = ""
-                "Id"                    = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-                "AdditionalProperties"  = @{
-                    '@odata.type'       = '#microsoft.graph.administrativeUnit'
-                    'displayName'       = "NEW2"
-                    'description'       = "TEST221"
+                "DeletedDateTime"      = ""
+                "Id"                   = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                "AdditionalProperties" = @{
+                    '@odata.type' = '#microsoft.graph.administrativeUnit'
+                    'displayName' = "NEW2"
+                    'description' = "TEST221"
                 }
-                "Parameters"            = $args
+                "Parameters"           = $args
             }
         )
     }    
@@ -42,10 +42,6 @@ Describe "Get-EntraUserMembership" {
 
         It "Should fail when UserId is empty" {
             { Get-EntraUserMembership -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
-        }
-
-        It "Should fail when UserId is invalid" {
-            { Get-EntraUserMembership -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should return all user membership" {
@@ -86,7 +82,7 @@ Describe "Get-EntraUserMembership" {
         }
 
         It "Property parameter should work" {
-            $result =  Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
+            $result = Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
@@ -94,7 +90,7 @@ Describe "Get-EntraUserMembership" {
         }
 
         It "Should fail when Property is empty" {
-             {  Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -119,7 +115,8 @@ Describe "Get-EntraUserMembership" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraUserMembership -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -66,7 +66,7 @@ Specifies the ID of an object.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named

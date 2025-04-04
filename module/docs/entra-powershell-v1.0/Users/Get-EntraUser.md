@@ -473,7 +473,7 @@ Specifies the ID (as a User Principal Name (UPN) or UserId) of a user in Microso
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named

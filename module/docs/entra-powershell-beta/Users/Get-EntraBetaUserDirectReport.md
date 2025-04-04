@@ -124,7 +124,7 @@ Specifies the ID of a user's UserPrincipalName or UserId in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
