@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Sets certificate-based authentication user IDs for a user in Entra ID using a certificate file or object.
+Sets certificate-based authentication user IDs for a user in Microsoft Entra ID using a certificate file or object.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ Set-EntraUserCBACertificateUserId
 
 ## Description
 
-Configures certificate-based authentication user IDs for a user in Entra ID. The cmdlet accepts either a certificate file path or a certificate object, along with one or more certificate mapping types to be applied to the user's authorization information.
+Configures certificate-based authentication user IDs for a user in Microsoft Entra ID. The cmdlet accepts either a certificate file path or a certificate object, along with one or more certificate mapping types to be applied to the user's authorization information.
 
 In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
 
@@ -43,19 +43,19 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 ## Examples
 
-### Example 1: Update user's certificate 
+### Example 1: Update user's certificate authorization information using certificate path
 
 ```powershell
-Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
+Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields.
 
-### Example 2
+### Example 2: Update user's certificate authorization information using a certificate 
 
 ```powershell
 $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
-Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
+Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields.
@@ -64,7 +64,7 @@ This example sets the certificate user IDs for the specified user using a certif
 
 ### -UserId
 
-The unique identifier of the user in Entra ID.
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
