@@ -8,7 +8,7 @@ function Set-EntraUserCBACertificateUserId {
         [Parameter(Mandatory = $true, 
             HelpMessage = 'The unique identifier for the user (User Principal Name or UserId).',
             Position = 0)]
-        [Alias('ObjectId', 'UPN', 'Identity', 'UserId')]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 

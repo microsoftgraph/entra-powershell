@@ -69,7 +69,7 @@ Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId, UPN, Identity, UserId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
