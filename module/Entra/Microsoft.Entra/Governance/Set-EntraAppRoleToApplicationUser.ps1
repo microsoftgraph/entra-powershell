@@ -99,7 +99,7 @@ function Set-EntraAppRoleToApplicationUser {
 
                     $userParams = $userParams | ConvertTo-Json
 
-                    $newUserResponse = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $userParams
+                    $newUserResponse = Invoke-GraphRequest -Uri '/v1.0/users?$select=*' -Method POST -Body $userParams
                     $newUserResponse = $newUserResponse | ConvertTo-Json | ConvertFrom-Json
 
                     Write-ColoredVerbose -Message "Created new user: $UserPrincipalName" -Color "Green"
@@ -220,13 +220,19 @@ function Set-EntraAppRoleToApplicationUser {
     
             try {
                 # Check if assignment exists
-    
-                $servicePrincipalObject = Get-EntraServicePrincipal -ServicePrincipalId $ServicePrincipalId
+
+                $params = @{}
+                $params["Uri"] = "/v1.0/servicePrincipals/$ServicePrincipalId"
+                $params["Method"] = "GET"
+                $servicePrincipalObject = Invoke-GraphRequest @params
                 $appRoleId = ($servicePrincipalObject.AppRoles | Where-Object { $_.displayName -eq $RoleDisplayName }).Id
-    
-                $existingAssignment = Get-EntraServicePrincipalAppRoleAssignedTo -ServicePrincipalId $servicePrincipalObject.Id | Where-Object { $_.AppRoleId -eq $appRoleId } -ErrorAction SilentlyContinue
-    
-                if ($existingAssignment) {
+
+                $params = @{}
+                $params["Uri"] = "/v1.0/servicePrincipals/$ServicePrincipalId/appRoleAssignedTo"
+                $params["Method"] = "GET"
+                $existingAssignment = (Invoke-GraphRequest @params).value | Where-Object { $_.AppRoleId -eq $appRoleId } -ErrorAction SilentlyContinue
+
+                if($existingAssignment){
                     Write-ColoredVerbose "Role assignment already exists for user '$ApplicationName' with role '$RoleDisplayName'" -Color "Yellow"
                 
                     return [PSCustomObject]@{
@@ -240,16 +246,27 @@ function Set-EntraAppRoleToApplicationUser {
                 }
         
                 # Create new assignment
-                $newAssignment = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $servicePrincipalObject.Id -ResourceId $servicePrincipalObject.Id -Id $appRoleId -PrincipalId $UserId
+
+                $assignmentParams = @{
+                    appRoleId       = $appRoleId
+                    principalId     = $UserId
+                    resourceId      = $ServicePrincipalId
+                }
+
+                $assignmentParams = $assignmentParams | ConvertTo-Json
+
+                $assignmentResponse = Invoke-GraphRequest -Uri "/v1.0/servicePrincipals/$ServicePrincipalId/appRoleAssignments" -Method POST -Body $assignmentParams
+                $assignmentResponse = $assignmentResponse | ConvertTo-Json | ConvertFrom-Json
+
                 Write-ColoredVerbose "Created new role assignment for user '$UserId' - AppName: '$ApplicationName' with role '$RoleDisplayName'" -Color "Green"
         
                 return [PSCustomObject]@{
                     ServicePrincipalId = $ServicePrincipalId
                     PrincipalId        = $UserId
                     AppRoleId          = $appRoleId
-                    AssignmentId       = $newAssignment.Id
+                    AssignmentId       = $assignmentResponse.value.Id
                     Status             = 'Created'
-                    CreatedDateTime    = $newAssignment.CreatedDateTime #(Get-Date).ToUniversalTime().ToString("o")  # ISO 8601 format
+                    CreatedDateTime    = $assignmentResponse.value.CreatedDateTime #(Get-Date).ToUniversalTime().ToString("o")  # ISO 8601 format
                 }
             }
             catch {
