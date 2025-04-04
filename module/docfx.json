@@ -18,7 +18,7 @@
     ],
     "versions": {
       "entra-powershell-preview": { "dest": "entra-powershell-preview" },
-      "entra-powershell-beta-preview": { "dest": "entra-powershell-beta-preview" },
+      "entra-powershell-beta-preview": { "dest": "entra-powershell-beta-preview" }
     },
     "overwrite": [],
     "externalReference": [],
@@ -27,10 +27,10 @@
       "extendBreadcrumb": true,
       "feedback_system": "Standard",
       "ms.devlang": "powershell",
-      "ms.prod": "powershell",
       "ms.topic": "reference",
       "ms.author": "stevemutungi",
       "author": "SteveMutungi254",
+      "uhfHeaderId": "MSDocsHeader-DotNet"
     },
     "template": [],
     "markdownEngineName": "markdig",

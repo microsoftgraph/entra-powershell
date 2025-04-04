@@ -28,11 +28,13 @@ function Get-ModuleBasePath {
 }
 
 function Get-ModuleVersion {
-    (Get-ModuleManifestFile).FullName | Test-ModuleManifest | Select-Object -ExpandProperty Version
+	# Added -ErrorAction SilentlyContinue due to validation failure on Microsoft.Entra RequiredModules
+	# The RequiredModules are the Microsoft.Entra.* sub-modules
+    (Get-ModuleManifestFile).FullName | Test-ModuleManifest -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Version
 }
 
 function Get-ModuleFiles {
-    (Get-ModuleManifestFile).FullName | Test-ModuleManifest | Select-Object -ExpandProperty FileList
+    (Get-ModuleManifestFile).FullName | Test-ModuleManifest -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FileList
 }
 
 function Get-PSGalleryRepoName {
@@ -82,17 +84,19 @@ function Register-LocalGallery {
 	}
 
 	$null = Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation ($repoPath) -ScriptSourceLocation ($repoPath) -InstallationPolicy Trusted
+	$null = Register-PSResourceRepository -Name (Get-LocalPSRepoName) -Uri ($repoPath)
 }
 
 function Unregister-LocalGallery {    
 	$null = Unregister-PSRepository (Get-LocalPSRepoName)
+	$null = Unregister-PSResourceRepository (Get-LocalPSRepoName)
 }
 
 function Update-ModuleVersion {
 	[cmdletbinding()]
 	param(
 		[switch] $Minor,
-		[switch] $Mayor,
+		[switch] $Major,
 		[switch] $Build
 	)
 
@@ -111,7 +115,7 @@ function Update-ModuleVersion {
 		$v.Minor++
 	}
 
-	if ($Mayor.IsPresent) {
+	if ($Major.IsPresent) {
 		$v.Major++
 	}
 
@@ -136,40 +140,67 @@ function Create-ModuleFolder {
 		$null = Remove-Item -Recurse -Force $modulesDirectory
 	}
 
-	$thisModuleDirectory = Join-Path $modulesDirectory (Get-ModuleName)
-	$targetDirectory = Join-Path $thisModuleDirectory (Get-ModuleVersion).tostring()
+	$modules = @()
+	$moduleName = Get-ModuleName
+	$moduleVersion = Get-ModuleVersion
 
-
-	$null = New-Item -Path $targetDirectory -ItemType Directory
-
-	$ignorableSegmentCount = ((Get-ModuleBasePath).replace("`\", '/') -split '/').count
-	$sourceFileList = @()
-	$destinationFileList = @()
-	Get-ModuleFiles | ForEach-Object {
-		$normalizedFile = $_.replace("`\", '/')
-		$segments = $normalizedFile -split '/'
-		$relativeSegments = $segments[$ignorableSegmentCount..($segments.length - 1)]
-		$relativePath = $relativeSegments -join '/'
-
-		$sourceFileList += Join-Path (Get-ModuleBasePath) $relativePath
-		$destinationFileList += Join-Path $targetDirectory $relativePath
+	if($moduleVersion -is [array])
+	{
+		$moduleVersion = $moduleVersion[0]
 	}
 
-	0..($sourceFileList.length - 1) | ForEach-Object {
-		$parent = Split-Path -Parent $destinationFileList[ $_ ]
-		if ( -not (Test-Path $parent) ) {
-			$null = New-Item -Path $parent -ItemType Directory
+	if($moduleName -isnot [array]){
+		$modules += $moduleName
+	}
+	else{
+		$modules = $moduleName
+	}
+
+	foreach($module in $modules){
+		$thisModuleDirectory = Join-Path $modulesDirectory $module
+		$targetDirectory = Join-Path $thisModuleDirectory $moduleVersion.tostring()
+
+		$null = New-Item -Path $targetDirectory -ItemType Directory
+
+		$ignorableSegmentCount = ((Get-ModuleBasePath).replace("`\", '/') -split '/').count
+		$sourceFileList = @()
+		$destinationFileList = @()
+		$moduleFiles = @()
+
+		if(($module -eq 'Microsoft.Entra') -or ($module -eq 'Microsoft.Entra.Beta')){
+			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psd1" }
+			$moduleFiles +=  Get-ModuleFiles | Where { $_ -like "*$module.psm1" }
+		}
+		else{
+			$moduleFiles +=  Get-ModuleFiles | Where  { $_ -like "*$module*" }
 		}
 
-		$destinationName = Split-Path -Leaf $destinationFileList[ $_ ]
-		$syntaxOnlySourceName = Split-Path -Leaf $sourceFileList[ $_ ]
-		$sourceActualName = (Get-ChildItem (Split-Path -Parent $sourceFileList[ $_ ]) -Filter $syntaxOnlySourceName).name
+		$moduleFiles | ForEach-Object {
+			$normalizedFile = $_.replace("`\", '/')
+			$segments = $normalizedFile -split '/'
+			$relativeSegments = $segments[$ignorableSegmentCount..($segments.length - 1)]
+			$relativePath = $relativeSegments -join '/'
 
-		if ( $destinationName -cne $sourceActualName ) {
-			throw "The case-sensitive name of the file at source path '$($sourceFileList[$_])' is actually '$sourceActualName' and it does not match the case of the last element of destination path '$($destinationFileList[$_])' -- the case of the file names must match exactly in order to support environments with case-sensitive file systems. This can be corrected in the module manifest by specifying the case of the file exactly as it exists in the module source code directory"
+			$sourceFileList += Join-Path (Get-ModuleBasePath) $relativePath
+			$destinationFileList += Join-Path $targetDirectory $relativePath
 		}
 
-		Copy-Item $sourceFileList[ $_ ] $destinationFileList[ $_ ]
+		0..($sourceFileList.length - 1) | ForEach-Object {
+			$parent = Split-Path -Parent $destinationFileList[ $_ ]
+			if ( -not (Test-Path $parent) ) {
+				$null = New-Item -Path $parent -ItemType Directory
+			}
+
+			$destinationName = Split-Path -Leaf $destinationFileList[ $_ ]
+			$syntaxOnlySourceName = Split-Path -Leaf $sourceFileList[ $_ ]
+			$sourceActualName = (Get-ChildItem (Split-Path -Parent $sourceFileList[ $_ ]) -Filter $syntaxOnlySourceName).name
+
+			if ( $destinationName -cne $sourceActualName ) {
+				throw "The case-sensitive name of the file at source path '$($sourceFileList[$_])' is actually '$sourceActualName' and it does not match the case of the last element of destination path '$($destinationFileList[$_])' -- the case of the file names must match exactly in order to support environments with case-sensitive file systems. This can be corrected in the module manifest by specifying the case of the file exactly as it exists in the module source code directory"
+			}
+
+			Copy-Item $sourceFileList[ $_ ] $destinationFileList[ $_ ]
+		}
 	}
 }
 
@@ -186,12 +217,12 @@ function Get-CustomizationFiles {
 	$path = Split-Path -Parent $psscriptroot
 
 	if ( -not $Directory ) {
-		$path = Join-Path $path 'module'
+		$path = Join-Path $path 'module_legacy'
 		$path = Join-Path $path $Module
 		$path = Join-Path $path (Get-ConfigValue -Name CustomizationPath)
 	}
 	else {
-		$path = Join-Path $path 'module'      
+		$path = Join-Path $path 'module_legacy'      
 		$path = Join-Path $path $Module
 		$path = Join-Path $path $Directory
 	}
@@ -202,6 +233,35 @@ function Get-CustomizationFiles {
 	}
     
 	$customizationFileList
+}
+
+# Reusable logging function
+function Log-Message {
+    param (
+        [string]$Message,
+        [string]$Level = 'INFO',  # Default log level is INFO
+        [ConsoleColor]$Color = [ConsoleColor]::White # Default color is White
+    )
+
+    switch ($Level) {
+        'INFO' {
+            $color = 'Cyan'
+        }
+        'WARNING' {
+            $color = 'Yellow'
+        }
+        'ERROR' {
+            $color = 'Red'
+        }
+        'SUCCESS' {
+            $color = 'Green'
+        }
+        default {
+            $color = $Color
+        }
+    }
+
+    Write-Host "[$Level] $Message" -ForegroundColor $color
 }
 
 function Create-ModuleHelp {
