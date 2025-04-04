@@ -3,10 +3,10 @@ title: Get-EntraUserCertificateUserIdsFromCertificate
 description: Creates an object with all values from a certificate file for configuring CertificateUserIDs in Entra ID
 ms.topic: reference
 ms.date: 03/25/2025
-ms.author: tdumitrescu
+ms.author: eunicewaweru
 manager: vimrang
 author: thadumi
-ms.reviewer: stevemutungi
+ms.reviewer: tdumitrescu
 external help file: Microsoft.Entra.Utilities-Help.xml
 Module Name: Microsoft.Entra.Utilities
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Utilities/Get-EntraUserCertificateUserIdsFromCertificate
@@ -16,17 +16,21 @@ schema: 2.0.0
 
 # Get-EntraUserCertificateUserIdsFromCertificate
 
-## SYNOPSIS
-Generates an object representing all the values contained in a certificate file that can be used in Entra ID for configuring CertificateUserIDs in Certificate-Based Authentication.
+## Synopsis
 
-## SYNTAX
-```syntax
-Get-EntraUserCertificateUserIdsFromCertificate [-Path] <string> [[-Certificate] <System.Security.Cryptography.X509Certificates.X509Certificate2> [-CertificateMapping] <string>] [<CommonParameters>]
+Returns an object with the certificate values needed to configure CertificateUserIDs for Certificate-Based Authentication in Microsoft Entra ID.
+
+## Syntax
+
+```powershell
+Get-EntraUserCertificateUserIdsFromCertificate
+ [-Path] <string>
+ [[-Certificate] <System.Security.Cryptography.X509Certificates.X509Certificate2> [-CertificateMapping] <string>]
+ [<CommonParameters>]
 ```
 ## DESCRIPTION
 
-Returns an object containing the certificateUserIDs configurations for Certificate-Based Authentication based on the given certificate file. The properties in the object are constructed according to the guidelines outlined in the Microsoft [documentation](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids
-) for certificate-based authentication.
+The `Get-EntraUserCertificateUserIdsFromCertificate` returns an object with certificateUserIDs values derived from the provided certificate file, following the format required by Microsoft Entra ID for Certificate-Based Authentication, as described in the [official documentation](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids).
 
 ## EXAMPLES
 
@@ -98,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificateMapping
+
 One of the values `PrincipalName`, `RFC822Name`, `IssuerAndSubject`, `Subject`, `SKI`, `SHA1PublicKey`, and `IssuerAndSerialNumber`.
 The meaning of each value is describe in the official documentation of [certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids). 
 
@@ -126,5 +131,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [https://aka.ms/aadcba](https://aka.ms/aadcba)
-[certificateUserIds](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids)
-
+[certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids)

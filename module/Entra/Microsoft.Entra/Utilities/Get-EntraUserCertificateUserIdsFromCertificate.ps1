@@ -45,10 +45,12 @@
 
 function Get-EntraUserCertificateUserIdsFromCertificate {
     param (
-        [Parameter(Mandatory = $false)]    
+        [Parameter(Mandatory = $false, HelpMessage = "Path to the certificate file. The file can be in .cer or .pem format.")]
         [string]$Path,
+
         [Parameter(Mandatory = $false)]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate,
+        
         [Parameter(Mandatory = $false)]
         [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject", "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
         [string]$CertificateMapping
@@ -60,16 +62,18 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
         )
         if ($filePath.EndsWith(".cer")) {
             return [System.Security.Cryptography.X509Certificates.X509Certificate]::new($filePath)
-        } elseif ($filePath.EndsWith(".pem")) {
+        }
+        elseif ($filePath.EndsWith(".pem")) {
             $pemContent = Get-Content -Path $filePath -Raw
             $pemContent = $pemContent -replace "-----BEGIN CERTIFICATE-----", ""
             $pemContent = $pemContent -replace "-----END CERTIFICATE-----", ""
-            $pemContent = $pemContent -replace  "(\r\n|\n|\r)", ""
+            $pemContent = $pemContent -replace "(\r\n|\n|\r)", ""
             $pemBytes = [Convert]::FromBase64String($pemContent)
             $certificate = [System.Security.Cryptography.X509Certificates.X509Certificate]::new($pemBytes)
 
             return $certificate
-        } else {
+        }
+        else {
             throw "Unsupported certificate format. Please provide a .cer or .pem file."
         }
     }
@@ -92,8 +96,7 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
 
         $littleEndianSerialNumber = $cert.GetSerialNumber()
 
-        if ($littleEndianSerialNumber.Length -eq 0)
-        {
+        if ($littleEndianSerialNumber.Length -eq 0) {
             return ""
         }
 
@@ -131,14 +134,14 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
         $sha1PublicKey = $cert.GetCertHashString()
 
         return @{
-            "SubjectName" = $subject
-            "IssuerName" = $issuer
-            "SerialNumber" = $serialNumber
-            "Thumbprint" = $thumbprint
-            "PrincipalName" = $principalName
-            "EmailName" = $emailName
+            "SubjectName"          = $subject
+            "IssuerName"           = $issuer
+            "SerialNumber"         = $serialNumber
+            "Thumbprint"           = $thumbprint
+            "PrincipalName"        = $principalName
+            "EmailName"            = $emailName
             "SubjectKeyIdentifier" = $subjectKeyIdentifier
-            "Sha1PublicKey" = $sha1PublicKey
+            "Sha1PublicKey"        = $sha1PublicKey
         }
     }
 
@@ -150,69 +153,58 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
         $mappingFields = Get-CertificateMappingFields -cert $cert
 
         $certUserIDs = @{
-            "PrincipalName" = ""
-            "RFC822Name" = ""
-            "IssuerAndSubject" = "" 
-            "Subject" = ""
-            "SKI" = ""
-            "SHA1PublicKey" = "" 
+            "PrincipalName"         = ""
+            "RFC822Name"            = ""
+            "IssuerAndSubject"      = "" 
+            "Subject"               = ""
+            "SKI"                   = ""
+            "SHA1PublicKey"         = "" 
             "IssuerAndSerialNumber" = ""
         }
 
-        if (-not [string]::IsNullOrWhiteSpace($mappingFields.PrincipalName)) 
-        {
+        if (-not [string]::IsNullOrWhiteSpace($mappingFields.PrincipalName)) {
             $certUserIDs.PrincipalName = "X509:<PN>$($mappingFields.PrincipalName)"
         }
 
-        if (-not [string]::IsNullOrWhiteSpace($mappingFields.EmailName)) 
-        {
+        if (-not [string]::IsNullOrWhiteSpace($mappingFields.EmailName)) {
             $certUserIDs.RFC822Name = "X509:<RFC822>$($mappingFields.EmailName)"
         }
 
-        if ((-not [string]::IsNullOrWhiteSpace($mappingFields.IssuerName)) -and (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectName))) 
-        {
+        if ((-not [string]::IsNullOrWhiteSpace($mappingFields.IssuerName)) -and (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectName))) {
             $certUserIDs.IssuerAndSubject = "X509:<I>$($mappingFields.IssuerName)<S>$($mappingFields.SubjectName)"
         }
 
-        if (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectName)) 
-        {
+        if (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectName)) {
             $certUserIDs.Subject = "X509:<S>$($mappingFields.SubjectName)"
         }
 
-        if (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectKeyIdentifier)) 
-        {
+        if (-not [string]::IsNullOrWhiteSpace($mappingFields.SubjectKeyIdentifier)) {
             $certUserIDs.SKI = "X509:<SKI>$($mappingFields.SubjectKeyIdentifier)"
         }
 
-        if (-not [string]::IsNullOrWhiteSpace($mappingFields.Sha1PublicKey)) 
-        {
+        if (-not [string]::IsNullOrWhiteSpace($mappingFields.Sha1PublicKey)) {
             $certUserIDs.SHA1PublicKey = "X509:<SHA1-PUKEY>$($mappingFields.Sha1PublicKey)"
         }
 
-        if ((-not [string]::IsNullOrWhiteSpace($mappingFields.IssuerName)) -and (-not [string]::IsNullOrWhiteSpace($mappingFields.SerialNumber))) 
-        {
+        if ((-not [string]::IsNullOrWhiteSpace($mappingFields.IssuerName)) -and (-not [string]::IsNullOrWhiteSpace($mappingFields.SerialNumber))) {
             $certUserIDs.IssuerAndSerialNumber = "X509:<I>$($mappingFields.IssuerName)<SR>$($mappingFields.SerialNumber)"
         }
 
         return $certUserIDs
     }
 
-    function Main
-    {
+    function Main {
         $cert = $Certificate
-        if ($null -eq $cert)
-        {
+        if ($null -eq $cert) {
             $cert = Get-Certificate -filePath $Path
         }
 
         $mappings = Get-CertificateUserIds -cert $cert
         
-        if ($CertificateMapping -eq "")
-        {
+        if ($CertificateMapping -eq "") {
             return $mappings
         }
-        else
-        {
+        else {
             $value = $mappings[$CertificateMapping]
             return "$($value)"
         }
