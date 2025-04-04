@@ -1,57 +1,17 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
-<#
-.SYNOPSIS
-    Generates an object representing all the values contained in a certificate file that can be used in Entra ID for configuring CertificateUserIDs in Certificate-Based Authentication.
-
-.DESCRIPTION
-    Retrieves and returns an object with the properties 'PrincipalName', 'RFC822Name', 'IssuerAndSubject', 'Subject', 'SKI', 'SHA1PublicKey', and 'IssuerAndSerialNumber' from a certificate file for use in CertificateUserIDs configuration in Certificate-Based Authentication, according to the guidelines outlined in the Microsoft documentation for certificate-based authentication
-
-.PARAMETER Path
-    The path to the certificate file. The file can be in .cer or .pem format.
-
-.PARAMETER Certificate
-    An X509Certificate2 object
-
-.PARAMETER CertificateMapping
-    The certificate mapping property to retrieve. Valid values are PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, and IssuerAndSerialNumber.
-
-.EXAMPLE
-    PS > Get-EntraUserCertificateUserIdsFromCertificate -Path "C:\path\to\certificate.cer"
-
-    This command retrieves all the possible certificate mappings and returns an object to represent them.
-
-.EXAMPLE
-    PS > Get-EntraUserCertificateUserIdsFromCertificate -Path "C:\path\to\certificate.cer" -CertificateMapping Subject
-
-    This command retrieves and returns the PrincipalName property.
-
-.OUTPUTS
-    Returns an object containing the certificateUserIDs that can be used with the givin certificate.
-
-    @{
-        PrincipalName = "X509:<PN>bob@woodgrove.com"
-        RFC822Name = "X509:<RFC822>user@woodgrove.com"
-        IssuerAndSubject = "X509:<I>DC=com,DC=contoso,CN=CONTOSO-DC-CA<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest"
-        Subject = "X509:<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest"
-        SKI = "X509:<SKI>aB1cD2eF3gH4iJ5kL6mN7oP8qR"
-        SHA1PublicKey = "X509:<SHA1-PUKEY>cD2eF3gH4iJ5kL6mN7oP8qR9sT"
-        IssuerAndSerialNumber = "X509:<I>DC=com,DC=contoso,CN=CONTOSO-DC-CA<SR>eF3gH4iJ5kL6mN7oP8qR9sT0uV"
-    }
-
-#>
-
 function Get-EntraUserCertificateUserIdsFromCertificate {
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $false, HelpMessage = "Path to the certificate file. The file can be in .cer or .pem format.")]
         [string]$Path,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, HelpMessage = "Certificate object. If provided, the Path parameter is ignored.")]
+        [Alias('CertificateObject')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate,
         
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ParameterSetName = 'Default', HelpMessage = "The certificate mapping type to use. Valid values are: PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, IssuerAndSerialNumber.")]
         [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject", "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
         [string]$CertificateMapping
     )
