@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupLifecyclePolicyId')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
         [System.String] $AlternateNotificationEmails,
                 

@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByLifecycleSettings')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true)]
         [System.String] $ManagedGroupTypes,
                 

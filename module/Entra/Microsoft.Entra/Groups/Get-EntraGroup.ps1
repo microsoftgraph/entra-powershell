@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
@@ -21,6 +20,13 @@ function Get-EntraGroup {
         
         [Alias('ObjectId')]            
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the group to retrieve. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $GroupId,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]

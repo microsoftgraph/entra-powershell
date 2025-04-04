@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaGroup {
     [CmdletBinding(DefaultParameterSetName = 'UpdateGroupByGroupId')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 
@@ -35,8 +34,16 @@ function Set-EntraBetaGroup {
                 
         [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
         [System.String] $MailNickname,
+
         [Alias('Id')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $GroupId,
                 
         [Parameter(ParameterSetName = "UpdateGroupByGroupId")]

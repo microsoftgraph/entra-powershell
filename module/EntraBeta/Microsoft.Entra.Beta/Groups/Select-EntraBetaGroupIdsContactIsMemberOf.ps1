@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Select-EntraBetaGroupIdsContactIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("ObjectId")]
         [System.String] $OrgContactId,

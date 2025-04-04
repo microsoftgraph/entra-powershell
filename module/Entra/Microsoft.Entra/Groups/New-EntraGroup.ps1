@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdentityParameters')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
         [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 

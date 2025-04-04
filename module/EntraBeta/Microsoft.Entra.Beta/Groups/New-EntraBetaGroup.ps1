@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaGroup {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdentityParameters')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 

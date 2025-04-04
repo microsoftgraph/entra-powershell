@@ -4,13 +4,13 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupLifecyclePolicyId')]
-    param (
-                
+    param (                
         [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
         [System.String] $ManagedGroupTypes,
                 
         [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
         [System.Nullable`1[System.Int32]] $GroupLifetimeInDays,
+        
         [Alias('Id')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $GroupLifecyclePolicyId,

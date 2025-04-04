@@ -4,8 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Select-EntraGroupIdsUserIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
+    param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck] $GroupIdsForMembershipCheck,
                 
