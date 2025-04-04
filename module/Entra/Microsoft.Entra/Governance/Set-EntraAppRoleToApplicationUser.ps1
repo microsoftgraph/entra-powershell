@@ -147,8 +147,6 @@ function Set-EntraAppRoleToApplicationUser {
                 $params["Method"] = "GET"
                 $params["Uri"] = "$baseUri{0}" -f $query
                 $getAppResponse = Invoke-GraphRequest @params
-                
-                #$existingApp = Get-EntraApplication -Filter "displayName eq '$DisplayName'" -ErrorAction SilentlyContinue
     
                 if ($null -eq $getAppResponse.value -or $getAppResponse.value.Count -eq 0) {
                     # Create new application
@@ -159,8 +157,6 @@ function Set-EntraAppRoleToApplicationUser {
                             RedirectUris = @("https://localhost")
                         }
                     }
-    
-                    #$newApp = New-EntraApplication @appParams -debug
 
                     $appParams = $appParams | ConvertTo-Json
 
@@ -179,8 +175,6 @@ function Set-EntraAppRoleToApplicationUser {
                     $newSPResponse = Invoke-GraphRequest -Uri "/v1.0/servicePrincipals" -Method POST -Body $spParams
                     $newSPResponse = $newSPResponse | ConvertTo-Json | ConvertFrom-Json
 
-    
-                    #$newSp = New-EntraServicePrincipal @spParams
                     Write-ColoredVerbose "Created new service principal for application: $DisplayName"
     
                     [PSCustomObject]@{
@@ -194,7 +188,6 @@ function Set-EntraAppRoleToApplicationUser {
                 }
                 else {
                     # Get existing service principal
-                    # $existingSp = Get-EntraServicePrincipal -Filter "appId eq '$($existingApp.AppId)'" -ErrorAction SilentlyContinue
 
                     $params = @{}
                     $baseUri = "/v1.0/servicePrincipals"
@@ -206,10 +199,6 @@ function Set-EntraAppRoleToApplicationUser {
     
                     if ($null -eq $getSPResponse.value -or $getSPResponse.value.Count -eq 0) {
                         # Create service principal if it doesn't exist
-                        # $spParams = @{
-                        #     AppId       = $existingApp.AppId
-                        #     DisplayName = $DisplayName
-                        # }
 
                         $spParams = @{
                             appId       = $getAppResponse.value.AppId
@@ -221,8 +210,6 @@ function Set-EntraAppRoleToApplicationUser {
                         $newSPResponse = Invoke-GraphRequest -Uri "/v1.0/servicePrincipals" -Method POST -Body $spParams
                         $newSPResponse = $newSPResponse | ConvertTo-Json | ConvertFrom-Json
                         $sp = $newSPResponse
-    
-                        #$newSp = New-EntraServicePrincipal @spParams
                         Write-ColoredVerbose "Created new service principal for existing application: $DisplayName"
                     }
                     else {
