@@ -33,7 +33,7 @@ function Get-EntraBetaUser {
         $params = @{}
         $topCount = $null
         $upnPresent = $false
-        $baseUri = 'https://graph.microsoft.com/beta/users'
+        $baseUri = '/beta/users'
         $properties = $null
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
