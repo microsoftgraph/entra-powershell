@@ -27,12 +27,16 @@ Add a member to a security or Microsoft 365 group.
 Add-EntraGroupMember
  -GroupId <String>
  -MemberId <String>
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Add-EntraGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
+
+`New-EntraGroupMember` is an alias of `Add-EntraGroupMember`.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 

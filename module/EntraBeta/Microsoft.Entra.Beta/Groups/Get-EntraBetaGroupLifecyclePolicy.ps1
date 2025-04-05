@@ -6,10 +6,11 @@ function Get-EntraBetaGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "A unique identifier for a policy. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $GroupLifecyclePolicyId,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
         [System.String[]] $Property
     )

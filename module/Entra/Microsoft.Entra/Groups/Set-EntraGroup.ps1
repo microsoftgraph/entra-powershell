@@ -4,33 +4,47 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'UpdateGroupByGroupId')]
-    param (
-                
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+    param (                
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies whether the group is a security group.")]
+        [Alias('SecurityEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies whether the group is mail-enabled.")]
+        [Alias('MailEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $MailEnabled,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Description of the group.")]
         [System.String] $Description,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies the group type and its membership.")]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "A unique mail alias for the group (max 64 characters). It must use ASCII characters (0–127).")]
         [System.String] $MailNickname,
+
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $GroupId,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.String] $Visibility,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Display name of the group.")]
+        [ValidateLength(1, 256)]
         [System.String] $DisplayName
     )
 
