@@ -5,7 +5,7 @@
 function Add-EntraLifecyclePolicyGroup {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
@@ -16,7 +16,14 @@ function Add-EntraLifecyclePolicyGroup {
         [System.String] $GroupId,
         
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of the lifecycle policy object in Microsoft Entra ID.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "GroupLifecyclePolicyId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $GroupLifecyclePolicyId
     )
 

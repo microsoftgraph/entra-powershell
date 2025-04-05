@@ -6,7 +6,7 @@ function Get-EntraBetaGroupAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias('ObjectId')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
@@ -16,7 +16,7 @@ function Get-EntraBetaGroupAppRoleAssignment {
             })]
         [System.String] $GroupId,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all object items.")]
         [switch] $All,
                 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

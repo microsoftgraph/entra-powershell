@@ -6,17 +6,17 @@
 function Get-EntraDeletedGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (                
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter the results based on the specified criteria.")]
         [System.String] $Filter,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all objects.")]
         [switch] $All,
                 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for a group by its name, email, or mail nickname.")]
         [System.String] $SearchString,
 
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
@@ -26,7 +26,7 @@ function Get-EntraDeletedGroup {
             })]
         [System.String] $GroupId,
                 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
 
@@ -84,7 +84,7 @@ function Get-EntraDeletedGroup {
         }
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "mailNickName eq '$TmpValue' or (mail eq '$TmpValue' or (displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')))"
+            $Value = "mailNickName eq '$TmpValue' or (mail eq '$TmpValue' or (displayName eq '$TmpValue' or startsWith(displayName,'$TmpValue')))"
             $params["Filter"] = $Value
         }
         if ($null -ne $PSBoundParameters["GroupId"]) {

@@ -7,7 +7,7 @@ function Add-EntraBetaGroupMember {
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Unique ID of the group.")]
+            HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Guid] $GroupId,
                 

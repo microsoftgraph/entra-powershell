@@ -6,7 +6,7 @@ function New-EntraBetaGroupAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdAndRoleParameters')]
     param (
         [Alias('ObjectId')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
@@ -17,13 +17,34 @@ function New-EntraBetaGroupAppRoleAssignment {
         [System.String] $GroupId,
 
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the appRole (defined on the resource service principal) to assign to the group")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "AppRoleId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $AppRoleId,
                 
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the group to which you're assigning the app role.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the resource service Principal, which has defined the app role.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "ResourceId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+            })]
         [System.String] $ResourceId
     )
 

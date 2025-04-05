@@ -5,28 +5,39 @@
 function New-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdentityParameters')]
     param (                
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Specifies whether the group is a security group.")]
+        [Alias('SecurityEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
+        [ValidateNotNullOrEmpty()]
         [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Specifies whether the group is mail-enabled.")]
+        [Alias('MailEnabledGroup')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $MailEnabled,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Description of the group.")]
         [System.String] $Description,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Specifies the group type and its membership.")]
+        [Alias('GroupType')]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "A unique mail alias for the group (max 64 characters). It must use ASCII characters (0–127).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $MailNickname,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Sets the group join policy and content visibility. Options are: Private, Public, or HiddenMembership.")]
         [System.String] $Visibility,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Display name of the group.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateLength(1, 256)]
         [System.String] $DisplayName
     )
 

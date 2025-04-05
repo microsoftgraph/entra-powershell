@@ -5,7 +5,7 @@
 function Reset-EntraBetaLifeCycleGroup {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {

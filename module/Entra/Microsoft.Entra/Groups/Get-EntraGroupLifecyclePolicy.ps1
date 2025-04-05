@@ -6,7 +6,8 @@ function Get-EntraGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group lifecycle policy. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $GroupLifecyclePolicyId,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]

@@ -6,7 +6,7 @@ function Get-EntraLifecyclePolicyGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {

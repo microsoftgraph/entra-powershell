@@ -5,37 +5,44 @@
 function New-EntraBetaGroup {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdentityParameters')]
     param (                
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Specifies the group type and its membership.")]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Sets the group join policy and content visibility. Options are: Private, Public, or HiddenMembership.")]
         [System.String] $Visibility,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Description of the group.")]
         [System.String] $Description,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $LabelId,
-                
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Display name of the group.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateLength(1, 256)]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "The rule that determines members for this group if the group is a dynamic group (groupTypes contains DynamicMembership).")]
         [System.String] $MembershipRule,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Specifies whether the group is mail-enabled.")]
+        [Alias('MailEnabledGroup')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $MailEnabled,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "Specifies whether the group is a security group.")]
+        [Alias('SecurityEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
+        [ValidateNotNullOrEmpty()]
         [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", Mandatory = $true, HelpMessage = "A unique mail alias for the group (max 64 characters). It must use ASCII characters (0–127).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $MailNickname,
                 
-        [Parameter(ParameterSetName = "ByGroupIdentityParameters")]
+        [Parameter(ParameterSetName = "ByGroupIdentityParameters", HelpMessage = "Shows if dynamic membership processing is active or paused. Values: On or Paused.")]
         [System.String] $MembershipRuleProcessingState
     )
 
@@ -69,9 +76,6 @@ function New-EntraBetaGroup {
         }
         if ($null -ne $PSBoundParameters["Description"]) {
             $params["Description"] = $PSBoundParameters["Description"]
-        }
-        if ($null -ne $PSBoundParameters["LabelId"]) {
-            $params["LabelId"] = $PSBoundParameters["LabelId"]
         }
         if ($null -ne $PSBoundParameters["IsAssignableToRole"]) {
             $params["IsAssignableToRole"] = $PSBoundParameters["IsAssignableToRole"]
