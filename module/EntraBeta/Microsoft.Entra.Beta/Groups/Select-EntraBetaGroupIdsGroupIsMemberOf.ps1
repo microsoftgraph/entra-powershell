@@ -16,7 +16,8 @@ function Select-EntraBetaGroupIdsGroupIsMemberOf {
             })]
         [System.String] $GroupId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck] $GroupIdsForMembershipCheck
     )
 

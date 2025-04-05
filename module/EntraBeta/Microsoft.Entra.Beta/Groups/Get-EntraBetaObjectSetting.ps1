@@ -5,19 +5,22 @@
 function Get-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The type of object to get settings for. For example, 'group' or 'servicePrincipal'.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all object items.")]
         [switch] $All,
                 
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the setting. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $Id,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the target object. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetObjectId,
                 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the maximum number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
         

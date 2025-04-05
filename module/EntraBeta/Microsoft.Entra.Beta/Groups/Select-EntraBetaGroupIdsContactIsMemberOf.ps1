@@ -5,11 +5,13 @@
 function Select-EntraBetaGroupIdsContactIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the contact. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $OrgContactId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID values.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck] $GroupIdsForMembershipCheck
     )
 

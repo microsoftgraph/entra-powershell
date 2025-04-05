@@ -5,16 +5,18 @@
 function Set-EntraGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupLifecyclePolicyId')]
     param (                
-        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
+        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId", HelpMessage = "A list of email addresses to which notifications are sent. The email addresses must be valid and separated by semicolons.")]
         [System.String] $AlternateNotificationEmails,
                 
-        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
+        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId", HelpMessage = "The group type for which the expiration policy applies. Possible values are All, Selected or None.")]
         [System.String] $ManagedGroupTypes,
+        
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "A unique identifier for a policy. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $GroupLifecyclePolicyId,
                 
-        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId")]
+        [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId", HelpMessage = "Number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.")]
         [System.Nullable`1[System.Int32]] $GroupLifetimeInDays
     )
 

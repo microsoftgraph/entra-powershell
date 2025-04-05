@@ -5,13 +5,16 @@
 function Remove-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of the directory object.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique ID of the setting.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $Id,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the target object. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetObjectId
     )
 

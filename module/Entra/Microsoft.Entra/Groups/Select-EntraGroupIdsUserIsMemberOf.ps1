@@ -5,10 +5,12 @@
 function Select-EntraGroupIdsUserIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID values.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck] $GroupIdsForMembershipCheck,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the user. Should be a valid GUID or User principal name value.")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $UserId
     )

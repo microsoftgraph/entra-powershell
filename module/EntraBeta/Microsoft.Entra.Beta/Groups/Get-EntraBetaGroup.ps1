@@ -26,7 +26,7 @@ function Get-EntraBetaGroup {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all object items.")]
         [switch] $All,
                 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
         

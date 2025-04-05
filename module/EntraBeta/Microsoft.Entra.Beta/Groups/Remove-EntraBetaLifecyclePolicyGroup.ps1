@@ -16,7 +16,8 @@ function Remove-EntraBetaLifecyclePolicyGroup {
         [System.String] $GroupId,
     
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group lifecycle policy. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $GroupLifecyclePolicyId
     )
 

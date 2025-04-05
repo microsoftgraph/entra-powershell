@@ -16,7 +16,8 @@ function Remove-EntraBetaGroupAppRoleAssignment {
             })]
         [System.String] $GroupId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "A unique identifier for the appRoleAssignment key. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $AppRoleAssignmentId
     )
 
