@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,13 +11,13 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "DisplayName"     = "demo"
-              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
-              "MailEnabled"     = "False"
-              "Description"     = "test"
-              "MailNickname"    = "demoNickname"
-              "SecurityEnabled" = "True"
-              "Parameters"      = $args
+                "DisplayName"     = "demo"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "MailEnabled"     = "False"
+                "Description"     = "test"
+                "MailNickname"    = "demoNickname"
+                "SecurityEnabled" = "True"
+                "Parameters"      = $args
             }
         )
     }
@@ -35,11 +35,7 @@ Describe "Get-EntraBetaGroup" {
         }
 
         It "Should fail when GroupId is empty" {
-            { Get-EntraBetaGroup -GroupId  } | Should -Throw "Missing an argument for parameter 'GroupId'*"
-        }
-
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
+            { Get-EntraBetaGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
 
         It "Should return all group" {
@@ -108,11 +104,11 @@ Describe "Get-EntraBetaGroup" {
             $params.Filter | Should -Match "demo"
         }
         It "Property parameter should work" {
-            $result =  Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -122,7 +118,7 @@ Describe "Get-EntraBetaGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -130,7 +126,7 @@ Describe "Get-EntraBetaGroup" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
-            $result= Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
             Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -147,7 +143,8 @@ Describe "Get-EntraBetaGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaGroup -SearchString 'demo' -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

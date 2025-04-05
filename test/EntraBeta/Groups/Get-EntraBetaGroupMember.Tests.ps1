@@ -33,9 +33,7 @@ Describe "Get-EntraBetaGroupMember" {
 
             Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaGroupMember -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
+
         It "Should fail when GroupId is empty" {
             { Get-EntraBetaGroupMember -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }

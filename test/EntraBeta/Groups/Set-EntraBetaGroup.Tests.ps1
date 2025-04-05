@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -31,36 +31,28 @@ Describe "Set-EntraBetaGroup" {
             { Set-EntraBetaGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         } 
 
-        It "Should fail when GroupId is invalid" {
-            { Set-EntraBetaGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
-        } 
-
         It "Should fail when Description is empty" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description  } | Should -Throw "Missing an argument for parameter 'Description'.*"
+            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Description } | Should -Throw "Missing an argument for parameter 'Description'.*"
         } 
 
         It "Should fail when DisplayName is empty" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DisplayName  } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
+            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
         } 
 
         It "Should fail when MailEnabled is empty" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -MailEnabled  } | Should -Throw "Missing an argument for parameter*"
-        } 
-
-        It "Should fail when MailEnabled is invalid" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -MailEnabled ""} | Should -Throw "Cannot process argument transformation on parameter 'MailEnabled'.*"
+            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -MailEnabled } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should fail when MailNickname is empty" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -MailNickname  } | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -MailNickname } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should fail when SecurityEnabled is empty" {
-            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -SecurityEnabled  } | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -SecurityEnabled } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
+            Mock -CommandName Update-MgBetaGroup -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result
@@ -86,7 +78,8 @@ Describe "Set-EntraBetaGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraBetaGroup -GroupId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

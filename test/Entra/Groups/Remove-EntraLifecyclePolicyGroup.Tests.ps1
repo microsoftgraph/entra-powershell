@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Groups
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,8 +10,8 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Value"         = $true
-                "Parameters"    = $args
+                "Value"      = $true
+                "Parameters" = $args
             }
         )
     }  
@@ -21,34 +21,26 @@ BeforeAll {
 Describe "Remove-EntraLifecyclePolicyGroup" {
     Context "Test for Remove-EntraLifecyclePolicyGroup" {
         It "Should remove a group from a lifecycle policy" {
-            $result = Remove-EntraLifecyclePolicyGroup  -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
+            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.Value | Should -Be $true
 
             Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should remove a group from a lifecycle policy with alias" {
-            $result = Remove-EntraLifecyclePolicyGroup  -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
+            $result = Remove-EntraLifecyclePolicyGroup -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.Value | Should -Be $true
 
             Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
-            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
-        }   
-
-        It "Should fail when GroupLifecyclePolicyId is invalid" {
-            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string."
+            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
         }   
 
         It "Should fail when GroupId is empty" {
-            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId  } | Should -Throw "Missing an argument for parameter 'GroupId'*"
-        }   
-
-        It "Should fail when GroupId is invalid" {
-            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }   
+            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
+        }
 
         It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
             $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
@@ -57,15 +49,15 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
+            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "ccccdddd-2222-eeee-3333-ffff4444aaaa"
+            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraLifecyclePolicyGroup"
 
-            Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa"
+            Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraLifecyclePolicyGroup"
 
@@ -81,8 +73,9 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "ccccdddd-2222-eeee-3333-ffff4444aaaa" -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

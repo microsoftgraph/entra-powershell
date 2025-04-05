@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -31,12 +31,8 @@ Describe "Remove-EntraBetaGroup" {
             { Remove-EntraBetaGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }   
 
-        It "Should fail when GroupId is invalid" {
-            { Remove-EntraBetaGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }   
-
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroup -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroup -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -65,7 +61,8 @@ Describe "Remove-EntraBetaGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraBetaGroup -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

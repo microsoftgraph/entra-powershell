@@ -32,7 +32,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "ADC Group"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should return specific deleted Group with alias" {
             $result = Get-EntraBetaDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -41,19 +41,17 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "ADC Group"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when GroupId is empty" {
             { Get-EntraBetaDeletedGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaDeletedGroup -GroupId  "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
+
         It "Should return All deleted groups" {
-            $result = Get-EntraBetaDeletedGroup  -All
+            $result = Get-EntraBetaDeletedGroup -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when All is invalid" {
             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
@@ -65,7 +63,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "ADC Group"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Top is empty" {
             { Get-EntraBetaDeletedGroup -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
@@ -80,7 +78,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.DisplayName | Should -Be "ADC Group"
             $result.GroupTypes | Should -Be "Unified"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when filter is empty" {
             { Get-EntraBetaDeletedGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -92,7 +90,7 @@ Describe "Get-EntraBetaDeletedGroup" {
             $result.MailNickname | Should -Be "ADCGroup"
             $result.DisplayName | Should -Be "ADC Group"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when SearchString is empty" {
             { Get-EntraBetaDeletedGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"

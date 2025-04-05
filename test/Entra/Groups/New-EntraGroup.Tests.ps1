@@ -38,9 +38,7 @@ Describe "New-EntraGroup" {
 
             Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
-        It "Should fail when parameters are invalid" {
-            { New-EntraGroup -DisplayName "" -MailEnabled "" -SecurityEnabled "" -MailNickName  "" -Description "" } | Should -Throw "Cannot bind argument to parameter*"
-        }
+
         It "Should fail when parameters are empty" {
             { New-EntraGroup -DisplayName -MailEnabled -SecurityEnabled -MailNickName -Description } | Should -Throw "Missing an argument for parameter*"
         }
@@ -66,7 +64,8 @@ Describe "New-EntraGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

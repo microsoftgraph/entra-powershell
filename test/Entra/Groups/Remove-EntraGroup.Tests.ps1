@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Groups       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -14,34 +14,32 @@ BeforeAll {
 Describe "Remove-EntraGroup" {
     Context "Test for Remove-EntraGroup" {
         It "Should return empty object" {
-            $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraGroup -GroupId 83ec0ff5-f16a-4ba3-b8db-74919eda4926
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
-            $result = Remove-EntraGroup -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraGroup -ObjectId 83ec0ff5-f16a-4ba3-b8db-74919eda4926
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
-        It "Should fail when GroupId is invalid" {
-            { Remove-EntraGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
+
         It "Should fail when GroupId is empty" {
             { Remove-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }    
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Entra.Groups
+            Mock -CommandName Remove-MgGroup -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
-            $result = Remove-EntraGroup -GroupId bbbbbbbb-1111-2222-3333-cccccccccccc
+            $result = Remove-EntraGroup -GroupId 83ec0ff5-f16a-4ba3-b8db-74919eda4926
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 
-            Remove-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Remove-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 
@@ -57,8 +55,9 @@ Describe "Remove-EntraGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

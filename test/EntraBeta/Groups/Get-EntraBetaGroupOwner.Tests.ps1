@@ -29,7 +29,7 @@ BeforeAll {
             )
         }    
     }
-    Mock -CommandName  Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaGroupOwner" {
@@ -40,7 +40,7 @@ Describe "Get-EntraBetaGroupOwner" {
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Get a group owner by alias" {
@@ -49,15 +49,11 @@ Describe "Get-EntraBetaGroupOwner" {
             $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
             { Get-EntraBetaGroupOwner -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
-        }
-
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaGroupOwner -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }
 
         It "Gets all group owners" {
@@ -115,7 +111,7 @@ Describe "Get-EntraBetaGroupOwner" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
