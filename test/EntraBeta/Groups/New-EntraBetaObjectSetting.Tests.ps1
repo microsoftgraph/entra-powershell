@@ -53,7 +53,7 @@ Describe "New-EntraBetaObjectSetting" {
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"] = $False
 
-            $result = New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -DirectorySetting $settingsCopy 
+            $result = New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting $settingsCopy 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.templateId | Should -be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
@@ -64,13 +64,13 @@ Describe "New-EntraBetaObjectSetting" {
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object { $_.displayname -eq "group.unified.guest" }
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"] = $False
-            { New-EntraBetaObjectSetting -TargetType -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
+            { New-EntraBetaObjectSetting -TargetType -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetType is invalid" {
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object { $_.displayname -eq "group.unified.guest" }
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"] = $False
-            { New-EntraBetaObjectSetting -TargetType -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
+            { New-EntraBetaObjectSetting -TargetType -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetObjectId is empty" {
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object { $_.displayname -eq "group.unified.guest" }
@@ -85,7 +85,7 @@ Describe "New-EntraBetaObjectSetting" {
             { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId -DirectorySetting $settingsCopy } | Should -Throw "Missing an argument for parameter 'TargetObjectId'*"
         }
         It "Should fail when DirectorySetting is empty" {
-            { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting } | Should -Throw "Missing an argument for parameter 'DirectorySetting'*"
+            { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting } | Should -Throw "Missing an argument for parameter 'DirectorySetting'*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -95,7 +95,7 @@ Describe "New-EntraBetaObjectSetting" {
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"] = $False
 
-            $result = New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -DirectorySetting $settingsCopy 
+            $result = New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting $settingsCopy 
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaObjectSetting"
@@ -115,7 +115,7 @@ Describe "New-EntraBetaObjectSetting" {
             
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy -Debug } | Should -Not -Throw
+                { New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DirectorySetting $settingsCopy -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

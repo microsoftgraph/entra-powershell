@@ -15,7 +15,7 @@ BeforeAll {
                 "CreatedDateTime"      = "06-05-2024 05:42:01"
                 "DeletedDateTime"      = $null
                 "PrincipalDisplayName" = "Mock-Group"
-                "PrincipalId"          = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                "PrincipalId"          = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
                 "ResourceId"           = "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
                 "ResourceDisplayName"  = "Mock-Group"
                 "PrincipalType"        = "PrincipalType"
@@ -31,21 +31,21 @@ BeforeAll {
 Describe "Get-EntraBetaGroupAppRoleAssignment" {
     Context "Test for Get-EntraBetaGroupAppRoleAssignment" {
         It "Should return specific Group AppRole Assignment" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "c1NLUiFxZk6cP6Nj0RoIyGV2homdrcZNnMeMGgMswmU"
             $result.ResourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
-            $result.PrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.PrincipalId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should return specific Group AppRole Assignment with alias" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -objectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupAppRoleAssignment -objectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "c1NLUiFxZk6cP6Nj0RoIyGV2homdrcZNnMeMGgMswmU"
             $result.ResourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
-            $result.PrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.PrincipalId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -55,56 +55,56 @@ Describe "Get-EntraBetaGroupAppRoleAssignment" {
         }
 
         It "Should return All Group AppRole Assignment" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "c1NLUiFxZk6cP6Nj0RoIyGV2homdrcZNnMeMGgMswmU"
             $result.ResourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
-            $result.PrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.PrincipalId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 Group AppRole Assignment" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "c1NLUiFxZk6cP6Nj0RoIyGV2homdrcZNnMeMGgMswmU"
             $result.ResourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
-            $result.PrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.PrincipalId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.AppRoleId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalDisplayName | Should -Be 'Mock-Group'
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
-            { Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Result should Contain GroupId" {
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result.ObjectId | should -Be "c1NLUiFxZk6cP6Nj0RoIyGV2homdrcZNnMeMGgMswmU"
         }
         It "Should contain GroupId in parameters when passed Id to it" {              
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupAppRoleAssignment"
-            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaGroupAppRoleAssignment -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -119,7 +119,7 @@ Describe "Get-EntraBetaGroupAppRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaGroupAppRoleAssignment -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

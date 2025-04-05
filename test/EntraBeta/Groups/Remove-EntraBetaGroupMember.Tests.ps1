@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraBetaGroupMember" {
     Context "Test for Remove-EntraBetaGroupMember" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -25,20 +25,20 @@ Describe "Remove-EntraBetaGroupMember" {
         }   
 
         It "Should fail when MemberId is empty" {
-            { Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+            { Remove-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'*"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Remove-MgBetaGroupMemberByRef -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupMember"
-            $result = Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupMember"
             Should -Invoke -CommandName Remove-MgBetaGroupMemberByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -54,7 +54,7 @@ Describe "Remove-EntraBetaGroupMember" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaGroupMember -GroupId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

@@ -12,16 +12,16 @@ BeforeAll {
 Describe "Remove-EntraBetaObjectSetting" {
     Context "Test for Remove-EntraBetaObjectSetting" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" 
+            $result = Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" 
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when TargetType is empty" {
-            { Remove-EntraBetaObjectSetting -TargetType -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetType'*"
+            { Remove-EntraBetaObjectSetting -TargetType -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetType is invalid" {
-            { Remove-EntraBetaObjectSetting -TargetType -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetType'*"
+            { Remove-EntraBetaObjectSetting -TargetType -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetType'*"
         }
         It "Should fail when TargetObjectId is empty" {
             { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetObjectId'*"
@@ -30,13 +30,13 @@ Describe "Remove-EntraBetaObjectSetting" {
             { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'TargetObjectId'*"
         }
         It "Should fail when Id is empty" {
-            { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaAdministrativeUnit"
             
-            Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "Remove-EntraBetaObjectSetting" 
+            Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id "Remove-EntraBetaObjectSetting" 
            
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaObjectSetting"
@@ -52,7 +52,7 @@ Describe "Remove-EntraBetaObjectSetting" {
             
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
