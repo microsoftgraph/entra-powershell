@@ -6,9 +6,22 @@ BeforeAll {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
-    
+
     Mock -CommandName Invoke-MgGraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
-    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { 
+        @{
+            Scopes      = @("GroupMember.ReadWrite.All")
+            Environment = "Global"  # Add the Environment property to the mock
+        } 
+    } -ModuleName Microsoft.Entra.Beta.Groups
+    
+    # Mock the Get-EntraEnvironment command if needed
+    Mock -CommandName Get-EntraEnvironment -MockWith {
+        @{
+            Name          = "Global"
+            GraphEndPoint = "https://graph.microsoft.com"
+        }
+    } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Add-EntraBetaGroupMember" {
