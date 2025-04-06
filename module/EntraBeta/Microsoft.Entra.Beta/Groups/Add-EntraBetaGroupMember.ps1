@@ -43,7 +43,7 @@ function Add-EntraBetaGroupMember {
     PROCESS {
         try {
             # Get custom headers for Microsoft Graph API requests
-            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             
             # Set up the request parameters
             $params = @{
