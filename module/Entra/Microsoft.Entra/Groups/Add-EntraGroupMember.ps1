@@ -21,7 +21,7 @@ function Add-EntraGroupMember {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes GroupMember.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -97,7 +97,7 @@ function Add-EntraGroupMember {
                 Write-Error "Either group $GroupId or member $MemberId not found."
             }
             elseif ($statusCode -eq 403) {
-                Write-Error "You don't have permission to add members to this group. To connect, use 'Connect-Entra -Scopes GroupMember.ReadWrite.All'"
+                Write-Error "You don't have permission to add members to this group. To connect, use 'Connect-Entra -Scopes Group.ReadWrite.All'"
             }
             elseif ($statusCode -eq 400 -and $_.Exception.Message -match "One or more added object references already exist") {
                 Write-Warning "Member $MemberId is already a member of group $GroupId."

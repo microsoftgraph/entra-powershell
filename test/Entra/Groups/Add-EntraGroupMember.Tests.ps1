@@ -10,7 +10,7 @@ BeforeAll {
     Mock -CommandName Invoke-MgGraphRequest -MockWith {} -ModuleName Microsoft.Entra.Groups
     Mock -CommandName Get-EntraContext -MockWith { 
         @{
-            Scopes      = @("GroupMember.ReadWrite.All")
+            Scopes      = @("Group.ReadWrite.All")
             Environment = "Global"  # Add the Environment property to the mock
         } 
     } -ModuleName Microsoft.Entra.Groups

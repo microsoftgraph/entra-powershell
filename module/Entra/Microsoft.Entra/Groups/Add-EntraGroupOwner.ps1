@@ -5,92 +5,102 @@
 function Add-EntraGroupOwner {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdAndOwnerId', SupportsShouldProcess = $true)]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Object ID of a user or service principal to assign as a group owner.")]
-        [Alias('RefObjectId')]
-        [ValidateNotNullOrEmpty()]
-        [ValidateScript({
-                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
-                    return $true
-                }
-                throw "OwnerId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
-            })]
-        [System.String] $OwnerId,
-
         [Alias('ObjectId')]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
+        [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $false, ParameterSetName = 'ByGroupIdAndOwnerId', 
             HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript({
-                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
-                    return $true
-                }
-                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
-            })]
-        [System.String] $GroupId
+        [Guid] $GroupId,
+                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
+            HelpMessage = "Object ID of a user or service principal to assign as a group owner.")]
+        [Alias('RefObjectId', 'Id')]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $OwnerId
     )
 
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes GroupMember.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
+        
+        # Get the Graph endpoint from the current environment
+        $environment = (Get-EntraContext).Environment
+        $graphEndpoint = (Get-EntraEnvironment | Where-Object Name -eq $environment).GraphEndPoint
+        
+        # Default to global endpoint if not found
+        if (-not $graphEndpoint) {
+            $graphEndpoint = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $graphEndpoint"
+        }
+        else {
+            Write-Verbose "Using environment-specific Graph endpoint: $graphEndpoint"
+        }
     }
 
-    PROCESS {    
+    PROCESS {
         try {
+            # Get custom headers for Microsoft Graph API requests
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            
+            # Set up the request parameters
             $params = @{
-                GroupId = $GroupId
+                Method      = "POST"
+                Uri         = "$graphEndpoint/v1.0/groups/$GroupId/owners/`$ref"
+                Headers     = $customHeaders
+                Body        = @{
+                    "@odata.id" = "$graphEndpoint/v1.0/directoryObjects/$OwnerId"
+                } | ConvertTo-Json
+                ContentType = "application/json"
             }
             
-            $commonParams = @{} + $PSBoundParameters
-            foreach ($key in @('GroupId', 'OwnerId', 'WhatIf', 'Confirm')) {
-                if ($commonParams.ContainsKey($key)) {
-                    $commonParams.Remove($key)
-                }
-            }
-            
-            # Merge common parameters into the params hashtable
-            foreach ($key in $commonParams.Keys) {
-                $params[$key] = $commonParams[$key]
-            }
-            
-            $bodyValue = @{ 
-                "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$OwnerId" 
-            }
-            $params["BodyParameter"] = $bodyValue
-            
+            # Debug output
             Write-Debug("============================ TRANSFORMATIONS ============================")
-            $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+            Write-Debug("Uri : $($params.Uri)")
+            Write-Debug("Method : $($params.Method)")
+            Write-Debug("Body : $($params.Body)")
+            Write-Debug("GroupId : $GroupId")
+            Write-Debug("OwnerId : $OwnerId")
             Write-Debug("=========================================================================`n")
             
+            # Add ShouldProcess to prevent accidental modifications
             if ($PSCmdlet.ShouldProcess("Add owner '$OwnerId' to group '$GroupId'")) {
-                $response = New-MgGroupOwnerByRef @params -Headers $customHeaders
+                Write-Verbose "Adding owner $OwnerId to group $GroupId"
                 
-                $response | ForEach-Object {
-                    if ($null -ne $_) {
-                        if (Get-Member -InputObject $_ -Name "Id" -MemberType Properties) {
-                            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id -ErrorAction SilentlyContinue
-                        }
+                # Make the API call
+                $response = Invoke-MgGraphRequest @params
+                
+                # Create a custom object for output
+                if ($null -eq $response) {
+                    $result = [PSCustomObject]@{
+                        GroupId = $GroupId
+                        OwnerId = $OwnerId
+                        Status  = "Success"
+                        Action  = "Added"
                     }
+                    return $result
                 }
                 
                 return $response
             }
         }
         catch {
-            # Error handling with useful messages
-            if ($_.Exception.Message -match "Request_ResourceNotFound") {
-                Write-Error "Either group $GroupId or directory object $OwnerId not found."
+            # Handle error messages based on the failure
+            $statusCode = $null
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+                $statusCode = $_.Exception.Response.StatusCode.value__
             }
-            elseif ($_.Exception.Message -match "Authorization_RequestDenied") {
-                Write-Error "You don't have permission to add owners to this group. To connect, use 'Connect-Entra -Scopes GroupMember.ReadWrite.All'"
+            
+            if ($statusCode -eq 404) {
+                Write-Error "Either group $GroupId or owner $OwnerId not found."
             }
-            elseif ($_.Exception.Message -match "added object references already exist") {
-                Write-Warning "Directory object $OwnerId is already an owner of group $GroupId."
+            elseif ($statusCode -eq 403) {
+                Write-Error "You don't have permission to add owners to this group. To connect, use 'Connect-Entra -Scopes Group.ReadWrite.All'"
+            }
+            elseif ($statusCode -eq 400 -and $_.Exception.Message -match "One or more added object references already exist") {
+                Write-Warning "Owner $OwnerId is already a owner of group $GroupId."
             }
             else {
                 Write-Error "Failed to add owner: $_"
@@ -99,4 +109,3 @@ function Add-EntraGroupOwner {
     }
 }
 Set-Alias -Name New-EntraGroupOwner -Value Add-EntraGroupOwner -Scope Global -Force
-
