@@ -28,13 +28,13 @@ Describe "Add-EntraBetaGroupMember" {
     Context "Test for Add-EntraBetaGroupMember" {
         It "Should add a member to a group" {
             $result = Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
-            $result | Should -BeNullOrEmpty
+            $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }   
         It "Should add a member to a group with Alias" {
             $result = Add-EntraBetaGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
-            $result | Should -BeNullOrEmpty
+            $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
