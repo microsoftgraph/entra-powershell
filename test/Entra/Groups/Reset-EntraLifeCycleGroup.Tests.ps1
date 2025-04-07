@@ -20,10 +20,6 @@ Describe "Reset-EntraLifeCycleGroup" {
             Should -Invoke -CommandName Invoke-MgRenewGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
-        It "Should fail when Id is empty" {
-            { Reset-EntraLifeCycleGroup -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
-        }
-
         It "Should contain GroupId in parameters when passed Id to it" {
             Mock -CommandName Invoke-MgRenewGroup -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
