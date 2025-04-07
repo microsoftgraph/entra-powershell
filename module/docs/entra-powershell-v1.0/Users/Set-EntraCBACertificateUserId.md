@@ -1,5 +1,5 @@
 ---
-title: Set-EntraCBACertificateUserId
+title: Set-EntraUserCBACertificateUserId
 description: Sets certificate-based authentication user IDs for a user in Entra ID
 ms.topic: reference
 ms.date: 04/03/2025
@@ -9,19 +9,19 @@ author: peichensun
 ms.reviewer: stevemutungi
 external help file: Microsoft.Entra.Users-Help.xml
 Module Name: Microsoft.Entra.Users
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Set-EntraCBACertificateUserId
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Set-EntraUserCBACertificateUserId
 
 schema: 2.0.0
 ---
 
-# Set-EntraCBACertificateUserId
+# Set-EntraUserCBACertificateUserId
 
 ## SYNOPSIS
 Sets certificate-based authentication user IDs for a specified user in Entra ID using either a certificate file or certificate object.
 
 ## SYNTAX
 ```syntax
-Set-EntraCBACertificateUserId -UserId <string> [-CertPath <string>] [-Cert <System.Security.Cryptography.X509Certificates.X509Certificate2>] -CertificateMapping <string[]> [<CommonParameters>]
+Set-EntraUserCBACertificateUserId -UserId <string> [-CertPath <string>] [-Cert <System.Security.Cryptography.X509Certificates.X509Certificate2>] -CertificateMapping <string[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +31,7 @@ Configures certificate-based authentication user IDs for a user in Entra ID. The
 
 ### EXAMPLE 1
 ```powershell
-Set-EntraCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
+Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields.
@@ -39,7 +39,7 @@ This example sets the certificate user IDs for the specified user using a certif
 ### EXAMPLE 2
 ```powershell
 $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
-Set-EntraCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
+Set-EntraUserCBACertificateUserId -UserId "12345678-1234-1234-1234-123456789012" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields.
