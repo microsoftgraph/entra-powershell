@@ -43,7 +43,7 @@ function Set-EntraUserCBACertificateUserId {
 
     begin {
         # Import required utility function
-        $utilityPath = Join-Path -Path $PSScriptRoot -ChildPath "Utilities\Get-EntraUserCertificateUserIdsFromCertificate.ps1"
+        $utilityPath = Join-Path -Path $PSScriptRoot -ChildPath "Utilities\..\Get-EntraUserCertificateUserIdsFromCertificate.ps1"
         if (Test-Path -Path $utilityPath) {
             . $utilityPath
         }
@@ -54,6 +54,9 @@ function Set-EntraUserCBACertificateUserId {
 
     process {
         try {
+            # Define custom headers for the request
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+
             # Get certificate user IDs based on parameter set
             Write-Verbose "Retrieving certificate user IDs"
             if ($PSCmdlet.ParameterSetName -eq 'CertPath') {
@@ -116,7 +119,7 @@ function Set-EntraUserCBACertificateUserId {
 
             Write-Verbose "Updating certificate user IDs for user: $userId"
             $apiCallUrl = "/users/$userId"
-            $response = Invoke-MgGraphRequest -Uri $apiCallUrl -Method PATCH -Body $jsonBody -ErrorAction Stop
+            $response = Invoke-MgGraphRequest -Uri $apiCallUrl -Method PATCH -Body $jsonBody -Headers $customHeaders -ErrorAction Stop
 
             return $response
             
