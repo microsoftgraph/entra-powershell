@@ -30,6 +30,7 @@ BeforeAll {
         }    
     }
     Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Get-EntraGroupOwner" {

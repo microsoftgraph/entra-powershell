@@ -26,6 +26,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgGroupAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Get-EntraGroupAppRoleAssignment" {

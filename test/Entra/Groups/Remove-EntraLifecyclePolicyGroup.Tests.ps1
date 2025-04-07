@@ -16,6 +16,7 @@ BeforeAll {
         )
     }  
     Mock -CommandName Remove-MgGroupFromLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Remove-EntraLifecyclePolicyGroup" {

@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaGroupAppRoleAssignment -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupAppRoleAssignment" {

@@ -21,6 +21,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaDirectoryDeletedItemAsGroup -MockWith $mockDeletedGroup -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Group.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaDeletedGroup" {

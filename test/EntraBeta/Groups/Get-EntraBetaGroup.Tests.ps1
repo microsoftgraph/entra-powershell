@@ -22,6 +22,7 @@ BeforeAll {
         )
     }
     Mock -CommandName Get-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Get-EntraBetaGroup" {

@@ -18,6 +18,7 @@ BeforeAll {
     }
 
     Mock -CommandName Add-MgGroupToLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Add-EntraLifecyclePolicyGroup" {

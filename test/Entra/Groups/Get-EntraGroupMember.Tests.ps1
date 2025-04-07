@@ -22,6 +22,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Get-EntraGroupMember" {

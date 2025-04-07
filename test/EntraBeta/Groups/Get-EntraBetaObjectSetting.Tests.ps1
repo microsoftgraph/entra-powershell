@@ -21,6 +21,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaObjectSetting" {

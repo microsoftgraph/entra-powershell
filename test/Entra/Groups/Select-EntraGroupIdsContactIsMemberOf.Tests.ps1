@@ -16,6 +16,7 @@ BeforeAll {
         )
     }  
     Mock -CommandName Get-MgContactMemberOfAsGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("OrgContact.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Select-EntraGroupIdsContactIsMemberOf" {

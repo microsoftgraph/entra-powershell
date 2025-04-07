@@ -9,6 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgGroup -MockWith {} -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Group.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Set-EntraGroup" {

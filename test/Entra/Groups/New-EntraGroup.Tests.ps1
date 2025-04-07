@@ -24,6 +24,7 @@ BeforeAll {
     }
     
     Mock -CommandName New-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Group.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "New-EntraGroup" {
