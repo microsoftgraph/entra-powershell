@@ -14,7 +14,7 @@ function Set-EntraBetaGroupLifecyclePolicy {
         [Alias('Id')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "A unique identifier for a policy. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $GroupLifecyclePolicyId,
+        [Guid] $GroupLifecyclePolicyId,
                 
         [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId", HelpMessage = "A list of email addresses to which notifications are sent. The email addresses must be valid and separated by semicolons.")]
         [System.String] $AlternateNotificationEmails

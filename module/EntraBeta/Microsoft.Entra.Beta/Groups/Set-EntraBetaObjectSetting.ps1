@@ -15,7 +15,7 @@ function Set-EntraBetaObjectSetting {
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique ID of the setting.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $Id,
+        [Guid] $Id,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of directory object to which to assign settings.")]
         [ValidateNotNullOrEmpty()]

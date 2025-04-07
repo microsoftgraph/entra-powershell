@@ -12,7 +12,7 @@ function Select-EntraGroupIdsUserIsMemberOf {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the user. Should be a valid GUID or User principal name value.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
-        [System.String] $UserId
+        [Guid] $UserId
     )
 
     PROCESS {    

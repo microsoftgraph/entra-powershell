@@ -7,13 +7,8 @@ function Reset-EntraLifeCycleGroup {
     param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript({
-                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
-                    return $true
-                }
-                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
-            })]
-        [System.String] $Id
+        [Alias('ObjectId', 'Id')]
+        [Guid] $GroupId
     )
 
     PROCESS {    
@@ -41,8 +36,8 @@ function Reset-EntraLifeCycleGroup {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["GroupId"] = $PSBoundParameters["Id"]
+        if ($null -ne $PSBoundParameters["GroupId"]) {
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]

@@ -12,7 +12,7 @@ function Select-EntraGroupIdsContactIsMemberOf {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the contact. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
-        [System.String] $OrgContactId
+        [Guid] $OrgContactId
     )
 
     PROCESS {    

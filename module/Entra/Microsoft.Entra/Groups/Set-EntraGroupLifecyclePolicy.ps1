@@ -14,7 +14,7 @@ function Set-EntraGroupLifecyclePolicy {
         [Alias('Id')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "A unique identifier for a policy. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $GroupLifecyclePolicyId,
+        [Guid] $GroupLifecyclePolicyId,
                 
         [Parameter(ParameterSetName = "ByGroupLifecyclePolicyId", HelpMessage = "Number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.")]
         [System.Nullable`1[System.Int32]] $GroupLifetimeInDays

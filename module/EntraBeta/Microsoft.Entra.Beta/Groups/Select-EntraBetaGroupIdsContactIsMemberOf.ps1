@@ -8,7 +8,7 @@ function Select-EntraBetaGroupIdsContactIsMemberOf {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the contact. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
-        [System.String] $OrgContactId,
+        [Guid] $OrgContactId,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID values.")]
         [ValidateNotNullOrEmpty()]

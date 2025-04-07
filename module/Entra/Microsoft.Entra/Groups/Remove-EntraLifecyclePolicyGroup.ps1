@@ -7,18 +7,12 @@ function Remove-EntraLifecyclePolicyGroup {
     param (                
         [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript({
-                if ($_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
-                    return $true
-                }
-                throw "GroupId must be a valid GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
-            })]
-        [System.String] $GroupId,
+        [Guid] $GroupId,
 
         [Alias('Id')]            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group lifecycle policy. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $GroupLifecyclePolicyId
+        [Guid] $GroupLifecyclePolicyId
     )
 
     PROCESS {    
