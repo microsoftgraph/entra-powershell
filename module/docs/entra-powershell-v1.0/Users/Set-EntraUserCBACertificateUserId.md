@@ -46,6 +46,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 ### Example 1: Update user's certificate authorization information using certificate path
 
 ```powershell
+Connect-Entra -Scopes "Directory.ReadWrite.All", "User.ReadWrite.All"
 Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
 ```
 
@@ -54,6 +55,7 @@ This example sets the certificate user IDs for the specified user using a certif
 ### Example 2: Update user's certificate authorization information using a certificate 
 
 ```powershell
+Connect-Entra -Scopes "Directory.ReadWrite.All", "User.ReadWrite.All"
 $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
 Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
 ```
