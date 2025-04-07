@@ -4,9 +4,9 @@ description: Creates an object with all values from a certificate file for confi
 ms.topic: reference
 ms.date: 03/25/2025
 ms.author: eunicewaweru
-manager: vimrang
+ms.reviewer: stevemutungi
+manager: CelesteDG
 author: thadumi
-ms.reviewer: tdumitrescu
 
 external help file: Microsoft.Entra.Utilities-Help.xml
 Module Name: Microsoft.Entra.Utilities

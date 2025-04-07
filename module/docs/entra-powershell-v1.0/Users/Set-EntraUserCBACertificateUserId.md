@@ -4,9 +4,9 @@ description: Sets certificate-based authentication user IDs for a user in Micros
 ms.topic: reference
 ms.date: 04/03/2025
 ms.author: eunicewaweru
-manager: vimrang
+ms.reviewer: stevemutungi
+manager: CelesteDG
 author: peichensun
-ms.reviewer: peichensun
 
 external help file: Microsoft.Entra.Utilities-Help.xml
 Module Name: Microsoft.Entra.Utilities
