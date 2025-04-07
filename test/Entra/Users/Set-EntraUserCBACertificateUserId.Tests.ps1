@@ -28,7 +28,7 @@ Describe "Certificate User ID Update Script" {
         }
     }
 
-    Context "Main Script Execution" {
+    Context "Set-EntraCBACertificateUserId" {
 
         It "Should throw an error when user is not found in Entra ID" {   
             { Set-EntraUserCBACertificateUserId -UserId "non-existent-id" -CertPath "C:\temp\testcert.cer" -CertificateMapping "PrincipalName" } |
