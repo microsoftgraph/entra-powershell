@@ -4,15 +4,20 @@
 function Get-EntraUserCertificateUserIdsFromCertificate {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory = $false, HelpMessage = "Path to the certificate file. The file can be in .cer or .pem format.")]
+        [Parameter(Mandatory = $false,
+            HelpMessage = "Path to the certificate file. The file can be in .cer or .pem format.")]
         [string]$Path,
 
-        [Parameter(Mandatory = $false, HelpMessage = "Certificate object. If provided, the Path parameter is ignored.")]
+        [Parameter(Mandatory = $false,
+            HelpMessage = "Certificate object. If provided, the Path parameter is ignored.")]
         [Alias('CertificateObject')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate,
 
-        [Parameter(Mandatory = $false, ParameterSetName = 'Default', HelpMessage = "The certificate mapping type to use. Valid values are: PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, IssuerAndSerialNumber.")]
-        [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject", "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
+        [Parameter(Mandatory = $false,
+            ParameterSetName = 'Default',
+            HelpMessage = "The certificate mapping type to use. Valid values are: PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, IssuerAndSerialNumber.")]
+        [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject",
+            "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
         [string]$CertificateMapping
     )
 
