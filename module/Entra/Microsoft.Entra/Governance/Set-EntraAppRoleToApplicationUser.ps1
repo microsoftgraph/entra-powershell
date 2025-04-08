@@ -31,6 +31,12 @@ function Set-EntraAppRoleToApplicationUser {
 
         [Parameter(Mandatory = $false,
             ParameterSetName = 'ExportResults',
+            HelpMessage = "Specifies whether this app role can be assigned to users and groups (by setting to ['User']),
+            to other application's (by setting to ['Application'], or both (by setting to ['User', 'Application']).")]
+        [string[]]$AllowedMemberTypes = @("User"),
+
+        [Parameter(Mandatory = $false,
+            ParameterSetName = 'ExportResults',
             HelpMessage = "Switch to enable export of results into a CSV file")]
         [switch]$Export,
         
@@ -305,7 +311,10 @@ function Set-EntraAppRoleToApplicationUser {
                 [string[]]$UniqueRoles,
         
                 [Parameter(Mandatory = $true)]
-                [string]$ApplicationId
+                [string]$ApplicationId,
+
+                [Parameter(Mandatory = $true)]
+                [string[]]$AllowedMemberTypes
             )
         
             try {
@@ -331,8 +340,7 @@ function Set-EntraAppRoleToApplicationUser {
                 foreach ($role in $existingRoles) {
                     $appRolesList.Add($role)
                 }
-        
-                $allowedMemberTypes = @("User","Application")  # Define allowed member types
+
                 $createdRoles = [System.Collections.ArrayList]::new()
         
                 foreach ($roleName in $UniqueRoles) {
@@ -344,7 +352,7 @@ function Set-EntraAppRoleToApplicationUser {
         
                     # Create new AppRole object
                     $appRole = @{
-                        allowedMemberTypes = $allowedMemberTypes
+                        allowedMemberTypes = $AllowedMemberTypes
                         description        = $roleName
                         displayName        = $roleName
                         id                 = [Guid]::NewGuid()
@@ -438,7 +446,7 @@ function Set-EntraAppRoleToApplicationUser {
 
                 if ($uniqueRoles.Count -gt 0) {
                     Write-ColoredVerbose "Creating required roles in application..." -Color "Cyan"
-                    $createdRoles = NewAppRoleIfNotExists -UniqueRoles $uniqueRoles -ApplicationId $application.ApplicationId
+                    $createdRoles = NewAppRoleIfNotExists -UniqueRoles $uniqueRoles -ApplicationId $application.ApplicationId -AllowedMemberTypes $AllowedMemberTypes
                     if ($createdRoles) {
                         Write-ColoredVerbose "Successfully created $($createdRoles.Count) new roles" -Color "Green"
                     }
@@ -511,7 +519,7 @@ function Set-EntraAppRoleToApplicationUser {
                                 RoleAssignmentStatus          = $assignment.Status
                                 AssignmentId                  = $assignment.AssignmentId
                                 AppRoleId                     = $assignment.AppRoleId
-                                PrincipalType                 = "User"  # Based on the AllowedMemberTypes in role creation
+                                PrincipalType                 = $AllowedMemberTypes
                                 RoleAssignmentCreatedDateTime = $assignment.CreatedDateTime
                                 ResourceId                    = $application.ServicePrincipalId  # Same as ServicePrincipalId in this context
                                 ProcessedTimestamp            = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
