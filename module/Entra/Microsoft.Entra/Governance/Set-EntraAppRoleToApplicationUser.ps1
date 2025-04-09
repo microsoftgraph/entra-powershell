@@ -31,12 +31,6 @@ function Set-EntraAppRoleToApplicationUser {
 
         [Parameter(Mandatory = $false,
             ParameterSetName = 'ExportResults',
-            HelpMessage = "Specifies whether this app role can be assigned to users and groups (by setting to ['User']),
-            to other application's (by setting to ['Application'], or both (by setting to ['User', 'Application']).")]
-        [string[]]$AllowedMemberTypes = @("User"),
-
-        [Parameter(Mandatory = $false,
-            ParameterSetName = 'ExportResults',
             HelpMessage = "Switch to enable export of results into a CSV file")]
         [switch]$Export,
         
@@ -311,10 +305,7 @@ function Set-EntraAppRoleToApplicationUser {
                 [string[]]$UniqueRoles,
         
                 [Parameter(Mandatory = $true)]
-                [string]$ApplicationId,
-
-                [Parameter(Mandatory = $true)]
-                [string[]]$AllowedMemberTypes
+                [string]$ApplicationId
             )
         
             try {
@@ -349,10 +340,13 @@ function Set-EntraAppRoleToApplicationUser {
                         Write-ColoredVerbose "Role '$roleName' already exists in application" -Color "Yellow"
                         continue
                     }
+
+                    $memberTypes = $roleToMemberTypeMapping[$roleName]
+                    $allowedMemberTypes = $memberTypes -split "," # Create array from comma separated string
         
                     # Create new AppRole object
                     $appRole = @{
-                        allowedMemberTypes = $AllowedMemberTypes
+                        allowedMemberTypes = $allowedMemberTypes
                         description        = $roleName
                         displayName        = $roleName
                         id                 = [Guid]::NewGuid()
@@ -432,12 +426,15 @@ function Set-EntraAppRoleToApplicationUser {
                 Write-ColoredVerbose "Application $ApplicationName status: $($application.Status) | ApplicationId : $($application.ApplicationId) | AppId : $($application.AppId) | ServicePrincipalId : $($application.ServicePrincipalId)." -Color "Green"
 
                 $uniqueRoles = @()
+                $roleToMemberTypeMapping = @{}
         
                 # Extract unique roles
                 $users | ForEach-Object {
                     $role = SanitizeInput -Value $_.Role
                     if ($role -and $role -notin $uniqueRoles) {
                         $uniqueRoles += $role
+                        $memberType = SanitizeInput -Value $_.memberType
+                        $roleToMemberTypeMapping[$role] = $memberType
                     }
                 }
         
@@ -446,7 +443,7 @@ function Set-EntraAppRoleToApplicationUser {
 
                 if ($uniqueRoles.Count -gt 0) {
                     Write-ColoredVerbose "Creating required roles in application..." -Color "Cyan"
-                    $createdRoles = NewAppRoleIfNotExists -UniqueRoles $uniqueRoles -ApplicationId $application.ApplicationId -AllowedMemberTypes $AllowedMemberTypes
+                    $createdRoles = NewAppRoleIfNotExists -UniqueRoles $uniqueRoles -ApplicationId $application.ApplicationId
                     if ($createdRoles) {
                         Write-ColoredVerbose "Successfully created $($createdRoles.Count) new roles" -Color "Green"
                     }
@@ -487,6 +484,7 @@ function Set-EntraAppRoleToApplicationUser {
     
                     # Get the user's role
                     $userRole = SanitizeInput -Value $user.Role
+                    $userRoleType = SanitizeInput -Value $user.memberType
                     Write-ColoredVerbose "Role : $($userRole)" -Color "Green"
                     if (-not $userRole) {
                         Write-Warning "Skipping user due to invalid Role: $($user.Role)"
@@ -519,7 +517,7 @@ function Set-EntraAppRoleToApplicationUser {
                                 RoleAssignmentStatus          = $assignment.Status
                                 AssignmentId                  = $assignment.AssignmentId
                                 AppRoleId                     = $assignment.AppRoleId
-                                PrincipalType                 = $AllowedMemberTypes
+                                PrincipalType                 = $userRoleType
                                 RoleAssignmentCreatedDateTime = $assignment.CreatedDateTime
                                 ResourceId                    = $application.ServicePrincipalId  # Same as ServicePrincipalId in this context
                                 ProcessedTimestamp            = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
