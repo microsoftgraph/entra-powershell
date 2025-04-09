@@ -29,8 +29,9 @@ Add existing application users to Microsoft Entra ID and assign them roles.
 ```powershell
 Set-EntraAppRoleToApplicationUser
  -DataSource <String>
- -FileName <System.IO.FileInfo>
+ -FilePath <System.IO.FileInfo>
  -ApplicationName <String>
+ [-SignInAudience <String>]
  [<CommonParameters>]
 ```
 
@@ -39,10 +40,11 @@ Set-EntraAppRoleToApplicationUser
 ```powershell
 Set-EntraAppRoleToApplicationUser
  -DataSource <String>
- -FileName <System.IO.FileInfo>
+ -FilePath <System.IO.FileInfo>
  -ApplicationName <String>
- -Export
- -ExportFileName <System.IO.FileInfo>
+ [-SignInAudience <String>]
+ [-Export]
+ [-ExportFilePath <System.IO.FileInfo>]
  [<CommonParameters>]
 ```
 
@@ -64,26 +66,26 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'EntitlementManagement.ReadWrite.All'
-Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users.csv" -ApplicationName "TestApp"
+Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FilePath "C:\temp\users.csv" -ApplicationName "TestApp"
 ```
 
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
+- `-FilePath` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 
 ### Example 2: Assign application users to app role assignments with verbose mode
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'EntitlementManagement.ReadWrite.All'
-Set-EntraAppRoleToApplicationUser -DataSource "SAPCloudIdentity" -FileName "C:\temp\users-exported-from-sap.csv" -ApplicationName "TestApp" -Verbose
+Set-EntraAppRoleToApplicationUser -DataSource "SAPCloudIdentity" -FilePath "C:\temp\users-exported-from-sap.csv" -ApplicationName "TestApp" -Verbose
 ```
 
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
+- `-FilePath` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
 - `-Verbose` common parameter outputs the execution steps during processing.
 
@@ -91,31 +93,31 @@ This example assigns users to app roles. It creates missing users and app roles.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'EntitlementManagement.ReadWrite.All'
-Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users.csv" -ApplicationName "TestApp" -Export -Verbose
+Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FilePath "C:\temp\users.csv" -ApplicationName "TestApp" -Export -Verbose
 ```
 
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
+- `-FilePath` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
-- `-Export` switch parameter enables export of results into a CSV file. If `ExportFileName` parameter isn't provided, results are exported in the current location.
+- `-Export` switch parameter enables export of results into a CSV file. If `ExportFilePath` parameter isn't provided, results are exported in the current location.
 - `-Verbose` common parameter outputs the execution steps during processing.
 
 ### Example 4: Assign application users to app roles and export to a specified location
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'EntitlementManagement.ReadWrite.All'
-Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FileName "C:\temp\users.csv" -ApplicationName "TestApp" -Export -ExportFileName "C:\temp\EntraAppRoleAssignments_yyyyMMdd.csv" -Verbose
+Set-EntraAppRoleToApplicationUser -DataSource "Generic" -FilePath "C:\temp\users.csv" -ApplicationName "TestApp" -Export -ExportFilePath "C:\temp\EntraAppRoleAssignments_yyyyMMdd.csv" -Verbose
 ```
 
 This example assigns users to app roles. It creates missing users and app roles. If a role assignment doesn't exist, it's created; otherwise, it's skipped.
 
 - `-DataSource` parameter specifies the source of the data, for example, SAP Identity, database, or directory. The value determines the attribute matching. For example, For SAP Cloud Identity Services, the default mapping is `userName` (SAP SCIM) to `userPrincipalName` (Microsoft Entra ID). For databases or directories, the `Email` column value might match the `userPrincipalName` in Microsoft Entra ID.
-- `-FileName` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
+- `-FilePath` parameter specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 - `-ApplicationName` parameter specifies the application name in Microsoft Entra ID.
-- `-Export` switch parameter enables export of results into a CSV file. If `ExportFileName` parameter isn't provided, results are exported in the current location.
-- `-ExportFileName` parameter specifies a specific filename and location to export results.
+- `-Export` switch parameter enables export of results into a CSV file. If `ExportFilePath` parameter isn't provided, results are exported in the current location.
+- `-ExportFilePath` parameter specifies a specific filename and location to export results.
 - `-Verbose` common parameter outputs the execution steps during processing.
 
 ## Parameters
@@ -136,7 +138,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileName
+### -FilePath
 
 Specifies the path to the input file containing users, for example, `C:\temp\users.csv`.
 
@@ -168,9 +170,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SignInAudience
+
+Specifies what Microsoft accounts are supported for the application. Options are "AzureADMyOrg", "AzureADMultipleOrgs", "AzureADandPersonalMicrosoftAccount" and "PersonalMicrosoftAccount".
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: AzureADMyOrg
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Export
 
-Enables export of results into a CSV file. If `ExportFileName` parameter isn't provided, results are exported in the current location.
+Enables export of results into a CSV file. If `ExportFilePath` parameter isn't provided, results are exported in the current location.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -184,7 +202,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExportFileName
+### -ExportFilePath
 
 Specifies a specific filename and location to export results.
 

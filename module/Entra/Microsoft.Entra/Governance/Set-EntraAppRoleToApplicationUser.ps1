@@ -3,30 +3,27 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Set-EntraAppRoleToApplicationUser {
-    [CmdletBinding(DefaultParameterSetName = 'ExportResults')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, 
-            HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.",
-            ParameterSetName = 'ExportResults')]
+            HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.")]
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
         [string]$DataSource,
 
         [Parameter(Mandatory = $true,
-            HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv",
-            ParameterSetName = 'ExportResults')]
+            HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FilePath,
 
         [Parameter(Mandatory = $true, 
-            HelpMessage = "Name of the application (Service Principal) to assign roles for",
-            ParameterSetName = 'ExportResults')]
+            HelpMessage = "Name of the application (Service Principal) to assign roles for")]
         [ValidateNotNullOrEmpty()]
         [string]$ApplicationName,
 
         [Parameter(Mandatory = $false,
-            HelpMessage = "Specifies what Microsoft accounts are supported for the application",
-            ParameterSetName = 'ExportResults')]
+            HelpMessage = "Specifies what Microsoft accounts are supported for the application. Options are 'AzureADMyOrg', 'AzureADMultipleOrgs', 'AzureADandPersonalMicrosoftAccount', 'PersonalMicrosoftAccount'")]
+        [ValidateSet("AzureADMyOrg", "AzureADMultipleOrgs", "AzureADandPersonalMicrosoftAccount", "PersonalMicrosoftAccount")]
         [string]$SignInAudience = "AzureADMyOrg",
 
         [Parameter(Mandatory = $false,
