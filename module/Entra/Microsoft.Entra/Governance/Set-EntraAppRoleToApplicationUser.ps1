@@ -36,7 +36,7 @@ function Set-EntraAppRoleToApplicationUser {
         
         [Parameter(Mandatory = $false, ParameterSetName = 'ExportResults',
             HelpMessage = "Path for the export file. Defaults to current directory.")]
-        [System.IO.FileInfo]$ExportFileName = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
+        [System.IO.FileInfo]$ExportFilePath = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
     )
 
     process {
@@ -526,10 +526,10 @@ function Set-EntraAppRoleToApplicationUser {
                 }
 
                 # Export results if using ExportResults parameter set
-                if ($PSCmdlet.ParameterSetName -eq 'ExportResults' -and $assignmentResults.Count -gt 0) {
+                if ($Export -and $assignmentResults.Count -gt 0) {
                     try {
-                        Write-ColoredVerbose "Exporting results to: $ExportFileName" -Color "Cyan"
-                        $assignmentResults | Export-Csv -Path $ExportFileName -NoTypeInformation -Force
+                        Write-ColoredVerbose "Exporting results to: $ExportFilePath" -Color "Cyan"
+                        $assignmentResults | Export-Csv -Path $ExportFilePath -NoTypeInformation -Force
                         Write-ColoredVerbose "Successfully exported $($assignmentResults.Count) assignments" -Color "Green"
                     }
                     catch {
@@ -550,6 +550,5 @@ function Set-EntraAppRoleToApplicationUser {
         StartOrchestration
 
     }
-    
 }
 
