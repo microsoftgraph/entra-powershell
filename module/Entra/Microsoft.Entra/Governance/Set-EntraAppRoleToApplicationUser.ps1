@@ -16,7 +16,7 @@ function Set-EntraAppRoleToApplicationUser {
             ParameterSetName = 'ExportResults')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
-        [System.IO.FileInfo]$FileName,
+        [System.IO.FileInfo]$FilePath,
 
         [Parameter(Mandatory = $true, 
             HelpMessage = "Name of the application (Service Principal) to assign roles for",
@@ -399,11 +399,11 @@ function Set-EntraAppRoleToApplicationUser {
     
             try {
                 # Import users from the CSV file
-                Write-ColoredVerbose "Importing users from file: $FileName" -Color "Cyan"
-                $users = Import-Csv -Path $FileName
+                Write-ColoredVerbose "Importing users from file: $FilePath" -Color "Cyan"
+                $users = Import-Csv -Path $FilePath
                 Write-ColoredVerbose "Imported : $($users.Count) users" -Color "Green"
                 if (-not $users) { 
-                    Write-Error "No users found in the provided file: $FileName" 
+                    Write-Error "No users found in the provided file: $FilePath" 
                     return 
                 }
     
@@ -545,7 +545,7 @@ function Set-EntraAppRoleToApplicationUser {
         }
 
         # Debugging output
-        Write-ColoredVerbose -Message "Starting orchestration with params: AppName - $ApplicationName | FileName - $FileName | DataSource - $DataSource" -Color "Magenta"
+        Write-ColoredVerbose -Message "Starting orchestration with params: AppName - $ApplicationName | FilePath - $FilePath | DataSource - $DataSource" -Color "Magenta"
         # Start orchestration
         StartOrchestration
 
