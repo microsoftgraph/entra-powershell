@@ -99,7 +99,7 @@ function Set-EntraUserCBACertificateUserId {
                 $userFilter = "userPrincipalName eq '$UserId'"
             }
             
-            $userQuery = Invoke-MgGraphRequest -Method GET -Uri "/users?`$filter=$userFilter&`$select=id" -ErrorAction Stop
+            $userQuery = Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users?`$filter=$userFilter&`$select=id" -ErrorAction Stop
             
             if (-not $userQuery.value -or $userQuery.value.Count -eq 0) {
                 throw "User '$UserId' not found in Entra ID"
