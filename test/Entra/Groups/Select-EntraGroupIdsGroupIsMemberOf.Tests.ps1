@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"         = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "Id"         = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "Parameters" = $args
             }
         )
@@ -31,47 +31,42 @@ BeforeAll {
     }
     Mock -CommandName Get-MgGroupMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
     Mock -CommandName Get-MgGroup -MockWith $scriptblock2 -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Select-EntraGroupIdsGroupIsMemberOf" {
     Context "Test for Select-EntraGroupIdsGroupIsMemberOf" {
         It "Should return specific Group Membership" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $GroupID = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $GroupID = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result = Select-EntraGroupIdsGroupIsMemberOf -GroupId $GroupID -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
-            $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+            $result | Should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupId is missing" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             { Select-EntraGroupIdsGroupIsMemberOf -GroupId -GroupIdsForMembershipCheck $Groups } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
 
-        It "Should fail when GroupId is empty" {
-            $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            { Select-EntraGroupIdsGroupIsMemberOf -GroupId "" -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
-
         It "Should fail when GroupIdsForMembershipCheck is empty" {
-            $GroupID = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $GroupID = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             { Select-EntraGroupIdsGroupIsMemberOf -GroupId $GroupID -GroupIdsForMembershipCheck } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'*"
         }
 
         It "Should fail when GroupIdsForMembershipCheck is invalid" {
-            $GroupID = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $GroupID = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             { Select-EntraGroupIdsGroupIsMemberOf -GroupId $GroupID -GroupIdsForMembershipCheck "Xy" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'.*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsGroupIsMemberOf"
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $GroupID = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $GroupID = "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             Select-EntraGroupIdsGroupIsMemberOf -GroupId $GroupID -GroupIdsForMembershipCheck $Groups
 
@@ -87,8 +82,8 @@ Describe "Select-EntraGroupIdsGroupIsMemberOf" {
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $GroupID = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $GroupID = "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception

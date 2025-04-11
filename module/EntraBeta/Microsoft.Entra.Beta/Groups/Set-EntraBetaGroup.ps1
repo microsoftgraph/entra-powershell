@@ -4,44 +4,58 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaGroup {
     [CmdletBinding(DefaultParameterSetName = 'UpdateGroupByGroupId')]
-    param (
-                
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+    param (                
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies the group type and its membership.")]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.String] $Visibility,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Description of the group.")]
         [System.String] $Description,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $LabelId,
-                
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Indicates whether this group can be assigned to a Microsoft Entra role.")]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Display name of the group.")]
+        [ValidateLength(1, 256)]
         [System.String] $DisplayName,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "The rule that determines members for this group if the group is a dynamic group (groupTypes contains DynamicMembership).")]
         [System.String] $MembershipRule,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies whether the group is mail-enabled.")]
+        [Alias('MailEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $MailEnabled,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Specifies whether the group is a security group.")]
+        [Alias('SecurityEnabledGroup')]
+        [ValidateSet("true", "false", IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $SecurityEnabled,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "A unique mail alias for the group (max 64 characters). It must use ASCII characters (0–127).")]
         [System.String] $MailNickname,
+
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $GroupId,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $GroupId,
                 
-        [Parameter(ParameterSetName = "UpdateGroupByGroupId")]
+        [Parameter(ParameterSetName = "UpdateGroupByGroupId", HelpMessage = "Shows if dynamic membership processing is active or paused. Values: On or Paused.")]
         [System.String] $MembershipRuleProcessingState
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
@@ -73,9 +87,6 @@ function Set-EntraBetaGroup {
         }
         if ($null -ne $PSBoundParameters["Description"]) {
             $params["Description"] = $PSBoundParameters["Description"]
-        }
-        if ($null -ne $PSBoundParameters["LabelId"]) {
-            $params["LabelId"] = $PSBoundParameters["LabelId"]
         }
         if ($null -ne $PSBoundParameters["IsAssignableToRole"]) {
             $params["IsAssignableToRole"] = $PSBoundParameters["IsAssignableToRole"]

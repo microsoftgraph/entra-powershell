@@ -118,6 +118,22 @@ This cmdlet retrieves a list of administrative units to which a specific user be
 
 ## Parameters
 
+### -UserId
+
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -All
 
 List all pages.
