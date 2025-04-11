@@ -8,9 +8,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: peichensun
 
-external help file: Microsoft.Entra.Utilities-Help.xml
-Module Name: Microsoft.Entra.Utilities
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Utilities/Set-EntraUserCBACertificateUserId
+external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
+Module Name: Microsoft.Entra.CertificateBasedAuthentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.CertificateBasedAuthentication/Set-EntraUserCBACertificateUserId
 
 schema: 2.0.0
 ---
@@ -103,7 +103,7 @@ Certificate object from which the certificate user IDs will be extracted.
 ```yaml
 Type: System.Security.Cryptography.X509Certificates.X509Certificate2
 Parameter Sets: (All)
-Aliases: CertificateObject
+Aliases: CertificateObject, Certificate
 
 Required: False
 Position: Named

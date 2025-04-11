@@ -1,6 +1,6 @@
 BeforeAll {
-    if (-not (Get-Module -Name Microsoft.Entra.Utilities)) {
-        Import-Module Microsoft.Entra.Utilities
+    if (-not (Get-Module -Name Microsoft.Entra.CertificateBasedAuthentication)) {
+        Import-Module Microsoft.Entra.CertificateBasedAuthentication
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 

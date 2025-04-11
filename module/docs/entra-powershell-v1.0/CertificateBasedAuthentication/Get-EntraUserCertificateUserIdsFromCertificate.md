@@ -8,9 +8,9 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: thadumi
 
-external help file: Microsoft.Entra.Utilities-Help.xml
-Module Name: Microsoft.Entra.Utilities
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Utilities/Get-EntraUserCertificateUserIdsFromCertificate
+external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
+Module Name: Microsoft.Entra.CertificateBasedAuthentication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.CertificateBasedAuthentication/Get-EntraUserCertificateUserIdsFromCertificate
 
 schema: 2.0.0
 ---
@@ -111,7 +111,7 @@ Certificate from which the certificateUserIDs mappings will be extracted
 ```yaml
 Type: System.Security.Cryptography.X509Certificates.X509Certificate2
 Parameter Sets: (All)
-Aliases:
+Aliases: CertificateObject, Cert
 
 Required: False
 Position: 2

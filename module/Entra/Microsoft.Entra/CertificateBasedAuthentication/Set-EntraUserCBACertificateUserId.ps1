@@ -29,7 +29,7 @@ function Set-EntraUserCBACertificateUserId {
         [Parameter(Mandatory = $true, 
             ParameterSetName = 'CertObject',
             HelpMessage = "Certificate object.")]
-        [Alias('CertificateObject')]
+        [Alias('CertificateObject', 'Certificate')]
         [ValidateNotNull()]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Cert,
 

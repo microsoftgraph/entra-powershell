@@ -10,7 +10,7 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
 
         [Parameter(Mandatory = $false,
             HelpMessage = "Certificate object. If provided, the Path parameter is ignored.")]
-        [Alias('CertificateObject')]
+        [Alias('CertificateObject', 'Cert')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate,
 
         [Parameter(Mandatory = $false,
