@@ -63,7 +63,7 @@ Describe "Add-EntraBetaGroupMember" {
                 { Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Not -Throw
             }
             finally {
-                # Restore original confirmation preference            
+                # Restore original confirmation preference
                 $DebugPreference = $originalDebugPreference        
             }
         }
