@@ -6,18 +6,32 @@ function New-EntraBetaGroupAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'ByGroupIdAndRoleParameters')]
     param (
         [Alias('ObjectId')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $GroupId,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $GroupId,
+
         [Alias('Id')]            
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
-        [System.String] $AppRoleId,
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the appRole (defined on the resource service principal) to assign to the group")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $AppRoleId,
                 
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
-        [System.String] $PrincipalId,
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the group to which you're assigning the app role.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true)]
-        [System.String] $ResourceId
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the resource service Principal, which has defined the app role.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $ResourceId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AppRoleAssignment.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
