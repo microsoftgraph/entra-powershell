@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Select-EntraBetaGroupIdsUserIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the user. Should be a valid GUID or User principal name value.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
