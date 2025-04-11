@@ -25,12 +25,7 @@ function Set-EntraBetaDirSyncEnabled {
             $params["OrganizationId"] = $PSBoundParameters["TenantId"]
         }
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-<<<<<<< HEAD
-            $OnPremisesDirectorySynchronizationId = (Get-EntraContext).TenantId
-            $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
-=======
             $params["OrganizationId"] = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
->>>>>>> 1e6f074c1 (Removing validatescript)
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
