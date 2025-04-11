@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Select-EntraBetaGroupIdsContactIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the contact. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
