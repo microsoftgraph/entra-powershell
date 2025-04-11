@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Add-EntraLifecyclePolicyGroup {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Guid] $GroupId,
