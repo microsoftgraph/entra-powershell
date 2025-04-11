@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The type of object to get settings for. For example, 'group' or 'servicePrincipal'.")]
         [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
