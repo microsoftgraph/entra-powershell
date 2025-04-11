@@ -67,7 +67,7 @@ Describe "Add-EntraBetaGroupMember" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
-    }          
+    }
 }
 
 
