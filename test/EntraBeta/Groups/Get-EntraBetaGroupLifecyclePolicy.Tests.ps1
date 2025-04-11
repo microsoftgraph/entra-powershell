@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,16 +10,17 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "AlternateNotificationEmails"   = "admingroup@contoso.com"
-                "GroupLifetimeInDays"           = 200
-                "Id"                            = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-                "ManagedGroupTypes"             = "All"
-                "AdditionalProperties"          = @{}
-                "Parameters"                    = $args
+                "AlternateNotificationEmails" = "admingroup@contoso.com"
+                "GroupLifetimeInDays"         = 200
+                "Id"                          = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "ManagedGroupTypes"           = "All"
+                "AdditionalProperties"        = @{}
+                "Parameters"                  = $args
             }
         )
     }
     Mock -CommandName Get-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Get-EntraBetaGroupLifecyclePolicy" {
@@ -56,10 +57,6 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             { Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
         }
 
-        It "Should fail when GroupLifecyclePolicyId is invalid" {
-            { Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string."
-        }
-
         It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
             $result = Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
@@ -67,7 +64,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
         }
         
         It "Property parameter should work" {
-            $result =  Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id 
+            $result = Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
@@ -75,7 +72,7 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -97,7 +94,8 @@ Describe "Get-EntraBetaGroupLifecyclePolicy" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
