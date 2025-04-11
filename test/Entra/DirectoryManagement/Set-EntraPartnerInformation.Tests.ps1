@@ -78,7 +78,7 @@ Describe "Set-EntraPartnerInformation" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Debug } | Should -Not -Throw
+                { Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
