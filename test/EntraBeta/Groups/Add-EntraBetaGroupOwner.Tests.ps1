@@ -67,6 +67,6 @@ Describe "Add-EntraBetaGroupOwner" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
-    }          
+    }
 }
 
