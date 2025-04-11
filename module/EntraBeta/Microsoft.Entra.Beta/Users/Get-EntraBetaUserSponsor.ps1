@@ -94,6 +94,7 @@ function Get-EntraBetaUserSponsor {
                     $propertyValue = $_.Value
                     $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $memberType.PSTypeNames.Insert(0, "EntraBeta.Users")
                 $memberList += $memberType
             }
             return $memberList
