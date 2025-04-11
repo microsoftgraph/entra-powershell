@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"         = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+                "Id"         = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "Parameters" = $args
             }
         )
@@ -24,11 +24,11 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
     Context "Test for Select-EntraGroupIdsUserIsMemberOf" {
         It "Should return group membership id's" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty      
-            $result | Should -Be '83ec0ff5-f16a-4ba3-b8db-74919eda4926'     
+            $result | Should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'     
 
             Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
@@ -37,7 +37,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-entraGroupIdsUserIsMemberOf"
             
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
@@ -55,7 +55,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             try {

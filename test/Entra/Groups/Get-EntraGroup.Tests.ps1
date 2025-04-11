@@ -12,7 +12,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"     = "demo"
-                "Id"              = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+                "Id"              = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "MailEnabled"     = "False"
                 "Description"     = "test"
                 "MailNickname"    = "demoNickname"
@@ -29,9 +29,9 @@ BeforeAll {
 Describe "Get-EntraGroup" {
     Context "Test for Get-EntraGroup" {
         It "Should return specific group" {
-            $result = Get-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '83ec0ff5-f16a-4ba3-b8db-74919eda4926'
+            $result.Id | should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }       
@@ -80,13 +80,13 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
-            $result.ObjectId | should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Get-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {
             $result = Get-EntraGroup -SearchString 'demo'
@@ -95,7 +95,7 @@ Describe "Get-EntraGroup" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
-            $result = Get-EntraGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {

@@ -27,28 +27,28 @@ BeforeAll {
 Describe "Add-EntraBetaGroupMember" {
     Context "Test for Add-EntraBetaGroupMember" {
         It "Should add a member to a group" {
-            $result = Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
+            $result = Add-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }   
         It "Should add a member to a group with Alias" {
-            $result = Add-EntraBetaGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b"
+            $result = Add-EntraBetaGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
-            { Add-EntraBetaGroupMember -GroupId -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraBetaGroupMember -GroupId -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
 
         It "Should fail when MemberId is empty" {
-            { Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
+            { Add-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
         }
    
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupMember"
-            Add-EntraBetaGroupMember -GroupId "07615907-2440-445b-ab71-b40232763319" -MemberId "d140b73f-6648-4075-8d0d-d0cfee5d2d18"
+            Add-EntraBetaGroupMember -GroupId "cccccccc-2222-3333-4444-dddddddddddd" -MemberId "dddddddd-3333-4444-5555-eeeeeeeeeeee"
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -60,7 +60,7 @@ Describe "Add-EntraBetaGroupMember" {
             $DebugPreference = 'Continue'
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "ec5813fb-346e-4a33-a014-b55ffee3662b" } | Should -Not -Throw
+                { Add-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference

@@ -11,7 +11,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{                
-                "Id"                   = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+                "Id"                   = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "@odata.type"          = "#microsoft.graph.user"
                 "Description"          = "test"
                 "AdditionalProperties" = @{
@@ -28,9 +28,9 @@ BeforeAll {
 Describe "Get-EntraBetaGroupMember" {
     Context "Test for Get-EntraBetaGroupMember" {
         It "Should return specific group" {
-            $result = Get-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Contain '83ec0ff5-f16a-4ba3-b8db-74919eda4926'
+            $result.Id | should -Contain 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
@@ -48,17 +48,17 @@ Describe "Get-EntraBetaGroupMember" {
         }
 
         It "Should return all group" {
-            $result = Get-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All 
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return top group" {
-            $result = @(Get-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Top 1)
+            $result = @(Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
@@ -66,20 +66,20 @@ Describe "Get-EntraBetaGroupMember" {
         } 
 
         It "Property parameter should work" {
-            $result = Get-EntraBetaGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -top 1 -Property Id 
+            $result = Get-EntraBetaGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraBetaGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupMember"
-            $result = Get-EntraBetaGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaGroupMember -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -94,7 +94,7 @@ Describe "Get-EntraBetaGroupMember" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Get-EntraBetaGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

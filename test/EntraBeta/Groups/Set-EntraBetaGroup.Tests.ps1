@@ -15,14 +15,14 @@ BeforeAll {
 Describe "Set-EntraBetaGroup" {
     Context "Test for Set-EntraBetaGroup" {
         It "Should return empty object" {
-            $result = Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
+            $result = Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should execute successfully with Alias" {
-            $result = Set-EntraBetaGroup -Id "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
+            $result = Set-EntraBetaGroup -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Description "Update Group" -DisplayName "Update My Test san" -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -33,36 +33,36 @@ Describe "Set-EntraBetaGroup" {
         } 
 
         It "Should fail when Description is empty" {
-            { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Description } | Should -Throw "Missing an argument for parameter 'Description'.*"
+            { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Description } | Should -Throw "Missing an argument for parameter 'Description'.*"
         } 
 
         It "Should fail when DisplayName is empty" {
-            { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
+            { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
         } 
 
         It "Should fail when MailEnabled is empty" {
-            { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MailEnabled } | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MailEnabled } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should fail when MailNickname is empty" {
-            { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MailNickname } | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MailNickname } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should fail when SecurityEnabled is empty" {
-            { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -SecurityEnabled } | Should -Throw "Missing an argument for parameter*"
+            { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -SecurityEnabled } | Should -Throw "Missing an argument for parameter*"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Update-MgBetaGroup -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }        
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaGroup"
-            $result = Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaGroup"
             Should -Invoke -CommandName Update-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -78,7 +78,7 @@ Describe "Set-EntraBetaGroup" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Set-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

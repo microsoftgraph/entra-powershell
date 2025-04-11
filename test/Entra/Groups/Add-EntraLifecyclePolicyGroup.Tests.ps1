@@ -24,7 +24,7 @@ BeforeAll {
 Describe "Add-EntraLifecyclePolicyGroup" {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
-            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             Write-Debug("result : $result")
             #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
@@ -32,7 +32,7 @@ Describe "Add-EntraLifecyclePolicyGroup" {
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should return created LifecyclePolicyGroup with alias" {
-            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
 
@@ -40,7 +40,7 @@ Describe "Add-EntraLifecyclePolicyGroup" {
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
-            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
         } 
 
         It "Should fail when GroupId is empty" {
@@ -49,7 +49,7 @@ Describe "Add-EntraLifecyclePolicyGroup" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
-            Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
@@ -65,7 +65,7 @@ Describe "Add-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

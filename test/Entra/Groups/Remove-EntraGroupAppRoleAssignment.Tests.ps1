@@ -14,13 +14,13 @@ BeforeAll {
 Describe "Remove-EntraGroupAppRoleAssignment" {
     Context "Test for Remove-EntraGroupAppRoleAssignment" {
         It "Should return empty object" {
-            $result = Remove-EntraGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+            $result = Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should return empty object with Alias" {
-            $result = Remove-EntraGroupAppRoleAssignment -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+            $result = Remove-EntraGroupAppRoleAssignment -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroupAppRoleAssignment -ModuleName Microsoft.Entra.Groups -Times 1
@@ -30,20 +30,20 @@ Describe "Remove-EntraGroupAppRoleAssignment" {
         }  
 
         It "Should fail when AppRoleAssignmentId is empty" {
-            { Remove-EntraGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId } | Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'*"
+            { Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId } | Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'*"
         }  
 
         It "Should contain GroupId in parameters when passed GroupId to it" { 
             Mock -CommandName Remove-MgGroupAppRoleAssignment -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
-            $result = Remove-EntraGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+            $result = Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupAppRoleAssignment"
 
-            Remove-EntraGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+            Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupAppRoleAssignment"
 
@@ -59,7 +59,7 @@ Describe "Remove-EntraGroupAppRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraGroupAppRoleAssignment -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Debug } | Should -Not -Throw
+                { Remove-EntraGroupAppRoleAssignment -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -AppRoleAssignmentId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

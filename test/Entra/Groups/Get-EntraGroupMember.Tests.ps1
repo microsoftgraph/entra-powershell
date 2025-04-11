@@ -13,7 +13,7 @@ BeforeAll {
             [PSCustomObject]@{
                 "value" = @{
                     "DisplayName" = "demo"
-                    "Id"          = "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+                    "Id"          = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                     "@odata.type" = "#microsoft.graph.user"
                     "Description" = "test"
                 }
@@ -28,9 +28,9 @@ BeforeAll {
 Describe "Get-EntraGroupMember" {
     Context "Test for Get-EntraGroupMember" {
         It "Should return specific group" {
-            $result = Get-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Contain '83ec0ff5-f16a-4ba3-b8db-74919eda4926'
+            $result.Id | should -Contain 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Groups -Times 1
         }
@@ -48,17 +48,17 @@ Describe "Get-EntraGroupMember" {
         }
 
         It "Should return all group" {
-            $result = Get-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All 
+            $result = Get-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return top group" {
-            $result = @(Get-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Top 1)
+            $result = @(Get-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
@@ -66,21 +66,21 @@ Describe "Get-EntraGroupMember" {
         } 
 
         It "Property parameter should work" {
-            $result = Get-EntraGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -top 1 -Property Id 
+            $result = Get-EntraGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
 
-            $result = Get-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
@@ -97,7 +97,7 @@ Describe "Get-EntraGroupMember" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraGroupMember -ObjectId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Get-EntraGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

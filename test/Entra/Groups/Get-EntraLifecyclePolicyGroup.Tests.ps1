@@ -26,7 +26,7 @@ BeforeAll {
 Describe "Get-EntraLifecyclePolicyGroup" {
     Context "Test for Get-EntraLifecyclePolicyGroup" {
         It "Retrieve lifecycle policy object" {
-            $result = Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.ObjectId | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.GroupLifetimeInDays | Should -Be 200
@@ -38,7 +38,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
         }
 
         It "Retrieve lifecycle policy object with alias" {
-            $result = Get-EntraLifecyclePolicyGroup -Id "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraLifecyclePolicyGroup -Id "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.ObjectId | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.GroupLifetimeInDays | Should -Be 200
@@ -54,13 +54,13 @@ Describe "Get-EntraLifecyclePolicyGroup" {
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Property parameter should work" {
-            $result = Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property Id 
+            $result = Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property Id 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 
@@ -68,13 +68,13 @@ Describe "Get-EntraLifecyclePolicyGroup" {
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraLifecyclePolicyGroup"
 
-            $result = Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraLifecyclePolicyGroup"
@@ -92,7 +92,7 @@ Describe "Get-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraLifecyclePolicyGroup -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Get-EntraLifecyclePolicyGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

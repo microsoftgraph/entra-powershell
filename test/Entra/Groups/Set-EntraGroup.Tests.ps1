@@ -15,13 +15,13 @@ BeforeAll {
 Describe "Set-EntraGroup" {
     Context "Test for Set-EntraGroup" {
         It "Should return empty object" {
-            $result = Set-EntraGroup -GroupId 83ec0ff5-f16a-4ba3-b8db-74919eda4926 -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
+            $result = Set-EntraGroup -GroupId aaaaaaaa-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should execute successfully with Alias" {
-            $result = Set-EntraGroup -Id 83ec0ff5-f16a-4ba3-b8db-74919eda4926 -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
+            $result = Set-EntraGroup -Id aaaaaaaa-1111-2222-3333-cccccccccccc -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
@@ -33,14 +33,14 @@ Describe "Set-EntraGroup" {
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Update-MgGroup -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
-            $result = Set-EntraGroup -GroupId 83ec0ff5-f16a-4ba3-b8db-74919eda4926
+            $result = Set-EntraGroup -GroupId aaaaaaaa-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
 
-            Set-EntraGroup -Id 83ec0ff5-f16a-4ba3-b8db-74919eda4926
+            Set-EntraGroup -Id aaaaaaaa-1111-2222-3333-cccccccccccc
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1 -ParameterFilter {
@@ -55,7 +55,7 @@ Describe "Set-EntraGroup" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraGroup -Id 83ec0ff5-f16a-4ba3-b8db-74919eda4926 } | Should -Not -Throw
+                { Set-EntraGroup -Id aaaaaaaa-1111-2222-3333-cccccccccccc } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

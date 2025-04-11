@@ -15,7 +15,7 @@ BeforeAll {
 Describe "Remove-EntraBetaGroupOwner" {
     Context "Test for Remove-EntraBetaGroupOwner" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -26,28 +26,28 @@ Describe "Remove-EntraBetaGroupOwner" {
         }
 
         It "Should fail when OwnerId is empty" {
-            { Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
+            { Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
             Mock -CommandName Remove-MgBetaGroupOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
-            $result = Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.DirectoryObjectId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupOwner"
-            $result = Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result = Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupOwner"
             Should -Invoke -CommandName Remove-MgBetaGroupOwnerByRef -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -63,7 +63,7 @@ Describe "Remove-EntraBetaGroupOwner" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

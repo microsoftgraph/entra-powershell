@@ -22,21 +22,21 @@ BeforeAll {
 Describe "Remove-EntraLifecyclePolicyGroup" {
     Context "Test for Remove-EntraLifecyclePolicyGroup" {
         It "Should remove a group from a lifecycle policy" {
-            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result.Value | Should -Be $true
 
             Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should remove a group from a lifecycle policy with alias" {
-            $result = Remove-EntraLifecyclePolicyGroup -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Remove-EntraLifecyclePolicyGroup -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result.Value | Should -Be $true
 
             Should -Invoke -CommandName Remove-MgGroupFromLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
 
         It "Should fail when GroupLifecyclePolicyId is empty" {
-            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
+            { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
         }   
 
         It "Should fail when GroupId is empty" {
@@ -44,21 +44,21 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
         }
 
         It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
-            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.GroupLifecyclePolicyId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $result = Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraLifecyclePolicyGroup"
 
-            Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraLifecyclePolicyGroup"
 
@@ -74,7 +74,7 @@ Describe "Remove-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -Debug } | Should -Not -Throw
+                { Remove-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

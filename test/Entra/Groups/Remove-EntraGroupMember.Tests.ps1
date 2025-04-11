@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraGroupMember" {
     Context "Test for Remove-EntraGroupMember" {
         It "Should reemove a member" {
-            $result = Remove-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Remove-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroupMemberByRef -ModuleName Microsoft.Entra.Groups -Times 1
@@ -25,21 +25,21 @@ Describe "Remove-EntraGroupMember" {
         }   
 
         It "Should fail when MemberId is empty" {
-            { Remove-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+            { Remove-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'*"
         }   
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Remove-MgGroupMemberByRef -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
-            $result = Remove-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Remove-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupMember"
 
-            Remove-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            Remove-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupMember"
 
@@ -55,7 +55,7 @@ Describe "Remove-EntraGroupMember" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
+                { Remove-EntraGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -MemberId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraGroupOwner" {
     Context "Test for Remove-EntraGroupOwner" {
         It "Should remove an owner" {
-            $result = Remove-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Remove-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroupOwnerByRef -ModuleName Microsoft.Entra.Groups -Times 1
@@ -25,21 +25,21 @@ Describe "Remove-EntraGroupOwner" {
         }   
 
         It "Should fail when OwnerId is empty" {
-            { Remove-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
+            { Remove-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'*"
         }   
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
             Mock -CommandName Remove-MgGroupOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Groups
 
-            $result = Remove-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result = Remove-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "83ec0ff5-f16a-4ba3-b8db-74919eda4926"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupOwner"
 
-            Remove-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            Remove-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroupOwner"
 
@@ -55,7 +55,7 @@ Describe "Remove-EntraGroupOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
+                { Remove-EntraGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -OwnerId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
