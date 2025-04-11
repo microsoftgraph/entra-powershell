@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Set-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of the directory object.")]
         [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
