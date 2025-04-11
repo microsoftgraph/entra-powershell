@@ -45,7 +45,6 @@ Describe "Add-EntraGroupOwner" {
         It "Should fail when OwnerId is empty" {
             { Add-EntraGroupOwner -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'.*"
         }
-   
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupOwner"
             Add-EntraGroupOwner -GroupId "07615907-2440-445b-ab71-b40232763319" -OwnerId "d140b73f-6648-4075-8d0d-d0cfee5d2d18"
