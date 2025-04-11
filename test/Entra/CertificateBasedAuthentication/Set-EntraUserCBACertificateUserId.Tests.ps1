@@ -1,6 +1,6 @@
 BeforeAll {
-    if (-not (Get-Module -Name Microsoft.Entra.Utilities)) {
-        Import-Module Microsoft.Entra.Utilities
+    if (-not (Get-Module -Name Microsoft.Entra.CertificateBasedAuthentication)) {
+        Import-Module Microsoft.Entra.CertificateBasedAuthentication
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
@@ -8,6 +8,8 @@ BeforeAll {
     if (-not (Get-Command Set-EntraUserCBACertificateUserId -ErrorAction SilentlyContinue)) {
         throw "Set-EntraUserCBACertificateUserId function is not available"
     }
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.CertificateBasedAuthentication
 }
 
 Describe "Certificate User ID Update Script" {
