@@ -30,7 +30,6 @@ Describe "Get-EntraUserCertificateUserIdsFromCertificate" {
             
             $result = Get-EntraUserCertificateUserIdsFromCertificate @params
 
-            # Verify result is a hashtable and not null
             $result | Should -Not -BeNullOrEmpty
             $result | Should -BeOfType [System.Collections.Hashtable]
             
@@ -57,9 +56,8 @@ Describe "Get-EntraUserCertificateUserIdsFromCertificate" {
                 CertificateMapping = "IssuerAndSerialNumber"
             }
             
-            $result = Get-EntraUserCertificateUserIdsFromCertificate @params
+            $result = Get-EntraUserCertificateUserIdsFromCertificate @params            
             
-            # For specific mapping, result should be a single string
             $result | Should -BeOfType [String]
             $result | Should -Be "X509:<I>CN=Contoso<SR>1e8c974144bf86964423fa6464082d8a"
         }
