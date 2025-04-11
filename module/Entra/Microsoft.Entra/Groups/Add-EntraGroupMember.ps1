@@ -48,7 +48,7 @@ function Add-EntraGroupMember {
             # Set up the request parameters
             $params = @{
                 Method      = "POST"
-                Uri         = "$graphEndpoint/v1.0/groups/$GroupId/members/`$ref"
+                Uri         = "/v1.0/groups/$GroupId/members/`$ref"
                 Headers     = $customHeaders
                 Body        = @{
                     "@odata.id" = "$graphEndpoint/v1.0/directoryObjects/$MemberId"
