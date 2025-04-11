@@ -48,7 +48,7 @@ function Add-EntraBetaGroupOwner {
             # Set up the request parameters
             $params = @{
                 Method      = "POST"
-                Uri         = "$graphEndpoint/beta/groups/$GroupId/owners/`$ref"
+                Uri         = "/beta/groups/$GroupId/owners/`$ref"
                 Headers     = $customHeaders
                 Body        = @{
                     "@odata.id" = "$graphEndpoint/beta/directoryObjects/$OwnerId"
