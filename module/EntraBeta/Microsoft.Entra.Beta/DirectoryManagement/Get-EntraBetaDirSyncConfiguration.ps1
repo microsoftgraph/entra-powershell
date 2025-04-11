@@ -6,7 +6,6 @@ function Get-EntraBetaDirSyncConfiguration {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })]
         [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.guid] $TenantId
     )
@@ -62,5 +61,5 @@ function Get-EntraBetaDirSyncConfiguration {
         }
         $customTable 
     }
-}# ------------------------------------------------------------------------------
+}
 

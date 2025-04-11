@@ -12,7 +12,6 @@ function Set-EntraDirSyncFeature {
         [System.Boolean] $Enabled,
 
         [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true)]
-        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })]
         [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.Guid] $TenantId,
 

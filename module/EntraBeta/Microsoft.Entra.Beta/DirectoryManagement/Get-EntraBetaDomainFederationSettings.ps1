@@ -7,11 +7,15 @@ function Get-EntraBetaDomainFederationSettings {
     param(
         [Parameter(Mandatory = $true, Position = 0, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
+        [Alias("DomainId")]
         [string]$DomainName,
 
         [Parameter(Mandatory = $false, Position = 1, ValueFromPipelineByPropertyName = $true)]
         [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+<<<<<<< HEAD
         [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })]
+=======
+>>>>>>> 1e6f074c1 (Removing validatescript)
         [System.guid] $TenantId
     ) 
     process { 

@@ -10,7 +10,10 @@ function Set-EntraBetaDirSyncEnabled {
 
         [Parameter(ParameterSetName = "Default", ValueFromPipelineByPropertyName = $true)]
         [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+<<<<<<< HEAD
         [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })]
+=======
+>>>>>>> 1e6f074c1 (Removing validatescript)
         [System.Guid] $TenantId,
 
         [switch] $Force
@@ -26,8 +29,12 @@ function Set-EntraBetaDirSyncEnabled {
             $params["OrganizationId"] = $PSBoundParameters["TenantId"]
         }
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
+<<<<<<< HEAD
             $OnPremisesDirectorySynchronizationId = (Get-EntraContext).TenantId
             $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
+=======
+            $params["OrganizationId"] = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
+>>>>>>> 1e6f074c1 (Removing validatescript)
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
