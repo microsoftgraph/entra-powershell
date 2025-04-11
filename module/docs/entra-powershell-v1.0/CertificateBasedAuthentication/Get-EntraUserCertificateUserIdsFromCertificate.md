@@ -36,7 +36,7 @@ The `Get-EntraUserCertificateUserIdsFromCertificate` returns an object with cert
 
 In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
 
-- Privileged Authentication Administrator  (for Cloud-only users)
+- Privileged Authentication Administrator (for Cloud-only users)
 - Hybrid Identity Administrator (for synchronized users)
 
 ## Examples
@@ -76,7 +76,11 @@ This command returns the PrincipalName property.
 ### Example 3: Retrieve certificate object from a certificate
 
 ```powershell
-$certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
+$text = "-----BEGIN CERTIFICATE-----
+MIIDiz...=
+-----END CERTIFICATE-----"
+$bytes = [System.Text.Encoding]::UTF8.GetBytes($text)
+$certificate = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($bytes)
 Get-EntraUserCertificateUserIdsFromCertificate -Certificate $certificate -CertificateMapping 'Subject'
 ```
 
@@ -123,7 +127,7 @@ Accept wildcard characters: False
 ### -CertificateMapping
 
 One of the values `PrincipalName`, `RFC822Name`, `IssuerAndSubject`, `Subject`, `SKI`, `SHA1PublicKey`, and `IssuerAndSerialNumber`.
-The meaning of each value is describe in the official documentation of [certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids). 
+The meaning of each value is describe in the official documentation of [certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids).
 
 ```yaml
 Type: System.String
