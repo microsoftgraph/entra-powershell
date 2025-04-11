@@ -138,4 +138,4 @@ function Set-EntraUserCBACertificateUserId {
     }
 
 }
-
+Set-Alias -Name Update-EntraUserCBACertificateUserId -Value Set-EntraUserCBACertificateUserId -Description "Update certificate-based authentication for a user using a certificate file or object" -Scope Global -Force

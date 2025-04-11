@@ -36,6 +36,8 @@ Set-EntraUserCBACertificateUserId
 
 Configures certificate-based authentication user IDs for a user in Microsoft Entra ID. Accepts a certificate file path or object, and one or more certificate mapping types to apply to the user's authorization information.
 
+`Update-EntraUserCBACertificateUserId` is an alias of `Set-EntraUserCBACertificateUserId`.
+
 In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
 
 - Privileged Authentication Administrator (for Cloud-only users)
