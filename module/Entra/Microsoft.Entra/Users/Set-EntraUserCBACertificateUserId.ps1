@@ -118,7 +118,7 @@ function Set-EntraUserCBACertificateUserId {
             $jsonBody = ConvertTo-Json -InputObject $body -Depth 10
 
             Write-Verbose "Updating certificate user IDs for user: $userId"
-            $apiCallUrl = "/users/$userId"
+            $apiCallUrl = "/v1.0/users/$userId"
             $response = Invoke-MgGraphRequest -Uri $apiCallUrl -Method PATCH -Body $jsonBody -Headers $customHeaders -ErrorAction Stop
 
             Write-Verbose "Certificate User IDs successfully updated"
