@@ -64,7 +64,7 @@ Describe "Add-EntraBetaGroupMember" {
             }
             finally {
                 # Restore original confirmation preference
-                $DebugPreference = $originalDebugPreference        
+                $DebugPreference = $originalDebugPreference
             }
         }
     }
