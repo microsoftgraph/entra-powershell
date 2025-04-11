@@ -8,6 +8,13 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The unique identifier for the user (User Principal Name or UserId) whose strong authentication method you want to reset.')]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserId')]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserPrincipalName must be a valid email address or GUID."
+            })]
         [System.String] $UserPrincipalName,
 
         [Parameter(ParameterSetName = "ResetAuthenticationMethod", ValueFromPipelineByPropertyName = $true, HelpMessage = 'The tenant ID.')]
