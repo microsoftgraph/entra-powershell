@@ -48,7 +48,7 @@ function Add-EntraBetaGroupMember {
             # Set up the request parameters
             $params = @{
                 Method      = "POST"
-                Uri         = "$graphEndpoint/beta/groups/$GroupId/members/`$ref"
+                Uri         = "/beta/groups/$GroupId/members/`$ref"
                 Headers     = $customHeaders
                 Body        = @{
                     "@odata.id" = "$graphEndpoint/beta/directoryObjects/$MemberId"
