@@ -263,5 +263,6 @@
   "Update-EntraUserFromFederated": "Users",
   "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement",
   "Get-EntraUserAuthenticationRequirement":"SignIns",
-  "Get-EntraUserCertificateUserIdsFromCertificate":"Utilities"
+  "Get-EntraUserCertificateUserIdsFromCertificate":"Utilities",
+  "Set-EntraUserCBACertificateUserId": "Users"
 }

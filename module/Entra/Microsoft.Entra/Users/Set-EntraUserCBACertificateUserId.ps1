@@ -99,7 +99,8 @@ function Set-EntraUserCBACertificateUserId {
                 $userFilter = "userPrincipalName eq '$UserId'"
             }
             
-            $userQuery = Invoke-MgGraphRequest -Method GET -Uri "/users?`$filter=$userFilter&`$select=id" -ErrorAction Stop
+            $userQuery = Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users?`$filter=$userFilter&`$select=id" -ErrorAction Stop
+
             
             if (-not $userQuery.value -or $userQuery.value.Count -eq 0) {
                 throw "User '$UserId' not found in Entra ID"
@@ -118,15 +119,14 @@ function Set-EntraUserCBACertificateUserId {
             $jsonBody = ConvertTo-Json -InputObject $body -Depth 10
 
             Write-Verbose "Updating certificate user IDs for user: $userId"
-            $apiCallUrl = "/users/$userId"
+
+            $apiCallUrl = "/v1.0/users/$userId"
             $response = Invoke-MgGraphRequest -Uri $apiCallUrl -Method PATCH -Body $jsonBody -Headers $customHeaders -ErrorAction Stop
 
-            return $response
-            
             Write-Verbose "Certificate User IDs successfully updated"
-            
-            # Return the updated user object
-            #Get-MgUser -UserId $userId -Select "id,displayName,userPrincipalName,authorizationInfo"
+
+            return $response
+
         }
         catch {
             $errorDetails = $_.Exception.Message
@@ -138,4 +138,6 @@ function Set-EntraUserCBACertificateUserId {
     end {
         # Cleanup if needed
     }
+
 }
+
