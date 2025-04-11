@@ -45,7 +45,6 @@ Describe "Add-EntraGroupMember" {
         It "Should fail when MemberId is empty" {
             { Add-EntraGroupMember -GroupId "83ec0ff5-f16a-4ba3-b8db-74919eda4926" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'.*"
         }
-   
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupMember"
             Add-EntraGroupMember -GroupId "07615907-2440-445b-ab71-b40232763319" -MemberId "d140b73f-6648-4075-8d0d-d0cfee5d2d18"
