@@ -42,13 +42,11 @@ function Set-EntraUserCBACertificateUserId {
     )
 
     begin {
-        # Import required utility function
-        $utilityPath = Join-Path -Path $PSScriptRoot -ChildPath "Utilities\..\Get-EntraUserCertificateUserIdsFromCertificate.ps1"
-        if (Test-Path -Path $utilityPath) {
-            . $utilityPath
-        }
-        else {
-            throw "Required utility script not found at $utilityPath"
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All, User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
         }
     }
 

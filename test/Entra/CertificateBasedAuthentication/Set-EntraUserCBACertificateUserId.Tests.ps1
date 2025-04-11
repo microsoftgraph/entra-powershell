@@ -8,6 +8,8 @@ BeforeAll {
     if (-not (Get-Command Set-EntraUserCBACertificateUserId -ErrorAction SilentlyContinue)) {
         throw "Set-EntraUserCBACertificateUserId function is not available"
     }
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.CertificateBasedAuthentication
 }
 
 Describe "Certificate User ID Update Script" {

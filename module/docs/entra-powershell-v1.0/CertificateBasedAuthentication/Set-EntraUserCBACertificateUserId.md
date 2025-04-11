@@ -34,11 +34,11 @@ Set-EntraUserCBACertificateUserId
 
 ## Description
 
-Configures certificate-based authentication user IDs for a user in Microsoft Entra ID. The cmdlet accepts either a certificate file path or a certificate object, along with one or more certificate mapping types to be applied to the user's authorization information.
+Configures certificate-based authentication user IDs for a user in Microsoft Entra ID. Accepts a certificate file path or object, and one or more certificate mapping types to apply to the user's authorization information.
 
 In delegated scenarios using work or school accounts, the signed-in user must have a Microsoft Entra role or custom role with the necessary permissions. The following least privileged roles support this operation:
 
-- Privileged Authentication Administrator  (for Cloud-only users)
+- Privileged Authentication Administrator (for Cloud-only users)
 - Hybrid Identity Administrator (for synchronized users)
 
 ## Examples
@@ -46,18 +46,22 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 ### Example 1: Update user's certificate authorization information using certificate path
 
 ```powershell
-Connect-Entra -Scopes "Directory.ReadWrite.All", "User.ReadWrite.All"
-Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -CertPath "C:\path\to\certificate.cer" -CertificateMapping @("Subject", "PrincipalName")
+Connect-Entra -Scopes 'Directory.ReadWrite.All', 'User.ReadWrite.All'
+Set-EntraUserCBACertificateUserId -UserId 'SawyerM@contoso.com' -CertPath 'C:\path\to\certificate.cer' -CertificateMapping @('Subject', 'PrincipalName')
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields.
 
-### Example 2: Update user's certificate authorization information using a certificate 
+### Example 2: Update user's certificate authorization information using a certificate
 
 ```powershell
-Connect-Entra -Scopes "Directory.ReadWrite.All", "User.ReadWrite.All"
-$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $certBytes
-Set-EntraUserCBACertificateUserId -UserId "SawyerM@contoso.com" -Cert $cert -CertificateMapping @("RFC822Name", "SKI")
+Connect-Entra -Scopes 'Directory.ReadWrite.All', 'User.ReadWrite.All'
+$text = '-----BEGIN CERTIFICATE-----
+MIIDiz...=
+-----END CERTIFICATE-----'
+$bytes = [System.Text.Encoding]::UTF8.GetBytes($text)
+$certificate = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($bytes)
+Set-EntraUserCBACertificateUserId -UserId 'SawyerM@contoso.com' -Cert $certificate -CertificateMapping @('RFC822Name', 'SKI')
 ```
 
 This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields.
@@ -98,7 +102,7 @@ Accept wildcard characters: False
 
 ### -Cert
 
-Certificate object from which the certificate user IDs will be extracted.
+Certificate object used to extract certificate user IDs.
 
 ```yaml
 Type: System.Security.Cryptography.X509Certificates.X509Certificate2
@@ -140,5 +144,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
+[Get-EntraUserCertificateUserIdsFromCertificate](Get-EntraUserCertificateUserIdsFromCertificate.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)
-[certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids) 
+[certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids)
