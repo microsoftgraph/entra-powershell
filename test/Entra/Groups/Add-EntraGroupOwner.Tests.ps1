@@ -66,6 +66,6 @@ Describe "Add-EntraGroupOwner" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
-    }          
+    }
 }
 
