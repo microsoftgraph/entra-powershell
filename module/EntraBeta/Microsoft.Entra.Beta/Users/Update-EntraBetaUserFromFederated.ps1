@@ -7,7 +7,15 @@ function Update-EntraBetaUserFromFederated {
     [CmdletBinding(DefaultParameterSetName = 'CloudOnlyPasswordScenarios')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "UserPrincipalName of the user to update.")]
-        [Alias('UserId')]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserId')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserPrincipalName must be a valid email address or GUID."
+            })]
         [System.String] $UserPrincipalName,
 
         [Parameter(ParameterSetName = "HybridPasswordScenarios", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "New password for the user.")]

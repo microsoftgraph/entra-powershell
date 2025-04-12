@@ -5,16 +5,27 @@
 function New-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of the directory object.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The directory setting to be applied. Create a new setting using templates from DirectorySettingTemplates.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.MSGraph.Model.DirectorySetting] $DirectorySetting,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of directory object to which to assign settings.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetObjectId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {  
         $params = @{}

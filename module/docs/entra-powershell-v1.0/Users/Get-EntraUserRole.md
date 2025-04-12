@@ -124,6 +124,22 @@ This cmdlet retrieves the directory roles for a specific user by DirectoryRoleId
 
 ## Parameters
 
+### -UserId
+
+Specifies the ID of a user (as a User Principal Name or UserId) in Microsoft Entra ID.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -All
 
 List all pages.

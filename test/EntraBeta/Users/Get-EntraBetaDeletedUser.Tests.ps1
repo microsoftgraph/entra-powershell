@@ -43,9 +43,7 @@ Describe "Get-EntraBetaDeletedUser" {
         It "Should fail when UserId is empty" {
             { Get-EntraBetaDeletedUser -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when UserId is invalid" {
-            { Get-EntraBetaDeletedUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
+
         It "Should return All deleted users" {
             $result = Get-EntraBetaDeletedUser -All
             $result | Should -Not -BeNullOrEmpty

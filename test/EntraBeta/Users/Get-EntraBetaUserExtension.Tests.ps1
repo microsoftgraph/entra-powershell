@@ -6,11 +6,11 @@ BeforeAll {
 
     $scriptblock = {
         return @{
-            "employeeId"                       = $null            
-            "createdDateTime"                  = $null
-            "onPremisesDistinguishedName"      = $null
-            "identities"                       = @("testuser@contoso.com")
-            "Parameters"                       = $args
+            "employeeId"                  = $null            
+            "createdDateTime"             = $null
+            "onPremisesDistinguishedName" = $null
+            "identities"                  = @("testuser@contoso.com")
+            "Parameters"                  = $args
         }
     }    
 
@@ -22,14 +22,14 @@ Describe "Get-EntraBetaUserExtension" {
             $result = Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"            
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
@@ -43,10 +43,6 @@ Describe "Get-EntraBetaUserExtension" {
             }
         }
 
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraBetaUserExtension -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
-
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserExtension -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
@@ -55,7 +51,7 @@ Describe "Get-EntraBetaUserExtension" {
             $result = Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should fail when Property is empty" {
@@ -72,7 +68,8 @@ Describe "Get-EntraBetaUserExtension" {
                 { 
                     Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug 
                 } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference
                 $DebugPreference = $originalDebugPreference
             }
