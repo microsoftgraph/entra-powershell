@@ -185,7 +185,7 @@ By default, the cmdlet returns a custom PSObject with the following properties:
 Id: The unique identifier of the user
 DisplayName: The display name of the user
 UserPrincipalName: The user principal name (email address) of the user
-UserType: The type of user account (e.g., "Member", "Guest")
+UserType: The type of user account (for example, "Member", "Guest")
 AuthorizationInfo: An object containing:
 CertificateUserIds: An array of parsed certificate user ID objects
 RawAuthorizationInfo: The original authorization info from the API.
