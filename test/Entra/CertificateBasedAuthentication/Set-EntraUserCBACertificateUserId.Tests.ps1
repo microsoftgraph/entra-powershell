@@ -129,7 +129,7 @@ BeforeAll {
 
 Describe "Tests for Set-EntraUserCBACertificateUserId" {
 
-    It "Should return an empty user object" {
+    It "Should return a user object" {
         $params = @{
             UserId             = $script:testUserUpn
             CertPath           = $script:tempCertPath
