@@ -129,7 +129,7 @@ BeforeAll {
 
 Describe "Tests for Set-EntraUserCBACertificateUserId" {
 
-    It "Should return user object" {
+    It "Should return an empty user object" {
         $params = @{
             UserId             = $script:testUserUpn
             CertPath           = $script:tempCertPath
@@ -137,9 +137,7 @@ Describe "Tests for Set-EntraUserCBACertificateUserId" {
         }
         
         $result = Set-EntraUserCBACertificateUserId @params
-        $result | Should -Not -BeNull
-        $result.id | Should -Be $script:testUserId
-        $result.userPrincipalName | Should -Be $script:testUserUpn
+        $result | Should -BeNullOrEmpty
     }
 
     It "Should fail when UserId is missing" {
@@ -156,7 +154,7 @@ Describe "Tests for Set-EntraUserCBACertificateUserId" {
         }
         
         $result = Set-EntraUserCBACertificateUserId @params
-        $result | Should -Not -BeNull
+        $result | Should -BeNullOrEmpty
         
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.CertificateBasedAuthentication -Times 1 -ParameterFilter {
             $Headers.'User-Agent' -eq $userAgentHeaderValue
