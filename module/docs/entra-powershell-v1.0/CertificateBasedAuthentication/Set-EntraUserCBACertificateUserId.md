@@ -2,7 +2,7 @@
 title: Set-EntraUserCBACertificateUserId
 description: Sets certificate-based authentication user IDs for a user in Microsoft Entra ID
 ms.topic: reference
-ms.date: 04/03/2025
+ms.date: 04/13/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

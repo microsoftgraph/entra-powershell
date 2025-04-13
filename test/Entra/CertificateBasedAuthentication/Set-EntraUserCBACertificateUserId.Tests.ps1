@@ -137,7 +137,7 @@ Describe "Tests for Set-EntraUserCBACertificateUserId" {
         }
         
         $result = Set-EntraUserCBACertificateUserId @params
-        $result | Should -BeNullOrEmpty
+        $result | Should -Not -BeNullOrEmpty
     }
 
     It "Should fail when UserId is missing" {
@@ -154,7 +154,7 @@ Describe "Tests for Set-EntraUserCBACertificateUserId" {
         }
         
         $result = Set-EntraUserCBACertificateUserId @params
-        $result | Should -BeNullOrEmpty
+        $result | Should -Not -BeNullOrEmpty
         
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.CertificateBasedAuthentication -Times 1 -ParameterFilter {
             $Headers.'User-Agent' -eq $userAgentHeaderValue

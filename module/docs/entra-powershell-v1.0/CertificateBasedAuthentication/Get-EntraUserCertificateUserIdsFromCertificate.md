@@ -2,7 +2,7 @@
 title: Get-EntraUserCertificateUserIdsFromCertificate
 description: Creates an object with all values from a certificate file for configuring CertificateUserIDs in Microsoft Entra ID
 ms.topic: reference
-ms.date: 03/25/2025
+ms.date: 04/13/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
