@@ -52,7 +52,7 @@ Connect-Entra -Scopes 'Directory.ReadWrite.All', 'User.ReadWrite.All'
 Set-EntraUserCBACertificateUserId -UserId 'SawyerM@contoso.com' -CertPath 'C:\path\to\certificate.cer' -CertificateMapping @('Subject', 'PrincipalName')
 ```
 
-This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields.
+This example sets the certificate user IDs for the specified user using a certificate file, mapping both the Subject and PrincipalName fields. You can use `Get-EntraUserCBAAuthorizationInfo` command to view updated details.
 
 ### Example 2: Update user's certificate authorization information using a certificate
 
@@ -66,7 +66,7 @@ $certificate = [System.Security.Cryptography.X509Certificates.X509Certificate2]:
 Set-EntraUserCBACertificateUserId -UserId 'SawyerM@contoso.com' -Cert $certificate -CertificateMapping @('RFC822Name', 'SKI')
 ```
 
-This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields.
+This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields. You can use `Get-EntraUserCBAAuthorizationInfo` command to view updated details.
 
 ## Parameters
 
@@ -146,6 +146,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
+[Get-EntraUserCBAAuthorizationInfo](Get-EntraUserCBAAuthorizationInfo.md)
 [Get-EntraUserCertificateUserIdsFromCertificate](Get-EntraUserCertificateUserIdsFromCertificate.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)
 [certificateUserIds](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids)
