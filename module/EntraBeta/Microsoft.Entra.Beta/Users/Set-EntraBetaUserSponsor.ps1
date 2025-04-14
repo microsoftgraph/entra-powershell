@@ -53,7 +53,7 @@ function Set-EntraBetaUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id"="$rootUri/beta/$targetResource/$sponsorId"
+                    "@odata.id" = "$rootUri/beta/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"
