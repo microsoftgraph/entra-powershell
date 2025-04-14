@@ -37,7 +37,7 @@ function Set-EntraBetaUserManager {
         }
         if ($null -ne $PSBoundParameters["ManagerId"]) {
             $TmpValue = $PSBoundParameters["ManagerId"]
-            $Value = @{ "@odata.id"="$rootUri/v1.0/users/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/v1.0/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["UserId"]) {
