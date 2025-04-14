@@ -5,7 +5,8 @@
 function Get-EntraDirSyncConfiguration {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][ValidateNotNullOrEmpty()][ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })][System.guid] $TenantId
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.guid] $TenantId
     )
 
     PROCESS {    

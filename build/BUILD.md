@@ -60,6 +60,7 @@ Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.CertificateBasedAuthentication.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
@@ -138,6 +139,7 @@ Import-Module .\bin\Microsoft.Entra.Applications.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.DirectoryManagement.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Governance.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Users.psd1 -Force
+Import-Module .\bin\Microsoft.Entra.CertificateBasedAuthentication.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Groups.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.Reports.psd1 -Force
 Import-Module .\bin\Microsoft.Entra.SignIns.psd1 -Force
