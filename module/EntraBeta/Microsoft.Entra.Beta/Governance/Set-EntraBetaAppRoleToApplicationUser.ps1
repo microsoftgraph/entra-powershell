@@ -36,6 +36,15 @@ function Set-EntraBetaAppRoleToApplicationUser {
         [System.IO.FileInfo]$ExportFilePath = (Join-Path (Get-Location) "EntraAppRoleAssignments_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv")
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All,Application.ReadWrite.OwnedBy,User.ReadWrite.All,AppRoleAssignment.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     process {
 
 
