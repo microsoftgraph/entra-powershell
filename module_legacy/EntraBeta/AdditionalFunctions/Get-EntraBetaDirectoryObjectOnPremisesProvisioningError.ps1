@@ -5,7 +5,9 @@
 function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
-        [Parameter(ParameterSetName = 'GetById')][ValidateNotNullOrEmpty()][ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })][System.Guid] $TenantId
+        [Parameter(ParameterSetName = 'GetById')]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
+        [System.Guid] $TenantId
     )
     PROCESS {
         $params = @{}
