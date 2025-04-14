@@ -40,8 +40,7 @@ function Set-EntraUserSponsor {
         # Initialize request collection
         $requests = @()
         
-        $environment = (Get-EntraContext).Environment
-        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         
         # Determine target endpoint based on parameter set
         $targetResource = if ($Type -eq "User") { "users" } else { "groups" }

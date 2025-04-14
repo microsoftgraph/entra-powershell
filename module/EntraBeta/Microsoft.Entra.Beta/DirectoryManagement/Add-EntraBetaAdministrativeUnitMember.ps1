@@ -17,8 +17,7 @@ function Add-EntraBetaAdministrativeUnitMember {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        $environment = (Get-EntraContext).Environment
-        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]

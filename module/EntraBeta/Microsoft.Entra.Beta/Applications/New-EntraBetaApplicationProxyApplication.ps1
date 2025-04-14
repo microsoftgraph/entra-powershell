@@ -35,8 +35,7 @@ function New-EntraBetaApplicationProxyApplication {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
 
-        $environment = (Get-EntraContext).Environment
-        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         if($null -ne $PSBoundParameters["DisplayName"])
         {
             $DisplayName = $PSBoundParameters["DisplayName"]

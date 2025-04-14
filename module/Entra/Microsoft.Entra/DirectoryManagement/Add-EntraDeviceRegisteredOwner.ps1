@@ -18,8 +18,7 @@ function Add-EntraDeviceRegisteredOwner {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-        $environment = (Get-EntraContext).Environment
-        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }

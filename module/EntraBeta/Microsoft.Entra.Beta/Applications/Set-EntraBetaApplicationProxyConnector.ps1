@@ -16,8 +16,7 @@ function Set-EntraBetaApplicationProxyConnector {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
-        $environment = (Get-EntraContext).Environment
-        $rootUri = (Get-EntraEnvironment -Name $environment).GraphEndpoint
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         $params["Method"] = "POST"
         $body = @{}
         if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
