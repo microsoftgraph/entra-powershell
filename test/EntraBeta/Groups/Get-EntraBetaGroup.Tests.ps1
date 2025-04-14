@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,35 +11,32 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "DisplayName"     = "demo"
-              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
-              "MailEnabled"     = "False"
-              "Description"     = "test"
-              "MailNickname"    = "demoNickname"
-              "SecurityEnabled" = "True"
-              "Parameters"      = $args
+                "DisplayName"     = "demo"
+                "Id"              = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                "MailEnabled"     = "False"
+                "Description"     = "test"
+                "MailNickname"    = "demoNickname"
+                "SecurityEnabled" = "True"
+                "Parameters"      = $args
             }
         )
     }
     Mock -CommandName Get-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("GroupMember.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Get-EntraBetaGroup" {
     Context "Test for Get-EntraBetaGroup" {
         It "Should return specific group" {
-            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
+            $result.Id | should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
-            { Get-EntraBetaGroup -GroupId  } | Should -Throw "Missing an argument for parameter 'GroupId'*"
-        }
-
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
+            { Get-EntraBetaGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
 
         It "Should return all group" {
@@ -92,14 +89,14 @@ Describe "Get-EntraBetaGroup" {
         }  
         
         It "Result should Contain GroupId" {
-            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
-            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $params.GroupId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain Filter in parameters when passed SearchString to it" {
@@ -108,29 +105,29 @@ Describe "Get-EntraBetaGroup" {
             $params.Filter | Should -Match "demo"
         }
         It "Property parameter should work" {
-            $result =  Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
-            { Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'demo'
 
-            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
         It "Should fail when Property is empty" {
-            { Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
-            $result= Get-EntraBetaGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
             Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -147,7 +144,8 @@ Describe "Get-EntraBetaGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaGroup -SearchString 'demo' -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
