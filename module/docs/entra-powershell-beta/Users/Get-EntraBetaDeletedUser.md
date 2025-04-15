@@ -194,7 +194,7 @@ The ObjectId or User Principal Name of the deleted user to be retrieved.
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases: Id
+Aliases: ObjectId, UPN, Identity, UserPrincipalName, Id
 
 Required: True
 Position: Named
