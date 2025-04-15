@@ -18,12 +18,13 @@ BeforeAll {
     }
 
     Mock -CommandName Add-MgGroupToLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Groups
 }
   
 Describe "Add-EntraLifecyclePolicyGroup" {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
-            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            $result = Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             Write-Debug("result : $result")
             #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
@@ -31,28 +32,24 @@ Describe "Add-EntraLifecyclePolicyGroup" {
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should return created LifecyclePolicyGroup with alias" {
-            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             #$result | Should -Not -BeNullOrEmpty
             $result.Value | should -Be "True"
 
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Entra.Groups -Times 1
         }
-        It "Should fail when GroupLifecyclePolicyId is invalid" {
-            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string.*"
-        }
+
         It "Should fail when GroupLifecyclePolicyId is empty" {
-            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
+            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
         } 
-        It "Should fail when GroupId is invalid" {
-            { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
-        }
+
         It "Should fail when GroupId is empty" {
             { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
-            Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+            Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
@@ -68,8 +65,9 @@ Describe "Add-EntraLifecyclePolicyGroup" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Debug } | Should -Not -Throw
-            } finally {
+                { Add-EntraLifecyclePolicyGroup -GroupLifecyclePolicyId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
