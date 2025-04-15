@@ -27,7 +27,7 @@ function Get-EntraApplicationTemplate {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $uri = "https://graph.microsoft.com/v1.0/applicationTemplates"
+        $uri = "/v1.0/applicationTemplates"
         $params["Method"] = "GET"
         $params["Uri"] = $uri + '?$select=*'
         

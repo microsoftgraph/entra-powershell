@@ -9,6 +9,12 @@ BeforeAll {
     
 
     Mock -CommandName New-MgBetaAdministrativeUnitMemberByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = "Global"
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
+        GraphEndpoint = "https://graph.microsoft.com"
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetaAdministrativeUnitMember" {

@@ -28,7 +28,7 @@ function Update-EntraSignedInUserPassword {
         $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
         $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
     
-        $params["Url"] = "https://graph.microsoft.com/v1.0/me/changePassword"
+        $params["Url"] = "/v1.0/me/changePassword"
         $body = @{
             currentPassword = $curr
             newPassword     = $new

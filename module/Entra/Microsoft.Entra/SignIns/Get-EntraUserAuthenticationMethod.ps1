@@ -37,7 +37,7 @@ function Get-EntraUserAuthenticationMethod {
             $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
-            $uri = "https://graph.microsoft.com/v1.0/users/$encodedUserId/authentication/methods"
+            $uri = "/v1.0/users/$encodedUserId/authentication/methods"
 
             Write-Debug("============================ REQUEST DETAILS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

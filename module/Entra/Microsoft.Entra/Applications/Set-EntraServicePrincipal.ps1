@@ -46,7 +46,7 @@ function Set-EntraServicePrincipal {
 
     PROCESS {    
         $params = @{}
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/servicePrincipals"
+        $params["Uri"] = "/v1.0/servicePrincipals"
         $params["Method"] = "PATCH"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}        

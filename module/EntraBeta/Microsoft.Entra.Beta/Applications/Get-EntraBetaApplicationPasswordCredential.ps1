@@ -17,7 +17,7 @@ function Get-EntraBetaApplicationPasswordCredential {
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = "https://graph.microsoft.com/beta/applications/$ApplicationId/passwordCredentials"
+        $baseUri = "/beta/applications/$ApplicationId/passwordCredentials"
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
 

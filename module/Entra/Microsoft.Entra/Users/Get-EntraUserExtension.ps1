@@ -24,7 +24,7 @@ function Get-EntraUserExtension {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId"
+        $baseUri = "/v1.0/users/$UserId"
         $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
         $params["Uri"] = "$baseUri/?$properties"
                 

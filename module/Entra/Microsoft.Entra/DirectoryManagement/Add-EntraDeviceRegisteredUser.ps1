@@ -17,7 +17,8 @@ function Add-EntraDeviceRegisteredUser {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    
+
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -59,7 +60,7 @@ function Add-EntraDeviceRegisteredUser {
         }
         if ($null -ne $PSBoundParameters["UserId"]) {
             $TmpValue = $PSBoundParameters["UserId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/v1.0/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 

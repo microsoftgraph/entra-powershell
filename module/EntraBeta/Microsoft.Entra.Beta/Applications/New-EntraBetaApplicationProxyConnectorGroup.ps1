@@ -14,7 +14,7 @@ function New-EntraBetaApplicationProxyConnectorGroup {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "POST"
         $body = @{}
-        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups"
+        $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups"
     
         if($null -ne $PSBoundParameters["Name"])
         {

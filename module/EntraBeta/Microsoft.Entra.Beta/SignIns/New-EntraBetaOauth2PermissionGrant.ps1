@@ -30,7 +30,7 @@ function New-EntraBetaOauth2PermissionGrant {
     PROCESS {
         $params = @{}
         $body = @{}
-        $params["Uri"] = "https://graph.microsoft.com/beta/oauth2PermissionGrants"
+        $params["Uri"] = "/beta/oauth2PermissionGrants"
         $params["Method"] = "POST"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 

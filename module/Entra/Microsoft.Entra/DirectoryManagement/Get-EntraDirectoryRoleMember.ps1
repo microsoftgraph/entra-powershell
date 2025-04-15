@@ -15,7 +15,7 @@ function Get-EntraDirectoryRoleMember {
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
-        $baseUri = 'https://graph.microsoft.com/v1.0/directoryRoles'
+        $baseUri = '/v1.0/directoryRoles'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

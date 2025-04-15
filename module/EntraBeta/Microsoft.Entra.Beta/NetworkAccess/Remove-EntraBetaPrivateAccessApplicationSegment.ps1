@@ -22,7 +22,7 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
             # Construct the URI for the API request
-            $uri = "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
+            $uri = "/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/$ApplicationSegmentId"
 
             # Invoke the API request to delete the application segment
             Invoke-GraphRequest -Method DELETE -Headers $customHeaders -OutputType PSObject -Uri $uri

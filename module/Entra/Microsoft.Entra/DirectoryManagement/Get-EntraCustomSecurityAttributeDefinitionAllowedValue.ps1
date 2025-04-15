@@ -15,7 +15,7 @@ function Get-EntraCustomSecurityAttributeDefinitionAllowedValue {
 
     PROCESS {    
         $params = @{}
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/$CustomSecurityAttributeDefinitionId/allowedValues/"
+        $params["Uri"] = "/v1.0/directory/customSecurityAttributeDefinitions/$CustomSecurityAttributeDefinitionId/allowedValues/"
         $params["Method"] = "GET"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 

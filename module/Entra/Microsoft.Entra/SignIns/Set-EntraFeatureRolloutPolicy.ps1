@@ -32,7 +32,7 @@ function Set-EntraFeatureRolloutPolicy {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $body = @{}
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id"
+        $params["Uri"] = "/v1.0/policies/featureRolloutPolicies/$Id"
         $params["Method"] = "PATCH"
     
         if ($null -ne $PSBoundParameters["Description"]) {

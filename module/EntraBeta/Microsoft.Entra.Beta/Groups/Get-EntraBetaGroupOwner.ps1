@@ -35,7 +35,7 @@ function Get-EntraBetaGroupOwner {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/beta/groups'
+        $baseUri = '/beta/groups'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

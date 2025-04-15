@@ -74,7 +74,7 @@ function New-EntraBetaPrivateAccessApplicationSegment {
             # Define the parameters for the API request
             $params = @{
                 Method     = 'POST'
-                Uri        = "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/"
+                Uri        = "/beta/applications/$ApplicationId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments/"
                 Headers    = $customHeaders
                 Body       = $bodyJson
                 OutputType = 'PSObject'

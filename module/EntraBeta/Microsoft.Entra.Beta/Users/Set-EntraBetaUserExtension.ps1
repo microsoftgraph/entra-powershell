@@ -85,7 +85,7 @@ function Set-EntraBetaUserExtension {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
 
-        $uri = "https://graph.microsoft.com/beta/users/$UserId"
+        $uri = "/beta/users/$UserId"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

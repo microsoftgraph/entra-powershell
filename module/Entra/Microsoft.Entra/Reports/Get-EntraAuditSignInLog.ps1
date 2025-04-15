@@ -24,7 +24,7 @@ function Get-EntraAuditSignInLog {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/signIns'
+        $baseUri = '/v1.0/auditLogs/signIns'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         $query = $null

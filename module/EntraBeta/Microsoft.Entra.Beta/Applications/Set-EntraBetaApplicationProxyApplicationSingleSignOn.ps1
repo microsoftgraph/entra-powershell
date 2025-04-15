@@ -25,7 +25,7 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
         $params["Method"] = "PATCH"
         $body = @{}
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$ApplicationId"
+            $params["Uri"] = "/beta/applications/$ApplicationId"
         }
         if ($null -ne $PSBoundParameters["SingleSignOnMode"]) {
             $SingleSignOnMode = $PSBoundParameters["SingleSignOnMode"]

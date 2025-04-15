@@ -38,7 +38,7 @@ function Get-EntraBetaUserAuthenticationRequirement {
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
-            $baseUri = "https://graph.microsoft.com/beta/users/$encodedUserId"
+            $baseUri = "/beta/users/$encodedUserId"
             $params["Uri"] = "$baseUri/authentication/requirements"
 
             Write-Debug("============================ TRANSFORMATIONS ============================")

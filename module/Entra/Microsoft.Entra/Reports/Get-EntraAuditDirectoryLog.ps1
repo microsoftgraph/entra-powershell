@@ -23,7 +23,7 @@ function Get-EntraAuditDirectoryLog {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/directoryAudits'
+        $baseUri = '/v1.0/auditLogs/directoryAudits'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri" + "?"
 

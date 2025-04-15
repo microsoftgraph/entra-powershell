@@ -62,7 +62,7 @@ function Set-EntraPolicy {
         
         if (!$type) {
             foreach ($pType in $policyTypes) {
-                $uri = "https://graph.microsoft.com/v1.0/policies/" + $pType + "/" + $id
+                $uri = "/v1.0/policies/" + $pType + "/" + $id
                 try {
                     $response = Invoke-GraphRequest -Uri $uri -Method GET
                     break
@@ -92,7 +92,7 @@ function Set-EntraPolicy {
                 $params["IsOrganizationDefault"] = $PSBoundParameters["IsOrganizationDefault"]
             }
             if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $type )) {
-                $URI = "https://graph.microsoft.com/v1.0/policies/" + $type + "/" + $id
+                $URI = "/v1.0/policies/" + $type + "/" + $id
             }
             
             $Method = "PATCH"

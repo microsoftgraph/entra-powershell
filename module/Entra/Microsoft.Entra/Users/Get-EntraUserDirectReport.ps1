@@ -32,7 +32,7 @@ function Get-EntraUserDirectReport {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/users'
+        $baseUri = '/v1.0/users'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

@@ -12,7 +12,7 @@ function Get-EntraCustomSecurityAttributeDefinition {
     PROCESS {    
         $params = @{}
         $Method = "GET"
-        $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/"
+        $Uri = "/v1.0/directory/customSecurityAttributeDefinitions/"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         
         if ($null -ne $PSBoundParameters["Id"]) {
