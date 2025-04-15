@@ -135,6 +135,7 @@ ErrorCode: Request_ResourceNotFound"
                 $propertyValue = $_.Value
                 $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
+            $userType.PSTypeNames.Insert(0, "EntraBeta.Users")
             $userList += $userType
         }
         $userList 
