@@ -77,11 +77,28 @@ Set-StrictMode -Version 5
         Log-Message "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath"
 
         $psm1Content = $this.headerText + "`n"  # Add a newline after the header
+        $ps1xmlContent = ""  # Add a newline after the header
 
         # Get-ChildItem returns different types depending on the number of items it finds.
         # When there is only one item, it returns a single object rather than an array
         # Using @() we force the result to be treated as an array, even if there is only one item.
         $ps1Files = @(Get-ChildItem -Path $currentDirPath -Filter "*.ps1")
+        
+        $ps1xmlFileName = "$currentDirName.format.ps1xml"
+        $ps1xmlFilePath = Join-Path -Path $destDirectory -ChildPath $ps1xmlFileName
+
+        $ps1xmlFiles = @(Get-ChildItem -Path $currentDirPath -Filter "*format.ps1xml")
+        if ($ps1xmlFiles.Count -gt 0) {
+            foreach ($ps1xmlFile in $ps1xmlFiles) {
+                Log-Message "[EntraModuleBuilder] Appending formating content from file: $($ps1xmlFile.Name)" -ForegroundColor Cyan
+                $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
+                $ps1xmlContent += "`n"  # Add an empty line at the end
+            }
+            Log-Message "[EntraModuleBuilder] Writing .psm1 file to disk: $ps1xmlFilePath"
+            Set-Content -Path $ps1xmlFilePath -Value $ps1xmlContent
+
+            Log-Message "[EntraModuleBuilder] Module file created: $psm1FilePath" -Level 'SUCCESS'
+        }
 
         if ($ps1Files.Count -eq 0) {
             Log-Message "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -Level 'ERROR'
@@ -236,8 +253,6 @@ Set-StrictMode -Version 5
             return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
         }
     }
-
- 
 
     # Main function to create the root module
     [void] CreateRootModule([string] $Module) {
@@ -499,10 +514,15 @@ $($requiredModulesEntries -join ",`n")
                 exit
             }
 
-            # Get all files in the specified directory and its subdirectories, without extensions
-            $allFunctions = @(Get-ChildItem -Path $subDir.FullName -Recurse -File | ForEach-Object { $_.BaseName })
+            # Get all files in the specified directory and its subdirectories
+            $allFiles = @(Get-ChildItem -Path $subDir.FullName -Recurse -File)
+            $filteredFunctions = $allFiles | Where-Object { $_.Extension -eq ".ps1"}
+            $functions = @($filteredFunctions | ForEach-Object { $_.BaseName }) + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
-            $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
+            # Get formatting file for submodule
+            $filteredFormattingFiles = $allFiles | Where-Object { $_.Extension -eq ".ps1xml"}
+            $formattingFiles = @($filteredFormattingFiles | ForEach-Object { $_.Name })
+            
 
             #QuickFix: TODO: Generalize to use this with any sub-module, by auto-extracting the alias
             $aliasesToExport = $this.ExtractSubModuleAliases($subDir.FullName, $moduleName)
@@ -544,6 +564,7 @@ $($requiredModulesEntries -join ",`n")
                 CompatiblePSEditions   = @('Desktop', 'Core')
                 RequiredModules        = $requiredModules
                 NestedModules          = @()
+                FormatsToProcess       = $formattingFiles
             }
 		
 
