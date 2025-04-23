@@ -41,7 +41,7 @@ function Get-EntraUserExtension {
         
         # Get available extension properties
         $extensionsUri = "/v1.0/directoryObjects/getAvailableExtensionProperties"
-        $extensionProperties = Invoke-GraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json | ConvertFrom-Json
+        $extensionProperties = Invoke-MgGraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json | ConvertFrom-Json
         
         # Add extension property names to the extensions string
         if ($null -ne $extensionProperties -and $extensionProperties.value) {
@@ -61,7 +61,7 @@ function Get-EntraUserExtension {
         Write-Debug("=========================================================================`n")
         
         # Execute the request and format the output
-        $data = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+        $data = Invoke-MgGraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
         
         # Transform the data for output
         if ($null -ne $data) {
