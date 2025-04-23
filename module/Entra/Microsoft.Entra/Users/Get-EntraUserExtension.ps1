@@ -21,32 +21,58 @@ function Get-EntraUserExtension {
         [Alias("Select")]
         [System.String[]] $Property
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId"
-        $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
-        $params["Uri"] = "$baseUri/?$properties"
-                
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
-            $selectProperties = $PSBoundParameters["Property"]
-            $selectProperties = $selectProperties -Join ','
-            $properties = "`$select=$($selectProperties)"
-            $params["Uri"] = "$baseUri/?$properties"
+        $baseUri = "/v1.0/users"
+        
+        # Required properties
+        [string] $extensions = "Id,UserPrincipalName,createdDateTime,employeeId,onPremisesDistinguishedName,userIdentities,"
+        
+        # Get available extension properties
+        $extensionsUri = "/v1.0/directoryObjects/getAvailableExtensionProperties"
+        $extensionProperties = Invoke-GraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json | ConvertFrom-Json
+        
+        # Add extension property names to the extensions string
+        if ($null -ne $extensionProperties -and $extensionProperties.value) {
+            $extensions += ($extensionProperties.value | Select-Object -ExpandProperty Name) -join ','
         }
+        
+        # Override extensions with specific properties if provided
+        if ($null -ne $PSBoundParameters["Property"]) {
+            $extensions = $PSBoundParameters["Property"] -join ','
+        }
+
+        $uri = "$baseUri/$UserId" + "?`$select=$extensions"
+        $params["Uri"] = $uri
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $data = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | Convertto-json | convertfrom-json
-        $data | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
-            }
-        }    
-        $data
+        # Execute the request and format the output
+        $data = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+        
+        # Transform the data for output
+        if ($null -ne $data) {
+            # Convert properties to Name-Value pairs for format-table output
+            $result = $data.PSObject.Properties | Where-Object { $_.Name -ne '@odata.context' } | 
+            Select-Object @{Name = 'Name'; Expression = { $_.Name } }, @{Name = 'Value'; Expression = { $_.Value } }
+            
+            # Return formatted result
+            return $result | Format-Table Name, Value
+        }
+        return $null
     }    
 }
 

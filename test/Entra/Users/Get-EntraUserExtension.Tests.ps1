@@ -15,6 +15,7 @@ BeforeAll {
     }    
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 Describe "Get-EntraUserExtension" {
     Context "Test for Get-EntraUserExtension" {

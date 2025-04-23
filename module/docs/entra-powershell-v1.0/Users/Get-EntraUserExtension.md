@@ -40,7 +40,7 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 ### Example 1: Retrieve extension attributes for a user
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserExtension -UserId 'SawyerM@contoso.com'
 ```
 
