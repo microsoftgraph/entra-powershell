@@ -7,11 +7,16 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    # Update the mock response to match the expected structure
     $mockResponse = [PSCustomObject]@{
-        "userPrincipalName" = "SawyerM@contoso.com"
-        "id"                = "acc9f0a1-9075-464f-9fe7-049bf1ae6481"
-        "employeeId"        = "EK123456"
-        "createdDateTime"   = "10/28/2024 4:16:02 PM"
+        "value" = @(
+            [PSCustomObject]@{
+                "userPrincipalName" = "SawyerM@contoso.com"
+                "id"                = "acc9f0a1-9075-464f-9fe7-049bf1ae6481"
+                "employeeId"        = "EK123456"
+                "createdDateTime"   = "10/28/2024 4:16:02 PM"
+            }
+        )
     }
     
     Mock -CommandName Invoke-MgGraphRequest -MockWith { $mockResponse } -ModuleName Microsoft.Entra.Users
@@ -25,13 +30,13 @@ Describe "Get-EntraUserExtension" {
             { Get-EntraUserExtension -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
-        It "Should return specific user sponsors" {
+        It "Should return specific user extensions" {
             $result = Get-EntraUserExtension -UserId "SawyerM@contoso.com"
-            $result | Should -BeNullOrEmpty
-            $result.id | should -Be "acc9f0a1-9075-464f-9fe7-049bf1ae6481"
-            $result.userPrincipalName | should -Be "SawyerM@contoso.com"
-            $result.employeeId | should -Be "EK123456"
-            $result.createdDateTime | should -Be "10/28/2024 4:16:02 PM"
+            $result | Should -Not -BeNullOrEmpty  # Changed from BeNullOrEmpty to Not-BeNullOrEmpty
+            $result.id | Should -Be "acc9f0a1-9075-464f-9fe7-049bf1ae6481"
+            $result.userPrincipalName | Should -Be "SawyerM@contoso.com"
+            $result.employeeId | Should -Be "EK123456"
+            $result.createdDateTime | Should -Be "10/28/2024 4:16:02 PM"
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
 
@@ -39,7 +44,7 @@ Describe "Get-EntraUserExtension" {
             $UserId = 'SawyerM@contoso.com'
             $Property = @('id', 'employeeId')
             $result = Get-EntraUserExtension -UserId $UserId -Property $Property
-            $result | Should -BeNullOrEmpty
+            $result | Should -Not -BeNullOrEmpty  # Changed from BeNullOrEmpty
             $result | ForEach-Object {
                 $_.PSObject.Properties.Name | Should -Contain 'id'
                 $_.PSObject.Properties.Name | Should -Contain 'employeeId'
@@ -48,12 +53,12 @@ Describe "Get-EntraUserExtension" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserExtension"
-
+        
             $result = Get-EntraUserExtension -UserId "SawyerM@contoso.com"
-            $result | Should -BeNullOrEmpty
-
+            $result | Should -Not -BeNullOrEmpty  # Changed from BeNullOrEmpty
+        
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserExtension"
-
+        
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
