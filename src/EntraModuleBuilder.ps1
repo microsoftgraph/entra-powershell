@@ -77,7 +77,7 @@ Set-StrictMode -Version 5
         Log-Message "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath"
 
         $psm1Content = $this.headerText + "`n"  # Add a newline after the header
-        $ps1xmlContent = ""  # Add a newline after the header
+        $ps1xmlContent = ""  # Xml content to be appended later
 
         # Get-ChildItem returns different types depending on the number of items it finds.
         # When there is only one item, it returns a single object rather than an array
@@ -94,10 +94,10 @@ Set-StrictMode -Version 5
                 $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
                 $ps1xmlContent += "`n"  # Add an empty line at the end
             }
-            Log-Message "[EntraModuleBuilder] Writing .psm1 file to disk: $ps1xmlFilePath"
+            Log-Message "[EntraModuleBuilder] Writing .ps1xml file to disk: $ps1xmlFilePath"
             Set-Content -Path $ps1xmlFilePath -Value $ps1xmlContent
 
-            Log-Message "[EntraModuleBuilder] Module file created: $psm1FilePath" -Level 'SUCCESS'
+            Log-Message "[EntraModuleBuilder] Module Formating file created: $ps1xmlFilePath" -Level 'SUCCESS'
         }
 
         if ($ps1Files.Count -eq 0) {

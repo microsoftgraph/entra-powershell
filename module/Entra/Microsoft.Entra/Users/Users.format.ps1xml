@@ -16,7 +16,13 @@
             <Label>Id</Label>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>Description</Label>
+            <Label>UPN</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Type</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Status</Label>
           </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
@@ -29,7 +35,13 @@
                 <PropertyName>id</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>description</PropertyName>
+                <PropertyName>upn</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>type</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>status</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
