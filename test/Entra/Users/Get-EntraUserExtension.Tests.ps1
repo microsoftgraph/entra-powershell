@@ -17,6 +17,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 Describe "Tests for Get-EntraUserExtension" {
     It "Result should not be empty" {
