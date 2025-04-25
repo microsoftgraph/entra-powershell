@@ -41,7 +41,7 @@ function Get-EntraUserExtension {
         
         # Get available extension properties
         $extensionsUri = "/v1.0/directoryObjects/getAvailableExtensionProperties"
-        $extensionProperties = Invoke-MgGraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json | ConvertFrom-Json
+        $extensionProperties = Invoke-MgGraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         
         # Add extension property names to the extensions string
         if ($null -ne $extensionProperties -and $extensionProperties.value) {
@@ -61,16 +61,50 @@ function Get-EntraUserExtension {
         Write-Debug("=========================================================================`n")
         
         # Execute the request and format the output
-        $data = Invoke-MgGraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+        $data = Invoke-MgGraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders
         
         # Transform the data for output
         if ($null -ne $data) {
-            # Convert properties to Name-Value pairs for format-table output
-            $result = $data.PSObject.Properties | Where-Object { $_.Name -ne '@odata.context' } | 
-            Select-Object @{Name = 'Name'; Expression = { $_.Name } }, @{Name = 'Value'; Expression = { $_.Value } }
+            # Create a new custom object to return
+            $customObject = [PSCustomObject]@{}
             
-            # Return formatted result
-            return $result | Format-Table Name, Value
+            # Add each property to the custom object
+            $data.PSObject.Properties | Where-Object { $_.Name -ne '@odata.context' } | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                
+                # Special handling for SyncRoot property
+                if ($propertyName -eq "SyncRoot") {
+                    # Extract meaningful information from SyncRoot
+                    if ($null -ne $propertyValue) {
+                        try {
+                            # Convert the SyncRoot to a manageable object
+                            $syncRootData = $propertyValue | Select-Object -Property * -ErrorAction SilentlyContinue
+                            
+                            # Add individual SyncRoot properties instead of the complex object
+                            foreach ($syncProperty in $syncRootData.PSObject.Properties) {
+                                $syncPropertyName = $syncProperty.Name
+                                $customObject | Add-Member -MemberType NoteProperty -Name $syncPropertyName -Value $syncProperty.Value
+                            }
+                        }
+                        catch {
+                            # If we can't extract properties, add the SyncRoot as is
+                            $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value "Complex object - use Format-List to view details"
+                        }
+                    }
+                    else {
+                        # Add as null if SyncRoot is null
+                        $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $null
+                    }
+                }
+                else {
+                    # Regular properties
+                    $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue
+                }
+            }
+            
+            # Return the custom object
+            return $customObject
         }
         return $null
     }    
