@@ -7,31 +7,37 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    # Update mock to return proper response structure with value property
     $scriptblock = {
         @{
-            "appDisplayName"         = "POWERAPPS_DEV"
-            "isMultiValued"          = $false
-            "isSyncedFromOnPremises" = $false
-            "targetObjects"          = @("User")
-            "id"                     = "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
-            "name"                   = "extension_12345_JobGroup"
-            "deletedDateTime"        = $null
+            "value" = @(
+                @{
+                    "appDisplayName"         = "POWERAPPS_DEV"
+                    "isMultiValued"          = $false
+                    "isSyncedFromOnPremises" = $false
+                    "targetObjects"          = @("User")
+                    "id"                     = "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
+                    "name"                   = "extension_12345_JobGroup"
+                    "deletedDateTime"        = $null
+                }
+            )
         }
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.DirectoryManagement
 }
-Describe "Tests for Get-EntraExtensionProperties" {
+
+Describe "Tests for Get-EntraExtensionProperty" {
     It "Result should not be empty" {
-        $result = Get-EntraExtensionProperties -IsSyncedFromOnPremises $false
+        $result = Get-EntraExtensionProperty -IsSyncedFromOnPremises $false
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
     }
     
     It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraExtensionProperties"
-        $result = Get-EntraExtensionProperties -IsSyncedFromOnPremises $false
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraExtensionProperty"
+        $result = Get-EntraExtensionProperty -IsSyncedFromOnPremises $false
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -45,7 +51,7 @@ Describe "Tests for Get-EntraExtensionProperties" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraExtensionProperties -IsSyncedFromOnPremises $false } | Should -Not -Throw
+            { Get-EntraExtensionProperty -IsSyncedFromOnPremises $false } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference
