@@ -1,5 +1,5 @@
 function Get-EntraUserExtensions {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     [OutputType([PSCustomObject])]
     param (
         [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -16,7 +16,10 @@ function Get-EntraUserExtensions {
 
         [Parameter(HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [string[]]$Property
+        [string[]]$Property,
+
+        [Parameter(HelpMessage = "Filter to only show properties synced from on-premises")]
+        [System.Nullable[bool]]$IsSyncedFromOnPremises
     )
 
     begin {
@@ -40,11 +43,15 @@ function Get-EntraUserExtensions {
         # Retrieve available extension properties once
         try {
             Write-Verbose "Retrieving available extension properties..."
-            $extensionResponse = Invoke-MgGraphRequest -Method POST `
-                -Uri "/v1.0/directoryObjects/getAvailableExtensionProperties" `
-                -Body (@{ isSyncedFromOnPremises = $false } | ConvertTo-Json -Depth 3)
-
-            $extensions = $extensionResponse.value | Where-Object { $_.name -like 'extension_*' } | Select-Object -ExpandProperty name
+            
+            # Get extension properties and filter by IsSyncedFromOnPremises if specified
+            $extensions = if ($PSBoundParameters.ContainsKey('IsSyncedFromOnPremises')) {
+                (Get-EntraExtensionProperty | 
+                Where-Object { $_.IsSyncedFromOnPremises -eq $IsSyncedFromOnPremises }).Name
+            }
+            else {
+                (Get-EntraExtensionProperty).Name
+            }
 
             # Combine standard and extension properties
             $allProperties = $standardProperties + $extensions
@@ -77,10 +84,14 @@ function Get-EntraUserExtensions {
 
             # Retrieve user data
             $userUri = "/v1.0/users/$UserId`?`$select=$selectQuery"
-            $userData = Invoke-MgGraphRequest -Uri $userUri -Method GET
-
-            # Return user data directly
-            return $userData
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $data = Invoke-MgGraphRequest -Uri $userUri -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+            $data | ForEach-Object {
+                if ($null -ne $_) {
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
+                }
+            }    
+            $data | Select-Object *
         }
         catch {
             Write-Error "Failed to retrieve user data for UserId '$UserId': $_"
