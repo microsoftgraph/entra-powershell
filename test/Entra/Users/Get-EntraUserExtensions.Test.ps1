@@ -20,25 +20,25 @@ BeforeAll {
     Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
-Describe "Tests for Get-EntraUserExtensions" {
+Describe "Tests for Get-EntraUserExtension" {
     It "Result should not be empty" {
-        $result = Get-EntraUserExtensions -UserId "SawyerM@contoso.com"
+        $result = Get-EntraUserExtension -UserId "SawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 1
     }
     It "Result should not be empty objectId" {
-        $result = Get-EntraUserExtensions -ObjectId "SawyerM@contoso.com"
+        $result = Get-EntraUserExtension -ObjectId "SawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 1
     }    
 
     It "Should fail when UserId is null" {
-        { Get-EntraUserExtensions -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
+        { Get-EntraUserExtension -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
     }
 
     It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserExtensions"
-        $result = Get-EntraUserExtensions -UserId "SawyerM@contoso.com"
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserExtension"
+        $result = Get-EntraUserExtension -UserId "SawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -52,7 +52,7 @@ Describe "Tests for Get-EntraUserExtensions" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraUserExtensions -UserId "SawyerM@contoso.com" } | Should -Not -Throw
+            { Get-EntraUserExtension -UserId "SawyerM@contoso.com" } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            

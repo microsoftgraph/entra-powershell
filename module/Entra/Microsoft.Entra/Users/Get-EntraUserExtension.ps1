@@ -1,11 +1,8 @@
-# ------------------------------------------------------------------------------ 
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
-#  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
 function Get-EntraUserExtension {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
+    [OutputType([PSCustomObject])]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.")]
+        [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
@@ -15,11 +12,14 @@ function Get-EntraUserExtension {
                 }
                 throw "UserId must be a valid email address or GUID."
             })]
-        [System.String] $UserId,
-        
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [string]$UserId,
+
+        [Parameter(HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [string[]]$Property,
+
+        [Parameter(HelpMessage = "Filter to only show properties synced from on-premises")]
+        [System.Nullable[bool]]$IsSyncedFromOnPremises
     )
 
     begin {
@@ -29,84 +29,72 @@ function Get-EntraUserExtension {
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
+
+        # Define standard user properties
+        $standardProperties = @(
+            'id',
+            'userPrincipalName',
+            'createdDateTime',
+            'employeeId',
+            'onPremisesDistinguishedName',
+            'identities'
+        )
+
+        # Retrieve available extension properties once
+        try {
+            Write-Verbose "Retrieving available extension properties..."
+            
+            # Get extension properties and filter by IsSyncedFromOnPremises if specified
+            $extensions = if ($PSBoundParameters.ContainsKey('IsSyncedFromOnPremises')) {
+                (Get-EntraExtensionProperty | 
+                Where-Object { $_.IsSyncedFromOnPremises -eq $IsSyncedFromOnPremises }).Name
+            }
+            else {
+                (Get-EntraExtensionProperty).Name
+            }
+
+            # Combine standard and extension properties
+            $allProperties = $standardProperties + $extensions
+        }
+        catch {
+            Write-Warning "Failed to retrieve extension properties: $_"
+            $extensions = @()
+            $allProperties = $standardProperties
+        }
     }
 
-    PROCESS {    
-        $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "/v1.0/users"
-        
-        # Required properties
-        [string] $extensions = "Id,UserPrincipalName,createdDateTime,employeeId,onPremisesDistinguishedName,userIdentities,"
-        
-        # Get available extension properties
-        $extensionsUri = "/v1.0/directoryObjects/getAvailableExtensionProperties"
-        $extensionProperties = Invoke-MgGraphRequest -Uri $extensionsUri -Method POST | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-        
-        # Add extension property names to the extensions string
-        if ($null -ne $extensionProperties -and $extensionProperties.value) {
-            $extensions += ($extensionProperties.value | Select-Object -ExpandProperty Name) -join ','
-        }
-        
-        # Override extensions with specific properties if provided
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $extensions = $PSBoundParameters["Property"] -join ','
-        }
-
-        $uri = "$baseUri/$UserId" + "?`$select=$extensions"
-        $params["Uri"] = $uri
-    
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
-        
-        # Execute the request and format the output
-        $data = Invoke-MgGraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders
-        
-        # Transform the data for output
-        if ($null -ne $data) {
-            # Create a new custom object to return
-            $customObject = [PSCustomObject]@{}
-            
-            # Add each property to the custom object
-            $data.PSObject.Properties | Where-Object { $_.Name -ne '@odata.context' } | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                
-                # Special handling for SyncRoot property
-                if ($propertyName -eq "SyncRoot") {
-                    # Extract meaningful information from SyncRoot
-                    if ($null -ne $propertyValue) {
-                        try {
-                            # Convert the SyncRoot to a manageable object
-                            $syncRootData = $propertyValue | Select-Object -Property * -ErrorAction SilentlyContinue
-                            
-                            # Add individual SyncRoot properties instead of the complex object
-                            foreach ($syncProperty in $syncRootData.PSObject.Properties) {
-                                $syncPropertyName = $syncProperty.Name
-                                $customObject | Add-Member -MemberType NoteProperty -Name $syncPropertyName -Value $syncProperty.Value
-                            }
-                        }
-                        catch {
-                            # If we can't extract properties, add the SyncRoot as is
-                            $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value "Complex object - use Format-List to view details"
-                        }
-                    }
-                    else {
-                        # Add as null if SyncRoot is null
-                        $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $null
-                    }
+    process {
+        try {
+            # Validate and select properties
+            if ($Property) {
+                $invalidProperties = $Property | Where-Object { $_ -notin $allProperties }
+                if ($invalidProperties) {
+                    throw "Invalid property/properties specified: $($invalidProperties -join ', ')"
                 }
-                else {
-                    # Regular properties
-                    $customObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue
-                }
+                $selectedProperties = $Property
             }
-            
-            # Return the custom object
-            return $customObject
-        }
-        return $null
-    }    
-}
+            else {
+                $selectedProperties = $allProperties
+            }
 
+            # Construct $select query parameter
+            $selectQuery = $selectedProperties -join ','
+
+            Write-Verbose "Retrieving user data for UserId: $UserId with properties: $selectQuery"
+
+            # Retrieve user data
+            $userUri = "/v1.0/users/$UserId`?`$select=$selectQuery"
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $data = Invoke-MgGraphRequest -Uri $userUri -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+            $data | ForEach-Object {
+                if ($null -ne $_) {
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
+                }
+            }    
+            $data | Select-Object *
+        }
+        catch {
+            Write-Error "Failed to retrieve user data for UserId '$UserId': $_"
+        }
+    }
+}
