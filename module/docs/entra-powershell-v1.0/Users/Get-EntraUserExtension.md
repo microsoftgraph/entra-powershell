@@ -3,7 +3,7 @@ title: Get-EntraUserExtension
 description: This article provides details on the Get-EntraUserExtension command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 04/26/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -56,7 +56,7 @@ userIdentities              : {@{signInType=userPrincipalName; issuer=contoso.co
 
 This example shows how to retrieve the extension attributes for a specified user.
 
-- `-UserId` parameter specifies the user object Id.
+- `-UserId` parameter specifies the user object ID.
 
 ### Example 2: Retrieve extension attributes for a user synced from on-premises
 
@@ -77,7 +77,7 @@ userIdentities              : {@{signInType=userPrincipalName; issuer=contoso.co
 
 This example shows how to retrieve the extension attributes for a specified user whose extensions are synced from on-premises.
 
-- `-UserId` parameter specifies the user object Id.
+- `-UserId` parameter specifies the user object ID.
 
 ## Parameters
 
