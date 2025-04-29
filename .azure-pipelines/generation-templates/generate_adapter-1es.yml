@@ -95,6 +95,49 @@ steps:
       . ./build/common-functions.ps1
       Remove-BuildDirectories
     pwsh: true
+# Add PowerShell 5.1 Entra build here
+- task: powershell@2
+  displayName: 'Show current PowerShell version information [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: 'echo $PSVersionTable'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Set maximum function count [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: '$MaximumFunctionCount=32768'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Dependencies Entra [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: |
+      ./build/Install-Dependencies.ps1 -ModuleName Entra -Verbose      
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install PlatyPS [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: Install-Module PlatyPS -scope currentuser -Force
+    pwsh: false
+- task: powershell@2
+  displayName: 'Build Entra [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: |
+      ./build/Create-EntraModule.ps1 -Module Entra -Verbose
+      ./build/Create-EntraModule.ps1 -Module Entra -Root -Verbose
+    pwsh: false
+- task: powershell@2
+  displayName: 'Remove Build Folders [PS 5.x]'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Remove-BuildDirectories
+    pwsh: false
+# End build
 - task: powershell@2
   displayName: 'Install Dependencies EntraBeta'
   inputs:
