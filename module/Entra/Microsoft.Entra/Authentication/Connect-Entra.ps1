@@ -119,9 +119,9 @@ function Connect-Entra {
     }
 
     # clean block only supported in PowerShell v7.3+
-    # clean {
-    #     if ($null -ne $steppablePipeline) {
-    #         $steppablePipeline.Clean()
-    #     }
-    # }
+    clean {
+        if ($null -ne $steppablePipeline) {
+            $steppablePipeline.Clean()
+        }
+    }
 }
