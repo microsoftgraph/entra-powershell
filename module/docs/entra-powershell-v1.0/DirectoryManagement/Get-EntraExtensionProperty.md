@@ -26,6 +26,9 @@ Gets extension properties registered with Microsoft Entra ID.
 ```powershell
 Get-EntraExtensionProperty
  [-IsSyncedFromOnPremises <Boolean>]
+ [-Name <String>]
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -76,7 +79,7 @@ Id                                   AppDisplayName DataType IsMultiValued IsSyn
 bd647a28-ae50-4e03-a915-067da7ff6cec Contoso App     String   False         False                  extension_12345_JobGroup          {User}
 ```
 
-This command retrieves extension based on the extension name.
+This command retrieves extension based on the extension name (client-side filtering).
 
 ## Parameters
 
@@ -102,7 +105,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-The extension name.
+Filter using the extension name.
 
 ```yaml
 Type: System.String
