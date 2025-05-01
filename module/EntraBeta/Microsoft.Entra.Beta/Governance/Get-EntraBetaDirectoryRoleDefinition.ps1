@@ -24,12 +24,15 @@ function Get-EntraBetaDirectoryRoleDefinition {
         
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [switch] $AppendSelected
     )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter" }
+        $defaultProperties = "id,displayName,templateId"
         if ($null -ne $PSBoundParameters["UnifiedRoleDefinitionId"]) {
             $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["UnifiedRoleDefinitionId"]
         }
@@ -87,8 +90,11 @@ function Get-EntraBetaDirectoryRoleDefinition {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
