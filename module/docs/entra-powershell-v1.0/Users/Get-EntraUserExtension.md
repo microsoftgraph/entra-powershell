@@ -28,12 +28,14 @@ Get-EntraUserExtension
  -UserId <String>
  [-Property <String[]>]
  [-IsSyncedFromOnPremises <String>]
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Get-EntraUserExtension cmdlet retrieves extensions for a user in Microsoft Entra ID.
+The `Get-EntraUserExtension` cmdlet retrieves extensions for a user in Microsoft Entra ID.
 
 ## Examples
 

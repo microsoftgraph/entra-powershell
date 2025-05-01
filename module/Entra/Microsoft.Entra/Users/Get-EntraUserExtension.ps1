@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraUserExtension {
-    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default', SupportsShouldProcess)]
     [OutputType([PSCustomObject])]
     param (
         [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -84,18 +84,35 @@ function Get-EntraUserExtension {
             # Construct $select query parameter
             $selectQuery = $selectedProperties -join ','
 
-            Write-Verbose "Retrieving user data for UserId: $UserId with properties: $selectQuery"
+            # Create description for -WhatIf
+            $whatIfDescription = "Retrieving user extension data for UserId: $UserId"
+            if ($Property) {
+                $whatIfDescription += " with properties: $($Property -join ',')"
+            }
+            if ($PSBoundParameters.ContainsKey('IsSyncedFromOnPremises')) {
+                $whatIfDescription += " (SyncedFromOnPremises: $IsSyncedFromOnPremises)"
+            }
 
-            # Retrieve user data
+            # Construct URI for the operation
             $userUri = "/v1.0/users/$UserId`?`$select=$selectQuery"
-            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-            $data = Invoke-MgGraphRequest -Uri $userUri -Method GET -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
-            $data | ForEach-Object {
-                if ($null -ne $_) {
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
-                }
-            }    
-            $data | Select-Object *
+
+            # Add ShouldProcess check
+            if ($PSCmdlet.ShouldProcess($userUri, $whatIfDescription)) {
+                Write-Verbose "Retrieving user data for UserId: $UserId with properties: $selectQuery"
+
+                # Retrieve user data
+                $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+                $data = Invoke-MgGraphRequest -Uri $userUri -Method GET -Headers $customHeaders | 
+                ConvertTo-Json | 
+                ConvertFrom-Json
+
+                $data | ForEach-Object {
+                    if ($null -ne $_) {
+                        Add-Member -InputObject $_ -MemberType AliasProperty -Name userIdentities -Value identities
+                    }
+                }    
+                $data | Select-Object *
+            }
         }
         catch {
             Write-Error "Failed to retrieve user data for UserId '$UserId': $_"
