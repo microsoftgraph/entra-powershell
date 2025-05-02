@@ -48,7 +48,7 @@ Describe "Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
             Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $value = "/v1.0/directoryObjects/bbbbcccc-1111-dddd-2222-eeee3333ffff" 
+            $value = "/beta/directoryObjects/bbbbcccc-1111-dddd-2222-eeee3333ffff" 
             $params= Get-Parameters -data $result
             $params.OdataId | Should -Be $value
         }

@@ -54,7 +54,7 @@ Describe "Add-EntraBetaDeviceRegisteredOwner" {
 
             Add-EntraBetaDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $value = @{
-                "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbbbbb-1111-2222-3333-cccccccccccc"
+                "@odata.id" = "https://graph.microsoft.com/beta/directoryObjects/bbbbbbbb-1111-2222-3333-cccccccccccc"
             }
             Should -Invoke -CommandName New-MgBetaDeviceRegisteredOwnerByRef -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $BodyParameter.AdditionalProperties.'@odata.id' | Should -Be $value.'@odata.id'
