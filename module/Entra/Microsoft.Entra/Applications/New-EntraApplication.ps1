@@ -7,66 +7,86 @@ function New-EntraApplication {
     [CmdletBinding(DefaultParameterSetName = 'CreateApplication', SupportsShouldProcess)]
     [OutputType([PSCustomObject])]
     param (
-        [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true, Position = 0)]
+        [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true, Position = 0, 
+            HelpMessage = "The display name of the application in Microsoft Entra ID.")]
         [Parameter(ParameterSetName = "CreateWithAdditionalProperties", Mandatory = $false, Position = 0)]
+        [ValidateNotNullOrEmpty()]
         [System.String] $DisplayName,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Defines which accounts are supported for this application. Valid values: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount.")]
         [System.String] $SignInAudience,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "URIs that uniquely identify the application within Azure AD.")]
         [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Custom tags that can be used to categorize and identify the application.")]
         [System.Collections.Generic.List`1[System.String]] $Tags,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Configures the groups claim issued in a user or OAuth 2.0 access token. Valid values: None, SecurityGroup, All.")]
         [System.String] $GroupMembershipClaims,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Specifies the keyId of a public key from the keyCredentials collection for token encryption.")]
         [System.String] $TokenEncryptionKeyId,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Specifies whether this application supports device authentication without a user.")]
         [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Specifies whether the application is a public client. If not set, the default behavior is false.")]
         [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The collection of application roles defined for the application.")]
         [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]] $AppRoles,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The API permissions required by the application to other resources such as Microsoft Graph.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequiredResourceAccess[]] $RequiredResourceAccess,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The API settings for the application, including OAuth2 permission scopes and app roles.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication] $Api,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Settings for a public client application (mobile or desktop).")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication] $PublicClient,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Settings for a web application, including redirect URIs and logout URL.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphWebApplication] $Web,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "URLs with more information about the application (marketing, terms of service, privacy, etc).")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphInformationalUrl] $InformationalUrl,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Specifies parental control settings for an application.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphParentalControlSettings] $ParentalControlSettings,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The optional claims configuration that will be included in access and ID tokens.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphOptionalClaims] $OptionalClaims,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "Defines custom behavior extensions for the application.")]
         [System.Object[]] $AddIns,
         
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The collection of certificate credentials associated with the application.")]
         [System.Object[]] $KeyCredentials,
-        #[System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential]] $KeyCredentials,
 
-        [Parameter(ParameterSetName = "CreateApplication")]
+        [Parameter(ParameterSetName = "CreateApplication", 
+            HelpMessage = "The collection of password credentials associated with the application.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPasswordCredential[]] $PasswordCredentials,
         
-        [Parameter(ParameterSetName = "CreateWithAdditionalProperties")]
+        [Parameter(ParameterSetName = "CreateWithAdditionalProperties", 
+            HelpMessage = "Custom properties to send directly to the Microsoft Graph API.")]
         [Alias('Body', 'Properties', 'BodyParameter')]
         [Hashtable] $AdditionalProperties
     )
@@ -309,14 +329,71 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('KeyCredentials')) {
                 $keyCredsArray = @()
                 foreach ($cred in $KeyCredentials) {
-                    $credHash = @{
-                        customKeyIdentifier = $cred.CustomKeyIdentifier
-                        endDateTime         = $cred.EndDateTime
-                        key                 = $cred.Key
-                        startDateTime       = $cred.StartDateTime
-                        type                = $cred.Type
-                        usage               = $cred.Usage
+                    $credHash = @{}
+                    
+                    # Handle hashtable input
+                    if ($cred -is [Hashtable] -or $cred -is [PSCustomObject]) {
+                        if ($cred.ContainsKey('CustomKeyIdentifier') -or $null -ne $cred.CustomKeyIdentifier) { 
+                            $credHash['customKeyIdentifier'] = $cred.CustomKeyIdentifier 
+                        }
+                        if ($cred.ContainsKey('DisplayName') -or $null -ne $cred.DisplayName) { 
+                            $credHash['displayName'] = $cred.DisplayName 
+                        }
+                        if ($cred.ContainsKey('EndDateTime') -or $null -ne $cred.EndDateTime) { 
+                            # Format EndDateTime in UTC ISO 8601
+                            $credHash['endDateTime'] = $cred.EndDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        }
+                        if ($cred.ContainsKey('Key') -or $null -ne $cred.Key) { 
+                            $credHash['key'] = $cred.Key 
+                        }
+                        if ($cred.ContainsKey('StartDateTime') -or $null -ne $cred.StartDateTime) { 
+                            # Format StartDateTime in UTC ISO 8601
+                            $credHash['startDateTime'] = $cred.StartDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        }
+                        if ($cred.ContainsKey('Type') -or $null -ne $cred.Type) { 
+                            $credHash['type'] = $cred.Type 
+                        }
+                        if ($cred.ContainsKey('Usage') -or $null -ne $cred.Usage) { 
+                            $credHash['usage'] = $cred.Usage 
+                        }
                     }
+                    # Handle Microsoft Graph model objects
+                    else {
+                        if ($null -ne $cred.CustomKeyIdentifier) { 
+                            $credHash['customKeyIdentifier'] = $cred.CustomKeyIdentifier 
+                        }
+                        if ($null -ne $cred.DisplayName) { 
+                            $credHash['displayName'] = $cred.DisplayName 
+                        }
+                        if ($null -ne $cred.EndDateTime) { 
+                            # Format EndDateTime in UTC ISO 8601
+                            $credHash['endDateTime'] = $cred.EndDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        }
+                        if ($null -ne $cred.Key) { 
+                            $credHash['key'] = $cred.Key 
+                        }
+                        if ($null -ne $cred.StartDateTime) { 
+                            # Format StartDateTime in UTC ISO 8601
+                            $credHash['startDateTime'] = $cred.StartDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        }
+                        if ($null -ne $cred.Type) { 
+                            $credHash['type'] = $cred.Type 
+                        }
+                        if ($null -ne $cred.Usage) { 
+                            $credHash['usage'] = $cred.Usage 
+                        }
+                    }
+
+                    # Validate required properties
+                    if (-not $credHash.ContainsKey('type')) {
+                        Write-Error "KeyCredential must specify type"
+                        continue
+                    }
+                    if (-not $credHash.ContainsKey('usage')) {
+                        Write-Error "KeyCredential must specify usage"
+                        continue
+                    }
+                    
                     $keyCredsArray += $credHash
                 }
                 $appBody['keyCredentials'] = $keyCredsArray
