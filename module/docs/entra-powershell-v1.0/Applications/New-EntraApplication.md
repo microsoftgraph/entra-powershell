@@ -91,12 +91,12 @@ New-EntraApplication -DisplayName 'Contoso Partner API' -SignInAudience 'AzureAD
 ```Output
 DisplayName               Id                                   AppId                                SignInAudience PublisherDomain
 -----------               --                                   -----                                -------------- ---------------
-Contoso Partner API App   dddd3333-ee44-5555-66ff-777777aaaaaa 22223333-cccc-4444-dddd-5555eeee6666 AzureADMyOrg   contoso.com
+Contoso Partner API   dddd3333-ee44-5555-66ff-777777aaaaaa 22223333-cccc-4444-dddd-5555eeee6666 AzureADMyOrg   contoso.com
 ```
 
 This command creates an application that can be used by accounts from any Microsoft Entra ID tenant.
 
-### Example 3: Create an application with an application password (client secret)
+### Example 3: Create an application with application password (client secret)
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
@@ -152,7 +152,7 @@ $addIn = @{
 New-EntraApplication -DisplayName "Contoso Email Insights" -AddIns $addIn
 ```
 
-This command creates an application with add-ins details.
+This example registers the Contoso Email Insights add-in with Microsoft Entra ID so it can integrate with Outlook on the web and be sideloaded or published through AppSource.
 
 ### Example 6: Create an application with app roles
 
@@ -160,23 +160,30 @@ This command creates an application with add-ins details.
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $appRoles = @(
     @{
-        AllowedMemberTypes = @("User")
-        DisplayName = "Readers"
-        Description = "Can read content"
-        Value = "Reader"
+        id = [Guid]::NewGuid()
+        allowedMemberTypes = @("User", "Application")
+        description = "Read-only access to HR data"
+        displayName = "HR Reader"
+        isEnabled = $true
+        value = "HRReader"
+        origin = "Application"
     },
     @{
-        AllowedMemberTypes = @("User", "Application")
-        DisplayName = "Administrators"
-        Description = "Can manage all aspects"
-        Value = "Admin"
+        id = [Guid]::NewGuid()
+        allowedMemberTypes = @("User", "Application")
+        description = "Manage HR data"
+        displayName = "HR Manager"
+        isEnabled = $true
+        value = "HRManager"
+        origin = "Application"
     }
 )
 
-New-EntraApplication -DisplayName "Contoso Role-based App" -AppRoles $appRoles
+# Create the new application registration with AppRoles
+New-EntraApplication -DisplayName "Contoso Sandbox" -AppRoles $appRoles
 ```
 
-This command creates an application with defined app roles.
+This example registers a multi-tenant API called `Contoso Sandbox` and defines two custom roles: `HRReader` for `read-only` access and `HRManager` for `full access` to employee data.
 
 ### Example 7: Create a web application with identifier URIs
 
@@ -226,7 +233,7 @@ New-EntraApplication -DisplayName "Contoso Tagged App" `
     )
 ```
 
-This command creates an application with tags.
+This example creates a multi-tenant enterprise app and adds tags to support Microsoft Partner Center discovery and admin consent filtering.
 
 ### Example 10: Create a public client application
 
@@ -275,7 +282,7 @@ $api = @{
 New-EntraApplication -DisplayName "Contoso API App" -Api $api
 ```
 
-This example shows how to register an application and define its available permissions using the -Api parameter.
+This example shows how to register an application and define its available permissions using the `-Api` parameter.
 
 ### Example 12: Create an application with RequiredResourceAccess details
 
@@ -310,7 +317,7 @@ $RequiredResourceAccess = @($graphResourceAccess, $serviceManagementResourceAcce
 New-EntraApplication -DisplayName 'Contoso Service App' -RequiredResourceAccess $RequiredResourceAccess
 ```
 
-This command creates an application with resource access details.
+This example creates a new application called `Contoso Service App` and grants it delegated permissions to call both `Microsoft Graph` (e.g., User.Read) and `Azure Service Management API` (user_impersonation) by specifying the required resource access during registration.
 
 ### Example 13: Create a web application with redirect URIs
 
@@ -376,7 +383,7 @@ New-EntraApplication -DisplayName "Contoso Claims App" -OptionalClaims $optional
 
 This command creates an application with optional claims, such as email, upn (userPrincipalName) claims in ID tokens and the sid (session ID) claim in access tokens for custom session tracking and user identity resolution.
 
-### Example 15: Create an application with parental control settings
+### Example 16: Create an application with parental control settings
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
@@ -395,7 +402,7 @@ New-EntraApplication -DisplayName "Contoso Kids Stream" `
 
 This command creates an application with parental control settings. For example, it can restrict access to a streaming app like "Contoso Kids Stream" for children in specific countries such as Germany and France to meet compliance requirements.
 
-### Example 16: Create an application with a certificate credential
+### Example 17: Create an application with a certificate credential
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
