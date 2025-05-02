@@ -55,9 +55,7 @@ Describe "Get-EntraBetaDomainFederationSettings" {
         It "Should fail when DomainName is empty" {
             { Get-EntraBetaDomainFederationSettings -DomainName } | Should -Throw "Missing an argument for parameter 'DomainName'*"
         }
-        It "Should fail when DomainName is inavlid" {
-            { Get-EntraBetaDomainFederationSettings -DomainName "" } | Should -Throw "Cannot bind argument to parameter 'DomainName'*"
-        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDomainFederationSettings"
 

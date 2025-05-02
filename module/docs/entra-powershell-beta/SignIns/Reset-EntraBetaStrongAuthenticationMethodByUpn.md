@@ -4,7 +4,7 @@ description: This article provides details on the Reset-EntraBetaStrongAuthentic
 
 
 ms.topic: reference
-ms.date: 08/20/2024
+ms.date: 03/20/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -28,25 +28,33 @@ Resets the strong authentication method using the User Principal Name (UPN).
 ```powershell
 Reset-EntraBetaStrongAuthenticationMethodByUpn
  -UserPrincipalName <String>
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN).
+The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN). It is recommended to use Temporary Access Pass (TAP) to allow a users to sign in temporarily without MFA instead of deleting all methods.
+
+Deleting all methods will force the user to re-register MFA next time they sign in.
+
+In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or custom role with the necessary permissions. The least privileged roles for this operation are:
+
+- Authentication Administrator  
+- Privileged Authentication Administrator
 
 ## Examples
 
 ### Example 1: Resets the strong authentication method by using the User Principal Name
 
 ```powershell
-Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite', 'UserAuthenticationMethod.ReadWrite.All'
+Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
 Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'SawyerM@contoso.com'
 ```
 
 This example demonstrates how to reset the strong authentication method by using the User Principal Name (UPN).
 
-- `-UserPrincipalName` parameter specifies the User Principal Name (UPN) of the user whose strong authentication method is being reset.
+- `-UserPrincipalName` parameter specifies the User Principal Name (UPN) of the user whose strong authentication method is being reset. You can use `-UserId`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserPrincipalName`.
 
 ## Parameters
 
@@ -57,9 +65,25 @@ Specifies the User Principal Name (UPN) of the user whose strong authentication 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: UserId, Identity, UPN, ObjectId
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -TenantId
+
+The unique ID of the tenant to perform the operation on. The TenantID applies to the logged-in Tenant ID. Ensures backward compatibility with Azure AD and MSOnline for partner scenarios.
+
+```yaml
+Type: System.String
+Parameter Sets: 
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)

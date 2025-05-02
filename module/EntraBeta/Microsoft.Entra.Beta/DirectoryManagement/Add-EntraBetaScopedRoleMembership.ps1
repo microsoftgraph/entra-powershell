@@ -3,14 +3,17 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Add-EntraBetaScopedRoleMembership {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $RoleObjectId,    
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "Default")]
+    [System.String] $RoleObjectId,
+
+    [Parameter(ParameterSetName = "Default")]
     [System.String] $AdministrativeUnitObjectId,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+
+    [Parameter(ParameterSetName = "Default")]
     [Microsoft.Open.MSGraph.Model.MsRoleMemberInfo] $RoleMemberInfo,
+
     [Alias('ObjectId')]
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $AdministrativeUnitId

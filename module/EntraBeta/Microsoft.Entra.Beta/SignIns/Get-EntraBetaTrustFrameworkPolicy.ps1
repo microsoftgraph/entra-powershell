@@ -4,37 +4,35 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaTrustFrameworkPolicy {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
+    param (                
+        [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $OutputFilePath,
                 
-    [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $OutputFilePath,
-                
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $Id
     )
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
          
-        if($null -eq $PSBoundParameters["Id"] -and $null -eq $PSBoundParameters["OutputFilePath"])
-        {
+        if ($null -eq $PSBoundParameters["Id"] -and $null -eq $PSBoundParameters["OutputFilePath"]) {
             $response = Get-MgBetaTrustFrameworkPolicy @params -Headers $customHeaders
             $response
         }
-        elseif($null -ne $PSBoundParameters["Id"]) {
+        elseif ($null -ne $PSBoundParameters["Id"]) {
             # Define a temporary file path
             $Id = $PSBoundParameters["Id"]
-           $tempFilePath = [System.IO.Path]::GetTempFileName()
+            $tempFilePath = [System.IO.Path]::GetTempFileName()
            
-           $outFile =  $tempFilePath           
+            $outFile = $tempFilePath           
             
-           if($null -ne $PSBoundParameters["OutputFilePath"]){
+            if ($null -ne $PSBoundParameters["OutputFilePath"]) {
                 $outFile = $PSBoundParameters["OutputFilePath"]
             }
 
-           $V = '$value'
-           $uri = '/beta/trustframework/policies/'+$Id+'/'+$V
+            $V = '$value'
+            $uri = '/beta/trustframework/policies/' + $Id + '/' + $V
            
             $response = Invoke-GraphRequest -Headers $customHeaders -Method 'GET' -Uri $uri -OutputFilePath $outFile
 
@@ -42,8 +40,8 @@ function Get-EntraBetaTrustFrameworkPolicy {
             $xmlContent = Get-Content -Path $tempFilePath
 
             # Display the content if output file path not specified
-            if($null -eq $PSBoundParameters["OutputFilePath"]){
-               $xmlContent
+            if ($null -eq $PSBoundParameters["OutputFilePath"]) {
+                $xmlContent
             }
 
             # Clean up the temporary file

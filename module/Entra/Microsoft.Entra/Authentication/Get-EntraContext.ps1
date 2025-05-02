@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraContext {
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param ()
 
     PROCESS {

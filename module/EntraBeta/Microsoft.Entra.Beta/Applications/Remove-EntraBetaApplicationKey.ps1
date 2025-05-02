@@ -3,13 +3,13 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaApplicationKey {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "Default")]
         [System.String] $Proof,
                 
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter(ParameterSetName = "Default")]
         [System.String] $KeyId,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

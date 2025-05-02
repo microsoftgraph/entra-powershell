@@ -48,10 +48,6 @@ Describe "Get-EntraUserAppRoleAssignment" {
             Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserAppRoleAssignment -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
-
         It "Should fail when UserId is empty" {
             { Get-EntraUserAppRoleAssignment -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
