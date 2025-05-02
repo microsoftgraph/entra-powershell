@@ -265,11 +265,67 @@ function New-EntraApplication {
             
             if ($PSBoundParameters.ContainsKey('Web')) {
                 $webHash = @{}
-                $Web.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
-                        $webHash[$_.Name] = $_.Value
+    
+                # Handle hashtable input
+                if ($Web -is [Hashtable] -or $Web -is [PSCustomObject]) {
+                    foreach ($key in $Web.Keys) {
+                        # Handle special case for ImplicitGrantSettings
+                        if ($key -eq 'ImplicitGrantSettings' -or $key -eq 'implicitGrantSettings') {
+                            $implicitSettings = @{}
+                
+                            if ($Web[$key] -is [Hashtable] -or $Web[$key] -is [PSCustomObject]) {
+                                foreach ($settingKey in $Web[$key].Keys) {
+                                    if ($settingKey -ne 'AdditionalProperties') {
+                                        # Convert to camelCase for API
+                                        $camelCaseKey = $settingKey.Substring(0, 1).ToLower() + $settingKey.Substring(1)
+                                        $implicitSettings[$camelCaseKey] = $Web[$key][$settingKey]
+                                    }
+                                }
+                            }
+                            else {
+                                $Web[$key].PSObject.Properties | ForEach-Object {
+                                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                                        # Convert to camelCase for API
+                                        $camelCaseKey = $_.Name.Substring(0, 1).ToLower() + $_.Name.Substring(1)
+                                        $implicitSettings[$camelCaseKey] = $_.Value
+                                    }
+                                }
+                            }
+                
+                            $webHash['implicitGrantSettings'] = $implicitSettings
+                        }
+                        else {
+                            # Handle all other web properties
+                            # Convert to camelCase for consistency
+                            $camelCaseKey = $key.Substring(0, 1).ToLower() + $key.Substring(1)
+                            $webHash[$camelCaseKey] = $Web[$key]
+                        }
                     }
                 }
+                # Handle Microsoft Graph model objects
+                else {
+                    $Web.PSObject.Properties | ForEach-Object {
+                        if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                            if ($_.Name -eq 'ImplicitGrantSettings') {
+                                $implicitSettings = @{}
+                                $_.Value.PSObject.Properties | ForEach-Object {
+                                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                                        # Convert to camelCase for API
+                                        $camelCaseKey = $_.Name.Substring(0, 1).ToLower() + $_.Name.Substring(1)
+                                        $implicitSettings[$camelCaseKey] = $_.Value
+                                    }
+                                }
+                                $webHash['implicitGrantSettings'] = $implicitSettings
+                            }
+                            else {
+                                # Convert to camelCase for API
+                                $camelCaseKey = $_.Name.Substring(0, 1).ToLower() + $_.Name.Substring(1)
+                                $webHash[$camelCaseKey] = $_.Value
+                            }
+                        }
+                    }
+                }
+    
                 $appBody['web'] = $webHash
             }
             
@@ -459,7 +515,18 @@ function New-EntraApplication {
                 # Add an ObjectId alias for backwards compatibility
                 $response | Add-Member -NotePropertyName ObjectId -NotePropertyValue $response.id -Force
                 
-                return $response
+                $response = $response | ConvertTo-Json | ConvertFrom-Json
+                $appList = @()
+                foreach ($data in $response) {
+                    $appObject = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $appObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $appList += $appObject
+                }
+                $appList
             }
             catch {
                 Write-Error "Failed to create application: $_"
