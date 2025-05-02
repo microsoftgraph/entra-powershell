@@ -7,7 +7,8 @@ function New-EntraApplication {
     [CmdletBinding(DefaultParameterSetName = 'CreateApplication', SupportsShouldProcess)]
     [OutputType([PSCustomObject])]
     param (
-        [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateApplication", Mandatory = $true, Position = 0)]
+        [Parameter(ParameterSetName = "CreateWithAdditionalProperties", Mandatory = $false, Position = 0)]
         [System.String] $DisplayName,
 
         [Parameter(ParameterSetName = "CreateApplication")]
@@ -35,7 +36,7 @@ function New-EntraApplication {
         [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]] $AppRoles,
 
         [Parameter(ParameterSetName = "CreateApplication")]
-        [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequiredResourceAccess]] $RequiredResourceAccess,
+        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequiredResourceAccess[]] $RequiredResourceAccess,
 
         [Parameter(ParameterSetName = "CreateApplication")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication] $Api,
@@ -56,15 +57,17 @@ function New-EntraApplication {
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphOptionalClaims] $OptionalClaims,
 
         [Parameter(ParameterSetName = "CreateApplication")]
-        [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAddIn]] $AddIns,
+        [System.Object[]] $AddIns,
         
         [Parameter(ParameterSetName = "CreateApplication")]
-        [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential]] $KeyCredentials,
+        [System.Object[]] $KeyCredentials,
+        #[System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential]] $KeyCredentials,
 
         [Parameter(ParameterSetName = "CreateApplication")]
-        [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphPasswordCredential]] $PasswordCredentials,
+        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPasswordCredential[]] $PasswordCredentials,
         
         [Parameter(ParameterSetName = "CreateWithAdditionalProperties")]
+        [Alias('Body', 'Properties', 'BodyParameter')]
         [Hashtable] $AdditionalProperties
     )
 
@@ -119,12 +122,56 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('AppRoles')) {
                 $appRolesArray = @()
                 foreach ($role in $AppRoles) {
-                    $roleHash = @{}
-                    $role.PSObject.Properties | ForEach-Object {
-                        if ($null -ne $_.Value) {
-                            $roleHash[$_.Name] = $_.Value
+                    # Initialize roleHash with required properties
+                    $roleHash = @{
+                        id        = [Guid]::NewGuid().ToString('D')
+                        isEnabled = $true
+                    }
+                    
+                    # Convert role to hashtable if it's not already
+                    if ($role -is [hashtable]) {
+                        foreach ($key in $role.Keys) {
+                            # Handle GUID id specifically
+                            if ($key -eq 'id' -and $role[$key] -is [System.Guid]) {
+                                $roleHash['id'] = $role[$key].ToString('D')
+                            }
+                            else {
+                                $roleHash[$key] = $role[$key]
+                            }
                         }
                     }
+                    else {
+                        $role.PSObject.Properties | Where-Object { 
+                            $_.Name -ne 'AdditionalProperties' -and $null -ne $_.Value 
+                        } | ForEach-Object {
+                            if ($_.Name -eq 'id' -and $_.Value -is [System.Guid]) {
+                                $roleHash[$_.Name] = $_.Value.ToString('D')
+                            }
+                            else {
+                                $roleHash[$_.Name] = $_.Value
+                            }
+                        }
+                    }
+
+                    # Validate required properties
+                    if (-not $roleHash.ContainsKey('allowedMemberTypes')) {
+                        Write-Error "AppRole must specify allowedMemberTypes"
+                        continue
+                    }
+                    if (-not $roleHash.ContainsKey('displayName')) {
+                        Write-Error "AppRole must specify displayName"
+                        continue
+                    }
+                    if (-not $roleHash.ContainsKey('value')) {
+                        Write-Error "AppRole must specify value"
+                        continue
+                    }
+
+                    # Ensure allowedMemberTypes is an array
+                    if ($roleHash['allowedMemberTypes'] -isnot [array]) {
+                        $roleHash['allowedMemberTypes'] = @($roleHash['allowedMemberTypes'])
+                    }
+
                     $appRolesArray += $roleHash
                 }
                 $appBody['appRoles'] = $appRolesArray
@@ -133,13 +180,45 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('RequiredResourceAccess')) {
                 $resourceAccessArray = @()
                 foreach ($resource in $RequiredResourceAccess) {
-                    $resourceHash = @{}
-                    $resource.PSObject.Properties | ForEach-Object {
-                        if ($null -ne $_.Value) {
-                            $resourceHash[$_.Name] = $_.Value
+                    # Handle hashtable input
+                    if ($resource -is [Hashtable] -or $resource -is [PSCustomObject]) {
+                        $resourceHash = @{
+                            resourceAppId  = $resource.ResourceAppId
+                            resourceAccess = @()
                         }
+                        
+                        # Convert each resource access item
+                        if ($resource.ResourceAccess) {
+                            foreach ($access in $resource.ResourceAccess) {
+                                $accessHash = @{
+                                    id   = $access.Id
+                                    type = $access.Type
+                                }
+                                $resourceHash.resourceAccess += $accessHash
+                            }
+                        }
+                        
+                        $resourceAccessArray += $resourceHash
                     }
-                    $resourceAccessArray += $resourceHash
+                    # Handle Microsoft Graph model objects
+                    else {
+                        $resourceHash = @{
+                            resourceAppId  = $resource.ResourceAppId
+                            resourceAccess = @()
+                        }
+                        
+                        if ($resource.ResourceAccess) {
+                            foreach ($access in $resource.ResourceAccess) {
+                                $accessHash = @{
+                                    id   = $access.Id
+                                    type = $access.Type
+                                }
+                                $resourceHash.resourceAccess += $accessHash
+                            }
+                        }
+                        
+                        $resourceAccessArray += $resourceHash
+                    }
                 }
                 $appBody['requiredResourceAccess'] = $resourceAccessArray
             }
@@ -207,12 +286,21 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('AddIns')) {
                 $addInsArray = @()
                 foreach ($addin in $AddIns) {
-                    $addinHash = @{}
-                    $addin.PSObject.Properties | ForEach-Object {
-                        if ($null -ne $_.Value) {
-                            $addinHash[$_.Name] = $_.Value
+                    $addinHash = @{
+                        id         = $addin.Id
+                        type       = $addin.Type
+                        properties = @()
+                    }
+
+                    if ($addin.Properties) {
+                        foreach ($prop in $addin.Properties) {
+                            $addinHash.properties += @{
+                                key   = $prop.Key
+                                value = $prop.Value
+                            }
                         }
                     }
+                    
                     $addInsArray += $addinHash
                 }
                 $appBody['addIns'] = $addInsArray
@@ -237,12 +325,28 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('PasswordCredentials')) {
                 $passwordCredsArray = @()
                 foreach ($cred in $PasswordCredentials) {
-                    $credHash = @{}
-                    $cred.PSObject.Properties | ForEach-Object {
-                        if ($null -ne $_.Value) {
-                            $credHash[$_.Name] = $_.Value
-                        }
+                    # Create base credential hash with required displayName
+                    $credHash = @{
+                        displayName = $cred.DisplayName
                     }
+                    
+                    # Map all available properties from the MicrosoftGraphPasswordCredential
+                    if ($cred.StartDateTime) { 
+                        $credHash['startDateTime'] = $cred.StartDateTime.ToString('o') 
+                    }
+                    if ($cred.EndDateTime) { 
+                        $credHash['endDateTime'] = $cred.EndDateTime.ToString('o') 
+                    }
+                    if ($null -ne $cred.SecretText) { 
+                        $credHash['secretText'] = $cred.SecretText 
+                    }
+                    if ($cred.KeyId) { 
+                        $credHash['keyId'] = $cred.KeyId 
+                    }
+                    if ($cred.Hint) { 
+                        $credHash['hint'] = $cred.Hint 
+                    }
+                    
                     $passwordCredsArray += $credHash
                 }
                 $appBody['passwordCredentials'] = $passwordCredsArray
@@ -267,7 +371,7 @@ function New-EntraApplication {
         
         # Use ShouldProcess to support -WhatIf
         $whatIfDescription = "Creating new application '$($appBody.displayName)'"
-        $whatIfTarget = "Microsoft Entra Application"
+        $whatIfTarget = "Microsoft Entra ID Application"
         
         if ($PSCmdlet.ShouldProcess($whatIfTarget, $whatIfDescription)) {
             try {
