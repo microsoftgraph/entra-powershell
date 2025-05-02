@@ -30,7 +30,7 @@ function Add-EntraBetaServicePrincipalPolicy {
         }
         $uri = "/beta/serviceprincipals/$id/Policies/" + '$ref'
         $body = @{
-            "@odata.id"="$rootUri/beta/legacy/policies/$RefObjectId"
+            "@odata.id" = "$rootUri/beta/legacy/policies/$RefObjectId"
         }
         $body = $body | ConvertTo-Json
         

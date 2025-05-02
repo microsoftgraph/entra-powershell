@@ -42,7 +42,7 @@ function Add-EntraBetaDeviceRegisteredOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = @{ "@odata.id"="$rootUri/beta/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/beta/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["DeviceId"]) {
