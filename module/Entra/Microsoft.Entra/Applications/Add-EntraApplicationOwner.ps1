@@ -23,6 +23,14 @@ function Add-EntraApplicationOwner {
         $newOwner = @{}
 
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
+        else {
+            Write-Verbose "Using environment-specific Graph endpoint: $rootUri"
+        }
         
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $newOwner["@odata.id"] = "$rootUri/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
