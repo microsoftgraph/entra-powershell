@@ -246,8 +246,26 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('Api')) {
                 $apiHash = @{}
                 $Api.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
-                        $apiHash[$_.Name] = $_.Value
+                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                        # Handle special case for Oauth2PermissionScopes
+                        if ($_.Name -eq 'Oauth2PermissionScopes') {
+                            $scopesArray = @()
+                            foreach ($scope in $_.Value) {
+                                $scopeHash = @{
+                                    id                      = $scope.Id
+                                    adminConsentDescription = $scope.AdminConsentDescription
+                                    adminConsentDisplayName = $scope.AdminConsentDisplayName
+                                    isEnabled               = $scope.IsEnabled
+                                    type                    = $scope.Type
+                                    value                   = $scope.Value
+                                }
+                                $scopesArray += $scopeHash
+                            }
+                            $apiHash['oauth2PermissionScopes'] = $scopesArray
+                        }
+                        else {
+                            $apiHash[$_.Name] = $_.Value
+                        }
                     }
                 }
                 $appBody['api'] = $apiHash
@@ -256,7 +274,7 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('PublicClient')) {
                 $publicClientHash = @{}
                 $PublicClient.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
+                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
                         $publicClientHash[$_.Name] = $_.Value
                     }
                 }
@@ -332,7 +350,7 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('InformationalUrl')) {
                 $infoUrlHash = @{}
                 $InformationalUrl.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
+                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
                         $infoUrlHash[$_.Name] = $_.Value
                     }
                 }
@@ -342,7 +360,22 @@ function New-EntraApplication {
             if ($PSBoundParameters.ContainsKey('ParentalControlSettings')) {
                 $parentalControlHash = @{}
                 $ParentalControlSettings.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
+                    if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                        # Validate legalAgeGroupRule property
+                        if ($_.Name -eq 'legalAgeGroupRule') {
+                            $validValues = @('Allow', 'RequireConsentForMinors', 'RequireConsentForKids', 'RequireConsentForPrivacyServices', 'BlockMinors')
+                            if ($validValues -notcontains $_.Value) {
+                                Write-Error "Invalid value specified for property 'legalAgeGroupRule'. Valid values are: $($validValues -join ', ')"
+                                return
+                            }
+                        }
+
+                        # Ensure CountriesBlockedForMinors is not set to a non-default value
+                        if ($_.Name -eq 'countriesBlockedForMinors' -and ($null -ne $_.Value -and $_.Value.Count -gt 0)) {
+                            Write-Warning "The 'countriesBlockedForMinors' property must be set to its default value (null or empty). Ignoring this property."
+                            return
+                        }
+
                         $parentalControlHash[$_.Name] = $_.Value
                     }
                 }
@@ -351,11 +384,24 @@ function New-EntraApplication {
             
             if ($PSBoundParameters.ContainsKey('OptionalClaims')) {
                 $optionalClaimsHash = @{}
-                $OptionalClaims.PSObject.Properties | ForEach-Object {
-                    if ($null -ne $_.Value) {
-                        $optionalClaimsHash[$_.Name] = $_.Value
+
+                # Process each claim type (idToken, accessToken, saml2Token)
+                foreach ($claimType in @('idToken', 'accessToken', 'saml2Token')) {
+                    if ($OptionalClaims.PSObject.Properties[$claimType] -and $OptionalClaims.$claimType) {
+                        $claimsArray = @()
+                        foreach ($claim in $OptionalClaims.$claimType) {
+                            $claimHash = @{}
+                            $claim.PSObject.Properties | ForEach-Object {
+                                if ($null -ne $_.Value -and $_.Name -ne 'AdditionalProperties') {
+                                    $claimHash[$_.Name] = $_.Value
+                                }
+                            }
+                            $claimsArray += $claimHash
+                        }
+                        $optionalClaimsHash[$claimType] = $claimsArray
                     }
                 }
+
                 $appBody['optionalClaims'] = $optionalClaimsHash
             }
             

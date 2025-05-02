@@ -228,7 +228,56 @@ New-EntraApplication -DisplayName "Contoso Tagged App" `
 
 This command creates an application with tags.
 
-### Example 10: Create an application with RequiredResourceAccess details
+### Example 10: Create a public client application
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+
+# Define the PublicClient object with redirect URIs
+$publicClient = @{
+    redirectUris = @("https://login.microsoftonline.com/common/oauth2/nativeclient")
+}
+
+New-EntraApplication -DisplayName "Contoso PowerShell Client" `
+    -SignInAudience "AzureADMyOrg" `
+    -PublicClient $publicClient
+```
+
+This example shows how to register a public client app with a redirect URI for local testing, such as for Android or iOS apps that authenticate users interactively.
+
+### Example 11: Create an application with custom scopes
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+
+# Define custom scopes for the API
+$api = @{
+    oauth2PermissionScopes = @(
+        @{
+            id = [Guid]::NewGuid()
+            adminConsentDescription = "Allow the app to read user profiles."
+            adminConsentDisplayName = "Read user profiles"
+            isEnabled = $true
+            type = "User"
+            value = "Employee.Read"
+        },
+        @{
+            id = [Guid]::NewGuid()
+            adminConsentDescription = "Allow the app to write user profiles."
+            adminConsentDisplayName = "Write user profiles"
+            isEnabled = $true
+            type = "User"
+            value = "Employee.Write"
+        }
+    )
+}
+
+New-EntraApplication -DisplayName "Contoso API App" -Api $api
+```
+
+This example shows how to register an application and define its available permissions using the -Api parameter.
+
+### Example 12: Create an application with RequiredResourceAccess details
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
@@ -263,7 +312,7 @@ New-EntraApplication -DisplayName 'Contoso Service App' -RequiredResourceAccess 
 
 This command creates an application with resource access details.
 
-### Example 11: Create a web application with redirect URIs
+### Example 13: Create a web application with redirect URIs
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
@@ -281,7 +330,72 @@ New-EntraApplication -DisplayName "Contoso Web App" -Web $web
 
 This command creates a web application with redirect URIs and implicit grant settings.
 
-### Example 12: Create an application with a certificate credential
+### Example 14: Create a web application with support and marketing URIs
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+
+$informationalUrl = @{
+    marketingUrl = "https://contoso.com/marketing"
+    privacyStatementUrl = "https://contoso.com/privacy"
+    supportUrl = "https://contoso.com/support"
+    termsOfServiceUrl = "https://contoso.com/terms"
+}
+
+New-EntraApplication -DisplayName "Contoso Pay Portal" -InformationalUrl $informationalUrl
+```
+
+This command creates an application with support and marketing URLs to help users and admins identify and trust the app during consent or in the Microsoft Entra portal.
+
+### Example 15: Create an application with optional claims
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+
+$optionalClaims = @{
+    idToken = @(
+        @{
+            name = "email"
+            source = $null # user, directory, $null
+            essential = $true
+            additionalProperties = @{}
+        }
+    )
+    accessToken = @(
+        @{
+            name = "roles"
+            source = $null # user, directory, $null
+            essential = $false
+            additionalProperties = @{}
+        }
+    )
+}
+
+New-EntraApplication -DisplayName "Contoso Claims App" -OptionalClaims $optionalClaims
+```
+
+This command creates an application with optional claims, such as email, upn (userPrincipalName) claims in ID tokens and the sid (session ID) claim in access tokens for custom session tracking and user identity resolution.
+
+### Example 15: Create an application with parental control settings
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+
+# Define parental control settings
+$parentalControlSettings = @{
+    countriesBlockedForMinors = @("DE", "FR")   # ISO country codes
+    legalAgeGroupRule = "RequireConsentForMinors"
+}
+
+# Create the app with parental control settings
+New-EntraApplication -DisplayName "Contoso Kids Stream" `
+    -SignInAudience "AzureADandPersonalMicrosoftAccount" `
+    -ParentalControlSettings $parentalControlSettings
+```
+
+This command creates an application with parental control settings. For example, it can restrict access to a streaming app like "Contoso Kids Stream" for children in specific countries such as Germany and France to meet compliance requirements.
+
+### Example 16: Create an application with a certificate credential
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
