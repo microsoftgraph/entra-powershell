@@ -20,6 +20,11 @@ function Set-EntraBetaUserManager {
     
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
 
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
+
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }

@@ -48,6 +48,11 @@ function Set-EntraBetaApplicationProxyApplication {
         $onPremisesPublishing = @{}
 
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
             $ApplicationId = $PSBoundParameters["ApplicationId"]
         }

@@ -17,6 +17,11 @@ function Add-EntraBetaServicePrincipalPolicy {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         if ($null -ne $PSBoundParameters["ID"]) {
             $id = $PSBoundParameters["ID"]
         }

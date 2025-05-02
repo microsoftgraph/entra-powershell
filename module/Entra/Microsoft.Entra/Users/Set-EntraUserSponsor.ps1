@@ -41,6 +41,11 @@ function Set-EntraUserSponsor {
         $requests = @()
         
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         
         # Determine target endpoint based on parameter set
         $targetResource = if ($Type -eq "User") { "users" } else { "groups" }

@@ -37,6 +37,11 @@ function Set-EntraBetaUserSponsor {
 
         $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
 
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
+
         $batchEndpoint = "/beta/`$batch"
         
         # Initialize request collection
