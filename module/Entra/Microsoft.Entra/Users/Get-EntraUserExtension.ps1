@@ -55,7 +55,7 @@ function Get-EntraUserExtension {
 
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             $extensionResponse = Invoke-MgGraphRequest -Method POST -Uri "/v1.0/directoryObjects/getAvailableExtensionProperties" `
-                -Body $requestBody -Headers $customHeaders
+                -Body $requestBody
             
             # Extract extension property names
             $extensions = if ($PSBoundParameters.ContainsKey('IsSyncedFromOnPremises')) {
