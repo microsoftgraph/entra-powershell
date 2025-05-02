@@ -35,7 +35,7 @@ function Add-EntraBetaDirectoryRoleMember {
         }
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = "/v1.0/directoryObjects/$TmpValue"
+            $Value = "/beta/directoryObjects/$TmpValue"
             $params["OdataId"] = $Value
         }
         if ($null -ne $PSBoundParameters["DirectoryRoleId"]) {

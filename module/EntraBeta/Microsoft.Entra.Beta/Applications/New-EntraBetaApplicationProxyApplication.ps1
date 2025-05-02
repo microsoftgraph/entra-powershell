@@ -83,7 +83,7 @@ function New-EntraBetaApplicationProxyApplication {
             displayName =  $DisplayName
         } | ConvertTo-Json
         try {
-            $NewApp = Invoke-GraphRequest -Uri '/v1.0/applications' -Method POST -Body $newAppBody
+            $NewApp = Invoke-GraphRequest -Uri '/beta/applications' -Method POST -Body $newAppBody
             $Id = $NewApp.Id
         } catch {
             Write-Error $_

@@ -35,7 +35,7 @@ function Add-EntraBetaApplicationOwner {
         }
         if ($null -ne $PSBoundParameters["OwnerId"]) {
             $TmpValue = $PSBoundParameters["OwnerId"]
-            $Value = "/v1.0/directoryObjects/$TmpValue"
+            $Value = "/beta/directoryObjects/$TmpValue"
             $params["OdataId"] = $Value
         }
         if ($null -ne $PSBoundParameters["ApplicationId"]) {

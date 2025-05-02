@@ -27,7 +27,7 @@ function Add-EntraBetaAdministrativeUnitMember {
         }
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = @{ "@odata.id"="$rootUri/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id"="$rootUri/beta/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
