@@ -48,13 +48,22 @@ function Get-EntraUserExtension {
         try {
             Write-Verbose "Retrieving available extension properties..."
             
-            # Get extension properties and filter by IsSyncedFromOnPremises if specified
+            # Call Microsoft Graph API directly instead of using Get-EntraExtensionProperty
+            $requestBody = @{
+                isSyncedFromOnPremises = $IsSyncedFromOnPremises
+            } | ConvertTo-Json
+
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $extensionResponse = Invoke-MgGraphRequest -Method POST -Uri "/v1.0/directoryObjects/getAvailableExtensionProperties" `
+                -Body $requestBody -Headers $customHeaders
+            
+            # Extract extension property names
             $extensions = if ($PSBoundParameters.ContainsKey('IsSyncedFromOnPremises')) {
-                (Get-EntraExtensionProperty | 
-                Where-Object { $_.IsSyncedFromOnPremises -eq $IsSyncedFromOnPremises }).Name
+                $extensionResponse.value | Where-Object { $_.isSyncedFromOnPremises -eq $IsSyncedFromOnPremises } | 
+                ForEach-Object { $_.name }
             }
             else {
-                (Get-EntraExtensionProperty).Name
+                $extensionResponse.value | ForEach-Object { $_.name }
             }
 
             # Combine standard and extension properties
@@ -65,6 +74,7 @@ function Get-EntraUserExtension {
             $extensions = @()
             $allProperties = $standardProperties
         }
+
     }
 
     process {
