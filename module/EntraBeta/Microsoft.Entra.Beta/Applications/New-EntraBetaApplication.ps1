@@ -556,14 +556,18 @@ function New-EntraBetaApplication {
             try {
                 # Create the application using Microsoft Graph API
                 $uri = "/beta/applications"
-                $response = Invoke-MgGraphRequest -Uri $uri -Method POST -Body ($appBody | ConvertTo-Json -Depth 10) -Headers $customHeaders
-                
+
+                # Create the JSON body with sufficient depth to handle complex objects
+                $jsonBody = $appBody | ConvertTo-Json -Depth 20 -Compress
+
+                $response = Invoke-MgGraphRequest -Uri $uri -Method POST -Body $jsonBody -Headers $customHeaders
+
                 # Add an ObjectId alias for backwards compatibility
                 $response | Add-Member -NotePropertyName ObjectId -NotePropertyValue $response.id -Force
-                
-                $response = $response | ConvertTo-Json | ConvertFrom-Json
-                
+
+                # Return the response directly without additional conversion
                 return $response
+                
             }
             catch {
                 Write-Error "Failed to create application: $_"
