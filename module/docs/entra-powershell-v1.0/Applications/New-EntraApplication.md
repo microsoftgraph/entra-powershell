@@ -54,7 +54,8 @@ New-EntraApplication -DisplayName <String>
 ### CreateWithAdditionalProperties
 
 ```powershell
-New-EntraApplication [-DisplayName <String>] -AdditionalProperties <Hashtable>
+New-EntraApplication [-DisplayName <String>]
+ -AdditionalProperties <Hashtable>
  [-WhatIf]
  [-Confirm]
  [<CommonParameters>]
