@@ -802,6 +802,6 @@ Returns a custom object representing the created Microsoft Entra application.
 
 [Remove-EntraApplication](Remove-EntraApplication.md)
 
-[Update-EntraApplication](Update-EntraApplication.md)
+[Set-EntraApplication](Set-EntraApplication.md)
 
 [Microsoft Entra application management documentation](https://learn.microsoft.com/entra/identity-platform/quickstart-register-app)
