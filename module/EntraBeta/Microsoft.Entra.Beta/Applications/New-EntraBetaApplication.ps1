@@ -564,7 +564,7 @@ function New-EntraBetaApplication {
                 $response = $response | ConvertTo-Json | ConvertFrom-Json
                 $appList = @()
                 foreach ($data in $response) {
-                    $appObject = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphApplication
+                    $appObject = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApplication
                     $data.PSObject.Properties | ForEach-Object {
                         $propertyName = $_.Name
                         $propertyValue = $_.Value
