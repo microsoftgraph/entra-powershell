@@ -19,7 +19,7 @@ Describe "Tests for New-EntraBetaApplication" {
             }
         }
 
-        Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Define variables for use across tests
@@ -29,7 +29,7 @@ Describe "Tests for New-EntraBetaApplication" {
     It "Result should not be empty" {
         $result = New-EntraBetaApplication -DisplayName "Contoso Helpdesk App"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
 
     It "Should fail when DisplayName is null" {
@@ -39,7 +39,7 @@ Describe "Tests for New-EntraBetaApplication" {
     It "Should contain 'User-Agent' header" {
         $result = New-EntraBetaApplication -DisplayName "Contoso Helpdesk App"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $script:userAgentHeaderValue
             $true
         }
