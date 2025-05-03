@@ -562,17 +562,8 @@ function New-EntraBetaApplication {
                 $response | Add-Member -NotePropertyName ObjectId -NotePropertyValue $response.id -Force
                 
                 $response = $response | ConvertTo-Json | ConvertFrom-Json
-                $appList = @()
-                foreach ($data in $response) {
-                    $appObject = New-Object Microsoft.Graph.Beta.Models.MicrosoftGraphApplication
-                    $data.PSObject.Properties | ForEach-Object {
-                        $propertyName = $_.Name
-                        $propertyValue = $_.Value
-                        $appObject | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                    }
-                    $appList += $appObject
-                }
-                $appList
+                
+                return $response
             }
             catch {
                 Write-Error "Failed to create application: $_"
