@@ -94,7 +94,26 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 
 This example demonstrates how to get all applications from Microsoft Entra ID.
 
-### Example 3: Get applications with expiring secrets in 30 days
+### Example 3: Get all applications without owners (ownerless applications)
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaApplication -All | Where-Object { -not $_.Owners }
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
+-----------         --                                   -----                                --------------                     ---------------
+test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
+ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
+test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
+test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
+test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+```
+
+This example demonstrates how to get all applications without owners from Microsoft Entra ID.
+
+### Example 4: Get applications with expiring secrets in 30 days
 
 ```powershell
 $expirationThreshold = (Get-Date).AddDays(30)
@@ -123,7 +142,7 @@ Helpdesk Application    dddddddd-5555-6666-7777-eeeeeeeeeeee Helpdesk Password  
 
 This example retrieves applications with expiring secrets within 30 days.
 
-### Example 4: Get applications with expiring certificates in 30 days
+### Example 5: Get applications with expiring certificates in 30 days
 
 ```powershell
 $expirationThreshold = (Get-Date).AddDays(30)
@@ -152,7 +171,7 @@ Helpdesk Application dddddddd-5555-6666-7777-eeeeeeeeeeee My cert               
 
 This example retrieves applications with expiring certificates within 30 days.
 
-### Example 5: Get an application by display name
+### Example 6: Get an application by display name
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -167,7 +186,7 @@ ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eee
 
 In this example, we retrieve application by its display name from Microsoft Entra ID.
 
-### Example 6: Search among retrieved applications
+### Example 7: Search among retrieved applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -182,7 +201,7 @@ My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-fff
 
 This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
 
-### Example 7: Retrieve an application by identifierUris
+### Example 8: Retrieve an application by identifierUris
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -191,7 +210,7 @@ Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtip
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
-### Example 8: List top 2 applications
+### Example 9: List top 2 applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -207,7 +226,7 @@ ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777
 
 This example shows how you can retrieve two applications. You can use `-Limit` as an alias for `-Top`.
 
-### Example 9: List application app roles
+### Example 10: List application app roles
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
