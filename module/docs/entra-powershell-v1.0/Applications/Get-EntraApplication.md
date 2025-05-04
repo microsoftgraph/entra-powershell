@@ -98,17 +98,31 @@ This example demonstrates how to get all applications from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -All | Where-Object { -not $_.Owners }
+$apps = Get-EntraApplication -All
+$appsWithoutOwners = @()
+foreach ($app in $apps) {
+    try {
+        $owners = Get-EntraApplicationOwner -ApplicationId $app.Id
+        if (-not $owners) {
+            $appsWithoutOwners += $app
+        }
+    }
+    catch {
+        Write-Warning "Failed to check owners for app: $($app.DisplayName)"
+    }
+
+    # Optional: throttle to avoid rate limits (especially in large tenants)
+    #Start-Sleep -Milliseconds 100
+}
+$appsWithoutOwners | Select-Object DisplayName, Id, AppId
 ```
 
 ```Output
-DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
------------         --                                   -----                                --------------                     ---------------
-test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
-ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
-test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
-test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
-test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+DisplayName          Id                                   AppId
+-----------          --                                   -----
+Contoso HR App       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc
+Contoso Helpdesk App cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee
+Contoso Helpdesk App eeeeeeee-6666-7777-8888-ffffffffffff hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii
 ```
 
 This example demonstrates how to get all applications without owners from Microsoft Entra ID.
