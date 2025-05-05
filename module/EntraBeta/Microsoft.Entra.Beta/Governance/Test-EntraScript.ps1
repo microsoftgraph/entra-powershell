@@ -1,36 +1,8 @@
-# ------------------------------------------------------------------------------ 
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
-#  Licensed under the MIT License.  See License in the project root for license information. 
-# ------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Test-EntraScript {
-	<#
-	.SYNOPSIS
-		Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
-	
-	.DESCRIPTION
-		Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
-	
-	.PARAMETER Path
-		Path to the script file(s) to scan.
-		Or name of the content, when also specifying -Content
-
-	.PARAMETER Content
-		Code content to scan.
-		Used when scanning code that has no file representation (e.g. straight from a repository).
-
-	.PARAMETER Quiet
-		Only return $true or $false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($false)
-	
-	.EXAMPLE
-		PS C:\> Test-EntraScript -Path .\usercreation.ps1 -Quiet
-		
-		Returns whether the script "usercreation.ps1" could run under Microsoft.Graph.Entra
-
-	.EXAMPLE
-		PS C:\> Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
-
-		Returns a list of all scripts that would not run under the Microsoft.Graph.Entra module, listing each issue with line and code.
-	#>
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -79,7 +51,7 @@ function Test-EntraScript {
 			foreach ($command in $allCommands) {
 				if ($command.CommandElements[0].Value -notin $ForbiddenCommands) { continue }
 				$findings += [PSCustomObject]@{
-					PSTypeName = 'Microsoft.Graph.Entra.CommandRequirement'
+					PSTypeName = 'Microsoft.Entra.Beta.CommandRequirement'
 					Name       = $Name
 					Line       = $command.Extent.StartLineNumber
 					Type       = 'UnsupportedCommand'
@@ -90,7 +62,7 @@ function Test-EntraScript {
 			foreach ($requiredCommand in $RequiredCommands) {
 				if ($requiredCommand -notin $allCommandNames) { continue }
 				$findings += [PSCustomObject]@{
-					PSTypeName = 'Microsoft.Graph.Entra.CommandRequirement'
+					PSTypeName = 'Microsoft.Entra.Beta.CommandRequirement'
 					Name       = $Name
 					Line       = -1
 					Type       = 'RequiredCommandMissing'
@@ -135,5 +107,5 @@ function Test-EntraScript {
 			}
 		}
 	}
-}# ------------------------------------------------------------------------------
+}
 
