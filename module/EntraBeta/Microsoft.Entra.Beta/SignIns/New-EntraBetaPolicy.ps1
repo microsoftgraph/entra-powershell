@@ -63,7 +63,7 @@ function New-EntraBetaPolicy {
             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy 
         }
 
-        $params["Uri"] = "https://graph.microsoft.com/beta/policies/" + $params.type
+        $params["Uri"] = "/beta/policies/" + $params.type
         $Definition = $PSBoundParameters["Definition"]
         $DisplayName = $PSBoundParameters["DisplayName"]
         $AlternativeIdentifier = $PSBoundParameters["AlternativeIdentifier"]

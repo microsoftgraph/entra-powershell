@@ -24,7 +24,7 @@ function Get-EntraDeviceRegisteredOwner {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/devices'
+        $baseUri = '/v1.0/devices'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

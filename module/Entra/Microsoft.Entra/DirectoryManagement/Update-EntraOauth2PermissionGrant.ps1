@@ -17,7 +17,7 @@ function Update-EntraOauth2PermissionGrant {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/oauth2PermissionGrants/"
+        $params["Uri"] = "/v1.0/oauth2PermissionGrants/"
         $params["Method"] = "PATCH"
         
         if ($null -ne $PSBoundParameters["OAuth2PermissionGrantId"]) {

@@ -18,6 +18,7 @@ function Add-EntraBetaGroupOwner {
         [Guid] $OwnerId
     )
 
+
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {

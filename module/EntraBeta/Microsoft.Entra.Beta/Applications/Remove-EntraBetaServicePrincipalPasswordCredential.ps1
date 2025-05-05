@@ -15,7 +15,7 @@ function Remove-EntraBetaServicePrincipalPasswordCredential {
     PROCESS{
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
+        $baseUri = '/beta/servicePrincipals'
         $Method = "POST"
         if($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"])
         {
