@@ -83,9 +83,6 @@ Set-StrictMode -Version 5
         # When there is only one item, it returns a single object rather than an array
         # Using @() we force the result to be treated as an array, even if there is only one item.
         $ps1Files = @(Get-ChildItem -Path $currentDirPath -Filter "*.ps1")
-        
-        $ps1xmlFileName = "$currentDirName.format.ps1xml"
-        $ps1xmlFilePath = Join-Path -Path $destDirectory -ChildPath $ps1xmlFileName
 
         $ps1xmlFiles = @(Get-ChildItem -Path $currentDirPath -Filter "*format.ps1xml")
         if ($ps1xmlFiles.Count -gt 0) {
@@ -94,6 +91,8 @@ Set-StrictMode -Version 5
                 $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
                 $ps1xmlContent += "`n"  # Add an empty line at the end
             }
+
+            $ps1xmlFilePath = Join-Path -Path $destDirectory -ChildPath $ps1xmlFile.Name
             Log-Message "[EntraModuleBuilder] Writing .ps1xml file to disk: $ps1xmlFilePath"
             Set-Content -Path $ps1xmlFilePath -Value $ps1xmlContent
 

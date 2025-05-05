@@ -64,6 +64,7 @@ function Get-EntraBetaApplicationProxyConnector {
                 $propertyValue = $_.Value
                 $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
+            $targetType.PSTypeNames.Insert(0, "Microsoft.Entra.Application")
             $targetList += $targetType
         }
         $targetList         
