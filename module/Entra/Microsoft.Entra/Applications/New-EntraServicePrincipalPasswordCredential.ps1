@@ -24,7 +24,7 @@ function New-EntraServicePrincipalPasswordCredential {
             DisplayName        = $DisplayName
         }
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = 'https://graph.microsoft.com/v1.0/servicePrincipals'
+        $baseUri = '/v1.0/servicePrincipals'
         $URI = "$baseUri/$ServicePrincipalId/addPassword"
         $body = @{
             passwordCredential = @{

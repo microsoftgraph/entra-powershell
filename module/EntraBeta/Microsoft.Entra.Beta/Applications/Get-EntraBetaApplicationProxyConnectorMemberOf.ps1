@@ -15,10 +15,10 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
-        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
+        $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
         if($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId"))
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug

@@ -19,7 +19,7 @@ function Get-EntraPolicy {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUrl = "https://graph.microsoft.com/v1.0/policies/"
+        $baseUrl = "/v1.0/policies/"
         $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", "defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
         if ($PSBoundParameters.ContainsKey("Top") -and ($null -eq $Top -or $Top -eq 0)) {
