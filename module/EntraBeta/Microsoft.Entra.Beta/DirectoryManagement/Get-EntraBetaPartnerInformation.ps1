@@ -23,7 +23,7 @@ function Get-EntraBetaPartnerInformation {
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
             $TenantID = (Get-EntraContext).TenantId
         }
-        $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation"
+        $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "/beta/organization/$TenantID/partnerInformation"
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "PartnerCompanyName"       = $response.companyName
