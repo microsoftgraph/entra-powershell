@@ -29,6 +29,7 @@ Retrieves the list of groups a user belongs to.
 Get-EntraUserGroup
  -UserId <String>
  [-All]
+ [-Filter <String>]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
