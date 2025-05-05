@@ -110,6 +110,26 @@ This example demonstrates how to retrieve top two application role assignment fo
 
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
+### Example 4: Get application role assignments with selected properties
+
+```powershell
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All'
+Get-EntraBetaUserAppRoleAssignment -UserId 'SawyerM@contoso.com' -Property Id, 
+    CreatedDateTime, PrincipalDisplayName, PrincipalType | 
+    Select-Object Id, CreatedDateTime, PrincipalDisplayName, PrincipalType
+```
+
+```Output
+Id                                          CreatedDateTime        PrincipalDisplayName  PrincipalType
+--                                          ----------------        -------------------- --------------
+0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i              7/30/2024 5:59:16 PM    Sawyer Miller         User
+0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k              9/19/2024 7:13:24 AM    Contoso IT Support    Group
+```
+
+This example demonstrates how to retrieve application role assignments for the specified user with selected properties.
+
+- `-UserId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
+
 ## Parameters
 
 ### -All
