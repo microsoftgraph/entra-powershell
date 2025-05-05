@@ -22,7 +22,7 @@ function Set-EntraApplicationLogo {
         try{
             $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-            $baseUri = 'https://graph.microsoft.com/v1.0/applications'
+            $baseUri = '/v1.0/applications'
             $Method = "PUT"            
             if($null -ne $PSBoundParameters["ApplicationId"])
             {

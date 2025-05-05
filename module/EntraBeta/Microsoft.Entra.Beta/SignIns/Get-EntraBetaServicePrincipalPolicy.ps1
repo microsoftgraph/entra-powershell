@@ -19,7 +19,7 @@ function Get-EntraBetaServicePrincipalPolicy {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = "https://graph.microsoft.com/beta/serviceprincipals/$Id/policies"
+        $URI = "/beta/serviceprincipals/$Id/policies"
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json -Depth 20 | ConvertFrom-Json).value
                
         $data = $response 

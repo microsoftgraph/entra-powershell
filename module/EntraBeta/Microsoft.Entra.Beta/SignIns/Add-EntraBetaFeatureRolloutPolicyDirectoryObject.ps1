@@ -33,7 +33,7 @@ function Add-EntraBetaFeatureRolloutPolicyDirectoryObject {
         }
         if ($null -ne $PSBoundParameters["RefObjectId"]) {
             $TmpValue = $PSBoundParameters["RefObjectId"]
-            $Value = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue"
+            $Value = "/beta/directoryObjects/$TmpValue"
             $params["OdataId"] = $Value
         }
         if ($null -ne $PSBoundParameters["OutVariable"]) {

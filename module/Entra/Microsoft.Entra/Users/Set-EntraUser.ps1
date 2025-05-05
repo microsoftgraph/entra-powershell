@@ -153,7 +153,7 @@ function Set-EntraUser {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
         # Microsoft Graph API URL for updating users
-        $graphUri = "https://graph.microsoft.com/v1.0/users/$UserId"
+        $graphUri = "/v1.0/users/$UserId"
 
         # Initialize hashtable for user properties
         $UserProperties = @{}

@@ -20,7 +20,7 @@ function Get-EntraBetaApplicationPolicy {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = 'https://graph.microsoft.com/beta/applications/{0}/policies' -f $Id
+        $URI = '/beta/applications/{0}/policies' -f $Id
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json -Depth 10 | ConvertFrom-Json).value
         $response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
                 

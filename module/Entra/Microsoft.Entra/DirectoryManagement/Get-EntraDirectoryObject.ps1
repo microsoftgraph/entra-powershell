@@ -23,12 +23,12 @@ function Get-EntraDirectoryObject {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}        
-        $URI = 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
+        $URI = '/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
+            $URI = "/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
         }
         if ($null -ne $PSBoundParameters["ObjectTypes"]) {
             $body["Types"] = $PSBoundParameters["ObjectTypes"]

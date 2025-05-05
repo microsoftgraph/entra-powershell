@@ -18,7 +18,7 @@ function Get-EntraBetaApplicationLogo {
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = 'https://graph.microsoft.com/beta/applications'
+        $baseUri = '/beta/applications'
         $Method = "GET"
         if($null -ne $PSBoundParameters["ApplicationId"])
         {

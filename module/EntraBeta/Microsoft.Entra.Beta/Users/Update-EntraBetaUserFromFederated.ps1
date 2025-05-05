@@ -31,7 +31,7 @@ function Update-EntraBetaUserFromFederated {
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{ "UserId" = $UserPrincipalName }
-        $params["Url"] = "https://graph.microsoft.com/beta/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
+        $params["Url"] = "/beta/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
 
         # Handle password conversion securely
         $passwordRedacted = $false
