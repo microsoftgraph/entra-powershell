@@ -27,6 +27,9 @@ Retrieve the thumbnail photo of a user.
 ```powershell
 Get-EntraUserThumbnailPhoto
  -UserId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
+ [-View <Boolean>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -85,6 +88,54 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FileName
+
+Specifies the file name to save the retrieved thumbnail photo.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -FilePath
+
+Specifies the file path or location where the thumbnail photo will be saved.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -View
+
+Specifies whether to view the thumbnail photo immediately after retrieval.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
