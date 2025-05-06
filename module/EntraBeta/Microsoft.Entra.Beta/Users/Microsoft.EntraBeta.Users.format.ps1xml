@@ -59,7 +59,7 @@
     <View>
       <Name>EntraUserManagerView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.Entra.User.Manager</TypeName>
+        <TypeName>Microsoft.EntraBeta.User.Manager</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>
