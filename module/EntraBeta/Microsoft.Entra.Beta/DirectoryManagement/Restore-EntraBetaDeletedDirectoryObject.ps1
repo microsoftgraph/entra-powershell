@@ -17,7 +17,7 @@ function Restore-EntraBetaDeletedDirectoryObject {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = 'https://graph.microsoft.com/beta/directory/deletedItems/'   
+        $params["Uri"] = '/beta/directory/deletedItems/'   
         $params["Method"] = "POST"    
         if ($null -ne $PSBoundParameters["Id"]) {
             $params["Uri"] += $Id + "/microsoft.graph.restore"      

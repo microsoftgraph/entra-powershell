@@ -154,7 +154,7 @@ function Set-EntraBetaUser {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
         # Microsoft Graph API URL for updating users
-        $graphUri = "https://graph.microsoft.com/beta/users/$UserId"
+        $graphUri = "/beta/users/$UserId"
 
         # Initialize hashtable for user properties
         $UserProperties = @{}

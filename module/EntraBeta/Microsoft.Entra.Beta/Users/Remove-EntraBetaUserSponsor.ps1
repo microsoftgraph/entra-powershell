@@ -17,7 +17,7 @@ function Remove-EntraBetaUserSponsor {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         
-        $params["Uri"] = "https://graph.microsoft.com/beta/users/$UserId/sponsors/$SponsorId/`$ref"
+        $params["Uri"] = "/beta/users/$UserId/sponsors/$SponsorId/`$ref"
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -23,24 +23,24 @@ function Get-EntraBetaApplicationProxyConnector {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
-        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors"
+        $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors"
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $f = '$' + 'Filter'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=machineName eq '$SearchString' OR startswith(machineName,'$SearchString')"    
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=machineName eq '$SearchString' OR startswith(machineName,'$SearchString')"    
         }
         if ($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"]) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId"
         }
         if ($null -ne $PSBoundParameters["Filter"]) {
             $f = '$' + 'Filter'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=$filter"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=$filter"
         }        
         if ($null -ne $PSBoundParameters["All"]) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors"
         }        
         if ($PSBoundParameters.ContainsKey("Top")) {
             $t = '$' + 'Top'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$t=$top"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$t=$top"
         }        
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

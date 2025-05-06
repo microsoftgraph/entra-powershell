@@ -41,7 +41,7 @@ function Get-EntraUserSponsor {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId/sponsors"
+        $baseUri = "/v1.0/users/$UserId/sponsors"
         $properties = '$select=*'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri/?$properties"        

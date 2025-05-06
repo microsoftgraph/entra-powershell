@@ -16,7 +16,7 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
         $params["Method"] = "DELETE"
         if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$OnPremisesPublishingProfileId/connectorGroup/"+'$ref'
+            $params["Uri"] = "/beta/applications/$OnPremisesPublishingProfileId/connectorGroup/"+'$ref'
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

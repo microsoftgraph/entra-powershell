@@ -27,7 +27,7 @@ function Update-EntraBetaSignedInUserPassword {
         $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
         $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
     
-        $params["Url"] = "https://graph.microsoft.com/beta/me/changePassword"
+        $params["Url"] = "/beta/me/changePassword"
         $body = @{
             currentPassword = $curr
             newPassword     = $new 
