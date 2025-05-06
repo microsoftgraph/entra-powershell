@@ -97,27 +97,15 @@ function New-EntraUser {
             })]
         [System.String] $UserPrincipalName,
                 
-        [Parameter(ParameterSetName = "CreateUser")]
-        [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionProperty,
-                
-        [Parameter(ParameterSetName = "CreateUser")]
-        [System.Nullable`1[System.Boolean]] $IsCompromised,
-                
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's phone number. Only one number is allowed. Read-only for users synced from on-premises.")]
         [Alias('TelephoneNumber')]
         [System.String] $BusinessPhones,
-                
-        [Parameter(ParameterSetName = "CreateUser")]
-        [System.String] $PhysicalDeliveryOfficeName,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Sets the user's age group. Options: null, Minor, NotAdult, or Adult.")]
         [System.String] $AgeGroup,
                 
         [Parameter(ParameterSetName = "CreateUser", Mandatory = $true, HelpMessage = "Indicates if the account is active. Required when creating a user.")]
         [System.Nullable`1[System.Boolean]] $AccountEnabled,
-                
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Don't use in Microsoft Graph. Manage in Microsoft 365 admin center. Indicates if the user appears in the Outlook global address list.")]
-        [System.Nullable`1[System.Boolean]] $ShowInAddressList,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Represents the identities that can be used to sign in to this user account. Microsoft (also known as a local account), organizations, or social identity providers such as Facebook, Google, and Microsoft can provide identity and tie it to a user account. It might contain multiple items with the same signInType value.")]
         [Alias('SignInNames')]
@@ -157,17 +145,11 @@ function New-EntraUser {
         if ($null -ne $PSBoundParameters["ConsentProvidedForMinor"]) {
             $params["ConsentProvidedForMinor"] = $PSBoundParameters["ConsentProvidedForMinor"]
         }
-        if ($null -ne $PSBoundParameters["PhysicalDeliveryOfficeName"]) {
-            $params["PhysicalDeliveryOfficeName"] = $PSBoundParameters["PhysicalDeliveryOfficeName"]
-        }
         if ($null -ne $PSBoundParameters["OtherMails"]) {
             $params["OtherMails"] = $PSBoundParameters["OtherMails"]
         }
         if ($null -ne $PSBoundParameters["PasswordPolicies"]) {
             $params["PasswordPolicies"] = $PSBoundParameters["PasswordPolicies"]
-        }
-        if ($null -ne $PSBoundParameters["IsCompromised"]) {
-            $params["IsCompromised"] = $PSBoundParameters["IsCompromised"]
         }
         if ($null -ne $PSBoundParameters["SignInNames"]) {
             $params["Identities"] = $PSBoundParameters["SignInNames"]
@@ -186,9 +168,6 @@ function New-EntraUser {
         }
         if ($null -ne $PSBoundParameters["AgeGroup"]) {
             $params["AgeGroup"] = $PSBoundParameters["AgeGroup"]
-        }
-        if ($null -ne $PSBoundParameters["ExtensionProperty"]) {
-            $params["ExtensionProperty"] = $PSBoundParameters["ExtensionProperty"]
         }
         if ($null -ne $PSBoundParameters["UsageLocation"]) {
             $params["UsageLocation"] = $PSBoundParameters["UsageLocation"]
