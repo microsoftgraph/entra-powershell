@@ -23,14 +23,14 @@ function Get-EntraFeatureRolloutPolicy {
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies'
+        $baseUri = '/v1.0/policies/featureRolloutPolicies'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         $query = $null
         
         if ($null -ne $PSBoundParameters["Id"]) {
             $Id = $PSBoundParameters["Id"]
-            $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id"
+            $params["Uri"] = "/v1.0/policies/featureRolloutPolicies/$Id"
         }
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $FilterValue = $PSBoundParameters["SearchString"]

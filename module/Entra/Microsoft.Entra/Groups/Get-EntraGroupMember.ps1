@@ -35,7 +35,7 @@ function Get-EntraGroupMember {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/groups'
+        $baseUri = '/v1.0/groups'
         $properties = '$select=*'
         $Method = "GET"
 

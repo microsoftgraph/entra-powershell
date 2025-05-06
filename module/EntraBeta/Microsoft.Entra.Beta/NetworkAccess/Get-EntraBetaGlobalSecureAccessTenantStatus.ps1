@@ -9,7 +9,7 @@ function Get-EntraBetaGlobalSecureAccessTenantStatus {
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
             # Invoke the API request to get the tenant status
-            $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/networkAccess/tenantStatus"
+            $response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "/beta/networkAccess/tenantStatus"
 
             # Check the response and provide feedback
             if ($response) {

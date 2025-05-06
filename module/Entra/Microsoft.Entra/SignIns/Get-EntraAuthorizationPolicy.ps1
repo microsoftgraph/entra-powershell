@@ -17,7 +17,7 @@ function Get-EntraAuthorizationPolicy {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?"
+        $params["Uri"] = "/v1.0/policies/authorizationPolicy?"
         $params["Method"] = "GET"
     
         if ($null -ne $PSBoundParameters["Id"]) {

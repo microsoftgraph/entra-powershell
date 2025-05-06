@@ -17,7 +17,7 @@ function Revoke-EntraBetaSignedInUserAllRefreshToken {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
                 
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/beta/me/revokeSignInSessions' -Method POST).value      
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri '/beta/me/revokeSignInSessions' -Method POST).value      
         if($response){
                 $responseType = New-Object Microsoft.Graph.Beta.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema
                 $responseType.Value= $response

@@ -22,20 +22,20 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
-        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+        $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         if ($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId")) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }
         if ($PSBoundParameters.ContainsKey("Filter")) {
             $f = '$' + 'Filter'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
         }        
         if ($PSBoundParameters.ContainsKey("All")) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }        
         if ($PSBoundParameters.ContainsKey("top")) {
             $t = '$' + 'Top'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$t=$top"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$t=$top"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

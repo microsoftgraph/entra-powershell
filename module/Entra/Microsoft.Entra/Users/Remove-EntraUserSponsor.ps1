@@ -17,7 +17,7 @@ function Remove-EntraUserSponsor {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/users/$UserId/sponsors/$SponsorId/`$ref"
+        $params["Uri"] = "/v1.0/users/$UserId/sponsors/$SponsorId/`$ref"
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -38,7 +38,7 @@ function Get-EntraBetaCrossTenantAccessActivity {
     process {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
-        $baseUri = "https://graph.microsoft.com/beta/auditLogs/signIns"
+        $baseUri = "/beta/auditLogs/signIns"
 
         $firstExecution = $true
 

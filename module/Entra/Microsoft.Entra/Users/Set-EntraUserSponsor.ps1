@@ -35,10 +35,17 @@ function Set-EntraUserSponsor {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand     
         $customHeaders['Content-Type'] = 'application/json'
 
-        $batchEndpoint = "https://graph.microsoft.com/v1.0/`$batch"
+        $batchEndpoint = "/v1.0/`$batch"
         
         # Initialize request collection
         $requests = @()
+        
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         
         # Determine target endpoint based on parameter set
         $targetResource = if ($Type -eq "User") { "users" } else { "groups" }
@@ -50,7 +57,7 @@ function Set-EntraUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" = "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
+                    "@odata.id" = "$rootUri/v1.0/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"

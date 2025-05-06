@@ -16,7 +16,7 @@ function Get-EntraScopedRoleMembership {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $isList = $false
-        $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits"
+        $baseUri = "/v1.0/directory/administrativeUnits"
         if($null -ne $PSBoundParameters["AdministrativeUnitId"])
         {
             $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]

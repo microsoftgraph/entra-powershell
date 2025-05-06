@@ -36,7 +36,7 @@ function Set-EntraUserLicense {
         
         $customHeaders['Content-Type'] = 'application/json'
 
-        $graphApiEndpoint = "https://graph.microsoft.com/v1.0/users/$UserId/microsoft.graph.assignLicense"
+        $graphApiEndpoint = "/v1.0/users/$UserId/microsoft.graph.assignLicense"
         
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

@@ -27,8 +27,8 @@ function Remove-EntraBetaApplicationProxyApplication {
                     externalUrl = "PowerShellDeleteApplication" 
                 } 
             } | ConvertTo-Json
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Body $body
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method DELETE -Headers $customHeaders
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Body $body
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method DELETE -Headers $customHeaders
         }
         if ($null -eq $PSBoundParameters["RemoveADApplication"] -or ($null -ne $PSBoundParameters["RemoveADApplication"] -and $false -eq $PSBoundParameters["RemoveADApplication"])) {
             $body = @{ 
@@ -37,7 +37,7 @@ function Remove-EntraBetaApplicationProxyApplication {
                     externalUrl = "PowerShellDeleteApplication" 
                 } 
             } | ConvertTo-Json
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Headers $customHeaders -Body $body
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Headers $customHeaders -Body $body
         }
         
         Write-Debug("============================ TRANSFORMATIONS ============================")

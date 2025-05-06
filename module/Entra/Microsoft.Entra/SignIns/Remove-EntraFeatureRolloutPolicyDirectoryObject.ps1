@@ -18,7 +18,7 @@ function Remove-EntraFeatureRolloutPolicyDirectoryObject {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $params["Uri"] = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $FeatureRolloutPolicyId, $DirectoryObjectId
+        $params["Uri"] = '/v1.0/policies/featureRolloutPolicies/{0}/appliesTo/{1}/$ref' -f $FeatureRolloutPolicyId, $DirectoryObjectId
         $params["Method"] = "DELETE"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

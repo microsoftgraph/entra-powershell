@@ -42,7 +42,7 @@ function Get-EntraObjectSetting {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/v1.0/$TargetType/$TargetObjectId/settings"
+        $baseUri = "/v1.0/$TargetType/$TargetObjectId/settings"
         $params["Method"] = "GET"
         $params["Uri"] = $baseUri + '?$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {

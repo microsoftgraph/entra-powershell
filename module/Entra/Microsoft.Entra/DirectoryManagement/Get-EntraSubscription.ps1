@@ -28,7 +28,7 @@ function Get-EntraSubscription {
         $params = @{}
         $topCount = 0
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/v1.0/directory/subscriptions"
+        $baseUri = "/v1.0/directory/subscriptions"
         $properties = "`$select=*"
     
         if ($PSBoundParameters.ContainsKey("Property")) {
