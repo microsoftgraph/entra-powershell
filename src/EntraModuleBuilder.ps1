@@ -555,7 +555,7 @@ $($requiredModulesEntries -join ",`n")
                 AliasesToExport        = $aliasesToExport
                 Author                 = $($content.authors)
                 CompanyName            = $($content.owners)
-                FileList               = @("$manifestFileName", "$moduleFileName", "$helpFileName")
+                FileList               = @("$manifestFileName", "$moduleFileName", "$helpFileName", "$formattingFiles")
                 RootModule             = "$moduleFileName"
                 Description            = $content.moduleName
                 DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
