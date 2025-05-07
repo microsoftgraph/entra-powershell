@@ -5,19 +5,23 @@
 function New-EntraBetaUserAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'ByUserIdAndRoleParameters')]
     param (                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
-        [System.String] $UserId,
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (user, group, or service principal) to assign the app role to.")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the resource service principal (application) that exposes the app role.")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ResourceId,
+                
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the ID of the app role to assign to the user.")]
+        [ValidateNotNullOrEmpty()]
         [Alias("Id")]
         [System.String] $AppRoleId,
                 
-        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
-        [System.String] $PrincipalId,
-                
-        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true)]
-        [System.String] $ResourceId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of the user (as a UserPrincipalName or ObjectId) to whom the app role is assigned.")]
+        [ValidateNotNullOrEmpty()]
+        [Alias("ObjectId")]
+        [System.String] $UserId
     )
 
     begin {
