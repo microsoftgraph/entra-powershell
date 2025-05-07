@@ -217,8 +217,8 @@ function New-EntraBetaUser {
         if ($null -ne $PSBoundParameters["Surname"]) {
             $params["Surname"] = $PSBoundParameters["Surname"]
         }
-        if ($null -ne $PSBoundParameters["TelephoneNumber"]) {
-            $params["BusinessPhones"] = @($PSBoundParameters["TelephoneNumber"])
+        if ($null -ne $PSBoundParameters["BusinessPhones"]) {
+            $params["BusinessPhones"] = @($PSBoundParameters["BusinessPhones"])
         }
         if ($null -ne $PSBoundParameters["CreationType"]) {
             $params["CreationType"] = $PSBoundParameters["CreationType"]
