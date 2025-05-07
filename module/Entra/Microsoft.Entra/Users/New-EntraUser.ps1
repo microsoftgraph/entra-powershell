@@ -60,7 +60,7 @@ function New-EntraUser {
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Set password policies like DisableStrongPassword or DisablePasswordExpiration. You can use both, separated by a comma.")]
         [System.String] $PasswordPolicies,
                 
-        [Parameter(ParameterSetName = "CreateUser", Mandatory = $true, HelpMessage = "Defines the user's password profile. Required when creating a user. The password must meet the policy requirements—strong by default.")]
+        [Parameter(ParameterSetName = "CreateUser", Mandatory = $true, HelpMessage = "Defines the user's password profile. Required when creating a user. The password must meet the policy requirements-strong by default.")]
         [ValidateNotNullOrEmpty()]
         [Microsoft.Open.AzureAD.Model.PasswordProfile] $PasswordProfile,
                 
@@ -90,10 +90,13 @@ function New-EntraUser {
         [Alias('UPN')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
-                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') {
+                try {
+                    $null = [System.Net.Mail.MailAddress]$_
                     return $true
                 }
-                throw "UserPrincipalName must be a valid email address."
+                catch {
+                    throw "UserPrincipalName must be a valid email address."
+                }
             })]
         [System.String] $UserPrincipalName,
                 
