@@ -7,21 +7,21 @@ function New-EntraBetaUserAppRoleAssignment {
     param (                
         [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (user, group, or service principal) to assign the app role to.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $PrincipalId,
+        [guid] $PrincipalId,
                 
         [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the resource service principal (application) that exposes the app role.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $ResourceId,
+        [guid] $ResourceId,
                 
         [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the ID of the app role to assign to the user.")]
         [ValidateNotNullOrEmpty()]
         [Alias("Id")]
-        [System.String] $AppRoleId,
+        [guid] $AppRoleId,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of the user (as a UserPrincipalName or ObjectId) to whom the app role is assigned.")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
-        [System.String] $UserId
+        [guid] $UserId
     )
 
     begin {

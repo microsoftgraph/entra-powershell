@@ -20,7 +20,7 @@ function Remove-EntraUserSponsor {
         [Alias('DirectoryObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The User Sponsor ID to be removed.")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $SponsorId
+        [guid] $SponsorId
     )
 
     begin {
