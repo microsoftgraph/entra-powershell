@@ -422,7 +422,7 @@ Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId, UPN, Identity
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
