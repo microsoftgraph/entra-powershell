@@ -5,7 +5,7 @@
     <View>
       <Name>EntraBetaApplicationView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.EntraBeta.Application</TypeName>
+        <TypeName>Microsoft.Entra.Beta.Application</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>

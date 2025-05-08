@@ -5,7 +5,7 @@
     <View>
       <Name>EntraBetaUserStandardView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.EntraBeta.User</TypeName>
+        <TypeName>Microsoft.Entra.Beta.User</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>
@@ -34,7 +34,7 @@
     <View>
       <Name>EntraBetaUserSimpleView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.EntraBeta.User.Simple</TypeName>
+        <TypeName>Microsoft.Entra.Beta.User.Simple</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>
@@ -59,7 +59,7 @@
     <View>
       <Name>EntraUserManagerView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.EntraBeta.User.Manager</TypeName>
+        <TypeName>Microsoft.Entra.Beta.User.Manager</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>

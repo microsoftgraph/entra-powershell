@@ -3,9 +3,9 @@
   <ViewDefinitions>
     <!-- Application View -->
     <View>
-      <Name>EntraBetaApplicationView</Name>
+      <Name>EntraApplicationView</Name>
       <ViewSelectedBy>
-        <TypeName>Microsoft.EntraBeta.Application</TypeName>
+        <TypeName>Microsoft.Entra.Application</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <AutoSize/>
