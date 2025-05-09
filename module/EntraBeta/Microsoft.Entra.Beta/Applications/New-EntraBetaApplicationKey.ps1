@@ -5,19 +5,21 @@
 function New-EntraBetaApplicationKey {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [System.String] $Proof,
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Password credential to add.")]
+        [Microsoft.Open.MSGraph.Model.PasswordCredential] $PasswordCredential,
+
+        [Alias('ObjectId')]            
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
                 
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [Microsoft.Open.MSGraph.Model.KeyCredential] $KeyCredential,
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Proof of possession for the key credential.")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $Proof,
                 
-        [Parameter(ParameterSetName = "Default")]
-        [Microsoft.Open.MSGraph.Model.PasswordCredential] $PasswordCredential
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Key credential to add.")]
+        [ValidateNotNullOrEmpty()]
+        [Microsoft.Open.MSGraph.Model.KeyCredential] $KeyCredential
     )
 
     PROCESS {    

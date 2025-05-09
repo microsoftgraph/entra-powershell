@@ -7,9 +7,11 @@ function New-EntraBetaApplicationFromApplicationTemplate {
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The ID of the application template to instantiate.')]
         [Alias('Id')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationTemplateId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The display name of the application.')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $DisplayName
     )
 

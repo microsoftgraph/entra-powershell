@@ -29,8 +29,9 @@ Creates an application extension property.
 New-EntraBetaApplicationExtensionProperty
  -ApplicationId <String>
  [-DataType <String>]
- -Name <String>
+ [-Name <String>]
  [-TargetObjects <System.Collections.Generic.List`1[System.String]>]
+ [-IsMultiValued <Boolean>]
  [<CommonParameters>]
 ```
 
@@ -177,6 +178,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IsMultiValued
+
+Specifies whether the extension property supports multiple values. Set this parameter to $true if the extension property can hold multiple values; otherwise, set it to $false.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
