@@ -258,6 +258,27 @@ AllowedMemberTypes    Description        DisplayName       Id                   
 
 This example shows how you can retrieve app roles for an application.
 
+### Example 11: List application oauth2PermissionScopes (delegated permissions exposed by the app)
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+(Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk Application'").Api.Oauth2PermissionScopes
+```
+
+```Output
+AdminConsentDescription : Allows the app to read HR data on behalf of users.
+AdminConsentDisplayName : Read HR Data
+Id                      : bbbbbbbb-1111-2222-3333-cccccccccccc
+IsEnabled               : True
+Origin                  :
+Type                    : User
+UserConsentDescription  : Allows the app to read your HR data.
+UserConsentDisplayName  : Read your HR data
+Value                   : HR.Read.All
+```
+
+This example shows how you can retrieve oauth2PermissionScopes (i.e., delegated permissions exposed by the app) to a service principal. These scopes are part of the application object.
+
 ## Parameters
 
 ### -All
