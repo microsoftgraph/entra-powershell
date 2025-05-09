@@ -277,7 +277,38 @@ UserConsentDisplayName  : Read your HR data
 Value                   : HR.Read.All
 ```
 
-This example shows how you can retrieve oauth2PermissionScopes (i.e., delegated permissions exposed by the app) to a service principal. These scopes are part of the application object.
+This example shows how you can retrieve `oauth2PermissionScopes` (i.e., delegated permissions exposed by the app) to a service principal. These scopes are part of the application object.
+
+### Example 12: List applications and their secret details
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaApplication -All -Property displayName, appId, passwordCredentials |
+    Where-Object { $_.PasswordCredentials } |
+    ForEach-Object {
+        $app = $_
+        foreach ($cred in $app.PasswordCredentials) {
+            [PSCustomObject]@{
+                DisplayName                    = $app.DisplayName
+                AppId                          = $app.AppId
+                PasswordCredentialsDisplayName = $cred.DisplayName
+                PasswordCredentialStartDate    = $cred.StartDate
+                PasswordCredentialEndDate      = $cred.EndDate
+            }
+        }
+    } |
+    Format-Table -AutoSize
+```
+
+```Output
+DisplayName              AppId                                PasswordCredentialsDisplayName   PasswordCredentialStartDate PasswordCredentialEndDate
+-----------              -----                                ------------------------------   --------------------------- -------------------------
+Helpdesk Application     gggggggg-6666-7777-8888-hhhhhhhhhhhh Helpdesk Application Password    8/20/2024 7:54:25 AM        11/18/2024 7:54:25 AM
+Helpdesk Application     gggggggg-6666-7777-8888-hhhhhhhhhhhh Helpdesk Application Backend     8/7/2024 4:36:49 PM         2/3/2025 4:36:49 PM
+Contoso Automation App   bbbbbbbb-1111-2222-3333-cccccccccccc AI automation Cred               5/3/2025 7:03:11 PM         5/3/2026 7:03:11 PM
+```
+
+This example shows how you can retrieve applications that have secrets.
 
 ## Parameters
 
