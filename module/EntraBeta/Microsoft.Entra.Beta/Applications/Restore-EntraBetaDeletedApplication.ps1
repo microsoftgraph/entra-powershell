@@ -5,13 +5,13 @@
 function Restore-EntraBetaDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
+        [Parameter(ParameterSetName = "default", HelpMessage = "Identifier URIs of the application.")]
+        [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
         [Alias("ObjectId")]
-        [System.String] $ApplicationId,
-                
-        [Parameter(ParameterSetName = "default")]
-        [System.Collections.Generic.List`1[System.String]] $IdentifierUris
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ApplicationId
     )
 
     PROCESS {    

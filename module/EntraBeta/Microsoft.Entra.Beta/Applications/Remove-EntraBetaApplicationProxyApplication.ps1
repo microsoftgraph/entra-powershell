@@ -6,10 +6,11 @@ function Remove-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias("ObjectId")]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Remove the application from Azure Active Directory.")]
         [System.Nullable`1[System.Boolean]] $RemoveADApplication
     )
 

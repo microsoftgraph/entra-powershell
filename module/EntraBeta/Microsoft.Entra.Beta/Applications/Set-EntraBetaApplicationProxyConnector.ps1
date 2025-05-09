@@ -5,11 +5,14 @@
 function Set-EntraBetaApplicationProxyConnector {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("Id")]
-    [System.String] $OnPremisesPublishingProfileId,
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ConnectorGroupId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the on-premises publishing profile object (On-Premises Publishing Profile Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [Alias("Id")]
+        [System.String] $OnPremisesPublishingProfileId,
+    
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the connector group object (Connector Group Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ConnectorGroupId
     )
 
     PROCESS {
@@ -24,12 +27,10 @@ function Set-EntraBetaApplicationProxyConnector {
         }
         $params["Method"] = "POST"
         $body = @{}
-        if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
-        {
+        if ($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"]) {
             $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId/memberOf/" + '$ref'
         }
-        if($null -ne $PSBoundParameters["ConnectorGroupId"])
-        {
+        if ($null -ne $PSBoundParameters["ConnectorGroupId"]) {
             $body = @{
                 "@odata.id" = "$rootUri/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$ConnectorGroupId"
             }
@@ -37,7 +38,7 @@ function Set-EntraBetaApplicationProxyConnector {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"

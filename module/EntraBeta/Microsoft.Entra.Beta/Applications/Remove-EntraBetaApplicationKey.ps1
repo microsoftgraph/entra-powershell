@@ -5,16 +5,16 @@
 function Remove-EntraBetaApplicationKey {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(ParameterSetName = "Default")]
-        [System.String] $Proof,
-                
-        [Parameter(ParameterSetName = "Default")]
+        [Parameter(ParameterSetName = "ByKeyId", HelpMessage = "Unique ID of the key credential.")]
         [System.String] $KeyId,
+    
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ApplicationId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
-        [System.String] $ApplicationId
+        [Parameter(ParameterSetName = "ByKeyId", HelpMessage = "Proof of the key credential.")]
+        [System.String] $Proof
     )
 
     PROCESS {    

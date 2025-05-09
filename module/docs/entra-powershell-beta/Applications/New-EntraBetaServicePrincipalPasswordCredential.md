@@ -30,6 +30,7 @@ New-EntraBetaServicePrincipalPasswordCredential
  -ServicePrincipalId <String>
  [-EndDate <DateTime>]
  [-StartDate <DateTime>]
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 

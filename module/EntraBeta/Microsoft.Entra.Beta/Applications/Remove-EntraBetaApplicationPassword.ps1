@@ -5,11 +5,11 @@
 function Remove-EntraBetaApplicationPassword {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(ParameterSetName = "default")]
+        [Parameter(ParameterSetName = "default", HelpMessage = "Unique ID of the key credential.")]
         [System.String] $KeyId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )

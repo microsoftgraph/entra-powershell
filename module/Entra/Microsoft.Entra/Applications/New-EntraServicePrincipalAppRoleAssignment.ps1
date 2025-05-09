@@ -4,19 +4,18 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraServicePrincipalAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+    param (                
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (service principal) to assign the app role to.")]
         [System.String] $PrincipalId,
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the object ID of the resource service principal (application) that exposes the app role.")]
         [System.String] $ResourceId,
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [System.String] $Id,
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
+
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the ID of the app role to assign to the service principal.")]
+        [System.String] $AppRoleId,
+
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal receiving the app role assignment.")]
         [System.String] $ServicePrincipalId
     )
 
