@@ -63,7 +63,7 @@ The ID of the application for which you need to retrieve the policy.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId, ApplicationId
 
 Required: True
 Position: Named

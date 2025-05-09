@@ -5,15 +5,19 @@
 function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the onPremisesPublishingProfile object (OnPremisesPublishingProfile Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("Id")]
         [System.String] $OnPremisesPublishingProfileId,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Number of items to return.")]
         [Alias("Limit")]
         [System.Int32] $Top,
-        [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The filter to apply.")]
         [System.String] $Filter,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all connector group members.")]
         [switch] $All
     )
 

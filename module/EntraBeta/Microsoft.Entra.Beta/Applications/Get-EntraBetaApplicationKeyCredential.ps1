@@ -5,8 +5,8 @@
 function Get-EntraBetaApplicationKeyCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )
