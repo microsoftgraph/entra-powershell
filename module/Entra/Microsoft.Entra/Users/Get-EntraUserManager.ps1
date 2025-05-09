@@ -29,13 +29,13 @@ function Get-EntraUserManager {
         if ($null -ne $PSBoundParameters["UserId"]) {
             $params["UserId"] = $PSBoundParameters["UserId"]
         }
-        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+        $URI = "/v1.0/users/$($params.UserId)/manager?`$select=*"
 
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?$properties"
+            $URI = "/v1.0/users/$($params.UserId)/manager?$properties"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

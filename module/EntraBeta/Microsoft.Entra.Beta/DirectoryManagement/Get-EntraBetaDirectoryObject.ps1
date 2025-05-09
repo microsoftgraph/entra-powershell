@@ -23,12 +23,12 @@ function Get-EntraBetaDirectoryObject {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}        
-        $URI = 'https://graph.microsoft.com/beta/directoryObjects/microsoft.graph.getByIds?$select=*'
+        $URI = '/beta/directoryObjects/microsoft.graph.getByIds?$select=*'
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/beta/directoryObjects/microsoft.graph.getByIds?$properties"
+            $URI = "/beta/directoryObjects/microsoft.graph.getByIds?$properties"
         }
         if ($null -ne $PSBoundParameters["ObjectTypes"]) {
             $body["Types"] = $PSBoundParameters["ObjectTypes"]

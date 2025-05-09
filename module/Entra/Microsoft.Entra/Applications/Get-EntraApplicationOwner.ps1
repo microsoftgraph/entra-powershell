@@ -21,7 +21,7 @@ function Get-EntraApplicationOwner {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/applications'
+        $baseUri = '/v1.0/applications'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

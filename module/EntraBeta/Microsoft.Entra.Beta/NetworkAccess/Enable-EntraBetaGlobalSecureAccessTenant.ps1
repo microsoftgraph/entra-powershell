@@ -9,7 +9,7 @@ function Enable-EntraBetaGlobalSecureAccessTenant {
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
             # Invoke the API request to enable global secure access tenant
-            $response = Invoke-GraphRequest -Method POST -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/networkAccess/microsoft.graph.networkaccess.onboard"
+            $response = Invoke-GraphRequest -Method POST -Headers $customHeaders -OutputType PSObject -Uri "/beta/networkAccess/microsoft.graph.networkaccess.onboard"
 
             # Check the response and provide feedback
             if ($response) {

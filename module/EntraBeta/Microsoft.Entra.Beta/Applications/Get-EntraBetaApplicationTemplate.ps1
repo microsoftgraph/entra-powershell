@@ -27,7 +27,7 @@ function Get-EntraBetaApplicationTemplate {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $uri = "https://graph.microsoft.com/beta/applicationTemplates"
+        $uri = "/beta/applicationTemplates"
         $params["Method"] = "GET"
         $params["Uri"] = $uri + '?$select=*'
         

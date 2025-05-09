@@ -12,7 +12,7 @@ BeforeAll {
             [PSCustomObject]@{
                 Id                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 AdditionalProperties = @{
-                    '@odata.context'  = 'https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity'
+                    '@odata.context'  = 'https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity'
                     '@odata.type'     = '#microsoft.graph.group'
                     'createdDateTime' = '2025-02-07T08:09:31Z'
                     'creationOptions' = @("Option1", "Option2")

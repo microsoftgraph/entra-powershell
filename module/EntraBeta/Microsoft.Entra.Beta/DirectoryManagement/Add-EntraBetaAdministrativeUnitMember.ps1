@@ -16,6 +16,13 @@ function Add-EntraBetaAdministrativeUnitMember {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
@@ -25,7 +32,7 @@ function Add-EntraBetaAdministrativeUnitMember {
         }
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/beta/directoryObjects/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {

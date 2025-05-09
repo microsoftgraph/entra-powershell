@@ -31,7 +31,7 @@ function New-EntraApplicationFromApplicationTemplate {
             displayName = $DisplayName
         }
 
-        $uri = "https://graph.microsoft.com/v1.0/applicationTemplates/$ApplicationTemplateId/instantiate"
+        $uri = "/v1.0/applicationTemplates/$ApplicationTemplateId/instantiate"
         $response = Invoke-GraphRequest -uri $uri -Headers $customHeaders -Body $body -Method POST | ConvertTo-Json -Depth 5 | ConvertFrom-Json
         $memberList = @()
         foreach ($data in $response) {

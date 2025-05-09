@@ -22,7 +22,7 @@ function Set-EntraBetaApplicationLogo {
         try{
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
-            $baseUri = 'https://graph.microsoft.com/beta/applications'
+            $baseUri = '/beta/applications'
             $Method = "PUT"
             
             if($null -ne $PSBoundParameters["ApplicationId"])

@@ -27,7 +27,7 @@ function New-EntraCustomSecurityAttributeDefinition {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions"
+        $Uri = "/v1.0/directory/customSecurityAttributeDefinitions"
         $Method = "POST"
 
         if($null -ne $PSBoundParameters["AttributeSet"])

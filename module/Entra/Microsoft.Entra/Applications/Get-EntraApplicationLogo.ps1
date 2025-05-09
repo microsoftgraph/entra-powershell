@@ -18,7 +18,7 @@ function Get-EntraApplicationLogo {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
-        $baseUri = 'https://graph.microsoft.com/v1.0/applications'
+        $baseUri = '/v1.0/applications'
         $Method = "GET"        
         if($null -ne $PSBoundParameters["ApplicationId"])
         {

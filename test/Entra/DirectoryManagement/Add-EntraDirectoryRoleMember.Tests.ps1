@@ -48,7 +48,7 @@ Describe "Add-EntraDirectoryRoleMember" {
 
             $result = Add-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $value = "https://graph.microsoft.com/v1.0/directoryObjects/"
+            $value = "/v1.0/directoryObjects/"
             $params.OdataId | Should -Be $value"bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {

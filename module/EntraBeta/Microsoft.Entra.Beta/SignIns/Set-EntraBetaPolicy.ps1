@@ -61,7 +61,7 @@ function Set-EntraBetaPolicy {
         
         if (!$type) {
             foreach ($pType in $policyTypes) {
-                $uri = "https://graph.microsoft.com/beta/policies/" + $pType + "/" + $id
+                $uri = "/beta/policies/" + $pType + "/" + $id
                 try {
                     $response = Invoke-GraphRequest -Uri $uri -Method GET
                     break
@@ -91,7 +91,7 @@ function Set-EntraBetaPolicy {
                 $params["IsOrganizationDefault"] = $PSBoundParameters["IsOrganizationDefault"]
             }
             if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $type )) {
-                $URI = "https://graph.microsoft.com/beta/policies/" + $type + "/" + $id
+                $URI = "/beta/policies/" + $type + "/" + $id
             }
             if ($null -ne $PSBoundParameters["IsOrganizationDefault"]) {
                 $params["IsOrganizationDefault"] = $PSBoundParameters["IsOrganizationDefault"]

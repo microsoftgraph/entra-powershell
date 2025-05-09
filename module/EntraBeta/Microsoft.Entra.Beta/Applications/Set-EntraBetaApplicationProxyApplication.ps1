@@ -46,6 +46,13 @@ function Set-EntraBetaApplicationProxyApplication {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
+
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         if ($null -ne $PSBoundParameters["ApplicationId"]) {
             $ApplicationId = $PSBoundParameters["ApplicationId"]
         }
@@ -94,7 +101,7 @@ function Set-EntraBetaApplicationProxyApplication {
             }
         }
         try {
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Body $updateUrlBody
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Body $updateUrlBody
         }
         catch {
             Write-Error $_
@@ -104,7 +111,7 @@ function Set-EntraBetaApplicationProxyApplication {
         # update onpremises
         $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing }
         try {
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Body $onPremisesPublishingBody
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Body $onPremisesPublishingBody
         }
         catch {
             Write-Error $_
@@ -115,10 +122,10 @@ function Set-EntraBetaApplicationProxyApplication {
         if ($null -ne $PSBoundParameters["ConnectorGroupId"]) {
             $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
             $ConnectorGroupBody = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+                "@odata.id" = "$rootUri/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
             }
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
-            $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$ApplicationId/connectorGroup/" + '$ref'
+            $ConnectorGroupUri = "/beta/applications/$ApplicationId/connectorGroup/" + '$ref'
             try {
                 Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
             }
@@ -132,7 +139,7 @@ function Set-EntraBetaApplicationProxyApplication {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId/onPremisesPublishing" -Method GET -Headers $customHeaders) | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        $response = (Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId/onPremisesPublishing" -Method GET -Headers $customHeaders) | ConvertTo-Json -depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $ApplicationId

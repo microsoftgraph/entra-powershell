@@ -18,6 +18,12 @@ function Set-EntraUserManager {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -59,7 +65,7 @@ function Set-EntraUserManager {
         }
         if ($null -ne $PSBoundParameters["ManagerId"]) {
             $TmpValue = $PSBoundParameters["ManagerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/users/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/v1.0/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
 

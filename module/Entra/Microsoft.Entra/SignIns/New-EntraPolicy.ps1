@@ -62,7 +62,7 @@ function New-EntraPolicy {
             $params.type = "permissionGrantPolicies"
             $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy 
         }
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/" + $params.type
+        $params["Uri"] = "/v1.0/policies/" + $params.type
         $Definition = $PSBoundParameters["Definition"]
         $DisplayName = $PSBoundParameters["DisplayName"]
         $AlternativeIdentifier = $PSBoundParameters["AlternativeIdentifier"]

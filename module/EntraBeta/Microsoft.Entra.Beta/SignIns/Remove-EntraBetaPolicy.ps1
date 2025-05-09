@@ -15,7 +15,7 @@ function Remove-EntraBetaPolicy {
         $array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
     
         foreach ($a in $array) {
-            $uri = "https://graph.microsoft.com/beta/policies/" + $a + "/" + $id
+            $uri = "/beta/policies/" + $a + "/" + $id
             try {
                 $response = Invoke-GraphRequest -Uri $uri -Method GET
                 break
@@ -26,7 +26,7 @@ function Remove-EntraBetaPolicy {
     
         $type = $Matches[1]
         if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $type )) {
-            $URI = "https://graph.microsoft.com/beta/policies/" + $type + "/" + $id
+            $URI = "/beta/policies/" + $type + "/" + $id
         }
         $Method = "DELETE"
         Write-Debug("============================ TRANSFORMATIONS ============================")

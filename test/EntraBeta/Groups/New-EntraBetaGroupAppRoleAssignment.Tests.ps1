@@ -19,7 +19,7 @@ BeforeAll {
                 "ResourceId"           = "aaaaaaaa-bbbb-cccc-1111-222222222222"
                 "ResourceDisplayName"  = "Mock-Group"
                 "PrincipalType"        = "PrincipalType"
-                "AdditionalProperties" = @{"@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#groups('aaaaaaaa-1111-2222-3333-cccccccccccc')/appRoleAssignments/`$entity" }
+                "AdditionalProperties" = @{"@odata.context" = "https://graph.microsoft.com/beta/`$metadata#groups('aaaaaaaa-1111-2222-3333-cccccccccccc')/appRoleAssignments/`$entity" }
                 "Parameters"           = $args
             }
         )

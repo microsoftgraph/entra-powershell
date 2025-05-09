@@ -85,7 +85,7 @@ function Set-EntraUserExtension {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
 
-        $uri = "https://graph.microsoft.com/v1.0/users/$UserId"
+        $uri = "/v1.0/users/$UserId"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
