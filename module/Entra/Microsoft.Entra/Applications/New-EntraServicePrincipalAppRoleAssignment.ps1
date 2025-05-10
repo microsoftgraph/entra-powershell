@@ -55,8 +55,8 @@ function New-EntraServicePrincipalAppRoleAssignment {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["AppRoleId"] = $PSBoundParameters["Id"]
+        if ($PSBoundParameters.ContainsKey("AppRoleId")) {
+            $params["AppRoleId"] = $AppRoleId
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
