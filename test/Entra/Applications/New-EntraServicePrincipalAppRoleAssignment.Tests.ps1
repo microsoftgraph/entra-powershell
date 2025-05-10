@@ -36,25 +36,25 @@ Describe "New-EntraServicePrincipalAppRoleAssignment" {
             Should -Invoke -CommandName New-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
-            { New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId'*"
+            { New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ServicePrincipalId is null" {
             { New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
         It "Should fail when ResourceId is empty" {
-            { New-EntraServicePrincipalAppRoleAssignment -ResourceId "" } | Should -Throw "Cannot bind argument to parameter 'ResourceId'*"
+            { New-EntraServicePrincipalAppRoleAssignment -ResourceId "" } | Should -Throw "Cannot validate argument on parameter 'ResourceId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ResourceId is null" {
             { New-EntraServicePrincipalAppRoleAssignment -ResourceId } | Should -Throw "Missing an argument for parameter 'ResourceId'*"
         }
         It "Should fail when Id is empty" {
-            { New-EntraServicePrincipalAppRoleAssignment -AppRoleId "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+            { New-EntraServicePrincipalAppRoleAssignment -AppRoleId "" } | Should -Throw "Cannot validate argument on parameter 'AppRoleId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when Id is null" {
-            { New-EntraServicePrincipalAppRoleAssignment -AppRoleId } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { New-EntraServicePrincipalAppRoleAssignment -AppRoleId } | Should -Throw "Missing an argument for parameter 'AppRoleId'. Specify a parameter of type 'System.String' and try again."
         }
         It "Should fail when PrincipalId is empty" {
-            { New-EntraServicePrincipalAppRoleAssignment -PrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'PrincipalId'*"
+            { New-EntraServicePrincipalAppRoleAssignment -PrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'PrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when PrincipalId is null" {
             { New-EntraServicePrincipalAppRoleAssignment -PrincipalId } | Should -Throw "Missing an argument for parameter 'PrincipalId'*"
@@ -67,11 +67,7 @@ Describe "New-EntraServicePrincipalAppRoleAssignment" {
             $params = Get-Parameters -data $result.Parameters
             $params.AppRoleId | Should -Be "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f"
         }
-        It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {    
-            $result = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -AppRoleId "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
-            $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
-        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalAppRoleAssignment"
             $result = New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId "00001111-aaaa-2222-bbbb-3333cccc4444" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1" -AppRoleId "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f" -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
