@@ -70,7 +70,7 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
                         }
                     )
                 }
-                Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOCredential $params } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+                Set-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOCredential $params } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should fail when PasswordSSOCredential parameter are empty" {
