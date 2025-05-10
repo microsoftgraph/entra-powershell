@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -12,32 +12,32 @@ BeforeAll {
         # Write-Host "Mocking Get-EntraApplicationExtensionProperty with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{              
-              "Id"             = "aaaaaaaa-1111-2222-3333-ccccccccccc"
-              "Name"           = "extension_222_324_NewAttribute"
-              "TargetObjects"  = {}
-              "Parameters"     = $args
+                "Id"            = "aaaaaaaa-1111-2222-3333-ccccccccccc"
+                "Name"          = "extension_222_324_NewAttribute"
+                "TargetObjects" = {}
+                "Parameters"    = $args
             }
         )
     }
     Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
-  }
+}
   
-  Describe "Get-EntraApplicationExtensionProperty" {
+Describe "Get-EntraApplicationExtensionProperty" {
     Context "Test for Get-EntraApplicationExtensionProperty" {
         It "Should not return empty" {
             $result = Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
-            { Get-EntraApplicationExtensionProperty -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Get-EntraApplicationExtensionProperty -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Result should Contain ApplicationId" {
             $result = Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
@@ -53,7 +53,7 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
             $result.Name | Should -Be 'extension_222_324_NewAttribute'
 
-            Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
@@ -63,7 +63,7 @@ BeforeAll {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
-            $result =  Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
+            $result = Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
             Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
@@ -79,7 +79,8 @@ BeforeAll {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraApplicationExtensionProperty -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

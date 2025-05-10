@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -24,8 +24,8 @@ BeforeAll {
 
     Mock -CommandName Add-MgApplicationPassword -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
 }
-Describe "New-EntraApplicationPassword"{
-    It "Should return created password credential"{
+Describe "New-EntraApplicationPassword" {
+    It "Should return created password credential" {
         $result = New-EntraApplicationPassword -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PasswordCredential @{ displayname = "mypassword" } | ConvertTo-Json | ConvertFrom-Json
         $result | Should -Not -BeNullOrEmpty
         $result.KeyId | should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
@@ -33,7 +33,7 @@ Describe "New-EntraApplicationPassword"{
         Should -Invoke -CommandName Add-MgApplicationPassword -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when ApplicationId is empty" {
-        { New-EntraApplicationPassword -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
+        { New-EntraApplicationPassword -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when ApplicationId is null" {
         { New-EntraApplicationPassword -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -55,8 +55,8 @@ Describe "New-EntraApplicationPassword"{
         $params = Get-Parameters -data $result.Parameters
         $params.ApplicationId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
     }
-    It "should contain password credential parameters in body parameter when passed PasswordCredential to it"{
-        $result = New-EntraApplicationPassword -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PasswordCredential @{ DisplayName = "mypassword"; Hint = "123"; StartDateTime=(get-date).AddYears(0); EndDateTime=(get-date).AddYears(2) }
+    It "should contain password credential parameters in body parameter when passed PasswordCredential to it" {
+        $result = New-EntraApplicationPassword -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PasswordCredential @{ DisplayName = "mypassword"; Hint = "123"; StartDateTime = (get-date).AddYears(0); EndDateTime = (get-date).AddYears(2) }
         $params = Get-Parameters -data $result.Parameters
         $a = $params.PasswordCredential | ConvertTo-json | ConvertFrom-Json
         $a.DisplayName | Should -Be "mypassword"
@@ -82,7 +82,8 @@ Describe "New-EntraApplicationPassword"{
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { New-EntraApplicationPassword -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PasswordCredential @{ displayname = "mypassword" } | ConvertTo-Json | ConvertFrom-Json -Debug } | Should -Not -Throw
-        } finally {
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }

@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -15,27 +15,27 @@ BeforeAll {
                 "UserPrincipalName"      = "Adams@contoso.com"
                 "UserType"               = "Member"
                 "appRoles"               = @{
-                                                allowedMemberTypes=$null; 
-                                                description="msiam_access";
-                                                displayName="msiam_access"; 
-                                                id="d0d7e4e4-96be-41c9-805a-08e0526868ad";
-                                                isEnabled=$True; 
-                                                origin="Application"
-                                            }
+                    allowedMemberTypes = $null; 
+                    description        = "msiam_access";
+                    displayName        = "msiam_access"; 
+                    id                 = "d0d7e4e4-96be-41c9-805a-08e0526868ad";
+                    isEnabled          = $True; 
+                    origin             = "Application"
+                }
                 "oauth2PermissionScopes" = @{
-                                                adminConsentDescription="Allow the application to access from tmplate test 3 on behalf of the signed-in user."; 
-                                                adminConsentDisplayName="Access from tmplate test 3"; 
-                                                id="64c2cef3-e118-4795-a580-a32bdbd7ba88"; 
-                                                isEnabled=$True; 
-                                                type="User";
-                                                userConsentDescription="Allow the application to access from tmplate test 3 on your behalf."; 
-                                                userConsentDisplayName="Access from tmplate test 3";
-                                                value="user_impersonation"
-                                            }
+                    adminConsentDescription = "Allow the application to access from tmplate test 3 on behalf of the signed-in user."; 
+                    adminConsentDisplayName = "Access from tmplate test 3"; 
+                    id                      = "64c2cef3-e118-4795-a580-a32bdbd7ba88"; 
+                    isEnabled               = $True; 
+                    type                    = "User";
+                    userConsentDescription  = "Allow the application to access from tmplate test 3 on your behalf."; 
+                    userConsentDisplayName  = "Access from tmplate test 3";
+                    value                   = "user_impersonation"
+                }
                 "AdditionalProperties"   = @{
-                                                "@odata.type" = "#microsoft.graph.servicePrincipal";
-                                                accountEnabled = $true
-                                            }
+                    "@odata.type"  = "#microsoft.graph.servicePrincipal";
+                    accountEnabled = $true
+                }
                 "Parameters"             = $args
             }
         )
@@ -43,7 +43,7 @@ BeforeAll {
 
     Mock -CommandName Get-MgServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
 }
-Describe "Get-EntraServicePrincipalOwner"{
+Describe "Get-EntraServicePrincipalOwner" {
     It "Result should not be empty" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
@@ -55,7 +55,7 @@ Describe "Get-EntraServicePrincipalOwner"{
         Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when ServicePrincipalId is empty" {
-        { Get-EntraServicePrincipalOwner -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+        { Get-EntraServicePrincipalOwner -ServicePrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should return all applications" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
@@ -63,7 +63,7 @@ Describe "Get-EntraServicePrincipalOwner"{
         Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when All has an argument" {
-        { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
     }
     It "Should return top application" {
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
@@ -106,8 +106,9 @@ Describe "Get-EntraServicePrincipalOwner"{
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            {Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-        } finally {
+            { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }
