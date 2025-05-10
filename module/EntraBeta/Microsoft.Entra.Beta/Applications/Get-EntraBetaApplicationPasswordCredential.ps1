@@ -54,5 +54,4 @@ function Get-EntraBetaApplicationPasswordCredential {
             } 
         }
     }
-}# ------------------------------------------------------------------------------
-
+}
