@@ -45,13 +45,19 @@ The `New-EntraApplicationPasswordCredential` cmdlet creates a password credentia
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id
+$secret = New-EntraApplicationPasswordCredential -ApplicationId $application.Id
+$secret | Format-List
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
+CustomKeyIdentifier  : 77 97 114 97 32 76 117 120 117 114 121...
+Value                : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+DisplayName          : Contoso Automation account
+EndDateTime          : 5/9/2027 11:53:40 AM
+Hint                 : WBB
+KeyId                : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+SecretText           : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+StartDateTime        : 5/9/2025 11:53:39 AM
 ```
 
 This command creates new password credential for specified application.
@@ -63,13 +69,19 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>'
+$secret = New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>'
+$secret | Format-List
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-100 101 109 111     demo        8/2/2026 11:47:53 AM 8Mw  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 8/2/2024 11:47:53 AM
+CustomKeyIdentifier  : 77 97 114 97 32 76 117 120 117 114 121...
+Value                : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+DisplayName          : Contoso Automation account
+EndDateTime          : 5/9/2027 11:53:40 AM
+Hint                 : WBB
+KeyId                : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+SecretText           : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+StartDateTime        : 5/9/2025 11:53:39 AM
 ```
 
 This command creates new password credential for specified application.
@@ -83,13 +95,19 @@ This command creates new password credential for specified application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $startDate = (Get-Date).AddYears(0)
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -StartDate $startDate
+$secret = New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -StartDate $startDate
+$secret | Format-List
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
+CustomKeyIdentifier  : 77 97 114 97 32 76 117 120 117 114 121...
+Value                : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+DisplayName          : Contoso Automation account
+EndDateTime          : 5/9/2027 11:53:40 AM
+Hint                 : WBB
+KeyId                : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+SecretText           : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+StartDateTime        : 5/9/2025 11:53:39 AM
 ```
 
 This command creates new password credential for specified application.
@@ -103,13 +121,19 @@ This command creates new password credential for specified application.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
 $endDate = (Get-Date).AddYears(2)
-New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -EndDate $endDate
+$secret = New-EntraApplicationPasswordCredential -ApplicationId $application.Id -CustomKeyIdentifier '<userfriendlyDisplayName>' -EndDate $endDate
+$secret | Format-List
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
+CustomKeyIdentifier  : 77 97 114 97 32 76 117 120 117 114 121...
+Value                : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+DisplayName          : Contoso Automation account
+EndDateTime          : 5/9/2027 11:53:40 AM
+Hint                 : WBB
+KeyId                : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+SecretText           : wbBNW8kCuiPjNRg9NX98W_aaaaaaa
+StartDateTime        : 5/9/2025 11:53:39 AM
 ```
 
 This command creates new password credential for specified application.

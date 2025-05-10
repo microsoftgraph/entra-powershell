@@ -17,7 +17,7 @@ Describe "Remove-EntraApplicationPassword" {
         Should -Invoke -CommandName Remove-MgApplicationPassword -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when ApplicationId is empty" {
-        { Remove-EntraApplicationPassword -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
+        { Remove-EntraApplicationPassword -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when ApplicationId is null" {
         { Remove-EntraApplicationPassword -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"

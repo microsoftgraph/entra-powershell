@@ -5,20 +5,22 @@
 function Remove-EntraBetaServicePrincipalPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $KeyId,
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("ObjectId")]
-    [System.String] $ServicePrincipalId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the password credential object (Password Credential Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $KeyId,
+    
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the service principal object (Service Principal Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [Alias("ObjectId")]
+        [System.String] $ServicePrincipalId
     )
 
-    PROCESS{
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = '/beta/servicePrincipals'
         $Method = "POST"
-        if($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"])
-        {
+        if ($null -ne $PSBoundParameters["ServicePrincipalId"] -and $null -ne $PSBoundParameters["KeyId"]) {
             $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
             $params["KeyId"] = $PSBoundParameters["KeyId"]
             $URI = "$baseUri/$($params.ServicePrincipalId)/removePassword"
@@ -27,7 +29,7 @@ function Remove-EntraBetaServicePrincipalPasswordCredential {
             }
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -Body $body)
     }    

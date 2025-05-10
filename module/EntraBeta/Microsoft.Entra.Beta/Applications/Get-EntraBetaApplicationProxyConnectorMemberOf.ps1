@@ -5,9 +5,10 @@
 function Get-EntraBetaApplicationProxyConnectorMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [Alias("Id")]
-    [System.String] $OnPremisesPublishingProfileId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application proxy connector.")]
+        [ValidateNotNullOrEmpty()]
+        [Alias("Id")]
+        [System.String] $OnPremisesPublishingProfileId
     )
 
     PROCESS {    
@@ -16,12 +17,11 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
         $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
-        if($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId"))
-        {
+        if ($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId")) {
             $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
@@ -32,17 +32,17 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
             $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
         
-            $targetList = @()
-            foreach ($res in $data) {
-                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnectorGroup
-                $res.PSObject.Properties | ForEach-Object {
-                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
-                    $propertyValue = $_.Value
-                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }
-                $targetList += $targetType
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnectorGroup
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
-            $targetList    
+            $targetList += $targetType
+        }
+        $targetList    
 
     }        
 }# ------------------------------------------------------------------------------

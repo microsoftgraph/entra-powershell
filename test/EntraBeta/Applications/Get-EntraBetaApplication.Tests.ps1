@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,23 +11,23 @@ BeforeAll {
         # Write-Host "Mocking Get-MgBetaApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              "AppId"                        = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
-              "AppRoles"                     = $null
-              "DeletedDateTime"              = $null
-              "Id"                           = "aaaaaaaa-1111-1111-1111-000000000000"
-              "DisplayName"                  = "Mock-App"
-              "Info"                         = @{LogoUrl=""; MarketingUrl=""; PrivacyStatementUrl=""; SupportUrl=""; TermsOfServiceUrl=""}
-              "IsDeviceOnlyAuthSupported"    = $True
-              "IsFallbackPublicClient"       = $true
-              "KeyCredentials"               = @{CustomKeyIdentifier = @(211, 174, 247);DisplayName =""; Key="";KeyId="d903c7a3-75ea-4772-8935-5c0cf82068a7";Type="Symmetric";Usage="Sign"}
-              "OptionalClaims"               = @{AccessToken=""; IdToken=""; Saml2Token=""}
-              "ParentalControlSettings"      = @{CountriesBlockedForMinors=$null; LegalAgeGroupRule="Allow"}
-              "PasswordCredentials"          = @{}
-              "PublicClient"                 = @{RedirectUris=$null}
-              "PublisherDomain"              = "M365x99297270.onmicrosoft.com"
-              "SignInAudience"               = "AzureADandPersonalMicrosoftAccount"
-              "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
-              "Parameters"                    = $args
+                "AppId"                     = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
+                "AppRoles"                  = $null
+                "DeletedDateTime"           = $null
+                "Id"                        = "aaaaaaaa-1111-1111-1111-000000000000"
+                "DisplayName"               = "Mock-App"
+                "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
+                "IsDeviceOnlyAuthSupported" = $True
+                "IsFallbackPublicClient"    = $true
+                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "d903c7a3-75ea-4772-8935-5c0cf82068a7"; Type = "Symmetric"; Usage = "Sign" }
+                "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
+                "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
+                "PasswordCredentials"       = @{}
+                "PublicClient"              = @{RedirectUris = $null }
+                "PublisherDomain"           = "M365x99297270.onmicrosoft.com"
+                "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
+                "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
+                "Parameters"                = $args
             }
         )
     }
@@ -41,20 +41,20 @@ Describe "Get-EntraBetaApplication" {
             $result = Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('aaaaaaaa-1111-1111-1111-000000000000')
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should execute successfully with Alias" {
             $result = Get-EntraBetaApplication -ObjectId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
-            { Get-EntraBetaApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Get-EntraBetaApplication -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should return all applications" {
             $result = Get-EntraBetaApplication -All
             $result | Should -Not -BeNullOrEmpty  
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when All has argument" {
             { Get-EntraBetaAuditDirectoryLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
@@ -66,18 +66,18 @@ Describe "Get-EntraBetaApplication" {
             $result = Get-EntraBetaApplication -SearchString 'Mock-App'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraBetaApplication -Filter "DisplayName -eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }  
         It "Should return top application" {
             $result = Get-EntraBetaApplication -Top 1
             $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }  
         It "Result should Contain ApplicationId" {
             $result = Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
@@ -95,7 +95,7 @@ Describe "Get-EntraBetaApplication" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplication"
-            $result =  Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
+            $result = Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplication"
             Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
@@ -108,12 +108,12 @@ Describe "Get-EntraBetaApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
     
-            Should -Invoke -CommandName Get-MgBetaApplication  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
-           }
+            Should -Invoke -CommandName Get-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
     
-           It "Should fail when Property is empty" {
+        It "Should fail when Property is empty" {
             { Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
-           }
+        }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
@@ -122,7 +122,8 @@ Describe "Get-EntraBetaApplication" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

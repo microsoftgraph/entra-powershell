@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -26,13 +26,13 @@ Describe "Remove-EntraApplication" {
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
-            { Remove-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Remove-EntraApplication -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ApplicationId is empty" {
             { Remove-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }   
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
-            Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Entra.Applications
+            Mock -CommandName Remove-MgApplication -MockWith { $args } -ModuleName Microsoft.Entra.Applications
 
             $result = Remove-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result

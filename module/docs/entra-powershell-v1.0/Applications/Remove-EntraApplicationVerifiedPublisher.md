@@ -57,7 +57,7 @@ The unique identifier of a Microsoft Entra ID Application object.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ApplicationId
 
 Required: True
 Position: Named

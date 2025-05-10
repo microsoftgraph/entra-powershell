@@ -54,7 +54,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
         
         It "Should fail when ServicePrincipalId is invalid" {
             $errorActionPreference = "Stop"
-            { Get-EntraServicePrincipalKeyCredential -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+            { Get-EntraServicePrincipalKeyCredential -ServicePrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
