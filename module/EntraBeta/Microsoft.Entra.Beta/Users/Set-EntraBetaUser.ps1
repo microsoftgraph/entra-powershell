@@ -7,7 +7,7 @@ function Set-EntraBetaUser {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
-        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [Alias('ObjectId', 'UPN', 'Identity', 'Id')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
