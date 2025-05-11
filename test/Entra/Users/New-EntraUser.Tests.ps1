@@ -42,8 +42,7 @@ BeforeAll {
                 State                           = "NY" 
                 StreetAddress                   = "123 Main St" 
                 BusinessPhones                  = "987654321" 
-                Surname                         = "Doe" 
-                ShowInAddressList               = $true
+                Surname                         = "Doe"
                 Identities                      = @(
                     @{
                         Type  = "emailAddress"
@@ -95,8 +94,7 @@ Describe "New-EntraUser" {
                 -State "NY" `
                 -StreetAddress "123 Main St" `
                 -BusinessPhones "987654321" `
-                -Surname "Doe" `
-                -ShowInAddressList $true
+                -Surname "Doe"
 
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "demo004"
