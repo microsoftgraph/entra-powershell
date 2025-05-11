@@ -160,8 +160,8 @@ function New-EntraUser {
         if ($null -ne $PSBoundParameters["PreferredLanguage"]) {
             $params["PreferredLanguage"] = $PSBoundParameters["PreferredLanguage"]
         }
-        if ($null -ne $PSBoundParameters["UserState"]) {
-            $params["ExternalUserState"] = $PSBoundParameters["UserState"]
+        if ($null -ne $PSBoundParameters["ExternalUserState"]) {
+            $params["ExternalUserState"] = $PSBoundParameters["ExternalUserState"]
         }
         if ($null -ne $PSBoundParameters["ImmutableId"]) {
             $params["OnPremisesImmutableId"] = $PSBoundParameters["ImmutableId"]
@@ -175,8 +175,8 @@ function New-EntraUser {
         if ($null -ne $PSBoundParameters["UsageLocation"]) {
             $params["UsageLocation"] = $PSBoundParameters["UsageLocation"]
         }
-        if ($null -ne $PSBoundParameters["UserStateChangedOn"]) {
-            $params["ExternalUserStateChangeDateTime"] = $PSBoundParameters["UserStateChangedOn"]
+        if ($null -ne $PSBoundParameters["ExternalUserStateChangeDateTime"]) {
+            $params["ExternalUserStateChangeDateTime"] = $PSBoundParameters["ExternalUserStateChangeDateTime"]
         }
         if ($null -ne $PSBoundParameters["AccountEnabled"]) {
             $params["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]

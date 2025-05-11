@@ -66,9 +66,9 @@ Describe "Set-EntraUserSponsor" {
         }
 
         It "Should only allow User and Group for type" {
-            { Set-EntraUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
-            { Set-EntraUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type Group -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
-            { Set-EntraUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type Users -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
+            { Set-EntraUserSponsor -UserId "85a57325-fbd3-4649-b636-163573591681" -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraUserSponsor -UserId "85a57325-fbd3-4649-b636-163573591681" -Type Group -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraUserSponsor -UserId "85a57325-fbd3-4649-b636-163573591681" -Type Users -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
             Should -Throw
         }
 
@@ -87,13 +87,13 @@ Describe "Set-EntraUserSponsor" {
         }
 
         It "Should accept both array and scalar values for SponsorIds parameter" {
-            { Set-EntraUserSponsor -Type User -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
+            { Set-EntraUserSponsor -Type User -UserId "85a57325-fbd3-4649-b636-163573591681" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
             Should -Not -Throw
-            { Set-EntraUserSponsor -Type User -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } |
+            { Set-EntraUserSponsor -Type User -UserId "85a57325-fbd3-4649-b636-163573591681" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } |
             Should -Not -Throw
-            { Set-EntraUserSponsor -Type Group -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
+            { Set-EntraUserSponsor -Type Group -UserId "85a57325-fbd3-4649-b636-163573591681" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
             Should -Not -Throw
-            { Set-EntraUserSponsor -Type Group -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } |
+            { Set-EntraUserSponsor -Type Group -UserId "85a57325-fbd3-4649-b636-163573591681" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } |
             Should -Not -Throw
         }
 

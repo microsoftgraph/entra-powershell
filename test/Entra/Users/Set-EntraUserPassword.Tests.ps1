@@ -36,7 +36,7 @@ Describe "Set-EntraUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraUserPassword -UserId "" -Password $secPassword } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string*"
+            { Set-EntraUserPassword -UserId "" -Password $secPassword } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }
         It "Should fail when Password is empty" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"

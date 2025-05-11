@@ -62,7 +62,7 @@ Describe "Set-EntraUserLicense" {
         }
 
         It "Should fail when UserId is empty string value" {
-            { Set-EntraUserLicense -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Set-EntraUserLicense -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }
 
         It "Should fail when UserId is empty" {
