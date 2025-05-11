@@ -75,7 +75,7 @@ Describe "New-EntraUserAppRoleAssignment" {
         }
 
         It "Should fail when parameters are Invalid values" {
-            { New-EntraUserAppRoleAssignment -UserId "" -PrincipalId "" } | Should -Throw "Cannot process argument transformation on parameter 'UserId'. Cannot convert value "" to type*"
+            { New-EntraUserAppRoleAssignment -UserId "" -PrincipalId "" } | Should -Throw "Cannot process argument transformation on parameter 'UserId'. Cannot convert value*"
         }
 
         It "Should contain UserId in parameters" {
