@@ -19,6 +19,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipalPasswordCredential" {

@@ -15,6 +15,7 @@ BeforeAll {
         } } -ModuleName Microsoft.Entra.Applications
 
     Mock -CommandName New-MgServicePrincipalOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Add-EntraServicePrincipalOwner" {

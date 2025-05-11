@@ -20,7 +20,8 @@ BeforeAll {
         )
     }
     Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
-}
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
+  }
   
 Describe "Get-EntraApplicationExtensionProperty" {
     Context "Test for Get-EntraApplicationExtensionProperty" {

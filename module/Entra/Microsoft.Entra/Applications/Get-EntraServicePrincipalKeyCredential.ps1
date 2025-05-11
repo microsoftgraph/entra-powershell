@@ -11,6 +11,17 @@ function Get-EntraServicePrincipalKeyCredential {
         [System.String] $ServicePrincipalId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
+    process {
+
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).KeyCredentials
     $response | ForEach-Object {
@@ -19,6 +30,8 @@ function Get-EntraServicePrincipalKeyCredential {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
         }
     }
-    $response    
+    $response
+
+}
 }
 

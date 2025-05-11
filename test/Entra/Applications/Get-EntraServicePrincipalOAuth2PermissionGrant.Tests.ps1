@@ -22,6 +22,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgServicePrincipalOauth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Get-EntraServicePrincipalOAuth2PermissionGrant" {
     It "Result should not be empty" {

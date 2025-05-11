@@ -42,6 +42,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Get-EntraServicePrincipalOwner" {
     It "Result should not be empty" {

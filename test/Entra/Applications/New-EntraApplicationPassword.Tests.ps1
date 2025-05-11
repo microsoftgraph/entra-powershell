@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Add-MgApplicationPassword -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "New-EntraApplicationPassword" {
     It "Should return created password credential" {
