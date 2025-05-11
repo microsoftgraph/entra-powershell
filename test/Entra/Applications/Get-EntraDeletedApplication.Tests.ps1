@@ -21,6 +21,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgDirectoryDeletedItemAsApplication -MockWith $mockDeletedApplication -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDeletedApplication" {

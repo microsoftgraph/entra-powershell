@@ -42,7 +42,7 @@ The `Get-EntraApplicationOwner` cmdlet get an owner of an Microsoft Entra ID app
 ### Example 1: Get the owner of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraApplicationOwner -ApplicationId $application.Id |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
@@ -63,7 +63,7 @@ This example demonstrates how to get the owners of an application in Microsoft E
 ### Example 2: Get all owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraApplicationOwner -ApplicationId $application.Id -All |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
@@ -84,7 +84,7 @@ This example demonstrates how to get the all owners of a specified application i
 ### Example 3: Get top two owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraApplicationOwner -ApplicationId $application.Id -Top 2 |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |

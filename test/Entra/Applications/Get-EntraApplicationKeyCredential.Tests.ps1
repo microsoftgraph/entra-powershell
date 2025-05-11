@@ -25,6 +25,7 @@ BeforeAll {
     }
     
     Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
   
 Describe "Get-EntraApplicationKeyCredential" {

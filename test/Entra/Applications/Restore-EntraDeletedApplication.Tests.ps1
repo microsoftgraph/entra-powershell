@@ -39,6 +39,7 @@ BeforeAll {
     }
 
     Mock -CommandName Restore-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Restore-EntraDeletedApplication" {
     Context "Restore-EntraDeletedApplication" {

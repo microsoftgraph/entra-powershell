@@ -22,6 +22,7 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgServicePrincipalDelegatedPermissionClassification -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Policy.ReadWrite.PermissionGrant") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Add-EntraServicePrincipalDelegatedPermissionClassification"{
     Context "Test for Add-EntraServicePrincipalDelegatedPermissionClassification" {

@@ -16,6 +16,7 @@ BeforeAll {
     }  
 
     Mock -CommandName Get-MgServicePrincipalMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
