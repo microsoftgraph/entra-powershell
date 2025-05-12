@@ -15,7 +15,7 @@ BeforeAll {
 Describe "Remove-EntraBetaUserSponsor" {
     Context "Test for Remove-EntraBetaUserSponsor" {
         It "Should fail when UserId is empty string value" {
-            { Remove-EntraBetaUserSponsor -UserId "" -SponsorId "sponsor123" } | 
+            { Remove-EntraBetaUserSponsor -UserId "" -SponsorId "367412e8-7403-454c-b5d9-680fff0afff7" } | 
             Should -Throw "Cannot bind argument to parameter 'Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }
 
@@ -25,12 +25,12 @@ Describe "Remove-EntraBetaUserSponsor" {
         }
 
         It "Should fail when SponsorId is empty string value" {
-            { Remove-EntraBetaUserSponsor -UserId "user123" -SponsorId "" } | 
-            Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
+            { Remove-EntraBetaUserSponsor -UserId "aef74418-9a67-47e2-a956-490cfd0e7765" -SponsorId "" } | 
+            Should -Throw "Cannot validate argument on parameter 'SponsorId'. UserId must be a valid email address or GUID."
         }
 
         It "Should fail when SponsorId is empty" {
-            { Remove-EntraBetaUserSponsor -UserId "user123" -SponsorId } | 
+            { Remove-EntraBetaUserSponsor -UserId "aef74418-9a67-47e2-a956-490cfd0e7765" -SponsorId } | 
             Should -Throw "Missing an argument for parameter 'SponsorId'. Specify a parameter of type 'System.Guid' and try again."
         }
 
