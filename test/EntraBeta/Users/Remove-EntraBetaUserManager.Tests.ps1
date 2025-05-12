@@ -24,7 +24,7 @@ Describe "Remove-EntraBetaUserManager" {
             Should -Invoke -CommandName Remove-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserId is empty" {
-            { Remove-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter*"
+            { Remove-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }   
         It "Should fail when invalid parameter is passed" {
             { Remove-EntraBetaUserManager -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"

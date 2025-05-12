@@ -52,7 +52,6 @@ BeforeAll {
             Scopes      = @("User.ReadWrite.All") 
         }
     } -ModuleName Microsoft.Entra.Beta.Users
-    
     Mock -CommandName Get-EntraEnvironment -MockWith { return @{
             GraphEndpoint = "https://graph.microsoft.com"
         } } -ModuleName Microsoft.Entra.Beta.Users
@@ -66,16 +65,16 @@ Describe "Set-EntraBetaUserSponsor" {
         }
 
         It "Should only allow User and Group for type" {
-            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
-            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type Group -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
-            { Set-EntraBetaUserSponsor -UserId 9mbd2k2d-1678-43f9-bb09-d95f0024f309 -Type Users -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
+            { Set-EntraBetaUserSponsor -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraBetaUserSponsor -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -Type Group -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Not -Throw
+            { Set-EntraBetaUserSponsor -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -Type Users -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
             Should -Throw
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserSponsor"
 
-            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309 -Type User -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62", "b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
+            $result = Set-EntraBetaUserSponsor -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -Type User -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62", "b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserSponsor"
@@ -87,18 +86,18 @@ Describe "Set-EntraBetaUserSponsor" {
         }
 
         It "Should accept both array and scalar values for SponsorIds parameter" {
-            { Set-EntraBetaUserSponsor -Type User -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
+            { Set-EntraBetaUserSponsor -Type User -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | 
             Should -Not -Throw
-            { Set-EntraBetaUserSponsor -Type User -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } |
+            { Set-EntraBetaUserSponsor -Type User -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } |
             Should -Not -Throw
-            { Set-EntraBetaUserSponsor -Type Group -UserId "test-user" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
+            { Set-EntraBetaUserSponsor -Type Group -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62") } | 
             Should -Not -Throw
-            { Set-EntraBetaUserSponsor -Type Group -UserId "test-user" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } |
+            { Set-EntraBetaUserSponsor -Type Group -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } |
             Should -Not -Throw
         }
 
         It "Should not return anything for successful requests" {
-            $result = Set-EntraBetaUserSponsor -UserId 8abd2e2d-1649-43f8-bb99-d95f0024f309 -Type User -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62", "b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
+            $result = Set-EntraBetaUserSponsor -UserId "bedf70bd-0158-46ae-99ef-e7b5f5fc996f" -Type User -SponsorIds @("5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62", "b9db38b9-e5b8-4b5e-ae78-9812230af58d", "da0c6f50-93ee-4b22-9bb9-c8454875d990", "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72")
             
             $result.Id | Should -Not -Contain "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62"
             $result.Id | Should -Not -Contain "7bcd4298-a1a4-493e-85a7-9e1ab78c3e72"

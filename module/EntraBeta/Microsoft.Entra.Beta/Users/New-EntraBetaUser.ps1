@@ -133,9 +133,6 @@ function New-EntraBetaUser {
         if ($null -ne $PSBoundParameters["MailNickName"]) {
             $params["MailNickName"] = $PSBoundParameters["MailNickName"]
         }
-        if ($null -ne $PSBoundParameters["ShowInAddressList"]) {
-            $params["ShowInAddressList"] = $PSBoundParameters["ShowInAddressList"]
-        }
         if ($null -ne $PSBoundParameters["DisplayName"]) {
             $params["DisplayName"] = $PSBoundParameters["DisplayName"]
         }
@@ -154,14 +151,14 @@ function New-EntraBetaUser {
         if ($null -ne $PSBoundParameters["PasswordPolicies"]) {
             $params["PasswordPolicies"] = $PSBoundParameters["PasswordPolicies"]
         }
-        if ($null -ne $PSBoundParameters["SignInNames"]) {
-            $params["Identities"] = $PSBoundParameters["SignInNames"]
+        if ($null -ne $PSBoundParameters["Identities"]) {
+            $params["Identities"] = $PSBoundParameters["Identities"]
         }
         if ($null -ne $PSBoundParameters["PreferredLanguage"]) {
             $params["PreferredLanguage"] = $PSBoundParameters["PreferredLanguage"]
         }
-        if ($null -ne $PSBoundParameters["UserState"]) {
-            $params["ExternalUserState"] = $PSBoundParameters["UserState"]
+        if ($null -ne $PSBoundParameters["ExternalUserState"]) {
+            $params["ExternalUserState"] = $PSBoundParameters["ExternalUserState"]
         }
         if ($null -ne $PSBoundParameters["ImmutableId"]) {
             $params["OnPremisesImmutableId"] = $PSBoundParameters["ImmutableId"]
@@ -175,8 +172,8 @@ function New-EntraBetaUser {
         if ($null -ne $PSBoundParameters["UsageLocation"]) {
             $params["UsageLocation"] = $PSBoundParameters["UsageLocation"]
         }
-        if ($null -ne $PSBoundParameters["UserStateChangedOn"]) {
-            $params["ExternalUserStateChangeDateTime"] = $PSBoundParameters["UserStateChangedOn"]
+        if ($null -ne $PSBoundParameters["ExternalUserStateChangeDateTime"]) {
+            $params["ExternalUserStateChangeDateTime"] = $PSBoundParameters["ExternalUserStateChangeDateTime"]
         }
         if ($null -ne $PSBoundParameters["AccountEnabled"]) {
             $params["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]
