@@ -27,7 +27,7 @@ Adds a new key to an application.
 
 ```powershell
 New-EntraApplicationKey
- -ObjectId <String>
+ -ApplicationId <String>
  -KeyCredential <KeyCredential>
  -PasswordCredential <PasswordCredential>]
  -Proof <String>
@@ -57,7 +57,7 @@ New-EntraApplicationKey @params
 
 This command adds a key credential to an specified application.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 - `-KeyCredential` parameter specifies the application key credential to add.
 - `-PasswordCredential` parameter specifies the application password credential to add.
 - `-Proof` parameter specifies the signed JWT token used as a proof of possession of the existing keys.
@@ -82,14 +82,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 The unique identifier of the application object.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

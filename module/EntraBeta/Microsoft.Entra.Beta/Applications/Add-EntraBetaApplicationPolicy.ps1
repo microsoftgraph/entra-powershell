@@ -4,13 +4,16 @@
 # ------------------------------------------------------------------------------ 
 function Add-EntraBetaApplicationPolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByApplicationIdAndPolicyId')]
-    param (
+    param (     
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Policy ID of the policy to be added to the application.")]
+        [Alias('PolicyId')]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $RefObjectId,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $RefObjectId,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [Alias('ObjectId', 'ApplicationId')]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $Id
     )
 
     PROCESS {        
@@ -35,7 +38,7 @@ function Add-EntraBetaApplicationPolicy {
         }
         $body = $body | ConvertTo-Json
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-MgGraphRequest -Headers $customHeaders -Method POST -Uri $uri -Body $body -ContentType "application/json"

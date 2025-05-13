@@ -4,24 +4,26 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraServicePrincipal {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (
-                
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    param (                
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
                 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
         [System.String] $Filter,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all service principals.")]
         [switch] $All,
                 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for service principals by name.")]
         [System.String] $SearchString,
+
         [Alias('ObjectId')]            
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the service principal object (Service Principal Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
         [System.String[]] $Property
     )

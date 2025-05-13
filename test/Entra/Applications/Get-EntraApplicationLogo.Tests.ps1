@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,10 +11,10 @@ BeforeAll {
     $scriptblock = {
         @{
             "Info" = @(
-            @{
-                "logoUrl"    = ""
-                "Parameters" = $args
-            })                     
+                @{
+                    "logoUrl"    = ""
+                    "Parameters" = $args
+                })                     
         }
     }
     
@@ -50,7 +50,7 @@ Describe "Get-EntraApplicationLogo" {
         { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -View } | Should -Throw "Missing an argument for parameter 'View'*"
     }
     It "Should fail when ApplicationId is empty" {
-        { Get-EntraApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
+        { Get-EntraApplicationLogo -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when ApplicationId is null" {
         { Get-EntraApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -71,8 +71,9 @@ Describe "Get-EntraApplicationLogo" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"  -Debug } | Should -Not -Throw
-        } finally {
+            { Get-EntraApplicationLogo -ApplicationId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }

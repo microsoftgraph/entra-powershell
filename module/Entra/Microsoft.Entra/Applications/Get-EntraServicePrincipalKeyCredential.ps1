@@ -6,7 +6,8 @@ function Get-EntraServicePrincipalKeyCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias("ObjectId")]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the service principal object (Service Principal Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId
     )
 

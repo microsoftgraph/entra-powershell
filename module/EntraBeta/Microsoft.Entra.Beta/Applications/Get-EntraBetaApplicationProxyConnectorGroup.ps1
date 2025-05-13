@@ -5,16 +5,21 @@
 function Get-EntraBetaApplicationProxyConnectorGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The search string to filter the connector groups.")]
         [System.String] $SearchString,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of records to return.")]
         [Alias("Limit")]
         [System.Int32] $Top,
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the connector group.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $Id,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all connector groups.")]
         [switch] $All,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
         [System.String] $Filter
     )
 
@@ -68,5 +73,4 @@ function Get-EntraBetaApplicationProxyConnectorGroup {
         $targetList         
 
     }        
-}# ------------------------------------------------------------------------------
-
+}

@@ -8,11 +8,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
-    }} -ModuleName Microsoft.Entra.Applications
-    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
-        GraphEndpoint = "https://graph.microsoft.com"
-    }} -ModuleName Microsoft.Entra.Applications
+            Environment = "Global"
+        } } -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Applications
     Mock -CommandName New-MgApplicationOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Applications
 }
   
@@ -25,7 +25,7 @@ Describe "Add-EntraApplicationOwner" {
             Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Entra.Applications -Times 1
         }       
         It "Should fail when parameters are empty" {
-            { Add-EntraApplicationOwner -ApplicationId "" -OwnerId "" } | Should -Throw "Cannot bind argument to parameter*"
+            { Add-EntraApplicationOwner -ApplicationId "" -OwnerId "" } | Should -Throw "Cannot process argument transformation on parameter 'ApplicationId'. Cannot convert value ""*"
         }
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {              
             Mock -CommandName New-MgApplicationOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Applications
