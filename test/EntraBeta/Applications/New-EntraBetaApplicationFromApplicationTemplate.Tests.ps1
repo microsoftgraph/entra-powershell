@@ -107,6 +107,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "New-EntraBetaApplicationFromApplicationTemplate tests" {
     It "Should return created Application with service principal" {
