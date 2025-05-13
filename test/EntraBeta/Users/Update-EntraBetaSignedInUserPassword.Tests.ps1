@@ -6,17 +6,18 @@
 param()
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.AccessAsUser.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
-Describe "Tests for Update-EntraBetaSignedInUserPassword"{
+Describe "Tests for Update-EntraBetaSignedInUserPassword" {
     Context "Test for Update-EntraBetaSignedInUserPassword" {
-        It "should updates the password for the signed-in user."{
+        It "should updates the password for the signed-in user." {
             $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
             $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
             $result = Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
@@ -25,25 +26,25 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
         }
 
         It "Should fail when CurrentPassword is null" {
-            {   $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
                 $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
-                Update-EntraBetaSignedInUserPassword -CurrentPassword  -NewPassword $NewPassword} | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
+                Update-EntraBetaSignedInUserPassword -CurrentPassword -NewPassword $NewPassword } | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
         }  
 
         It "Should fail when CurrentPassword is empty" {
-            {   $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
                 $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword "" -NewPassword $NewPassword } | Should -Throw "Cannot process argument transformation on parameter 'CurrentPassword'*"
         }
 
         It "Should fail when NewPassword is null" {
-            {   $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
                 $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword } | Should -Throw "Missing an argument for parameter 'NewPassword'*"
         }  
 
         It "Should fail when NewPassword is empty" {
-            {   $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
                 $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword "" } | Should -Throw "Cannot process argument transformation on parameter 'NewPassword'*"
         }
@@ -52,7 +53,7 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaSignedInUserPassword"
             $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
             $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
-            $result =  Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
+            $result = Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaSignedInUserPassword"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
@@ -71,7 +72,8 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

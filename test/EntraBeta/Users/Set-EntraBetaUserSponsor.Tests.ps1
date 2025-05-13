@@ -48,13 +48,14 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
     Mock -CommandName Get-EntraContext -MockWith { 
         @{
-            Environment="Global"
-            Scopes = @("User.ReadWrite.All") 
+            Environment = "Global"
+            Scopes      = @("User.ReadWrite.All") 
         }
     } -ModuleName Microsoft.Entra.Beta.Users
-    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
-        GraphEndpoint = "https://graph.microsoft.com"
-    }} -ModuleName Microsoft.Entra.Beta.Users
+    
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Set-EntraBetaUserSponsor" {

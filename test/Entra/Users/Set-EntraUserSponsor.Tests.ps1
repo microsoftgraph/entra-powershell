@@ -49,13 +49,13 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { 
         @{
             Environment = "Global"           
-            Scopes = @("User.ReadWrite.All") 
+            Scopes      = @("User.ReadWrite.All") 
         } 
     } -ModuleName Microsoft.Entra.Users
 
-    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
-        GraphEndpoint = "https://graph.microsoft.com"
-    }} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserSponsor" {
