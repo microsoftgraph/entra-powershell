@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgServicePrincipalAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AppRoleAssignment.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipalAppRoleAssignment" {

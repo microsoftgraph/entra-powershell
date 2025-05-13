@@ -20,6 +20,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "Get-EntraBetaApplicationTemplate tests" {
     It "Should return specific application" {
@@ -59,7 +60,7 @@ Describe "Get-EntraBetaApplicationTemplate tests" {
     It "Should return top ApplicationTemplate" {
         $result = Get-EntraBetaApplicationTemplate -Top 1
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
     It "Should fail when Top is invalid" {
         { Get-EntraBetaApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
@@ -83,7 +84,7 @@ Describe "Get-EntraBetaApplicationTemplate tests" {
         $result = Get-EntraBetaApplicationTemplate -Filter "DisplayName eq 'test name'"
         $result | Should -Not -BeNullOrEmpty
         $result.DisplayName | should -Be 'test name'
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
 }
 

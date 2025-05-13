@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgServicePrincipalDelegatedPermissionClassification -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Policy.ReadWrite.PermissionGrant") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Remove-EntraServicePrincipalDelegatedPermissionClassification" {

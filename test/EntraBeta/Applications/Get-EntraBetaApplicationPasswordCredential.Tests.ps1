@@ -11,19 +11,20 @@ BeforeAll {
     $scriptblock = {
         return @(
             @{
-                "startDateTime"    = "11/24/2023 6:28:39 AM"
-                "keyId" = "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
-                "hint" = "123"
-                "secretText"  = ""
-                "endDateTime"       = "11/24/2024 6:28:39 AM"
+                "startDateTime"       = "11/24/2023 6:28:39 AM"
+                "keyId"               = "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
+                "hint"                = "123"
+                "secretText"          = ""
+                "endDateTime"         = "11/24/2024 6:28:39 AM"
                 "CustomKeyIdentifier" = "dGVzdA=="
-                "DisplayName" = "test"
+                "DisplayName"         = "test"
 
             }
         )
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "Get-EntraBetaApplicationPasswordCredential" {
     Context "Test for Get-EntraBetaApplicationPasswordCredential" {
@@ -65,7 +66,8 @@ Describe "Get-EntraBetaApplicationPasswordCredential" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

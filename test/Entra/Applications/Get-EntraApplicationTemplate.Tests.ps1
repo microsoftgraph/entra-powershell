@@ -20,6 +20,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Get-EntraApplicationTemplate tests" {
     It "Should return specific application" {

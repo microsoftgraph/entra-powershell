@@ -12,6 +12,15 @@ function Remove-EntraServicePrincipalPasswordCredential {
     [System.String] $ServicePrincipalId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS{
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         Remove-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -KeyId $PSBoundParameters["KeyId"]
