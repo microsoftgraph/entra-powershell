@@ -9,6 +9,7 @@ BeforeAll {
 
 
     Mock -CommandName Remove-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Remove-EntraUserManager" {
@@ -45,7 +46,7 @@ Describe "Remove-EntraUserManager" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserManager"
 
-            Should -Invoke -CommandName  Remove-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Remove-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -59,7 +60,8 @@ Describe "Remove-EntraUserManager" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

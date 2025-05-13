@@ -8,12 +8,19 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Set-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Users
-    Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
-    }} -ModuleName Microsoft.Entra.Users
-    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
-        GraphEndpoint = "https://graph.microsoft.com"
-    }} -ModuleName Microsoft.Entra.Users
+    
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Users
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @("User.ReadWrite.All")
+        }
+    } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserManager" {
@@ -41,7 +48,7 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should fail when ManagerId is invalid" {
-            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  ManagerId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" ManagerId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }
 
         It "Should contain UserId in parameters when passed UserId to it" {

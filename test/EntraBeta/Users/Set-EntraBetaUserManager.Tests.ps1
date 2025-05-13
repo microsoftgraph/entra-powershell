@@ -8,12 +8,19 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Set-MgBetaUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
-    Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
-    }} -ModuleName Microsoft.Entra.Beta.Users
-    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
-        GraphEndpoint = "https://graph.microsoft.com"
-    }} -ModuleName Microsoft.Entra.Beta.Users
+    
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Beta.Users
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @("User.ReadWrite.All")
+        }
+    } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Set-EntraBetaUserManager" {
@@ -46,7 +53,7 @@ Describe "Set-EntraBetaUserManager" {
             $result = Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ManagerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserManager"
-            Should -Invoke -CommandName Set-MgBetaUserManagerByRef  -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

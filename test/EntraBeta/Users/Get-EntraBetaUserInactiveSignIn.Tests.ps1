@@ -40,6 +40,8 @@ BeforeAll {
             }
         }
     } -ModuleName Microsoft.Entra.Beta.Users
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All", "AuditLog.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
     
 }
 

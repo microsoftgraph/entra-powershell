@@ -13,44 +13,45 @@ BeforeAll {
         #Write-Host "Mocking New-EntraUser with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                DisplayName                = "demo004"
-                Id                         = "sdjfksd-2343-n21kj"
-                UserPrincipalName          = "SawyerM@contoso.com"
-                AccountEnabled             = "True"
-                MailNickname               = "demoUser"
-                AgeGroup                   = "adult"
-                Parameters                 = $args
-                City                       = "New York" 
-                ExternalUserStateChangeDateTime         = "2024-05-02" 
-                CompanyName                = "ABC Inc" 
-                PreferredLanguage          = "English" 
-                FacsimileTelephoneNumber   = "123456789" 
-                GivenName                  = "John" 
+                DisplayName                     = "demo004"
+                Id                              = "sdjfksd-2343-n21kj"
+                UserPrincipalName               = "SawyerM@contoso.com"
+                AccountEnabled                  = "True"
+                MailNickname                    = "demoUser"
+                AgeGroup                        = "adult"
+                Parameters                      = $args
+                City                            = "New York" 
+                ExternalUserStateChangeDateTime = "2024-05-02" 
+                CompanyName                     = "ABC Inc" 
+                PreferredLanguage               = "English" 
+                FacsimileTelephoneNumber        = "123456789" 
+                GivenName                       = "John" 
                 mobilePhone                     = "987654321" 
-                UsageLocation              = "US" 
-                PostalCode                 = "10001" 
-                CreationType               = "Manual" 
-                ConsentProvidedForMinor    = "Yes" 
-                onPremisesImmutableId                = "1234567890" 
-                Country                    = "USA" 
-                Department                 = "IT" 
-                PasswordPolicies           = "Default" 
-                JobTitle                   = "Engineer" 
-                IsCompromised              = $false 
-                ExternalUserState          = "Active" 
-                UserType                   = "Member" 
-                OtherMails                 = @("alternate@email.com") 
-                PhysicalDeliveryOfficeName = "Office A" 
-                State                      = "NY" 
-                StreetAddress              = "123 Main St" 
-                BusinessPhones            = "987654321" 
-                Surname                    = "Doe" 
-                ShowInAddressList          = $true
+                UsageLocation                   = "US" 
+                PostalCode                      = "10001" 
+                CreationType                    = "Manual" 
+                ConsentProvidedForMinor         = "Yes" 
+                onPremisesImmutableId           = "1234567890" 
+                Country                         = "USA" 
+                Department                      = "IT" 
+                PasswordPolicies                = "Default" 
+                JobTitle                        = "Engineer" 
+                IsCompromised                   = $false 
+                ExternalUserState               = "Active" 
+                UserType                        = "Member" 
+                OtherMails                      = @("alternate@email.com") 
+                PhysicalDeliveryOfficeName      = "Office A" 
+                State                           = "NY" 
+                StreetAddress                   = "123 Main St" 
+                BusinessPhones                  = "987654321" 
+                Surname                         = "Doe" 
+                ShowInAddressList               = $true
             }
         )
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "New-EntraUser" {
@@ -132,9 +133,9 @@ Describe "New-EntraUser" {
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
-        }  
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }  
         }
         It "Should contain MobilePhone in parameters when passed Mobile to it" {
             # Define Password Profile
@@ -203,23 +204,24 @@ Describe "New-EntraUser" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
-             # Define Password Profile
-             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-             $PasswordProfile.Password = "test@1234"
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
  
-             # format like "yyyy-MM-dd HH:mm:ss"
-             $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
+            # format like "yyyy-MM-dd HH:mm:ss"
+            $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
-                -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
-                -MailNickName "demo002NickName" -AgeGroup "adult" `
-                -UserState "PendingAcceptance" `
-                -UserStateChangedOn $userStateChangedOn `
-                -ImmutableId "djkjsajsa-e32j2-2i32" `
-                -TelephoneNumber "1234567890" -Debug } | Should -Not -Throw
-            } finally {
+                { New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
+                        -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
+                        -MailNickName "demo002NickName" -AgeGroup "adult" `
+                        -UserState "PendingAcceptance" `
+                        -UserStateChangedOn $userStateChangedOn `
+                        -ImmutableId "djkjsajsa-e32j2-2i32" `
+                        -TelephoneNumber "1234567890" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

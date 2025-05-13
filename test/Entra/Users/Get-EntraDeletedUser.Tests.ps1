@@ -24,6 +24,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgDirectoryDeletedItemAsUser -MockWith $mockDeletedUser -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraDeletedUser" {
