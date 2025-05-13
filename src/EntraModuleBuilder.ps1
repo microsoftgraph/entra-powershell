@@ -387,7 +387,7 @@ foreach (`$subModule in `$subModules) {
    
         # Construct the entries for the RequiredModules section
         $requiredModulesEntries = $requiredModules | ForEach-Object {
-            "    @{ ModuleName = '$($_.ModuleName)'; ModuleVersion = '$($_.RequiredVersion)' }"
+            "    @{ ModuleName = '$($_.ModuleName)'; RequiredVersion = '$($_.RequiredVersion)' }"
         }
 
         # Join the entries with commas and new lines for a properly formatted block
