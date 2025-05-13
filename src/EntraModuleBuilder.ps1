@@ -387,7 +387,6 @@ foreach (`$subModule in `$subModules) {
             PowerShellVersion      = $([System.Version]::Parse($content.powershellVersion))
             CompatiblePSEditions   = @('Desktop', 'Core')
             NestedModules          = @()
-            ScriptsToProcess       = @("../build/FormattingFile-Init.ps1")
         }
     
         if ($null -ne $content.Prerelease) {
@@ -564,7 +563,7 @@ $($requiredModulesEntries -join ",`n")
                 CompatiblePSEditions   = @('Desktop', 'Core')
                 RequiredModules        = $requiredModules
                 NestedModules          = @()
-                ScriptsToProcess       = @("../build/FormattingFile-Init.ps1")
+                FormatsToProcess       = $formattingFiles
             }
 		
 
