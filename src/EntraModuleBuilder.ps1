@@ -80,24 +80,24 @@ Set-StrictMode -Version 5
         $ps1xmlContent = ""  # Xml content to be appended later
 
         # Get-ChildItem returns different types depending on the number of items it finds.
-        # When there is only one item, it returns a single object rather than an array
-        # Using @() we force the result to be treated as an array, even if there is only one item.
-        $ps1Files = @(Get-ChildItem -Path $currentDirPath -Filter "*.ps1")
+        $ps1Files = @(Get-ChildItem -Path $currentDirPath -Include "*.ps1" -Recurse:$true)
 
-        $ps1xmlFiles = @(Get-ChildItem -Path $currentDirPath -Filter "*format.ps1xml")
+        $ps1xmlFiles = @(Get-ChildItem -Path $currentDirPath -Filter "*.format.ps1xml")
         if ($ps1xmlFiles.Count -gt 0) {
             foreach ($ps1xmlFile in $ps1xmlFiles) {
-                Log-Message "[EntraModuleBuilder] Appending formating content from file: $($ps1xmlFile.Name)" -ForegroundColor Cyan
-                $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
-                $ps1xmlContent += "`n"  # Add an empty line at the end
-            }
+            Log-Message "[EntraModuleBuilder] Appending formmatting content from file: $($ps1xmlFile.Name)" -ForegroundColor Cyan
+            $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
 
             $ps1xmlFilePath = Join-Path -Path $destDirectory -ChildPath $ps1xmlFile.Name
             Log-Message "[EntraModuleBuilder] Writing .ps1xml file to disk: $ps1xmlFilePath"
-            Set-Content -Path $ps1xmlFilePath -Value $ps1xmlContent
+
+            # Use UTF-8 with BOM for PowerShell 5.1 compatibility
+            $utf8WithBom = New-Object System.Text.UTF8Encoding($true)
+            [System.IO.File]::WriteAllText($ps1xmlFilePath, $ps1xmlContent, $utf8WithBom)
 
             Log-Message "[EntraModuleBuilder] Module Formating file created: $ps1xmlFilePath" -Level 'SUCCESS'
         }
+    }
 
         if ($ps1Files.Count -eq 0) {
             Log-Message "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -Level 'ERROR'
@@ -387,6 +387,7 @@ foreach (`$subModule in `$subModules) {
             PowerShellVersion      = $([System.Version]::Parse($content.powershellVersion))
             CompatiblePSEditions   = @('Desktop', 'Core')
             NestedModules          = @()
+            ScriptsToProcess       = @("../build/FormattingFile-Init.ps1")
         }
     
         if ($null -ne $content.Prerelease) {
@@ -563,7 +564,7 @@ $($requiredModulesEntries -join ",`n")
                 CompatiblePSEditions   = @('Desktop', 'Core')
                 RequiredModules        = $requiredModules
                 NestedModules          = @()
-                FormatsToProcess       = $formattingFiles
+                ScriptsToProcess       = @("../build/FormattingFile-Init.ps1")
             }
 		
 
