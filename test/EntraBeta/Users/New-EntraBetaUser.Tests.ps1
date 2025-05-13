@@ -12,44 +12,45 @@ BeforeAll {
         #Write-Host "Mocking New-EntraBetaUser with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                DisplayName                = "demo004"
-                Id                         = "sdjfksd-2343-n21kj"
-                UserPrincipalName          = "demo004@contoso.com"
-                AccountEnabled             = "True"
-                MailNickname               = "demoUser"
-                AgeGroup                   = "adult"
-                Parameters                 = $args
-                City                       = "New York" 
-                ExternalUserStateChangeDateTime         = "2024-05-02" 
-                CompanyName                = "ABC Inc" 
-                PreferredLanguage          = "English" 
-                FacsimileTelephoneNumber   = "123456789" 
-                GivenName                  = "John" 
+                DisplayName                     = "demo004"
+                Id                              = "sdjfksd-2343-n21kj"
+                UserPrincipalName               = "demo004@contoso.com"
+                AccountEnabled                  = "True"
+                MailNickname                    = "demoUser"
+                AgeGroup                        = "adult"
+                Parameters                      = $args
+                City                            = "New York" 
+                ExternalUserStateChangeDateTime = "2024-05-02" 
+                CompanyName                     = "ABC Inc" 
+                PreferredLanguage               = "English" 
+                FacsimileTelephoneNumber        = "123456789" 
+                GivenName                       = "John" 
                 mobilePhone                     = "987654321" 
-                UsageLocation              = "US" 
-                PostalCode                 = "10001" 
-                CreationType               = "Manual" 
-                ConsentProvidedForMinor    = "Yes" 
-                onPremisesImmutableId                = "1234567890" 
-                Country                    = "USA" 
-                Department                 = "IT" 
-                PasswordPolicies           = "Default" 
-                JobTitle                   = "Engineer" 
-                IsCompromised              = $false 
-                ExternalUserState                  = "Active" 
-                UserType                   = "Member" 
-                OtherMails                 = @("alternate@email.com") 
-                PhysicalDeliveryOfficeName = "Office A" 
-                State                      = "NY" 
-                StreetAddress              = "123 Main St" 
-                BusinessPhones            = "987654321" 
-                Surname                    = "Doe" 
-                ShowInAddressList          = $true
+                UsageLocation                   = "US" 
+                PostalCode                      = "10001" 
+                CreationType                    = "Manual" 
+                ConsentProvidedForMinor         = "Yes" 
+                onPremisesImmutableId           = "1234567890" 
+                Country                         = "USA" 
+                Department                      = "IT" 
+                PasswordPolicies                = "Default" 
+                JobTitle                        = "Engineer" 
+                IsCompromised                   = $false 
+                ExternalUserState               = "Active" 
+                UserType                        = "Member" 
+                OtherMails                      = @("alternate@email.com") 
+                PhysicalDeliveryOfficeName      = "Office A" 
+                State                           = "NY" 
+                StreetAddress                   = "123 Main St" 
+                BusinessPhones                  = "987654321" 
+                Surname                         = "Doe" 
+                ShowInAddressList               = $true
             }
         )
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "New-EntraBetaUser" {
@@ -122,14 +123,14 @@ Describe "New-EntraBetaUser" {
         }
 
         It "Should contain 'User-Agent' header" {
-             # Define Password Profile
-             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-             $PasswordProfile.Password = "test@1234"
-             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
-             $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
-             $result | Should -Not -BeNullOrEmpty
-             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
-             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
+            $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -186,7 +187,8 @@ Describe "New-EntraBetaUser" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -Mobile "1234567890" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

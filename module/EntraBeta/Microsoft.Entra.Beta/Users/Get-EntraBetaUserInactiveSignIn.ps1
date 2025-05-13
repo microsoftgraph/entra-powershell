@@ -26,6 +26,15 @@ function Get-EntraBetaUserInactiveSignIn {
         $UserType = "All"
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All, AuditLog.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     process {
         $Params = @{}
         $CustomHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand

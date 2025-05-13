@@ -10,6 +10,7 @@ BeforeAll {
 
 
     Mock -CommandName Remove-MgUser -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "Remove-EntraUser" {
@@ -57,7 +58,8 @@ Describe "Remove-EntraUser" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraUser -UserId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

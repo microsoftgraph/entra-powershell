@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaUserMemberOfAsAdministrativeUnit -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AdministrativeUnit.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserAdministrativeUnit" {

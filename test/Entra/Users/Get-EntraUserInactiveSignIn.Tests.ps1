@@ -40,6 +40,8 @@ BeforeAll {
             }
         }
     } -ModuleName Microsoft.Entra.Users
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All", "AuditLog.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserInactiveSignIn" {
