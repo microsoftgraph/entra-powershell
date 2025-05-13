@@ -37,6 +37,7 @@ function Get-EntraBetaUserRole {
         [System.String[]] $Property,
 
         [Parameter(Mandatory = $false, HelpMessage = "Order items by property values.")]
+        [Alias('OrderBy')]
         [System.String[]] $Sort
 
     )
