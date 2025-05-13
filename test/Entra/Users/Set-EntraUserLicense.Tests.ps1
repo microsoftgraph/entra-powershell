@@ -6,6 +6,7 @@ BeforeAll {
         Import-Module Microsoft.Entra.Users
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 
     $scriptblock = {
         # Write-Host "Mocking Set-EntraUserLicense with parameters: $($args | ConvertTo-Json -Depth 3)"
@@ -13,34 +14,35 @@ BeforeAll {
             [PSCustomObject]@{
                 userPrincipalName = "test122@M365x99297270.OnMicrosoft.com"
                 preferredLanguage = "EN"
-                mobilePhone = "9984534564"
-                displayName = "SNEHALtest"
-                givenName = "test12"
-                mail = "test122@M365x99297270.OnMicrosoft.com"
-                '@odata.context' = "https://graph.microsoft.com/v1.0/`$metadata#users/`$entity"
-                id = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-                jobTitle = "testqa"
-                officeLocation = "test"
-                businessPhones = @("8976546787")
-                surname = "KTETSs"            
-                Parameters                 = $args
+                mobilePhone       = "9984534564"
+                displayName       = "SNEHALtest"
+                givenName         = "test12"
+                mail              = "test122@M365x99297270.OnMicrosoft.com"
+                '@odata.context'  = "https://graph.microsoft.com/v1.0/`$metadata#users/`$entity"
+                id                = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                jobTitle          = "testqa"
+                officeLocation    = "test"
+                businessPhones    = @("8976546787")
+                surname           = "KTETSs"            
+                Parameters        = $args
             }
         )
 
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserLicense" {
     Context "Test for Set-EntraUserLicense" {
         It "Should return specific User" {
             $addLicensesArray = [PSCustomObject]@{
-            skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
+                skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
             }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
-            $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
+            $Licenses.AddLicenses = $addLicensesArray
+            $result = Set-EntraUserLicense -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
 
             $result | Should -Not -BeNullOrEmpty
             $result.userPrincipalName | Should -Be "test122@M365x99297270.OnMicrosoft.com"
@@ -74,10 +76,10 @@ Describe "Set-EntraUserLicense" {
         It "Should contain UserId in parameters when passed UserId to it" {
             $addLicensesArray = [PSCustomObject]@{
                 skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
-                }
+            }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
-            $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
+            $Licenses.AddLicenses = $addLicensesArray
+            $result = Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
     
             $params = Get-Parameters -data $result.Parameters
             $params.Uri | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
@@ -87,9 +89,9 @@ Describe "Set-EntraUserLicense" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserLicense"
             $addLicensesArray = [PSCustomObject]@{
                 skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
-                }
+            }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
-            $Licenses.AddLicenses =$addLicensesArray
+            $Licenses.AddLicenses = $addLicensesArray
              
             Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
     
@@ -107,14 +109,15 @@ Describe "Set-EntraUserLicense" {
             $DebugPreference = 'Continue'
             $addLicensesArray = [PSCustomObject]@{
                 skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
-                }
+            }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
-            $Licenses.AddLicenses =$addLicensesArray
+            $Licenses.AddLicenses = $addLicensesArray
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraUserLicense -UserId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

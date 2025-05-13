@@ -22,6 +22,7 @@ BeforeAll {
         )
     }    
     Mock -CommandName Get-MgUserMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "Get-EntraUserMembership" {
