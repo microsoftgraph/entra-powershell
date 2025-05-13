@@ -26,6 +26,15 @@ function Update-EntraUserFromFederated {
         [guid] $TenantId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes UserAuthenticationMethod.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {    
         # Define essential variables
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
