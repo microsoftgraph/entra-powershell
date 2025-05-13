@@ -23,24 +23,24 @@ function Get-EntraApplicationPasswordCredential {
         }
     }
 
-    process{
-    $params = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+    process {
+        $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-    if ($null -ne $PSBoundParameters["Property"]) {
-        $params["Property"] = $PSBoundParameters["Property"]
-    }
+        if ($null -ne $PSBoundParameters["Property"]) {
+            $params["Property"] = $PSBoundParameters["Property"]
+        }
 
-    # TODO : Invoke API and apply the correct Select query
+        # TODO : Invoke API and apply the correct Select query
 
-    $response = (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).PasswordCredentials
+        $response = (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ApplicationId"]).PasswordCredentials
 
-    if ($null -ne $PSBoundParameters["Property"]) {
-        $response | Select-Object $PSBoundParameters["Property"]
-    }
-    else {
-        $response
-    }
-} 
+        if ($null -ne $PSBoundParameters["Property"]) {
+            $response | Select-Object $PSBoundParameters["Property"]
+        }
+        else {
+            $response
+        }
+    } 
 }
 

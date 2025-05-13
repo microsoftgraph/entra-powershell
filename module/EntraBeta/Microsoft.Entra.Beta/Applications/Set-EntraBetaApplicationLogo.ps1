@@ -24,7 +24,17 @@ function Set-EntraBetaApplicationLogo {
         [Parameter(ParameterSetName = "Stream", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Stream of the logo image file.")]
         [ValidateNotNullOrEmpty()]
         [System.IO.Stream] $FileStream
-    ) 
+    )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+    
     PROCESS {    
         try {
             $params = @{}

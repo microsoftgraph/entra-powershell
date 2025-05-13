@@ -23,6 +23,15 @@ function New-EntraBetaApplicationExtensionProperty {
         [System.Nullable[System.Boolean]] $IsMultiValued
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -57,9 +66,12 @@ function New-EntraBetaApplicationExtensionProperty {
         if ($null -ne $PSBoundParameters["Name"]) {
             $params["Name"] = $PSBoundParameters["Name"]
         }
+<<<<<<< HEAD
         if ($null -ne $PSBoundParameters["IsMultiValued"]) {
             $params["IsMultiValued"] = $PSBoundParameters["IsMultiValued"]
         }
+=======
+>>>>>>> de8c8774e (Adding Beta app resources prechecks)
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }

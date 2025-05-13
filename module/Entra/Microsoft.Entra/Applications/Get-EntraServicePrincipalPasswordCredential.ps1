@@ -20,17 +20,17 @@ function Get-EntraServicePrincipalPasswordCredential {
         }
     }
 
-    process{
+    process {
 
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).PasswordCredentials
-    $response | ForEach-Object {
-        if ($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).PasswordCredentials
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+            }
         }
+        $response
     }
-    $response
-}
 }
 

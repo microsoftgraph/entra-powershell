@@ -9,6 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Set-EntraBetaApplicationLogo" {
@@ -19,7 +20,7 @@ Describe "Set-EntraBetaApplicationLogo" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is empty" {
-            { Set-EntraBetaApplicationLogo -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+            { Set-EntraBetaApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
         }
         It "Should fail when ApplicationId is null" {
             { Set-EntraBetaApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"

@@ -24,6 +24,7 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "Get-EntraBetaApplicationPasswordCredential" {
     Context "Test for Get-EntraBetaApplicationPasswordCredential" {
