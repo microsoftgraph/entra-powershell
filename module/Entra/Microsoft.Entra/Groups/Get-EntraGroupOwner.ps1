@@ -59,16 +59,36 @@ function Get-EntraGroupOwner {
         Write-Debug("=========================================================================`n")
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-        $response | ForEach-Object {
+        $data = @($response)
+
+        $data | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        if ($response) {
+
+        $serviceprincipal = @()
+        if (($response.count -eq 0) -or $response.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal') {
+            $URI = "$baseUri/$($params.GroupId)/owners/microsoft.graph.servicePrincipal?$properties"
+            $resp = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
+            $serviceprincipal += $resp.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+
+            try {
+                $serviceprincipal | ForEach-Object {
+                    if ($null -ne $_) {
+                        Add-Member -InputObject $_ -MemberType NoteProperty -Name '@odata.type' -Value '#microsoft.graph.servicePrincipal' -Force
+                    }
+                }
+                $data += $serviceprincipal
+            }
+            catch {}
+        }
+
+        if ($data) {
             $userList = @()
-            foreach ($data in $response) {
+            foreach ($item in $data) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
-                $data.PSObject.Properties | ForEach-Object {
+                $item.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name
                     $propertyValue = $_.Value
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
