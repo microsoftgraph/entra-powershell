@@ -242,28 +242,27 @@ Set-StrictMode -Version 5
     # Main function to create the root module
     [void] CreateRootModule([string] $Module) {
         #We only generate the .psm1 file with Enable-EntraAzureADAlias if it's 'Microsoft.Entra' module
+        $moduleName = 'Microsoft.Entra'
         if ($Module -ne 'Entra') {
-            return
+            $moduleName = 'Microsoft.Entra.Beta'
         }
 
-        $rootModuleName = 'Microsoft.Entra.psm1'
-        $startDirectory = (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
+        $rootModuleName = "$moduleName.psm1"
+        $startDirectory = (Join-Path $PSScriptRoot "..\module\$Module\$moduleName")
+        $rootFiles = @(Get-ChildItem $startDirectory -Filter *.ps1)
+        $rootModuleContent = $this.headerText + "`n"
+
+        foreach($file in $rootFiles){
+            $content = Get-Content -Path $file.FullName -Raw
+            $cleanedContent = $this.RemoveHeader($content)
+            $rootModuleContent += "`n$cleanedContent`n"
+        }
+
+        $functionsToExport = ($rootFiles | ForEach-Object { $_.Name }) -join "', '"
+        $rootModuleContent += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
 
         # Define the file paths
         $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
-        $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "Enable-EntraAzureADAlias.ps1"
-
-        # Read the alias function content if it exists
-        if (Test-Path $aliasFilePath) {
-            $aliasContent = Get-Content -Path $aliasFilePath -Raw
-            $exportAlias = "`nExport-ModuleMember -Function 'Enable-EntraAzureADAlias'"
-        }
-        else {
-            throw "[Error]: Enable-EntraAzureADAlias.ps1 not found in UnMappedFiles."
-        }
-
-        # Combine header, alias function, and export statement
-        $rootModuleContent = $this.headerText + "`n" + $aliasContent + "`n" + $exportAlias
 
         # Write the root module content (psm1)
         $rootModuleContent | Out-File -FilePath $rootModulePath -Encoding utf8
