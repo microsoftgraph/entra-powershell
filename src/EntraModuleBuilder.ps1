@@ -258,7 +258,7 @@ Set-StrictMode -Version 5
             $rootModuleContent += "`n$cleanedContent`n"
         }
 
-        $functionsToExport = ($rootFiles | ForEach-Object { $_.Name }) -join "', '"
+        $functionsToExport = ($rootFiles | ForEach-Object { $_.BaseName }) -join "', '"
         $rootModuleContent += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
 
         # Define the file paths
@@ -350,12 +350,18 @@ foreach (`$subModule in `$subModules) {
         }
     
         # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
-        $functionsToExport = if ($Module -eq 'EntraBeta') {
-            @()
-        }
-        else {
-            @("Enable-EntraAzureADAlias")
-        }
+        # $functionsToExport = if ($Module -eq 'EntraBeta') {
+        #     @()
+        # }
+        # else {
+        #     @("Enable-EntraAzureADAlias")
+        # }
+
+        $modulePath = Join-Path $rootPath $moduleName
+
+        $rootFiles = @(Get-ChildItem $modulePath -Filter *.ps1)
+        #$functionsToExport = @(($rootFiles | ForEach-Object { $_.Name }) -join "', '")
+        $functionsToExport = $rootFiles | ForEach-Object { $_.BaseName }
 
         $moduleSettings = @{
             Path                   = $manifestPath
