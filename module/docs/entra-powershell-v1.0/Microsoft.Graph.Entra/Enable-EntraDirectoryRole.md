@@ -89,7 +89,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For additional details see [Activate directoryRole](/graph/api/directoryrole-post-directoryroles).
 
-## Related Links
+## Related links
 
 [Get-EntraDirectoryRole](Get-EntraDirectoryRole.md)
 

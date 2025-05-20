@@ -110,6 +110,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Remove-EntraBetaApplicationPassword](Remove-EntraBetaApplicationPassword.md)

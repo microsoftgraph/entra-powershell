@@ -222,7 +222,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 See more details - <https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy>
 
-## Related Links
+## Related links
 
 [New-EntraFeatureRolloutPolicy](New-EntraFeatureRolloutPolicy.md)
 

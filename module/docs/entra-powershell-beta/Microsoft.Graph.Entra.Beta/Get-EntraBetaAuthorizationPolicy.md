@@ -153,6 +153,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraBetaAuthorizationPolicy](Set-EntraBetaAuthorizationPolicy.md)

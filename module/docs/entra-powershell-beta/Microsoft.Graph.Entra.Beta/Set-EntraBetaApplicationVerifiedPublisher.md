@@ -101,6 +101,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Remove-EntraBetaApplicationVerifiedPublisher](Remove-EntraBetaApplicationVerifiedPublisher.md)
