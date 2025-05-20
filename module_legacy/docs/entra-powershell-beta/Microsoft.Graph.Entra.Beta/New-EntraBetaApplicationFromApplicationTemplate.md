@@ -83,4 +83,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Microsoft.Online.Administration.ApplicationTemplateCopy
 ## Notes
-## Related Links
+## Related links

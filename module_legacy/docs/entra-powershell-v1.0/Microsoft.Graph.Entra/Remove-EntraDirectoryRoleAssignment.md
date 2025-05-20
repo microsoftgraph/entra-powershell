@@ -81,7 +81,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Remove-EntraRoleAssignment` is an alias for `Remove-EntraDirectoryRoleAssignment`.
 
-## Related Links
+## Related links
 
 [Get-EntraDirectoryRoleAssignment](Get-EntraDirectoryRoleAssignment.md)
 

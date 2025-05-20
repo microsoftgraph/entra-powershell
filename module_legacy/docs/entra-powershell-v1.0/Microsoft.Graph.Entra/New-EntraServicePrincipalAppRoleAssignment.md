@@ -223,7 +223,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `New-EntraServiceAppRoleAssignment` is an alias for `New-EntraServicePrincipalAppRoleAssignment`.
 
-## Related Links
+## Related links
 
 [Get-EntraServicePrincipalAppRoleAssignment](Get-EntraServicePrincipalAppRoleAssignment.md)
 

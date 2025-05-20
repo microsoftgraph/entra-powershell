@@ -138,7 +138,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [New-EntraBetaAttributeSet](New-EntraBetaAttributeSet.md)
 

@@ -125,6 +125,6 @@ System.IO.Stream System.Byte\[\]
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUserThumbnailPhoto](Get-EntraUserThumbnailPhoto.md)

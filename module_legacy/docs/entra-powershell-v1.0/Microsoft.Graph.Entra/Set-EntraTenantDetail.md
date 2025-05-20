@@ -211,6 +211,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For more details see [Update organization](https://learn.microsoft.com/graph/api/organization-update).
 
-## Related Links
+## Related links
 
 [Get-EntraTenantDetail](Get-EntraTenantDetail.md)

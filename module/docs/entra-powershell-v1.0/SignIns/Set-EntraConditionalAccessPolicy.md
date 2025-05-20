@@ -227,7 +227,7 @@ Learn more about:
 [Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
 [Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
-## Related Links
+## Related links
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

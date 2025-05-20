@@ -128,4 +128,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 Please note that `Get-EntraCurrentSessionInfo` is now an alias for `Get-EntraContext` and can be used interchangeably.
 
-## Related Links
+## Related links

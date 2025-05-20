@@ -203,7 +203,7 @@ SR: Serial Number
 SKI: Subject Key Identifier
 SHA1-PUKEY: SHA1 Public Key
 
-## Related Links
+## Related links
 
 [Set-EntraUserCBACertificateUserId](Set-EntraUserCBACertificateUserId.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)

@@ -279,7 +279,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraBetaRoleAssignment` is an alias for `Get-EntraBetaDirectoryRoleAssignment`.
 
-## Related Links
+## Related links
 
 [New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 
