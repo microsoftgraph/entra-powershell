@@ -6,7 +6,7 @@ ms.date: 04/13/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: eunicewaweru
+author: msewaweru
 
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
 Module Name: Microsoft.Entra.CertificateBasedAuthentication
