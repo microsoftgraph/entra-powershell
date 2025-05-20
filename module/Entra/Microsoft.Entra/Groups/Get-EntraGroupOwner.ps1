@@ -57,7 +57,7 @@ function Get-EntraGroupOwner {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
+        $response = (Invoke-MgGraphRequest  -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $data = @($response)
 
@@ -67,19 +67,19 @@ function Get-EntraGroupOwner {
             }
         }
 
-        $serviceprincipal = @()
+        $servicePrincipal = @()
         if (($response.count -eq 0) -or $response.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal') {
             $URI = "$baseUri/$($params.GroupId)/owners/microsoft.graph.servicePrincipal?$properties"
-            $resp = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
-            $serviceprincipal += $resp.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $resp = Invoke-MgGraphRequest  -Uri $URI -Method $Method -Headers $customHeaders 
+            $servicePrincipal += $resp.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
             try {
-                $serviceprincipal | ForEach-Object {
+                $servicePrincipal | ForEach-Object {
                     if ($null -ne $_) {
                         Add-Member -InputObject $_ -MemberType NoteProperty -Name '@odata.type' -Value '#microsoft.graph.servicePrincipal' -Force
                     }
                 }
-                $data += $serviceprincipal
+                $data += $servicePrincipal
             }
             catch {}
         }
