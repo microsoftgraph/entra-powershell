@@ -104,6 +104,6 @@ System.Boolean
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Set-EntraBetaUserThumbnailPhoto](Set-EntraBetaUserThumbnailPhoto.md)

@@ -136,7 +136,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 

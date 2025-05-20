@@ -379,7 +379,7 @@ System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationOb
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Set-EntraBetaApplicationProxyApplication](Set-EntraBetaApplicationProxyApplication.md)
 

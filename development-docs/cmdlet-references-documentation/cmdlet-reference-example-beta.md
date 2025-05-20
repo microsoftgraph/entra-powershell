@@ -142,7 +142,7 @@ Accept wildcard characters: False
 
 ## Outputs
 
-## Related links
+## Related Links
 
 [New-EntraBetaUser](New-EntraBetaUser.md)
 

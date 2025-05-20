@@ -76,7 +76,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

@@ -118,7 +118,7 @@ Using the full format helps users to drill down to the data type definition with
 
 {{Add all outputs for the cmdlet here}}
 
-## Related links
+## Related Links
 
 {{Add all related links for the cmdlet here}}
 

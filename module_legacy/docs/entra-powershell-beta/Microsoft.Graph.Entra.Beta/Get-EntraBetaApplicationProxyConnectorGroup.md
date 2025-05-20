@@ -239,7 +239,7 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 
 ## Notes
 
-## Related links
+## Related Links
 
 [New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
 

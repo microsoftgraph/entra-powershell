@@ -197,7 +197,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Remove-EntraServicePrincipalDelegatedPermissionClassification](Remove-EntraServicePrincipalDelegatedPermissionClassification.md)
 

@@ -185,4 +185,4 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 
 `Get-EntraServiceAppRoleAssignedTo` is an alias for `Get-EntraServicePrincipalAppRoleAssignedTo`.
 
-## Related links
+## Related Links

@@ -120,7 +120,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Remove-EntraDeletedApplication](Remove-EntraDeletedApplication.md)
 

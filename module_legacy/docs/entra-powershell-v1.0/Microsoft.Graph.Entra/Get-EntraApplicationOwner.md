@@ -205,7 +205,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 

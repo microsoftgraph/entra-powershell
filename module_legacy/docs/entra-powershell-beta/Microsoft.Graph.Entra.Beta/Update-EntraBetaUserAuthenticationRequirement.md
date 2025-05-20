@@ -108,4 +108,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 Enabled users are automatically switched to Enforced when they register for Microsoft Entra multifactor authentication. Don't manually change the user state to Enforced unless the user is already registered or if it's acceptable for the user to experience interruption in connections to legacy authentication protocols.
 
-## Related links
+## Related Links

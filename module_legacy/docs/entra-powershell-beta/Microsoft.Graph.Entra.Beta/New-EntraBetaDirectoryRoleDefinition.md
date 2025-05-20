@@ -338,7 +338,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `New-EntraBetaRoleDefinition` is an alias for `New-EntraBetaDirectoryRoleDefinition`.
 
-## Related links
+## Related Links
 
 [Get-EntraBetaDirectoryRoleDefinition](Get-EntraBetaDirectoryRoleDefinition.md)
 

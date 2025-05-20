@@ -77,7 +77,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 

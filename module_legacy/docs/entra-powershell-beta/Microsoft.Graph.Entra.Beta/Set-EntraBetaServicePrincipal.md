@@ -431,7 +431,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

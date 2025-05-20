@@ -197,4 +197,4 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 
 `Get-EntraBetaServiceAppRoleAssignedTo` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignedTo`.
 
-## Related links
+## Related Links

@@ -236,6 +236,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraAuthorizationPolicy](Get-EntraAuthorizationPolicy.md)

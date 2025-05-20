@@ -481,7 +481,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - See more details - <https://learn.microsoft.com/graph/api/application-post-applications>
 
-## Related links
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

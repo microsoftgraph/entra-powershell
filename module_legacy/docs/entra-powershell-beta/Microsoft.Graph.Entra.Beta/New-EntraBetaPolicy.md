@@ -245,7 +245,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
 

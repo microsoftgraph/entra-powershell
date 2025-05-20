@@ -153,6 +153,6 @@ System.IO.Stream System.Byte\[\]
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraBetaUserThumbnailPhoto](Get-EntraBetaUserThumbnailPhoto.md)

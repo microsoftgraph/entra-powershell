@@ -288,4 +288,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - See more information - <https://learn.microsoft.com/graph/api/invitation-post>.
 
-## Related links
+## Related Links

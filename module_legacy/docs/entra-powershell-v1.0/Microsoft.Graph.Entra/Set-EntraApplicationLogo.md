@@ -121,6 +121,6 @@ System.IO.Stream System.Byte\[\]
 
 File uploads must be smaller than 500KB.
 
-## Related links
+## Related Links
 
 [Get-EntraApplicationLogo](Get-EntraApplicationLogo.md)

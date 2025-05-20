@@ -131,7 +131,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues` is an alias for `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue`.
 
-## Related links
+## Related Links
 
 [Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 

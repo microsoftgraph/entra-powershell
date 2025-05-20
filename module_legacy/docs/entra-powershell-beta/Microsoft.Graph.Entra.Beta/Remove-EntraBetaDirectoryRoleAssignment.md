@@ -81,7 +81,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Remove-EntraBetaRoleAssignment` is an alias for `Remove-EntraBetaDirectoryRoleAssignment`.
 
-## Related links
+## Related Links
 
 [New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 

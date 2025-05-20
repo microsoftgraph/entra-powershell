@@ -139,6 +139,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
-## Related links
+## Related Links
 
 [Get-EntraDirSyncConfiguration](Get-EntraDirSyncConfiguration.md)

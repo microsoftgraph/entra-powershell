@@ -54,4 +54,4 @@ Enables all Azure AD prefixes for the current PowerShell session.
 
 ## Notes
 
-## Related links
+## Related Links
