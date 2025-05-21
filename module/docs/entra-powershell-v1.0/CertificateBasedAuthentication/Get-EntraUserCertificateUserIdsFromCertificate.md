@@ -151,7 +151,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraUserCBACertificateUserId](Set-EntraUserCBACertificateUserId.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)

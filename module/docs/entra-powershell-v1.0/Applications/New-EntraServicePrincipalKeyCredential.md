@@ -175,7 +175,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraServicePrincipalKeyCredential](Get-EntraServicePrincipalKeyCredential.md)
 

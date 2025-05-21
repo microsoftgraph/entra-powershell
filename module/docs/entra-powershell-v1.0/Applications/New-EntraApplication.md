@@ -797,7 +797,7 @@ Returns a custom object representing the created Microsoft Entra application.
   * Using conditional access policies for sensitive applications
   * Implementing proper credential rotation processes
 
-## Related Links
+## Related links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

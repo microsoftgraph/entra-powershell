@@ -277,6 +277,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraDirectorySubscription` is an alias for `Get-EntraSubscription`.
 
-## Related Links
+## Related links
 
 [Get-EntraAccountSKU](Get-EntraAccountSKU.md)

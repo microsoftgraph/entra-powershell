@@ -110,6 +110,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 Quickstart: [Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal).
 
-## Related Links
+## Related links
 
 [Get-EntraBetaApplicationTemplate](Get-EntraBetaApplicationTemplate.md)
