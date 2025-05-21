@@ -43,35 +43,35 @@ function New-EntraBetaApplication {
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "The collection of application roles defined for the application.")]
-        [System.Collections.Generic.List`1[Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppRole]] $AppRoles,
+        [System.Collections.Generic.List`1[Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppRole]] $AppRoles,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "The API permissions required by the application to other resources such as Microsoft Graph.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequiredResourceAccess[]] $RequiredResourceAccess,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphRequiredResourceAccess[]] $RequiredResourceAccess,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "The API settings for the application, including OAuth2 permission scopes and app roles.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication] $Api,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApiApplication] $Api,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "Settings for a public client application (mobile or desktop).")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication] $PublicClient,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPublicClientApplication] $PublicClient,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "Settings for a web application, including redirect URIs and logout URL.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphWebApplication] $Web,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphWebApplication] $Web,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "URLs with more information about the application (marketing, terms of service, privacy, etc).")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphInformationalUrl] $InformationalUrl,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphInformationalUrl] $InformationalUrl,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "Specifies parental control settings for an application.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphParentalControlSettings] $ParentalControlSettings,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphParentalControlSettings] $ParentalControlSettings,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "The optional claims configuration that will be included in access and ID tokens.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphOptionalClaims] $OptionalClaims,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphOptionalClaims] $OptionalClaims,
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "Defines custom behavior extensions for the application.")]
@@ -83,7 +83,7 @@ function New-EntraBetaApplication {
 
         [Parameter(ParameterSetName = "CreateApplication", 
             HelpMessage = "The collection of password credentials associated with the application.")]
-        [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPasswordCredential[]] $PasswordCredentials,
+        [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential[]] $PasswordCredentials,
         
         [Parameter(ParameterSetName = "CreateWithAdditionalProperties", 
             HelpMessage = "Custom properties to send directly to the Microsoft Graph API.")]
@@ -100,7 +100,7 @@ function New-EntraBetaApplication {
         }
 
         # Create headers for the request
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         # Build the application body based on parameter set
         if ($PSCmdlet.ParameterSetName -eq 'CreateApplication') {
@@ -565,7 +565,7 @@ function New-EntraBetaApplication {
                 $response = $response | ConvertTo-Json | ConvertFrom-Json
                 $appList = @()
                 foreach ($data in $response) {
-                    $appObject = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
+                    $appObject = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApplication
                     $data.PSObject.Properties | ForEach-Object {
                         $propertyName = $_.Name
                         $propertyValue = $_.Value
