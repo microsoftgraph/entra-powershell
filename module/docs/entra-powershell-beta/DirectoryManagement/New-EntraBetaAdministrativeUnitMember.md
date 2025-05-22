@@ -51,7 +51,7 @@ The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID 
 
 Currently only Microsoft Entra ID groups are supported to create administrative unit members.
 
-For information about creating dynamic groups, see [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
+For information about creating dynamic groups, see [Using attributes to create advanced rules](/entra/identity/users/groups-dynamic-membership).
 
 ## Examples
 
