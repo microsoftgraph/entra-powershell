@@ -232,7 +232,7 @@ Accept wildcard characters: False
 
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership)
+For more information about the rules that you can use for dynamic groups, [Using attributes to create advanced rules](/entra/identity/users/groups-dynamic-membership)
 
 ```yaml
 Type: System.String
@@ -299,7 +299,7 @@ Accept wildcard characters: False
 
 ### -AssignedLabels
 
-This parameter allows the assignment of sensitivity labels to groups. For more information on how sensitivity labels can be assigned to groups, refer to [Assign sensitivity labels](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership)
+This parameter allows the assignment of sensitivity labels to groups. For more information on how sensitivity labels can be assigned to groups, refer to [Assign sensitivity labels](/entra/identity/users/groups-dynamic-membership)
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]
