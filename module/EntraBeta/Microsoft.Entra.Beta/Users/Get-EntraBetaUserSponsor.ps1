@@ -94,7 +94,7 @@ function Get-EntraBetaUserSponsor {
         if ($data) {
             $memberList = @()
             foreach ($response in $data) {
-                $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $memberType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
                 if (-not ($response -is [PSObject])) {
                     $response = [PSCustomObject]@{ Value = $response }
                 }
