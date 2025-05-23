@@ -25,7 +25,7 @@ Describe "Remove-EntraUser" {
             Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserId is empty string" {
-            { Remove-EntraUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Remove-EntraUser -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }   
         It "Should fail when UserId is empty" {
             { Remove-EntraUser -UserId } | Should -Throw "Missing an argument for parameter*"
@@ -57,7 +57,8 @@ Describe "Remove-EntraUser" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraUser -UserId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
