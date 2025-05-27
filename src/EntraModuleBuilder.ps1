@@ -365,14 +365,6 @@ foreach (`$subModule in `$subModules) {
                 $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
             }    
         }
-    
-        # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
-        # $functionsToExport = if ($Module -eq 'EntraBeta') {
-        #     @()
-        # }
-        # else {
-        #     @("Enable-EntraAzureADAlias")
-        # }
 
         $modulePath = Join-Path $rootPath $moduleName
 
