@@ -109,7 +109,7 @@ function Test-EntraScript {
 
 		$testParam = @{
 			Quiet             = $Quiet
-			#ForbiddenCommands = $script:MISSING_CMDS # Originally set when using the Compat builder
+			ForbiddenCommands = $script:MISSING_CMDS
 		}
 	}
 	process {
