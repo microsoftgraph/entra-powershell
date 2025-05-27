@@ -7,6 +7,7 @@ param (
 
 . (Join-Path $psscriptroot "/common-functions.ps1")
 . (Join-Path $psscriptroot "../src/EntraModuleBuilder.ps1")
+. (Join-Path $psscriptroot "../src/Get-MissingCmds.ps1")
 
 $moduleBuilder = [EntraModuleBuilder]::new()
 

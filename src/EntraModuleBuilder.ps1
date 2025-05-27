@@ -243,9 +243,13 @@ Set-StrictMode -Version 5
     [void] CreateRootModule([string] $Module) {
         #We only generate the .psm1 file with Enable-EntraAzureADAlias if it's 'Microsoft.Entra' module
         $moduleName = 'Microsoft.Entra'
+        $sourceModule = 'AzureAD'
         if ($Module -ne 'Entra') {
             $moduleName = 'Microsoft.Entra.Beta'
+            $sourceModule = 'AzureADPreview'
         }
+
+        $missingCmds = Get-MissingCmds -ModuleName $sourceModule
 
         $rootModuleName = "$moduleName.psm1"
         $startDirectory = (Join-Path $PSScriptRoot "..\module\$Module\$moduleName")
@@ -260,6 +264,7 @@ Set-StrictMode -Version 5
 
         $functionsToExport = ($rootFiles | ForEach-Object { $_.BaseName }) -join "', '"
         $rootModuleContent += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
+        $rootModuleContent += $this.SetMissingCommands($missingCmds)
 
         # Define the file paths
         $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
@@ -268,6 +273,18 @@ Set-StrictMode -Version 5
         $rootModuleContent | Out-File -FilePath $rootModulePath -Encoding utf8
 
         Log-Message "[EntraModuleBuilder]: Root Module successfully created with Enable-EntraAzureADAlias" -Level 'SUCCESS'
+    }
+
+    hidden [scriptblock] SetMissingCommands($missingCmds) {
+        $missingCommands = @"
+Set-Variable -name MISSING_CMDS -value @('$($missingCmds -Join "','")') -Scope Script -Option ReadOnly -Force
+
+"@
+#         $missingCommands = @"
+# Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
+
+# "@
+        return [Scriptblock]::Create($missingCommands)
     }
 
 
