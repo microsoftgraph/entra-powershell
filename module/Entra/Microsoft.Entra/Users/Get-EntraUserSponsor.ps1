@@ -110,6 +110,7 @@ function Get-EntraUserSponsor {
                     $propertyValue = $_.Value
                     $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $memberType.PSTypeNames.Insert(0, "Microsoft.Entra.User.Simple")
                 $memberList += $memberType
             }
             return $memberList
