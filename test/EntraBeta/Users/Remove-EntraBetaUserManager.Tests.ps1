@@ -2,23 +2,24 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Remove-EntraBetaUserManager" {
     Context "Test for Remove-EntraBetaUserManager" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaUserManager -UserId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result = Remove-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should return empty object with alias" {
-            $result = Remove-EntraBetaUserManager -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result = Remove-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
@@ -29,7 +30,7 @@ Describe "Remove-EntraBetaUserManager" {
             { Remove-EntraBetaUserManager -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
         }
         It "Should contain UserId in parameters when passed UserId to it" {
-            Mock -CommandName Remove-MgBetaUserManagerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Users
+            Mock -CommandName Remove-MgBetaUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Users
             
             $result = Remove-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
@@ -53,7 +54,8 @@ Describe "Remove-EntraBetaUserManager" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
