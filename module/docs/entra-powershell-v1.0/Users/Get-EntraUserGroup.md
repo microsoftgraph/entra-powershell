@@ -29,6 +29,7 @@ Retrieves the list of groups a user belongs to.
 Get-EntraUserGroup
  -UserId <String>
  [-All]
+ [-Filter <String>]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -197,6 +198,23 @@ Parameter Sets: GetQuery
 Aliases: DirectoryObjectId
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)

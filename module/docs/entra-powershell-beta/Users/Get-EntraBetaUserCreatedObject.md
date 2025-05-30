@@ -29,6 +29,7 @@ Get-EntraBetaUserCreatedObject
  -UserId <String>
  [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 

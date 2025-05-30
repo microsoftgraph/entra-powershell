@@ -29,7 +29,7 @@ Set the thumbnail photo for a user.
 ```powershell
 Set-EntraBetaUserThumbnailPhoto
  -FilePath <String>
- [-UserId <String>]
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -38,7 +38,7 @@ Set-EntraBetaUserThumbnailPhoto
 ```powershell
 Set-EntraBetaUserThumbnailPhoto
  -ImageByteArray <Byte[]>
- [-UserId <String>]
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Set-EntraBetaUserThumbnailPhoto
 ```powershell
 Set-EntraBetaUserThumbnailPhoto
  -FileStream <Stream>
- [-UserId <String>]
+ -UserId <String>
  [<CommonParameters>]
 ```
 
@@ -63,7 +63,7 @@ Updating any user's photo in the organization requires the `User.ReadWrite.All` 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite', 'User.ReadWrite.All'
-Set-EntraBetaUserThumbnailPhoto -UserId -FilePath 'D:\UserThumbnailPhoto.jpg'
+Set-EntraBetaUserThumbnailPhoto -UserId 'SawyerM@contoso.com' -FilePath 'D:\UserThumbnailPhoto.jpg'
 ```
 
 This example sets the thumbnail photo of the user specified with the UserId parameter to the image specified with the FilePath parameter.
@@ -128,7 +128,7 @@ The Object ID of the user for which the user thumbnail photo is set.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: False
 Position: Named

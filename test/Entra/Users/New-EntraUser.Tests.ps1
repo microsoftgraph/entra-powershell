@@ -24,7 +24,7 @@ BeforeAll {
                 ExternalUserStateChangeDateTime = "2024-05-02" 
                 CompanyName                     = "ABC Inc" 
                 PreferredLanguage               = "English" 
-                FacsimileTelephoneNumber        = "123456789" 
+                FaxNumber                       = "123456789" 
                 GivenName                       = "John" 
                 mobilePhone                     = "987654321" 
                 UsageLocation                   = "US" 
@@ -35,17 +35,20 @@ BeforeAll {
                 Country                         = "USA" 
                 Department                      = "IT" 
                 PasswordPolicies                = "Default" 
-                JobTitle                        = "Engineer" 
-                IsCompromised                   = $false 
+                JobTitle                        = "Engineer"
                 ExternalUserState               = "Active" 
                 UserType                        = "Member" 
-                OtherMails                      = @("alternate@email.com") 
-                PhysicalDeliveryOfficeName      = "Office A" 
+                OtherMails                      = @("alternate@email.com")
                 State                           = "NY" 
                 StreetAddress                   = "123 Main St" 
                 BusinessPhones                  = "987654321" 
-                Surname                         = "Doe" 
-                ShowInAddressList               = $true
+                Surname                         = "Doe"
+                Identities                      = @(
+                    @{
+                        Type  = "emailAddress"
+                        Value = "example1@example.com"
+                    }
+                )
             }
         )
     }
@@ -70,10 +73,10 @@ Describe "New-EntraUser" {
                 -MailNickName "demoUser" `
                 -AgeGroup "adult" `
                 -City "New York" `
-                -UserStateChangedOn "2024-05-02" `
+                -ExternalUserStateChangeDateTime "2024-05-02" `
                 -CompanyName "ABC Inc" `
                 -PreferredLanguage "English" `
-                -FacsimileTelephoneNumber "123456789" `
+                -FaxNumber "123456789" `
                 -GivenName "John" `
                 -Mobile "987654321" `
                 -UsageLocation "US" `
@@ -85,16 +88,13 @@ Describe "New-EntraUser" {
                 -Department "IT" `
                 -PasswordPolicies "Default" `
                 -JobTitle "Engineer" `
-                -IsCompromised $false `
                 -UserState "Active" `
                 -UserType "Member" `
                 -OtherMails @("alternate@email.com") `
-                -PhysicalDeliveryOfficeName "Office A" `
                 -State "NY" `
                 -StreetAddress "123 Main St" `
-                -TelephoneNumber "987654321" `
-                -Surname "Doe" `
-                -ShowInAddressList $true
+                -BusinessPhones "987654321" `
+                -Surname "Doe"
 
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "demo004"
@@ -103,10 +103,10 @@ Describe "New-EntraUser" {
             $result.MailNickName | Should -Be "demoUser" 
             $result.AgeGroup | Should -Be "adult" 
             $result.City | Should -Be "New York"
-            $result.UserStateChangedOn | Should -Be "2024-05-02"
+            $result.ExternalUserStateChangeDateTime | Should -Be "2024-05-02"
             $result.CompanyName | Should -Be "ABC Inc"
             $result.PreferredLanguage | Should -Be "English"
-            $result.FacsimileTelephoneNumber | Should -Be "123456789"
+            $result.FaxNumber | Should -Be "123456789"
             $result.GivenName | Should -Be "John"
             $result.Mobile | Should -Be "987654321"
             $result.UsageLocation | Should -Be "US"
@@ -146,30 +146,6 @@ Describe "New-EntraUser" {
             $params = Get-Parameters -data $result.Parameters
             ($params.Body | ConvertFrom-Json ).MobilePhone | Should -Be "1234567890"
         }   
-
-        It "Should contain Identities in parameters when passed SignInNames to it" {
-            # Define Password Profile
-            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "test@1234"
-             
-            # Create SignInName objects
-            $signInName1 = [Microsoft.Open.AzureAD.Model.SignInName]::new()
-            $signInName1.Type = "emailAddress"
-            $signInName1.Value = "example1@example.com"
-
-            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
-                -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
-                -MailNickName "demo002NickName" -AgeGroup "adult" -SignInNames @($signInName1)
-
-            $params = Get-Parameters -data $result.Parameters
-
-            # Check the request body for Identities
-            $requestBody = $params.Body | ConvertFrom-Json
-
-            # Assert that the Identities in the request body match the SignInName objects
-            $requestBody.Identities[0].Type | Should -Be "emailAddress"
-            $requestBody.Identities[0].Value | Should -Be "example1@example.com"
-        }  
         
         It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones" {
             # Define Password Profile
@@ -183,10 +159,10 @@ Describe "New-EntraUser" {
             $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
                 -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
                 -MailNickName "demo002NickName" -AgeGroup "adult" `
-                -UserState "PendingAcceptance" `
-                -UserStateChangedOn $userStateChangedOn `
+                -ExternalUserState "Active" `
+                -ExternalUserStateChangeDateTime $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
-                -TelephoneNumber "1234567890"
+                -BusinessPhones "1234567890"
             
             $params = Get-Parameters -data $result.Parameters
             
@@ -194,7 +170,7 @@ Describe "New-EntraUser" {
 
             $requestBody.BusinessPhones[0] | Should -Be "1234567890"
 
-            $requestBody.ExternalUserState | Should -Be "PendingAcceptance"
+            $requestBody.ExternalUserState | Should -Be "Active"
 
             $requestBody.OnPremisesImmutableId | Should -Be "djkjsajsa-e32j2-2i32"
 
@@ -219,7 +195,7 @@ Describe "New-EntraUser" {
                         -UserState "PendingAcceptance" `
                         -UserStateChangedOn $userStateChangedOn `
                         -ImmutableId "djkjsajsa-e32j2-2i32" `
-                        -TelephoneNumber "1234567890" -Debug } | Should -Not -Throw
+                        -BusinessPhones "1234567890" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

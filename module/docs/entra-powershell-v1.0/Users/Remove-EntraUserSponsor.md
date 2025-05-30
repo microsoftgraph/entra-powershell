@@ -71,6 +71,7 @@ Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra
 ```yaml
 Type: System.String
 Parameter Sets: (All)
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named

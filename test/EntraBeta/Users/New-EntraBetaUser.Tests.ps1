@@ -35,16 +35,13 @@ BeforeAll {
                 Department                      = "IT" 
                 PasswordPolicies                = "Default" 
                 JobTitle                        = "Engineer" 
-                IsCompromised                   = $false 
                 ExternalUserState               = "Active" 
                 UserType                        = "Member" 
-                OtherMails                      = @("alternate@email.com") 
-                PhysicalDeliveryOfficeName      = "Office A" 
+                OtherMails                      = @("alternate@email.com")
                 State                           = "NY" 
                 StreetAddress                   = "123 Main St" 
                 BusinessPhones                  = "987654321" 
-                Surname                         = "Doe" 
-                ShowInAddressList               = $true
+                Surname                         = "Doe"
             }
         )
     }
@@ -84,16 +81,13 @@ Describe "New-EntraBetaUser" {
                 -Department "IT" `
                 -PasswordPolicies "Default" `
                 -JobTitle "Engineer" `
-                -IsCompromised $false `
                 -UserState "Active" `
                 -UserType "Member" `
                 -OtherMails @("alternate@email.com") `
-                -PhysicalDeliveryOfficeName "Office A" `
                 -State "NY" `
                 -StreetAddress "123 Main St" `
-                -TelephoneNumber "987654321" `
-                -Surname "Doe" `
-                -ShowInAddressList $true
+                -BusinessPhones "987654321" `
+                -Surname "Doe"
 
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "demo004"
@@ -154,20 +148,19 @@ Describe "New-EntraBetaUser" {
             # format like "yyyy-MM-dd HH:mm:ss"
             $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
 
-
             $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
-                -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true `
+                -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
                 -MailNickName "demo002NickName" -AgeGroup "adult" `
                 -UserState "PendingAcceptance" `
                 -UserStateChangedOn $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
                 -TelephoneNumber "1234567890"
-
+            
             $params = Get-Parameters -data $result.Parameters
-
+            
             $requestBody = $params.Body | ConvertFrom-Json
 
-            $requestBody.BusinessPhones | Should -Be "1234567890"
+            $requestBody.BusinessPhones[0] | Should -Be "1234567890"
 
             $requestBody.ExternalUserState | Should -Be "PendingAcceptance"
 
