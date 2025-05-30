@@ -14,6 +14,28 @@ function Add-EntraDirectoryRoleMember {
         [System.String] $MemberId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes RoleManagement.ReadWrite.Directory' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
+        # Get the Graph endpoint from the current environment
+        $environment = (Get-EntraContext).Environment
+        $graphEndpoint = (Get-EntraEnvironment | Where-Object Name -eq $environment).GraphEndPoint
+
+        # Default to global endpoint if not found
+        if (-not $graphEndpoint) {
+            $graphEndpoint = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $graphEndpoint"
+        }
+        else {
+            Write-Verbose "Using environment-specific Graph endpoint: $graphEndpoint"
+        }
+    }
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -59,7 +81,7 @@ function Add-EntraDirectoryRoleMember {
         }
         if ($null -ne $PSBoundParameters["MemberId"]) {
             $TmpValue = $PSBoundParameters["MemberId"]
-            $Value = "/v1.0/directoryObjects/$TmpValue"
+            $Value = "$graphEndpoint/v1.0/directoryObjects/$TmpValue"
             $params["OdataId"] = $Value
         }
 

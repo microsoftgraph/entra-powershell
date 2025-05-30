@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserRole" {

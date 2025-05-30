@@ -62,7 +62,7 @@ Specifies the ID of the policy.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: PolicyId
 
 Required: True
 Position: Named
@@ -78,7 +78,7 @@ The ID of the application for which you need to set the policy.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId, ApplicationId
 
 Required: True
 Position: Named
@@ -97,7 +97,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaApplicationPolicy](Get-EntraBetaApplicationPolicy.md)
 

@@ -119,7 +119,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaOauth2PermissionGrant](Get-EntraBetaOAuth2PermissionGrant.md)
 

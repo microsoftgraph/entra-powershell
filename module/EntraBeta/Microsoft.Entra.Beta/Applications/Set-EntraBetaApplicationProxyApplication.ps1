@@ -6,40 +6,53 @@
 function Set-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the unique identifier (ObjectId) of the Application Proxy application to update.")]
         [Alias("ObjectId")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the external URL users will use to access the application.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ExternalUrl,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the internal URL of the application within your corporate network.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $InternalUrl,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [String] $ExternalAuthenticationType,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the external authentication type. Possible values: 'aadPreAuthentication', 'passthru'.")]
+        [System.String] $ExternalAuthenticationType,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Boolean]] $IsTranslateHostHeaderEnabled,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Indicates whether translation of the host header is enabled.")]
+        [System.Nullable[System.Boolean]] $IsTranslateHostHeaderEnabled,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Boolean]] $IsHttpOnlyCookieEnabled,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Indicates whether HTTP-only cookies are enabled for enhanced security.")]
+        [System.Nullable[System.Boolean]] $IsHttpOnlyCookieEnabled,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Boolean]] $IsSecureCookieEnabled,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Indicates whether secure cookies (transmitted over HTTPS only) are enabled.")]
+        [System.Nullable[System.Boolean]] $IsSecureCookieEnabled,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Boolean]] $IsPersistentCookieEnabled,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Indicates whether persistent cookies (cookies that persist after browser closure) are enabled.")]
+        [System.Nullable[System.Boolean]] $IsPersistentCookieEnabled,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.Boolean]] $IsTranslateLinksInBodyEnabled,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Indicates whether translation of links in the body of responses is enabled.")]
+        [System.Nullable[System.Boolean]] $IsTranslateLinksInBodyEnabled,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the timeout duration for the application server. Possible values: 'Default', 'Long'.")]
         [System.String] $ApplicationServerTimeout,
-        
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $ConnectorGroupId
 
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the connector group ID used by the Application Proxy.")]
+        [System.String] $ConnectorGroupId
     )
 
     PROCESS {

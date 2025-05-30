@@ -32,7 +32,7 @@ Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
             { Select-EntraGroupIdsServicePrincipalIsMemberOf -ServicePrincipalId -GroupIdsForMembershipCheck "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" } | Should -Throw "Missing an argument for parameter*"
         }
         It "Should fail when ObjectID parameter is invalid" {
-            { Select-EntraGroupIdsServicePrincipalIsMemberOf -ServicePrincipalId "" -GroupIdsForMembershipCheck "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" } | Should -Throw "Cannot bind argument to parameter*"
+            { Select-EntraGroupIdsServicePrincipalIsMemberOf -ServicePrincipalId "" -GroupIdsForMembershipCheck "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }  
         It "Should fail when GroupIdsForMembershipCheck parameter is empty" {
             $SPId = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"

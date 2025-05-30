@@ -301,4 +301,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraAuditSignInLogs` is an alias for `Get-EntraAuditSignInLog`.
 
-## Related Links
+## Related links

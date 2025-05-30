@@ -33,6 +33,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaUserOwnedDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserOwnedDevice" {

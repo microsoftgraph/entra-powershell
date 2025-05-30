@@ -6,7 +6,7 @@ ms.date: 04/13/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: thadumi
+author: msewaweru
 
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
 Module Name: Microsoft.Entra.CertificateBasedAuthentication
@@ -203,7 +203,7 @@ SR: Serial Number
 SKI: Subject Key Identifier
 SHA1-PUKEY: SHA1 Public Key
 
-## Related Links
+## Related links
 
 [Set-EntraUserCBACertificateUserId](Set-EntraUserCBACertificateUserId.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)

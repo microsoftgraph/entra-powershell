@@ -6,7 +6,7 @@ ms.date: 04/13/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: peichensun
+author: msewaweru
 
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
 Module Name: Microsoft.Entra.CertificateBasedAuthentication
@@ -144,7 +144,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUserCBAAuthorizationInfo](Get-EntraUserCBAAuthorizationInfo.md)
 [Get-EntraUserCertificateUserIdsFromCertificate](Get-EntraUserCertificateUserIdsFromCertificate.md)

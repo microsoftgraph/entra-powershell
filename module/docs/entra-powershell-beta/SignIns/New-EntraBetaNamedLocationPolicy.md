@@ -220,7 +220,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For more information, see [Create namedLocation](/graph/api/conditionalaccessroot-post-namedlocations).
 
-## Related Links
+## Related links
 
 [Get-EntraBetaNamedLocationPolicy](Get-EntraBetaNamedLocationPolicy.md)
 

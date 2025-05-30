@@ -37,6 +37,15 @@ function Get-EntraBetaUserSponsor {
         [System.String[]] $Property
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
@@ -94,7 +103,7 @@ function Get-EntraBetaUserSponsor {
         if ($data) {
             $memberList = @()
             foreach ($response in $data) {
-                $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $memberType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
                 if (-not ($response -is [PSObject])) {
                     $response = [PSCustomObject]@{ Value = $response }
                 }

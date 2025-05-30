@@ -117,13 +117,13 @@ Describe "New-EntraApplicationFromApplicationTemplateFromApplicationTemplate tes
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Applications -Times 1
     }
     It "Should fail when ApplicationTemplateId is empty" {
-        { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationTemplateId'*"
+        { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationTemplateId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when ApplicationTemplateId is null" {
         { New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId } | Should -Throw "Missing an argument for parameter 'ApplicationTemplateId'.*"
     }
     It "Should fail when DisplayName is empty" {
-        { New-EntraApplicationFromApplicationTemplate -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName'*"
+        { New-EntraApplicationFromApplicationTemplate -DisplayName "" } | Should -Throw "Cannot validate argument on parameter 'DisplayName'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when DisplayName is null" {
         { New-EntraApplicationFromApplicationTemplate -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"

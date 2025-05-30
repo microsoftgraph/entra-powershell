@@ -277,6 +277,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraBetaDirectorySubscription` is an alias for `Get-EntraBetaSubscription`.
 
-## Related Links
+## Related links
 
 [Get-EntraBetaAccountSKU](Get-EntraBetaAccountSKU.md)

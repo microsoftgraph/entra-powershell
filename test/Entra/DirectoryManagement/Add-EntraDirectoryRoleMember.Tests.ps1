@@ -7,6 +7,21 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Scopes      = @("RoleManagement.ReadWrite.Directory")
+            Environment = "Global"  # Add the Environment property to the mock
+        }
+    } -ModuleName Microsoft.Entra.DirectoryManagement
+
+    # Mock the Get-EntraEnvironment command if needed
+    Mock -CommandName Get-EntraEnvironment -MockWith {
+        @{
+            Name          = "Global"
+            GraphEndPoint = "https://graph.microsoft.com"
+        }
+    } -ModuleName Microsoft.Entra.DirectoryManagement
+
     Mock -CommandName New-MgDirectoryRoleMemberByRef -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
@@ -48,7 +63,7 @@ Describe "Add-EntraDirectoryRoleMember" {
 
             $result = Add-EntraDirectoryRoleMember -DirectoryRoleId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $value = "/v1.0/directoryObjects/"
+            $value = "https://graph.microsoft.com/v1.0/directoryObjects/"
             $params.OdataId | Should -Be $value"bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {

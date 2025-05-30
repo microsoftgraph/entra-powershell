@@ -5,13 +5,14 @@
 function New-EntraBetaApplicationPassword {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
-        [System.String] $ApplicationId,
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [Microsoft.Open.MSGraph.Model.PasswordCredential] $PasswordCredential
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Password credential to add.")]
+        [ValidateNotNullOrEmpty()]
+        [Microsoft.Open.MSGraph.Model.PasswordCredential] $PasswordCredential,
+
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ApplicationId
     )
 
     PROCESS {    

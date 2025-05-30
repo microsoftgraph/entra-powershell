@@ -5,22 +5,26 @@
 function New-EntraServicePrincipalAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (service principal) to assign the app role to.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $PrincipalId,
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
+
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the object ID of the resource service principal (application) that exposes the app role.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ResourceId,
-                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [System.String] $Id,
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [Alias("ObjectId")]
+
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the ID of the app role to assign to the service principal.")]
+        [Alias('Id')]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $AppRoleId,
+
+        [Alias('ObjectId')]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal receiving the app role assignment.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
@@ -51,8 +55,8 @@ function New-EntraServicePrincipalAppRoleAssignment {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["AppRoleId"] = $PSBoundParameters["Id"]
+        if ($PSBoundParameters.ContainsKey("AppRoleId")) {
+            $params["AppRoleId"] = $AppRoleId
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
