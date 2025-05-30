@@ -4,16 +4,17 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraServicePrincipalDelegatedPermissionClassification {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the service principal object (Service Principal Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $ServicePrincipalId,
                 
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ServicePrincipalId,
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the delegated permission classification object (Delegated Permission Classification Object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $Id
     )
 
-    PROCESS{
+    PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         Remove-MgServicePrincipalDelegatedPermissionClassification -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -DelegatedPermissionClassificationId $PSBoundParameters["Id"]
     }    

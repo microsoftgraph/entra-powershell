@@ -118,7 +118,7 @@ The unique identifier of a service principal object in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ObjectId
 
 Required: True
 Position: Named

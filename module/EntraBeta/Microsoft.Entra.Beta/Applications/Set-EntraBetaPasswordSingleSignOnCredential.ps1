@@ -5,16 +5,17 @@
 function Set-EntraBetaPasswordSingleSignOnCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Password Single Sign-On Credential to be updated.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.MSGraph.Model.PasswordSSOCredentials] $PasswordSSOCredential,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the service principal object (Service Principal Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ServicePrincipalId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     

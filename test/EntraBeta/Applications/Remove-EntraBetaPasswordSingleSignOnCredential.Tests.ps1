@@ -25,7 +25,7 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
         }   
 
         It "Should fail when ServicePrincipalId is invalid" {
-            { Remove-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+            { Remove-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }   
 
         It "Should fail when PasswordSSOObjectId is empty" {
