@@ -25,7 +25,7 @@ Describe "Set-EntraApplicationLogo" {
         }
 
         It "Should fail when ApplicationId is empty" {
-            { Set-EntraApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
+            { Set-EntraApplicationLogo -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ApplicationId is null" {
             { Set-EntraApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
