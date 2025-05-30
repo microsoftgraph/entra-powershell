@@ -36,11 +36,7 @@ Describe "Add-EntraBetaApplicationPolicy" {
             { Add-EntraBetaApplicationPolicy -Id -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff" } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-<<<<<<< HEAD
             { Add-EntraBetaApplicationPolicy -Id "" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff" } | Should -Throw "Cannot validate argument on parameter 'Id'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
-=======
-            { Add-EntraBetaApplicationPolicy -Id "" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
->>>>>>> de8c8774e (Adding Beta app resources prechecks)
         }
         It "Should fail when RefObjectId is empty" {
             { Add-EntraBetaApplicationPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RefObjectId } | Should -Throw "Missing an argument for parameter 'RefObjectId'*"

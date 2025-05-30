@@ -43,7 +43,7 @@ Describe "Get-EntraBetaApplicationPasswordCredential" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
-            { Get-EntraBetaApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Get-EntraBetaApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraBetaApplicationPasswordCredential -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"

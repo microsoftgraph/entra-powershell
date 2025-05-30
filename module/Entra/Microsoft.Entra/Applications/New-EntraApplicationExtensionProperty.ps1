@@ -66,12 +66,9 @@ function New-EntraApplicationExtensionProperty {
         if ($null -ne $PSBoundParameters["Name"]) {
             $params["Name"] = $PSBoundParameters["Name"]
         }
-<<<<<<< HEAD
         if ($null -ne $PSBoundParameters["IsMultiValued"]) {
             $params["IsMultiValued"] = $PSBoundParameters["IsMultiValued"]
         }
-=======
->>>>>>> de8c8774e (Adding Beta app resources prechecks)
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
         }
