@@ -2,17 +2,17 @@
 title: Test-EntraScript
 description: This article provides details on the Test-EntraScript command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Test-EntraScript
+external help file: Microsoft.Graph.Entra.Beta-help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Test-EntraScript
+
 schema: 2.0.0
 ---
 
@@ -20,21 +20,17 @@ schema: 2.0.0
 
 ## Synopsis
 
-Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
+Check whether the provided script uses AzureAD commands not supported by Microsoft Entra PowerShell.
 
 ## Syntax
 
 ```powershell
-Test-EntraScript
- -Path <String[]>
- [-Content <String>]
- [-Quiet]
- [<CommonParameters>]
+Test-EntraScript [-Path] <String[]> [[-Content] <String>] [-Quiet] [<CommonParameters>]
 ```
 
 ## Description
 
-Checks if the provided script uses Azure AD commands compatible with the Microsoft Entra PowerShell module.
+Check whether the provided script uses AzureAD commands not supported by Microsoft Entra PowerShell.
 
 ## Examples
 
@@ -44,7 +40,7 @@ Checks if the provided script uses Azure AD commands compatible with the Microso
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
-Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.Entra.
+Returns whether the script "usercreation.ps1" could run under Microsoft.Graph.Entra
 
 ### Example 2
 
@@ -80,7 +76,7 @@ Used when scanning code that has no file representation (for example,
 straight from a repository).
 
 ```yaml
-Type: System.String
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -96,7 +92,7 @@ Accept wildcard characters: False
 Only return $true or $ false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($ false)
 
 ```yaml
-Type: System.Management.Automation.SwitchParameter
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

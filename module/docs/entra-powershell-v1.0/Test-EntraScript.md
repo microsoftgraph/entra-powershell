@@ -9,10 +9,10 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+external help file: Microsoft.Entra-Help.xml
+Module Name: Microsoft.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Test-EntraScript
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Test-EntraScript
 schema: 2.0.0
 ---
 
@@ -44,7 +44,7 @@ Checks if the provided script uses Azure AD commands compatible with the Microso
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
-Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.Entra.
+Returns whether the script `usercreation.ps1` could run under Microsoft.Entra.
 
 ### Example 2
 
@@ -52,7 +52,7 @@ Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.En
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
-Returns a list of all scripts that wouldn't run under the Microsoft.Graph.Entra module, listing each issue with line and code.
+Returns a list of all scripts that wouldn't run under the Microsoft.Entra module, listing each issue with line and code.
 
 ## Parameters
 
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 
 ### -Quiet
 
-Only return $true or $ false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($ false)
+Only return $true or $ false, based on whether the script could run under Microsoft.Entra ($true) or not ($ false)
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter

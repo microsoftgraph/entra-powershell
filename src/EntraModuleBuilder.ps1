@@ -242,33 +242,49 @@ Set-StrictMode -Version 5
     # Main function to create the root module
     [void] CreateRootModule([string] $Module) {
         #We only generate the .psm1 file with Enable-EntraAzureADAlias if it's 'Microsoft.Entra' module
+        $moduleName = 'Microsoft.Entra'
+        $sourceModule = 'AzureAD'
         if ($Module -ne 'Entra') {
-            return
+            $moduleName = 'Microsoft.Entra.Beta'
+            $sourceModule = 'AzureADPreview'
         }
 
-        $rootModuleName = 'Microsoft.Entra.psm1'
-        $startDirectory = (Join-Path $PSScriptRoot "..\module\Entra\Microsoft.Entra")
+        $missingCmds = Get-MissingCmds -ModuleName $sourceModule
+
+        $rootModuleName = "$moduleName.psm1"
+        $startDirectory = (Join-Path $PSScriptRoot "..\module\$Module\$moduleName")
+        $rootFiles = @(Get-ChildItem $startDirectory -Filter *.ps1)
+        $rootModuleContent = $this.headerText + "`n"
+
+        foreach($file in $rootFiles){
+            $content = Get-Content -Path $file.FullName -Raw
+            $cleanedContent = $this.RemoveHeader($content)
+            $rootModuleContent += "`n$cleanedContent`n"
+        }
+
+        $functionsToExport = ($rootFiles | ForEach-Object { $_.BaseName }) -join "', '"
+        $rootModuleContent += "`nExport-ModuleMember -Function @('$functionsToExport')`n"
+        $rootModuleContent += $this.SetMissingCommands($missingCmds)
 
         # Define the file paths
         $rootModulePath = Join-Path -Path $this.OutputDirectory -ChildPath $rootModuleName
-        $aliasFilePath = Join-Path -Path $startDirectory -ChildPath "Enable-EntraAzureADAlias.ps1"
-
-        # Read the alias function content if it exists
-        if (Test-Path $aliasFilePath) {
-            $aliasContent = Get-Content -Path $aliasFilePath -Raw
-            $exportAlias = "`nExport-ModuleMember -Function 'Enable-EntraAzureADAlias'"
-        }
-        else {
-            throw "[Error]: Enable-EntraAzureADAlias.ps1 not found in UnMappedFiles."
-        }
-
-        # Combine header, alias function, and export statement
-        $rootModuleContent = $this.headerText + "`n" + $aliasContent + "`n" + $exportAlias
 
         # Write the root module content (psm1)
         $rootModuleContent | Out-File -FilePath $rootModulePath -Encoding utf8
 
         Log-Message "[EntraModuleBuilder]: Root Module successfully created with Enable-EntraAzureADAlias" -Level 'SUCCESS'
+    }
+
+    hidden [scriptblock] SetMissingCommands($missingCmds) {
+        $missingCommands = @"
+Set-Variable -name MISSING_CMDS -value @('$($missingCmds -Join "','")') -Scope Script -Option ReadOnly -Force
+
+"@
+#         $missingCommands = @"
+# Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
+
+# "@
+        return [Scriptblock]::Create($missingCommands)
     }
 
 
@@ -323,12 +339,7 @@ foreach (`$subModule in `$subModules) {
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json"
     
         # We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
-        $files = if ($Module -eq 'EntraBeta') {
-            @("$($moduleName).psd1")
-        }
-        else {
-            @("$($moduleName).psd1", "$($moduleName).psm1")
-        }
+        $files = @("$($moduleName).psd1", "$($moduleName).psm1")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
             Tags         = $($content.tags)
@@ -349,14 +360,11 @@ foreach (`$subModule in `$subModules) {
                 $requiredModules += @{ ModuleName = $module; RequiredVersion = $content.version }
             }    
         }
-    
-        # Ensure Enable-EntraAzureADAlias is explicitly exported in Microsoft.Entra
-        $functionsToExport = if ($Module -eq 'EntraBeta') {
-            @()
-        }
-        else {
-            @("Enable-EntraAzureADAlias")
-        }
+
+        $modulePath = Join-Path $rootPath $moduleName
+
+        $rootFiles = @(Get-ChildItem $modulePath -Filter *.ps1)
+        $functionsToExport = $rootFiles | ForEach-Object { $_.BaseName }
 
         $moduleSettings = @{
             Path                   = $manifestPath
@@ -414,6 +422,10 @@ $($requiredModulesEntries -join ",`n")
         # Inject RootModule section
         if ($moduleName -eq "Microsoft.Entra") {
             $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.psm1'"
+            Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
+        }
+        if ($moduleName -eq "Microsoft.Entra.Beta") {
+            $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.Beta.psm1'"
             Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
         }
         # Write the updated content back to the manifest file
