@@ -364,10 +364,6 @@ foreach (`$subModule in `$subModules) {
         $modulePath = Join-Path $rootPath $moduleName
 
         $rootFiles = @(Get-ChildItem $modulePath -Filter *.ps1)
-<<<<<<< HEAD
-=======
-        #$functionsToExport = @(($rootFiles | ForEach-Object { $_.Name }) -join "', '")
->>>>>>> 6b29367075e9c4822dd6625d1a7b42372a291938
         $functionsToExport = $rootFiles | ForEach-Object { $_.BaseName }
 
         $moduleSettings = @{
