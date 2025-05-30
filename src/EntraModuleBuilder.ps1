@@ -339,12 +339,7 @@ foreach (`$subModule in `$subModules) {
         $settingPath = Join-Path $rootPath -ChildPath "/config/ModuleMetadata.json"
     
         # We do not need to create a help file for the root module, since once the nested modules are loaded, their help will be available
-        $files = if ($Module -eq 'EntraBeta') {
-            @("$($moduleName).psd1")
-        }
-        else {
-            @("$($moduleName).psd1", "$($moduleName).psm1")
-        }
+        $files = @("$($moduleName).psd1", "$($moduleName).psm1")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
             Tags         = $($content.tags)
@@ -369,7 +364,6 @@ foreach (`$subModule in `$subModules) {
         $modulePath = Join-Path $rootPath $moduleName
 
         $rootFiles = @(Get-ChildItem $modulePath -Filter *.ps1)
-        #$functionsToExport = @(($rootFiles | ForEach-Object { $_.Name }) -join "', '")
         $functionsToExport = $rootFiles | ForEach-Object { $_.BaseName }
 
         $moduleSettings = @{
@@ -428,6 +422,10 @@ $($requiredModulesEntries -join ",`n")
         # Inject RootModule section
         if ($moduleName -eq "Microsoft.Entra") {
             $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.psm1'"
+            Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
+        }
+        if ($moduleName -eq "Microsoft.Entra.Beta") {
+            $fileContent = $fileContent -replace "(?m)^#?\s*RootModule\s*=\s*['""].*['""]", "RootModule = 'Microsoft.Entra.Beta.psm1'"
             Log-Message "[EntraModuleBuilder]: Updated RootModule Section"
         }
         # Write the updated content back to the manifest file
