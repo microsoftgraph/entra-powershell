@@ -42,7 +42,7 @@
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\EntraBeta\\Users\\New-EntraUser.Tests.ps1",
+        "file": "test\\EntraBeta\\Users\\New-EntraBetaUser.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
