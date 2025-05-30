@@ -33,6 +33,7 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipal"{

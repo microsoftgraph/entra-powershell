@@ -3,17 +3,18 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 
-Describe "Set-EntraBetaServicePrincipal"{
+Describe "Set-EntraBetaServicePrincipal" {
     Context "Test for Set-EntraBetaServicePrincipal" {
-        It "Should return empty object"{
+        It "Should return empty object" {
             $result = Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
@@ -48,7 +49,8 @@ Describe "Set-EntraBetaServicePrincipal"{
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraBetaServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

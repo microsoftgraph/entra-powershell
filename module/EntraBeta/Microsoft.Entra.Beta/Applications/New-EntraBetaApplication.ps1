@@ -556,7 +556,7 @@ function New-EntraBetaApplication {
             try {
 
                 # Create the application using Microsoft Graph API
-                $uri = "/v1.0/applications"
+                $uri = "/beta/applications"
                 $response = Invoke-MgGraphRequest -Uri $uri -Method POST -Body ($appBody | ConvertTo-Json -Depth 10) -Headers $customHeaders
                 
                 # Add an ObjectId alias for backwards compatibility

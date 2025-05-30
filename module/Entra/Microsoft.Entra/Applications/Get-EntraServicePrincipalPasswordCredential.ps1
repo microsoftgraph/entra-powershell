@@ -11,14 +11,26 @@ function Get-EntraServicePrincipalPasswordCredential {
         [System.String] $ServicePrincipalId
     )
 
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).PasswordCredentials
-    $response | ForEach-Object {
-        if ($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
         }
     }
-    $response    
+
+    process {
+
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"]).PasswordCredentials
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+            }
+        }
+        $response
+    }
 }
 

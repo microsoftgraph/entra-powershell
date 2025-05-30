@@ -41,7 +41,7 @@ The `Get-EntraBetaApplicationOwner` cmdlet get an owner of an Microsoft Entra ID
 ### Example 1: Get the owner of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraBetaApplicationOwner -ApplicationId $application.Id |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
@@ -59,10 +59,10 @@ This example demonstrates how to get the owners of an application in Microsoft E
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-### Example 3: Get all owners of an application
+### Example 2: Get all owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraBetaApplicationOwner -ApplicationId $application.Id -All |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
@@ -80,10 +80,10 @@ This example demonstrates how to get the all owners of a specified application i
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-### Example 4: Get top two owners of an application
+### Example 3: Get top two owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
 Get-EntraBetaApplicationOwner -ApplicationId $application.Id -Top 2 |
 Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |

@@ -27,6 +27,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraApplicationOwner" {
