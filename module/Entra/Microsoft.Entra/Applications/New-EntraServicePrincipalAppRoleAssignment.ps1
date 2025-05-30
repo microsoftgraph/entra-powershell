@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraServicePrincipalAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (service principal) to assign the app role to.")]
         [ValidateNotNullOrEmpty()]
         [System.String] $PrincipalId,
@@ -24,7 +24,7 @@ function New-EntraServicePrincipalAppRoleAssignment {
         [System.String] $ServicePrincipalId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     

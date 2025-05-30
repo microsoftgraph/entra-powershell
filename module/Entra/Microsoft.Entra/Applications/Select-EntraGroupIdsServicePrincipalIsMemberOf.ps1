@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Select-EntraGroupIdsServicePrincipalIsMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Group IDs to check membership against.")]
         [ValidateNotNullOrEmpty()]
         [Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck] $GroupIdsForMembershipCheck,
@@ -15,7 +15,7 @@ function Select-EntraGroupIdsServicePrincipalIsMemberOf {
         [System.String] $ServicePrincipalId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["ServicePrincipalId"]) {

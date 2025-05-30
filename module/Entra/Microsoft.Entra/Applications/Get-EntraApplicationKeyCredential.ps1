@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraApplicationKeyCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (                
+    param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
         [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
