@@ -3,34 +3,35 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Remove-EntraBetaUserSponsor" {
     Context "Test for Remove-EntraBetaUserSponsor" {
         It "Should fail when UserId is empty string value" {
             { Remove-EntraBetaUserSponsor -UserId "" -SponsorId "sponsor123" } | 
-                Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when UserId is empty" {
             { Remove-EntraBetaUserSponsor -UserId } | 
-                Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
+            Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should fail when SponsorId is empty string value" {
             { Remove-EntraBetaUserSponsor -UserId "user123" -SponsorId "" } | 
-                Should -Throw "Cannot bind argument to parameter 'SponsorId' because it is an empty string."
+            Should -Throw "Cannot bind argument to parameter 'SponsorId' because it is an empty string."
         }
 
         It "Should fail when SponsorId is empty" {
             { Remove-EntraBetaUserSponsor -UserId "user123" -SponsorId } | 
-                Should -Throw "Missing an argument for parameter 'SponsorId'. Specify a parameter of type 'System.String' and try again."
+            Should -Throw "Missing an argument for parameter 'SponsorId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should call Invoke-GraphRequest with correct parameters" {

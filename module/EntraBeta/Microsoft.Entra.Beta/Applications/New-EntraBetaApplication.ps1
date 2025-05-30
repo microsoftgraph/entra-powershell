@@ -100,7 +100,7 @@ function New-EntraBetaApplication {
         }
 
         # Create headers for the request
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         # Build the application body based on parameter set
         if ($PSCmdlet.ParameterSetName -eq 'CreateApplication') {
@@ -565,7 +565,7 @@ function New-EntraBetaApplication {
                 $response = $response | ConvertTo-Json | ConvertFrom-Json
                 $appList = @()
                 foreach ($data in $response) {
-                    $appObject = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplication
+                    $appObject = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApplication
                     $data.PSObject.Properties | ForEach-Object {
                         $propertyName = $_.Name
                         $propertyValue = $_.Value

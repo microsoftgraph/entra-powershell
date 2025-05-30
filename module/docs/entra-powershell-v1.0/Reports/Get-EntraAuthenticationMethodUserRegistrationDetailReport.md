@@ -345,4 +345,4 @@ Shows if the user is a member or guest in the tenant. Values: member, guest.
 
 `Get-EntraAuthMethodUserRegistrationDetailReport` is an alias for `Get-EntraAuthenticationMethodUserRegistrationDetailReport`.
 
-## Related Links
+## Related links
