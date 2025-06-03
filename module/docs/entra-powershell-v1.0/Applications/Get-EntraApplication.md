@@ -94,7 +94,40 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 
 This example demonstrates how to get all applications from Microsoft Entra ID.
 
-### Example 3: Get applications with expiring secrets in 30 days
+### Example 3: Get all applications without owners (ownerless applications)
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$apps = Get-EntraApplication -All
+$appsWithoutOwners = @()
+foreach ($app in $apps) {
+    try {
+        $owners = Get-EntraApplicationOwner -ApplicationId $app.Id
+        if (-not $owners) {
+            $appsWithoutOwners += $app
+        }
+    }
+    catch {
+        Write-Warning "Failed to check owners for app: $($app.DisplayName)"
+    }
+
+    # Optional: throttle to avoid rate limits (especially in large tenants)
+    #Start-Sleep -Milliseconds 100
+}
+$appsWithoutOwners | Select-Object DisplayName, Id, AppId
+```
+
+```Output
+DisplayName          Id                                   AppId
+-----------          --                                   -----
+Contoso HR App       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc
+Contoso Helpdesk App cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee
+Contoso Helpdesk App eeeeeeee-6666-7777-8888-ffffffffffff hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii
+```
+
+This example demonstrates how to get all applications without owners from Microsoft Entra ID.
+
+### Example 4: Get applications with expiring secrets in 30 days
 
 ```powershell
 $expirationThreshold = (Get-Date).AddDays(30)
@@ -123,7 +156,7 @@ Helpdesk Application    dddddddd-5555-6666-7777-eeeeeeeeeeee Helpdesk Password  
 
 This example retrieves applications with expiring secrets within 30 days.
 
-### Example 4: Get applications with expiring certificates in 30 days
+### Example 5: Get applications with expiring certificates in 30 days
 
 ```powershell
 $expirationThreshold = (Get-Date).AddDays(30)
@@ -152,7 +185,7 @@ Helpdesk Application dddddddd-5555-6666-7777-eeeeeeeeeeee My cert               
 
 This example retrieves applications with expiring certificates within 30 days.
 
-### Example 5: Get an application by display name
+### Example 6: Get an application by display name
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -167,7 +200,7 @@ ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eee
 
 In this example, we retrieve application by its display name from Microsoft Entra ID.
 
-### Example 6: Search among retrieved applications
+### Example 7: Search among retrieved applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -182,7 +215,7 @@ My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-fff
 
 This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
 
-### Example 7: Retrieve an application by identifierUris
+### Example 8: Retrieve an application by identifierUris
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -191,7 +224,7 @@ Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wi
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
-### Example 8: List top 2 applications
+### Example 9: List top 2 applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -207,7 +240,7 @@ ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777
 
 This example shows how you can retrieve two applications. You can use `-Limit` as an alias for `-Top`.
 
-### Example 9: List application app roles
+### Example 10: List application app roles
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -224,6 +257,58 @@ AllowedMemberTypes    Description        DisplayName       Id                   
 ```
 
 This example shows how you can retrieve app roles for an application.
+
+### Example 11: List application oauth2PermissionScopes (delegated permissions exposed by the app)
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+(Get-EntraApplication -Filter "displayName eq 'Contoso Helpdesk Application'").Api.Oauth2PermissionScopes
+```
+
+```Output
+AdminConsentDescription : Allows the app to read HR data on behalf of users.
+AdminConsentDisplayName : Read HR Data
+Id                      : bbbbbbbb-1111-2222-3333-cccccccccccc
+IsEnabled               : True
+Origin                  :
+Type                    : User
+UserConsentDescription  : Allows the app to read your HR data.
+UserConsentDisplayName  : Read your HR data
+Value                   : HR.Read.All
+```
+
+This example shows how you can retrieve `oauth2PermissionScopes` (i.e., delegated permissions exposed by the app) to a service principal. These scopes are part of the application object.
+
+### Example 12: List applications and their secret details
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplication -All -Property displayName, appId, passwordCredentials |
+    Where-Object { $_.PasswordCredentials } |
+    ForEach-Object {
+        $app = $_
+        foreach ($cred in $app.PasswordCredentials) {
+            [PSCustomObject]@{
+                DisplayName                    = $app.DisplayName
+                AppId                          = $app.AppId
+                PasswordCredentialsDisplayName = $cred.DisplayName
+                PasswordCredentialStartDate    = $cred.StartDate
+                PasswordCredentialEndDate      = $cred.EndDate
+            }
+        }
+    } |
+    Format-Table -AutoSize
+```
+
+```Output
+DisplayName              AppId                                PasswordCredentialsDisplayName   PasswordCredentialStartDate PasswordCredentialEndDate
+-----------              -----                                ------------------------------   --------------------------- -------------------------
+Helpdesk Application     gggggggg-6666-7777-8888-hhhhhhhhhhhh Helpdesk Application Password    8/20/2024 7:54:25 AM        11/18/2024 7:54:25 AM
+Helpdesk Application     gggggggg-6666-7777-8888-hhhhhhhhhhhh Helpdesk Application Backend     8/7/2024 4:36:49 PM         2/3/2025 4:36:49 PM
+Contoso Automation App   bbbbbbbb-1111-2222-3333-cccccccccccc AI automation Cred               5/3/2025 7:03:11 PM         5/3/2026 7:03:11 PM
+```
+
+This example shows how you can retrieve applications that have secrets.
 
 ## Parameters
 
