@@ -51,7 +51,7 @@ The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID 
 
 Currently only Microsoft Entra ID groups are supported to create administrative unit members.
 
-For information about creating dynamic groups, see Using attributes to create advanced rules (<https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/>).
+For information about creating dynamic groups, see [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
 ## Examples
 
@@ -232,7 +232,7 @@ Accept wildcard characters: False
 
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
+For more information about the rules that you can use for dynamic groups, see [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
 ```yaml
 Type: System.String

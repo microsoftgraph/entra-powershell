@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgDirectoryDeletedItemAsServicePrincipal -MockWith $mockDeletedServicePrincipal -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDeletedServicePrincipal" {

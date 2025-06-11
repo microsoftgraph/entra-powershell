@@ -30,6 +30,7 @@ BeforeAll {
         )
     }
     Mock -CommandName Get-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaPasswordSingleSignOnCredential" {
@@ -43,7 +44,7 @@ Describe "Get-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should fail when ServicePrincipalId is Invalid" {
-            { Get-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+            { Get-EntraBetaPasswordSingleSignOnCredential -ServicePrincipalId "" -PasswordSSOObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should fail when PasswordSSOObjectId parameter are empty" {

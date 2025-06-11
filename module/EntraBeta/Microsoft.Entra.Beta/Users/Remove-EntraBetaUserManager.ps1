@@ -4,11 +4,28 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaUserManager {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-        [Alias('ObjectId')]            
+    param (            
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [System.String] $UserId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

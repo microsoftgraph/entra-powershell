@@ -7,8 +7,15 @@ function Set-EntraBetaUser {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
-        [Alias("ObjectId", "UPN", "Identity", "Id")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'Id')]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [string]$UserId,
 
         [Parameter(HelpMessage = "A short biography or description about the user.")]
@@ -154,7 +161,7 @@ function Set-EntraBetaUser {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
         # Microsoft Graph API URL for updating users
-        $graphUri = "https://graph.microsoft.com/beta/users/$UserId"
+        $graphUri = "/beta/users/$UserId"
 
         # Initialize hashtable for user properties
         $UserProperties = @{}

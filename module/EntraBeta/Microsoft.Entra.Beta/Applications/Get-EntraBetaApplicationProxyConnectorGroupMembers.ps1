@@ -5,37 +5,50 @@
 function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the onPremisesPublishingProfile object (OnPremisesPublishingProfile Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("Id")]
         [System.String] $OnPremisesPublishingProfileId,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Number of items to return.")]
         [Alias("Limit")]
         [System.Int32] $Top,
-        [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The filter to apply.")]
         [System.String] $Filter,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all connector group members.")]
         [switch] $All
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
-        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+        $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         if ($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId")) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }
         if ($PSBoundParameters.ContainsKey("Filter")) {
             $f = '$' + 'Filter'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
         }        
         if ($PSBoundParameters.ContainsKey("All")) {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }        
         if ($PSBoundParameters.ContainsKey("top")) {
             $t = '$' + 'Top'
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$t=$top"
+            $params["Uri"] = "/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$t=$top"
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

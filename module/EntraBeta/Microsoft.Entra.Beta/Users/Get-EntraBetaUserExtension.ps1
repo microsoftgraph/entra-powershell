@@ -24,7 +24,7 @@ function Get-EntraBetaUserExtension {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/beta/users/$UserId"
+        $baseUri = "/beta/users/$UserId"
         $properties = '$select=Identities,OnPremisesDistinguishedName,EmployeeId,CreatedDateTime'        
         $params["Uri"] = "$baseUri/?$properties"        
         

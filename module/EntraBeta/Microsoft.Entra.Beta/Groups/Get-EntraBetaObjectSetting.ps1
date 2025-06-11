@@ -42,7 +42,7 @@ function Get-EntraBetaObjectSetting {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings"
+        $baseUri = "/beta/$TargetType/$TargetObjectId/settings"
         $params["Method"] = "GET"
         $params["Uri"] = $baseUri + '?$select=*'
 

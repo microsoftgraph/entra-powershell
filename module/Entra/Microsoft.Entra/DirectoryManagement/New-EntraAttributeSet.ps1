@@ -20,7 +20,7 @@ function New-EntraAttributeSet {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets"
+        $params["Uri"] = "/v1.0/directory/attributeSets"
         $params["Method"] = "POST"
         
         if ($null -ne $PSBoundParameters["AttributeSetId"]) {

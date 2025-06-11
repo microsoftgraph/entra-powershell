@@ -17,7 +17,7 @@ function Update-EntraBetaOauth2PermissionGrant {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = "https://graph.microsoft.com/beta/oauth2PermissionGrants/"
+        $params["Uri"] = "/beta/oauth2PermissionGrants/"
         $params["Method"] = "PATCH"
         
         if ($null -ne $PSBoundParameters["OAuth2PermissionGrantId"]) {

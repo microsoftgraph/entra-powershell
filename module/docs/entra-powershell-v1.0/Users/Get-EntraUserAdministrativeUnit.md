@@ -31,6 +31,7 @@ Get-EntraUserAdministrativeUnit
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
@@ -93,7 +94,6 @@ Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -Top 1
 DeletedDateTime Id                                   Description                            DisplayName             Visibility
 --------------- --                                   -----------                            -----------             ----------
                 dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit        Engineering Admin Unit
 ```
 
 This cmdlet retrieves an administrative unit to which a specific user belongs. You can use `-Limit` as an alias for `-Top`.
@@ -115,6 +115,21 @@ DeletedDateTime Id                                   Description                
 This cmdlet retrieves a list of administrative units to which a specific user belongs using the Administrative Unit ID parameter.
 
 - `-AdministrativeUnitId` parameter specifies the administrative unit ID.
+
+### Example 5: Get an administrative unit to which a specific user belongs
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraUserAdministrativeUnit -UserId 'SawyerM@contoso.com' -Filter "Id eq 'dddddddd-3333-4444-5555-eeeeeeeeeeee'"
+```
+
+```Output
+DeletedDateTime Id                                   Description                            DisplayName             Visibility
+--------------- --                                   -----------                            -----------             ----------
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Administrative Unit            Pacific Admin Unit
+```
+
+This cmdlet retrieves an administrative unit to which a specific user belongs.
 
 ## Parameters
 
@@ -198,6 +213,23 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -210,6 +242,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUserMembership](Get-EntraUserMembership.md)

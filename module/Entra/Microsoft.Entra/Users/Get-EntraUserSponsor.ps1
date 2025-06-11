@@ -37,11 +37,20 @@ function Get-EntraUserSponsor {
         [System.String[]] $Property
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/v1.0/users/$UserId/sponsors"
+        $baseUri = "/v1.0/users/$UserId/sponsors"
         $properties = '$select=*'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri/?$properties"        

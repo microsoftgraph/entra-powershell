@@ -234,7 +234,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 How to [Govern an application's existing users](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-existing-users)
 
-## Related Links
+## Related links
 
 [Get-EntraBetaServicePrincipalAppRoleAssignedTo](../Applications/Get-EntraBetaServicePrincipalAppRoleAssignedTo.md)
 

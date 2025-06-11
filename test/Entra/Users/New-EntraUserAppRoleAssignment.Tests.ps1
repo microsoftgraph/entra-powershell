@@ -31,6 +31,7 @@ BeforeAll {
     }
     
     Mock -CommandName New-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AppRoleAssignment.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "New-EntraUserAppRoleAssignment" {
@@ -74,7 +75,7 @@ Describe "New-EntraUserAppRoleAssignment" {
         }
 
         It "Should fail when parameters are Invalid values" {
-            { New-EntraUserAppRoleAssignment -UserId "" -PrincipalId "" } | Should -Throw "Cannot bind argument to parameter*"
+            { New-EntraUserAppRoleAssignment -UserId "" -PrincipalId "" } | Should -Throw "Cannot process argument transformation on parameter 'UserId'. Cannot convert value*"
         }
 
         It "Should contain UserId in parameters" {

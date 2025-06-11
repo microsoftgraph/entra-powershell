@@ -6,9 +6,19 @@ function Remove-EntraBetaDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

@@ -26,12 +26,21 @@ function Update-EntraUserFromFederated {
         [guid] $TenantId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes UserAuthenticationMethod.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {    
         # Define essential variables
         $authenticationMethodId = "28c10230-6103-485e-b985-444c60001490"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{ "UserId" = $UserPrincipalName }
-        $params["Url"] = "https://graph.microsoft.com/v1.0/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
+        $params["Url"] = "/v1.0/users/$($UserPrincipalName)/authentication/methods/$authenticationMethodId/resetPassword"
 
         # Handle password conversion securely
         $passwordRedacted = $false

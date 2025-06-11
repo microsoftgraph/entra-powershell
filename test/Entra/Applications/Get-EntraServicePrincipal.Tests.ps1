@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,68 +10,69 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-            "Id"                                = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            "DisplayName"                       = "Windows Update for Business Deployment Service"
-            "AccountEnabled"                    = $true
-            "AddIns"                            = @{}
-            "AlternativeNames"                  = @{}
-            "AppDescription"                    = ""
-            "AppDisplayName"                    = "Windows Update for Business Deployment Service"
-            "AppId"                             = "00001111-aaaa-2222-bbbb-3333cccc4444"
-            "AppManagementPolicies"             = ""
-            "AppOwnerOrganizationId"            = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            "AppRoleAssignedTo"                 = ""
-            "AppRoleAssignmentRequired"         = $false
-            "AppRoleAssignments"                = @()
-            "AppRoles"                          = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
-            "ApplicationTemplateId"             = ""
-            "ClaimsMappingPolicies"             = ""
-            "CreatedObjects"                    = ""
-            "CustomSecurityAttributes"          = ""
-            "DelegatedPermissionClassifications"= ""
-            "Description"                       = ""
-            "DisabledByMicrosoftStatus"         = ""
-            "Endpoints"                         = ""
-            "FederatedIdentityCredentials"      = ""
-            "HomeRealmDiscoveryPolicies"        = ""
-            "Homepage"                          = ""
-            "Info"                              = ""
-            "KeyCredentials"                    = @{}
-            "LoginUrl"                          = ""
-            "LogoutUrl"                         = "https://deploymentscheduler.microsoft.com"
-            "MemberOf"                          = ""
-            "Notes"                             = ""
-            "NotificationEmailAddresses"        = @{}
-            "Oauth2PermissionGrants"            = ""
-            "Oauth2PermissionScopes"            = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
-            "OwnedObjects"                      = ""
-            "Owners"                            = ""
-            "PasswordCredentials"               = @{}
-            "PreferredSingleSignOnMode"         = ""
-            "PreferredTokenSigningKeyThumbprint"= ""
-            "RemoteDesktopSecurityConfiguration"= ""
-            "ReplyUrls"                         = @{}
-            "ResourceSpecificApplicationPermissions"= @{}
-            "SamlSingleSignOnSettings"          = ""
-            "ServicePrincipalNames"             = @("61ae9cd9-7bca-458c-affc-861e2f24ba3b")
-            "ServicePrincipalType"              = "Application"
-            "SignInAudience"                    = "AzureADMultipleOrgs"
-            "Synchronization"                   = ""
-            "Tags"                              = @{}
-            "TokenEncryptionKeyId"              = ""
-            "TokenIssuancePolicies"             = ""
-            "TokenLifetimePolicies"             = ""
-            "TransitiveMemberOf"                = ""
-            "VerifiedPublisher"                 = ""
-            "AdditionalProperties"              = @{
-                                                    "@odata.context"    = "https://graph.microsoft.com/v1.0/`$metadata#servicePrincipals/`$entity"
-                                                    "createdDateTime"   = "2023-07-07T14:07:33Z"
-                                                }
-            "Parameters"                        = $args
+                "Id"                                     = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "DisplayName"                            = "Windows Update for Business Deployment Service"
+                "AccountEnabled"                         = $true
+                "AddIns"                                 = @{}
+                "AlternativeNames"                       = @{}
+                "AppDescription"                         = ""
+                "AppDisplayName"                         = "Windows Update for Business Deployment Service"
+                "AppId"                                  = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                "AppManagementPolicies"                  = ""
+                "AppOwnerOrganizationId"                 = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "AppRoleAssignedTo"                      = ""
+                "AppRoleAssignmentRequired"              = $false
+                "AppRoleAssignments"                     = @()
+                "AppRoles"                               = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
+                "ApplicationTemplateId"                  = ""
+                "ClaimsMappingPolicies"                  = ""
+                "CreatedObjects"                         = ""
+                "CustomSecurityAttributes"               = ""
+                "DelegatedPermissionClassifications"     = ""
+                "Description"                            = ""
+                "DisabledByMicrosoftStatus"              = ""
+                "Endpoints"                              = ""
+                "FederatedIdentityCredentials"           = ""
+                "HomeRealmDiscoveryPolicies"             = ""
+                "Homepage"                               = ""
+                "Info"                                   = ""
+                "KeyCredentials"                         = @{}
+                "LoginUrl"                               = ""
+                "LogoutUrl"                              = "https://deploymentscheduler.microsoft.com"
+                "MemberOf"                               = ""
+                "Notes"                                  = ""
+                "NotificationEmailAddresses"             = @{}
+                "Oauth2PermissionGrants"                 = ""
+                "Oauth2PermissionScopes"                 = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
+                "OwnedObjects"                           = ""
+                "Owners"                                 = ""
+                "PasswordCredentials"                    = @{}
+                "PreferredSingleSignOnMode"              = ""
+                "PreferredTokenSigningKeyThumbprint"     = ""
+                "RemoteDesktopSecurityConfiguration"     = ""
+                "ReplyUrls"                              = @{}
+                "ResourceSpecificApplicationPermissions" = @{}
+                "SamlSingleSignOnSettings"               = ""
+                "ServicePrincipalNames"                  = @("61ae9cd9-7bca-458c-affc-861e2f24ba3b")
+                "ServicePrincipalType"                   = "Application"
+                "SignInAudience"                         = "AzureADMultipleOrgs"
+                "Synchronization"                        = ""
+                "Tags"                                   = @{}
+                "TokenEncryptionKeyId"                   = ""
+                "TokenIssuancePolicies"                  = ""
+                "TokenLifetimePolicies"                  = ""
+                "TransitiveMemberOf"                     = ""
+                "VerifiedPublisher"                      = ""
+                "AdditionalProperties"                   = @{
+                    "@odata.context"  = "https://graph.microsoft.com/v1.0/`$metadata#servicePrincipals/`$entity"
+                    "createdDateTime" = "2023-07-07T14:07:33Z"
+                }
+                "Parameters"                             = $args
             }
         )
     }
     Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
   
 Describe "Get-EntraServicePrincipal" {
@@ -97,7 +98,7 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should fail when ServicePrincipalId is invalid" {
-            { Get-EntraServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+            { Get-EntraServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should return all service" {
@@ -108,7 +109,7 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should fail when All has an argument" {
-            {  Get-EntraServicePrincipal -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraServicePrincipal -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }            
         
         It "Should return top service" {
@@ -123,7 +124,7 @@ Describe "Get-EntraServicePrincipal" {
         } 
         
         It "Should fail when top is invalid" {
-            { Get-EntraServicePrincipal -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraServicePrincipal -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ServicePrincipalId" {
@@ -173,7 +174,7 @@ Describe "Get-EntraServicePrincipal" {
         }
         
         It "Property parameter should work" {
-            $result =   Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName 
+            $result = Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName 
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Windows Update for Business Deployment Service"
 
@@ -181,7 +182,7 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should fail when Property is empty" {
-             {  Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
@@ -205,7 +206,8 @@ Describe "Get-EntraServicePrincipal" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraServicePrincipal -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

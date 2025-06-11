@@ -287,4 +287,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraBetaAuditDirectoryLogs` is an alias for `Get-EntraBetaAuditDirectoryLog`.
 
-## Related Links
+## Related links

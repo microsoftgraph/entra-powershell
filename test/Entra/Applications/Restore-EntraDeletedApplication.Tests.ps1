@@ -39,6 +39,7 @@ BeforeAll {
     }
 
     Mock -CommandName Restore-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Restore-EntraDeletedApplication" {
     Context "Restore-EntraDeletedApplication" {
@@ -53,7 +54,7 @@ Describe "Restore-EntraDeletedApplication" {
             { Restore-EntraDeletedApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }
         It "Should fail when ApplicationId is invalid" {
-            { Restore-EntraDeletedApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Restore-EntraDeletedApplication -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Result Should contain Alias properties" {
             $result = Restore-EntraDeletedApplication -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 

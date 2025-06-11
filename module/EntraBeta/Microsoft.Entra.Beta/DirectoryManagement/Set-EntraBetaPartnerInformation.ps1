@@ -66,9 +66,10 @@ function Set-EntraBetaPartnerInformation {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
+
             $TenantID = (Get-EntraContext).TenantId
         }
-        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation" -Body $body
+        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "/beta/organization/$TenantID/partnerInformation" -Body $body
     }
 }
 

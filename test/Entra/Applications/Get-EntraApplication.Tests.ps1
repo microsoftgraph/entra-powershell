@@ -32,6 +32,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
   
 Describe "Get-EntraApplication" {
@@ -41,10 +42,10 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
-            { Get-EntraApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Get-EntraApplication -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -53,7 +54,7 @@ Describe "Get-EntraApplication" {
             $result = Get-EntraApplication -All
             $result | Should -Not -BeNullOrEmpty            
             
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
@@ -75,21 +76,21 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         } 
         It "Should return specific application by filter" {
             $result = Get-EntraApplication -Filter "DisplayName -eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }  
         It "Should return top application" {
             $result = @(Get-EntraApplication -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Entra.Applications -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Entra.Applications -Times 1
         }  
         It "Result should Contain ApplicationId" {
             $result = Get-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -136,7 +137,8 @@ Describe "Get-EntraApplication" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraApplication -Top 1 -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

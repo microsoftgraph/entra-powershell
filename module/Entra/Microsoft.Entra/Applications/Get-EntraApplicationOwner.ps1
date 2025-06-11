@@ -6,22 +6,36 @@ function Get-EntraApplicationOwner {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Alias('ObjectId')]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all owners of the application.")]
         [switch] $All,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
         [System.String[]] $Property
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+    
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/applications'
+        $baseUri = '/v1.0/applications'
         $properties = '$select=*'
         $Method = "GET"        
         if ($null -ne $PSBoundParameters["Property"]) {

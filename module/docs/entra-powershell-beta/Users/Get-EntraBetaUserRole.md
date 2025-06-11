@@ -188,6 +188,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Sort
+
+Order items by property values.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases: OrderBy
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -DirectoryRoleId
 
 The unique ID of the directory role.
@@ -216,6 +249,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUserMembership](Get-EntraBetaUserMembership.md)

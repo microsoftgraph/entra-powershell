@@ -1,80 +1,62 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
-        Import-Module Microsoft.Entra.Beta.Applications    
-    }
-    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        # Write-Host "Mocking New-MgBetaApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
-        return @(
-            [PSCustomObject]@{
-              "AppId"                        = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
-              "DeletedDateTime"              = $null
-              "Id"                           = "111cc9b5-fce9-485e-9566-c68debafac5f"
-              "DisplayName"                  = "Mock-App"
-              "Info"                         = @{LogoUrl=""; MarketingUrl=""; PrivacyStatementUrl=""; SupportUrl=""; TermsOfServiceUrl=""}
-              "IsDeviceOnlyAuthSupported"    = $True
-              "IsFallbackPublicClient"       = $true
-              "KeyCredentials"               = @{CustomKeyIdentifier = @(211, 174, 247);DisplayName =""; Key="";KeyId="d903c7a3-75ea-4772-8935-5c0cf82068a7";Type="Symmetric";Usage="Sign"}
-              "OptionalClaims"               = @{AccessToken=""; IdToken=""; Saml2Token=""}
-              "ParentalControlSettings"      = @{CountriesBlockedForMinors=$null; LegalAgeGroupRule="Allow"}
-              "PasswordCredentials"          = @{}
-              "PublicClient"                 = @{RedirectUris=$null}
-              "PublisherDomain"              = "M365x99297270.onmicrosoft.com"
-              "SignInAudience"               = "AzureADandPersonalMicrosoftAccount"
-              "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
-              "Parameters"                   = $args
-              "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
+Describe "Tests for New-EntraBetaApplication" {
+    BeforeAll {
+        if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
+            Import-Module Microsoft.Entra.Beta.Applications      
+        }
+        Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
+
+        $scriptblock = {
+            @{
+                "DisplayName"     = "Contoso Helpdesk App"
+                "signInAudience"  = "AzureADandPersonalMicrosoftAccount"
+                "id"              = "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
+                "createdDateTime" = "2021-07-01T00:00:00Z"
+                "appId"           = "cccccccc-1111-2222-3333-aaaaaaaaaaaa"
             }
-        )
+        }
+
+        Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
+        
+        # Define variables for use across tests
+        $script:userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaApplication"
     }
 
-    Mock -CommandName New-MgBetaApplication -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-}
+    It "Result should not be empty" {
+        $result = New-EntraBetaApplication -DisplayName "Contoso Helpdesk App"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+    }
 
-Describe "New-EntraBetaApplication"{
-    Context "Test for New-EntraBetaApplication" {
-        It "Should return created Application"{
-            $result = New-EntraBetaApplication -DisplayName "Mock-App"
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be "Mock-App"
-            $result.IsDeviceOnlyAuthSupported | should -Be "True"
-            $result.IsFallbackPublicClient | should -Be "True"
-            $result.SignInAudience | should -Be "AzureADandPersonalMicrosoftAccount" 
-            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+    It "Should fail when DisplayName is null" {
+        { New-EntraBetaApplication -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+    }    
+ 
+    It "Should contain 'User-Agent' header" {
+        $result = New-EntraBetaApplication -DisplayName "Contoso Helpdesk App"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $script:userAgentHeaderValue
+            $true
         }
-        It "Should fail when DisplayName is empty" {
-            { New-EntraBetaApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter*"
+    }
+
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { New-EntraBetaApplication -DisplayName "Contoso Helpdesk App" } | Should -Not -Throw
         }
-        It "Should fail when invalid parameter is passed" {
-            { New-EntraBetaApplication -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
-        }
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaApplication"
-            $result =  New-EntraBetaApplication -DisplayName "Mock-App"
-            $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaApplication"
-            Should -Invoke -CommandName New-MgBetaApplication -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
-        }
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-    
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                {  New-EntraBetaApplication -DisplayName "Mock-App" -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
-            }
+        finally {
+            # Restore original confirmation preference
+            $DebugPreference = $originalDebugPreference
         }
     }
 }
-

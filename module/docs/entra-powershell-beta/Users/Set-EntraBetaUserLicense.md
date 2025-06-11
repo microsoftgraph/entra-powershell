@@ -209,7 +209,7 @@ Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -228,6 +228,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)

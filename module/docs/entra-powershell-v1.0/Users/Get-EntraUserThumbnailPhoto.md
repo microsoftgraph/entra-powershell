@@ -27,6 +27,9 @@ Retrieve the thumbnail photo of a user.
 ```powershell
 Get-EntraUserThumbnailPhoto
  -UserId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
+ [-View <Boolean>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -88,6 +91,54 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -FileName
+
+Specifies the file name to save the retrieved thumbnail photo.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -FilePath
+
+Specifies the file path or location where the thumbnail photo will be saved.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -View
+
+Specifies whether to view the thumbnail photo immediately after retrieval.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -104,6 +155,6 @@ System.Boolean
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraUserThumbnailPhoto](Set-EntraUserThumbnailPhoto.md)

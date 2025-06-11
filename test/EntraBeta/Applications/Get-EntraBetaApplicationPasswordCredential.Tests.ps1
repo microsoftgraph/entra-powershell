@@ -11,19 +11,20 @@ BeforeAll {
     $scriptblock = {
         return @(
             @{
-                "startDateTime"    = "11/24/2023 6:28:39 AM"
-                "keyId" = "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
-                "hint" = "123"
-                "secretText"  = ""
-                "endDateTime"       = "11/24/2024 6:28:39 AM"
+                "startDateTime"       = "11/24/2023 6:28:39 AM"
+                "keyId"               = "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
+                "hint"                = "123"
+                "secretText"          = ""
+                "endDateTime"         = "11/24/2024 6:28:39 AM"
                 "CustomKeyIdentifier" = "dGVzdA=="
-                "DisplayName" = "test"
+                "DisplayName"         = "test"
 
             }
         )
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "Get-EntraBetaApplicationPasswordCredential" {
     Context "Test for Get-EntraBetaApplicationPasswordCredential" {
@@ -42,7 +43,7 @@ Describe "Get-EntraBetaApplicationPasswordCredential" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when ApplicationId is invalid" {
-            { Get-EntraBetaApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Get-EntraBetaApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ApplicationId is empty" {
             { Get-EntraBetaApplicationPasswordCredential -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -65,7 +66,8 @@ Describe "Get-EntraBetaApplicationPasswordCredential" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

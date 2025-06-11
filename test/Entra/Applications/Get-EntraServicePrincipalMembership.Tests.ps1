@@ -18,6 +18,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgServicePrincipalTransitiveMemberOf -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
 Describe "Get-EntraServicePrincipalMembership" {
     It "Result should not be empty" {

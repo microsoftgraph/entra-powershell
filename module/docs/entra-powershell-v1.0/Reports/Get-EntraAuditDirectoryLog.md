@@ -283,4 +283,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Get-EntraAuditDirectoryLogs` is an alias for `Get-EntraAuditDirectoryLog`.
 
-## Related Links
+## Related links

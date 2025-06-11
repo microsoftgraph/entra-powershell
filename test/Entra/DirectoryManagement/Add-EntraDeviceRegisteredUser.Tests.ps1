@@ -8,6 +8,12 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName New-MgDeviceRegisteredUserByRef -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = "Global"
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
+    Mock -CommandName Get-EntraEnvironment -MockWith {return @{
+        GraphEndpoint = "https://graph.microsoft.com"
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Add-EntraDeviceRegisteredUser" {

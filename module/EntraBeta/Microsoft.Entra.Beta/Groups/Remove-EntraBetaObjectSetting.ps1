@@ -43,7 +43,7 @@ function Remove-EntraBetaObjectSetting {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $Method = "DELETE"
-        $URI = ' https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f $TargetType, $TargetObjectId, $ID
+        $URI = ' /beta/{0}/{1}/settings/{2}' -f $TargetType, $TargetObjectId, $ID
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response
     }       

@@ -46,7 +46,7 @@ function Set-EntraBetaServicePrincipal {
 
     PROCESS {    
         $params = @{}
-        $params["Uri"] = "https://graph.microsoft.com/beta/servicePrincipals"
+        $params["Uri"] = "/beta/servicePrincipals"
         $params["Method"] = "PATCH"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}

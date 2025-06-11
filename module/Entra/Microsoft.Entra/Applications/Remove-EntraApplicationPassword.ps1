@@ -4,15 +4,24 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraApplicationPassword {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
-        [Parameter(ParameterSetName = "default")]
+    param (               
+        [Parameter(ParameterSetName = "default", HelpMessage = "Unique ID of the key credential.")]
         [System.String] $KeyId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

@@ -21,6 +21,16 @@ function Get-EntraUserManager {
         [Alias("Select")]
         [System.String[]] $Property
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+    
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -29,13 +39,13 @@ function Get-EntraUserManager {
         if ($null -ne $PSBoundParameters["UserId"]) {
             $params["UserId"] = $PSBoundParameters["UserId"]
         }
-        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+        $URI = "/v1.0/users/$($params.UserId)/manager?`$select=*"
 
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?$properties"
+            $URI = "/v1.0/users/$($params.UserId)/manager?$properties"
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

@@ -9,13 +9,22 @@ function Set-EntraUserSponsor {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID or User Principal Name) of the user whose sponsor information you want to set.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [System.String] $UserId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Type of sponsor to assign to a User. Can be either 'User' or 'Group'.")]
         [ValidateSet("User", "Group")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $Type,
         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "List of sponsors to assign to the user.")]
+        [ValidateNotNullOrEmpty()]
         [System.String[]] $SponsorIds
     )
 
@@ -35,10 +44,17 @@ function Set-EntraUserSponsor {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand     
         $customHeaders['Content-Type'] = 'application/json'
 
-        $batchEndpoint = "https://graph.microsoft.com/v1.0/`$batch"
+        $batchEndpoint = "/v1.0/`$batch"
         
         # Initialize request collection
         $requests = @()
+        
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
         
         # Determine target endpoint based on parameter set
         $targetResource = if ($Type -eq "User") { "users" } else { "groups" }
@@ -50,7 +66,7 @@ function Set-EntraUserSponsor {
                 method  = "POST"
                 url     = "/$targetEndpoint"
                 body    = @{
-                    "@odata.id" = "https://graph.microsoft.com/v1.0/$targetResource/$sponsorId"
+                    "@odata.id" = "$rootUri/v1.0/$targetResource/$sponsorId"
                 }
                 headers = @{
                     "Content-Type" = "application/json"

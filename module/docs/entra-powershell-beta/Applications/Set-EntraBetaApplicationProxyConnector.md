@@ -99,7 +99,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaApplicationProxyConnectorGroup](Get-EntraBetaApplicationProxyConnectorGroup.md)
 [Get-EntraBetaApplicationProxyConnector](Get-EntraBetaApplicationProxyConnector.md)

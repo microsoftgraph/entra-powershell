@@ -5,16 +5,33 @@
 function New-EntraServicePrincipalPasswordCredential {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.DateTime]] $StartDate,
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal to which the password credential will be added.")]
         [Alias("ObjectId")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable`1[System.DateTime]] $EndDate,
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified, defaults to the current date and time.")]
+        [System.Nullable[System.DateTime]] $StartDate,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies the end date and time (UTC) after which the password credential expires. If not specified, defaults to one year from the current date and time.")]
+        [System.Nullable[System.DateTime]] $EndDate,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Specifies a friendly display name to help identify the password credential.")]
         [System.String] $DisplayName
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {
         $params = @{
@@ -24,7 +41,7 @@ function New-EntraServicePrincipalPasswordCredential {
             DisplayName        = $DisplayName
         }
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = 'https://graph.microsoft.com/v1.0/servicePrincipals'
+        $baseUri = '/v1.0/servicePrincipals'
         $URI = "$baseUri/$ServicePrincipalId/addPassword"
         $body = @{
             passwordCredential = @{

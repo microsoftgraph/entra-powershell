@@ -166,6 +166,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 Updating Role Assignable Groups or Privileged Access Groups require `PrivilegedAccess.ReadWrite.AzureADGroup` permission scope.
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)

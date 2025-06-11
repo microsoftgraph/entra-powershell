@@ -7,11 +7,22 @@ function New-EntraBetaApplicationFromApplicationTemplate {
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The ID of the application template to instantiate.')]
         [Alias('Id')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationTemplateId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'The display name of the application.')]
+        [ValidateNotNullOrEmpty()]
         [System.String] $DisplayName
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {
         $params = @{}
@@ -31,7 +42,7 @@ function New-EntraBetaApplicationFromApplicationTemplate {
             displayName = $DisplayName
         }
 
-        $uri = "https://graph.microsoft.com/beta/applicationTemplates/$ApplicationTemplateId/instantiate"
+        $uri = "/beta/applicationTemplates/$ApplicationTemplateId/instantiate"
         $response = Invoke-GraphRequest -uri $uri -Headers $customHeaders -Body $body -Method POST | ConvertTo-Json -Depth 5 | ConvertFrom-Json
         $memberList = @()
         foreach ($data in $response) {

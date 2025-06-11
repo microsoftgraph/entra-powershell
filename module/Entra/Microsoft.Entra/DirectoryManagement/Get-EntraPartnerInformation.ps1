@@ -22,8 +22,9 @@ function Get-EntraPartnerInformation {
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
             $TenantID = (Get-EntraContext).TenantId
+
         }
-        $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/v1.0/organization/$TenantID/partnerInformation"
+        $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "/v1.0/organization/$TenantID/partnerInformation"
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "PartnerCompanyName"       = $response.companyName

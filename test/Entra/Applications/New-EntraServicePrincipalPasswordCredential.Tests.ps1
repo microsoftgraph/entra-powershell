@@ -19,6 +19,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "New-EntraServicePrincipalPasswordCredential" {
@@ -33,7 +34,7 @@ Describe "New-EntraServicePrincipalPasswordCredential" {
             { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId -DisplayName "Helpdesk Secret" } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
         It "Should fail when ServicePrincipalId is invalid" {
-            { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId "" -DisplayName "Helpdesk Secret" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
+            { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId "" -DisplayName "Helpdesk Secret" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should contain 'User-Agent' header" {

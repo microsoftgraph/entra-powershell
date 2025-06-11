@@ -37,7 +37,7 @@ function Get-EntraBetaUserAuthenticationMethod {
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
-            $uri = "https://graph.microsoft.com/beta/users/$encodedUserId/authentication/methods"
+            $uri = "/beta/users/$encodedUserId/authentication/methods"
 
             Write-Debug("============================ REQUEST DETAILS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

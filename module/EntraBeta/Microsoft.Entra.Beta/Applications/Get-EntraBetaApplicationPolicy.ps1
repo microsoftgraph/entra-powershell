@@ -4,11 +4,21 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraBetaApplicationPolicy {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [Alias("ObjectId", "ApplicationId")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $Id
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {  
         $params = @{}
@@ -18,9 +28,9 @@ function Get-EntraBetaApplicationPolicy {
         }
         $Method = "GET"        
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $URI = 'https://graph.microsoft.com/beta/applications/{0}/policies' -f $Id
+        $URI = '/beta/applications/{0}/policies' -f $Id
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json -Depth 10 | ConvertFrom-Json).value
         $response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
                 
@@ -41,7 +51,7 @@ function Get-EntraBetaApplicationPolicy {
             }
 
             $res.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                 $propertyValue = $_.Value
                 $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }

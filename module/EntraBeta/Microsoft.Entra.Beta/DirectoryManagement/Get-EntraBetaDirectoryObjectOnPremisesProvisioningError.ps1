@@ -27,7 +27,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
 
         try {
             foreach ($obj in $Object) {
-                $uri = "https://graph.microsoft.com/beta/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
+                $uri = "/beta/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
                 $response.value | ForEach-Object {
                     $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force

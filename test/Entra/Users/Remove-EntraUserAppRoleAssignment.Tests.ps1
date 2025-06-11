@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgUserAppRoleAssignment -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AppRoleAssignment.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "Remove-EntraUserAppRoleAssignment" {
@@ -20,7 +21,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
         }
 
         It "Should fail when UserId is invalid" {
-            { Remove-EntraUserAppRoleAssignment -UserId "" AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Remove-EntraUserAppRoleAssignment -UserId "" AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }   
 
         It "Should fail when UserId is empty" {
@@ -28,7 +29,7 @@ Describe "Remove-EntraUserAppRoleAssignment" {
         } 
 
         It "Should fail when AppRoleAssignmentId is invalid" {
-            { Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" AppRoleAssignmentId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" AppRoleAssignmentId "" } | Should -Throw "Cannot process argument transformation on parameter 'AppRoleAssignmentId'. Cannot convert value *"
         }   
 
         It "Should fail when AppRoleAssignmentId is empty" {

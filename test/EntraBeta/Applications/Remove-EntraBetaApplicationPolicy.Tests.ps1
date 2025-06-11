@@ -3,12 +3,13 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Remove-EntraBetaApplicationPolicy" {
@@ -21,19 +22,19 @@ Describe "Remove-EntraBetaApplicationPolicy" {
         }
 
         It "Should fail when Id is empty" {
-            { Remove-EntraBetaApplicationPolicy -Id  -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Remove-EntraBetaApplicationPolicy -Id -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Missing an argument for parameter 'Id'*"
         }   
 
         It "Should fail when Id is invalid" {
-            { Remove-EntraBetaApplicationPolicy -Id "" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Remove-EntraBetaApplicationPolicy -Id "" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Cannot validate argument on parameter 'Id'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }   
 
         It "Should fail when PolicyId is empty" {
-            { Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId  } | Should -Throw "Missing an argument for parameter 'PolicyId'*"
+            { Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId } | Should -Throw "Missing an argument for parameter 'PolicyId'*"
         }   
 
         It "Should fail when PolicyId is invalid" {
-            { Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId "" } | Should -Throw "Cannot bind argument to parameter 'PolicyId' because it is an empty string."
+            { Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId "" } | Should -Throw "Cannot validate argument on parameter 'PolicyId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }   
 
         It "Should contain 'User-Agent' header" {
@@ -58,7 +59,8 @@ Describe "Remove-EntraBetaApplicationPolicy" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

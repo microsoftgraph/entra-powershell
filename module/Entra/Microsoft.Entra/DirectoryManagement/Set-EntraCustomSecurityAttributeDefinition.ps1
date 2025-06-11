@@ -22,7 +22,7 @@ function Set-EntraCustomSecurityAttributeDefinition {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/$Id"
+        $Uri = "/v1.0/directory/customSecurityAttributeDefinitions/$Id"
         $Method = "PATCH"
 
         if($null -ne $PSBoundParameters["Id"])

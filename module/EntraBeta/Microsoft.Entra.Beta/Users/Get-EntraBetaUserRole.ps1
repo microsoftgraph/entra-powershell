@@ -37,9 +37,19 @@ function Get-EntraBetaUserRole {
         [System.String[]] $Property,
 
         [Parameter(Mandatory = $false, HelpMessage = "Order items by property values.")]
+        [Alias('OrderBy')]
         [System.String[]] $Sort
 
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {
         $params = @{}

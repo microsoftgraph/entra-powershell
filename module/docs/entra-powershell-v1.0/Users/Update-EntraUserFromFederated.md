@@ -140,4 +140,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For more information, see [resetPassword](https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword).
 
-## Related Links
+## Related links

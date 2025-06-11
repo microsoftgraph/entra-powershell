@@ -46,7 +46,7 @@ For non-gallery apps, use these application template IDs to configure SSO modes 
 ### Example 1: Creates an application from application template
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy' # Application.ReadWrite.OwnedBy is an app-only permission (non-interactive)
+Connect-Entra -Scopes 'Application.ReadWrite.All'
 $applicationTemplate = Get-EntraApplicationTemplate -Filter "DisplayName eq 'SAP Fieldglass'"
 New-EntraApplicationFromApplicationTemplate -ApplicationTemplateId $applicationTemplate.Id -DisplayName 'Contoso SAP App'
 ```
@@ -110,6 +110,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 Quickstart: [Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal).
 
-## Related Links
+## Related links
 
 [Get-EntraApplicationTemplate](Get-EntraApplicationTemplate.md)
