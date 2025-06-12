@@ -60,8 +60,8 @@ function New-EntraServicePrincipalKeyCredential {
             proof = $Proof
         }
 
-        if ($Type -eq 'X509CertAndPassword' -and $null -ne $PSBoundParameters["CustomKeyIdentifier"]) {
-            if (-not [string]::IsNullOrWhiteSpace($PSBoundParameters["CustomKeyIdentifier"])) {
+        if ($Type -eq 'X509CertAndPassword') {
+            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["CustomKeyIdentifier"])) {
                 $errorMessage = "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
                 Write-Error -Message $errorMessage -ErrorAction Stop
             }
