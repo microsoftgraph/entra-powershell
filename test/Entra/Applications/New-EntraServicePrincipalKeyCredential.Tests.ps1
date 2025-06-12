@@ -28,7 +28,7 @@ Describe "New-EntraServicePrincipalKeyCredential" {
          It "Should fail when ServicePrincipalId is null" {
             { New-EntraServicePrincipalKeyCredential -ServicePrincipalId  -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify" -Proof "c29tZVByb29m"  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
-        
+
         It "Should fail when ServicePrincipalId is empty" {
             { New-EntraServicePrincipalKeyCredential -ServicePrincipalId ""} | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
@@ -41,7 +41,7 @@ Describe "New-EntraServicePrincipalKeyCredential" {
         }
 
         It "Should fail when key type is X509CertAndPassword and PasswordCredential hasn't been provided" {
-            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" } | Should -Throw "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
+            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" -Proof "c29tZVByb29m" } | Should -Throw "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
         }
 
         It "Should return created service principal key credential when PasswordCredential is provided for key type X509CertAndPassword" {
@@ -76,4 +76,5 @@ Describe "New-EntraServicePrincipalKeyCredential" {
             }
         }
     }
+
 }
