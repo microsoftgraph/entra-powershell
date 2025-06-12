@@ -10,7 +10,6 @@ BeforeAll {
     $response = @{
         "@odata.context"      = 'https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.keyCredential'
         "customKeyIdentifier" = $null
-        "displayName"         = "Password friendly name"
         "endDateTime"         = "01/15/2027 14:22:00"
         "key"                 = $null
         "keyId"               = "aaaaaaaa-0b0b-1c1c-2d2d-333333"
@@ -27,10 +26,11 @@ Describe "New-EntraServicePrincipalKeyCredential" {
     Context "Test for New-EntraServicePrincipalKeyCredential" {
 
          It "Should fail when ServicePrincipalId is null" {
-            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId -DisplayName "Helpdesk Secret" } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
+            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId  -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify" -Proof "c29tZVByb29m"  } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
+        
         It "Should fail when ServicePrincipalId is empty" {
-            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "" -DisplayName "Helpdesk Secret" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId ""} | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
         It "Should return created service principal key credential when ServicePrincipalId is valid and all required parameters are provided" {
@@ -41,7 +41,7 @@ Describe "New-EntraServicePrincipalKeyCredential" {
         }
 
         It "Should fail when key type is X509CertAndPassword and PasswordCredential hasn't been provided" {
-            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" } | Should -Throw "Missing an argument for parameter 'PasswordCredential'*"
+            { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" } | Should -Throw "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
         }
 
         It "Should return created service principal key credential when PasswordCredential is provided for key type X509CertAndPassword" {
@@ -52,22 +52,23 @@ Describe "New-EntraServicePrincipalKeyCredential" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
-            $result = New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -DisplayName "Helpdesk Secret" -StartDate "01/15/2025 14:22:00"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalKeyCredential"
+            $result =  New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc"  -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify" -Proof "c29tZVByb29m"
             $result | Should -Not -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalKeyCredential"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Applications -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
         }
+
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -DisplayName "Helpdesk Secret" -StartDate "01/15/2025 14:22:00" -Debug } | Should -Not -Throw
+                { New-EntraServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify" -Proof "c29tZVByb29m" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference

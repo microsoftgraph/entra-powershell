@@ -7,7 +7,7 @@ function New-EntraServicePrincipalKeyCredential {
         [System.String]$ServicePrincipalId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Specifies the value for the key encoded in Base64.")]
+            HelpMessage = "Specifies the value for the private key encoded in Base64.")]
         [System.String]$Value,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of the key.")]
@@ -24,8 +24,7 @@ function New-EntraServicePrincipalKeyCredential {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Contain the password for the key. This property is required for keys of type X509CertAndPassword.")]
         [System.String]$PasswordCredential,
         
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the time when the key becomes valid as a DateTime object.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the time when the key becomes valid as a DateTime object.")]
         [System.Nullable[System.DateTime]] $StartDate,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
@@ -42,7 +41,6 @@ function New-EntraServicePrincipalKeyCredential {
         }
     }
 
-    
     PROCESS {
 
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -55,17 +53,19 @@ function New-EntraServicePrincipalKeyCredential {
                 type = $Type
                 usage = $Usage
                 key = $Value
+                DateTimeStart = $StartDate
+                DateTimeEnd = $EndDate
             }
             passwordCredential = $null
             proof = $Proof
         }
 
         if ($Type -eq 'X509CertAndPassword') {
-            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["CustomKeyIdentifier"])) {
+            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["PasswordCredential"])) {
                 $errorMessage = "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
                 Write-Error -Message $errorMessage -ErrorAction Stop
             }
-            $params["passwordCredential"] = @{
+            $params["PasswordCredential"] = @{
                 secretText = $PSBoundParameters["CustomKeyIdentifier"]
             }
         }
@@ -76,13 +76,6 @@ function New-EntraServicePrincipalKeyCredential {
         
         try {
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method "POST" -Body ($params | ConvertTo-Json -Depth 4)
-
-            $response | ForEach-Object {
-                if ($null -ne $_) {
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
-                }
-            }
 
             $targetTypeList = @()
             foreach ($data in $response) {

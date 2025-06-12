@@ -6,8 +6,7 @@ function New-EntraBetaServicePrincipalKeyCredential {
         [ValidateNotNullOrEmpty()]
         [System.String]$ServicePrincipalId,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Specifies the value for the key encoded in Base64.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the value for the key encoded in Base64.")]
         [System.String]$Value,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of the key.")]
@@ -42,7 +41,6 @@ function New-EntraBetaServicePrincipalKeyCredential {
         }
     }
 
-    
     PROCESS {
 
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -55,17 +53,19 @@ function New-EntraBetaServicePrincipalKeyCredential {
                 type = $Type
                 usage = $Usage
                 key = $Value
+                DateTimeStart = $StartDate
+                DateTimeEnd = $EndDate
             }
             passwordCredential = $null
             proof = $Proof
         }
 
         if ($Type -eq 'X509CertAndPassword') {
-            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["CustomKeyIdentifier"])) {
+            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["PasswordCredential"])) {
                 $errorMessage = "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
                 Write-Error -Message $errorMessage -ErrorAction Stop
             }
-            $params["passwordCredential"] = @{
+            $params["PasswordCredential"] = @{
                 secretText = $PSBoundParameters["CustomKeyIdentifier"]
             }
         }
@@ -76,14 +76,6 @@ function New-EntraBetaServicePrincipalKeyCredential {
         
         try {
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method "POST" -Body ($params | ConvertTo-Json -Depth 4)
-
-            $response | ForEach-Object {
-                if ($null -ne $_) {
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
-                }
-            }
-
             $targetTypeList = @()
             foreach ($data in $response) {
                 $target = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential
