@@ -1,35 +1,35 @@
 function New-EntraBetaServicePrincipalKeyCredential {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal to which the password credential will be added.")]
+        [Parameter(Mandatory = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal to which the key credential will be added.")]
         [Alias("ObjectId")]
         [ValidateNotNullOrEmpty()]
         [System.String]$ServicePrincipalId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified, defaults to the current date and time.")]
+            HelpMessage = "Specifies the value for the key encoded in Base64.")]
         [System.String]$Value,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of the key.")]
         [ValidateSet('AsymmetricX509Cert', 'X509CertAndPassword')]
         [System.String]$Type,
         
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the key usage.")]
         [ValidateSet('Sign', 'Verify')]
         [System.String]$Usage,
         
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "A self-signed JWT token used as a proof of possession of the existing keys. This JWT token must be signed with a private key that corresponds to one of the existing valid certificates associated with the servicePrincipal.")]
         [System.String]$Proof,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified, defaults to the current date and time.")]
-        [System.String]$CustomKeyIdentifier,
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Contain the password for the key. This property is required for keys of type X509CertAndPassword.")]
+        [System.String]$PasswordCredential,
         
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified, defaults to the current date and time.")]
+            HelpMessage = "Specifies the time when the key becomes valid as a DateTime object.")]
         [System.Nullable[System.DateTime]] $StartDate,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the end date and time (UTC) after which the password credential expires. If not specified, defaults to one year from the current date and time.")]
+            HelpMessage = "Specifies the time when the key becomes invalid as a DateTime object.")]
         [System.Nullable[System.DateTime]] $EndDate
     )
     
@@ -61,6 +61,10 @@ function New-EntraBetaServicePrincipalKeyCredential {
         }
 
         if ($Type -eq 'X509CertAndPassword' -and $null -ne $PSBoundParameters["CustomKeyIdentifier"]) {
+            if (-not [string]::IsNullOrWhiteSpace($PSBoundParameters["CustomKeyIdentifier"])) {
+                $errorMessage = "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
+                Write-Error -Message $errorMessage -ErrorAction Stop
+            }
             $params["passwordCredential"] = @{
                 secretText = $PSBoundParameters["CustomKeyIdentifier"]
             }
@@ -97,4 +101,3 @@ function New-EntraBetaServicePrincipalKeyCredential {
         }
     }
 }
-
