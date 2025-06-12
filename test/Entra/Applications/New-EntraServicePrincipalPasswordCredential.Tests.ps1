@@ -30,9 +30,11 @@ Describe "New-EntraServicePrincipalPasswordCredential" {
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Applications -Times 1
         }
+
         It "Should fail when ServicePrincipalId is empty" {
             { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId -DisplayName "Helpdesk Secret" } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         }
+
         It "Should fail when ServicePrincipalId is invalid" {
             { New-EntraServicePrincipalPasswordCredential -ServicePrincipalId "" -DisplayName "Helpdesk Secret" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
@@ -47,6 +49,7 @@ Describe "New-EntraServicePrincipalPasswordCredential" {
                 $true
             }
         }
+        
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts
             $originalDebugPreference = $DebugPreference
