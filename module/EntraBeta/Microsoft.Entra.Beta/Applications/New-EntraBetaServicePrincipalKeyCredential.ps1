@@ -78,7 +78,7 @@ function New-EntraBetaServicePrincipalKeyCredential {
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method "POST" -Body ($params | ConvertTo-Json -Depth 4)
             $targetTypeList = @()
             foreach ($data in $response) {
-                $target = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential
+                $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphKeyCredential
                 $data.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                     $propertyValue = $_.Value
