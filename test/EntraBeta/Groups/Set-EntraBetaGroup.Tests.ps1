@@ -61,7 +61,7 @@ Describe 'Set-EntraBetaGroup' {
         }
 
         It 'Should contain Visibility in parameters when passed Visibility to it' {
-            Mock -CommandName Update-MgGroup -MockWith { $args } -ModuleName Microsoft.Entra.Groups
+            Mock -CommandName Update-MgBetaGroup -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Set-EntraBetaGroup -GroupId aaaaaaaa-1111-2222-3333-cccccccccccc -Visibility 'Private'
             $params = Get-Parameters -data $result
