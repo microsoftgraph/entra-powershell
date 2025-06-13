@@ -8,8 +8,8 @@ function Set-EntraBetaGroup {
         [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies the group type and its membership.')]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
 
-        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Indicates whether this group can be assigned to a Microsoft Entra role.')]
-        [ValidateSet('true', 'false', IgnoreCase = $true)]
+        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private, public, or has hidden membership.')]
+        [ValidateSet('Private', 'Public', 'HiddenMembership', IgnoreCase = $true)]
         [System.String] $Visibility,
 
         [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Description of the group.')]
