@@ -38,21 +38,33 @@ function New-EntraApplicationKeyCredential {
         }
     }
 
-    PROCESS {    
-        $params = @{}
+    PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    
-        if ($null -ne $PSBoundParameters["CustomKeyIdentifier"]) {
-            $params["CustomKeyIdentifier"] = $PSBoundParameters["CustomKeyIdentifier"]
+        $params = @{}
+        # $keyCredential = [Microsoft.Graph.PowerShell.Models.IMicrosoftGraphKeyCredential]@{
+        #     customKeyIdentifier = $PSBoundParameters["CustomKeyIdentifier"]
+        #     startDateTime = $PSBoundParameters["StartDate"]
+        #     endDateTime = $PSBoundParameters["EndDate"]
+        #     key = $PSBoundParameters["Value"]
+        #     type = $PSBoundParameters["Type"]
+        #     usage = $PSBoundParameters["Usage"]
+        # }
+
+        $keyCredential = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphKeyCredential
+        $keyCredential.CustomKeyIdentifier = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["CustomKeyIdentifier"])
+        $keyCredential.StartDateTime = $PSBoundParameters["StartDate"]
+        $keyCredential.EndDateTime = $PSBoundParameters["EndDate"]
+        $keyCredential.Key = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["Value"])
+        $keyCredential.Type = $PSBoundParameters["Type"]
+        $keyCredential.Usage = $PSBoundParameters["Usage"]
+
+        $params["KeyCredential"] = $keyCredential
+
+        if ($null -ne $PSBoundParameters["ApplicationId"]) {
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
         }
         if ($null -ne $PSBoundParameters["WarningVariable"]) {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if ($null -ne $PSBoundParameters["StartDate"]) {
-            $params["StartDate"] = $PSBoundParameters["StartDate"]
-        }
-        if ($null -ne $PSBoundParameters["EndDate"]) {
-            $params["EndDate"] = $PSBoundParameters["EndDate"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
@@ -63,14 +75,8 @@ function New-EntraApplicationKeyCredential {
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-        if ($null -ne $PSBoundParameters["Value"]) {
-            $params["Value"] = $PSBoundParameters["Value"]
-        }
         if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if ($null -ne $PSBoundParameters["Type"]) {
-            $params["Type"] = $PSBoundParameters["Type"]
         }
         if ($null -ne $PSBoundParameters["InformationAction"]) {
             $params["InformationAction"] = $PSBoundParameters["InformationAction"]
@@ -84,17 +90,11 @@ function New-EntraApplicationKeyCredential {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["ApplicationId"]) {
-            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
-        }
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-        }
-        if ($null -ne $PSBoundParameters["Usage"]) {
-            $params["Usage"] = $PSBoundParameters["Usage"]
         }
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
