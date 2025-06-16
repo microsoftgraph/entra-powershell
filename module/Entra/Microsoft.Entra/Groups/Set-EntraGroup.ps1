@@ -33,8 +33,8 @@ function Set-EntraGroup {
         [ValidateSet('true', 'false', IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
 
-        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Indicates whether this group can be assigned to a Microsoft Entra role.')]
-        [ValidateSet('true', 'false', IgnoreCase = $true)]
+        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private, public, or has hidden membership.')]
+        [ValidateSet('Private', 'Public', 'HiddenMembership', IgnoreCase = $true)]
         [System.String] $Visibility,
 
         [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Display name of the group.')]
