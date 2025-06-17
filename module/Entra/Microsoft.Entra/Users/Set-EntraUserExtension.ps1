@@ -9,15 +9,25 @@ function Set-EntraUserExtension {
         [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The user to set the extension property for. For example, 'user@domain.com'")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
         [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [System.String] $UserId,
                 
         [Parameter(ParameterSetName = "SetMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The dictionary of extension name and values. For example, @{extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup='Job Group N'; extension_d2ba83696c3f45429fbabb363ae391a0_JobTitle='Job Title N'}")]
+        [ValidateNotNullOrEmpty()]
         [System.Collections.Generic.Dictionary`2[System.String, System.String]] $ExtensionNameValues,
                 
         [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The value of the extension property to set. For example, 'Job Group N'")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ExtensionValue,
                 
         [Parameter(ParameterSetName = "SetSingle", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The name of the extension property to set. For example, extension_d2ba83696c3f45429fbabb363ae391a0_JobGroup")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ExtensionName
     )
 
@@ -85,7 +95,7 @@ function Set-EntraUserExtension {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
 
-        $uri = "https://graph.microsoft.com/v1.0/users/$UserId"
+        $uri = "/v1.0/users/$UserId"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

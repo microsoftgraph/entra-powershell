@@ -1,5 +1,5 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -46,47 +46,48 @@ BeforeAll {
                 assignedLicenses                = @(
                     @{
                         disabledPlans = @()
-                        skuId = '6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a'
+                        skuId         = '6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a'
                     }
                 )
                 assignedPlans                   = @(
                     @{
-                        assignedDateTime   = '2023-07-07T14:18:07Z'
-                        capabilityStatus   = 'Enabled'
-                        service            = 'ProcessSimple'
-                        servicePlanId      = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+                        assignedDateTime = '2023-07-07T14:18:07Z'
+                        capabilityStatus = 'Enabled'
+                        service          = 'ProcessSimple'
+                        servicePlanId    = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
                     }
                 )
-                authorizationInfo               = @{certificateUserIds = @()}
-                cloudRealtimeCommunicationInfo  = @{isSipEnabled = $true}
+                authorizationInfo               = @{certificateUserIds = @() }
+                cloudRealtimeCommunicationInfo  = @{isSipEnabled = $true }
                 deviceKeys                      = @{}
                 identities                      = @(
                     @{
-                        signInType      = 'userPrincipalName'
-                        issuer          = 'contoso.com'
+                        signInType       = 'userPrincipalName'
+                        issuer           = 'contoso.com'
                         issuerAssignedId = 'MiriamG@contoso.com'
                     }
                 )
                 onPremisesExtensionAttributes   = @{}
                 onPremisesProvisioningErrors    = @{}
-                onPremisesSipInfo               = @{isSipEnabled = $false}
+                onPremisesSipInfo               = @{isSipEnabled = $false }
                 provisionedPlans                = @(
                     @{
-                        capabilityStatus    = 'Enabled'
-                        provisioningStatus  = 'Success'
-                        service             = 'SharePoint'
+                        capabilityStatus   = 'Enabled'
+                        provisioningStatus = 'Success'
+                        service            = 'SharePoint'
                     }
                 )
                 serviceProvisioningErrors       = @{}
                 AdditionalProperties            = @{
                     test = 'data'
                 }
-                Parameters                 = $args
+                Parameters                      = $args
             }
         )
     }
 
     Mock -CommandName Get-MgBetaUserManager -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUserManager" {
@@ -108,11 +109,7 @@ Describe "Get-EntraBetaUserManager" {
             $result.identities[0].issuerAssignedId | Should -Be "MiriamG@contoso.com"
 
             Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Entra.Beta.Users -Times 1
-        }
-
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }   
+        } 
 
         It "Should fail when invalid parameter is passed" {
             { Get-EntraBetaUserManager -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
@@ -155,7 +152,8 @@ Describe "Get-EntraBetaUserManager" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

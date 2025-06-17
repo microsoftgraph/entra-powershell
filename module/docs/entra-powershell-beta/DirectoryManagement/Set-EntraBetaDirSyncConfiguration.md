@@ -70,7 +70,7 @@ This command sets directory synchronization settings.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force $true
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId $tenantID -Force
 ```
 
 This command sets directory synchronization settings.
@@ -115,7 +115,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
+The unique ID of the tenant on which to perform the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
@@ -147,6 +147,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
-## Related Links
+## Related links
 
 [Get-EntraBetaDirSyncConfiguration](Get-EntraBetaDirSyncConfiguration.md)

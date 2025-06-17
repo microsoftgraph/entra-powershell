@@ -27,6 +27,7 @@ function Set-EntraBetaPartnerInformation {
         [string] $PartnerSupportUrl,
         
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.Guid] $TenantId
     )
 
@@ -65,9 +66,10 @@ function Set-EntraBetaPartnerInformation {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $TenantID = ((Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
+
+            $TenantID = (Get-EntraContext).TenantId
         }
-        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation" -Body $body
+        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "/beta/organization/$TenantID/partnerInformation" -Body $body
     }
 }
 

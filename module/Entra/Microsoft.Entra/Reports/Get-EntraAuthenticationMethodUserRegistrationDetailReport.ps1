@@ -43,7 +43,7 @@ function Get-EntraAuthenticationMethodUserRegistrationDetailReport {
         $params = @{}
         $topCount = 0
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = "https://graph.microsoft.com/v1.0/reports/authenticationMethods/userRegistrationDetails"
+        $baseUri = "/v1.0/reports/authenticationMethods/userRegistrationDetails"
         $properties = "`$select=*"
     
         if ($PSBoundParameters.ContainsKey("Property")) {

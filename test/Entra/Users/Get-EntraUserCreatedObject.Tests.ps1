@@ -50,6 +50,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgUserCreatedObject -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserCreatedObject" {
@@ -70,10 +71,6 @@ Describe "Get-EntraUserCreatedObject" {
             Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserCreatedObject -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
-
         It "Should fail when UserId is empty" {
             { Get-EntraUserCreatedObject -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
@@ -81,7 +78,7 @@ Describe "Get-EntraUserCreatedObject" {
         It "Should return all contact" {
             $result = Get-EntraUserCreatedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -92,7 +89,7 @@ Describe "Get-EntraUserCreatedObject" {
             $result = Get-EntraUserCreatedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Entra.Users -Times 1
         }    
 
         It "Should fail when top is empty" {

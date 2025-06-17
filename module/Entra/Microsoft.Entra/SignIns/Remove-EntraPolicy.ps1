@@ -16,7 +16,7 @@ function Remove-EntraPolicy {
         $policyTypes = "activityBasedTimeoutPolicies", "DefaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy", "claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies"
     
         foreach ($policyType in $policyTypes) {
-            $uri = "https://graph.microsoft.com/v1.0/policies/" + $policyType + "/" + $id
+            $uri = "/v1.0/policies/" + $policyType + "/" + $id
             try {
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
                 break
@@ -32,7 +32,7 @@ function Remove-EntraPolicy {
         Write-Debug($Matches[1])
 
         if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $policyType )) {
-            $URI = "https://graph.microsoft.com/v1.0/policies/" + $policyType + "/" + $id
+            $URI = "/v1.0/policies/" + $policyType + "/" + $id
         }
         $Method = "DELETE"
         Write-Debug("============================ TRANSFORMATIONS ============================")

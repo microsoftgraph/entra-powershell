@@ -292,7 +292,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
 [Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
-## Related Links
+## Related links
 
 [Get-EntraBetaConditionalAccessPolicy](Get-EntraBetaConditionalAccessPolicy.md)
 

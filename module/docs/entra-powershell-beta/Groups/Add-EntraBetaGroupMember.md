@@ -27,12 +27,16 @@ Add a member to a security or Microsoft 365 group.
 Add-EntraBetaGroupMember
  -GroupId <String>
  -MemberId <String>
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Add-EntraBetaGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
+
+`New-EntraBetaGroupMember` and `Add-EntraBetaGroupMembership` are aliases of `Add-EntraBetaGroupMember`.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
@@ -53,6 +57,32 @@ Add-EntraBetaGroupMember -GroupId $group.Id -MemberId $user.Id
 ```
 
 This example demonstrates how to add a member to a group.
+
+### Example 2: Add members based on search results to a group
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaUser -Filter "startsWith(displayName,'Updated User')" | 
+    Add-EntraBetaGroupMember -GroupId $group.Id
+```
+
+This example demonstrates how to add members based on a search result to a group.
+
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
+
+### Example 3: Sync users from one group to another
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupMember -GroupId "source-group-id" | 
+    Add-EntraBetaGroupMember -GroupId $group.Id
+```
+
+This example demonstrates how to sync group members from source target group to a new group.
+
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
 
 ## Parameters
 
@@ -98,7 +128,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
 

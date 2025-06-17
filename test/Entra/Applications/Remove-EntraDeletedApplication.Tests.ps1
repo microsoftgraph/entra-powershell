@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Remove-EntraDeletedApplication" {
@@ -24,7 +25,7 @@ Describe "Remove-EntraDeletedApplication" {
         }   
 
         It "Should fail when ApplicationId is invalid" {
-            { Remove-EntraDeletedApplication -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
+            { Remove-EntraDeletedApplication -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }   
 
         It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {

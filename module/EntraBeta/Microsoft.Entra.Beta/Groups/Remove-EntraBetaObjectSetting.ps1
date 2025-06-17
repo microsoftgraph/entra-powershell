@@ -5,16 +5,27 @@
 function Remove-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of the directory object.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique ID of the setting.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $Id,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the target object. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetObjectId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {  
         $params = @{}
@@ -32,7 +43,7 @@ function Remove-EntraBetaObjectSetting {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $Method = "DELETE"
-        $URI = ' https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f $TargetType, $TargetObjectId, $ID
+        $URI = ' /beta/{0}/{1}/settings/{2}' -f $TargetType, $TargetObjectId, $ID
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
         $response
     }       

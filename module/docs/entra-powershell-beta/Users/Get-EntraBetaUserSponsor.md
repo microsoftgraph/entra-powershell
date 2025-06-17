@@ -29,9 +29,9 @@ Retrieve a user's sponsors (users or groups).
 ```powershell
 Get-EntraBetaUserSponsor
  -UserId <String>
- -Filter <String>
- -Top <Int32>
  [-All]
+ [-Filter <String>]
+ [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -142,6 +142,7 @@ Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra
 ```yaml
 Type: System.String
 Parameter Sets: (All)
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -197,6 +198,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -207,7 +225,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraBetaUserSponsor](Set-EntraBetaUserSponsor.md)
 

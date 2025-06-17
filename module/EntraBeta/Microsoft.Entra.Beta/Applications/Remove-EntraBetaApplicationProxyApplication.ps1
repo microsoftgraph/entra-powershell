@@ -6,12 +6,22 @@ function Remove-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias("ObjectId")]
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Remove the application from Azure Active Directory.")]
         [System.Nullable`1[System.Boolean]] $RemoveADApplication
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
@@ -27,8 +37,8 @@ function Remove-EntraBetaApplicationProxyApplication {
                     externalUrl = "PowerShellDeleteApplication" 
                 } 
             } | ConvertTo-Json
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Body $body
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method DELETE -Headers $customHeaders
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Body $body
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method DELETE -Headers $customHeaders
         }
         if ($null -eq $PSBoundParameters["RemoveADApplication"] -or ($null -ne $PSBoundParameters["RemoveADApplication"] -and $false -eq $PSBoundParameters["RemoveADApplication"])) {
             $body = @{ 
@@ -37,7 +47,7 @@ function Remove-EntraBetaApplicationProxyApplication {
                     externalUrl = "PowerShellDeleteApplication" 
                 } 
             } | ConvertTo-Json
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ApplicationId" -Method PATCH -Headers $customHeaders -Body $body
+            Invoke-GraphRequest -Uri "/beta/applications/$ApplicationId" -Method PATCH -Headers $customHeaders -Body $body
         }
         
         Write-Debug("============================ TRANSFORMATIONS ============================")

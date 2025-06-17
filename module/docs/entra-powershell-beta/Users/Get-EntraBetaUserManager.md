@@ -91,12 +91,12 @@ This example demonstrates how to retrieve users without managers.
 
 ### -UserId
 
-The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).
+Specifies the ID of a user's UserPrincipalName or UserId in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -131,7 +131,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
 

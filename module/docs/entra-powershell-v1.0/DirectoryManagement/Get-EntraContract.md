@@ -188,4 +188,4 @@ Corresponds to the ObjectId property of the customer tenant's TenantDetail objec
 
 `ContractId` - the unique identifier for the partnership.
 
-## Related Links
+## Related links

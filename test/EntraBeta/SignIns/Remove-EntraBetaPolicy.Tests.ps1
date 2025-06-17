@@ -9,7 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     $ScriptBlock = {        
         $response = @{
-            '@odata.context' = 'https://graph.microsoft.com/v1.0/`$metadata#policies/homeRealmDiscoveryPolicies/`$entity'            
+            '@odata.context' = 'https://graph.microsoft.com/beta/`$metadata#policies/homeRealmDiscoveryPolicies/`$entity'            
         }
 
         return $response            

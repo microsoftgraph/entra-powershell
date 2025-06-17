@@ -5,8 +5,12 @@
 function Get-EntraDomainFederationSettings {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param(
-        [Parameter(Mandatory=$true,Position=0,ValueFromPipelineByPropertyName=$true)][string]$DomainName,
-        [Parameter(Mandatory=$false,Position=1,ValueFromPipelineByPropertyName=$true)][ValidateNotNullOrEmpty()][ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })][System.guid] $TenantId
+        [Parameter(Mandatory=$true,Position=0,ValueFromPipelineByPropertyName=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string]$DomainName,
+
+        [Parameter(Mandatory=$false,Position=1,ValueFromPipelineByPropertyName=$true)]
+        [System.guid] $TenantId
         ) 
     process { 
         $params = @{}

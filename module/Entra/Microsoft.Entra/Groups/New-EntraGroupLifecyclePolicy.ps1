@@ -4,17 +4,29 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraGroupLifecyclePolicy {
     [CmdletBinding(DefaultParameterSetName = 'ByLifecycleSettings')]
-    param (
-                
-        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true)]
+    param (                
+        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "A list of email addresses to which notifications are sent. The email addresses must be valid and separated by semicolons.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $AlternateNotificationEmails,
                 
-        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "The group type for which the expiration policy applies. Possible values are All, Selected or None.")]
+        [ValidateSet("All", "Selected", "None", IgnoreCase = $true)]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ManagedGroupTypes,
                 
-        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true)]
+        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "Number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.")]
+        [ValidateNotNullOrEmpty()]
         [System.Nullable`1[System.Int32]] $GroupLifetimeInDays
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

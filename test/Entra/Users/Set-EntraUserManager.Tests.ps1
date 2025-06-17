@@ -8,6 +8,12 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Set-MgUserManagerByRef -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{
+            Environment = "Global"
+        } } -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraEnvironment -MockWith { return @{
+            GraphEndpoint = "https://graph.microsoft.com"
+        } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserManager" {
@@ -27,7 +33,7 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should fail when UserId is empty string value" {
-            { Set-EntraUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Set-EntraUserManager -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }
 
         It "Should fail when UserId is empty" {
@@ -35,7 +41,7 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should fail when ManagerId is invalid" {
-            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  ManagerId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" ManagerId "" } | Should -Throw "Cannot process argument transformation on parameter 'ManagerId'. Cannot convert value *"
         }
 
         It "Should contain UserId in parameters when passed UserId to it" {

@@ -9,7 +9,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                "Id"                   = "b3f1c54f-1b1f-40fc-8d6d-cd4dc041e959"
                 "AdditionalProperties" = @{
                     "@odata.type"   = "#microsoft.graph.phoneAuthenticationMethod";
                     createdDateTime = "2023-11-21T12:43:51Z";
@@ -25,7 +25,7 @@ BeforeAll {
 Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
     Context "Test for Reset-EntraBetaStrongAuthenticationMethodByUpn" {
         It "Should Resets the strong authentication method" {
-            $result = Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com'
+            $result = Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             $result | Should -BeNullOrEmpty
        
             Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
@@ -35,25 +35,25 @@ Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
         }  
  
         It "Should set correct UserId" {
-            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
-                $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
+                $userId | Should -Be 'SawyerM@contoso.com'
                 $true
             }
         }
         It "Should set correct PhoneAuthenticationMethodId" {
-            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 1
             Should -Invoke -CommandName Remove-MgBetaUserAuthenticationPhoneMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
-                $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
-                $PhoneAuthenticationMethodId | Should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+                $userId | Should -Be 'SawyerM@contoso.com'
+                $PhoneAuthenticationMethodId | Should -Be 'b3f1c54f-1b1f-40fc-8d6d-cd4dc041e959'
                 $true
             }
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraBetaStrongAuthenticationMethodByUpn"
 
-            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -66,7 +66,7 @@ Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' -Debug } | Should -Not -Throw
+                { Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com' -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

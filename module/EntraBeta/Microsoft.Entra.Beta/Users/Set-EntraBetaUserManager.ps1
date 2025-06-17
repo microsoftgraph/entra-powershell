@@ -6,18 +6,43 @@ function Set-EntraBetaUserManager {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('RefObjectId')]         
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID (User Principal Name or UserId).")]
-        [System.String] $ManagerId,
-
-        [Alias('ObjectId')]            
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID.")]
+        [ValidateNotNullOrEmpty()]
+        [guid] $ManagerId,
+          
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [System.String] $UserId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
+
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }
@@ -35,7 +60,7 @@ function Set-EntraBetaUserManager {
         }
         if ($null -ne $PSBoundParameters["ManagerId"]) {
             $TmpValue = $PSBoundParameters["ManagerId"]
-            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/users/$TmpValue" }
+            $Value = @{ "@odata.id" = "$rootUri/beta/users/$TmpValue" }
             $params["BodyParameter"] = $Value
         }
         if ($null -ne $PSBoundParameters["UserId"]) {

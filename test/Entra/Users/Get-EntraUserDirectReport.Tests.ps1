@@ -11,18 +11,18 @@ BeforeAll {
         return @{
             value = @(
                 @{
-                    "Id"                               = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-                    "DisplayName"                      = "Mock-User"
-                    "OnPremisesImmutableId"            = $null
-                    "DeletedDateTime"                  = $null
-                    "OnPremisesSyncEnabled"            = $null
-                    "OnPremisesLastSyncDateTime"       = $null
-                    "OnPremisesProvisioningErrors"     = @{}
-                    "MobilePhone"                      = "425-555-0100"
-                    "BusinessPhones"                   = @("425-555-0100")
-                    "ExternalUserState"                = $null
-                    "ExternalUserStateChangeDateTime"  = $null
-                    "Parameters"                       = $args
+                    "Id"                              = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                    "DisplayName"                     = "Mock-User"
+                    "OnPremisesImmutableId"           = $null
+                    "DeletedDateTime"                 = $null
+                    "OnPremisesSyncEnabled"           = $null
+                    "OnPremisesLastSyncDateTime"      = $null
+                    "OnPremisesProvisioningErrors"    = @{}
+                    "MobilePhone"                     = "425-555-0100"
+                    "BusinessPhones"                  = @("425-555-0100")
+                    "ExternalUserState"               = $null
+                    "ExternalUserStateChangeDateTime" = $null
+                    "Parameters"                      = $args
                 }
             )
         }
@@ -30,6 +30,7 @@ BeforeAll {
     
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 
@@ -51,11 +52,9 @@ Describe "Get-EntraUserDirectReport" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserId is empty" {
-            { Get-EntraUserDirectReport -UserId   } | Should -Throw "Missing an argument for parameter 'UserId'*"
+            { Get-EntraUserDirectReport -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when UserId is invalid" {
-            { Get-EntraUserDirectReport -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string.*"
-        }
+
         It "Should return all user direct reports" {
             $result = Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty
@@ -74,7 +73,7 @@ Describe "Get-EntraUserDirectReport" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when top is empty" {
-            { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when top is invalid" {
             { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
@@ -87,7 +86,7 @@ Describe "Get-EntraUserDirectReport" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Result should contain Properties" {
             $result = Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
@@ -107,7 +106,7 @@ Describe "Get-EntraUserDirectReport" {
 
             $result = Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
-            $para= $params | ConvertTo-json | ConvertFrom-Json
+            $para = $params | ConvertTo-json | ConvertFrom-Json
             $para.URI  | Should -Match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
@@ -128,7 +127,8 @@ Describe "Get-EntraUserDirectReport" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

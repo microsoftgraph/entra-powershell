@@ -101,7 +101,7 @@ The Microsoft Entra ID UserID for the user to convert.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: UserId
+Aliases: UserId, Identity, UPN, ObjectId
 
 Required: True
 Position: 1
@@ -140,4 +140,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 - For more information, see [resetPassword](https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword).
 
-## Related Links
+## Related links

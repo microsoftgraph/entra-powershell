@@ -7,19 +7,27 @@ function Set-EntraPartnerInformation {
     param (
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $CompanyType,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCommerceUrl,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCompanyName,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerHelpUrl,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportEmails,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportTelephones,
+
         [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerSupportUrl,
+
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [Obsolete("This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID. It should not be used for any other purpose.")]
         [System.Guid] $TenantId
     )
 
@@ -57,9 +65,10 @@ function Set-EntraPartnerInformation {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $TenantID = ((Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/organization").value).Id
+
+            $TenantID = (Get-EntraContext).TenantId
         }
-        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "https://graph.microsoft.com/v1.0/organization/$TenantID/partnerInformation" -Body $body
+        Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "/v1.0/organization/$TenantID/partnerInformation" -Body $body
     }
 }
 

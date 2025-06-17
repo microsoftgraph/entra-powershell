@@ -5,19 +5,31 @@
 function Set-EntraBetaObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of the directory object.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The directory setting to be applied. Create a new setting using templates from DirectorySettingTemplates.")]
+        [ValidateNotNullOrEmpty()]
         [Microsoft.Open.MSGraph.Model.DirectorySetting] $DirectorySetting,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Id,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique ID of the setting.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $Id,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of directory object to which to assign settings.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $TargetObjectId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {  
         $params = @{}
@@ -42,7 +54,7 @@ function Set-EntraBetaObjectSetting {
             $propertyValues = $_ | Select-Object -Property $NonEmptyProperties | ConvertTo-Json
             [regex]::Replace($propertyValues, '(?<=")(\w+)(?=":)', { $args[0].Groups[1].Value.ToLower() })
         }
-        $response = Invoke-GraphRequest -Headers $customHeaders -Method PATCH -Uri https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings/$ID -Body $directorySettingsJson
+        $response = Invoke-GraphRequest -Headers $customHeaders -Method PATCH -Uri /beta/$TargetType/$TargetObjectId/settings/$ID -Body $directorySettingsJson
         $response | ConvertTo-Json | ConvertFrom-Json
     }      
 }

@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgUserMemberOfAsDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserRole" {

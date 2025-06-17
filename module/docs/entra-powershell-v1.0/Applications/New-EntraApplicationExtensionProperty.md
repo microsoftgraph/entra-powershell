@@ -28,9 +28,10 @@ Creates an application extension property.
 ```powershell
 New-EntraApplicationExtensionProperty
  -ApplicationId <String>
- -Name <String>
+ [-Name <String>]
  [-DataType <String>]
  [-TargetObjects <System.Collections.Generic.List`1[System.String]>]
+ [-IsMultiValued <Boolean>]
  [<CommonParameters>]
 ```
 
@@ -181,6 +182,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IsMultiValued
+
+Specifies whether the extension property supports multiple values. Set this parameter to $true if the extension property can hold multiple values; otherwise, set it to $false.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -191,7 +208,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 

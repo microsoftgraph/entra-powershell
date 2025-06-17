@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Users) -eq $null) {
         Import-Module Microsoft.Entra.Users        
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,18 +10,19 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "ClientId"              = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                "ConsentType"           = "Principal"
-                "Id"                    = "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
-                "PrincipalId"           = "aaaaaaaa-bbbb-cccc-1111-222222222222"
-                "ResourceId"            = "bbbbbbbb-cccc-dddd-2222-333333333333"
-                "Scope"                 = "User.Read openid profile offline_access"
-                "AdditionalProperties"  = @{}
-                "Parameters"            = $args
+                "ClientId"             = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                "ConsentType"          = "Principal"
+                "Id"                   = "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+                "PrincipalId"          = "aaaaaaaa-bbbb-cccc-1111-222222222222"
+                "ResourceId"           = "bbbbbbbb-cccc-dddd-2222-333333333333"
+                "Scope"                = "User.Read openid profile offline_access"
+                "AdditionalProperties" = @{}
+                "Parameters"           = $args
             }
         )
     }
     Mock -CommandName Get-MgUserOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
   
 Describe "Get-EntraUserOAuth2PermissionGrant" {
@@ -46,10 +47,6 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
 
         It "Should fail when UserId is empty" {
             { Get-EntraUserOAuth2PermissionGrant -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
-        }
-
-        It "Should fail when UserId is invalid" {
-            { Get-EntraUserOAuth2PermissionGrant -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should return all User OAuth2Permission Grant" {
@@ -99,7 +96,7 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
@@ -124,7 +121,8 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -76,7 +76,7 @@ This example gets directory synchronization settings by TenantId.
 
 ### -TenantId
 
-The unique ID of the tenant for the operation. If TenantId isn't provided, it defaults to the current user's tenant. This parameter applies only to partner users.
+The unique ID of the tenant for the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
@@ -102,6 +102,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraBetaDirSyncConfiguration](Set-EntraBetaDirSyncConfiguration.md)

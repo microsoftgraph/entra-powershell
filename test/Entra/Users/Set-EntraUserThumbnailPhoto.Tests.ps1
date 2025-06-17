@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Set-MgUserPhotoContent -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Set-EntraUserThumbnailPhoto" {
@@ -27,7 +28,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         }
 
         It "Should fail when UserId is empty string value" {
-            { Set-EntraUserThumbnailPhoto -UserId ""} | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
+            { Set-EntraUserThumbnailPhoto -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
         }
 
         It "Should fail when UserId is empty" {
@@ -35,7 +36,7 @@ Describe "Set-EntraUserThumbnailPhoto" {
         }
 
         It "Should fail when RefObjectId is invalid" {
-            { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" RefObjectId "" } | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
@@ -75,7 +76,8 @@ Describe "Set-EntraUserThumbnailPhoto" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'-Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

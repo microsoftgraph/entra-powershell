@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,14 +11,15 @@ BeforeAll {
     $scriptblock = {
         @{
             "Info" = @(
-            @{
-                "logoUrl"    = ""
-                "Parameters" = $args
-            })                     
+                @{
+                    "logoUrl"    = ""
+                    "Parameters" = $args
+                })                     
         }
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
   
 Describe "Get-EntraBetaApplicationLogo" {
@@ -28,7 +29,7 @@ Describe "Get-EntraBetaApplicationLogo" {
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
     It "Should fail when ApplicationId is empty" {
-        { Get-EntraBetaApplicationLogo -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId'*"
+        { Get-EntraBetaApplicationLogo -ApplicationId "" } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
     }
     It "Should fail when ApplicationId is null" {
         { Get-EntraBetaApplicationLogo -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
@@ -51,7 +52,8 @@ Describe "Get-EntraBetaApplicationLogo" {
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { Get-EntraBetaApplicationLogo -ApplicationId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
-        } finally {
+        }
+        finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        
         }

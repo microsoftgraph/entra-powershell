@@ -8,7 +8,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
     [OutputType([System.Object])]
     param (
         [Parameter(ParameterSetName = 'GetById', HelpMessage = "The unique identifier of the tenant. Optional.")]
-        [ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw 'TenantId must be of type [System.Guid].' } })]
+        [Obsolete('This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user''s tenant ID. It should not be used for any other purpose.')]
         [System.Guid] $TenantId
     )
     begin { }
@@ -27,7 +27,7 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
 
         try {
             foreach ($obj in $Object) {
-                $uri = "https://graph.microsoft.com/beta/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
+                $uri = "/beta/" + $obj + "?`$filter=onPremisesProvisioningErrors/any(o:o/category ne null)&`$select=Id,UserPrincipalName,DisplayName,Mail,ProxyAddresses,onPremisesProvisioningErrors,onPremisesSyncEnabled&`$top=999"
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
                 $response.value | ForEach-Object {
                     $_ | Add-Member -MemberType NoteProperty -Name ObjectType -Value $obj -Force

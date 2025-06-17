@@ -222,4 +222,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 - A `NotFound` result doesn't necessarily mean the tenant doesn't exist; it might be in a different cloud environment.
 - Requires `CrossTenantInformation.ReadBasic.All` scope to read Microsoft Graph API info.
 
-## Related Links
+## Related links

@@ -4,11 +4,21 @@
 # ------------------------------------------------------------------------------ 
 function Reset-EntraLifeCycleGroup {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Id
+    param (                
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [Alias('ObjectId', 'Id')]
+        [Guid] $GroupId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Group.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}
@@ -35,8 +45,8 @@ function Reset-EntraLifeCycleGroup {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["GroupId"] = $PSBoundParameters["Id"]
+        if ($null -ne $PSBoundParameters["GroupId"]) {
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
         }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]

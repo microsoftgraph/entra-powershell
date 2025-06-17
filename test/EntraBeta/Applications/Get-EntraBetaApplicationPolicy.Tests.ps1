@@ -2,26 +2,26 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Applications       
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
 
-$scriptblock = {
+    $scriptblock = {
         return @{
             value = @(
                 @{
-                    "Id"                           = "bbbbbbbb-7777-8888-9999-cccccccccccc"
-                    "DeletedDateTime"              = $null
-                    "@odata.type"                  = "#microsoft.graph.policy"
-                    "keyCredentials"               = $null
-                    "alternativeIdentifier"        = $null
-                    "displayName"                  = "Mock application policy"
-                    "type"                         = "HomeRealmDiscoveryPolicy"
-                    "isOrganizationDefault"        = $false 
-                    "createdDateTime"              = "16-08-2023 08:25:02"      
-                    "Parameters"                   = $args                
+                    "Id"                    = "bbbbbbbb-7777-8888-9999-cccccccccccc"
+                    "DeletedDateTime"       = $null
+                    "@odata.type"           = "#microsoft.graph.policy"
+                    "keyCredentials"        = $null
+                    "alternativeIdentifier" = $null
+                    "displayName"           = "Mock application policy"
+                    "type"                  = "HomeRealmDiscoveryPolicy"
+                    "isOrganizationDefault" = $false 
+                    "createdDateTime"       = "16-08-2023 08:25:02"      
+                    "Parameters"            = $args                
                 }
             
             )
@@ -31,6 +31,7 @@ $scriptblock = {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 
 Describe "Get-EntraBetaApplicationPolicy" {
@@ -46,10 +47,10 @@ Describe "Get-EntraBetaApplicationPolicy" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraBetaApplicationPolicy -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraBetaApplicationPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraBetaApplicationPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaApplicationPolicy -Id "" } | Should -Throw "Cannot validate argument on parameter 'Id'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Result should Contain @odata.type" {
             $result = Get-EntraBetaApplicationPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
@@ -76,7 +77,8 @@ Describe "Get-EntraBetaApplicationPolicy" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaApplicationPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

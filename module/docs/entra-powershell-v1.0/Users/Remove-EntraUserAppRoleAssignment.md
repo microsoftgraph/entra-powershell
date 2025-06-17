@@ -89,7 +89,7 @@ Specifies the ID (as a UserPrincipleName or ObjectId) of a user in Microsoft Ent
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -108,7 +108,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 

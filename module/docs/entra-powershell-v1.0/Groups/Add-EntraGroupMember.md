@@ -27,12 +27,16 @@ Add a member to a security or Microsoft 365 group.
 Add-EntraGroupMember
  -GroupId <String>
  -MemberId <String>
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Add-EntraGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
+
+`New-EntraGroupMember` and `Add-EntraGroupMembership` are aliases of `Add-EntraGroupMember`.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
 
@@ -56,6 +60,32 @@ This example demonstrates how to add a member to a group.
 
 - `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
 - `-MemberId` - Specifies the unique identifier (Object ID) of the member to be added to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.
+
+### Example 2: Add members based on search results to a group
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraUser -Filter "startsWith(displayName,'Updated User')" | 
+    Add-EntraGroupMember -GroupId $group.Id
+```
+
+This example demonstrates how to add members based on a search result to a group.
+
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
+
+### Example 3: Sync users from one group to another
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraGroupMember -GroupId "source-group-id" | 
+    Add-EntraGroupMember -GroupId $group.Id
+```
+
+This example demonstrates how to sync group members from source target group to a new group.
+
+- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
 
 ## Parameters
 
@@ -101,7 +131,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
 

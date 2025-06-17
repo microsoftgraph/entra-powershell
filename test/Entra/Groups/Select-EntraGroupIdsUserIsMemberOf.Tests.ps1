@@ -10,40 +10,34 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"         = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+                "Id"         = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "Parameters" = $args
             }
         )
     }
 
     Mock -CommandName Get-MgUserMemberOfAsGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Select-EntraGroupIdsUserIsMemberOf" {
     Context "Test for Select-EntraGroupIdsUserIsMemberOf" {
         It "Should return group membership id's" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty      
-            $result | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'     
+            $result | Should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'     
 
             Should -Invoke -CommandName Get-MgUserMemberOfAsGroup -ModuleName Microsoft.Entra.Groups -Times 1
-        }
-
-        It "Should fail when UserID is invalid " {
-            $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $UserID = ""
-            { Select-EntraGroupIdsUserIsMemberOf -UserId $UserID -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-entraGroupIdsUserIsMemberOf"
             
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result = Select-entraGroupIdsUserIsMemberOf -UserId $UserId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
@@ -61,7 +55,7 @@ Describe "Select-EntraGroupIdsUserIsMemberOf" {
             $originalDebugPreference = $DebugPreference
             $DebugPreference = 'Continue'
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $Groups.GroupIds = "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $userID = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             try {

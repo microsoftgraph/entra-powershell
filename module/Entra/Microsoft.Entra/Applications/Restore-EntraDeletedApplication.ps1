@@ -4,15 +4,24 @@
 # ------------------------------------------------------------------------------ 
 function Restore-EntraDeletedApplication {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    param (
-                
-        [Parameter(ParameterSetName = "default")]
+    param (                
+        [Parameter(ParameterSetName = "default", HelpMessage = "Identifier URIs of the application.")]
         [System.Collections.Generic.List`1[System.String]] $IdentifierUris,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
+        [ValidateNotNullOrEmpty()]
         [Alias("ObjectId")]
         [System.String] $ApplicationId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

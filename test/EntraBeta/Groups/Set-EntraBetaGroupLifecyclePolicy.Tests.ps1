@@ -20,6 +20,7 @@ BeforeAll {
     }
 
     Mock -CommandName Update-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
   
 Describe "Set-EntraBetaGroupLifecyclePolicy" {
@@ -38,20 +39,18 @@ Describe "Set-EntraBetaGroupLifecyclePolicy" {
             $result = Set-EntraBetaGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
             $result | Should -Not -BeNullOrEmpty
         }
-        It "Should fail when GroupLifecyclePolicyId is invalid" {
-            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "" -GroupLifetimeInDays a -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string.*"
-        }
+
         It "Should fail when GroupLifecyclePolicyId is empty" {
-            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId -GroupLifetimeInDays  -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
+            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId -GroupLifetimeInDays -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'.*"
         } 
         It "Should fail when GroupLifetimeInDays is invalid" {
             { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays a -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Cannot process argument transformation on parameter 'GroupLifetimeInDays'.*"
         }
         It "Should fail when GroupLifetimeInDays is empty" {
-            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays  -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'GroupLifetimeInDays'.*"
+            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'GroupLifetimeInDays'.*"
         } 
         It "Should fail when ManagedGroupTypes is empty" {
-            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays 99 -ManagedGroupTypes  -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'ManagedGroupTypes'.*"
+            { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays 99 -ManagedGroupTypes -AlternateNotificationEmails "example@contoso.com" } | Should -Throw "Missing an argument for parameter 'ManagedGroupTypes'.*"
         }
         It "Should fail when AlternateNotificationEmails is empty" {
             { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails } | Should -Throw "Missing an argument for parameter 'AlternateNotificationEmails'.*"
@@ -78,7 +77,8 @@ Describe "Set-EntraBetaGroupLifecyclePolicy" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

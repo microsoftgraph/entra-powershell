@@ -104,7 +104,6 @@
   "Get-EntraDirectoryRoleMember": "DirectoryManagement",
   "Get-EntraDirectoryRoleTemplate": "DirectoryManagement",
   "Get-EntraDirSyncConfiguration": "DirectoryManagement",
-  "Get-EntraHasObjectsWithDirSyncProvisioningError": "DirectoryManagement",
   "Remove-EntraDirectoryRoleMember": "DirectoryManagement",
   "Restore-EntraDeletedDirectoryObject": "DirectoryManagement",
   "Set-EntraDirSyncConfiguration": "DirectoryManagement",
@@ -235,7 +234,7 @@
   "Get-CrossCloudVerificationCode": "DirectoryManagement",
   "Get-EntraContext": "Authentication",
   "Get-EntraEnvironment": "Authentication",
-  "Get-EntraObjectByObjectId": "DirectoryManagement",
+  "Get-EntraDirectoryObject": "DirectoryManagement",
   "Test-EntraScript": "Migration",
   "Get-EntraUnsupportedCommand": "Migration",
   "Get-EntraObjectSetting": "Groups",
@@ -262,5 +261,8 @@
   "Set-EntraDirectoryRoleDefinition": "Governance",
   "Update-EntraUserFromFederated": "Users",
   "Get-EntraDomainServiceConfigurationRecord":"DirectoryManagement",
-  "Get-EntraUserAuthenticationRequirement":"SignIns"
+  "Get-EntraUserAuthenticationRequirement":"SignIns",
+  "Get-EntraUserCertificateUserIdsFromCertificate":"CertificateBasedAuthentication",
+  "Set-EntraUserCBACertificateUserId": "CertificateBasedAuthentication",
+  "Get-EntraUserCBAAuthorizationInfo": "CertificateBasedAuthentication"
 }

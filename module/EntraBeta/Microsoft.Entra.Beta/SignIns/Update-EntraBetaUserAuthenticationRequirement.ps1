@@ -44,7 +44,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
 
             # Proper URL encoding for the UserId to handle special characters
             $encodedUserId = [System.Web.HttpUtility]::UrlEncode($UserId)
-            $uri = "https://graph.microsoft.com/beta/users/$encodedUserId/authentication/requirements"
+            $uri = "/beta/users/$encodedUserId/authentication/requirements"
             
             # Create the body for the PATCH request
             $body = @{

@@ -2,7 +2,6 @@
 title: Get-EntraExtensionProperty
 description: This article provides details on the Get-EntraExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -27,6 +26,9 @@ Gets extension properties registered with Microsoft Entra ID.
 ```powershell
 Get-EntraExtensionProperty
  [-IsSyncedFromOnPremises <Boolean>]
+ [-Name <String>]
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -55,12 +57,29 @@ Get-EntraExtensionProperty -IsSyncedFromOnPremises $True
 ```
 
 ```Output
-DeletedDateTime Id                                   AppDisplayName              DataType IsMultiValued IsSyncedFromOnPremises Name                                                           TargetObjects
---------------- --                                   --------------              -------- ------------- ---------------------- ----                                                           -------------
-                aaaabbbb-0000-cccc-1111-dddd2222eeee Tenant Schema Extension App String   False         True                   extension_aaaabbbb-0000-cccc-1111-dddd2222eeee_extensionAttribute1 {User}
+Id                                   AppDisplayName DataType IsMultiValued IsSyncedFromOnPremises Name                                                         TargetObjects
+--                                   -------------- -------- ------------- ---------------------- ----                                                         -------------
+bd647a28-ae50-4e03-a915-067da7ff6cec Contoso App          String   False         False                  extension_12345_JobGroup          {User}
+daa3b0e4-b14c-40a4-bb91-a2c017ac2b28 Contoso App          String   False         False                  extension_12345_CostCenter            {User}
+4113c724-f8c3-4fdf-ac5b-b1cf1440ff55 Contoso App          String   False         False                  extension_12345_EmploymentNumber             {}
 ```
 
 This command gets extension properties that have sync from on-premises Microsoft Entra ID.
+
+### Example 2: Get extension properties using extension name
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraExtensionProperty -IsSyncedFromOnPremises $False -Name extension_12345_JobGroup
+```
+
+```Output
+Id                                   AppDisplayName DataType IsMultiValued IsSyncedFromOnPremises Name                                                         TargetObjects
+--                                   -------------- -------- ------------- ---------------------- ----                                                         -------------
+bd647a28-ae50-4e03-a915-067da7ff6cec Contoso App     String   False         False                  extension_12345_JobGroup          {User}
+```
+
+This command retrieves extension based on the extension name (client-side filtering).
 
 ## Parameters
 
@@ -84,6 +103,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Name
+
+Filter using the extension name.
+
+```yaml
+Type: System.String
+Parameter Sets: Default
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -94,4 +129,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

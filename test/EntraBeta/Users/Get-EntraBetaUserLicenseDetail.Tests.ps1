@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Users) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Users    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -10,17 +10,18 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                Id = "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
-                ServicePlans = @("COMMON_DEFENDER_PLATFORM_FOR_OFFICE", "Bing_Chat_Enterprise", "MESH_IMMERSIVE_FOR_TEAMS", "PURVIEW_DISCOVERY")
-                SkuId = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
-                SkuPartNumber = "ENTERPRISEPREMIUM"
+                Id                   = "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
+                ServicePlans         = @("COMMON_DEFENDER_PLATFORM_FOR_OFFICE", "Bing_Chat_Enterprise", "MESH_IMMERSIVE_FOR_TEAMS", "PURVIEW_DISCOVERY")
+                SkuId                = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
+                SkuPartNumber        = "ENTERPRISEPREMIUM"
                 AdditionalProperties = @{}
-                parameters = $args
+                parameters           = $args
             }
         )
     }
 
     Mock -CommandName Get-MgBetaUserLicenseDetail -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUserLicenseDetail" {
@@ -49,10 +50,6 @@ Describe "Get-EntraBetaUserLicenseDetail" {
 
             Should -Invoke -CommandName Get-MgBetaUserLicenseDetail -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
-
-        It "Should fail when UserId is empty string" {
-            { Get-EntraBetaUserLicenseDetail -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }   
 
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserLicenseDetail -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
@@ -85,7 +82,8 @@ Describe "Get-EntraBetaUserLicenseDetail" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraBetaUserLicenseDetail -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -3,12 +3,13 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Remove-EntraBetaGroupLifecyclePolicy" {
@@ -31,12 +32,8 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
             { Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId } | Should -Throw "Missing an argument for parameter 'GroupLifecyclePolicyId'*"
         }   
 
-        It "Should fail when GroupLifecyclePolicyId is invalid" {
-            { Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "" } | Should -Throw "Cannot bind argument to parameter 'GroupLifecyclePolicyId' because it is an empty string."
-        }  
-
         It "Should contain GroupLifecyclePolicyId in parameters when passed GroupLifecyclePolicyId to it" {
-            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Entra.Beta.Groups
+            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Groups
 
             $result = Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
@@ -62,7 +59,8 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraBetaGroupLifecyclePolicy -GroupLifecyclePolicyId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -58,7 +58,7 @@ The unique identifier of a Microsoft Entra ID Application object.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: ApplicationId
 
 Required: True
 Position: Named
@@ -79,6 +79,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraBetaApplicationVerifiedPublisher](Set-EntraBetaApplicationVerifiedPublisher.md)

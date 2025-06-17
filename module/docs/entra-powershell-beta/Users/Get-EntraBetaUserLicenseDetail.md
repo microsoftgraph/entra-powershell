@@ -66,12 +66,12 @@ This example demonstrates how to retrieve license details for a user from Micros
 
 ### -UserId
 
-The object ID of the user for which the license details are retrieved.
+The object ID of the user for which the license details are retrieved. Specifies the ID of a user's UserPrincipalName or UserId in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -110,4 +110,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

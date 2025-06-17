@@ -11,15 +11,16 @@ BeforeAll {
         # Write-Host "Mocking Get-EntraObjectSetting with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                id    = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                displayName       = 'Group.Unified.Guest'
-                values     = @{value=$false; name="AllowToAddGuests"}
-                templateId   = "bbbbbbbb-1111-2222-3333-cccccccccaaa"
+                id          = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                displayName = 'Group.Unified.Guest'
+                values      = @{value = $false; name = "AllowToAddGuests" }
+                templateId  = "bbbbbbbb-1111-2222-3333-cccccccccaaa"
             }
         )
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Groups
 }
 
 Describe "Get-EntraObjectSetting" {
@@ -75,7 +76,8 @@ Describe "Get-EntraObjectSetting" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

@@ -8,6 +8,21 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Scopes      = @("Directory.ReadWrite.All")
+            Environment = "Global"  # Add the Environment property to the mock
+        }
+    } -ModuleName Microsoft.Entra.Beta.SignIns
+
+    # Mock the Get-EntraEnvironment command if needed
+    Mock -CommandName Get-EntraEnvironment -MockWith {
+        @{
+            Name          = "Global"
+            GraphEndPoint = "https://graph.microsoft.com"
+        }
+    } -ModuleName Microsoft.Entra.Beta.SignIns
+
     Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
@@ -48,7 +63,7 @@ Describe "Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
             Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Entra.Beta.SignIns
 
             $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $value = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbcccc-1111-dddd-2222-eeee3333ffff" 
+            $value = "https://graph.microsoft.com/beta/directoryObjects/bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params= Get-Parameters -data $result
             $params.OdataId | Should -Be $value
         }

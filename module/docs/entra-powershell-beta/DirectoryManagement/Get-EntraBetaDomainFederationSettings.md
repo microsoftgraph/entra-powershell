@@ -80,9 +80,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided, then the value will default to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique ID of the tenant to perform the operation on. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
@@ -126,6 +124,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Set-EntraBetaDomainFederationSettings](Set-EntraBetaDomainFederationSettings.md)

@@ -9,7 +9,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                "Id"                   = "b3f1c54f-1b1f-40fc-8d6d-cd4dc041e959"
                 "AdditionalProperties" = @{
                     "@odata.type"   = "#microsoft.graph.phoneAuthenticationMethod";
                     createdDateTime = "2023-11-21T12:43:51Z";
@@ -25,7 +25,7 @@ BeforeAll {
 Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
     Context "Test for Reset-EntraStrongAuthenticationMethodByUpn" {
         It "Should Resets the strong authentication method" {
-            $result = Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            $result = Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             $result | Should -BeNullOrEmpty
        
             Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.SignIns -Times 1
@@ -35,26 +35,26 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
         }  
   
         It "Should set correct UserId" {
-            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
-                $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
+                $userId | Should -Be 'SawyerM@contoso.com'
                 $true
             }
         }
         It "Should set correct PhoneAuthenticationMethodId" {
-            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.SignIns -Times 1
             Should -Invoke -CommandName Remove-MgUserAuthenticationPhoneMethod -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
-                $userId | Should -Be 'Test_contoso@M365x99297270.onmicrosoft.com'
-                $PhoneAuthenticationMethodId | Should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+                $userId | Should -Be 'SawyerM@contoso.com'
+                $PhoneAuthenticationMethodId | Should -Be 'b3f1c54f-1b1f-40fc-8d6d-cd4dc041e959'
                 $true
             }
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraStrongAuthenticationMethodByUpn"
 
-            # Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' | Out-Null
-            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
+            # Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'SawyerM@contoso.com' | Out-Null
+            Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             Should -Invoke -CommandName Get-MgUserAuthenticationMethod -ModuleName Microsoft.Entra.SignIns -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -67,7 +67,7 @@ Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com' -Debug } | Should -Not -Throw
+                { Reset-EntraStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com' -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

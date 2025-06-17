@@ -94,4 +94,4 @@ The most effective way to protect users with Microsoft Entra MFA is by creating 
 
 For Microsoft Entra ID Free tenants without Conditional Access, you can [use security defaults](https://learn.microsoft.com/entra/fundamentals/security-defaults) to protect users. MFA prompts are automatic, but you can't customize the rules.
 
-## Related Links
+## Related links

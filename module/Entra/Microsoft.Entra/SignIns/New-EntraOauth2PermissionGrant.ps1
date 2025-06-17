@@ -24,7 +24,7 @@ function New-EntraOauth2PermissionGrant {
     PROCESS {
         $params = @{}
         $body = @{}
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/oauth2PermissionGrants"
+        $params["Uri"] = "/v1.0/oauth2PermissionGrants"
         $params["Method"] = "POST"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 

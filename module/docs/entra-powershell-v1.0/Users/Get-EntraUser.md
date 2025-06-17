@@ -473,7 +473,7 @@ Specifies the ID (as a User Principal Name (UPN) or UserId) of a user in Microso
 ```yaml
 Type: System.String
 Parameter Sets: GetById
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -540,7 +540,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [New-EntraUser](New-EntraUser.md)
 

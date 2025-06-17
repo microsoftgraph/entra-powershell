@@ -27,12 +27,16 @@ Add a user or service principal as an owner of a Microsoft 365 or security group
 Add-EntraGroupOwner
  -GroupId <String>
  -OwnerId <String>
+ [-WhatIf]
+ [-Confirm]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Add-EntraGroupOwner` cmdlet adds a user or service principal as an owner of a Microsoft 365 or security group. Owners can modify the group.
+
+`New-EntraGroupOwner` is an alias of `Add-EntraGroupOwner`.
 
 In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
 
@@ -101,7 +105,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraGroupOwner](Get-EntraGroupOwner.md)
 

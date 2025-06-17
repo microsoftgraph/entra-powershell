@@ -10,16 +10,17 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"              = "T2qU_E28O0GgkLLIYRPsTwE"
+                "Id"             = "T2qU_E28O0GgkLLIYRPsTwE"
                 "Classification" = "low"
-                "PermissionId"     = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
-                "PermissionName"     = "LicenseManager.AccessAsUser"
-                "Parameters"      = $args
+                "PermissionId"   = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
+                "PermissionName" = "LicenseManager.AccessAsUser"
+                "Parameters"     = $args
             }
         )
     }
 
     Mock -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Applications
 }
   
 Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
@@ -32,7 +33,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is invalid" {
-            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when ServicePrincipalId is empty" {
             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
@@ -43,7 +44,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             $params.DelegatedPermissionClassificationId | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
         } 
         It "Should fail when Id is invalid" {
-            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id "" } | Should -Throw "Cannot validate argument on parameter 'Id'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }  
         It "Should fail when Id is empty" {
             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
@@ -64,7 +65,7 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }  
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
@@ -87,7 +88,8 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

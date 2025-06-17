@@ -5,13 +5,24 @@
 function Add-EntraBetaLifecyclePolicyGroup {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(ParameterSetName = "Default", Mandatory = $true)]
-        [System.String] $GroupId,
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, HelpMessage = "Unique ID of the group. Should be a valid GUID value.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $GroupId,
 
         [Alias('Id')]            
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $GroupLifecyclePolicyId
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of the lifecycle policy object in Microsoft Entra ID.")]
+        [ValidateNotNullOrEmpty()]
+        [Guid] $GroupLifecyclePolicyId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Directory.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     PROCESS {    
         $params = @{}

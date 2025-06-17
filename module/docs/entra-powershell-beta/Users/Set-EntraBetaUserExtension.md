@@ -159,7 +159,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 `Update-EntraBetaUserExtension` is an alias for `Set-EntraBetaUserExtension`.
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

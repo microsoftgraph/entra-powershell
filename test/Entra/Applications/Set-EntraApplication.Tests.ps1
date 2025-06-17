@@ -3,17 +3,18 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications      
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgApplication -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
-Describe "Set-EntraApplication"{
+Describe "Set-EntraApplication" {
     Context "Test for Set-EntraApplication" {
-        It "Should return empty object"{
+        It "Should return empty object" {
             $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
@@ -32,7 +33,7 @@ Describe "Set-EntraApplication"{
             { Set-EntraApplication -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         } 
         It "Should contain ApplicationId in parameters when passed ApplicationId to it" {
-            Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Entra.Applications
+            Mock -CommandName Update-MgApplication -MockWith { $args } -ModuleName Microsoft.Entra.Applications
 
             $result = Set-EntraApplication -ApplicationId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result = Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
@@ -59,7 +60,8 @@ Describe "Set-EntraApplication"{
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Set-EntraApplication -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

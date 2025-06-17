@@ -81,7 +81,7 @@ Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword -F
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
 
-- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
 - `-ForceChangePasswordNextLogin` parameter forces a user to change their password during their next log in.
 
@@ -126,7 +126,7 @@ Specifies the ID of a user.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -161,4 +161,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

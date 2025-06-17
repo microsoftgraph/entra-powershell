@@ -10,6 +10,15 @@ function Get-EntraBetaUserSponsor {
         [System.String] $Filter,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier (User ID) of the user whose sponsor information you want to retrieve.")]
+        [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or 
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "UserId must be a valid email address or GUID."
+            })]
         [System.String] $UserId,
 
         [Alias('Limit')]
@@ -28,11 +37,20 @@ function Get-EntraBetaUserSponsor {
         [System.String[]] $Property
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/beta/users/$UserId/sponsors"
+        $baseUri = "/beta/users/$UserId/sponsors"
         $properties = '$select=*'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri/?$properties"        
@@ -85,7 +103,7 @@ function Get-EntraBetaUserSponsor {
         if ($data) {
             $memberList = @()
             foreach ($response in $data) {
-                $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $memberType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
                 if (-not ($response -is [PSObject])) {
                     $response = [PSCustomObject]@{ Value = $response }
                 }

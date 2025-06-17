@@ -2,12 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Remove-EntraServicePrincipalOwner" {
@@ -23,26 +24,26 @@ Describe "Remove-EntraServicePrincipalOwner" {
             Should -Invoke -CommandName Remove-MgServicePrincipalOwnerByRef -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
-            { Remove-EntraServicePrincipalOwner -ServicePrincipalId  -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" }| Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"                
+            { Remove-EntraServicePrincipalOwner -ServicePrincipalId -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"                
         } 
         It "Should fail when ServicePrincipalId is invalid" {
-            { Remove-EntraServicePrincipalOwner -ServicePrincipalId "" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"} | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
+            { Remove-EntraServicePrincipalOwner -ServicePrincipalId "" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should fail when OwnerId is empty" {
             { Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'.*"
         }
         It "Should fail when OwnerId is invalid" {
-            { Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId ""} | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string."
+            { Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "" } | Should -Throw "Cannot validate argument on parameter 'OwnerId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
         It "Should contain ServicePrincipalId in parameters when passed ServicePrincipalId to it" {
-            Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Applications
+            Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Applications
 
             $result = Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
             $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
-            Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Entra.Applications
+            Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith { $args } -ModuleName Microsoft.Entra.Applications
 
             $result = Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
@@ -69,8 +70,9 @@ Describe "Remove-EntraServicePrincipalOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
-            } finally {
+                { Remove-EntraServicePrincipalOwner -ServicePrincipalId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

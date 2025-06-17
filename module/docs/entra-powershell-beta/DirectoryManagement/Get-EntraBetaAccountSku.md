@@ -95,7 +95,7 @@ This command returns a list of SKUs for a specified tenant.
 
 ### -TenantId
 
-The unique tenant ID for the operation. Defaults to the current user's tenant if not specified. This parameter is included for compatibility with legacy PowerShell modules
+The unique tenant ID for the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
@@ -119,4 +119,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

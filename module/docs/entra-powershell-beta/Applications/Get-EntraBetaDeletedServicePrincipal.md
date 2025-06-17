@@ -271,6 +271,6 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)

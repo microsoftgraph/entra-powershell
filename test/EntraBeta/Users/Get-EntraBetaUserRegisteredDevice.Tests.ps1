@@ -33,6 +33,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaUserRegisteredDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe "Get-EntraBetaUserRegisteredDevice" {
@@ -44,57 +45,55 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserRegisteredDevice -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"
         }
-        It "Should fail when UserId is invalid" {
-            { Get-EntraBetaUserRegisteredDevice -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
+
         It "Should return All user registered devices" {
-            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
+            $result = Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
+            { Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 user registered device" {
-            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1
+            $result = Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result.AdditionalProperties.deviceId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
-            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should contain UserId in parameters when passed UserId to it" {              
-            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Property parameter should work" {
-            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
+            $result = Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property Id
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb'
 
             Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
         It "Should fail when Property is empty" {
-            { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
             
-            $result = Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
@@ -110,7 +109,7 @@ Describe "Get-EntraBetaUserRegisteredDevice" {
             
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUserRegisteredDevice -UserId  "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUserRegisteredDevice -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

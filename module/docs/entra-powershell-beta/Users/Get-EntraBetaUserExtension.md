@@ -62,12 +62,12 @@ This example shows how to retrieve the extension attributes for a specified user
 
 ### -UserId
 
-Specifies the ID of an object.
+Specifies the ID of a user's UserPrincipalName or UserId in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -102,7 +102,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

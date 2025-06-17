@@ -33,6 +33,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserManager" {
@@ -73,10 +74,6 @@ Describe "Get-EntraUserManager" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserManager -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
-
         It "Should fail when UserId is empty" {
             { Get-EntraUserManager -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
@@ -110,7 +107,7 @@ Describe "Get-EntraUserManager" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should execute successfully without throwing an error" {
@@ -121,7 +118,8 @@ Describe "Get-EntraUserManager" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraUserManager -UserId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

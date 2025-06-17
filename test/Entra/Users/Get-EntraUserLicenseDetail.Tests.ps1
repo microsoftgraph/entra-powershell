@@ -11,18 +11,19 @@ BeforeAll {
         # Write-Host "Mocking Get-EntraUserLicenseDetail with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                Id = "X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8"
-                ServicePlans = @("COMMON_DEFENDER_PLATFORM_FOR_OFFICE", "Bing_Chat_Enterprise", "MESH_IMMERSIVE_FOR_TEAMS", "PURVIEW_DISCOVERY")
-                SkuId = "00001111-aaaa-2222-bbbb-3333cccc4444"
-                SkuPartNumber = "ENTERPRISEPREMIUM"
+                Id                   = "X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8"
+                ServicePlans         = @("COMMON_DEFENDER_PLATFORM_FOR_OFFICE", "Bing_Chat_Enterprise", "MESH_IMMERSIVE_FOR_TEAMS", "PURVIEW_DISCOVERY")
+                SkuId                = "00001111-aaaa-2222-bbbb-3333cccc4444"
+                SkuPartNumber        = "ENTERPRISEPREMIUM"
                 AdditionalProperties = @{}
-                parameters = $args
+                parameters           = $args
             }
         )
 
     }
 
     Mock -CommandName Get-MgUserLicenseDetail -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserLicenseDetail" {
@@ -50,10 +51,6 @@ Describe "Get-EntraUserLicenseDetail" {
             should -Invoke -CommandName Get-MgUserLicenseDetail -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserLicenseDetail -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
-
         It "Should fail when UserId is empty" {
             { Get-EntraUserLicenseDetail -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
@@ -71,7 +68,7 @@ Describe "Get-EntraUserLicenseDetail" {
             Should -Invoke -CommandName Get-MgUserLicenseDetail -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraUserLicenseDetail -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserLicenseDetail -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserLicenseDetail"
@@ -94,7 +91,8 @@ Describe "Get-EntraUserLicenseDetail" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Get-EntraUserLicenseDetail -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

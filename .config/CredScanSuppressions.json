@@ -40,6 +40,14 @@
       {
         "file": "test\\Entra\\Users\\New-EntraUser.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
+        "file": "test\\EntraBeta\\Users\\New-EntraBetaUser.Tests.ps1",
+        "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
+        "file": "test\\Entra\\CertificateBasedAuthentication\\Get-EntraUserCertificateUserIdsFromCertificate.Tests.ps1",
+        "_justification": "Unit test file has a sample certificate with only public keys used in mocking."
       }
     ]
 }

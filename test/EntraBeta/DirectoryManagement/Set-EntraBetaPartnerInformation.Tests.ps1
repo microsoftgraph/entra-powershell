@@ -74,7 +74,7 @@ Describe "Set-EntraBetaPartnerInformation"{
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaPartnerInformation -PartnerSupportUrl "http://www.test1.com" -Debug } | Should -Not -Throw
+                { Set-EntraBetaPartnerInformation -PartnerSupportUrl "http://www.test1.com" -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

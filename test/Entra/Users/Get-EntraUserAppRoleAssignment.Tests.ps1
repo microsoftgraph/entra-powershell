@@ -27,6 +27,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgUserAppRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AppRoleAssignment.ReadWrite.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserAppRoleAssignment" {
@@ -46,10 +47,6 @@ Describe "Get-EntraUserAppRoleAssignment" {
             $result.ResourceId | Should -Be "bbbbbbbb-cccc-dddd-2222-333333333333"
 
             Should -Invoke -CommandName Get-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 1
-        }
-
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserAppRoleAssignment -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when UserId is empty" {

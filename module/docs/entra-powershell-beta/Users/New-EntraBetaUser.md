@@ -33,21 +33,18 @@ New-EntraBetaUser
  [-MailNickName <String>]
  [-ShowInAddressList <Boolean>]
  [-Department <String>]
- [-TelephoneNumber <String>]
+ [-BusinessPhones <String>]
  [-PreferredLanguage <String>]
  [-Mobile <String>]
  [-JobTitle <String>]
  [-ConsentProvidedForMinor <String>]
- [-PhysicalDeliveryOfficeName <String>]
  [-PasswordPolicies <String>]
- [-IsCompromised <Boolean>]
  [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
  [-OtherMails <System.Collections.Generic.List`1[System.String]>]
  [-UserState <String>]
  [-ImmutableId <String>]
  [-City <String>]
  [-AgeGroup <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
  [-UsageLocation <String>]
  [-UserStateChangedOn <String>]
  [-Country <String>]
@@ -57,7 +54,7 @@ New-EntraBetaUser
  [-StreetAddress <String>]
  [-State <String>]
  [-CompanyName <String>]
- [-FacsimileTelephoneNumber <String>]
+ [-FaxNumber <String>]
  [-Surname <String>]
  [-CreationType <String>]
  [<CommonParameters>]
@@ -300,22 +297,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExtensionProperty
-
-Add data to custom user properties as the basic **open extensions** or the more versatile **schema extensions**.
-
-```yaml
-Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -GivenName
 
 Specifies the user's given name.
@@ -340,22 +321,6 @@ Important: The $ and _ characters can't be used when specifying this property.
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IsCompromised
-
-Indicates whether this user is compromised.
-
-```yaml
-Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -485,22 +450,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PhysicalDeliveryOfficeName
-
-Specifies the user's physical delivery office name.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -PostalCode
 
 Specifies the user's postal code.
@@ -617,14 +566,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -TelephoneNumber
+### -BusinessPhones
 
 Specifies a telephone number.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: TelephoneNumber
 
 Required: False
 Position: Named
@@ -695,14 +644,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FacsimileTelephoneNumber
+### -FaxNumber
 
-Specifies the user's telephone number.
+Specifies the user's fax number.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: FacsimileTelephoneNumber, Fax
 
 Required: False
 Position: Named
@@ -802,7 +751,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

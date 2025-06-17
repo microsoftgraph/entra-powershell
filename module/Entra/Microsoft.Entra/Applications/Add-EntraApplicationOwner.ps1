@@ -7,12 +7,24 @@ function Add-EntraApplicationOwner {
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the application object (Application Object ID).")]
-        [System.String] $ApplicationId,
+        [ValidateNotNullOrEmpty()]
+        [guid] $ApplicationId,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the user, group, or service principal to be added as an owner of the application.")]
         [Alias('RefObjectId')]
-        [System.String] $OwnerId
+        [ValidateNotNullOrEmpty()]
+        [guid] $OwnerId
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -22,8 +34,18 @@ function Add-EntraApplicationOwner {
 
         $newOwner = @{}
 
+        $rootUri = (Get-EntraEnvironment -Name (Get-EntraContext).Environment).GraphEndpoint
+
+        if (-not $rootUri) {
+            $rootUri = "https://graph.microsoft.com"
+            Write-Verbose "Using default Graph endpoint: $rootUri"
+        }
+        else {
+            Write-Verbose "Using environment-specific Graph endpoint: $rootUri"
+        }
+        
         if ($null -ne $PSBoundParameters["OwnerId"]) {
-            $newOwner["@odata.id"] = "https://graph.microsoft.com/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
+            $newOwner["@odata.id"] = "$rootUri/v1.0/directoryObjects/" + $PSBoundParameters["OwnerId"]
             $params["BodyParameter"] = $newOwner
         }
         if ($null -ne $PSBoundParameters["WarningVariable"]) {

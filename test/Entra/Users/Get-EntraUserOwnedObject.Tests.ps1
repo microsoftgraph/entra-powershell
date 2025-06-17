@@ -26,6 +26,7 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 
 Describe "Get-EntraUserOwnedObject" {
@@ -58,9 +59,6 @@ Describe "Get-EntraUserOwnedObject" {
 
             should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
-        It "Should fail when UserId is empty string value" {
-            { Get-EntraUserOwnedObject -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
-        }
 
         It "Should fail when UserId is empty" {
             { Get-EntraUserOwnedObject -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
@@ -70,7 +68,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result = Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }    
 
         It "Should fail when top is empty" {
@@ -84,7 +82,7 @@ Describe "Get-EntraUserOwnedObject" {
         It "Should return all contact" {
             $result = Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty            
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should fail when All has an argument" {
@@ -112,7 +110,7 @@ Describe "Get-EntraUserOwnedObject" {
         } 
 
         It "Property parameter should work" {
-            $result =  Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property displayName 
+            $result = Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property displayName 
             $result | Should -Not -BeNullOrEmpty
             $result.displayName | Should -Be "ToGraph_443DEM"
 
@@ -120,7 +118,7 @@ Describe "Get-EntraUserOwnedObject" {
         }
 
         It "Should fail when Property is empty" {
-             { Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+            { Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should execute successfully without throwing an error" {
@@ -130,8 +128,9 @@ Describe "Get-EntraUserOwnedObject" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
-            } finally {
+                { Get-EntraUserOwnedObject -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

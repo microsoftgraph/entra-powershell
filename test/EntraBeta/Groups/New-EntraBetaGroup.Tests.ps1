@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Beta.Groups) -eq $null) {
         Import-Module Microsoft.Entra.Beta.Groups    
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
@@ -11,25 +11,26 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "DisplayName"                     = "My Test san"
-              "Id"                              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
-              "MailEnabled"                     = $false
-              "Description"                     = ""
-              "CreatedByAppId"                  = "bbbbbbbb-1111-2222-3333-cccccccccc56"
-              "Mail"                            = ""
-              "MailNickname"                    = "NotSet"
-              "SecurityEnabled"                 = $true
-              "Visibility"                      = ""
-              "IsAssignableToRole"              = ""
-              "GroupTypes"                      = @{}
-              "ProxyAddresses"                  = @{} 
-              "MembershipRule"                  = ""
-              "MembershipRuleProcessingState"   = ""
-              "Parameters"                      = $args
+                "DisplayName"                   = "My Test san"
+                "Id"                            = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "MailEnabled"                   = $false
+                "Description"                   = ""
+                "CreatedByAppId"                = "bbbbbbbb-1111-2222-3333-cccccccccc56"
+                "Mail"                          = ""
+                "MailNickname"                  = "NotSet"
+                "SecurityEnabled"               = $true
+                "Visibility"                    = ""
+                "IsAssignableToRole"            = ""
+                "GroupTypes"                    = @{}
+                "ProxyAddresses"                = @{} 
+                "MembershipRule"                = ""
+                "MembershipRuleProcessingState" = ""
+                "Parameters"                    = $args
             } 
         )
     }
     Mock -CommandName New-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Group.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "New-EntraBetaGroup" {
@@ -59,11 +60,11 @@ Describe "New-EntraBetaGroup" {
         }
 
         It "Should fail when MailEnabled parameters are Invalid" {
-            { New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled "test"  } | Should -Throw "Cannot process argument transformation on parameter*"
+            { New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled "test" } | Should -Throw "Cannot process argument transformation on parameter*"
         }
 
         It "Should fail when SecurityEnabled parameters are Invalid" {
-            { New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled $false -SecurityEnabled 'test'  } | Should -Throw "Cannot process argument transformation*"
+            { New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled $false -SecurityEnabled 'test' } | Should -Throw "Cannot process argument transformation*"
         }
 
         It "Should contain ObjectId in result" {
@@ -93,7 +94,8 @@ Describe "New-EntraBetaGroup" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

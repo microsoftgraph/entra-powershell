@@ -29,6 +29,7 @@ Get-EntraBetaUserCreatedObject
  -UserId <String>
  [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -114,7 +115,7 @@ Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId, UPN, Identity, UserPrincipalName
 
 Required: True
 Position: Named
@@ -165,4 +166,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

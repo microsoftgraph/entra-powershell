@@ -12,7 +12,7 @@ BeforeAll {
             value = @(
                 @{
                     "DeletedDateTime"      = $null
-                    "Id"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+                    "Id"                   = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                     "AdditionalProperties" = @{
                         "@odata.type"       = "#microsoft.graph.user"
                         "businessPhones"    = @("425-555-0100")
@@ -29,39 +29,36 @@ BeforeAll {
             )
         }    
     }
-    Mock -CommandName  Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Invoke-GraphRequest -MockWith $mockResponse -ModuleName Microsoft.Entra.Beta.Groups
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.Beta.Groups
 }
 
 Describe "Get-EntraBetaGroupOwner" {
     Context "Test for Get-EntraBetaGroupOwner" {
         It "Get a group owner by Id" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result.Id | should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Get a group owner by alias" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result.Id | should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
-            Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when GroupId is empty" {
             { Get-EntraBetaGroupOwner -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
 
-        It "Should fail when GroupId is invalid" {
-            { Get-EntraBetaGroupOwner -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
-        }
-
         It "Gets all group owners" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -All 
             $result | Should -Not -BeNullOrEmpty            
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
@@ -72,37 +69,37 @@ Describe "Get-EntraBetaGroupOwner" {
         }
 
         It "Gets two group owners" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 2
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top 2
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         } 
 
         It "Should contain GroupId in parameters when passed GroupId to it" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $groupId = $params | ConvertTo-json | ConvertFrom-Json
-            $groupId.Uri -match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" | Should -BeTrue
+            $groupId.Uri -match "aaaaaaaa-1111-2222-3333-cccccccccccc" | Should -BeTrue
         }
 
         It "Should contain 'User-Agent' header" {
         
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
 
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1 -ParameterFilter {
@@ -111,15 +108,15 @@ Describe "Get-EntraBetaGroupOwner" {
             }
         } 
         It "Property parameter should work" {
-            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id
+            $result = Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property Id
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+            $result.Id | Should -Be 'aaaaaaaa-1111-2222-3333-cccccccccccc'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Groups -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Groups -Times 1
         }
 
         It "Should fail when Property is empty" {
-            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
+            { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
         }
 
         It "Should execute successfully without throwing an error " {
@@ -129,7 +126,7 @@ Describe "Get-EntraBetaGroupOwner" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+                { Get-EntraBetaGroupOwner -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

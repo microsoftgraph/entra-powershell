@@ -64,7 +64,7 @@ This example turns on directory synchronization for a company.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force $true
+Set-EntraDirSyncEnabled -EnableDirsync $false -TenantId $tenantID -Force
 ```
 
 This example turns off directory synchronization for a company.
@@ -92,9 +92,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-Specifies the unique ID of the tenant on which to perform the operation.
-The default value is the tenant of the current user.
-This parameter applies only to partner users.
+Specifies the unique ID of the tenant on which to perform the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
 
 ```yaml
 Type: System.String
@@ -132,4 +130,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related Links
+## Related links

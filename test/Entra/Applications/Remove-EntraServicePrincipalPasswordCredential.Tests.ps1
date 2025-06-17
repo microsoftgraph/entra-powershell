@@ -2,12 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Entra.Applications) -eq $null){
+    if ((Get-Module -Name Microsoft.Entra.Applications) -eq $null) {
         Import-Module Microsoft.Entra.Applications
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {} -ModuleName Microsoft.Entra.Applications
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Remove-EntraServicePrincipalPasswordCredential" {
@@ -25,19 +26,19 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
             Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Entra.Applications -Times 1
         }
         It "Should fail when ServicePrincipalId is empty" {
-            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId  -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
+            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
         }   
         It "Should fail when ServicePrincipalId is invalid" {
-            {Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Cannot bind argument to parameter 'ServicePrincipalId'*"
+            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }  
         It "Should fail when KeyId is empty" {
-            {Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId   } | should -Throw "Missing an argument for parameter 'KeyId'.*"
+            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId } | should -Throw "Missing an argument for parameter 'KeyId'.*"
         }   
         It "Should fail when KeyId is invalid" {
-            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId ""} | should -Throw "Cannot bind argument to parameter 'KeyId'*"
+            { Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "" } | should -Throw "Cannot validate argument on parameter 'KeyId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }  
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Entra.Applications
+            Mock -CommandName Remove-MgServicePrincipalPassword -MockWith { $args } -ModuleName Microsoft.Entra.Applications
 
             $result = Remove-EntraServicePrincipalPasswordCredential -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
@@ -63,7 +64,8 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
-            } finally {
+            }
+            finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }

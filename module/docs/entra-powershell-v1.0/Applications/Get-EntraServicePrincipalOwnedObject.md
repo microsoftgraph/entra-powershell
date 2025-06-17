@@ -171,6 +171,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 You can use the command `Add-EntraServicePrincipalOwner` to add an owner to a service principal.
 
-## Related Links
+## Related links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
