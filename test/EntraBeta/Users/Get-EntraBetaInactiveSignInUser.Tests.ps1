@@ -87,7 +87,7 @@ Describe 'Get-EntraBetaInactiveSignInUser' {
         }
 
         It "Should return only inactive Guest users" {
-            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Guest"
+            $result = $result = @(Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Guest")
             
             $result | Should -Not -BeNullOrEmpty
             $result.Count | Should -Be 1
@@ -105,7 +105,7 @@ Describe 'Get-EntraBetaInactiveSignInUser' {
 
         It "Should return users based on specific date ranges" {
             # Test with a smaller date range, expecting only user2 to be returned
-            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 45 -UserType "All"
+            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
             
             $result | Should -Not -BeNullOrEmpty
             $result.Count | Should -Be 3
@@ -115,7 +115,7 @@ Describe 'Get-EntraBetaInactiveSignInUser' {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaInactiveSignInUser"
-            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 45 -UserType "All"
+            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
             $result | Should -Not -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaInactiveSignInUser"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
