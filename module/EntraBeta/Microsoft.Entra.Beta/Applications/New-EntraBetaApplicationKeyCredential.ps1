@@ -41,14 +41,26 @@ function New-EntraBetaApplicationKeyCredential {
     PROCESS {    
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
+        $keyCredential = @{}
 
-        $keyCredential = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphKeyCredential
-        $keyCredential.CustomKeyIdentifier = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["CustomKeyIdentifier"])
-        $keyCredential.StartDateTime = $PSBoundParameters["StartDate"]
-        $keyCredential.EndDateTime = $PSBoundParameters["EndDate"]
-        $keyCredential.Key = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["Value"])
-        $keyCredential.Type = $PSBoundParameters["Type"]
-        $keyCredential.Usage = $PSBoundParameters["Usage"]
+        if ($null -ne $PSBoundParameters["CustomKeyIdentifier"]) {
+            $keyCredential["CustomKeyIdentifier"] = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["CustomKeyIdentifier"])
+        }
+        if ($null -ne $PSBoundParameters["StartDate"]) {
+            $keyCredential["StartDateTime"] = $PSBoundParameters["StartDate"]
+        }
+        if ($null -ne $PSBoundParameters["EndDate"]) {
+            $keyCredential["EndDateTime"] = $PSBoundParameters["EndDate"]
+        }
+        if ($null -ne $PSBoundParameters["Value"]) {
+            $keyCredential["Key"] = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["Value"])
+        }
+        if ($null -ne $PSBoundParameters["Type"]) {
+            $keyCredential["Type"] = $PSBoundParameters["Type"]
+        }
+        if ($null -ne $PSBoundParameters["Usage"]) {
+            $keyCredential["Usage"] = $PSBoundParameters["Usage"]
+        }
 
         $params["KeyCredential"] = $keyCredential
 
@@ -99,7 +111,7 @@ function New-EntraBetaApplicationKeyCredential {
         $response = Add-MgBetaApplicationKey @params -Headers $customHeaders
         $response | ForEach-Object {
             if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value ApplicationId
 
             }
         }
