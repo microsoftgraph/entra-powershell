@@ -87,7 +87,7 @@ Describe 'Get-EntraBetaInactiveSignInUser' {
         }
 
         It "Should return only inactive Guest users" {
-            $result = $result = @(Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Guest")
+            $result = $result = @(Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Guest")
             
             $result | Should -Not -BeNullOrEmpty
             $result.Count | Should -Be 1
