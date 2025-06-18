@@ -56,8 +56,8 @@ function New-EntraBetaServicePrincipalKeyCredential {
                 type = $Type
                 usage = $Usage
                 key = $Value
-                DateTimeStart = $StartDate
-                DateTimeEnd = $EndDate
+                dateTimeStart = $StartDate
+                dateTimeEnd = $EndDate
                 customKeyIdentifier = $CustomKeyIdentifier
             }
             passwordCredential = $null
