@@ -1,19 +1,17 @@
 ---
-title: Remove-EntraBetaDeviceRegisteredOwner
-description: This article provides details on the Remove-EntraBetaDeviceRegisteredOwner command.
-
-ms.topic: reference
-ms.date: 02/05/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Remove-EntraBetaDeviceRegisteredOwner command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/05/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDeviceRegisteredOwner
-
 schema: 2.0.0
+title: Remove-EntraBetaDeviceRegisteredOwner
 ---
 
 # Remove-EntraBetaDeviceRegisteredOwner

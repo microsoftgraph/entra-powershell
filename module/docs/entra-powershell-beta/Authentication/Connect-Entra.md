@@ -1,18 +1,17 @@
 ---
-title: Connect-Entra
-description: This article provides details on the Connect-Entra Command.
-
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Connect-Entra Command.
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/26/2024
+ms.reviewer: stevemutungi254
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Connect-Entra
-
 schema: 2.0.0
+title: Connect-Entra
 ---
 
 # Connect-Entra

@@ -1,18 +1,16 @@
 ---
-title: Get-EntraDeletedGroup
 description: This article provides details on the Get-EntraDeletedGroup command.
-
-ms.topic: reference
-ms.date: 02/12/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Groups-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 02/12/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDeletedGroup
-
 schema: 2.0.0
+title: Get-EntraDeletedGroup
 ---
 
 # Get-EntraDeletedGroup

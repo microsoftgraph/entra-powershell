@@ -1,18 +1,17 @@
 ---
-title: Get-EntraUserAppRoleAssignment
-description: This article provides details on the Get-EntraUserAppRoleAssignment command.
-
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Get-EntraUserAppRoleAssignment command.
 external help file: Microsoft.Entra.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 06/26/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUserAppRoleAssignment
-
 schema: 2.0.0
+title: Get-EntraUserAppRoleAssignment
 ---
 
 # Get-EntraUserAppRoleAssignment

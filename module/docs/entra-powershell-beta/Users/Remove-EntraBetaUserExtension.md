@@ -1,18 +1,17 @@
 ---
-title: Remove-EntraBetaUserExtension
-description: This article provides details on the Remove-EntraBetaUserExtension command.
-
-ms.topic: reference
-ms.date: 07/17/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Remove-EntraBetaUserExtension command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/17/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaUserExtension
-
 schema: 2.0.0
+title: Remove-EntraBetaUserExtension
 ---
 
 # Remove-EntraBetaUserExtension

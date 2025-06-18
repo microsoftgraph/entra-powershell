@@ -1,18 +1,17 @@
 ---
-title: Set-EntraUserCBACertificateUserId
-description: Sets certificate-based authentication user IDs for a user in Microsoft Entra ID
-ms.topic: reference
-ms.date: 04/13/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: Sets certificate-based authentication user IDs for a user in Microsoft Entra ID
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
-Module Name: Microsoft.Entra.CertificateBasedAuthentication
+Locale: en-US
+manager: CelesteDG
+Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 04/13/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.CertificateBasedAuthentication/Set-EntraUserCBACertificateUserId
-
 schema: 2.0.0
+title: Set-EntraUserCBACertificateUserId
 ---
 
 # Set-EntraUserCBACertificateUserId

@@ -1,20 +1,17 @@
 ---
-title: Get-EntraBetaUserInactiveSignIn
-description: This article provides details on the Get-EntraBetaUserInactiveSignIn command.
-
-
-ms.topic: reference
-ms.date: 11/08/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Get-EntraBetaUserInactiveSignIn command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 11/08/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserInactiveSignIn
-
 schema: 2.0.0
+title: Get-EntraBetaUserInactiveSignIn
 ---
 
 # Get-EntraBetaUserInactiveSignIn

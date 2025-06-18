@@ -1,19 +1,17 @@
 ---
-title: New-EntraAttributeSet
-description: This article provides details on the New-EntraAttributeSet command.
-
-ms.topic: reference
-ms.date: 07/19/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraAttributeSet command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 07/19/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraAttributeSet
-
 schema: 2.0.0
+title: New-EntraAttributeSet
 ---
 
 # New-EntraAttributeSet

@@ -1,19 +1,17 @@
 ---
-title: Get-EntraBetaUserOwnedObject
-description: This article provides details on the Get-EntraBetaUserOwnedObject command.
-
-ms.topic: reference
-ms.date: 07/18/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Get-EntraBetaUserOwnedObject command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/18/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserOwnedObject
-
 schema: 2.0.0
+title: Get-EntraBetaUserOwnedObject
 ---
 
 # Get-EntraBetaUserOwnedObject

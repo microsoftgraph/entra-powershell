@@ -1,20 +1,17 @@
 ---
-title: Reset-EntraStrongAuthenticationMethodByUpn
-description: This article provides details on the Reset-EntraStrongAuthenticationMethodByUpn command.
-
-
-ms.topic: reference
-ms.date: 03/20/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Reset-EntraStrongAuthenticationMethodByUpn command.
 external help file: Microsoft.Entra.SignIns-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 03/20/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Reset-EntraStrongAuthenticationMethodByUpn
-
 schema: 2.0.0
+title: Reset-EntraStrongAuthenticationMethodByUpn
 ---
 
 # Reset-EntraStrongAuthenticationMethodByUpn
