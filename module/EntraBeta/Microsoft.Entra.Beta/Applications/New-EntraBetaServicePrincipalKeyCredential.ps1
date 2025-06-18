@@ -1,19 +1,20 @@
 function New-EntraBetaServicePrincipalKeyCredential {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal to which the key credential will be added.")]
+         [Parameter(Mandatory = $true, HelpMessage = "Specifies the unique identifier (ObjectId) of the service principal to which the key credential will be added.")]
         [Alias("ObjectId")]
         [ValidateNotNullOrEmpty()]
         [System.String]$ServicePrincipalId,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the value for the key encoded in Base64.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
+            HelpMessage = "Specifies the value for the public key encoded in Base64.")]
         [System.String]$Value,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of the key.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of key credential (e.g., AsymmetricX509Cert, Symmetric).")]
         [ValidateSet('AsymmetricX509Cert', 'X509CertAndPassword')]
         [System.String]$Type,
         
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the key usage.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the usage of the key credential (e.g., Sign, Verify).")]
         [ValidateSet('Sign', 'Verify')]
         [System.String]$Usage,
         
@@ -22,9 +23,11 @@ function New-EntraBetaServicePrincipalKeyCredential {
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Contain the password for the key. This property is required for keys of type X509CertAndPassword.")]
         [System.String]$PasswordCredential,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies a custom identifier for the key credential.")]
+        [System.String] $CustomKeyIdentifier,
         
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the time when the key becomes valid as a DateTime object.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the time when the key becomes valid as a DateTime object.")]
         [System.Nullable[System.DateTime]] $StartDate,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
@@ -55,6 +58,7 @@ function New-EntraBetaServicePrincipalKeyCredential {
                 key = $Value
                 DateTimeStart = $StartDate
                 DateTimeEnd = $EndDate
+                customKeyIdentifier = $CustomKeyIdentifier
             }
             passwordCredential = $null
             proof = $Proof
@@ -66,7 +70,7 @@ function New-EntraBetaServicePrincipalKeyCredential {
                 Write-Error -Message $errorMessage -ErrorAction Stop
             }
             $params["PasswordCredential"] = @{
-                secretText = $PSBoundParameters["CustomKeyIdentifier"]
+                secretText = $PSBoundParameters["PasswordCredential"]
             }
         }
 
