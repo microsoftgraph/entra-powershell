@@ -61,10 +61,10 @@ extends:
                 parameters:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
                   Pattern: "Microsoft.Entra.*.nupkg"
-              - task: 1ES.PublishBuildArtifacts@1
+              - task: 1ES.PublishPipelineArtifact@1
                 displayName: Publish Module Artifacts
                 inputs:
-                  PathtoPublish: $(Build.ArtifactStagingDirectory)
+                  targetPath: $(Build.ArtifactStagingDirectory)
                   ArtifactName: drop
               - task: 1ES.PublishNuget@1
                 displayName: Publish NuGet to preview feed
