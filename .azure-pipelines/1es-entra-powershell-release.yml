@@ -29,22 +29,22 @@ extends:
     stages:
     - stage: release
       jobs:
-      - job: approval
-        displayName: Approval
-        pool: server
-        timeoutInMinutes: 720
-        templateContext:
-          type: releaseJob
-          isProduction: true
-        steps:
-        - task: ApprovalTask@1
-          inputs:
-            environment: Production
-            servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
+      # - job: approval
+      #   displayName: Approval
+      #   pool: server
+      #   timeoutInMinutes: 720
+      #   templateContext:
+      #     type: releaseJob
+      #     isProduction: true
+      #   steps:
+      #   - task: ApprovalTask@1
+      #     inputs:
+      #       environment: Production
+      #       servicetreeguid: f3970205-d841-45de-8b2d-3a7d45846ae1
 
       - job: release
-        dependsOn: approval
-        condition: succeeded('approval')
+        # dependsOn: approval
+        # condition: succeeded('approval')
         templateContext:
           type: releaseJob
           isProduction: true
