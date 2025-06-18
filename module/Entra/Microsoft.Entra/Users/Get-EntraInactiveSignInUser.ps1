@@ -7,10 +7,10 @@ function Get-EntraInactiveSignInUser {
     [OutputType([string])]
     param (
         # User Last Sign In Activity is before Days ago
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 1)]
+        [Parameter(ValueFromPipeline = $true, Position = 1)]
         [Alias("BeforeDaysAgo")]
-        [ValidateRange(1, 365)]
-        [int] $LastSignInBeforeDaysAgo,
+        [ValidateRange(0,30)]
+        [int] $LastSignInBeforeDaysAgo = 30,
         # Return results for All, Member, or Guest userTypes
         [ValidateSet("All", "Member", "Guest")]
         [string]
