@@ -1,19 +1,17 @@
 ---
-title: Set-EntraBetaUserExtension
-description: This article provides details on the Set-EntraBetaUserExtension command.
-
-ms.topic: reference
-ms.date: 03/16/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Set-EntraBetaUserExtension command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 03/16/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserExtension
-
 schema: 2.0.0
+title: Set-EntraBetaUserExtension
 ---
 
 # Set-EntraBetaUserExtension

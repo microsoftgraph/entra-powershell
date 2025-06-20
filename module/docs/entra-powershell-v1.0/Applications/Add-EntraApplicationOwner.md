@@ -1,18 +1,16 @@
 ---
-title: Add-EntraApplicationOwner
 description: This article provides details on the Add-EntraApplicationOwner command.
-
-ms.topic: reference
-ms.date: 02/05/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 02/05/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraApplicationOwner
-
 schema: 2.0.0
+title: Add-EntraApplicationOwner
 ---
 
 # Add-EntraApplicationOwner

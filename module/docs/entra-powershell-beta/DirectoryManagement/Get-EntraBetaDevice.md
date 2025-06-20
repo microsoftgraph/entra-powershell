@@ -1,19 +1,17 @@
 ---
-title: Get-EntraBetaDevice
-description: This article provides details on the Get-EntraBetaDevice command.
-
-ms.topic: reference
-ms.date: 06/17/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Get-EntraBetaDevice command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/17/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDevice
-
 schema: 2.0.0
+title: Get-EntraBetaDevice
 ---
 
 # Get-EntraBetaDevice

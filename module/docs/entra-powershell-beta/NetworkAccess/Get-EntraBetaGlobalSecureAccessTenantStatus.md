@@ -1,17 +1,17 @@
 ---
-title: Get-EntraBetaGlobalSecureAccessTenantStatus
-description: This article provides details on the Get-EntraBetaGlobalSecureAccessTenantStatus command.
-
-ms.topic: reference
-ms.date: 10/19/2024
-ms.author: eunicewaweru
-reviewer: andres-canello
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Get-EntraBetaGlobalSecureAccessTenantStatus command.
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 10/19/2024
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaGlobalSecureAccessTenantStatus
+reviewer: andres-canello
 schema: 2.0.0
+title: Get-EntraBetaGlobalSecureAccessTenantStatus
 ---
 
 # Get-EntraBetaGlobalSecureAccessTenantStatus

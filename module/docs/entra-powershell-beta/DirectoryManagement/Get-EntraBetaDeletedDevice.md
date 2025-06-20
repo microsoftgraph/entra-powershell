@@ -1,18 +1,16 @@
 ---
-title: Get-EntraBetaDeletedDevice
 description: This article provides details on the Get-EntraBetaDeletedDevice command.
-
-ms.topic: reference
-ms.date: 02/12/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/12/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDeletedDevice
-
 schema: 2.0.0
+title: Get-EntraBetaDeletedDevice
 ---
 
 # Get-EntraBetaDeletedDevice

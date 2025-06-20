@@ -1,20 +1,17 @@
 ---
-title: New-EntraBetaPolicy
-description: This article provides details on the New-EntraBetaPolicy command.
-
-
-ms.topic: reference
-ms.date: 07/03/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraBetaPolicy command.
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/03/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPolicy
-
 schema: 2.0.0
+title: New-EntraBetaPolicy
 ---
 
 # New-EntraBetaPolicy

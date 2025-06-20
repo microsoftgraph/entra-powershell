@@ -1,19 +1,17 @@
 ---
-title: Remove-EntraBetaGroupLifecyclePolicy
-description: This article provides details on the Remove-EntraBetaGroupLifecyclePolicy command.
-
-
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Remove-EntraBetaGroupLifecyclePolicy command.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/26/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaGroupLifecyclePolicy
-
 schema: 2.0.0
+title: Remove-EntraBetaGroupLifecyclePolicy
 ---
 
 # Remove-EntraBetaGroupLifecyclePolicy

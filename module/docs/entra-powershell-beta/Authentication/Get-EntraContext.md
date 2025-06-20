@@ -1,18 +1,17 @@
 ---
-title: Get-EntraContext
-description: This article provides details on the Get-EntraContext command.
-
-ms.topic: reference
-ms.date: 02/05/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutung
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Get-EntraContext command.
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/05/2025
+ms.reviewer: stevemutung
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraContext
-
 schema: 2.0.0
+title: Get-EntraContext
 ---
 
 # Get-EntraContext

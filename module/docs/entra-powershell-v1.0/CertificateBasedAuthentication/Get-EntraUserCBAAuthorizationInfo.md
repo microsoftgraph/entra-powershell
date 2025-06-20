@@ -1,18 +1,17 @@
 ---
-title: Get-EntraUserCBAAuthorizationInfo
-description: Retrieves authorization information for a Microsoft Entra ID user, including certificate-based authentication identifiers
-ms.topic: reference
-ms.date: 04/13/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: Retrieves authorization information for a Microsoft Entra ID user, including certificate-based authentication identifiers
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
-Module Name: Microsoft.Entra.CertificateBasedAuthentication
+Locale: en-US
+manager: CelesteDG
+Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 04/13/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.CertificateBasedAuthentication/Get-EntraUserCBAAuthorizationInfo
-
 schema: 2.0.0
+title: Get-EntraUserCBAAuthorizationInfo
 ---
 
 # Get-EntraUserCBAAuthorizationInfo

@@ -1,18 +1,16 @@
 ---
-title: Add-EntraBetaServicePrincipalOwner
 description: This article provides details on the Add-EntraBetaServicePrincipalOwner command.
-
-ms.topic: reference
-ms.date: 02/08/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/08/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaServicePrincipalOwner
-
 schema: 2.0.0
+title: Add-EntraBetaServicePrincipalOwner
 ---
 
 # Add-EntraBetaServicePrincipalOwner

@@ -1,18 +1,16 @@
 ---
-title: Confirm-EntraBetaDomain
 description: This article provides details on the Confirm-EntraBetaDomain command.
-
-ms.topic: reference
-ms.date: 02/08/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/08/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Confirm-EntraBetaDomain
-
 schema: 2.0.0
+title: Confirm-EntraBetaDomain
 ---
 
 # Confirm-EntraBetaDomain

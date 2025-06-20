@@ -1,19 +1,18 @@
 ---
-title: New-EntraApplicationFromApplicationTemplate
+author: msewaweru
 description: This article provApplicationTemplateIdes details on the New-EntraApplicationFromApplicationTemplate command.
-
+external help file: Microsoft.Entra.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
+Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 02/10/2025
+ms.reviewer: stevemutungi
 ms.service: entra
 ms.topic: reference
-ms.date: 02/10/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-
-external help file: Microsoft.Entra.Applications-Help.xml
-Module Name: Microsoft.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationFromApplicationTemplate
 schema: 2.0.0
+title: New-EntraApplicationFromApplicationTemplate
 ---
 
 # New-EntraApplicationFromApplicationTemplate

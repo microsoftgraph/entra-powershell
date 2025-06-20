@@ -1,17 +1,17 @@
 ---
-title: Enable-EntraBetaGlobalSecureAccessTenant
-description: This article provides details on the Enable-EntraBetaGlobalSecureAccessTenant command.
-
-ms.topic: reference
-ms.date: 10/31/2024
-ms.author: eunicewaweru
-reviewer: andres-canello
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Enable-EntraBetaGlobalSecureAccessTenant command.
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 10/31/2024
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Enable-EntraBetaGlobalSecureAccessTenant
+reviewer: andres-canello
 schema: 2.0.0
+title: Enable-EntraBetaGlobalSecureAccessTenant
 ---
 
 # Enable-EntraBetaGlobalSecureAccessTenant

@@ -1,20 +1,17 @@
 ---
-title: Remove-EntraUserSponsor
-description:  This article provides details on the Remove-EntraUserSponsor command.
-
-
-ms.topic: reference
-ms.date: 03/07/2025
-ms.author: eunicewaweru
-ms.reviewer: dbutoyi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Remove-EntraUserSponsor command.
 external help file: Microsoft.Entra.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 03/07/2025
+ms.reviewer: dbutoyi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraUserSponsor
-
 schema: 2.0.0
+title: Remove-EntraUserSponsor
 ---
 
 # Remove-EntraUserSponsor

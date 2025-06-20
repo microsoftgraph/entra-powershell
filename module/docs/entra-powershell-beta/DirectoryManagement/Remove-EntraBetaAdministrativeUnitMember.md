@@ -1,19 +1,17 @@
 ---
-title: Remove-EntraBetaAdministrativeUnitMember
+author: msewaweru
 description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
-
-ms.topic: reference
-ms.date: 07/04/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru 
-
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/04/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaAdministrativeUnitMember
-
 schema: 2.0.0
+title: Remove-EntraBetaAdministrativeUnitMember
 ---
 
 # Remove-EntraBetaAdministrativeUnitMember

@@ -1,19 +1,17 @@
 ---
-title: Set-EntraBetaUserSponsor
-description: This article provides details on the Set-EntraBetaUserSponsor command.
-
-ms.topic: reference
-ms.date: 03/10/2025
-ms.author: eunicewaweru
-ms.reviewer: dbutoyi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Set-EntraBetaUserSponsor command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 03/10/2025
+ms.reviewer: dbutoyi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserSponsor
-
 schema: 2.0.0
+title: Set-EntraBetaUserSponsor
 ---
 
 # Set-EntraBetaUserSponsor

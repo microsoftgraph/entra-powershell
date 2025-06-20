@@ -1,18 +1,16 @@
 ---
-title: Get-EntraBetaUserAdministrativeUnit
 description: This article provides details on the Get-EntraBetaUserAdministrativeUnit command.
-
-ms.topic: reference
-ms.date: 12/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 12/02/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserAdministrativeUnit
-
 schema: 2.0.0
+title: Get-EntraBetaUserAdministrativeUnit
 ---
 
 # Get-EntraBetaUserAdministrativeUnit

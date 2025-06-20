@@ -1,19 +1,17 @@
 ---
-title: Get-EntraBetaUserSponsor
-description: This article provides details on the Get-EntraBetaUserSponsor command.
-
-ms.topic: reference
-ms.date: 03/06/2025
-ms.author: eunicewaweru
-ms.reviewer: dbutoyi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Get-EntraBetaUserSponsor command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 03/06/2025
+ms.reviewer: dbutoyi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserSponsor
-
 schema: 2.0.0
+title: Get-EntraBetaUserSponsor
 ---
 
 # Get-EntraBetaUserSponsor

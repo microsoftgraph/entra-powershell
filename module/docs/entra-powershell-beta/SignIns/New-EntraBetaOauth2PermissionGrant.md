@@ -1,19 +1,16 @@
 ---
-title: New-EntraBetaOauth2PermissionGrant
 description: This article provides details on the New-EntraBetaOauth2PermissionGrant command.
-
-
-ms.topic: reference
-ms.date: 06/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/28/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaOauth2PermissionGrant
-
 schema: 2.0.0
+title: New-EntraBetaOauth2PermissionGrant
 ---
 
 # New-EntraBetaOauth2PermissionGrant

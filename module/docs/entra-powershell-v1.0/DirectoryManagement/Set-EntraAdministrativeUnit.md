@@ -1,19 +1,17 @@
 ---
-title: Set-EntraAdministrativeUnit
-description: This article provides details on the Set-EntraAdministrativeUnit command.
-
-ms.topic: reference
-ms.date: 01/07/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Set-EntraAdministrativeUnit command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 01/07/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraAdministrativeUnit
-
 schema: 2.0.0
+title: Set-EntraAdministrativeUnit
 ---
 
 # Set-EntraAdministrativeUnit

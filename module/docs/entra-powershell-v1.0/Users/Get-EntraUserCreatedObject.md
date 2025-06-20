@@ -1,18 +1,17 @@
 ---
-title: Get-EntraUserCreatedObject
-description: This article provides details on the  Get-EntraUserCreatedObject Command.
-
-ms.topic: reference
-ms.date: 02/08/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the  Get-EntraUserCreatedObject Command.
 external help file: Microsoft.Entra.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 02/08/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUserCreatedObject
-
 schema: 2.0.0
+title: Get-EntraUserCreatedObject
 ---
 
 # Get-EntraUserCreatedObject
