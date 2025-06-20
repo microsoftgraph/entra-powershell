@@ -38,21 +38,37 @@ function New-EntraApplicationKeyCredential {
         }
     }
 
-    PROCESS {    
-        $params = @{}
+    PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    
+        $params = @{}
+        $keyCredential = @{}
+
         if ($null -ne $PSBoundParameters["CustomKeyIdentifier"]) {
-            $params["CustomKeyIdentifier"] = $PSBoundParameters["CustomKeyIdentifier"]
+            $keyCredential["CustomKeyIdentifier"] = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["CustomKeyIdentifier"])
+        }
+        if ($null -ne $PSBoundParameters["StartDate"]) {
+            $keyCredential["StartDateTime"] = $PSBoundParameters["StartDate"]
+        }
+        if ($null -ne $PSBoundParameters["EndDate"]) {
+            $keyCredential["EndDateTime"] = $PSBoundParameters["EndDate"]
+        }
+        if ($null -ne $PSBoundParameters["Value"]) {
+            $keyCredential["Key"] = [System.Text.Encoding]::ASCII.GetBytes($PSBoundParameters["Value"])
+        }
+        if ($null -ne $PSBoundParameters["Type"]) {
+            $keyCredential["Type"] = $PSBoundParameters["Type"]
+        }
+        if ($null -ne $PSBoundParameters["Usage"]) {
+            $keyCredential["Usage"] = $PSBoundParameters["Usage"]
+        }
+
+        $params["KeyCredential"] = $keyCredential
+
+        if ($null -ne $PSBoundParameters["ApplicationId"]) {
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
         }
         if ($null -ne $PSBoundParameters["WarningVariable"]) {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if ($null -ne $PSBoundParameters["StartDate"]) {
-            $params["StartDate"] = $PSBoundParameters["StartDate"]
-        }
-        if ($null -ne $PSBoundParameters["EndDate"]) {
-            $params["EndDate"] = $PSBoundParameters["EndDate"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
@@ -63,14 +79,8 @@ function New-EntraApplicationKeyCredential {
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-        if ($null -ne $PSBoundParameters["Value"]) {
-            $params["Value"] = $PSBoundParameters["Value"]
-        }
         if ($null -ne $PSBoundParameters["OutBuffer"]) {
             $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if ($null -ne $PSBoundParameters["Type"]) {
-            $params["Type"] = $PSBoundParameters["Type"]
         }
         if ($null -ne $PSBoundParameters["InformationAction"]) {
             $params["InformationAction"] = $PSBoundParameters["InformationAction"]
@@ -84,17 +94,11 @@ function New-EntraApplicationKeyCredential {
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["ApplicationId"]) {
-            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
-        }
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
-        }
-        if ($null -ne $PSBoundParameters["Usage"]) {
-            $params["Usage"] = $PSBoundParameters["Usage"]
         }
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
@@ -107,7 +111,7 @@ function New-EntraApplicationKeyCredential {
         $response = Add-MgApplicationKey @params -Headers $customHeaders
         $response | ForEach-Object {
             if ($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value ApplicationId
 
             }
         }
