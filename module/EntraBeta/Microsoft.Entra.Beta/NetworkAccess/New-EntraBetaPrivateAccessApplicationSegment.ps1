@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function New-EntraBetaPrivateAccessApplicationSegment {
 
-    [CmdletBinding(ParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $True, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
