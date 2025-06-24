@@ -1,19 +1,16 @@
 ---
-title: Get-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
-
-
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/26/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaApplicationExtensionProperty
-
 schema: 2.0.0
+title: Get-EntraBetaApplicationExtensionProperty
 ---
 
 # Get-EntraBetaApplicationExtensionProperty

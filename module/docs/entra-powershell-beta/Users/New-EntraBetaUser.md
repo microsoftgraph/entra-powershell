@@ -1,19 +1,17 @@
 ---
-title: New-EntraBetaUser
-description: This article provides details on the New-EntraBetaUser command.
-
-ms.topic: reference
-ms.date: 06/21/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraBetaUser command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 06/21/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaUser
-
 schema: 2.0.0
+title: New-EntraBetaUser
 ---
 
 # New-EntraBetaUser

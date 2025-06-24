@@ -1,19 +1,17 @@
 ---
-title: Get-EntraBetaServicePrincipalOAuth2PermissionGrant
-description: This article provides details on the Get-EntraBetaServicePrincipalOAuth2PermissionGrant command.
-
-ms.topic: reference
-ms.date: 07/31/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Get-EntraBetaServicePrincipalOAuth2PermissionGrant command.
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/31/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalOAuth2PermissionGrant
-
 schema: 2.0.0
+title: Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 ---
 
 # Get-EntraBetaServicePrincipalOAuth2PermissionGrant
