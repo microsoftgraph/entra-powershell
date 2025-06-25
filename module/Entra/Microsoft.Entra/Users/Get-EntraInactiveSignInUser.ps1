@@ -50,6 +50,10 @@ function Get-EntraInactiveSignInUser {
             #         "lastSuccessfulSignInRequestId": "bcbac647-1e81-45cb-9e45-c670173e1700"
             #     }
             # }
+            # If you run GET https://graph.microsoft.com/v1.0/users/740d59d4-057f-4a6d-838b-a30bf3e31ec4
+            # you will get ResourceNotFound error.
+            # If you run GET https://graph.microsoft.com/v1.0/users/740d59d4-057f-4a6d-838b-a30bf3e31ec4?$select=id,signInActivity
+            # you will get the response above.
             if (-not($userObject.ContainsKey("UserPrincipalName"))) {
                 continue
             }
