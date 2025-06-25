@@ -18,7 +18,7 @@ function New-EntraBetaInvitation {
         [System.String] $InvitedUserEmailAddress,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [System.Nullable`1[System.Boolean]] $ResetRedemption,
+        [switch] $ResetRedemption,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
@@ -42,7 +42,7 @@ function New-EntraBetaInvitation {
             }
             $params["InvitedUser"] = $Temp
         }
-        if ($null -ne $PSBoundParameters["ResetRedemption"]) {
+        if ($PSBoundParameters["ResetRedemption"]) {
             $params["ResetRedemption"] = $PSBoundParameters["ResetRedemption"]
         }
         if ($null -ne $PSBoundParameters["InvitedUserMessageInfo"]) {

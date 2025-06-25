@@ -1,18 +1,16 @@
 ---
-title: Get-EntraBetaDirectoryRoleDefinition
 description: This article provides details on the Get-EntraBetaDirectoryRoleDefinition command.
-
-ms.topic: reference
-ms.date: 07/22/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/22/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDirectoryRoleDefinition
-
 schema: 2.0.0
+title: Get-EntraBetaDirectoryRoleDefinition
 ---
 
 # Get-EntraBetaDirectoryRoleDefinition
