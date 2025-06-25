@@ -33,7 +33,27 @@ function Get-EntraInactiveSignInUser {
             "All" { $users = $queryUsers }
         }
 
+        $users.Count | Write-Debug
+
         foreach ($userObject in $users) {
+            # Some objects only have the id and signInActivity properties,
+            # so we need to check for the existence of UserPrincipalName and ignore them in the response
+            # {
+            #     "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users(id,signInActivity)/$entity",
+            #     "id": "740d59d4-057f-4a6d-838b-a30bf3e31ec4",
+            #     "signInActivity": {
+            #         "lastSignInDateTime": "2024-08-22T04:13:19Z",
+            #         "lastSignInRequestId": "bcbac647-1e81-45cb-9e45-c670173e1700",
+            #         "lastNonInteractiveSignInDateTime": null,
+            #         "lastNonInteractiveSignInRequestId": null,
+            #         "lastSuccessfulSignInDateTime": "2024-08-22T04:13:19Z",
+            #         "lastSuccessfulSignInRequestId": "bcbac647-1e81-45cb-9e45-c670173e1700"
+            #     }
+            # }
+            if (-not($userObject.ContainsKey("UserPrincipalName"))) {
+                continue
+            }
+
             $checkedUser = [ordered] @{
                 UserID = $userObject.Id
                 DisplayName = $userObject.DisplayName
