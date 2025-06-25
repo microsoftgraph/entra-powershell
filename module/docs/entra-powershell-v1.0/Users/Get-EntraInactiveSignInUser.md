@@ -1,19 +1,16 @@
 ---
-title: Get-EntraInactiveSignInUser
 description: This article provides details on the Get-EntraInactiveSignInUser command.
-
-ms.topic: reference
-ms.date: 04/02/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-
 external help file: Microsoft.Entra.Users-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 04/02/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraInactiveSignInUser
-
 schema: 2.0.0
+title: Get-EntraInactiveSignInUser
 ---
 
 # Get-EntraInactiveSignInUser
