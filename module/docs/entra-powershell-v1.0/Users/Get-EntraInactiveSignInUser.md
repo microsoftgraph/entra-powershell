@@ -40,6 +40,7 @@ The `Get-EntraInactiveSignInUser` cmdlet retrieves users who have not signed in 
 ### Example 1: Retrieve users who have not signed in for 30 days
 
 ```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','User.Read.All'
 Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -All
 ```
 
@@ -78,6 +79,7 @@ This command retrieves users who have not had an interactive sign-in within the 
 ### Example 2: Retrieve inactive guest users
 
 ```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','User.Read.All'
 Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 90 -UserType "Guest"
 ```
 
