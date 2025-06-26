@@ -42,7 +42,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 ### Example 1: Add a user as a registered owner
 
 ```powershell
-Connect-Entra -Scopes 'Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $device = Get-EntraDevice -SearchString '<device-display-name>'
 Add-EntraDeviceRegisteredOwner -DeviceId $device.Id -OwnerId $user.Id
