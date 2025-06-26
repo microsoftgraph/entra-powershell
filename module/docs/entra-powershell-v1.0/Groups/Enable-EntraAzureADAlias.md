@@ -9,7 +9,7 @@ ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Enable-EntraAzureADAlias
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Enable-EntraAzureADAlias
 schema: 2.0.0
 title: Enable-EntraAzureADAlias
 ---
