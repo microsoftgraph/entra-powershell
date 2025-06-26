@@ -11,7 +11,19 @@ function Restore-EntraBetaDeletedDirectoryObject {
         [System.String] $Id,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether Microsoft Entra ID should remove conflicting proxy addresses when restoring a soft-deleted user. Applicable only to soft-deleted user restoration.")]
-        [switch] $AutoReconcileProxyConflict
+        [switch] $AutoReconcileProxyConflict,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The restored deleted user can be assigned a new userPrincipalName (UPN) in the format alias@domain. It should match the user's email and use a verified domain in the tenant.")]
+        [ValidateScript({
+                try {
+                    $null = [System.Net.Mail.MailAddress]$_
+                    return $true
+                }
+                catch {
+                    throw "NewUserPrincipalName must be a valid email address."
+                }
+            })]
+        [System.String] $NewUserPrincipalName
     )
 
     PROCESS {    
@@ -22,10 +34,17 @@ function Restore-EntraBetaDeletedDirectoryObject {
         if ($null -ne $PSBoundParameters["Id"]) {
             $params["Uri"] += $Id + "/microsoft.graph.restore"      
         }
+
+        $body = @{}
         if ($PSBoundParameters.ContainsKey("AutoReconcileProxyConflict")) {
-            $params["Body"] = @{
-                autoReconcileProxyConflict = $true
-            }
+            $body["autoReconcileProxyConflict"] = $true
+        }
+        if ($null -ne $PSBoundParameters["NewUserPrincipalName"]) {
+            $body["newUserPrincipalName"] = $NewUserPrincipalName
+        }
+
+        if($body.Count -gt 0) {
+            $params["Body"] = $body
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
