@@ -52,19 +52,24 @@ function Restore-EntraBetaDeletedDirectoryObject {
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        if ($response) {
-            $userList = @()
-            foreach ($data in $response) {
-                $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
-                $data.PSObject.Properties | ForEach-Object {
-                    $propertyName = $_.Name
-                    $propertyValue = $_.Value
-                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }
-                $userList += $userType
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $data | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+
             }
-            $userList
         }
+        $userList = @()
+        foreach ($res in $data) {
+            $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList
     }
 }
 
