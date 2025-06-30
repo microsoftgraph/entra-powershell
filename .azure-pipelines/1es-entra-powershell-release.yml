@@ -58,7 +58,7 @@ extends:
           displayName: Publish Nuget package
           inputs:
             useDotNetTask: false
-            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra*.nupkg'
+            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra.*.nupkg'
             packageParentPath: '$(System.ArtifactsDirectory)'
             nuGetFeedType: external
             publishFeedCredentials: EntraPowerShell_PSGallery
