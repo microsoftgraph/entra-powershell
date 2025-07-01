@@ -70,23 +70,23 @@ Connect-Entra
 ### AppSecretCredentialParameterSet
 
 ```powershell
-Connect-Entra 
-[-ClientSecretCredential <PSCredential>] 
-[-TenantId <String>] 
+Connect-Entra
+[-ClientSecretCredential <PSCredential>]
+[-TenantId <String>]
 [-ContextScope <ContextScope>]
-[-Environment <String>] 
-[-ClientTimeout <Double>] 
-[-NoWelcome] 
+[-Environment <String>]
+[-ClientTimeout <Double>]
+[-NoWelcome]
 [<CommonParameters>]
 ```
 
 ### AccessTokenParameterSet
 
 ```powershell
-Connect-Entra 
-[-AccessToken] <SecureString> 
-[-Environment <String>] 
-[-ClientTimeout <Double>] 
+Connect-Entra
+[-AccessToken] <SecureString>
+[-Environment <String>]
+[-ClientTimeout <Double>]
 [-NoWelcome]
 [<CommonParameters>]
 ```
@@ -94,12 +94,12 @@ Connect-Entra
 ### EnvironmentVariableParameterSet
 
 ```powershell
-Connect-Entra 
-[-ContextScope <ContextScope>] 
-[-Environment <String>] 
+Connect-Entra
+[-ContextScope <ContextScope>]
+[-Environment <String>]
 [-ClientTimeout <Double>]
-[-EnvironmentVariable] 
-[-NoWelcome] 
+[-EnvironmentVariable]
+[-NoWelcome]
 [<CommonParameters>]
 ```
 
@@ -367,7 +367,7 @@ Specifies a bearer token for Microsoft Entra service. Access tokens do time out 
 ```yaml
 Type: SecureString
 Parameter Sets: AccessTokenParameterSet
-Aliases: 
+Aliases:
 Required: True
 Position: Named
 Default value: None
@@ -382,7 +382,7 @@ Sets the HTTP client timeout in seconds.
 ```yaml
 Type: System.Double
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -398,7 +398,7 @@ Determines the scope of authentication context. This ContextScope accepts `Proce
 Type: ContextScope
 Accepted values: Process, CurrentUser
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, IdentityParameterSet, AppSecretCredentialParameterSet, EnvironmentVariableParameterSet
-Aliases: 
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -428,7 +428,7 @@ Hides the welcome message.
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -443,7 +443,7 @@ An array of delegated permissions to consent to.
 ```yaml
 Type:  System.String[]
 Parameter Sets: UserParameterSet
-Aliases: 
+Aliases:
 Required: False
 Position: 1
 Default value: None
@@ -473,7 +473,7 @@ An X.509 certificate supplied during invocation.
 ```yaml
 Type: X509Certificate2
 Parameter Sets: AppCertificateParameterSet
-Aliases: 
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -518,7 +518,7 @@ Allows for authentication using environment variables configured on the host mac
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: EnvironmentVariableParameterSet
-Aliases: 
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -549,21 +549,6 @@ Include x5c header in client claims when acquiring a token to enable subject nam
 Type: Boolean
 Parameter Sets: AppCertificateParameterSet
 Aliases:
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-
-The ProgressAction parameter takes one of the ActionPreference enumeration values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend, or Break.
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: proga
 Required: False
 Position: Named
 Default value: None
