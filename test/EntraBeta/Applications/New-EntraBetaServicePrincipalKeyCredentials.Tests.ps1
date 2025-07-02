@@ -33,19 +33,12 @@ Describe "New-EntraBetaServicePrincipalKeyCredential" {
             { New-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId ""} | Should -Throw "Cannot validate argument on parameter 'ServicePrincipalId'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
         }
 
+        It "Should fail when proof is empty" {
+            { New-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify"  -Proof ""} | Should -Throw "Cannot bind argument to parameter 'Proof' because it is an empty string."
+        }
+
         It "Should return created service principal key credential when ServicePrincipalId is valid and all required parameters are provided" {
             $result = New-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "AsymmetricX509Cert" -Usage "Verify" -Proof "c29tZVByb29m"
-            $result | Should -Not -BeNullOrEmpty
-
-            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
-        }
-
-        It "Should fail when key type is X509CertAndPassword and PasswordCredential hasn't been provided" {
-            { New-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" -Proof "test" } | Should -Throw "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
-        }
-
-        It "Should return created service principal key credential when PasswordCredential is provided for key type X509CertAndPassword" {
-            $result = New-EntraBetaServicePrincipalKeyCredential -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" -Value "U29mdHdhcmU=" -Type "X509CertAndPassword" -Usage "Sign" -Proof "c29tZVByb29m" -PasswordCredential "MySecretPassword"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1

@@ -21,9 +21,6 @@ function New-EntraServicePrincipalKeyCredential {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "A self-signed JWT token used as a proof of possession of the existing keys. This JWT token must be signed with a private key that corresponds to one of the existing valid certificates associated with the servicePrincipal.")]
         [System.String]$Proof,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Contain the password for the key. This property is required for keys of type X509CertAndPassword.")]
-        [System.String]$PasswordCredential,
-
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies a custom identifier for the key credential.")]
         [System.String] $CustomKeyIdentifier,
         
@@ -62,16 +59,6 @@ function New-EntraServicePrincipalKeyCredential {
             }
             passwordCredential = $null
             proof = $Proof
-        }
-
-        if ($Type -eq 'X509CertAndPassword') {
-            if ([string]::IsNullOrWhiteSpace($PSBoundParameters["PasswordCredential"])) {
-                $errorMessage = "The 'CustomKeyIdentifier' property is required for keys of type X509CertAndPassword"
-                Write-Error -Message $errorMessage -ErrorAction Stop
-            }
-            $params["PasswordCredential"] = @{
-                secretText = $PSBoundParameters["PasswordCredential"]
-            }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
