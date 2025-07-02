@@ -53,8 +53,8 @@ function New-EntraBetaServicePrincipalKeyCredential {
                 type = $Type
                 usage = $Usage
                 key = $Value
-                dateTimeStart = $StartDate
-                dateTimeEnd = $EndDate
+                startDateTime = $StartDate
+                endDateTime = $EndDate
                 customKeyIdentifier = $CustomKeyIdentifier
             }
             passwordCredential = $null
@@ -80,7 +80,7 @@ function New-EntraBetaServicePrincipalKeyCredential {
             $targetTypeList
         }
         catch {
-            Write-Error "Failed to add key credential: $($_.Exception.Message)"
+            Write-Error "Failed to add key credential: $($_)"
         }
     }
 }

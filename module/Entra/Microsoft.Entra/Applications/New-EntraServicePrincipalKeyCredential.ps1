@@ -53,8 +53,8 @@ function New-EntraServicePrincipalKeyCredential {
                 type = $Type
                 usage = $Usage
                 key = $Value
-                dateTimeStart = $StartDate
-                dateTimeEnd = $EndDate
+                startDateTime = $StartDate
+                endDateTime = $EndDate
                 customKeyIdentifier = $CustomKeyIdentifier
             }
             passwordCredential = $null
@@ -64,7 +64,7 @@ function New-EntraServicePrincipalKeyCredential {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
+
         try {
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method "POST" -Body ($params | ConvertTo-Json -Depth 4)
 
@@ -81,8 +81,7 @@ function New-EntraServicePrincipalKeyCredential {
             $targetTypeList
         }
         catch {
-            Write-Error "Failed to add key credential: $($_.Exception.Message)"
+            Write-Error "Failed to add key credential: $($_)"
         }
     }
 }
-
