@@ -1,19 +1,17 @@
 ---
-title: Set-EntraBetaAuthorizationPolicy
-description: This article provides details on the Set-EntraBetaAuthorizationPolicy command.
-
-ms.topic: reference
-ms.date: 07/30/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Set-EntraBetaAuthorizationPolicy command.
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/30/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaAuthorizationPolicy
-
 schema: 2.0.0
+title: Set-EntraBetaAuthorizationPolicy
 ---
 
 # Set-EntraBetaAuthorizationPolicy

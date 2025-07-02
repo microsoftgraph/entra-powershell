@@ -1,19 +1,17 @@
 ---
-title: New-EntraBetaApplicationProxyConnectorGroup
-description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
-
-ms.topic: reference
-ms.date: 07/16/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 07/16/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaApplicationProxyConnectorGroup
-
 schema: 2.0.0
+title: New-EntraBetaApplicationProxyConnectorGroup
 ---
 
 # New-EntraBetaApplicationProxyConnectorGroup

@@ -1,20 +1,17 @@
 ---
-title: Set-EntraDirSyncEnabled
-description: This article provides details on the Set-EntraDirSyncEnabled command.
-
-
-ms.topic: reference
-ms.date: 09/27/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Set-EntraDirSyncEnabled command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 09/27/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraDirSyncEnabled
-
 schema: 2.0.0
+title: Set-EntraDirSyncEnabled
 ---
 
 # Set-EntraDirSyncEnabled
@@ -27,9 +24,9 @@ Turns directory synchronization on or off for a company.
 
 ```powershell
 Set-EntraDirSyncEnabled
- -EnableDirSync <Boolean> 
- [-Force] 
- [-TenantId <String>] 
+ -EnableDirSync <Boolean>
+ [-Force]
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
@@ -43,7 +40,7 @@ Deactivating DirSync may take up to 72 hours, depending on the number of objects
 
 If you re-enable DirSync, a full synchronization will occur, which may take significant time based on the number of objects in Microsoft Entra ID.
 
-Additionally, if `BlockCloudObjectTakeoverThroughHardMatch` is enabled, re-enabling DirSync will block On-Prem to cloud object takeover/updates for all Microsoft Entra ID–mastered objects. To allow syncing of these objects, set `BlockCloudObjectTakeoverThroughHardMatch` to false.
+Additionally, if `BlockCloudObjectTakeoverThroughHardMatch` is enabled, re-enabling DirSync will block On-Prem to cloud object takeover/updates for all Microsoft Entra ID-mastered objects. To allow syncing of these objects, set `BlockCloudObjectTakeoverThroughHardMatch` to false.
 
 ## Examples
 

@@ -1,18 +1,17 @@
 ---
-title: Get-EntraUserCertificateUserIdsFromCertificate
-description: Creates an object with all values from a certificate file for configuring CertificateUserIDs in Microsoft Entra ID
-ms.topic: reference
-ms.date: 04/13/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: Creates an object with all values from a certificate file for configuring CertificateUserIDs in Microsoft Entra ID
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
-Module Name: Microsoft.Entra.CertificateBasedAuthentication
+Locale: en-US
+manager: CelesteDG
+Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 04/13/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.CertificateBasedAuthentication/Get-EntraUserCertificateUserIdsFromCertificate
-
 schema: 2.0.0
+title: Get-EntraUserCertificateUserIdsFromCertificate
 ---
 
 # Get-EntraUserCertificateUserIdsFromCertificate

@@ -1,19 +1,17 @@
 ---
-title: Add-EntraBetaDeviceRegisteredOwner
-description: This article provides details on the Add-EntraBetaDeviceRegisteredOwner command.
-
-ms.topic: reference
-ms.date: 02/05/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the Add-EntraBetaDeviceRegisteredOwner command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/05/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaDeviceRegisteredOwner
-
 schema: 2.0.0
+title: Add-EntraBetaDeviceRegisteredOwner
 ---
 
 # Add-EntraBetaDeviceRegisteredOwner
@@ -45,7 +43,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 ### Example 1: Add a user as a registered owner
 
 ```powershell
-Connect-Entra -Scopes 'Device.ReadWrite.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $user = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $device = Get-EntraBetaDevice -SearchString '<device-display-name>'
 Add-EntraBetaDeviceRegisteredOwner -DeviceId $device.Id -OwnerId $user.Id

@@ -1,20 +1,17 @@
 ---
-title: New-EntraBetaInvitation
-description: This article provides details on the New-EntraBetaInvitation command.
-
-
-ms.topic: reference
-ms.date: 08/07/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraBetaInvitation command.
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 08/07/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaInvitation
-
 schema: 2.0.0
+title: New-EntraBetaInvitation
 ---
 
 # New-EntraBetaInvitation
@@ -32,7 +29,7 @@ New-EntraBetaInvitation
  [-InvitedUserType <String>]
  [-SendInvitationMessage <Boolean>]
  -InvitedUserEmailAddress <String>
- [-ResetRedemption <Boolean>]
+ [-ResetRedemption]
  [-InvitedUserDisplayName <String>]
  -InviteRedirectUrl <String>
  [<CommonParameters>]
@@ -166,8 +163,7 @@ $emailAddress = 'someexternaluser@externaldomain.com'
 $sendInvitationMessage = $True
 $redirectUrl = 'https://myapps.constoso.com'
 $displayName = 'microsoftuser'
-$resetRedemption = $True
-New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName -ResetRedemption $resetRedemption
+New-EntraBetaInvitation -InvitedUserEmailAddress $emailAddress -SendInvitationMessage $sendInvitationMessage -InviteRedirectUrl $redirectUrl -InvitedUserDisplayName $displayName -ResetRedemption
 ```
 
 ```Output
@@ -177,7 +173,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb https://login.microsoftonline.com/redeem?rd
 ```
 
 In this example, we show how an admin can reset the redemption for an external user in the `-InvitedUser` parameter.
-They need to pass the switch `-ResetRedemption` as true.
+They need to pass the switch `-ResetRedemption`.
 Once reset, External user has to re-redeem the invitation to continue to access the resources.
 
 ## Parameters
@@ -300,10 +296,10 @@ Accept wildcard characters: False
 
 Indicates whether the invite redemption on an existing external user should be removed so the user can re-redeem the account.
 
-By default, this is false and should only be set to true when passing in a valid external user to the InvitedUser property.
+By default, this is false and should only be set when passing in a valid external user to the InvitedUser property.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

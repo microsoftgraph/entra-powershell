@@ -1,18 +1,16 @@
 ---
-title: Remove-EntraBetaAdministrativeUnit
 description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
-
-ms.topic: reference
-ms.date: 02/05/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 02/05/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaAdministrativeUnit
-
 schema: 2.0.0
+title: Remove-EntraBetaAdministrativeUnit
 ---
 
 # Remove-EntraBetaAdministrativeUnit

@@ -24,7 +24,10 @@ function New-EntraInvitation {
         [System.Nullable`1[System.Boolean]] $SendInvitationMessage,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [System.String] $InvitedUserType
+        [System.String] $InvitedUserType,
+
+        [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
+        [switch] $ResetRedemption
     )
 
     PROCESS {
@@ -61,6 +64,9 @@ function New-EntraInvitation {
         }
         if ($null -ne $PSBoundParameters["InviteRedirectUrl"]) {
             $params["InviteRedirectUrl"] = $PSBoundParameters["InviteRedirectUrl"]
+        }
+        if ($PSBoundParameters["ResetRedemption"]) {
+            $params["ResetRedemption"] = $PSBoundParameters["ResetRedemption"]
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

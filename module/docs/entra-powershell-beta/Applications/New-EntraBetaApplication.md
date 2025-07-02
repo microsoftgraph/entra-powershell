@@ -1,20 +1,17 @@
 ---
-title: New-EntraBetaApplication
-description: This article provides details on the New-EntraBetaApplication command.
-
-
-ms.topic: reference
-ms.date: 04/29/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
-
+description: This article provides details on the New-EntraBetaApplication command.
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra.Beta
+ms.author: eunicewaweru
+ms.date: 04/29/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaApplication
-
 schema: 2.0.0
+title: New-EntraBetaApplication
 ---
 
 # New-EntraBetaApplication

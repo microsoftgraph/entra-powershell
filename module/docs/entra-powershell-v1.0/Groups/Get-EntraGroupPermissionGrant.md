@@ -1,18 +1,17 @@
 ---
-title: Get-EntraGroupPermissionGrant
-description: This article provides details on the Get-EntraGroupPermissionGrant command.
-
-ms.topic: reference
-ms.date: 02/08/2025
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
 author: msewaweru
+description: This article provides details on the Get-EntraGroupPermissionGrant command.
 external help file: Microsoft.Entra.Groups-Help.xml
+Locale: en-US
+manager: CelesteDG
 Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 02/08/2025
+ms.reviewer: stevemutungi
+ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraGroupPermissionGrant
-
 schema: 2.0.0
+title: Get-EntraGroupPermissionGrant
 ---
 
 # Get-EntraGroupPermissionGrant
