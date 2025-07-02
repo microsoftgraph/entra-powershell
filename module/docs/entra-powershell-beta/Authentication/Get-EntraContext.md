@@ -25,9 +25,7 @@ Retrieve information about your current session.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraContext
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Get-EntraContext [<CommonParameters>]
 ```
 
 ## Description
@@ -100,20 +98,6 @@ User.ReadWrite.All
 Retrieves all scopes.
 
 ## Parameters
-
-### -ProgressAction
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 
