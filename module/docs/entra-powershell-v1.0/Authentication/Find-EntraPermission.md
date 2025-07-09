@@ -29,7 +29,6 @@ Find-EntraPermission
  [-ExactMatch]
  [-PermissionType <String>]
  [-Online]
- [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -40,7 +39,6 @@ Find-EntraPermission
  [-PermissionType <String>]
  [-Online]
  [-All]
- [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -205,20 +203,6 @@ Type: System.String
 Required: False
 Position: Named
 Default value: Any
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProgressAction
-
-Specifics the progra option.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Aliases: progra
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -9,7 +9,7 @@ ms.author: eunicewaweru
 ms.date: 03/10/2025
 ms.reviewer: dbutoyi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraUserSponsor
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraUserSponsor
 schema: 2.0.0
 title: Set-EntraUserSponsor
 ---
