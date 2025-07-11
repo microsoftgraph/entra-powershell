@@ -17,7 +17,7 @@ title: Get-EntraBetaInactiveSignInUser
 
 ## SYNOPSIS
 
-Retrieve users who have not had interactive sign-ins since a specified number of days ago.
+Retrieve users without interactive sign-ins since a specified number of days ago.
 
 ## SYNTAX
 
@@ -30,11 +30,11 @@ Get-EntraBetaInactiveSignInUser
 
 ## DESCRIPTION
 
-The `Get-EntraBetaInactiveSignInUser` cmdlet retrieves users who have not signed in interactively within a specified number of days. This can be useful for identifying inactive accounts in your Microsoft Entra ID environment.
+The `Get-EntraBetaInactiveSignInUser` cmdlet retrieves users who didn't sign in interactively within a specified number of days. This cmdlet can be useful for identifying inactive accounts in your Microsoft Entra ID environment.
 
 ## EXAMPLES
 
-### Example 1: Retrieve users who have not signed in for 30 days
+### Example 1: Retrieve users who didn't sign in for 30 days
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','User.Read.All'
@@ -71,7 +71,7 @@ CreatedDateTime                  : 01/04/2025 5:00:34 AM
 CreatedDaysAgo                   : 30
 ```
 
-This command retrieves users who have not had an interactive sign-in within the last 30 days.
+This command retrieves users without an interactive sign-in within the last 30 days.
 
 ### Example 2: Retrieve inactive guest users
 
@@ -96,13 +96,13 @@ CreatedDateTime                  : 01/04/2025 5:55:34 AM
 CreatedDaysAgo                   : 30
 ```
 
-This command retrieves guest users who have not had an interactive sign-in within the last 90 days.
+This command retrieves guest users without an interactive sign-in within the last 90 days.
 
 ## PARAMETERS
 
 ### -LastSignInBeforeDaysAgo
 
-Specifies the number of days since the last interactive sign-in. Users who have not signed in within this period will be returned.
+Specifies the number of days since the last interactive sign-in. Users who didn't sign in within this period are returned.
 
 ```yaml
 Type: System.Int32
@@ -118,7 +118,7 @@ Accept wildcard characters: False
 
 ### -UserType
 
-Filters users based on their type (e.g., "Member" or "Guest").
+Filters users based on their type (for example, "Member" or "Guest").
 
 ```yaml
 Type: System.String
@@ -146,7 +146,7 @@ You can pipe an integer value to the `-LastSignInBeforeDaysAgo` parameter.
 
 ### System.Object
 
-Returns a list of users who have not signed in within the specified period.
+Returns a list of users who didn't sign in within the specified period.
 
 ## NOTES
 

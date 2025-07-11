@@ -153,6 +153,18 @@ By convention, this UPN should map to the user's email name.
 
 The general format is "alias@domain".
 
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -169,12 +181,12 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[Remove-EntraDeletedApplication](../Applications/Remove-EntraDeletedApplication.md)
+[Remove-EntraDeletedApplication](Remove-EntraDeletedApplication.md)
 
-[Restore-EntraDeletedApplication](../Applications/Restore-EntraDeletedApplication.md)
+[Restore-EntraDeletedApplication](Restore-EntraDeletedApplication.md)
 
 [Remove-EntraDeletedDirectoryObject](Remove-EntraDeletedDirectoryObject.md)
 
-[Get-EntraDeletedApplication](../Applications/Get-EntraDeletedApplication.md)
+[Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
 
 [Get-EntraDeletedDirectoryObject](Get-EntraDeletedDirectoryObject.md)
