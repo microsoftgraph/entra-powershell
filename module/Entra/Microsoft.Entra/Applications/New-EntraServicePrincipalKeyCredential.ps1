@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------ 
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information. 
+# ------------------------------------------------------------------------------ 
 function New-EntraServicePrincipalKeyCredential {
     [CmdletBinding()]
     param (
@@ -64,6 +68,7 @@ function New-EntraServicePrincipalKeyCredential {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
+        $tesy = ($params | ConvertTo-Json -Depth 4)
 
         try {
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method "POST" -Body ($params | ConvertTo-Json -Depth 4)
