@@ -25,6 +25,8 @@ Restore a previously deleted object.
 ```powershell
 Restore-EntraDeletedDirectoryObject
  -Id <String>
+ [-AutoReconcileProxyConflict]
+ [-NewUserPrincipalName <String>]
  [<CommonParameters>]
 ```
 
@@ -88,6 +90,25 @@ This example shows how to restore a deleted object in Microsoft Entra ID.
 - `-Id` parameter specifies the Id of the directory object to restore.
 - `-AutoReconcileProxyConflict` parameter removes any conflicting proxy addresses while restoring a soft-deleted user whose one or more proxy addresses are currently used for an active user.
 
+### Example 3: Restoring a Deleted User and assigning a new UserPrincipalName
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$deletedUser = Get-EntraBetaDeletedUser -Filter "DisplayName eq 'Sawyer M'"
+Restore-EntraBetaDeletedDirectoryObject -Id $deletedUser.Id -NewUserPrincipalName 'SawyerM@contoso.com'
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
+
+This example shows how to restore a deleted object in Microsoft Entra ID.
+
+- `-Id` parameter specifies the Id of the directory object to restore.
+- `-NewUserPrincipalName` assigns a new UserPrincipalName to the restored user.
+
 ## Parameters
 
 ### -Id
@@ -121,6 +142,16 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+
+### -NewUserPrincipalName
+
+The user principal name (UPN) assigned to the restored user.
+
+The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822.
+
+By convention, this UPN should map to the user's email name.
+
+The general format is "alias@domain".
 
 ### CommonParameters
 
