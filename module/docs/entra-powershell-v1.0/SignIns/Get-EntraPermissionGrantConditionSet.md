@@ -16,11 +16,11 @@ title: Get-EntraPermissionGrantConditionSet
 
 # Get-EntraPermissionGrantConditionSet
 
-## Synopsis
+## SYNOPSIS
 
 Get a Microsoft Entra ID permission grant condition set by ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Get a Microsoft Entra ID permission grant condition set object by ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all permission grant condition sets that are included in the permission grant policy
 
@@ -109,7 +109,7 @@ This command gets a permission grant condition set specified by Id.
 - `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
 - `-Id` parameter specifies the unique identifier of the permission grant condition set object.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -179,15 +179,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraPermissionGrantConditionSet](New-EntraPermissionGrantConditionSet.md)
 

@@ -16,11 +16,11 @@ title: Get-EntraBetaOAuth2PermissionGrant
 
 # Get-EntraBetaOAuth2PermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Gets OAuth2PermissionGrant entities.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaOAuth2PermissionGrant
@@ -30,7 +30,7 @@ Get-EntraBetaOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
 
@@ -45,7 +45,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 - Directory Readers
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the OAuth2 permission grants
 
@@ -121,7 +121,7 @@ C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w 00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipal
 
 This command gets top 2 OAuth2 permission grants records. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -175,13 +175,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraBetaOAuth2PermissionGrant](Remove-EntraBetaOAuth2PermissionGrant.md)
 [New-EntraBetaOAuth2PermissionGrant](New-EntraBetaOauth2PermissionGrant.md)

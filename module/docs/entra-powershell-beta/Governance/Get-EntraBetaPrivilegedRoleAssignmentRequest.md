@@ -16,10 +16,10 @@ title: Get-EntraBetaPrivilegedRoleAssignmentRequest
 
 # Get-EntraBetaPrivilegedRoleAssignmentRequest
 
-## Synopsis
+## SYNOPSIS
 Get role assignment request for a specific resource
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,10 +42,10 @@ Get-EntraBetaPrivilegedRoleAssignmentRequest
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 Get role assignment request for a specific resource
 
-## Examples
+## EXAMPLES
 
 ### Example 1
 ```
@@ -61,7 +61,7 @@ PS C:\> Get-EntraBetaPrivilegedRoleAssignmentRequest -ProviderId AzureResources 
 
 Get a role assigment requests for a specific provider and Id
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 The unique identifier of the specific role assignment request
@@ -142,13 +142,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 ### System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-## Outputs
+## OUTPUTS
 
 ### System.Object
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

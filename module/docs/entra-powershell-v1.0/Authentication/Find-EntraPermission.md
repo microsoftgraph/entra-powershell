@@ -15,11 +15,11 @@ title: Find-EntraPermission
 
 # Find-EntraPermission
 
-## Synopsis
+## SYNOPSIS
 
 Helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
-## Syntax
+## SYNTAX
 
 ### Search
 
@@ -42,11 +42,11 @@ Find-EntraPermission
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Find-EntraPermission` cmdlet helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of all Application permissions
 
@@ -135,7 +135,7 @@ e4aa47b9-9a69-4109-82ed-36ec70d85ff1 Admin   AccessReview.ReadWrite.All         
 
 This example shows how to get all permissions of a specified type, for example, `Delegated` or `Application` permissions.
 
-## Parameters
+## PARAMETERS
 
 ### -SearchString
 
@@ -211,10 +211,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

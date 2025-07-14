@@ -15,11 +15,11 @@ title: Get-EntraDirectoryRoleDefinition
 
 # Get-EntraDirectoryRoleDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Gets information about role definitions in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -52,7 +52,7 @@ Get-EntraDirectoryRoleDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDirectoryRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `UnifiedRoleDefinitionId` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
@@ -68,7 +68,7 @@ The least privileged roles for this operation, from least to most privileged, ar
 - Global Reader
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all role definitions
 
@@ -152,7 +152,7 @@ Global Reader                      f2ef992c-3afb-46b9-b7cf-a126ee74c451 f2ef992c
 
 This command return all the role definitions containing the specified display name.
 
-## Parameters
+## PARAMETERS
 
 ### -UnifiedRoleDefinitionId
 
@@ -254,17 +254,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraRoleDefinition` is an alias for `Get-EntraDirectoryRoleDefintion`.
 
-## Related links
+## RELATED LINKS
 
 [New-EntraDirectoryRoleDefinition](New-EntraDirectoryRoleDefinition.md)
 

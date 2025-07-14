@@ -16,11 +16,11 @@ title: Get-EntraUserCertificateUserIdsFromCertificate
 
 # Get-EntraUserCertificateUserIdsFromCertificate
 
-## Synopsis
+## SYNOPSIS
 
 Returns an object with the certificate values needed to configure CertificateUserIDs for Certificate-Based Authentication in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserCertificateUserIdsFromCertificate
@@ -29,7 +29,7 @@ Get-EntraUserCertificateUserIdsFromCertificate
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserCertificateUserIdsFromCertificate` returns an object with certificateUserIDs values derived from the provided certificate file, following the format required by Microsoft Entra ID for Certificate-Based Authentication, as described in the [official documentation](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids).
 
@@ -38,7 +38,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 - Privileged Authentication Administrator (for Cloud-only users)
 - Hybrid Identity Administrator (for synchronized users)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve certificate object from a certificate path
 
@@ -89,7 +89,7 @@ X509:<S>DC=com,DC=contoso,OU=UserAccounts,CN=mfatest
 
 This command returns the PrincipalName property.
 
-## Parameters
+## PARAMETERS
 
 ### -Path
 
@@ -144,13 +144,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraUserCBACertificateUserId](Set-EntraUserCBACertificateUserId.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)

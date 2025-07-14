@@ -16,11 +16,11 @@ title: New-EntraBetaApplicationKeyCredential
 
 # New-EntraBetaApplicationKeyCredential
 
-## Synopsis
+## SYNOPSIS
 
 Creates a key credential for an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaApplicationKeyCredential
@@ -34,7 +34,7 @@ New-EntraBetaApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaApplicationKeyCredential` cmdlet creates a key credential for an application.
 
@@ -42,7 +42,7 @@ An application can use this command along with `Remove-EntraBetaApplicationKeyCr
 
 As part of the request validation, proof of possession of an existing key is verified before the action can be performed.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new application key credential
 
@@ -116,7 +116,7 @@ This example shows how to create an application key credential.
 - `-Usage` Specifies the key usage. for `AsymmetricX509Cert` the usage must be `Verify`and for `X509CertAndPassword` the usage must be `Sign`.
 - `-Value` Specifies the value for the key.
 
-## Parameters
+## PARAMETERS
 
 ### -CustomKeyIdentifier
 
@@ -237,13 +237,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

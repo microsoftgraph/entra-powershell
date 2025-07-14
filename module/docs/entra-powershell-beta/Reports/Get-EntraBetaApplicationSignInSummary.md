@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationSignInSummary
 
 # Get-EntraBetaApplicationSignInSummary
 
-## Synopsis
+## SYNOPSIS
 
 Get sign in summary by last number of days.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationSignInSummary
@@ -30,7 +30,7 @@ Get-EntraBetaApplicationSignInSummary
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationSignInSummary` cmdlet gets sign-in summaries for the last 7 or 30 days.
 
@@ -41,7 +41,7 @@ Returns the properties below:
 - successPercentage - the percentage of successful sign-ins made by the application.
 - successfulSignInCount - count of successful sign-ins made by the application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get sign in summary by application for the last week
 
@@ -97,7 +97,7 @@ This example returns top two summaries sign ins from the past 30 days. You can u
 
 - `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 
-## Parameters
+## PARAMETERS
 
 ### -Days
 
@@ -153,12 +153,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.GetApplicationSignInSummaryObjectsResponse
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

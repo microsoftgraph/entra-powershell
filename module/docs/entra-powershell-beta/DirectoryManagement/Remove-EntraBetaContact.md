@@ -16,11 +16,11 @@ title: Remove-EntraBetaContact
 
 # Remove-EntraBetaContact
 
-## Synopsis
+## SYNOPSIS
 
 Removes a contact.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaContact
@@ -28,11 +28,11 @@ Remove-EntraBetaContact
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a contact
 
@@ -53,7 +53,7 @@ Get-EntraBetaContact -Filter "displayName eq 'Contoso Contact'" | Remove-EntraBe
 
 The example shows how to remove a contact.
 
-## Parameters
+## PARAMETERS
 
 ### -OrgContactId
 
@@ -75,12 +75,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaContact](Get-EntraBetaContact.md)

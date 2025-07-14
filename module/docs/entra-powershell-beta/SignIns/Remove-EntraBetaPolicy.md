@@ -16,11 +16,11 @@ title: Remove-EntraBetaPolicy
 
 # Remove-EntraBetaPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Removes a policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaPolicy
@@ -28,11 +28,11 @@ Remove-EntraBetaPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaPolicy` cmdlet removes a policy from Microsoft Entra ID. Specify `Id` parameter to remove a specific policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a policy
 
@@ -46,7 +46,7 @@ This command removes the specified policy from Microsoft Entra ID.
 
 - `-Id` - specifies the ID of the policy you want to remove.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -68,13 +68,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
 

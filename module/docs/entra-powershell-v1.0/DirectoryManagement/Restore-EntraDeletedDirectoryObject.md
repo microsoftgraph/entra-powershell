@@ -16,11 +16,11 @@ title: Restore-EntraDeletedDirectoryObject
 
 # Restore-EntraDeletedDirectoryObject
 
-## Synopsis
+## SYNOPSIS
 
 Restore a previously deleted object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Restore-EntraDeletedDirectoryObject
@@ -30,7 +30,7 @@ Restore-EntraDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Restore-EntraDeletedDirectoryObject` cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
 
@@ -51,7 +51,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 - **To restore deleted groups:** Groups Administrator.
   - However, to restore role-assignable groups, the calling user must be assigned the Privileged Role Administrator role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Restore a deleted object with ID
 
@@ -109,7 +109,7 @@ This example shows how to restore a deleted object in Microsoft Entra ID.
 - `-Id` parameter specifies the Id of the directory object to restore.
 - `-NewUserPrincipalName` assigns a new UserPrincipalName to the restored user.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -157,17 +157,17 @@ The general format is "alias@domain".
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraDeletedApplication](../Applications/Remove-EntraDeletedApplication.md)
 

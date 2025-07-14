@@ -16,11 +16,11 @@ title: Get-EntraBetaSubscribedSku
 
 # Get-EntraBetaSubscribedSku
 
-## Synopsis
+## SYNOPSIS
 
 Gets subscribed SKUs to Microsoft services.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -39,7 +39,7 @@ Get-EntraBetaSubscribedSku
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
@@ -49,7 +49,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Global Reader
 - Directory Readers
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get subscribed SKUs
 
@@ -187,7 +187,7 @@ devont@contoso.com      Devon Torres      ffffffff-5555-6666-7777-aaaaaaaaaaaa R
 
 This example shows a list of users, their licenses, and the source of the license such as directly assigned or group assigned.
 
-## Parameters
+## PARAMETERS
 
 ### -SubscribedSkuId
 
@@ -225,12 +225,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaSubscription](Get-EntraBetaSubscription.md)

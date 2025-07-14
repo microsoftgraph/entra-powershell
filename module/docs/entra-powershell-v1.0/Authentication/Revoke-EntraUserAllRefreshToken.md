@@ -16,11 +16,11 @@ title: Revoke-EntraUserAllRefreshToken
 
 # Revoke-EntraUserAllRefreshToken
 
-## Synopsis
+## SYNOPSIS
 
 Invalidates the refresh tokens issued to applications for a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Revoke-EntraUserAllRefreshToken
@@ -28,7 +28,7 @@ Revoke-EntraUserAllRefreshToken
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Revoke-EntraUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
 
@@ -38,7 +38,7 @@ The cmdlet operates by resetting the refreshTokensValidFromDateTime user propert
 
 This operation is usually performed by the user or an administrator if the user's device is lost or stolen. It blocks access to the organization's data by requiring the user to sign in again to all previously authorized applications, regardless of the device.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Revoke refresh tokens for a user
 
@@ -57,7 +57,7 @@ This example demonstrates how to revoke the tokens for the specified user.
 
 - `-UserId` parameter specifies the unique identifier of a user.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -79,12 +79,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Revoke-EntraSignedInUserAllRefreshToken](Revoke-EntraSignedInUserAllRefreshToken.md)

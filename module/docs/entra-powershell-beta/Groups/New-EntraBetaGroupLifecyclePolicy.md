@@ -16,11 +16,11 @@ title: New-EntraBetaGroupLifecyclePolicy
 
 # New-EntraBetaGroupLifecyclePolicy
 
-## Synopsis
+## SYNOPSIS
 
 Creates a new groupLifecyclePolicy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaGroupLifecyclePolicy
@@ -30,11 +30,11 @@ New-EntraBetaGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates a new groupLifecyclePolicy
 
@@ -55,7 +55,7 @@ This example creates a new groupLifecyclePolicy with a group lifetime of 99 days
 - `-ManagedGroupTypes` parameter allows the admin to select which office 365 groups the policy applies to.
 - `-AlternateNotificationEmails` parameter specifies notification emails for group.
 
-## Parameters
+## PARAMETERS
 
 ### -AlternateNotificationEmails
 
@@ -112,17 +112,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaGroupLifecyclePolicy](Set-EntraBetaGroupLifecyclePolicy.md)
 

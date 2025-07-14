@@ -16,11 +16,11 @@ title: New-EntraBetaPrivateAccessApplicationSegment
 
 # New-EntraBetaPrivateAccessApplicationSegment
 
-## Synopsis
+## SYNOPSIS
 
 Creates an application segment associated to a Private Access application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaPrivateAccessApplicationSegment
@@ -32,11 +32,11 @@ New-EntraBetaPrivateAccessApplicationSegment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application segment associated to a Private Access application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a simple application segment
 
@@ -123,7 +123,7 @@ foreach ($variable in $variables) {
 }
 ```
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -209,17 +209,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS
 

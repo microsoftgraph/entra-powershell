@@ -16,11 +16,11 @@ title: Select-EntraGroupIdsUserIsMemberOf
 
 # Select-EntraGroupIdsUserIsMemberOf
 
-## Synopsis
+## SYNOPSIS
 
 Selects the groups that a user is a member of.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Select-EntraGroupIdsUserIsMemberOf
@@ -29,11 +29,11 @@ Select-EntraGroupIdsUserIsMemberOf
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Select-EntraGroupIdsUserIsMemberOf` cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the group membership of a group for a user
 
@@ -55,7 +55,7 @@ This example retrieves the group membership of a group for a user.
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-GroupIdsForMembershipCheck` parameter specifies the group Object Ids.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
 
@@ -93,12 +93,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)

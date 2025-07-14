@@ -16,11 +16,11 @@ title: Remove-EntraBetaServicePrincipalAppRoleAssignment
 
 # Remove-EntraBetaServicePrincipalAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Removes a service principal application role assignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaServicePrincipalAppRoleAssignment
@@ -29,7 +29,7 @@ Remove-EntraBetaServicePrincipalAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaServicePrincipalAppRoleAssignment` cmdlet removes a service principal application role assignment in Microsoft Entra ID.
 
@@ -46,7 +46,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes a service principal application role assignment
 
@@ -63,7 +63,7 @@ This example demonstrates how to remove a service principal application role ass
 - `-ServicePrincipalId` - specifies the unique identifier (Object ID) of the service principal or user from which you want to remove an app role assignment.
 - `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove.
 
-## Parameters
+## PARAMETERS
 
 ### -AppRoleAssignmentId
 
@@ -101,15 +101,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Remove-EntraBetaServiceAppRoleAssignment` is an alias for `Remove-EntraBetaServicePrincipalAppRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)
 

@@ -16,11 +16,11 @@ title: Get-EntraFeatureRolloutPolicy
 
 # Get-EntraFeatureRolloutPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -47,13 +47,13 @@ Get-EntraFeatureRolloutPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
 
 This policy consists of one or two FeatureRolloutPolicy objects. These objects hold the groups assigned for cloud authentication (Pass-through authentication or Password Hash Sync) and groups assigned for Seamless single sign-on.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieves a list of all cloud authentication roll-out in Microsoft Entra ID
 
@@ -119,7 +119,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy FeatureRolloutPolic
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -190,15 +190,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraFeatureRolloutPolicy](New-EntraFeatureRolloutPolicy.md)
 

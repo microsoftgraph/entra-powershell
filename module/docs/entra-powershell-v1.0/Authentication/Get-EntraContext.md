@@ -16,11 +16,11 @@ title: Get-EntraContext
 
 # Get-EntraContext
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve information about your current session
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -28,7 +28,7 @@ Retrieve information about your current session
 Get-EntraContext [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 `Get-EntraContext` is used to retrieve the details about your current session, which include:
 
@@ -48,7 +48,7 @@ Get-EntraContext [<CommonParameters>]
 
 `Get-EntraCurrentSessionInfo` is an alias for `Get-EntraContext`.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the current session
 
@@ -97,16 +97,16 @@ User.ReadWrite.All
 
 Retrieves all scopes.
 
-## Parameters
+## PARAMETERS
 
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

@@ -15,11 +15,11 @@ title: Get-EntraBetaApplicationOwner
 
 # Get-EntraBetaApplicationOwner
 
-## Synopsis
+## SYNOPSIS
 
 Gets the owner of an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationOwner
@@ -30,11 +30,11 @@ Get-EntraBetaApplicationOwner
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationOwner` cmdlet get an owner of an Microsoft Entra ID application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the owner of an application
 
@@ -99,7 +99,7 @@ This example demonstrates how to get the two owners of a specified application i
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -169,13 +169,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaApplicationOwner](Add-EntraBetaApplicationOwner.md)
 

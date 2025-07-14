@@ -16,11 +16,11 @@ title: Get-EntraApplicationTemplate
 
 # Get-EntraApplicationTemplate
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve application templates from the Microsoft Entra gallery.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -41,11 +41,11 @@ Get-EntraApplicationTemplate
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraApplicationTemplate` cmdlet retrieves application templates from the Microsoft Entra gallery.
 
-## Examples
+## EXAMPLES
 
 ### Example 1. Gets a list of application template objects
 
@@ -147,7 +147,7 @@ Id                                   Categories                                 
 
 This example shows how to retrieve application templates in the CRM category.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -234,14 +234,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.ApplicationTemplate
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraApplicationFromApplicationTemplate](New-EntraApplicationFromApplicationTemplate.md)

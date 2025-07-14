@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalAppRoleAssignment
 
 # Get-EntraBetaServicePrincipalAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Gets a service principal application role assignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalAppRoleAssignment
@@ -31,7 +31,7 @@ Get-EntraBetaServicePrincipalAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
@@ -46,7 +46,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the application role assignments for a service principal
 
@@ -108,7 +108,7 @@ This command gets top three application role assignments for specified service p
 
 - `-ServicePrincipalId` parameter specifies the service principal Id.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -178,15 +178,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraBetaServiceAppRoleAssignment` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

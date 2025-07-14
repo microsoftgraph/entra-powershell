@@ -16,11 +16,11 @@ title: Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 
 # Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 
-## Synopsis
+## SYNOPSIS
 
 Selects the groups in which a service principal is a member.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
@@ -29,11 +29,11 @@ Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Select-EntraBetaGroupIdsServicePrincipalIsMemberOf` cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the group membership of a group for a service principal
 
@@ -54,7 +54,7 @@ This command gets the group membership of a group for a specified service princi
 - `-ServicePrincipalId` parameter specifies the service principal Id.
 - `-GroupIdsForMembershipCheck` parameter specifies the array of group object IDs.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
 
@@ -92,10 +92,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

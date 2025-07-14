@@ -16,11 +16,11 @@ title: New-EntraBetaDirectorySetting
 
 # New-EntraBetaDirectorySetting
 
-## Synopsis
+## SYNOPSIS
 
 Creates a directory settings object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaDirectorySetting
@@ -28,11 +28,11 @@ New-EntraBetaDirectorySetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaDirectorySetting` cmdlet creates a directory settings object in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates new settings object
 
@@ -56,7 +56,7 @@ This example Creates new settings object in Microsoft Entra ID.
 
 - `-DirectorySetting` Parameter Create a new setting using templates from `DirectorySettingTemplates`
 
-## Parameters
+## PARAMETERS
 
 ### -DirectorySetting
 
@@ -78,13 +78,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectorySetting](Get-EntraBetaDirectorySetting.md)
 

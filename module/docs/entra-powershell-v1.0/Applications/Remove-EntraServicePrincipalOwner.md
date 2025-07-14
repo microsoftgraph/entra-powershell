@@ -16,11 +16,11 @@ title: Remove-EntraServicePrincipalOwner
 
 # Remove-EntraServicePrincipalOwner
 
-## Synopsis
+## SYNOPSIS
 
 Removes an owner from a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraServicePrincipalOwner
@@ -29,11 +29,11 @@ Remove-EntraServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraServicePrincipalOwner` cmdlet removes an owner from a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes an owner from a service principal
 
@@ -50,7 +50,7 @@ This example demonstrates how to remove an owner from a service principal in Mic
 - `-ServicePrincipalId` parameter specifies the service principal Id.
 - `-OwnerId` parameter specifies the service principal owner Id.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraServicePrincipalOwner](Add-EntraServicePrincipalOwner.md)
 

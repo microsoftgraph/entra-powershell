@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalMembership
 
 # Get-EntraBetaServicePrincipalMembership
 
-## Synopsis
+## SYNOPSIS
 
 Get a service principal membership.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalMembership
@@ -31,11 +31,11 @@ Get-EntraBetaServicePrincipalMembership
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalMembership` cmdlet gets the memberships of a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the memberships of a service principal
 
@@ -91,7 +91,7 @@ This command gets top two memberships of a specified service principal. You can 
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -161,12 +161,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)

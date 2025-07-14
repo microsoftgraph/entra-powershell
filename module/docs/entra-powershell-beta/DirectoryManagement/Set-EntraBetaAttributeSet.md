@@ -16,11 +16,11 @@ title: Set-EntraBetaAttributeSet
 
 # Set-EntraBetaAttributeSet
 
-## Synopsis
+## SYNOPSIS
 
 Updates an existing attribute set.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaAttributeSet
@@ -30,7 +30,7 @@ Set-EntraBetaAttributeSet
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. You can only update the `description` and `maxAttributesPerSet` properties.
 
@@ -38,7 +38,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update an attribute set
 
@@ -64,7 +64,7 @@ This example update an attribute set using MaxAttributesPerSet.
 - `-AttributeSetId` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
 - `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -118,17 +118,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaAttributeSet](New-EntraBetaAttributeSet.md)
 

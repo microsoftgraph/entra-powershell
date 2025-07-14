@@ -16,11 +16,11 @@ title: Remove-EntraTrustedCertificateAuthority
 
 # Remove-EntraTrustedCertificateAuthority
 
-## Synopsis
+## SYNOPSIS
 
 Removes a trusted certificate authority.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraTrustedCertificateAuthority
@@ -28,11 +28,11 @@ Remove-EntraTrustedCertificateAuthority
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraTrustedCertificateAuthority` cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove the trusted certificate authorities that are defined in your directory
 
@@ -53,7 +53,7 @@ This command deletes the trusted certificate authorities that are defined in you
 - `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
 It includes properties like `AuthorityType`, `CrlDistributionPoint`, `DeltaCrlDistributionPoint`, and `TrustedCertificate`.
 
-## Parameters
+## PARAMETERS
 
 ### -CertificateAuthorityInformation
 
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraTrustedCertificateAuthority](Get-EntraTrustedCertificateAuthority.md)
 

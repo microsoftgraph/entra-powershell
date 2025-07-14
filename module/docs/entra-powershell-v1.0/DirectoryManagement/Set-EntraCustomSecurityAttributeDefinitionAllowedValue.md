@@ -16,11 +16,11 @@ title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 # Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 
-## Synopsis
+## SYNOPSIS
 
 Updates an existing custom security attribute definition predefined value.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraCustomSecurityAttributeDefinitionAllowedValue
@@ -29,7 +29,7 @@ Set-EntraCustomSecurityAttributeDefinitionAllowedValue
  -Id <String> [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
@@ -37,7 +37,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a custom security attribute definition predefined value
 
@@ -53,7 +53,7 @@ This example update a custom security attribute definition predefined value.
 - `-Id` parameter specifies the ID of Microsoft Entra ID Object.
 - `-IsActive` parameter specifies the predefined value is active or deactivated.
 
-## Parameters
+## PARAMETERS
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -107,17 +107,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraCustomSecurityAttributeDefinitionAllowedValue](Get-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
 

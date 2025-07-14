@@ -16,11 +16,11 @@ title: Set-EntraBetaPrivilegedRoleSetting
 
 # Set-EntraBetaPrivilegedRoleSetting
 
-## Synopsis
+## SYNOPSIS
 
 Update role setting.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaPrivilegedRoleSetting
@@ -34,11 +34,11 @@ Set-EntraBetaPrivilegedRoleSetting
  -ProviderId <String> [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaPrivilegedRoleSetting` cmdlet update role setting.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a UserMember Settings by setting the justification to be false
 
@@ -161,7 +161,7 @@ This command update a AdminEligible Settings.
 - `-ResourceId` Parameter specifies the ID of the specific resource.
 - `-RoleDefinitionId` Parameter specifies the ID of the specific role definition
 
-## Parameters
+## PARAMETERS
 
 ### -AdminEligibleSettings
 
@@ -296,16 +296,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaPrivilegedRoleSetting](Get-EntraBetaPrivilegedRoleSetting.md)

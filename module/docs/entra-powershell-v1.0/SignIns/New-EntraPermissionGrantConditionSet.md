@@ -16,11 +16,11 @@ title: New-EntraPermissionGrantConditionSet
 
 # New-EntraPermissionGrantConditionSet
 
-## Synopsis
+## SYNOPSIS
 
 Create a new Microsoft Entra ID permission grant condition set in a given policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraPermissionGrantConditionSet
@@ -37,11 +37,11 @@ New-EntraPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Create a new Microsoft Entra ID permission grant condition set object in an existing policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a basic permission grant condition set in an existing policy with all build in values
 
@@ -165,7 +165,7 @@ This command creates a permission grant condition set in an existing policy that
 - `-ClientApplicationTenantIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
 - `-ClientApplicationPublisherIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -336,17 +336,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraPermissionGrantConditionSet](Set-EntraPermissionGrantConditionSet.md)
 

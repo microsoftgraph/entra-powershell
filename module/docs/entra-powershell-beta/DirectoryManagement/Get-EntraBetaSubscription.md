@@ -16,11 +16,11 @@ title: Get-EntraBetaSubscription
 
 # Get-EntraBetaSubscription
 
-## Synopsis
+## SYNOPSIS
 
 List the organization's commercial subscriptions.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,7 +42,7 @@ Get-EntraBetaSubscription
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaSubscription` cmdlet lists the organization's commercial subscriptions.
 
@@ -52,7 +52,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Global Reader
 - Directory Readers
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all organization's commercial subscriptions
 
@@ -181,7 +181,7 @@ commerceSubscriptionId : eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to retrieve active commercial subscriptions.
 
-## Parameters
+## PARAMETERS
 
 ### -CommerceSubscriptionId
 
@@ -268,14 +268,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraBetaDirectorySubscription` is an alias for `Get-EntraBetaSubscription`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaAccountSKU](Get-EntraBetaAccountSKU.md)

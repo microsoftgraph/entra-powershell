@@ -16,11 +16,11 @@ title: Set-EntraBetaPermissionGrantConditionSet
 
 # Set-EntraBetaPermissionGrantConditionSet
 
-## Synopsis
+## SYNOPSIS
 
 Update an existing Microsoft Entra ID permission grant condition set.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaPermissionGrantConditionSet
@@ -38,11 +38,11 @@ Set-EntraBetaPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Updates a Microsoft Entra ID permission grant condition set object identified by Id.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a permission grant condition set to includes permissions that is classified as low
 
@@ -97,7 +97,7 @@ This command updates sets the specified permission grant set.
 - `-ClientApplicationPublisherIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
 - `-ClientApplicationsFromVerifiedPublisherOnly` parameter indicates whether to only includes client applications from verified publishers.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -284,15 +284,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaPermissionGrantConditionSet](New-EntraBetaPermissionGrantConditionSet.md)
 

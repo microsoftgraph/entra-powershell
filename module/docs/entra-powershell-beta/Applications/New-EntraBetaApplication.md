@@ -16,11 +16,11 @@ title: New-EntraBetaApplication
 
 # New-EntraBetaApplication
 
-## Synopsis
+## SYNOPSIS
 
 Creates a new application registration in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### CreateApplication (Default)
 
@@ -59,11 +59,11 @@ New-EntraBetaApplication [-DisplayName <String>]
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaApplication` cmdlet creates a new application registration in Microsoft Entra ID. Applications can be configured for different authentication scenarios, including single-tenant or multitenant, and can use various credential types.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a basic application
 
@@ -424,7 +424,7 @@ New-EntraBetaApplication -DisplayName "Contoso Certificate App" -KeyCredentials 
 
 This command creates an application with a certificate credential.
 
-## Parameters
+## PARAMETERS
 
 ### -DisplayName
 
@@ -769,19 +769,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
 This cmdlet doesn't accept pipeline input.
 
-## Outputs
+## OUTPUTS
 
 ### PSCustomObject
 
 Returns a custom object representing the created Microsoft Entra application.
 
-## Notes
+## NOTES
 
 - This cmdlet requires the 'Application.ReadWrite.All' permission scope.
 - When using certificate credentials, ensure proper certificate management practices:
@@ -795,7 +795,7 @@ Returns a custom object representing the created Microsoft Entra application.
   * Using conditional access policies for sensitive applications
   * Implementing proper credential rotation processes
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

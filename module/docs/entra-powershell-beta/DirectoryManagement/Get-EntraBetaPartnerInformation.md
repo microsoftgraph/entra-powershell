@@ -16,11 +16,11 @@ title: Get-EntraBetaPartnerInformation
 
 # Get-EntraBetaPartnerInformation
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves company-level information for partners.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -37,12 +37,12 @@ Get-EntraBetaPartnerInformation
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPartnerInformation` cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve partner information
 
@@ -87,7 +87,7 @@ This command retrieves partner-specific information.
 
 `-TenantId` Parameter specifies unique ID of the tenant to perform the operation on.
 
-## Parameters
+## PARAMETERS
 
 ### -TenantId
 
@@ -109,9 +109,9 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Company level information outputs
 
@@ -124,8 +124,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 - PartnerSupportUrl: URL for the Partner's support website
 - PartnerHelpUrl: URL for the partner's help web site
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaPartnerInformation](Set-EntraBetaPartnerInformation.md)

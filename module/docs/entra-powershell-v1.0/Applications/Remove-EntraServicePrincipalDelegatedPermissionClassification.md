@@ -16,11 +16,11 @@ title: Remove-EntraServicePrincipalDelegatedPermissionClassification
 
 # Remove-EntraServicePrincipalDelegatedPermissionClassification
 
-## Synopsis
+## SYNOPSIS
 
 Remove delegated permission classification.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraServicePrincipalDelegatedPermissionClassification
@@ -29,11 +29,11 @@ Remove-EntraServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraServicePrincipalDelegatedPermissionClassification` cmdlet deletes the given delegated permission classification by Id from service principal.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a delegated permission classification
 
@@ -49,7 +49,7 @@ This command deletes the delegated permission classification by Id from the serv
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 - `-Id` parameter specifies the unique identifier of a delegated permission classification object Id.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -87,13 +87,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraServicePrincipalDelegatedPermissionClassification](Get-EntraServicePrincipalDelegatedPermissionClassification.md)
 

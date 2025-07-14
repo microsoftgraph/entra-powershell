@@ -16,11 +16,11 @@ title: New-EntraAttributeSet
 
 # New-EntraAttributeSet
 
-## Synopsis
+## SYNOPSIS
 
 Adds a new attribute set.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraAttributeSet
@@ -30,7 +30,7 @@ New-EntraAttributeSet
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Adds a new Microsoft Entra ID attribute set object.
 
@@ -38,7 +38,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a single attribute set
 
@@ -59,7 +59,7 @@ This example demonstrates hoe to add a single attribute set.
 - `-Description` parameter specifies the description for the attribute set.
 - `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -113,17 +113,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraAttributeSet](Get-EntraAttributeSet.md)
 

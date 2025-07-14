@@ -16,11 +16,11 @@ title: Get-EntraDirectoryRoleMember
 
 # Get-EntraDirectoryRoleMember
 
-## Synopsis
+## SYNOPSIS
 
 Gets members of a directory role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDirectoryRoleMember
@@ -29,7 +29,7 @@ Get-EntraDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `DirectoryRoleId`. Use the `Get-EntraDirectoryRole` cmdlet to get the `DirectoryRoleId` value.
 
@@ -47,7 +47,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Privileged Role Administrator  
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get members by role ID
 
@@ -68,7 +68,7 @@ This example retrieves the members of the specified role.
 
 - `-DirectoryRoleId` parameter specifies directory role ID.
 
-## Parameters
+## PARAMETERS
 
 ### -DirectoryRoleId
 
@@ -106,13 +106,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 

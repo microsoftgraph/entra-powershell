@@ -15,20 +15,20 @@ title: Set-EntraBetaPrivilegedRoleAssignmentRequest
 
 # Set-EntraBetaPrivilegedRoleAssignmentRequest
 
-## Synopsis
+## SYNOPSIS
 Update a role assignment request
 
-## Syntax
+## SYNTAX
 
 ```
 Set-EntraBetaPrivilegedRoleAssignmentRequest -Id <String> [-Schedule <AzureADMSPrivilegedSchedule>]
  [-AssignmentState <String>] [-Decision <String>] [-Reason <String>] -ProviderId <String> [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 Update a role assignment request
 
-## Examples
+## EXAMPLES
 
 ### Example 1
 ```
@@ -37,7 +37,7 @@ PS C:\> Set-EntraBetaPrivilegedRoleAssignmentRequest -ProviderId AzureResources 
 
 Update a role assignment request by setting to denied
 
-## Parameters
+## PARAMETERS
 
 ### -AssignmentState
 The state of assignment, and the values can be Eligible or Active.
@@ -135,12 +135,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
-## Outputs
+## OUTPUTS
 
 ### System.Object
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

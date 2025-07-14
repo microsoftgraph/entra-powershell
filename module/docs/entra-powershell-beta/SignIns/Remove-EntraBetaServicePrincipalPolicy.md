@@ -16,11 +16,11 @@ title: Remove-EntraBetaServicePrincipalPolicy
 
 # Remove-EntraBetaServicePrincipalPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Delete a servicePrincipal policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaServicePrincipalPolicy
@@ -29,11 +29,11 @@ Remove-EntraBetaServicePrincipalPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Delete a servicePrincipal policy. Specify the `Id` and `PolicyId` parameter to remove a specific servicePrincipal policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a service principal policy
 
@@ -48,7 +48,7 @@ Remove-EntraBetaServicePrincipalPolicy @params
 
 This command removes a specific servicePrincipal policy in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaServicePrincipalPolicy](Add-EntraBetaServicePrincipalPolicy.md)
 

@@ -16,11 +16,11 @@ title: Get-EntraBetaPrivilegedRoleDefinition
 
 # Get-EntraBetaPrivilegedRoleDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Get role definitions.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -45,11 +45,11 @@ Get-EntraBetaPrivilegedRoleDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPrivilegedRoleDefinition` cmdlet gets role definitions from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get role definitions for a specific provider and resource
 
@@ -144,7 +144,7 @@ This example retrieves a top one role definition. You can use `-Limit` as an ali
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 - `-ResourceId` Parameter specifies the ID of the specific resource.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -247,14 +247,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

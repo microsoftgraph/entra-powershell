@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalPolicy
 
 # Get-EntraBetaServicePrincipalPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets a servicePrincipal policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalPolicy
@@ -28,11 +28,11 @@ Get-EntraBetaServicePrincipalPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalPolicy` cmdlet gets the policy of a service principal in Microsoft Entra ID. Specify the `Id` parameter to get a specific servicePrincipal policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a policy
 
@@ -51,7 +51,7 @@ This command retrieves the policy for a specified service principal in Microsoft
 
 - `-Id` Parameter specifies the ID of the Service Principal.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaServicePrincipalPolicy](Add-EntraBetaServicePrincipalPolicy.md)
 

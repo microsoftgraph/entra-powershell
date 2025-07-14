@@ -15,11 +15,11 @@ title: Get-EntraUserAdministrativeUnit
 
 # Get-EntraUserAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the list of administrative units a user belongs to.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraUserAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserAdministrativeUnit` cmdlet retrieves a list of administrative units to which a user belongs.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of administrative units to which a specific user belongs
 
@@ -129,7 +129,7 @@ DeletedDateTime Id                                   Description                
 
 This cmdlet retrieves an administrative unit to which a specific user belongs.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -232,14 +232,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUserMembership](Get-EntraUserMembership.md)

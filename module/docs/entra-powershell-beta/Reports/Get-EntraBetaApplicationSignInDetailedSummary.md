@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationSignInDetailedSummary
 
 # Get-EntraBetaApplicationSignInDetailedSummary
 
-## Synopsis
+## SYNOPSIS
 
 Get detailed sign in summaries.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationSignInDetailedSummary
@@ -29,11 +29,11 @@ Get-EntraBetaApplicationSignInDetailedSummary
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationSignInDetailedSummary` cmdlet gets Microsoft Entra ID sign ins, grouped by application, date, and sign in status.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get sign in detailed summary
 
@@ -98,7 +98,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff 20-06-2024 00:00:00     Azure Portal   4444
 
 This example returns top five sign ins to Microsoft Entra ID portal. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -Top
 
@@ -137,12 +137,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.GetApplicationSignInDetailedSummaryObjectsResponse
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

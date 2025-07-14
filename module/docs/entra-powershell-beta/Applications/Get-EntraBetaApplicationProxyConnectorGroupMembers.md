@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationProxyConnectorGroupMembers
 
 # Get-EntraBetaApplicationProxyConnectorGroupMembers
 
-## Synopsis
+## SYNOPSIS
 
 The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application Proxy connectors associated with the given connector group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroupMembers
@@ -30,11 +30,11 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers
  [-Filter <String>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application Proxy connectors associated with the given connector group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Gets all the connectors in the group
 
@@ -93,7 +93,7 @@ This example retrieves a connector in the group using machineName property.
 
 - `OnPremisesPublishingProfileId` parameter specifies the connector group ID.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -159,17 +159,17 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System. Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

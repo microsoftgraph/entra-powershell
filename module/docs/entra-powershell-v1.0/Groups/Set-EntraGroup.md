@@ -16,11 +16,11 @@ title: Set-EntraGroup
 
 # Set-EntraGroup
 
-## Synopsis
+## SYNOPSIS
 
 Sets the properties for an existing Microsoft Entra ID group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraGroup
@@ -36,11 +36,11 @@ Set-EntraGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `GroupId` parameter to set the properties for an existing Microsoft Entra ID group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a group display name
 
@@ -101,7 +101,7 @@ Set-EntraGroup -GroupId $group.Id -Visibility 'Private' -GroupTypes 'DynamicMemb
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -265,17 +265,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

@@ -16,11 +16,11 @@ title: Set-EntraBetaTrustedCertificateAuthority
 
 # Set-EntraBetaTrustedCertificateAuthority
 
-## Synopsis
+## SYNOPSIS
 
 Updates a trusted certificate authority.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaTrustedCertificateAuthority
@@ -28,11 +28,11 @@ Set-EntraBetaTrustedCertificateAuthority
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaTrustedCertificateAuthority` cmdlet updates a trusted certificate authority in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Updates the trusted certificate authorities that are defined in your directory
 
@@ -53,7 +53,7 @@ This command updates the trusted certificate authorities that are defined in you
 
 - `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
 
-## Parameters
+## PARAMETERS
 
 ### -CertificateAuthorityInformation
 
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaTrustedCertificateAuthority](Get-EntraBetaTrustedCertificateAuthority.md)
 

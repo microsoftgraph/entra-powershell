@@ -17,11 +17,11 @@ title: New-EntraApplicationFromApplicationTemplate
 
 # New-EntraApplicationFromApplicationTemplate
 
-## Synopsis
+## SYNOPSIS
 
 Add an instance of an application from the Microsoft Entra gallery to your directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraApplicationFromApplicationTemplate
@@ -30,7 +30,7 @@ New-EntraApplicationFromApplicationTemplate
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraApplicationFromApplicationTemplate` cmdlet adds an instance of an application from the Microsoft Entra gallery to your directory.
 
@@ -40,7 +40,7 @@ For non-gallery apps, use these application template IDs to configure SSO modes 
 - US government: `4602d0b4-76bb-404b-bca9-2652e1a39c6d`
 - China (21Vianet): `5a532e38-1581-4918-9658-008dc27c1d68`
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates an application from application template
 
@@ -61,7 +61,7 @@ This command instantiates a new application based on application template refere
 - `-ApplicationTemplateId` specifies Application TemplateId.
 - `-DisplayName` specifies application template display name.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationTemplateId
 
@@ -99,16 +99,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.ApplicationTemplateCopy
 
-## Notes
+## NOTES
 
 Quickstart: [Add an enterprise application](https://learn.microsoft.com/entra/identity/enterprise-apps/add-application-portal).
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraApplicationTemplate](Get-EntraApplicationTemplate.md)

@@ -16,11 +16,11 @@ title: Remove-EntraBetaUserAppRoleAssignment
 
 # Remove-EntraBetaUserAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Removes a user application role assignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaUserAppRoleAssignment
@@ -29,7 +29,7 @@ Remove-EntraBetaUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove user app role assignment
 
@@ -62,7 +62,7 @@ This example demonstrates how to Remove the user app role assignment in Microsof
 
 Use the `Get-EntraBetaUserAppRoleAssignment` cmdlet to get `AppRoleAssignmentId` details.
 
-## Parameters
+## PARAMETERS
 
 ### -AppRoleAssignmentId
 
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUserAppRoleAssignment](Get-EntraBetaUserAppRoleAssignment.md)
 

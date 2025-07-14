@@ -16,11 +16,11 @@ title: Get-EntraUserInactiveSignIn
 
 # Get-EntraUserInactiveSignIn
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve users without interactive sign-ins in the last N days.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserInactiveSignIn
@@ -29,11 +29,11 @@ Get-EntraUserInactiveSignIn
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet retrieves users without interactive sign-ins in the last N days.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve users without interactive sign-ins in the last 10 days
 
@@ -113,7 +113,7 @@ CreatedDaysAgo                    : 31
 
 This example shows how to find users who haven’t signed in within the past 30 days using a filter.
 
-## Parameters
+## PARAMETERS
 
 ### -Ago
 
@@ -151,18 +151,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 Updating Role Assignable Groups or Privileged Access Groups require `PrivilegedAccess.ReadWrite.AzureADGroup` permission scope.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUser](Get-EntraUser.md)

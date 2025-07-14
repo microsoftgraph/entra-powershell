@@ -16,21 +16,21 @@ title: Enable-EntraAzureADAlias
 
 # Enable-EntraAzureADAlias
 
-## Synopsis
+## SYNOPSIS
 
 Enables aliases for AzureAD commands.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Enable-EntraAzureADAlias
 ```
 
-## Description
+## DESCRIPTION
 
 Enables Azure AD command aliases in the current PowerShell session.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Enable aliasing
 
@@ -40,16 +40,16 @@ Enable-EntraAzureADAlias
 
 Enables all Azure AD prefixes for the current PowerShell session.
 
-## Parameters
+## PARAMETERS
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

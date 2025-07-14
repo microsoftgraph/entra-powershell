@@ -16,11 +16,11 @@ title: Get-EntraBetaDirectorySetting
 
 # Get-EntraBetaDirectorySetting
 
-## Synopsis
+## SYNOPSIS
 
 Gets a directory setting.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,7 +42,7 @@ Get-EntraBetaDirectorySetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDirectorySetting` cmdlet gets a directory setting from Microsoft Entra ID. Specify `Id` parameter to get a directory setting.
 
@@ -56,7 +56,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 - Authentication Policy Administrator (Update Password Rule Settings)
 - User Administrator (Read basic properties on setting templates and settings)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a directory setting
 
@@ -107,7 +107,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Password Rule Settings 11112222-bbbb-3333-c
 
 This example gets top two directory setting. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -177,13 +177,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaDirectorySetting](New-EntraBetaDirectorySetting.md)
 

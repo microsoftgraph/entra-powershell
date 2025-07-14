@@ -16,11 +16,11 @@ title: New-EntraBetaUserAppRoleAssignment
 
 # New-EntraBetaUserAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Assigns a user to an application role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaUserAppRoleAssignment
@@ -31,7 +31,7 @@ New-EntraBetaUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
@@ -46,7 +46,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Assign a user to an application without roles
 
@@ -105,7 +105,7 @@ This example demonstrates how to assign a user to an application role in Microso
 - `-ResourceId` specifies the ID of a resource servicePrincipal that defines the app role.
 - `-AppRoleId` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
 
-## Parameters
+## PARAMETERS
 
 ### -AppRoleId
 
@@ -187,13 +187,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUserAppRoleAssignment](Get-EntraBetaUserAppRoleAssignment.md)
 

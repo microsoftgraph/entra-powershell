@@ -16,21 +16,21 @@ title: Test-EntraScript
 
 # Test-EntraScript
 
-## Synopsis
+## SYNOPSIS
 
 Check whether the provided script uses AzureAD commands not supported by Microsoft Entra PowerShell.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Test-EntraScript [-Path] <String[]> [[-Content] <String>] [-Quiet] [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Check whether the provided script uses AzureAD commands not supported by Microsoft Entra PowerShell.
 
-## Examples
+## EXAMPLES
 
 ### Example 1
 
@@ -48,7 +48,7 @@ Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScr
 
 Returns a list of all scripts that wouldn't run under the Microsoft.Graph.Entra module, listing each issue with line and code.
 
-## Parameters
+## PARAMETERS
 
 ### -Path
 
@@ -105,10 +105,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related Links
+## RELATED LINKS

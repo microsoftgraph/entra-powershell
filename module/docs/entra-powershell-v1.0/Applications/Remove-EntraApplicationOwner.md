@@ -15,11 +15,11 @@ title: Remove-EntraApplicationOwner
 
 # Remove-EntraApplicationOwner
 
-## Synopsis
+## SYNOPSIS
 
 Removes an owner from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraApplicationOwner
@@ -28,11 +28,11 @@ Remove-EntraApplicationOwner
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraApplicationOwner` cmdlet removes an owner from an application in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an owner from an application
 
@@ -48,7 +48,7 @@ This example removes the specified owner from the specified application. You can
 - `-ApplicationId` parameter specifies the the unique identifier of a application.
 - `-OwnerId` parameter specifies the ID of the owner.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, -`InformationVariable`, `-OutVariable`, -`OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 

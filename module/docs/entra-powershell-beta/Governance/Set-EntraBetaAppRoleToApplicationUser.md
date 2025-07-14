@@ -16,11 +16,11 @@ title: Set-EntraBetaAppRoleToApplicationUser
 
 # Set-EntraBetaAppRoleToApplicationUser
 
-## Synopsis
+## SYNOPSIS
 
 Add existing application users to Microsoft Entra ID and assign them roles.
 
-## Syntax
+## SYNTAX
 
 ### Default
 
@@ -46,7 +46,7 @@ Set-EntraBetaAppRoleToApplicationUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaAppRoleToApplicationUser` command adds existing users (for example, from a Helpdesk or billing application) to Microsoft Entra ID and assigns them app roles like Admin, Audit, or Reports. This enables the application unlock Microsoft Entra ID Governance features like access reviews. 
 
@@ -58,7 +58,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 - Application Administrator
 - Identity Governance Administrator (manage application role assignments)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Assign application users to app role assignments
 
@@ -118,7 +118,7 @@ This example assigns users to app roles. It creates missing users and app roles.
 - `-ExportFilePath` parameter specifies a specific filename and location to export results.
 - `-Verbose` common parameter outputs the execution steps during processing.
 
-## Parameters
+## PARAMETERS
 
 ### -DataSource
 
@@ -220,19 +220,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 How to [Govern an application's existing users](https://learn.microsoft.com/entra/id-governance/identity-governance-applications-existing-users)
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipalAppRoleAssignedTo](../Applications/Get-EntraBetaServicePrincipalAppRoleAssignedTo.md)
 

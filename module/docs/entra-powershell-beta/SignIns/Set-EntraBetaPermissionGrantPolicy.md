@@ -16,11 +16,11 @@ title: Set-EntraBetaPermissionGrantPolicy
 
 # Set-EntraBetaPermissionGrantPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Updates a permission grant policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaPermissionGrantPolicy
@@ -30,11 +30,11 @@ Set-EntraBetaPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaPermissionGrantPolicy` command updates a Microsoft Entra ID permission grant policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update description of permission grant policy
 
@@ -62,7 +62,7 @@ This command updates the display name of the specified permission grant policy.
 - `-Id` parameter specifies the unique identifier of the permission grant policy.
 - `-DisplayName` parameter specifies the display name for the permission grant policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -116,13 +116,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaPermissionGrantPolicy](New-EntraBetaPermissionGrantPolicy.md)
 

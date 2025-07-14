@@ -16,11 +16,11 @@ title: Get-EntraAuthenticationMethodUserRegistrationDetailReport
 
 # Get-EntraAuthenticationMethodUserRegistrationDetailReport
 
-## Synopsis
+## SYNOPSIS
 
 List the user's registered authentication methods.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,7 +43,7 @@ Get-EntraAuthenticationMethodUserRegistrationDetailReport
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraAuthenticationMethodUserRegistrationDetailReport` cmdlet lists the user's registered authentication methods from the `userRegistrationDetails` object. This method doesn't work for disabled accounts (user accounts).
 
@@ -54,7 +54,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Security Administrator
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all user's registered authentication methods
 
@@ -172,7 +172,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb True    False        False           False 
 
 This example shows how to get one detail about the user's registered authentication methods. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -UserRegistrationDetailsId
 
@@ -275,9 +275,9 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### isAdmin (Boolean)
 
@@ -339,8 +339,8 @@ The user's sign-in name, like SawyerM@contoso.com. Supports `$filter` (`eq`, `st
 
 Shows if the user is a member or guest in the tenant. Values: member, guest.
 
-## Notes
+## NOTES
 
 `Get-EntraAuthMethodUserRegistrationDetailReport` is an alias for `Get-EntraAuthenticationMethodUserRegistrationDetailReport`.
 
-## Related links
+## RELATED LINKS

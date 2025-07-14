@@ -16,11 +16,11 @@ title: Set-EntraBetaNamedLocationPolicy
 
 # Set-EntraBetaNamedLocationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Updates a named location policy in Microsoft Entra ID by PolicyId.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaNamedLocationPolicy
@@ -35,7 +35,7 @@ Set-EntraBetaNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet allows an admin to update a named location policy in Microsoft Entra ID by PolicyId.
 
@@ -46,7 +46,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Security Administrator  
 - Conditional Access Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update an IP named location policy in Microsoft Entra ID by PolicyId
 
@@ -97,7 +97,7 @@ This command updates display name of named location policy in Microsoft Entra ID
 - `-OdataType` parameter specifies the odata type of a named location policy.
 - `-DisplayName` parameter specifies the display name of a named location policy.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -231,13 +231,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaNamedLocationPolicy](New-EntraBetaNamedLocationPolicy.md)
 

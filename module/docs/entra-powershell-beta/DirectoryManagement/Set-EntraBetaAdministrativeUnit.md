@@ -15,11 +15,11 @@ title: Set-EntraBetaAdministrativeUnit
 
 # Set-EntraBetaAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Updates the properties of an administrative unit.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaAdministrativeUnit
@@ -33,7 +33,7 @@ Set-EntraBetaAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaAdministrativeUnit` cmdlet updates the properties of an administrative unit in Microsoft Entra ID. Specify `AdministrativeUnitId` parameter to update a specific administrative unit.
 
@@ -43,7 +43,7 @@ The following least-privileged roles are supported for this operation:
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update DisplayName and description
 
@@ -59,7 +59,7 @@ This Command update DisplayName of specific administrative unit.
 - `-DisplayName` parameter specifies the display name for the administrative unit.
 - `-Description` parameter specifies the description for the administrative unit.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -173,13 +173,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaAdministrativeUnit](Get-EntraBetaAdministrativeUnit.md)
 

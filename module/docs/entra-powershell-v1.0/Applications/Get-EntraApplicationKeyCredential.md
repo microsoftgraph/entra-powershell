@@ -15,11 +15,11 @@ title: Get-EntraApplicationKeyCredential
 
 # Get-EntraApplicationKeyCredential
 
-## Synopsis
+## SYNOPSIS
 
 Gets the key credentials for an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraApplicationKeyCredential
@@ -27,11 +27,11 @@ Get-EntraApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for an application. Specify `ApplicationId` parameter to retrieve the key credentials for an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get key credentials
 
@@ -51,7 +51,7 @@ This command gets the key credentials for the specified application.
 
 `-ApplicationId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraApplicationKeyCredential](New-EntraApplicationKeyCredential.md)
 

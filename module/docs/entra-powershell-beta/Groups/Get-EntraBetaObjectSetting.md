@@ -16,11 +16,11 @@ title: Get-EntraBetaObjectSetting
 
 # Get-EntraBetaObjectSetting
 
-## Synopsis
+## SYNOPSIS
 
 Gets an object setting.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -46,11 +46,11 @@ Get-EntraBetaObjectSetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaObjectSetting` cmdlet retrieves an object setting from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve object setting from Microsoft Entra ID
 
@@ -130,7 +130,7 @@ This command retrieves all records of object setting from Microsoft Entra ID.
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -232,13 +232,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaObjectSetting](New-EntraBetaObjectSetting.md)
 

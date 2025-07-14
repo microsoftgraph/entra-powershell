@@ -16,11 +16,11 @@ title: New-EntraBetaIdentityProvider
 
 # New-EntraBetaIdentityProvider
 
-## Synopsis
+## SYNOPSIS
 
 Configure a new identity provider in the directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaIdentityProvider
@@ -31,7 +31,7 @@ New-EntraBetaIdentityProvider
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaIdentityProvider` cmdlet is used to configure an identity provider in the directory.
 
@@ -57,7 +57,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 - External Identity Provider Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add Google identity provider
 
@@ -79,7 +79,7 @@ This example adds a Google identity provider.
 - `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
 - `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
-## Parameters
+## PARAMETERS
 
 ### -ClientId
 
@@ -151,17 +151,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaIdentityProvider](Set-EntraBetaIdentityProvider.md)
 

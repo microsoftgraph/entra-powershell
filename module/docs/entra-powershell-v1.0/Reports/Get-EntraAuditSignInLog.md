@@ -16,11 +16,11 @@ title: Get-EntraAuditSignInLog
 
 # Get-EntraAuditSignInLog
 
-## Synopsis
+## SYNOPSIS
 
 Get audit logs of sign-ins.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraAuditSignInLog
@@ -31,7 +31,7 @@ Get-EntraAuditSignInLog
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraAuditSignInLog` cmdlet gets the Microsoft Entra ID sign-in log.
 
@@ -43,7 +43,7 @@ In addition to delegated permissions, the signed-in user must belong to at least
 - Security Operator
 - Security Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all logs
 
@@ -205,7 +205,7 @@ $failedSignIns | Select-Object UserPrincipalName, CreatedDateTime, Status, IpAdd
 
 This example demonstrates how to retrieve failed sign-ins for a user.
 
-## Parameters
+## PARAMETERS
 
 ### -SignInId
 
@@ -292,12 +292,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraAuditSignInLogs` is an alias for `Get-EntraAuditSignInLog`.
 
-## Related links
+## RELATED LINKS

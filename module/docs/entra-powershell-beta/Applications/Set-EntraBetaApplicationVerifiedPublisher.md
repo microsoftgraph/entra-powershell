@@ -16,11 +16,11 @@ title: Set-EntraBetaApplicationVerifiedPublisher
 
 # Set-EntraBetaApplicationVerifiedPublisher
 
-## Synopsis
+## SYNOPSIS
 
 Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaApplicationVerifiedPublisher
@@ -29,11 +29,11 @@ Set-EntraBetaApplicationVerifiedPublisher
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set the verified publisher of an application
 
@@ -52,7 +52,7 @@ The Microsoft Partner Network ID (MPNID) of the verified publisher can be obtain
 - `-AppObjectId` parameter specifies the unique identifier of a Microsoft Entra ID Application.
 - `-SetVerifiedPublisherRequest` parameter specifies the request body object containing the verifiedPublisherId property with it's the MPNID value.
 
-## Parameters
+## PARAMETERS
 
 ### -AppObjectId
 
@@ -90,14 +90,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraBetaApplicationVerifiedPublisher](Remove-EntraBetaApplicationVerifiedPublisher.md)

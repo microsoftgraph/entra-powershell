@@ -15,11 +15,11 @@ title: Remove-EntraBetaDirectoryRoleAssignment
 
 # Remove-EntraBetaDirectoryRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Delete a Microsoft Entra ID roleAssignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDirectoryRoleAssignment
@@ -27,7 +27,7 @@ Remove-EntraBetaDirectoryRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDirectoryRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
@@ -35,7 +35,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a role assignment
 
@@ -51,7 +51,7 @@ This example removes the specified role assignment from Microsoft Entra ID.
 
 - `-UnifiedRoleAssignmentId` parameter specifies the role assignment ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UnifiedRoleAssignmentId
 
@@ -73,19 +73,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 `Remove-EntraBetaRoleAssignment` is an alias for `Remove-EntraBetaDirectoryRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 

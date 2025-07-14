@@ -16,11 +16,11 @@ title: New-EntraBetaTrustFrameworkPolicy
 
 # New-EntraBetaTrustFrameworkPolicy
 
-## Synopsis
+## SYNOPSIS
 
 This cmdlet is used to create a trust framework policy (custom policy) in the directory.
 
-## Syntax
+## SYNTAX
 
 ### Content (Default)
 
@@ -40,13 +40,13 @@ New-EntraBetaTrustFrameworkPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaTrustFrameworkPolicy` cmdlet is used to create a trust framework policy in the directory.
 
 In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates a trust framework policy from the content specified
 
@@ -115,7 +115,7 @@ The contents of newly created trust framework policy are displayed on screen.
 
 - `-InputFilePath` Parameter specifies Path to the file used for reading the contents of trust framework policy to be created.
 
-## Parameters
+## PARAMETERS
 
 ### -Content
 
@@ -169,17 +169,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaTrustFrameworkPolicy](Get-EntraBetaTrustFrameworkPolicy.md)
 

@@ -16,11 +16,11 @@ title: Get-EntraBetaUserDirectReport
 
 # Get-EntraBetaUserDirectReport
 
-## Synopsis
+## SYNOPSIS
 
 Get the user's direct reports.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaUserDirectReport
@@ -31,11 +31,11 @@ Get-EntraBetaUserDirectReport
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserDirectReport` cmdlet gets the direct reports for a user in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a user's direct reports
 
@@ -97,7 +97,7 @@ This example demonstrates how to retrieve top five direct reports for a user in 
 
 - `-UserId` parameter specifies the ID of a user (UserPrincipalName or UserId).
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -167,10 +167,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

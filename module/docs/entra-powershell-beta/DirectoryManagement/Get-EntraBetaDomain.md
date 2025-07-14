@@ -15,11 +15,11 @@ title: Get-EntraBetaDomain
 
 # Get-EntraBetaDomain
 
-## Synopsis
+## SYNOPSIS
 
 Gets a domain.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -38,7 +38,7 @@ Get-EntraBetaDomain
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDomain` cmdlet gets a domain in Microsoft Entra ID.
 
@@ -55,7 +55,7 @@ The work or school account must be assigned to at least one of the following Mic
 - Privileged Role Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of Domains that are created
 
@@ -89,7 +89,7 @@ test22.com  Managed                               True           False     False
 
 This command retrieves a domain with the specified name.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 

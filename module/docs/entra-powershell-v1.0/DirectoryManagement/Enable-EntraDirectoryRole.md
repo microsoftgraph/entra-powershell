@@ -16,11 +16,11 @@ title: Enable-EntraDirectoryRole
 
 # Enable-EntraDirectoryRole
 
-## Synopsis
+## SYNOPSIS
 
 Activates an existing directory role in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Enable-EntraDirectoryRole
@@ -28,7 +28,7 @@ Enable-EntraDirectoryRole
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Enable-EntraDirectoryRole` cmdlet activates an existing directory role in Microsoft Entra ID.
 
@@ -38,7 +38,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Enable a directory role
 
@@ -60,7 +60,7 @@ You can use `Get-EntraDirectoryRoleTemplate` to fetch a specific directory role 
 
 - `RoleTemplateId` parameter specifies the ID of the role template to enable.
 
-## Parameters
+## PARAMETERS
 
 ### -RoleTemplateId
 
@@ -82,15 +82,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - For additional details see [Activate directoryRole](/graph/api/directoryrole-post-directoryroles).
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDirectoryRole](Get-EntraDirectoryRole.md)
 

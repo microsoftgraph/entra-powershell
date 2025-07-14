@@ -16,11 +16,11 @@ title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 # Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
-## Synopsis
+## SYNOPSIS
 
 Adds a predefined value for a custom security attribute definition.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
@@ -30,7 +30,7 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
@@ -38,7 +38,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
 
@@ -60,7 +60,7 @@ This example adds a predefined value to a custom security attribute definition.
 - `-Id` parameter specifies the identifier for the predefined value.
 - `-IsActive` parameter specifies the predefined value is active or deactivated.
 
-## Parameters
+## PARAMETERS
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -114,19 +114,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues` is an alias for `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 

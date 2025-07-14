@@ -15,11 +15,11 @@ title: Remove-EntraBetaOAuth2PermissionGrant
 
 # Remove-EntraBetaOAuth2PermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Removes an OAuth2PermissionGrant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaOAuth2PermissionGrant
@@ -27,7 +27,7 @@ Remove-EntraBetaOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaOAuth2PermissionGrant` cmdlet removes an OAuth2PermissionGrant object in Microsoft Entra ID.
 
@@ -41,7 +41,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 - User Administrator  
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an OAuth2 permission grant
 
@@ -54,7 +54,7 @@ Remove-EntraBetaOAuth2PermissionGrant -OAuth2PermissionGrantId $sharePointOAuth2
 
 This example shows how to remove an OAuth2PermissionGrant object in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -OAuth2PermissionGrantId
 
@@ -76,13 +76,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaOAuth2PermissionGrant](Get-EntraBetaOAuth2PermissionGrant.md)
 

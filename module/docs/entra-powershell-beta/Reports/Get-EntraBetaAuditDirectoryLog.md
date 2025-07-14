@@ -16,11 +16,11 @@ title: Get-EntraBetaAuditDirectoryLog
 
 # Get-EntraBetaAuditDirectoryLog
 
-## Synopsis
+## SYNOPSIS
 
 Get directory audit logs.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaAuditDirectoryLog
@@ -31,7 +31,7 @@ Get-EntraBetaAuditDirectoryLog
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
@@ -42,7 +42,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Security Administrator
 - Security Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all logs
 
@@ -206,7 +206,7 @@ Directory_{GUID}  03/07/2025 23:16:31   Add member to group   GroupManagement   
 
 This command shows when users were added to a group.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -277,12 +277,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraBetaAuditDirectoryLogs` is an alias for `Get-EntraBetaAuditDirectoryLog`.
 
-## Related links
+## RELATED LINKS

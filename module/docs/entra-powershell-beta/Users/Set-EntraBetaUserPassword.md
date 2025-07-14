@@ -16,11 +16,11 @@ title: Set-EntraBetaUserPassword
 
 # Set-EntraBetaUserPassword
 
-## Synopsis
+## SYNOPSIS
 
 Sets the password of a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaUserPassword
@@ -31,13 +31,13 @@ Set-EntraBetaUserPassword
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
 
 Any user can update their password without belonging to any administrator role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set a user's password
 
@@ -83,7 +83,7 @@ This command sets the specified user's password with ForceChangePasswordNextLogi
 - `-Password` parameter specifies the password to set.
 - `-ForceChangePasswordNextLogin` parameter forces a user to change their password during their next log in.
 
-## Parameters
+## PARAMETERS
 
 ### -EnforceChangePasswordPolicy
 
@@ -153,10 +153,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

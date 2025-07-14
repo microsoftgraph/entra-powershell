@@ -15,11 +15,11 @@ title: Get-EntraUserGroup
 
 # Get-EntraUserGroup
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the list of groups a user belongs to.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraUserGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserGroup` cmdlet retrieves a list of groups to which a user belongs.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of groups to which a specific user belongs
 
@@ -120,7 +120,7 @@ This cmdlet retrieves a list of groups to which a specific user belongs using th
 
 - `-GroupId` parameter specifies the group ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -223,14 +223,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUserMembership](Get-EntraUserMembership.md)

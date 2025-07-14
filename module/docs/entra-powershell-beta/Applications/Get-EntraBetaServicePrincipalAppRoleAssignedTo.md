@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
 # Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
-## Synopsis
+## SYNOPSIS
 
 Gets app role assignments for this app or service, granted to users, groups, and other service principals.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalAppRoleAssignedTo
@@ -31,7 +31,7 @@ Get-EntraBetaServicePrincipalAppRoleAssignedTo
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups, and other service principals.
 
@@ -46,7 +46,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get app role assignment by ID
 
@@ -110,7 +110,7 @@ This command gets the five app role assignments for the service principal grante
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -180,21 +180,21 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 `Get-EntraBetaServiceAppRoleAssignedTo` is an alias for `Get-EntraBetaServicePrincipalAppRoleAssignedTo`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

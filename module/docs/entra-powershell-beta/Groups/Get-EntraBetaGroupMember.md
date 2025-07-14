@@ -16,11 +16,11 @@ title: Get-EntraBetaGroupMember
 
 # Get-EntraBetaGroupMember
 
-## Synopsis
+## SYNOPSIS
 
 Gets a member of a group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaGroupMember
@@ -31,7 +31,7 @@ Get-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a member of a group.
 
@@ -52,7 +52,7 @@ In delegated scenarios, the signed-in user must have a supported Microsoft Entra
 
 To list members of a hidden group, the `Member.Read.Hidden` permission is also required.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve and Select Group Member Properties
 
@@ -136,7 +136,7 @@ This example demonstrates how to retrieve group member by ID.
 
 - `-GroupId` Specifies the ID of a group.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -206,13 +206,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 

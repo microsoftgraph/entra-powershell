@@ -16,11 +16,11 @@ title: Remove-EntraBetaPasswordSingleSignOnCredential
 
 # Remove-EntraBetaPasswordSingleSignOnCredential
 
-## Synopsis
+## SYNOPSIS
 
 Removes the password Single-Sign-On (SSO) credentials.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaPasswordSingleSignOnCredential
@@ -29,12 +29,12 @@ Remove-EntraBetaPasswordSingleSignOnCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet enables users to remove their Password Single-Sign-On credentials for an application that they're part of. Specify `ServicePrincipalId` and `PasswordSSOCredential` parameters to remove specific SSO credentials.
 Admin could remove the group credentials as well.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove password single-sign-on credentials
 
@@ -49,7 +49,7 @@ This example removes the password SSO credentials for the given ServicePrincipal
 - `-PasswordSSOObjectId` parameter specifies the User or Group ID.
 - `-ServicePrincipalId` parameter specifies the object ID of a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -87,13 +87,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaPasswordSingleSignOnCredential](New-EntraBetaPasswordSingleSignOnCredential.md)
 

@@ -16,11 +16,11 @@ title: Get-EntraBetaPolicy
 
 # Get-EntraBetaPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets a policy.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -40,11 +40,11 @@ Get-EntraBetaPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get a specific policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all policies
 
@@ -126,7 +126,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc passwordHashSync rollout policy passwordHas
 
 This example demonstrates how to retrieve top one policies in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -180,13 +180,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaPolicy](New-EntraBetaPolicy.md)
 

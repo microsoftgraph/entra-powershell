@@ -15,11 +15,11 @@ title: Get-EntraContact
 
 # Get-EntraContact
 
-## Synopsis
+## SYNOPSIS
 
 Gets a contact from Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,7 +42,7 @@ Get-EntraContact
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
 
@@ -54,7 +54,7 @@ For delegated scenarios involving work or school accounts, the signed-in user mu
 - Intune Administrator
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve all contact objects in the directory
 
@@ -144,7 +144,7 @@ Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com   
 
 This example retrieves contacts having the specified display name.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -231,12 +231,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraContact](Remove-EntraContact.md)

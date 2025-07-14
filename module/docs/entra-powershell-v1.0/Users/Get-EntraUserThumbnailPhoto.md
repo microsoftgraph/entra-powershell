@@ -16,11 +16,11 @@ title: Get-EntraUserThumbnailPhoto
 
 # Get-EntraUserThumbnailPhoto
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve the thumbnail photo of a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserThumbnailPhoto
@@ -32,11 +32,11 @@ Get-EntraUserThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Retrieve the thumbnail photo of a user.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve thumbnail photo by Id
 
@@ -55,7 +55,7 @@ This example shows how to retrieve the thumbnail photo of a user that is specifi
 
 - `-UserId` parameter specifies the user for which the thumbnail photo is retrieved.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -141,18 +141,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Boolean
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraUserThumbnailPhoto](Set-EntraUserThumbnailPhoto.md)

@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalOwnedObject
 
 # Get-EntraBetaServicePrincipalOwnedObject
 
-## Synopsis
+## SYNOPSIS
 
 Gets an object owned by a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalOwnedObject
@@ -31,11 +31,11 @@ Get-EntraBetaServicePrincipalOwnedObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the owned objects of a service principal
 
@@ -91,7 +91,7 @@ This example retrieves the top one owned object of a specified service principal
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -161,14 +161,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 You can use the command `Add-EntraBetaServicePrincipalOwner` to add an owner to a service principal.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)

@@ -16,11 +16,11 @@ title: Set-EntraBetaUserSponsor
 
 # Set-EntraBetaUserSponsor
 
-## Synopsis
+## SYNOPSIS
 
 Sets a user's sponsors (users or groups).
 
-## Syntax
+## SYNTAX
 
 ### SetUserSponsor (Default)
 
@@ -32,7 +32,7 @@ Set-EntraBetaUserSponsor
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaUserSponsor` cmdlet sets a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
@@ -45,7 +45,7 @@ The following least privileged roles support this operation:
 - Directory Writers
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Assign single user sponsor
 
@@ -101,7 +101,7 @@ This example demonstrates how to assign multiple groups as sponsors to a target 
 - The `-Type` parameter specifies the type of sponsor being assigned to the user. Supported sponsor types are (User or Group).
 - The `-SponsorIds` parameter specifies the Ids of sponsors to be assigned to the user.
 
-## Parameters
+## PARAMETERS
 
 ### -Type
 
@@ -153,13 +153,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUserSponsor](Get-EntraBetaUserSponsor.md)
 

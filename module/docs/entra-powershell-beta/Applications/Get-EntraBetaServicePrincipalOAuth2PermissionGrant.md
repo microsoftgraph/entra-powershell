@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
 # Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Gets an OAuth2PermissionGrant object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaServicePrincipalOAuth2PermissionGrant
@@ -31,11 +31,11 @@ Get-EntraBetaServicePrincipalOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the OAuth2 permission grants of a service principal
 
@@ -94,7 +94,7 @@ This example demonstrates how to get top two OAuth2PermissionGrant objects for a
 
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -164,12 +164,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)

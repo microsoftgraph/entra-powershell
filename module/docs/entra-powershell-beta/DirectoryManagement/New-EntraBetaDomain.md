@@ -16,11 +16,11 @@ title: New-EntraBetaDomain
 
 # New-EntraBetaDomain
 
-## Synopsis
+## SYNOPSIS
 
 Creates a domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaDomain
@@ -30,7 +30,7 @@ New-EntraBetaDomain
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaDomain` cmdlet creates a domain in Microsoft Entra ID.
 
@@ -38,7 +38,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Domain Name Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new Domain
 
@@ -85,7 +85,7 @@ test22.com  Managed                               True           False     False
 
 This example demonstrates how to create a new domain in Microsoft Entra ID and marks it as the default to be used for new user creation.
 
-## Parameters
+## PARAMETERS
 
 ### -IsDefault
 
@@ -141,13 +141,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 

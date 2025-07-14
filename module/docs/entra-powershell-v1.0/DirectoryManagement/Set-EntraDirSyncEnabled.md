@@ -16,11 +16,11 @@ title: Set-EntraDirSyncEnabled
 
 # Set-EntraDirSyncEnabled
 
-## Synopsis
+## SYNOPSIS
 
 Turns directory synchronization on or off for a company.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraDirSyncEnabled
@@ -30,7 +30,7 @@ Set-EntraDirSyncEnabled
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraDirSyncEnabled` cmdlet turns directory synchronization on or off for a company.
 
@@ -42,7 +42,7 @@ If you re-enable DirSync, a full synchronization will occur, which may take sign
 
 Additionally, if `BlockCloudObjectTakeoverThroughHardMatch` is enabled, re-enabling DirSync will block On-Prem to cloud object takeover/updates for all Microsoft Entra ID-mastered objects. To allow syncing of these objects, set `BlockCloudObjectTakeoverThroughHardMatch` to false.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Turn on directory synchronization
 
@@ -70,7 +70,7 @@ This example turns off directory synchronization for a company.
 - `-Force` Forces the command to run without asking for user confirmation.
 - `-TenantId` Specifies the unique ID of the tenant on which to perform the operation.
 
-## Parameters
+## PARAMETERS
 
 ### -EnableDirsync
 
@@ -121,10 +121,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

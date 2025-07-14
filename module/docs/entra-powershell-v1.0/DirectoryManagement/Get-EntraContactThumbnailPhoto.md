@@ -15,11 +15,11 @@ title: Get-EntraContactThumbnailPhoto
 
 # Get-EntraContactThumbnailPhoto
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the thumbnail photo of a contact.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraContactThumbnailPhoto
@@ -30,11 +30,11 @@ Get-EntraContactThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Retrieves the thumbnail photo of a contact.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the memberships of a contact
 
@@ -62,7 +62,7 @@ PropertyItems        : {274, 305, 306, 36867...}
 
 This example retrieves the thumbnail photo of the contact object specified with the object ID parameter.
 
-## Parameters
+## PARAMETERS
 
 ### -FileName
 
@@ -132,16 +132,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Boolean
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS

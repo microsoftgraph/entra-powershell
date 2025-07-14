@@ -16,11 +16,11 @@ title: Get-EntraBetaDeletedGroup
 
 # Get-EntraBetaDeletedGroup
 
-## Synopsis
+## SYNOPSIS
 
 This cmdlet is used to retrieve the soft deleted groups in a Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -52,13 +52,13 @@ Get-EntraBetaDeletedGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet retrieves soft-deleted groups from a directory. When a group is deleted, it is soft deleted and can be recovered within 30 days. After 30 days, the group is permanently deleted and cannot be recovered.
 
 Please note that soft delete currently applies only to Unified Groups (also known as Office 365 Groups).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get deleted groups in the directory
 
@@ -152,7 +152,7 @@ This cmdlet retrieves the deleted group specified by GroupId.
 
 - `-GroupId` parameter specifies the deleted group GroupId.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -255,16 +255,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

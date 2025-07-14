@@ -16,11 +16,11 @@ title: New-EntraGroup
 
 # New-EntraGroup
 
-## Synopsis
+## SYNOPSIS
 
 Creates a Microsoft Entra ID group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraGroup
@@ -35,7 +35,7 @@ New-EntraGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraGroup` cmdlet creates a Microsoft Entra ID group. Specify the `DisplayName`, `MailNickname`, `MailEnabled` and `SecurityEnabled` parameters for creating a Microsoft Entra ID group.
 
@@ -47,7 +47,7 @@ For information about creating dynamic groups, see: [Using attributes to create 
 - To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
 - To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a group
 
@@ -168,7 +168,7 @@ HelpDesk admin group3 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup1 g
 
 This example demonstrates how to create the new group with GroupTypes parameter.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -324,17 +324,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
 
