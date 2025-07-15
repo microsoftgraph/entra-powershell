@@ -16,11 +16,11 @@ title: Remove-EntraDirectoryRoleDefinition
 
 # Remove-EntraDirectoryRoleDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Delete a Microsoft Entra ID Directory roleDefinition object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraDirectoryRoleDefinition
@@ -28,7 +28,7 @@ Remove-EntraDirectoryRoleDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Delete a Microsoft Entra ID Directory roleDefinition object by ID.
 
@@ -38,7 +38,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a specified role definition
 
@@ -52,7 +52,7 @@ This example demonstrates how to remove the specified role definition from Micro
 
 - `-UnifiedRoleDefinitionId` parameter specifies the roleDefinition object ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UnifiedRoleDefinitionId
 
@@ -74,19 +74,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 `Remove-EntraRoleDefinition` is an alias for `Remove-EntraDirectoryRoleDefintion`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
 

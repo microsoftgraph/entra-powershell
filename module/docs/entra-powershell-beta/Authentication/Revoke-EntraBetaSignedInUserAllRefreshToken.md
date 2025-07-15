@@ -16,18 +16,18 @@ title: Revoke-EntraBetaSignedInUserAllRefreshToken
 
 # Revoke-EntraBetaSignedInUserAllRefreshToken
 
-## Synopsis
+## SYNOPSIS
 
 Invalidates the refresh tokens issued to applications for the current user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Revoke-EntraBetaSignedInUserAllRefreshToken
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Revoke-EntraBetaSignedInUserAllRefreshToken` cmdlet invalidates all the refresh tokens issued to applications for a user (as well as session cookies in a user's browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time.
 
@@ -37,7 +37,7 @@ Note: If the application attempts to redeem a delegated access token for this us
 
 After running this command, there might be a small delay of a few minutes before tokens are revoked.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Revoke refresh tokens for the current user
 
@@ -54,18 +54,18 @@ True
 
 This command revokes the tokens for the current user.
 
-## Parameters
+## PARAMETERS
 
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Revoke-EntraBetaUserAllRefreshToken](Revoke-EntraBetaUserAllRefreshToken.md)

@@ -16,11 +16,11 @@ title: New-EntraPolicy
 
 # New-EntraPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Creates a policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraPolicy
@@ -31,11 +31,11 @@ New-EntraPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `DisplayName`, `Definition` and `Type` parameters for create a new policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new policy
 
@@ -137,7 +137,7 @@ This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
 - `-Type` Parameter specifies the type of policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Definition
 
@@ -208,13 +208,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraPolicy](Get-EntraPolicy.md)
 

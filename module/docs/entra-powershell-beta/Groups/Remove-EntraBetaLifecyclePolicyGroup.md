@@ -16,11 +16,11 @@ title: Remove-EntraBetaLifecyclePolicyGroup
 
 # Remove-EntraBetaLifecyclePolicyGroup
 
-## Synopsis
+## SYNOPSIS
 
 Removes a group from a lifecycle policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaLifecyclePolicyGroup
@@ -29,11 +29,11 @@ Remove-EntraBetaLifecyclePolicyGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaLifecyclePolicyGroup` cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove lifecycle policy group
 
@@ -55,7 +55,7 @@ This example demonstrates how to  remove a group from a lifecycle policy in Micr
 - `-GroupLifecyclePolicyId` parameter specifies the lifecycle policy object ID.  
 - `-GroupId` parameter specifies the ID of Office365 group.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupId
 
@@ -93,17 +93,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaLifecyclePolicyGroup](Add-EntraBetaLifecyclePolicyGroup.md)
 

@@ -16,11 +16,11 @@ title: Add-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 # Add-EntraBetaServicePrincipalDelegatedPermissionClassification
 
-## Synopsis
+## SYNOPSIS
 
 Add a classification for a delegated permission.
 
-## Syntax
+## SYNTAX
 
 ### ByServicePrincipalAndPermissionInfo
 
@@ -33,11 +33,11 @@ Add-EntraBetaServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet creates a delegated permission classification for the given permission on service principal.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create Delegated Permission Classification
 
@@ -70,7 +70,7 @@ This command creates a delegated permission classification for the given permiss
 - `-Classification` parameter specifies the classification for a delegated permission.
 - `-PermissionName` parameter specifies the name for a delegated permission.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -147,15 +147,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraBetaServicePrincipalDelegatedPermissionClassification](Remove-EntraBetaServicePrincipalDelegatedPermissionClassification.md)
 

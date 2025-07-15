@@ -16,11 +16,11 @@ title: Remove-EntraPermissionGrantPolicy
 
 # Remove-EntraPermissionGrantPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Removes a permission grant policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraPermissionGrantPolicy
@@ -28,11 +28,11 @@ Remove-EntraPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraPermissionGrantPolicy` cmdlet removes a Microsoft Entra ID permission grant policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a permission grant policy
 
@@ -45,7 +45,7 @@ This command removes the specified permission grant policy in Microsoft Entra ID
 
 - `-Id` parameter specifies the unique identifier of the permission grant policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -67,13 +67,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraPermissionGrantPolicy](New-EntraPermissionGrantPolicy.md)
 

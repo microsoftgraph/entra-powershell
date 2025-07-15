@@ -16,11 +16,11 @@ title: Remove-EntraBetaDirectoryRoleMember
 
 # Remove-EntraBetaDirectoryRoleMember
 
-## Synopsis
+## SYNOPSIS
 
 Removes a member of a directory role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDirectoryRoleMember
@@ -29,7 +29,7 @@ Remove-EntraBetaDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDirectoryRoleMember` cmdlet removes a member from a directory role in Microsoft Entra ID.
 
@@ -37,7 +37,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a member from a directory role
 
@@ -53,7 +53,7 @@ This example removes the specified member from the specified role.
 - `-DirectoryRoleId` parameter specifies the object ID of the directory role.
 - `-MemberId` parameter specifies the object ID of the role member to removed.
 
-## Parameters
+## PARAMETERS
 
 ### -MemberId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaDirectoryRoleMember](Add-EntraBetaDirectoryRoleMember.md)
 

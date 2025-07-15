@@ -16,11 +16,11 @@ title: Set-EntraUserCBACertificateUserId
 
 # Set-EntraUserCBACertificateUserId
 
-## Synopsis
+## SYNOPSIS
 
 Sets certificate-based authentication user IDs for a user in Microsoft Entra ID using a certificate file or object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraUserCBACertificateUserId
@@ -31,7 +31,7 @@ Set-EntraUserCBACertificateUserId
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Configures certificate-based authentication user IDs for a user in Microsoft Entra ID. Accepts a certificate file path or object, and one or more certificate mapping types to apply to the user's authorization information.
 
@@ -42,7 +42,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 - Privileged Authentication Administrator (for Cloud-only users)
 - Hybrid Identity Administrator (for synchronized users)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update user's certificate authorization information using certificate path
 
@@ -67,7 +67,7 @@ Set-EntraUserCBACertificateUserId -UserId 'SawyerM@contoso.com' -Cert $certifica
 
 This example sets the certificate user IDs for the specified user using a certificate object, mapping the RFC822Name and SKI fields. You can use `Get-EntraUserCBAAuthorizationInfo` command to view updated details.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -137,13 +137,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUserCBAAuthorizationInfo](Get-EntraUserCBAAuthorizationInfo.md)
 [Get-EntraUserCertificateUserIdsFromCertificate](Get-EntraUserCertificateUserIdsFromCertificate.md)

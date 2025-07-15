@@ -16,11 +16,11 @@ title: Get-EntraBetaUserExtension
 
 # Get-EntraBetaUserExtension
 
-## Synopsis
+## SYNOPSIS
 
 Gets a user extension.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaUserExtension
@@ -29,11 +29,11 @@ Get-EntraBetaUserExtension
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserExtension` cmdlet gets a user extension in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve extension attributes for a user
 
@@ -56,7 +56,7 @@ This example shows how to retrieve the extension attributes for a specified user
 
 - `-UserId` parameter specifies the user object Id.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -94,13 +94,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

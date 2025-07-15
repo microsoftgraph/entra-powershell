@@ -16,11 +16,11 @@ title: Remove-EntraBetaDeletedDirectoryObject
 
 # Remove-EntraBetaDeletedDirectoryObject
 
-## Synopsis
+## SYNOPSIS
 
 Permanently delete a previously deleted directory object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDeletedDirectoryObject
@@ -28,7 +28,7 @@ Remove-EntraBetaDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDeletedDirectoryObject` cmdlet is used to permanently delete a previously deleted directory object.
 
@@ -40,7 +40,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 - To permanently delete users: `User Administrator`.
 - To permanently delete groups: `Groups Administrator`.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Delete a previously deleted directory object
 
@@ -54,7 +54,7 @@ This example demonstrates how to permanently delete a previously deleted directo
 
 - `-Id` parameter specifies the ID of the directory object that is permanently deleted.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -76,17 +76,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDeletedDirectoryObject](Get-EntraBetaDeletedDirectoryObject.md)
 

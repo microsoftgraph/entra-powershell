@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplicationProxyApplication
 
 # Remove-EntraBetaApplicationProxyApplication
 
-## Synopsis
+## SYNOPSIS
 
 Deletes an Application Proxy application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplicationProxyApplication
@@ -29,11 +29,11 @@ Remove-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaApplicationProxyApplication` cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a Proxy Application
 
@@ -58,7 +58,7 @@ This example removes a Proxy Application, and removes it from Microsoft Entra ID
 - `ApplicationId` parameter specifies the application ID.  
 - `RemoveADApplication` parameter specifies the user confirmation to delete application completely.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaApplicationProxyApplication](New-EntraBetaApplicationProxyApplication.md)
 

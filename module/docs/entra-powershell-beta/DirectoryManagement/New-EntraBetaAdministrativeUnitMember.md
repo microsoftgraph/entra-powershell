@@ -16,12 +16,12 @@ title: New-EntraBetaAdministrativeUnitMember
 
 # New-EntraBetaAdministrativeUnitMember
 
-## Synopsis
+## SYNOPSIS
 
 Create a new object as a member of the administrative unit.
 Currently only group objects are supported.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaAdministrativeUnitMember
@@ -42,7 +42,7 @@ New-EntraBetaAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID object as a member of an administrative unit. Specify `AdministrativeUnitId`, `DisplayName`, `MailNickname`, `SecurityEnabled` and `MailEnabled` parameters for create a new administrative unit member.
 
@@ -50,7 +50,7 @@ Currently only Microsoft Entra ID groups are supported to create administrative 
 
 For information about creating dynamic groups, see [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a dynamic group in an administrative unit
 
@@ -90,7 +90,7 @@ The processing state is On.
 It means that all users in the directory that qualify the rule are added as members to the group.
 Any users that don't qualify are removed from the group.
 
-## Parameters
+## PARAMETERS
 
 ### -AdministrativeUnitId
 
@@ -346,17 +346,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
 

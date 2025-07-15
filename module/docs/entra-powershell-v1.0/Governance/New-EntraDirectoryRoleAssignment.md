@@ -15,11 +15,11 @@ title: New-EntraDirectoryRoleAssignment
 
 # New-EntraDirectoryRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Create a new Microsoft Entra ID roleAssignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraDirectoryRoleAssignment
@@ -29,7 +29,7 @@ New-EntraDirectoryRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraDirectoryRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
@@ -37,7 +37,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 
@@ -60,7 +60,7 @@ This command creates a new role assignment in Microsoft Entra ID.
 - `-PrincipalId` parameter specifies the ID of the principal (user, group, or service principal) to whom the role is being assigned.
 - `-DirectoryScopeId` parameter specifies the scope of the directory over which the role assignment is effective. The '/' value typically represents the root scope, meaning the role assignment is applicable across the entire directory.
 
-## Parameters
+## PARAMETERS
 
 ### -DirectoryScopeId
 
@@ -114,17 +114,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
-## Notes
+## NOTES
 
 `New-EntraRoleAssignment` is an alias for `New-EntraDirectoryRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDirectoryRoleAssignment](Get-EntraDirectoryRoleAssignment.md)
 

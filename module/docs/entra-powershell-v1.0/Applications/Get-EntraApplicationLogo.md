@@ -16,11 +16,11 @@ title: Get-EntraApplicationLogo
 
 # Get-EntraApplicationLogo
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve the logo of an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraApplicationLogo
@@ -31,11 +31,11 @@ Get-EntraApplicationLogo
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ApplicationId` parameter to get a specific application logo for an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get an application logo for an application by ID
 
@@ -47,7 +47,7 @@ Get-EntraApplicationLogo -ApplicationId $application.Id -FilePath 'D:\outfile1.j
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
 
-## Parameters
+## PARAMETERS
 
 ### -FileName
 
@@ -117,18 +117,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 ### System.Boolean
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraApplicationLogo](Set-EntraApplicationLogo.md)

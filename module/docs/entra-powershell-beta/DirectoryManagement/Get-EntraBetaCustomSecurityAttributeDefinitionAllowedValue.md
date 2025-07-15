@@ -16,11 +16,11 @@ title: Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 # Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
-## Synopsis
+## SYNOPSIS
 
 Gets the predefined value for a custom security attribute definition.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,7 +42,7 @@ Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Gets the predefined value for a Microsoft Entra ID custom security attribute definition. Specify `CustomSecurityAttributeDefinitionId` parameter to retrieve the predefined value custom security attribute definition.
 
@@ -51,7 +51,7 @@ The signed-in user must be assigned one of the following directory roles:
 - Attribute Definition Reader
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all predefined values
 
@@ -108,7 +108,7 @@ This example retrieves a predefined value containing Id with the specified value
 
 - `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use `Get-EntraBetaCustomSecurityAttributeDefinition` to get this value.
 
-## Parameters
+## PARAMETERS
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -178,17 +178,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 

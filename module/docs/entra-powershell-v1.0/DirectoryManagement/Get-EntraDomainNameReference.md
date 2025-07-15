@@ -16,11 +16,11 @@ title: Get-EntraDomainNameReference
 
 # Get-EntraDomainNameReference
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the objects that are referenced by a given domain name.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDomainNameReference
@@ -29,7 +29,7 @@ Get-EntraDomainNameReference
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name. Specify `Name` parameter retrieve the objects.
 
@@ -38,7 +38,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 - Domain Name Administrator
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the domain name reference objects for a domain
 
@@ -60,7 +60,7 @@ This example shows how to retrieve the domain name reference objects for a domai
 
 - `-Name` parameter specifies the name of the domain name for which the referenced objects are retrieved.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -98,14 +98,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

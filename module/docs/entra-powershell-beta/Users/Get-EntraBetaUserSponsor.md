@@ -16,11 +16,11 @@ title: Get-EntraBetaUserSponsor
 
 # Get-EntraBetaUserSponsor
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve a user's sponsors (users or groups).
 
-## Syntax
+## SYNTAX
 
 ### GetQuery
 
@@ -45,7 +45,7 @@ Get-EntraBetaUserSponsor
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserSponsor` cmdlet retrieves a user's sponsors (users or groups). The sponsor feature tracks who is responsible for each guest user by assigning a person or group, ensuring accountability.
 
@@ -56,7 +56,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 - Directory Writers
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the user sponsors
 
@@ -115,7 +115,7 @@ This example retrieves the assigned sponsor for the specified user.
 - The `-UserId` parameter specifies the User ID or User Principal Name.
 - The `-SponsorId` parameter specifies the specific user's sponsor ID to retrieve (user or group ID).
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -217,13 +217,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaUserSponsor](Set-EntraBetaUserSponsor.md)
 

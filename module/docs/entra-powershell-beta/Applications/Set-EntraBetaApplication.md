@@ -16,11 +16,11 @@ title: Set-EntraBetaApplication
 
 # Set-EntraBetaApplication
 
-## Synopsis
+## SYNOPSIS
 
 Updates the properties of an application object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaApplication
@@ -49,11 +49,11 @@ Set-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Updates the properties of an application object.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update an application
 
@@ -137,7 +137,7 @@ The `AllowedMemberTypes` can take the values:
 - `"User"` - for users and groups.
 - `"Application"` - for applications.
 
-## Parameters
+## PARAMETERS
 
 ### -AddIns
 
@@ -522,7 +522,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### Boolean
 
@@ -556,11 +556,11 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Nullable`1[System.Boolean]
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

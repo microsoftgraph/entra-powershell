@@ -16,11 +16,11 @@ title: Set-EntraDomainFederationSettings
 
 # Set-EntraDomainFederationSettings
 
-## Synopsis
+## SYNOPSIS
 
 Updates settings for a federated domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraDomainFederationSettings
@@ -39,7 +39,7 @@ Set-EntraDomainFederationSettings
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraDomainFederationSettings` cmdlet is used to update the settings of a single sign-on domain.
 
@@ -50,7 +50,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set the PromptLoginBehavior
 
@@ -74,7 +74,7 @@ Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Form
 - `-PreferredAuthenticationProtocol` parameter specifies the preferred authentication protocol.
 - `-PromptLoginBehavior` parameter specifies the prompt sign-in behavior.
 
-## Parameters
+## PARAMETERS
 
 ### -DomainName
 
@@ -274,12 +274,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDomainFederationSettings](Get-EntraDomainFederationSettings.md)

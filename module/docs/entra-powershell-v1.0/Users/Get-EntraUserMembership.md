@@ -16,11 +16,11 @@ title: Get-EntraUserMembership
 
 # Get-EntraUserMembership
 
-## Synopsis
+## SYNOPSIS
 
 Get user memberships.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserMembership
@@ -31,11 +31,11 @@ Get-EntraUserMembership
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserMembership` cmdlet gets user memberships in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get user memberships
 
@@ -152,7 +152,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit Engineering
 
 This example lists a user's administrative units. You can also use [Get-EntraUserAdministrativeUnit](https://learn.microsoft.com/powershell/module/microsoft.entra/get-entrauseradministrativeunit) for the same result.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -222,12 +222,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUserGroup](Get-EntraUserGroup.md)

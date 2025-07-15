@@ -16,11 +16,11 @@ title: Set-EntraDirectoryRoleDefinition
 
 # Set-EntraDirectoryRoleDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Update an existing Microsoft Entra ID roleDefinition.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraDirectoryRoleDefinition
@@ -35,7 +35,7 @@ Set-EntraDirectoryRoleDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Updates a Microsoft Entra roleDefinition object identified by ID. You can't update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
@@ -43,7 +43,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update an roleDefinition
 
@@ -115,7 +115,7 @@ This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes
 - `-TemplateId` parameter specifies the template ID for the role definition.
 - `-Version` parameter specifies the version for the role definition.
 
-## Parameters
+## PARAMETERS
 
 ### -UnifiedRoleDefinitionId
 
@@ -249,19 +249,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 `Set-EntraRoleDefinition` is an alias for `Set-EntraDirectoryRoleDefintion`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
 

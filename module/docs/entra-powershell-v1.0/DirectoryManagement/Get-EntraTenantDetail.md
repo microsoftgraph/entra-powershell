@@ -16,11 +16,11 @@ title: Get-EntraTenantDetail
 
 # Get-EntraTenantDetail
 
-## Synopsis
+## SYNOPSIS
 
 Gets the details of a tenant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraTenantDetail
@@ -30,7 +30,7 @@ Get-EntraTenantDetail
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraTenantDetail` cmdlet gets the details of a tenant in Microsoft Entra ID.
 
@@ -50,7 +50,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - User Administrator
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all tenant details
 
@@ -123,7 +123,7 @@ This example shows how to retrieve the directory tenant size quota.
 
 A directory quota represents the maximum number of objects allowed in a tenant, including user accounts, app registrations, and groups. Once this limit is reached, attempts to create new objects will result in an error.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -177,12 +177,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraTenantDetail](Set-EntraTenantDetail.md)

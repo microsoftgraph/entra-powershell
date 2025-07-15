@@ -16,11 +16,11 @@ title: Get-EntraLifecyclePolicyGroup
 
 # Get-EntraLifecyclePolicyGroup
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the lifecycle policy object to which a group belongs.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraLifecyclePolicyGroup
@@ -29,11 +29,11 @@ Get-EntraLifecyclePolicyGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-GroupId` parameter to get the lifecycle policy object to which a group belongs.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve lifecycle policy object
 
@@ -53,7 +53,7 @@ This example demonstrates how to retrieve lifecycle policy object by Id in Micro
 
 - `-GroupId` - specifies the ID of a group.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupId
 
@@ -91,14 +91,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

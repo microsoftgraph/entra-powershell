@@ -16,11 +16,11 @@ title: Reset-EntraStrongAuthenticationMethodByUpn
 
 # Reset-EntraStrongAuthenticationMethodByUpn
 
-## Synopsis
+## SYNOPSIS
 
 Resets the strong authentication method using the User Principal Name (UPN).
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Reset-EntraStrongAuthenticationMethodByUpn
@@ -29,7 +29,7 @@ Reset-EntraStrongAuthenticationMethodByUpn
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Reset-EntraStrongAuthenticationMethodByUpn` cmdlet resets the strong authentication method by using the User Principal Name (UPN). It is recommended to use Temporary Access Pass (TAP) to allow a users to sign in temporarily without MFA instead of deleting all methods.
 
@@ -40,7 +40,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Authentication Administrator  
 - Privileged Authentication Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Resets the strong authentication method by using the User Principal Name
 
@@ -53,7 +53,7 @@ This example demonstrates how to reset the strong authentication method by using
 
 - `-UserPrincipalName` parameter specifies the User Principal Name (UPN) of the user whose strong authentication method is being reset. You can use `-UserId`, `-Identity`, `-UPN`, `-ObjectId` as an alias for `-UserPrincipalName`.
 
-## Parameters
+## PARAMETERS
 
 ### -UserPrincipalName
 
@@ -91,10 +91,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

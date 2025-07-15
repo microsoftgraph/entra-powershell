@@ -16,11 +16,11 @@ title: Get-EntraBetaUserAppRoleAssignment
 
 # Get-EntraBetaUserAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Get a user application role assignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaUserAppRoleAssignment
@@ -31,7 +31,7 @@ Get-EntraBetaUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserAppRoleAssignment` cmdlet gets a user application role assignment.
 
@@ -48,7 +48,7 @@ To perform this operation in delegated scenarios using work or school accounts, 
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a user application role assignment
 
@@ -128,7 +128,7 @@ This example demonstrates how to retrieve application role assignments for the s
 
 - `-UserId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -198,13 +198,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

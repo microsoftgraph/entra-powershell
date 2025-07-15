@@ -15,11 +15,11 @@ title: New-EntraBetaDirectoryRoleDefinition
 
 # New-EntraBetaDirectoryRoleDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Create a new Microsoft Entra ID roleDefinition.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaDirectoryRoleDefinition
@@ -34,7 +34,7 @@ New-EntraBetaDirectoryRoleDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Create a new Microsoft Entra ID roleDefinition object.
 
@@ -42,7 +42,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates a new role definition
 
@@ -160,7 +160,7 @@ This command creates a new role definition with Version parameter.
 - `-DisplayName` parameter specifies the display name for the role definition.
 - `-Version` parameter specifies the version for the role definition.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -294,17 +294,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## Notes
+## NOTES
 
 `New-EntraBetaRoleDefinition` is an alias for `New-EntraBetaDirectoryRoleDefinition`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectoryRoleDefinition](Get-EntraBetaDirectoryRoleDefinition.md)
 

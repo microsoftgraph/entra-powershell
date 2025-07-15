@@ -15,11 +15,11 @@ title: Get-EntraGroupAppRoleAssignment
 
 # Get-EntraGroupAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Gets a group application role assignment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraGroupAppRoleAssignment
@@ -30,11 +30,11 @@ Get-EntraGroupAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `GroupId` parameter to get a group application role assignment.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve application role assignments of a group
 
@@ -95,7 +95,7 @@ This example retrieves top two application role assignments of the specified gro
 
 - `-GroupId` parameter specifies the ID of a group in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -165,13 +165,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

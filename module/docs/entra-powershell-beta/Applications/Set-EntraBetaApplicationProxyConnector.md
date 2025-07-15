@@ -16,11 +16,11 @@ title: Set-EntraBetaApplicationProxyConnector
 
 # Set-EntraBetaApplicationProxyConnector
 
-## Synopsis
+## SYNOPSIS
 
 The `Set-EntraBetaApplicationProxyConnector` cmdlet allows reassignment of the connector to another connector group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaApplicationProxyConnector
@@ -29,11 +29,11 @@ Set-EntraBetaApplicationProxyConnector
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaApplicationProxyConnector` cmdlet allows reassignment of the connector to another connector group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Move a Connector to a different Connector Group
 
@@ -51,7 +51,7 @@ This example demonstrates how to move a Connector to a different Connector Group
 - `-OnPremisesPublishingProfileId` parameter specifies the connector ID.
 - `-ConnectorGroupId` parameter specifies the application proxy connector group ID.
 
-## Parameters
+## PARAMETERS
 
 ### -OnPremisesPublishingProfileId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplicationProxyConnectorGroup](Get-EntraBetaApplicationProxyConnectorGroup.md)
 [Get-EntraBetaApplicationProxyConnector](Get-EntraBetaApplicationProxyConnector.md)

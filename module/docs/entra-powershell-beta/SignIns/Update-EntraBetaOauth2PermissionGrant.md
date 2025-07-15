@@ -16,11 +16,11 @@ title: Update-EntraBetaOauth2PermissionGrant
 
 # Update-EntraBetaOauth2PermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Update the properties of a delegated permission grant (oAuth2PermissionGrant object).
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Update-EntraBetaOauth2PermissionGrant
@@ -29,7 +29,7 @@ Update-EntraBetaOauth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Update-EntraBetaOauth2PermissionGrant` cmdlet is used to update the properties of a delegated permission grant (oAuth2PermissionGrant object) by adding or removing items in the scopes list.
 
@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 - Privileged Role Administrator
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update delegated permission grant scope
 
@@ -73,7 +73,7 @@ This command updates a delegated permission grant.
 
 - `-OAuth2PermissionGrantId` parameter specifies the Unique identifier for the oAuth2PermissionGrant.
 
-## Parameters
+## PARAMETERS
 
 ### -OAuth2PermissionGrantId
 
@@ -111,13 +111,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaOauth2PermissionGrant](Get-EntraBetaOAuth2PermissionGrant.md)
 

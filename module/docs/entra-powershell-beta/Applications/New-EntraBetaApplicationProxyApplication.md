@@ -16,11 +16,11 @@ title: New-EntraBetaApplicationProxyApplication
 
 # New-EntraBetaApplicationProxyApplication
 
-## Synopsis
+## SYNOPSIS
 
 The `New-EntraBetaApplicationProxyApplication` cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaApplicationProxyApplication
@@ -38,13 +38,13 @@ New-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaApplicationProxyApplication` cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the `Default` connector group in your tenant.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creating a new application with only the basic required settings, and the default domain for applications
 
@@ -169,7 +169,7 @@ This example creating a new application with `IsHttpOnlyCookieEnabled`, `IsSecur
 - `-IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
 - `-IsTranslateLinksInBodyEnabled` parameter specifies the translates urls in body.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationServerTimeout
 
@@ -365,19 +365,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ExternalAuthenticationTypeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\] System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ApplicationServerTimeoutEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaApplicationProxyApplication](Set-EntraBetaApplicationProxyApplication.md)
 

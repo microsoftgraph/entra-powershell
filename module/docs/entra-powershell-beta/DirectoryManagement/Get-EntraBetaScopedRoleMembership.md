@@ -16,11 +16,11 @@ title: Get-EntraBetaScopedRoleMembership
 
 # Get-EntraBetaScopedRoleMembership
 
-## Synopsis
+## SYNOPSIS
 
 List Microsoft Entra role assignments with administrative unit scope.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaScopedRoleMembership
@@ -30,11 +30,11 @@ Get-EntraBetaScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assignments with an administrative unit scope. Use the `AdministrativeUnitId` parameter to retrieve a specific scoped role membership.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get Scoped Role Administrator
 
@@ -75,7 +75,7 @@ This example list scoped administrators with AdministrativeUnitId.
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
-## Parameters
+## PARAMETERS
 
 ### -AdministrativeUnitId
 
@@ -129,13 +129,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaScopedRoleMembership](Add-EntraBetaScopedRoleMembership.md)
 

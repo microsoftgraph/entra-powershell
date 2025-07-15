@@ -16,11 +16,11 @@ title: Enable-EntraBetaDirectoryRole
 
 # Enable-EntraBetaDirectoryRole
 
-## Synopsis
+## SYNOPSIS
 
 Activates an existing directory role in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Enable-EntraBetaDirectoryRole
@@ -28,7 +28,7 @@ Enable-EntraBetaDirectoryRole
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Enable-EntraBetaDirectoryRole` cmdlet activates an existing directory role in Microsoft Entra ID.
 
@@ -38,7 +38,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Enable a directory role
 
@@ -60,7 +60,7 @@ You can use `Get-EntraBetaDirectoryRoleTemplate` to fetch a specific directory r
 
 - `RoleTemplateId` parameter specifies the ID of the role template to enable.
 
-## Parameters
+## PARAMETERS
 
 ### -RoleTemplateId
 
@@ -82,13 +82,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectoryRole](Get-EntraBetaDirectoryRole.md)
 

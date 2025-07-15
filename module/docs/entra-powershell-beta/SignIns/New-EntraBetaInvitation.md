@@ -16,11 +16,11 @@ title: New-EntraBetaInvitation
 
 # New-EntraBetaInvitation
 
-## Synopsis
+## SYNOPSIS
 
 This cmdlet is used to invite a new external user to your directory
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaInvitation
@@ -35,7 +35,7 @@ New-EntraBetaInvitation
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet is used to invite a new external user to your directory.
 
@@ -58,7 +58,7 @@ Additionally, to reset the redemption status, the signed-in user must have the:
 - Helpdesk Administrator
 - User Administrator role
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Invite a new external user to your directory
 
@@ -176,7 +176,7 @@ In this example, we show how an admin can reset the redemption for an external u
 They need to pass the switch `-ResetRedemption`.
 Once reset, External user has to re-redeem the invitation to continue to access the resources.
 
-## Parameters
+## PARAMETERS
 
 ### -InvitedUserDisplayName
 
@@ -314,16 +314,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 - See more information - <https://learn.microsoft.com/graph/api/invitation-post>.
 
-## Related links
+## RELATED LINKS

@@ -16,11 +16,11 @@ title: Get-EntraBetaDirSyncConfiguration
 
 # Get-EntraBetaDirSyncConfiguration
 
-## Synopsis
+## SYNOPSIS
 
 Gets the directory synchronization settings.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaDirSyncConfiguration
@@ -28,13 +28,13 @@ Get-EntraBetaDirSyncConfiguration
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDirSyncConfiguration` cmdlet gets the directory synchronization settings. See [configuration settings](https://learn.microsoft.com/graph/api/resources/onpremisesaccidentaldeletionprevention#properties) details.
 
 For delegated scenarios, the user needs to be assigned the Global Administrator role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get directory synchronization settings
 
@@ -69,7 +69,7 @@ This example gets directory synchronization settings by TenantId.
 
 - `-TenantId` Specifies the unique ID of the tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -TenantId
 
@@ -91,14 +91,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System. Nullable`1[[System. Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaDirSyncConfiguration](Set-EntraBetaDirSyncConfiguration.md)

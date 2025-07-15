@@ -15,11 +15,11 @@ title: Remove-EntraBetaAdministrativeUnit
 
 # Remove-EntraBetaAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Removes an administrative unit.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaAdministrativeUnit
@@ -27,13 +27,13 @@ Remove-EntraBetaAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify `AdministrativeUnitId` parameter to delete an administrative unit.
 
 To delete an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an administrative unit
 
@@ -56,7 +56,7 @@ Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-di
 
 This command removes the specified administrative unit from Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -AdministrativeUnitId
 
@@ -78,13 +78,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)
 

@@ -16,11 +16,11 @@ title: New-EntraApplicationPasswordCredential
 
 # New-EntraApplicationPasswordCredential
 
-## Synopsis
+## SYNOPSIS
 
 Creates a password credential for an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraApplicationPasswordCredential
@@ -31,11 +31,11 @@ New-EntraApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraApplicationPasswordCredential` cmdlet creates a password credential for an application in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a password credential
 
@@ -138,7 +138,7 @@ This command creates new password credential for specified application.
 - `-ApplicationId` Specifies the ID of an application.
 - `-EndDate` Speicifies The date and time at which the password expires.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -208,13 +208,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraApplicationPasswordCredential](Get-EntraApplicationPasswordCredential.md)
 

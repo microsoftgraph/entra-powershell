@@ -15,11 +15,11 @@ title: Update-EntraBetaSignedInUserPassword
 
 # Update-EntraBetaSignedInUserPassword
 
-## Synopsis
+## SYNOPSIS
 
 Updates the password for the signed-in user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Update-EntraBetaSignedInUserPassword
@@ -28,13 +28,13 @@ Update-EntraBetaSignedInUserPassword
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Update-EntraBetaSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
 
 Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a password
 
@@ -50,7 +50,7 @@ This example shows how to update the password for the signed-in user.
 - `-CurrentPassword` parameter specifies the current password of the signed-in user.
 - `-NewPassword` parameter specifies the new password for the signed-in user.
 
-## Parameters
+## PARAMETERS
 
 ### -CurrentPassword
 
@@ -88,12 +88,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
 
-## Related links
+## RELATED LINKS

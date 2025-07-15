@@ -16,11 +16,11 @@ title: Set-EntraBetaServicePrincipal
 
 # Set-EntraBetaServicePrincipal
 
-## Synopsis
+## SYNOPSIS
 
 Updates a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaServicePrincipal
@@ -42,11 +42,11 @@ Set-EntraBetaServicePrincipal
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Disable the account of a service principal
 
@@ -151,7 +151,7 @@ This example demonstrates how to update `PreferredSingleSignOnMode` of a service
 - `-ServicePrincipalId` parameter specifies the ID of a service principal.
 - `-PreferredSingleSignOnMode` parameter specifies the single sign-on mode configured for this application.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -399,13 +399,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

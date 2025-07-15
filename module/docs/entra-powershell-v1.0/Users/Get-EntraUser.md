@@ -16,11 +16,11 @@ title: Get-EntraUser
 
 # Get-EntraUser
 
-## Synopsis
+## SYNOPSIS
 
 Gets a user.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -53,11 +53,11 @@ Get-EntraUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUser` cmdlet gets a user from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get top three users
 
@@ -429,7 +429,7 @@ Avery Smith     AveryS@contoso.com     03/03/2025 16:05:02
 
 This example shows how to list all users with revoked sessions in the last 30 Days.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -533,13 +533,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraUser](New-EntraUser.md)
 

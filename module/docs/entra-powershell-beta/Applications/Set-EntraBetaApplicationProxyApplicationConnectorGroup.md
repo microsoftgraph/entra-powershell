@@ -16,11 +16,11 @@ title: Set-EntraBetaApplicationProxyApplicationConnectorGroup
 
 # Set-EntraBetaApplicationProxyApplicationConnectorGroup
 
-## Synopsis
+## SYNOPSIS
 
 The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet assigns the given connector group to a specified application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationConnectorGroup
@@ -29,13 +29,13 @@ Set-EntraBetaApplicationProxyApplicationConnectorGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet sets the connector group assigned for the specified application. Specify `OnPremisesPublishingProfileId` and `ConnectorGroupId` parameter to assign the given connector group to a specified application.
 
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set a new Connector Group for a specific application
 
@@ -53,7 +53,7 @@ This example set a new Connector Group for a specific application.
 - `OnPremisesPublishingProfileId` parameter specifies the application ID.
 - `ConnectorGroupId` parameter specifies the connector group ID that assign to the application.
 
-## Parameters
+## PARAMETERS
 
 ### -ConnectorGroupId
 
@@ -93,17 +93,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplicationProxyApplicationConnectorGroup](Get-EntraBetaApplicationProxyApplicationConnectorGroup.md)
 

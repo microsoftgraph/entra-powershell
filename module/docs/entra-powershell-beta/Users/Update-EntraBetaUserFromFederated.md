@@ -16,11 +16,11 @@ title: Update-EntraBetaUserFromFederated
 
 # Update-EntraBetaUserFromFederated
 
-## Synopsis
+## SYNOPSIS
 
 Updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
 
-## Syntax
+## SYNTAX
 
 ### CloudOnlyPasswordScenarios (Default)
 
@@ -39,7 +39,7 @@ Update-EntraBetaUserFromFederated
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Update-EntraBetaUserFromFederated` cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
@@ -56,7 +56,7 @@ Admins with `User Administrator`, `Helpdesk Administrator`, or `Password Adminis
 
 The new password is required for hybrid password setups. If omitted for cloud-only passwords, a system-generated password is returned. It’s a Unicode string, validated against the tenant's banned password list, and must meet cloud and/or on-premises password policies.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a user in a domain
 
@@ -90,7 +90,7 @@ This command updates a user in a domain by supplying a password for hybrid scena
 - `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
 - `-NewPassword` parameter specifies the new password of the user.
 
-## Parameters
+## PARAMETERS
 
 ### -UserPrincipalName
 
@@ -130,12 +130,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - For more information, see [resetPassword](https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword).
 
-## Related links
+## RELATED LINKS

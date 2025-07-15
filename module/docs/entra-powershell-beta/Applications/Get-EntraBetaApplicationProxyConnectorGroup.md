@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationProxyConnectorGroup
 
 # Get-EntraBetaApplicationProxyConnectorGroup
 
-## Synopsis
+## SYNOPSIS
 
 The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -50,11 +50,11 @@ Get-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve all connector groups
 
@@ -135,7 +135,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test          
 
 This example retrieves a connector groups with String parameter.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -224,19 +224,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
 

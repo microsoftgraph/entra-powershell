@@ -16,11 +16,11 @@ title: Remove-EntraIdentityProvider
 
 # Remove-EntraIdentityProvider
 
-## Synopsis
+## SYNOPSIS
 
 This cmdlet is used to delete an identity provider in the directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraIdentityProvider
@@ -28,7 +28,7 @@ Remove-EntraIdentityProvider
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet is used to delete an identity provider that has been configured in the directory.
 
@@ -38,7 +38,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 - External Identity Provider Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove the identity provider in the directory
 
@@ -51,7 +51,7 @@ This command demonstrates how to remove the specified identity provider.
 
 - `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 
-## Parameters
+## PARAMETERS
 
 ### -IdentityProviderBaseId
 
@@ -73,16 +73,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraIdentityProvider](New-EntraIdentityProvider.md)

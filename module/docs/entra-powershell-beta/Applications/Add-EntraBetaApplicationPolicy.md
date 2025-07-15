@@ -16,11 +16,11 @@ title: Add-EntraBetaApplicationPolicy
 
 # Add-EntraBetaApplicationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Adds an application policy.
 
-## Syntax
+## SYNTAX
 
 ### ByApplicationIdAndPolicyId
 
@@ -31,11 +31,11 @@ Add-EntraBetaApplicationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraBetaApplicationPolicy` cmdlet adds a Microsoft Entra ID application policy. Specify `Id` and `RefObjectId` parameters to add an application policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add an application policy
 
@@ -50,7 +50,7 @@ Add-EntraBetaApplicationPolicy @params
 
 This example demonstrates how to add an application policy.
 
-## Parameters
+## PARAMETERS
 
 ### -RefObjectId
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplicationPolicy](Get-EntraBetaApplicationPolicy.md)
 

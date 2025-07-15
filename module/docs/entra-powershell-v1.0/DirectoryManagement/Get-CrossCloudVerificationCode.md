@@ -16,11 +16,11 @@ title: Get-CrossCloudVerificationCode
 
 # Get-CrossCloudVerificationCode
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the verification code to confirm domain ownership in another connected cloud.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-CrossCloudVerificationCode
@@ -28,11 +28,11 @@ Get-CrossCloudVerificationCode
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Retrieves the verification code to confirm domain ownership in another connected cloud. Applies only to verified domains.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the cross cloud verification code
 
@@ -42,7 +42,7 @@ Get-CrossCloudVerificationCode -Name Contoso.com
 
 This command returns a string to enable cross-cloud federation.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -64,12 +64,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.GetCrossCloudVerificationCodeResponse
 
-## Notes
+## NOTES
 
 ## RELATED LINKS

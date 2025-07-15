@@ -16,11 +16,11 @@ title: Get-EntraBetaAdministrativeUnit
 
 # Get-EntraBetaAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Gets an administrative unit.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraBetaAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameter to get a specific administrative unit.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all administrative units
 
@@ -138,7 +138,7 @@ DeletedDateTime Id                                   Description          Displa
 
 This example returns the specified top administrative units. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -225,13 +225,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)
 

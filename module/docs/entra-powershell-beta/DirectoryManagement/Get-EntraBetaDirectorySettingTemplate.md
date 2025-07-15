@@ -16,11 +16,11 @@ title: Get-EntraBetaDirectorySettingTemplate
 
 # Get-EntraBetaDirectorySettingTemplate
 
-## Synopsis
+## SYNOPSIS
 
 Gets a directory setting template.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -39,11 +39,11 @@ Get-EntraBetaDirectorySettingTemplate
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDirectorySettingTemplate` cmdlet gets a directory setting template from A Microsoft Entra ID. Specify `Id` parameter to get a directory setting template.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get an all directory setting template
 
@@ -79,7 +79,7 @@ This example gets a directory setting template.
 
 - `-Id` parameter specifies the ID of the settings template.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -117,10 +117,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

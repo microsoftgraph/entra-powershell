@@ -15,11 +15,11 @@ title: Get-EntraBetaDirectoryRoleAssignment
 
 # Get-EntraBetaDirectoryRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Get a Microsoft Entra ID roleAssignment.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -51,7 +51,7 @@ Get-EntraBetaDirectoryRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDirectoryRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `UnifiedRoleAssignmentId` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
@@ -67,7 +67,7 @@ The least privileged roles for this operation, from least to most privileged, ar
 - Global Reader
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get role assignments
 
@@ -180,7 +180,7 @@ Id                                      PrincipalId                           Ro
 
 This command gets top two role assignments. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -267,17 +267,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
-## Notes
+## NOTES
 
 `Get-EntraBetaRoleAssignment` is an alias for `Get-EntraBetaDirectoryRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 

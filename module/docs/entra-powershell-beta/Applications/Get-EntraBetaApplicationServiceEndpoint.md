@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationServiceEndpoint
 
 # Get-EntraBetaApplicationServiceEndpoint
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve the service endpoint of an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationServiceEndpoint
@@ -31,7 +31,7 @@ Get-EntraBetaApplicationServiceEndpoint
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationServiceEndpoint` cmdlet retrieves the service endpoint(s) of an application.
 
@@ -39,7 +39,7 @@ The service endpoint entity contains service discovery information. The serviceE
 
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the application service endpoint by ID
 
@@ -77,7 +77,7 @@ This example demonstrates how to retrieve five service endpoints of a specified 
 
 `-ServicePrincipalId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -148,18 +148,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)

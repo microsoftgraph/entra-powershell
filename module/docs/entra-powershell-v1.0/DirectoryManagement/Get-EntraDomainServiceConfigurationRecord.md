@@ -16,11 +16,11 @@ title: Get-EntraDomainServiceConfigurationRecord
 
 # Get-EntraDomainServiceConfigurationRecord
 
-## Synopsis
+## SYNOPSIS
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDomainServiceConfigurationRecord
@@ -29,7 +29,7 @@ Get-EntraDomainServiceConfigurationRecord
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
@@ -40,7 +40,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 - Domain Name Administrator
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve domain service configuration records by Name
 
@@ -64,7 +64,7 @@ This example shows how to retrieve the Domain service configuration records for 
 
 - `-Name` parameter specifies domain name for which the domain service configuration records are to be retrieved.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -102,14 +102,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

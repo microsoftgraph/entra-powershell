@@ -16,11 +16,11 @@ title: Set-EntraDevice
 
 # Set-EntraDevice
 
-## Synopsis
+## SYNOPSIS
 
 Updates a device.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraDevice
@@ -43,7 +43,7 @@ Set-EntraDevice
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraDevice` cmdlet updates a device in Microsoft Entra ID.
 
@@ -53,7 +53,7 @@ The calling user must have at least:
 - Cloud Device Administrator role can only enable or disable devices
 - Windows 365 Administrator role can only update basic device properties.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a device display name
 
@@ -115,7 +115,7 @@ Set-EntraDevice @params
 
 This example shows how to update multiple properties of a specified device.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -377,13 +377,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

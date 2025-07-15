@@ -16,11 +16,11 @@ title: Set-EntraBetaAuthorizationPolicy
 
 # Set-EntraBetaAuthorizationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Updates an authorization policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaAuthorizationPolicy
@@ -38,7 +38,7 @@ Set-EntraBetaAuthorizationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaAuthorizationPolicy` cmdlet updates a Microsoft Entra ID authorization policy.
 
@@ -46,7 +46,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update an authorization policy
 
@@ -86,7 +86,7 @@ This example demonstrates how to update a DefaultUserRolePermissions of authoriz
 - `-Id` parameter specifies the authorization policy ID.
 - `-DefaultUserRolePermissions` parameter specifies the customizable default user role permissions.
 
-## Parameters
+## PARAMETERS
 
 ### -AllowedToSignUpEmailBasedSubscriptions
 
@@ -271,14 +271,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaAuthorizationPolicy](Get-EntraBetaAuthorizationPolicy.md)

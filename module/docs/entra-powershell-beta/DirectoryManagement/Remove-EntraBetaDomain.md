@@ -16,11 +16,11 @@ title: Remove-EntraBetaDomain
 
 # Remove-EntraBetaDomain
 
-## Synopsis
+## SYNOPSIS
 
 Removes a domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDomain
@@ -28,7 +28,7 @@ Remove-EntraBetaDomain
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDomain` cmdlet removes a domain from Microsoft Entra ID.
 
@@ -41,7 +41,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Domain Name Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a domain
 
@@ -52,7 +52,7 @@ Remove-EntraBetaDomain -Name Contoso.com
 
 This command removes a domain from Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -74,13 +74,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 

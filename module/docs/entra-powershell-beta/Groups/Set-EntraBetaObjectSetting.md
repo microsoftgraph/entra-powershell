@@ -16,11 +16,11 @@ title: Set-EntraBetaObjectSetting
 
 # Set-EntraBetaObjectSetting
 
-## Synopsis
+## SYNOPSIS
 
 Updates object settings.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaObjectSetting
@@ -31,11 +31,11 @@ Set-EntraBetaObjectSetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaObjectSetting` cmdlet updates the settings for an object in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Updates the settings
 
@@ -60,7 +60,7 @@ This command updated the settings object.
 - `-DirectorySetting` Parameter Create a new setting using templates from `DirectorySettingTemplates`
 - `-Id` Parameter specifies the ID of a settings object.
 
-## Parameters
+## PARAMETERS
 
 ### -DirectorySetting
 
@@ -130,13 +130,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaObjectSetting](Get-EntraBetaObjectSetting.md)
 

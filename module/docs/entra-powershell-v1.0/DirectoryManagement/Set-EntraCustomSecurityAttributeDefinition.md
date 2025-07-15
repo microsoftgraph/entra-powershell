@@ -16,11 +16,11 @@ title: Set-EntraCustomSecurityAttributeDefinition
 
 # Set-EntraCustomSecurityAttributeDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Update the properties of a customSecurityAttributeDefinition object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraCustomSecurityAttributeDefinition
@@ -31,7 +31,7 @@ Set-EntraCustomSecurityAttributeDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
 
@@ -39,7 +39,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a custom security attribute
 
@@ -56,7 +56,7 @@ This example update a custom security attribute.
 - `-Status` parameter specifies the custom security attribute is active or deactivated.
 - `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -126,17 +126,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraCustomSecurityAttributeDefinition](Get-EntraCustomSecurityAttributeDefinition.md)
 

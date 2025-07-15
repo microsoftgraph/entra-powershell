@@ -15,11 +15,11 @@ title: Resolve-EntraTenant
 
 # Resolve-EntraTenant
 
-## Synopsis
+## SYNOPSIS
 
 Resolves a Tenant ID or Domain Name to a Microsoft Entra ID Tenant.
 
-## Syntax
+## SYNTAX
 
 ### TenantId(Default)
 
@@ -37,11 +37,11 @@ Resolve-EntraTenant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Resolve-EntraTenant` cmdlet resolves a Tenant ID or Domain Name to an Azure AD tenant and retrieves metadata about the tenant.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Resolve a tenant by domain name
 
@@ -170,7 +170,7 @@ OidcMetadataTenantRegionScope : NA
 
 Resolves multiple tenants from a file containing a list of TenantIds.
 
-## Parameters
+## PARAMETERS
 
 ### -TenantId
 
@@ -208,14 +208,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - Uses Azure AD OIDC Metadata endpoint for resolution.
 - A `NotFound` result doesn't necessarily mean the tenant doesn't exist; it might be in a different cloud environment.
 - Requires `CrossTenantInformation.ReadBasic.All` scope to read Microsoft Graph API info.
 
-## Related links
+## RELATED LINKS

@@ -16,11 +16,11 @@ title: Add-EntraBetaScopedRoleMembership
 
 # Add-EntraBetaScopedRoleMembership
 
-## Synopsis
+## SYNOPSIS
 
 Assign a Microsoft Entra role with an administrative unit scope.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraBetaScopedRoleMembership
@@ -30,13 +30,13 @@ Add-EntraBetaScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a scoped role membership to an administrative unit
 
@@ -62,7 +62,7 @@ The example shows how to add a user to the specified role within the specified a
 - `-RoleObjectId` Parameter specifies the ID of a directory role.
 - `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
-## Parameters
+## PARAMETERS
 
 ### -AdministrativeUnitId
 
@@ -116,13 +116,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaScopedRoleMembership](Get-EntraBetaScopedRoleMembership.md)
 

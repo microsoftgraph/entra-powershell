@@ -16,11 +16,11 @@ title: Get-EntraAuditDirectoryLog
 
 # Get-EntraAuditDirectoryLog
 
-## Synopsis
+## SYNOPSIS
 
 Get directory audit logs.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraAuditDirectoryLog
@@ -30,7 +30,7 @@ Get-EntraAuditDirectoryLog
 [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 
@@ -42,7 +42,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Security Administrator
 - Security Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all logs
 
@@ -206,7 +206,7 @@ Directory_{GUID}  03/07/2025 23:16:31   Add member to group   GroupManagement   
 
 This command shows when users were added to a group.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -274,12 +274,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Get-EntraAuditDirectoryLogs` is an alias for `Get-EntraAuditDirectoryLog`.
 
-## Related links
+## RELATED LINKS

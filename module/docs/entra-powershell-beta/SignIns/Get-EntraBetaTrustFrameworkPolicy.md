@@ -16,11 +16,11 @@ title: Get-EntraBetaTrustFrameworkPolicy
 
 # Get-EntraBetaTrustFrameworkPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the created trust framework policies (custom policies) in the directory.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -40,13 +40,13 @@ Get-EntraBetaTrustFrameworkPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaTrustFrameworkPolicy` cmdlet retrieves the trust framework policies that have been created in the directory.
 
 In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieves the list of all trust framework policies in the directory
 
@@ -93,7 +93,7 @@ This example retrieves the contents of the specified trust framework policy on s
 - `-Id` Parameter specifies ID for a trust framework policy.
 - `-OutputFilePath` Parameter specifies the path to the file used for retrieve the contents of trust framework policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -147,17 +147,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaTrustFrameworkPolicy](New-EntraBetaTrustFrameworkPolicy.md)
 

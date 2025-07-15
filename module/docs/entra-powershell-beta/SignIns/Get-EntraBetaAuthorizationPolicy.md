@@ -15,11 +15,11 @@ title: Get-EntraBetaAuthorizationPolicy
 
 # Get-EntraBetaAuthorizationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets an authorization policy.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -38,7 +38,7 @@ Get-EntraBetaAuthorizationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaAuthorizationPolicy` cmdlet gets a Microsoft Entra ID authorization policy.
 
@@ -52,7 +52,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - License Administrator  
 - Privileged Role Administrator 
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all policies
 
@@ -107,7 +107,7 @@ The response properties are:
 - `guestUserRoleId` -represents role templateId for the role that should be granted to guests. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported: User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).
 - `permissionGrantPolicyIdsAssignedToDefaultUserRole` - indicates if user consent to apps is allowed, and if it is, the app consent policy that governs the permission for users to grant consent. Values should be in the format `managePermissionGrantsForSelf.{id}` for user consent policies or `managePermissionGrantsForOwnedResource.{id}` for resource-specific consent policies, where {id} is the id of a built-in or custom app consent policy. An empty list indicates user consent to apps is disabled.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -145,12 +145,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaAuthorizationPolicy](Set-EntraBetaAuthorizationPolicy.md)

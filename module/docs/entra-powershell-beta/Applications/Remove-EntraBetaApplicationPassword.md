@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplicationPassword
 
 # Remove-EntraBetaApplicationPassword
 
-## Synopsis
+## SYNOPSIS
 
 Remove a password from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplicationPassword
@@ -29,11 +29,11 @@ Remove-EntraBetaApplicationPassword
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Remove a password from an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes a password from an application
 
@@ -49,7 +49,7 @@ This example removes the specified password from the specified application.
 - `-ApplicationId` parameter specifies the unique identifier of the application.
 - `-KeyId` parameter specifies the unique identifier of the PasswordCredential.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -87,14 +87,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaApplicationPassword](New-EntraBetaApplicationPassword.md)

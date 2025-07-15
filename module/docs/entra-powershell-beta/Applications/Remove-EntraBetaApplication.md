@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplication
 
 # Remove-EntraBetaApplication
 
-## Synopsis
+## SYNOPSIS
 
 Deletes an application object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplication
@@ -28,11 +28,11 @@ Remove-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaApplication` cmdlet deletes an application object identified by ApplicationId. Specify the `ApplicationId` parameter to delete an application object.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an application
 
@@ -53,7 +53,7 @@ Get-EntraBetaApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
 
 This example demonstrates how to delete an application object using pipelining.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -75,15 +75,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

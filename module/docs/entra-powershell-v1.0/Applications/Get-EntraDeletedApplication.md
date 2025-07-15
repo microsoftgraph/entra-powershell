@@ -15,11 +15,11 @@ title: Get-EntraDeletedApplication
 
 # Get-EntraDeletedApplication
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the list of previously deleted applications.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -51,13 +51,13 @@ Get-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDeletedApplication` cmdlet Retrieves the list of previously deleted applications.
 
 Note: Deleted security groups are permanently removed and can't be retrieved.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get list of deleted applications
 
@@ -152,7 +152,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Contoso Fieldglass    bbbbbbbb-1111-2222-33
 
 This cmdlet retrieves deleted applications with deletion age in days.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -239,18 +239,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraApplication](Get-EntraApplication.md)

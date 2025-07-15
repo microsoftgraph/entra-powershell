@@ -16,11 +16,11 @@ title: New-EntraBetaApplicationExtensionProperty
 
 # New-EntraBetaApplicationExtensionProperty
 
-## Synopsis
+## SYNOPSIS
 
 Creates an application extension property.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaApplicationExtensionProperty
@@ -32,11 +32,11 @@ New-EntraBetaApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaApplicationExtensionProperty` cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create an extension property
 
@@ -99,7 +99,7 @@ The example shows how to create an application extension property with the speci
 - `-Name` parameter specifies the name of the extension property.
 - `-TargetObjects` parameter specifies the Microsoft Graph resources that use the extension property. All values must be in PascalCase.
 
-## Parameters
+## PARAMETERS
 
 ### -DataType
 
@@ -199,13 +199,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplicationExtensionProperty](Get-EntraBetaApplicationExtensionProperty.md)
 

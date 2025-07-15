@@ -16,11 +16,11 @@ title: New-EntraIdentityProvider
 
 # New-EntraIdentityProvider
 
-## Synopsis
+## SYNOPSIS
 
 Configure a new identity provider in the directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraIdentityProvider
@@ -31,7 +31,7 @@ New-EntraIdentityProvider
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraIdentityProvider` cmdlet is used to configure an identity provider in the directory.
 
@@ -53,7 +53,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 - External Identity Provider Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add LinkedIn identity provider
 
@@ -75,7 +75,7 @@ This example adds a LinkedIn identity provider.
 - `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
 - `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
-## Parameters
+## PARAMETERS
 
 ### -ClientId
 
@@ -147,16 +147,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraIdentityProvider](Remove-EntraIdentityProvider.md)

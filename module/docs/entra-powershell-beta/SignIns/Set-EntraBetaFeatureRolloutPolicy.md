@@ -16,11 +16,11 @@ title: Set-EntraBetaFeatureRolloutPolicy
 
 # Set-EntraBetaFeatureRolloutPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Allows an admin to modify the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaFeatureRolloutPolicy
@@ -34,7 +34,7 @@ Set-EntraBetaFeatureRolloutPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication rollout policy.
 
@@ -42,7 +42,7 @@ This includes specifying whether the method for cloud authentication is Pass-thr
 
 Users in groups assigned to the policy will start authenticating using the new method and Seamless SSO, if it is specified.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Updates the policy for cloud authentication roll-out in Microsoft Entra ID
 
@@ -84,7 +84,7 @@ This command updates the `-IsAppliedToOrganization` parameter of policy for clou
 - `-Id` Specify the ID of cloud authentication roll-out policy.
 - `-IsAppliedToOrganization` Parameter determines whether a particular feature rollout policy should be applied to the entire organization or not.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -211,15 +211,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 See more details - <https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy>
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaFeatureRolloutPolicy](New-EntraBetaFeatureRolloutPolicy.md)
 

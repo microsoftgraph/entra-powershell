@@ -15,11 +15,11 @@ title: Confirm-EntraBetaDomain
 
 # Confirm-EntraBetaDomain
 
-## Synopsis
+## SYNOPSIS
 
 Validate the ownership of a domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Confirm-EntraBetaDomain
@@ -28,7 +28,7 @@ Confirm-EntraBetaDomain
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Confirm-EntraBetaDomain` cmdlet validates the ownership of an Microsoft Entra ID domain.
 
@@ -36,7 +36,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 - Domain Name Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Confirm the domain
 
@@ -61,7 +61,7 @@ This example illustrates how to confirm a domain when an external administrator 
 - `DomainName` specifies the fully qualified domain name to retrieve.
 - `ForceTakeover` specifies whether to forcibly take control of an unmanaged domain associated with a tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -DomainName
 
@@ -99,10 +99,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

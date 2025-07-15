@@ -15,11 +15,11 @@ title: Get-EntraDirectoryRole
 
 # Get-EntraDirectoryRole
 
-## Synopsis
+## SYNOPSIS
 
 Gets a directory role.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -39,7 +39,7 @@ Get-EntraDirectoryRole
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID. Specify `ObjectId` parameter to get a directory role.
 
@@ -57,7 +57,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Privileged Role Administrator  
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a directory role by ID
 
@@ -127,7 +127,7 @@ DeletedDateTime Id                                   Description
 
 This command gets the directory role by display name.
 
-## Parameters
+## PARAMETERS
 
 ### -Filter
 
@@ -182,12 +182,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)

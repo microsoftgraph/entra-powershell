@@ -16,11 +16,11 @@ title: Remove-EntraDeletedApplication
 
 # Remove-EntraDeletedApplication
 
-## Synopsis
+## SYNOPSIS
 
 Permanently delete a recently deleted application object from deleted items.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraDeletedApplication
@@ -28,7 +28,7 @@ Remove-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 
@@ -36,7 +36,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 - To permanently delete deleted applications or service principals: Application Administrator, Cloud Application Administrator, or Hybrid Identity Administrator.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove deleted application object
 
@@ -59,7 +59,7 @@ Get-EntraDeletedApplication -Filter "DisplayName eq 'My PowerShell Application'"
 
 This command removes recently deleted application using pipelining.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -81,17 +81,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
 

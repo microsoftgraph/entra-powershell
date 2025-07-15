@@ -15,11 +15,11 @@ title: Get-EntraBetaApplicationExtensionProperty
 
 # Get-EntraBetaApplicationExtensionProperty
 
-## Synopsis
+## SYNOPSIS
 
 Gets application extension properties.
 
-## Syntax
+## SYNTAX
 
 ### ByApplicationId
 
@@ -30,11 +30,11 @@ Get-EntraBetaApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extension properties in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get extension properties
 
@@ -54,7 +54,7 @@ This command gets the extension properties for the specified application in Micr
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -92,13 +92,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaApplicationExtensionProperty](New-EntraBetaApplicationExtensionProperty.md)
 

@@ -16,11 +16,11 @@ title: New-EntraBetaFeatureRolloutPolicy
 
 # New-EntraBetaFeatureRolloutPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Allows an admin to create the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaFeatureRolloutPolicy
@@ -33,13 +33,13 @@ New-EntraBetaFeatureRolloutPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaFeatureRolloutPolicy` cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Microsoft Entra ID.
 
 The policy admin can identify whether the users authenticate using password hashes in Microsoft Entra ID (Password hash-sync) or Microsoft Entra ID on-premises directly (Pass-through authentication).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates the policy for cloud authentication roll-out in Microsoft Entra ID
 
@@ -84,7 +84,7 @@ Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHash
 - `-IsEnabled` specifies the status of cloud authentication roll-out policy.
 - `-IsAppliedToOrganization` specifies if the cloud authentication roll-out policy applied to the entire organization.
 
-## Parameters
+## PARAMETERS
 
 ### -DisplayName
 
@@ -195,17 +195,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
 
-## Notes
+## NOTES
 
 See more details - [Feature rollout policy](https://learn.microsoft.com/graph/api/resources/featurerolloutpolicy)
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaFeatureRolloutPolicy](Get-EntraBetaFeatureRolloutPolicy.md)
 

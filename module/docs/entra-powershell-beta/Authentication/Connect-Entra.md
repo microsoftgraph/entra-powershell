@@ -16,11 +16,11 @@ title: Connect-Entra
 
 # Connect-Entra
 
-## Synopsis
+## SYNOPSIS
 
 Connect to Microsoft Entra ID with an authenticated account.
 
-## Syntax
+## SYNTAX
 
 ### UserParameterSet (Default)
 
@@ -103,7 +103,7 @@ Connect-Entra
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
 
@@ -111,7 +111,7 @@ Several authentication scenarios are supported based on your use case, such as d
 
 `Connect-Entra` is an alias for `Connect-MgGraph`.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Delegated access: Connect a PowerShell session to a tenant
 
@@ -306,7 +306,7 @@ Connect-Entra -EnvironmentVariable
 
 This example allows for authentication using environment variables.
 
-## Parameters
+## PARAMETERS
 
 ### -CertificateThumbprint
 
@@ -560,12 +560,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)

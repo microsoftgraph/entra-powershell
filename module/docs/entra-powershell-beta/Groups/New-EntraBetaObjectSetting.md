@@ -16,11 +16,11 @@ title: New-EntraBetaObjectSetting
 
 # New-EntraBetaObjectSetting
 
-## Synopsis
+## SYNOPSIS
 
 Creates a settings object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaObjectSetting
@@ -30,11 +30,11 @@ New-EntraBetaObjectSetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaObjectSetting` cmdlet creates a settings object in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates a settings object
 
@@ -59,7 +59,7 @@ This command creates a new settings object.
 - `-TargetObjectId` Parameter specifies the ID of directory object to which to assign settings.
 - `-DirectorySetting` Parameter Create a new setting using templates from `DirectorySettingTemplates`
 
-## Parameters
+## PARAMETERS
 
 ### -DirectorySetting
 
@@ -113,13 +113,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaObjectSetting](Get-EntraBetaObjectSetting.md)
 

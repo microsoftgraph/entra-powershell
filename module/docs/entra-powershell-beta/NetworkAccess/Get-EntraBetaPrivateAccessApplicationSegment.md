@@ -16,11 +16,11 @@ title: Get-EntraBetaPrivateAccessApplicationSegment
 
 # Get-EntraBetaPrivateAccessApplicationSegment
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaPrivateAccessApplicationSegment
@@ -29,11 +29,11 @@ Get-EntraBetaPrivateAccessApplicationSegment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve all application segments associated to an application
 
@@ -74,7 +74,7 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 
 This example demonstrates how to retrieve information for a specific application segment.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -112,17 +112,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS
 

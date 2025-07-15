@@ -16,17 +16,17 @@ title: Enable-EntraBetaGlobalSecureAccessTenant
 
 # Enable-EntraBetaGlobalSecureAccessTenant
 
-## Synopsis
+## SYNOPSIS
 
 Onboard the Global Secure Access service in the tenant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Enable-EntraBetaGlobalSecureAccessTenant
 ```
 
-## Description
+## DESCRIPTION
 
 The `Enable-EntraBetaGlobalSecureAccessTenant` cmdlet onboards the Global Secure Access service in the tenant.
 
@@ -35,7 +35,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 - Global Secure Access Administrator
 - Security Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Enable Global Secure Access for a tenant
 
@@ -56,17 +56,17 @@ This command onboards the Global Secure Access service in the tenant.
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS
 

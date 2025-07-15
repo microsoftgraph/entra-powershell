@@ -16,12 +16,12 @@ title: Remove-EntraFeatureRolloutPolicyDirectoryObject
 
 # Remove-EntraFeatureRolloutPolicyDirectoryObject
 
-## Synopsis
+## SYNOPSIS
 
 Allows an admin to remove a group from the cloud authentication rollout policy in Microsoft Entra ID.
 Users in this group revert back to the authenticating using the global policy (in most cases this will be federation).
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraFeatureRolloutPolicyDirectoryObject
@@ -30,14 +30,14 @@ Remove-EntraFeatureRolloutPolicyDirectoryObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 An admin uses the `Remove-EntraFeatureRolloutPolicyDirectoryObject` cmdlet to remove groups from the cloud authentication roll-out policy.
 
 Users in these groups start authenticating against the global authentication policy (for example,
 federation). Specify `DirectoryObjectId` and `FeatureRolloutPolicyId` parameter to remove groups from the cloud authentication roll-out policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes a group from the cloud authentication roll-out policy from Microsoft Entra ID
 
@@ -53,7 +53,7 @@ This command removes a group from the cloud authentication roll-out policy from 
 - `-FeatureRolloutPolicyId` Parameter specifies the ID of the cloud authentication roll-out policy.
 - `-DirectoryObjectId` parameter specifies the ID of the specific Microsoft Entra ID directory object that assigned to the cloud authentication roll-out policy.
 
-## Parameters
+## PARAMETERS
 
 ### -FeatureRolloutPolicyId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraFeatureRolloutPolicy](New-EntraFeatureRolloutPolicy.md)
 

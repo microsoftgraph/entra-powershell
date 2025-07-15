@@ -16,11 +16,11 @@ title: Get-EntraBetaPrivilegedResource
 
 # Get-EntraBetaPrivilegedResource
 
-## Synopsis
+## SYNOPSIS
 
 Get Microsoft Entra ID privileged resource.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraBetaPrivilegedResource
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPrivilegedResource` cmdlet get Microsoft Entra ID privileged resource.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all resources
 
@@ -129,7 +129,7 @@ This example retrieves top resources for aadRoles provider. You can use `-Limit`
 
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 
-## Parameters
+## PARAMETERS
 
 ### -Filter
 
@@ -216,14 +216,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

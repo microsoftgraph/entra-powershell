@@ -16,11 +16,11 @@ title: Set-EntraBetaApplicationProxyConnectorGroup
 
 # Set-EntraBetaApplicationProxyConnectorGroup
 
-## Synopsis
+## SYNOPSIS
 
 The `Set-EntraBetaApplicationProxyConnectorGroup` cmdlet allows you to change the name of a given Application Proxy connector group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaApplicationProxyConnectorGroup
@@ -29,11 +29,11 @@ Set-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaApplicationProxyConnectorGroup` cmdlet allows you to change the name of a given Application Proxy connector group. Specify `Id` and `Name` parameters to updates an connector group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Rename a Connector Group to "Offsite Application Servers"
 
@@ -47,7 +47,7 @@ This example rename a Connector Group to "Offsite Application Servers"
 - `Id` parameter specifies the connector group ID.
 - `Name` parameter specifies the name for connector group.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
 

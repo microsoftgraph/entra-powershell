@@ -16,11 +16,11 @@ title: Update-EntraBetaUserAuthenticationRequirement
 
 # Update-EntraBetaUserAuthenticationRequirement
 
-## Synopsis
+## SYNOPSIS
 
 Update the MFA Status of a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Update-EntraBetaUserAuthenticationRequirement
@@ -29,7 +29,7 @@ Update-EntraBetaUserAuthenticationRequirement
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Update-EntraBetaUserAuthenticationRequirement` cmdlet is used to update the MFA status of a user.
 
@@ -40,7 +40,7 @@ In delegated scenarios with work or school accounts, where the signed-in user ac
 - Authentication Administrator  
 - Privileged Authentication Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update delegated permission grant scope
 
@@ -54,7 +54,7 @@ This command updates the MFA status of a user.
 - `-UserId` parameter specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft Entra ID.
 - `-PerUserMfaState` parameter specifies the user's status for per-user multifactor authentication, with possible values: `enforced`, `enabled`, or `disabled`.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -98,12 +98,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 Enabled users are automatically switched to Enforced when they register for Microsoft Entra multifactor authentication. Don't manually change the user state to Enforced unless the user is already registered or if it's acceptable for the user to experience interruption in connections to legacy authentication protocols.
 
-## Related links
+## RELATED LINKS

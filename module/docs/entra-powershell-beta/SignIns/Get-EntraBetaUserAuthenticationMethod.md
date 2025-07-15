@@ -16,11 +16,11 @@ title: Get-EntraBetaUserAuthenticationMethod
 
 # Get-EntraBetaUserAuthenticationMethod
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve a list of a user's registered authentication methods.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaUserAuthenticationMethod
@@ -28,7 +28,7 @@ Get-EntraBetaUserAuthenticationMethod
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserAuthenticationMethod` cmdlet retrieves a list of a user's registered authentication methods. An authentication method is a way for a user to verify their identity, such as a password, phone (SMS or voice), or FIDO2 security key.
 
@@ -38,7 +38,7 @@ In delegated scenarios involving work or school accounts, where the signed-in us
 - Authentication Administrator  
 - Privileged Authentication Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of authentication methods registered to a user
 
@@ -58,7 +58,7 @@ This example retrieves a Get a list of a user's registered authentication method
 
 - `-UserId` parameter specifies the object ID of a user(as a UserPrincipalName or ObjectId).
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -80,12 +80,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 The authentication administrator only sees masked phone numbers.
 
-## Related links
+## RELATED LINKS

@@ -16,12 +16,12 @@ title: Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 
 # Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 
-## Synopsis
+## SYNOPSIS
 
 Allows an admin to add a group to the cloud authentication roll-out policy in Microsoft Entra ID.
 Users in this group start authenticating to the cloud per policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraBetaFeatureRolloutPolicyDirectoryObject
@@ -30,13 +30,13 @@ Add-EntraBetaFeatureRolloutPolicyDirectoryObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 An admin uses `Add-EntraBetaFeatureRolloutPolicyDirectoryObject` cmdlet to add a group to the cloud authentication roll-out policy.
 Users in these groups start authenticating against the cloud per policy (for example,
 with Seamless single sign-on or not, or whether Passthrough auth or not). Specify `Id` and `RefObjectId` parameter to add a group to the cloud authentication roll-out policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Adds a group to the cloud authentication roll-out policy in Microsoft Entra ID
 
@@ -54,7 +54,7 @@ This command adds a group to the cloud authentication roll-out policy in Microso
 - `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
 - `-RefObjectId` Parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -92,12 +92,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraBetaFeatureRolloutPolicyDirectoryObject](Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.md)

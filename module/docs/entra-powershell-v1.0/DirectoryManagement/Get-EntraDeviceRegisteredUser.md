@@ -16,11 +16,11 @@ title: Get-EntraDeviceRegisteredUser
 
 # Get-EntraDeviceRegisteredUser
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve a list of users that are registered users of the device.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDeviceRegisteredUser
@@ -31,7 +31,7 @@ Get-EntraDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `DeviceId` parameter to get a registered user for a Microsoft Entra ID device.
 
@@ -42,7 +42,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Intune Administrator
 - Windows 365 Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the registered user of a device
 
@@ -105,7 +105,7 @@ This example demonstrates how to retrieve top two registered users for the speci
 
 - `-DeviceId` parameter specifies an object ID of a device, which you want to retrieve.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -175,13 +175,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 

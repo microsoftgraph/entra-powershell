@@ -16,11 +16,11 @@ title: New-EntraBetaGroupAppRoleAssignment
 
 # New-EntraBetaGroupAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Assign a group of users to an application role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaGroupAppRoleAssignment
@@ -31,11 +31,11 @@ New-EntraBetaGroupAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaGroupAppRoleAssignment` cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Assign a group of users to an application
 
@@ -60,7 +60,7 @@ This example demonstrates how to assign a group of users to an application role 
 - `-ResourceId` parameter specifies the ID of a resource service Principal, which has defined the app role.
 - `-AppRoleId` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the group.
 
-## Parameters
+## PARAMETERS
 
 ### -AppRoleId
 
@@ -131,13 +131,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaGroupAppRoleAssignment](Get-EntraBetaGroupAppRoleAssignment.md)
 
