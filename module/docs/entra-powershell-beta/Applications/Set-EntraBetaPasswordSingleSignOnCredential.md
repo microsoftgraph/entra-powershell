@@ -16,11 +16,11 @@ title: Set-EntraBetaPasswordSingleSignOnCredential
 
 # Set-EntraBetaPasswordSingleSignOnCredential
 
-## Synopsis
+## SYNOPSIS
 
 Sets the password Single-Sign-On (SSO) credentials.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaPasswordSingleSignOnCredential
@@ -29,12 +29,12 @@ Set-EntraBetaPasswordSingleSignOnCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet enables users to set their Password Single-Sign-On credentials for an application that they're part of. Specify `ServicePrincipalId` and `PasswordSSOCredential` parameters to updates SSO credentials.
 Admin could set the group credentials as well.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set password single-sign-on credentials
 
@@ -55,7 +55,7 @@ This example demonstrates how to set the password SSO credentials for the given 
 - `-PasswordSSOObjectId` parameter specifies the User or Group ID.
 - `-ServicePrincipalId` parameter specifies the object ID of a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -93,13 +93,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaPasswordSingleSignOnCredential](New-EntraBetaPasswordSingleSignOnCredential.md)
 

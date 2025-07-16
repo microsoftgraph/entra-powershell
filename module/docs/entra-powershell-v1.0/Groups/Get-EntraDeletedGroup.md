@@ -15,11 +15,11 @@ title: Get-EntraDeletedGroup
 
 # Get-EntraDeletedGroup
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves soft-deleted groups in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -61,13 +61,13 @@ Get-EntraDeletedGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDeletedGroup` cmdlet retrieves soft-deleted groups from the directory. Deleted groups can be recovered within 30 days, after which they are permanently deleted.
 
 Soft delete currently applies only to Unified Groups (Office 365 Groups).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get deleted groups in the directory
 
@@ -161,7 +161,7 @@ This cmdlet retrieves the deleted group specified by GroupId.
 
 - `-GroupId` parameter specifies the deleted group GroupId.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -264,16 +264,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

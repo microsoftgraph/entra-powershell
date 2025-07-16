@@ -16,11 +16,11 @@ title: New-EntraApplicationPassword
 
 # New-EntraApplicationPassword
 
-## Synopsis
+## SYNOPSIS
 
 Adds a strong password to an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraApplicationPassword
@@ -29,11 +29,11 @@ New-EntraApplicationPassword
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Adds a strong password to an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a password to an application
 
@@ -60,7 +60,7 @@ This example adds a password to the specified application.
 - `-ApplicationId` parameter specifies the unique identifier of the application.
 - `-PasswordCredential` parameter specifies a password credential associated with an application or a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -98,16 +98,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraApplicationPassword](Remove-EntraApplicationPassword.md)

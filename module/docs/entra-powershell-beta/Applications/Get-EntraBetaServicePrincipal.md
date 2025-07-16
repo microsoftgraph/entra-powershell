@@ -15,11 +15,11 @@ title: Get-EntraBetaServicePrincipal
 
 # Get-EntraBetaServicePrincipal
 
-## Synopsis
+## SYNOPSIS
 
 Gets a service principal.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -52,11 +52,11 @@ Get-EntraBetaServicePrincipal
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipal` cmdlet gets a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve all service principal from the directory
 
@@ -287,7 +287,7 @@ PowerApps-Advisor                                       cccccccc-2222-3333-4444-
 
 This example shows how you can retrieve applications (service principals) outside my tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -390,13 +390,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

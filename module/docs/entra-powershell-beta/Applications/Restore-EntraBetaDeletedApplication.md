@@ -16,11 +16,11 @@ title: Restore-EntraBetaDeletedApplication
 
 # Restore-EntraBetaDeletedApplication
 
-## Synopsis
+## SYNOPSIS
 
 Restores a previously deleted application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Restore-EntraBetaDeletedApplication
@@ -29,7 +29,7 @@ Restore-EntraBetaDeletedApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet restores a previously deleted application.
 
@@ -41,7 +41,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 - Cloud Application Administrator
 - Hybrid Identity Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Restores a previously deleted application
 
@@ -61,7 +61,7 @@ This example shows how an application is deleted, then the deleted application i
 
 - `-ApplicationId` parameter specifies the ObjectId of the deleted application that is to be restored.
 
-## Parameters
+## PARAMETERS
 
 ### -IdentifierUris
 
@@ -99,17 +99,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Remove-EntraBetaDeletedApplication](Remove-EntraBetaDeletedApplication.md)
 

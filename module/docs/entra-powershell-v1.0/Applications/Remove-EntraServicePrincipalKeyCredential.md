@@ -16,11 +16,11 @@ title: Remove-EntraServicePrincipalKeyCredential
 
 # Remove-EntraServicePrincipalKeyCredential
 
-## Synopsis
+## SYNOPSIS
 
 Removes a key credential from a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraServicePrincipalKeyCredential
@@ -29,11 +29,11 @@ Remove-EntraServicePrincipalKeyCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The Remove-EntraServicePrincipalKeyCredential cmdlet removes a key credential from a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a key credential
 
@@ -46,7 +46,7 @@ Remove-EntraServicePrincipalKeyCredential -ServicePrincipalId $servicePrincipal.
 
 This example demonstrates how to remove a key credential from a service principal in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -KeyId
 
@@ -84,13 +84,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraServicePrincipalKeyCredential](Get-EntraServicePrincipalKeyCredential.md)
 

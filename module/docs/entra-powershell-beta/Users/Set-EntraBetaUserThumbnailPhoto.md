@@ -16,11 +16,11 @@ title: Set-EntraBetaUserThumbnailPhoto
 
 # Set-EntraBetaUserThumbnailPhoto
 
-## Synopsis
+## SYNOPSIS
 
 Set the thumbnail photo for a user.
 
-## Syntax
+## SYNTAX
 
 ### File (Default)
 
@@ -49,13 +49,13 @@ Set-EntraBetaUserThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaUserThumbnailPhoto` cmdlet is used to set the thumbnail photo for a user.
 
 Updating any user's photo in the organization requires the `User.ReadWrite.All` permission. Updating only the signed-in user's photo requires the `User.ReadWrite` permission.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Sets the thumbnail photo
 
@@ -69,7 +69,7 @@ This example sets the thumbnail photo of the user specified with the UserId para
 - `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-FilePath` parameter specifies the file path of the image to be uploaded as the user thumbnail photo.
 
-## Parameters
+## PARAMETERS
 
 ### -FilePath
 
@@ -139,18 +139,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.IO.Stream System.Byte\[\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUserThumbnailPhoto](Get-EntraBetaUserThumbnailPhoto.md)

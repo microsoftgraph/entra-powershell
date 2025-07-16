@@ -16,11 +16,11 @@ title: Remove-EntraBetaDirectorySetting
 
 # Remove-EntraBetaDirectorySetting
 
-## Synopsis
+## SYNOPSIS
 
 Deletes a directory setting in  Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDirectorySetting
@@ -28,7 +28,7 @@ Remove-EntraBetaDirectorySetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDirectorySetting` cmdlet removes a directory setting from Microsoft Entra ID.
 
@@ -42,7 +42,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 - Authentication Policy Administrator: Update Password Rule Settings.
 - User Administrator: Read basic properties on setting templates and settings.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes a directory setting from Microsoft Entra ID
 
@@ -55,7 +55,7 @@ This command removes a directory setting from Microsoft Entra ID.
 
 - `-Id` Specifies the object ID of a settings object.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectorySetting](Get-EntraBetaDirectorySetting.md)
 

@@ -16,11 +16,11 @@ title: New-EntraAdministrativeUnit
 
 # New-EntraAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Creates an administrative unit.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraAdministrativeUnit
@@ -33,7 +33,7 @@ New-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
 
@@ -41,7 +41,7 @@ In delegated scenarios, the signed-in user must be assigned a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create an administrative unit
 
@@ -110,7 +110,7 @@ This example demonstrates how to create an administrative unit with detailed con
 - `-MembershipRuleProcessingState` parameter controls if the dynamic membership rule is active. Set to `On` to enable it or `Paused` to stop updates.
 - `-Visibility` parameter specifies the visibility of the administrative unit. Defaults to `public` if not set. Set to `HiddenMembership` to hide membership from nonmembers.
 
-## Parameters
+## PARAMETERS
 
 ### -Description
 
@@ -212,13 +212,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 

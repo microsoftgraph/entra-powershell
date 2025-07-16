@@ -16,11 +16,11 @@ title: Remove-EntraGroupMember
 
 # Remove-EntraGroupMember
 
-## Synopsis
+## SYNOPSIS
 
 Removes a member from a group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraGroupMember
@@ -29,11 +29,11 @@ Remove-EntraGroupMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a member
 
@@ -50,7 +50,7 @@ This command removes the specified member from the specified group.
 
 - `MemberId` - Specifies the ID of the member to remove.
 
-## Parameters
+## PARAMETERS
 
 ### -MemberId
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraGroupMember](Add-EntraGroupMember.md)
 

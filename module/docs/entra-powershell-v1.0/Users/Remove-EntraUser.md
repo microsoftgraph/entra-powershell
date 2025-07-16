@@ -16,11 +16,11 @@ title: Remove-EntraUser
 
 # Remove-EntraUser
 
-## Synopsis
+## SYNOPSIS
 
 Removes a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraUser
@@ -28,7 +28,7 @@ Remove-EntraUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraUser` cmdlet removes a user in Microsoft Entra ID. Specify the `UserId` parameter to remove the specified user in Microsoft Entra ID.
 
@@ -37,7 +37,7 @@ The calling user must be assigned at least one of the following Microsoft Entra 
 - User Administrator
 - Privileged Authentication Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a user
 
@@ -57,7 +57,7 @@ Get-EntraUser -UserId 'SawyerM@Contoso.com' | Remove-EntraUser
 
 This command removes the specified user in Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -79,13 +79,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUser](Get-EntraUser.md)
 

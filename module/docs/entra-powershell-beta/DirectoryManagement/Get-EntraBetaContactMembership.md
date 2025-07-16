@@ -15,11 +15,11 @@ title: Get-EntraBetaContactMembership
 
 # Get-EntraBetaContactMembership
 
-## Synopsis
+## SYNOPSIS
 
 Get a contact membership.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaContactMembership
@@ -30,7 +30,7 @@ Get-EntraBetaContactMembership
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaContactMembership` cmdlet gets a contact membership in Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Intune Administrator
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the memberships of a contact
 
@@ -97,7 +97,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa All Employees #microsoft.graph.group       
 
 This command gets top two memberships for specified contact. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -167,12 +167,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaContact](Get-EntraBetaContact.md)

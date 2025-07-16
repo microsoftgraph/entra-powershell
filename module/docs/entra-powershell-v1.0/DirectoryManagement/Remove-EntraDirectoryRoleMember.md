@@ -15,11 +15,11 @@ title: Remove-EntraDirectoryRoleMember
 
 # Remove-EntraDirectoryRoleMember
 
-## Synopsis
+## SYNOPSIS
 
 Removes a member of a directory role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraDirectoryRoleMember
@@ -28,7 +28,7 @@ Remove-EntraDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraDirectoryRoleMember` cmdlet removes a member from a directory role in Microsoft Entra ID.
 
@@ -36,7 +36,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a member from a directory role
 
@@ -53,7 +53,7 @@ This example removes the specified member from the specified role.
 
 - `-MemberId` - specifies the unique identifier (MemberId) of the member (user, group, or service principal) that is to be removed from the specified directory role.
 
-## Parameters
+## PARAMETERS
 
 ### -MemberId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 

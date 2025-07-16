@@ -16,11 +16,11 @@ title: Remove-EntraBetaTrustFrameworkPolicy
 
 # Remove-EntraBetaTrustFrameworkPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Deletes a trust framework policy (custom policy) in the Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaTrustFrameworkPolicy
@@ -28,13 +28,13 @@ Remove-EntraBetaTrustFrameworkPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaTrustFrameworkPolicy` cmdlet deletes a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted.
 
 In delegated scenarios with work or school accounts, the admin must have a supported Microsoft Entra role or a custom role with the required permissions. The `B2C IEF Policy Administrator` is the least privileged role that supports this operation.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes the specified trust framework policy
 
@@ -47,7 +47,7 @@ This example removes the specified trust framework policy.
 
 - `-Id` parameter specifies unique identifier for a trust framework policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -69,17 +69,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaTrustFrameworkPolicy](Get-EntraBetaTrustFrameworkPolicy.md)
 

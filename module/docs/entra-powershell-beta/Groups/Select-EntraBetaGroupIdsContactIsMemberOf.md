@@ -16,11 +16,11 @@ title: Select-EntraBetaGroupIdsContactIsMemberOf
 
 # Select-EntraBetaGroupIdsContactIsMemberOf
 
-## Synopsis
+## SYNOPSIS
 
 Get groups in which a contact is a member.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Select-EntraBetaGroupIdsContactIsMemberOf
@@ -29,11 +29,11 @@ Select-EntraBetaGroupIdsContactIsMemberOf
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Select-EntraBetaGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft Entra ID in which a contact is a member.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get groups in which a contact is a member
 
@@ -50,7 +50,7 @@ This example demonstrates how to get groups in which a contact is a member.
 - `-OrgContactId` parameter specifies the contact Object ID.
 - `-GroupIdsForMembershipCheck` parameter specifies the group Object ID.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
 
@@ -88,10 +88,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

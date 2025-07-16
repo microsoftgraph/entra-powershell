@@ -16,11 +16,11 @@ title: New-EntraBetaPasswordSingleSignOnCredential
 
 # New-EntraBetaPasswordSingleSignOnCredential
 
-## Synopsis
+## SYNOPSIS
 
 Creates the password Single-Sign-On (SSO) credentials.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaPasswordSingleSignOnCredential
@@ -29,12 +29,12 @@ New-EntraBetaPasswordSingleSignOnCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet enables users to create their Password Single-Sign-On credentials for an application that they're part of. Specify `ServicePrincipalId` and `PasswordSSOCredential` parameters to create an SSO credentials.
 Admin could create the group credentials as well.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: New password single-sign-on credentials
 
@@ -60,7 +60,7 @@ This example demonstrates how to create an password SSO credential for the given
 - `-PasswordSSOObjectId` parameter specifies the User or Group ID.
 - `-ServicePrincipalId` parameter specifies the object ID of a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -98,15 +98,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.PasswordSSOCredentials
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaPasswordSingleSignOnCredential](Set-EntraBetaPasswordSingleSignOnCredential.md)
 

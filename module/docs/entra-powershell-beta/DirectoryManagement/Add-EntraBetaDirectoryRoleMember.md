@@ -16,11 +16,11 @@ title: Add-EntraBetaDirectoryRoleMember
 
 # Add-EntraBetaDirectoryRoleMember
 
-## Synopsis
+## SYNOPSIS
 
 Adds a member to a directory role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraBetaDirectoryRoleMember
@@ -29,7 +29,7 @@ Add-EntraBetaDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraBetaDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
@@ -37,7 +37,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a member to a Microsoft Entra ID role
 
@@ -53,7 +53,7 @@ This example adds a member to a directory role.
 - `DirectoryRoleId` parameter specifies the ID of the directory role to which the member will be added. Use the `Get-EntraBetaDirectoryRole` command to retrieve the details of the directory role.
 - `MemberId` parameter specifies the ID of Microsoft Entra ID object to assign as owner/manager/member.
 
-## Parameters
+## PARAMETERS
 
 ### -DirectoryRoleId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectoryRoleMember](Get-EntraBetaDirectoryRoleMember.md)
 

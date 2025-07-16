@@ -16,11 +16,11 @@ title: Get-EntraApplication
 
 # Get-EntraApplication
 
-## Synopsis
+## SYNOPSIS
 
 Gets an application.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -53,11 +53,11 @@ Get-EntraApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get an application by ApplicationId
 
@@ -309,7 +309,7 @@ Contoso Automation App   bbbbbbbb-1111-2222-3333-cccccccccccc AI automation Cred
 
 This example shows how you can retrieve applications that have secrets.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -412,13 +412,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraApplication](New-EntraApplication.md)
 

@@ -16,11 +16,11 @@ title: Remove-EntraBetaPrivateAccessApplicationSegment
 
 # Remove-EntraBetaPrivateAccessApplicationSegment
 
-## Synopsis
+## SYNOPSIS
 
 Removes an application segment associated to a Private Access application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaPrivateAccessApplicationSegment
@@ -29,11 +29,11 @@ Remove-EntraBetaPrivateAccessApplicationSegment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaPrivateAccessApplicationSegment` cmdlet removes application segments associated to a Private Access application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Delete an application segment
 
@@ -49,7 +49,7 @@ This example shows how to remove an application segment associated to a Private 
 - `ApplicationId` is the application Object ID of the Private Access Application.
 - `ApplicationSegmentId` is the application segment identifier to be deleted.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -87,17 +87,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS
 

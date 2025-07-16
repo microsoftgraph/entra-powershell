@@ -16,11 +16,11 @@ title: Set-EntraUser
 
 # Set-EntraUser
 
-## Synopsis
+## SYNOPSIS
 
 Updates a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraUser
@@ -57,13 +57,13 @@ Set-EntraUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
 
 `Update-EntraUser` is an alias for `Set-EntraUser`.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a user
 
@@ -215,7 +215,7 @@ This example updates the specified user's onPremisesExtensionAttributes properti
 
 - `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -706,15 +706,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `Update-EntraUser` is an alias for `Set-EntraUser`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUser](Get-EntraUser.md)
 

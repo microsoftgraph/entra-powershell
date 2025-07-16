@@ -16,11 +16,11 @@ title: Remove-EntraUserSponsor
 
 # Remove-EntraUserSponsor
 
-## Synopsis
+## SYNOPSIS
 
 Removes a sponsor from a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraUserSponsor
@@ -29,11 +29,11 @@ Remove-EntraUserSponsor
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraUserSponsor` cmdlet removes a sponsor relationship from a user. Sponsors are users and groups that are responsible for a guest's privileges in the tenant and for keeping the guest's information and access up to date. This cmdlet removes that sponsorship relationship. Specify `UserId` and `SponsorId` parameters to remove a user sponsor.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a user sponsor via pipelining
 
@@ -59,7 +59,7 @@ This example demonstrates how to remove a user sponsor.
 - `UserId` parameter specifies the UserId or User Principal Name of the User.
 - `SponsorId` parameter specifies the ID of the sponsor to remove.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -96,13 +96,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUserSponsor](Get-EntraUserSponsor.md)
 

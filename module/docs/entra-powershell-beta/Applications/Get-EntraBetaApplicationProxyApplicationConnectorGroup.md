@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationProxyApplicationConnectorGroup
 
 # Get-EntraBetaApplicationProxyApplicationConnectorGroup
 
-## Synopsis
+## SYNOPSIS
 
 The `Get-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet retrieves the connector group assigned for a specific application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationProxyApplicationConnectorGroup
@@ -28,12 +28,12 @@ Get-EntraBetaApplicationProxyApplicationConnectorGroup
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet retrieves the connector group assigned for the specified application.
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: retrieves the connector group assigned for the specified application
 
@@ -53,7 +53,7 @@ This example retrieves the connector group assigned for the specified applicatio
 
 - `ObjectId` parameter specifies the application ID.
 
-## Parameters
+## PARAMETERS
 
 ### -ObjectId
 
@@ -77,17 +77,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaApplicationProxyApplicationConnectorGroup](Set-EntraBetaApplicationProxyApplicationConnectorGroup.md)
 

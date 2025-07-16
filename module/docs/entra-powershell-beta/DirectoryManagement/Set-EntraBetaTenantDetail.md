@@ -16,11 +16,11 @@ title: Set-EntraBetaTenantDetail
 
 # Set-EntraBetaTenantDetail
 
-## Synopsis
+## SYNOPSIS
 
 Set contact details for a tenant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaTenantDetail
@@ -32,7 +32,7 @@ Set-EntraBetaTenantDetail
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet is used to set various contact details for a tenant.
 
@@ -44,7 +44,7 @@ For delegated scenarios, the signed-in user must have at least one of the follow
 - User Administrator
 - Helpdesk Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set contact details for a tenant
 
@@ -111,7 +111,7 @@ This example demonstrates how to set TechnicalNotificationMails detail for a ten
 
 - `-TechnicalNotificationMails` parameter indicates the email addresses that are used for technical notification emails.
 
-## Parameters
+## PARAMETERS
 
 ### -MarketingNotificationEmails
 
@@ -197,18 +197,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 - For more details see [Update organization](https://learn.microsoft.com/graph/api/organization-update).
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaTenantDetail](Get-EntraBetaTenantDetail.md)

@@ -16,11 +16,11 @@ title: Remove-EntraServicePrincipalPasswordCredential
 
 # Remove-EntraServicePrincipalPasswordCredential
 
-## Synopsis
+## SYNOPSIS
 
 Removes a password credential from a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraServicePrincipalPasswordCredential
@@ -29,11 +29,11 @@ Remove-EntraServicePrincipalPasswordCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a password credential from a service principal in Microsoft Entra ID
 
@@ -50,7 +50,7 @@ This example demonstrates how to remove a password credential from a service pri
 - `-ServicePrincipalId` parameter specifies the ServicePrincipalId of a specified Service Principal Password Credential.  
 - `-KeyId` parameter specifies the unique identifier of a Password Credential.
 
-## Parameters
+## PARAMETERS
 
 ### -KeyId
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
 

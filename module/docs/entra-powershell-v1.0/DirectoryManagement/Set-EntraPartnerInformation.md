@@ -16,11 +16,11 @@ title: Set-EntraPartnerInformation
 
 # Set-EntraPartnerInformation
 
-## Synopsis
+## SYNOPSIS
 
 Sets company information for partners.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraPartnerInformation
@@ -35,13 +35,13 @@ Set-EntraPartnerInformation
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraPartnerInformation` cmdlet is used by partners to set partner-specific properties.
 
 These properties can view by all tenants that the partner has access to.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update the help URL
 
@@ -89,7 +89,7 @@ Set-EntraPartnerInformation -PartnerSupportTelephones '234234234' -TenantId $ten
 
 This example shows how to update support telephone numbers.
 
-## Parameters
+## PARAMETERS
 
 ### -PartnerCommerceUrl
 
@@ -223,12 +223,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (<https://go.microsoft.com/fwlink/?LinkID=113216>).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraPartnerInformation](Get-EntraPartnerInformation.md)

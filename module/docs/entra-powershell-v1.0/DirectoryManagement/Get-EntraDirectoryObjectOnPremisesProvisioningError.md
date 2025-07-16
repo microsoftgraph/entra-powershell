@@ -16,11 +16,11 @@ title: Get-EntraDirectoryObjectOnPremisesProvisioningError
 
 # Get-EntraDirectoryObjectOnPremisesProvisioningError
 
-## Synopsis
+## SYNOPSIS
 
 Returns directory synchronization errors when synchronizing on-premises directories to Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDirectoryObjectOnPremisesProvisioningError
@@ -28,11 +28,11 @@ Get-EntraDirectoryObjectOnPremisesProvisioningError
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDirectoryObjectOnPremisesProvisioningError` returns directory synchronization errors for the `user`, `group`, or `organizational contact` entities when synchronizing on-premises directories to Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get directory synchronization errors
 
@@ -85,7 +85,7 @@ This command lists directory sync errors for `users`, `groups`, or `organization
 
 - `-TenantId` Specifies the unique ID of the tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -TenantId
 
@@ -107,12 +107,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

@@ -16,11 +16,11 @@ title: Get-EntraBetaAdministrativeUnitMember
 
 # Get-EntraBetaAdministrativeUnitMember
 
-## Synopsis
+## SYNOPSIS
 
 Gets a member of an administrative unit.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaAdministrativeUnitMember
@@ -31,7 +31,7 @@ Get-EntraBetaAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameters to retrieve an administrative unit member.
 
@@ -41,7 +41,7 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 - Global Reader: Read all properties of administrative units, including members
 - Privileged Role Administrator: Create and manage administrative units (including members)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get an administrative unit member by AdministrativeUnitId
 
@@ -108,7 +108,7 @@ This example returns top three administrative unit members from specified admini
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
-## Parameters
+## PARAMETERS
 
 ### -AdministrativeUnitId
 
@@ -178,13 +178,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
 

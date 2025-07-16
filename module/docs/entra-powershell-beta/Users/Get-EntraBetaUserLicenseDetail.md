@@ -16,11 +16,11 @@ title: Get-EntraBetaUserLicenseDetail
 
 # Get-EntraBetaUserLicenseDetail
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves license details for a user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaUserLicenseDetail
@@ -29,7 +29,7 @@ Get-EntraBetaUserLicenseDetail
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet retrieves a user's license details.
 
@@ -41,7 +41,7 @@ In delegated scenarios with work or school accounts, the signed-in user needs a 
 - License Administrator  
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve user license details
 
@@ -60,7 +60,7 @@ X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8 cccccccc-2d2d-3e3e-4f4f-555555555555
 
 This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -98,14 +98,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

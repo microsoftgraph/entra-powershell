@@ -15,11 +15,11 @@ title: Get-EntraBetaDeletedAdministrativeUnit
 
 # Get-EntraBetaDeletedAdministrativeUnit
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the list of previously deleted administrative units.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -51,11 +51,11 @@ Get-EntraBetaDeletedAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDeletedAdministrativeUnit` cmdlet Retrieves the list of previously deleted administrative units.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get list of deleted administrative units
 
@@ -147,7 +147,7 @@ gggggggg-8888-9999-aaaa-hhhhhhhhhhhh Americas Administrative Unit   Dynamic     
 
 This cmdlet retrieves deleted administrative unit by AdministrativeUnitId.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -233,18 +233,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaAdministrativeUnit](Get-EntraBetaAdministrativeUnit.md)

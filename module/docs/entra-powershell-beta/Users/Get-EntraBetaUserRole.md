@@ -15,11 +15,11 @@ title: Get-EntraBetaUserRole
 
 # Get-EntraBetaUserRole
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves the list of directory roles assigned to a user.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -44,11 +44,11 @@ Get-EntraUserRole
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaUserRole` cmdlet Retrieves the list of directory roles assigned to a specific user.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get list of directory roles assigned to a specific user
 
@@ -120,7 +120,7 @@ This cmdlet retrieves the directory roles for a specific user by DirectoryRoleId
 
 - `-DirectoryRoleId` parameter specifies the Directory role ID.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -239,14 +239,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaUserMembership](Get-EntraBetaUserMembership.md)

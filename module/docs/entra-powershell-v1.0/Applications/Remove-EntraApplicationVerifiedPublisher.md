@@ -16,11 +16,11 @@ title: Remove-EntraApplicationVerifiedPublisher
 
 # Remove-EntraApplicationVerifiedPublisher
 
-## Synopsis
+## SYNOPSIS
 
 Removes the verified publisher from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraApplicationVerifiedPublisher
@@ -28,11 +28,11 @@ Remove-EntraApplicationVerifiedPublisher
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Removes the verified publisher from an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove the verified publisher from an application
 
@@ -46,7 +46,7 @@ This command demonstrates how to remove the verified publisher from an applicati
 
 - `-AppObjectId` parameter specifies the unique identifier of an application.
 
-## Parameters
+## PARAMETERS
 
 ### -AppObjectId
 
@@ -68,14 +68,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraApplicationVerifiedPublisher](Set-EntraApplicationVerifiedPublisher.md)

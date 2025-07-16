@@ -16,11 +16,11 @@ title: Get-EntraDirSyncFeature
 
 # Get-EntraDirSyncFeature
 
-## Synopsis
+## SYNOPSIS
 
 Checks the status of directory synchronization features for a tenant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraDirSyncFeature
@@ -29,7 +29,7 @@ Get-EntraDirSyncFeature
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraDirSyncFeature` cmdlet checks the status of directory sync features for a tenant. If no features are specified, it returns a list of all features and their enabled or disabled status.
 
@@ -49,7 +49,7 @@ Some of the features that can be used with this cmdlet include:
 
 To view all supported features, see the [complete feature list](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature#properties).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Return a list of all directory synchronization features
 
@@ -101,7 +101,7 @@ This example shows if PasswordSync is enabled (True) or disabled (False) for the
 
 - `-Feature` specifies the directory synchronization feature to check the status of.
 
-## Parameters
+## PARAMETERS
 
 ### -TenantId
 
@@ -139,12 +139,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraDirSyncFeature](Set-EntraDirSyncFeature.md)

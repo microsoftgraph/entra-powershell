@@ -16,11 +16,11 @@ title: Get-EntraUserCreatedObject
 
 # Get-EntraUserCreatedObject
 
-## Synopsis
+## SYNOPSIS
 
 Get objects created by the user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserCreatedObject
@@ -31,11 +31,11 @@ Get-EntraUserCreatedObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserCreatedObject` cmdlet retrieves directory objects created by a non-administrator user. Returns an empty object if the user has an admin role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a user-created object
 
@@ -88,7 +88,7 @@ This example retrieves top one object created by the specified user. You can use
 
 - `-UserId` parameter specifies the object Id of a user(as a UserPrincipalName or UserId).
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -158,10 +158,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

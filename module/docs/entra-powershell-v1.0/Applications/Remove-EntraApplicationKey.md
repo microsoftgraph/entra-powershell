@@ -16,11 +16,11 @@ title: Remove-EntraApplicationKey
 
 # Remove-EntraApplicationKey
 
-## Synopsis
+## SYNOPSIS
 
 Removes a key from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraApplicationKey
@@ -30,11 +30,11 @@ Remove-EntraApplicationKey
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Removes a key from an application.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a key credential from an application
 
@@ -50,7 +50,7 @@ This command removes the specified key credential from the specified application
 - `-KeyId` parameter specifies the key Id corresponding to the key object to be removed.
 - `-Proof` parameter specifies the JWT token provided as a proof of possession.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationId
 
@@ -111,14 +111,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraApplicationKey](New-EntraApplicationKey.md)

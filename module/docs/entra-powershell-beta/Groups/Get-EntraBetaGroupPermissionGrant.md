@@ -16,11 +16,11 @@ title: Get-EntraBetaGroupPermissionGrant
 
 # Get-EntraBetaGroupPermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve a list of permission grants consented for this group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaGroupPermissionGrant
@@ -29,11 +29,11 @@ Get-EntraBetaGroupPermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Retrieve a list of permission grants consented for this group.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: List existing permission grants for the group
 
@@ -53,7 +53,7 @@ Permission     : Member.Read.Group
 
 This cmdlet list existing permission grants for the specified group.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupId
 
@@ -91,14 +91,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### String
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.GetMSGroupPermissionGrantsResponse
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

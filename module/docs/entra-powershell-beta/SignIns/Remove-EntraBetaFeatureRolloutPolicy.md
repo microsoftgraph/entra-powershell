@@ -16,11 +16,11 @@ title: Remove-EntraBetaFeatureRolloutPolicy
 
 # Remove-EntraBetaFeatureRolloutPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Allows an admin to remove the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaFeatureRolloutPolicy
@@ -28,13 +28,13 @@ Remove-EntraBetaFeatureRolloutPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 An admin uses `Remove-EntraBetaFeatureRolloutPolicy` cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
 
 Users in groups that were assigned to the policy falls back to the global authentication method (most common case will be federation). Specify `Id` parameter to remove the cloud authentication roll-out policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Removes the policy for cloud authentication roll-out in Microsoft Entra ID
 
@@ -48,7 +48,7 @@ This example removes the policy for cloud authentication roll-out in Microsoft E
 
 - `-Id` - specifies the unique identifier of the cloud authentication roll-out policy. You can use `Get-EntraBetaFeatureRolloutPolicy` to retrieve policy details.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -70,13 +70,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaFeatureRolloutPolicy](New-EntraBetaFeatureRolloutPolicy.md)
 

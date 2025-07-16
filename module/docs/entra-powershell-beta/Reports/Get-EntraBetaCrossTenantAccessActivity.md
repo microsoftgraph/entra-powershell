@@ -16,11 +16,11 @@ title: Get-EntraBetaCrossTenantAccessActivity
 
 # Get-EntraBetaCrossTenantAccessActivity
 
-## Synopsis
+## SYNOPSIS
 
 Get cross-tenant user sign-in activity.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaCrossTenantAccessActivity
@@ -31,7 +31,7 @@ Get-EntraBetaCrossTenantAccessActivity
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaCrossTenantAccessActivity` cmdlet retrieves user sign-in activity associated with external tenants. By default, it includes both outbound connections (local users accessing an external tenant) and inbound connections (external users accessing the local tenant).
 
@@ -41,7 +41,7 @@ In addition to delegated permissions, the signed-in user must belong to at least
 - Reports Reader
 - Security Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all cross-tenant sign-in events
 
@@ -238,7 +238,7 @@ StatusReason              : Success
 
 Retrieves sign-in events where local users accessed the specified external tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -AccessDirection
 
@@ -308,10 +308,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

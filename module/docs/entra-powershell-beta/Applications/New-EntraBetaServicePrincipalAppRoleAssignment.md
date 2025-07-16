@@ -16,11 +16,11 @@ title: New-EntraBetaServicePrincipalAppRoleAssignment
 
 # New-EntraBetaServicePrincipalAppRoleAssignment
 
-## Synopsis
+## SYNOPSIS
 
 Assigns a service principal to an application role.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaServicePrincipalAppRoleAssignment
@@ -31,7 +31,7 @@ New-EntraBetaServicePrincipalAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaServicePrincipalAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
 
@@ -46,7 +46,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Assign an app role to a service principal
 
@@ -139,7 +139,7 @@ You can use the command `Get-EntraBetaGroup` to get a group Id.
 - `-AppRoleId` parameter specifies the Id of app role (defined on the app's service principal) to assign to the group. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the group.
 - `-PrincipalId` parameter specifies the ObjectId of a group to which you're assigning the app role.
 
-## Parameters
+## PARAMETERS
 
 ### -AppRoleId
 
@@ -209,15 +209,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 `New-EntraBetaServiceAppRoleAssignment` is an alias for `New-EntraBetaServicePrincipalAppRoleAssignment`.
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)
 

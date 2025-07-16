@@ -16,11 +16,11 @@ title: Set-EntraBetaDomainFederationSettings
 
 # Set-EntraBetaDomainFederationSettings
 
-## Synopsis
+## SYNOPSIS
 
 Updates settings for a federated domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaDomainFederationSettings
@@ -39,7 +39,7 @@ Set-EntraBetaDomainFederationSettings
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaDomainFederationSettings` cmdlet is used to update the settings of a single sign-on domain.
 
@@ -50,7 +50,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set the PromptLoginBehavior
 
@@ -99,7 +99,7 @@ This command updates the domain federation domain settings.
 - `-IssuerUri` parameter specifies the unique identifier of the domain in the Microsoft Entra ID Identity platform derived from the federation server.
 - `-MetadataExchangeUri` parameter specifies the metadata exchange end point used for authentication from client applications.
 
-## Parameters
+## PARAMETERS
 
 ### -DomainName
 
@@ -299,12 +299,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDomainFederationSettings](Get-EntraBetaDomainFederationSettings.md)

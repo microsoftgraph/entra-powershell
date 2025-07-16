@@ -16,11 +16,11 @@ title: Set-EntraBetaPolicy
 
 # Set-EntraBetaPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Updates a policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaPolicy
@@ -32,11 +32,11 @@ Set-EntraBetaPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `Id` parameter to updates specific policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a policy display name
 
@@ -92,7 +92,7 @@ This example demonstrates how to update the `type` property of a specified polic
 - `-Id` specifies the ID of the policy for which you want to set values.
 - `-Type` specifies the type of policy. In this example, `ActivityBasedTimeoutPolicy` represents the type of policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Definition
 
@@ -180,13 +180,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
 

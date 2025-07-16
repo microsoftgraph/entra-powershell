@@ -16,11 +16,11 @@ title: Get-EntraBetaDevice
 
 # Get-EntraBetaDevice
 
-## Synopsis
+## SYNOPSIS
 
 Gets a device from Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -53,7 +53,7 @@ Get-EntraBetaDevice
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `DeviceId` parameter to get a specific device.
 
@@ -65,7 +65,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 - Compliance Administrator
 - Device Managers
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a device by ID
 
@@ -237,7 +237,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "operatingSystem eq 'Windows Server' and operatingSystemVersion eq '10.0.20348.3091'"
 ```
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -340,13 +340,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaDevice](New-EntraBetaDevice.md)
 

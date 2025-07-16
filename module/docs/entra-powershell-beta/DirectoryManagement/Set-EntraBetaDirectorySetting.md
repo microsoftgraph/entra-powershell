@@ -16,11 +16,11 @@ title: Set-EntraBetaDirectorySetting
 
 # Set-EntraBetaDirectorySetting
 
-## Synopsis
+## SYNOPSIS
 
 Updates a directory setting in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaDirectorySetting
@@ -29,11 +29,11 @@ Set-EntraBetaDirectorySetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaDirectorySetting` cmdlet updates a directory setting in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: updates a directory setting
 
@@ -55,7 +55,7 @@ This example updates directory settings object in Microsoft Entra ID.
 - `-DirectorySetting` Parameter updates the property of directory settings.
 - `-Id` Parameter specifies the ID of a setting object
 
-## Parameters
+## PARAMETERS
 
 ### -DirectorySetting
 
@@ -93,13 +93,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirectorySetting](Get-EntraBetaDirectorySetting.md)
 

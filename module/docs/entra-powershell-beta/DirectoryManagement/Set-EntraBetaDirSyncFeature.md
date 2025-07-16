@@ -16,11 +16,11 @@ title: Set-EntraBetaDirSyncFeature
 
 # Set-EntraBetaDirSyncFeature
 
-## Synopsis
+## SYNOPSIS
 
 Used to set identity synchronization features for a tenant.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaDirSyncFeature
@@ -31,7 +31,7 @@ Set-EntraBetaDirSyncFeature
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaDirSyncFeature` cmdlet sets identity synchronization features for a tenant.
 
@@ -49,7 +49,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 Enabling features like **EnableSoftMatchOnUpn** and **SynchronizationUpnForManagedUsers** is permanent and cannot be undone.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Enable a feature for the tenant
 
@@ -90,7 +90,7 @@ This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for th
 - `-Enable` specifies whether the specified features are turned on for the company.
 - `-TenantId` Specifies the unique ID of the tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -Feature
 
@@ -160,15 +160,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 - For the feature list see the [onPremisesDirectorySynchronizationFeature resource type](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature).
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirSyncFeature](Get-EntraBetaDirSyncFeature.md)

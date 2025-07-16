@@ -15,11 +15,11 @@ title: Get-EntraBetaDeletedDirectoryObject
 
 # Get-EntraBetaDeletedDirectoryObject
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves a soft deleted directory object from the directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaDeletedDirectoryObject
@@ -28,14 +28,14 @@ Get-EntraBetaDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
 
 Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve a deleted directory object with more details
 
@@ -61,7 +61,7 @@ This example shows how to retrieve the deleted directory object details from the
 - `Get-EntraBetaDeletedGroup` - to retrieve deleted groups.
 - `Get-EntraBetaDeletedServicePrincipal` - to retrieve deleted service principals.
 
-## Parameters
+## PARAMETERS
 
 ### -DirectoryObjectId
 
@@ -99,17 +99,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDeletedAdministrativeUnit](Get-EntraBetaDeletedAdministrativeUnit.md)
 

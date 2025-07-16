@@ -16,11 +16,11 @@ title: Set-EntraConditionalAccessPolicy
 
 # Set-EntraConditionalAccessPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Updates a conditional access policy in Microsoft Entra ID by Id.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraConditionalAccessPolicy
@@ -34,7 +34,7 @@ Set-EntraConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by Id.
 
@@ -45,7 +45,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Security Administrator  
 - Conditional Access Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a conditional access policy
 
@@ -93,7 +93,7 @@ This command updates a conditional access policy in Microsoft Entra ID.
 - `-PolicyId` parameter specifies the Id of conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -211,11 +211,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 Learn more about:
 
@@ -224,7 +224,7 @@ Learn more about:
 [Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
 [Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

@@ -15,11 +15,11 @@ title: Get-EntraBetaConditionalAccessPolicy
 
 # Get-EntraBetaConditionalAccessPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets a Microsoft Entra ID conditional access policy.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -38,7 +38,7 @@ Get-EntraBetaConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
 
@@ -52,7 +52,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - Global Reader  
 - Conditional Access Administrator 
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID
 
@@ -89,7 +89,7 @@ This example retrieves a specified conditional access policy in Microsoft Entra 
 
 - `-PolicyId` parameter specifies the Id of a conditional access policy.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaConditionalAccessPolicy](New-EntraBetaConditionalAccessPolicy.md)
 

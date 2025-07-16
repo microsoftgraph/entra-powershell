@@ -15,11 +15,11 @@ title: Add-EntraEnvironment
 
 # Add-EntraEnvironment
 
-## Synopsis
+## SYNOPSIS
 
 Adds Microsoft Entra environment to the settings file.
 
-## Syntax
+## SYNTAX
 
 ### Add Entra Environment Name
 
@@ -33,11 +33,11 @@ Add-EntraEnvironment
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Adds Microsoft Entra environment to the settings file.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a user defined environment
 
@@ -56,7 +56,7 @@ Canary     https://login.microsoftonline.com    https://microsoftgraph.com    Us
 
 Adds a user-defined Entra environment to the settings file.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -101,12 +101,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraEnvironment](Get-EntraEnvironment.md)

@@ -16,11 +16,11 @@ title: Get-EntraBetaApplicationPolicy
 
 # Get-EntraBetaApplicationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Gets an application policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaApplicationPolicy
@@ -28,11 +28,11 @@ Get-EntraBetaApplicationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaApplicationPolicy` cmdlet gets a Microsoft Entra ID application policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get an application policy
 
@@ -51,7 +51,7 @@ This command gets the specified application policy.
 
 - `-Id` Parameter Specifies the ID of the application for which you need to retrieve the policy.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaApplicationPolicy](Add-EntraBetaApplicationPolicy.md)
 

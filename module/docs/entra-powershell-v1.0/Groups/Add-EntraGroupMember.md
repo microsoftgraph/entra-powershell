@@ -16,11 +16,11 @@ title: Add-EntraGroupMember
 
 # Add-EntraGroupMember
 
-## Synopsis
+## SYNOPSIS
 
 Add a member to a security or Microsoft 365 group.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraGroupMember
@@ -31,7 +31,7 @@ Add-EntraGroupMember
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
 
@@ -44,7 +44,7 @@ In delegated scenarios, the signed-in user needs a supported Microsoft Entra rol
 - Groups Administrator
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a member to a group
 
@@ -86,7 +86,7 @@ This example demonstrates how to sync group members from source target group to 
 
 - `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
 
-## Parameters
+## PARAMETERS
 
 ### -GroupId
 
@@ -124,13 +124,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
 

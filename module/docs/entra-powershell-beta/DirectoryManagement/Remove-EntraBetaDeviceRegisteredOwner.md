@@ -16,11 +16,11 @@ title: Remove-EntraBetaDeviceRegisteredOwner
 
 # Remove-EntraBetaDeviceRegisteredOwner
 
-## Synopsis
+## SYNOPSIS
 
 Removes the registered owner of a device.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaDeviceRegisteredOwner
@@ -29,7 +29,7 @@ Remove-EntraBetaDeviceRegisteredOwner
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
@@ -38,7 +38,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - Intune Administrator
 - Windows 365 Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an owner from a device
 
@@ -51,7 +51,7 @@ Remove-EntraBetaDeviceRegisteredOwner -DeviceId $device.Id -OwnerId $owner.Id
 
 This examples shows how to remove the owner of a device.
 
-## Parameters
+## PARAMETERS
 
 ### -DeviceId
 
@@ -89,13 +89,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaDeviceRegisteredOwner](Add-EntraBetaDeviceRegisteredOwner.md)
 

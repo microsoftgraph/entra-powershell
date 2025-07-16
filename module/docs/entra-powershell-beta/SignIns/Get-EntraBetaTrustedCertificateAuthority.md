@@ -15,11 +15,11 @@ title: Get-EntraBetaTrustedCertificateAuthority
 
 # Get-EntraBetaTrustedCertificateAuthority
 
-## Synopsis
+## SYNOPSIS
 
 Gets the trusted certificate authority.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaTrustedCertificateAuthority
@@ -29,11 +29,11 @@ Get-EntraBetaTrustedCertificateAuthority
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaTrustedCertificateAuthority` cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
 
@@ -93,7 +93,7 @@ This command retrieves the trusted certificate authorities that are defined in y
 
 - `-TrustedIssuerSki` parameter specifies the trusted issuer ski.
 
-## Parameters
+## PARAMETERS
 
 ### -TrustedIssuer
 
@@ -147,13 +147,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaTrustedCertificateAuthority](New-EntraBetaTrustedCertificateAuthority.md)
 

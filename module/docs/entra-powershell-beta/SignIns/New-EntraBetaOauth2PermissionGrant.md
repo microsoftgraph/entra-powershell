@@ -15,11 +15,11 @@ title: New-EntraBetaOauth2PermissionGrant
 
 # New-EntraBetaOauth2PermissionGrant
 
-## Synopsis
+## SYNOPSIS
 
 Create a delegated permission grant using an oAuth2PermissionGrant object. This grant allows a client service principal to access a resource service principal on behalf of a signed-in user, with access restricted to the specified delegated permissions.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaOauth2PermissionGrant
@@ -33,7 +33,7 @@ New-EntraBetaOauth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaOauth2PermissionGrant` cmdlet creates a delegated permission grant using an oAuth2PermissionGrant object. This grant authorizes a client service principal to access a resource service principal on behalf of a signed-in user, with access limited to the specified delegated permissions.
 
@@ -45,7 +45,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 - User Administrator  
 - Privileged Role Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: To grant authorization to impersonate all users
 
@@ -100,7 +100,7 @@ A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 AllPrincipal
 
 This command Grant authorization to impersonate a specific user.
 
-## Parameters
+## PARAMETERS
 
 ### -ClientId
 
@@ -215,9 +215,9 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ## RELATED LINKS
 

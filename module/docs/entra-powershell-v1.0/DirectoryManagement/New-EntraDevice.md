@@ -16,11 +16,11 @@ title: New-EntraDevice
 
 # New-EntraDevice
 
-## Synopsis
+## SYNOPSIS
 
 Creates a device.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraDevice
@@ -42,7 +42,7 @@ New-EntraDevice
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraDevice` cmdlet creates a device in Microsoft Entra ID.
 
@@ -51,7 +51,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - Intune Administrator
 - Windows 365 Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a device
 
@@ -80,7 +80,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb dddddddd-3333-4444-5555-eeeeeeeeeeee My new
 
 This command creates a new device.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -326,13 +326,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

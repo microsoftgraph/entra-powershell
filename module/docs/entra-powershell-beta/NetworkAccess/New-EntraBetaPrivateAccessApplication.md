@@ -16,11 +16,11 @@ title: New-EntraBetaPrivateAccessApplication
 
 # New-EntraBetaPrivateAccessApplication
 
-## Synopsis
+## SYNOPSIS
 
 Creates a Private Access application and assigns a connector group to it.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaPrivateAccessApplication
@@ -29,11 +29,11 @@ New-EntraBetaPrivateAccessApplication
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaPrivateAccessApplication` cmdlet creates a Private Access application and assigns a connector group to it.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new Private Access app and assign the default connector group
 
@@ -54,7 +54,7 @@ New-EntraBetaPrivateAccessApplication -ApplicationName 'Contoso GSA Application'
 
 This example shows how to create a new Private Access application named `Contoso GSA Application` and assign it to a specific connector group.
 
-## Parameters
+## PARAMETERS
 
 ### -ApplicationName
 
@@ -92,17 +92,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 ## RELATED LINKS
 

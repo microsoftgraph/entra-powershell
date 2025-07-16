@@ -16,11 +16,11 @@ title: Get-EntraBetaContactDirectReport
 
 # Get-EntraBetaContactDirectReport
 
-## Synopsis
+## SYNOPSIS
 
 Get the direct reports for a contact.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaContactDirectReport
@@ -31,7 +31,7 @@ Get-EntraBetaContactDirectReport
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaContactDirectReport` cmdlet gets the direct reports for a contact.
 
@@ -43,7 +43,7 @@ For delegated scenarios involving work or school accounts, the signed-in user mu
 - Intune Administrator
 - User Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get the direct reports of a contact
 
@@ -82,7 +82,7 @@ This example shows how to retrieve top two direct reports for an organizational 
 
 - `-OrgContactId` parameter specifies the contact Id.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -152,12 +152,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaContact](Get-EntraBetaContact.md)

@@ -16,11 +16,11 @@ title: Remove-EntraBetaNamedLocationPolicy
 
 # Remove-EntraBetaNamedLocationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Deletes a Microsoft Entra ID named location policy by PolicyId.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaNamedLocationPolicy
@@ -28,7 +28,7 @@ Remove-EntraBetaNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet allows an admin to delete the Microsoft Entra ID named location policy.
 
@@ -39,7 +39,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Security Administrator  
 - Conditional Access Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Deletes a named location policy in Microsoft Entra ID
 
@@ -53,7 +53,7 @@ This command demonstrates how to delete the named location policy in Microsoft E
 
 - `-PolicyId` parameter specifies the Id of named location policy.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaNamedLocationPolicy](New-EntraBetaNamedLocationPolicy.md)
 

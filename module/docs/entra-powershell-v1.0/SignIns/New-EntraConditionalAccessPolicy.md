@@ -16,11 +16,11 @@ title: New-EntraConditionalAccessPolicy
 
 # New-EntraConditionalAccessPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Creates a new conditional access policy in Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraConditionalAccessPolicy
@@ -33,7 +33,7 @@ New-EntraConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 This cmdlet allows an admin to create new conditional access policy in Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, when acting on another user
 - Security Administrator  
 - Conditional Access Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Creates a new conditional access policy in Microsoft Entra ID that require MFA to access Exchange Online
 
@@ -141,7 +141,7 @@ This example creates new conditional access policy in Microsoft Entra ID  with a
 - `-GrantControls` parameter specifies the controls for the conditional access policy.
 - `-SessionControls` parameter Enables limited experiences within specific cloud applications.
 
-## Parameters
+## PARAMETERS
 
 ### -DisplayName
 
@@ -243,11 +243,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 Learn more about:
 
@@ -256,7 +256,7 @@ Learn more about:
 [Conditions](https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset)
 [Session controls](https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols)
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

@@ -16,11 +16,11 @@ title: New-EntraBetaCustomSecurityAttributeDefinition
 
 # New-EntraBetaCustomSecurityAttributeDefinition
 
-## Synopsis
+## SYNOPSIS
 
 Create a new customSecurityAttributeDefinition object.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraBetaCustomSecurityAttributeDefinition
@@ -35,7 +35,7 @@ New-EntraBetaCustomSecurityAttributeDefinition
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraBetaCustomSecurityAttributeDefinition` cmdlet creates a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
 
@@ -45,7 +45,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 - Attribute Definition Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a custom security attribute
 
@@ -82,7 +82,7 @@ This example demonstrates how to add a custom security attribute.
 - `-IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
 - `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
-## Parameters
+## PARAMETERS
 
 ### -AttributeSet
 
@@ -216,17 +216,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaCustomSecurityAttributeDefinition](Set-EntraBetaCustomSecurityAttributeDefinition.md)
 

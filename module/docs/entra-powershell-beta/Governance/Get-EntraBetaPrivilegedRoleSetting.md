@@ -16,11 +16,11 @@ title: Get-EntraBetaPrivilegedRoleSetting
 
 # Get-EntraBetaPrivilegedRoleSetting
 
-## Synopsis
+## SYNOPSIS
 
 Get role settings.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -43,11 +43,11 @@ Get-EntraBetaPrivilegedRoleSetting
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPrivilegedRoleSetting` cmdlet gets role settings from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get role settings for a specific provider and resource
 
@@ -136,7 +136,7 @@ This example retrieves role settings for a specific provider and resource.
 
 - `-ProviderId` Parameter specifies the ID of the specific provider.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -223,18 +223,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 ### System. Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraBetaPrivilegedRoleSetting](Set-EntraBetaPrivilegedRoleSetting.md)

@@ -16,11 +16,11 @@ title: Set-EntraBetaDirSyncConfiguration
 
 # Set-EntraBetaDirSyncConfiguration
 
-## Synopsis
+## SYNOPSIS
 
 Modifies the directory synchronization settings.
 
-## Syntax
+## SYNTAX
 
 ### SetAccidentalDeletionThreshold (Default)
 
@@ -40,7 +40,7 @@ Set-EntraBetaDirSyncConfiguration
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchronization settings.
 
@@ -48,7 +48,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Global Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set directory synchronization settings
 
@@ -76,7 +76,7 @@ This command sets directory synchronization settings.
 - `-Force` Forces the command to run without asking for user confirmation.
 - `-TenantId` Specifies the unique ID of the tenant.
 
-## Parameters
+## PARAMETERS
 
 ### -AccidentalDeletionThreshold
 
@@ -130,20 +130,20 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.UInt32
 
 ### System.Guid
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
 - For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaDirSyncConfiguration](Get-EntraBetaDirSyncConfiguration.md)

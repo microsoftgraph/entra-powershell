@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplicationKeyCredential
 
 # Remove-EntraBetaApplicationKeyCredential
 
-## Synopsis
+## SYNOPSIS
 
 Removes a key credential from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplicationKeyCredential
@@ -29,13 +29,13 @@ Remove-EntraBetaApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaApplicationKeyCredential` cmdlet removes a key credential from an application.
 
 An application can use this command along with `New-EntraBetaApplicationKeyCredential` to automate the rolling of its expiring keys.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove a key credential
 
@@ -50,7 +50,7 @@ This command removes the specified key credential from the specified application
 - `-ApplicationId` Specifies the ID of an application.
 - `-KeyId` Specifies a custom key ID. Use `Get-EntraBetaApplicationKeyCredential` to get the keyId details.
 
-## Parameters
+## PARAMETERS
 
 ### -KeyId
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplicationKeyCredential](Get-EntraBetaApplicationKeyCredential.md)
 

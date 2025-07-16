@@ -16,11 +16,11 @@ title: Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 # Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve the delegated permission classification objects on a service principal.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,11 +42,11 @@ Get-EntraBetaServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retrieves the delegated permission classifications from a service principal.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get a list of delegated permission classifications
 
@@ -106,7 +106,7 @@ This command retrieves the filtered delegated permission classifications from th
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraBetaServicePrincipal` to get more details.
 - `-Id` parameter specifies the delegated permission classification object Id.
 
-## Parameters
+## PARAMETERS
 
 ### -ServicePrincipalId
 
@@ -177,15 +177,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaServicePrincipalDelegatedPermissionClassification](Add-EntraBetaServicePrincipalDelegatedPermissionClassification.md)
 

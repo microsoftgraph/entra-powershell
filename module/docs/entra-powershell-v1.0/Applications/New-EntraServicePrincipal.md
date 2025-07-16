@@ -16,11 +16,11 @@ title: New-EntraServicePrincipal
 
 # New-EntraServicePrincipal
 
-## Synopsis
+## SYNOPSIS
 
 Creates a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraServicePrincipal
@@ -40,7 +40,7 @@ New-EntraServicePrincipal
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Create a new service Principal.
 
@@ -51,7 +51,7 @@ For multitenant apps, the calling user must also be in at least one of the follo
 
 For single-tenant apps where the calling user is a non-admin user but is the owner of the backing application, the user must have the Application Developer role.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a new service principal using DisplayName, AccountEnabled, Tags, and AppRoleAssignmentRequired
 
@@ -159,7 +159,7 @@ This example demonstrates how to create a new service Principal in Microsoft Ent
 - `-ServicePrincipalType` parameter specifies the type of the service principal.
 - `-ServicePrincipalNames` parameter specifies an array of service principal names.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -380,13 +380,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

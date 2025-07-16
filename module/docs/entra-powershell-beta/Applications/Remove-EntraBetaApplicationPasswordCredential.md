@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplicationPasswordCredential
 
 # Remove-EntraBetaApplicationPasswordCredential
 
-## Synopsis
+## SYNOPSIS
 
 Removes a password credential from an application.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplicationPasswordCredential
@@ -29,11 +29,11 @@ Remove-EntraBetaApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaApplicationPasswordCredential` cmdlet removes a password credential from an application in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an application password credential
 
@@ -49,7 +49,7 @@ This example demonstrates how to remove the password credential for an applicati
 - `ApplicationId` Specifies the ID of the application. Use `Get-EntraBetaApplication` to get application ApplicationId value.
 - `KeyId` Specifies the ID of the password credential. Use `Get-EntraBetaApplicationPasswordCredential` to retrieve a specific credential details.
 
-## Parameters
+## PARAMETERS
 
 ### -KeyId
 
@@ -87,13 +87,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

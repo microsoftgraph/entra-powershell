@@ -15,11 +15,11 @@ title: Get-EntraContract
 
 # Get-EntraContract
 
-## Synopsis
+## SYNOPSIS
 
 Gets a contract.
 
-## Syntax
+## SYNTAX
 
 ### GetQuery (Default)
 
@@ -42,13 +42,13 @@ Get-EntraContract
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
 
 In delegated scenarios with work or school accounts, the `Directory Readers` role is the only least privileged role that supports this operation for the signed-in user
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get all contracts in the directory
 
@@ -68,7 +68,7 @@ Get-EntraContract -Top 2
 
 This command gets top two contracts in the Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -155,11 +155,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 The contract object contains the following attributes:
 
@@ -186,4 +186,4 @@ Corresponds to the ObjectId property of the customer tenant's TenantDetail objec
 
 `ContractId` - the unique identifier for the partnership.
 
-## Related links
+## RELATED LINKS

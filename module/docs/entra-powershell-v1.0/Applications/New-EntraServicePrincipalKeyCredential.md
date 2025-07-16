@@ -16,11 +16,11 @@ title: New-EntraServicePrincipalKeyCredential
 
 # New-EntraServicePrincipalKeyCredential
 
-## Synopsis
+## SYNOPSIS
 
 Creates a password credential for a service principal.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraServicePrincipalKeyCredential
@@ -34,11 +34,11 @@ New-EntraServicePrincipalKeyCredential
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The New-EntraServicePrincipalKeyCredential cmdlet creates a key credential for a service principal in Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a key credential
 
@@ -49,7 +49,7 @@ New-EntraServicePrincipalKeyCredential
 
 This command creates a key credential for a service principal.
 
-## Parameters
+## PARAMETERS
 
 ### -CustomKeyIdentifier
 
@@ -167,13 +167,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraServicePrincipalKeyCredential](Get-EntraServicePrincipalKeyCredential.md)
 

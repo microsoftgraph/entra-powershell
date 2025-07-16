@@ -16,11 +16,11 @@ title: Get-EntraUserCBAAuthorizationInfo
 
 # Get-EntraUserCBAAuthorizationInfo
 
-## Synopsis
+## SYNOPSIS
 
 Retrieves authorization information for a Microsoft Entra ID user, including certificate-based authentication identifiers.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraUserCBAAuthorizationInfo
@@ -29,7 +29,7 @@ Get-EntraUserCBAAuthorizationInfo
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraUserCBAAuthorizationInfo` cmdlet retrieves authorization information for a specified user in Microsoft Entra ID. This includes certificate user identifiers that are used for certificate-based authentication (CBA).
 
@@ -42,7 +42,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 - Privileged Authentication Administrator (for Cloud-only users)
 - Hybrid Identity Administrator (for synchronized users)
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get authorization information for a user by User Principal Name
 
@@ -131,7 +131,7 @@ sawyerm@marketing.contoso.com PN, S
 
 This example retrieves the authorization information and creates a custom view showing the user principal name and certificate types.
 
-## Parameters
+## PARAMETERS
 
 ### -UserId
 
@@ -169,13 +169,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
 You can pipe a string that contains a user ID or UPN to this cmdlet.
 
-## Outputs
+## OUTPUTS
 
 ### System.Management.Automation.PSObject
 
@@ -191,7 +191,7 @@ RawAuthorizationInfo: The original authorization info from the API.
 
 Note: When the `-Raw` parameter is used, the cmdlet returns the raw API response as a PSObject.
 
-## Notes
+## NOTES
 
 Certificate user IDs are returned in the X509 format. The common types are:
 
@@ -202,7 +202,7 @@ SR: Serial Number
 SKI: Subject Key Identifier
 SHA1-PUKEY: SHA1 Public Key
 
-## Related links
+## RELATED LINKS
 
 [Set-EntraUserCBACertificateUserId](Set-EntraUserCBACertificateUserId.md)
 [https://aka.ms/aadcba](https://aka.ms/aadcba)

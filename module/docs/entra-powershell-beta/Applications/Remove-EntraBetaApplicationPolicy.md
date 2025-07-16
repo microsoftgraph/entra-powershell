@@ -16,11 +16,11 @@ title: Remove-EntraBetaApplicationPolicy
 
 # Remove-EntraBetaApplicationPolicy
 
-## Synopsis
+## SYNOPSIS
 
 Removes an application policy.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplicationPolicy
@@ -29,11 +29,11 @@ Remove-EntraBetaApplicationPolicy
 [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-EntraBetaApplicationPolicy` cmdlet removes an application policy from Microsoft Entra ID. Specify `Id`and `PolicyId` parameters to remove an specific application policy.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove an application policy
 
@@ -48,7 +48,7 @@ Remove-EntraBetaApplicationPolicy @params
 
 This command removes the specified application policy.
 
-## Parameters
+## PARAMETERS
 
 ### -PolicyId
 
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Add-EntraBetaApplicationPolicy](Add-EntraBetaApplicationPolicy.md)
 

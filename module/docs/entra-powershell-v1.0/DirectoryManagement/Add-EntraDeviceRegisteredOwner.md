@@ -15,11 +15,11 @@ title: Add-EntraDeviceRegisteredOwner
 
 # Add-EntraDeviceRegisteredOwner
 
-## Synopsis
+## SYNOPSIS
 
 Adds a registered owner for a device.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Add-EntraDeviceRegisteredOwner
@@ -28,7 +28,7 @@ Add-EntraDeviceRegisteredOwner
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
 
@@ -37,7 +37,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 - Intune Administrator
 - Windows 365 Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Add a user as a registered owner
 
@@ -53,7 +53,7 @@ This example shows how to add a registered user to a device.
 - `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. You can use the command `Get-EntraDevice` to get device Id.
 - `-OwnerId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. You can use the command `Get-EntraUser` to get user Id.
 
-## Parameters
+## PARAMETERS
 
 ### -DeviceId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
 

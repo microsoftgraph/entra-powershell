@@ -16,11 +16,11 @@ title: New-EntraUser
 
 # New-EntraUser
 
-## Synopsis
+## SYNOPSIS
 
 Creates a Microsoft Entra ID user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 New-EntraUser
@@ -58,11 +58,11 @@ New-EntraUser
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `New-EntraUser` cmdlet creates a user in Microsoft Entra ID. Specify the `DisplayName`,`AccountEnabled`, and `PasswordProfile` parameter to create a user.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Create a user using MailNickName parameter
 
@@ -196,7 +196,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller    SawyerM@contoso.com       
 
 This command creates a new user.
 
-## Parameters
+## PARAMETERS
 
 ### -AccountEnabled
 
@@ -746,13 +746,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Get-EntraUser](Get-EntraUser.md)
 

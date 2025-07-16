@@ -16,11 +16,11 @@ title: Get-EntraBetaPolicyAppliedObject
 
 # Get-EntraBetaPolicyAppliedObject
 
-## Synopsis
+## SYNOPSIS
 
 Gets a policy-applied object from Microsoft Entra ID.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaPolicyAppliedObject
@@ -28,11 +28,11 @@ Get-EntraBetaPolicyAppliedObject
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaPolicyAppliedObject` cmdlet gets a policy-applied object from Microsoft Entra ID.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve a policy-applied object
 
@@ -52,7 +52,7 @@ This command retrieves policy-applied object from Microsoft Entra ID.
 
 - `-Id` Parameter specifies ID of the policy for which you want to find the objects.
 
-## Parameters
+## PARAMETERS
 
 ### -Id
 
@@ -74,10 +74,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

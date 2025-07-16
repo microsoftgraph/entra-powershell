@@ -16,11 +16,11 @@ title: Set-EntraBetaDomain
 
 # Set-EntraBetaDomain
 
-## Synopsis
+## SYNOPSIS
 
 Updates a domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaDomain
@@ -30,7 +30,7 @@ Set-EntraBetaDomain
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaDomain` cmdlet updates a verified domain in Microsoft Entra ID.
 
@@ -40,7 +40,7 @@ The work or school account needs to belong to at least one of the following Micr
 - Security Administrator
 - External Identity Provider Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Set the domain as the default domain for new user account creation
 
@@ -60,7 +60,7 @@ Set-EntraBetaDomain -Name Contoso.com -SupportedServices @('Email', 'OfficeCommu
 
 This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
-## Parameters
+## PARAMETERS
 
 ### -IsDefault
 
@@ -115,13 +115,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 

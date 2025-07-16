@@ -16,11 +16,11 @@ title: Get-EntraBetaDomainVerificationDnsRecord
 
 # Get-EntraBetaDomainVerificationDnsRecord
 
-## Synopsis
+## SYNOPSIS
 
 Retrieve the domain verification DNS record for a domain.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaDomainVerificationDnsRecord
@@ -29,7 +29,7 @@ Get-EntraBetaDomainVerificationDnsRecord
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 Gets the domain's verification records from the `verificationDnsRecords` navigation property.
 
@@ -44,7 +44,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 - Domain Name Administrator
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Retrieve the domain verification DNS record
 
@@ -62,7 +62,7 @@ aaaabbbb-1111-cccc-1111-dddd2222eeee False      contoso.com Mx         Email    
 
 This example shows how to retrieve the Domain verification DNS records for a domain with the given name.
 
-## Parameters
+## PARAMETERS
 
 ### -Name
 
@@ -100,14 +100,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS

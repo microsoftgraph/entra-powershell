@@ -16,11 +16,11 @@ title: Set-EntraBetaIdentityProvider
 
 # Set-EntraBetaIdentityProvider
 
-## Synopsis
+## SYNOPSIS
 
 Update the properties of an existing identity provider configured in the directory.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Set-EntraBetaIdentityProvider
@@ -32,7 +32,7 @@ Set-EntraBetaIdentityProvider
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Set-EntraBetaIdentityProvider` cmdlet is used to update the properties of an existing identity provider.
 
@@ -42,7 +42,7 @@ In delegated scenarios using work or school accounts, the signed-in user must ha
 
 - External Identity Provider Administrator
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update client id of an identity provider
 
@@ -80,7 +80,7 @@ This example updates the display name for the specified identity provider.
 - `-IdentityProviderBaseId` parameter specifies the unique identifier of the identity provider.
 - `-Name` parameter specifies the display name of the identity provider.
 
-## Parameters
+## PARAMETERS
 
 ### -ClientId
 
@@ -168,17 +168,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### System.String
 
-## Outputs
+## OUTPUTS
 
 ### System.Object
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [New-EntraBetaIdentityProvider](New-EntraBetaIdentityProvider.md)
 

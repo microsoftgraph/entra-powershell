@@ -15,11 +15,11 @@ title: Get-EntraBetaDirectoryRoleTemplate
 
 # Get-EntraBetaDirectoryRoleTemplate
 
-## Synopsis
+## SYNOPSIS
 
 Gets directory role templates.
 
-## Syntax
+## SYNTAX
 
 ```powershell
 Get-EntraBetaDirectoryRoleTemplate
@@ -27,7 +27,7 @@ Get-EntraBetaDirectoryRoleTemplate
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-EntraBetaDirectoryRoleTemplate` cmdlet gets directory role templates in Microsoft Entra ID.
 
@@ -35,7 +35,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 
 - Global Reader
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get role templates
 
@@ -71,7 +71,7 @@ DeletedDateTime Id                                   Description                
 
 This example retrieves a Helpdesk role template.
 
-## Parameters
+## PARAMETERS
 
 ### -Property
 
@@ -93,10 +93,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
