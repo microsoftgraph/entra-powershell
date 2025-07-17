@@ -33,41 +33,41 @@ class Validator {
         $scriptSubModules = @(Get-ChildItem -Path $this.ScriptsFolderPath -Directory)
         $docSubModules = @(Get-ChildItem -Path $this.DocsFolderPath -Directory)
         if($scriptSubModules.Count -ne $docSubModules.Count){
-            Write-Host "Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count))." -ForegroundColor 'Red'
+            Write-Error "Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count))."
         }
 
         $missingScriptFolders = @()
         $missingDocFolders = @()
         foreach($scriptSubModule in $scriptSubModules){
             if($docSubModules.Name -notcontains $scriptSubModule.Name){
-                Write-Host "Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder." -ForegroundColor 'Red'
+                Write-Error "Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder."
             }
         }
         foreach($docSubModule in $docSubModules){
             if($scriptSubModules.Name -notcontains $docSubModule.Name){
-                Write-Host "Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder." -ForegroundColor 'Red'
+                Write-Error "Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder."
             }
         }
     }
-    
+
     # Method to validate that script subfolder files match docs subfolder files
     ValidateScriptSubFolderFilesMatchDocsSubFolderFiles() {
         foreach($subModule in $this.SubModules){
             $scriptFiles = @(Get-ChildItem -Path (Join-Path $this.ScriptsFolderPath $subModule) -Filter *.ps1 | Where-Object { $_.Name -ne "New-EntraCustomHeaders.ps1" -and $_.Name -ne "New-EntraBetaCustomHeaders.ps1" })
             $docFiles = @(Get-ChildItem -Path (Join-Path $this.DocsFolderPath $subModule) -File)
             if($scriptFiles.Count -ne $docFiles.Count){
-                Write-Host "Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count))." -ForegroundColor 'Red'
+                Write-Error "Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count))."
             }
 
             foreach($scriptFile in $scriptFiles){
                 if($docFiles.BaseName -notcontains $scriptFile.BaseName){
-                    Write-Host "Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file." -ForegroundColor 'Red'
+                    Write-Error "Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file."
                 }
             }
 
             foreach($docFile in $docFiles){
                 if($scriptFiles.BaseName -notcontains $docFile.BaseName){
-                    Write-Host "Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file." -ForegroundColor 'Red'
+                    Write-Error "Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file."
                 }
             }
         }
