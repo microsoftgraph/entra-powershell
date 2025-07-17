@@ -6,11 +6,11 @@ param(
 
     [ValidateSet("Entra", "EntraBeta")]
 	[string]
-	$Module = "Entra"
+	$ModuleName = "Entra"
 )
 . (Join-Path $psscriptroot "./Validator.ps1")
 
-$validator = [Validator]::new($Module)
+$validator = [Validator]::new($ModuleName)
 
 $validator.ValidateScriptSubFoldersMatchDocsSubFolders()
 $validator.ValidateScriptSubFolderFilesMatchDocsSubFolderFiles()
