@@ -31,6 +31,7 @@ steps:
       . ./validations/Validate-EntraModule.ps1 -ModuleName Entra -Verbose
       . ./validations/Validate-EntraModule.ps1 -ModuleName EntraBeta -Verbose
     pwsh: true
+    failOnStderr: false
 - task: powershell@2
   displayName: 'Install Dependencies Entra'
   inputs:
