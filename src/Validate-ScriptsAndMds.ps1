@@ -45,6 +45,9 @@ function Validate-ScriptsAndMds {
             }
         }
 
+        foreach($scriptSubModule in $scriptSubModules){
+        }
+
         # Validate scripts in each subfolder match docs in corresponding subfolder
 
 #         $mapping = @{}
