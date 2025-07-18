@@ -14,3 +14,6 @@ $validator = [Validator]::new($ModuleName)
 
 $validator.ValidateScriptSubFoldersMatchDocsSubFolders()
 $validator.ValidateScriptSubFolderFilesMatchDocsSubFolderFiles()
+
+# Exit the pipeline with an error if any validation failed
+$validator.ExitPipeline()
