@@ -75,7 +75,8 @@ class Validator {
 
     hidden WriteWarning([string] $message) {
         #Write-Host "WARNING: $message" -ForegroundColor Yellow
-        Write-Warning "$message"
+        #Write-Warning "$message"
+        Write-Host "##vso[task.logissue type=error] $message"
     }
 
     hidden WriteError([string] $message) {
