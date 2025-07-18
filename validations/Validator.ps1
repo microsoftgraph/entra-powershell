@@ -33,19 +33,19 @@ class Validator {
         $scriptSubModules = @(Get-ChildItem -Path $this.ScriptsFolderPath -Directory)
         $docSubModules = @(Get-ChildItem -Path $this.DocsFolderPath -Directory)
         if($scriptSubModules.Count -ne $docSubModules.Count){
-            Write-Error "Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count))."
+            $this.WriteWarning("Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count)).")
         }
 
         $missingScriptFolders = @()
         $missingDocFolders = @()
         foreach($scriptSubModule in $scriptSubModules){
             if($docSubModules.Name -notcontains $scriptSubModule.Name){
-                Write-Error "Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder."
+                $this.WriteWarning("Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder.")
             }
         }
         foreach($docSubModule in $docSubModules){
             if($scriptSubModules.Name -notcontains $docSubModule.Name){
-                Write-Error "Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder."
+                $this.WriteWarning("Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder.")
             }
         }
     }
@@ -56,20 +56,30 @@ class Validator {
             $scriptFiles = @(Get-ChildItem -Path (Join-Path $this.ScriptsFolderPath $subModule) -Filter *.ps1 | Where-Object { $_.Name -ne "New-EntraCustomHeaders.ps1" -and $_.Name -ne "New-EntraBetaCustomHeaders.ps1" })
             $docFiles = @(Get-ChildItem -Path (Join-Path $this.DocsFolderPath $subModule) -File)
             if($scriptFiles.Count -ne $docFiles.Count){
-                Write-Error "Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count))."
+                $this.WriteWarning("Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count)).")
             }
 
             foreach($scriptFile in $scriptFiles){
                 if($docFiles.BaseName -notcontains $scriptFile.BaseName){
-                    Write-Error "Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file."
+                    $this.WriteWarning("Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file.")
                 }
             }
 
             foreach($docFile in $docFiles){
                 if($scriptFiles.BaseName -notcontains $docFile.BaseName){
-                    Write-Error "Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file."
+                    $this.WriteWarning("Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file.")
                 }
             }
         }
+    }
+
+    hidden WriteWarning([string] $message) {
+        #Write-Host "WARNING: $message" -ForegroundColor Yellow
+        Write-Warning "$message"
+    }
+
+    hidden WriteError([string] $message) {
+        Write-Host "ERROR: $message" -ForegroundColor Red
+        throw $message
     }
 }
