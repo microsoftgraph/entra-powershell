@@ -12,9 +12,6 @@ param(
 
 $validator = [Validator]::new($ModuleName)
 
-Write-Host "[Invocation] ScriptName $($PSCmdlet.MyInvocation.ScriptName)."
-Write-Host "[Invocation] CommandOrigin $($PSCmdlet.MyInvocation.CommandOrigin)."
-
 $validator.ValidateScriptSubFoldersMatchDocsSubFolders()
 $validator.ValidateScriptSubFolderFilesMatchDocsSubFolderFiles()
 
