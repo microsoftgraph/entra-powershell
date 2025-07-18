@@ -2,7 +2,7 @@
 description: This article explains the Add-EntraGroupOwner command.
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 02/08/2025

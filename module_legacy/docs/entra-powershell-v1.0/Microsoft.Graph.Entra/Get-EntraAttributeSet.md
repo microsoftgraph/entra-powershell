@@ -6,7 +6,7 @@ ms.topic: reference
 ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
-manager: CelesteDG
+manager: mwongerapk
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra

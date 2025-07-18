@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Remove-EntraBetaObjectSetting command.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 08/08/2024

@@ -6,7 +6,7 @@ description: This article provides details on the Get-EntraUser command
 ms.topic: reference
 ms.date: 07/12/2024
 ms.author: eunicewaweru
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 
 external help file: Microsoft.Entra-Help.xml

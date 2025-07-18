@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Enable-EntraBetaGlobalSecureAccessTenant command.
 external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 10/31/2024

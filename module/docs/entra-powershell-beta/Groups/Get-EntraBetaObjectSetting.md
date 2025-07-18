@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Get-EntraBetaObjectSetting command.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 08/05/2024

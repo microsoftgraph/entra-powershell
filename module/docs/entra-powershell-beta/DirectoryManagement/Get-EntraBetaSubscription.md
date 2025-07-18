@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Get-EntraBetaSubscription command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 03/10/2025

@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on Get-EntraBetaPrivilegedRoleAssignmentRequest command.
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 08/12/2024

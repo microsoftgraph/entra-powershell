@@ -3,7 +3,7 @@ author: msewaweru
 description: Creates an object with all values from a certificate file for configuring CertificateUserIDs in Microsoft Entra ID
 external help file: Microsoft.Entra.CertificateBasedAuthentication-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 04/13/2025

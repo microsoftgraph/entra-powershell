@@ -6,7 +6,7 @@ ms.topic: reference
 ms.date: 07/18/2024
 ms.author: eunicewaweru
 reviewer: andres-canello
-manager: CelesteDG
+manager: mwongerapk
 author: andres-canello
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta

@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Add-EntraBetaLifecyclePolicyGroup command.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/22/2024

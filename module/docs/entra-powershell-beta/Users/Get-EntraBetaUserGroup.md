@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraBetaUserGroup command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 12/02/2024

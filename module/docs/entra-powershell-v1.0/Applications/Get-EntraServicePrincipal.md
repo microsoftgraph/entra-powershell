@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraServicePrincipal command.
 external help file: Microsoft.Entra.Applications-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 06/26/2024

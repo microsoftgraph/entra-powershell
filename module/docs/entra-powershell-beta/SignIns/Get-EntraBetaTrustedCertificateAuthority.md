@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraBetaTrustedCertificateAuthority command.
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 08/13/2024

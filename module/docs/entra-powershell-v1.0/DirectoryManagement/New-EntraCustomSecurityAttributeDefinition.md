@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the New-EntraCustomSecurityAttributeDefinition command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 07/26/2024

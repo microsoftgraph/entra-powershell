@@ -2,7 +2,7 @@
 description: This article provides details on the Resolve-EntraBetaTenant command.
 external help file: Microsoft.Entra.Beta-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 02/10/2025

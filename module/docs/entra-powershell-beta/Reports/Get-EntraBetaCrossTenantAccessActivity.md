@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Get-EntraBetaCrossTenantAccessActivity command.
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 02/10/2025

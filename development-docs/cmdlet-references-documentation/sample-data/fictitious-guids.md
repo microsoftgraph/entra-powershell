@@ -4,7 +4,7 @@ description: A list of fictitious GUIDs.
 
 ms.date: 08/12/2024
 ms.author: eunicewaweru
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 ms.reviewer: stevemutungi
 ---

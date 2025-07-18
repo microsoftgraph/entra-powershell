@@ -2,7 +2,7 @@
 description: This article provides details on the Remove-EntraBetaConditionalAccessPolicy command.
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/30/2024

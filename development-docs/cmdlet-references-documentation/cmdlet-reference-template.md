@@ -6,7 +6,7 @@ description: Learn the format to follow when writing cmdlet reference content fo
 ms.topic: reference
 ms.date: 07/12/2024 // format mm/dd/yyyy
 ms.author: eunicewaweru
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 ms.reviewer: stevemutungi
 

@@ -7,7 +7,7 @@ ms.topic: reference
 ms.date: 02/03/2025
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 ---
 

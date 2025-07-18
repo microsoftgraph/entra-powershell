@@ -8,7 +8,7 @@ ms.topic: reference
 ms.date: 07/10/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml

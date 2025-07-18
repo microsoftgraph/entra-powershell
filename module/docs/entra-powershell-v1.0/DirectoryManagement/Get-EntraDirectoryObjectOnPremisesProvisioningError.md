@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Get-EntraDirectoryObjectOnPremisesProvisioningError command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 01/26/2025

@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Update-EntraOauth2PermissionGrant command.
 external help file: Microsoft.Entra.DirectoryManagement-help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 11/01/2024
