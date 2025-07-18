@@ -36,7 +36,7 @@ class Validator {
         $docSubModules = @(Get-ChildItem -Path $this.DocsFolderPath -Directory)
         if($scriptSubModules.Count -ne $docSubModules.Count){
             $this.ErrorCount++
-            $this.WriteWarning("Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count)).")
+            $this.LogError("Script submodules folders count ($($scriptSubModules.Count)) does not match docs submodules folders count ($($docSubModules.Count)).")
         }
 
         $missingScriptFolders = @()
@@ -44,13 +44,13 @@ class Validator {
         foreach($scriptSubModule in $scriptSubModules){
             if($docSubModules.Name -notcontains $scriptSubModule.Name){
                 $this.ErrorCount++
-                $this.WriteWarning("Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder.")
+                $this.LogError("Script submodule folder '$($scriptSubModule.Name)' does not have a corresponding docs submodule folder.")
             }
         }
         foreach($docSubModule in $docSubModules){
             if($scriptSubModules.Name -notcontains $docSubModule.Name){
                 $this.ErrorCount++
-                $this.WriteWarning("Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder.")
+                $this.LogError("Doc submodule folder '$($docSubModule.Name)' does not have a corresponding script submodule folder.")
             }
         }
     }
@@ -62,39 +62,38 @@ class Validator {
             $docFiles = @(Get-ChildItem -Path (Join-Path $this.DocsFolderPath $subModule) -File)
             if($scriptFiles.Count -ne $docFiles.Count){
                 $this.ErrorCount++
-                $this.WriteWarning("Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count)).")
+                $this.LogError("Script submodule folder '$subModule' files count ($($scriptFiles.Count)) does not match docs submodule folder '$subModule' files count ($($docFiles.Count)).")
             }
 
             foreach($scriptFile in $scriptFiles){
                 if($docFiles.BaseName -notcontains $scriptFile.BaseName){
                     $this.ErrorCount++
-                    $this.WriteWarning("Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file.")
+                    $this.LogError("Script file '$($scriptFile.BaseName)' in subfolder '$subModule' does not have a corresponding doc file.")
                 }
             }
 
             foreach($docFile in $docFiles){
                 if($scriptFiles.BaseName -notcontains $docFile.BaseName){
                     $this.ErrorCount++
-                    $this.WriteWarning("Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file.")
+                    $this.LogError("Doc file '$($docFile.BaseName)' in subfolder '$subModule' does not have a corresponding script file.")
                 }
             }
         }
     }
 
-    hidden WriteWarning([string] $message) {
-        #Write-Host "WARNING: $message" -ForegroundColor Yellow
-        #Write-Warning "$message"
-        Write-Host "##vso[task.logissue type=error] $message"
+    hidden LogError([string] $message) {
+        Write-Host "##vso[task.logissue type=error] $message" -ForegroundColor Red
     }
 
     hidden WriteError([string] $message) {
-        Write-Host "ERROR: $message" -ForegroundColor Red
-        throw $message
+        Write-Host "$message" -ForegroundColor Red
     }
 
     ExitPipeline() {
         if($this.ErrorCount -gt 0){
-            $this.WriteError("Validation failed with $($this.ErrorCount) errors.")
+            $message = "Validation failed with $($this.ErrorCount) errors."
+            $this.WriteError($message)
+            exit 1
         }
         else {
             Write-Host "Validation completed successfully."
