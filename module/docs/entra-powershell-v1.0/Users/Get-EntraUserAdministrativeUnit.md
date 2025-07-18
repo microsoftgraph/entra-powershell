@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraUserAdministrativeUnit command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 12/02/2024

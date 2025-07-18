@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraEnvironment command.
 external help file: Microsoft.Entra.Authentication-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 06/26/2024

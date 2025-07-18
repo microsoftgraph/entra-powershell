@@ -2,7 +2,7 @@
 description: This article provides details on the Resolve-EntraTenant command.
 external help file: Microsoft.Entra-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 02/10/2025

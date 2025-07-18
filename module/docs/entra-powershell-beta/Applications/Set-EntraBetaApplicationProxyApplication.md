@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Set-EntraBetaApplicationProxyApplication command.
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/15/2024

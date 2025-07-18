@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Update-EntraBetaUserAuthenticationRequirement command.
 external help file: Microsoft.Entra.Beta.SignIns-help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 11/11/2024

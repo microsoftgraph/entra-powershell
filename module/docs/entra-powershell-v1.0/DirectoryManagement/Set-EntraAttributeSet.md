@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Set-EntraAttributeSet command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 07/19/2024

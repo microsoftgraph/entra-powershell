@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Set-EntraUserExtension command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 03/16/2025

@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraBetaInactiveSignInUser command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 04/02/2025

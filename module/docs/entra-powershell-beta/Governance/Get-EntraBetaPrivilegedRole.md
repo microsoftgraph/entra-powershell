@@ -2,7 +2,7 @@
 description: This article provides details on the Get-EntraBetaPrivilegedRole command.
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/19/2024

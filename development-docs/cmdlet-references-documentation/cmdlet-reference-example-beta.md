@@ -6,7 +6,7 @@ description: This article provides details on the Get-EntraBetaUser command
 ms.topic: reference
 ms.date: 07/12/2024
 ms.author: eunicewaweru
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 
 external help file: Microsoft.Entra.Beta-Help.xml

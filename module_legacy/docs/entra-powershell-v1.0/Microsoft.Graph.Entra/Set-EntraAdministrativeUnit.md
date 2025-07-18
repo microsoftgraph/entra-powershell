@@ -6,7 +6,7 @@ ms.topic: reference
 ms.date: 06/19/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
-manager: CelesteDG
+manager: mwongerapk
 author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml

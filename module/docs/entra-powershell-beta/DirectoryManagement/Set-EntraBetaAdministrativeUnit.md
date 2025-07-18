@@ -2,7 +2,7 @@
 description: This article provides details on the Set-EntraBetaAdministrativeUnit command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/03/2024

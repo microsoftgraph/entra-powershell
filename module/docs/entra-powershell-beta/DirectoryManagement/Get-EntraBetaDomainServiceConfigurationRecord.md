@@ -3,7 +3,7 @@ author: msewaweru
 description: This article provides details on the Get-EntraBetaDomainServiceConfigurationRecord command.
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra.Beta
 ms.author: eunicewaweru
 ms.date: 07/31/2024

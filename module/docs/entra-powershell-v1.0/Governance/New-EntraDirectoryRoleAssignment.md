@@ -2,7 +2,7 @@
 description: This article provides details on the New-EntraDirectoryRoleAssignment command.
 external help file: Microsoft.Entra.Governance-Help.xml
 Locale: en-US
-manager: CelesteDG
+manager: mwongerapk
 Module Name: Microsoft.Entra
 ms.author: eunicewaweru
 ms.date: 06/26/2024
