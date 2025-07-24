@@ -105,9 +105,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies an object ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

@@ -3,7 +3,7 @@
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
 function Remove-EntraUserExtension {
-    [CmdletBinding(DefaultParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'RemoveSingle')]
     param (                
         [Parameter(ParameterSetName = "RemoveMultiple", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Collections.Generic.List`1[System.String]] $ExtensionNames,
