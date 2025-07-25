@@ -22,41 +22,53 @@ Removes a user extension.
 
 ## SYNTAX
 
-### SetMultiple
+### RemoveMultiple
 
 ```powershell
 Remove-EntraUserExtension
- -ObjectId <String>
+ -UserId <String>
  -ExtensionNames <System.Collections.Generic.List`1[System.String]>
  [<CommonParameters>]
 ```
 
-### SetSingle
+### RemoveSingle
 
 ```powershell
 Remove-EntraUserExtension
- -ObjectId <String>
+ -UserId <String>
  -ExtensionName <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID. Specify `ObjectId` and `ExtensionNames` parameters to remove a user extension.
+The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID. Specify `UserId` and `ExtensionName` or `ExtensionNames` parameters to remove a user extension.
 
 ## EXAMPLES
 
-### Example 1: Remove the user extension
+### Example 1: Remove single user extension
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraUserExtension -ObjectId 'SawyerM@Contoso.com' -ExtensionName 'Test Extension'
+Remove-EntraUserExtension -UserId 'SawyerM@Contoso.com' -ExtensionName 'extension_bbbbbbbb111122223333cccccccccccc_TestExtension'
 ```
 
 This example demonstrates how to remove a user extension from Microsoft Entra ID.
 
-- `ObjectId` parameter specifies the user Object ID.
-- `ExtensionName` parameter specifies the user ExtentionName.
+- `UserId` parameter specifies the user ID.
+- `ExtensionName` parameter specifies the user extension name.
+
+### Example 2: Remove multiple user extensions
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Remove-EntraUserExtension -UserId 'SawyerM@Contoso.com' -ExtensionNames 'extension_bbbbbbbb111122223333cccccccccccc_TestExtension','extension_bbbbbbbb111122223333cccccccccccc_DummyExtension'
+```
+
+This example demonstrates how to remove a user extension from Microsoft Entra ID.
+
+- `UserId` parameter specifies the user ID.
+- `ExtensionNames` parameter specifies a collection user extension names.
 
 ## PARAMETERS
 
@@ -66,7 +78,7 @@ Specifies the name of an extension.
 
 ```yaml
 Type: System.String
-Parameter Sets: SetSingle
+Parameter Sets: RemoveSingle
 Aliases:
 
 Required: True
@@ -82,7 +94,7 @@ Specifies an array of extension names.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
-Parameter Sets: SetMultiple
+Parameter Sets: RemoveMultiple
 Aliases:
 
 Required: True
@@ -92,9 +104,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies an object ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
