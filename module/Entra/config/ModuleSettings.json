@@ -15,7 +15,7 @@
       "Microsoft.Graph.Applications",
       "Microsoft.Graph.Reports"
     ],
-    "destinationModuleVersion": "2.25.0",
+    "destinationModuleVersion": "2.29.1",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["Mg"],
     "loadMessage": ""

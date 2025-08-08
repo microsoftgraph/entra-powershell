@@ -15,7 +15,7 @@
       "Microsoft.Graph.Beta.Applications",
       "Microsoft.Graph.Beta.Reports"
     ],
-    "destinationModuleVersion": "2.25.0",
+    "destinationModuleVersion": "2.29.1",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["MgBeta"],
     "loadMessage": ""
