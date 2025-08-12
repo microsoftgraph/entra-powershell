@@ -2,7 +2,8 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Update-EntraSignedInUserPassword {
+function Set-EntraSignedInUserPassword {
+    [Alias("Update-EntraSignedInUserPassword")]
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the new password for the signed-in user.")]

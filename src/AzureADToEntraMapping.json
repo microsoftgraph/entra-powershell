@@ -228,5 +228,5 @@
 	"Set-AzureADUserManager" : "Set-EntraUserManager",
 	"Set-AzureADUserPassword" : "Set-EntraUserPassword",
 	"Set-AzureADUserThumbnailPhoto" : "Set-EntraUserThumbnailPhoto",
-	"Update-AzureADSignedInUserPassword" : "Update-EntraSignedInUserPassword"
+	"Update-AzureADSignedInUserPassword" : "Set-EntraSignedInUserPassword"
 }
