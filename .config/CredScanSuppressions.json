@@ -2,7 +2,7 @@
     "tool": "Credential Scanner",
     "suppressions": [
       {
-        "file": "test_legacy\\module\\Entra\\Update-EntraSignedInUserPassword.Tests.ps1",
+        "file": "test_legacy\\module\\Entra\\Set-EntraSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
@@ -18,7 +18,7 @@
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
-        "file": "test\\Entra\\Users\\Update-EntraSignedInUserPassword.Tests.ps1",
+        "file": "test\\Entra\\Users\\Set-EntraSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {

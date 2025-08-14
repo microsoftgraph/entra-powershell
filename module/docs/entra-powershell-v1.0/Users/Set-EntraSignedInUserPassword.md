@@ -1,55 +1,49 @@
 ---
-title: Update-EntraSignedInUserPassword
-description: This article provides details on the Update-EntraSignedInUserPassword command.
-
-ms.topic: reference
-ms.date: 08/20/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: mwongerapk
 author: msewaweru
-
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Update-EntraSignedInUserPassword
-
+description: This article provides details on the Set-EntraSignedInUserPassword command.
+external help file: Microsoft.Entra.Users-Help.xml
+Locale: en-US
+manager: mwongerapk
+Module Name: Microsoft.Entra
+ms.author: eunicewaweru
+ms.date: 08/20/2024
+ms.reviewer: stevemutungi
+ms.topic: reference
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraSignedInUserPassword
 schema: 2.0.0
+title: Set-EntraSignedInUserPassword
 ---
 
-# Update-EntraSignedInUserPassword
+# Set-EntraSignedInUserPassword
 
-## Synopsis
+## SYNOPSIS
 
 Updates the password for the signed-in user.
 
-## Syntax
+## SYNTAX
 
 ```powershell
-Update-EntraSignedInUserPassword
+Set-EntraSignedInUserPassword
  -NewPassword <SecureString>
  -CurrentPassword <SecureString>
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
-The `Update-EntraSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
+The `Set-EntraSignedInUserPassword` cmdlet with the alias `Update-EntraSignedInUserPassword` updates the password for the signed-in user in Microsoft Entra ID.
 
 Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a password
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$CurrentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$NewPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-$params = @{
-    CurrentPassword = $CurrentPassword
-    NewPassword = $NewPassword
-}
-Update-EntraSignedInUserPassword @params
+$currentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+$newPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
+Set-EntraSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
 ```
 
 This example shows how to update the password for the signed-in user.
@@ -57,7 +51,7 @@ This example shows how to update the password for the signed-in user.
 - `-CurrentPassword` parameter specifies the current password of the signed-in user.
 - `-NewPassword` parameter specifies the new password for the signed-in user.
 
-## Parameters
+## PARAMETERS
 
 ### -CurrentPassword
 
@@ -95,12 +89,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
 - For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
 
-## Related links
+## RELATED LINKS

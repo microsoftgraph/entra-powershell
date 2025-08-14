@@ -159,7 +159,7 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name Get-AzureADDevice -Value Get-EntraDevice -Scope Global -Force
    Set-Alias -Name Get-AzureADObjectByObjectId -Value Get-EntraObjectByObjectId -Scope Global -Force
    Set-Alias -Name Remove-AzureADMSApplicationPassword -Value Remove-EntraApplicationPassword -Scope Global -Force
-   Set-Alias -Name Update-AzureADSignedInUserPassword -Value Update-EntraSignedInUserPassword -Scope Global -Force
+   Set-Alias -Name Update-AzureADSignedInUserPassword -Value Set-EntraSignedInUserPassword -Scope Global -Force
    Set-Alias -Name Set-AzureADMSNamedLocationPolicy -Value Set-EntraNamedLocationPolicy -Scope Global -Force
    Set-Alias -Name Get-AzureADMSPermissionGrantPolicy -Value Get-EntraPermissionGrantPolicy -Scope Global -Force
    Set-Alias -Name Get-AzureADApplicationServiceEndpoint -Value Get-EntraApplicationServiceEndpoint -Scope Global -Force

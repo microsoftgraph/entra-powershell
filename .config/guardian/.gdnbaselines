@@ -96,7 +96,7 @@
       "alternativeSignatures": [
         "a1562a9034f1e3e1b3f4469395192d20944cec736650f1c5e9d2770a14734188"
       ],
-      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
       "line": 13,
       "memberOf": [
         "default"
@@ -112,7 +112,7 @@
       "alternativeSignatures": [
         "9235224cea5d1fd6c3804bf4140c4cdc6d847a2e665e3539236f553f4d49b381"
       ],
-      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
       "line": 14,
       "memberOf": [
         "default"
@@ -218,7 +218,7 @@
     "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2": {
       "signature": "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2",
       "alternativeSignatures": [],
-      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
       "line": 13,
       "memberOf": [
         "default"
@@ -232,7 +232,7 @@
     "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e": {
       "signature": "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e",
       "alternativeSignatures": [],
-      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
       "line": 14,
       "memberOf": [
         "default"
