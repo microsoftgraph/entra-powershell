@@ -432,5 +432,5 @@
     href: Microsoft.Graph.Entra/Set-EntraUserThumbnailPhoto.md
   - name: Test-EntraScript
     href: Microsoft.Graph.Entra/Test-EntraScript.md
-  - name: Update-EntraSignedInUserPassword
-    href: Microsoft.Graph.Entra/Update-EntraSignedInUserPassword.md
+  - name: Set-EntraSignedInUserPassword
+    href: Microsoft.Graph.Entra/Set-EntraSignedInUserPassword.md

@@ -56,3 +56,4 @@ function Set-EntraSignedInUserPassword {
     }    
 }
 
+Set-Alias -Name Update-EntraSignedInUserPassword -Value Set-EntraSignedInUserPassword -Scope Global -Force
