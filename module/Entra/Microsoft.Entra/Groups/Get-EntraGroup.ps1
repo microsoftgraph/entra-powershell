@@ -25,7 +25,9 @@ function Get-EntraGroup {
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [switch] $AppendSelected
     )
 
     begin {
@@ -41,6 +43,7 @@ function Get-EntraGroup {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id" }
+        $defaultProperties = "id,displayName,createdDateTime,createdDateTime,groupTypes,mailEnabled,mailNickname,securityEnabled,visibility,description"
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -101,8 +104,11 @@ function Get-EntraGroup {
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
