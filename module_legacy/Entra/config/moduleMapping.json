@@ -213,7 +213,7 @@
   "Set-EntraUserManager": "Users",
   "Set-EntraUserPassword": "Users",
   "Set-EntraUserThumbnailPhoto": "Users",
-  "Set-EntraSignedInUserPassword": "Users",
+  "Update-EntraSignedInUserPassword": "Users",
   "Reset-EntraStrongAuthenticationMethodByUpn": "Authentication",
   "Get-EntraAttributeSet": "DirectoryManagement",
   "New-EntraAttributeSet": "DirectoryManagement",

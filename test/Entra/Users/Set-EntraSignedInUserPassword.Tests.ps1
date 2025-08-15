@@ -91,11 +91,11 @@ Describe "Tests for the alias Update-EntraSignedInUserPassword" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraSignedInUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraSignedInUserPassword"
 
             Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
 
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraSignedInUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraSignedInUserPassword"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
