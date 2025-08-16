@@ -1,5 +1,5 @@
 ---
-description: This article provides details on the Update-EntraBetaSignedInUserPassword command.
+description: This article provides details on the Set-EntraBetaSignedInUserPassword command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
@@ -8,12 +8,12 @@ ms.author: eunicewaweru
 ms.date: 07/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Update-EntraBetaSignedInUserPassword
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaSignedInUserPassword
 schema: 2.0.0
-title: Update-EntraBetaSignedInUserPassword
+title: Set-EntraBetaSignedInUserPassword
 ---
 
-# Update-EntraBetaSignedInUserPassword
+# Set-EntraBetaSignedInUserPassword
 
 ## SYNOPSIS
 
@@ -22,7 +22,7 @@ Updates the password for the signed-in user.
 ## SYNTAX
 
 ```powershell
-Update-EntraBetaSignedInUserPassword
+Set-EntraBetaSignedInUserPassword
  -CurrentPassword <SecureString>
  -NewPassword <SecureString>
  [<CommonParameters>]
@@ -30,7 +30,7 @@ Update-EntraBetaSignedInUserPassword
 
 ## DESCRIPTION
 
-The `Update-EntraBetaSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
+The `Set-EntraBetaSignedInUserPassword` cmdlet with alias `Update-EntraBetaSignedInUserPassword` updates the password for the signed-in user in Microsoft Entra ID.
 
 Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
@@ -42,7 +42,7 @@ Enable users to update their own passwords. Any user can change their password w
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $currentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
 $newPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-Update-EntraBetaSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
+Set-EntraBetaSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
 ```
 
 This example shows how to update the password for the signed-in user.

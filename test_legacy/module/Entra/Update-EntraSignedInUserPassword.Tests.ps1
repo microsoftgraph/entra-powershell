@@ -16,60 +16,8 @@ BeforeAll{
     $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
     $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
 }
-Describe "Tests for Set-EntraSignedInUserPassword"{
-    Context "Test for Set-EntraSignedInUserPassword" {
-    It "should return empty object"{
-        $result = Set-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
-        $result | Should -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-    }
-    It "Should fail when CurrentPassword is null" {
-        { Set-EntraSignedInUserPassword -CurrentPassword } | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
-    }  
-    It "Should fail when CurrentPassword is empty" {
-        { Set-EntraSignedInUserPassword -CurrentPassword "" } | Should -Throw "Cannot process argument transformation on parameter 'CurrentPassword'*"
-    }
-    It "Should fail when NewPassword is null" {
-        { Set-EntraSignedInUserPassword -NewPassword } | Should -Throw "Missing an argument for parameter 'NewPassword'*"
-    }  
-    It "Should fail when NewPassword is empty" {
-        { Set-EntraSignedInUserPassword -NewPassword "" } | Should -Throw "Cannot process argument transformation on parameter 'NewPassword'*"
-    }
-
-    It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraSignedInUserPassword"
-
-        Set-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
-
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraSignedInUserPassword"
-
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
-        }
-    }   
-
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
-    
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { 
-                    Set-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword -Debug 
-                } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference
-                $DebugPreference = $originalDebugPreference
-            }
-        }
-        
-    }
-}
-
-Describe "Tests for the alias Update-EntraSignedInUserPassword"{
-    Context "Test for the alias Update-EntraSignedInUserPassword" {
+Describe "Tests for Update-EntraSignedInUserPassword"{
+    Context "Test for Update-EntraSignedInUserPassword" {
     It "should return empty object"{
         $result = Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
         $result | Should -BeNullOrEmpty
