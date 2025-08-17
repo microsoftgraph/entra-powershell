@@ -11,7 +11,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgUser -MockWith {} -ModuleName Microsoft.Entra.Users
+    Mock -CommandName Update-MgBetaUser -MockWith {} -ModuleName Microsoft.Entra.Users
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.AccessAsUser.All") } } -ModuleName Microsoft.Entra.Users
 }
   
@@ -24,7 +24,7 @@ Describe "Set-EntraUserPasswordProfile" {
             $result = Set-EntraUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             $newPassword = "New@12345"
@@ -69,7 +69,7 @@ Describe "Set-EntraUserPasswordProfile" {
             { Set-EntraUserPasswordProfile -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
@@ -79,7 +79,7 @@ Describe "Set-EntraUserPasswordProfile" {
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
         It "Should contain ForceChangePasswordNextSignInWithMfa in parameters when passed EnforceChangePasswordPolicy to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
@@ -96,7 +96,7 @@ Describe "Set-EntraUserPasswordProfile" {
             $result = Set-EntraUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
@@ -130,7 +130,7 @@ Describe "Set-EntraUserPassword" {
             $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
 
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Users -Times 1
         }
         It "Should fail when UserId is empty" {
             $newPassword = "New@12345"
@@ -175,7 +175,7 @@ Describe "Set-EntraUserPassword" {
             { Set-EntraUserPassword -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
@@ -185,7 +185,7 @@ Describe "Set-EntraUserPassword" {
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
         It "Should contain ForceChangePasswordNextSignInWithMfa in parameters when passed EnforceChangePasswordPolicy to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
+            Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
 
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
@@ -202,7 +202,7 @@ Describe "Set-EntraUserPassword" {
             $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
-            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }

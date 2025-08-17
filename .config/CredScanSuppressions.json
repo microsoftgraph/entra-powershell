@@ -26,6 +26,10 @@
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
+        "file": "test\\Entra\\Users\\Set-EntraUserPasswordProfile.Tests.ps1",
+        "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
         "file": "test\\EntraBeta\\Users\\Update-EntraBetaSignedInUserPassword.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
@@ -43,6 +47,10 @@
       },
       {
         "file": "test\\EntraBeta\\Users\\New-EntraBetaUser.Tests.ps1",
+        "_justification": "Unit test file has a sample Password used in mocking."
+      },
+      {
+        "file": "test\\EntraBeta\\Users\\Set-EntraBetaUserPasswordProfile.Tests.ps1",
         "_justification": "Unit test file has a sample Password used in mocking."
       },
       {
