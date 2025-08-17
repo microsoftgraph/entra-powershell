@@ -89,13 +89,13 @@ Describe "Set-EntraUserPasswordProfile" {
             $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
             $result = Set-EntraUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -195,13 +195,13 @@ Describe "Set-EntraUserPassword" {
             $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
             $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
             $result | Should -BeNullOrEmpty
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
