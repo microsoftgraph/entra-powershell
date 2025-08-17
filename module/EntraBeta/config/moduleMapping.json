@@ -23,7 +23,7 @@
   "Set-EntraBetaUserExtension": "Users",
   "Set-EntraBetaUserLicense": "Users",
   "Set-EntraBetaUserManager": "Users",
-  "Set-EntraBetaUserPassword": "Users",
+  "Set-EntraBetaUserPasswordProfile": "Users",
   "Set-EntraBetaUserThumbnailPhoto": "Users",
   "Update-EntraBetaSignedInUserPassword": "Users",
   "Get-EntraBetaGroup": "Groups",

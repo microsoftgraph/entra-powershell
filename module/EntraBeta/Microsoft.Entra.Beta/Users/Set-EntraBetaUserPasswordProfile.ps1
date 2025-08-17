@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Set-EntraBetaUserPassword {
+function Set-EntraBetaUserPasswordProfile {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
@@ -103,3 +103,4 @@ function Set-EntraBetaUserPassword {
     }     
 }
 
+Set-Alias -Name Set-EntraBetaUserPassword -Value Set-EntraBetaUserPasswordProfile -Scope Global -Force

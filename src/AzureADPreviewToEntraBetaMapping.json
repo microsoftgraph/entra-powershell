@@ -308,7 +308,7 @@
 	"Set-AzureADUserExtension" : "Set-EntraBetaUserExtension",
 	"Set-AzureADUserLicense" : "Set-EntraBetaUserLicense",
 	"Set-AzureADUserManager" : "Set-EntraBetaUserManager",
-	"Set-AzureADUserPassword" : "Set-EntraBetaUserPassword",
+	"Set-AzureADUserPassword" : "Set-EntraBetaUserPasswordProfile",
 	"Set-AzureADUserThumbnailPhoto" : "Set-EntraBetaUserThumbnailPhoto",
 	"Update-AzureADSignedInUserPassword" : "Update-EntraBetaSignedInUserPassword"
 }

@@ -128,7 +128,7 @@ class CompatibilityAdapterBuilder {
         'Set-EntraBetaPolicy',
         'Set-EntraBetaCustomSecurityAttributeDefinition',
         'Get-EntraBetaPrivilegedResource',
-        'Set-EntraBetaUserPassword',
+        'Set-EntraBetaUserPasswordProfile',
         'New-EntraBetaApplicationFromApplicationTemplate',
         'Set-EntraBetaPrivilegedRoleSetting',
         'Remove-EntraBetaApplicationKey',

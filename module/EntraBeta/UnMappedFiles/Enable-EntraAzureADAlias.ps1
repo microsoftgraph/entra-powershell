@@ -130,7 +130,7 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name New-AzureADMSPermissionGrantPolicy -Value New-EntraBetaPermissionGrantPolicy -Scope Global -Force
    Set-Alias -Name New-AzureADMSApplication -Value New-EntraBetaApplication -Scope Global -Force
    Set-Alias -Name Get-AzureADTenantDetail -Value Get-EntraBetaTenantDetail -Scope Global -Force
-   Set-Alias -Name Set-AzureADUserPassword -Value Set-EntraBetaUserPassword -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserPassword -Value Set-EntraBetaUserPasswordProfile -Scope Global -Force
    Set-Alias -Name Get-AzureADPolicyAppliedObject -Value Get-EntraBetaPolicyAppliedObject -Scope Global -Force
    Set-Alias -Name Get-AzureADServiceAppRoleAssignedTo -Value Get-EntraBetaServicePrincipalAppRoleAssignedTo -Scope Global -Force
    Set-Alias -Name Get-AzureADMSGroupLifecyclePolicy -Value Get-EntraBetaGroupLifecyclePolicy -Scope Global -Force
