@@ -35,7 +35,7 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name Get-AzureADServiceAppRoleAssignedTo -Value Get-EntraServicePrincipalAppRoleAssignedTo -Scope Global -Force
    Set-Alias -Name Get-AzureADMSNamedLocationPolicy -Value Get-EntraNamedLocationPolicy -Scope Global -Force
    Set-Alias -Name Get-AzureADContact -Value Get-EntraContact -Scope Global -Force
-   Set-Alias -Name Set-AzureADUserPassword -Value Set-EntraUserPassword -Scope Global -Force
+   Set-Alias -Name Set-AzureADUserPassword -Value Set-EntraUserPasswordProfile -Scope Global -Force
    Set-Alias -Name Get-AzureADApplicationKeyCredential -Value Get-EntraApplicationKeyCredential -Scope Global -Force
    Set-Alias -Name Get-AzureADContactDirectReport -Value Get-EntraContactDirectReport -Scope Global -Force
    Set-Alias -Name New-AzureADApplicationExtensionProperty -Value New-EntraApplicationExtensionProperty -Scope Global -Force

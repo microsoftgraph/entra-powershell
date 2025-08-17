@@ -226,7 +226,7 @@
 	"Set-AzureADUserExtension" : "Set-EntraUserExtension",
 	"Set-AzureADUserLicense" : "Set-EntraUserLicense",
 	"Set-AzureADUserManager" : "Set-EntraUserManager",
-	"Set-AzureADUserPassword" : "Set-EntraUserPassword",
+	"Set-AzureADUserPassword" : "Set-EntraUserPasswordProfile",
 	"Set-AzureADUserThumbnailPhoto" : "Set-EntraUserThumbnailPhoto",
 	"Update-AzureADSignedInUserPassword" : "Update-EntraSignedInUserPassword"
 }

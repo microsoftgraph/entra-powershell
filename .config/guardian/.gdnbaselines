@@ -48,7 +48,7 @@
       "alternativeSignatures": [
         "660ca63406b064dac3e96b764aabf0bd1b2c29269fb8f1cbbb4595bacfafefe8"
       ],
-      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraUserPasswordProfile.Tests.ps1",
       "line": 39,
       "memberOf": [
         "default"
@@ -64,7 +64,7 @@
       "alternativeSignatures": [
         "0e1fc42c5c7da05e5e268872ea0862d31b06c5943885b84c03e4424bedd5c239"
       ],
-      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraUserPasswordProfile.Tests.ps1",
       "line": 69,
       "memberOf": [
         "default"
@@ -80,7 +80,7 @@
       "alternativeSignatures": [
         "999c386993d4953cefc6cfed690cb62d62e8350a45b17fbcbe6f23d4df9492b3"
       ],
-      "target": "test/module/Entra/Set-EntraUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Set-EntraUserPasswordProfile.Tests.ps1",
       "line": 111,
       "memberOf": [
         "default"
