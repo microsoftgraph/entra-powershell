@@ -118,6 +118,23 @@ Describe "Set-EntraUserPasswordProfile" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
+        It "Should execute successfully without throwing an error when using parameter aliases" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
+            $newPassword = "New@12345"
+            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraUserPasswordProfile -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true -Debug } | Should -Not -Throw
+            }
+            finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }      
 

@@ -6,9 +6,11 @@ function Set-EntraBetaUserPasswordProfile {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
+        [Alias('ForceChangePasswordNextSignIn')]
         [System.Boolean] $ForceChangePasswordNextLogin,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "If set to true, force the user to change their password.")]
+        [Alias('ForceChangePasswordNextSignInWithMfa')]
         [System.Boolean] $EnforceChangePasswordPolicy,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.")]
