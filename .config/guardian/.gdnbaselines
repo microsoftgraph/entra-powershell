@@ -96,7 +96,7 @@
       "alternativeSignatures": [
         "a1562a9034f1e3e1b3f4469395192d20944cec736650f1c5e9d2770a14734188"
       ],
-      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
       "line": 13,
       "memberOf": [
         "default"
@@ -112,7 +112,7 @@
       "alternativeSignatures": [
         "9235224cea5d1fd6c3804bf4140c4cdc6d847a2e665e3539236f553f4d49b381"
       ],
-      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
       "line": 14,
       "memberOf": [
         "default"
@@ -128,7 +128,7 @@
       "alternativeSignatures": [
         "083bf8e5f1f602db96875486592d7f4f147f816d7b43a64c757977a2f2be816d"
       ],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 43,
       "memberOf": [
         "default"
@@ -144,7 +144,7 @@
       "alternativeSignatures": [
         "c4b7bfd96922301823bbe12f66d68bed59511c6e542d6a6c8f07f7a790fdd2d6"
       ],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 44,
       "memberOf": [
         "default"
@@ -160,7 +160,7 @@
       "alternativeSignatures": [
         "657f1350c4fe5b762fca53b73c0d552244216b23b0de59d949e2ff2c1346cc56"
       ],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 62,
       "memberOf": [
         "default"
@@ -176,7 +176,7 @@
       "alternativeSignatures": [
         "9340acb9bd4f081de858b09bff7152084e6dc96153b6d071168bf3dfc9be3d3b"
       ],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 63,
       "memberOf": [
         "default"
@@ -218,7 +218,7 @@
     "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2": {
       "signature": "58713463161cdc938252fba801ccde6c337f09d4407a41d6902e6bc4d9f6bde2",
       "alternativeSignatures": [],
-      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
       "line": 13,
       "memberOf": [
         "default"
@@ -232,7 +232,7 @@
     "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e": {
       "signature": "d6495c0e685f44d528d82c01d7657b3f0e3710810105115db140afb8b6ddbc2e",
       "alternativeSignatures": [],
-      "target": "test/module/Entra/Set-EntraSignedInUserPassword.Tests.ps1",
+      "target": "test/module/Entra/Update-EntraSignedInUserPassword.Tests.ps1",
       "line": 14,
       "memberOf": [
         "default"
@@ -288,7 +288,7 @@
     "94361dde82412fd833290296faa24755f1c0e91236d9b17754629400220176da": {
       "signature": "94361dde82412fd833290296faa24755f1c0e91236d9b17754629400220176da",
       "alternativeSignatures": [],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 43,
       "memberOf": [
         "default"
@@ -302,7 +302,7 @@
     "b6363ed44b15dd493cccd5b7aca883dac6f74d7906f96aa096ca65b76b594118": {
       "signature": "b6363ed44b15dd493cccd5b7aca883dac6f74d7906f96aa096ca65b76b594118",
       "alternativeSignatures": [],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 44,
       "memberOf": [
         "default"
@@ -316,7 +316,7 @@
     "0525c4cda249bd24d516359811c840e6f9ef7976ef4dc52bc84d63cc20dd729d": {
       "signature": "0525c4cda249bd24d516359811c840e6f9ef7976ef4dc52bc84d63cc20dd729d",
       "alternativeSignatures": [],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 62,
       "memberOf": [
         "default"
@@ -330,7 +330,7 @@
     "c192fe1b37f71243cc5cee41a6a8891a48f8b4e72d87705dd8f183cc17c53a8e": {
       "signature": "c192fe1b37f71243cc5cee41a6a8891a48f8b4e72d87705dd8f183cc17c53a8e",
       "alternativeSignatures": [],
-      "target": "test/module/EntraBeta/Set-EntraBetaSignedInUserPassword.Tests.ps1",
+      "target": "test/module/EntraBeta/Update-EntraBetaSignedInUserPassword.Tests.ps1",
       "line": 63,
       "memberOf": [
         "default"
