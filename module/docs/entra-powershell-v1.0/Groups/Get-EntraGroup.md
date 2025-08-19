@@ -33,7 +33,7 @@ Get-EntraGroup
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraGroup
@@ -50,6 +50,20 @@ Get-EntraGroup
  -GroupId <String>
  [-All]
  [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Get-EntraGroup
+ -Property <String[]
+ -AppendSelected
+ [-GroupId <String>]
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-SearchString <String>]
  [<CommonParameters>]
 ```
 
@@ -206,6 +220,21 @@ bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {
 
 This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
 
+### Example 9: Get groups with specific properties and append the selected properties
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Property IsSubscribedByMail -AppendSelected | Select-Object Id, DisplayName, MailEnabled, Visibility, IsSubscribedByMail | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName                MailEnabled Visibility IsSubscribedByMail
+--                                   -----------                --------------- ---------- ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           Public     False
+```
+
+This example demonstrates how to append a selected property to the default properties.
+
 ## PARAMETERS
 
 ### -All
@@ -231,7 +260,7 @@ This parameter controls which objects are returned.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetQuery
+Parameter Sets: GetQuery, Append
 Aliases:
 
 Required: False
@@ -247,7 +276,7 @@ The unique identifier of a group in Microsoft Entra ID (GroupId)
 
 ```yaml
 Type: System.String
-Parameter Sets: GetById
+Parameter Sets: GetById, Append
 Aliases: ObjectId
 
 Required: True
@@ -263,7 +292,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetValue
+Parameter Sets: GetValue, Append
 Aliases:
 
 Required: False
@@ -279,7 +308,7 @@ Specifies the maximum number of records to return.
 
 ```yaml
 Type: System.Int32
-Parameter Sets: GetQuery
+Parameter Sets: GetQuery, Append
 Aliases: Limit
 
 Required: False
@@ -301,6 +330,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+List all pages.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
