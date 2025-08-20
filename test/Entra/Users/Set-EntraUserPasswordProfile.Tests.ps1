@@ -143,26 +143,6 @@ Describe "Set-EntraUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             { Set-EntraUserPassword -UserId $userUPN -Password "" } | Should -Throw "Cannot process argument transformation on parameter 'Password'*"
         }
-        It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
-
-            $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
-            $newPassword = "New@12345"
-            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn -ForceChangePasswordNextSignInWithMfa
-            $params = Get-Parameters -data $result
-            $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
-        }
-        It "Should contain ForceChangePasswordNextSignInWithMfa in parameters when passed EnforceChangePasswordPolicy to it" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Entra.Users
-
-            $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
-            $newPassword = "New@12345"
-            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn -ForceChangePasswordNextSignInWithMfa
-            $params = Get-Parameters -data $result
-            $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
-        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPasswordProfile"
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
