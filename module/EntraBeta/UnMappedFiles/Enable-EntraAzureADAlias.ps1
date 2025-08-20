@@ -158,7 +158,7 @@ function Enable-EntraAzureADAlias {
    Set-Alias -Name Get-AzureADDeviceRegisteredUser -Value Get-EntraBetaDeviceRegisteredUser -Scope Global -Force
    Set-Alias -Name Remove-AzureADGroupMember -Value Remove-EntraBetaGroupMember -Scope Global -Force
    Set-Alias -Name New-AzureADMSConditionalAccessPolicy -Value New-EntraBetaConditionalAccessPolicy -Scope Global -Force
-   Set-Alias -Name Update-AzureADSignedInUserPassword -Value Update-EntraBetaSignedInUserPassword -Scope Global -Force
+   Set-Alias -Name Update-AzureADSignedInUserPassword -Value Set-EntraBetaSignedInUserPassword -Scope Global -Force
    Set-Alias -Name Set-AzureADMSAdministrativeUnit -Value Set-EntraBetaAdministrativeUnit -Scope Global -Force
    Set-Alias -Name Get-AzureADUserOAuth2PermissionGrant -Value Get-EntraBetaUserOAuth2PermissionGrant -Scope Global -Force
    Set-Alias -Name New-AzureADPrivilegedRoleAssignment -Value New-EntraBetaPrivilegedRoleAssignment -Scope Global -Force
