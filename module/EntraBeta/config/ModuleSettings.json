@@ -6,8 +6,7 @@
     "destinationModuleName" : [
       "Microsoft.Graph.Beta.DirectoryObjects",
       "Microsoft.Graph.Beta.Users",
-      "Microsoft.Graph.Beta.Users.Actions", 
-      "Microsoft.Graph.Beta.Users.Functions", 
+      "Microsoft.Graph.Beta.Users.Actions",
       "Microsoft.Graph.Beta.Groups", 
       "Microsoft.Graph.Beta.Identity.DirectoryManagement", 
       "Microsoft.Graph.Beta.Identity.Governance", 

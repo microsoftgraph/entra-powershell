@@ -1,5 +1,5 @@
 {
-    "Microsoft.Entra.Beta.Users":["Microsoft.Graph.Beta.Users","Microsoft.Graph.Beta.Users.Actions","Microsoft.Graph.Beta.Users.Functions"],
+    "Microsoft.Entra.Beta.Users":["Microsoft.Graph.Beta.Users","Microsoft.Graph.Beta.Users.Actions"],
     "Microsoft.Entra.Beta.Authentication":["Microsoft.Graph.Authentication"],
     "Microsoft.Entra.Beta.Groups":["Microsoft.Graph.Beta.Groups"],
     "Microsoft.Entra.Beta.DirectoryManagement":["Microsoft.Graph.Beta.Identity.DirectoryManagement"],

@@ -1,5 +1,5 @@
 {
-    "Microsoft.Entra.Users":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions","Microsoft.Graph.Users.Functions"],
+    "Microsoft.Entra.Users":["Microsoft.Graph.Users","Microsoft.Graph.Users.Actions"],
     "Microsoft.Entra.Authentication":["Microsoft.Graph.Authentication"],
     "Microsoft.Entra.Groups":["Microsoft.Graph.Groups"],
     "Microsoft.Entra.DirectoryManagement":["Microsoft.Graph.Identity.DirectoryManagement"],
