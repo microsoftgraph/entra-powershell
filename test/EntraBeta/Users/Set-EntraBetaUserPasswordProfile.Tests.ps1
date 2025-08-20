@@ -21,7 +21,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Beta.Users -Times 1
@@ -38,7 +38,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
         }
         It "Should fail when Password is empty" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
-            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true } | Should -Throw "Missing an argument for parameter 'Password'*"
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true } | Should -Throw "Missing an argument for parameter 'Password'*"
         }
         It "Should fail when Password is invalid" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
@@ -48,25 +48,25 @@ Describe "Set-EntraBetaUserPasswordProfile" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when ForceChangePasswordNextLogin is invalid" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is empty" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignInWithMfa } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is invalid" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignInWithMfa xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
             Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Users
@@ -74,7 +74,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
@@ -84,7 +84,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
         }
@@ -93,7 +93,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserPasswordProfile"
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
@@ -111,7 +111,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true -Debug } | Should -Not -Throw
+                { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
@@ -128,7 +128,7 @@ Describe "Set-EntraBetaUserPasswordProfile" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaUserPasswordProfile -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true -Debug } | Should -Not -Throw
+                { Set-EntraBetaUserPasswordProfile -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            
@@ -144,7 +144,7 @@ Describe "Set-EntraBetaUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Beta.Users -Times 1
@@ -171,25 +171,25 @@ Describe "Set-EntraBetaUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
+            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn } | Should -Throw "Missing an argument for parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when ForceChangePasswordNextLogin is invalid" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
+            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn xyz } | Should -Throw "Cannot process argument transformation on parameter 'ForceChangePasswordNextLogin'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is empty" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
+            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignInWithMfa } | Should -Throw "Missing an argument for parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should fail when EnforceChangePasswordPolicy is invalid" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
+            { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignInWithMfa xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
         It "Should contain ForceChangePasswordNextSignIn in parameters when passed ForceChangePasswordNextLogin to it" {
             Mock -CommandName Update-MgBetaUser -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Users
@@ -197,7 +197,7 @@ Describe "Set-EntraBetaUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignIn | Should -Be $true
         }
@@ -207,7 +207,7 @@ Describe "Set-EntraBetaUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $params = Get-Parameters -data $result
             $params.PasswordProfile.ForceChangePasswordNextSignInWithMfa | Should -Be $true
         }
@@ -216,7 +216,7 @@ Describe "Set-EntraBetaUserPassword" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"
             $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $result = Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true
             $result | Should -BeNullOrEmpty
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUserPasswordProfile"
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Entra.Beta.Users -Times 1 -ParameterFilter {
@@ -234,7 +234,7 @@ Describe "Set-EntraBetaUserPassword" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true -Debug } | Should -Not -Throw
+                { Set-EntraBetaUserPassword -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn $true -ForceChangePasswordNextSignInWithMfa $true -Debug } | Should -Not -Throw
             }
             finally {
                 # Restore original confirmation preference            

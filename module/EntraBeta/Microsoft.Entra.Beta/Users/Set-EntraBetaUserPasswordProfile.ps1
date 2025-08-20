@@ -6,12 +6,12 @@ function Set-EntraBetaUserPasswordProfile {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
-        [Alias('ForceChangePasswordNextSignIn')]
-        [System.Boolean] $ForceChangePasswordNextLogin,
+        [Alias('ForceChangePasswordNextLogin')]
+        [System.Boolean] $ForceChangePasswordNextSignIn,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "If set to true, force the user to change their password.")]
-        [Alias('ForceChangePasswordNextSignInWithMfa')]
-        [System.Boolean] $EnforceChangePasswordPolicy,
+        [Alias('EnforceChangePasswordPolicy')]
+        [System.Boolean] $ForceChangePasswordNextSignInWithMfa,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -84,16 +84,16 @@ function Set-EntraBetaUserPasswordProfile {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) {
-            $ForceChangePasswordNextSignIn = $PSBoundParameters["ForceChangePasswordNextLogin"]
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignIn"]) {
+            $ForceChangePasswordNextSignIn = $PSBoundParameters["ForceChangePasswordNextSignIn"]
         }
-        if ($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) {
-            $EnforceChangePasswordPolicy = $PSBoundParameters["EnforceChangePasswordPolicy"]
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]) {
+            $ForceChangePasswordNextSignInWithMfa = $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]
         }
 
         $PasswordProfile = @{}
-        if ($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
-        if ($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $EnforceChangePasswordPolicy }
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignIn"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $ForceChangePasswordNextSignInWithMfa }
         if ($null -ne $PSBoundParameters["Password"]) { $PasswordProfile["password"] = $PlainPassword }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
