@@ -1,6 +1,6 @@
 ---
 author: msewaweru
-description: This article provides details on the Update-EntraSignedInUserPassword command.
+description: This article provides details on the Set-EntraSignedInUserPassword command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
@@ -9,12 +9,12 @@ ms.author: eunicewaweru
 ms.date: 08/20/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraSignedInUserPassword
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraSignedInUserPassword
 schema: 2.0.0
-title: Update-EntraSignedInUserPassword
+title: Set-EntraSignedInUserPassword
 ---
 
-# Update-EntraSignedInUserPassword
+# Set-EntraSignedInUserPassword
 
 ## SYNOPSIS
 
@@ -23,7 +23,7 @@ Updates the password for the signed-in user.
 ## SYNTAX
 
 ```powershell
-Update-EntraSignedInUserPassword
+Set-EntraSignedInUserPassword
  -NewPassword <SecureString>
  -CurrentPassword <SecureString>
  [<CommonParameters>]
@@ -31,7 +31,7 @@ Update-EntraSignedInUserPassword
 
 ## DESCRIPTION
 
-The `Update-EntraSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
+The `Set-EntraSignedInUserPassword` cmdlet with the alias `Update-EntraSignedInUserPassword` updates the password for the signed-in user in Microsoft Entra ID.
 
 Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
@@ -43,7 +43,7 @@ Enable users to update their own passwords. Any user can change their password w
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $currentPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
 $newPassword = ConvertTo-SecureString '<strong-password>' -AsPlainText -Force
-Update-EntraSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
+Set-EntraSignedInUserPassword -CurrentPassword $currentPassword -NewPassword $newPassword
 ```
 
 This example shows how to update the password for the signed-in user.

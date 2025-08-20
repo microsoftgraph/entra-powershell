@@ -310,5 +310,5 @@
 	"Set-AzureADUserManager" : "Set-EntraBetaUserManager",
 	"Set-AzureADUserPassword" : "Set-EntraBetaUserPasswordProfile",
 	"Set-AzureADUserThumbnailPhoto" : "Set-EntraBetaUserThumbnailPhoto",
-	"Update-AzureADSignedInUserPassword" : "Update-EntraBetaSignedInUserPassword"
+	"Update-AzureADSignedInUserPassword" : "Set-EntraBetaSignedInUserPassword"
 }

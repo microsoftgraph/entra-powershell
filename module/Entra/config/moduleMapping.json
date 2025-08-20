@@ -214,7 +214,7 @@
   "Set-EntraUserPasswordProfile": "Users",
   "Set-EntraUserThumbnailPhoto": "Users",
   "Update-EntraOauth2PermissionGrant":"SignIns",
-  "Update-EntraSignedInUserPassword": "Users",
+  "Set-EntraSignedInUserPassword": "Users",
   "Reset-EntraStrongAuthenticationMethodByUpn": "Authentication",
   "Get-EntraAttributeSet": "DirectoryManagement",
   "New-EntraAttributeSet": "DirectoryManagement",

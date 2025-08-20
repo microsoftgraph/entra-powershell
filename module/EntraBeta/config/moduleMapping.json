@@ -25,7 +25,7 @@
   "Set-EntraBetaUserManager": "Users",
   "Set-EntraBetaUserPasswordProfile": "Users",
   "Set-EntraBetaUserThumbnailPhoto": "Users",
-  "Update-EntraBetaSignedInUserPassword": "Users",
+  "Set-EntraBetaSignedInUserPassword": "Users",
   "Get-EntraBetaGroup": "Groups",
   "New-EntraBetaGroup": "Groups",
   "Set-EntraBetaGroup": "Groups",
