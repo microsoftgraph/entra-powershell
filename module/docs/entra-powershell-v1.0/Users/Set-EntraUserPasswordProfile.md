@@ -24,8 +24,8 @@ Sets the password of a user.
 
 ```powershell
 Set-EntraUserPasswordProfile
- [-ForceChangePasswordNextSignIn <Boolean>]
- [-ForceChangePasswordNextSignInWithMfa <Boolean>]
+ [-ForceChangePasswordNextSignIn]
+ [-ForceChangePasswordNextSignInWithMfa]
  -UserId <String>
  -Password <SecureString>
  [<CommonParameters>]
@@ -59,14 +59,14 @@ This command sets the specified user's password.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
-Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignInWithMfa $True
+Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignInWithMfa
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextSignInWithMfa parameter.
 
 - `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
-- `-ForceChangePasswordNextSignInWithMfa` parameter force the user to change their password, if set to true.
+- `-ForceChangePasswordNextSignInWithMfa` parameter force the user to change their password.
 
 ### Example 3: Set a user's password with ForceChangePasswordNextSignIn parameter
 
@@ -74,7 +74,7 @@ This command sets the specified user's password with ForceChangePasswordNextSign
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignIn $True
+Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignIn
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextSignIn parameter.
@@ -90,14 +90,14 @@ This command sets the specified user's password with ForceChangePasswordNextSign
 If set to true, force the user to change their password.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -106,14 +106,14 @@ Accept wildcard characters: False
 Forces a user to change their password during their next sign in.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

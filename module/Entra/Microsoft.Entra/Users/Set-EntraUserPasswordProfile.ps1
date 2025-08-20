@@ -7,7 +7,7 @@ function Set-EntraUserPasswordProfile {
     param (         
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
         [Alias('ForceChangePasswordNextLogin')]
-        [System.Boolean] $ForceChangePasswordNextSignIn,
+        [switch] $ForceChangePasswordNextSignIn,
 			   
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -27,7 +27,7 @@ function Set-EntraUserPasswordProfile {
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "If set to true, force the user to change their password.")]
         [Alias('EnforceChangePasswordPolicy')]
-        [System.Boolean] $ForceChangePasswordNextSignInWithMfa
+        [switch] $ForceChangePasswordNextSignInWithMfa
     )
 
     begin {
@@ -84,10 +84,10 @@ function Set-EntraUserPasswordProfile {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignIn"]) {
-            $ForceChangePasswordNextSignIn = $PSBoundParameters["ForceChangePasswordNextSignIn"]
+            $ForceChangePasswordNextSignIn = $true
         }
         if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]) {
-            $ForceChangePasswordNextSignInWithMfa = $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]
+            $ForceChangePasswordNextSignInWithMfa = $true
         }
 
         $PasswordProfile = @{}
