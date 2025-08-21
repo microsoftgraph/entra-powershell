@@ -4,16 +4,14 @@
 # ------------------------------------------------------------------------------ 
 function Remove-EntraBetaPrivateAccessApplicationSegment {
 
-    [CmdletBinding(ParameterSetName = 'Default')]
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]
         [Parameter(Mandatory = $True)]
-        [System.String]
-        $ApplicationId,
+        [System.String] $ApplicationId,
 
         [Parameter(Mandatory = $False)]
-        [System.String]
-        $ApplicationSegmentId
+        [System.String] $ApplicationSegmentId
     )
 
     PROCESS {
