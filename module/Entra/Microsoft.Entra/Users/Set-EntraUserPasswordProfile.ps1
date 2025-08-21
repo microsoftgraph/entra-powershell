@@ -5,7 +5,7 @@
 function Set-EntraUserPasswordProfile {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (         
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
         [Alias('ForceChangePasswordNextLogin')]
         [switch] $ForceChangePasswordNextSignIn,
 			   
@@ -25,7 +25,7 @@ function Set-EntraUserPasswordProfile {
         [ValidateNotNullOrEmpty()]
         [System.Security.SecureString] $Password,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "If set to true, force the user to change their password.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set, force the user to change their password.")]
         [Alias('EnforceChangePasswordPolicy')]
         [switch] $ForceChangePasswordNextSignInWithMfa
     )
