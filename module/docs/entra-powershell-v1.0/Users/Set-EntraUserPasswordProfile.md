@@ -1,6 +1,6 @@
 ---
 author: msewaweru
-description: This article provides details on the Set-EntraUserPassword command.
+description: This article provides details on the Set-EntraUserPasswordProfile command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
@@ -9,12 +9,12 @@ ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraUserPassword
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraUserPasswordProfile
 schema: 2.0.0
-title: Set-EntraUserPassword
+title: Set-EntraUserPasswordProfile
 ---
 
-# Set-EntraUserPassword
+# Set-EntraUserPasswordProfile
 
 ## SYNOPSIS
 
@@ -23,9 +23,9 @@ Sets the password of a user.
 ## SYNTAX
 
 ```powershell
-Set-EntraUserPassword
- [-ForceChangePasswordNextLogin <Boolean>]
- [-EnforceChangePasswordPolicy <Boolean>]
+Set-EntraUserPasswordProfile
+ [-ForceChangePasswordNextSignIn]
+ [-ForceChangePasswordNextSignInWithMfa]
  -UserId <String>
  -Password <SecureString>
  [<CommonParameters>]
@@ -33,7 +33,7 @@ Set-EntraUserPassword
 
 ## DESCRIPTION
 
-The `Set-EntraUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
+The `Set-EntraUserPasswordProfile` cmdlet with alias `Set-EntraUserPassword` sets the password for a user in Microsoft Entra ID.
 
 Any user can update their password without belonging to any administrator role.
 
@@ -45,7 +45,7 @@ Any user can update their password without belonging to any administrator role.
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword = '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword
+Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
@@ -53,67 +53,67 @@ This command sets the specified user's password.
 - `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
 
-### Example 2: Set a user's password with EnforceChangePasswordPolicy parameter
+### Example 2: Set a user's password with ForceChangePasswordNextSignInWithMfa parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword -EnforceChangePasswordPolicy $True
+Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignInWithMfa
 ```
 
-This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
+This command sets the specified user's password with ForceChangePasswordNextSignInWithMfa parameter.
 
 - `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
-- `-EnforceChangePasswordPolicy` parameter force the user to change their password, if set to true.
+- `-ForceChangePasswordNextSignInWithMfa` parameter force the user to change their password.
 
-### Example 3: Set a user's password with ForceChangePasswordNextLogin parameter
+### Example 3: Set a user's password with ForceChangePasswordNextSignIn parameter
 
 ```powershell
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= '<strong-password>'
 $securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraUserPassword -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextLogin $True
+Set-EntraUserPasswordProfile -UserId 'SawyerM@contoso.com' -Password $securePassword -ForceChangePasswordNextSignIn
 ```
 
-This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
+This command sets the specified user's password with ForceChangePasswordNextSignIn parameter.
 
 - `-UserId` parameter specifies the ID of a user in Microsoft Entra ID.
 - `-Password` parameter specifies the password to set.
-- `-ForceChangePasswordNextLogin` parameter forces a user to change their password during their next log in.
+- `-ForceChangePasswordNextSignIn` parameter forces a user to change their password during their next log in.
 
 ## PARAMETERS
 
-### -EnforceChangePasswordPolicy
+### -ForceChangePasswordNextSignInWithMfa
 
 If set to true, force the user to change their password.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ForceChangePasswordNextLogin
+### -ForceChangePasswordNextSignIn
 
 Forces a user to change their password during their next sign in.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

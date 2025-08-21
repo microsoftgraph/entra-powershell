@@ -2,14 +2,16 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information. 
 # ------------------------------------------------------------------------------ 
-function Set-EntraBetaUserPassword {
+function Set-EntraBetaUserPasswordProfile {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (                
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
-        [System.Boolean] $ForceChangePasswordNextLogin,
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies whether the user must change their password at next sign-in.")]
+        [Alias('ForceChangePasswordNextLogin')]
+        [switch] $ForceChangePasswordNextSignIn,
                 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "If set to true, force the user to change their password.")]
-        [System.Boolean] $EnforceChangePasswordPolicy,
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set, force the user to change their password.")]
+        [Alias('EnforceChangePasswordPolicy')]
+        [switch] $ForceChangePasswordNextSignInWithMfa,
                 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -82,16 +84,16 @@ function Set-EntraBetaUserPassword {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) {
-            $ForceChangePasswordNextSignIn = $PSBoundParameters["ForceChangePasswordNextLogin"]
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignIn"]) {
+            $ForceChangePasswordNextSignIn = $true
         }
-        if ($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) {
-            $EnforceChangePasswordPolicy = $PSBoundParameters["EnforceChangePasswordPolicy"]
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]) {
+            $ForceChangePasswordNextSignInWithMfa = $true
         }
 
         $PasswordProfile = @{}
-        if ($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
-        if ($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $ForceChangePasswordNextSignInWithMfa }
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignIn"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
+        if ($null -ne $PSBoundParameters["ForceChangePasswordNextSignInWithMfa"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $ForceChangePasswordNextSignInWithMfa }
         if ($null -ne $PSBoundParameters["Password"]) { $PasswordProfile["password"] = $PlainPassword }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -103,3 +105,4 @@ function Set-EntraBetaUserPassword {
     }     
 }
 
+Set-Alias -Name Set-EntraBetaUserPassword -Value Set-EntraBetaUserPasswordProfile -Scope Global -Force

@@ -211,7 +211,7 @@
   "Set-EntraUserExtension": "Users",
   "Set-EntraUserLicense": "Users",
   "Set-EntraUserManager": "Users",
-  "Set-EntraUserPassword": "Users",
+  "Set-EntraUserPasswordProfile": "Users",
   "Set-EntraUserThumbnailPhoto": "Users",
   "Update-EntraOauth2PermissionGrant":"SignIns",
   "Set-EntraSignedInUserPassword": "Users",
