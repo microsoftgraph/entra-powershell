@@ -14,19 +14,19 @@ BeforeAll {
 
 Describe "Remove-EntraBetaPrivateAccessApplicationSegment" {
     It "Should fail when ApplicationId is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
+        { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Cannot process command because of one or more missing mandatory parameters: ApplicationId*"
     }
 
     It "Should fail when ApplicationId value is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
     }
 
     It "Should fail when ApplicationId is null" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId $null } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId $null } | Should -Throw "Cannot validate argument on parameter 'ApplicationId'*"
     }
     
     It "Should fail when ApplicationSegmentId value is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" -ApplicationSegmentId } | Should -Throw "Missing an argument for parameter 'ApplicationSegmentId'. Specify a parameter of type 'System.String' and try again."
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" -ApplicationSegmentId } | Should -Throw "Missing an argument for parameter 'ApplicationSegmentId'*"
     }
 
     It "Should execute successfully without throwing an error" {
