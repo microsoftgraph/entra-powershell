@@ -7,10 +7,11 @@ function Remove-EntraBetaPrivateAccessApplicationSegment {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('ObjectId')]
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $True, HelpMessage = "The object ID of a Private Access application object.")]
+        [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
 
-        [Parameter(Mandatory = $False)]
+        [Parameter(Mandatory = $False, HelpMessage = "The application segment ID of the application segment to be deleted.")]
         [System.String] $ApplicationSegmentId
     )
 

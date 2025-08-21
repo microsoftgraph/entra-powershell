@@ -14,19 +14,19 @@ BeforeAll {
 
 Describe "Remove-EntraBetaPrivateAccessApplicationSegment" {
     It "Should fail when ApplicationId is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Missing an argument for parameter 'ApplicationId'. Specify a parameter of type 'System.String' and try again."
+        { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
     }
 
-    It "Should fail when ApplicationId is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId $null } | Should -Throw "Missing an argument for parameter 'ApplicationId'. Specify a parameter of type 'System.String' and try again."
+    It "Should fail when ApplicationId value is missing" {
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
+    }
+
+    It "Should fail when ApplicationId is null" {
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId $null } | Should -Throw "Cannot process argument transformation on parameter '-ApplicationId'*"
     }
     
-    It "Should fail when ApplicationSegmentId is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" } | Should -Throw "Missing an argument for parameter 'ApplicationSegmentId'. Specify a parameter of type 'System.String' and try again."
-    }   
-
-    It "Should fail when ApplicationSegmentId is missing" {
-        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" -ApplicationSegmentId $null } | Should -Throw "Missing an argument for parameter 'ApplicationSegmentId'. Specify a parameter of type 'System.String' and try again."
+    It "Should fail when ApplicationSegmentId value is missing" {
+        { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" -ApplicationSegmentId } | Should -Throw "Missing an argument for parameter 'ApplicationSegmentId'. Specify a parameter of type 'System.String' and try again."
     }
 
     It "Should execute successfully without throwing an error" {
@@ -37,6 +37,21 @@ Describe "Remove-EntraBetaPrivateAccessApplicationSegment" {
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
             { Remove-EntraBetaPrivateAccessApplicationSegment -ApplicationId "TestApplicationId" -ApplicationSegmentId "TestAppSegmentId" } | Should -Not -Throw
+        }
+        finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
+
+    It "Should execute successfully without throwing an error when using an Alias" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Remove-EntraBetaPrivateAccessApplicationSegment -ObjectId "TestApplicationId" -ApplicationSegmentId "TestAppSegmentId" } | Should -Not -Throw
         }
         finally {
             # Restore original confirmation preference            
