@@ -7,7 +7,6 @@
       "Microsoft.Graph.DirectoryObjects",
       "Microsoft.Graph.Users",
       "Microsoft.Graph.Users.Actions", 
-      "Microsoft.Graph.Users.Functions", 
       "Microsoft.Graph.Groups", 
       "Microsoft.Graph.Identity.DirectoryManagement", 
       "Microsoft.Graph.Identity.Governance", 
