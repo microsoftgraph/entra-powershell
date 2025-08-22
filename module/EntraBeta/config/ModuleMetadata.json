@@ -38,7 +38,7 @@
     "Windows"
   ],
   "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "Prerelease": "",
   "dotNetVersion": "4.7.2",
   "powershellVersion": "5.1"
