@@ -126,7 +126,7 @@ function New-EntraBetaUser {
 
     PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["PostalCode"]) {
             $params["PostalCode"] = $PSBoundParameters["PostalCode"]
         }
@@ -243,7 +243,7 @@ function New-EntraBetaUser {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
                 
-                $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
+                $userData = [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUser]::new()
                 $_.PSObject.Properties | ForEach-Object {
                     $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                 }

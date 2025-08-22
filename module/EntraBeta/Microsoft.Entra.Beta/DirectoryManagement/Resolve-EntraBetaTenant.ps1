@@ -71,7 +71,7 @@ function Resolve-EntraBetaTenant {
         
         foreach ($item in $itemsToProcess) {
             # Initialize headers and result object
-            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             $resolveUri = $null
             $resolvedTenant = [ordered]@{
                 Environment = $Environment
