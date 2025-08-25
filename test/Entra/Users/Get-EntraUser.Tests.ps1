@@ -118,12 +118,28 @@ Describe "Get-EntraUser" {
             { Get-EntraUser -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
+        It "Should fail when Top is less than 1" {
+            { Get-EntraUser -Top 0 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
+        }
+
+        It "Should fail when top is greater than 999" {
+            { Get-EntraUser -Top 1000 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
+        }
+
         It "Should fail when pagesize is empty" {
             { Get-EntraUser -PageSize } | Should -Throw "Missing an argument for parameter 'PageSize'*"
         }
 
         It "Should fail when pagesize is invalid" {
             { Get-EntraUser -PageSize HH } | Should -Throw "Cannot process argument transformation on parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is less than 1" {
+            { Get-EntraUser -PageSize 0 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is greater than 999" {
+            { Get-EntraUser -PageSize 1000 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
         }
 
         It "Should return user when pageSize is applied with all" {
