@@ -118,6 +118,28 @@ Describe "Get-EntraUser" {
             { Get-EntraUser -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
+        It "Should fail when pagesize is empty" {
+            { Get-EntraUser -PageSize } | Should -Throw "Missing an argument for parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is invalid" {
+            { Get-EntraUser -PageSize HH } | Should -Throw "Cannot process argument transformation on parameter 'PageSize'*"
+        }
+
+        It "Should return user when pageSize is applied with all" {
+            $result = Get-EntraUser -All -PageSize 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+        }
+
+        It "Should return user when pageSize is applied" {
+            $result = Get-EntraUser -PageSize 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+        }
+
         It "Should return specific user by filter" {
             $result = Get-EntraUser -Filter "DisplayName eq 'Mock-User'"
             $result | Should -Not -BeNullOrEmpty
