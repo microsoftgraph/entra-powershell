@@ -135,14 +135,14 @@ Describe "Get-EntraBetaUser" {
             $result = Get-EntraBetaUser -All -PageSize 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should return user when pageSize is applied" {
             $result = Get-EntraBetaUser -PageSize 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Users -Times 1
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
         It "Should return specific user by filter" {
