@@ -29,6 +29,7 @@ Get-EntraUser
  [-Filter <String>]
  [-All]
  [-Top <Int32>]
+ [-PageSize <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -505,6 +506,22 @@ Specifies the maximum number of records to return.
 Type: System.Int32
 Parameter Sets: GetQuery
 Aliases: Limit
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -PageSize
+
+When -PageSize is specified, the command may make multiple network calls to retrieve data in chunks (pages), continuing until it reaches the limit defined by either -Top or -All, depending on which is used.
+
+```yaml
+Type: System.Int32
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named
