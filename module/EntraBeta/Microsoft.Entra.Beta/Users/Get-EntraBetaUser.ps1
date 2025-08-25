@@ -8,6 +8,7 @@ function Get-EntraBetaUser {
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
+        [ValidateRange(1, 999)]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -28,7 +29,7 @@ function Get-EntraBetaUser {
         [System.String[]] $Property,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
-        [Alias("Limit")]
+        [ValidateRange(1, 999)]
         [System.Nullable`1[System.Int32]] $PageSize
     )
 
@@ -60,7 +61,7 @@ function Get-EntraBetaUser {
             if ($null -ne $pageSizeCount -and $topCount -gt $pageSizeCount) {
                 $params["Uri"] += "&`$top=$pageSizeCount"
             }
-            elseif ($topCount -gt 999) {
+            elseif ($topCount -gt 999 -or ($null -ne $pageSizeCount -and $pageSizeCount -gt 999)) {
                 $query += "&`$top=999"
             }
             else {
@@ -68,7 +69,12 @@ function Get-EntraBetaUser {
             }
         }
         elseif ($null -ne $pageSizeCount) {
-            $params["Uri"] += "&`$top=$pageSizeCount"
+            if ($pageSizeCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else {
+                $params["Uri"] += "&`$top=$pageSizeCount"
+            }
         }
         
         if ($null -ne $PSBoundParameters["SearchString"]) {
