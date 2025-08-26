@@ -5,8 +5,22 @@
 function Set-EntraDirSyncFeature {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "Default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Feature,
+        [Parameter(ParameterSetName = "Default", Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "specifies the directory synchronization feature(s) to turn on or off")]
+        [Alias("Feature")]     
+        [ValidateScript({
+            if ($_ -eq $null -or $_.Count -eq 0) {
+                throw "The 'Features' parameter cannot be null or empty. Please provide at least one feature."
+            }
+
+            foreach ($item in $_) {
+                if ([string]::IsNullOrWhiteSpace($item)) {
+                    throw "Each feature must be a non-empty string. Invalid item: '$item'"
+                }
+            }
+
+            return $true
+        })]
+        [System.String[]] $Features,
 
         [Parameter(ParameterSetName = "Default", Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Boolean] $Enabled,
@@ -17,18 +31,26 @@ function Set-EntraDirSyncFeature {
 
         [switch] $Force
     )
+
     PROCESS {
     
         $params = @{}
+        $featuresCollection = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["Feature"]) {
-            $Feature = $PSBoundParameters["Feature"] + "Enabled"
-        }
         if ($null -ne $PSBoundParameters["Enabled"]) {
             $Enabled = $PSBoundParameters["Enabled"]
+        }
+        if ($PSBoundParameters.ContainsKey("Feature")) {
+            foreach ($feature in $Features) {
+                if ($feature.ToLower().EndsWith("enabled")) {
+                    $featuresCollection[$feature] = $Enabled
+                } else {
+                    $featuresCollection[$feature + "Enabled"] = $Enabled
+                }
+            }
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
@@ -71,7 +93,7 @@ function Set-EntraDirSyncFeature {
             $OnPremisesDirectorySynchronizationId = $TenantId
         }
         $body = @{
-            features = @{ $Feature = $Enabled }
+            features = $featuresCollection
         }
         $body = $body | ConvertTo-Json
         if ($Force) {
