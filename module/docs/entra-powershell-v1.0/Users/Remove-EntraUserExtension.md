@@ -46,7 +46,7 @@ The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft E
 
 ## EXAMPLES
 
-### Example 1: Remove single user extension
+### Example 1: Remove a single user extension
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
