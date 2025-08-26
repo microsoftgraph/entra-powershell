@@ -10,11 +10,12 @@ function Set-EntraBetaDirSyncFeature {
         [Parameter(ParameterSetName = 'GetQuery', Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "specifies the directory synchronization feature(s) to turn on or off")]
         [Alias("Feature")]     
         [ValidateScript({
-            if ($_ -eq $null -or $_.Count -eq 0) {
+            $inputArray = @($_)
+            if ($null -eq $inputArray -or $inputArray.Count -eq 0) {
                 throw "The 'Features' parameter cannot be null or empty. Please provide at least one feature."
             }
 
-            foreach ($item in $_) {
+            foreach ($item in $inputArray) {
                 if ([string]::IsNullOrWhiteSpace($item)) {
                     throw "Each feature must be a non-empty string. Invalid item: '$item'"
                 }

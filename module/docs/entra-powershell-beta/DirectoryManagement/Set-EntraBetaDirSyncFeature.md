@@ -24,7 +24,7 @@ Used to set identity synchronization features for a tenant.
 
 ```powershell
 Set-EntraBetaDirSyncFeature
- -Feature <String[]>
+ -Features <String[]>
  -Enabled <Boolean>
  [-TenantId <String>]
  [-Force]
