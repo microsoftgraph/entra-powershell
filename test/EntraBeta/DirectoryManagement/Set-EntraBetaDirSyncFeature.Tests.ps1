@@ -32,11 +32,11 @@ Describe "Set-EntraBetaDirSyncFeature" {
         }
 
         It "Should fail when Features is empty string" {
-            {Set-EntraBetaDirSyncFeature -Features "" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force} | Should -Throw "Missing an argument for parameter 'Features'.*"
+            {Set-EntraBetaDirSyncFeature -Features "" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force} | Should -Throw "Cannot validate argument on parameter 'Features'.*"
         } 
 
         It "Should fail when one of the Features is empty string" {
-            {Set-EntraBetaDirSyncFeature -Features "BypassDirSyncOverrides", "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Missing an argument for parameter 'Features'.*"
+            {Set-EntraBetaDirSyncFeature -Features "BypassDirSyncOverrides", "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Cannot validate argument on parameter 'Features'.*"
         } 
 
         It "Should fail when Enable is empty" {
