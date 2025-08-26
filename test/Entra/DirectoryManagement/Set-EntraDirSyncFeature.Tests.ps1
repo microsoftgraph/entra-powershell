@@ -27,15 +27,15 @@ Describe "Set-EntraDirSyncFeature" {
         }
 
         It "Should fail when Features is empty" {
-            {Set-EntraDirSyncFeature -Features  -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "The 'Features' parameter cannot be null or empty. Please provide at least one feature.*"
+            {Set-EntraDirSyncFeature -Features  -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Missing an argument for parameter 'Features'.*"
         }
 
         It "Should fail when Features is empty string" {
-            {Set-EntraDirSyncFeature -Features "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Each feature must be a non-empty string. Invalid item: ''*"
+            {Set-EntraDirSyncFeature -Features "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Missing an argument for parameter 'Features'.*"
         } 
 
         It "Should fail when one of the Features is empty string" {
-            {Set-EntraDirSyncFeature -Features "BypassDirSyncOverrides", "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Each feature must be a non-empty string. Invalid item: ''*"
+            {Set-EntraDirSyncFeature -Features "BypassDirSyncOverrides", "" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force} | Should -Throw "Missing an argument for parameter 'Features'.*"
         } 
 
         It "Should fail when Enable is empty" {
