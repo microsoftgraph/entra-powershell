@@ -44,7 +44,7 @@ function Set-EntraDirSyncFeature {
         if ($null -ne $PSBoundParameters["Enabled"]) {
             $Enabled = $PSBoundParameters["Enabled"]
         }
-        if ($PSBoundParameters.ContainsKey("Feature")) {
+        if ($PSBoundParameters.ContainsKey("Features")) {
             foreach ($feature in $Features) {
                 if ($feature.ToLower().EndsWith("enabled")) {
                     $featuresCollection[$feature] = $Enabled
