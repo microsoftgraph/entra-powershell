@@ -5,6 +5,7 @@
 function Create-ModuleMappingFile {
     [cmdletbinding()]
     param(
+        [ValidateSet('Entra', 'EntraBeta')]
         [string]
         $ModuleName = 'Entra'  # Default to "Entra" if no argument is provided
     )
