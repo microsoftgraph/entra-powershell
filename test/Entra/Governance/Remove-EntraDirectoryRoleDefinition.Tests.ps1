@@ -8,6 +8,15 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgRoleManagementDirectoryRoleDefinition -MockWith {} -ModuleName Microsoft.Entra.Governance
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('RoleManagement.ReadWrite.Directory')
+        }
+    } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Remove-EntraDirectoryRoleDefinition" {

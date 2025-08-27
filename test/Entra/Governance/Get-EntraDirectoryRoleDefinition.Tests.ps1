@@ -30,6 +30,15 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Entra.Governance
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('RoleManagement.Read.Directory', 'EntitlementManagement.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Get-EntraDirectoryRoleDefinition" {
