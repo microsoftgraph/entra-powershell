@@ -38,7 +38,7 @@ BeforeAll {
             }
             Scopes      = @('RoleManagement.Read.Directory', 'EntitlementManagement.Read.All')
         }
-    } -ModuleName Microsoft.Entra.Applications
+    } -ModuleName Microsoft.Entra.Governance
 }
 
 Describe "Get-EntraDirectoryRoleDefinition" {

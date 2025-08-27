@@ -16,7 +16,7 @@ BeforeAll {
             }
             Scopes      = @('RoleManagement.ReadWrite.Directory')
         }
-    } -ModuleName Microsoft.Entra.Applications
+    } -ModuleName Microsoft.Entra.Governance
 }
 
 Describe "Remove-EntraDirectoryRoleDefinition" {

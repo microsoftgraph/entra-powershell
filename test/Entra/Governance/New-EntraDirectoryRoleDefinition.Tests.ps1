@@ -37,7 +37,7 @@ BeforeAll {
             }
             Scopes      = @('RoleManagement.ReadWrite.Directory')
         }
-    } -ModuleName Microsoft.Entra.Applications
+    } -ModuleName Microsoft.Entra.Governance
 }
 
 Describe "New-EntraDirectoryRoleDefinition" {
