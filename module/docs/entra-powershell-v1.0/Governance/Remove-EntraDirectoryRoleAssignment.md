@@ -40,7 +40,7 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 ### Example 1: Remove a role assignment
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory', 'EntitlementManagement.ReadWrite.All'1
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory', 'EntitlementManagement.ReadWrite.All'
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $role = Get-EntraDirectoryRoleDefinition -Filter "DisplayName eq 'Helpdesk Administrator'"
 $assignment = Get-EntraDirectoryRoleAssignment -All | Where-Object { $_.principalId -eq $user.Id -AND $_.RoleDefinitionId -eq $role.Id }
