@@ -71,6 +71,9 @@ function Get-EntraUserMembership {
                 $params["All"] = $PSBoundParameters["All"]
             }
         }
+        elseif (-not $PSBoundParameters.ContainsKey("Top")) {
+            Write-Warning "Results may be truncated to the first 100 items. Use -All or -Top <N> to control results."
+        }
         if ($null -ne $PSBoundParameters["ErrorVariable"]) {
             $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
         }
