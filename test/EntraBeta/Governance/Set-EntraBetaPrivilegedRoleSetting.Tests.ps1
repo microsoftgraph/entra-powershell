@@ -9,6 +9,15 @@ BeforeAll {
     
 
     Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {} -ModuleName Microsoft.Entra.Beta.Governance
+
+     Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes = @('PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup')
+        }
+    } -ModuleName Microsoft.Entra.Beta.Governance
 }
 
 Describe "Set-EntraBetaPrivilegedRoleSetting" {
