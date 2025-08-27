@@ -24,7 +24,7 @@ Used to set identity synchronization features for a tenant.
 
 ```powershell
 Set-EntraBetaDirSyncFeature
- -Feature <String>
+ -Features <String[]>
  -Enabled <Boolean>
  [-TenantId <String>]
  [-Force]
@@ -51,16 +51,16 @@ Enabling features like **EnableSoftMatchOnUpn** and **SynchronizationUpnForManag
 
 ## EXAMPLES
 
-### Example 1: Enable a feature for the tenant
+### Example 1: Enable features for the tenant
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -Force
+Set-EntraBetaDirSyncFeature -Features 'BlockCloudObjectTakeoverThroughHardMatch', 'EnableSoftMatchOnUpn' -Enable $true -Force
 ```
 
-This command enables the SoftMatchOnUpn feature for the tenant.
+This command enables the SoftMatchOnUpn and BlockCloudObjectTakeoverThroughHardMatch feature for the tenant.
 
-- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Features` specifies the directory synchronization feature(s) to turn on or off.
 - `-Enable` specifies whether the specified features are turned on for the company.
 - `-Force` Forces the command to run without asking for user confirmation.
 
@@ -68,12 +68,12 @@ This command enables the SoftMatchOnUpn feature for the tenant.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Set-EntraBetaDirSyncFeature -Feature 'BlockSoftMatch' -Enable $true
+Set-EntraBetaDirSyncFeature -Features 'BlockSoftMatch' -Enable $true
 ```
 
 This command enables the BlockSoftMatch feature for the tenant - effectively blocking the Soft Matching feature in the tenant.
 
-- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Features` specifies the directory synchronization feature(s) to turn on or off.
 - `-Enable` specifies whether the specified features are turned on for the company.
 
 ### Example 3: Block Cloud object takeover through Hard Matching for the tenant
@@ -81,25 +81,25 @@ This command enables the BlockSoftMatch feature for the tenant - effectively blo
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $tenantID = (Get-EntraContext).TenantId
-Set-EntraBetaDirSyncFeature -Feature 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -TenantId $tenantID -Force
+Set-EntraBetaDirSyncFeature -Features 'BlockCloudObjectTakeoverThroughHardMatch' -Enable $true -TenantId $tenantID -Force
 ```
 
 This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.
 
-- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Features` specifies the directory synchronization feature(s) to turn on or off.
 - `-Enable` specifies whether the specified features are turned on for the company.
 - `-TenantId` Specifies the unique ID of the tenant.
 
 ## PARAMETERS
 
-### -Feature
+### -Features
 
 The DirSync feature to turn on or off.
 
 ```yaml
-Type: System.String
+Type: System.String()
 Parameter Sets: (All)
-Aliases:
+Aliases: Feature
 
 Required: True
 Position: Named
