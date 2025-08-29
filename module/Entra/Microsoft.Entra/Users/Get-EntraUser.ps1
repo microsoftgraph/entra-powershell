@@ -68,12 +68,7 @@ function Get-EntraUser {
             }
         }
         elseif ($null -ne $pageSizeCount) {
-            if ($pageSizeCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
-            }
-            else {
-                $params["Uri"] += "&`$top=$pageSizeCount"
-            }
+            $params["Uri"] += "&`$top=$pageSizeCount"
         }
 
         if ($null -ne $PSBoundParameters["SearchString"]) {
