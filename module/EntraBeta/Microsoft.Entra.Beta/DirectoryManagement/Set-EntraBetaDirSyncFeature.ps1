@@ -7,9 +7,23 @@ function Set-EntraBetaDirSyncFeature {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     [OutputType([System.String])]
     param (
-        [Parameter(ParameterSetName = 'GetQuery', Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String]
-        $Feature,
+        [Parameter(ParameterSetName = 'GetQuery', Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "specifies the directory synchronization feature(s) to turn on or off")]
+        [Alias("Feature")]     
+        [ValidateScript({
+            $inputArray = @($_)
+            if ($null -eq $inputArray -or $inputArray.Count -eq 0) {
+                throw "The 'Features' parameter cannot be null or empty. Please provide at least one feature."
+            }
+
+            foreach ($item in $inputArray) {
+                if ([string]::IsNullOrWhiteSpace($item)) {
+                    throw "Each feature must be a non-empty string. Invalid item: '$item'"
+                }
+            }
+
+            return $true
+        })]
+        [System.String[]] $Features,
 
         [Parameter(ParameterSetName = 'GetQuery', Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Boolean]
@@ -25,15 +39,22 @@ function Set-EntraBetaDirSyncFeature {
 
     begin {
         $params = @{}
+        $featuresCollection = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey('Verbose')) {
             $params['Verbose'] = $Null
         }
-        if ($null -ne $PSBoundParameters['Feature']) {
-            $Feature = $PSBoundParameters['Feature'] + 'Enabled'
-        }
         if ($null -ne $PSBoundParameters['Enabled']) {
             $Enabled = $PSBoundParameters['Enabled']
+        }
+        if ($PSBoundParameters.ContainsKey("Features")) {
+            foreach ($feature in $Features) {
+                if ($feature.ToLower().EndsWith("enabled")) {
+                    $featuresCollection[$feature] = $Enabled
+                } else {
+                    $featuresCollection[$feature + "Enabled"] = $Enabled
+                }
+            }
         }
         if ($PSBoundParameters.ContainsKey('Debug')) {
             $params['Debug'] = $PSBoundParameters['Debug']
@@ -86,7 +107,7 @@ function Set-EntraBetaDirSyncFeature {
         }
 
         $body = @{
-            features = @{ $Feature = $Enabled }
+            features = $featuresCollection
         }
         $body = $body | ConvertTo-Json
         if ($Force) {
