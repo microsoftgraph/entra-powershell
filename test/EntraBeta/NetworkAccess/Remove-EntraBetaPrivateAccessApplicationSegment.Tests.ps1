@@ -9,10 +9,25 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.NetworkAccess
-    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("NetworkAccessPolicy.ReadWrite.All", "Application.ReadWrite.All", "NetworkAccess.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.NetworkAccess
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes = @("NetworkAccessPolicy.ReadWrite.All", "Application.ReadWrite.All", "NetworkAccess.ReadWrite.All")
+        }
+    } -ModuleName Microsoft.Entra.Beta.NetworkAccess
 }
 
 Describe "Remove-EntraBetaPrivateAccessApplicationSegment" {
+    It "Should throw when not connected and not call Graph" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.NetworkAccess
+
+        { Remove-EntraBetaPrivateAccessApplicationSegment  -ApplicationId "TestApplicationId" -ApplicationSegmentId "TestAppSegmentId" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.NetworkAccess -Times 0
+    }
+    
     It "Should fail when ApplicationId is missing" {
         { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Cannot process command because of one or more missing mandatory parameters: ApplicationId*"
     }
