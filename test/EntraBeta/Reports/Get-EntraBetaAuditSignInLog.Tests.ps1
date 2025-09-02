@@ -179,7 +179,17 @@ BeforeAll {
                 "Parameters"           = $args
             }
         )
-    }    
+    } 
+    
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('AuditLog.Read.All', 'Directory.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Beta.Reports
+
     Mock -CommandName Get-MgBetaAuditLogSignIn -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
   

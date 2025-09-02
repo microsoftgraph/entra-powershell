@@ -36,11 +36,18 @@ BeforeAll {
                 resourceId                  =   'bbbbbbbb-1111-2222-3333-cccccccccc66'
                 riskEventTypes              =   @{}
                 riskState                  =    'none'
-
-
             }
         )
     }
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('AuditLog.Read.All', 'Directory.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Reports
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Reports
 }

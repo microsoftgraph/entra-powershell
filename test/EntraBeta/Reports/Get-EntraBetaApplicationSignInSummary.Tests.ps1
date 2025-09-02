@@ -27,7 +27,7 @@ $scriptblock = {
         }
 
     }
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Reports.Read.All") } } -ModuleName Microsoft.Entra.Beta.Reports
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
 

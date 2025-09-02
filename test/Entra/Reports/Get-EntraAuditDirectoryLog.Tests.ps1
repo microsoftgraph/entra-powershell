@@ -37,6 +37,15 @@ BeforeAll {
         )
     }
 
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('AuditLog.Read.All', 'Directory.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Reports
+
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Reports
 }
   
