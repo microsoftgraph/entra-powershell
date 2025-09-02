@@ -67,7 +67,12 @@ BeforeAll {
 Describe 'Get-EntraInactiveSignInUser' {
 
     Context "Get-EntraInactiveSignInUser Tests" {
-        
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return all inactive users" {
             $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
             

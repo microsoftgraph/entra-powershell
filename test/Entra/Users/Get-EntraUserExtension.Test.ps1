@@ -21,6 +21,11 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Users
 }
 Describe "Tests for Get-EntraUserExtension" {
+    It "should throw when not connected and not invoke SDK" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+        { Get-EntraUserExtension -UserId "SawyerM@contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+    }
     It "Result should not be empty" {
         $result = Get-EntraUserExtension -UserId "SawyerM@contoso.com"
         $result | Should -Not -BeNullOrEmpty

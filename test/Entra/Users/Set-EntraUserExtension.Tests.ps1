@@ -12,6 +12,11 @@ BeforeAll {
     
 }
 Describe "Tests for Set-EntraUserExtension" {
+    It "should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+        { Set-EntraUserExtension -UserId "sawyerM@contoso.com" -ExtensionName 'extension_e5e29b8a85d941eab8d12162bd004528_JobGroup' -ExtensionValue 'Job Group D' } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+    }
 
     It "Should return empty object" {
         $result = Set-EntraUserExtension -UserId "sawyerM@contoso.com" -ExtensionName 'extension_e5e29b8a85d941eab8d12162bd004528_JobGroup' -ExtensionValue 'Job Group D'

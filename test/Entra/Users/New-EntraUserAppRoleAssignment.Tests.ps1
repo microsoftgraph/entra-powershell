@@ -36,6 +36,12 @@ BeforeAll {
   
 Describe "New-EntraUserAppRoleAssignment" {
     Context "Test for New-EntraUserAppRoleAssignment" {
+        It "should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { New-EntraUserAppRoleAssignment -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PrincipalId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -ResourceId 'bbbbbbbb-cccc-dddd-2222-333333333333' -AppRoleId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return created Group" {
             $expectedResult = @{
                 Id                   = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"

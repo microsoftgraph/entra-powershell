@@ -20,6 +20,11 @@ BeforeAll {
     $global:securePassword = ConvertTo-SecureString $global:newPassword -AsPlainText -Force
 }
 Describe "Tests for Update-EntraUserFromFederated" {
+    It "Should throw when not connected and not invoke Graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+        { Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+    }
 
     It "Should return empty object" {
         $result = Update-EntraUserFromFederated -UserPrincipalName "sawyerM@contoso.com" -NewPassword $global:securePassword
