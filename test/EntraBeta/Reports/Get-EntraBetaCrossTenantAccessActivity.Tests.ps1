@@ -22,6 +22,12 @@ Describe "Get-EntraBetaCrossTenantAccessActivity" {
         }
     }
 
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
+        { Get-EntraBetaCrossTenantAccessActivity { @{} } } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 0
+    }
+
     It "Calls Get-EntraBetaCrossTenantAccessActivity with no parameters" {
         Mock Get-EntraBetaCrossTenantAccessActivity {
             @{

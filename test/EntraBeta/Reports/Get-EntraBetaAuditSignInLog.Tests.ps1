@@ -197,7 +197,7 @@ Describe "Get-EntraBetaAuditSignInLog" {
     Context "Test for Get-EntraBetaAuditSignInLog" {
         It "Should throw when not connected and not invoke SDK" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
-            { Get-EntraBetaAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccc22" } | Should -Throw "Not connected to Microsoft Graph*"
+            { Get-EntraBetaAuditSignInLog -Top 1 } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 0
         }
 

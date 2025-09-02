@@ -58,7 +58,7 @@ Describe "Get-EntraBetaAuditDirectoryLog" {
     Context "Test for Get-EntraBetaAuditDirectoryLog" {
         It "Should throw when not connected and not invoke SDK" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
-            { Get-EntraBetaAuditDirectoryLog -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Not connected to Microsoft Graph*"
+            { Get-EntraBetaAuditDirectoryLog -Top 1 -Debug } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Entra.Beta.Reports -Times 0
         }
 
