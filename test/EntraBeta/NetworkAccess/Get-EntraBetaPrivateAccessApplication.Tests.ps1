@@ -8,7 +8,13 @@ BeforeAll {
     }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.NetworkAccess
+    Mock -CommandName Invoke-GraphRequest -MockWith { 
+        @{
+            value = @(
+                [PSCustomObject]@{name = "MyApp"}
+            )
+        }
+    } -ModuleName Microsoft.Entra.Beta.NetworkAccess
 
     Mock -CommandName Get-EntraContext -MockWith {
         @{

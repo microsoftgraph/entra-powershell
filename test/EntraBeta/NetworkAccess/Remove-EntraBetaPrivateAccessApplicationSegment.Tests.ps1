@@ -24,7 +24,7 @@ Describe "Remove-EntraBetaPrivateAccessApplicationSegment" {
     It "Should throw when not connected and not call Graph" {
         Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.NetworkAccess
 
-        { Remove-EntraBetaPrivateAccessApplicationSegment } | Should -Throw "Not connected to Microsoft Graph*"
+        { Remove-EntraBetaPrivateAccessApplicationSegment  -ApplicationId "TestApplicationId" -ApplicationSegmentId "TestAppSegmentId" } | Should -Throw "Not connected to Microsoft Graph*"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.NetworkAccess -Times 0
     }
     
