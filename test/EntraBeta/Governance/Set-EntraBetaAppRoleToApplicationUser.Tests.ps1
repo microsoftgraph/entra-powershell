@@ -51,7 +51,7 @@ user1@contoso.com,User One,userone,$roleName,User
 
         It "Should fail when DataSource is missing" {
             { Set-EntraBetaAppRoleToApplicationUser -FilePath $csvPath -ApplicationName "UnitTestApp" } |
-                Should -Throw "Missing an argument for parameter 'DataSource'*"
+                Should -Throw "Cannot process command because of one or more missing mandatory parameters: DataSource*"
         }
 
         It "Should fail when FilePath is invalid" {
@@ -61,7 +61,7 @@ user1@contoso.com,User One,userone,$roleName,User
 
         It "Should fail when ApplicationName is empty" {
             { Set-EntraBetaAppRoleToApplicationUser -DataSource Generic -FilePath $csvPath -ApplicationName "" } |
-                Should -Throw "Cannot bind argument to parameter 'ApplicationName' because it is an empty string."
+                Should -Throw "Cannot validate argument on parameter 'ApplicationName'*"
         }
     }
 
