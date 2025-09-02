@@ -17,6 +17,15 @@ function Get-EntraBetaInactiveSignInUser {
         $UserType = "All"
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AuditLog.Read.All, User.Read.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     process {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand 
         $queryDate = (Get-Date).AddDays(-$LastSignInBeforeDaysAgo).ToString("yyyy-MM-ddTHH:mm:ssZ")
