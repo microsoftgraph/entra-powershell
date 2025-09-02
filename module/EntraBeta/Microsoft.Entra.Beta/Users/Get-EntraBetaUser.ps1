@@ -8,6 +8,7 @@ function Get-EntraBetaUser {
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
+        [ValidateRange(1, [int]::MaxValue)]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -25,19 +26,28 @@ function Get-EntraBetaUser {
         
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
+        [ValidateRange(1, 999)]
+        [System.Nullable`1[System.Int32]] $PageSize
     )
 
     PROCESS {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
+        $pageSizeCount = $null
         $upnPresent = $false
         $baseUri = '/beta/users'
         $properties = $null
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         $query = $null
+
+        if ($PSBoundParameters.ContainsKey("PageSize")) {
+            $pageSizeCount = $PSBoundParameters["PageSize"]
+        } 
         
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
@@ -48,11 +58,22 @@ function Get-EntraBetaUser {
 
         if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
-            if ($topCount -gt 999) {
+            if ($null -ne $pageSizeCount -and $topCount -gt $pageSizeCount) {
+                $params["Uri"] += "&`$top=$pageSizeCount"
+            }
+            elseif ($topCount -gt 999 -or ($null -ne $pageSizeCount -and $pageSizeCount -gt 999)) {
                 $query += "&`$top=999"
             }
             else {
                 $query += "&`$top=$topCount"
+            }
+        }
+        elseif ($null -ne $pageSizeCount) {
+            if ($pageSizeCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else {
+                $params["Uri"] += "&`$top=$pageSizeCount"
             }
         }
         
@@ -104,9 +125,14 @@ ErrorCode: Request_ResourceNotFound"
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $params["Uri"] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
-                    $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
-                    $increment -= $topValue
+                    $pageValue = 999
+                    if ($null -ne $pageSizeCount) {
+                        $pageValue = $pageSizeCount
+                    }
+
+                    $minValue = [Math]::Min($increment, $pageValue)
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$minValue")
+                    $increment -= $minValue
                 }
                 $response = Invoke-GraphRequest @params 
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
