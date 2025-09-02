@@ -25,8 +25,6 @@ Describe "Get-EntraBetaPrivilegedRoleAssignmentRequest" {
     Context "Connection and basic behavior" {
         It "Should throw when not connected and not invoke SDK" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Governance
-            Mock -CommandName Get-MgBetaPrivilegedRoleAssignmentRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.Governance
-
             { Get-EntraBetaPrivilegedRoleAssignmentRequest -ProviderId "MockProviderId" -Filter "status eq 'Pending'" } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Get-MgBetaPrivilegedRoleAssignmentRequest -ModuleName Microsoft.Entra.Beta.Governance -Times 0
         }
