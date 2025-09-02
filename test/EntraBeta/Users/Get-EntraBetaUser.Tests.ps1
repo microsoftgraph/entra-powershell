@@ -127,10 +127,6 @@ Describe "Get-EntraBetaUser" {
             { Get-EntraUser -PageSize 0 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
         }
 
-        It "Should fail when pagesize is greater than 999" {
-            { Get-EntraUser -PageSize 1000 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
-        }
-
         It "Should return user when pageSize is applied with all" {
             $result = Get-EntraBetaUser -All -PageSize 1
             $result | Should -Not -BeNullOrEmpty

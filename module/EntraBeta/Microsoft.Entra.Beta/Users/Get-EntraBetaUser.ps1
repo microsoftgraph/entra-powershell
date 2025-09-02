@@ -8,7 +8,7 @@ function Get-EntraBetaUser {
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
-        [ValidateRange(1, 999)]
+        [ValidateRange(1, [int]::MaxValue)]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]

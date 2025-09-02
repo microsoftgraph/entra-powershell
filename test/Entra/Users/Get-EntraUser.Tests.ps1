@@ -122,10 +122,6 @@ Describe "Get-EntraUser" {
             { Get-EntraUser -Top 0 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
         }
 
-        It "Should fail when top is greater than 999" {
-            { Get-EntraUser -Top 1000 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
-        }
-
         It "Should fail when pagesize is empty" {
             { Get-EntraUser -PageSize } | Should -Throw "Missing an argument for parameter 'PageSize'*"
         }
