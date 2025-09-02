@@ -107,6 +107,40 @@ Describe "Get-EntraBetaUser" {
             { Get-EntraBetaUser -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
+        It "Should fail when Top is less than 1" {
+            { Get-EntraUser -Top 0 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
+        }
+        
+        It "Should fail when pagesize is empty" {
+            { Get-EntraBetaUser -PageSize } | Should -Throw "Missing an argument for parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is invalid" {
+            { Get-EntraBetaUser -PageSize HH } | Should -Throw "Cannot process argument transformation on parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is less than 1" {
+            { Get-EntraUser -PageSize 0 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
+        }
+
+        It "Should fail when pagesize is greater than 999" {
+            { Get-EntraUser -PageSize 1000 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
+        }
+
+        It "Should return user when pageSize is applied with all" {
+            $result = Get-EntraBetaUser -All -PageSize 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+        }
+
+        It "Should return user when pageSize is applied" {
+            $result = Get-EntraBetaUser -PageSize 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+        }
+
         It "Should return specific user by filter" {
             $result = Get-EntraBetaUser -Filter "DisplayName eq 'Mock-User'"
             $result | Should -Not -BeNullOrEmpty

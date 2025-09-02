@@ -8,6 +8,7 @@ function Get-EntraUser {
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
+        [ValidateRange(1, [int]::MaxValue)]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
@@ -25,33 +26,51 @@ function Get-EntraUser {
         
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
+        [ValidateRange(1, 999)]
+        [System.Nullable`1[System.Int32]] $PageSize
     )
 
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
+        $pageSizeCount = $null  
         $upnPresent = $false
         $baseUri = '/v1.0/users'
         $properties = '$select=Id,AccountEnabled,AgeGroup,OfficeLocation,AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType,OnPremisesLastSyncDateTime,ImAddresses,SecurityIdentifier,OnPremisesUserPrincipalName,ServiceProvisioningErrors,IsResourceAccount,OnPremisesExtensionAttributes,DeletedDateTime,OnPremisesSyncEnabled,EmployeeType,EmployeeHireDate,CreatedDateTime,EmployeeOrgData,preferredDataLocation,Identities,onPremisesSamAccountName,EmployeeId,EmployeeLeaveDateTime,AuthorizationInfo,FaxNumber,OnPremisesDistinguishedName,OnPremisesDomainName,IsLicenseReconciliationNeeded,signInSessionsValidFromDateTime'
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri/?$properties"        
+        $params["Uri"] = "$baseUri/?$properties" 
+        
+        if ($PSBoundParameters.ContainsKey("PageSize")) {
+            $pageSizeCount = $PSBoundParameters["PageSize"]
+        } 
+
         if ($null -ne $PSBoundParameters["Property"]) {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
             $params["Uri"] = "$baseUri/?$properties"
         }
+
         if ($PSBoundParameters.ContainsKey("Top")) {
             $topCount = $PSBoundParameters["Top"]
-            if ($topCount -gt 999) {
+            if ($null -ne $pageSizeCount -and $topCount -gt $pageSizeCount) {
+                $params["Uri"] += "&`$top=$pageSizeCount"
+            }
+            elseif ($topCount -gt 999 -or ($null -ne $pageSizeCount -and $pageSizeCount -gt 999)) {
                 $params["Uri"] += "&`$top=999"
             }
             else {
                 $params["Uri"] += "&`$top=$topCount"
             }
-        }        
+        }
+        elseif ($null -ne $pageSizeCount) {
+            $params["Uri"] += "&`$top=$pageSizeCount"
+        }
+
         if ($null -ne $PSBoundParameters["SearchString"]) {
             $TmpValue = $PSBoundParameters["SearchString"]
             $SearchString = "`$search=`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
@@ -94,9 +113,14 @@ function Get-EntraUser {
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $params["Uri"] = $response.'@odata.nextLink'
                 if ($increment -gt 0) {
-                    $topValue = [Math]::Min($increment, 999)
-                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
-                    $increment -= $topValue
+                    $pageValue = 999
+                    if ($null -ne $pageSizeCount) {
+                        $pageValue = $pageSizeCount
+                    }
+
+                    $minValue = [Math]::Min($increment, $pageValue)
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$minValue")
+                    $increment -= $minValue
                 }
                 $response = Invoke-GraphRequest @params 
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
