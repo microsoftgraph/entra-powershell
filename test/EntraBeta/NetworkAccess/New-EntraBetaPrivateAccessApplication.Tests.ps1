@@ -20,7 +20,7 @@ BeforeAll {
             }
             Scopes = @("NetworkAccessPolicy.ReadWrite.All", "Application.ReadWrite.All", "NetworkAccess.ReadWrite.All")
         }
-    } -ModuleName Microsoft.Entra.NetworkAccess
+    } -ModuleName Microsoft.Entra.Beta.NetworkAccess
 }
 
 Describe "New-EntraBetaPrivateAccessApplication" {
