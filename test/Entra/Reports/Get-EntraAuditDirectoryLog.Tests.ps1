@@ -51,6 +51,11 @@ BeforeAll {
   
 Describe "Get-EntraAuditDirectoryLog" {
     Context "Test for Get-EntraAuditDirectoryLog" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Reports
+            { Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 0
+        }
         It "Should return specific Audit Directory Logs" {
             $result = Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
