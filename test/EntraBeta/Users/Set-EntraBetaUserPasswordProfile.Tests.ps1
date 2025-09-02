@@ -17,6 +17,14 @@ BeforeAll {
   
 Describe "Set-EntraBetaUserPasswordProfile" {
     Context "Test for Set-EntraBetaUserPasswordProfile" {
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
+            $newPassword = "New@12345"
+            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+            { Set-EntraBetaUserPasswordProfile -UserId $userUPN -Password $secPassword -ForceChangePasswordNextSignIn -ForceChangePasswordNextSignInWithMfa } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
         It "Should return empty object" {
             $userUPN = "mock106@M365x99297270.OnMicrosoft.com"
             $newPassword = "New@12345"

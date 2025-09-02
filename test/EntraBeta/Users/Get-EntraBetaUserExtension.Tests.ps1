@@ -19,6 +19,12 @@ BeforeAll {
 }
 Describe "Get-EntraBetaUserExtension" {
     Context "Test for Get-EntraBetaUserExtension" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+
         It "Should return user extensions" {
             $result = Get-EntraBetaUserExtension -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"            
             $result | Should -Not -BeNullOrEmpty

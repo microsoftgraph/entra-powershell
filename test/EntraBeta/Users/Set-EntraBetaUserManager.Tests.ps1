@@ -18,6 +18,11 @@ BeforeAll {
 
 Describe "Set-EntraBetaUserManager" {
     Context "Test for Set-EntraBetaUserManager" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ManagerId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
         It "Should return empty object" {
             $result = Set-EntraBetaUserManager -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ManagerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty 
