@@ -22,6 +22,7 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGrant') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "New-EntraPermissionGrantPolicy" {

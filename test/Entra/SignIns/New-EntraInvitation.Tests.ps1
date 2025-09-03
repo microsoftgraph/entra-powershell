@@ -17,6 +17,7 @@ BeforeAll {
         )
     }
     Mock -CommandName  New-MgInvitation -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('User.Invite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraInvitation" {

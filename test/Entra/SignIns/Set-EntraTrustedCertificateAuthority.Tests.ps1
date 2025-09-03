@@ -56,7 +56,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock2 -ModuleName Microsoft.Entra.SignIns
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Organization.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "Set-EntraTrustedCertificateAuthority" {

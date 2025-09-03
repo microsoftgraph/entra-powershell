@@ -8,6 +8,8 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     Mock -CommandName Update-MgPolicyPermissionGrantPolicy -MockWith {} -ModuleName Microsoft.Entra.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGran') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "Set-EntraPermissionGrantPolicy" {

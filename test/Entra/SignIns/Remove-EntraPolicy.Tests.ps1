@@ -19,6 +19,7 @@ BeforeAll {
             
     }
     Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Entra.SignIns 
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.Read.ApplicationConfiguration') } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Test for Remove-EntraPolicy" {
     It "Should return empty object" {

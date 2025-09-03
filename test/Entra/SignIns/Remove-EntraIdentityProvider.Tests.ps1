@@ -9,6 +9,7 @@ BeforeAll {
     
     
     Mock -CommandName Remove-MgIdentityProvider -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('IdentityProvider.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Remove-EntraIdentityProvider" {

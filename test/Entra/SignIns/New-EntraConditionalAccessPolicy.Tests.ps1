@@ -40,6 +40,7 @@ BeforeAll {
         )
     }
     Mock -CommandName New-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.ConditionalAccess','Policy.Read.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraConditionalAccessPolicy" {

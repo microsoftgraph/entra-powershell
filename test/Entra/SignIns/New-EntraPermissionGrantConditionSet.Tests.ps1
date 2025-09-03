@@ -25,6 +25,8 @@ BeforeAll {
     Mock -CommandName New-MgPolicyPermissionGrantPolicyInclude -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
 
     Mock -CommandName New-MgPolicyPermissionGrantPolicyExclude -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGrant') } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "New-EntraPermissionGrantConditionSet"{
     It "Should not return empty object for condition set 'includes'"{

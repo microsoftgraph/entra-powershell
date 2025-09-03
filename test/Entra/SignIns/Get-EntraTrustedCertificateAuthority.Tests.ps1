@@ -43,6 +43,8 @@ BeforeAll {
     Mock -CommandName Get-MgContext -MockWith $tenantObj -ModuleName Microsoft.Entra.SignIns
 
     Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Organization.Read.All") } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Get-EntraTrustedCertificateAuthority"{
     It "Result should not be empty when no parameter passed" {

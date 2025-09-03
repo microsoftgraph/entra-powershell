@@ -16,6 +16,7 @@ BeforeAll {
         return $response
     }
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.ApplicationConfiguration') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Test for Set-EntraPolicy" {

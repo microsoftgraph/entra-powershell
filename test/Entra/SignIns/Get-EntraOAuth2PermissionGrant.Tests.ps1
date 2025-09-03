@@ -23,6 +23,7 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.Read.All") } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Get-EntraOAuth2PermissionGrant" {

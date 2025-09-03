@@ -8,6 +8,7 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgOAuth2PermissionGrant -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('DelegatedPermissionGrant.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Remove-EntraGroupAppRoleAssignment" {

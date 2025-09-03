@@ -25,6 +25,7 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('IdentityProvider.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraIdentityProvider" {

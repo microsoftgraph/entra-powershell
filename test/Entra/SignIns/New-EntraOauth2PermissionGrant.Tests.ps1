@@ -21,6 +21,7 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('DelegatedPermissionGrant.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "New-EntraOauth2PermissionGrant" {
