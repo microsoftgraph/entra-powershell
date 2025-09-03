@@ -1,5 +1,14 @@
-if($null -eq (Get-Module -Name Microsoft.Entra.Authentication)){
-    Import-Module Microsoft.Entra.Authentication
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+BeforeAll {  
+    if($null -eq (Get-Module -Name Microsoft.Entra.Authentication)){
+        Import-Module Microsoft.Entra.Authentication
+    }
+    
+    Mock -CommandName Get-EntraContext -MockWith { 
+        @{Scopes = @('Policy.ReadWrite.PermissionGrant', 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All') } 
+    } -ModuleName Microsoft.Entra.Authentication
 }
 
 Describe "Invalid Tests"{
