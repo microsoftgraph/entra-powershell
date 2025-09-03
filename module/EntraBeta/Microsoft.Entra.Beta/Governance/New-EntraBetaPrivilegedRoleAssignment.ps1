@@ -25,6 +25,15 @@ function New-EntraBetaPrivilegedRoleAssignment {
         [System.String] $UserId
     )
 
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use PrivilegedAccess.ReadWrite.AzureAD, PrivilegedAccess.ReadWrite.AzureResources, PrivilegedAccess.ReadWrite.AzureADGroup' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand

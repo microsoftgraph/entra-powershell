@@ -61,6 +61,15 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaPrivilegedAccessRoleSetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Governance
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes = @('PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources', 'PrivilegedAccess.Read.AzureADGroup')
+        }
+    } -ModuleName Microsoft.Entra.Beta.Governance
 }
 
 Describe "Get-EntraBetaPrivilegedRoleSetting" {
