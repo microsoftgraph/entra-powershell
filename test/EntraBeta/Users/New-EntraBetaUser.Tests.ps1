@@ -54,7 +54,9 @@ Describe "New-EntraBetaUser" {
     Context "Test for New-EntraBetaUser" {
         It "Should throw when not connected and not invoke graph call" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
-            { New-EntraBetaUser -DisplayName "demo004" -UserPrincipalName "demo004@contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+            { New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@contoso.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
         }
 
