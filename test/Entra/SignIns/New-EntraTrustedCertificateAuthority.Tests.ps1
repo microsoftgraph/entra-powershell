@@ -61,6 +61,18 @@ BeforeAll {
   
 Describe "New-EntraTrustedCertificateAuthority" {
     Context "Test for New-EntraTrustedCertificateAuthority" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            $byteData = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
+            $new_ca=New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation
+            $new_ca.AuthorityType=0
+            $new_ca.TrustedCertificate= $byteData
+            $new_ca.crlDistributionPoint="https://example.crl"
+            $new_ca.DeltaCrlDistributionPoint="https://test.crl"
+            { New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created one" {
             $byteData = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
             $new_ca=New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation

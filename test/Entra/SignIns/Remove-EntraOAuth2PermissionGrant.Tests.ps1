@@ -13,6 +13,12 @@ BeforeAll {
 
 Describe "Remove-EntraGroupAppRoleAssignment" {
     Context "Test for Remove-EntraGroupAppRoleAssignment" {
+        It "Should throw when not connected and not invoke sdk call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraOAuth2PermissionGrant -OAuth2PermissionGrantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgOAuth2PermissionGrant -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $result = Remove-EntraOAuth2PermissionGrant -OAuth2PermissionGrantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty

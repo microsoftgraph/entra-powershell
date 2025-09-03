@@ -27,7 +27,13 @@ BeforeAll {
 }
 
 Describe "Get-EntraOAuth2PermissionGrant" {
-Context "Test for Get-EntraOAuth2PermissionGrant" {
+    Context "Test for Get-EntraOAuth2PermissionGrant" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Get-EntraOAuth2PermissionGrant  } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return OAuth2 Permission Grant" {
             $result = Get-EntraOAuth2PermissionGrant
             $result | Should -Not -BeNullOrEmpty

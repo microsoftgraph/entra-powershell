@@ -16,6 +16,12 @@ BeforeAll {
 
 Describe "Remove-EntraPermissionGrantConditionSet"{
     Context "Test for Remove-EntraPermissionGrantConditionSet" {
+        It "Should throw when not connected and not invoke sdk call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should delete a permission grant condition set 'includes' from a policy"{
             $result = Remove-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "includes" -Id "ccccdddd-2222-eeee-3333-ffff4444aaaa"
             $result | Should -BeNullOrEmpty

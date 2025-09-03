@@ -13,7 +13,13 @@ BeforeAll {
 }
 
 Describe "Remove-EntraIdentityProvider" {
-Context "Test for Remove-EntraIdentityProvider" {
+    Context "Test for Remove-EntraIdentityProvider" {
+        It "Should throw when not connected and not invoke sdk call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgIdentityProvider -ModuleName Microsoft.Entra.SignIns -Times 0
+        } 
+
         It "Should return empty object" {
             $result = Remove-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" 
             $result | Should -BeNullOrEmpty

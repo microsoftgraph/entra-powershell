@@ -47,6 +47,12 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Organization.Read.All") } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Get-EntraTrustedCertificateAuthority"{
+    It "Should throw when not connected and not invoke SDK call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+        { Get-EntraTrustedCertificateAuthority } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Entra.SignIns -Times 0
+    }
+
     It "Result should not be empty when no parameter passed" {
         $result = Get-EntraTrustedCertificateAuthority
         $result | Should -Not -BeNullOrEmpty

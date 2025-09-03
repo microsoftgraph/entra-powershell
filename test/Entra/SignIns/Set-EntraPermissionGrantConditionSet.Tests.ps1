@@ -11,6 +11,12 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGran') } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Set-EntraPermissionGrantConditionSet"{
+    It "Should throw when not connected and not invoke SDK call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+        { Set-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PermissionClassification "Low" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Update-MgPolicyPermissionGrantPolicyInclude -ModuleName Microsoft.Entra.SignIns -Times 0
+    }
+
     It "Should return empty object for condition set 'includes'"{
         $result = Set-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PermissionClassification "Low"
         $result | Should -BeNullOrEmpty

@@ -25,7 +25,12 @@ BeforeAll {
 }
   
 Describe "New-EntraPolicy" {
-    Context "Test for New-EntraPolicy" {        
+    Context "Test for New-EntraPolicy" {    
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraPolicy -Definition  @("definition-value") -DisplayName "Claimstest" -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-ccccccccc111" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }    
 
         It "Should return created policy" {
             $result = New-EntraPolicy -Definition  @(

@@ -13,6 +13,16 @@ BeforeAll {
   
 Describe "Set-EntraNamedLocationPolicy" {
     Context "Test for Set-EntraNamedLocationPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            $ipRanges1 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+            $ipRanges1.cidrAddress = "6.5.4.1/30"
+            $ipRanges2 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+            $ipRanges2.cidrAddress = "6.5.4.2/30"
+            { Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges @($ipRanges1,$ipRanges2) -IsTrusted $true -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $ipRanges1 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
             $ipRanges1.cidrAddress = "6.5.4.1/30"

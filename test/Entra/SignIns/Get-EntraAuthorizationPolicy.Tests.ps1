@@ -36,6 +36,12 @@ BeforeAll {
   
 Describe "Get-EntraAuthorizationPolicy" {
     Context "Test for Get-EntraAuthorizationPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Get-EntraAuthorizationPolicy } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return AuthorizationPolicy" {
             $result = Get-EntraAuthorizationPolicy
             $result | Should -Not -BeNullOrEmpty

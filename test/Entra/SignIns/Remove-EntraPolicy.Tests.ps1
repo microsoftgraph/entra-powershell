@@ -22,6 +22,12 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.Read.ApplicationConfiguration') } } -ModuleName Microsoft.Entra.SignIns
 }
 Describe "Test for Remove-EntraPolicy" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+        { Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+    }
+
     It "Should return empty object" {
         $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
         InModuleScope 'Microsoft.Entra.SignIns' -Parameters @{ Matches = $matches } {

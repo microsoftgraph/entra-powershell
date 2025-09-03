@@ -45,6 +45,21 @@ BeforeAll {
 
 Describe "New-EntraConditionalAccessPolicy" {
     Context "Test for New-EntraConditionalAccessPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+            $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
+            $conditions.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+            $conditions.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
+            $conditions.Users.IncludeUsers = "all"
+            $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+            $controls._Operator = "OR"
+            $controls.BuiltInControls = "mfa"
+            $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created Conditional Access Policy Id" {
             $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition

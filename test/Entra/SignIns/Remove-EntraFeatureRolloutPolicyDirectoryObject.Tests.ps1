@@ -14,6 +14,12 @@ BeforeAll {
 
 Describe "Remove-EntraFeatureRolloutPolicyDirectoryObject" {
     Context "Test for Remove-EntraFeatureRolloutPolicyDirectoryObject" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        } 
+
         It "Should return empty object" {
             $result = Remove-EntraFeatureRolloutPolicyDirectoryObject -FeatureRolloutPolicyId bbbbbbbb-1111-2222-3333-cccccccccccc -DirectoryObjectId bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa
             $result | Should -BeNullOrEmpty

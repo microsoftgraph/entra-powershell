@@ -27,6 +27,12 @@ BeforeAll {
   
 Describe "Get-EntraPermissionGrantPolicy" {
     Context "Test for Get-EntraPermissionGrantPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Get-EntraPermissionGrantPolicy -Id "microsoft-all-application-permissions" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+        
         It "Should return specific PermissionGrantPolicy" {
             $result = Get-EntraPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $result | Should -Not -BeNullOrEmpty
