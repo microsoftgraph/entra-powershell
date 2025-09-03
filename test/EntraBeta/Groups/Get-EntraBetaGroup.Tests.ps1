@@ -125,6 +125,46 @@ Describe "Get-EntraBetaGroup" {
             { Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
+        It "Should return specified properties" {
+            $scriptblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"     = "demo"
+                        "Id"              = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                        "MailEnabled"     = $false
+                    }
+                )
+            }
+
+            Mock -CommandName Get-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property Id,DisplayName,MailEnabled
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
+        }
+        It "Should return append specified properties to the default properties" {
+            $scriptblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"        = "demo"
+                        "Id"                 = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                        "MailEnabled"        = $false
+                        "CreatedDateTime"    = "2023-01-01T00:00:00Z"
+                        "IsSubscribedByMail" = $false
+                        "DeletedDateTime"    = $null
+                        "GroupTypes"         = @("Unified")
+                        "MailNickname"       = "demoNickname"
+                        "SecurityEnabled"    = $true
+                        "Visibility"         = "Public"
+                        "Description"        = "test"
+                    }
+                )
+            }
+
+            Mock -CommandName Get-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+            $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property IsSubscribedByMail
+            $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $result.IsSubscribedByMail | should -Be $false
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
             $result = Get-EntraBetaGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc"

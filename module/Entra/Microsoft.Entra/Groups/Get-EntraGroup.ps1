@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (                
+    param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Parameter(ParameterSetName = "Append", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Alias("Limit")]
@@ -21,7 +21,7 @@ function Get-EntraGroup {
         [Parameter(ParameterSetName = "Append", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for a group by its name, email, or mail nickname.")]
         [System.String] $SearchString,
         
-        [Alias('ObjectId')]            
+        [Alias('ObjectId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the group to retrieve. Should be a valid GUID value.")]
         [Parameter(ParameterSetName = "Append", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the group to retrieve. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
