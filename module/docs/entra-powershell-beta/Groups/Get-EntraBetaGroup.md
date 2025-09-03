@@ -336,7 +336,7 @@ Accept wildcard characters: False
 
 ### -AppendSelected
 
-List all pages.
+Specifies whether to append the selected properties.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
