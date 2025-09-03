@@ -6,9 +6,11 @@ function Get-EntraBetaUserGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
         [System.String] $Filter,
 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's group memberships.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Retrieve all user's group memberships.")]
         [switch] $All,
 
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID or UPN to retrieve.")]
@@ -24,16 +26,21 @@ function Get-EntraBetaUserGroup {
         [System.String] $UserId,
 
         [Alias('DirectoryObjectId')]
-        [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Group object ID to retrieve.")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Group object ID to retrieve.")]
         [System.String] $GroupId,
 
         [Alias('Limit')]
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [System.Nullable`1[System.Int32]] $Top,
 
         [Alias('Select')]
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
-        [System.String[]] $Property
+        [Parameter(ParameterSetName = "Append",Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetQuery",Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
+        [switch] $AppendSelected
     )
 
     begin {
@@ -49,6 +56,7 @@ function Get-EntraBetaUserGroup {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ SearchString = "Filter" }
+        $defaultProperties = "id,displayName,createdDateTime,deletedDateTime,groupTypes,mailEnabled,mailNickname,securityEnabled,visibility,description"
 
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -105,8 +113,11 @@ function Get-EntraBetaUserGroup {
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
         }
 
         # Debug logging for transformations
