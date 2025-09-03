@@ -60,6 +60,11 @@ BeforeAll {
 
 Describe "Set-EntraUserSponsor" {
     Context "Test for Set-EntraUserSponsor" {
+        It "Should throw when not connected and not invoke Graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Set-EntraUserSponsor -UserId "85a57325-fbd3-4649-b636-163573591681" -Type User -SponsorIds "5e8f2da1-2138-4e6b-8d96-f3c5a5bc7f62" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+        }
 
         It "Should fail when UserId is empty" {
             { Set-EntraUserSponsor -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."

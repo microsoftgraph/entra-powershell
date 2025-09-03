@@ -38,7 +38,7 @@ The `Get-EntraBetaUserExtension` cmdlet gets a user extension in Microsoft Entra
 ### Example 1: Retrieve extension attributes for a user
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserExtension -UserId 'SawyerM@contoso.com'
 ```
 

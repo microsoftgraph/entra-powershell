@@ -36,6 +36,17 @@ BeforeAll {
 
 Describe "Set-EntraUserLicense" {
     Context "Test for Set-EntraUserLicense" {
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            $addLicensesArray = [PSCustomObject]@{
+                skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
+            }
+            $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
+            $Licenses.AddLicenses = $addLicensesArray
+            { Set-EntraUserLicense -UserId "sawyerM@contoso.com" -AssignedLicenses $Licenses } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return specific User" {
             $addLicensesArray = [PSCustomObject]@{
                 skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"

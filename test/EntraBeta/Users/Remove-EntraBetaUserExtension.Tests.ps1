@@ -14,6 +14,11 @@ BeforeAll {
 
 Describe "Remove-EntraBetaUserExtension" {
     Context "Test for Remove-EntraBetaUserExtension" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Remove-EntraBetaUserExtension -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionName 'extension_bbbbbbbb111122223333cccccccccccc_TestExtension' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
         It "Should return empty object for single extension" {
             $result = Remove-EntraBetaUserExtension -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ExtensionName 'extension_bbbbbbbb111122223333cccccccccccc_TestExtension'
             $result | Should -BeNullOrEmpty

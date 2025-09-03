@@ -29,6 +29,11 @@ BeforeAll {
 
 Describe "Get-EntraBetaDeletedUser" {
     Context "Test for Get-EntraBetaDeletedUser" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsUser -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
         It "Should return specific Deleted User" {
             $result = Get-EntraBetaDeletedUser -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty

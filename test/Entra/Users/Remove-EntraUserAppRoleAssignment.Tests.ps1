@@ -13,6 +13,12 @@ BeforeAll {
   
 Describe "Remove-EntraUserAppRoleAssignment" {
     Context "Test for Remove-EntraUserAppRoleAssignment" {
+        It "should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Remove-EntraUserAppRoleAssignment -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AppRoleAssignmentId '33dd33dd-ee44-ff55-aa66-77bb77bb77bb' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgUserAppRoleAssignment -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return empty object" {
             $result = Remove-EntraUserAppRoleAssignment -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
             $result | Should -BeNullOrEmpty

@@ -14,6 +14,11 @@ BeforeAll {
 
 Describe "Remove-EntraUserManager" {
     Context "Test for Remove-EntraUserManager" {
+        It "should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 0
+        }
         It "Should return empty object" {
             $result = Remove-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty

@@ -27,6 +27,12 @@ BeforeAll {
   
 Describe "Get-EntraUserOAuth2PermissionGrant" {
     Context "Test for Get-EntraUserOAuth2PermissionGrant" {
+        It "should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return specific UserOAuth2PermissionGrant" {
             $result = Get-EntraUserOAuth2PermissionGrant -UserId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty

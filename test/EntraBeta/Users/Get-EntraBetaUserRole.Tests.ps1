@@ -28,6 +28,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaUserRole" {
     Context "Test for Get-EntraBetaUserRole" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaUserMemberOfAsDirectoryRole -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+        
         It "Should return all user roles" {
             $result = Get-EntraBetaUserRole -UserId 'SawyerM@contoso.com'
             $result | Should -Not -BeNullOrEmpty

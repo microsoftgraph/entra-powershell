@@ -92,6 +92,12 @@ BeforeAll {
   
 Describe "Get-EntraBetaUserManager" {
     Context "Test for Get-EntraBetaUserManager" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaUserManager -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+        
         It "Should return specific user manager" {
             $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 

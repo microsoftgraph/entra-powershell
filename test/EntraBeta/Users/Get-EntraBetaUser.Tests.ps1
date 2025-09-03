@@ -50,10 +50,17 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
   
 Describe "Get-EntraBetaUser" {
     Context "Test for Get-EntraBetaUser" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+
         It "Should return specific user" {
             $result = Get-EntraBetaUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
