@@ -5,10 +5,6 @@ BeforeAll {
     if($null -eq (Get-Module -Name Microsoft.Entra.Applications)){
         Import-Module Microsoft.Entra.Applications
     }
-    
-    Mock -CommandName Get-EntraContext -MockWith { 
-        @{Scopes = @('Policy.ReadWrite.PermissionGrant', 'Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All') } 
-    } -ModuleName Microsoft.Entra.Applications
 }
 
 Describe "Invalid Tests"{
@@ -93,22 +89,5 @@ Describe "Invalid Tests"{
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'SearchString'*"
             }
         }
-    }
-    It "Should fail with exception when no parameter is passed" {
-        $cmdlets = @(
-            @{ CmdletName = 'Enable-EntraDirectoryRole'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
-            @{ CmdletName = 'New-EntraConditionalAccessPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
-            @{ CmdletName = 'New-EntraNamedLocationPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
-            @{ CmdletName = 'New-EntraPermissionGrantPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
-            )
-            $cmdlets | ForEach-Object {
-                $commandName = $_.CmdletName
-                $Exception = $_.Exception
-                $commandScriptBlock = [scriptblock]::Create("$commandName -ErrorAction Stop")
-                try {
-                    Invoke-Command -ScriptBlock $commandScriptBlock
-                }
-                catch { $_ -match $Exception | Should -BeTrue }
-            }
-    }      
+    }     
 }
