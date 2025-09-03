@@ -8,10 +8,21 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     
     Mock -CommandName Update-MgPolicyAuthorizationPolicy -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.Authorization') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "Set-EntraAuthorizationPolicy" {
     Context "Test for Set-EntraAuthorizationPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            $DefaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
+            $DefaultUserRolePermissions.AllowedToCreateApps = $true
+            $DefaultUserRolePermissions.AllowedToCreateSecurityGroups = $true
+            $DefaultUserRolePermissions.AllowedToReadOtherUsers = $true
+            { Set-EntraAuthorizationPolicy -AllowedToSignUpEmailBasedSubscriptions $false -AllowedToUseSSPR $false -AllowEmailVerifiedUsersToJoinOrganization $true -BlockMsolPowerShell $true -DefaultUserRolePermissions $DefaultUserRolePermissions -Description "test" -DisplayName "Authorization Policies" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should update AuthorizationPolicy" {
             $DefaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
             $DefaultUserRolePermissions.AllowedToCreateApps = $true

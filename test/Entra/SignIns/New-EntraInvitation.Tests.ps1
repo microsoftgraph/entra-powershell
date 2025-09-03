@@ -17,10 +17,17 @@ BeforeAll {
         )
     }
     Mock -CommandName  New-MgInvitation -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('User.Invite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraInvitation" {
     Context "Test for New-EntraInvitation" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraInvitation -InvitedUserEmailAddress 'someexternaluser@externaldomain.com' -SendInvitationMessage $True -InviteRedirectUrl 'https://myapps.contoso.com' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgInvitation -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should invite a new external user to your directory." {
 
             $result = New-EntraInvitation -InvitedUserEmailAddress 'someexternaluser@externaldomain.com' -SendInvitationMessage $True -InviteRedirectUrl 'https://myapps.contoso.com'

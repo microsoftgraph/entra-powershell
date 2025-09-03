@@ -9,10 +9,17 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Directory.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "Remove-EntraFeatureRolloutPolicy" {
     Context "Test for Remove-EntraFeatureRolloutPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraFeatureRolloutPolicy -Id bbbbbbbb-1111-2222-3333-cccccccccccc } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }  
+
         It "Should return empty object" {
             $result = Remove-EntraFeatureRolloutPolicy -Id bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty

@@ -25,10 +25,17 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('IdentityProvider.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraIdentityProvider" {
-Context "Test for New-EntraIdentityProvider" {
+    Context "Test for New-EntraIdentityProvider" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgIdentityProvider -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created identity provider" {
             $result = New-EntraIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
             $result | Should -Not -BeNullOrEmpty

@@ -25,10 +25,17 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgIdentityProvider -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("IdentityProvider.Read.All") } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Get-EntraIdentityProvider" {
-Context "Test for Get-EntraIdentityProvider" {
+    Context "Test for Get-EntraIdentityProvider" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Get-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH"  } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return specific identity provider" {
             $result = Get-EntraIdentityProvider -IdentityProviderBaseId "Google-OAUTH" 
             $result | Should -Not -BeNullOrEmpty

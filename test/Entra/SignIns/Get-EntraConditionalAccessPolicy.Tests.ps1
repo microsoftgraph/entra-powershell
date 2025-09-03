@@ -40,10 +40,17 @@ BeforeAll {
         )
     }
     Mock -CommandName Get-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Policy.Read.All") } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Get-EntraConditionalAccessPolicy" {
     Context "Test for Get-EntraConditionalAccessPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should retrieves a conditional access policy in Microsoft Entra ID with given ID" {
             $result = Get-EntraConditionalAccessPolicy -PolicyId "aaaaaaaa-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
