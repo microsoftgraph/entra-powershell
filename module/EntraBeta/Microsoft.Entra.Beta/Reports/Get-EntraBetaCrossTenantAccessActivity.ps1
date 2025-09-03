@@ -20,9 +20,15 @@ function Get-EntraBetaCrossTenantAccessActivity {
     )
 
     begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AuditLog.Read.All, CrossTenantInfo.ReadBasic.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
         
-        $currentTenantId = (Get-EntraContext).TenantId        
         #External Tenant ID check
+        $currentTenantId = (Get-EntraContext).TenantId        
         if ($ExternalTenantId) {
             Write-Verbose -Message "$(Get-Date -f T) - Checking supplied external tenant ID - $ExternalTenantId..."
 

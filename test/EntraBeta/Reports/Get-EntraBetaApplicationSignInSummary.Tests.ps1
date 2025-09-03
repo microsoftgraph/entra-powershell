@@ -27,12 +27,17 @@ $scriptblock = {
         }
 
     }
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Reports.Read.All") } } -ModuleName Microsoft.Entra.Beta.Reports
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
 
 Describe "Get-EntraBetaApplicationSignInSummary" {
     Context "Test for Get-EntraBetaApplicationSignInSummary" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
+            { Get-EntraBetaApplicationSignInSummary -Days "30" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 0
+        }
         It "Should return application sign in summary" {
             $result = Get-EntraBetaApplicationSignInSummary -Days "30" 
             $result | Should -Not -BeNullOrEmpty

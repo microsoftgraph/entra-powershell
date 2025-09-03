@@ -36,17 +36,30 @@ BeforeAll {
                 resourceId                  =   'bbbbbbbb-1111-2222-3333-cccccccccc66'
                 riskEventTypes              =   @{}
                 riskState                  =    'none'
-
-
             }
         )
     }
+
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('AuditLog.Read.All', 'Directory.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Reports
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Reports
 }
   
 Describe "Get-EntraAuditSignInLog" {
     Context "Test for Get-EntraAuditSignInLog" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Reports
+            { Get-EntraAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccc22" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Reports -Times 0
+        }
+        
         It "Should return specific Audit SignIn Logs" {
             $result = Get-EntraAuditSignInLog -SignInId "bbbbbbbb-1111-2222-3333-cccccccccc22"
             $result | Should -Not -BeNullOrEmpty

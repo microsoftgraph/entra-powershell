@@ -26,12 +26,17 @@ BeforeAll {
             }
         )
     }
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Reports.Read.All") } } -ModuleName Microsoft.Entra.Beta.Reports
     Mock -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
 
 Describe "Get-EntraBetaApplicationSignInDetailedSummary" {
     Context "Test for Get-EntraBetaApplicationSignInDetailedSummary" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
+            { Get-EntraBetaApplicationSignInDetailedSummary -Filter "appDisplayName eq 'Mock Portal'" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaReportApplicationSignInDetailedSummary -ModuleName Microsoft.Entra.Beta.Reports -Times 0
+        }
         It "Should return specific application signed in detailed summary by filter" {
             $result = Get-EntraBetaApplicationSignInDetailedSummary -Filter "appDisplayName eq 'Mock Portal'"
             $result | Should -Not -BeNullOrEmpty
