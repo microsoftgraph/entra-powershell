@@ -56,6 +56,31 @@ Describe "Get-EntraUserGroup" {
             { Get-EntraUserGroup -UserId 'SawyerM@contoso.com' -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
+        It "Should return append specified properties to the default properties" {
+            $sblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"        = "Contoso Sales"
+                        "Id"                 = "hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq"
+                        "MailEnabled"        = $false
+                        "CreatedDateTime"    = "2023-01-01T00:00:00Z"
+                        "DeletedDateTime"    = $null
+                        "GroupTypes"         = @("Unified")
+                        "MailNickname"       = "contosoSales"
+                        "SecurityEnabled"    = $true
+                        "Visibility"         = "Public"
+                        "Description"        = "test"
+                        "AssignedLabels"         = @("TagA", "TagB")
+                    }
+                )
+            }
+
+            Mock -CommandName Get-MgUserMemberOfAsGroup -MockWith $sblock -ModuleName Microsoft.Entra.Users
+            $result = Get-EntraUserGroup -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property AssignedLabels -AppendSelected -Top 1
+            $result.Id | should -Be "hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq"
+            $result.AssignedLabels | should -Be @("TagA", "TagB")
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserGroup"
             $result = Get-EntraUserGroup -UserId 'SawyerM@contoso.com'

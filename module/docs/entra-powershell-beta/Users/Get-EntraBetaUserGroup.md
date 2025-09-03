@@ -39,7 +39,19 @@ Get-EntraBetaUserGroup
 Get-EntraBetaUserGroup
  -UserId <String>
  -GroupId <String>
- [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Get-EntraUserGroup
+ -UserId <String>
+ -Property <String[]>
+ -AppendSelected
+ [-All]
+ [-Filter <String>]
+ [-Top <Int32>]
  [<CommonParameters>]
 ```
 
@@ -120,6 +132,70 @@ This cmdlet retrieves a list of groups to which a specific user belongs using th
 
 - `-GroupId` parameter specifies the group ID.
 
+### Example 5: Get a list of groups to which a specific user belongs and select specific properties.
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All', 'Group.Read.All', 'Directory.Read.All'
+Get-EntraBetaUserGroup -UserId 'SawyerM@contoso.com' -Property id,displayName,mailNickName -Debug | Select-Object displayName,id,mailNickName
+```
+
+```Output
+DisplayName                Id                                   MailNickname
+-----------                --                                   ------------
+Contoso Marketing          hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq ContosoMarketing
+Contoso Sales              qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh ContosoSales
+Contoso Digital            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb ContosoDigital
+```
+
+This cmdlet returns specific properties in the list of groups to which a specific user belongs to.
+
+### Example 6: Get a list of groups to which a specific user belongs and append the selected properties
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All', 'Group.Read.All', 'Directory.Read.All'
+Get-EntraBetaUserGroup -UserId 'SawyerM@contoso.com' -Property AssignedLabels -AppendSelected | Select-Object id,displayName,createdDateTime,deletedDateTime,groupTypes,mailEnabled,mailNickname,securityEnabled,visibility,description,AssignedLabels
+```
+
+```Output
+Id              : hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq
+DisplayName     : Contoso Marketing
+CreatedDateTime : 22/08/2024 03:02:41
+DeletedDateTime :
+GroupTypes      : {Unified}
+MailEnabled     : True
+MailNickname    : ContosoMarketing
+SecurityEnabled : False
+Visibility      : Public
+Description     :
+AssignedLabels  : {TagA,TagB}
+
+Id              : qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh
+DisplayName     : Contoso Sales
+CreatedDateTime : 22/08/2024 06:18:23
+DeletedDateTime :
+GroupTypes      : {Unified}
+MailEnabled     : True
+MailNickname    : ContosoSales
+SecurityEnabled : False
+Visibility      : Public
+Description     : Description of Contoso Sales
+AssignedLabels  : {TagA,TagB}
+
+Id              : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+DisplayName     : Contoso Digital
+CreatedDateTime : 22/08/2024 06:20:00
+DeletedDateTime :
+GroupTypes      : {Unified}
+MailEnabled     : True
+MailNickname    : ContosoDigital
+SecurityEnabled : False
+Visibility      : Public
+Description     : Description of Contoso Digital
+AssignedLabels  : {TagA,TagB}
+```
+
+We only selected one property using the `Property` parameter, but the response has more properties since `AppendSelected` parameter appended default properties to the selected properties.
+
 ## PARAMETERS
 
 ### -UserId
@@ -176,7 +252,7 @@ Specifies properties to be returned
 
 ```yaml
 Type: System.String[]
-Parameter Sets: (All)
+Parameter Sets: GetQuery,Append
 Aliases: Select
 
 Required: False
@@ -192,7 +268,7 @@ The unique ID of the group.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetQuery
+Parameter Sets: GetById
 Aliases: DirectoryObjectId
 
 Required: True
@@ -216,6 +292,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+Specifies whether to append the selected properties.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
