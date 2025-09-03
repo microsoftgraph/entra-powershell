@@ -179,12 +179,28 @@ BeforeAll {
                 "Parameters"           = $args
             }
         )
-    }    
+    } 
+    
+    Mock -CommandName Get-EntraContext -MockWith {
+        @{
+            Environment = @{
+                Name = "Global"
+            }
+            Scopes      = @('AuditLog.Read.All', 'Directory.Read.All')
+        }
+    } -ModuleName Microsoft.Entra.Beta.Reports
+
     Mock -CommandName Get-MgBetaAuditLogSignIn -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Reports
 }
   
 Describe "Get-EntraBetaAuditSignInLog" {
     Context "Test for Get-EntraBetaAuditSignInLog" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
+            { Get-EntraBetaAuditSignInLog -Top 1 } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Entra.Beta.Reports -Times 0
+        }
+
         It "Should get all logs" {
             $result = Get-EntraBetaAuditSignInLog -All
             $result | Should -Not -BeNullOrEmpty            

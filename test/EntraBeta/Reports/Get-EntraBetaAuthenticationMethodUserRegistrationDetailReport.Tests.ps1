@@ -30,6 +30,11 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AuditLog.Read.All") } } -ModuleName Microsoft.Entra.Beta.Reports
 }
 Describe "Tests for Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport" {
+    It "Should throw when not connected and not invoke SDK" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Reports
+        { Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -UserRegistrationDetailsId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Reports -Times 0
+    }
     It "Result should not be empty" {
         $result = Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport -UserRegistrationDetailsId "aaaaaaaa-2222-3333-4444-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty
