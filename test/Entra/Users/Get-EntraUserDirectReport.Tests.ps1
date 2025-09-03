@@ -37,10 +37,10 @@ BeforeAll {
 
 Describe "Get-EntraUserDirectReport" {
     Context "Test for Get-EntraUserDirectReport" {
-        It "should throw when not connected and not invoke SDK" {
+        It "should throw when not connected and not invoke graph call" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
             { Get-EntraUserDirectReport -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
-            Should -Invoke -CommandName Get-MgUserDirectReport -ModuleName Microsoft.Entra.Users -Times 0
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
         }
         
         It "Should return specific user direct report" {

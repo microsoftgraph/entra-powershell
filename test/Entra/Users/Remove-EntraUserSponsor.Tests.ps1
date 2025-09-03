@@ -16,7 +16,9 @@ Describe "Remove-EntraUserSponsor" {
     Context "Test for Remove-EntraUserSponsor" {
         It "should throw when not connected and not invoke graph call" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
-            { Remove-EntraUserSponsor -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -SponsorId "sponsor123" } | Should -Throw "Not connected to Microsoft Graph*"
+            $userId = "ec5813fb-346e-4a33-a014-b55ffee3662b"
+            $dirObjectId = "ec5b1c17-940b-47c3-9e8e-6c7e71b9c1ca"
+            { Remove-EntraUserSponsor -UserId $userId -DirectoryObjectId $dirObjectId } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
         }
         

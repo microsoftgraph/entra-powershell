@@ -19,6 +19,8 @@ Describe "Set-EntraUserPasswordProfile" {
     Context "Test for Set-EntraUserPasswordProfile" {
         It "Should throw when not connected and not invoke SDK" {
             Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            $newPassword = "New@12345"
+            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
             { Set-EntraUserPasswordProfile -UserId "sawyerM@contoso.com" -Password $secPassword -ForceChangePasswordNextSignIn -ForceChangePasswordNextSignInWithMfa } | Should -Throw "Not connected to Microsoft Graph*"
             Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Entra.Users -Times 0
         }
