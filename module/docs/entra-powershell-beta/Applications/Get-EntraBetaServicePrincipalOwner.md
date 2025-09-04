@@ -21,12 +21,26 @@ Get the owner of a service principal.
 
 ## SYNTAX
 
+### GetQuery (Default)
+
 ```powershell
-Get-EntraBetaServicePrincipalOwner
+Get-EntraServicePrincipalOwner
  -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Get-EntraGroup
+ -ServicePrincipalId <String>
+ -Property <String[]
+ -AppendSelected
+ [-Top <Int32>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -93,6 +107,27 @@ This command gets top two owners of a service principal. You can use the command
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
+### Example 4: Retrieve top two owners of a service principal and select and append a property not returned by default.
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
+Get-EntraBetaServicePrincipalOwner -ServicePrincipalId 0a40f8f8-4e30-4f58-bf26-772ad69f41f6 -Property userType -AppendSelected -Top 2 | Select-Object Id, userPrincipalName, DisplayName, '@odata.type', userType
+```
+
+```Output
+Id                                   displayName          @odata.type              userType
+--                                   -----------          -----------              ---------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Alex Wilber          #microsoft.graph.user    Member
+bbbbbbbb-1111-2222-3333-cccccccccccc Christie Cline       #microsoft.graph.user    Member
+```
+
+This command gets top two owners of a service principal. You can use the command `Get-EntraServicePrincipal` to get service principal object ID. You can use `-Limit` as an alias for `-Top`.
+
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+- `-Property` parameter selects a property `userType` that is not returned by default.
+- `-AppendSelected` parameter ensures the selected property is returned together with default properties.
+
 ## PARAMETERS
 
 ### -All
@@ -155,6 +190,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+Specifies whether to append the selected properties.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
