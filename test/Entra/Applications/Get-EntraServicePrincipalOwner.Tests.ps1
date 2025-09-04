@@ -90,6 +90,30 @@ Describe "Get-EntraServicePrincipalOwner" {
     It "Should fail when Property is empty" {
         { Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
     }
+    It "Should return append specified properties to the default properties" {
+            $scriptblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"        = "Sawyer M"
+                        "Id"                 = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                        "CreatedDateTime"    = "2023-01-01T00:00:00Z"
+                        "DeletedDateTime"    = $null
+                        "UserType"           = "Member"
+                        "AdditionalProperties"   = @{
+                            "@odata.type"  = "#microsoft.graph.user";
+                            accountEnabled = $true
+                        }
+                    }
+                )
+            }
+
+            Mock -CommandName Get-MgServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Applications
+            $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property userType -AppendSelected | Select-Object id,displayName,'@odata.type',userType
+            $result.Id | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
+            $result.UserType | should -Be "Member"
+
+            Should -Invoke -CommandName Get-MgServicePrincipalOwner -ModuleName Microsoft.Entra.Applications -Times 1
+        }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalOwner"
         $result = Get-EntraServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
