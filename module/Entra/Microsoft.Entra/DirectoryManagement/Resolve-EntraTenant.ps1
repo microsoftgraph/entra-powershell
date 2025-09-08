@@ -58,6 +58,13 @@ function Resolve-EntraTenant {
     )
 
     begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes CrossTenantInformation.ReadBasic.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
         # Retrieve endpoint information based on the environment
         $graphEndpoint = (Get-EntraEnvironment -Name $Environment).GraphEndpoint
         $azureAdEndpoint = (Get-EntraEnvironment -Name $Environment).AzureAdEndpoint
