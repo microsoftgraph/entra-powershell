@@ -100,7 +100,7 @@ Describe "Get-EntraServicePrincipalOwner" {
                         "DeletedDateTime"    = $null
                         "UserType"           = "Member"
                         "AdditionalProperties"   = @{
-                            "@odata.type"  = "#microsoft.graph.user";
+                            "@odata.type"  = "#microsoft.graph.user"
                             accountEnabled = $true
                         }
                     }

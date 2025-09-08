@@ -39,6 +39,7 @@ function Get-EntraServicePrincipalOwner {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $defaultProperties = "id,displayName,createdDateTime,deletedDateTime,accountEnabled"
+
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
