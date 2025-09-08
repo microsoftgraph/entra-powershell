@@ -8,10 +8,20 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.ConditionalAccess', 'Policy.Read.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Set-EntraConditionalAccessPolicy" {
     Context "Test for Set-EntraConditionalAccessPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            $Condition  = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+            $Controls   = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+            $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+            { Set-EntraConditionalAccessPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -DisplayName "test" -State enabled -Conditions $Condition -GrantControls $Controls -SessionControls $SessionControls } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should updates a conditional access policy in Microsoft Entra ID by PolicyId" {
             $Condition  = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Controls   = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls

@@ -32,10 +32,17 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.ConditionalAccess') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "New-EntraNamedLocationPolicy" {
-Context "Test for New-EntraNamedLocationPolicy" {
+    Context "Test for New-EntraNamedLocationPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+        
         It "Should return created Ms named location policy" {
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $result | Should -Not -BeNullOrEmpty

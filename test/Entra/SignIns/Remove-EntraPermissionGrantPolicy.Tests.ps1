@@ -8,10 +8,17 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgPolicyPermissionGrantPolicy -MockWith {} -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGrant') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Remove-EntraPermissionGrantPolicy" {
     Context "Test for Remove-EntraPermissionGrantPolicy" {
+        It "Should throw when not connected and not invoke sdk call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraPermissionGrantPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $result = Remove-EntraPermissionGrantPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -BeNullOrEmpty

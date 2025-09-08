@@ -21,10 +21,17 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('DelegatedPermissionGrant.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "New-EntraOauth2PermissionGrant" {
     Context "Test for New-EntraOauth2PermissionGrant" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created Oauth2PermissionGrant" {
             $result = New-EntraOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All"
             $result | Should -Not -BeNullOrEmpty

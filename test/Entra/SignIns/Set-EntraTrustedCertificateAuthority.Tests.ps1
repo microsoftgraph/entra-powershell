@@ -56,11 +56,20 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -MockWith $scriptblock2 -ModuleName Microsoft.Entra.SignIns
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Organization.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "Set-EntraTrustedCertificateAuthority" {
     Context "Test for Set-EntraTrustedCertificateAuthority" {
+        It "Should throw when not connected and not invoke graph call" {
+            $cer = Get-EntraTrustedCertificateAuthority 
+            $cer[0].CrlDistributionPoint = "https://example.crl"
+            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"  
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created one" {
             $cer = Get-EntraTrustedCertificateAuthority 
             $cer[0].CrlDistributionPoint = "https://example.crl"

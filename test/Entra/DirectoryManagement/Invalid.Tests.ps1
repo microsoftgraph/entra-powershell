@@ -1,5 +1,10 @@
-if($null -eq (Get-Module -Name Microsoft.Entra.DirectoryManagement)){
-    Import-Module Microsoft.Entra.DirectoryManagement
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+BeforeAll {  
+    if($null -eq (Get-Module -Name Microsoft.Entra.DirectoryManagement)){
+        Import-Module Microsoft.Entra.DirectoryManagement
+    }
 }
 
 Describe "Invalid Tests"{
@@ -84,22 +89,5 @@ Describe "Invalid Tests"{
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'SearchString'*"
             }
         }
-    }
-    It "Should fail with exception when no parameter is passed" {
-        $cmdlets = @(
-            @{ CmdletName = 'Enable-EntraDirectoryRole'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
-            @{ CmdletName = 'New-EntraConditionalAccessPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
-            @{ CmdletName = 'New-EntraNamedLocationPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" },
-            @{ CmdletName = 'New-EntraPermissionGrantPolicy'; Exception = "Authentication needed. Please call Connect-MgGraph.*" }
-            )
-            $cmdlets | ForEach-Object {
-                $commandName = $_.CmdletName
-                $Exception = $_.Exception
-                $commandScriptBlock = [scriptblock]::Create("$commandName -ErrorAction Stop")
-                try {
-                    Invoke-Command -ScriptBlock $commandScriptBlock
-                }
-                catch { $_ -match $Exception | Should -BeTrue }
-            }
-    }      
+    }   
 }

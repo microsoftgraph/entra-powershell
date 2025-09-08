@@ -22,10 +22,17 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.SignIns
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Policy.ReadWrite.PermissionGrant') } } -ModuleName Microsoft.Entra.SignIns
 }
   
 Describe "New-EntraPermissionGrantPolicy" {
     Context "Test for New-EntraPermissionGrantPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return created PermissionGrantPolicy" {
             $result = New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" 
             $result | Should -Not -BeNullOrEmpty

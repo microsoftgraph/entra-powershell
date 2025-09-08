@@ -49,11 +49,18 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgContext -MockWith $scriptblock3 -ModuleName Microsoft.Entra.SignIns
-
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @('Organization.ReadWrite.All') } } -ModuleName Microsoft.Entra.SignIns
 }
 
 Describe "Remove-EntraTrustedCertificateAuthority" {
     Context "Test for Remove-EntraTrustedCertificateAuthority" {
+        It "Should throw when not connected and not invoke graph call" {
+            $cer = Get-EntraTrustedCertificateAuthority 
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.SignIns
+            { Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0] } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.SignIns -Times 0
+        }
+
         It "Should return object" {
             $cer = Get-EntraTrustedCertificateAuthority 
             $result = Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
