@@ -115,7 +115,7 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should fail when Top is less than 1" {
-            { Get-EntraUser -Top 0 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
+            { Get-EntraBetaUser -Top 0 } | Should -Throw "Cannot validate argument on parameter 'Top'*"
         }
         
         It "Should fail when pagesize is empty" {
@@ -127,11 +127,11 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should fail when pagesize is less than 1" {
-            { Get-EntraUser -PageSize 0 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
+            { Get-EntraBetaUser -PageSize 0 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
         }
 
         It "Should fail when pagesize is greater than 999" {
-            { Get-EntraUser -PageSize 1000 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
+            { Get-EntraBetaUser -PageSize 1000 } | Should -Throw "Cannot validate argument on parameter 'PageSize'*"
         }
 
         It "Should return user when pageSize is applied with all" {

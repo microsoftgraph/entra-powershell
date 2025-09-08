@@ -22,10 +22,22 @@ Gets the manager of a user.
 
 ## SYNTAX
 
+### GetQuery (Default)
+
 ```powershell
 Get-EntraBetaUserManager
  -UserId <String>
  [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Get-EntraBetaUserManager
+ -UserId <String>
+ -Property <String[]>
+ -AppendSelected
  [<CommonParameters>]
 ```
 
@@ -85,6 +97,27 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Sawyer Miller     SawyerM@contoso.com      
 
 This example demonstrates how to retrieve users without managers.
 
+### Example 3: Get the manager of a user and select and append a property not returned by default.
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserManager -UserId 'SawyerM@contoso.com' -Property onPremisesImmutableId -AppendSelected |
+Select-Object Id, displayName, userPrincipalName, createdDateTime, accountEnabled, onPremisesImmutableId |
+Format-Table -AutoSize
+```
+
+```Output
+id                                    displayName     userPrincipalName      createdDateTime           accountEnabled  onPremisesImmutableId
+--                                    -----------     -----------------      ---------------           --------------  --------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee  Patti Fernandez PattiF@Contoso.com     10/7/2024 12:32:01 AM     True            hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq
+```
+
+This example demonstrates how to retrieve the manager of a specific user.
+
+- `-UserId` Parameter specifies UserId or User Principal Name of User.
+- `-Property` parameter selects a property `OnPremisesImmutableId` that is not returned by default.
+- `-AppendSelected` parameter ensures the selected property is returned together with default properties.
+
 ## PARAMETERS
 
 ### -UserId
@@ -115,6 +148,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+Specifies whether to append the selected properties.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
