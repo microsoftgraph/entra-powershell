@@ -5,7 +5,7 @@
 function Get-EntraBetaGroupMember {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
 
@@ -17,9 +17,13 @@ function Get-EntraBetaGroupMember {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Return all members of the group.")]
         [switch] $All,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The properties to include in the response.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
+        [switch] $AppendSelected
     )
 
     begin {
@@ -31,9 +35,10 @@ function Get-EntraBetaGroupMember {
         }
     }
     
-    PROCESS {    
+    PROCESS {
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $defaultProperties = "id,displayName,userPrincipalName,mail,mailNickName,createdDateTime,deletedDateTime,givenName,surname,usageLocation,accountEnabled"
 
         if ($null -ne $PSBoundParameters["GroupId"]) {
             $params["GroupId"] = $PSBoundParameters["GroupId"]
@@ -79,8 +84,11 @@ function Get-EntraBetaGroupMember {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")

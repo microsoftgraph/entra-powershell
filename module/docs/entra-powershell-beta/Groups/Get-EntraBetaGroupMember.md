@@ -22,12 +22,26 @@ Gets a member of a group.
 
 ## SYNTAX
 
+### GetQuery (Default)
+
 ```powershell
 Get-EntraBetaGroupMember
  -GroupId <String>
  [-Top <Int32>]
  [-All]
  [-Property <String[]>]
+ [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Get-EntraBetaGroupMember
+ -GroupId <String>
+ -Property <String[]
+ -AppendSelected
+ [-Top <Int32>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -135,6 +149,27 @@ cccccccc-8888-9999-0000-dddddddddddd Contoso Group     #microsoft.graph.group
 This example demonstrates how to retrieve group member by ID.
 
 - `-GroupId` Specifies the ID of a group.
+
+### Example 5: Retrieve top two members of a group and select and append a property not returned by default.
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
+Get-EntraBetaGroupMember -GroupId $group.Id -Top 2  -Property onPremImmutableId -AppendSelected | Select-Object Id, DisplayName, '@odata.type', OnPremImmutableId
+```
+
+```Output
+Id                                   DisplayName       @odata.type                 OnPremImmutableId
+------------------------------------ ----------------- ------------------------    ----------------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user       eeeeeeee-4444-5555-6666-ffffffffffff
+eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user       aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+```
+
+This example demonstrates how to retrieve group member by ID.
+
+- `-GroupId` Specifies the ID of a group.
+- `-Property` parameter selects a property `onPremImmutableId` that is not returned by default.
+- `-AppendSelected` parameter ensures the selected property is returned together with default properties.
 
 ## PARAMETERS
 

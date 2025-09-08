@@ -128,7 +128,7 @@ Describe "Get-EntraGroup" {
             }
 
             Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
-            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property IsSubscribedByMail
+            $result = Get-EntraGroup -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property IsSubscribedByMail -AppendSelected
             $result.ObjectId | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
             $result.IsSubscribedByMail | should -Be $false
         }
