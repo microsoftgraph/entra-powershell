@@ -37,7 +37,7 @@ Get-EntraServicePrincipalOwner
 ```powershell
 Get-EntraGroup
  -ServicePrincipalId <String>
- -Property <String[]
+ -Property <String[]>
  -AppendSelected
  [-Top <Int32>]
  [-All]
