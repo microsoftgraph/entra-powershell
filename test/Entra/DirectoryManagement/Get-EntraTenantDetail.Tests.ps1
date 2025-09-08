@@ -45,6 +45,12 @@ $scriptblock = {
 
 Describe "Get-EntraTenantDetail" {
     Context "Test for Get-EntraTenantDetail" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraTenantDetail -All } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return all Tenant Detail" {
             $result = Get-EntraTenantDetail -All 
             $result | Should -Not -BeNullOrEmpty

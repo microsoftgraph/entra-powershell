@@ -36,6 +36,12 @@ BeforeAll{
     }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Tests for Get-EntraScopedRoleMembership"{
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+        { Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+    }
+
     It "Result should not be empty"{
         $result = Get-EntraScopedRoleMembership -AdministrativeUnitId $unitObjId -ScopedRoleMembershipId $scopedRoleMembershipId
         $result | Should -Not -BeNullOrEmpty

@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Set-EntraDevice"{
     Context "Test for Set-EntraDevice" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Set-EntraDevice -DeviceObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -DisplayName "Mock-App" -AccountEnabled $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return empty object"{
             $result = Set-EntraDevice -DeviceObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App" -AccountEnabled $true
             $result | Should -BeNullOrEmpty           

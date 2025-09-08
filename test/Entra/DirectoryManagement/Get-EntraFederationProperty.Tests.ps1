@@ -29,6 +29,12 @@ BeforeAll {
 }
 Describe "Get-EntraFederationProperty" {
     Context "Test for Get-EntraFederationProperty" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraFederationProperty -DomainName "anmaji.myworkspace.contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDomainFederationConfiguration -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return the empty object" {
             $result = Get-EntraFederationProperty -DomainName "anmaji.myworkspace.contoso.com"
             $result | Should -Not -BeNullOrEmpty

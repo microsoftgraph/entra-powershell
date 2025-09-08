@@ -46,6 +46,12 @@ BeforeAll {
 
 Describe "Get-EntraDirectoryObjectOnPremisesProvisioningError" {
     Context "Test for Get-EntraDirectoryObjectOnPremisesProvisioningError" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDirectoryObjectOnPremisesProvisioningError } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should not return empty object" {
             $result = Get-EntraDirectoryObjectOnPremisesProvisioningError 
             $result | Should -Not -BeNullOrEmpty

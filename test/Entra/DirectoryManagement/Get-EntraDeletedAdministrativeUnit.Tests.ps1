@@ -35,6 +35,12 @@ BeforeAll {
 
 Describe "Get-EntraDeletedAdministrativeUnit" {
     Context "Test for Get-EntraDeletedAdministrativeUnit" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDeletedAdministrativeUnit } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return all administrative units" {
             $result = Get-EntraDeletedAdministrativeUnit
             $result | Should -Not -BeNullOrEmpty

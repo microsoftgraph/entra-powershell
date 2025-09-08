@@ -40,6 +40,12 @@ $scriptblock = {
 
 Describe "Get-EntraSubscribedSku" {
     Context "Test for Get-EntraSubscribedSku" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraSubscribedSku -SubscribedSkuId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific SubscribedSku" {
             $result = Get-EntraSubscribedSku -SubscribedSkuId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
             $result | Should -Not -BeNullOrEmpty

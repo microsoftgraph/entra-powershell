@@ -25,6 +25,12 @@ BeforeAll {
 }
 Describe "Set-EntraDirSyncFeature" {
     Context "Test for Set-EntraDirSyncFeature" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Set-EntraDirSyncFeature -Features "BypassDirSyncOverrides", "PasswordSync" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should sets identity synchronization features for a tenant." {
             $result =  Set-EntraDirSyncFeature -Features "BypassDirSyncOverrides", "PasswordSync" -Enabled $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force
             $result | Should -BeNullOrEmpty

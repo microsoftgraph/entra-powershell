@@ -33,6 +33,12 @@ BeforeAll {
 
 Describe "New-EntraCustomSecurityAttributeDefinition" {
     Context "Test for New-EntraCustomSecurityAttributeDefinition" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering" -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should add new custom Security Attribute Definitions" {
             $result = New-EntraCustomSecurityAttributeDefinition -attributeSet "Engineering"  -description "Active projects for user" -isCollection $true -isSearchable $true -name "Project1234" -status "Available" -type "String" -usePreDefinedValuesOnly $true
             $result | Should -Not -BeNullOrEmpty

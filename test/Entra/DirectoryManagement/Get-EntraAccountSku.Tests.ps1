@@ -31,6 +31,12 @@ BeforeAll {
 
 Describe "Get-EntraAccountSku" {
     Context "Test for Get-EntraAccountSku" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Returns all the SKUs for a company." {
             $result = Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty

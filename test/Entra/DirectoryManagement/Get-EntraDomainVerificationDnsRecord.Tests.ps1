@@ -38,6 +38,12 @@ $scriptblock = {
 
 Describe "Get-EntraDomainVerificationDnsRecord" {
     Context "Test for Get-EntraDomainVerificationDnsRecord" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDomainVerificationDnsRecord -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific domain verification Dns record" {
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
             $result | Should -Not -BeNullOrEmpty

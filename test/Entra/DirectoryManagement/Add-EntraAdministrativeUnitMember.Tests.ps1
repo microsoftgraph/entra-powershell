@@ -19,6 +19,12 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Add-EntraAdministrativeUnitMember tests" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+        { Add-EntraAdministrativeUnitMember -AdministrativeUnitId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -MemberId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+    }
+    
     It "Should return empty object" {
         $result = Add-EntraAdministrativeUnitMember -AdministrativeUnitId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -MemberId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846"
         $result | Should -BeNullOrEmpty

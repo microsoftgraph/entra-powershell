@@ -36,6 +36,12 @@ BeforeAll {
   
 Describe "Get-EntraContactMembership" {
     Context "Test for Get-EntraContactMembership" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraContactMembership -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return specific Contact Membership" {
             $result = Get-EntraContactMembership -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty

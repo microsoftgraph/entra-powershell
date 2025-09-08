@@ -40,6 +40,12 @@ BeforeAll {
 
 Describe "Get-EntraDomainNameReference" {
     Context "Test for Get-EntraDomainNameReference" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return specific domain Name Reference" {
             $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
             $result | Should -Not -BeNullOrEmpty

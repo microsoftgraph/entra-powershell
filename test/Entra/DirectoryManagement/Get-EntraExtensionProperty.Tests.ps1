@@ -29,6 +29,12 @@ BeforeAll {
 }
 
 Describe "Tests for Get-EntraExtensionProperty" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+        { Get-EntraExtensionProperty -IsSyncedFromOnPremises $false } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+    }
+
     It "Result should not be empty" {
         $result = Get-EntraExtensionProperty -IsSyncedFromOnPremises $false
         $result | Should -Not -BeNullOrEmpty

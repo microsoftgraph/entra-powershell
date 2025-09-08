@@ -36,6 +36,12 @@ BeforeAll {
 
 Describe "Get-EntraDeletedDevice" {
     Context "Test for Get-EntraDeletedDevice" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDeletedDevice } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDirectoryDeletedItemAsDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return all devices" {
             $result = Get-EntraDeletedDevice
             $result | Should -Not -BeNullOrEmpty
