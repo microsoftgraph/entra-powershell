@@ -43,6 +43,11 @@ BeforeAll {
     }  
 
     Mock -CommandName Get-MgContact -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OrgContact.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraContact" {

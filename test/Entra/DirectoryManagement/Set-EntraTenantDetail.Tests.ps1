@@ -14,6 +14,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     Mock -CommandName Get-MgOrganization -MockWith {$scriptblock} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Update-MgOrganization -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Set-EntraTenantDetail" {

@@ -46,6 +46,11 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgDevice -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Device.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraDevice" {

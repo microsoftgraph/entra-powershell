@@ -30,6 +30,11 @@ BeforeAll {
     }     
 
     Mock -CommandName New-MgDomain -MockWith $scriptBlock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "New-EntraDomain" {

@@ -11,6 +11,11 @@ BeforeAll {
 
     $auId = "bbbbbbbb-1111-1111-1111-cccccccccccc"
     $memId = "bbbbbbbb-2222-2222-2222-cccccccccccc"
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Test for Remove-EntraAdministrativeUnitMember" {

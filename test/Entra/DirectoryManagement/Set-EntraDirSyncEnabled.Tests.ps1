@@ -9,6 +9,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OnPremDirectorySynchronization.ReadWrite.All', 'Organization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Set-EntraDirSyncEnabled" {

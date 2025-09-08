@@ -9,7 +9,8 @@ BeforeAll {
 
     Mock -CommandName New-MgDeviceRegisteredOwnerByRef -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
+        Environment = @{ Name = "Global" }
+        Scopes      = @("Directory.AccessAsUser.All")
     }} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Get-EntraEnvironment -MockWith {return @{
         GraphEndpoint = "https://graph.microsoft.com"

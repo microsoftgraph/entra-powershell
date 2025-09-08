@@ -25,6 +25,10 @@ BeforeAll {
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('RoleManagement.Read.Directory')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "EntraDirectoryRoleMember" {

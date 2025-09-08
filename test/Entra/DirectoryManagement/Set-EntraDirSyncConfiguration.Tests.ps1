@@ -17,6 +17,11 @@ BeforeAll {
     Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
     
     Mock -CommandName Update-MgDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OnPremDirectorySynchronization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Set-EntraDirSyncConfiguration" {
     Context "Test for Set-EntraDirSyncConfiguration" {

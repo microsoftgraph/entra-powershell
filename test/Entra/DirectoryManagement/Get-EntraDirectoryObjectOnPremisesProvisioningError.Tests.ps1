@@ -34,7 +34,8 @@ BeforeAll {
     }
 
     Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
+        Environment = @{ Name = "Global" }
+        Scopes      = @('User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read')
     }} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Get-EntraEnvironment -MockWith {return @{
         GraphEndpoint = "https://graph.microsoft.com"

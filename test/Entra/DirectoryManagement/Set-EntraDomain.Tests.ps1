@@ -9,6 +9,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgDomain -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }   
 
 Describe "Set-EntraDomain"{

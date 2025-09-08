@@ -9,6 +9,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgDevice -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.AccessAsUser.All', 'Device.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Set-EntraDevice"{

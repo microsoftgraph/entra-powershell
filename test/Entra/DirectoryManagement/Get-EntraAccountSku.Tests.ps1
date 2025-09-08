@@ -22,6 +22,11 @@ BeforeAll {
         )
     }    
     Mock -CommandName Get-MgSubscribedSku -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.Read.All', 'LicenseAssignment.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraAccountSku" {

@@ -35,6 +35,11 @@ $scriptblock = {
 }
 
     Mock -CommandName Get-MgOrganization -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 

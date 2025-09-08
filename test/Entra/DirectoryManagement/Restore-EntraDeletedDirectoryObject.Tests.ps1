@@ -24,6 +24,11 @@ BeforeAll {
     } 
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('User.ReadWrite.All', 'AdministrativeUnit.ReadWrite.All', 'Application.ReadWrite.All', 'Group.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Restore-EntraDeletedDirectoryObject" {
     Context "Restore-EntraDeletedDirectoryObject" {

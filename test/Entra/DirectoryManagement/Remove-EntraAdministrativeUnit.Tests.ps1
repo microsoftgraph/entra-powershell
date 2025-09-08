@@ -8,6 +8,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Test for Remove-EntraAdministrativeUnit" {

@@ -30,6 +30,11 @@ BeforeAll{
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("RoleManagement.ReadWrite.Directory")
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Tests for Add-EntraScopedRoleMembership"{
     It "Result should not be empty"{
