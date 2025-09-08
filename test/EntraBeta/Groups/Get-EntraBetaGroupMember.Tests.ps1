@@ -96,7 +96,7 @@ Describe "Get-EntraBetaGroupMember" {
             }
 
             Mock -CommandName Get-MgBetaGroupMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
-            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property OnPremisesImmutableId -AppendSelected -Top 1
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId -AppendSelected -Top 1
             $result.Id | should -Be "dddddddd-3333-4444-5555-eeeeeeeeeeee"
             $result.OnPremisesImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
         }

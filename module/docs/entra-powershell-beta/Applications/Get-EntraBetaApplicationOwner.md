@@ -118,7 +118,7 @@ This example demonstrates how to get the two owners of a specified application i
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $application = Get-EntraBetaApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraBetaApplicationOwner -ApplicationId $application.Id -Property OnPremisesImmutableId -AppendSelected -Top 2 | Select-Object Id, userPrincipalName, DisplayName, '@odata.type', OnPremisesImmutableId
+Get-EntraBetaApplicationOwner -ApplicationId $application.Id -Property onPremisesImmutableId -AppendSelected -Top 2 | Select-Object Id, userPrincipalName, DisplayName, '@odata.type', OnPremisesImmutableId
 ```
 
 ```Output

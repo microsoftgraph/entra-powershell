@@ -38,7 +38,7 @@ Get-EntraBetaGroupMember
 ```powershell
 Get-EntraBetaGroupMember
  -GroupId <String>
- -Property <String[]
+ -Property <String[]>
  -AppendSelected
  [-Top <Int32>]
  [-All]
@@ -155,7 +155,7 @@ This example demonstrates how to retrieve group member by ID.
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraBetaGroupMember -GroupId $group.Id -Top 2  -Property OnPremisesImmutableId -AppendSelected | Select-Object Id, DisplayName, '@odata.type', OnPremisesImmutableId
+Get-EntraBetaGroupMember -GroupId $group.Id -Top 2  -Property onPremisesImmutableId -AppendSelected | Select-Object Id, DisplayName, '@odata.type', OnPremisesImmutableId
 ```
 
 ```Output
@@ -233,6 +233,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+Specifies whether to append the selected properties.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
