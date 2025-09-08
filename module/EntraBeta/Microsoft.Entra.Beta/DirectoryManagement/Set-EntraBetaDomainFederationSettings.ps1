@@ -18,6 +18,16 @@ function Set-EntraBetaDomainFederationSettings {
             [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]$SigningCertificateUpdateStatus,
             [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$PromptLoginBehavior
             ) 
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Domain.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
         process { 
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
