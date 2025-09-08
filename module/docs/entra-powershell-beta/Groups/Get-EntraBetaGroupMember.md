@@ -155,11 +155,11 @@ This example demonstrates how to retrieve group member by ID.
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 $group = Get-EntraBetaGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraBetaGroupMember -GroupId $group.Id -Top 2  -Property onPremImmutableId -AppendSelected | Select-Object Id, DisplayName, '@odata.type', OnPremImmutableId
+Get-EntraBetaGroupMember -GroupId $group.Id -Top 2  -Property OnPremisesImmutableId -AppendSelected | Select-Object Id, DisplayName, '@odata.type', OnPremisesImmutableId
 ```
 
 ```Output
-Id                                   DisplayName       @odata.type                 OnPremImmutableId
+Id                                   DisplayName       @odata.type                 OnPremisesImmutableId
 ------------------------------------ ----------------- ------------------------    ----------------------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee Sawyer Miller     #microsoft.graph.user       eeeeeeee-4444-5555-6666-ffffffffffff
 eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user       aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
@@ -168,7 +168,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff Alex Wilber       #microsoft.graph.user    
 This example demonstrates how to retrieve group member by ID.
 
 - `-GroupId` Specifies the ID of a group.
-- `-Property` parameter selects a property `onPremImmutableId` that is not returned by default.
+- `-Property` parameter selects a property `OnPremisesImmutableId` that is not returned by default.
 - `-AppendSelected` parameter ensures the selected property is returned together with default properties.
 
 ## PARAMETERS

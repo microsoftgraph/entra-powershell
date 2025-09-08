@@ -91,29 +91,29 @@ Describe "Get-EntraBetaServicePrincipalOwner" {
         { Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
     }
     It "Should return append specified properties to the default properties" {
-            $scriptblock = {
-                return @(
-                    [PSCustomObject]@{
-                        "DisplayName"        = "Sawyer M"
-                        "Id"                 = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                        "CreatedDateTime"    = "2023-01-01T00:00:00Z"
-                        "DeletedDateTime"    = $null
-                        "UserType"           = "Member"
-                        "AdditionalProperties"   = @{
-                            "@odata.type"  = "#microsoft.graph.user"
-                            accountEnabled = $true
-                        }
+        $scriptblock = {
+            return @(
+                [PSCustomObject]@{
+                    "DisplayName"        = "Sawyer M"
+                    "Id"                 = "eeeeeeee-4444-5555-6666-ffffffffffff"
+                    "CreatedDateTime"    = "2023-01-01T00:00:00Z"
+                    "DeletedDateTime"    = $null
+                    "UserType"           = "Member"
+                    "AdditionalProperties"   = @{
+                        "@odata.type"  = "#microsoft.graph.user"
+                        accountEnabled = $true
                     }
-                )
-            }
-
-            Mock -CommandName Get-MgBetaServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-            $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property userType -AppendSelected | Select-Object id,displayName,'@odata.type',userType
-            $result.Id | should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
-            $result.UserType | should -Be "Member"
-
-            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwner -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+                }
+            )
         }
+
+        Mock -CommandName Get-MgBetaServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
+        $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property userType -AppendSelected | Select-Object id,displayName,'@odata.type',userType
+        $result.Id | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
+        $result.UserType | should -Be "Member"
+
+        Should -Invoke -CommandName Get-MgBetaServicePrincipalOwner -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+    }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalOwner"
         $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"

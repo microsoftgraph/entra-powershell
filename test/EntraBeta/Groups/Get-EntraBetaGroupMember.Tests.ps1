@@ -84,7 +84,7 @@ Describe "Get-EntraBetaGroupMember" {
                         "DisplayName"        = "Sawyer Miller"
                         "Id"                 = "dddddddd-3333-4444-5555-eeeeeeeeeeee"
                         "UserPrincipalName"  = "SawyerM@contoso.com"
-                        "OnPremImmutableId"  = "eeeeeeee-4444-5555-6666-ffffffffffff"
+                        "OnPremisesImmutableId"  = "eeeeeeee-4444-5555-6666-ffffffffffff"
                         "CreatedDateTime"    = "2023-01-01T00:00:00Z"
                         "DeletedDateTime"    = $null
                         "AdditionalProperties"   = @{
@@ -96,9 +96,9 @@ Describe "Get-EntraBetaGroupMember" {
             }
 
             Mock -CommandName Get-MgBetaGroupMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
-            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremImmutableId -AppendSelected -Top 1
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property OnPremisesImmutableId -AppendSelected -Top 1
             $result.Id | should -Be "dddddddd-3333-4444-5555-eeeeeeeeeeee"
-            $result.OnPremImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
+            $result.OnPremisesImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
         }
         
         It "Should contain 'User-Agent' header" {
