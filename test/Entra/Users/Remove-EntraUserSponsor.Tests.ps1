@@ -14,6 +14,14 @@ BeforeAll {
 
 Describe "Remove-EntraUserSponsor" {
     Context "Test for Remove-EntraUserSponsor" {
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            $userId = "ec5813fb-346e-4a33-a014-b55ffee3662b"
+            $dirObjectId = "ec5b1c17-940b-47c3-9e8e-6c7e71b9c1ca"
+            { Remove-EntraUserSponsor -UserId $userId -DirectoryObjectId $dirObjectId } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+        }
+        
         It "Should fail when UserId is empty string value" {
             { Remove-EntraUserSponsor -UserId "" -SponsorId "sponsor123" } | 
             Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."

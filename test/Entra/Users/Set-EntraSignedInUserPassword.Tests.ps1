@@ -19,6 +19,12 @@ BeforeAll {
 }
 Describe "Tests for Set-EntraSignedInUserPassword" {
     Context "Test for Set-EntraSignedInUserPassword" {
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Set-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 0
+        }
+        
         It "should return empty object" {
             $result = Set-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
             $result | Should -BeNullOrEmpty

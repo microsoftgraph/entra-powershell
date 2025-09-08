@@ -61,12 +61,19 @@ BeforeAll {
             )
         }
     } -ModuleName Microsoft.Entra.Beta.Users
+
+    Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AuditLog.Read.All", "User.Read.All") } } -ModuleName Microsoft.Entra.Beta.Users
 }
 
 Describe 'Get-EntraBetaInactiveSignInUser' {
 
     Context "Get-EntraBetaInactiveSignInUser Tests" {
-        
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            { Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+
         It "Should return all inactive users" {
             $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "All"
             

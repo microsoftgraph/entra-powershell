@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Set-EntraUserManager" {
     Context "Test for Set-EntraUserManager" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return specific User" {
             $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty

@@ -17,6 +17,14 @@ BeforeAll {
 
 Describe "Tests for Set-EntraBetaSignedInUserPassword" {
     Context "Test for Set-EntraBetaSignedInUserPassword" {
+        It "should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Users
+            $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            { Set-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 0
+        }
+
         It "should updates the password for the signed-in user." {
             $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
             $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
@@ -26,26 +34,22 @@ Describe "Tests for Set-EntraBetaSignedInUserPassword" {
         }
 
         It "Should fail when CurrentPassword is null" {
-            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            { $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Set-EntraBetaSignedInUserPassword -CurrentPassword -NewPassword $NewPassword } | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
         }  
 
         It "Should fail when CurrentPassword is empty" {
-            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            { $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Set-EntraBetaSignedInUserPassword -CurrentPassword "" -NewPassword $NewPassword } | Should -Throw "Cannot process argument transformation on parameter 'CurrentPassword'*"
         }
 
         It "Should fail when NewPassword is null" {
             { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Set-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword } | Should -Throw "Missing an argument for parameter 'NewPassword'*"
         }  
 
         It "Should fail when NewPassword is empty" {
             { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Set-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword "" } | Should -Throw "Cannot process argument transformation on parameter 'NewPassword'*"
         }
 
@@ -92,26 +96,22 @@ Describe "Tests for the Alias Update-EntraBetaSignedInUserPassword" {
         }
 
         It "Should fail when CurrentPassword is null" {
-            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            { $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword -NewPassword $NewPassword } | Should -Throw "Missing an argument for parameter 'CurrentPassword'*"
         }  
 
         It "Should fail when CurrentPassword is empty" {
-            { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            { $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword "" -NewPassword $NewPassword } | Should -Throw "Cannot process argument transformation on parameter 'CurrentPassword'*"
         }
 
         It "Should fail when NewPassword is null" {
             { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword } | Should -Throw "Missing an argument for parameter 'NewPassword'*"
         }  
 
         It "Should fail when NewPassword is empty" {
             { $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
-                $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
                 Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword "" } | Should -Throw "Cannot process argument transformation on parameter 'NewPassword'*"
         }
 

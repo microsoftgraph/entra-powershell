@@ -13,6 +13,12 @@ BeforeAll {
 
 Describe "Set-EntraUserThumbnailPhoto" {
     Context "Test for Set-EntraUserThumbnailPhoto" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Users
+            { Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Set-MgUserPhotoContent -ModuleName Microsoft.Entra.Users -Times 0
+        }
+
         It "Should return specific User" {
             $result = Set-EntraUserThumbnailPhoto -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -FilePath 'D:\UserThumbnailPhoto.jpg'
             $result | Should -BeNullOrEmpty
