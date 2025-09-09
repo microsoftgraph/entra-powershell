@@ -13,13 +13,17 @@ function Get-EntraBetaApplicationOwner {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Get all owners of the application.")]
         [switch] $All,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetQuery",Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "Append",Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
+        [switch] $AppendSelected
     )
 
     begin {
@@ -34,6 +38,7 @@ function Get-EntraBetaApplicationOwner {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $defaultProperties = "id,displayName,createdDateTime,deletedDateTime,accountEnabled"
         
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
@@ -79,8 +84,11 @@ function Get-EntraBetaApplicationOwner {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")

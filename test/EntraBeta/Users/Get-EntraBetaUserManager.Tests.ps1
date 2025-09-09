@@ -131,14 +131,28 @@ Describe "Get-EntraBetaUserManager" {
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
+        It "Should return append specified properties to the default properties" {
+            $scriptblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"            = "Sawyer Miller"
+                        "Id"                     = "dddddddd-3333-4444-5555-eeeeeeeeeeee"
+                        "UserPrincipalName"      = "SawyerM@contoso.com"
+                        "OnPremisesImmutableId"  = "eeeeeeee-4444-5555-6666-ffffffffffff"
+                        "CreatedDateTime"        = "2023-01-01T00:00:00Z"
+                        "DeletedDateTime"        = $null
+                        "AdditionalProperties"   = @{
+                            "@odata.type"  = "#microsoft.graph.user"
+                            accountEnabled = $true
+                        }
+                    }
+                )
+            }
 
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"
-
-            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+            Mock -CommandName Get-MgBetaUserManager -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId -AppendSelected
+            $result.Id | should -Be "dddddddd-3333-4444-5555-eeeeeeeeeeee"
+            $result.OnPremisesImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserManager"

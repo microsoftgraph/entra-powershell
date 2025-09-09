@@ -5,7 +5,7 @@
 function Get-EntraBetaServicePrincipalOwner {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return in the response.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The number of items to return in the response.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
 
@@ -17,9 +17,13 @@ function Get-EntraBetaServicePrincipalOwner {
         [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetQuery",Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "Append",Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
+        [switch] $AppendSelected
     )
 
     begin {
@@ -34,6 +38,7 @@ function Get-EntraBetaServicePrincipalOwner {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $defaultProperties = "id,displayName,createdDateTime,deletedDateTime,accountEnabled"
 
         if ($null -ne $PSBoundParameters["ServicePrincipalId"]) {
             $params["ServicePrincipalId"] = $PSBoundParameters["ServicePrincipalId"]
@@ -49,9 +54,13 @@ function Get-EntraBetaServicePrincipalOwner {
         if ($PSBoundParameters.ContainsKey("Top")) {
             $params["Top"] = $PSBoundParameters["Top"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property
         }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + $params["Property"]
+        }
+
         # Add common parameters if they exist
         $commonParams = @("WarningVariable", "InformationVariable", "InformationAction", "OutVariable", "OutBuffer", "ErrorVariable", "PipelineVariable", "ErrorAction", "WarningAction")
         foreach ($param in $commonParams) {
