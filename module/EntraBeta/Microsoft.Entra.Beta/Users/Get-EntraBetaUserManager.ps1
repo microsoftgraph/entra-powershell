@@ -92,12 +92,15 @@ function Get-EntraBetaUserManager {
             
             $targetList = @()
             foreach ($res in $data) {
+                $orderedDictionary = $res.AdditionalProperties | ConvertTo-Json | ConvertFrom-Json -AsHashtable
+                Add-Member -InputObject $res -NotePropertyMembers $orderedDictionary
                 $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
                 $res.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name.Substring(0, 1).ToUpper() + $_.Name.Substring(1)
                     $propertyValue = $_.Value
                     $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                #$targetType | Add-Member -InputObject $_ -NotePropertyMembers $res.AdditionalProperties
                 $targetList += $targetType
             }
             $targetList   
