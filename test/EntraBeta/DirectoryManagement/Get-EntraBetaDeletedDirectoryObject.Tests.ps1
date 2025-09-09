@@ -24,6 +24,11 @@ BeforeAll {
     }
     
     Mock -CommandName Get-MgBetaDirectoryDeletedItem -MockWith $mockDeletedDirectoryObject -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDeletedDirectoryObject" {

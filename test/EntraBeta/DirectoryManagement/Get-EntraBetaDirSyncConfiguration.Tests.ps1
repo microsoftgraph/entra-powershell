@@ -18,6 +18,11 @@ BeforeAll {
         }
     }
     Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OnPremDirectorySynchronization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Get-EntraBetaDirSyncConfiguration" {
     Context "Test for Get-EntraBetaDirSyncConfiguration" {

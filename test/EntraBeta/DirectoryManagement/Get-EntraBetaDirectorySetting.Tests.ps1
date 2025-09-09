@@ -21,6 +21,11 @@ BeforeAll {
         )
     }    
     Mock -CommandName Get-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All', 'Group.Read.All', 'Group.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
   
 Describe "Get-EntraBetaDirectorySetting" {

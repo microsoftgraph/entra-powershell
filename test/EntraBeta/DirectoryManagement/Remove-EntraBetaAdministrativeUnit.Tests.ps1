@@ -9,6 +9,11 @@ BeforeAll {
     
 
     Mock -CommandName Remove-MgBetaAdministrativeUnit -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Remove-EntraBetaAdministrativeUnit" {

@@ -22,6 +22,11 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Tests for New-EntraBetaAdministrativeUnit" {
     It "Result should not be empty" {

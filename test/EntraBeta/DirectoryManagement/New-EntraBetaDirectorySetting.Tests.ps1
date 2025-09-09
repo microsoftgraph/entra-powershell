@@ -52,6 +52,11 @@ BeforeAll {
     Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock1 -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
     Mock -CommandName New-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All', 'Group.Read.All' , 'Group.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaDirectorySetting" {

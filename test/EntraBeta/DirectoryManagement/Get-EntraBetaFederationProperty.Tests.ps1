@@ -21,6 +21,11 @@ BeforeAll {
         )
     }    
     Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.Read.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Get-EntraFederationProperty" {
     Context "Test for Get-EntraFederationProperty" {

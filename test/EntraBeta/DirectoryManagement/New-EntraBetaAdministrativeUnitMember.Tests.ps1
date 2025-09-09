@@ -38,6 +38,11 @@ BeforeAll {
     }
 
     Mock -CommandName New-MGBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAdministrativeUnitMember" {

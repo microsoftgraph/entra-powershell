@@ -26,6 +26,11 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("RoleManagement.ReadWrite.Directory")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetaScopedRoleMembership" {

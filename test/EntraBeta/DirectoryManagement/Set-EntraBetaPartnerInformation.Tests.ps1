@@ -18,6 +18,11 @@ BeforeAll {
             )
         }
     }
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Set-EntraBetaPartnerInformation"{

@@ -32,6 +32,11 @@ BeforeAll {
     Mock -CommandName Get-MgBetaDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
     Mock -CommandName Update-MgBetaDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Set-EntraBetaDomainFederationSettings" {
     Context "Test for Set-EntraBetaDomainFederationSettings" {

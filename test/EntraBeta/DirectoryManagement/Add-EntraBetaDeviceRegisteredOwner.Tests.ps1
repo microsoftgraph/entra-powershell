@@ -8,7 +8,8 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Get-EntraContext -MockWith { @{
-        Environment = "Global"
+        Environment = @{ Name = "Global" }
+        Scopes      = @("Directory.AccessAsUser.All")
     }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
     Mock -CommandName Get-EntraEnvironment -MockWith {return @{
         GraphEndpoint = "https://graph.microsoft.com"

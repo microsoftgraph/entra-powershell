@@ -20,6 +20,11 @@ BeforeAll {
         )
     }
     Mock -CommandName  New-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("CustomSecAttributeDefinition.ReadWrite.All")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAttributeSet" {
