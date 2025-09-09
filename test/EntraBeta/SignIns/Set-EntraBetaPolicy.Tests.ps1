@@ -18,6 +18,11 @@ BeforeAll {
         return $response
     }
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.ReadWrite.ApplicationConfiguration')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Set-EntraBetaPolicy" {

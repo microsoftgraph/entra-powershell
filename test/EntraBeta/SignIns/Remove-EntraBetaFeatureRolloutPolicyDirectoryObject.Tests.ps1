@@ -9,6 +9,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaFeatureRolloutPolicyDirectoryObject" {

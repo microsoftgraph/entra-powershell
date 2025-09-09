@@ -22,6 +22,11 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.PermissionGrant')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "Get-EntraBetaPermissionGrantPolicy" {

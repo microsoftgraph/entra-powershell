@@ -43,6 +43,11 @@ BeforeAll {
     }
    
     Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 Describe "Get-EntraBetaPolicy" {
     Context "Test for Get-EntraBetaPolicy" {

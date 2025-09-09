@@ -9,6 +9,11 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.ReadWrite.TrustFramework')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaTrustFrameworkPolicy" {

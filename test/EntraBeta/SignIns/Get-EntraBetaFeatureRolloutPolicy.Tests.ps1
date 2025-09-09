@@ -26,6 +26,11 @@ BeforeAll {
             )
         }
     Mock -CommandName  Get-MgBetaPolicyFeatureRolloutPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Get-EntraBetaFeatureRolloutPolicy" {

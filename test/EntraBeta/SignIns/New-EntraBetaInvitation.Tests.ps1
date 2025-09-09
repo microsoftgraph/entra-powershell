@@ -17,6 +17,11 @@ BeforeAll {
         )
     }
     Mock -CommandName  New-MgBetaInvitation -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('User.Invite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "New-EntraBetaInvitation" {

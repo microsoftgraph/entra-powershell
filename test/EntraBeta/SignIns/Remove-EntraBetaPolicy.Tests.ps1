@@ -15,6 +15,11 @@ BeforeAll {
         return $response            
     }
     Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.ApplicationConfiguration')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaPolicy" {

@@ -24,6 +24,11 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('DelegatedPermissionGrant.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "New-EntraBetaOauth2PermissionGrant" {
