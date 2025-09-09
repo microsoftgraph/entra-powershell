@@ -35,6 +35,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaFeatureRolloutPolicy" {
     Context "Test for Get-EntraBetaFeatureRolloutPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should retrieves cloud authentication roll-out in Azure AD with given Id" {
             $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty

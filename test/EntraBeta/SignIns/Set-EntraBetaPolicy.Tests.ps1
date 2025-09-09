@@ -27,6 +27,12 @@ BeforeAll {
 
 Describe "Set-EntraBetaPolicy" {
     Context "Test for Set-EntraBetaPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName "new update 13" -IsOrganizationDefault $false } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
             InModuleScope 'Microsoft.Entra.Beta.SignIns' -Parameters @{ Matches = $matches } {

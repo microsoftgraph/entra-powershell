@@ -24,6 +24,12 @@ BeforeAll {
 
 Describe "Reset-EntraBetaStrongAuthenticationMethodByUpn" {
     Context "Test for Reset-EntraBetaStrongAuthenticationMethodByUpn" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaUserAuthenticationMethod -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should Resets the strong authentication method" {
             $result = Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName 'SawyerM@contoso.com'
             $result | Should -BeNullOrEmpty

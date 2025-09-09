@@ -26,6 +26,12 @@ BeforeAll {
 
 Describe "New-EntraBetaInvitation" {
     Context "Test for New-EntraBetaInvitation" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { New-EntraBetaInvitation -InvitedUserEmailAddress 'someexternaluser@externaldomain.com' -SendInvitationMessage $True -InviteRedirectUrl 'https://myapps.contoso.com' } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaInvitation -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should invite a new external user to your directory." {
 
             $result = New-EntraBetaInvitation -InvitedUserEmailAddress 'someexternaluser@externaldomain.com' -SendInvitationMessage $True -InviteRedirectUrl 'https://myapps.contoso.com'

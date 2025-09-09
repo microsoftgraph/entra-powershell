@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Remove-EntraBetaFeatureRolloutPolicy" {
     Context "Test for Remove-EntraBetaFeatureRolloutPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+        
         It "Should removes the policy for cloud authentication roll-out in Azure AD" {
             $result = Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty

@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Remove-EntraBetaServicePrincipalPolicy" {
     Context "Test for Remove-EntraBetaServicePrincipalPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Remove-EntraBetaServicePrincipalPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $result = Remove-EntraBetaServicePrincipalPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5"
             $result | Should -BeNullOrEmpty

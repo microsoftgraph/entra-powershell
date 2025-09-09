@@ -27,6 +27,11 @@ BeforeAll {
 
 Describe "Get-EntraBetaUserAuthenticationMethod" {
     Context "Test for Get-EntraBetaUserAuthenticationMethod" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Get-EntraBetaUserAuthenticationMethod -UserId "SawyerM@Contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
         
         It "Should fail when UserId is empty" {
             { Get-EntraBetaUserAuthenticationMethod -UserId } | Should -Throw "Missing an argument for parameter 'UserId'*"

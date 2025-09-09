@@ -38,6 +38,12 @@ $scriptblock = {
 
 Describe "Get-EntraBetaPolicyAppliedObject" {
     Context "Test for Get-EntraBetaPolicyAppliedObject" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return policy applied object" {
             $result = Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  
             $result | Should -Not -BeNullOrEmpty
