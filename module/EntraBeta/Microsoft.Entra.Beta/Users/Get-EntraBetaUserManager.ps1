@@ -100,7 +100,6 @@ function Get-EntraBetaUserManager {
                     $propertyValue = $_.Value
                     $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
-                #$targetType | Add-Member -InputObject $_ -NotePropertyMembers $res.AdditionalProperties
                 $targetList += $targetType
             }
             $targetList   
