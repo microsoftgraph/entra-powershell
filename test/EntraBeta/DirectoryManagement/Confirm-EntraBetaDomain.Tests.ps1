@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Confirm-EntraBetaDomain" {
     Context "Test for Confirm-EntraBetaDomain" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Confirm-EntraBetaDomain -DomainName "Contoso.com" -ForceTakeover $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should return empty object" {
             $result = Confirm-EntraBetaDomain -DomainName "Contoso.com" -ForceTakeover $true
             $result | Should -BeNullOrEmpty

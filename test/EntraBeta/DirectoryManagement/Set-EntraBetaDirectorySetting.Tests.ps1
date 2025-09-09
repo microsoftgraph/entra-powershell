@@ -39,6 +39,15 @@ BeforeAll {
 
 Describe "Set-EntraBetaDirectorySetting" {
     Context "Test for Set-EntraBetaDirectorySetting" {
+        It "Should throw when not connected and not invoke SDK" {
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $settingsCopy = $template.CreateDirectorySetting()
+            $settingsCopy["EnableBannedPasswordCheckOnPremises"] = "False"
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Set-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -DirectorySetting $settingsCopy } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should updates a directory setting in Azure Active Directory (AD)" {
             $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $settingsCopy = $template.CreateDirectorySetting()

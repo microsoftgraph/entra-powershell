@@ -39,6 +39,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaDeviceRegisteredUser" {
     Context "Test for Get-EntraBetaDeviceRegisteredUser" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDeviceRegisteredUser -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredUser -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific device registered User" {
             $result = Get-EntraBetaDeviceRegisteredUser -DeviceId "8542ebd1-3d49-4073-9dce-30f197c67755"
             $result | Should -Not -BeNullOrEmpty

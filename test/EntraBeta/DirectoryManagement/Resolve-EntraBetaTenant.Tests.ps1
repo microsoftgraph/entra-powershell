@@ -17,6 +17,12 @@ BeforeAll {
 
 Describe "Resolve-EntraBetaTenant" {
     Context "Valid Inputs" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Resolve-EntraBetaTenant -TenantId "12345678-1234-1234-1234-123456789abc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should resolve tenant by GUID" {
             $result = Resolve-EntraBetaTenant -TenantId "12345678-1234-1234-1234-123456789abc"
             

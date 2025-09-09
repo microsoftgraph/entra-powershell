@@ -29,6 +29,12 @@ BeforeAll {
     }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Tests for New-EntraBetaAdministrativeUnit" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+        { New-EntraBetaAdministrativeUnit -DisplayName "DummyName" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+    }
+
     It "Result should not be empty" {
         $result = New-EntraBetaAdministrativeUnit -DisplayName "DummyName"
         $result | Should -Not -BeNullOrEmpty

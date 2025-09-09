@@ -37,6 +37,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaDeviceRegisteredOwner" {
     Context "Test for Get-EntraBetaDeviceRegisteredOwner" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDeviceRegisteredOwner -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific device registered owner" {
             $result = Get-EntraBetaDeviceRegisteredOwner -DeviceId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty

@@ -27,6 +27,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaPasswordPolicy" {
     Context "Test for Get-EntraBetaPasswordPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaPasswordPolicy -DomainName "contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should gets the current password policy for a tenant or a domain." {
             $result = Get-EntraBetaPasswordPolicy -DomainName "contoso.com"
             $result | Should -Not -BeNullOrEmpty

@@ -29,6 +29,12 @@ BeforeAll {
     }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Tests for Get-EntraBetaSubscription" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+        { Get-EntraBetaSubscription -CommerceSubscriptionId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+    }
+
     It "Result should not be empty" {
         $result = Get-EntraBetaSubscription -CommerceSubscriptionId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty

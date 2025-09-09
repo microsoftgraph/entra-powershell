@@ -32,6 +32,12 @@ BeforeAll {
 }
 Describe "Restore-EntraBetaDeletedDirectoryObject" {
     Context "Restore-EntraBetaDeletedDirectoryObject" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Restore-EntraBetaDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific MS deleted directory object" {
             $result = Restore-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result | Should -Not -BeNullOrEmpty

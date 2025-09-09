@@ -20,6 +20,12 @@ BeforeAll {
 
 Describe "Add-EntraBetaAdministrativeUnitMember" {
     Context "Test for Add-EntraBetaAdministrativeUnitMember" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "eeeeeeee-4444-5555-6666-ffffffffffff" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaAdministrativeUnitMemberByRef -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should return empty object" {
             $result = Add-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "eeeeeeee-4444-5555-6666-ffffffffffff"
             $result | Should -BeNullOrEmpty

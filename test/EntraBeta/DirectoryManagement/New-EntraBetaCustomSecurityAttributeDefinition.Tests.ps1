@@ -36,6 +36,12 @@ BeforeAll {
 
 Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
     Context "Test for New-EntraBetaCustomSecurityAttributeDefinition" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { New-EntraBetaCustomSecurityAttributeDefinition -AttributeSet "Test" -Name "Date" -Description "Target completion date" -Type "String" -Status "Available" -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should create new custom security attribute definition" {
             $result = New-EntraBetaCustomSecurityAttributeDefinition -AttributeSet "Test" -Name "Date" -Description "Target completion date" -Type "String" -Status "Available" -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true
             $result | Should -Not -BeNullOrEmpty

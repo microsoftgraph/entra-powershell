@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Set-EntraBetaAttributeSet" {
     Context "Test for Set-EntraBetaAttributeSet" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Set-EntraBetaAttributeSet -AttributeSetId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22 } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should update attribute set" {
             $result = Set-EntraBetaAttributeSet -AttributeSetId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $result | Should -Be -NullOrEmpty

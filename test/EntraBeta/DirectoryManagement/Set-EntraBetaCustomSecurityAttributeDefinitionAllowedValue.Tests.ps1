@@ -18,6 +18,12 @@ BeforeAll {
 
 Describe "Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
     Context "Test for Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Projectt" -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should update a specific value for the Id" {
             $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
             $result | Should -BeNullOrEmpty

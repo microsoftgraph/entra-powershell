@@ -39,6 +39,12 @@ BeforeAll {
 
 Describe "Get-EntraBetaDomainFederationSettings" {
     Context "Test for Get-EntraBetaDomainFederationSettings" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDomainFederationSettings -DomainName "test.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should return federation settings" {
             $result = Get-EntraBetaDomainFederationSettings -DomainName "test.com"
             $result | Should -Not -BeNullOrEmpty
