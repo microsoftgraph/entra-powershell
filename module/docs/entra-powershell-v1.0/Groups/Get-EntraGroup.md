@@ -57,7 +57,7 @@ Get-EntraGroup
 
 ```powershell
 Get-EntraGroup
- -Property <String[]
+ -Property <String[]>
  -AppendSelected
  [-GroupId <String>]
  [-Top <Int32>]

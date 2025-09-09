@@ -45,7 +45,7 @@ Get-EntraBetaUserGroup
 ### Append
 
 ```powershell
-Get-EntraUserGroup
+Get-EntraBetaUserGroup
  -UserId <String>
  -Property <String[]>
  -AppendSelected

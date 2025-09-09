@@ -35,7 +35,7 @@ Get-EntraBetaApplicationOwner
 ### Append
 
 ```powershell
-Get-EntraGroup
+Get-EntraBetaApplicationOwner
  -ApplicationId <String>
  -Property <String[]>
  -AppendSelected
