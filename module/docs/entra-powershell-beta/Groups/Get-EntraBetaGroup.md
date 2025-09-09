@@ -56,8 +56,8 @@ Get-EntraBetaGroup
 ### Append
 
 ```powershell
-Get-EntraGroup
- -Property <String[]
+Get-EntraBetaGroup
+ -Property <String[]>
  -AppendSelected
  [-GroupId <String>]
  [-Top <Int32>]

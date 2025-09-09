@@ -24,7 +24,7 @@ Get the owner of a service principal.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraServicePrincipalOwner
+Get-EntraBetaServicePrincipalOwner
  -ServicePrincipalId <String>
  [-All]
  [-Top <Int32>]
@@ -35,7 +35,7 @@ Get-EntraServicePrincipalOwner
 ### Append
 
 ```powershell
-Get-EntraGroup
+Get-EntraBetaServicePrincipalOwner
  -ServicePrincipalId <String>
  -Property <String[]>
  -AppendSelected
