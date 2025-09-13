@@ -16,10 +16,21 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("CustomSecAttributeDefinition.ReadWrite.All")
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
     Context "Test for Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should add specific Allowed Values" {
             $result = Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true
             $result | Should -Not -BeNullOrEmpty

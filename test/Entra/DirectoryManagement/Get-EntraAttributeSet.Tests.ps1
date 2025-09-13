@@ -19,10 +19,21 @@ BeforeAll {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('CustomSecAttributeDefinition.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraAttributeSet" {
     Context "Test for Get-EntraAttributeSet" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return AttributeSets with any parameter" {
             $result = Get-EntraAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty

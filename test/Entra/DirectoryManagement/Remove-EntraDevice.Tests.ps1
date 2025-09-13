@@ -9,10 +9,21 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgDevice -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.AccessAsUser.All', 'Device.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Remove-EntraDevice" {
     Context "Test for Remove-EntraDevice" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Remove-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return empty object" {
             $result = Remove-EntraDevice -DeviceId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty

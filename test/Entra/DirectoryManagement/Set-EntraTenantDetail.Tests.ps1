@@ -14,10 +14,21 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
     Mock -CommandName Get-MgOrganization -MockWith {$scriptblock} -ModuleName Microsoft.Entra.DirectoryManagement
     Mock -CommandName Update-MgOrganization -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Set-EntraTenantDetail" {
     Context "Test for Set-EntraTenantDetail" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Set-EntraTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgOrganization -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return empty object" {
             $result = Set-EntraTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com"
             $result | Should -BeNullOrEmpty

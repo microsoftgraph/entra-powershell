@@ -32,9 +32,20 @@ BeforeAll {
     Mock -CommandName Get-MgDomainFederationConfiguration -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 
     Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Set-EntraDomainFederationSettings" {
     Context "Test for Set-EntraDomainFederationSettings" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -SigningCertificate "Testcertificate" -NextSigningCertificate "Testcertificate" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should Updates settings for a federated domain." {
             $result =  Set-EntraDomainFederationSettings -DomainName "contoso.com" -LogOffUri "https://adfs1.manan.lab/adfs/" -PassiveLogOnUri "https://adfs1.manan.lab/adfs/" -ActiveLogOnUri "https://adfs1.manan.lab/adfs/services/trust/2005/" -IssuerUri "http://adfs1.manan.lab/adfs/services/" -FederationBrandName "ADFS" -MetadataExchangeUri "https://adfs1.manan.lab/adfs/services/trust/" -PreferredAuthenticationProtocol "saml" -PromptLoginBehavior "nativeSupport" -SigningCertificate "Testcertificate" -NextSigningCertificate "Testcertificate"
             $result | Should -BeNullOrEmpty

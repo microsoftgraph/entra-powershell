@@ -18,10 +18,21 @@ BeforeAll {
             )
         }
     }
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Organization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Set-EntraPartnerInformation" {
     Context "Test for Set-EntraPartnerInformation" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return empty object" {
             Mock -CommandName Invoke-MgGraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
             $result = Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com" -PartnerCommerceUrl "http://www.test1.com" -PartnerHelpUrl "http://www.test1.com" -PartnerSupportEmails "contoso@example.com" -PartnerSupportTelephones "2342" -TenantId b73cc049-a025-4441-ba3a-8826d9a68ecc

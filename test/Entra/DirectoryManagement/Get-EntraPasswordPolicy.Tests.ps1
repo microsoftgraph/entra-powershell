@@ -18,10 +18,21 @@ BeforeAll {
         )
     }    
     Mock -CommandName Get-MgDomain -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraPasswordPolicy" {
     Context "Test for Get-EntraPasswordPolicy" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraPasswordPolicy -DomainName "contoso.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should gets the current password policy for a tenant or a domain." {
             $result = Get-EntraPasswordPolicy -DomainName "contoso.com"
             $result | Should -Not -BeNullOrEmpty

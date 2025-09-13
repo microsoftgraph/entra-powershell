@@ -35,10 +35,21 @@ $scriptblock = {
 }
   
     Mock -CommandName Get-MgDomain -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Domain.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }   
 
 Describe "Get-EntraDomain" {
     Context "Test for Get-EntraDomain" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDomain -Name "test.mail.onmicrosoft.com" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific domain" {
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
             $result | Should -Not -BeNullOrEmpty

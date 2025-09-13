@@ -18,10 +18,21 @@ BeforeAll {
         }
     }
     Mock -CommandName Get-MgDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OnPremDirectorySynchronization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 Describe "Get-EntraDirSyncConfiguration" {
     Context "Test for Get-EntraDirSyncConfiguration" {
-        It "Get irectory synchronization settings" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
+        It "Get directory synchronization settings" {
             $result =  Get-EntraDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.DirectoryManagement -Times 1

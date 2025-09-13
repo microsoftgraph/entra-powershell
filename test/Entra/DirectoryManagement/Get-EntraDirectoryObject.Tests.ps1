@@ -28,11 +28,21 @@ BeforeAll {
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
 
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 
 Describe "Get-EntraDirectoryObject" {
     Context "Test for Get-EntraDirectoryObject" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDirectoryObject -DirectoryObjectIds "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return specific object by objectId" {
             $result = Get-EntraDirectoryObject -DirectoryObjectIds '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result | Should -Not -BeNullOrEmpty

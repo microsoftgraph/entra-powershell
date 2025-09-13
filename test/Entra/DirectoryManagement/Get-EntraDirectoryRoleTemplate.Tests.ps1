@@ -21,10 +21,21 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgDirectoryRoleTemplate -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('RoleManagement.Read.Directory')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Get-EntraDirectoryRoleTemplate" {
     Context "Test for Get-EntraDirectoryRoleTemplate" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDirectoryRoleTemplate } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDirectoryRoleTemplate -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return all directory role template" {
             $result = Get-EntraDirectoryRoleTemplate 
             $result | Should -Not -BeNullOrEmpty

@@ -8,9 +8,20 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('RoleManagement.Read.Directory')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 Describe "Test for Remove-EntraScopedRoleMembership" {
+    It "Should throw when not connected and not invoke graph call" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+        { Remove-EntraScopedRoleMembership -AdministrativeUnitId "bbbbbbbb-1111-1111-1111-cccccccccccc" -ScopedRoleMembershipId "bbbbbbbb-2222-2222-2222-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+    }
+
     It "Should return empty object" {
         $result = Remove-EntraScopedRoleMembership -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
         $result | Should -BeNullOrEmpty

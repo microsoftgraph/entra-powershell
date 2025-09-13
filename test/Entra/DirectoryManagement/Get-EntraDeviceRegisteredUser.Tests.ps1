@@ -29,12 +29,23 @@ BeforeAll {
     
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Device.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
 
 
 
 Describe "Get-EntraDeviceRegisteredUser" {
     Context "Test for Get-EntraDeviceRegisteredUser" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDeviceRegisteredUser -DeviceId "8542ebd1-3d49-4073-9dce-30f197c67755" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+
         It "Should return specific device registered User" {
             $result = Get-EntraDeviceRegisteredUser -DeviceId "8542ebd1-3d49-4073-9dce-30f197c67755"
             $result | Should -Not -BeNullOrEmpty

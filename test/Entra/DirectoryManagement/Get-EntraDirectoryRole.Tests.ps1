@@ -25,10 +25,21 @@ BeforeAll {
     }
     
     Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('RoleManagement.Read.Directory')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
   }
   
   Describe "Get-EntraDirectoryRole" {
     Context "Test for Get-EntraDirectoryRole" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraDirectoryRole -DirectoryRoleId "bbbbbbbb-1111-2222-3333-cccccccccccc" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific role" {
             $result = Get-EntraDirectoryRole -DirectoryRoleId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty

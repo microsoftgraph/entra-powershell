@@ -43,10 +43,21 @@ BeforeAll {
     }  
 
     Mock -CommandName Get-MgContact -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OrgContact.Read.All')
+    }} -ModuleName Microsoft.Entra.DirectoryManagement
 }
   
 Describe "Get-EntraContact" {
     Context "Test for Get-EntraContact" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.DirectoryManagement
+            { Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 0
+        }
+        
         It "Should return specific Contact" {
             $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
