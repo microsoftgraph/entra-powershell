@@ -18,10 +18,21 @@ BeforeAll {
         }
     }
     Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OnPremDirectorySynchronization.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 Describe "Get-EntraBetaDirSyncConfiguration" {
     Context "Test for Get-EntraBetaDirSyncConfiguration" {
-        It "Get irectory synchronization settings" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
+        It "Get directory synchronization settings" {
             $result =  Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1

@@ -26,10 +26,23 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+    
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("RoleManagement.ReadWrite.Directory")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Add-EntraBetaScopedRoleMembership" {
     Context "Test for Add-EntraBetaScopedRoleMembership" {
+        It "Should throw when not connected and not invoke SDK" {
+            $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
+            $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Add-EntraBetaScopedRoleMembership -AdministrativeUnitId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should add a user to the specified role within the specified administrative unit" {
             $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
             $RoleMember.Id = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"

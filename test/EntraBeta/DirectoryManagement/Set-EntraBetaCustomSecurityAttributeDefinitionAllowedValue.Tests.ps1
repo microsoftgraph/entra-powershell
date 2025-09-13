@@ -9,10 +9,21 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith {} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("CustomSecAttributeDefinition.ReadWrite.All")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
     Context "Test for Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Projectt" -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should update a specific value for the Id" {
             $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
             $result | Should -BeNullOrEmpty

@@ -20,10 +20,21 @@ BeforeAll {
         )
     }
     Mock -CommandName  New-MgBetaDirectoryAttributeSet -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("CustomSecAttributeDefinition.ReadWrite.All")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAttributeSet" {
     Context "Test for New-EntraBetaAttributeSet" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21 } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should create new attribute set" {
             $result = New-EntraBetaAttributeSet -AttributeSetId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
             $result | Should -Not -BeNullOrEmpty

@@ -26,10 +26,21 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit -MockWith $mockDeletedAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @("AdministrativeUnit.Read.All")
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDeletedAdministrativeUnit" {
     Context "Test for Get-EntraBetaDeletedAdministrativeUnit" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDeletedAdministrativeUnit -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItemAsAdministrativeUnit -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should return all administrative units" {
             $result = Get-EntraBetaDeletedAdministrativeUnit
             $result | Should -Not -BeNullOrEmpty

@@ -35,10 +35,21 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
     Context "Test for Get-EntraBetaDirectoryObjectOnPremisesProvisioningError" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaDirectoryObjectOnPremisesProvisioningError } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should not return empty object" {
             $result = Get-EntraBetaDirectoryObjectOnPremisesProvisioningError 
             $result | Should -Not -BeNullOrEmpty

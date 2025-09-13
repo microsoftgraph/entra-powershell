@@ -24,9 +24,20 @@ BeforeAll {
     }
     
     Mock -CommandName Get-MgBetaDirectoryDeletedItem -MockWith $mockDeletedDirectoryObject -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "Get-EntraBetaDeletedDirectoryObject" {
+    It "Should throw when not connected and not invoke SDK" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+        { Get-EntraBetaDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Get-MgBetaDirectoryDeletedItem -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+    }
+
     It "Result should return DeletedDirectoryObject using alias" {
         $result = Get-EntraBetaDeletedDirectoryObject -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result.Id | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"

@@ -11,7 +11,15 @@ function Get-EntraBetaDirectoryObjectOnPremisesProvisioningError {
         [Obsolete('This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user''s tenant ID. It should not be used for any other purpose.')]
         [System.Guid] $TenantId
     )
-    begin { }
+    
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes User.Read.All, Directory.Read.All, Group.Read.All, Contacts.Read' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
 
     process {
         $params = @{}

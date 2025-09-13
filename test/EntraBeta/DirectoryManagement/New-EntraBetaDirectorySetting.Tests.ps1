@@ -52,10 +52,23 @@ BeforeAll {
     Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock1 -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 
     Mock -CommandName New-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All', 'Group.Read.All' , 'Group.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaDirectorySetting" {
     Context "Test for New-EntraBetaDirectorySetting" {
+        It "Should throw when not connected and not invoke SDK" {
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
+            $settingsCopy = $template.CreateDirectorySetting()
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+
         It "Should creates a directory settings object in Azure Active Directory (AD)" {
             $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()

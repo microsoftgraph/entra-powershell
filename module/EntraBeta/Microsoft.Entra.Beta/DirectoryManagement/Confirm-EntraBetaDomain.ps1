@@ -11,6 +11,16 @@ function Confirm-EntraBetaDomain {
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Allows external admin takeover of an unmanaged domain. Default is false.")]
         [System.Boolean] $ForceTakeover
     )
+
+    begin {
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Domain.ReadWrite.Directory' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+    }
+
     PROCESS { 
         $params = @{}
         $body = @{}

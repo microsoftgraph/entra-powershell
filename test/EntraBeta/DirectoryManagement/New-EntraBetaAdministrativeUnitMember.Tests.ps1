@@ -38,10 +38,21 @@ BeforeAll {
     }
 
     Mock -CommandName New-MGBetaAdministrativeUnitMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('AdministrativeUnit.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
 }
 
 Describe "New-EntraBetaAdministrativeUnitMember" {
     Context "Test for New-EntraBetaAdministrativeUnitMember" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { New-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
         It "Should return created administrative unit member" {
             $result = New-EntraBetaAdministrativeUnitMember -AdministrativeUnitId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
             $result | Should -Not -BeNullOrEmpty
