@@ -24,10 +24,23 @@ BeforeAll {
     }
     
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('DelegatedPermissionGrant.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "New-EntraBetaOauth2PermissionGrant" {
     Context "Test for New-EntraBetaOauth2PermissionGrant" {
+        It "Should throw when not connected and not invoke graph call" {
+            $startTime = Get-Date -Date "2024-06-29T03:26:33"
+            $expiryTime = Get-Date -Date "2025-06-29T03:26:33"
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { New-EntraBetaOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All" -StartTime $startTime -ExpiryTime $expiryTime } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return created Oauth2PermissionGrant" {
             $startTime = Get-Date -Date "2023-06-29T03:26:33"
             $expiryTime = Get-Date -Date "2024-06-29T03:26:33"

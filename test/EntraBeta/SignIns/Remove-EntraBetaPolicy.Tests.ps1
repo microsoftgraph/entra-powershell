@@ -14,11 +14,22 @@ BeforeAll {
 
         return $response            
     }
-    Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.ApplicationConfiguration')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaPolicy" {
     Context "Test for Remove-EntraBetaPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return empty object" {
             $matches = @('permissionGrantPolicies','homeRealmDiscoveryPolicies')
             InModuleScope 'Microsoft.Entra.Beta.SignIns' -Parameters @{ Matches = $matches } {

@@ -9,10 +9,21 @@ BeforeAll {
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {} -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.ReadWrite.TrustFramework')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Remove-EntraBetaTrustFrameworkPolicy" {
     Context "Test for Remove-EntraBetaTrustFrameworkPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should delete a trust framework policy in the directory" {
             $result = Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $result | Should -BeNullOrEmpty

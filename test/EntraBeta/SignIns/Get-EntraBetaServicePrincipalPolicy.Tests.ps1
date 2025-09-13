@@ -32,10 +32,21 @@ $scriptblock = {
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.All', 'Application.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "Get-EntraBetaServicePrincipalPolicy" {
     Context "Test for Get-EntraBetaServicePrincipalPolicy" {
+        It "Should throw when not connected and not invoke graph call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Get-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should return specific service principal policy" {
             $result = Get-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty

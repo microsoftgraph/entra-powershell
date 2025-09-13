@@ -26,10 +26,21 @@ BeforeAll {
             )
         }
     Mock -CommandName  New-MgBetaPolicyFeatureRolloutPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Directory.ReadWrite.All')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
 
 Describe "New-EntraBetaFeatureRolloutPolicy" {
     Context "Test for New-EntraBetaFeatureRolloutPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { New-EntraBetaFeatureRolloutPolicy -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName New-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
+
         It "Should creates the policy for cloud authentication roll-out in Azure AD." {
             $result = New-EntraBetaFeatureRolloutPolicy -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $result | Should -Not -BeNullOrEmpty

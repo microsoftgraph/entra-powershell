@@ -22,10 +22,20 @@ BeforeAll {
     }
 
     Mock -CommandName Get-MgBetaPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.SignIns
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('Policy.Read.PermissionGrant')
+    }} -ModuleName Microsoft.Entra.Beta.SignIns
 }
   
 Describe "Get-EntraBetaPermissionGrantPolicy" {
     Context "Test for Get-EntraBetaPermissionGrantPolicy" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.SignIns
+            { Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Entra.Beta.SignIns -Times 0
+        }
         It "Should return specific PermissionGrantPolicy" {
             $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $result | Should -Not -BeNullOrEmpty
