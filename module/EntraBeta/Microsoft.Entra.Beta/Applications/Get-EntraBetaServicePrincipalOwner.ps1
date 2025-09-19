@@ -55,10 +55,10 @@ function Get-EntraBetaServicePrincipalOwner {
             $params["Top"] = $PSBoundParameters["Top"]
         }
         if ($null -ne $Property -and $Property.Count -gt 0) {
-            $params["Property"] = $Property
+            $params["Property"] = $Property -join ','
         }
         if ($PSBoundParameters.ContainsKey("AppendSelected")) {
-            $params["Property"] = $defaultProperties + "," + $params["Property"]
+            $params["Property"] = $defaultProperties + "," + ($Property -join ',')
         }
 
         # Add common parameters if they exist

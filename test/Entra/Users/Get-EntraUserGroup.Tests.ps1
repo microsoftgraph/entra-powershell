@@ -76,7 +76,7 @@ Describe "Get-EntraUserGroup" {
             }
 
             Mock -CommandName Get-MgUserMemberOfAsGroup -MockWith $sblock -ModuleName Microsoft.Entra.Users
-            $result = Get-EntraUserGroup -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property AssignedLabels -AppendSelected -Top 1
+            $result = Get-EntraUserGroup -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property AssignedLabels,Id -AppendSelected -Top 1
             $result.Id | should -Be "hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq"
             $result.AssignedLabels | should -Be @("TagA", "TagB")
         }

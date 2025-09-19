@@ -80,7 +80,7 @@ Describe "Get-EntraBetaApplicationOwner" {
             }
 
             Mock -CommandName Get-MgBetaApplicationOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-            $result = Get-EntraBetaApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId -AppendSelected | Select-Object id,displayName,'@odata.type',onPremisesImmutableId
+            $result = Get-EntraBetaApplicationOwner -ApplicationId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId,Id -AppendSelected | Select-Object id,displayName,'@odata.type',onPremisesImmutableId
             $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.OnPremisesImmutableId | should -Be "hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq"
 

@@ -108,7 +108,7 @@ Describe "Get-EntraBetaServicePrincipalOwner" {
         }
 
         Mock -CommandName Get-MgBetaServicePrincipalOwner -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-        $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property userType -AppendSelected | Select-Object id,displayName,'@odata.type',userType
+        $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property userType,Id -AppendSelected | Select-Object id,displayName,'@odata.type',userType
         $result.Id | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
         $result.UserType | should -Be "Member"
 

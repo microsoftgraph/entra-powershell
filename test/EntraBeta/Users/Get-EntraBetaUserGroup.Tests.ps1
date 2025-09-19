@@ -76,7 +76,7 @@ Describe "Get-EntraBetaUserGroup" {
             }
 
             Mock -CommandName Get-MgBetaUserMemberOfAsGroup -MockWith $sblock -ModuleName Microsoft.Entra.Beta.Users
-            $result = Get-EntraBetaUserGroup -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property AssignedLabels -AppendSelected -Top 1
+            $result = Get-EntraBetaUserGroup -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property AssignedLabels,Id -AppendSelected -Top 1
             $result.Id | should -Be "hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq"
             $result.AssignedLabels | should -Be @("TagA", "TagB")
         }

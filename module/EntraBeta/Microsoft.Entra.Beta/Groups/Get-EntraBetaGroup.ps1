@@ -113,10 +113,10 @@ function Get-EntraBetaGroup {
             $params["Top"] = $PSBoundParameters["Top"]
         }
         if ($null -ne $Property -and $Property.Count -gt 0) {
-            $params["Property"] = $Property
+            $params["Property"] = $Property -join ','
         }
         if ($PSBoundParameters.ContainsKey("AppendSelected")) {
-            $params["Property"] = $defaultProperties + "," + $params["Property"]
+            $params["Property"] = $defaultProperties + "," + ($Property -join ',')
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

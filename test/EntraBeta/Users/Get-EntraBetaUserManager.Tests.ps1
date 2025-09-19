@@ -150,7 +150,7 @@ Describe "Get-EntraBetaUserManager" {
             }
 
             Mock -CommandName Get-MgBetaUserManager -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
-            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId -AppendSelected
+            $result = Get-EntraBetaUserManager -UserId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId,Id -AppendSelected
             $result.Id | should -Be "dddddddd-3333-4444-5555-eeeeeeeeeeee"
             $result.OnPremisesImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
         }

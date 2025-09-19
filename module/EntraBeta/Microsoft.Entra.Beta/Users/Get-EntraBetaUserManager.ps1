@@ -77,10 +77,10 @@ function Get-EntraBetaUserManager {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         if ($null -ne $Property -and $Property.Count -gt 0) {
-            $params["Property"] = $Property
+            $params["Property"] = $Property -join ','
         }
         if ($PSBoundParameters.ContainsKey("AppendSelected")) {
-            $params["Property"] = $defaultProperties + "," + $params["Property"]
+            $params["Property"] = $defaultProperties + "," + ($Property -join ',')
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
