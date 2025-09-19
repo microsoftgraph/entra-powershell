@@ -45,6 +45,11 @@ BeforeAll {
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
 }
 Describe "Get-EntraBetaServicePrincipalOwner" {
+    It "Should throw when not connected and not invoke SDK" {
+        Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Applications 
+        { Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+        Should -Invoke -CommandName Get-MgBetaServicePrincipalOwner  -ModuleName Microsoft.Entra.Beta.Applications  -Times 0
+    }
     It "Result should not be empty" {
         $result = Get-EntraBetaServicePrincipalOwner -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         $result | Should -Not -BeNullOrEmpty

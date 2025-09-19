@@ -34,6 +34,11 @@ BeforeAll {
 
 Describe "Get-EntraBetaApplicationOwner" {
     Context "Test for Get-EntraBetaApplicationOwner" {
+        It "Should throw when not connected and not invoke SDK" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.Applications 
+            { Get-EntraBetaApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaApplicationOwner  -ModuleName Microsoft.Entra.Beta.Applications  -Times 0
+        }
         It "Should return application owner" {
             $result = Get-EntraBetaApplicationOwner -ApplicationId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             Write-Host $result
