@@ -4,28 +4,38 @@
 # ------------------------------------------------------------------------------ 
 function Get-EntraGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
-    param (                
+    param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "The maximum number of items to return.")]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
                 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter the results based on the specified criteria.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter the results based on the specified criteria.")]
         [System.String] $Filter,
                 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all objects.")]
         [switch] $All,
                 
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for a group by its name, email, or mail nickname.")]
+        [Parameter(ParameterSetName = "Append", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for a group by its name, email, or mail nickname.")]
         [System.String] $SearchString,
         
-        [Alias('ObjectId')]            
+        [Alias('ObjectId')]
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the group to retrieve. Should be a valid GUID value.")]
+        [Parameter(ParameterSetName = "Append", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of the group to retrieve. Should be a valid GUID value.")]
         [ValidateNotNullOrEmpty()]
         [Guid] $GroupId,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
+        [switch] $AppendSelected
     )
 
     begin {
@@ -41,6 +51,7 @@ function Get-EntraGroup {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id" }
+        $defaultProperties = "id,displayName,createdDateTime,deletedDateTime,groupTypes,mailEnabled,mailNickname,securityEnabled,visibility,description"
         if ($null -ne $PSBoundParameters["OutVariable"]) {
             $params["OutVariable"] = $PSBoundParameters["OutVariable"]
         }
@@ -101,8 +112,11 @@ function Get-EntraGroup {
         if ($null -ne $PSBoundParameters["ProgressAction"]) {
             $params["ProgressAction"] = $PSBoundParameters["ProgressAction"]
         }
-        if ($null -ne $PSBoundParameters["Property"]) {
-            $params["Property"] = $PSBoundParameters["Property"]
+        if ($null -ne $Property -and $Property.Count -gt 0) {
+            $params["Property"] = $Property -join ','
+        }
+        if ($PSBoundParameters.ContainsKey("AppendSelected")) {
+            $params["Property"] = $defaultProperties + "," + ($Property -join ',')
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

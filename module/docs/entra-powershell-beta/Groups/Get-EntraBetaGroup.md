@@ -53,6 +53,20 @@ Get-EntraBetaGroup
  [<CommonParameters>]
 ```
 
+### Append
+
+```powershell
+Get-EntraBetaGroup
+ -Property <String[]>
+ -AppendSelected
+ [-GroupId <String>]
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-SearchString <String>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a specific group.
@@ -205,6 +219,22 @@ bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq HelpDesk admin group      True            {
 
 This example demonstrates how to return only a specific property of a group. You can use `-Select` alias or `-Property`.
 
+### Example 9: Get groups with specific properties and append the selected properties
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Property IsSubscribedByMail -AppendSelected | Select-Object Id, DisplayName, MailEnabled, Visibility, IsSubscribedByMail | Format-Table -AutoSize
+```
+
+```Output
+Id                                   DisplayName                MailEnabled Visibility IsSubscribedByMail
+--                                   -----------                --------------- ---------- ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           Public     False
+```
+
+This example demonstrates how to append a selected property to the default properties.
+
+
 ## PARAMETERS
 
 ### -All
@@ -300,6 +330,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppendSelected
+
+Specifies whether to append the selected properties.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

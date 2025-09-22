@@ -76,6 +76,30 @@ Describe "Get-EntraBetaGroupMember" {
         It "Should fail when Property is empty" {
             { Get-EntraBetaGroupMember -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
+
+        It "Should return append specified properties to the default properties" {
+            $scriptblock = {
+                return @(
+                    [PSCustomObject]@{
+                        "DisplayName"        = "Sawyer Miller"
+                        "Id"                 = "dddddddd-3333-4444-5555-eeeeeeeeeeee"
+                        "UserPrincipalName"  = "SawyerM@contoso.com"
+                        "OnPremisesImmutableId"  = "eeeeeeee-4444-5555-6666-ffffffffffff"
+                        "CreatedDateTime"    = "2023-01-01T00:00:00Z"
+                        "DeletedDateTime"    = $null
+                        "AdditionalProperties"   = @{
+                            "@odata.type"  = "#microsoft.graph.user"
+                            accountEnabled = $true
+                        }
+                    }
+                )
+            }
+
+            Mock -CommandName Get-MgBetaGroupMember -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Groups
+            $result = Get-EntraBetaGroupMember -GroupId "aaaaaaaa-1111-2222-3333-cccccccccccc" -Property onPremisesImmutableId,Id -AppendSelected -Top 1
+            $result.Id | should -Be "dddddddd-3333-4444-5555-eeeeeeeeeeee"
+            $result.OnPremisesImmutableId | should -Be "eeeeeeee-4444-5555-6666-ffffffffffff"
+        }
         
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupMember"
