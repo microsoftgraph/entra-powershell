@@ -21,6 +21,7 @@ function Get-EntraUser {
         [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for users using a search string from different properties e.g. DisplayName, Job Title, UPN etc.")]
         [System.String] $SearchString,
 
+        # Parameter set to remove filter from being used with enabled filter
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter to apply to the query.")]
         [System.String] $Filter,
         
@@ -32,8 +33,8 @@ function Get-EntraUser {
         [ValidateRange(1, 999)]
         [System.Nullable`1[System.Int32]] $PageSize,
 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are All, EnabledOnly, and DisabledOnly.")]
-        [ValidateSet("All", "EnabledOnly", "DisabledOnly")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are EnabledOnly and DisabledOnly.")]
+        [ValidateSet("EnabledOnly", "DisabledOnly")]
         [System.String] $EnabledFilter,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users that have validation errors.")]
@@ -53,7 +54,14 @@ function Get-EntraUser {
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Get a list of all the inactive users in your tenant in the last N days")]
         [ValidateRange(1, 180)] 
-        [System.Nullable`1[System.Int32]] $LastSignInBeforeDaysAgo
+        [System.Nullable`1[System.Int32]] $LastSignInBeforeDaysAgo,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users with expired accounts.")]
+        [Switch] $AccountExpired,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users with accounts expiring in the next N days.")]
+        [ValidateRange(1, 180)] 
+        [System.Nullable`1[System.Int32]] $AccountExpiringInDays
     )
 
     begin {
@@ -121,11 +129,32 @@ function Get-EntraUser {
                 $params["Uri"] = "$baseUri/$($UserId)?$properties"
             }
         }
+        
+        $filterParameters = @()
+
         if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
-        }    
+        }   
+        
+        # if -Enabled switch is selected, add to filter
+        if ($null -ne $PSBoundParameters["EnabledFilter"]) {
+            # $enabledState = '$' + 'Filter'
+            if ($PSBoundParameters["EnabledFilter"] -eq "DisabledOnly") {
+                $enabledFilter = "accountEnabled eq false"
+                $filterParameters += $enabledFilter
+            }
+            else {
+                $enabledFilter = "accountEnabled eq true"
+                $filterParameters += $enabledFilter
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["LicenseReconciliationNeededOnly"]) {
+            $licenseReconciliationFilter = "isLicenseReconciliationNeeded eq true"
+            $filterParameters += $licenseReconciliationFilter
+        }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
@@ -176,6 +205,13 @@ function Get-EntraUser {
         if ($data) {
             $userList = @()
             foreach ($response in $data) {
+                # Filter users with service provisioning errors if HasErrorsOnly switch is specified
+                if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
+                    if ($null -eq $response.ServiceProvisioningErrors -or $response.ServiceProvisioningErrors.Count -eq 0) {
+                        continue
+                    }
+                }
+                
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser
                 $response.PSObject.Properties | ForEach-Object {
                     $propertyName = $_.Name
