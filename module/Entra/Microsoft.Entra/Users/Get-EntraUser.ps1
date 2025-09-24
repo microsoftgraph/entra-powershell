@@ -150,11 +150,6 @@ function Get-EntraUser {
                 $filterParameters += $enabledFilter
             }
         }
-
-        if ($null -ne $PSBoundParameters["LicenseReconciliationNeededOnly"]) {
-            $licenseReconciliationFilter = "isLicenseReconciliationNeeded eq true"
-            $filterParameters += $licenseReconciliationFilter
-        }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
@@ -202,12 +197,43 @@ function Get-EntraUser {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
             }
         }
+
+        # TODO: Validate all these scenarios
+        $licenseReconciliationPatterns = @(
+            'license', 'licensing', 'sku', 'service plan', 'plan',
+            'CountViolation', 'DependencyViolation', 'MutuallyExclusive',
+            'ProhibitedInUsageLocation', 'UniquenessViolation',
+            'assignment failed', 'not enough licenses', 'insufficient licenses',
+            'conflict.*(plan|license)', 'dependent service plan'
+        )
+
         if ($data) {
             $userList = @()
             foreach ($response in $data) {
                 # Filter users with service provisioning errors if HasErrorsOnly switch is specified
                 if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
                     if ($null -eq $response.ServiceProvisioningErrors -or $response.ServiceProvisioningErrors.Count -eq 0) {
+                        continue
+                    }
+                }
+
+                # Filter users with service provisioning errors if LicenseReconciliationNeededOnly switch is specified
+                if ($PSBoundParameters.ContainsKey("LicenseReconciliationNeededOnly")) {
+                    if ($null -eq $response.ServiceProvisioningErrors -or $response.ServiceProvisioningErrors.Count -eq 0) {
+                        continue
+                    }
+
+                    $errorsAsText = $response.ServiceProvisioningErrors | ForEach-Object { $_.errorDetail } | Out-String
+                    $hasLicenseError = $false
+                    
+                    foreach ($pattern in $licenseReconciliationPatterns) {
+                        if ($errorsAsText -match $pattern) {
+                            $hasLicenseError = $true
+                            break
+                        }
+                    }
+                    
+                    if (-not $hasLicenseError) {
                         continue
                     }
                 }
