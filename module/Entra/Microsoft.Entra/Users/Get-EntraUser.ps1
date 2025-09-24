@@ -43,9 +43,6 @@ function Get-EntraUser {
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter for only users that require license reconciliation.")]
         [Switch] $LicenseReconciliationNeededOnly,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users in the recycling bin.")]
-        [Switch] $ReturnDeletedUsers,
-
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are synchronized through Azure Active Directory Sync.")]
         [Switch] $Synchronized,
 
@@ -140,7 +137,6 @@ function Get-EntraUser {
         
         # if -Enabled switch is selected, add to filter
         if ($null -ne $PSBoundParameters["EnabledFilter"]) {
-            # $enabledState = '$' + 'Filter'
             if ($PSBoundParameters["EnabledFilter"] -eq "DisabledOnly") {
                 $enabledFilter = "accountEnabled eq false"
                 $filterParameters += $enabledFilter
@@ -149,6 +145,12 @@ function Get-EntraUser {
                 $enabledFilter = "accountEnabled eq true"
                 $filterParameters += $enabledFilter
             }
+        }
+
+        # if Synchronized switch is selected, add to filter
+        if ($null -ne $PSBoundParameters["Synchronized"]) {
+            $synchronizedFilter = "onPremisesSyncEnabled  eq true"
+            $filterParameters += $synchronizedFilter
         }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
