@@ -4,12 +4,12 @@ description: This article provides details on the Connect-Entra Command.
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Authentication
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi254
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Connect-Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Authentication/Connect-Entra
 schema: 2.0.0
 title: Connect-Entra
 ---

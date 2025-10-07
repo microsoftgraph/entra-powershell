@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaPasswordSingleSig
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Applications
 ms.author: eunicewaweru
 ms.date: 07/09/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaPasswordSingleSignOnCredential
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Set-EntraBetaPasswordSingleSignOnCredential
 schema: 2.0.0
 title: Set-EntraBetaPasswordSingleSignOnCredential
 ---

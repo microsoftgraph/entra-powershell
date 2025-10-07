@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaUserSponsor comma
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 03/06/2025
 ms.reviewer: dbutoyi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserSponsor
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaUserSponsor
 schema: 2.0.0
 title: Get-EntraBetaUserSponsor
 ---

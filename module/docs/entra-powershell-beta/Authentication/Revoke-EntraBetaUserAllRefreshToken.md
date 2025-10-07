@@ -4,12 +4,12 @@ description: This article provides details on the Revoke-EntraBetaUserAllRefresh
 external help file: Microsoft.Entra.Beta.Authentication-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Authentication
 ms.author: eunicewaweru
 ms.date: 07/25/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Revoke-EntraBetaUserAllRefreshToken
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Authentication/Revoke-EntraBetaUserAllRefreshToken
 schema: 2.0.0
 title: Revoke-EntraBetaUserAllRefreshToken
 ---

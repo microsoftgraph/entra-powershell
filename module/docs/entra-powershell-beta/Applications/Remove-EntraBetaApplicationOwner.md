@@ -3,12 +3,12 @@ description: This article provides details on the Remove-EntraBetaApplicationOwn
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Applications
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaApplicationOwner
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Remove-EntraBetaApplicationOwner
 schema: 2.0.0
 title: Remove-EntraBetaApplicationOwner
 ---

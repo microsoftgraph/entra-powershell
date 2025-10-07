@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraBetaGroup command.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Groups
 ms.author: eunicewaweru
 ms.date: 06/17/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaGroup
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Remove-EntraBetaGroup
 schema: 2.0.0
 title: Remove-EntraBetaGroup
 ---

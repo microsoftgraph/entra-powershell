@@ -1,14 +1,14 @@
 ---
 author: andres-canello
 description: This article provides details on the New-EntraBetaPrivateAccessApplicationSegment command.
-external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
+external help file: Microsoft.Entra.Beta.NetworkAccess.NetworkAccess-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.NetworkAccess
 ms.author: eunicewaweru
 ms.date: 07/18/2024
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPrivateAccessApplicationSegment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.NetworkAccess/New-EntraBetaPrivateAccessApplicationSegment
 reviewer: andres-canello
 schema: 2.0.0
 title: New-EntraBetaPrivateAccessApplicationSegment

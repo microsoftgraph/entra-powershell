@@ -4,12 +4,12 @@ description: This article provides details on the New-EntraBetaFeatureRolloutPol
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.SignIns
 ms.author: eunicewaweru
 ms.date: 07/05/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaFeatureRolloutPolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/New-EntraBetaFeatureRolloutPolicy
 schema: 2.0.0
 title: New-EntraBetaFeatureRolloutPolicy
 ---

@@ -1,14 +1,14 @@
 ---
 description: This article provides details on the Resolve-EntraBetaTenant command.
-external help file: Microsoft.Entra.Beta-Help.xml
+external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 02/10/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Resolve-EntraTenant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Resolve-EntraTenant
 schema: 2.0.0
 title: Resolve-EntraBetaTenant
 ---

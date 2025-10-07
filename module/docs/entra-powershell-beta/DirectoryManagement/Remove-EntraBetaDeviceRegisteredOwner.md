@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraBetaDeviceRegister
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 02/05/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaDeviceRegisteredOwner
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Remove-EntraBetaDeviceRegisteredOwner
 schema: 2.0.0
 title: Remove-EntraBetaDeviceRegisteredOwner
 ---

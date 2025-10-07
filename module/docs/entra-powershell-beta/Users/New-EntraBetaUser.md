@@ -4,12 +4,12 @@ description: This article provides details on the New-EntraBetaUser command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 06/21/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaUser
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/New-EntraBetaUser
 schema: 2.0.0
 title: New-EntraBetaUser
 ---

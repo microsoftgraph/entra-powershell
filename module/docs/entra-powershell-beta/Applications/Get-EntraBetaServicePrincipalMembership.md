@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaServicePrincipalM
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Applications
 ms.author: eunicewaweru
 ms.date: 02/08/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaServicePrincipalMembership
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaServicePrincipalMembership
 schema: 2.0.0
 title: Get-EntraBetaServicePrincipalMembership
 ---

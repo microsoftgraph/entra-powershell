@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaDeletedGroup.
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Groups
 ms.author: eunicewaweru
 ms.date: 02/12/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaDeletedGroup
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Get-EntraBetaDeletedGroup
 schema: 2.0.0
 title: Get-EntraBetaDeletedGroup
 ---

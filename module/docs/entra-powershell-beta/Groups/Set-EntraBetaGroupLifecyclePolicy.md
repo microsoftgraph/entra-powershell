@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaGroupLifecyclePol
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Groups
 ms.author: eunicewaweru
 ms.date: 07/23/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaGroupLifecyclePolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Set-EntraBetaGroupLifecyclePolicy
 schema: 2.0.0
 title: Set-EntraBetaGroupLifecyclePolicy
 ---

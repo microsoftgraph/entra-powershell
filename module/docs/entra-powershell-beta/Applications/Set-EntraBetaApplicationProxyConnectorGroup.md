@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaApplicationProxyC
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Applications
 ms.author: eunicewaweru
 ms.date: 07/18/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaApplicationProxyConnectorGroup
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Set-EntraBetaApplicationProxyConnectorGroup
 schema: 2.0.0
 title: Set-EntraBetaApplicationProxyConnectorGroup
 ---

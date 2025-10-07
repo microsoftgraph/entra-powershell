@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaObjectSetting com
 external help file: Microsoft.Entra.Beta.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Groups
 ms.author: eunicewaweru
 ms.date: 08/05/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaObjectSetting
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Groups/Get-EntraBetaObjectSetting
 schema: 2.0.0
 title: Get-EntraBetaObjectSetting
 ---

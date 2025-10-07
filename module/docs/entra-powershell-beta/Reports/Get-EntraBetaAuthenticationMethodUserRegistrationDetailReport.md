@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaAuthenticationMet
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Reports
 ms.author: eunicewaweru
 ms.date: 03/23/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Reports/Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport
 schema: 2.0.0
 title: Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport
 ---

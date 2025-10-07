@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaTrustFrameworkPol
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.SignIns
 ms.author: eunicewaweru
 ms.date: 08/14/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaTrustFrameworkPolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Set-EntraBetaTrustFrameworkPolicy
 schema: 2.0.0
 title: Set-EntraBetaTrustFrameworkPolicy
 ---

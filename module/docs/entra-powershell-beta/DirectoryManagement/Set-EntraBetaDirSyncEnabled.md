@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaDirSyncEnabled co
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 08/20/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaDirSyncEnabled
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Set-EntraBetaDirSyncEnabled
 schema: 2.0.0
 title: Set-EntraBetaDirSyncEnabled
 ---

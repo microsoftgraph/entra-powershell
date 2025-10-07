@@ -4,12 +4,12 @@ description: This article provides details on the Add-EntraBetaScopedRoleMembers
 external help file: Microsoft.Entra.Beta.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 08/06/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Add-EntraBetaScopedRoleMembership
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.DirectoryManagement/Add-EntraBetaScopedRoleMembership
 schema: 2.0.0
 title: Add-EntraBetaScopedRoleMembership
 ---

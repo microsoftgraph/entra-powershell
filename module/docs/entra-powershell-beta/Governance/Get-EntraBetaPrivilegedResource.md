@@ -4,12 +4,12 @@ description: This article provides details on Get-EntraBetaPrivilegedResource co
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Governance
 ms.author: eunicewaweru
 ms.date: 08/12/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivilegedResource
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Get-EntraBetaPrivilegedResource
 schema: 2.0.0
 title: Get-EntraBetaPrivilegedResource
 ---

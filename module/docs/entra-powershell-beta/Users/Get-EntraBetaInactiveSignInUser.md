@@ -3,7 +3,7 @@ description: This article provides details on the Get-EntraBetaInactiveSignInUse
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 04/02/2025
 ms.reviewer: stevemutungi

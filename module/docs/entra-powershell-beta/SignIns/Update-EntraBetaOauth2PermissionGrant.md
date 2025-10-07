@@ -4,12 +4,12 @@ description: This article provides details on the Update-EntraBetaOauth2Permissi
 external help file: Microsoft.Entra.Beta.SignIns-help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.SignIns
 ms.author: eunicewaweru
 ms.date: 11/01/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Update-EntraBetaOauth2PermissionGrant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Update-EntraBetaOauth2PermissionGrant
 schema: 2.0.0
 title: Update-EntraBetaOauth2PermissionGrant
 ---
