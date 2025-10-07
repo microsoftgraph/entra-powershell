@@ -4,12 +4,12 @@ description: This article provides details on the Select-EntraGroupIdsContactIsM
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Groups
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Select-EntraGroupIdsContactIsMemberOf
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Select-EntraGroupIdsContactIsMemberOf
 schema: 2.0.0
 title: Select-EntraGroupIdsContactIsMemberOf
 ---

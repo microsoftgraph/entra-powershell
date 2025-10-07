@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaUserExtension com
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 03/16/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaUserExtension
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Set-EntraBetaUserExtension
 schema: 2.0.0
 title: Set-EntraBetaUserExtension
 ---

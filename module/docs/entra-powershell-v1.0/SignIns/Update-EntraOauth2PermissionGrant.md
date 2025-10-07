@@ -1,15 +1,15 @@
 ---
 author: msewaweru
 description: This article provides details on the Update-EntraOauth2PermissionGrant command.
-external help file: Microsoft.Entra.DirectoryManagement-help.xml
+external help file: Microsoft.Entra.SignIns.DirectoryManagement-help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.SignIns
 ms.author: eunicewaweru
 ms.date: 11/01/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Update-EntraOauth2PermissionGrant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Update-EntraOauth2PermissionGrant
 schema: 2.0.0
 title: Update-EntraOauth2PermissionGrant
 ---

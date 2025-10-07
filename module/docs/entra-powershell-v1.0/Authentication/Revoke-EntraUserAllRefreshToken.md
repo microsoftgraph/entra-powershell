@@ -4,12 +4,12 @@ description: This article provides details on the Revoke-EntraUserAllRefreshToke
 external help file: Microsoft.Entra.Authentication-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Authentication
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Revoke-EntraUserAllRefreshToken
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Revoke-EntraUserAllRefreshToken
 schema: 2.0.0
 title: Revoke-EntraUserAllRefreshToken
 ---

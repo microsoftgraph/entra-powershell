@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraApplicationPasswor
 external help file: Microsoft.Entra.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Applications
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraApplicationPasswordCredential
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Remove-EntraApplicationPasswordCredential
 schema: 2.0.0
 title: Remove-EntraApplicationPasswordCredential
 ---

@@ -4,12 +4,12 @@ description: This article provides details on the New-EntraBetaPrivilegedRoleAss
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Governance
 ms.author: eunicewaweru
 ms.date: 07/19/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaPrivilegedRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/New-EntraBetaPrivilegedRoleAssignment
 schema: 2.0.0
 title: New-EntraBetaPrivilegedRoleAssignment
 ---

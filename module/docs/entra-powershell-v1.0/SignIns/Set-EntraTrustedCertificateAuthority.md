@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraTrustedCertificateAut
 external help file: Microsoft.Entra.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.SignIns
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraTrustedCertificateAuthority
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Set-EntraTrustedCertificateAuthority
 schema: 2.0.0
 title: Set-EntraTrustedCertificateAuthority
 ---

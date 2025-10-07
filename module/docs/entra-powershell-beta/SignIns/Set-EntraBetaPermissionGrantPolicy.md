@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaPermissionGrantPo
 external help file: Microsoft.Entra.Beta.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.SignIns
 ms.author: eunicewaweru
 ms.date: 08/01/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaPermissionGrantPolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.SignIns/Set-EntraBetaPermissionGrantPolicy
 schema: 2.0.0
 title: Set-EntraBetaPermissionGrantPolicy
 ---

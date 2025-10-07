@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaUserMembership co
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 02/05/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaUserMembership
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaUserMembership
 schema: 2.0.0
 title: Get-EntraBetaUserMembership
 ---
@@ -112,7 +112,7 @@ Id                                   displayName                         created
 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Leadership                          2024-10-07T00:43:53Z {Unified}             True Private    #microsoft.graph.group
 ```
 
-This example retrieves the groups a user belongs to. You can also use [Get-EntraBetaUserGroup](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetausergroup) for the same result.
+This example retrieves the groups a user belongs to. You can also use [Get-EntraBetaUserGroup](https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/get-entrabetausergroup) for the same result.
 
 ### Example 5: List a user's directory roles
 
@@ -131,7 +131,7 @@ bbbbbbbb-1111-2222-3333-ccccccccccc  Helpdesk Administrator    Can reset passwor
 dddddddd-3333-4444-5555-eeeeeeeeeeee Guest Inviter             Can invite guest users independent of the 'members can invite guests' setting.                                 95e79109-95c0-4d8e-aee3-d01accf2d47b #microsoft.graph.directoryRole
 ```
 
-This example lists a user's assigned directory roles. You can also use [Get-EntraBetaUserRole](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetauserrole) for the same result.
+This example lists a user's assigned directory roles. You can also use [Get-EntraBetaUserRole](https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/get-entrabetauserrole) for the same result.
 
 ### Example 6: List a user's administrative units
 
@@ -150,7 +150,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee Pacific Admin Unit              Pacific Adm
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Engineering Administrative Unit Engineering Admin Unit
 ```
 
-This example lists a user's administrative units. You can also use [Get-EntraBetaUserAdministrativeUnit](https://learn.microsoft.com/powershell/module/microsoft.entra.beta/get-entrabetauseradministrativeunit) for the same result.
+This example lists a user's administrative units. You can also use [Get-EntraBetaUserAdministrativeUnit](https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/get-entrabetauseradministrativeunit) for the same result.
 
 ## PARAMETERS
 

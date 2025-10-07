@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraSubscription command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 03/10/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraSubscription
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraSubscription
 schema: 2.0.0
 title: Get-EntraSubscription
 ---

@@ -4,12 +4,12 @@ description: This article provides details on the New-EntraApplicationKey comman
 external help file: Microsoft.Entra.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Applications
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraApplicationKey
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/New-EntraApplicationKey
 schema: 2.0.0
 title: New-EntraApplicationKey
 ---

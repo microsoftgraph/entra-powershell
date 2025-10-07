@@ -1,14 +1,14 @@
 ---
 author: msewaweru
 description: This article provides details on the Get-EntraBetaPrivateAccessApplication command.
-external help file: Microsoft.Entra.Beta.NetworkAccess-Help.xml
+external help file: Microsoft.Entra.Beta.NetworkAccess.NetworkAccess-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.NetworkAccess
 ms.author: eunicewaweru
 ms.date: 10/19/2024
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaPrivateAccessApplication
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.NetworkAccess/Get-EntraBetaPrivateAccessApplication
 reviewer: andres-canello
 schema: 2.0.0
 title: Get-EntraBetaPrivateAccessApplication

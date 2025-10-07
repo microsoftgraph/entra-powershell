@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraBetaAppRoleToApplicat
 external help file: Microsoft.Entra.Beta.Governance-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Governance
 ms.author: eunicewaweru
 ms.date: 04/10/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Set-EntraBetaAppRoleToApplicationUser
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Governance/Set-EntraBetaAppRoleToApplicationUser
 schema: 2.0.0
 title: Set-EntraBetaAppRoleToApplicationUser
 ---

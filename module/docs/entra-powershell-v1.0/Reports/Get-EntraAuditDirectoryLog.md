@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraAuditDirectoryLog com
 external help file: Microsoft.Entra.Reports-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Reports
 ms.author: eunicewaweru
 ms.date: 02/08/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraAuditDirectoryLog
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Reports/Get-EntraAuditDirectoryLog
 schema: 2.0.0
 title: Get-EntraAuditDirectoryLog
 ---

@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraBetaCrossTenantAccess
 external help file: Microsoft.Entra.Beta.Reports-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Reports
 ms.author: eunicewaweru
 ms.date: 02/10/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Get-EntraBetaCrossTenantAccessActivity
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Reports/Get-EntraBetaCrossTenantAccessActivity
 schema: 2.0.0
 title: Get-EntraBetaCrossTenantAccessActivity
 ---

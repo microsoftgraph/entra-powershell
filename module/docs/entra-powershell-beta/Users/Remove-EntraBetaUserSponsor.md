@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraBetaUserSponsor co
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 03/06/2025
 ms.reviewer: dbutoyi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Remove-EntraBetaUserSponsor
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Remove-EntraBetaUserSponsor
 schema: 2.0.0
 title: Remove-EntraBetaUserSponsor
 ---

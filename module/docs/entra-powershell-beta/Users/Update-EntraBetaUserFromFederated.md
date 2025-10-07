@@ -4,12 +4,12 @@ description: This article provides details on the Update-EntraBetaUserFromFedera
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Users
 ms.author: eunicewaweru
 ms.date: 02/23/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/Update-EntraBetaUserFromFederated
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Update-EntraBetaUserFromFederated
 schema: 2.0.0
 title: Update-EntraBetaUserFromFederated
 ---

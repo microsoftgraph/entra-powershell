@@ -4,12 +4,12 @@ description: This article provides details on the Set-EntraDirSyncConfiguration 
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Set-EntraDirSyncConfiguration
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Set-EntraDirSyncConfiguration
 schema: 2.0.0
 title: Set-EntraDirSyncConfiguration
 ---

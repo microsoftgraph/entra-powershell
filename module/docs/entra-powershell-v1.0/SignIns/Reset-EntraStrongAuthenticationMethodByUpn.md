@@ -4,12 +4,12 @@ description: This article provides details on the Reset-EntraStrongAuthenticatio
 external help file: Microsoft.Entra.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.SignIns
 ms.author: eunicewaweru
 ms.date: 03/20/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Reset-EntraStrongAuthenticationMethodByUpn
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Reset-EntraStrongAuthenticationMethodByUpn
 schema: 2.0.0
 title: Reset-EntraStrongAuthenticationMethodByUpn
 ---

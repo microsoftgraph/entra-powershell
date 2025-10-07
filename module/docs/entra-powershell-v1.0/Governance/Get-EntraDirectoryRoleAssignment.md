@@ -3,12 +3,12 @@ description: This article provides details on the Get-EntraDirectoryRoleAssignme
 external help file: Microsoft.Entra.Governance-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Governance
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Governance/Get-EntraDirectoryRoleAssignment
 schema: 2.0.0
 title: Get-EntraDirectoryRoleAssignment
 ---

@@ -4,13 +4,13 @@ description: This article provApplicationTemplateIdes details on the New-EntraBe
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra.Beta
+Module Name: Microsoft.Entra.Beta.Applications
 ms.author: eunicewaweru
 ms.date: 02/10/2025
 ms.reviewer: stevemutungi
 ms.service: entra
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta/New-EntraBetaApplicationFromApplicationTemplate
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/New-EntraBetaApplicationFromApplicationTemplate
 schema: 2.0.0
 title: New-EntraBetaApplicationFromApplicationTemplate
 ---

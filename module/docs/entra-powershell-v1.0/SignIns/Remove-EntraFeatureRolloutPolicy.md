@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraFeatureRolloutPoli
 external help file: Microsoft.Entra.SignIns-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.SignIns
 ms.author: eunicewaweru
 ms.date: 07/22/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraBetaFeatureRolloutPolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.SignIns/Remove-EntraBetaFeatureRolloutPolicy
 schema: 2.0.0
 title: Remove-EntraFeatureRolloutPolicy
 ---
