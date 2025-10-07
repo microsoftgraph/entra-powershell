@@ -1,6 +1,6 @@
 ---
 description: This article provides details on the Get-EntraBetaInactiveSignInUser command.
-external help file: Microsoft.Entra.Users-Help.xml
+external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
 Module Name: Microsoft.Entra.Beta.Users
@@ -8,7 +8,7 @@ ms.author: eunicewaweru
 ms.date: 04/02/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraBetaInactiveSignInUser
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/Get-EntraBetaInactiveSignInUser
 schema: 2.0.0
 title: Get-EntraBetaInactiveSignInUser
 ---

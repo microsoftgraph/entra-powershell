@@ -255,7 +255,7 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
-For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/Microsoft.Entra/get-entracontext) command.
+For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Authentication/get-entracontext) command.
 
 ### Example 12: Connecting to an environment or cloud
 
