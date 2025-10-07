@@ -3,12 +3,12 @@ description: This article provides details on the Add-EntraDirectoryRoleMember c
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 02/06/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraDirectoryRoleMember
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraDirectoryRoleMember
 schema: 2.0.0
 title: Add-EntraDirectoryRoleMember
 ---

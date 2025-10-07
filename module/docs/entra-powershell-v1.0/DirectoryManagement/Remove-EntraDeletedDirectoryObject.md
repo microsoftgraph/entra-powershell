@@ -1,15 +1,15 @@
 ---
 author: msewaweru
 description: This article provides details on the Remove-EntraDeletedDirectoryObject command.
-external help file: Microsoft.Entra.Applications-Help.xml
+external help file: Microsoft.Entra.DirectoryManagement.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraDeletedDirectoryObject
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Remove-EntraDeletedDirectoryObject
 schema: 2.0.0
 title: Remove-EntraDeletedDirectoryObject
 ---

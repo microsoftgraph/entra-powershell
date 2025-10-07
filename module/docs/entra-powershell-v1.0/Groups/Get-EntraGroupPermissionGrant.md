@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraGroupPermissionGrant 
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Groups
 ms.author: eunicewaweru
 ms.date: 02/08/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraGroupPermissionGrant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraGroupPermissionGrant
 schema: 2.0.0
 title: Get-EntraGroupPermissionGrant
 ---

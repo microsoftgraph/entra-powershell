@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraDirectoryObjectOnPrem
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 01/26/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraDirectoryObjectOnPremisesProvisioningError
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraDirectoryObjectOnPremisesProvisioningError
 schema: 2.0.0
 title: Get-EntraDirectoryObjectOnPremisesProvisioningError
 ---

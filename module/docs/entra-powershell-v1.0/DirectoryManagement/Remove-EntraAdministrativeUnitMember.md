@@ -3,12 +3,12 @@ description: This article provides details on the Remove-EntraAdministrativeUnit
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 07/17/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraAdministrativeUnitMember
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Remove-EntraAdministrativeUnitMember
 schema: 2.0.0
 title: Remove-EntraAdministrativeUnitMember
 ---

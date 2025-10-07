@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraGroupLifecyclePoli
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Groups
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraGroupLifecyclePolicy
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Remove-EntraGroupLifecyclePolicy
 schema: 2.0.0
 title: Remove-EntraGroupLifecyclePolicy
 ---

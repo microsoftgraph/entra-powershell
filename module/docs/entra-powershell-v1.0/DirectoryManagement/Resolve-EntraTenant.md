@@ -1,14 +1,14 @@
 ---
 description: This article provides details on the Resolve-EntraTenant command.
-external help file: Microsoft.Entra-Help.xml
+external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 02/10/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Resolve-EntraTenant
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Resolve-EntraTenant
 schema: 2.0.0
 title: Resolve-EntraTenant
 ---

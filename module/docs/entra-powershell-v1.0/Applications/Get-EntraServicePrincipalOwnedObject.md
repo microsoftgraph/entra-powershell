@@ -4,12 +4,12 @@ description: This article provides details on the  Get-EntraServicePrincipalOwne
 external help file: Microsoft.Entra.Applications-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Applications
 ms.author: eunicewaweru
 ms.date: 02/08/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraServicePrincipalOwnedObject
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraServicePrincipalOwnedObject
 schema: 2.0.0
 title: Get-EntraServicePrincipalOwnedObject
 ---

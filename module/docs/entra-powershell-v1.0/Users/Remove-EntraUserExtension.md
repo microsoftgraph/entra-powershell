@@ -4,12 +4,12 @@ description: This article provides details on the Remove-EntraUserExtension comm
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Users
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Remove-EntraUserExtension
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Remove-EntraUserExtension
 schema: 2.0.0
 title: Remove-EntraUserExtension
 ---

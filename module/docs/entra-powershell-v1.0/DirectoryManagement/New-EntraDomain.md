@@ -4,12 +4,12 @@ description: This article provides details on the New-EntraDomain command.
 external help file: Microsoft.Entra.DirectoryManagement-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.DirectoryManagement
 ms.author: eunicewaweru
 ms.date: 06/26/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/New-EntraDomain
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/New-EntraDomain
 schema: 2.0.0
 title: New-EntraDomain
 ---

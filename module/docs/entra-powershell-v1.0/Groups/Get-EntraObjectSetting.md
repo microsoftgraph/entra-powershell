@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraObjectSetting command
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Groups
 ms.author: eunicewaweru
 ms.date: 07/03/2024
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraObjectSetting
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Get-EntraObjectSetting
 schema: 2.0.0
 title: Get-EntraObjectSetting
 ---

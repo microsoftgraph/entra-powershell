@@ -4,12 +4,12 @@ description: This article provides details on the Get-EntraUser command.
 external help file: Microsoft.Entra.Users-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Users
 ms.author: eunicewaweru
 ms.date: 02/09/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Get-EntraUser
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Users/Get-EntraUser
 schema: 2.0.0
 title: Get-EntraUser
 ---

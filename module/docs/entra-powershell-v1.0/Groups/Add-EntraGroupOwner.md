@@ -3,12 +3,12 @@ description: This article explains the Add-EntraGroupOwner command.
 external help file: Microsoft.Entra.Groups-Help.xml
 Locale: en-US
 manager: mwongerapk
-Module Name: Microsoft.Entra
+Module Name: Microsoft.Entra.Groups
 ms.author: eunicewaweru
 ms.date: 02/08/2025
 ms.reviewer: stevemutungi
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra/Add-EntraGroupOwner
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Add-EntraGroupOwner
 schema: 2.0.0
 title: Add-EntraGroupOwner
 ---
