@@ -30,7 +30,30 @@ function Get-EntraUser {
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
         [ValidateRange(1, 999)]
-        [System.Nullable`1[System.Int32]] $PageSize
+        [System.Nullable`1[System.Int32]] $PageSize,
+
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are All, EnabledOnly, and DisabledOnly.")]
+        [ValidateSet("All", "EnabledOnly", "DisabledOnly")]
+        [System.String] $EnabledFilter,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users that have validation errors.")]
+        [Switch] $HasErrorsOnly,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter for only users that require license reconciliation.")]
+        [Switch] $LicenseReconciliationNeededOnly,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users in the recycling bin.")]
+        [Switch] $ReturnDeletedUsers,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are synchronized through Azure Active Directory Sync.")]
+        [Switch] $Synchronized,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are not assigned a license.")]
+        [Switch] $UnlicensedUsersOnly,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Get a list of all the inactive users in your tenant in the last N days")]
+        [ValidateRange(1, 180)] 
+        [System.Nullable`1[System.Int32]] $LastSignInBeforeDaysAgo
     )
 
     begin {
