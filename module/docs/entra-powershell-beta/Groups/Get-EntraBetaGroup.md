@@ -140,7 +140,7 @@ Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents
 
 In this example, we retrieve group using the Display Name.
 
-### Example 5: Get groups that contain a search string
+### Example 5: Get groups whose DisplayName starts with a search string
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
