@@ -24,15 +24,22 @@ Describe "Set-EntraUserManager" {
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 0
         }
 
-        It "Should return specific User" {
+        It "Should update manager for a specific User" {
             $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should return specific User with alias" {
+        It "Should update manager for a specific User with alias" {
             $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
+        }
+
+        It "Should update manager for a specific User using ManagerId as UserPrincipalName" {
+            $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "manager1@contoso.com"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1

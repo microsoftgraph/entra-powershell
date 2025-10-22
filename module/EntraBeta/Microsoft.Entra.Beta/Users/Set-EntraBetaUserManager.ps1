@@ -8,7 +8,14 @@ function Set-EntraBetaUserManager {
         [Alias('RefObjectId')]         
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID.")]
         [ValidateNotNullOrEmpty()]
-        [guid] $ManagerId,
+        [ValidateScript({
+                if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or
+                    $_ -match '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') {
+                    return $true
+                }
+                throw "ManagerId must be a valid email address or GUID."
+            })]
+        [System.String] $ManagerId,
           
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier of a user in Microsoft Entra ID (User Principal Name or UserId).")]
         [Alias('ObjectId', 'UPN', 'Identity', 'UserPrincipalName')]
