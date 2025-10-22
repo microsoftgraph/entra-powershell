@@ -88,7 +88,8 @@ function Get-EntraUser {
         }
         if ($null -ne $PSBoundParameters["UserId"]) {
             $UserId = $PSBoundParameters["UserId"]
-            if ($UserId -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') {
+            if ($UserId -match '^[#a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') {
+                $UserId = [uri]::EscapeDataString($UserId)
                 $f = '$' + 'Filter'
                 $Filter = "UserPrincipalName eq '$UserId'"
                 $params["Uri"] += "&$f=$Filter"

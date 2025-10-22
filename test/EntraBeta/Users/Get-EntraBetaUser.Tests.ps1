@@ -70,6 +70,15 @@ Describe "Get-EntraBetaUser" {
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
 
+        It "Should return specific user using external user principal name" {
+            $result = Get-EntraBetaUser -UserId "externaluser_externaldomain.com#EXT#@contoso.com"
+            Write-Verbose "Result : {$result}" -Verbose
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Entra.Beta.Users -Times 1
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUser"
             $result = Get-EntraBetaUser -Top 1
