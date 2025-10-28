@@ -211,6 +211,120 @@ Describe "Get-EntraUser" {
                 $DebugPreference = $originalDebugPreference
             }
         }
+
+        It "Should include accountEnabled eq true in filter when EnabledFilter EnabledOnly is used" {
+            # Re-mock to capture URI
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                param($Method, $Uri)
+                # Return minimal mock response
+                return @{ value = @(@{ Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'; AccountEnabled = $true }) }
+            } -Verifiable
+
+            $result = Get-EntraUser -EnabledFilter EnabledOnly -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                # Assert that the generated URI contains the expected filter segment
+                $Uri | Should -Match '\$filter=accountEnabled eq true'
+                $true
+            }
+        }
+
+        It "Should include accountEnabled eq false in filter when EnabledFilter DisabledOnly is used" {
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                param($Method, $Uri)
+                return @{ value = @(@{ Id = 'cccccccc-1111-2222-3333-bbbbbbbbbbbb'; AccountEnabled = $false }) }
+            } -Verifiable
+
+            $result = Get-EntraUser -EnabledFilter DisabledOnly -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                $Uri | Should -Match '\$filter=accountEnabled eq false'
+                $true
+            }
+        }
+
+        It "Should include onPremisesSyncEnabled eq true in filter when Synchronized switch is used" {
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                param($Method, $Uri)
+                return @{ value = @(@{ Id = 'dddddddd-1111-2222-3333-aaaaaaaaaaaa'; OnPremisesSyncEnabled = $true }) }
+            } -Verifiable
+
+            $result = Get-EntraUser -Synchronized -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                $Uri | Should -Match 'onPremisesSyncEnabled eq true'
+                $true
+            }
+        }
+
+        It "Should combine EnabledFilter and Synchronized filters" {
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                param($Method, $Uri)
+                return @{ value = @(@{ Id = 'eeeeeeee-1111-2222-3333-aaaaaaaaaaaa'; AccountEnabled = $false; OnPremisesSyncEnabled = $true }) }
+            } -Verifiable
+
+            $result = Get-EntraUser -EnabledFilter DisabledOnly -Synchronized -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
+                $Uri | Should -Match 'accountEnabled eq false.*onPremisesSyncEnabled eq true'
+                $true
+            }
+        }
+
+        It "Should return only users with ServiceProvisioningErrors when HasErrorsOnly is used" {
+            $userWithErrors = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }) }
+            $userWithoutErrors = [PSCustomObject]@{ Id = '22222222-1111-2222-3333-bbbbbbbbbbbb'; ServiceProvisioningErrors = @() }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($userWithErrors, $userWithoutErrors) }
+            } -Verifiable
+
+            $result = Get-EntraUser -HasErrorsOnly -Top 10
+            $result | Should -Not -BeNullOrEmpty
+            ($result.Id) | Should -Contain '11111111-1111-2222-3333-aaaaaaaaaaaa'
+            ($result.Id) | Should -Not -Contain '22222222-1111-2222-3333-bbbbbbbbbbbb'
+        }
+
+        It "Should return only users needing license reconciliation when LicenseReconciliationNeededOnly is used" {
+            $licenseErrorUser = [PSCustomObject]@{ Id = '33333333-1111-2222-3333-cccccccccccc'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'insufficient licenses for service plan X' }) }
+            $nonLicenseErrorUser = [PSCustomObject]@{ Id = '44444444-1111-2222-3333-dddddddddddd'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic non license error' }) }
+            $noErrorsUser = [PSCustomObject]@{ Id = '55555555-1111-2222-3333-eeeeeeeeeeee'; ServiceProvisioningErrors = @() }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($licenseErrorUser, $nonLicenseErrorUser, $noErrorsUser) }
+            } -Verifiable
+
+            $result = Get-EntraUser -LicenseReconciliationNeededOnly -Top 10
+            $result | Should -Not -BeNullOrEmpty
+            ($result.Id) | Should -Contain '33333333-1111-2222-3333-cccccccccccc'
+            ($result.Id) | Should -Not -Contain '44444444-1111-2222-3333-dddddddddddd'
+            ($result.Id) | Should -Not -Contain '55555555-1111-2222-3333-eeeeeeeeeeee'
+        }
+
+        It "Should return empty when no users need license reconciliation" {
+            $genericErrorUser = [PSCustomObject]@{ Id = '66666666-1111-2222-3333-ffffffffffff'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic provisioning error' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($genericErrorUser) }
+            } -Verifiable
+
+            $result = Get-EntraUser -LicenseReconciliationNeededOnly -Top 10
+            $result | Should -BeNullOrEmpty
+        }
+
+        It "Should return only unlicensed users when UnlicensedUsersOnly is used" {
+            $unlicensedUser = [PSCustomObject]@{ Id = '77777777-1111-2222-3333-aaaaaaaaaaaa'; AssignedLicenses = @() }
+            $licensedUser = [PSCustomObject]@{ Id = '88888888-1111-2222-3333-bbbbbbbbbbbb'; AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($unlicensedUser, $licensedUser) }
+            } -Verifiable
+
+            $result = Get-EntraUser -UnlicensedUsersOnly -Top 10
+            $result | Should -Not -BeNullOrEmpty
+            ($result.Id) | Should -Contain '77777777-1111-2222-3333-aaaaaaaaaaaa'
+            ($result.Id) | Should -Not -Contain '88888888-1111-2222-3333-bbbbbbbbbbbb'
+        }
     }
 }
 
