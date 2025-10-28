@@ -7,6 +7,7 @@ function Get-EntraUser {
     [Alias("Get-AzureADUser")]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
+        [Parameter(ParameterSetName = "GetFiltered", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
         [ValidateRange(1, [int]::MaxValue)]
         [System.Nullable`1[System.Int32]] $Top,
@@ -33,20 +34,25 @@ function Get-EntraUser {
         [ValidateRange(1, 999)]
         [System.Nullable`1[System.Int32]] $PageSize,
 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are EnabledOnly and DisabledOnly.")]
+        # Parameter to filter enabled or disabled users
+        [Parameter(ParameterSetName = "GetFiltered", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are EnabledOnly and DisabledOnly.")]
         [ValidateSet("EnabledOnly", "DisabledOnly")]
         [System.String] $EnabledFilter,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users that have validation errors.")]
+        # Parameter to filter users with validation errors
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users that have validation errors.")]
         [Switch] $HasErrorsOnly,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter for only users that require license reconciliation.")]
+        # Parameter to filter users that require license reconciliation
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter for only users that require license reconciliation.")]
         [Switch] $LicenseReconciliationNeededOnly,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are synchronized through Azure Active Directory Sync.")]
+        # Parameter to filter synchronized users
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are synchronized through Azure Active Directory Sync.")]
         [Switch] $Synchronized,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are not assigned a license.")]
+        # Parameter to filter unlicensed users
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are not assigned a license.")]
         [Switch] $UnlicensedUsersOnly
     )
 
