@@ -47,18 +47,7 @@ function Get-EntraUser {
         [Switch] $Synchronized,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are not assigned a license.")]
-        [Switch] $UnlicensedUsersOnly,
-
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Get a list of all the inactive users in your tenant in the last N days")]
-        [ValidateRange(1, 180)] 
-        [System.Nullable`1[System.Int32]] $LastSignInBeforeDaysAgo,
-
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users with expired accounts.")]
-        [Switch] $AccountExpired,
-
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users with accounts expiring in the next N days.")]
-        [ValidateRange(1, 180)] 
-        [System.Nullable`1[System.Int32]] $AccountExpiringInDays
+        [Switch] $UnlicensedUsersOnly
     )
 
     begin {
@@ -131,8 +120,7 @@ function Get-EntraUser {
 
         if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
-            $f = '$' + 'Filter'
-            $params["Uri"] += "&$f=$Filter"
+            $filterParameters += $Filter
         }   
         
         # if -Enabled switch is selected, add to filter
@@ -151,6 +139,13 @@ function Get-EntraUser {
         if ($null -ne $PSBoundParameters["Synchronized"]) {
             $synchronizedFilter = "onPremisesSyncEnabled eq true"
             $filterParameters += $synchronizedFilter
+        }
+
+        # If any filters were added, combine them and add to the URI
+        if ($filterParameters.Count -gt 0) {
+            $combinedFilter = $filterParameters -join ' and '
+            $f = '$' + 'Filter'
+            $params["Uri"] += "&$f=$combinedFilter"
         }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -240,6 +235,7 @@ function Get-EntraUser {
                     }
                 }
 
+                # Filter unlicensed users if UnlicensedUsersOnly switch is specified.
                 if ($null -ne $PSBoundParameters["UnlicensedUsersOnly"]) {
                     if ($response.AssignedLicenses.Count -gt 0) {
                         continue
