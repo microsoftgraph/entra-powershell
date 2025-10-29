@@ -6,7 +6,7 @@ function Set-EntraBetaUserManager {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Alias('RefObjectId')]         
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The manager's unique identifier in Microsoft Entra ID (User Principal Name or UserId).")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
                 if ($_ -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' -or
