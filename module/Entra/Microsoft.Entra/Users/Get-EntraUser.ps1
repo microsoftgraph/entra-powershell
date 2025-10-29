@@ -132,8 +132,8 @@ function Get-EntraUser {
         # if -Enabled switch is selected, add to filter
         if ($null -ne $PSBoundParameters["EnabledFilter"]) {
             if ($PSBoundParameters["EnabledFilter"] -eq "DisabledOnly") {
-                $enabledFilter = "accountEnabled eq false"
-                $filterParameters += $enabledFilter
+                $disabledFilter = "accountEnabled eq false"
+                $filterParameters += $disabledFilter
             }
             else {
                 $enabledFilter = "accountEnabled eq true"

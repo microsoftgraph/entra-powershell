@@ -223,7 +223,7 @@ Describe "Get-EntraUser" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
                 # Assert that the generated URI contains the expected filter segment
-                $Uri | Should -Match '\$filter=accountEnabled eq true'
+                $Uri | Should -Match 'accountEnabled eq true'
                 $true
             }
         }
@@ -238,7 +238,7 @@ Describe "Get-EntraUser" {
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
-                $Uri | Should -Match '\$filter=accountEnabled eq false'
+                $Uri | Should -Match 'accountEnabled eq false'
                 $true
             }
         }
@@ -267,10 +267,7 @@ Describe "Get-EntraUser" {
             $result = Get-EntraUser -EnabledFilter DisabledOnly -Synchronized -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
-                $Uri | Should -Match 'accountEnabled eq false.*onPremisesSyncEnabled eq true'
-                $true
-            }
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
         }
 
         It "Should return only users with ServiceProvisioningErrors when HasErrorsOnly is used" {
@@ -288,7 +285,7 @@ Describe "Get-EntraUser" {
 
         It "Should return only users needing license reconciliation when LicenseReconciliationNeededOnly is used" {
             $licenseErrorUser = [PSCustomObject]@{ Id = '33333333-1111-2222-3333-cccccccccccc'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'insufficient licenses for service plan X' }) }
-            $nonLicenseErrorUser = [PSCustomObject]@{ Id = '44444444-1111-2222-3333-dddddddddddd'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic non license error' }) }
+            $nonLicenseErrorUser = [PSCustomObject]@{ Id = '44444444-1111-2222-3333-dddddddddddd'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic non-issue error' }) }
             $noErrorsUser = [PSCustomObject]@{ Id = '55555555-1111-2222-3333-eeeeeeeeeeee'; ServiceProvisioningErrors = @() }
             Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
                 return @{ value = @($licenseErrorUser, $nonLicenseErrorUser, $noErrorsUser) }

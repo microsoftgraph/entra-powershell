@@ -564,7 +564,7 @@ Accept wildcard characters: False
 
 ### -EnabledFilter
 
-Filters users based on the state of their accounts. Valid values are `EnabledOnly` and `DisabledOnly`. When specified, the cmdlet adds an `accountEnabled` constraint to any existing `-Filter` expression. If combined with other filters (for example, `-Filter "department eq 'Finance'"`), the final OData filter sent to Microsoft Graph concatenates them using `and`.
+Filters users based on the state of their accounts. Valid values are `EnabledOnly` and `DisabledOnly`. When specified, the cmdlet adds an `accountEnabled` constraint to any existing `-Filter` expression.
 
 ```yaml
 Type: System.String
