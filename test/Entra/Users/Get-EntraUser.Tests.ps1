@@ -213,10 +213,8 @@ Describe "Get-EntraUser" {
         }
 
         It "Should include accountEnabled eq true in filter when EnabledFilter EnabledOnly is used" {
-            # Re-mock to capture URI
             Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
                 param($Method, $Uri)
-                # Return minimal mock response
                 return @{ value = @(@{ Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'; AccountEnabled = $true }) }
             } -Verifiable
 

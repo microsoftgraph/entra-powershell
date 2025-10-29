@@ -201,7 +201,6 @@ function Get-EntraUser {
             }
         }
 
-        # TODO: Validate all these scenarios
         $licenseReconciliationPatterns = @(
             'license', 'licensing', 'sku', 'service plan', 'plan',
             'CountViolation', 'DependencyViolation', 'MutuallyExclusive',

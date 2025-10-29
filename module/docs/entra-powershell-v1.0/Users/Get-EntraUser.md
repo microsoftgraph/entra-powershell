@@ -54,6 +54,22 @@ Get-EntraUser
  [<CommonParameters>]
 ```
 
+### GetFiltered
+
+```powershell
+Get-EntraUser
+ [-All]
+ [-Top <Int32>]
+ [-PageSize <Int32>]
+ [EnabledFilter <String>]
+ [HasErrorsOnly]
+ [LicenseReconciliationNeededOnly]
+ [Synchronized]
+ [UnlicensedUsersOnly]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 The `Get-EntraUser` cmdlet gets a user from Microsoft Entra ID.
@@ -488,7 +504,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetValue
+Parameter Sets: GetVague
 Aliases:
 
 Required: False
@@ -542,6 +558,86 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EnabledFilter
+
+Filters users based on the state of their accounts. Valid values are `EnabledOnly` and `DisabledOnly`. When specified, the cmdlet adds an `accountEnabled` constraint to any existing `-Filter` expression. If combined with other filters (for example, `-Filter "department eq 'Finance'"`), the final OData filter sent to Microsoft Graph concatenates them using `and`.
+
+```yaml
+Type: System.String
+Parameter Sets: GetFiltered
+Aliases: None
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HasErrorsOnly
+
+Returns only users that have one or more service provisioning or validation errors (surfaced via the `serviceProvisioningErrors` collection). Use this switch to quickly identify identities requiring administrative remediation.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetFiltered
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LicenseReconciliationNeededOnly
+
+Returns only users whose service provisioning errors include license-related issues indicating that license reconciliation is needed (for example, insufficient licenses, dependency violations, mutually exclusive plans). Internally the cmdlet matches common license error patterns to narrow the result set.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetFiltered
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Synchronized
+
+Returns only users synchronized from on-premises Active Directory (those with `onPremisesSyncEnabled eq true`). This is useful for distinguishing cloud-only identities from hybrid managed identities.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetFiltered
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UnlicensedUsersOnly
+
+Returns only users who have no assigned licenses (`assignedLicenses` count equals 0). This helps identify users that may not yet have the required service access.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetFiltered
+Aliases: None
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
