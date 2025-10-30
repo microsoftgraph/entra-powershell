@@ -24,15 +24,22 @@ Describe "Set-EntraUserManager" {
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 0
         }
 
-        It "Should return specific User" {
+        It "Should return empty object" {
             $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
         }
 
-        It "Should return specific User with alias" {
+        It "Should return empty object with alias" {
             $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
+        }
+
+        It "Should return empty object when using ManagerId as UserPrincipalName" {
+            $result = Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "manager1@contoso.com"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Entra.Users -Times 1
@@ -47,7 +54,7 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should fail when ManagerId is invalid" {
-            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" ManagerId "" } | Should -Throw "Cannot process argument transformation on parameter 'ManagerId'. Cannot convert value *"
+            { Set-EntraUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" ManagerId "" } | Should -Throw "Cannot validate argument on parameter 'ManagerId'. ManagerId must be a valid email address or GUID."
         }
 
         It "Should contain UserId in parameters when passed UserId to it" {

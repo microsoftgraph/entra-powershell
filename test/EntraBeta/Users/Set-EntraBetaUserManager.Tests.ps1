@@ -33,8 +33,17 @@ Describe "Set-EntraBetaUserManager" {
             $result | Should -BeNullOrEmpty 
             Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1
         }
+        It "Should return empty object when using ManagerId as UserPrincipalName" {
+            $result = Set-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ManagerId "manager1@contoso.com"
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Set-MgBetaUserManagerByRef -ModuleName Microsoft.Entra.Beta.Users -Times 1
+        }
         It "Should fail when UserId is empty" {
             { Set-EntraBetaUserManager -UserId "" } | Should -Throw "Cannot validate argument on parameter 'UserId'. UserId must be a valid email address or GUID."
+        }
+        It "Should fail when ManagerId is invalid" {
+            { Set-EntraBetaUserManager -UserId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" ManagerId "" } | Should -Throw "Cannot validate argument on parameter 'ManagerId'. ManagerId must be a valid email address or GUID."
         }
         It "Should fail when invalid parameter is passed" {
             { Set-EntraBetaUserManager -Power "abc" } | Should -Throw "A parameter cannot be found that matches parameter name 'Power'*"
