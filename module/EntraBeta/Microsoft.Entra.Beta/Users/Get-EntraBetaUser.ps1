@@ -7,6 +7,7 @@ function Get-EntraBetaUser {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
+        [Parameter(ParameterSetName = "GetFiltered", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Maximum number of results to return.")]
         [Alias("Limit")]
         [ValidateRange(1, [int]::MaxValue)]
         [System.Nullable`1[System.Int32]] $Top,
