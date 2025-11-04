@@ -157,13 +157,11 @@ function Get-EntraGroup {
         
         $response = Get-MgGroup @params -Headers $customHeaders
         $response | ForEach-Object {
-            if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
-                if ($null -eq $_.ServiceProvisioningErrors -or $_.ServiceProvisioningErrors.Count -eq 0) {
+            if ($null -ne $_) {
+                if ($PSBoundParameters.ContainsKey("HasErrorsOnly") -and ($null -eq $_.ServiceProvisioningErrors -or $_.ServiceProvisioningErrors.Count -eq 0)) {
                     continue
                 }
-            }
-
-            if ($null -ne $_) {
+                
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
