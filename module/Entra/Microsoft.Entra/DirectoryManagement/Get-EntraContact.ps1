@@ -18,7 +18,7 @@ function Get-EntraContact {
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
         [System.String[]] $Property,
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only contacts that have service provisioning errors 1.")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only contacts that have service provisioning errors.")]
         [Switch] $HasErrorsOnly
     )  
 
