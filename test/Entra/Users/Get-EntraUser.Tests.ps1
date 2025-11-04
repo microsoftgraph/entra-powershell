@@ -330,5 +330,92 @@ Describe "Get-EntraUser" {
             ($result.Id) | Should -Not -Contain '88888888-1111-2222-3333-bbbbbbbbbbbb'
         }
     }
+
+    Context "Parameter Set Validation Tests" {
+        BeforeEach {
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @(@{ Id = 'test-user-id'; AccountEnabled = $true }) }
+            }
+        }
+
+        # Test GetFiltered parameter set - these should work together
+        It "Should allow EnabledFilter with other GetFiltered parameters" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -HasErrorsOnly -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -EnabledFilter DisabledOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw  
+            { Get-EntraUser -EnabledFilter EnabledOnly -Synchronized -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -EnabledFilter DisabledOnly -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
+        }
+
+        It "Should allow HasErrorsOnly with other GetFiltered parameters" {
+            { Get-EntraUser -HasErrorsOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -Synchronized -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
+        }
+
+        It "Should allow LicenseReconciliationNeededOnly with other GetFiltered parameters" {
+            { Get-EntraUser -LicenseReconciliationNeededOnly -Synchronized -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
+        }
+
+        It "Should allow all GetFiltered parameters together" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -HasErrorsOnly -LicenseReconciliationNeededOnly -Synchronized -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
+        }
+
+        It "Should allow GetFiltered parameters with Top" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -Top 5 } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -Top 10 } | Should -Not -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -Top 15 } | Should -Not -Throw
+            { Get-EntraUser -Synchronized -Top 20 } | Should -Not -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -Top 25 } | Should -Not -Throw
+        }
+
+        It "Should allow GetFiltered parameters with All" {
+            { Get-EntraUser -EnabledFilter DisabledOnly -All } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -All } | Should -Not -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -All } | Should -Not -Throw
+            { Get-EntraUser -Synchronized -All } | Should -Not -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -All } | Should -Not -Throw
+        }
+
+        It "Should allow GetFiltered parameters with Property" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -Property DisplayName, Mail -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -Property Id, AccountEnabled -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -Property UserPrincipalName -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -Synchronized -Property DisplayName, OnPremisesSyncEnabled -Top 1 } | Should -Not -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -Property Id, AssignedLicenses -Top 1 } | Should -Not -Throw
+        }
+
+        It "Should allow GetFiltered parameters with PageSize" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -PageSize 50 } | Should -Not -Throw
+            { Get-EntraUser -HasErrorsOnly -PageSize 100 } | Should -Not -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -PageSize 25 } | Should -Not -Throw
+            { Get-EntraUser -Synchronized -PageSize 75 } | Should -Not -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -PageSize 150 } | Should -Not -Throw
+        }
+
+        It "Should fail when GetFiltered parameters are used with Filter (GetQuery parameter set)" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -Filter "DisplayName eq 'test'" } | Should -Throw
+            { Get-EntraUser -HasErrorsOnly -Filter "AccountEnabled eq true" } | Should -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -Filter "Mail ne null" } | Should -Throw
+            { Get-EntraUser -Synchronized -Filter "OnPremisesSyncEnabled eq true" } | Should -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -Filter "AssignedLicenses ne null" } | Should -Throw
+        }
+
+        It "Should fail when GetFiltered parameters are used with SearchString (GetVague parameter set)" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -SearchString "testuser" } | Should -Throw
+            { Get-EntraUser -HasErrorsOnly -SearchString "example" } | Should -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -SearchString "user" } | Should -Throw
+            { Get-EntraUser -Synchronized -SearchString "syncuser" } | Should -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -SearchString "unlicensed" } | Should -Throw
+        }
+
+        It "Should fail when GetFiltered parameters are used with UserId (GetById parameter set)" {
+            { Get-EntraUser -EnabledFilter EnabledOnly -UserId "test-user-id" } | Should -Throw
+            { Get-EntraUser -HasErrorsOnly -UserId "test-user-id" } | Should -Throw
+            { Get-EntraUser -LicenseReconciliationNeededOnly -UserId "test-user-id" } | Should -Throw
+            { Get-EntraUser -Synchronized -UserId "test-user-id" } | Should -Throw
+            { Get-EntraUser -UnlicensedUsersOnly -UserId "test-user-id" } | Should -Throw
+        }
+    }
 }
 
