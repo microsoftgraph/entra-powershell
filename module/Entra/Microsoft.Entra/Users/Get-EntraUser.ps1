@@ -133,12 +133,12 @@ function Get-EntraUser {
         # if -Enabled switch is selected, add to filter
         if ($null -ne $PSBoundParameters["EnabledFilter"]) {
             if ($PSBoundParameters["EnabledFilter"] -eq "DisabledOnly") {
-                $enabledFilter = "accountEnabled eq false"
+                $stateFilter = "accountEnabled eq false"
             }
             else {
-                $enabledFilter = "accountEnabled eq true"
+                $stateFilter = "accountEnabled eq true"
             }
-            $filterParameters += $enabledFilter
+            $filterParameters += $stateFilter
         }
 
         # if Synchronized switch is selected, add to filter

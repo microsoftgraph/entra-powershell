@@ -36,6 +36,7 @@ BeforeAll {
             "ExternalUserState"                = $null
             "ExternalUserStateChangeDateTime"  = $null
             "MobilePhone"                      = $null
+            "ServiceProvisioningErrors"       = @()
         }
 
         $response = @{
@@ -222,16 +223,10 @@ Describe "Get-EntraUser" {
         }
 
         It "Should include accountEnabled eq true in filter when EnabledFilter EnabledOnly is used" {
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
-                param($Method, $Uri)
-                return @{ value = @(@{ Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'; AccountEnabled = $true }) }
-            } -Verifiable
-
             $result = Get-EntraUser -EnabledFilter EnabledOnly -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1 -ParameterFilter {
-                # Assert that the generated URI contains the expected filter segment
                 $Uri | Should -Match 'accountEnabled eq true'
                 $true
             }
@@ -332,14 +327,12 @@ Describe "Get-EntraUser" {
     }
 
     Context "Parameter Set Validation Tests" {
-        BeforeEach {
+        It "Should allow EnabledFilter with other GetFiltered parameters ONE" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
             Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
-                return @{ value = @(@{ Id = 'test-user-id'; AccountEnabled = $true }) }
-            }
-        }
+                return @{ value = @($testUser) }
+            } -Verifiable
 
-        # Test GetFiltered parameter set - these should work together
-        It "Should allow EnabledFilter with other GetFiltered parameters" {
             { Get-EntraUser -EnabledFilter EnabledOnly -HasErrorsOnly -Top 1 } | Should -Not -Throw
             { Get-EntraUser -EnabledFilter DisabledOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw  
             { Get-EntraUser -EnabledFilter EnabledOnly -Synchronized -Top 1 } | Should -Not -Throw
@@ -347,6 +340,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should allow HasErrorsOnly with other GetFiltered parameters" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($testUser) }
+            } -Verifiable
+
             { Get-EntraUser -HasErrorsOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -Synchronized -Top 1 } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
@@ -362,6 +360,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should allow GetFiltered parameters with Top" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($testUser) }
+            } -Verifiable
+
             { Get-EntraUser -EnabledFilter EnabledOnly -Top 5 } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -Top 10 } | Should -Not -Throw
             { Get-EntraUser -LicenseReconciliationNeededOnly -Top 15 } | Should -Not -Throw
@@ -370,6 +373,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should allow GetFiltered parameters with All" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($testUser) }
+            } -Verifiable
+
             { Get-EntraUser -EnabledFilter DisabledOnly -All } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -All } | Should -Not -Throw
             { Get-EntraUser -LicenseReconciliationNeededOnly -All } | Should -Not -Throw
@@ -378,6 +386,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should allow GetFiltered parameters with Property" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($testUser) }
+            } -Verifiable
+
             { Get-EntraUser -EnabledFilter EnabledOnly -Property DisplayName, Mail -Top 1 } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -Property Id, AccountEnabled -Top 1 } | Should -Not -Throw
             { Get-EntraUser -LicenseReconciliationNeededOnly -Property UserPrincipalName -Top 1 } | Should -Not -Throw
@@ -386,6 +399,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should allow GetFiltered parameters with PageSize" {
+            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
+            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -MockWith {
+                return @{ value = @($testUser) }
+            } -Verifiable
+            
             { Get-EntraUser -EnabledFilter EnabledOnly -PageSize 50 } | Should -Not -Throw
             { Get-EntraUser -HasErrorsOnly -PageSize 100 } | Should -Not -Throw
             { Get-EntraUser -LicenseReconciliationNeededOnly -PageSize 25 } | Should -Not -Throw
