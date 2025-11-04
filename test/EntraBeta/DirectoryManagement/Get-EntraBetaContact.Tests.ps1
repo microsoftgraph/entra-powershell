@@ -1,0 +1,278 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+BeforeAll {
+    if((Get-Module -Name Microsoft.Entra.Beta.DirectoryManagement) -eq $null){
+        Import-Module Microsoft.Entra.Beta.DirectoryManagement
+    }
+    Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
+
+    $scriptblock = {
+        return @(
+            [PSCustomObject]@{
+              "DeletedDateTime"                 = $null
+              "Id"                              = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+              "Department"                      = $null
+              "GivenName"                       = $null
+              "DisplayName"                     = "Bob Kelly (TAILSPIN)"
+              "JobTitle"                        = $null
+              "OnPremisesLastSyncDateTime"      = $null
+              "MailNickname"                    = "BobKTAILSPIN"
+              "Mail"                            = "bobk@tailspintoys.com"
+              "Phones"                          = $null
+              "ServiceProvisioningErrors"       = @(@{
+                                                    "ErrorDetail" = "Some provisioning error"
+                                                    "Service" = "ExchangeOnline"
+                                                })
+              "ProxyAddresses"                  = @{"SMTP"="bobk@tailspintoys.com"}
+              "Surname"                         = $null
+              "Addresses"                       = @{    "City"= ""
+                                                        "CountryOrRegion" = ""
+                                                        "OfficeLocation"= ""
+                                                        "PostalCode"= ""
+                                                        "State"= ""
+                                                        "Street"= ""
+                                                }
+              "AdditionalProperties"            = @{
+                                                    imAddresses = ""
+                                                    "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#contacts/`$entity"
+                                                }
+              "Manager"                         = $null
+              "OnPremisesSyncEnabled"           = @{}
+              "Parameters"                      = $args
+            }
+        )
+    }  
+
+    $scriptblockWithNoError = {
+        return @(
+            [PSCustomObject]@{
+              "DeletedDateTime"                 = $null
+              "Id"                              = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+              "Department"                      = $null
+              "GivenName"                       = $null
+              "DisplayName"                     = "Bob Kelly (TAILSPIN)"
+              "JobTitle"                        = $null
+              "OnPremisesLastSyncDateTime"      = $null
+              "MailNickname"                    = "BobKTAILSPIN"
+              "Mail"                            = "bobk@tailspintoys.com"
+              "Phones"                          = $null
+              "ServiceProvisioningErrors"       = @()
+              "ProxyAddresses"                  = @{"SMTP"="bobk@tailspintoys.com"}
+              "Surname"                         = $null
+              "Addresses"                       = @{    "City"= ""
+                                                        "CountryOrRegion" = ""
+                                                        "OfficeLocation"= ""
+                                                        "PostalCode"= ""
+                                                        "State"= ""
+                                                        "Street"= ""
+                                                }
+              "AdditionalProperties"            = @{
+                                                    imAddresses = ""
+                                                    "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#contacts/`$entity"
+                                                }
+              "Manager"                         = $null
+              "OnPremisesSyncEnabled"           = @{}
+              "Parameters"                      = $args
+            }
+        )
+    }  
+
+    Mock -CommandName Get-MgBetaContact -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+
+    Mock -CommandName Get-EntraContext -MockWith { @{
+        Environment = @{ Name = "Global" }
+        Scopes      = @('OrgContact.Read.All')
+    }} -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+}
+  
+Describe "Get-EntraBetaContact" {
+    Context "Test for Get-EntraBetaContact" {
+        It "Should throw when not connected and not invoke SDK call" {
+            Mock -CommandName Get-EntraContext -MockWith { $null } -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            { Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Not connected to Microsoft Graph*"
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 0
+        }
+        
+        It "Should return specific Contact" {
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+            $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
+            $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
+            $result.Phones | Should -BeNullOrEmpty
+            $result.Mobile | Should -BeNullOrEmpty
+            $result.TelephoneNumber | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+
+        It "Should return specific Contact alias" {
+            $result = Get-EntraBetaContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+            $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
+            $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
+            $result.Phones | Should -BeNullOrEmpty
+            $result.Mobile | Should -BeNullOrEmpty
+            $result.TelephoneNumber | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+
+        
+        It "Should fail when OrgContactId is empty" {
+            { Get-EntraBetaContact -OrgContactId } | Should -Throw "Missing an argument for parameter 'OrgContactId'*"
+        }
+
+        It "Should fail when OrgContactId is invalid" {
+            { Get-EntraBetaContact -OrgContactId "" } | Should -Throw "Cannot bind argument to parameter 'OrgContactId' because it is an empty string."
+        }
+
+        It "Should return all contact" {
+            $result = Get-EntraBetaContact -All 
+            $result | Should -Not -BeNullOrEmpty            
+            
+            Should -Invoke -CommandName Get-MgBetaContact  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        It "Should fail when All is invalid" {
+            { Get-EntraBetaContact -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+        }
+
+        It "Should return specific group by filter" {
+            $result = Get-EntraBetaContact -Filter "DisplayName -eq 'Bob Kelly (TAILSPIN)'"
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | should -Be 'Bob Kelly (TAILSPIN)'
+
+            Should -Invoke -CommandName Get-MgBetaContact  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }  
+
+        It "Should fail when filter is empty" {
+            { Get-EntraBetaContact -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }         
+
+        It "Should return top contact" {
+            $result = Get-EntraBetaContact -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgBetaContact  -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }  
+
+        It "Should fail when top is empty" {
+            { Get-EntraBetaContact -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }  
+
+        It "Should fail when top is invalid" {
+            { Get-EntraBetaContact -Top xy } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }  
+
+        It "Result should Contain OrgContactId" {
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        } 
+
+        It "Should contain OrgContactId in parameters when passed OrgContactId to it" {
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $params = Get-Parameters -data $result.Parameters
+            $params.OrgContactId | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Bob Kelly (TAILSPIN)'
+
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaContact"
+
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaContact"
+
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
+        
+        It "Should use HasErrorsOnly parameter and include ServiceProvisioningErrors in Property" {
+            $result = Get-EntraBetaContact -All -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+                $Property -contains "ServiceProvisioningErrors"
+            }
+        }
+        
+        ###
+        It "Should use HasErrorsOnly parameter with existing Property parameter" {
+            $result = Get-EntraBetaContact -All -HasErrorsOnly -Property "DisplayName"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        
+        It "Should not duplicate ServiceProvisioningErrors when already in Property parameter" {
+            $result = Get-EntraBetaContact -All -HasErrorsOnly -Property "DisplayName","ServiceProvisioningErrors"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
+                ($Property | Where-Object { $_ -eq "ServiceProvisioningErrors" }).Count -eq 1
+            }
+        }
+        
+        It "Should filter contacts with HasErrorsOnly when no errors present" {
+            Mock -CommandName Get-MgBetaContact -MockWith $scriptblockWithNoError -ModuleName Microsoft.Entra.Beta.DirectoryManagement
+            $result = Get-EntraBetaContact -All -HasErrorsOnly
+            $result | Should -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        
+        It "Should return contacts with HasErrorsOnly when errors are present" {
+            $result = Get-EntraBetaContact -All -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            $result.ServiceProvisioningErrors.Count | Should -BeGreaterThan 0
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        
+        It "Should work with HasErrorsOnly and OrgContactId parameter" {
+            $result = Get-EntraBetaContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+        
+        It "Should work with HasErrorsOnly and Filter parameter" {
+            $result = Get-EntraBetaContact -Filter "DisplayName -eq 'Bob Kelly (TAILSPIN)'" -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            
+            Should -Invoke -CommandName Get-MgBetaContact -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1
+        }
+    }
+}
