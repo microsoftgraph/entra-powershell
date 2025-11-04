@@ -37,6 +37,8 @@ BeforeAll {
             "ExternalUserStateChangeDateTime"  = $null
             "MobilePhone"                      = $null
             "ServiceProvisioningErrors"        = @()
+            "AssignedLicenses"                 = @([PSCustomObject]@{ skuId = 'sample-sku' })
+            "licenseAssignmentStates"          = @([PSCustomObject]@{ error = 'None' })
         }
 
        
@@ -292,9 +294,9 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should return only users needing license reconciliation when LicenseReconciliationNeededOnly is used" {
-            $licenseErrorUser = [PSCustomObject]@{ Id = '33333333-1111-2222-3333-cccccccccccc'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'insufficient licenses for service plan X' }) }
-            $nonLicenseErrorUser = [PSCustomObject]@{ Id = '44444444-1111-2222-3333-dddddddddddd'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic non-issue error' }) }
-            $noErrorsUser = [PSCustomObject]@{ Id = '55555555-1111-2222-3333-eeeeeeeeeeee'; ServiceProvisioningErrors = @() }
+            $licenseErrorUser = [PSCustomObject]@{ Id = '33333333-1111-2222-3333-cccccccccccc'; licenseAssignmentStates = @([PSCustomObject]@{ error = 'MutuallyExclusiveViolation' }) }
+            $nonLicenseErrorUser = [PSCustomObject]@{ Id = '44444444-1111-2222-3333-dddddddddddd'; licenseAssignmentStates = @([PSCustomObject]@{ error = 'None' }) }
+            $noErrorsUser = [PSCustomObject]@{ Id = '55555555-1111-2222-3333-eeeeeeeeeeee'; licenseAssignmentStates = @() }
             Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
                 return @{ value = @($licenseErrorUser, $nonLicenseErrorUser, $noErrorsUser) }
             } -Verifiable
@@ -307,7 +309,7 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should return empty when no users need license reconciliation" {
-            $genericErrorUser = [PSCustomObject]@{ Id = '66666666-1111-2222-3333-ffffffffffff'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic provisioning error' }) }
+            $genericErrorUser = [PSCustomObject]@{ Id = '66666666-1111-2222-3333-ffffffffffff';  licenseAssignmentStates = @([PSCustomObject]@{ error = $null }) }
             Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
                 return @{ value = @($genericErrorUser) }
             } -Verifiable
@@ -332,11 +334,6 @@ Describe "Get-EntraBetaUser" {
 
     Context "Parameter Set Validation Tests" {
         It "Should allow EnabledFilter with other GetFiltered parameters ONE" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -EnabledFilter EnabledOnly -HasErrorsOnly -Top 1 } | Should -Not -Throw
             { Get-EntraBetaUser -EnabledFilter DisabledOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw  
             { Get-EntraBetaUser -EnabledFilter EnabledOnly -Synchronized -Top 1 } | Should -Not -Throw
@@ -344,11 +341,6 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should allow HasErrorsOnly with other GetFiltered parameters" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -HasErrorsOnly -LicenseReconciliationNeededOnly -Top 1 } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -Synchronized -Top 1 } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -UnlicensedUsersOnly -Top 1 } | Should -Not -Throw
@@ -364,11 +356,6 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should allow GetFiltered parameters with Top" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -EnabledFilter EnabledOnly -Top 5 } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -Top 10 } | Should -Not -Throw
             { Get-EntraBetaUser -LicenseReconciliationNeededOnly -Top 15 } | Should -Not -Throw
@@ -377,11 +364,6 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should allow GetFiltered parameters with All" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -EnabledFilter DisabledOnly -All } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -All } | Should -Not -Throw
             { Get-EntraBetaUser -LicenseReconciliationNeededOnly -All } | Should -Not -Throw
@@ -390,11 +372,6 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should allow GetFiltered parameters with Property" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -EnabledFilter EnabledOnly -Property DisplayName, Mail -Top 1 } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -Property Id, AccountEnabled -Top 1 } | Should -Not -Throw
             { Get-EntraBetaUser -LicenseReconciliationNeededOnly -Property UserPrincipalName -Top 1 } | Should -Not -Throw
@@ -403,11 +380,6 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should allow GetFiltered parameters with PageSize" {
-            $testUser = [PSCustomObject]@{ Id = '11111111-1111-2222-3333-aaaaaaaaaaaa'; ServiceProvisioningErrors = @([PSCustomObject]@{ errorDetail = 'Generic error occurred' }); AssignedLicenses = @([PSCustomObject]@{ skuId = 'sample-sku' }) }
-            Mock -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -MockWith {
-                return @{ value = @($testUser) }
-            } -Verifiable
-
             { Get-EntraBetaUser -EnabledFilter EnabledOnly -PageSize 50 } | Should -Not -Throw
             { Get-EntraBetaUser -HasErrorsOnly -PageSize 100 } | Should -Not -Throw
             { Get-EntraBetaUser -LicenseReconciliationNeededOnly -PageSize 25 } | Should -Not -Throw

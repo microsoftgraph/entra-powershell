@@ -224,7 +224,7 @@ ErrorCode: Request_ResourceNotFound"
                 $hasLicenseError = $false
                 # REF: https://learn.microsoft.com/en-us/graph/api/resources/licenseassignmentstate?view=graph-rest-1.0
                 foreach ($licenseAssignment in $response.licenseAssignmentStates) {
-                    if ($licenseAssignment.error -neq $null -and $licenseAssignment.error -ne 'None') {
+                    if ($null -ne $licenseAssignment.error -and $licenseAssignment.error -ne 'None') {
                         $hasLicenseError = $true
                         break
                     }
