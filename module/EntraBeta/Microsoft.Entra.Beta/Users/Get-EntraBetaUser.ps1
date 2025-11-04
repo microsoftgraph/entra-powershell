@@ -30,7 +30,23 @@ function Get-EntraBetaUser {
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
         [ValidateRange(1, 999)]
-        [System.Nullable`1[System.Int32]] $PageSize
+        [System.Nullable`1[System.Int32]] $PageSize,
+
+        [Parameter(ParameterSetName = "GetFiltered", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the filter for enabled or disabled users. Valid values are EnabledOnly and DisabledOnly.")]
+        [ValidateSet("EnabledOnly", "DisabledOnly")]
+        [System.String] $EnabledFilter,
+
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users that have validation errors.")]
+        [Switch] $HasErrorsOnly,
+
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter for only users that require license reconciliation.")]
+        [Switch] $LicenseReconciliationNeededOnly,
+
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are synchronized through Azure Active Directory Sync.")]
+        [Switch] $Synchronized,
+
+        [Parameter(ParameterSetName = "GetFiltered", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only users who are not assigned a license.")]
+        [Switch] $UnlicensedUsersOnly
     )
 
     begin {
@@ -49,7 +65,7 @@ function Get-EntraBetaUser {
         $pageSizeCount = $null
         $upnPresent = $false
         $baseUri = '/beta/users'
-        $properties = $null
+        $properties = '$select=Id,AccountEnabled,AgeGroup,OfficeLocation,AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType,OnPremisesLastSyncDateTime,ImAddresses,SecurityIdentifier,OnPremisesUserPrincipalName,ServiceProvisioningErrors,IsResourceAccount,OnPremisesExtensionAttributes,DeletedDateTime,OnPremisesSyncEnabled,EmployeeType,EmployeeHireDate,CreatedDateTime,EmployeeOrgData,preferredDataLocation,Identities,onPremisesSamAccountName,EmployeeId,EmployeeLeaveDateTime,AuthorizationInfo,FaxNumber,OnPremisesDistinguishedName,OnPremisesDomainName,signInSessionsValidFromDateTime,onPremisesSyncEnabled,licenseAssignmentStates'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         $query = $null
@@ -105,11 +121,37 @@ function Get-EntraBetaUser {
                 $params["Uri"] = "$baseUri/$($UserId)?$properties"
             }
         }
+
+        $filterParameters = @()
+
         if ($null -ne $PSBoundParameters["Filter"]) {
             $Filter = $PSBoundParameters["Filter"]
+            $filterParameters += $Filter
+        }
+        
+        # if -Enabled switch is selected, add to filter
+        if ($null -ne $PSBoundParameters["EnabledFilter"]) {
+            if ($PSBoundParameters["EnabledFilter"] -eq "DisabledOnly") {
+                $stateFilter = "accountEnabled eq false"
+            }
+            else {
+                $stateFilter = "accountEnabled eq true"
+            }
+            $filterParameters += $stateFilter
+        }
+
+        # if Synchronized switch is selected, add to filter
+        if ($null -ne $PSBoundParameters["Synchronized"]) {
+            $synchronizedFilter = "onPremisesSyncEnabled eq true"
+            $filterParameters += $synchronizedFilter
+        }
+
+        # If any filters were added, combine them and add to the URI
+        if ($filterParameters.Count -gt 0) {
+            $combinedFilter = $filterParameters -join ' and '
             $f = '$' + 'Filter'
-            $query += "&$f=$Filter"
-        }    
+            $query += "&$f=$combinedFilter"
+        }
 
         if ($null -ne $query) {
             $query = "?" + $query.TrimStart("&")
@@ -163,8 +205,43 @@ ErrorCode: Request_ResourceNotFound"
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
             }
         }
+
         $userList = @()
         foreach ($response in $data) {
+            # Filter users with service provisioning errors if HasErrorsOnly switch is specified
+            if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
+                if ($null -eq $response.ServiceProvisioningErrors -or $response.ServiceProvisioningErrors.Count -eq 0) {
+                    continue
+                }
+            }
+
+            # Filter users with service provisioning errors if LicenseReconciliationNeededOnly switch is specified
+            if ($PSBoundParameters.ContainsKey("LicenseReconciliationNeededOnly")) {
+                if ($null -eq $response.licenseAssignmentStates -or $response.licenseAssignmentStates.Count -eq 0) {
+                    continue
+                }
+
+                $hasLicenseError = $false
+                # REF: https://learn.microsoft.com/en-us/graph/api/resources/licenseassignmentstate?view=graph-rest-1.0
+                foreach ($licenseAssignment in $response.licenseAssignmentStates) {
+                    if ($licenseAssignment.error -neq $null -and $licenseAssignment.error -ne 'None') {
+                        $hasLicenseError = $true
+                        break
+                    }
+                }
+                
+                if (-not $hasLicenseError) {
+                    continue
+                }
+            }
+
+            # Filter unlicensed users if UnlicensedUsersOnly switch is specified.
+            if ($null -ne $PSBoundParameters["UnlicensedUsersOnly"]) {
+                if ($response.AssignedLicenses.Count -gt 0) {
+                    continue
+                }
+            }
+
             $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUser
             $response.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
