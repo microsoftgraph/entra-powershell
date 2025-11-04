@@ -17,7 +17,9 @@ function Get-EntraBetaContact {
         [switch] $All,
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only contacts that have service provisioning errors.")]
+        [Switch] $HasErrorsOnly
     )
 
     begin {
@@ -88,12 +90,29 @@ function Get-EntraBetaContact {
         if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
         }
+
+        if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
+            if ($params.ContainsKey("Property")) {
+                if ($params["Property"] -notcontains "ServiceProvisioningErrors") {
+                    $params["Property"] = $params["Property"] + ",ServiceProvisioningErrors"
+                }
+            } else {
+                $params["Property"] = "ServiceProvisioningErrors"
+            }
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Get-MgBetaContact @params -Headers $customHeaders
+
+        if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
+            $response = $response | Where-Object { 
+                $null -ne $_.ServiceProvisioningErrors -and $_.ServiceProvisioningErrors.Count -gt 0 
+            }
+        }
+        
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
