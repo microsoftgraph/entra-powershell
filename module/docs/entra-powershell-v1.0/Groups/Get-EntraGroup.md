@@ -141,7 +141,7 @@ Azure Panda        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda       Azure P
 
 In this example, we retrieve group using the Display Name.
 
-### Example 5: Get groups that contain a search string
+### Example 5: Get groups whose DisplayName starts with a search string
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
