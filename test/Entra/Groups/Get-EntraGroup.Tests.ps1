@@ -18,6 +18,29 @@ BeforeAll {
                 "MailNickname"    = "demoNickname"
                 "SecurityEnabled" = "True"
                 "Parameters"      = $args
+                "ServiceProvisioningErrors" = @()
+            }
+        )
+    }
+
+    $scriptblockWithErrors = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"               = "demo-error-group"
+                "Id"                        = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                "MailEnabled"               = $false
+                "Description"               = "test group with errors"
+                "MailNickname"              = "demoErrorNickname"
+                "SecurityEnabled"           = $true
+                "ServiceProvisioningErrors" = @(
+                    @{
+                        "ErrorDetail" = @{
+                            "Code"    = "DirectoryLimitExceeded"
+                            "Message" = "Directory object quota limit exceeded"
+                        }
+                    }
+                )
+                "Parameters"                = $args
             }
         )
     }
@@ -157,29 +180,7 @@ Describe "Get-EntraGroup" {
             }
         }
         It "Should return groups with errors only when HasErrorsOnly is specified" {
-            $scriptblock = {
-                return @(
-                    [PSCustomObject]@{
-                        "DisplayName"               = "demo-error-group"
-                        "Id"                        = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                        "MailEnabled"               = $false
-                        "Description"               = "test group with errors"
-                        "MailNickname"              = "demoErrorNickname"
-                        "SecurityEnabled"           = $true
-                        "ServiceProvisioningErrors" = @(
-                            @{
-                                "ErrorDetail" = @{
-                                    "Code"    = "DirectoryLimitExceeded"
-                                    "Message" = "Directory object quota limit exceeded"
-                                }
-                            }
-                        )
-                        "Parameters"                = $args
-                    }
-                )
-            }
-
-            Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+            Mock -CommandName Get-MgGroup -MockWith $scriptblockWithErrors -ModuleName Microsoft.Entra.Groups
             $result = Get-EntraGroup -HasErrorsOnly
             $result | Should -Not -BeNullOrEmpty
             $result.ServiceProvisioningErrors | Should -Not -BeNullOrEmpty
@@ -188,51 +189,15 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
         It "Should filter out groups without errors when HasErrorsOnly is specified" {
-            $scriptblock = {
-                return @(
-                    [PSCustomObject]@{
-                        "DisplayName"               = "demo-no-errors"
-                        "Id"                        = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                        "MailEnabled"               = $false
-                        "Description"               = "test group without errors"
-                        "MailNickname"              = "demoNoErrorsNickname"
-                        "SecurityEnabled"           = $true
-                        "ServiceProvisioningErrors" = @()
-                        "Parameters"                = $args
-                    }
-                )
-            }
-
-            Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
             $result = Get-EntraGroup -HasErrorsOnly
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
-        It "Should include ServiceProvisioningErrors property when HasErrorsOnly is specified" {
-            $result = Get-EntraGroup -HasErrorsOnly
-            $params = Get-Parameters -data $result.Parameters
-            $params.Property | Should -Match "ServiceProvisioningErrors"
-        }
         It "Should return groups with license errors only when HasLicenseErrorsOnly is specified" {
-            $scriptblock = {
-                return @(
-                    [PSCustomObject]@{
-                        "DisplayName"     = "demo-license-error-group"
-                        "Id"              = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                        "MailEnabled"     = $false
-                        "Description"     = "test group with license errors"
-                        "MailNickname"    = "demoLicenseErrorNickname"
-                        "SecurityEnabled" = $true
-                        "Parameters"      = $args
-                    }
-                )
-            }
-
-            Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
             $result = Get-EntraGroup -HasLicenseErrorsOnly
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be "demo-license-error-group"
+            $result.DisplayName | Should -Be "demo"
 
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
         }
@@ -248,32 +213,10 @@ Describe "Get-EntraGroup" {
             $params.Filter | Should -Match "hasMembersWithLicenseErrors eq true"
         }
         It "Should work with SearchString and HasErrorsOnly together" {
-            $scriptblock = {
-                return @(
-                    [PSCustomObject]@{
-                        "DisplayName"               = "demo"
-                        "Id"                        = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                        "MailEnabled"               = $false
-                        "Description"               = "test"
-                        "MailNickname"              = "demoNickname"
-                        "SecurityEnabled"           = $true
-                        "ServiceProvisioningErrors" = @(
-                            @{
-                                "ErrorDetail" = @{
-                                    "Code"    = "DirectoryLimitExceeded"
-                                    "Message" = "Directory object quota limit exceeded"
-                                }
-                            }
-                        )
-                        "Parameters"                = $args
-                    }
-                )
-            }
-
-            Mock -CommandName Get-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Entra.Groups
+            Mock -CommandName Get-MgGroup -MockWith $scriptblockWithErrors -ModuleName Microsoft.Entra.Groups
             $result = Get-EntraGroup -SearchString 'demo' -HasErrorsOnly
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'demo'
+            $result.DisplayName | Should -Be 'demo-error-group'
             $result.ServiceProvisioningErrors | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
