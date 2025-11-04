@@ -35,7 +35,17 @@ function Get-EntraGroup {
         [System.String[]] $Property,
 
         [Parameter(ParameterSetName = "Append", Mandatory = $true, HelpMessage = "Specifies whether to append the selected properties.")]
-        [switch] $AppendSelected
+        [switch] $AppendSelected,
+
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have errors.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have errors.")]
+        [Parameter(ParameterSetName = "Append", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have errors.")]
+        [Switch] $HasErrorsOnly,
+
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have license errors.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have license errors.")]
+        [Parameter(ParameterSetName = "Append", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only groups that have license errors.")]
+        [Switch] $HasLicenseErrorsOnly
     )
 
     begin {
@@ -119,15 +129,42 @@ function Get-EntraGroup {
             $params["Property"] = $defaultProperties + "," + ($Property -join ',')
         }
 
+        if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
+            if ($params.ContainsKey("Property")) {
+                if ($params["Property"] -notcontains "ServiceProvisioningErrors") {
+                    $params["Property"] = $params["Property"] + ",ServiceProvisioningErrors"
+                }
+            } else {
+                $params["Property"] = $defaultProperties + ",ServiceProvisioningErrors"
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["HasLicenseErrorsOnly"]) {
+            $licenseQuery = "hasMembersWithLicenseErrors eq true"
+
+            if ($params.ContainsKey("Filter")) {
+                if ($params["Filter"] -notcontains "hasMembersWithLicenseErrors") {
+                    $params["Filter"] = "($($params["Filter"])) and $licenseQuery"
+                }
+            } else {
+                $params["Filter"] = $licenseQuery
+            }
+        }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
+        
         $response = Get-MgGroup @params -Headers $customHeaders
         $response | ForEach-Object {
+            if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
+                if ($null -eq $_.ServiceProvisioningErrors -or $_.ServiceProvisioningErrors.Count -eq 0) {
+                    continue
+                }
+            }
+
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
             }
         }
         $response
