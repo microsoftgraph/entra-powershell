@@ -77,3 +77,7 @@ Write-Output "Completed fetching authentication methods for $($users.count) user
 # How to execute this script:
 
 # . .\samples\batch\Invoke-BatchWithRetry.ps1
+
+# To execute the script and measure performance, you can use the following command:
+
+# Measure-Command { . .\samples\batch\Invoke-BatchWithRetry.ps1 }
