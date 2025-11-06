@@ -23,11 +23,21 @@ function Grant-EntraBetaMcpServerPermission {
     )
 
     begin {
+        # Create headers for the request
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+
+        # Ensure connection to Microsoft Entra
+        if (-not (Get-EntraContext)) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All, Directory.Read.All, DelegatedPermissionGrant.ReadWrite.All, ' to authenticate."
+            Write-Error -Message $errorMessage -ErrorAction Stop
+            return
+        }
+
         function Get-ServicePrincipal([string]$appId, [string]$name) {
-            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue | Select-Object -First 1
+            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $customHeaders | Select-Object -First 1
             if (-not $sp) {
                 Write-Verbose "Creating service principal for $name ..."
-                $sp = New-MgBetaServicePrincipal -AppId $appId
+                $sp = New-MgBetaServicePrincipal -AppId $appId -Headers $customHeaders
             }
             return $sp
         }
@@ -41,7 +51,8 @@ function Grant-EntraBetaMcpServerPermission {
                 -Filter "clientId eq '$ClientSpId' and resourceId eq '$ResourceSpId' and consentType eq 'AllPrincipals'" `
                 -Top 1 `
                 -Property "id,scope,clientId,resourceId,consentType" `
-                -ErrorAction SilentlyContinue |
+                -ErrorAction SilentlyContinue `
+                -Headers $customHeaders |
             Select-Object -First 1
         }
 
@@ -52,7 +63,7 @@ function Grant-EntraBetaMcpServerPermission {
             if (-not $targetScopes -or $targetScopes.Count -eq 0) {
                 if ($grant) {
                     Write-Verbose "Removing existing grant..."
-                    Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false
+                    Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false -Headers $customHeaders
                 }
                 return $null
             }
@@ -65,7 +76,7 @@ function Grant-EntraBetaMcpServerPermission {
                     consentType = "AllPrincipals"
                     scope       = $targetString
                 }
-                return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body)[0])
+                return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body -Headers $customHeaders)[0])
             }
 
             $currentScope = if ($grant.Scope) { $grant.Scope } else { "" }
@@ -75,7 +86,7 @@ function Grant-EntraBetaMcpServerPermission {
             }
 
             Write-Verbose "Updating existing permission grant..."
-            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
+            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString } -Headers $customHeaders
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
         }
 
