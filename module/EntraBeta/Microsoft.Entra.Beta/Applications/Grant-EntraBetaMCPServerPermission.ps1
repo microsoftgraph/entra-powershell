@@ -6,19 +6,19 @@
 function Grant-EntraBetaMcpServerPermission {
     [CmdletBinding(DefaultParameterSetName = 'PredefinedClients')]
     param(
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false)]
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $true)]
+        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true)]
+        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false)]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
-        [string[]]$MCPClient = @('VisualStudioCode'),
+        [string[]]$MCPClient,
 
         [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true)]
         [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true)]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [string[]]$MCPClientServicePrincipalId,
 
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false)]
         [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $true)]
         [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )
 
@@ -106,6 +106,17 @@ function Grant-EntraBetaMcpServerPermission {
 
             $resolvedClients = @()
 
+            # If no clients specified, use all predefined clients
+            if (-not $MCPClients -and -not $MCPClientServicePrincipalIds) {
+                $resolvedClients = $predefinedClients.GetEnumerator() | ForEach-Object {
+                    @{
+                        Name = $_.Value.Name
+                        AppId = $_.Value.AppId
+                        IsCustom = $false
+                    }
+                }
+            }
+
             # Process MCP clients
             if ($MCPClients) {
                 foreach ($client in $MCPClients) {
@@ -174,7 +185,7 @@ function Grant-EntraBetaMcpServerPermission {
         Write-Host "Operating on $($clientSps.Count) MCP client(s): $($clientSps.Name -join ', ')" -ForegroundColor Cyan
 
         # Determine target scopes
-        if ($PSCmdlet.ParameterSetName -like '*Scopes') {
+        if ($Scopes -and $Scopes.Count -gt 0) {
             # Validate specified scopes
             $invalidScopes = $Scopes | Where-Object { $_ -notin $availableScopes }
             if ($invalidScopes) {
