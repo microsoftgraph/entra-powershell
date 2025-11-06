@@ -6,18 +6,21 @@
 function Grant-EntraBetaMcpServerPermission {
     [CmdletBinding(DefaultParameterSetName = 'PredefinedClients')]
     param(
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true)]
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false)]
+        # Specifies the predefined MCP clients to grant permissions to. Valid values are 'VisualStudioCode', 'VisualStudio', and 'VisualStudioMSAL'.
+        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true, HelpMessage = "Specify one or more predefined MCP clients (VisualStudioCode, VisualStudio, VisualStudioMSAL) to grant permissions to.")]
+        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false, HelpMessage = "Specify one or more predefined MCP clients (VisualStudioCode, VisualStudio, VisualStudioMSAL) to grant permissions to.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
         [string[]]$MCPClient,
 
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true)]
-        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true)]
+        # Specifies the service principal IDs for custom MCP clients. Must be valid GUIDs.
+        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true, HelpMessage = "Specify one or more service principal IDs (GUIDs) for custom MCP clients to grant permissions to.")]
+        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more service principal IDs (GUIDs) for custom MCP clients to grant permissions to.")]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [string[]]$MCPClientServicePrincipalId,
 
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $true)]
-        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true)]
+        # Specifies the specific scopes to grant. If not specified, all available scopes will be granted.
+        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP clients. If not specified, all available scopes will be granted.")]
+        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP clients. If not specified, all available scopes will be granted.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )
