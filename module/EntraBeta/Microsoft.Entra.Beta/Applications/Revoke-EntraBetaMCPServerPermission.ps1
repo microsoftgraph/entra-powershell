@@ -6,16 +6,16 @@
 function Revoke-EntraBetaMcpServerPermission {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High', DefaultParameterSetName = 'PredefinedClients')]
     param(
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false)]
+        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false, HelpMessage = "Specifies one or more predefined MCP client applications to revoke permissions from. Valid values are 'VisualStudioCode', 'VisualStudio', or 'VisualStudioMSAL'.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
         [string[]]$MCPClient,
 
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true)]
+        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true, HelpMessage = "Specifies the service principal IDs of custom MCP client applications to revoke permissions from. Must be valid GUID format.")]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
         [string[]]$MCPClientServicePrincipalId,
 
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false)]
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $false)]
+        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client(s).")]
+        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client(s).")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )
