@@ -4,23 +4,23 @@
 # ------------------------------------------------------------------------------ 
 
 function Grant-EntraBetaMcpServerPermission {
-    [CmdletBinding(DefaultParameterSetName = 'PredefinedClients')]
+    [CmdletBinding(DefaultParameterSetName = 'PredefinedClient')]
     param(
-        # Specifies the predefined MCP clients to grant permissions to..
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true, HelpMessage = "Specify one or more predefined MCP clients to grant permissions to.")]
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false, HelpMessage = "Specify one or more predefined MCP clients to grant permissions to.")]
+        # Specifies the predefined MCP client to grant permissions to.
+        [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
+        [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')]
-        [string[]]$MCPClient,
+        [string]$MCPClient,
 
-        # Specifies the service principal IDs for custom MCP clients. Must be valid GUIDs.
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true, HelpMessage = "Specify one or more service principal IDs (GUIDs) for custom MCP clients to grant permissions to.")]
-        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more service principal IDs (GUIDs) for custom MCP clients to grant permissions to.")]
+        # Specifies the service principal ID for a custom MCP client. Must be a valid GUID.
+        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
+        [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
-        [string[]]$MCPClientServicePrincipalId,
+        [string]$MCPClientServicePrincipalId,
 
         # Specifies the specific scopes to grant. If not specified, all available scopes will be granted.
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP clients. If not specified, all available scopes will be granted.")]
-        [Parameter(ParameterSetName = 'CustomClientsScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP clients. If not specified, all available scopes will be granted.")]
+        [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
+        [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )
@@ -104,49 +104,35 @@ function Grant-EntraBetaMcpServerPermission {
 
         function Resolve-MCPClient {
             param(
-                [string[]]$MCPClients,
-                [string[]]$CustomServicePrincipalIds
+                [string]$MCPClient,
+                [string]$CustomServicePrincipalId
             )
 
-            $resolvedClients = @()
-
-            # If no clients specified, use all predefined clients
-            if (-not $MCPClients -and -not $MCPClientServicePrincipalIds) {
-                $resolvedClients = $predefinedClients.GetEnumerator() | ForEach-Object {
-                    @{
-                        Name = $_.Value.Name
-                        AppId = $_.Value.AppId
+            # Process predefined MCP client
+            if ($MCPClient) {
+                if ($predefinedClients.ContainsKey($MCPClient)) {
+                    $clientInfo = $predefinedClients[$MCPClient]
+                    return @{
+                        Name = $clientInfo.Name
+                        AppId = $clientInfo.AppId
                         IsCustom = $false
                     }
                 }
-            }
-
-            # Process MCP clients
-            if ($MCPClients) {
-                foreach ($client in $MCPClients) {
-                    if ($predefinedClients.ContainsKey($client)) {
-                        $clientInfo = $predefinedClients[$client]
-                        $resolvedClients += @{
-                            Name = $clientInfo.Name
-                            AppId = $clientInfo.AppId
-                            IsCustom = $false
-                        }
-                    }
+                else {
+                    throw "Invalid MCP client: $MCPClient"
                 }
             }
 
-            # Process custom service principal IDs
-            if ($CustomServicePrincipalIds) {
-                foreach ($spId in $CustomServicePrincipalIds) {
-                    $resolvedClients += @{
-                        Name = "Custom MCP Client"
-                        AppId = $spId
-                        IsCustom = $true
-                    }
+            # Process custom service principal ID
+            if ($CustomServicePrincipalId) {
+                return @{
+                    Name = "Custom MCP Client"
+                    AppId = $CustomServicePrincipalId
+                    IsCustom = $true
                 }
             }
 
-            return $resolvedClients
+            throw "No MCP client specified."
         }
     }
 
@@ -161,32 +147,20 @@ function Grant-EntraBetaMcpServerPermission {
         }
         $availableScopes = $availableScopes | Sort-Object -Unique
 
-        # Resolve MCP clients
-        $clients = Resolve-MCPClient -MCPClients $MCPClient -CustomServicePrincipalIds $MCPClientServicePrincipalId
-        Write-Verbose "Resolved $($clients.Count) MCP client(s): $($clients.Name -join ', ')"
+        # Resolve MCP client
+        $client = Resolve-MCPClient -MCPClient $MCPClient -CustomServicePrincipalId $MCPClientServicePrincipalId
+        Write-Verbose "Resolved MCP client: $($client.Name)"
 
-        # Get service principals for the resolved clients
-        $clientSps = @()
-        foreach ($client in $clients) {
-            try {
-                $sp = Get-ServicePrincipal $client.AppId $client.Name
-                $clientSps += @{
-                    Sp = $sp
-                    Name = $client.Name
-                    IsCustom = $client.IsCustom
-                }
-                Write-Verbose "Found service principal for: $($client.Name)"
-            }
-            catch {
-                Write-Warning "Could not get service principal for $($client.Name) (App ID: $($client.AppId)): $($_.Exception.Message)"
-            }
+        # Get service principal for the resolved client
+        try {
+            $sp = Get-ServicePrincipal $client.AppId $client.Name
+            Write-Verbose "Found service principal for: $($client.Name)"
+        }
+        catch {
+            throw "Could not get service principal for $($client.Name) (App ID: $($client.AppId)): $($_.Exception.Message)"
         }
 
-        if ($clientSps.Count -eq 0) {
-            throw "No MCP client service principals could be found or created."
-        }
-
-        Write-Host "Operating on $($clientSps.Count) MCP client(s): $($clientSps.Name -join ', ')" -ForegroundColor Cyan
+        Write-Host "Operating on MCP client: $($client.Name)" -ForegroundColor Cyan
 
         # Determine target scopes
         if ($Scopes -and $Scopes.Count -gt 0) {
@@ -204,57 +178,31 @@ function Grant-EntraBetaMcpServerPermission {
             Write-Host "Granting all available scopes: $($targetScopes -join ', ')" -ForegroundColor Cyan
         }
 
-        # Apply the permission grants to all client service principals
-        $results = @()
-        foreach ($clientSp in $clientSps) {
-            try {
-                $grant = Set-ExactScopes -clientSpId $clientSp.Sp.Id -resourceSpId $resourceSp.Id -targetScopes $targetScopes
-                $results += @{
-                    Client = $clientSp.Name
-                    Grant = $grant
-                    Success = $true
-                    Error = $null
-                }
-            }
-            catch {
-                $results += @{
-                    Client = $clientSp.Name
-                    Grant = $null
-                    Success = $false
-                    Error = $_.Exception.Message
-                }
-            }
-        }
+        # Apply the permission grant
+        try {
+            $grant = Set-ExactScopes -clientSpId $sp.Id -resourceSpId $resourceSp.Id -targetScopes $targetScopes
+            
+            if ($grant) {
+                Write-Host "`n✓ Successfully granted permissions to $($client.Name)" -ForegroundColor Green
+                Write-Host "  Grant ID: $($grant.Id)" -ForegroundColor Gray
 
-        # Display results
-        $successCount = ($results | Where-Object Success).Count
-        $errorCount = ($results | Where-Object { -not $_.Success }).Count
-
-        Write-Host "`nResults Summary:" -ForegroundColor Yellow
-        Write-Host "Successfully processed: $successCount client(s)" -ForegroundColor Green
-        if ($errorCount -gt 0) {
-            Write-Host "Failed to process: $errorCount client(s)" -ForegroundColor Red
-        }
-
-        foreach ($result in $results) {
-            if ($result.Success) {
-                if ($result.Grant) {
-                    Write-Host "`n✓ Successfully granted permissions to $($result.Client)" -ForegroundColor Green
-                    Write-Host "  Grant ID: $($result.Grant.Id)" -ForegroundColor Gray
-
-                    # Display granted scopes
-                    $grantedScopes = ($result.Grant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object
-                    Write-Host "  Granted scopes:" -ForegroundColor Yellow
-                    $grantedScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
-                }
-                else {
-                    Write-Host "`n⚠ No permissions were granted to $($result.Client) (empty scope list)" -ForegroundColor Yellow
-                }
+                # Display granted scopes
+                $grantedScopes = ($grant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object
+                Write-Host "  Granted scopes:" -ForegroundColor Yellow
+                $grantedScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
+                
+                # Return the OAuth2PermissionGrant object
+                return $grant
             }
             else {
-                Write-Host "`n✗ Failed to grant permissions to $($result.Client)" -ForegroundColor Red
-                Write-Host "  Error: $($result.Error)" -ForegroundColor Red
+                Write-Host "`n⚠ No permissions were granted to $($client.Name) (empty scope list)" -ForegroundColor Yellow
+                return $null
             }
+        }
+        catch {
+            Write-Host "`n✗ Failed to grant permissions to $($client.Name)" -ForegroundColor Red
+            Write-Host "  Error: $($_.Exception.Message)" -ForegroundColor Red
+            throw
         }
     }
 }
