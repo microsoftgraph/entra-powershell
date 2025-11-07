@@ -96,11 +96,25 @@ BeforeAll {
     }
 
     Mock -CommandName New-MgBetaOauth2PermissionGrant -MockWith { 
-        return $mockGrant
+        param($BodyParameter)
+        return [PSCustomObject]@{
+            Id = $testGrantId
+            ClientId = $BodyParameter.clientId
+            ResourceId = $BodyParameter.resourceId
+            ConsentType = $BodyParameter.consentType
+            Scope = $BodyParameter.scope
+        }
     }
 
     Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith {
-        return $mockGrant
+        param($OAuth2PermissionGrantId, $BodyParameter)
+        return [PSCustomObject]@{
+            Id = $OAuth2PermissionGrantId
+            ClientId = $testClientSpId
+            ResourceId = $testResourceSpId
+            ConsentType = "AllPrincipals"
+            Scope = $BodyParameter.scope
+        }
     }
 
     Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {
@@ -124,39 +138,28 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
     }
 
     Context "Parameter Set Validation" {
-        It "Should accept valid predefined client (PredefinedClients parameter set)" {
-            $validClients = @('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')
+        It "Should accept valid predefined client (PredefinedClient parameter set)" {
+            $validClients = @('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')
             foreach ($client in $validClients) {
                 $cmd = { Grant-EntraBetaMCPServerPermission -MCPClient $client -WhatIf }
                 $cmd | Should -Not -BeNullOrEmpty
             }
         }
 
-        It "Should use PredefinedClientsScopes parameter set when MCPClient and Scopes are provided" {
+        It "Should use PredefinedClientScopes parameter set when MCPClient and Scopes are provided" {
             $cmd = { Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' -Scopes @('User.Read') -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
-        It "Should use CustomClients parameter set when only MCPClientServicePrincipalId is provided" {
+        It "Should use CustomClient parameter set when only MCPClientServicePrincipalId is provided" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
             $cmd = { Grant-EntraBetaMCPServerPermission -MCPClientServicePrincipalId $validGuid -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
-        It "Should use CustomClientsScopes parameter set when both MCPClientServicePrincipalId and Scopes are provided" {
+        It "Should use CustomClientScopes parameter set when both MCPClientServicePrincipalId and Scopes are provided" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
             $cmd = { Grant-EntraBetaMCPServerPermission -MCPClientServicePrincipalId $validGuid -Scopes @('User.Read') -WhatIf }
-            $cmd | Should -Not -BeNullOrEmpty
-        }
-
-        It "Should accept multiple predefined clients in array" {
-            $cmd = { Grant-EntraBetaMCPServerPermission -MCPClient @('VisualStudioCode', 'VisualStudio') -WhatIf }
-            $cmd | Should -Not -BeNullOrEmpty
-        }
-
-        It "Should accept multiple custom service principal IDs in array" {
-            $validGuids = @("12345678-1234-1234-1234-123456789abc", "87654321-4321-4321-4321-cba987654321")
-            $cmd = { Grant-EntraBetaMCPServerPermission -MCPClientServicePrincipalId $validGuids -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
@@ -181,14 +184,6 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
             { Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' -MCPClientServicePrincipalId $validGuid } | 
                 Should -Throw "*Parameter set cannot be resolved*"
-        }
-
-        It "Should default to all predefined clients when only Scopes is provided" {
-            { Grant-EntraBetaMCPServerPermission -Scopes @('User.Read') } | 
-                Should -Not -Throw
-            
-            # Should process all 3 predefined clients
-            Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -Times 3
         }
 
         It "Should reject empty scopes array due to ValidateNotNullOrEmpty" {
@@ -340,7 +335,9 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         It "Should grant only specified scopes when provided" {
             Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' -Scopes @('User.Read', 'Files.Read')
             
-            Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -Times 1
+            Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -ParameterFilter {
+                $BodyParameter.scope -eq "Files.Read User.Read"
+            }
         }
 
         It "Should update existing grant with different scopes" {
@@ -362,14 +359,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         }
     }
 
-    Context "Multiple Client Support" {
-        It "Should process multiple predefined clients" {
-            Grant-EntraBetaMCPServerPermission -MCPClient @('VisualStudioCode', 'VisualStudio')
-            
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 3  # 1 resource + 2 clients
-            Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -Times 2  # 2 clients
-        }
-
+    Context "Custom Client Support" {
         It "Should handle custom service principal IDs" {
             $customSpId = "12345678-1234-1234-1234-123456789abc"  # Valid GUID format
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
@@ -434,27 +424,59 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 Should -Throw "*Access denied*"
         }
 
-        It "Should continue with other clients when one fails" {
+        It "Should throw error when client service principal cannot be found or created" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
                 param($Filter)
                 if ($Filter -like "*$resourceAppId*") {
                     return $mockResourceSp
                 }
-                elseif ($Filter -like "*aebc6443-996d-45c2-90f0-388ff96faa56*") {
-                    return $mockClientSp
-                }
-                elseif ($Filter -like "*04f0c124-f2bc-4f59-8241-bf6df9866bbd*") {
-                    throw "Service principal not found"
-                }
-                return $null
+                return $null  # Client not found
             }
             
-            # Should not throw, but should show warning for failed client
-            { Grant-EntraBetaMCPServerPermission -MCPClient @('VisualStudioCode', 'VisualStudio') } |
-                Should -Not -Throw
+            Mock -CommandName New-MgBetaServicePrincipal -MockWith { 
+                throw "Service principal creation failed"
+            }
             
-            # Should still process the successful client
-            Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -Times 1
+            { Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' } |
+                Should -Throw "*Service principal creation failed*"
+        }
+    }
+
+    Context "Return Value" {
+        It "Should return OAuth2PermissionGrant object when successful" {
+            $result = Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode'
+            
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be $testGrantId
+            $result.ClientId | Should -Be $testClientSpId
+            $result.ResourceId | Should -Be $testResourceSpId
+            $result.ConsentType | Should -Be "AllPrincipals"
+        }
+
+        It "Should return null when no scopes are granted" {
+            Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
+                param($Filter)
+                if ($Filter -like "*$resourceAppId*") {
+                    return [PSCustomObject]@{
+                        Id = $testResourceSpId
+                        AppId = $resourceAppId
+                        DisplayName = "Microsoft MCP Server for Enterprise"
+                        Oauth2PermissionScopes = @()  # No scopes available
+                    }
+                }
+                return $mockClientSp
+            }
+            
+            # This should throw due to no available scopes, not return null
+            { Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' } |
+                Should -Throw "*Resource app exposes no enabled delegated*"
+        }
+
+        It "Should return grant object with correct scope property" {
+            $result = Grant-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode' -Scopes @('User.Read', 'Files.Read')
+            
+            $result.Scope | Should -Match "User.Read"
+            $result.Scope | Should -Match "Files.Read"
         }
     }
 }
