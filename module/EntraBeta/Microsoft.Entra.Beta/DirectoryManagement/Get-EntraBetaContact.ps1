@@ -33,6 +33,8 @@ function Get-EntraBetaContact {
 
     PROCESS {    
         $params = @{}
+        $defaultProperties = @("addresses", "companyName", "department", "displayName", "givenName", "id", "jobTitle", "mail", "mailNickname", "onPremisesLastSyncDateTime", "onPremisesProvisioningErrors", "onPremisesSyncEnabled", "phones", "proxyAddresses", "surname")
+
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{OrgContactId = "Id" }
         if ($null -ne $PSBoundParameters["OrgContactId"]) {
@@ -89,17 +91,23 @@ function Get-EntraBetaContact {
         }
         if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
-        }
-
-        if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
-            if ($params.ContainsKey("Property")) {
-                if ($params["Property"] -notcontains "ServiceProvisioningErrors") {
-                    $params["Property"] = $params["Property"] + ",ServiceProvisioningErrors"
-                }
-            } else {
-                $params["Property"] = "ServiceProvisioningErrors"
+            # Filter out properties that already exist in defaultProperties (case-insensitive)
+            $additionalProperties = $PSBoundParameters["Property"] | Where-Object { 
+                $property = $_
+                -not ($defaultProperties | Where-Object { $_.ToLower() -eq $property.ToLower() })
+            }
+            if ($additionalProperties) {
+                $defaultProperties = $defaultProperties + $additionalProperties
             }
         }
+        if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
+            # Only add ServiceProvisioningErrors if not already present (case-insensitive)
+            if (-not ($defaultProperties | Where-Object { $_.ToLower() -eq "serviceprovisioningerrors" })) {
+                $defaultProperties = $defaultProperties + "ServiceProvisioningErrors"
+            }
+        }
+
+        $params["Property"] = $defaultProperties
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
