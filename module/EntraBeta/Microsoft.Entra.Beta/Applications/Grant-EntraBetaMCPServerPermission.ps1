@@ -6,10 +6,10 @@
 function Grant-EntraBetaMcpServerPermission {
     [CmdletBinding(DefaultParameterSetName = 'PredefinedClients')]
     param(
-        # Specifies the predefined MCP clients to grant permissions to. Valid values are 'VisualStudioCode', 'VisualStudio', and 'VisualStudioMSAL'.
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true, HelpMessage = "Specify one or more predefined MCP clients (VisualStudioCode, VisualStudio, VisualStudioMSAL) to grant permissions to.")]
-        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false, HelpMessage = "Specify one or more predefined MCP clients (VisualStudioCode, VisualStudio, VisualStudioMSAL) to grant permissions to.")]
-        [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
+        # Specifies the predefined MCP clients to grant permissions to..
+        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $true, HelpMessage = "Specify one or more predefined MCP clients to grant permissions to.")]
+        [Parameter(ParameterSetName = 'PredefinedClientsScopes', Mandatory = $false, HelpMessage = "Specify one or more predefined MCP clients to grant permissions to.")]
+        [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')]
         [string[]]$MCPClient,
 
         # Specifies the service principal IDs for custom MCP clients. Must be valid GUIDs.
@@ -98,7 +98,8 @@ function Grant-EntraBetaMcpServerPermission {
         $predefinedClients = @{
             "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
             "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
-            "VisualStudioMSAL"         = @{ Name = "Visual Studio MSAL"; AppId = "62e61498-0c88-438b-a45c-2da0517bebe6" }
+            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
+            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
 
         function Resolve-MCPClient {
