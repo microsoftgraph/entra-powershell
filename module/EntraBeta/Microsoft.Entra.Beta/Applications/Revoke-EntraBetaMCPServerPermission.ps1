@@ -4,18 +4,18 @@
 # ------------------------------------------------------------------------------ 
 
 function Revoke-EntraBetaMcpServerPermission {
-    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High', DefaultParameterSetName = 'PredefinedClients')]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High', DefaultParameterSetName = 'PredefinedClient')]
     param(
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false, HelpMessage = "Specifies one or more predefined MCP client applications to revoke permissions from. Valid values are 'VisualStudioCode', 'VisualStudio', or 'VisualStudioMSAL'.")]
+        [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specifies a predefined MCP client application to revoke permissions from.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
-        [string[]]$MCPClient,
+        [string]$MCPClient,
 
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $true, HelpMessage = "Specifies the service principal IDs of custom MCP client applications to revoke permissions from. Must be valid GUID format.")]
+        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the service principal ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
         [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
-        [string[]]$MCPClientServicePrincipalId,
+        [string]$MCPClientServicePrincipalId,
 
-        [Parameter(ParameterSetName = 'PredefinedClients', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client(s).")]
-        [Parameter(ParameterSetName = 'CustomClients', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client(s).")]
+        [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
+        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )
@@ -30,6 +30,7 @@ function Revoke-EntraBetaMcpServerPermission {
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
+        
         function Get-ServicePrincipal([string]$appId, [string]$name) {
             $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $customHeaders | Select-Object -First 1
             if (-not $sp) {
@@ -75,52 +76,47 @@ function Revoke-EntraBetaMcpServerPermission {
             }
 
             Write-Verbose "Updating permission grant with remaining scopes..."
-            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString } -Headers $customHeaders
+            $updatedGrant = Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString } -Headers $customHeaders
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
         }
 
         # Constants
         $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
         $predefinedClients = @{
-            "VisualStudioCode" = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
-            "VisualStudio"     = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
-            "VisualStudioMSAL" = @{ Name = "Visual Studio MSAL"; AppId = "62e61498-0c88-438b-a45c-2da0517bebe6" }
+            "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
+            "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
+            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
+            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
 
         function Resolve-MCPClient {
             param(
-                [string[]]$MCPClients,
-                [string[]]$CustomServicePrincipalIds
+                [string]$MCPClient,
+                [string]$CustomServicePrincipalId
             )
 
-            $resolvedClients = @()
-
-            # Process MCP clients
-            if ($MCPClients) {
-                foreach ($client in $MCPClients) {
-                    if ($predefinedClients.ContainsKey($client)) {
-                        $clientInfo = $predefinedClients[$client]
-                        $resolvedClients += @{
-                            Name     = $clientInfo.Name
-                            AppId    = $clientInfo.AppId
-                            IsCustom = $false
-                        }
+            # Process MCP client
+            if ($MCPClient) {
+                if ($predefinedClients.ContainsKey($MCPClient)) {
+                    $clientInfo = $predefinedClients[$MCPClient]
+                    return @{
+                        Name     = $clientInfo.Name
+                        AppId    = $clientInfo.AppId
+                        IsCustom = $false
                     }
                 }
             }
 
-            # Process custom service principal IDs
-            if ($CustomServicePrincipalIds) {
-                foreach ($spId in $CustomServicePrincipalIds) {
-                    $resolvedClients += @{
-                        Name     = "Custom MCP Client"
-                        AppId    = $spId
-                        IsCustom = $true
-                    }
+            # Process custom service principal ID
+            if ($CustomServicePrincipalId) {
+                return @{
+                    Name     = "Custom MCP Client"
+                    AppId    = $CustomServicePrincipalId
+                    IsCustom = $true
                 }
             }
 
-            return $resolvedClients
+            return $null
         }
     }
 
@@ -128,169 +124,91 @@ function Revoke-EntraBetaMcpServerPermission {
         # Get resource service principal
         $resourceSp = Get-ServicePrincipal $resourceAppId "Microsoft MCP Server for Enterprise"
 
-        # Resolve MCP clients
-        $resolvedClients = Resolve-MCPClient -MCPClients $MCPClient -CustomServicePrincipalIds $MCPClientServicePrincipalId
-        Write-Verbose "Resolved $($resolvedClients.Count) MCP client(s): $($resolvedClients.Name -join ', ')" 
-
-        $clientSps = @()
-        foreach ($client in $resolvedClients) {
-            try {
-                $sp = Get-ServicePrincipal $client.AppId $client.Name
-                $clientSps += @{
-                    Sp       = $sp
-                    Name     = $client.Name
-                    IsCustom = $client.IsCustom
-                }
-                Write-Verbose "Found service principal for: $($client.Name)"
-            }
-            catch {
-                Write-Warning "Could not get service principal for $($client.Name) (App ID: $($client.AppId)): $($_.Exception.Message)"
-                continue
-            }
-        }
-
-        if ($clientSps.Count -eq 0) {
-            Write-Warning "No MCP client service principals could be found."
+        # Resolve MCP client
+        $resolvedClient = Resolve-MCPClient -MCPClient $MCPClient -CustomServicePrincipalId $MCPClientServicePrincipalId
+        if (-not $resolvedClient) {
+            Write-Error "Could not resolve MCP client." -ErrorAction Stop
             return
         }
 
-        Write-Host "Operating on $($clientSps.Count) MCP client(s): $($clientSps.Name -join ', ')" -ForegroundColor Cyan        # Process each client service principal
-        $results = @()
-        $allCurrentScopes = @()
+        Write-Verbose "Resolved MCP client: $($resolvedClient.Name)" 
 
-        # First pass: collect all current scopes across all clients
-        foreach ($clientSp in $clientSps) {
-            $currentGrant = Get-Grant -ClientSpId $clientSp.Sp.Id -ResourceSpId $resourceSp.Id
-            if ($currentGrant -and $currentGrant.Scope) {
-                $currentScopes = ($currentGrant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object -Unique
-                $allCurrentScopes += $currentScopes
-            }
+        # Get client service principal
+        try {
+            $clientSp = Get-ServicePrincipal $resolvedClient.AppId $resolvedClient.Name
+            Write-Verbose "Found service principal for: $($resolvedClient.Name)"
         }
-
-        $allCurrentScopes = $allCurrentScopes | Sort-Object -Unique
-
-        if (-not $allCurrentScopes -and $clientSps.Count -gt 1) {
-            Write-Warning "No scopes currently granted to any of the MCP clients."
+        catch {
+            Write-Error "Could not get service principal for $($resolvedClient.Name) (App ID: $($resolvedClient.AppId)): $($_.Exception.Message)" -ErrorAction Stop
             return
         }
+
+        # Get current grant
+        $currentGrant = Get-Grant -ClientSpId $clientSp.Id -ResourceSpId $resourceSp.Id
+
+        if (-not $currentGrant) {
+            Write-Warning "No existing permission grant found for $($resolvedClient.Name)."
+            return $null
+        }
+
+        # Get current scopes
+        $currentScopes = if ($currentGrant.Scope) {
+            ($currentGrant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object -Unique
+        } else {
+            @()
+        }
+
+        if (-not $currentScopes) {
+            Write-Warning "No scopes currently granted to $($resolvedClient.Name)."
+            return $currentGrant
+        }
+
+        # Determine scopes to revoke and remaining scopes
         if ($Scopes) {
             # Revoke specific scopes
             $scopesToRevoke = $Scopes | Sort-Object -Unique
-            $invalidScopes = $scopesToRevoke | Where-Object { $_ -notin $allCurrentScopes }
+            $invalidScopes = $scopesToRevoke | Where-Object { $_ -notin $currentScopes }
             if ($invalidScopes) {
-                Write-Warning "The following scopes are not currently granted to any client: $($invalidScopes -join ', ')"
+                Write-Warning "The following scopes are not currently granted: $($invalidScopes -join ', ')"
             }
 
-            $validScopesToRevoke = $scopesToRevoke | Where-Object { $_ -in $allCurrentScopes }
+            $validScopesToRevoke = $scopesToRevoke | Where-Object { $_ -in $currentScopes }
             if (-not $validScopesToRevoke) {
                 Write-Warning "No valid scopes to revoke."
-                return
+                return $currentGrant
             }
 
-            $actionDescription = "Revoke scopes '$($validScopesToRevoke -join ', ')' from $($clientSps.Count) MCP client(s): $($clientSps.Name -join ', ')"
+            $remainingScopes = $currentScopes | Where-Object { $_ -notin $validScopesToRevoke }
+            $actionDescription = "Revoke scopes '$($validScopesToRevoke -join ', ')' from $($resolvedClient.Name)"
         } else {
             # Revoke all scopes
-            $validScopesToRevoke = $allCurrentScopes
-            $actionDescription = "Revoke ALL permissions from $($clientSps.Count) MCP client(s): $($clientSps.Name -join ', ')"
+            $validScopesToRevoke = $currentScopes
+            $remainingScopes = @()
+            $actionDescription = "Revoke ALL permissions from $($resolvedClient.Name)"
         }
 
-        # Confirm action for all clients
-        if ($PSCmdlet.ShouldProcess("$($clientSps.Count) MCP client(s)", $actionDescription)) {
-            # Second pass: process each client
-            foreach ($clientSp in $clientSps) {
-                try {
-                    $currentGrant = Get-Grant -ClientSpId $clientSp.Sp.Id -ResourceSpId $resourceSp.Id
+        # Confirm action
+        if ($PSCmdlet.ShouldProcess($resolvedClient.Name, $actionDescription)) {
+            try {
+                # Update the grant
+                $updatedGrant = Update-GrantScopes -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
 
-                    if (-not $currentGrant) {
-                        $results += @{
-                            Client          = $clientSp.Name
-                            Success         = $true
-                            Action          = "No existing grant"
-                            RemovedScopes   = @()
-                            RemainingScopes = @()
-                            Error           = $null
-                        }
-                        continue
-                    }
-
-                    # Get current scopes for this specific client
-                    $currentClientScopes = if ($currentGrant.Scope) {
-                        ($currentGrant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object -Unique
-                    } else {
-                        @()
-                    }
-
-                    if (-not $currentClientScopes) {
-                        $results += @{
-                            Client          = $clientSp.Name
-                            Success         = $true
-                            Action          = "No scopes to revoke"
-                            RemovedScopes   = @()
-                            RemainingScopes = @()
-                            Error           = $null
-                        }
-                        continue
-                    }
-
-                    # Calculate remaining scopes for this client
-                    if ($Scopes) {
-                        $remainingScopes = $currentClientScopes | Where-Object { $_ -notin $validScopesToRevoke }
-                        $actualRemovedScopes = $currentClientScopes | Where-Object { $_ -in $validScopesToRevoke }
-                    } else {
-                        $remainingScopes = @()
-                        $actualRemovedScopes = $currentClientScopes
-                    }
-
-                    # Update the grant
-                    $result = Update-GrantScopes -clientSpId $clientSp.Sp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
-
-                    $results += @{
-                        Client          = $clientSp.Name
-                        Success         = $true
-                        Action          = if ($remainingScopes.Count -eq 0) { "All permissions revoked" } else { "Partial revocation" }
-                        RemovedScopes   = $actualRemovedScopes
-                        RemainingScopes = $remainingScopes
-                        Error           = $null
-                    }
-                } catch {
-                    $results += @{
-                        Client          = $clientSp.Name
-                        Success         = $false
-                        Action          = "Failed"
-                        RemovedScopes   = @()
-                        RemainingScopes = @()
-                        Error           = $_.Exception.Message
-                    }
-                }
-            }
-
-            # Display results
-            $successCount = ($results | Where-Object Success).Count
-            $errorCount = ($results | Where-Object { -not $_.Success }).Count
-
-            Write-Host "`nResults Summary:" -ForegroundColor Yellow
-            Write-Host "Successfully processed: $successCount client(s)" -ForegroundColor Green
-            if ($errorCount -gt 0) {
-                Write-Host "Failed to process: $errorCount client(s)" -ForegroundColor Red
-            }
-
-            foreach ($result in $results) {
-                if ($result.Success) {
-                    Write-Host "`n✓ $($result.Client): $($result.Action)" -ForegroundColor Green
-
-                    if ($result.RemovedScopes.Count -gt 0) {
-                        Write-Host "  Revoked scopes:" -ForegroundColor Yellow
-                        $result.RemovedScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Red }
-                    }
-
-                    if ($result.RemainingScopes.Count -gt 0) {
-                        Write-Host "  Remaining scopes:" -ForegroundColor Yellow
-                        $result.RemainingScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
-                    }
+                if ($remainingScopes.Count -eq 0) {
+                    Write-Host "✓ All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                    return $null
                 } else {
-                    Write-Host "`n✗ Failed to process $($result.Client)" -ForegroundColor Red
-                    Write-Host "  Error: $($result.Error)" -ForegroundColor Red
+                    Write-Host "✓ Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                    Write-Host "  Revoked scopes:" -ForegroundColor Yellow
+                    $validScopesToRevoke | ForEach-Object { Write-Host "    - $_" -ForegroundColor Red }
+                    Write-Host "  Remaining scopes:" -ForegroundColor Yellow
+                    $remainingScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
+                    
+                    # Return the updated OAuth2PermissionGrant resource
+                    return $updatedGrant
                 }
+            } catch {
+                Write-Error "Failed to revoke permissions from $($resolvedClient.Name): $($_.Exception.Message)" -ErrorAction Stop
+                return
             }
         }
     }
