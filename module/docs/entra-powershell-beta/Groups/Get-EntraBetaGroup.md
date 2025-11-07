@@ -30,6 +30,8 @@ Get-EntraBetaGroup
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
+ [-HasErrorsOnly]
+ [-HasLicenseErrorsOnly]
  [<CommonParameters>]
 ```
 
@@ -40,6 +42,8 @@ Get-EntraBetaGroup
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
+ [-HasErrorsOnly]
+ [-HasLicenseErrorsOnly]
  [<CommonParameters>]
 ```
 
@@ -64,12 +68,16 @@ Get-EntraBetaGroup
  [-All]
  [-Filter <String>]
  [-SearchString <String>]
+ [-HasErrorsOnly]
+ [-HasLicenseErrorsOnly]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a specific group.
+
+You can filter results to show only groups with issues by using the `HasErrorsOnly` parameter to find groups with service provisioning errors, or the `HasLicenseErrorsOnly` parameter to find groups with license assignment errors. These filtering options help administrators identify groups that require attention.
 
 ## EXAMPLES
 
@@ -234,6 +242,53 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb SimpleGroup               False           P
 
 This example demonstrates how to append a selected property to the default properties.
 
+### Example 10: Get groups that have errors
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -HasErrorsOnly
+```
+
+```Output
+DisplayName           Id                                   MailNickname          Description             GroupTypes ServiceProvisioningErrors
+-----------           --                                   ------------          -----------             ---------- -------------------------
+Problem Group         aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb problemgroup          Group with errors       {Unified}  {@{ErrorDetail=...}}
+Error Test Group      bbbbbbbb-1111-2222-3333-cccccccccccc errortestgroup        Another problem group   {}         {@{ErrorDetail=...}}
+```
+
+This example demonstrates how to retrieve only groups that have service provisioning errors. The `HasErrorsOnly` parameter filters the results to show only groups with issues that need attention.
+
+### Example 11: Get groups that have license errors
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -HasLicenseErrorsOnly
+```
+
+```Output
+DisplayName             Id                                   MailNickname            Description               GroupTypes
+-----------             --                                   ------------            -----------               ----------
+License Issue Group     cccccccc-2222-3333-4444-dddddddddddd licenseissuegroup       Group with license errors {Unified}
+Failed License Group    dddddddd-3333-4444-5555-eeeeeeeeeeee failedlicensegroup      License assignment failed {}
+```
+
+This example demonstrates how to retrieve only groups that have members with license errors. This is useful for identifying groups where license assignment has failed and needs administrative attention.
+
+### Example 12: Combine error filtering with search
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -SearchString 'Test' -HasErrorsOnly
+```
+
+```Output
+DisplayName           Id                                   MailNickname          Description             GroupTypes ServiceProvisioningErrors
+-----------           --                                   ------------          -----------             ---------- -------------------------
+Test Error Group      bbbbbbbb-1111-2222-3333-cccccccccccc testerrorgroup        Test group with errors  {}         {@{ErrorDetail=...}}
+```
+
+This example demonstrates how to combine the search functionality with error filtering to find specific groups that have both a particular name pattern and service provisioning errors.
+
 
 ## PARAMETERS
 
@@ -341,6 +396,34 @@ Specifies whether to append the selected properties.
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HasErrorsOnly
+Returns only groups that have service provisioning errors.
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetQuery, GetVague, Append
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HasLicenseErrorsOnly
+Returns only groups that have members with license errors.
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: GetQuery, GetVague, Append
 Aliases:
 
 Required: False
