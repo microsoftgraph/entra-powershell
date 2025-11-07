@@ -54,6 +54,22 @@ Get-EntraBetaUser
  [<CommonParameters>]
 ```
 
+### GetFiltered
+
+```powershell
+Get-EntraUser
+ [-All]
+ [-Top <Int32>]
+ [-PageSize <Int32>]
+ [EnabledFilter <String>]
+ [HasErrorsOnly]
+ [LicenseReconciliationNeededOnly]
+ [Synchronized]
+ [UnlicensedUsersOnly]
+ [-Property <String[]>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID.
