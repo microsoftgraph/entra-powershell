@@ -16,45 +16,45 @@ title: Grant-EntraBetaMcpServerPermission
 
 ## SYNOPSIS
 
-Grants delegated permissions to Model Context Protocol (MCP) clients for Microsoft MCP Server for Enterprise.
+Grants delegated permissions to a Model Context Protocol (MCP) client for Microsoft MCP Server for Enterprise.
 
 ## SYNTAX
 
-### PredefinedClients (Default)
+### PredefinedClient (Default)
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -MCPClient <String[]>
+ -MCPClient <String>
  [<CommonParameters>]
 ```
 
-### CustomClients
+### CustomClient
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -MCPClientServicePrincipalId <String[]>
+ -MCPClientServicePrincipalId <String>
  [<CommonParameters>]
 ```
 
-### PredefinedClientsScopes
+### PredefinedClientScopes
 ```powershell
 Grant-EntraBetaMcpServerPermission
- [-MCPClient <String[]>]
+ -MCPClient <String>
  -Scopes <String[]>
  [<CommonParameters>]
 ```
 
-### CustomClientsScopes
+### CustomClientScopes
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -MCPClientServicePrincipalId <String[]>
+ -MCPClientServicePrincipalId <String>
  -Scopes <String[]>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Grant-EntraBetaMcpServerPermission` cmdlet grants delegated permissions to Model Context Protocol (MCP) clients for accessing the Microsoft MCP Server for Enterprise. This cmdlet can work with predefined MCP clients (Visual Studio Code, Visual Studio, Visual Studio MSAL) or custom MCP clients specified by their service principal IDs.
+The `Grant-EntraBetaMcpServerPermission` cmdlet grants delegated permissions to a Model Context Protocol (MCP) client for accessing the Microsoft MCP Server for Enterprise. This cmdlet can work with a predefined MCP client (Visual Studio Code, Visual Studio, ChatGPT, or Claude Desktop) or a custom MCP client specified by its service principal ID.
 
-The cmdlet creates OAuth2 permission grants that allow the specified MCP clients to access the Microsoft MCP Server for Enterprise on behalf of users. You can grant all available scopes or specify particular scopes to grant.
+The cmdlet creates an OAuth2 permission grant that allows the specified MCP client to access the Microsoft MCP Server for Enterprise on behalf of users. You can grant all available scopes or specify particular scopes to grant. The cmdlet returns an OAuth2PermissionGrant object that conforms to the Microsoft Graph API resource specification.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles:
 - Global Administrator
@@ -64,19 +64,17 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ## EXAMPLES
 
-### Example 1: Grant permissions to all predefined MCP clients
+### Example 1: Grant permissions to Visual Studio Code
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL'
+$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode'
+$grant
 ```
 
 ```Output
-Operating on 3 MCP client(s): Visual Studio Code, Visual Studio, Visual Studio MSAL
-Granting all available scopes: scope1 scope2 scope3
-
-Results Summary:
-Successfully processed: 3 client(s)
+Operating on MCP client: Visual Studio Code
+Granting all available scopes: scope1, scope2, scope3
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: aaaaaaaa-bbbb-cccc-1111-222222222222
@@ -85,60 +83,48 @@ Successfully processed: 3 client(s)
     - scope2  
     - scope3
 
-✓ Successfully granted permissions to Visual Studio
-  Grant ID: bbbbbbbb-cccc-dddd-2222-333333333333
-  Granted scopes:
-    - scope1
-    - scope2
-    - scope3
-
-✓ Successfully granted permissions to Visual Studio MSAL
-  Grant ID: cccccccc-dddd-eeee-3333-444444444444
-  Granted scopes:
-    - scope1
-    - scope2
-    - scope3
+Id                                   ClientId                             ResourceId                           ConsentType   Scope
+--                                   --------                             ----------                           -----------   -----
+aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals scope1 scope2 scope3
 ```
 
-This example grants all available delegated permissions to the three predefined MCP clients: Visual Studio Code, Visual Studio, and Visual Studio MSAL.
+This example grants all available delegated permissions to Visual Studio Code and returns the OAuth2PermissionGrant object.
 
 ### Example 2: Grant specific scopes to Visual Studio Code
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode' -Scopes 'User.Read', 'Mail.Read'
+$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode' -Scopes 'User.Read', 'Mail.Read'
+$grant.Scope
 ```
 
 ```Output
-Operating on 1 MCP client(s): Visual Studio Code
-Granting specific scopes: Mail.Read User.Read
-
-Results Summary:
-Successfully processed: 1 client(s)
+Operating on MCP client: Visual Studio Code
+Granting specific scopes: Mail.Read, User.Read
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: dddddddd-eeee-ffff-4444-555555555555
   Granted scopes:
     - Mail.Read
     - User.Read
+
+Mail.Read User.Read
 ```
 
-This example grants only specific scopes (User.Read and Mail.Read) to Visual Studio Code.
+This example grants only specific scopes (User.Read and Mail.Read) to Visual Studio Code and displays the granted scopes.
 
 ### Example 3: Grant permissions to a custom MCP client
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
 $customClientId = '12345678-1234-5678-9012-123456789012'
-Grant-EntraBetaMcpServerPermission -MCPClientServicePrincipalId $customClientId
+$grant = Grant-EntraBetaMcpServerPermission -MCPClientServicePrincipalId $customClientId
+Write-Host "Grant created with ID: $($grant.Id)"
 ```
 
 ```Output
-Operating on 1 MCP client(s): Custom MCP Client
-Granting all available scopes: scope1 scope2 scope3
-
-Results Summary:
-Successfully processed: 1 client(s)
+Operating on MCP client: Custom MCP Client
+Granting all available scopes: scope1, scope2, scope3
 
 ✓ Successfully granted permissions to Custom MCP Client
   Grant ID: eeeeeeee-ffff-aaaa-5555-666666666666
@@ -146,55 +132,53 @@ Successfully processed: 1 client(s)
     - scope1
     - scope2
     - scope3
+
+Grant created with ID: eeeeeeee-ffff-aaaa-5555-666666666666
 ```
 
 This example grants all available permissions to a custom MCP client identified by its service principal ID.
 
-### Example 4: Grant specific scopes to multiple custom clients
+### Example 4: Grant specific scopes to Claude Desktop
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$customClients = @('12345678-1234-5678-9012-123456789012', '87654321-4321-8765-2109-210987654321')
-Grant-EntraBetaMcpServerPermission -MCPClientServicePrincipalId $customClients -Scopes 'User.Read', 'Files.Read'
+$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'ClaudeDesktop' -Scopes 'User.Read', 'Files.Read'
+$grant | Select-Object Id, ClientId, ResourceId, ConsentType, Scope
 ```
 
 ```Output
-Operating on 2 MCP client(s): Custom MCP Client, Custom MCP Client
-Granting specific scopes: Files.Read User.Read
+Operating on MCP client: Claude Desktop
+Granting specific scopes: Files.Read, User.Read
 
-Results Summary:
-Successfully processed: 2 client(s)
-
-✓ Successfully granted permissions to Custom MCP Client
+✓ Successfully granted permissions to Claude Desktop
   Grant ID: ffffffff-aaaa-bbbb-6666-777777777777
   Granted scopes:
     - Files.Read
     - User.Read
 
-✓ Successfully granted permissions to Custom MCP Client
-  Grant ID: aaaaaaaa-bbbb-cccc-7777-888888888888
-  Granted scopes:
-    - Files.Read
-    - User.Read
+Id                                   ClientId         ResourceId       ConsentType   Scope
+--                                   --------         ----------       -----------   -----
+ffffffff-aaaa-bbbb-6666-777777777777 claude-sp-id     resource-sp-id   AllPrincipals Files.Read User.Read
 ```
 
-This example grants specific scopes to multiple custom MCP clients.
+This example grants specific scopes to Claude Desktop and displays selected properties of the returned OAuth2PermissionGrant object.
 
 ## PARAMETERS
 
 ### -MCPClient
 
-Specifies one or more predefined MCP clients to grant permissions to. Valid values are:
+Specifies a predefined MCP client to grant permissions to. Valid values are:
 - VisualStudioCode: Visual Studio Code
 - VisualStudio: Visual Studio
-- VisualStudioMSAL: Visual Studio MSAL
+- ChatGPT: ChatGPT
+- ClaudeDesktop: Claude Desktop
 
 ```yaml
-Type: System.String[]
-Parameter Sets: PredefinedClients, PredefinedClientsScopes
+Type: System.String
+Parameter Sets: PredefinedClient, PredefinedClientScopes
 Aliases:
 
-Required: True (PredefinedClients), False (PredefinedClientsScopes)
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -203,11 +187,11 @@ Accept wildcard characters: False
 
 ### -MCPClientServicePrincipalId
 
-Specifies the service principal IDs of custom MCP clients to grant permissions to. Must be valid GUIDs in the format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
+Specifies the service principal ID of a custom MCP client to grant permissions to. Must be a valid GUID in the format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
 
 ```yaml
-Type: System.String[]
-Parameter Sets: CustomClients, CustomClientsScopes
+Type: System.String
+Parameter Sets: CustomClient, CustomClientScopes
 Aliases:
 
 Required: True
@@ -223,7 +207,7 @@ Specifies the specific delegated permission scopes to grant. If not specified, a
 
 ```yaml
 Type: System.String[]
-Parameter Sets: PredefinedClientsScopes, CustomClientsScopes
+Parameter Sets: PredefinedClientScopes, CustomClientScopes
 Aliases:
 
 Required: True
@@ -245,15 +229,24 @@ You can't pipe objects to this cmdlet.
 
 ## OUTPUTS
 
-### None
+### Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphOAuth2PermissionGrant
 
-This cmdlet doesn't generate any output objects.
+Returns an OAuth2PermissionGrant object that represents the delegated permission grant. This object conforms to the Microsoft Graph API OAuth2PermissionGrant resource type and contains the following key properties:
+
+- **Id**: Unique identifier for the permission grant
+- **ClientId**: Object ID of the client service principal
+- **ResourceId**: Object ID of the resource service principal (Microsoft MCP Server for Enterprise)
+- **ConsentType**: Set to "AllPrincipals" for admin consent
+- **Scope**: Space-separated list of granted permission scopes
+- **PrincipalId**: Null (since consentType is AllPrincipals)
 
 ## NOTES
+- The cmdlet processes one MCP client at a time and returns an OAuth2PermissionGrant object for that client.
 - The cmdlet automatically creates service principals for the resource and client applications if they don't exist.
 - Existing permission grants are updated to match the specified scopes exactly.
 - If no scopes are specified, all available delegated scopes from the resource application are granted.
 - The cmdlet requires specific Microsoft Graph scopes: `Application.ReadWrite.All`, `Directory.Read.All`, and `DelegatedPermissionGrant.ReadWrite.All`.
+- The returned OAuth2PermissionGrant object conforms to the Microsoft Graph API resource specification.
 
 ## RELATED LINKS
 
@@ -262,3 +255,5 @@ This cmdlet doesn't generate any output objects.
 [Get-EntraBetaServicePrincipalOAuth2PermissionGrant](Get-EntraBetaServicePrincipalOAuth2PermissionGrant.md)
 
 [New-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/new-mgbetaoauth2permissiongrant)
+
+[OAuth2PermissionGrant resource type](https://learn.microsoft.com/en-us/graph/api/resources/oauth2permissiongrant?view=graph-rest-1.0)
