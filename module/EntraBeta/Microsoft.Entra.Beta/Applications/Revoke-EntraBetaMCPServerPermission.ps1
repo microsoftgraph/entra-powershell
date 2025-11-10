@@ -11,8 +11,8 @@ function Revoke-EntraBetaMcpServerPermission {
         [string]$MCPClient,
 
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the service principal ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
-        [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
-        [string]$MCPClientServicePrincipalId,
+        [ValidateNotNullOrEmpty()]
+        [guid]$MCPClientServicePrincipalId,
 
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
@@ -30,9 +30,19 @@ function Revoke-EntraBetaMcpServerPermission {
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
+
+        # Constants
+        $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
+        $predefinedClients = @{
+            "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
+            "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
+            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
+            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
+        }
         
         function Get-ServicePrincipal([string]$appId, [string]$name) {
-            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $customHeaders | Select-Object -First 1
+            $headers = if ($appId -eq $resourceAppId) { $customHeaders } else { $null }
+            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $headers | Select-Object -First 1
             if (-not $sp) {
                 throw "Service principal for $name not found. App ID: $appId"
             }
@@ -48,8 +58,7 @@ function Revoke-EntraBetaMcpServerPermission {
                 -Filter "clientId eq '$ClientSpId' and resourceId eq '$ResourceSpId' and consentType eq 'AllPrincipals'" `
                 -Top 1 `
                 -Property "id,scope,clientId,resourceId,consentType" `
-                -ErrorAction SilentlyContinue `
-                -Headers $customHeaders |
+                -ErrorAction SilentlyContinue |
             Select-Object -First 1
         }
 
@@ -63,7 +72,7 @@ function Revoke-EntraBetaMcpServerPermission {
 
             if (-not $targetScopes -or $targetScopes.Count -eq 0) {
                 Write-Verbose "Removing entire permission grant..."
-                Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false -Headers $customHeaders
+                Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false
                 return $null
             }
 
@@ -76,17 +85,8 @@ function Revoke-EntraBetaMcpServerPermission {
             }
 
             Write-Verbose "Updating permission grant with remaining scopes..."
-            $updatedGrant = Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString } -Headers $customHeaders
+            $updatedGrant = Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
-        }
-
-        # Constants
-        $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
-        $predefinedClients = @{
-            "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
-            "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
-            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
-            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
 
         function Resolve-MCPClient {
