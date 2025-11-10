@@ -18,6 +18,29 @@ BeforeAll {
                 "MailNickname"    = "demoNickname"
                 "SecurityEnabled" = "True"
                 "Parameters"      = $args
+                "ServiceProvisioningErrors" = @()
+            }
+        )
+    }
+
+    $scriptblockWithErrors = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"               = "demo-error-group"
+                "Id"                        = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                "MailEnabled"               = $false
+                "Description"               = "test group with errors"
+                "MailNickname"              = "demoErrorNickname"
+                "SecurityEnabled"           = $true
+                "ServiceProvisioningErrors" = @(
+                    @{
+                        "ErrorDetail" = @{
+                            "Code"    = "DirectoryLimitExceeded"
+                            "Message" = "Directory object quota limit exceeded"
+                        }
+                    }
+                )
+                "Parameters"                = $args
             }
         )
     }
@@ -155,6 +178,54 @@ Describe "Get-EntraGroup" {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
+        }
+        It "Should return groups with errors only when HasErrorsOnly is specified" {
+            Mock -CommandName Get-MgGroup -MockWith $scriptblockWithErrors -ModuleName Microsoft.Entra.Groups
+            $result = Get-EntraGroup -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.ServiceProvisioningErrors | Should -Not -BeNullOrEmpty
+            $result.ServiceProvisioningErrors.Count | Should -BeGreaterThan 0
+
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
+        }
+        It "Should filter out groups without errors when HasErrorsOnly is specified" {
+            $result = Get-EntraGroup -HasErrorsOnly
+            $result | Should -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
+        }
+        It "Should return groups with license errors only when HasLicenseErrorsOnly is specified" {
+            $result = Get-EntraGroup -HasLicenseErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "demo"
+
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
+        }
+        It "Should add license error filter when HasLicenseErrorsOnly is specified" {
+            $result = Get-EntraGroup -HasLicenseErrorsOnly
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "hasMembersWithLicenseErrors eq true"
+        }
+        It "Should combine filters when HasLicenseErrorsOnly is used with other filters" {
+            $result = Get-EntraGroup -Filter "displayName eq 'test'" -HasLicenseErrorsOnly
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "displayName eq 'test'"
+            $params.Filter | Should -Match "hasMembersWithLicenseErrors eq true"
+        }
+        It "Should work with SearchString and HasErrorsOnly together" {
+            Mock -CommandName Get-MgGroup -MockWith $scriptblockWithErrors -ModuleName Microsoft.Entra.Groups
+            $result = Get-EntraGroup -SearchString 'demo' -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'demo-error-group'
+            $result.ServiceProvisioningErrors | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Entra.Groups -Times 1
+        }
+        It "Should fail when HasErrorsOnly has an argument" {
+            { Get-EntraGroup -HasErrorsOnly $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
+        It "Should fail when HasLicenseErrorsOnly has an argument" {
+            { Get-EntraGroup -HasLicenseErrorsOnly $false } | Should -Throw "A positional parameter cannot be found that accepts argument 'False'."
         }   
     }
 }
