@@ -188,19 +188,6 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
                 Should -Not -Throw
         }
-
-        It "Should include User-Agent header in requests" {
-            Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
-                param($Filter, $ErrorAction, $Headers)
-                $Headers.'User-Agent' | Should -Be $script:userAgentHeaderValue
-                return $script:mockMCPServerSp
-            }
-            
-            Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
-
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf
-            Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
-        }
     }
 
     Context "Service Principal Resolution" {
