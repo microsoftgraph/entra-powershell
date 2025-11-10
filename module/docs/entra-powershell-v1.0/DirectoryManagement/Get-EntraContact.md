@@ -29,6 +29,7 @@ Get-EntraContact
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
+ [-HasErrorsOnly]
  [<CommonParameters>]
 ```
 
@@ -39,6 +40,7 @@ Get-EntraContact
  -OrgContactId <String>
  [-All]
  [-Property <String[]>]
+ [-HasErrorsOnly]
  [<CommonParameters>]
 ```
 
@@ -144,6 +146,21 @@ Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com   
 
 This example retrieves contacts having the specified display name.
 
+### Example 6: Retrieve contacts with service provisioning errors
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraContact -HasErrorsOnly
+```
+
+```Output
+DisplayName          Id                                   Mail                         ServiceProvisioningErrors
+-----------          --                                   ----                         -------------------------
+Failed Contact       eeeeeeee-4444-5555-6666-ffffffffffff contact-error@contoso.com    {@{ErrorDetail=...}}
+```
+
+This example retrieves only contacts that have service provisioning errors.
+
 ## PARAMETERS
 
 ### -All
@@ -223,6 +240,22 @@ Aliases: Select
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HasErrorsOnly
+
+Returns only contacts that have service provisioning errors.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

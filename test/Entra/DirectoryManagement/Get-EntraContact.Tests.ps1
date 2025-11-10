@@ -20,7 +20,10 @@ BeforeAll {
               "MailNickname"                    = "BobKTAILSPIN"
               "Mail"                            = "bobk@tailspintoys.com"
               "Phones"                          = $null
-              "ServiceProvisioningErrors"       = @{}
+              "ServiceProvisioningErrors"       = @(@{
+                                                    "ErrorDetail" = "Some provisioning error"
+                                                    "Service" = "ExchangeOnline"
+                                                })
               "ProxyAddresses"                  = @{"SMTP"="bobk@tailspintoys.com"}
               "Surname"                         = $null
               "Addresses"                       = @{    "City"= ""
@@ -39,7 +42,40 @@ BeforeAll {
               "Parameters"                      = $args
             }
         )
-        
+    }  
+
+    $scriptblockWithNoError = {
+        return @(
+            [PSCustomObject]@{
+              "DeletedDateTime"                 = $null
+              "Id"                              = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+              "Department"                      = $null
+              "GivenName"                       = $null
+              "DisplayName"                     = "Bob Kelly (TAILSPIN)"
+              "JobTitle"                        = $null
+              "OnPremisesLastSyncDateTime"      = $null
+              "MailNickname"                    = "BobKTAILSPIN"
+              "Mail"                            = "bobk@tailspintoys.com"
+              "Phones"                          = $null
+              "ServiceProvisioningErrors"       = @()
+              "ProxyAddresses"                  = @{"SMTP"="bobk@tailspintoys.com"}
+              "Surname"                         = $null
+              "Addresses"                       = @{    "City"= ""
+                                                        "CountryOrRegion" = ""
+                                                        "OfficeLocation"= ""
+                                                        "PostalCode"= ""
+                                                        "State"= ""
+                                                        "Street"= ""
+                                                }
+              "AdditionalProperties"            = @{
+                                                    imAddresses = ""
+                                                    "@odata.context" = "https://graph.microsoft.com/v1.0/`$metadata#contacts/`$entity"
+                                                }
+              "Manager"                         = $null
+              "OnPremisesSyncEnabled"           = @{}
+              "Parameters"                      = $args
+            }
+        )
     }  
 
     Mock -CommandName Get-MgContact -MockWith $scriptblock -ModuleName Microsoft.Entra.DirectoryManagement
@@ -65,7 +101,6 @@ Describe "Get-EntraContact" {
             $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
             $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.Phones | Should -BeNullOrEmpty
-            $result.ServiceProvisioningErrors | Should -BeNullOrEmpty
             $result.Mobile | Should -BeNullOrEmpty
             $result.TelephoneNumber | Should -BeNullOrEmpty
 
@@ -79,7 +114,6 @@ Describe "Get-EntraContact" {
             $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
             $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.Phones | Should -BeNullOrEmpty
-            $result.ServiceProvisioningErrors | Should -BeNullOrEmpty
             $result.Mobile | Should -BeNullOrEmpty
             $result.TelephoneNumber | Should -BeNullOrEmpty
 
@@ -179,7 +213,66 @@ Describe "Get-EntraContact" {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
-        }    
+        }
+        
+        It "Should use HasErrorsOnly parameter and include ServiceProvisioningErrors in Property" {
+            $result = Get-EntraContact -All -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Property -contains "ServiceProvisioningErrors"
+            }
+        }
+        
+        It "Should use HasErrorsOnly parameter with existing Property parameter" {
+            $result = Get-EntraContact -All -HasErrorsOnly -Property "DisplayName"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
+        
+        It "Should not duplicate ServiceProvisioningErrors when already in Property parameter" {
+            $result = Get-EntraContact -All -HasErrorsOnly -Property "DisplayName","ServiceProvisioningErrors"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                ($Property | Where-Object { $_ -eq "ServiceProvisioningErrors" }).Count -eq 1
+            }
+        }
+        
+        It "Should filter contacts with HasErrorsOnly when no errors present" {
+            Mock -CommandName Get-MgContact -MockWith $scriptblockWithNoError -ModuleName Microsoft.Entra.DirectoryManagement
+            $result = Get-EntraContact -All -HasErrorsOnly
+            $result | Should -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
+        
+        It "Should return contacts with HasErrorsOnly when errors are present" {
+            $result = Get-EntraContact -All -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            $result.ServiceProvisioningErrors.Count | Should -BeGreaterThan 0
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
+        
+        It "Should work with HasErrorsOnly and OrgContactId parameter" {
+            $result = Get-EntraContact -OrgContactId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
+        
+        It "Should work with HasErrorsOnly and Filter parameter" {
+            $result = Get-EntraContact -Filter "DisplayName -eq 'Bob Kelly (TAILSPIN)'" -HasErrorsOnly
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Bob Kelly (TAILSPIN)"
+            
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Entra.DirectoryManagement -Times 1
+        }
     }
 }
 

@@ -17,7 +17,9 @@ function Get-EntraContact {
         [System.Nullable`1[System.Int32]] $Top,
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Returns only contacts that have service provisioning errors.")]
+        [Switch] $HasErrorsOnly
     )  
 
     begin {
@@ -31,6 +33,8 @@ function Get-EntraContact {
 
     PROCESS {    
         $params = @{}
+        $defaultProperties = @("addresses", "companyName", "department", "displayName", "givenName", "id", "jobTitle", "mail", "mailNickname", "onPremisesLastSyncDateTime", "onPremisesProvisioningErrors", "onPremisesSyncEnabled", "phones", "proxyAddresses", "surname")
+
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{OrgContactId = "Id" }
         if ($null -ne $PSBoundParameters["OrgContactId"]) {
@@ -88,12 +92,22 @@ function Get-EntraContact {
         if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
         }
+        if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
+            $params["Property"] = $defaultProperties + "ServiceProvisioningErrors"
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $response = Get-MgContact @params -Headers $customHeaders
+        
+        if ($PSBoundParameters.ContainsKey("HasErrorsOnly")) {
+            $response = $response | Where-Object { 
+                $null -ne $_.ServiceProvisioningErrors -and $_.ServiceProvisioningErrors.Count -gt 0 
+            }
+        }
+        
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
