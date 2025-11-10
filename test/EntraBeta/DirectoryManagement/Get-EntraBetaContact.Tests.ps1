@@ -224,7 +224,6 @@ Describe "Get-EntraBetaContact" {
             }
         }
         
-        ###
         It "Should use HasErrorsOnly parameter with existing Property parameter" {
             $result = Get-EntraBetaContact -All -HasErrorsOnly -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
