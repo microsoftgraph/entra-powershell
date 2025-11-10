@@ -111,7 +111,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { $script:mockMCPServerSp }
             
             { Revoke-EntraBetaMcpServerPermission -MCPClientServicePrincipalId "invalid-guid" -WhatIf } | 
-                Should -Throw "*Cannot validate argument on parameter 'MCPClientServicePrincipalId'*"
+                Should -Throw "Cannot process argument transformation on parameter 'MCPClientServicePrincipalId'*"
         }
 
         It "Should accept valid GUID format for MCPClientServicePrincipalId" {

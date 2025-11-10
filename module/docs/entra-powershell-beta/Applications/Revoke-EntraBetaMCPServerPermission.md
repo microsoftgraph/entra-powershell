@@ -5,7 +5,7 @@ external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 Module Name: Microsoft.Entra.Beta.Applications
 ms.author: giomachar
-ms.date: 11/06/2024
+ms.date: 11/10/2025
 ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Revoke-EntraBetaMCPServerPermission
 schema: 2.0.0
@@ -16,7 +16,7 @@ title: Revoke-EntraBetaMCPServerPermission
 
 ## SYNOPSIS
 
-Revokes MCP Server permissions from specified clients.
+Revokes Microsoft MCP Server for Enterprise permissions from specified clients.
 
 ## SYNTAX
 
@@ -44,14 +44,13 @@ Revoke-EntraBetaMCPServerPermission
 
 ## DESCRIPTION
 
-The `Revoke-EntraBetaMCPServerPermission` cmdlet revokes Microsoft MCP Server permissions from a specified client in Microsoft Entra ID. This cmdlet can revoke permissions from a predefined MCP client (Visual Studio Code, Visual Studio, Visual Studio MSAL) or from a custom client using its service principal ID.
+The `Revoke-EntraBetaMCPServerPermission` cmdlet revokes Microsoft MCP Server for Enterprise permissions from a specified client in Microsoft Entra ID. This cmdlet can revoke permissions from a predefined MCP client (Visual Studio Code, Visual Studio, Visual Studio MSAL) or from a custom client using its service principal ID.
 
 The cmdlet supports both full permission revocation (removing all granted scopes) and partial revocation (removing specific scopes while keeping others intact). When permissions are partially revoked, the cmdlet returns an OAuth2PermissionGrant object representing the updated permission grant. When all permissions are revoked, the grant is deleted and the cmdlet returns null.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles:
 - Application Administrator
 - Cloud Application Administrator
-- Global Administrator
 
 ## EXAMPLES
 
@@ -62,7 +61,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'Delega
 Revoke-EntraBetaMCPServerPermission -MCPClient 'VisualStudioCode'
 ```
 
-This example revokes all MCP Server permissions from Visual Studio Code client.
+This example revokes all Microsoft MCP Server for Enterprise permissions from Visual Studio Code client.
 
 ### Example 2: Revoke specific scopes from a predefined client
 
@@ -226,13 +225,19 @@ When all permissions are revoked, the permission grant is deleted and the cmdlet
 ## NOTES
 
 - The cmdlet requires connection to Microsoft Entra with appropriate scopes: 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-- Use `-WhatIf` parameter to preview changes before execution
-- The cmdlet supports both complete permission revocation and selective scope removal
-- **Return Values**: The cmdlet returns an OAuth2PermissionGrant object when permissions are partially revoked (some scopes remain), and returns null when all permissions are revoked (grant is deleted)
-- The cmdlet processes one client at a time; use multiple invocations to process multiple clients
+- Use `-WhatIf` parameter to preview changes before execution.
+- The cmdlet supports both complete permission revocation and selective scope removal.
+- **Return Values**: The cmdlet returns an OAuth2PermissionGrant object when permissions are partially revoked (some scopes remain), and returns null when all permissions are revoked (grant is deleted).
+- The cmdlet processes one client at a time; use multiple invocations to process multiple clients.
 
 ## RELATED LINKS
 
-[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
+[Get-MgBetaServicePrincipal](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.applications/get-mgbetaserviceprincipal)
 
-[Get-EntraBetaServicePrincipalOAuth2PermissionGrant](Get-EntraBetaServicePrincipalOAuth2PermissionGrant.md)
+[Get-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/get-mgbetaoauth2permissiongrant)
+
+[Update-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/update-mgbetaoauth2permissiongrant)
+
+[Remove-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/remove-mgbetaoauth2permissiongrant)
+
+[OAuth2PermissionGrant resource type](https://learn.microsoft.com/graph/api/resources/oauth2permissiongrant)
