@@ -129,7 +129,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         }
 
         It "Should reject invalid GUID format" {
-            { Grant-EntraBetaMCPServerPermission -MCPClientServicePrincipalId "not-a-guid" } | Should -Throw "*Cannot validate argument on parameter 'MCPClientServicePrincipalId'*"
+            { Grant-EntraBetaMCPServerPermission -MCPClientServicePrincipalId "not-a-guid" } | Should -Throw "Cannot process argument transformation on parameter 'MCPClientServicePrincipalId'*"
         }
 
         It "Should reject invalid MCPClient value" {
