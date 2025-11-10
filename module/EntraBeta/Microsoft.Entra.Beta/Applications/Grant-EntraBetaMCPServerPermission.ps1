@@ -15,8 +15,8 @@ function Grant-EntraBetaMcpServerPermission {
         # Specifies the service principal ID for a custom MCP client. Must be a valid GUID.
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
         [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
-        [ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
-        [string]$MCPClientServicePrincipalId,
+        [ValidateNotNullOrEmpty()]
+        [guid]$MCPClientServicePrincipalId,
 
         # Specifies the specific scopes to grant. If not specified, all available scopes will be granted.
         [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
@@ -36,11 +36,24 @@ function Grant-EntraBetaMcpServerPermission {
             return
         }
 
+        # Constants
+        $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
+        $predefinedClients = @{
+            "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
+            "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
+            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
+            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
+        }
+
         function Get-ServicePrincipal([string]$appId, [string]$name) {
-            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $customHeaders | Select-Object -First 1
+            # Only use custom headers for MCP Server for Enterprise check.
+            $headers = if ($appId -eq $resourceAppId) { $customHeaders } else { $null }
+            
+            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $headers | Select-Object -First 1
+            
             if (-not $sp) {
                 Write-Verbose "Creating service principal for $name ..."
-                $sp = New-MgBetaServicePrincipal -AppId $appId -Headers $customHeaders
+                $sp = New-MgBetaServicePrincipal -AppId $appId
             }
             return $sp
         }
@@ -54,8 +67,7 @@ function Grant-EntraBetaMcpServerPermission {
                 -Filter "clientId eq '$ClientSpId' and resourceId eq '$ResourceSpId' and consentType eq 'AllPrincipals'" `
                 -Top 1 `
                 -Property "id,scope,clientId,resourceId,consentType" `
-                -ErrorAction SilentlyContinue `
-                -Headers $customHeaders |
+                -ErrorAction SilentlyContinue |
             Select-Object -First 1
         }
 
@@ -66,7 +78,7 @@ function Grant-EntraBetaMcpServerPermission {
             if (-not $targetScopes -or $targetScopes.Count -eq 0) {
                 if ($grant) {
                     Write-Verbose "Removing existing grant..."
-                    Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false -Headers $customHeaders
+                    Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false
                 }
                 return $null
             }
@@ -79,7 +91,7 @@ function Grant-EntraBetaMcpServerPermission {
                     consentType = "AllPrincipals"
                     scope       = $targetString
                 }
-                return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body -Headers $customHeaders)[0])
+                return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body)[0])
             }
 
             $currentScope = if ($grant.Scope) { $grant.Scope } else { "" }
@@ -89,17 +101,8 @@ function Grant-EntraBetaMcpServerPermission {
             }
 
             Write-Verbose "Updating existing permission grant..."
-            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString } -Headers $customHeaders
+            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
-        }
-
-        # Constants
-        $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
-        $predefinedClients = @{
-            "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
-            "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
-            "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
-            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
 
         function Resolve-MCPClient {
