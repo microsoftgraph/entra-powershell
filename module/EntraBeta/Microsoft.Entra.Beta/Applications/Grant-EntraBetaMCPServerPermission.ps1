@@ -49,12 +49,18 @@ function Grant-EntraBetaMcpServerPermission {
             # Only use custom headers for MCP Server for Enterprise check.
             $headers = if ($appId -eq $resourceAppId) { $customHeaders } else { $null }
             
-            $sp = Get-MgBetaServicePrincipal -Filter "appId eq '$appId'" -ErrorAction SilentlyContinue -Headers $headers | Select-Object -First 1
+            Write-Verbose "Checking service principal for $name ..."
+            $sp = Get-MgBetaServicePrincipal `
+                -Filter "appId eq '$appId'" `
+                -ErrorAction SilentlyContinue `
+                -Property "id,appId,displayName,publishedPermissionScopes" `
+                -Headers $headers | Select-Object -First 1
             
             if (-not $sp) {
                 Write-Verbose "Creating service principal for $name ..."
                 $sp = New-MgBetaServicePrincipal -AppId $appId
             }
+
             return $sp
         }
 
@@ -90,6 +96,7 @@ function Grant-EntraBetaMcpServerPermission {
                     resourceId  = $resourceSpId
                     consentType = "AllPrincipals"
                     scope       = $targetString
+                    expiryTime  = (Get-Date).AddDays(30)
                 }
                 return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body)[0])
             }
@@ -144,7 +151,7 @@ function Grant-EntraBetaMcpServerPermission {
         $resourceSp = Get-ServicePrincipal $resourceAppId "Microsoft MCP Server for Enterprise"
 
         # Get available delegated scopes
-        $availableScopes = $resourceSp.Oauth2PermissionScopes | Where-Object IsEnabled | Select-Object -ExpandProperty Value
+        $availableScopes = $resourceSp.publishedPermissionScopes | Where-Object IsEnabled | Select-Object -ExpandProperty Value
         if (-not $availableScopes) {
             throw "Resource app exposes no enabled delegated (user) scopes."
         }

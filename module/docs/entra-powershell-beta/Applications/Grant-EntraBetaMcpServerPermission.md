@@ -73,18 +73,18 @@ $grant
 
 ```Output
 Operating on MCP client: Visual Studio Code
-Granting all available scopes: Files.Read Mail.Read User.Read
+Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: aaaaaaaa-bbbb-cccc-1111-222222222222
   Granted scopes:
     - Files.Read
-    - Mail.Read  
-    - User.Read
+    - MCP.Mail.Read  
+    - MCP.User.Read
 
 Id                                   ClientId                             ResourceId                           ConsentType   Scope
 --                                   --------                             ----------                           -----------   -----
-aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals Files.Read Mail.Read User.Read
+aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals Files.Read MCP.Mail.Read MCP.User.Read
 ```
 
 This example grants all available delegated permissions (illustrative subset shown) to Visual Studio Code and returns the OAuth2PermissionGrant object.
@@ -93,24 +93,24 @@ This example grants all available delegated permissions (illustrative subset sho
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode' -Scopes 'User.Read', 'Mail.Read'
+$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'VisualStudioCode' -Scopes 'MCP.User.Read', 'MCP.Mail.Read'
 $grant.Scope
 ```
 
 ```Output
 Operating on MCP client: Visual Studio Code
-Granting specific scopes: Mail.Read, User.Read
+Granting specific scopes: MCP.Mail.Read, MCP.User.Read
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: dddddddd-eeee-ffff-4444-555555555555
   Granted scopes:
-    - Mail.Read
-    - User.Read
+    - MCP.Mail.Read
+    - MCP.User.Read
 
-Mail.Read User.Read
+MCP.Mail.Read MCP.User.Read
 ```
 
-This example grants only specific scopes (Mail.Read and User.Read) to Visual Studio Code and displays the granted scopes.
+This example grants only specific scopes (MCP.Mail.Read and MCP.User.Read) to Visual Studio Code and displays the granted scopes.
 
 ### Example 3: Grant permissions to a custom MCP client
 
@@ -123,14 +123,14 @@ Write-Host "Grant created with ID: $($grant.Id)"
 
 ```Output
 Operating on MCP client: Custom MCP Client
-Granting all available scopes: Files.Read Mail.Read User.Read
+Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
 
 ✓ Successfully granted permissions to Custom MCP Client
   Grant ID: eeeeeeee-ffff-aaaa-5555-666666666666
   Granted scopes:
     - Files.Read
-    - Mail.Read
-    - User.Read
+    - MCP.Mail.Read
+    - MCP.User.Read
 
 Grant created with ID: eeeeeeee-ffff-aaaa-5555-666666666666
 ```
@@ -141,23 +141,23 @@ This example grants all available permissions (illustrative subset) to a custom 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'ClaudeDesktop' -Scopes 'User.Read', 'Files.Read'
+$grant = Grant-EntraBetaMcpServerPermission -MCPClient 'ClaudeDesktop' -Scopes 'MCP.User.Read', 'Files.Read'
 $grant | Select-Object Id, ClientId, ResourceId, ConsentType, Scope
 ```
 
 ```Output
 Operating on MCP client: Claude Desktop
-Granting specific scopes: Files.Read, User.Read
+Granting specific scopes: Files.Read, MCP.User.Read
 
 ✓ Successfully granted permissions to Claude Desktop
   Grant ID: ffffffff-aaaa-bbbb-6666-777777777777
   Granted scopes:
     - Files.Read
-    - User.Read
+    - MCP.User.Read
 
 Id                                   ClientId         ResourceId       ConsentType   Scope
 --                                   --------         ----------       -----------   -----
-ffffffff-aaaa-bbbb-6666-777777777777 claude-sp-id     resource-sp-id   AllPrincipals Files.Read User.Read
+ffffffff-aaaa-bbbb-6666-777777777777 claude-sp-id     resource-sp-id   AllPrincipals Files.Read MCP.User.Read
 ```
 
 This example grants specific scopes to Claude Desktop and displays selected properties of the returned OAuth2PermissionGrant object.

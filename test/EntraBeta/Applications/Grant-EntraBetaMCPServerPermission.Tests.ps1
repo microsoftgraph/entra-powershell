@@ -36,12 +36,12 @@ BeforeAll {
         Id = $testResourceSpId
         AppId = $resourceAppId
         DisplayName = "Microsoft MCP Server for Enterprise"
-        Oauth2PermissionScopes = @(
-            [PSCustomObject]@{ Value = "User.Read"; IsEnabled = $true }
-            [PSCustomObject]@{ Value = "Directory.Read.All"; IsEnabled = $true }
-            [PSCustomObject]@{ Value = "Application.ReadWrite.All"; IsEnabled = $true }
-            [PSCustomObject]@{ Value = "Files.Read"; IsEnabled = $true }
-            [PSCustomObject]@{ Value = "Files.ReadWrite"; IsEnabled = $true }
+        publishedPermissionScopes = @(
+            [PSCustomObject]@{ Value = "MCP.User.Read"; IsEnabled = $true }
+            [PSCustomObject]@{ Value = "MCP.Directory.Read.All"; IsEnabled = $true }
+            [PSCustomObject]@{ Value = "MCP.Application.ReadWrite.All"; IsEnabled = $true }
+            [PSCustomObject]@{ Value = "MCP.Files.Read"; IsEnabled = $true }
+            [PSCustomObject]@{ Value = "MCP.Files.ReadWrite"; IsEnabled = $true }
         )
     }
     
@@ -401,7 +401,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                         Id = $testResourceSpId
                         AppId = $resourceAppId
                         DisplayName = "Microsoft MCP Server for Enterprise"
-                        Oauth2PermissionScopes = @()  # No scopes
+                        publishedPermissionScopes = @()  # No scopes
                     }
                 }
                 return $mockClientSp
@@ -461,7 +461,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                         Id = $testResourceSpId
                         AppId = $resourceAppId
                         DisplayName = "Microsoft MCP Server for Enterprise"
-                        Oauth2PermissionScopes = @()  # No scopes available
+                        publishedPermissionScopes = @()  # No scopes available
                     }
                 }
                 return $mockClientSp
