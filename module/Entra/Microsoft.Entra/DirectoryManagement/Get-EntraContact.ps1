@@ -90,23 +90,11 @@ function Get-EntraContact {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         if ($null -ne $PSBoundParameters["Property"]) {
-            # Filter out properties that already exist in defaultProperties (case-insensitive)
-            $additionalProperties = $PSBoundParameters["Property"] | Where-Object { 
-                $property = $_
-                -not ($defaultProperties | Where-Object { $_.ToLower() -eq $property.ToLower() })
-            }
-            if ($additionalProperties) {
-                $defaultProperties = $defaultProperties + $additionalProperties
-            }
+            $params["Property"] = $PSBoundParameters["Property"]
         }
         if ($null -ne $PSBoundParameters["HasErrorsOnly"]) {
-            # Only add ServiceProvisioningErrors if not already present (case-insensitive)
-            if (-not ($defaultProperties | Where-Object { $_.ToLower() -eq "serviceprovisioningerrors" })) {
-                $defaultProperties = $defaultProperties + "ServiceProvisioningErrors"
-            }
+            $params["Property"] = $defaultProperties + "ServiceProvisioningErrors"
         }
-
-        $params["Property"] = $defaultProperties
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
