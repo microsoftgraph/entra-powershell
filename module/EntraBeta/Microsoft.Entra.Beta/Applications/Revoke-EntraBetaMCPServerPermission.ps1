@@ -190,15 +190,15 @@ function Revoke-EntraBetaMcpServerPermission {
             # Update the grant
             $updatedGrant = Update-GrantScopes -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
 
-            if ($remainingScopes.Count -eq 0) {
+            if (@($remainingScopes).Count -eq 0) {
                 Write-Host "✓ All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
                 return $null
             } else {
                 Write-Host "✓ Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
-                Write-Host "  Revoked scopes:" -ForegroundColor Yellow
-                $validScopesToRevoke | ForEach-Object { Write-Host "    - $_" -ForegroundColor Red }
-                Write-Host "  Remaining scopes:" -ForegroundColor Yellow
-                $remainingScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
+                Write-Verbose "  Revoked scopes:" 
+                $validScopesToRevoke | ForEach-Object { Write-Verbose "    - $_"}
+                Write-Verbose "  Remaining scopes:"
+                $remainingScopes | ForEach-Object { Write-Verbose "    - $_"}
                 
                 # Return the updated OAuth2PermissionGrant resource
                 return $updatedGrant

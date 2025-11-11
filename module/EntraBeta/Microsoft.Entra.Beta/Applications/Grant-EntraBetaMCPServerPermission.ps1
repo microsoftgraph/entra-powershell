@@ -225,12 +225,12 @@ function Grant-EntraBetaMcpServerPermission {
             
             if ($grant) {
                 Write-Host "`n✓ Successfully granted permissions to $($client.Name)" -ForegroundColor Green
-                Write-Host "  Grant ID: $($grant.Id)" -ForegroundColor Gray
+                Write-Verbose "  Grant ID: $($grant.Id)"
 
                 # Display granted scopes
                 $grantedScopes = ($grant.Scope -split '\s+' | Where-Object { $_ }) | Sort-Object
-                Write-Host "  Granted scopes:" -ForegroundColor Yellow
-                $grantedScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
+                Write-Verbose "  Granted scopes:"
+                $grantedScopes | ForEach-Object { Write-Verbose "    - $_"}
                 
                 # Return the OAuth2PermissionGrant object
                 return $grant
