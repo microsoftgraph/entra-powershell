@@ -136,6 +136,7 @@ function Revoke-EntraBetaMcpServerPermission {
         # Get client service principal
         try {
             $clientSp = Get-ServicePrincipal $resolvedClient.AppId $resolvedClient.Name
+            $resolvedClient.Name = $clientSp.DisplayName
             Write-Verbose "Found service principal for: $($resolvedClient.Name)"
         }
         catch {

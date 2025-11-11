@@ -192,7 +192,7 @@ function Grant-EntraBetaMcpServerPermission {
         try {
             $sp = Get-ServicePrincipal $client.AppId $client.Name
             $client.Name = $sp.DisplayName
-            Write-Verbose "Found service principal for: $($sp.displayName)"
+            Write-Verbose "Found service principal for: $($client.Name)"
         }
         catch {
             throw "Could not get service principal for $($client.Name) (App ID: $($client.AppId)): $($_.Exception.Message)"
