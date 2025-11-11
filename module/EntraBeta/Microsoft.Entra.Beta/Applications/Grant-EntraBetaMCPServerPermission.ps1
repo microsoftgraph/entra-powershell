@@ -77,37 +77,64 @@ function Grant-EntraBetaMcpServerPermission {
             Select-Object -First 1
         }
 
-        function Set-ExactScopes([string]$clientSpId, [string]$resourceSpId, [string[]]$targetScopes) {
-            $targetString = ($targetScopes | Sort-Object -Unique) -join ' '
+        function Set-ExactScopes() {
+            param(
+                [string]$clientSpId,
+                [string]$resourceSpId,
+                [string[]]$targetScopes,
+                [switch]$Additive
+            )
+
             $grant = Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId | Select-Object -First 1
 
+            # Empty target scope list means caller wants to clear grant entirely.
             if (-not $targetScopes -or $targetScopes.Count -eq 0) {
                 if ($grant) {
-                    Write-Verbose "Removing existing grant..."
+                    Write-Verbose "Removing existing grant because target scope list is empty."
                     Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false
                 }
                 return $null
             }
 
+            $incomingScopes = $targetScopes | Where-Object { $_ } | Sort-Object -Unique
+
             if (-not $grant) {
-                Write-Verbose "Creating new permission grant..."
+                # No existing grant – create with provided scopes (already additive by definition)
+                $targetString = ($incomingScopes) -join ' '
+                Write-Verbose "Creating new permission grant with scopes: $targetString"
                 $body = @{
                     clientId    = $clientSpId
                     resourceId  = $resourceSpId
                     consentType = "AllPrincipals"
                     scope       = $targetString
-                    expiryTime  = (Get-Date).AddDays(30)
+                    expiryTime  = (Get-Date).AddYears(99)
                 }
                 return (@(New-MgBetaOauth2PermissionGrant -BodyParameter $body)[0])
             }
 
-            $currentScope = if ($grant.Scope) { $grant.Scope } else { "" }
-            if ($currentScope -ceq $targetString) {
-                Write-Verbose "Grant already has the correct scopes."
-                return $grant
+            $currentScopes = ($grant.Scope -split '\s+') | Where-Object { $_ }
+
+            if ($Additive) {
+                # Merge existing + incoming (add only missing)
+                $mergedScopes = ($currentScopes + $incomingScopes) | Sort-Object -Unique
+                $targetString = $mergedScopes -join ' '
+                if (($currentScopes | Sort-Object -Unique) -join ' ' -ceq $targetString) {
+                    Write-Verbose "All requested scopes already present; nothing to add."
+                    return $grant
+                }
+                Write-Verbose "Adding scopes. Existing: $($currentScopes -join ', ') | Incoming: $($incomingScopes -join ', ') | Result: $($mergedScopes -join ', ')"
+            }
+            else {
+                # Exact replacement mode (not used when -Scopes provided per updated behavior)
+                $targetString = $incomingScopes -join ' '
+                $currentString = ($currentScopes | Sort-Object -Unique) -join ' '
+                if ($currentString -ceq $targetString) {
+                    Write-Verbose "Grant already has the exact scopes requested."
+                    return $grant
+                }
+                Write-Verbose "Replacing existing scopes with: $targetString (was: $currentString)"
             }
 
-            Write-Verbose "Updating existing permission grant..."
             Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
         }
@@ -164,7 +191,8 @@ function Grant-EntraBetaMcpServerPermission {
         # Get service principal for the resolved client
         try {
             $sp = Get-ServicePrincipal $client.AppId $client.Name
-            Write-Verbose "Found service principal for: $($client.Name)"
+            $client.Name = $sp.DisplayName
+            Write-Verbose "Found service principal for: $($sp.displayName)"
         }
         catch {
             throw "Could not get service principal for $($client.Name) (App ID: $($client.AppId)): $($_.Exception.Message)"
@@ -180,17 +208,19 @@ function Grant-EntraBetaMcpServerPermission {
                 throw "Invalid scopes (not available on resource): $($invalidScopes -join ', ')"
             }
             $targetScopes = $Scopes | Sort-Object -Unique
-            Write-Host "Granting specific scopes: $($targetScopes -join ', ')" -ForegroundColor Cyan
+            Write-Host "Adding specific scopes (preserving existing grant): $($targetScopes -join ', ')" -ForegroundColor Cyan
+            $additiveMode = $true
         }
         else {
             # Grant all available scopes (default behavior)
             $targetScopes = $availableScopes
             Write-Host "Granting all available scopes: $($targetScopes -join ', ')" -ForegroundColor Cyan
+            $additiveMode = $false
         }
 
         # Apply the permission grant
         try {
-            $grant = Set-ExactScopes -clientSpId $sp.Id -resourceSpId $resourceSp.Id -targetScopes $targetScopes
+            $grant = Set-ExactScopes -clientSpId $sp.Id -resourceSpId $resourceSp.Id -targetScopes $targetScopes -Additive $additiveMode
             
             if ($grant) {
                 Write-Host "`n✓ Successfully granted permissions to $($client.Name)" -ForegroundColor Green
