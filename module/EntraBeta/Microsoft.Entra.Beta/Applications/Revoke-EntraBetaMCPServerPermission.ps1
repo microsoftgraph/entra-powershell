@@ -8,11 +8,11 @@ function Revoke-EntraBetaMcpServerPermission {
     param(
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specifies a predefined MCP client application to revoke permissions from.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
-        [string]$MCPClient,
+        [string]$PredefinedClient,
 
-        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the service principal ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
+        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the Application ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
         [ValidateNotNullOrEmpty()]
-        [guid]$MCPClientServicePrincipalId,
+        [guid]$CustomClientAppId,
 
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
@@ -85,20 +85,20 @@ function Revoke-EntraBetaMcpServerPermission {
             }
 
             Write-Verbose "Updating permission grant with remaining scopes..."
-            $updatedGrant = Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
+            Update-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -BodyParameter @{ scope = $targetString }
             return Get-Grant -clientSpId $clientSpId -resourceSpId $resourceSpId
         }
 
         function Resolve-MCPClient {
             param(
-                [string]$MCPClient,
-                [string]$CustomServicePrincipalId
+                [string]$PredefinedClientApp,
+                [string]$CustomClientApplication
             )
 
             # Process MCP client
-            if ($MCPClient) {
-                if ($predefinedClients.ContainsKey($MCPClient)) {
-                    $clientInfo = $predefinedClients[$MCPClient]
+            if ($PredefinedClientApp) {
+                if ($predefinedClients.ContainsKey($PredefinedClientApp)) {
+                    $clientInfo = $predefinedClients[$PredefinedClientApp]
                     return @{
                         Name     = $clientInfo.Name
                         AppId    = $clientInfo.AppId
@@ -108,10 +108,10 @@ function Revoke-EntraBetaMcpServerPermission {
             }
 
             # Process custom service principal ID
-            if ($CustomServicePrincipalId) {
+            if ($CustomClientApplication) {
                 return @{
                     Name     = "Custom MCP Client"
-                    AppId    = $CustomServicePrincipalId
+                    AppId    = $CustomClientApplication
                     IsCustom = $true
                 }
             }
@@ -125,7 +125,7 @@ function Revoke-EntraBetaMcpServerPermission {
         $resourceSp = Get-ServicePrincipal $resourceAppId "Microsoft MCP Server for Enterprise"
 
         # Resolve MCP client
-        $resolvedClient = Resolve-MCPClient -MCPClient $MCPClient -CustomServicePrincipalId $MCPClientServicePrincipalId
+        $resolvedClient = Resolve-MCPClient -PredefinedClientApp $PredefinedClient -CustomClientApplication $CustomClientAppId
         if (-not $resolvedClient) {
             Write-Error "Could not resolve MCP client." -ErrorAction Stop
             return
@@ -180,12 +180,10 @@ function Revoke-EntraBetaMcpServerPermission {
             }
 
             $remainingScopes = $currentScopes | Where-Object { $_ -notin $validScopesToRevoke }
-            $actionDescription = "Revoke scopes '$($validScopesToRevoke -join ', ')' from $($resolvedClient.Name)"
         } else {
             # Revoke all scopes
             $validScopesToRevoke = $currentScopes
             $remainingScopes = @()
-            $actionDescription = "Revoke ALL permissions from $($resolvedClient.Name)"
         }
 
         try {

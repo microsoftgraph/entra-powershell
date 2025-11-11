@@ -93,28 +93,14 @@ BeforeAll {
 
 Describe "Revoke-EntraBetaMcpServerPermission" {
     Context "Parameter Validation" {
-        It "Should have SupportsShouldProcess enabled" {
-            $command = Get-Command Revoke-EntraBetaMcpServerPermission
-            $command.Parameters.WhatIf | Should -Not -BeNullOrEmpty
-            $command.Parameters.Confirm | Should -Not -BeNullOrEmpty
-        }
-
-        It "Should have ConfirmImpact set to High" {
-            $command = Get-Command Revoke-EntraBetaMcpServerPermission
-            $confirmImpact = $command.ScriptBlock.Attributes | 
-                Where-Object { $_.TypeId.Name -eq "CmdletBindingAttribute" } |
-                Select-Object -ExpandProperty ConfirmImpact
-            $confirmImpact | Should -Be "High"
-        }
-
-        It "Should fail when MCPClientServicePrincipalId has invalid GUID format" {
+        It "Should fail when CustomClientAppId has invalid GUID format" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { $script:mockMCPServerSp }
             
-            { Revoke-EntraBetaMcpServerPermission -MCPClientServicePrincipalId "invalid-guid" -WhatIf } | 
-                Should -Throw "Cannot process argument transformation on parameter 'MCPClientServicePrincipalId'*"
+            { Revoke-EntraBetaMcpServerPermission -CustomClientAppId "invalid-guid" } | 
+                Should -Throw "Cannot process argument transformation on parameter 'CustomClientAppId'*"
         }
 
-        It "Should accept valid GUID format for MCPClientServicePrincipalId" {
+        It "Should accept valid GUID format for CustomClientAppId" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
                 param($Filter)
                 if ($Filter -like "*e8c77dc2-69b3-43f4-bc51-3213c9d915b4*") {
@@ -126,20 +112,20 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
             
-            { Revoke-EntraBetaMcpServerPermission -MCPClientServicePrincipalId "33333333-3333-3333-3333-333333333333" -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -CustomClientAppId "33333333-3333-3333-3333-333333333333" } | 
                 Should -Not -Throw
         }
 
         It "Should reject empty or null values for Scopes parameter" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { $script:mockMCPServerSp }
             
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @() -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @() } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
                 
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes $null -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes $null } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
                 
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("") -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("") } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
         }
 
@@ -156,14 +142,14 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { 
                 return @{
                     Id           = "grant-12345"
-                    Scope        = "User.Read Application.ReadWrite.All Directory.Read.All"
+                    Scope        = "MCP.User.Read MCP.Application.ReadWrite.All MCP.Directory.Read.All"
                     ClientId     = $script:mockVSCodeSp.Id
                     ResourceId   = $script:mockMCPServerSp.Id
                     ConsentType  = "AllPrincipals"
                 }
             }
             
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read", "Directory.Read.All") -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("MCP.User.Read", "MCP.Directory.Read.All") } | 
                 Should -Not -Throw
         }
     }
@@ -172,7 +158,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
         It "Should fail when not connected to Microsoft Graph" {
             Mock -CommandName Get-EntraContext -MockWith { $null }
             
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | 
                 Should -Throw "*Not connected to Microsoft Graph*"
         }
 
@@ -185,7 +171,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
             # The command should still run but may have limited functionality
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | 
                 Should -Not -Throw
         }
     }
@@ -203,11 +189,11 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf
+            Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
         }
 
-        It "Should handle custom service principal IDs" {
+        It "Should handle custom client app IDs" {
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
                 param($Filter)
                 if ($Filter -like "*e8c77dc2-69b3-43f4-bc51-3213c9d915b4*") {
@@ -219,7 +205,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
-            Revoke-EntraBetaMcpServerPermission -MCPClientServicePrincipalId "33333333-3333-3333-3333-333333333333" -WhatIf
+            Revoke-EntraBetaMcpServerPermission -CustomClientAppId "33333333-3333-3333-3333-333333333333"
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
         }
 
@@ -231,7 +217,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
                 }
             }
 
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | 
                 Should -Throw "*Service principal for Microsoft MCP Server for Enterprise not found*"
         }
 
@@ -245,7 +231,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
                 }
             }
 
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | 
                 Should -Throw "*Could not get service principal for*"
         }
     }
@@ -265,7 +251,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
         It "Should handle case when no grants exist and return null" {
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             $result | Should -Be $null
             Should -Invoke -CommandName Get-MgBetaOauth2PermissionGrant -Times 1
         }
@@ -285,7 +271,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             # Mock update to return nothing (void)
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith { return $null }
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read")
             
             Should -Invoke -CommandName Update-MgBetaOauth2PermissionGrant -Times 1
             # Since our mock always returns the original grant, we'll get that back
@@ -307,7 +293,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read")
             Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 1
             $result | Should -Be $null
         }
@@ -325,7 +311,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 1
             $result | Should -Be $null
         }
@@ -343,7 +329,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             
             Mock -CommandName Write-Warning -MockWith {}
 
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("NonExistent.Scope") -WhatIf
+            Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("NonExistent.Scope")
             Should -Invoke -CommandName Write-Warning -Times 1
         }
 
@@ -362,7 +348,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Write-Warning -MockWith {}
 
             # Mix of valid and invalid scopes
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read", "NonExistent.Scope") -Confirm:$false
+            Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read", "NonExistent.Scope")
             
             # Should warn about invalid scope but still process valid ones
             Should -Invoke -CommandName Write-Warning -Times 1
@@ -383,7 +369,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Write-Warning -MockWith {}
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("NonExistent.Scope") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("NonExistent.Scope")
             
             # Should warn about no valid scopes and not attempt any updates
             Should -Invoke -CommandName Write-Warning -Times 2
@@ -407,7 +393,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith { return $null }
 
             # Pass duplicate scopes - should be deduplicated internally
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read", "User.Read", "User.Read") -Confirm:$false
+            Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read", "User.Read", "User.Read")
             Should -Invoke -CommandName Update-MgBetaOauth2PermissionGrant -Times 1
         }
 
@@ -435,7 +421,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Write-Warning -MockWith {}
 
             # Test case insensitivity - "user.read" should match "User.Read"
-            $null = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("user.read") -WhatIf
+            $null = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("user.read")
             
             # Should not warn because PowerShell treats them as the same (case insensitive)
             Should -Invoke -CommandName Write-Warning -Times 0
@@ -458,7 +444,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
         It "Should return null when no grant exists" {
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             $result | Should -Be $null
         }
 
@@ -474,7 +460,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             }
             Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             $result | Should -Be $null
         }
 
@@ -491,7 +477,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             }
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith { return $null }
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read")
             
             $result | Should -Not -Be $null
             $result.Id | Should -Be "grant-12345"
@@ -513,7 +499,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             }
             Mock -CommandName Write-Warning -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("NonExistent.Scope") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("NonExistent.Scope")
             
             $result | Should -Not -Be $null
             $result.Id | Should -Be "grant-12345"
@@ -531,59 +517,11 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
                 }
             }
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
             
             $result | Should -Not -Be $null
             $result.Id | Should -Be "grant-12345"
             $result.Scope | Should -Be ""
-        }
-    }
-
-    Context "ShouldProcess Support" {
-        BeforeEach {
-            Mock -CommandName Get-MgBetaServicePrincipal -MockWith { 
-                param($Filter)
-                if ($Filter -like "*e8c77dc2-69b3-43f4-bc51-3213c9d915b4*") {
-                    return $script:mockMCPServerSp
-                } elseif ($Filter -like "*aebc6443-996d-45c2-90f0-388ff96faa56*") {
-                    return $script:mockVSCodeSp
-                }
-            }
-            
-            Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { 
-                return @{
-                    Id           = "grant-12345"
-                    Scope        = "User.Read Application.ReadWrite.All"
-                    ClientId     = $script:mockVSCodeSp.Id
-                    ResourceId   = $script:mockMCPServerSp.Id
-                    ConsentType  = "AllPrincipals"
-                }
-            }
-        }
-
-        It "Should support -WhatIf parameter" {
-            Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
-
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf
-            
-            # Should not invoke the actual removal when WhatIf is used
-            Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 0
-        }
-
-        It "Should support -Confirm:$false parameter" {
-            Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
-
-            Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false
-            Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 1
-        }
-
-        It "Should respect user confirmation when Confirm is true" {
-            # Test with WhatIf to avoid interactive prompts that may hang CI pipelines
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -WhatIf } | 
-                Should -Not -Throw
-                
-            # Verify that no actual removal occurs with WhatIf (simulates user declining)
-            Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 0
         }
     }
 
@@ -615,7 +553,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             }
 
             # Should throw error when update fails
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read") -Confirm:$false } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read") } | 
                 Should -Throw "*Failed to revoke permissions*"
         }
 
@@ -635,7 +573,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             }
 
             # Should throw error when removal fails
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false } | 
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | 
                 Should -Throw "*Failed to revoke permissions*"
         }
     }
@@ -669,7 +607,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
 
             # Execute the command - test that it runs successfully and outputs results
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false } | Should -Not -Throw
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" } | Should -Not -Throw
             
             # Verify that the core removal function was called
             Should -Invoke -CommandName Remove-MgBetaOauth2PermissionGrant -Times 1
@@ -679,7 +617,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Get-MgBetaOauth2PermissionGrant -MockWith { $null }
 
             # Test that the function executes without errors when using verbose and whatif
-            { Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Verbose -WhatIf } | Should -Not -Throw
+            { Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Verbose } | Should -Not -Throw
         }
     }
 
@@ -707,7 +645,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith { return $null }
             Mock -CommandName Write-Host -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Scopes @("User.Read") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode" -Scopes @("User.Read")
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
             Should -Invoke -CommandName Get-MgBetaOauth2PermissionGrant -Times 3
@@ -739,7 +677,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Remove-MgBetaOauth2PermissionGrant -MockWith {}
             Mock -CommandName Write-Host -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClient "VisualStudioCode" -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -PredefinedClient "VisualStudioCode"
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
             Should -Invoke -CommandName Get-MgBetaOauth2PermissionGrant -Times 1
@@ -770,7 +708,7 @@ Describe "Revoke-EntraBetaMcpServerPermission" {
             Mock -CommandName Update-MgBetaOauth2PermissionGrant -MockWith { return $null }
             Mock -CommandName Write-Host -MockWith {}
 
-            $result = Revoke-EntraBetaMcpServerPermission -MCPClientServicePrincipalId "33333333-3333-3333-3333-333333333333" -Scopes @("User.Read") -Confirm:$false
+            $result = Revoke-EntraBetaMcpServerPermission -CustomClientAppId "33333333-3333-3333-3333-333333333333" -Scopes @("User.Read")
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 2
             Should -Invoke -CommandName Update-MgBetaOauth2PermissionGrant -Times 1
