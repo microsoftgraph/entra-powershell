@@ -70,13 +70,13 @@ function Revoke-EntraBetaMcpServerPermission {
                 return $null
             }
 
-            if (-not $targetScopes -or $targetScopes.Count -eq 0) {
+            if (-not $targetScopes -or @($targetScopes).Count -eq 0) {
                 Write-Verbose "Removing entire permission grant..."
                 Remove-MgBetaOauth2PermissionGrant -OAuth2PermissionGrantId $grant.Id -Confirm:$false
                 return $null
             }
 
-            $targetString = ($targetScopes | Sort-Object -Unique) -join ' '
+            $targetString = (@($targetScopes) | Sort-Object -Unique) -join ' '
 
             $currentScope = if ($grant.Scope) { $grant.Scope } else { "" }
             if ($currentScope -ceq $targetString) {
@@ -167,7 +167,7 @@ function Revoke-EntraBetaMcpServerPermission {
         # Determine scopes to revoke and remaining scopes
         if ($Scopes) {
             # Revoke specific scopes
-            $scopesToRevoke = $Scopes | Sort-Object -Unique
+            $scopesToRevoke = @($Scopes) | Sort-Object -Unique
             $invalidScopes = $scopesToRevoke | Where-Object { $_ -notin $currentScopes }
             if ($invalidScopes) {
                 Write-Warning "The following scopes are not currently granted: $($invalidScopes -join ', ')"

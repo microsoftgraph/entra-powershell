@@ -31,7 +31,7 @@ function Grant-EntraBetaMcpServerPermission {
 
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All, Directory.Read.All, DelegatedPermissionGrant.ReadWrite.All, ' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All, Directory.Read.All, DelegatedPermissionGrant.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -116,9 +116,10 @@ function Grant-EntraBetaMcpServerPermission {
 
             if ($Additive) {
                 # Merge existing + incoming (add only missing)
-                $mergedScopes = ($currentScopes + $incomingScopes) | Sort-Object -Unique
+                $mergedScopes = @($currentScopes) + @($incomingScopes) | Where-Object { $_ } | Sort-Object -Unique
                 $targetString = $mergedScopes -join ' '
-                if (($currentScopes | Sort-Object -Unique) -join ' ' -ceq $targetString) {
+                $currentString = (@($currentScopes) | Where-Object { $_ } | Sort-Object -Unique) -join ' '
+                if ($currentString -ceq $targetString) {
                     Write-Verbose "All requested scopes already present; nothing to add."
                     return $grant
                 }
