@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------ 
 
 function Revoke-EntraBetaMcpServerPermission {
-    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High', DefaultParameterSetName = 'PredefinedClient')]
+    [CmdletBinding(DefaultParameterSetName = 'PredefinedClient')]
     param(
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specifies a predefined MCP client application to revoke permissions from.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
@@ -187,29 +187,27 @@ function Revoke-EntraBetaMcpServerPermission {
             $actionDescription = "Revoke ALL permissions from $($resolvedClient.Name)"
         }
 
-        # Confirm action
-        if ($PSCmdlet.ShouldProcess($resolvedClient.Name, $actionDescription)) {
-            try {
-                # Update the grant
-                $updatedGrant = Update-GrantScopes -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
+        try {
+            # Update the grant
+            $updatedGrant = Update-GrantScopes -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
 
-                if ($remainingScopes.Count -eq 0) {
-                    Write-Host "✓ All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
-                    return $null
-                } else {
-                    Write-Host "✓ Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
-                    Write-Host "  Revoked scopes:" -ForegroundColor Yellow
-                    $validScopesToRevoke | ForEach-Object { Write-Host "    - $_" -ForegroundColor Red }
-                    Write-Host "  Remaining scopes:" -ForegroundColor Yellow
-                    $remainingScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
-                    
-                    # Return the updated OAuth2PermissionGrant resource
-                    return $updatedGrant
-                }
-            } catch {
-                Write-Error "Failed to revoke permissions from $($resolvedClient.Name): $($_.Exception.Message)" -ErrorAction Stop
-                return
+            if ($remainingScopes.Count -eq 0) {
+                Write-Host "✓ All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                return $null
+            } else {
+                Write-Host "✓ Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                Write-Host "  Revoked scopes:" -ForegroundColor Yellow
+                $validScopesToRevoke | ForEach-Object { Write-Host "    - $_" -ForegroundColor Red }
+                Write-Host "  Remaining scopes:" -ForegroundColor Yellow
+                $remainingScopes | ForEach-Object { Write-Host "    - $_" -ForegroundColor Green }
+                
+                # Return the updated OAuth2PermissionGrant resource
+                return $updatedGrant
             }
+        } catch {
+            Write-Error "Failed to revoke permissions from $($resolvedClient.Name): $($_.Exception.Message)" -ErrorAction Stop
+            return
         }
+        
     }
 }
