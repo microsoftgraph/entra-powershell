@@ -24,10 +24,8 @@ Revokes Microsoft MCP Server for Enterprise permissions from specified clients.
 
 ```powershell
 Revoke-EntraBetaMCPServerPermission
- -PredefinedClient <String>
+ -ApplicationName <String>
  [-Scopes <String[]>]
- [-WhatIf]
- [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -35,10 +33,8 @@ Revoke-EntraBetaMCPServerPermission
 
 ```powershell
 Revoke-EntraBetaMCPServerPermission
- -CustomClientAppId <Guid>
+ -ApplicationId <Guid>
  [-Scopes <String[]>]
- [-WhatIf]
- [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -58,7 +54,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-Revoke-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+Revoke-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
 ```
 
 This example revokes all Microsoft MCP Server for Enterprise permissions from Visual Studio Code client.
@@ -67,7 +63,7 @@ This example revokes all Microsoft MCP Server for Enterprise permissions from Vi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$result = Revoke-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes 'User.Read', 'Directory.Read.All'
+$result = Revoke-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes 'User.Read', 'Directory.Read.All'
 ```
 
 This example revokes specific scopes from Visual Studio Code client and returns the updated OAuth2PermissionGrant object with remaining permissions.
@@ -76,7 +72,7 @@ This example revokes specific scopes from Visual Studio Code client and returns 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-Revoke-EntraBetaMCPServerPermission -CustomClientAppId 'aaaaaaaa-bbbb-cccc-1111-222222222222'
+Revoke-EntraBetaMCPServerPermission -ApplicationId 'aaaaaaaa-bbbb-cccc-1111-222222222222'
 ```
 
 This example revokes all permissions from a custom MCP client using its application ID (GUID format).
@@ -85,7 +81,7 @@ This example revokes all permissions from a custom MCP client using its applicat
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Revoke-EntraBetaMCPServerPermission -CustomClientAppId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Scopes 'User.Read'
+$grant = Revoke-EntraBetaMCPServerPermission -ApplicationId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Scopes 'User.Read'
 ```
 
 This example revokes the 'User.Read' scope from a custom MCP client and stores the updated grant object.
@@ -96,13 +92,13 @@ This example revokes the 'User.Read' scope from a custom MCP client and stores t
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
 
 # Partial revocation - returns updated OAuth2PermissionGrant object
-$partialResult = Revoke-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes 'User.Read'
+$partialResult = Revoke-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes 'User.Read'
 if ($partialResult) {
     Write-Host "Remaining scopes: $($partialResult.Scope)"
 }
 
 # Complete revocation - returns null
-$completeResult = Revoke-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+$completeResult = Revoke-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
 if ($null -eq $completeResult) {
     Write-Host "All permissions have been revoked"
 }
@@ -114,14 +110,14 @@ This example demonstrates the different return values: an OAuth2PermissionGrant 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-Revoke-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -WhatIf
+Revoke-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -WhatIf
 ```
 
 This example shows what permissions would be revoked without actually making the changes.
 
 ## PARAMETERS
 
-### -PredefinedClient
+### -ApplicationName
 
 Specifies a predefined MCP client from which to revoke permissions. Valid values are:
 - VisualStudioCode
@@ -140,7 +136,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CustomClientAppId
+### -ApplicationId
 
 Specifies the application ID (GUID) of a custom MCP client from which to revoke permissions. Must be a valid GUID.
 
@@ -172,37 +168,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-
-Shows what would happen if the cmdlet runs. The cmdlet is not run.
-
-```yaml
-Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 

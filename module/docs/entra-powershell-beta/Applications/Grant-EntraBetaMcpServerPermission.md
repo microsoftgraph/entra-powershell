@@ -23,21 +23,21 @@ Grants delegated permissions to a Model Context Protocol (MCP) client for Micros
 ### PredefinedClient (Default)
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -PredefinedClient <String>
+ -ApplicationName <String>
  [<CommonParameters>]
 ```
 
 ### CustomClient
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -CustomClientAppId <Guid>
+ -ApplicationId <Guid>
  [<CommonParameters>]
 ```
 
 ### PredefinedClientScopes
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -PredefinedClient <String>
+ -ApplicationName <String>
  -Scopes <String[]>
  [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ Grant-EntraBetaMcpServerPermission
 ### CustomClientScopes
 ```powershell
 Grant-EntraBetaMcpServerPermission
- -CustomClientAppId <Guid>
+ -ApplicationId <Guid>
  -Scopes <String[]>
  [<CommonParameters>]
 ```
@@ -67,7 +67,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -PredefinedClient 'VisualStudioCode'
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'VisualStudioCode'
 $grant
 ```
 
@@ -77,11 +77,7 @@ Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: aaaaaaaa-bbbb-cccc-1111-222222222222
-  Granted scopes:
-    - Files.Read
-    - MCP.Mail.Read  
-    - MCP.User.Read
-
+  
 Id                                   ClientId                             ResourceId                           ConsentType   Scope
 --                                   --------                             ----------                           -----------   -----
 aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals Files.Read MCP.Mail.Read MCP.User.Read
@@ -93,7 +89,7 @@ This example grants all available delegated permissions (illustrative subset sho
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -PredefinedClient 'VisualStudioCode' -Scopes 'MCP.User.Read', 'MCP.Mail.Read'
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'VisualStudioCode' -Scopes 'MCP.User.Read', 'MCP.Mail.Read'
 $grant.Scope
 ```
 
@@ -103,10 +99,6 @@ Adding specific scopes (preserving existing grant): MCP.Mail.Read, MCP.User.Read
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: dddddddd-eeee-ffff-4444-555555555555
-  Granted scopes:
-    - MCP.Files.Read
-    - MCP.Mail.Read
-    - MCP.User.Read
 
 Files.Read MCP.Mail.Read MCP.User.Read
 ```
@@ -118,7 +110,7 @@ This example adds specific scopes (MCP.Mail.Read and MCP.User.Read) to Visual St
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
 $customClientId = '12345678-1234-5678-9012-123456789012'
-$grant = Grant-EntraBetaMcpServerPermission -CustomClientAppId $customClientId
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationId $customClientId
 Write-Host "Grant created with ID: $($grant.Id)"
 ```
 
@@ -128,10 +120,6 @@ Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
 
 ✓ Successfully granted permissions to Custom MCP Client
   Grant ID: eeeeeeee-ffff-aaaa-5555-666666666666
-  Granted scopes:
-    - Files.Read
-    - MCP.Mail.Read
-    - MCP.User.Read
 
 Grant created with ID: eeeeeeee-ffff-aaaa-5555-666666666666
 ```
@@ -142,7 +130,7 @@ This example grants all available permissions (illustrative subset) to a custom 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -PredefinedClient 'ClaudeDesktop' -Scopes 'MCP.User.Read', 'Files.Read'
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'ClaudeDesktop' -Scopes 'MCP.User.Read', 'Files.Read'
 $grant | Select-Object Id, ClientId, ResourceId, ConsentType, Scope
 ```
 
@@ -152,9 +140,6 @@ Adding specific scopes (preserving existing grant): Files.Read, MCP.User.Read
 
 ✓ Successfully granted permissions to Claude Desktop
   Grant ID: ffffffff-aaaa-bbbb-6666-777777777777
-  Granted scopes:
-    - Files.Read
-    - MCP.User.Read
 
 Id                                   ClientId         ResourceId       ConsentType   Scope
 --                                   --------         ----------       -----------   -----
@@ -165,7 +150,7 @@ This example adds specific scopes to Claude Desktop in additive mode and display
 
 ## PARAMETERS
 
-### -PredefinedClient
+### -ApplicationName
 
 Specifies a predefined MCP client to grant permissions to. Valid values are:
 - VisualStudioCode: Visual Studio Code
@@ -185,7 +170,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CustomClientAppId
+### -ApplicationId
 
 Specifies the application ID (client ID) of a custom MCP client to grant permissions to. Must be a valid GUID.
 
