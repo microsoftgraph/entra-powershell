@@ -129,75 +129,75 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         }
 
         It "Should reject invalid GUID format" {
-            { Grant-EntraBetaMCPServerPermission -CustomClientAppId "not-a-guid" } | Should -Throw "Cannot process argument transformation on parameter 'CustomClientAppId'*"
+            { Grant-EntraBetaMCPServerPermission -ApplicationId "not-a-guid" } | Should -Throw "Cannot process argument transformation on parameter 'ApplicationId'*"
         }
 
-        It "Should reject invalid PredefinedClient value" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient "InvalidClient" } | Should -Throw "*Cannot validate argument on parameter 'PredefinedClient'*"
+        It "Should reject invalid ApplicationName value" {
+            { Grant-EntraBetaMCPServerPermission -ApplicationName "InvalidClient" } | Should -Throw "*Cannot validate argument on parameter 'ApplicationName'*"
         }
     }
 
     Context "Parameter Set Validation" {
-        It "Should accept valid predefined client (PredefinedClient parameter set)" {
+        It "Should accept valid predefined client (ApplicationName parameter set)" {
             $validClients = @('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')
             foreach ($client in $validClients) {
-                $cmd = { Grant-EntraBetaMCPServerPermission -PredefinedClient $client -WhatIf }
+                $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationName $client -WhatIf }
                 $cmd | Should -Not -BeNullOrEmpty
             }
         }
 
-        It "Should use PredefinedClientScopes parameter set when PredefinedClient and Scopes are provided" {
-            $cmd = { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('User.Read') -WhatIf }
+        It "Should use PredefinedClientScopes parameter set when ApplicationName and Scopes are provided" {
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('User.Read') -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
-        It "Should use CustomClient parameter set when only CustomClientAppId is provided" {
+        It "Should use CustomClient parameter set when only ApplicationId is provided" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
-            $cmd = { Grant-EntraBetaMCPServerPermission -CustomClientAppId $validGuid -WhatIf }
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationId $validGuid -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
-        It "Should use CustomClientScopes parameter set when both CustomClientAppId and Scopes are provided" {
+        It "Should use CustomClientScopes parameter set when both ApplicationId and Scopes are provided" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
-            $cmd = { Grant-EntraBetaMCPServerPermission -CustomClientAppId $validGuid -Scopes @('User.Read') -WhatIf }
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationId $validGuid -Scopes @('User.Read') -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
         It "Should accept valid GUID for service principal" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
-            $cmd = { Grant-EntraBetaMCPServerPermission -CustomClientAppId $validGuid -WhatIf }
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationId $validGuid -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
         It "Should support scopes parameter with specific predefined clients" {
-            $cmd = { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('User.Read') -WhatIf }
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('User.Read') -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
         It "Should support scopes parameter with custom clients" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
-            $cmd = { Grant-EntraBetaMCPServerPermission -CustomClientAppId $validGuid -Scopes @('User.Read') -WhatIf }
+            $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationId $validGuid -Scopes @('User.Read') -WhatIf }
             $cmd | Should -Not -BeNullOrEmpty
         }
 
-        It "Should reject providing both PredefinedClient and CustomClientAppId" {
+        It "Should reject providing both ApplicationName and ApplicationId" {
             $validGuid = "12345678-1234-1234-1234-123456789abc"
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -CustomClientAppId $validGuid } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -ApplicationId $validGuid } | 
                 Should -Throw "*Parameter set cannot be resolved*"
         }
 
         It "Should reject empty scopes array due to ValidateNotNullOrEmpty" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @() } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @() } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
         }
 
         It "Should reject null scopes due to ValidateNotNullOrEmpty" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes $null } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes $null } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
         }
 
         It "Should reject empty string in scopes array" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('') } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('') } | 
                 Should -Throw "*Cannot validate argument on parameter 'Scopes'*"
         }
     }
@@ -206,19 +206,19 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         It "Should throw error when not connected to Microsoft Graph" {
             Mock -CommandName Get-EntraContext -MockWith { return $null }
             
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } | 
                 Should -Throw "*Not connected to Microsoft Graph*"
         }
 
         It "Should proceed when properly authenticated" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } | 
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } | 
                 Should -Not -Throw
         }
     }
 
     Context "Custom Headers" {
         It "Should include correct User-Agent header only for resource service principal requests" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             # Should use headers for resource SP (MCP Server)
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -Times 1 -ParameterFilter {
@@ -240,7 +240,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 return $null  # Client not found
             }
             
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName New-MgBetaServicePrincipal -Times 1 -ParameterFilter {
                 $AppId -eq "aebc6443-996d-45c2-90f0-388ff96faa56"
@@ -250,7 +250,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
 
     Context "Service Principal Management" {
         It "Should retrieve existing MCP resource service principal" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ParameterFilter {
                 $Filter -eq "appId eq '$resourceAppId'"
@@ -266,7 +266,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 return $mockClientSp
             }
             
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName New-MgBetaServicePrincipal -ParameterFilter {
                 $AppId -eq $resourceAppId
@@ -274,7 +274,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         }
 
         It "Should retrieve existing client service principal" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ParameterFilter {
                 $Filter -eq "appId eq 'aebc6443-996d-45c2-90f0-388ff96faa56'"
@@ -290,7 +290,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 return $null  # Client not found
             }
             
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName New-MgBetaServicePrincipal -ParameterFilter {
                 $AppId -eq "aebc6443-996d-45c2-90f0-388ff96faa56"
@@ -300,7 +300,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
 
     Context "Permission Grant Creation" {
         It "Should create new permission grant when none exists" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -ParameterFilter {
                 $BodyParameter.clientId -eq $testClientSpId -and
@@ -310,7 +310,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
         }
 
         It "Should grant all available scopes by default" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -ParameterFilter {
                 $BodyParameter.scope -eq "MCP.Application.ReadWrite.All MCP.Directory.Read.All MCP.Files.Read MCP.Files.ReadWrite MCP.User.Read"
@@ -329,7 +329,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 }
             }
             
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('MCP.Files.Read')
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('MCP.Files.Read')
             
             # Should update, not create, merging scopes
             Should -Invoke -CommandName Update-MgBetaOauth2PermissionGrant -Times 1
@@ -347,7 +347,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 }
             }
             
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             # Should call Update instead of New when grant exists with different scopes
             Should -Invoke -CommandName Update-MgBetaOauth2PermissionGrant -Times 1
@@ -369,7 +369,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 return $null
             }
             
-            Grant-EntraBetaMCPServerPermission -CustomClientAppId $customSpId
+            Grant-EntraBetaMCPServerPermission -ApplicationId $customSpId
             
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ParameterFilter {
                 $Filter -eq "appId eq '$customSpId'"
@@ -379,13 +379,13 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
 
     Context "Scope Validation" {
         It "Should accept valid scopes from available permissions" {
-            Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('MCP.User.Read', 'MCP.Files.Read')
+            Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('MCP.User.Read', 'MCP.Files.Read')
             
             Should -Invoke -CommandName New-MgBetaOauth2PermissionGrant -Times 1
         }
 
         It "Should throw error for invalid scopes not available on resource" {
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('Invalid.Scope') } |
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('Invalid.Scope') } |
                 Should -Throw "*Invalid scopes (not available on resource)*"
         }
 
@@ -403,7 +403,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 return $mockClientSp
             }
             
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } |
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } |
                 Should -Throw "*Resource app exposes no enabled delegated*"
         }
     }
@@ -416,7 +416,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
             
             Mock -CommandName Get-MgBetaServicePrincipal -MockWith { return $null }
             
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } |
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } |
                 Should -Throw "*Access denied*"
         }
 
@@ -433,14 +433,14 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
                 throw "Service principal creation failed"
             }
             
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } |
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } |
                 Should -Throw "*Service principal creation failed*"
         }
     }
 
     Context "Return Value" {
         It "Should return OAuth2PermissionGrant object when successful" {
-            $result = Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode'
+            $result = Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode'
             
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be $testGrantId
@@ -464,12 +464,12 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
             }
             
             # This should throw due to no available scopes, not return null
-            { Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' } |
+            { Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' } |
                 Should -Throw "*Resource app exposes no enabled delegated*"
         }
 
         It "Should return grant object with correct scope property" {
-            $result = Grant-EntraBetaMCPServerPermission -PredefinedClient 'VisualStudioCode' -Scopes @('MCP.User.Read', 'MCP.Files.Read')
+            $result = Grant-EntraBetaMCPServerPermission -ApplicationName 'VisualStudioCode' -Scopes @('MCP.User.Read', 'MCP.Files.Read')
             
             $result.Scope | Should -Match "MCP.User.Read"
             $result.Scope | Should -Match "MCP.Files.Read"
