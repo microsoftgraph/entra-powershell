@@ -7,7 +7,7 @@ function Revoke-EntraBetaMcpServerPermission {
     [CmdletBinding(DefaultParameterSetName = 'PredefinedClient')]
     param(
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specifies a predefined MCP client application to revoke permissions from.")]
-        [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
+        [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'Claude')]
         [string]$ApplicationName,
 
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the Application ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
@@ -37,7 +37,7 @@ function Revoke-EntraBetaMcpServerPermission {
             "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
             "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
             "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
-            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
+            "Claude"            = @{ Name = "Claude"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
         
         function Get-ServicePrincipal([string]$appId, [string]$name) {

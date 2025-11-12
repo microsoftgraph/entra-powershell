@@ -139,7 +139,7 @@ Describe "Grant-EntraBetaMCPServerPermission - Test Structure" {
 
     Context "Parameter Set Validation" {
         It "Should accept valid predefined client (ApplicationName parameter set)" {
-            $validClients = @('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')
+            $validClients = @('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'Claude')
             foreach ($client in $validClients) {
                 $cmd = { Grant-EntraBetaMCPServerPermission -ApplicationName $client -WhatIf }
                 $cmd | Should -Not -BeNullOrEmpty

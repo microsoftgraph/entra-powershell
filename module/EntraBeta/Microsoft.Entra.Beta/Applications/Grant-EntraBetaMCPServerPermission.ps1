@@ -9,7 +9,7 @@ function Grant-EntraBetaMcpServerPermission {
         # Specifies the predefined MCP client to grant permissions to.
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
         [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
-        [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')]
+        [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'Claude')]
         [string]$ApplicationName,
 
         # Specifies the service principal ID for a custom MCP client. Must be a valid GUID.
@@ -42,7 +42,7 @@ function Grant-EntraBetaMcpServerPermission {
             "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
             "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
             "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
-            "ClaudeDesktop"            = @{ Name = "Claude Desktop"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
+            "Claude"            = @{ Name = "Claude"; AppId = "08ad6f98-a4f8-4635-bb8d-f1a3044760f0" }
         }
 
         function Get-ServicePrincipal([string]$appId, [string]$name) {
