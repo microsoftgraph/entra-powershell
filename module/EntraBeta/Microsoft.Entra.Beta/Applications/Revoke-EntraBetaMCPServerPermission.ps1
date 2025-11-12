@@ -8,11 +8,11 @@ function Revoke-EntraBetaMcpServerPermission {
     param(
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specifies a predefined MCP client application to revoke permissions from.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'VisualStudioMSAL')]
-        [string]$AppName,
+        [string]$ApplicationName,
 
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specifies the Application ID of a custom MCP client application to revoke permissions from. Must be valid GUID format.")]
         [ValidateNotNullOrEmpty()]
-        [guid]$AppId,
+        [guid]$ApplicationId,
 
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
@@ -33,7 +33,7 @@ function Revoke-EntraBetaMcpServerPermission {
 
         # Constants
         $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
-        $AppNames = @{
+        $PredefinedApps = @{
             "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
             "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
             "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
@@ -96,8 +96,8 @@ function Revoke-EntraBetaMcpServerPermission {
 
             # Process MCP client
             if ($PredefinedAppName) {
-                if ($AppNames.ContainsKey($PredefinedAppName)) {
-                    $clientInfo = $AppNames[$PredefinedAppName]
+                if ($PredefinedApps.ContainsKey($PredefinedAppName)) {
+                    $clientInfo = $PredefinedApps[$PredefinedAppName]
                     return @{
                         Name     = $clientInfo.Name
                         AppId    = $clientInfo.AppId
@@ -124,7 +124,7 @@ function Revoke-EntraBetaMcpServerPermission {
         $resourceSp = Get-ServicePrincipal $resourceAppId "Microsoft MCP Server for Enterprise"
 
         # Resolve MCP client
-        $resolvedClient = Resolve-MCPClient -PredefinedAppName $AppName -CustomClientApplication $AppId
+        $resolvedClient = Resolve-MCPClient -PredefinedAppName $ApplicationName -CustomClientApplication $ApplicationId
         if (-not $resolvedClient) {
             Write-Error "Could not resolve MCP client." -ErrorAction Stop
             return

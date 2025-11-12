@@ -10,13 +10,13 @@ function Grant-EntraBetaMcpServerPermission {
         [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
         [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify a predefined MCP client to grant permissions to.")]
         [ValidateSet('VisualStudioCode', 'VisualStudio', 'ChatGPT', 'ClaudeDesktop')]
-        [string]$AppName,
+        [string]$ApplicationName,
 
         # Specifies the service principal ID for a custom MCP client. Must be a valid GUID.
         [Parameter(ParameterSetName = 'CustomClient', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
         [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify a service principal ID (GUID) for a custom MCP client to grant permissions to.")]
         [ValidateNotNullOrEmpty()]
-        [guid]$AppId,
+        [guid]$ApplicationId,
 
         # Specifies the specific scopes to grant. If not specified, all available scopes will be granted.
         [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
@@ -38,7 +38,7 @@ function Grant-EntraBetaMcpServerPermission {
 
         # Constants
         $resourceAppId = "e8c77dc2-69b3-43f4-bc51-3213c9d915b4"  # Microsoft MCP Server for Enterprise
-        $AppNames = @{
+        $PredefinedApps = @{
             "VisualStudioCode"         = @{ Name = "Visual Studio Code"; AppId = "aebc6443-996d-45c2-90f0-388ff96faa56" }
             "VisualStudio"             = @{ Name = "Visual Studio"; AppId = "04f0c124-f2bc-4f59-8241-bf6df9866bbd" }
             "ChatGPT"                  = @{ Name = "Chat GPT"; AppId = "e0476654-c1d5-430b-ab80-70cbd947616a" }
@@ -147,8 +147,8 @@ function Grant-EntraBetaMcpServerPermission {
 
             # Process predefined MCP client
             if ($PredefinedAppName) {
-                if ($AppNames.ContainsKey($PredefinedAppName)) {
-                    $clientInfo = $AppNames[$PredefinedAppName]
+                if ($PredefinedApps.ContainsKey($PredefinedAppName)) {
+                    $clientInfo = $PredefinedApps[$PredefinedAppName]
                     return @{
                         Name = $clientInfo.Name
                         AppId = $clientInfo.AppId
@@ -185,7 +185,7 @@ function Grant-EntraBetaMcpServerPermission {
         $availableScopes = $availableScopes | Sort-Object -Unique
 
         # Resolve MCP client
-        $client = Resolve-MCPClient -PredefinedAppName $AppName -CustomClientApplication $AppId
+        $client = Resolve-MCPClient -PredefinedAppName $ApplicationName -CustomClientApplication $ApplicationId
         Write-Verbose "Resolved MCP client: $($client.Name)"
 
         # Get service principal for the resolved client
