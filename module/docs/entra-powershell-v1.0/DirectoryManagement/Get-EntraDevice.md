@@ -30,6 +30,11 @@ Get-EntraDevice
  [-All]
  [-Filter <String>]
  [-Property <String[]>]
+ [-LogonTimeBefore <DateTime>]
+ [-Stale]
+ [-NonCompliant]
+ [-IsManaged <Boolean>]
+ [-JoinType <String>]
  [<CommonParameters>]
 ```
 
@@ -40,6 +45,11 @@ Get-EntraDevice
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
+ [-LogonTimeBefore <DateTime>]
+ [-Stale]
+ [-NonCompliant]
+ [-IsManaged <Boolean>]
+ [-JoinType <String>]
  [<CommonParameters>]
 ```
 
@@ -50,6 +60,11 @@ Get-EntraDevice
  -DeviceId <String>
  [-All]
  [-Property <String[]>]
+ [-LogonTimeBefore <DateTime>]
+ [-Stale]
+ [-NonCompliant]
+ [-IsManaged <Boolean>]
+ [-JoinType <String>]
  [<CommonParameters>]
 ```
 
@@ -231,6 +246,106 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDevice -Filter "operatingSystem eq 'Windows Server' and operatingSystemVersion eq '10.0.20348.3091'"
 ```
 
+### Example 14: Get stale devices (inactive for 2+ months)
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Stale
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True           2024-08-15T10:30:00Z                                                      eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve devices that haven't signed in for 2 months or more.
+
+### Example 15: Get devices that signed in before a specific date
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+$date = Get-Date "2024-09-01"
+Get-EntraDevice -LogonTimeBefore $date
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True           2024-08-15T10:30:00Z                                                      eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve devices with last sign-in before September 1, 2024.
+
+### Example 16: Get non-compliant devices using NonCompliant parameter
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -NonCompliant
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve devices that are not compliant with organizational policies.
+
+### Example 17: Get managed devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -IsManaged $true
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve devices managed by a Mobile Device Management (MDM) solution.
+
+### Example 18: Get Microsoft Entra Joined devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -JoinType "MicrosoftEntraJoined"
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve devices that are Microsoft Entra Joined.
+
+### Example 19: Get Microsoft Entra Hybrid Joined devices
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -JoinType "MicrosoftEntraHybridJoined"
+```
+
+This example demonstrates how to retrieve devices that are Microsoft Entra Hybrid Joined.
+
+### Example 20: Combine multiple filter parameters
+
+```powershell
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Stale -NonCompliant -IsManaged $true
+```
+
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True           2024-08-15T10:30:00Z                                                      eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to combine multiple filter parameters to find devices that are stale, non-compliant, and managed.
+
 ## PARAMETERS
 
 ### -All
@@ -327,6 +442,87 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogonTimeBefore
+
+Filter devices with last sign-in before a specified date.
+
+```yaml
+Type: System.DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Stale
+
+Filter devices that haven't signed in for 2 months or more.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -NonCompliant
+
+Filter devices that are not compliant with organizational policies.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -IsManaged
+
+Filter devices based on whether they are managed by a Mobile Device Management (MDM) solution.
+
+```yaml
+Type: System.Nullable`1[System.Boolean]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -JoinType
+
+Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, or MicrosoftEntraRegistered.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+Accepted values: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, MicrosoftEntraRegistered
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
