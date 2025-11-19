@@ -11,6 +11,7 @@ function Get-EntraBetaDevice {
                 
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $Filter,
+
         [Alias('ObjectId')]            
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $DeviceId,
@@ -21,9 +22,26 @@ function Get-EntraBetaDevice {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Limit")]
         [System.Nullable`1[System.Int32]] $Top,
+
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices with last sign-in before a specified date.")]
+        [DateTime] $LogonTimeBefore,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that haven't signed in for 2 months or more.")]
+        [Switch] $Stale,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that are not compliant with organizational policies.")]
+        [Switch] $NonCompliant,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices onwhether they are managed by a Mobile Device Management (MDM) solution. Use `$true for managed devices or `$false for unmanaged devices.")]
+        [System.Nullable`1[System.Boolean]] $IsManaged,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, or MicrosoftEntraRegistered.")]
+        [ValidateSet("MicrosoftEntraJoined", "MicrosoftEntraHybridJoined", "MicrosoftEntraRegistered")]
+        [System.String] $JoinType
     )
 
     begin {
@@ -101,6 +119,56 @@ function Get-EntraBetaDevice {
         }
         if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
+        }
+
+        if ($null -ne $PSBoundParameters["LogonTimeBefore"]) {
+            $logonDate = $PSBoundParameters["LogonTimeBefore"].ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and approximateLastSignInDateTime le $logonDate"
+            } else {
+                $params["Filter"] = "approximateLastSignInDateTime le $logonDate"
+            }
+        }
+
+        # Ref: https://learn.microsoft.com/en-us/entra/identity/devices/manage-stale-devices
+        if ($null -ne $PSBoundParameters["Stale"]) {
+            $staleDate = (Get-Date).AddMonths(-2).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and approximateLastSignInDateTime le $staleDate"
+            } else {
+                $params["Filter"] = "approximateLastSignInDateTime le $staleDate"
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["NonCompliant"]) {
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and isCompliant eq false"
+            } else {
+                $params["Filter"] = "isCompliant eq false"
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["IsManaged"]) {
+            $isManagedState = $PSBoundParameters["IsManaged"]
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and isManaged eq $isManagedState"
+            } else {
+                $params["Filter"] = "isManaged eq $isManagedState"
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["JoinType"]) {
+            $filterValue = switch ($PSBoundParameters["JoinType"]) {
+                "MicrosoftEntraJoined" { "trustType eq 'AzureAd'" }
+                "MicrosoftEntraHybridJoined" { "trustType eq 'ServerAd'" }
+                "MicrosoftEntraRegistered" { "trustType eq 'Workplace'" }
+            }
+            
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and $filterValue"
+            } else {
+                $params["Filter"] = $filterValue
+            }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
