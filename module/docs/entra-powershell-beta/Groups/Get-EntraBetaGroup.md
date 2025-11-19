@@ -406,7 +406,9 @@ Accept wildcard characters: False
 ```
 
 ### -HasErrorsOnly
+
 Returns only groups that have service provisioning errors.
+
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetQuery, GetVague, Append
@@ -420,7 +422,9 @@ Accept wildcard characters: False
 ```
 
 ### -HasLicenseErrorsOnly
+
 Returns only groups that have members with license errors.
+
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: GetQuery, GetVague, Append

@@ -1,10 +1,10 @@
 ---
-author: giomachar
+author: givinalis
 description: This article provides details on the Grant-EntraBetaMcpServerPermission command.
 external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 Module Name: Microsoft.Entra.Beta.Applications
-ms.author: gmachar
+ms.author: giomachar
 ms.date: 11/10/2025
 ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Grant-EntraBetaMcpServerPermission
@@ -52,7 +52,7 @@ Grant-EntraBetaMcpServerPermission
 
 ## DESCRIPTION
 
-The `Grant-EntraBetaMcpServerPermission` cmdlet grants delegated permissions to a Model Context Protocol (MCP) client for accessing the Microsoft MCP Server for Enterprise. This cmdlet can work with a predefined MCP client (Visual Studio Code, Visual Studio, ChatGPT, or Claude Desktop) or a custom MCP client specified by its application ID.
+The `Grant-EntraBetaMcpServerPermission` cmdlet grants delegated permissions to a Model Context Protocol (MCP) client for accessing the Microsoft MCP Server for Enterprise. This cmdlet works with a predefined MCP client (Visual Studio Code, Visual Studio, ChatGPT, or Claude) or a custom MCP client specified by its application ID.
 
 The cmdlet creates an OAuth2 permission grant that allows the specified MCP client to access the Microsoft MCP Server for Enterprise on behalf of users. When the `-Scopes` parameter is specified, the cmdlet operates in **additive mode**, adding the specified scopes to any existing grant while preserving other previously granted scopes. Without the `-Scopes` parameter, the cmdlet grants all available scopes (replacing any existing grant). The cmdlet returns an OAuth2PermissionGrant object that conforms to the Microsoft Graph API resource specification.
 
@@ -73,37 +73,38 @@ $grant
 
 ```Output
 Operating on MCP client: Visual Studio Code
-Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
+Granting all available scopes: MCP.AccessReview.Read.All, MCP.AdministrativeUnit.Read.All, MCP.Application.Read.All ...
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: aaaaaaaa-bbbb-cccc-1111-222222222222
   
 Id                                   ClientId                             ResourceId                           ConsentType   Scope
 --                                   --------                             ----------                           -----------   -----
-aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals Files.Read MCP.Mail.Read MCP.User.Read
+aaaaaaaa-bbbb-cccc-1111-222222222222 client-sp-id-1234                    resource-sp-id-5678                  AllPrincipals MCP.AccessReview.Read.All, MCP.AdministrativeUnit.Read.All, MCP.Application.Read.All ...
 ```
 
 This example grants all available delegated permissions (illustrative subset shown) to Visual Studio Code and returns the OAuth2PermissionGrant object.
+**NOTE**: The output scopes in the above example are shortened for readability. 
 
 ### Example 2: Add specific scopes to Visual Studio Code (additive mode)
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'VisualStudioCode' -Scopes 'MCP.User.Read', 'MCP.Mail.Read'
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'VisualStudioCode' -Scopes 'MCP.User.Read.All', 'MCP.AccessReview.Read.All'
 $grant.Scope
 ```
 
 ```Output
 Operating on MCP client: Visual Studio Code
-Adding specific scopes (preserving existing grant): MCP.Mail.Read, MCP.User.Read
+Adding specific scopes (preserving existing grant): MCP.AccessReview.Read.All, MCP.User.Read.All
 
 ✓ Successfully granted permissions to Visual Studio Code
   Grant ID: dddddddd-eeee-ffff-4444-555555555555
 
-Files.Read MCP.Mail.Read MCP.User.Read
+MCP.AdministrativeUnit.Read.All MCP.AccessReview.Read.All MCP.User.Read.All
 ```
 
-This example adds specific scopes (MCP.Mail.Read and MCP.User.Read) to Visual Studio Code's existing grant. Note that the existing Files.Read scope is preserved (additive mode).
+This example adds specific scopes (MCP.AccessReview.Read.All and MCP.User.Read.All) to Visual Studio Code's existing grant. Note that the existing MCP.AdministrativeUnit.Read.All scope is preserved (additive mode).
 
 ### Example 3: Grant permissions to a custom MCP client
 
@@ -116,7 +117,7 @@ Write-Host "Grant created with ID: $($grant.Id)"
 
 ```Output
 Operating on MCP client: Custom MCP Client
-Granting all available scopes: Files.Read MCP.Mail.Read MCP.User.Read
+Granting all available scopes: MCP.AdministrativeUnit.Read.All MCP.AccessReview.Read.All MCP.User.Read.All
 
 ✓ Successfully granted permissions to Custom MCP Client
   Grant ID: eeeeeeee-ffff-aaaa-5555-666666666666
@@ -126,27 +127,27 @@ Grant created with ID: eeeeeeee-ffff-aaaa-5555-666666666666
 
 This example grants all available permissions (illustrative subset) to a custom MCP client identified by its service principal ID.
 
-### Example 4: Add specific scopes to Claude Desktop
+### Example 4: Add specific scopes to Claude
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.Read.All', 'DelegatedPermissionGrant.ReadWrite.All'
-$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'ClaudeDesktop' -Scopes 'MCP.User.Read', 'Files.Read'
+$grant = Grant-EntraBetaMcpServerPermission -ApplicationName 'Claude' -Scopes 'MCP.User.Read.All', 'MCP.AdministrativeUnit.Read.All'
 $grant | Select-Object Id, ClientId, ResourceId, ConsentType, Scope
 ```
 
 ```Output
-Operating on MCP client: Claude Desktop
-Adding specific scopes (preserving existing grant): Files.Read, MCP.User.Read
+Operating on MCP client: Claude
+Adding specific scopes (preserving existing grant): MCP.AdministrativeUnit.Read.All, MCP.User.Read.All
 
-✓ Successfully granted permissions to Claude Desktop
+✓ Successfully granted permissions to Claude
   Grant ID: ffffffff-aaaa-bbbb-6666-777777777777
 
 Id                                   ClientId         ResourceId       ConsentType   Scope
 --                                   --------         ----------       -----------   -----
-ffffffff-aaaa-bbbb-6666-777777777777 claude-sp-id     resource-sp-id   AllPrincipals Files.Read MCP.User.Read
+ffffffff-aaaa-bbbb-6666-777777777777 claude-sp-id     resource-sp-id   AllPrincipals MCP.AdministrativeUnit.Read.All MCP.User.Read.All
 ```
 
-This example adds specific scopes to Claude Desktop in additive mode and displays selected properties of the returned OAuth2PermissionGrant object.
+This example adds specific scopes to M365 MCP Client for Claude in additive mode and displays selected properties of the returned OAuth2PermissionGrant object.
 
 ## PARAMETERS
 
@@ -156,7 +157,7 @@ Specifies a predefined MCP client to grant permissions to. Valid values are:
 - VisualStudioCode: Visual Studio Code
 - VisualStudio: Visual Studio
 - ChatGPT: ChatGPT
-- ClaudeDesktop: Claude Desktop
+- Claude: Claude
 
 ```yaml
 Type: System.String
@@ -240,16 +241,16 @@ The scopes string is normalized by sorting and de-duplicating the provided scope
 
 ## RELATED LINKS
 
-[Get-MgBetaServicePrincipal](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.applications/get-mgbetaserviceprincipal)
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
-[New-MgBetaServicePrincipal](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.applications/new-mgbetaserviceprincipal)
+[New-EntraBetaServicePrincipal](New-EntraBetaServicePrincipal.md)
 
-[Get-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/get-mgbetaoauth2permissiongrant)
+[Get-EntraBetaOauth2PermissionGrant](../Microsoft.Entra.Beta.SignIns/Get-EntraBetaOAuth2PermissionGrant.md)
 
-[New-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/new-mgbetaoauth2permissiongrant)
+[New-EntraBetaOauth2PermissionGrant](../Microsoft.Entra.Beta.SignIns/New-EntraBetaOauth2PermissionGrant.md)
 
-[Update-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/update-mgbetaoauth2permissiongrant)
+[Update-EntraBetaOauth2PermissionGrant](../Microsoft.Entra.Beta.SignIns/Update-EntraBetaOauth2PermissionGrant.md)
 
-[Remove-MgBetaOauth2PermissionGrant](https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/remove-mgbetaoauth2permissiongrant)
+[Remove-EntraBetaOauth2PermissionGrant](../Microsoft.Entra.Beta.SignIns/Remove-EntraBetaOAuth2PermissionGrant.md)
 
 [OAuth2PermissionGrant resource type](https://learn.microsoft.com/graph/api/resources/oauth2permissiongrant)

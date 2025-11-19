@@ -246,7 +246,9 @@ Accept wildcard characters: False
 ```
 
 ### -HasErrorsOnly
+
 Returns only contacts that have service provisioning errors.
+
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
