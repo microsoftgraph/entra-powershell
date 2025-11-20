@@ -25,7 +25,13 @@ function Get-EntraServicePrincipal {
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $AssignmentRequired,
+
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String] $ApplicationType
     )
 
     begin {
