@@ -60,11 +60,6 @@ Get-EntraBetaDevice
  -DeviceId <String>
  [-All]
  [-Property <String[]>]
- [-LogonTimeBefore <DateTime>]
- [-Stale]
- [-NonCompliant]
- [-IsManaged <Boolean>]
- [-JoinType <String>]
  [<CommonParameters>]
 ```
 
@@ -457,7 +452,7 @@ Filter devices with last sign-in before a specified date.
 
 ```yaml
 Type: System.DateTime
-Parameter Sets: (All)
+Parameter Sets: GetQuery, GetValue
 Aliases:
 
 Required: False
@@ -473,7 +468,7 @@ Filter devices that haven't signed in for 2 months or more.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: GetQuery, GetValue
 Aliases:
 
 Required: False
@@ -489,7 +484,7 @@ Filter devices that are not compliant with organizational policies.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: GetQuery, GetValue
 Aliases:
 
 Required: False
@@ -501,11 +496,11 @@ Accept wildcard characters: False
 
 ### -IsManaged
 
-Filter devices based on whether they are managed by a Mobile Device Management (MDM) solution.
+Filter devices based on whether they are managed by a Mobile Device Management (MDM) solution. Use `$true` for managed devices or `$false` for unmanaged devices.
 
 ```yaml
 Type: System.Nullable`1[System.Boolean]
-Parameter Sets: (All)
+Parameter Sets: GetQuery, GetValue
 Aliases:
 
 Required: False
@@ -521,7 +516,7 @@ Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, o
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: GetQuery, GetValue
 Aliases:
 Accepted values: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, MicrosoftEntraRegistered
 
