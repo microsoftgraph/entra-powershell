@@ -27,19 +27,24 @@ function Get-EntraDevice {
         [Alias("Select")]
         [System.String[]] $Property,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices with last sign-in before a specified date.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices with last sign-in before a specified date.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices with last sign-in before a specified date.")]
         [DateTime] $LogonTimeBefore,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that haven't signed in for 2 months or more.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that haven't signed in for 2 months or more.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that haven't signed in for 2 months or more.")]
         [Switch] $Stale,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that are not compliant with organizational policies.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that are not compliant with organizational policies.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices that are not compliant with organizational policies.")]
         [Switch] $NonCompliant,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices onwhether they are managed by a Mobile Device Management (MDM) solution. Use `$true for managed devices or `$false for unmanaged devices.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices onwhether they are managed by a Mobile Device Management (MDM) solution. Use `$true for managed devices or `$false for unmanaged devices.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices onwhether they are managed by a Mobile Device Management (MDM) solution. Use `$true for managed devices or `$false for unmanaged devices.")]
         [System.Nullable`1[System.Boolean]] $IsManaged,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, or MicrosoftEntraRegistered.")]
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, or MicrosoftEntraRegistered.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter devices by join type: MicrosoftEntraJoined, MicrosoftEntraHybridJoined, or MicrosoftEntraRegistered.")]
         [ValidateSet("MicrosoftEntraJoined", "MicrosoftEntraHybridJoined", "MicrosoftEntraRegistered")]
         [System.String] $JoinType
     )
