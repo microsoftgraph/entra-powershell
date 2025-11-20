@@ -255,6 +255,94 @@ Describe "Get-EntraBetaServicePrincipal" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
+
+        It "Should filter by AssignmentRequired true" {
+            $result = Get-EntraBetaServicePrincipal -AssignmentRequired $true
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should filter by AssignmentRequired false" {
+            $result = Get-EntraBetaServicePrincipal -AssignmentRequired $false
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq False"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType AppProxyApps" {
+            $result = Get-EntraBetaServicePrincipal -ApplicationType "AppProxyApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryOnPremApp'\)"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType EnterpriseApps" {
+            $result = Get-EntraBetaServicePrincipal -ApplicationType "EnterpriseApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryIntegratedApp'\)"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType ManagedIdentity" {
+            $result = Get-EntraBetaServicePrincipal -ApplicationType "ManagedIdentity"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "servicePrincipalType eq 'ManagedIdentity'"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType MicrosoftApps" {
+            $result = Get-EntraBetaServicePrincipal -ApplicationType "MicrosoftApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appOwnerOrganizationId eq f8cdef31-a31e-4b4a-93e4-5f571e91255a"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should fail when ApplicationType is invalid" {
+            { Get-EntraBetaServicePrincipal -ApplicationType "InvalidType" } | Should -Throw "Cannot validate argument on parameter 'ApplicationType'*"
+        }
+
+        It "Should combine AssignmentRequired and ApplicationType filters" {
+            $result = Get-EntraBetaServicePrincipal -AssignmentRequired $true -ApplicationType "EnterpriseApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryIntegratedApp'\)"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should combine Filter and AssignmentRequired" {
+            $result = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Test'" -AssignmentRequired $true
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "DisplayName eq 'Test'"
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
+
+        It "Should combine Filter and ApplicationType" {
+            $result = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'Test'" -ApplicationType "ManagedIdentity"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "DisplayName eq 'Test'"
+            $params.Filter | Should -Match "servicePrincipalType eq 'ManagedIdentity'"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        }
     }
 }
 
