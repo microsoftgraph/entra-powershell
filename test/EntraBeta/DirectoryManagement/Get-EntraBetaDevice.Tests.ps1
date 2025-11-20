@@ -172,7 +172,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -LogonTimeBefore $logonDate
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*approximateLastSignInDateTime le*"
             }
         }
@@ -181,7 +181,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -Stale
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*approximateLastSignInDateTime le*"
             }
         }
@@ -190,7 +190,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -NonCompliant
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*isCompliant eq false*"
             }
         }
@@ -199,7 +199,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -IsManaged $true
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*isManaged eq True*"
             }
         }
@@ -208,7 +208,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -IsManaged $false
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*isManaged eq False*"
             }
         }
@@ -217,7 +217,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -JoinType "MicrosoftEntraJoined"
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*trustType eq 'AzureAd'*"
             }
         }
@@ -226,7 +226,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -JoinType "MicrosoftEntraHybridJoined"
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*trustType eq 'ServerAd'*"
             }
         }
@@ -235,7 +235,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -JoinType "MicrosoftEntraRegistered"
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*trustType eq 'Workplace'*"
             }
         }
@@ -249,7 +249,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -LogonTimeBefore $logonDate -NonCompliant -IsManaged $true
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*approximateLastSignInDateTime le*" -and
                 $Filter -like "*isCompliant eq false*" -and
                 $Filter -like "*isManaged eq True*"
@@ -260,7 +260,7 @@ Describe "Get-EntraBetaDevice" {
             $result = Get-EntraBetaDevice -Filter "DisplayName eq 'Mock-Device'" -Stale
             $result | Should -Not -BeNullOrEmpty
             
-            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+            Should -Invoke -CommandName Get-MgBetaDevice -ModuleName Microsoft.Entra.Beta.DirectoryManagement -Times 1 -ParameterFilter {
                 $Filter -like "*DisplayName eq 'Mock-Device'*" -and
                 $Filter -like "*approximateLastSignInDateTime le*"
             }
