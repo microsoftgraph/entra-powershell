@@ -17,8 +17,7 @@ function Invoke-BatchWithRetry {
         foreach ($resp in $result.responses) {
             "Id : $($resp.id), Status : $($resp.status)" | Out-File -FilePath "Path\To\log.txt" -Append
             if ($resp.status -eq 429) {
-                # Add to retry list
-                $pending = $pending | Where-Object { $_.id -eq $resp.id }
+                # Do nothing - will retry later
             } else {
                 $responses[$resp.id] = $resp
                 # Remove from pending
