@@ -17,7 +17,7 @@ function Get-EntraUserCBAAuthorizationInfo {
             })]
         [string]$UserId,
 
-        [Parameter(Mandatory = $false, HelpMessage = 'If specified, returns the raw response from the API.')]
+        [Parameter(Mandatory = $false, HelpMessage = 'If specified`, returns the raw response from the API.')]
         [Alias('RawResponse')]
         [switch]$Raw
     )

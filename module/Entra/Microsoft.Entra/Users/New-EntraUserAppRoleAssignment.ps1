@@ -5,7 +5,7 @@
 function New-EntraUserAppRoleAssignment {
     [CmdletBinding(DefaultParameterSetName = 'ByUserIdAndRoleParameters')]
     param (                
-        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (user, group, or service principal) to assign the app role to.")]
+        [Parameter(ParameterSetName = "ByUserIdAndRoleParameters", Mandatory = $true, HelpMessage = "Specifies the object ID of the principal (user`, group`, or service principal) to assign the app role to.")]
         [ValidateNotNullOrEmpty()]
         [guid] $PrincipalId,
                 

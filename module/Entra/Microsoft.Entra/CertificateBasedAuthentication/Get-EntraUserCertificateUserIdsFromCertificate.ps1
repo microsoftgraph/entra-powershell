@@ -9,13 +9,13 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
         [string]$Path,
 
         [Parameter(Mandatory = $false,
-            HelpMessage = "Certificate object. If provided, the Path parameter is ignored.")]
+            HelpMessage = "Certificate object. If provided`, the Path parameter is ignored.")]
         [Alias('CertificateObject', 'Cert')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate,
 
         [Parameter(Mandatory = $false,
             ParameterSetName = 'Default',
-            HelpMessage = "The certificate mapping type to use. Valid values are: PrincipalName, RFC822Name, IssuerAndSubject, Subject, SKI, SHA1PublicKey, IssuerAndSerialNumber.")]
+            HelpMessage = "The certificate mapping type to use. Valid values are: PrincipalName`, RFC822Name`, IssuerAndSubject`, Subject`, SKI`, SHA1PublicKey`, IssuerAndSerialNumber.")]
         [ValidateSet("PrincipalName", "RFC822Name", "IssuerAndSubject", "Subject",
             "SKI", "SHA1PublicKey", "IssuerAndSerialNumber")]
         [string]$CertificateMapping

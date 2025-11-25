@@ -10,7 +10,7 @@ function Connect-Entra {
 
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', Mandatory = $true, Position = 1, HelpMessage = 'The client ID of your application.')]
         [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'The client ID of your application.')]
-        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'The client ID to authenticate for a user assigned managed identity. For more information on user assigned managed identities see: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#how-a-user-assigned-managed-identity-works-with-an-azure-vmId. To use the SystemAssigned identity, leave this field blank.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'The client ID to authenticate for a user assigned managed identity. For more information on user assigned managed identities see: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#how-a-user-assigned-managed-identity-works-with-an-azure-vmId. To use the SystemAssigned identity`, leave this field blank.')]
         [Alias('AppId', 'ApplicationId')]
         [string] $ClientId,
 
@@ -27,24 +27,24 @@ function Connect-Entra {
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'An X.509 certificate supplied during invocation.')]
         [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
 
-        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The PSCredential object provides the application ID and client secret for service principal credentials. For more information about the PSCredential object, type Get-Help Get-Credential.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The PSCredential object provides the application ID and client secret for service principal credentials. For more information about the PSCredential object`, type Get-Help Get-Credential.')]
         [Alias('SecretCredential', 'Credential')]
         [pscredential] $ClientSecretCredential,
 
         [Parameter(ParameterSetName = 'AccessTokenParameterSet', Mandatory = $true, Position = 1, HelpMessage = 'Specifies a bearer token for Microsoft Graph service. Access tokens do timeout and you''ll have to handle their refresh.')]
         [securestring] $AccessToken,
 
-        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
-        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
-        [Parameter(ParameterSetName = 'UserParameterSet', Position = 4, HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e., common, organizations, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e.`, common`, organizations`, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e.`, common`, organizations`, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', Position = 4, HelpMessage = 'The ID of the tenant to connect to. You can also use this parameter to specify your sign-in audience. i.e.`, common`, organizations`, or consumers. See https://learn.microsoft.com/entra/identity-platform/msal-client-application-configuration#authority.')]
         [Alias('Audience', 'Tenant')]
         [string] $TenantId,
 
-        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
-        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
-        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
-        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
-        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process`, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process`, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process`, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process`, or `CurrentUser` for all sessions started by user.')]
+        [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process`, or `CurrentUser` for all sessions started by user.')]
         [Microsoft.Graph.PowerShell.Authentication.ContextScope] $ContextScope,
 
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]

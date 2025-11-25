@@ -9,12 +9,12 @@ function New-EntraGroupLifecyclePolicy {
         [ValidateNotNullOrEmpty()]
         [System.String] $AlternateNotificationEmails,
                 
-        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "The group type for which the expiration policy applies. Possible values are All, Selected or None.")]
+        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "The group type for which the expiration policy applies. Possible values are All`, Selected or None.")]
         [ValidateSet("All", "Selected", "None", IgnoreCase = $true)]
         [ValidateNotNullOrEmpty()]
         [System.String] $ManagedGroupTypes,
                 
-        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "Number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.")]
+        [Parameter(ParameterSetName = "ByLifecycleSettings", Mandatory = $true, HelpMessage = "Number of days before a group expires and needs to be renewed. Once renewed`, the group expiration is extended by the number of days defined.")]
         [ValidateNotNullOrEmpty()]
         [System.Nullable`1[System.Int32]] $GroupLifetimeInDays
     )

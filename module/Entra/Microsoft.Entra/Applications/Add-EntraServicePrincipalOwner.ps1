@@ -10,7 +10,7 @@ function Add-EntraServicePrincipalOwner {
         [ValidateNotNullOrEmpty()]
         [System.String] $ServicePrincipalId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the owner, which can be a user, the service principal itself, or another service principal.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Unique ID of the owner`, which can be a user`, the service principal itself`, or another service principal.")]
         [Alias('RefObjectId')]
         [ValidateNotNullOrEmpty()]
         [System.String] $OwnerId

@@ -33,7 +33,7 @@ function Set-EntraGroup {
         [ValidateSet('true', 'false', IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
 
-        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private, public, or has hidden membership.')]
+        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private`, public`, or has hidden membership.')]
         [ValidateSet('Private', 'Public', 'HiddenMembership', IgnoreCase = $true)]
         [System.String] $Visibility,
 

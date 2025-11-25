@@ -21,7 +21,7 @@ function New-EntraBetaApplicationProxyApplication {
         [System.String] $InternalUrl,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Specifies the external authentication type (e.g: 'aadPreAuthentication', 'passthru').")]
+            HelpMessage = "Specifies the external authentication type (e.g: 'aadPreAuthentication'`, 'passthru').")]
         [System.String] $ExternalAuthenticationType,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
@@ -45,7 +45,7 @@ function New-EntraBetaApplicationProxyApplication {
         [System.Nullable[System.Boolean]] $IsTranslateLinksInBodyEnabled,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 
-            HelpMessage = "Specifies the timeout duration for the application server (e.g: 'Default', 'Long').")]
+            HelpMessage = "Specifies the timeout duration for the application server (e.g: 'Default'`, 'Long').")]
         [System.String] $ApplicationServerTimeout,
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, 

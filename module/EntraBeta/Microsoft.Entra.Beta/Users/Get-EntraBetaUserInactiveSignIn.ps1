@@ -19,7 +19,7 @@ function Get-EntraBetaUserInactiveSignIn {
 
         # Return results for All, Member, or Guest userTypes
         [Parameter(
-            HelpMessage = "Specifies the type of user to filter. Choose 'All' for all users, 'Member' for internal users, or 'Guest' for external users."
+            HelpMessage = "Specifies the type of user to filter. Choose 'All' for all users`, 'Member' for internal users`, or 'Guest' for external users."
         )]
         [ValidateSet("All", "Member", "Guest")]
         [System.String]

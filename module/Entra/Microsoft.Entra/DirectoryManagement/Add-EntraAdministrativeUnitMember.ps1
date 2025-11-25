@@ -5,7 +5,7 @@
 function Add-EntraAdministrativeUnitMember {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of a user, group, device, or directory object to add to an administrative unit.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The ID of a user`, group`, device`, or directory object to add to an administrative unit.")]
         [Alias('RefObjectId')]
         [System.String] $MemberId,
 

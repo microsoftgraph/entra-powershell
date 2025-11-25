@@ -6,7 +6,7 @@ function Set-EntraUser {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingUserNameAndPassWordParams", "", Scope = "Function", Target = "*")]
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user, such as their object ID or user principal name.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The unique identifier for the user`, such as their object ID or user principal name.")]
         [Alias('ObjectId', 'UPN', 'Identity', 'Id')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({
@@ -21,10 +21,10 @@ function Set-EntraUser {
         [Parameter(HelpMessage = "A short biography or description about the user.")]
         [string]$aboutMe,
 
-        [Parameter(HelpMessage = "Indicates whether the account is enabled. true if enabled; otherwise, false.")]
+        [Parameter(HelpMessage = "Indicates whether the account is enabled. true if enabled; otherwise`, false.")]
         [bool]$accountEnabled,
 
-        [Parameter(HelpMessage = "The user's age group. Allowed values: minor, notAdult, adult.")]
+        [Parameter(HelpMessage = "The user's age group. Allowed values: minor`, notAdult`, adult.")]
         [ValidateSet("minor", "notAdult", "adult")]
         [string]$ageGroup,
 
@@ -40,7 +40,7 @@ function Set-EntraUser {
         [Parameter(HelpMessage = "The company name associated with the user.")]
         [string]$companyName,
 
-        [Parameter(HelpMessage = "Indicates if consent has been obtained for minors. Allowed values: Granted, Denied, NotRequired.")]
+        [Parameter(HelpMessage = "Indicates if consent has been obtained for minors. Allowed values: Granted`, Denied`, NotRequired.")]
         [ValidateSet("Granted", "Denied", "NotRequired")]
         [string]$consentProvidedForMinor,
 
@@ -65,7 +65,7 @@ function Set-EntraUser {
         [Parameter(HelpMessage = "The organization data related to the user.")]
         [hashtable]$employeeOrgData,
 
-        [Parameter(HelpMessage = "Captures enterprise worker type: Employee, Contractor, Consultant, Vendor, etc.")]
+        [Parameter(HelpMessage = "Captures enterprise worker type: Employee`, Contractor`, Consultant`, Vendor`, etc.")]
         [string]$employeeType,
 
         [Parameter(HelpMessage = "The user's fax number.")]

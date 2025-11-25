@@ -14,8 +14,8 @@ function Revoke-EntraBetaMcpServerPermission {
         [ValidateNotNullOrEmpty()]
         [guid]$ApplicationId,
 
-        [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
-        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified, all permissions will be revoked from the MCP client.")]
+        [Parameter(ParameterSetName = 'PredefinedClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified`, all permissions will be revoked from the MCP client.")]
+        [Parameter(ParameterSetName = 'CustomClient', Mandatory = $false, HelpMessage = "Specifies the specific scopes/permissions to revoke. If not specified`, all permissions will be revoked from the MCP client.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )

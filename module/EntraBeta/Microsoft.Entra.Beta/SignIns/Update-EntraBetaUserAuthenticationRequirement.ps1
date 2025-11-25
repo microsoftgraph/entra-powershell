@@ -17,7 +17,7 @@ function Update-EntraBetaUserAuthenticationRequirement {
             })]
         [System.String] $UserId,
 
-        [Parameter(Mandatory = $true, HelpMessage = "Specify the Multi-Factor Authentication (MFA) state for individual users. Valid values include 'Enabled', 'Disabled', and 'Enforced'.")]
+        [Parameter(Mandatory = $true, HelpMessage = "Specify the Multi-Factor Authentication (MFA) state for individual users. Valid values include 'Enabled'`, 'Disabled'`, and 'Enforced'.")]
         [ValidateSet('Enabled', 'Disabled', 'Enforced')]
         [System.String] $PerUserMfaState
     )

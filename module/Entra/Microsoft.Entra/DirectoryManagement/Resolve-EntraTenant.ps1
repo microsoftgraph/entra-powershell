@@ -45,7 +45,7 @@ function Resolve-EntraTenant {
             Position = 1,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Tenant Environment Name (Global, USGov, China, USGovDoD, Germany)."
+            HelpMessage = "Tenant Environment Name (Global`, USGov`, China`, USGovDoD`, Germany)."
         )]
         [ValidateSet("Global", "USGov", "China", "USGovDoD", "Germany")]
         [string]

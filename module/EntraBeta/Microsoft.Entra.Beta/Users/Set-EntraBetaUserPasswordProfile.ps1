@@ -9,7 +9,7 @@ function Set-EntraBetaUserPasswordProfile {
         [Alias('ForceChangePasswordNextLogin')]
         [switch] $ForceChangePasswordNextSignIn,
                 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set, force the user to change their password.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set`, force the user to change their password.")]
         [Alias('EnforceChangePasswordPolicy')]
         [switch] $ForceChangePasswordNextSignInWithMfa,
                 

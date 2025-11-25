@@ -25,7 +25,7 @@ function Set-EntraUserPasswordProfile {
         [ValidateNotNullOrEmpty()]
         [System.Security.SecureString] $Password,
 
-        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set, force the user to change their password.")]
+        [Parameter(ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "If set`, force the user to change their password.")]
         [Alias('EnforceChangePasswordPolicy')]
         [switch] $ForceChangePasswordNextSignInWithMfa
     )

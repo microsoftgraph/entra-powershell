@@ -16,7 +16,7 @@ function Get-EntraObjectSetting {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies whether to return all object items.")]
         [switch] $All,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The type of object to retrieve settings for. For example, 'users', 'groups', 'servicePrincipals', etc.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The type of object to retrieve settings for. For example`, 'users'`, 'groups'`, 'servicePrincipals'`, etc.")]
         [ValidateNotNullOrEmpty()]
         [System.String] $TargetType,
 

@@ -8,7 +8,7 @@ function New-EntraBetaGroup {
         [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Specifies the group type and its membership.')]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
 
-        [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Sets the group join policy and content visibility. Options are: Private, Public, or HiddenMembership.')]
+        [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Sets the group join policy and content visibility. Options are: Private`, Public`, or HiddenMembership.')]
         [System.String] $Visibility,
 
         [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Description of the group.')]

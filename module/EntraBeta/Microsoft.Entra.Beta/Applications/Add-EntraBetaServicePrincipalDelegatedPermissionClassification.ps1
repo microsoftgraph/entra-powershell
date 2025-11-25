@@ -10,7 +10,7 @@ function Add-EntraBetaServicePrincipalDelegatedPermissionClassification {
         [ValidateNotNullOrEmpty()]
         [guid] $ServicePrincipalId,
                 
-        [Parameter(ParameterSetName = "ByServicePrincipalAndPermissionInfo", Mandatory = $true, HelpMessage = "Permission classification. e.g. Low, Medium, High")]
+        [Parameter(ParameterSetName = "ByServicePrincipalAndPermissionInfo", Mandatory = $true, HelpMessage = "Permission classification. e.g. Low`, Medium`, High")]
         [ValidateNotNullOrEmpty()]
         [System.Nullable`1[Microsoft.Open.MSGraph.Model.DelegatedPermissionClassification+ClassificationEnum]] $Classification,
                 

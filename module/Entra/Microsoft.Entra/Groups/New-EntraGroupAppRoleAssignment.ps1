@@ -9,7 +9,7 @@ function New-EntraGroupAppRoleAssignment {
         [ValidateNotNullOrEmpty()]
         [Guid] $PrincipalId,
                 
-        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the resource service Principal, which has defined the app role.")]
+        [Parameter(ParameterSetName = "ByGroupIdAndRoleParameters", Mandatory = $true, HelpMessage = "The ID of the resource service Principal`, which has defined the app role.")]
         [ValidateNotNullOrEmpty()]
         [Guid] $ResourceId,
     

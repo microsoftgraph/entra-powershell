@@ -5,10 +5,10 @@
 function New-EntraBetaApplicationExtensionProperty {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(ParameterSetName = "Default", HelpMessage = "Data type of the extension property. e.g. String, Integer, Boolean.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Data type of the extension property. e.g. String`, Integer`, Boolean.")]
         [System.String] $DataType,
                 
-        [Parameter(ParameterSetName = "Default", HelpMessage = "Target objects for the extension property. e.g. User, Group, Device.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Target objects for the extension property. e.g. User`, Group`, Device.")]
         [System.Collections.Generic.List`1[System.String]] $TargetObjects,
                 
         [Parameter(ParameterSetName = "Default", HelpMessage = "Name of the extension property.")]

@@ -19,13 +19,13 @@ function Set-EntraBetaAdministrativeUnit {
         [Parameter(ParameterSetName = "Default", HelpMessage = "The dynamic membership rule for the administrative unit.")]
         [System.String] $MembershipRule,
 
-        [Parameter(ParameterSetName = "Default", HelpMessage = "Controls whether the dynamic membership rule is actively processed e.g. On, Paused.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Controls whether the dynamic membership rule is actively processed e.g. On`, Paused.")]
         [System.String] $MembershipRuleProcessingState,
 
-        [Parameter(ParameterSetName = "Default", HelpMessage = "Indicates the membership type for the administrative unit. The possible values are: dynamic, assigned.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "Indicates the membership type for the administrative unit. The possible values are: dynamic`, assigned.")]
         [System.String] $MembershipType,
 
-        [Parameter(ParameterSetName = "Default", HelpMessage = "The visibility of the administrative unit. If not set, the default value is null and the default behavior is public.")]
+        [Parameter(ParameterSetName = "Default", HelpMessage = "The visibility of the administrative unit. If not set`, the default value is null and the default behavior is public.")]
         [System.String] $Visibility
     )
 

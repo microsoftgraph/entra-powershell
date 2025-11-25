@@ -19,8 +19,8 @@ function Grant-EntraBetaMcpServerPermission {
         [guid]$ApplicationId,
 
         # Specifies the specific scopes to grant. If not specified, all available scopes will be granted.
-        [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
-        [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified, all available scopes will be granted.")]
+        [Parameter(ParameterSetName = 'PredefinedClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified`, all available scopes will be granted.")]
+        [Parameter(ParameterSetName = 'CustomClientScopes', Mandatory = $true, HelpMessage = "Specify one or more specific scopes to grant to the MCP client. If not specified`, all available scopes will be granted.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes
     )

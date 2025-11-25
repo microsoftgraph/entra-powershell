@@ -6,12 +6,12 @@ function Set-EntraBetaAppRoleToApplicationUser {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(Mandatory = $true, 
-            HelpMessage = "Specify the data source type: 'DatabaseorDirectory', 'SAPCloudIdentity', or 'Generic' which determines the column attribute mapping.")]
+            HelpMessage = "Specify the data source type: 'DatabaseorDirectory'`, 'SAPCloudIdentity'`, or 'Generic' which determines the column attribute mapping.")]
         [ValidateSet("DatabaseorDirectory", "SAPCloudIdentity", "Generic")]
         [string]$DataSource,
 
         [Parameter(Mandatory = $true,
-            HelpMessage = "Path to the input file containing users, e.g: C:\temp\users.csv")]
+            HelpMessage = "Path to the input file containing users`, e.g: C:\temp\users.csv")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FilePath,
@@ -22,7 +22,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
         [string]$ApplicationName,
 
         [Parameter(Mandatory = $false,
-            HelpMessage = "Specifies what Microsoft accounts are supported for the application. Options are 'AzureADMyOrg', 'AzureADMultipleOrgs', 'AzureADandPersonalMicrosoftAccount', 'PersonalMicrosoftAccount'")]
+            HelpMessage = "Specifies what Microsoft accounts are supported for the application. Options are 'AzureADMyOrg'`, 'AzureADMultipleOrgs'`, 'AzureADandPersonalMicrosoftAccount'`, 'PersonalMicrosoftAccount'")]
         [ValidateSet("AzureADMyOrg", "AzureADMultipleOrgs", "AzureADandPersonalMicrosoftAccount", "PersonalMicrosoftAccount")]
         [string]$SignInAudience = "AzureADMyOrg",
 

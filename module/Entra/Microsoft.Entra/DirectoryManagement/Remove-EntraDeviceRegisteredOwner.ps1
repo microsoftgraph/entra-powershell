@@ -9,7 +9,7 @@ function Remove-EntraDeviceRegisteredOwner {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Device object ID.")]
         [System.String] $DeviceId,
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Owner object ID, userId.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Owner object ID`, userId.")]
         [System.String] $OwnerId
     )
 

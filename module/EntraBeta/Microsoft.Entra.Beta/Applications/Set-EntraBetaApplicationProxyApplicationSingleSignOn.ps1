@@ -10,14 +10,14 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
         [Alias("ObjectId")]
         [System.String] $ApplicationId,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The single sign-on mode to set for the application. For example, 'none', 'headerbased', 'saml', 'oAuth2IdToken', 'oAuth2AccessToken', 'oAuth2IdTokenAndAccessToken', 'oAuth2ClientCredentials', 'oAuth2ClientCredentialsAndIdToken'")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The single sign-on mode to set for the application. For example`, 'none'`, 'headerbased'`, 'saml'`, 'oAuth2IdToken'`, 'oAuth2AccessToken'`, 'oAuth2IdTokenAndAccessToken'`, 'oAuth2ClientCredentials'`, 'oAuth2ClientCredentialsAndIdToken'")]
         [ValidateNotNullOrEmpty()]
         [System.String] $SingleSignOnMode,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The identity type for Kerberos delegation. For example, 'servicePrincipalName', 'userPrincipalName', 'userId'")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The identity type for Kerberos delegation. For example`, 'servicePrincipalName'`, 'userPrincipalName'`, 'userId'")]
         [System.String] $KerberosDelegatedLoginIdentity,
 
-        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The service principal name for Kerberos delegation. For example, 'HTTP/contoso.com'")]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "The service principal name for Kerberos delegation. For example`, 'HTTP/contoso.com'")]
         [String] $KerberosInternalApplicationServicePrincipalName
     )
 

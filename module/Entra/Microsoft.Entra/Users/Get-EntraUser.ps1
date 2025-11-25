@@ -19,7 +19,7 @@ function Get-EntraUser {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Return all users.")]
         [switch] $All,
 
-        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for users using a search string from different properties e.g. DisplayName, Job Title, UPN etc.")]
+        [Parameter(ParameterSetName = "GetVague", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Search for users using a search string from different properties e.g. DisplayName`, Job Title`, UPN etc.")]
         [System.String] $SearchString,
 
         # Parameter set to remove filter from being used with enabled filter
@@ -30,7 +30,7 @@ function Get-EntraUser {
         [Alias("Select")]
         [System.String[]] $Property,
 
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query, not the total number of items returned.")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "This controls how many items are fetched per query`, not the total number of items returned.")]
         [ValidateRange(1, 999)]
         [System.Nullable`1[System.Int32]] $PageSize,
 

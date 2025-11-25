@@ -4,7 +4,7 @@
 function Get-EntraBetaCrossTenantAccessActivity {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param(
-        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Specify the access direction: 'Inbound' for external users accessing your tenant, or 'Outbound' for your users accessing external tenants.")]
+        [Parameter(ParameterSetName = "GetQuery", HelpMessage = "Specify the access direction: 'Inbound' for external users accessing your tenant`, or 'Outbound' for your users accessing external tenants.")]
         [ValidateSet('Inbound', 'Outbound')]
         [string]$AccessDirection,
 

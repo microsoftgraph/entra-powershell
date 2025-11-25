@@ -14,7 +14,7 @@ function New-EntraApplication {
         [System.String] $DisplayName,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "Defines which accounts are supported for this application. Valid values: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount.")]
+            HelpMessage = "Defines which accounts are supported for this application. Valid values: AzureADMyOrg`, AzureADMultipleOrgs`, AzureADandPersonalMicrosoftAccount`, PersonalMicrosoftAccount.")]
         [System.String] $SignInAudience,
 
         [Parameter(ParameterSetName = "CreateApplication", 
@@ -26,7 +26,7 @@ function New-EntraApplication {
         [System.Collections.Generic.List`1[System.String]] $Tags,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "Configures the groups claim issued in a user or OAuth 2.0 access token. Valid values: None, SecurityGroup, All.")]
+            HelpMessage = "Configures the groups claim issued in a user or OAuth 2.0 access token. Valid values: None`, SecurityGroup`, All.")]
         [System.String] $GroupMembershipClaims,
 
         [Parameter(ParameterSetName = "CreateApplication", 
@@ -38,7 +38,7 @@ function New-EntraApplication {
         [System.Nullable`1[System.Boolean]] $IsDeviceOnlyAuthSupported,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "Specifies whether the application is a public client. If not set, the default behavior is false.")]
+            HelpMessage = "Specifies whether the application is a public client. If not set`, the default behavior is false.")]
         [System.Nullable`1[System.Boolean]] $IsFallbackPublicClient,
 
         [Parameter(ParameterSetName = "CreateApplication", 
@@ -50,7 +50,7 @@ function New-EntraApplication {
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphRequiredResourceAccess[]] $RequiredResourceAccess,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "The API settings for the application, including OAuth2 permission scopes and app roles.")]
+            HelpMessage = "The API settings for the application`, including OAuth2 permission scopes and app roles.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphApiApplication] $Api,
 
         [Parameter(ParameterSetName = "CreateApplication", 
@@ -58,11 +58,11 @@ function New-EntraApplication {
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphPublicClientApplication] $PublicClient,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "Settings for a web application, including redirect URIs and logout URL.")]
+            HelpMessage = "Settings for a web application`, including redirect URIs and logout URL.")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphWebApplication] $Web,
 
         [Parameter(ParameterSetName = "CreateApplication", 
-            HelpMessage = "URLs with more information about the application (marketing, terms of service, privacy, etc).")]
+            HelpMessage = "URLs with more information about the application (marketing`, terms of service`, privacy`, etc).")]
         [Microsoft.Graph.PowerShell.Models.MicrosoftGraphInformationalUrl] $InformationalUrl,
 
         [Parameter(ParameterSetName = "CreateApplication", 

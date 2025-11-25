@@ -8,7 +8,7 @@ function Set-EntraBetaGroup {
         [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies the group type and its membership.')]
         [System.Collections.Generic.List`1[System.String]] $GroupTypes,
 
-        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private, public, or has hidden membership.')]
+        [Parameter(ParameterSetName = 'UpdateGroupByGroupId', HelpMessage = 'Specifies whether the group is private`, public`, or has hidden membership.')]
         [ValidateSet('Private', 'Public', 'HiddenMembership', IgnoreCase = $true)]
         [System.String] $Visibility,
 

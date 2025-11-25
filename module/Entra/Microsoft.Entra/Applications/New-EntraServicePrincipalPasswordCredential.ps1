@@ -12,11 +12,11 @@ function New-EntraServicePrincipalPasswordCredential {
         [System.String] $ServicePrincipalId,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified, defaults to the current date and time.")]
+            HelpMessage = "Specifies the start date and time (UTC) from which the password credential becomes valid. If not specified`, defaults to the current date and time.")]
         [System.Nullable[System.DateTime]] $StartDate,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Specifies the end date and time (UTC) after which the password credential expires. If not specified, defaults to one year from the current date and time.")]
+            HelpMessage = "Specifies the end date and time (UTC) after which the password credential expires. If not specified`, defaults to one year from the current date and time.")]
         [System.Nullable[System.DateTime]] $EndDate,
 
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true,

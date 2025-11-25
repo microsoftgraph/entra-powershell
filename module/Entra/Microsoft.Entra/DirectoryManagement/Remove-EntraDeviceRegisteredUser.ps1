@@ -6,7 +6,7 @@ function Remove-EntraDeviceRegisteredUser {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
                 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID, userId.")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "User object ID`, userId.")]
         [System.String] $UserId,
 
         [Alias('ObjectId')]

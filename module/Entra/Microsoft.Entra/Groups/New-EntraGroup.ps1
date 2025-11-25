@@ -32,7 +32,7 @@ function New-EntraGroup {
         [ValidateSet('true', 'false', IgnoreCase = $true)]
         [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
 
-        [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Sets the group join policy and content visibility. Options are: Private, Public, or HiddenMembership.')]
+        [Parameter(ParameterSetName = 'ByGroupIdentityParameters', HelpMessage = 'Sets the group join policy and content visibility. Options are: Private`, Public`, or HiddenMembership.')]
         [System.String] $Visibility,
 
         [Parameter(ParameterSetName = 'ByGroupIdentityParameters', Mandatory = $true, HelpMessage = 'Display name of the group.')]
