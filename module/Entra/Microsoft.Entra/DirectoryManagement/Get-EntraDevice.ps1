@@ -136,7 +136,7 @@ function Get-EntraDevice {
         }
 
         # Ref: https://learn.microsoft.com/en-us/entra/identity/devices/manage-stale-devices
-        if ($null -ne $PSBoundParameters["Stale"]) {
+        if ($PSBoundParameters.ContainsKey("Stale")) {
             $staleDate = (Get-Date).AddMonths(-2).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
             if ($params.ContainsKey("Filter")) {
                 $params["Filter"] += " and approximateLastSignInDateTime le $staleDate"
@@ -145,7 +145,7 @@ function Get-EntraDevice {
             }
         }
 
-        if ($null -ne $PSBoundParameters["NonCompliant"]) {
+        if ($PSBoundParameters.ContainsKey("NonCompliant")) {
             if ($params.ContainsKey("Filter")) {
                 $params["Filter"] += " and isCompliant eq false"
             } else {
