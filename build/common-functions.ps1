@@ -84,12 +84,14 @@ function Register-LocalGallery {
 	}
 
 	$null = Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation ($repoPath) -ScriptSourceLocation ($repoPath) -InstallationPolicy Trusted
-	$null = Register-PSResourceRepository -Name (Get-LocalPSRepoName) -Uri ($repoPath)
+	# Note: Register-PSResourceRepository is not available in PowerShell 5.1
+	# $null = Register-PSResourceRepository -Name (Get-LocalPSRepoName) -Uri ($repoPath)
 }
 
 function Unregister-LocalGallery {    
 	$null = Unregister-PSRepository (Get-LocalPSRepoName)
-	$null = Unregister-PSResourceRepository (Get-LocalPSRepoName)
+	# Note: Unregister-PSResourceRepository is not available in PowerShell 5.1
+	# $null = Unregister-PSResourceRepository (Get-LocalPSRepoName)
 }
 
 function Update-ModuleVersion {
