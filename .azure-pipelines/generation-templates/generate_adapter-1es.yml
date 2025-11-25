@@ -28,13 +28,16 @@ steps:
   inputs:
     targetType: inline
     script: |
+      $ConfirmPreference = 'None'
       ./build/Install-Dependencies.ps1 -ModuleName Entra -Verbose      
     pwsh: false
 - task: powershell@2
   displayName: 'Install PlatyPS'
   inputs:
     targetType: inline
-    script: Install-Module PlatyPS -scope currentuser -Force
+    script: |
+      $ConfirmPreference = 'None'
+      Install-Module PlatyPS -scope currentuser -Force
     pwsh: false
 - task: powershell@2
   displayName: 'Build Entra'
@@ -99,7 +102,8 @@ steps:
   displayName: 'Install Dependencies EntraBeta'
   inputs:
     targetType: inline
-    script: |      
+    script: |
+      $ConfirmPreference = 'None'
       ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
     pwsh: false
 - task: powershell@2
@@ -157,7 +161,9 @@ steps:
   displayName: 'Install Pester'
   inputs:
     targetType: inline
-    script: Install-Module Pester -scope currentuser -SkipPublisherCheck -Force
+    script: |
+      $ConfirmPreference = 'None'
+      Install-Module Pester -scope currentuser -SkipPublisherCheck -Force
     pwsh: false
 - task: powershell@2
   displayName: 'Run tests Entra'
@@ -165,6 +171,8 @@ steps:
     targetType: inline
     pwsh: false
     script: |
+      $ErrorActionPreference = 'Stop'
+      $ConfirmPreference = 'None'
       cd test/Entra
       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
@@ -178,6 +186,8 @@ steps:
     targetType: inline
     pwsh: false
     script: |
+      $ErrorActionPreference = 'Stop'
+      $ConfirmPreference = 'None'
       cd test/EntraBeta
       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
@@ -192,6 +202,8 @@ steps:
       targetType: inline
       pwsh: false
       script: |
+        $ErrorActionPreference = 'Stop'
+        $ConfirmPreference = 'None'
         cd test/module/Integration/Entra
         Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
   - task: PublishTestResults@2
@@ -205,6 +217,8 @@ steps:
       targetType: inline
       pwsh: false
       script: |
+        $ErrorActionPreference = 'Stop'
+        $ConfirmPreference = 'None'
         cd test/module/Integration/EntraBeta
         Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
   - task: PublishTestResults@2
