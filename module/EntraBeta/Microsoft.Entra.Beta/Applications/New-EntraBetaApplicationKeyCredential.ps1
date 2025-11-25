@@ -17,7 +17,7 @@ function New-EntraBetaApplicationKeyCredential {
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the value of the key credential, typically the public key in base64-encoded format.")]
         [System.String] $Value,
             
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of key credential (e.g., AsymmetricX509Cert, Symmetric).")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the type of key credential (e.g: AsymmetricX509Cert, Symmetric).")]
         [System.Nullable[Microsoft.Open.AzureAD.Graph.PowerShell.Custom.KeyType]] $Type,
 
         [Alias('ObjectId')]            
@@ -25,7 +25,7 @@ function New-EntraBetaApplicationKeyCredential {
         [ValidateNotNullOrEmpty()]
         [System.String] $ApplicationId,
             
-        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the usage of the key credential (e.g., Sign, Verify).")]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = "Specifies the usage of the key credential (e.g: Sign, Verify).")]
         [System.Nullable[Microsoft.Open.AzureAD.Graph.PowerShell.Custom.KeyUsage]] $Usage
     )
 

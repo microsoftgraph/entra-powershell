@@ -33,7 +33,7 @@ function Resolve-EntraTenant {
             Position = 0,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            HelpMessage = "Unique Domain Name(s) of the Tenant(s) (e.g., contoso.com)."
+            HelpMessage = "Unique Domain Name(s) of the Tenant(s) (e.g: contoso.com)."
         )]
         [ValidateScript({ $_ -match "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z]{2,})+$" })]
         [string[]]

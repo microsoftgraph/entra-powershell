@@ -14,11 +14,11 @@ function New-EntraServicePrincipalKeyCredential {
             HelpMessage = "Specifies the value for the public key encoded in Base64.")]
         [System.String]$Value,
 
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of key credential (e.g., AsymmetricX509Cert, Symmetric).")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the type of key credential (e.g: AsymmetricX509Cert, Symmetric).")]
         [ValidateSet('AsymmetricX509Cert', 'X509CertAndPassword')]
         [System.String]$Type,
         
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the usage of the key credential (e.g., Sign, Verify).")]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, HelpMessage = "Specifies the usage of the key credential (e.g: Sign, Verify).")]
         [ValidateSet('Sign', 'Verify')]
         [System.String]$Usage,
         

@@ -13,16 +13,16 @@ function New-EntraBetaUser {
         [Alias('FacsimileTelephoneNumber', 'Fax')]
         [System.String] $FaxNumber,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The type of user (e.g., Member, Guest).")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The type of user (e.g: Member, Guest).")]
         [System.String] $UserType,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's preferred language (e.g., en-US).")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's preferred language (e.g: en-US).")]
         [System.String] $PreferredLanguage,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The street address of the user's place of business. Maximum length is 1,024 characters.")]
         [System.String] $StreetAddress,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Indicates how the user was created (e.g., LocalAccount, Invitation).")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Indicates how the user was created (e.g: LocalAccount, Invitation).")]
         [System.String] $CreationType,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "Immutable identifier for the user from on-premises directory.")]
@@ -70,7 +70,7 @@ function New-EntraBetaUser {
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's job title. Maximum length: 128 characters.")]
         [System.String] $JobTitle,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's external state for invited guest users (e.g., PendingAcceptance, Accepted).")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's external state for invited guest users (e.g: PendingAcceptance, Accepted).")]
         [Alias('UserState')]
         [System.String] $ExternalUserState,
                 
@@ -83,7 +83,7 @@ function New-EntraBetaUser {
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's surname (last name). Maximum length: 64 characters.")]
         [System.String] $Surname,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "A list of the user’s additional email addresses (e.g., ['bob@contoso.com', 'Robert@fabrikam.com']). Supports up to 250 entries, each up to 250 characters.")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "A list of the user’s additional email addresses (e.g: ['bob@contoso.com', 'Robert@fabrikam.com']). Supports up to 250 entries, each up to 250 characters.")]
         [System.Collections.Generic.List`1[System.String]] $OtherMails,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's sign-in name (UPN) in the format alias@domain. It should match the user's email and use a verified domain in the tenant.")]

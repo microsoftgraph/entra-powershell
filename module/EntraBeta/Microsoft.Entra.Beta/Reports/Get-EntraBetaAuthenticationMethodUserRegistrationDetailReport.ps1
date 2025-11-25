@@ -19,7 +19,7 @@ function Get-EntraBetaAuthenticationMethodUserRegistrationDetailReport {
         [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Filter the results based on the specified criteria.")]
         [System.String] $Filter,
 
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the property to sort by. Use property name for ascending, or property name with 'desc' suffix for descending (e.g., 'displayName' or 'displayName desc').")]
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false, HelpMessage = "Specifies the property to sort by. Use property name for ascending, or property name with 'desc' suffix for descending (e.g: 'displayName' or 'displayName desc').")]
         [Alias("OrderBy", "SortBy")]
         [System.String] $Sort,
 

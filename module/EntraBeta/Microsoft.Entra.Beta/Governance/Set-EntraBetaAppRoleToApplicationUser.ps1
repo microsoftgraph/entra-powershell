@@ -11,7 +11,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
         [string]$DataSource,
 
         [Parameter(Mandatory = $true,
-            HelpMessage = "Path to the input file containing users, e.g., C:\temp\users.csv")]
+            HelpMessage = "Path to the input file containing users, e.g: C:\temp\users.csv")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $_ })]
         [System.IO.FileInfo]$FilePath,
