@@ -73,7 +73,8 @@ $modulePath = Join-Path $modulePath $module
 $modulePath = Join-Path $modulePath $metadata.version
 Log-Message "[Publish Local Compat] module : $module" -Level 'INFO'
 Log-Message "[Publish Local Compat] modulePath : $modulePath" -Level 'INFO'
-Publish-PSResource -Path $modulePath -Repository (Get-LocalPSRepoName) -SkipDependenciesCheck
+# Use Publish-Module for PowerShell 5.1 compatibility instead of Publish-PSResource
+Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName) -Force -Verbose
 
 if ($Install) {
 	Log-Message "[Publish Local Compat] Installing : $module" -Level 'INFO'
