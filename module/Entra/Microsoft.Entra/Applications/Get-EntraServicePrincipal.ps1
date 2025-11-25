@@ -25,7 +25,16 @@ function Get-EntraServicePrincipal {
 
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Properties to include in the results.")]
         [Alias("Select")]
-        [System.String[]] $Property
+        [System.String[]] $Property,
+
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter by whether user assignment is required to access the application.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter by whether user assignment is required to access the application.")]
+        [System.Nullable`1[System.Boolean]] $AssignmentRequired,
+
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter by application type: AppProxyApps, EnterpriseApps, ManagedIdentity, or MicrosoftApps.")]
+        [Parameter(ParameterSetName = "GetVague", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true, HelpMessage = "Filter by application type: AppProxyApps, EnterpriseApps, ManagedIdentity, or MicrosoftApps.")]
+        [ValidateSet("AppProxyApps", "EnterpriseApps", "ManagedIdentity", "MicrosoftApps")]
+        [System.String] $ApplicationType
     )
 
     begin {
@@ -103,6 +112,30 @@ function Get-EntraServicePrincipal {
         }
         if ($null -ne $PSBoundParameters["Property"]) {
             $params["Property"] = $PSBoundParameters["Property"]
+        }
+
+        if ($null -ne $PSBoundParameters["AssignmentRequired"]) {
+            $assignmentRequiredState = $PSBoundParameters["AssignmentRequired"]
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and appRoleAssignmentRequired eq $assignmentRequiredState"
+            } else {
+                $params["Filter"] = "appRoleAssignmentRequired eq $assignmentRequiredState"
+            }
+        }
+
+        if ($null -ne $PSBoundParameters["ApplicationType"]) {
+            $appType = $PSBoundParameters["ApplicationType"]
+            $appTypeFilter = switch ($appType) {
+                "AppProxyApps" { "tags/any(t:t eq 'WindowsAzureActiveDirectoryOnPremApp')" }
+                "EnterpriseApps" { "tags/any(t:t eq 'WindowsAzureActiveDirectoryIntegratedApp')" }
+                "ManagedIdentity" { "servicePrincipalType eq 'ManagedIdentity'" }
+                "MicrosoftApps" { "appOwnerOrganizationId eq f8cdef31-a31e-4b4a-93e4-5f571e91255a" }
+            }
+            if ($params.ContainsKey("Filter")) {
+                $params["Filter"] += " and $appTypeFilter"
+            } else {
+                $params["Filter"] = $appTypeFilter
+            }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

@@ -211,6 +211,94 @@ Describe "Get-EntraServicePrincipal" {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
             }
+        }
+
+        It "Should filter by AssignmentRequired true" {
+            $result = Get-EntraServicePrincipal -AssignmentRequired $true
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should filter by AssignmentRequired false" {
+            $result = Get-EntraServicePrincipal -AssignmentRequired $false
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq False"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType AppProxyApps" {
+            $result = Get-EntraServicePrincipal -ApplicationType "AppProxyApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryOnPremApp'\)"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType EnterpriseApps" {
+            $result = Get-EntraServicePrincipal -ApplicationType "EnterpriseApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryIntegratedApp'\)"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType ManagedIdentity" {
+            $result = Get-EntraServicePrincipal -ApplicationType "ManagedIdentity"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "servicePrincipalType eq 'ManagedIdentity'"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should filter by ApplicationType MicrosoftApps" {
+            $result = Get-EntraServicePrincipal -ApplicationType "MicrosoftApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appOwnerOrganizationId eq f8cdef31-a31e-4b4a-93e4-5f571e91255a"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should fail when ApplicationType is invalid" {
+            { Get-EntraServicePrincipal -ApplicationType "InvalidType" } | Should -Throw "Cannot validate argument on parameter 'ApplicationType'*"
+        }
+
+        It "Should combine AssignmentRequired and ApplicationType filters" {
+            $result = Get-EntraServicePrincipal -AssignmentRequired $true -ApplicationType "EnterpriseApps"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+            $params.Filter | Should -Match "tags/any\(t:t eq 'WindowsAzureActiveDirectoryIntegratedApp'\)"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should combine Filter and AssignmentRequired" {
+            $result = Get-EntraServicePrincipal -Filter "DisplayName eq 'Test'" -AssignmentRequired $true
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "DisplayName eq 'Test'"
+            $params.Filter | Should -Match "appRoleAssignmentRequired eq True"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
+        }
+
+        It "Should combine Filter and ApplicationType" {
+            $result = Get-EntraServicePrincipal -Filter "DisplayName eq 'Test'" -ApplicationType "ManagedIdentity"
+            $result | Should -Not -BeNullOrEmpty
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "DisplayName eq 'Test'"
+            $params.Filter | Should -Match "servicePrincipalType eq 'ManagedIdentity'"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Entra.Applications -Times 1
         }  
     }
 }
