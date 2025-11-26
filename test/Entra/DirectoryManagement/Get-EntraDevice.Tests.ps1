@@ -164,6 +164,121 @@ Describe "Get-EntraDevice" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
+
+        It "Should filter devices by LogonTimeBefore parameter" {
+            $logonDate = (Get-Date).AddDays(-30)
+            $result = Get-EntraDevice -LogonTimeBefore $logonDate
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*approximateLastSignInDateTime le*"
+            }
+        }
+
+        It "Should filter stale devices (older than 2 months)" {
+            $result = Get-EntraDevice -Stale
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*approximateLastSignInDateTime le*"
+            }
+        }
+
+        It "Should filter non-compliant devices" {
+            $result = Get-EntraDevice -NonCompliant
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*isCompliant eq false*"
+            }
+        }
+
+        It "Should filter managed devices when IsManaged is true" {
+            $result = Get-EntraDevice -IsManaged $true
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*isManaged eq True*"
+            }
+        }
+
+        It "Should filter unmanaged devices when IsManaged is false" {
+            $result = Get-EntraDevice -IsManaged $false
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*isManaged eq False*"
+            }
+        }
+
+        It "Should filter Microsoft Entra Joined devices" {
+            $result = Get-EntraDevice -JoinType "MicrosoftEntraJoined"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*trustType eq 'AzureAd'*"
+            }
+        }
+
+        It "Should filter Microsoft Entra Hybrid Joined devices" {
+            $result = Get-EntraDevice -JoinType "MicrosoftEntraHybridJoined"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*trustType eq 'ServerAd'*"
+            }
+        }
+
+        It "Should filter Microsoft Entra Registered devices" {
+            $result = Get-EntraDevice -JoinType "MicrosoftEntraRegistered"
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*trustType eq 'Workplace'*"
+            }
+        }
+
+        It "Should fail when JoinType has invalid value" {
+            { Get-EntraDevice -JoinType "InvalidType" } | Should -Throw "*Cannot validate argument on parameter 'JoinType'*"
+        }
+
+        It "Should combine multiple filter parameters correctly" {
+            $logonDate = (Get-Date).AddDays(-30)
+            $result = Get-EntraDevice -LogonTimeBefore $logonDate -NonCompliant -IsManaged $true
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*approximateLastSignInDateTime le*" -and
+                $Filter -like "*isCompliant eq false*" -and
+                $Filter -like "*isManaged eq True*"
+            }
+        }
+
+        It "Should combine filter parameter with existing Filter parameter" {
+            $result = Get-EntraDevice -Filter "DisplayName eq 'Mock-Device'" -Stale
+            $result | Should -Not -BeNullOrEmpty
+            
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Entra.DirectoryManagement -Times 1 -ParameterFilter {
+                $Filter -like "*DisplayName eq 'Mock-Device'*" -and
+                $Filter -like "*approximateLastSignInDateTime le*"
+            }
+        }
+
+        It "Should fail when LogonTimeBefore is empty" {
+            { Get-EntraDevice -LogonTimeBefore } | Should -Throw "Missing an argument for parameter 'LogonTimeBefore'*"
+        }
+
+        It "Should fail when LogonTimeBefore has invalid format" {
+            { Get-EntraDevice -LogonTimeBefore "invalid-date" } | Should -Throw "Cannot process argument transformation on parameter 'LogonTimeBefore'*"
+        }
+
+        It "Should fail when IsManaged is empty" {
+            { Get-EntraDevice -IsManaged } | Should -Throw "Missing an argument for parameter 'IsManaged'*"
+        }
+
+        It "Should fail when JoinType is empty" {
+            { Get-EntraDevice -JoinType } | Should -Throw "Missing an argument for parameter 'JoinType'*"
+        }
     }
 }
 

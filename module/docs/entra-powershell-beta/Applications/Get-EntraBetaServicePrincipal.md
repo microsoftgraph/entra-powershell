@@ -29,6 +29,8 @@ Get-EntraBetaServicePrincipal
  [-All]
  [-Filter <String>]
  [-Property <String[]>]
+ [-AssignmentRequired <Boolean>]
+ [-ApplicationType <String>]
  [<CommonParameters>]
 ```
 
@@ -39,6 +41,8 @@ Get-EntraBetaServicePrincipal
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
+ [-AssignmentRequired <Boolean>]
+ [-ApplicationType <String>]
  [<CommonParameters>]
 ```
 
@@ -287,6 +291,67 @@ PowerApps-Advisor                                       cccccccc-2222-3333-4444-
 
 This example shows how you can retrieve applications (service principals) outside my tenant.
 
+### Example 15: Retrieve service principals with user assignment required
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipal -AssignmentRequired $true
+```
+
+```Output
+DisplayName                Id                                   AppId                                SignInAudience      ServicePrincipalType
+-----------                --                                   -----                                --------------      --------------------
+Restricted App             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg        Application
+```
+
+This example retrieves all service principals where user assignment is required to access the application.
+
+### Example 16: Retrieve Enterprise Apps using ApplicationType parameter
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipal -ApplicationType EnterpriseApps
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Enterprise App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+Enterprise App2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all enterprise apps using the ApplicationType parameter. Valid values are: AppProxyApps, EnterpriseApps, ManagedIdentity, MicrosoftApps.
+
+### Example 17: Retrieve Managed Identities
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipal -ApplicationType ManagedIdentity
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+MyVM-Identity       00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         ManagedIdentity
+```
+
+This example retrieves all managed identities.
+
+### Example 18: Combine AssignmentRequired and ApplicationType filters
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipal -AssignmentRequired $true -ApplicationType EnterpriseApps
+```
+
+```Output
+DisplayName                Id                                   AppId                                SignInAudience      ServicePrincipalType
+-----------                --                                   -----                                --------------      --------------------
+Secured Enterprise App     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg        Application
+```
+
+This example demonstrates how to combine both AssignmentRequired and ApplicationType parameters to filter enterprise apps that require user assignment.
+
 ## PARAMETERS
 
 ### -All
@@ -383,6 +448,42 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AssignmentRequired
+
+Filter by whether user assignment is required to access the application. When set to `$true`, returns only service principals where user assignment is required. When set to `$false`, returns only service principals where user assignment is not required.
+
+```yaml
+Type: System.Boolean
+Parameter Sets: GetQuery, GetVague
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ApplicationType
+
+Filter by application type. Valid values are:
+- `AppProxyApps`: Application proxy applications
+- `EnterpriseApps`: Enterprise applications
+- `ManagedIdentity`: Managed identity service principals
+- `MicrosoftApps`: Microsoft first-party applications
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery, GetVague
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
