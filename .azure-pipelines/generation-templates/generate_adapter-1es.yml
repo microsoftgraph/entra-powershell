@@ -16,13 +16,13 @@ steps:
   inputs:
     targetType: inline
     script: 'echo $PSVersionTable'
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Set maximum function count'
   inputs:
     targetType: inline
     script: '$MaximumFunctionCount=32768'
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Install Dependencies Entra'
   inputs:
@@ -30,7 +30,7 @@ steps:
     script: |
       $ConfirmPreference = 'None'
       ./build/Install-Dependencies.ps1 -ModuleName Entra -Verbose      
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Install PlatyPS'
   inputs:
@@ -38,7 +38,7 @@ steps:
     script: |
       $ConfirmPreference = 'None'
       Install-Module PlatyPS -scope currentuser -Force
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Build Entra'
   inputs:
@@ -46,7 +46,7 @@ steps:
     script: |
       ./build/Create-EntraModule.ps1 -Module Entra -Verbose
       ./build/Create-EntraModule.ps1 -Module Entra -Root -Verbose
-    pwsh: false
+    pwsh: true
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
     parameters:
@@ -56,7 +56,7 @@ steps:
     displayName: "Validate Authenticode Signature"
     inputs:
       targetType: "inline"
-      pwsh: false
+      pwsh: true
       script: ./build/ValidateAuthenticodeSignature.ps1
 - task: powershell@2
   displayName: 'Create Module Files Entra'
@@ -65,7 +65,7 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Create-ModuleFolder
-    pwsh: false
+    pwsh: true
 - task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Files Entra'
   inputs:
@@ -78,13 +78,13 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Register-LocalGallery -Path $(Build.ArtifactStagingDirectory)
-    pwsh: false    
+    pwsh: true    
 - task: powershell@2
   displayName: 'Publish to Local Gallery Entra'
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
-    pwsh: false
+    pwsh: true
 - task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File Entra'
   inputs:
@@ -97,7 +97,7 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Remove-BuildDirectories
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Install Dependencies EntraBeta'
   inputs:
@@ -105,7 +105,7 @@ steps:
     script: |
       $ConfirmPreference = 'None'
       ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Build EntraBeta'
   inputs:
@@ -113,7 +113,7 @@ steps:
     script: |
       ./build/Create-EntraModule.ps1 -Module EntraBeta -Verbose
       ./build/Create-EntraModule.ps1 -Module EntraBeta -Root -Verbose
-    pwsh: false
+    pwsh: true
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
     parameters:
@@ -123,7 +123,7 @@ steps:
     displayName: "Validate Authenticode Signature"
     inputs:
       targetType: "inline"
-      pwsh: false
+      pwsh: true
       script: ./build/ValidateAuthenticodeSignature.ps1
 - task: powershell@2
   displayName: 'Create Module Files EntraBeta'
@@ -132,7 +132,7 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Create-ModuleFolder
-    pwsh: false
+    pwsh: true
 - task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Files EntraBeta'
   inputs:
@@ -143,7 +143,7 @@ steps:
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
-    pwsh: false
+    pwsh: true
 - task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File EntraBeta'
   inputs:
@@ -156,7 +156,7 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Remove-BuildDirectories
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Install Pester'
   inputs:
@@ -164,12 +164,12 @@ steps:
     script: |
       $ConfirmPreference = 'None'
       Install-Module Pester -scope currentuser -SkipPublisherCheck -Force
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Run tests Entra'
   inputs:
     targetType: inline
-    pwsh: false
+    pwsh: true
     script: |
       $ErrorActionPreference = 'Stop'
       $ConfirmPreference = 'None'
@@ -184,7 +184,7 @@ steps:
   displayName: 'Run tests Entra Beta'
   inputs:
     targetType: inline
-    pwsh: false
+    pwsh: true
     script: |
       $ErrorActionPreference = 'Stop'
       $ConfirmPreference = 'None'
@@ -200,7 +200,7 @@ steps:
     displayName: 'Run Entra integration tests'
     inputs:
       targetType: inline
-      pwsh: false
+      pwsh: true
       script: |
         $ErrorActionPreference = 'Stop'
         $ConfirmPreference = 'None'
@@ -215,7 +215,7 @@ steps:
     displayName: 'Run EntraBeta integration tests'
     inputs:
       targetType: inline
-      pwsh: false
+      pwsh: true
       script: |
         $ErrorActionPreference = 'Stop'
         $ConfirmPreference = 'None'
@@ -233,7 +233,7 @@ steps:
     script: |
       . ./build/common-functions.ps1
       Unregister-LocalGallery
-    pwsh: false
+    pwsh: true
 - task: PSScriptAnalyzer@1
   displayName: 'Run PSScriptAnalyzer'
   inputs:
