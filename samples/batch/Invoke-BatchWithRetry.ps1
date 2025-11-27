@@ -8,7 +8,7 @@ function Invoke-BatchWithRetry {
     $pending = @($BatchRequests) # Ensure it's an array
     $retryCount = 0
 
-    while ($pending -ne $null -and $pending.Count -gt 0 -and $retryCount -le $MaxRetries) {
+    while ($pending.Count -gt 0 -and $retryCount -le $MaxRetries) {
         $batchBody = @{
             requests = $pending
         } | ConvertTo-Json -Depth 5
@@ -25,7 +25,7 @@ function Invoke-BatchWithRetry {
             }
         }
 
-        if ($pending -ne $null -and $pending.Count -gt 0) {
+        if ($pending.Count -gt 0) {
             Start-Sleep -Seconds 5
             $retryCount++
         }
