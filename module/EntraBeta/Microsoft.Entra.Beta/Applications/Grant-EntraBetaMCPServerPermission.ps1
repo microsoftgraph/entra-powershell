@@ -223,7 +223,7 @@ function Grant-EntraBetaMcpServerPermission {
             $grant = Set-ExactScopes -clientSpId $sp.Id -resourceSpId $resourceSp.Id -targetScopes $targetScopes -Additive $additiveMode
             
             if ($grant) {
-                Write-Host "`n✓ Successfully granted permissions to $($client.Name)" -ForegroundColor Green
+                Write-Host "`nSuccess: Successfully granted permissions to $($client.Name)" -ForegroundColor Green
                 Write-Verbose "  Grant ID: $($grant.Id)"
 
                 # Display granted scopes
@@ -235,12 +235,12 @@ function Grant-EntraBetaMcpServerPermission {
                 return $grant
             }
             else {
-                Write-Host "`n⚠ No permissions were granted to $($client.Name) (empty scope list)" -ForegroundColor Yellow
+                Write-Host "`nWarning: No permissions were granted to $($client.Name) (empty scope list)" -ForegroundColor Yellow
                 return $null
             }
         }
         catch {
-            Write-Host "`n✗ Failed to grant permissions to $($client.Name)" -ForegroundColor Red
+            Write-Host "`nFailed: Failed to grant permissions to $($client.Name)" -ForegroundColor Red
             Write-Host "  Error: $($_.Exception.Message)" -ForegroundColor Red
             throw
         }
