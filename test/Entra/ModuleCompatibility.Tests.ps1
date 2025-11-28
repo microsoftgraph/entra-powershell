@@ -75,10 +75,13 @@ BeforeAll {
     function Test-ModuleImportPS51 {
         param([string]$ModulePath)
         
+        # Extract module name from path for PS 5.1 import
+        $moduleName = (Get-Item $ModulePath).BaseName
+        
         $command = @"
 try {
-    Import-Module '$ModulePath' -Force -ErrorAction Stop
-    Remove-Module '$((Get-Item $ModulePath).BaseName)' -Force -ErrorAction SilentlyContinue
+    Import-Module '$moduleName' -Force -ErrorAction Stop
+    Remove-Module '$moduleName' -Force -ErrorAction SilentlyContinue
     Write-Output 'SUCCESS'
 }
 catch {
