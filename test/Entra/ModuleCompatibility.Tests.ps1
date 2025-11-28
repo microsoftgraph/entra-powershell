@@ -5,10 +5,10 @@
 
 <#
 .SYNOPSIS
-    Tests that all Entra and EntraBeta modules can be successfully imported in PowerShell 5.1 and PowerShell 7+.
+    Tests that all Entra modules can be successfully imported in PowerShell 5.1 and PowerShell 7+.
 
 .DESCRIPTION
-    This test validates cross-version compatibility by attempting to import each module in both
+    This test validates cross-version compatibility by attempting to import each Entra module in both
     PowerShell 5.1 (Windows PowerShell) and PowerShell 7+ (PowerShell Core).
     
     This ensures modules work correctly across both environments, which is critical since:
@@ -20,18 +20,14 @@
 #>
 
 BeforeAll {
-    $script:BinPath = Join-Path $PSScriptRoot '..' 'bin'
+    $script:BinPath = Join-Path $PSScriptRoot '..' '..' 'bin'
     
-    # Get all Entra module files
+    # Get all Entra module files (excluding Beta modules)
     $script:EntraModules = Get-ChildItem -Path $script:BinPath -Filter 'Microsoft.Entra.*.psm1' -File |
         Where-Object { $_.Name -notlike 'Microsoft.Entra.Beta.*' } |
         Select-Object -ExpandProperty FullName
     
-    # Get all EntraBeta module files
-    $script:EntraBetaModules = Get-ChildItem -Path $script:BinPath -Filter 'Microsoft.Entra.Beta.*.psm1' -File |
-        Select-Object -ExpandProperty FullName
-    
-    $script:AllModules = $script:EntraModules + $script:EntraBetaModules
+    $script:AllModules = $script:EntraModules
     
     # Detect PowerShell version
     $script:CurrentPSVersion = $PSVersionTable.PSVersion.Major
@@ -95,7 +91,7 @@ catch {
     }
 }
 
-Describe "Module Compatibility Tests" {
+Describe "Entra Module Compatibility Tests" {
     
     Context "Module Discovery" {
         It "Should find Entra modules in bin directory" {
@@ -103,15 +99,10 @@ Describe "Module Compatibility Tests" {
             $script:EntraModules.Count | Should -BeGreaterThan 0
         }
         
-        It "Should find EntraBeta modules in bin directory" {
-            $script:EntraBetaModules | Should -Not -BeNullOrEmpty
-            $script:EntraBetaModules.Count | Should -BeGreaterThan 0
-        }
-        
-        It "Should find expected number of total modules" {
-            # As of the current codebase: 8 Entra modules + 9 EntraBeta modules = 17 total
-            $script:AllModules.Count | Should -BeGreaterThan 10
-            Write-Host "  Found $($script:AllModules.Count) modules total" -ForegroundColor Cyan
+        It "Should find expected number of Entra modules" {
+            # Expected: 8 Entra modules (excluding Beta modules)
+            $script:AllModules.Count | Should -BeGreaterThan 5
+            Write-Host "  Found $($script:AllModules.Count) Entra modules" -ForegroundColor Cyan
         }
     }
     
@@ -122,7 +113,7 @@ Describe "Module Compatibility Tests" {
             Get-Module Microsoft.Entra.* | Remove-Module -Force -ErrorAction SilentlyContinue
         }
         
-        It "Should successfully import all modules in current PowerShell version" {
+        It "Should successfully import all Entra modules in current PowerShell version" {
             $failures = @()
             $successes = 0
             
@@ -177,7 +168,7 @@ Describe "Module Compatibility Tests" {
             $script:PS51Available | Should -Be $true
         }
         
-        It "Should successfully import all modules in PowerShell 5.1" {
+        It "Should successfully import all Entra modules in PowerShell 5.1" {
             if (-not $script:PS51Available) {
                 Set-ItResult -Skipped -Because "PowerShell 5.1 is not available on this system"
             }
@@ -354,7 +345,7 @@ Describe "Module Compatibility Tests" {
             Get-Module Microsoft.Entra.* | Remove-Module -Force -ErrorAction SilentlyContinue
         }
         
-        It "Should verify all modules export cmdlets" {
+        It "Should verify all Entra modules export cmdlets" {
             $failures = @()
             $successes = 0
             
