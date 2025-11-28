@@ -20,12 +20,22 @@
 #>
 
 BeforeAll {
-    $script:BinPath = Join-Path $PSScriptRoot '..' '..' 'bin'
-    
     # Get all Entra module files (excluding Beta modules)
-    $script:EntraModules = Get-ChildItem -Path $script:BinPath -Filter 'Microsoft.Entra.*.psm1' -File |
+    # First try to get installed modules, then fall back to bin directory
+    $installedModules = Get-Module -Name 'Microsoft.Entra.*' -ListAvailable |
         Where-Object { $_.Name -notlike 'Microsoft.Entra.Beta.*' } |
-        Select-Object -ExpandProperty FullName
+        Select-Object -ExpandProperty Path -Unique
+    
+    if ($installedModules) {
+        $script:EntraModules = $installedModules
+    }
+    else {
+        # Fallback to bin directory for local builds
+        $script:BinPath = Join-Path $PSScriptRoot '..' '..' 'bin'
+        $script:EntraModules = Get-ChildItem -Path $script:BinPath -Filter 'Microsoft.Entra.*.psm1' -File |
+            Where-Object { $_.Name -notlike 'Microsoft.Entra.Beta.*' } |
+            Select-Object -ExpandProperty FullName
+    }
     
     $script:AllModules = $script:EntraModules
     
