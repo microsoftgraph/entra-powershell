@@ -35,12 +35,12 @@ $metadataPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleMetadata.json"
 $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 
 if($moduleName -eq 'Entra'){
-    Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+    Publish-Module -Name Microsoft.Graph.Authentication -MinimumVersion $content.minimumModulesVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 # Publish Graph PowerShell modules (e.g Microsoft.Graph.User) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
-    Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
+    Publish-Module -Name $destinationModuleName -MinimumVersion $content.minimumModulesVersion -Repository (Get-LocalPSRepoName) -Force -Verbose
 }
 
 # Publish Entra(Beta) sub-modules (e.g Microsoft.Entra.Users) to the Local gallery.

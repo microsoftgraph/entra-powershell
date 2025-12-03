@@ -185,7 +185,7 @@ class CompatibilityAdapterBuilder {
         $this.TypePrefix = $content.typePrefix
         Import-Module $this.SourceModuleName -Force | Out-Null
         foreach ($moduleName in $this.DestinationModuleName) {
-            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion -Force | Out-Null
+            Import-Module $moduleName -MinimumVersion $content.minimumModulesVersion -Force | Out-Null
         }
 
         if (!(Test-Path $this.OutputFolder)) {
