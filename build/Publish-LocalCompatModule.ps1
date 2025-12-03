@@ -37,12 +37,14 @@ $metadata = Get-Content -Path $metadataPath | ConvertFrom-Json
 if($moduleName -eq 'Entra'){
     $latestAuthModule = Get-Module -Name Microsoft.Graph.Authentication -ListAvailable | Sort-Object Version -Descending | Select-Object -First 1
     Publish-Module -Path $latestAuthModule.ModuleBase -Repository (Get-LocalPSRepoName) -Force -Verbose
+	Write-Verbose("Published Module: Microsoft.Graph.Authentication - version: $($latestAuthModule.Version) - path : $($latestAuthModule.ModuleBase)")
 }
 
 # Publish Graph PowerShell modules (e.g Microsoft.Graph.User) to the the Local gallery.
 foreach ($destinationModuleName in $content.destinationModuleName){
     $latestModule = Get-Module -Name $destinationModuleName -ListAvailable | Sort-Object Version -Descending | Select-Object -First 1
     Publish-Module -Path $latestModule.ModuleBase -Repository (Get-LocalPSRepoName) -Force -Verbose
+	Write-Verbose("Published Module: $destinationModuleName - version: $($latestModule.Version) - path : $($latestModule.ModuleBase)")
 }
 
 # Publish Entra(Beta) sub-modules (e.g Microsoft.Entra.Users) to the Local gallery.
