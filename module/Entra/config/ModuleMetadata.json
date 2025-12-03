@@ -15,6 +15,7 @@
     "Microsoft.Graph.Applications",
     "Microsoft.Graph.Reports"
   ],
+  "minimumModulesVersion": "2.25.0",
   "compatibleEditions": [
     "Core",
     "Desktop"
