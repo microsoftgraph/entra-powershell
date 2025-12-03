@@ -25,7 +25,7 @@ Write-Host "Installed Module: $($content.sourceModule) - version: $($installedMo
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+    Install-Module $moduleName -scope currentuser -MinimumVersion $content.minimumModulesVersion -Force -AllowClobber
     $installedModule = Get-Module -Name $moduleName -ListAvailable | Select-Object -First 1
     Write-Host "-> Installed Module: $($moduleName) - version: $($installedModule.Version)" -ForegroundColor Green
 }
