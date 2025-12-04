@@ -537,7 +537,7 @@ public $($object.GetType().Name)()
         $functions = $this.ModuleMap.CommandsList + 'Enable-EntraAzureADAlias' + 'Get-EntraUnsupportedCommand'
         $requiredModules = @()
         foreach ($module in $content.requiredModules) {
-            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion }
+            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion }
         }
         $moduleSettings = @{
             Path                   = $manifestPath

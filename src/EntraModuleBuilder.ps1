@@ -533,7 +533,7 @@ $($requiredModulesEntries -join ",`n")
             
                 if ($dependencyMapping.ContainsKey($keyModuleName)) {
                     foreach ($dependency in $dependencyMapping[$keyModuleName]) {
-                        $requiredModules += @{ ModuleName = $dependency; RequiredVersion = $content.requiredModulesVersion }
+                        $requiredModules += @{ ModuleName = $dependency; ModuleVersion = $content.requiredModulesVersion }
                     }
                 }
             }
