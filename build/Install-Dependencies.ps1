@@ -20,12 +20,8 @@ if ($ModuleSettingsPath) { $settingPath = $ModuleSettingsPath }
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 Write-Verbose("Installing Module $($content.sourceModule)")
 Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
-$installedModule = Get-Module -Name $content.sourceModule -ListAvailable | Select-Object -First 1
-Write-Host "Installed Module: $($content.sourceModule) - version: $($installedModule.Version)" -ForegroundColor Green
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -MinimumVersion $content.minimumModulesVersion -Force -AllowClobber
-    $installedModule = Get-Module -Name $moduleName -ListAvailable | Select-Object -First 1
-    Write-Host "-> Installed Module: $($moduleName) - version: $($installedModule.Version)" -ForegroundColor Green
+    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
 }

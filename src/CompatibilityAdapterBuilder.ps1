@@ -185,7 +185,7 @@ class CompatibilityAdapterBuilder {
         $this.TypePrefix = $content.typePrefix
         Import-Module $this.SourceModuleName -Force | Out-Null
         foreach ($moduleName in $this.DestinationModuleName) {
-            Import-Module $moduleName -MinimumVersion $content.minimumModulesVersion -Force | Out-Null
+            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion -Force | Out-Null
         }
 
         if (!(Test-Path $this.OutputFolder)) {
@@ -537,7 +537,7 @@ public $($object.GetType().Name)()
         $functions = $this.ModuleMap.CommandsList + 'Enable-EntraAzureADAlias' + 'Get-EntraUnsupportedCommand'
         $requiredModules = @()
         foreach ($module in $content.requiredModules) {
-            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.minimumModulesVersion }
+            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion }
         }
         $moduleSettings = @{
             Path                   = $manifestPath
