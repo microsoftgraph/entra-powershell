@@ -56,18 +56,18 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
 
             Write-Host "Enter permission scopes for admin consent." -ForegroundColor Cyan
             Write-Host "These scopes will be requested during the admin consent flow." -ForegroundColor Gray
-            Write-Host "Suggested (from inheritable permissions): $($suggestedScopes -join ' ')" -ForegroundColor Cyan
+            Write-Host "Suggested (from inheritable permissions): $($suggestedScopes -join ', ')" -ForegroundColor Cyan
             Write-Host "You can edit these scopes before submitting." -ForegroundColor Gray
 
             # Pre-populate with suggested scopes and allow editing
-            Write-Host "Current scopes: $($suggestedScopes -join ' ')" -ForegroundColor Cyan
-            $userInput = Read-Host "Edit permission scopes (space-separated, press Enter to use current)"
+            Write-Host "Current scopes: $($suggestedScopes -join ', ')" -ForegroundColor Cyan
+            $userInput = Read-Host "Edit permission scopes (comma-separated, press Enter to use current)"
             if ($userInput -and $userInput.Trim() -ne "") {
-                $Scopes = $userInput.Trim() -split '\s+'
-                Write-Host "Using edited scopes: $($Scopes -join ' ')" -ForegroundColor Cyan
+                $Scopes = $userInput.Trim() -split ',\s*'
+                Write-Host "Using edited scopes: $($Scopes -join ', ')" -ForegroundColor Cyan
             } else {
                 $Scopes = $suggestedScopes
-                Write-Host "Using suggested scopes: $($Scopes -join ' ')" -ForegroundColor Cyan
+                Write-Host "Using suggested scopes: $($Scopes -join ', ')" -ForegroundColor Cyan
             }
         }
     }
@@ -82,7 +82,7 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
 
         try {
             Write-Host "Preparing admin consent page for Agent Identity Blueprint Principal..." -ForegroundColor Cyan
-            # Convert array to space-separated string and make lowercase for consistency
+            # Convert array to space-separated string and make lowercase for consistency (OAuth requires space-separated scopes)
             $stringifiedScopes = ($Scopes | ForEach-Object { $_.ToLower() }) -join " "
 
             # URL encode the parameters
