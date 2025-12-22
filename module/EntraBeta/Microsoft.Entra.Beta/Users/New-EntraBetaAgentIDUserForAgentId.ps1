@@ -71,6 +71,9 @@ function New-EntraBetaAgentIDUserForAgentId {
                 if ($retryCount -eq 0) {
                     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
                 }
+                else {
+                    $customHeaders = $null
+                }
 
                 try {
                     $agentUser = Invoke-MgGraphRequest -Headers $customHeaders -Method POST -Uri $baseUri -Body $JsonBody -ErrorAction Stop

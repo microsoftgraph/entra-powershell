@@ -59,6 +59,9 @@ function Add-EntraBetaRedirectURIToAgentIdentityBlueprint {
                 if ($retryCount -eq 0) {
                     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
                 }
+                else {
+                    $customHeaders = $null
+                }
 
                 try {
                     $currentApp = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri $ApiUrl -ErrorAction Stop

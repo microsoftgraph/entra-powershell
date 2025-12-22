@@ -56,6 +56,9 @@ function New-EntraBetaAgentIdentityBlueprintPrincipal {
             while ($retryCount -lt $maxRetries -and -not $success) {
                 if ($retryCount -eq 0) {
                     $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+                } 
+                else {
+                    $customHeaders = $null
                 }
 
                 try {
