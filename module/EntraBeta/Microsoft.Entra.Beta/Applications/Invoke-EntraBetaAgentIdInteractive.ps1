@@ -11,7 +11,7 @@ function Invoke-EntraBetaAgentIdInteractive {
         # Ensure connection to Microsoft Entra
         $context = Get-EntraContext
         if (-not $context) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.Read.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Organization.Read.All, AgentIdentityBlueprint.Create, AgentIdentityBlueprintPrincipal.Create, AppRoleAssignment.ReadWrite.All, Application.ReadWrite.All, User.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }

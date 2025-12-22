@@ -85,6 +85,10 @@ Returns the secret result object with KeyId, EndDateTime, and SecretText propert
 
 ## NOTES
 
+This cmdlet requires the following Microsoft Graph permission:
+
+- Application.ReadWrite.All
+
 The client secret is valid for 90 days by default. The secret is returned only once and should be stored securely.
 
 ## RELATED LINKS

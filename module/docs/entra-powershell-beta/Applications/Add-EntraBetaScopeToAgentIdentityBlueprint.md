@@ -145,6 +145,10 @@ Returns the updated scope configuration.
 
 ## NOTES
 
+This cmdlet requires the following Microsoft Graph permission:
+
+- Application.ReadWrite.All
+
 The scope is created with type "User" and is enabled by default.
 
 ## RELATED LINKS

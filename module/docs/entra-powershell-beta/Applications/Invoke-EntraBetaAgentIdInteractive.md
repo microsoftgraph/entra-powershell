@@ -46,7 +46,7 @@ The cmdlet maintains state between operations, automatically passing Blueprint I
 ### Example 1: Start the interactive Agent Identity configuration workflow
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.ReadWrite.All'
 Invoke-EntraBetaAgentIdInteractive
 ```
 
@@ -70,6 +70,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 This cmdlet requires the following Microsoft Graph permissions:
 
+- Organization.Read.All
 - AgentIdentityBlueprint.Create
 - AgentIdentityBlueprintPrincipal.Create
 - AppRoleAssignment.ReadWrite.All

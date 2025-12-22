@@ -111,6 +111,10 @@ Returns the result of the inheritable permissions configuration.
 
 ## NOTES
 
+This cmdlet requires the following Microsoft Graph permission:
+
+- Application.ReadWrite.All
+
 This cmdlet requires an Agent Identity Blueprint to be created first. It uses the stored blueprint ID from the last blueprint creation.
 
 ## RELATED LINKS

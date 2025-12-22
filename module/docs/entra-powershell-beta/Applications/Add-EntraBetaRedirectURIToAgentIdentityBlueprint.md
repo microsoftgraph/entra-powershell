@@ -111,6 +111,10 @@ Returns an object with redirect URI information including the blueprint ID and t
 
 ## NOTES
 
+This cmdlet requires the following Microsoft Graph permission:
+
+- Application.ReadWrite.All
+
 If the specified redirect URI already exists, the cmdlet will skip adding it and return the existing configuration.
 
 ## RELATED LINKS

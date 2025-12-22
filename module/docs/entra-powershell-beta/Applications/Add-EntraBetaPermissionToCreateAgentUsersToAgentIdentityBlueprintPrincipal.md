@@ -35,7 +35,7 @@ The `Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal`
 ### Example 1: Grant permission using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIdentityBlueprintPrincipal
 Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal
@@ -46,7 +46,7 @@ This example grants the AgentIdUser.ReadWrite.IdentityParentedBy permission to t
 ### Example 2: Grant permission using specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
 Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -AgentBlueprintId "7c0c1226-1e81-41a5-ad6c-532c95504443"
 ```
 
@@ -85,6 +85,11 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 Returns the app role assignment response object from Microsoft Graph.
 
 ## NOTES
+
+This cmdlet requires the following Microsoft Graph permissions:
+
+- Application.ReadWrite.All
+- AgentIdUser.ReadWrite.IdentityParentedBy
 
 This cmdlet requires the Agent Identity Blueprint Service Principal to be created first using New-EntraBetaAgentIdentityBlueprintPrincipal.
 
