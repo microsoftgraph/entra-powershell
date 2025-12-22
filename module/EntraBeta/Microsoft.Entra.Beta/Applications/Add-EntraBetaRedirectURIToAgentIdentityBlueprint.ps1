@@ -1,4 +1,9 @@
-﻿function Add-EntraBetaRedirectURIToAgentIdentityBlueprint {
+﻿# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+function Add-EntraBetaRedirectURIToAgentIdentityBlueprint {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false, HelpMessage = "The redirect URI to add to the Agent Identity Blueprint.")]

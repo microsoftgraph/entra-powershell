@@ -1,4 +1,9 @@
-﻿function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
+﻿# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
+#  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false, HelpMessage = "The ID of the Agent Identity Blueprint to add the secret to.")]
