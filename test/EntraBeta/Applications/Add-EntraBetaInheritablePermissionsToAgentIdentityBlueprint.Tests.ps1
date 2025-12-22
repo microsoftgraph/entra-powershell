@@ -54,10 +54,44 @@ Describe "Tests for Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint"
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
 
-    It "Should accept custom ResourceAppId" {
-        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId "custom-app-id"
+    It "Should accept custom ResourceAppId as GUID" {
+        $customGuid = [guid]"aaaabbbb-cccc-dddd-eeee-ffffffffffff"
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId $customGuid
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+    }
+
+    It "Should accept ResourceAppId as string that can be converted to GUID" {
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId "12345678-1234-1234-1234-123456789abc"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+    }
+
+    It "Should use Microsoft Graph GUID as default" {
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read")
+        $result.ResourceAppId | Should -Be "00000003-0000-0000-c000-000000000000"
+    }
+
+    It "Should correctly identify Microsoft Graph resource by GUID" {
+        $msGraphGuid = [guid]"00000003-0000-0000-c000-000000000000"
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId $msGraphGuid
+        $result.ResourceAppName | Should -Be "Microsoft Graph"
+    }
+
+    It "Should correctly identify Azure AD Graph resource by GUID" {
+        $aadGraphGuid = [guid]"00000002-0000-0000-c000-000000000000"
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId $aadGraphGuid
+        $result.ResourceAppName | Should -Be "Azure Active Directory Graph"
+    }
+
+    It "Should handle custom resource GUID with proper naming" {
+        $customGuid = [guid]"11111111-2222-3333-4444-555555555555"
+        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId $customGuid
+        $result.ResourceAppName | Should -Match "Custom Resource \(11111111-2222-3333-4444-555555555555\)"
+    }
+
+    It "Should throw error for invalid GUID format" {
+        { Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ResourceAppId "not-a-valid-guid" } | Should -Throw
     }
 
     It "Should fail when not connected" {

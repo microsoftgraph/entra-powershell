@@ -12,7 +12,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
 
         [Parameter(Mandatory = $false, HelpMessage = "The resource application ID.")]
         [ValidateNotNullOrEmpty()]
-        [string]$ResourceAppId = "00000003-0000-0000-c000-000000000000"
+        [guid]$ResourceAppId = "00000003-0000-0000-c000-000000000000"
     )
 
     begin {
@@ -30,16 +30,22 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
         }
 
         # Prompt for ResourceAppId if not provided
-        if (-not $ResourceAppId -or $ResourceAppId.Trim() -eq "") {
+        if ($ResourceAppId -eq [guid]::Empty) {
             Write-Host "Enter the Resource Application ID for the permissions." -ForegroundColor Cyan
             Write-Host "Default: 00000003-0000-0000-c000-000000000000 (Microsoft Graph)" -ForegroundColor Gray
 
             $resourceInput = Read-Host "Resource App ID (press Enter for Microsoft Graph default)"
             if ($resourceInput -and $resourceInput.Trim() -ne "") {
-                $ResourceAppId = $resourceInput.Trim()
+                try {
+                    $ResourceAppId = [guid]$resourceInput.Trim()
+                }
+                catch {
+                    Write-Error "Invalid GUID format. Please provide a valid GUID."
+                    return
+                }
             }
             else {
-                $ResourceAppId = "00000003-0000-0000-c000-000000000000"
+                $ResourceAppId = [guid]"00000003-0000-0000-c000-000000000000"
                 Write-Host "Using default: Microsoft Graph" -ForegroundColor Cyan
             }
         }
@@ -47,7 +53,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
         # Prompt for scopes if not provided
         if (-not $Scopes) {
             Write-Host "Enter permission scopes to make inheritable for $resourceName." -ForegroundColor Cyan
-            if ($ResourceAppId -eq "00000003-0000-0000-c000-000000000000") {
+            if ($ResourceAppId -eq [guid]"00000003-0000-0000-c000-000000000000") {
                 Write-Host "Common Microsoft Graph scopes: User.Read, Mail.Read, Calendars.Read, Files.Read, etc." -ForegroundColor Gray
             }
             Write-Host "Enter multiple scopes separated by commas." -ForegroundColor Gray
@@ -62,12 +68,12 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
     }
 
     process {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = $null
         $baseUri = '/beta/applications'
         $Method = "POST"
 
         # Determine resource name for display
-        $resourceName = switch ($ResourceAppId) {
+        $resourceName = switch ($ResourceAppId.ToString()) {
             "00000003-0000-0000-c000-000000000000" { "Microsoft Graph" }
             "00000002-0000-0000-c000-000000000000" { "Azure Active Directory Graph" }
             default { "Custom Resource ($ResourceAppId)" }
@@ -84,7 +90,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
 
             # Build the request body
             $Body = [PSCustomObject]@{
-                resourceAppId     = $ResourceAppId
+                resourceAppId     = $ResourceAppId.ToString()
                 inheritableScopes = [PSCustomObject]@{
                     "@odata.type" = "microsoft.graph.enumeratedScopes"
                     scopes        = $Scopes
@@ -104,6 +110,13 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             $success = $false
 
             while ($retryCount -lt $maxRetries -and -not $success) {
+                if ($retryCount -eq 0) {
+                    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+                } 
+                else {
+                    $customHeaders = $null
+                }
+
                 try {
                     $result = Invoke-MgGraphRequest -Headers $customHeaders -Method $Method -Uri $apiUrl -Body $JsonBody -ErrorAction Stop
                     $success = $true

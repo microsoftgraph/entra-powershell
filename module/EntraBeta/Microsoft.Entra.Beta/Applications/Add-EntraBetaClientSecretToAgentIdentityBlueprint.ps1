@@ -34,7 +34,7 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
     }
 
     process {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = $null
         $baseUri = '/beta/applications'
         $Method = "POST"
         
@@ -60,6 +60,13 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
             Write-Debug "Request Body: $JsonBody"
 
             while ($retryCount -lt $maxRetries -and -not $success) {
+                if ($retryCount -eq 0) {
+                    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+                }
+                else {
+                    $customHeaders = $null
+                }
+                
                 try {
                     $ApiUrl = "$baseUri/$AgentBlueprintId/addPassword"
                     Write-Debug "API URL: $ApiUrl"

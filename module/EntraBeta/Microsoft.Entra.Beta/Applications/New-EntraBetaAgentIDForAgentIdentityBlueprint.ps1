@@ -45,7 +45,7 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
     }
 
     process {
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = $null
         $baseUri = '/beta/servicePrincipals'
 
         # Get sponsors and owners (prompt if not provided)
@@ -101,6 +101,13 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
             $success = $false
 
             while ($retryCount -lt $maxRetries -and -not $success) {
+                if ($retryCount -eq 0) {
+                    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+                } 
+                else {
+                    $customHeaders = $null
+                }
+
                 try {
                     $agentIdentity = Invoke-MgGraphRequest -Headers $customHeaders -Method POST -Uri "$baseUri/Microsoft.Graph.AgentIdentity" -Body $JsonBody -ErrorAction Stop
                     $success = $true

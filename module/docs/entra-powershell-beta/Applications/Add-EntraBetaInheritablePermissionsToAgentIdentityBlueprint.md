@@ -80,10 +80,11 @@ Accept wildcard characters: False
 
 ### -ResourceAppId
 
-The resource application ID. Defaults to Microsoft Graph (00000003-0000-0000-c000-000000000000).
+The resource application ID as a GUID. Defaults to Microsoft Graph (00000003-0000-0000-c000-000000000000).
+This parameter accepts either a GUID object or a string that can be converted to a GUID.
 
 ```yaml
-Type: System.String
+Type: System.Guid
 Parameter Sets: (All)
 Aliases:
 
