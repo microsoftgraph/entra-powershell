@@ -24,6 +24,15 @@ steps:
     script: '$MaximumFunctionCount=32768'
     pwsh: true
 - task: powershell@2
+  displayName: 'Run Validations'
+  inputs:
+    targetType: inline
+    script: |
+      . ./validations/Validate-EntraModule.ps1 -ModuleName Entra -Verbose
+      . ./validations/Validate-EntraModule.ps1 -ModuleName EntraBeta -Verbose
+    pwsh: true
+    failOnStderr: false
+- task: powershell@2
   displayName: 'Install Dependencies Entra'
   inputs:
     targetType: inline
