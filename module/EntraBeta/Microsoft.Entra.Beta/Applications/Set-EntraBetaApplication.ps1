@@ -73,6 +73,22 @@ function Set-EntraBetaApplication {
             (ConvertFrom-Json $Temp).psobject.properties | Foreach { $Value[$_.Name] = $_.Value } 
             $params["Api"] = $Value
         }
+
+        if ($null -ne $PSBoundParameters["PreAuthorizedApplications"]) {
+            $TmpPAValue = $PSBoundParameters["PreAuthorizedApplications"]
+            if ($null -ne $params["Api"]) {
+                $ApiObject = $params["Api"] | ConvertTo-Json
+
+                if ($null -eq $ApiObject.PreAuthorizedApplications) {
+                    $ApiObject["PreAuthorizedApplications"] = $TmpPAValue | ConvertTo-Json
+                }
+            }
+            else {
+                $Value = $TmpPAValue | ForEach-Object { $_ | ConvertTo-Json }
+                $params["Api"] = @{ "PreAuthorizedApplications" = $Value }
+            }
+        }
+
         if ($null -ne $PSBoundParameters["OptionalClaims"]) {
             $TmpValue = $PSBoundParameters["OptionalClaims"]
             $Temp = $TmpValue | ConvertTo-Json
@@ -245,7 +261,6 @@ function Set-EntraBetaApplication {
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
             }
         }
         $response
