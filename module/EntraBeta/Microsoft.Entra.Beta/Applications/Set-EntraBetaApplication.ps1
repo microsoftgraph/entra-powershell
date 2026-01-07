@@ -76,16 +76,19 @@ function Set-EntraBetaApplication {
 
         if ($null -ne $PSBoundParameters["PreAuthorizedApplications"]) {
             $TmpPAValue = $PSBoundParameters["PreAuthorizedApplications"]
+            $preAuthApps = @()
+            foreach ($pa in $TmpPAValue) {
+                $paHash = @{}
+                if ($pa.AppId) { $paHash["AppId"] = $pa.AppId }
+                if ($pa.PermissionIds) { $paHash["PermissionIds"] = $pa.PermissionIds }
+                $preAuthApps += $paHash
+            }
+            
             if ($null -ne $params["Api"]) {
-                $ApiObject = $params["Api"] | ConvertTo-Json
-
-                if ($null -eq $ApiObject.PreAuthorizedApplications) {
-                    $ApiObject["PreAuthorizedApplications"] = $TmpPAValue | ConvertTo-Json
-                }
+                $params["Api"]["PreAuthorizedApplications"] = $preAuthApps
             }
             else {
-                $Value = $TmpPAValue | ForEach-Object { $_ | ConvertTo-Json }
-                $params["Api"] = @{ "PreAuthorizedApplications" = $Value }
+                $params["Api"] = @{ "PreAuthorizedApplications" = $preAuthApps }
             }
         }
 
