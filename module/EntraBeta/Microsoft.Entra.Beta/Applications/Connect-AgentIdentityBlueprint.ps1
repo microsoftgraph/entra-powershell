@@ -9,13 +9,13 @@ Connects to Microsoft Graph using stored Agent Identity Blueprint credentials
 
 .DESCRIPTION
 Internal function that connects to Microsoft Graph using the stored client secret from
-Add-MsIdClientSecretToAgentIdentityBlueprint and the stored blueprint ID and tenant ID
+Add-EntraBetaClientSecretToAgentIdentityBlueprint and the stored blueprint ID and tenant ID
 
 .NOTES
 This is an internal function that requires:
-- $script:CurrentAgentBlueprintId to be set (from New-MsIdAgentIdentityBlueprint)
-- $script:LastClientSecret to be set (from Add-MsIdClientSecretToAgentIdentityBlueprint)
-- $script:CurrentTenantId to be set (from Connect-MsIdEntraAsUser)
+- $script:CurrentAgentBlueprintId to be set (from New-EntraBetaAgentIdentityBlueprint)
+- $script:LastClientSecret to be set (from Add-EntraBetaClientSecretToAgentIdentityBlueprint)
+- $script:CurrentTenantId to be set (from Connect-EntraBetaEntraAsUser)
 #>
 function Connect-AgentIdentityBlueprint {
     [CmdletBinding()]
@@ -24,17 +24,17 @@ function Connect-AgentIdentityBlueprint {
     process {
         # Validate that we have the required stored values
         if (-not $script:CurrentAgentBlueprintId) {
-            Write-Error "No Agent Identity Blueprint ID found. Please run New-MsIdAgentIdentityBlueprint first."
+            Write-Error "No Agent Identity Blueprint ID found. Please run New-EntraBetaAgentIdentityBlueprint first."
             return $false
         }
 
         if (-not $script:LastClientSecret) {
-            Write-Error "No client secret found. Please run Add-MsIdClientSecretToAgentIdentityBlueprint first."
+            Write-Error "No client secret found. Please run Add-EntraBetaClientSecretToAgentIdentityBlueprint first."
             return $false
         }
 
         if (-not $script:CurrentTenantId) {
-            Write-Error "No tenant ID found. Please run Connect-MsIdEntraAsUser or New-MsIdAgentIdentityBlueprint first."
+            Write-Error "No tenant ID found. Please run Connect-Entra or New-EntraBetaAgentIdentityBlueprint first."
             return $false
         }
 
