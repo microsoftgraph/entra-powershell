@@ -15,10 +15,10 @@ function New-EntraInvitation {
         [System.String] $InviteRedirectUrl,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo,
+        [Microsoft.Graph.PowerShell.Models.IMicrosoftGraphInvitedUserMessageInfo] $InvitedUserMessageInfo,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
+        [Microsoft.Graph.PowerShell.Models.IMicrosoftGraphUser] $InvitedUser,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.Nullable`1[System.Boolean]] $SendInvitationMessage,
