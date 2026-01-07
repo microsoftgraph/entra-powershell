@@ -38,7 +38,7 @@ The `New-EntraBetaAgentIDForAgentIdentityBlueprint` cmdlet creates a new Agent I
 ### Example 1: Create an agent identity with sponsors and owners
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity" -SponsorUserIds @("user1@contoso.com") -OwnerUserIds @("owner1@contoso.com")
 ```
@@ -48,7 +48,7 @@ This example creates an Agent Identity with the specified display name, sponsors
 ### Example 2: Create an agent identity with user and group sponsors
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "HR Agent" -SponsorUserIds @("hr-admin@contoso.com") -SponsorGroupIds @("aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb")
 ```
 
@@ -57,7 +57,7 @@ This example creates an Agent Identity with both user and group sponsors.
 ### Example 3: Create an agent identity with prompts
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUserIds @("finance-admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Finance Agent"
 ```

@@ -38,7 +38,7 @@ The `Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal` cmdlet 
 ### Example 1: Open admin consent page using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal
 ```
@@ -48,7 +48,7 @@ This example opens the admin consent page in the browser for the Agent Identity 
 ### Example 2: Open admin consent page with specific scopes
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read", "mail.read", "calendars.read")
 ```
 
@@ -57,7 +57,7 @@ This example opens the admin consent page with specific permission scopes (user.
 ### Example 3: Open admin consent page with specific blueprint ID and scopes
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -AgentBlueprintId "7c0c1226-1e81-41a5-ad6c-532c95504443" -Scopes @("user.read")
 ```
 

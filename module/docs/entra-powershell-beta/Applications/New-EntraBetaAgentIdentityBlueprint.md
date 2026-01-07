@@ -38,7 +38,7 @@ The `New-EntraBetaAgentIdentityBlueprint` cmdlet creates a new Agent Identity Bl
 ### Example 1: Create a blueprint with sponsors and owners
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com") -OwnerUserIds @("owner1@contoso.com")
 ```
 
@@ -51,7 +51,7 @@ This example creates an Agent Identity Blueprint with the specified display name
 ### Example 2: Create a blueprint with user and group sponsors
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "HR Blueprint" -SponsorUserIds @("hr-admin@contoso.com") -SponsorGroupIds @("aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb")
 ```
 
@@ -64,7 +64,7 @@ This example creates an Agent Identity Blueprint with both user and group sponso
 ### Example 3: Create a blueprint with only user sponsors
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUserIds @("finance-admin@contoso.com", "finance-manager@contoso.com")
 ```
 

@@ -55,7 +55,7 @@ Describe "Tests for Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlue
             else { return $assignRoleScriptblock.Invoke() }
         } -ModuleName Microsoft.Entra.Beta.Applications
         
-        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AppRoleAssignment.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprint.ReadWrite.All", "AgentIdUser.ReadWrite.IdentityParentedBy") } } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Set up a stored blueprint ID for testing in the module scope
         InModuleScope Microsoft.Entra.Beta.Applications {

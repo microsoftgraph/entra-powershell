@@ -14,7 +14,7 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.AddRemoveCreds.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -22,7 +22,7 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
         # Use stored blueprint ID if not provided
         if (-not $AgentBlueprintId) {
             if (-not $script:CurrentAgentBlueprintId) {
-                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."
+                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."
                 return
             }
             $AgentBlueprintId = $script:CurrentAgentBlueprintId

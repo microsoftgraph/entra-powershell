@@ -36,7 +36,7 @@ The `Add-EntraBetaRedirectURIToAgentIdentityBlueprint` cmdlet configures a web r
 ### Example 1: Add default redirect URI using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 Add-EntraBetaRedirectURIToAgentIdentityBlueprint
 ```
@@ -46,7 +46,7 @@ This example adds the default redirect URI "http://localhost" to the Agent Ident
 ### Example 2: Add custom redirect URI
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaRedirectURIToAgentIdentityBlueprint -RedirectUri "http://localhost:3000"
 ```
 
@@ -55,7 +55,7 @@ This example adds a custom redirect URI "http://localhost:3000" to the current A
 ### Example 3: Add redirect URI with specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaRedirectURIToAgentIdentityBlueprint -RedirectUri "https://myapp.com/callback" -AgentBlueprintId "12345678-1234-1234-1234-123456789012"
 ```
 

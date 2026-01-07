@@ -20,7 +20,7 @@ Describe "Tests for New-EntraBetaAgentIdentityBlueprint" {
         }
 
         Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprint.Create") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprint.Create", "AgentIdentityBlueprint.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Mock the Get-SponsorsAndOwners function to avoid prompting
         Mock -CommandName Get-SponsorsAndOwners -MockWith {

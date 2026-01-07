@@ -26,7 +26,7 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }

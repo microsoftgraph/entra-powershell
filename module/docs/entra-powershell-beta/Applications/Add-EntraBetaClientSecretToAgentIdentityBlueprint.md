@@ -35,7 +35,7 @@ The `Add-EntraBetaClientSecretToAgentIdentityBlueprint` cmdlet creates an applic
 ### Example 1: Add a client secret using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.AddRemoveCreds.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 Add-EntraBetaClientSecretToAgentIdentityBlueprint
 ```
@@ -45,7 +45,7 @@ This example adds a client secret to the Agent Identity Blueprint that was just 
 ### Example 2: Add a client secret using specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.AddRemoveCreds.All'
 Add-EntraBetaClientSecretToAgentIdentityBlueprint -AgentBlueprintId "12345678-1234-1234-1234-123456789012"
 ```
 

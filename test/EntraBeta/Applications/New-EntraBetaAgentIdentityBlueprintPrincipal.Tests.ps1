@@ -19,7 +19,7 @@ Describe "Tests for New-EntraBetaAgentIdentityBlueprintPrincipal" {
         }
 
         Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprintPrincipal.Create") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprintPrincipal.Create", "AgentIdentityBlueprint.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Set up a stored blueprint ID for testing in the module scope
         InModuleScope Microsoft.Entra.Beta.Applications {

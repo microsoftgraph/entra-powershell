@@ -10,7 +10,7 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
         # No API call is made in this function - it generates a URL
-        Mock -CommandName Get-EntraContext -MockWith { @{TenantId = "tenant-id-guid"; Scopes = @("Application.Read.All") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{TenantId = "tenant-id-guid"; Scopes = @("AgentIdentityBlueprint.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Start-Process -MockWith { } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Set up required stored values for testing in the module scope

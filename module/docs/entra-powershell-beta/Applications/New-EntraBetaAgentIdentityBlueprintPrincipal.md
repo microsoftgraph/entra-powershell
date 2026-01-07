@@ -35,7 +35,7 @@ The `New-EntraBetaAgentIdentityBlueprintPrincipal` cmdlet creates a service prin
 ### Example 1: Create service principal using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIdentityBlueprintPrincipal
 ```
@@ -45,7 +45,7 @@ This example creates a service principal for the Agent Identity Blueprint that w
 ### Example 2: Create service principal with specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprintPrincipal -AgentBlueprintId "021fe0d0-d128-4769-950c-fcfbf7b87def"
 ```
 

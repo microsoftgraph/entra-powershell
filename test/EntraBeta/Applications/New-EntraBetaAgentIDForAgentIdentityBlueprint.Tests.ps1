@@ -19,7 +19,7 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
         }
 
         Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
-        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Application.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprint.Create", "AgentIdentityBlueprint.ReadWrite.All", "User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Connect-Entra -MockWith { } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Mock Connect-AgentIdentityBlueprint to set the required script variable

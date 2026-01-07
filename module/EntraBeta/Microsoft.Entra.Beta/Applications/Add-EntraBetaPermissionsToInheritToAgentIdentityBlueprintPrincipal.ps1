@@ -27,7 +27,7 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
         # Ensure connection to Microsoft Entra
         $context = Get-EntraContext
         if (-not $context) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.Read.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -35,7 +35,7 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
         # Use provided ID or fall back to stored ID
         if (-not $AgentBlueprintId) {
             if (-not $script:CurrentAgentBlueprintId) {
-                throw "No Agent Blueprint ID provided and no stored ID available. Please run New-MsIdAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
+                throw "No Agent Blueprint ID provided and no stored ID available. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
             }
             $AgentBlueprintId = $script:CurrentAgentBlueprintId
             Write-Verbose "Using stored Agent Blueprint ID: $AgentBlueprintId"

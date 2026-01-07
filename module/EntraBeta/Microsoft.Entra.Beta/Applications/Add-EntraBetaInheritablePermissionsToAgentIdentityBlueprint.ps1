@@ -18,14 +18,14 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Application.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
 
         # Check if we have a stored Agent Blueprint ID
         if (-not $script:CurrentAgentBlueprintId) {
-            Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-MsIdAgentIdentityBlueprint."
+            Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint."
             return
         }
 

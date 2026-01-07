@@ -36,7 +36,7 @@ The `Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint` cmdlet configu
 ### Example 1: Add inheritable permissions with prompts
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint
 ```
 
@@ -45,7 +45,7 @@ This example prompts for scopes and adds inheritable permissions to the current 
 ### Example 2: Add specific inheritable permissions
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("User.Read", "Mail.Read", "Calendars.Read")
 ```
 
@@ -54,7 +54,7 @@ This example adds User.Read, Mail.Read, and Calendars.Read as inheritable permis
 ### Example 3: Add inheritable permissions for a custom resource
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
 Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("CustomScope.Read") -ResourceAppId "12345678-1234-1234-1234-123456789012"
 ```
 
