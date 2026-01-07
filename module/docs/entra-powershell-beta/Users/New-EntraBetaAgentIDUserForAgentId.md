@@ -36,7 +36,7 @@ The `New-EntraBetaAgentIDUserForAgentId` cmdlet creates a new Agent User by post
 ### Example 1: Create an Agent User with all parameters
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent Identity 26192008" -UserPrincipalName "AgentIdentity26192008@contoso.onmicrosoft.com"
@@ -47,7 +47,7 @@ This example creates an Agent User with the specified display name and user prin
 ### Example 2: Create an Agent User with prompts
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 # Assumes Agent Identity Blueprint and Agent Identity are already created
 New-EntraBetaAgentIDUserForAgentId -DisplayName "HR Agent User"
 ```
@@ -57,7 +57,7 @@ This example creates an Agent User. The cmdlet will prompt for the user principa
 ### Example 3: Create multiple Agent Users for the same Agent Identity
 
 ```powershell
-Connect-Entra -Scopes 'User.ReadWrite.All', 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUserIds @("finance-admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Finance Agent" -SponsorUserIds @("finance-user@contoso.com")
 
@@ -123,8 +123,11 @@ Returns the Agent User object with properties including id, displayName, userPri
 Requires an Agent Identity to be created first using New-EntraBetaAgentIDForAgentIdentityBlueprint (uses stored Agent Identity ID). The mailNickname is automatically derived from the userPrincipalName by extracting the part before the @ symbol. The Agent User is created with accountEnabled set to true.
 
 This cmdlet requires the following Microsoft Graph permissions:
+- AgentIdentityBlueprint.Create
+- AgentIdentityBlueprintPrincipal.Create
+- AppRoleAssignment.ReadWrite.All
+- AgentIdentityBlueprint.ReadWrite.All
 - User.ReadWrite.All
-- Application.ReadWrite.All
 
 ## RELATED LINKS
 
