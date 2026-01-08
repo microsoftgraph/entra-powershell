@@ -24,6 +24,7 @@ Creates a new Agent User using an Agent Identity.
 New-EntraBetaAgentIDUserForAgentId
  -DisplayName <String>
  [-UserPrincipalName <String>]
+ [-AgentIdentityId <String>]
  [<CommonParameters>]
 ```
 
@@ -70,6 +71,16 @@ New-EntraBetaAgentIDUserForAgentId -DisplayName "Finance Agent User 2" -UserPrin
 
 This example creates multiple Agent Users associated with the same Agent Identity.
 
+### Example 4: Create an Agent User with explicit Agent Identity ID
+
+```powershell
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All'
+$agentIdentity = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity"
+New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent User" -UserPrincipalName "agentuser@contoso.onmicrosoft.com" -AgentIdentityId $agentIdentity.id
+```
+
+This example creates an Agent User by explicitly providing the Agent Identity ID, which is useful when calling from different module scopes or scripts.
+
 ## PARAMETERS
 
 ### -DisplayName
@@ -104,6 +115,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AgentIdentityId
+
+The Agent Identity ID to associate with this user. If not provided, the cmdlet uses the stored value from New-EntraBetaAgentIDForAgentIdentityBlueprint. Use this parameter when calling from different module scopes or when you want to explicitly specify the Agent Identity.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -120,7 +147,7 @@ Returns the Agent User object with properties including id, displayName, userPri
 
 ## NOTES
 
-Requires an Agent Identity to be created first using New-EntraBetaAgentIDForAgentIdentityBlueprint (uses stored Agent Identity ID). The mailNickname is automatically derived from the userPrincipalName by extracting the part before the @ symbol. The Agent User is created with accountEnabled set to true.
+Requires an Agent Identity ID, either provided via the -AgentIdentityId parameter or stored from a previous call to New-EntraBetaAgentIDForAgentIdentityBlueprint. The mailNickname is automatically derived from the userPrincipalName by extracting the part before the @ symbol. The Agent User is created with accountEnabled set to true.
 
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprint.Create
