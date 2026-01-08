@@ -22,7 +22,7 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
         # Use stored blueprint ID if not provided
         if (-not $AgentBlueprintId) {
             if (-not $script:CurrentAgentBlueprintId) {
-                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."
+                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."  -ErrorAction Stop
                 return
             }
             $AgentBlueprintId = $script:CurrentAgentBlueprintId

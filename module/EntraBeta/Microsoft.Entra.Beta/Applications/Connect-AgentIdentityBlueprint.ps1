@@ -21,7 +21,14 @@ function Connect-AgentIdentityBlueprint {
     [CmdletBinding()]
     param()
 
-    process {
+    begin {
+        $context = Get-EntraContext
+        if (-not $context) {
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.ReadWrite.All' to authenticate."
+            Write-Error -Message $errorMessage
+            return $false
+        }
+
         # Validate that we have the required stored values
         if (-not $script:CurrentAgentBlueprintId) {
             Write-Error "No Agent Identity Blueprint ID found. Please run New-EntraBetaAgentIdentityBlueprint first."
@@ -32,16 +39,14 @@ function Connect-AgentIdentityBlueprint {
             Write-Error "No client secret found. Please run Add-EntraBetaClientSecretToAgentIdentityBlueprint first."
             return $false
         }
+    }
 
-        if (-not $script:CurrentTenantId) {
-            Write-Error "No tenant ID found. Please run Connect-Entra or New-EntraBetaAgentIdentityBlueprint first."
-            return $false
-        }
-
+    process {
         try {
             # Check if we need to disconnect from a different connection type
-            if ($script:LastSuccessfulConnection -and $script:LastSuccessfulConnection -ne "AgentIdentityBlueprint") {
-                Write-Host "Disconnecting from previous connection type: $script:LastSuccessfulConnection" -ForegroundColor Yellow
+            $lastConnection = Get-Variable -Name 'LastSuccessfulConnection' -Scope Script -ValueOnly -ErrorAction SilentlyContinue
+            if ($lastConnection -and $lastConnection -ne "AgentIdentityBlueprint") {
+                Write-Host "Disconnecting from previous connection type: $lastConnection" -ForegroundColor Yellow
                 Disconnect-Entra -ErrorAction SilentlyContinue
             }
 
@@ -51,7 +56,7 @@ function Connect-AgentIdentityBlueprint {
             $ClientSecretCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $script:CurrentAgentBlueprintId, $script:LastClientSecret
 
             # Connect to Microsoft Graph using the blueprint's credentials
-            Connect-Entra -TenantId $script:CurrentTenantId -ClientSecretCredential $ClientSecretCredential -ContextScope Process -NoWelcome
+            Connect-Entra -TenantId $context.TenantId -ClientSecretCredential $ClientSecretCredential -ContextScope Process -NoWelcome
 
             $script:LastSuccessfulConnection = "AgentIdentityBlueprint"
             Write-Host "Successfully connected as Agent Identity Blueprint: $script:CurrentAgentBlueprintId" -ForegroundColor Green

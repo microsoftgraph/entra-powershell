@@ -38,9 +38,11 @@ function New-EntraBetaAgentIdentityBlueprint {
 
         # Get sponsors and owners (prompt if not provided)
         $sponsorsAndOwners = Get-SponsorsAndOwners -SponsorUserIds $SponsorUserIds -SponsorGroupIds $SponsorGroupIds -OwnerUserIds $OwnerUserIds
-        $SponsorUserIds = $sponsorsAndOwners.SponsorUserIds
-        $SponsorGroupIds = $sponsorsAndOwners.SponsorGroupIds
-        $OwnerUserIds = $sponsorsAndOwners.OwnerUserIds
+        Write-Debug ("Sponsors and Owners check: $($sponsorsAndOwners | ConvertTo-Json -Depth 5)")
+
+        $UpdatedSponsorUserIds = @($sponsorsAndOwners.SponsorUserIds)
+        $UpdatedSponsorGroupIds = @($sponsorsAndOwners.SponsorGroupIds)
+        $UpdatedOwnerUserIds = @($sponsorsAndOwners.OwnerUserIds)
 
         # Build the request body
         $Body = [PSCustomObject]@{
@@ -48,17 +50,17 @@ function New-EntraBetaAgentIdentityBlueprint {
         }
 
         # Add sponsors if provided
-        if ($SponsorUserIds -or $SponsorGroupIds) {
+        if ($UpdatedSponsorUserIds.Count -gt 0 -or $UpdatedSponsorGroupIds.Count -gt 0) {
             $sponsorBindings = @()
 
-            if ($SponsorUserIds) {
-                foreach ($userId in $SponsorUserIds) {
+            if ($UpdatedSponsorUserIds.Count -gt 0) {
+                foreach ($userId in $UpdatedSponsorUserIds) {
                     $sponsorBindings += "https://graph.microsoft.com/v1.0/users/$userId"
                 }
             }
 
-            if ($SponsorGroupIds) {
-                foreach ($groupId in $SponsorGroupIds) {
+            if ($UpdatedSponsorGroupIds.Count -gt 0) {
+                foreach ($groupId in $UpdatedSponsorGroupIds) {
                     $sponsorBindings += "https://graph.microsoft.com/v1.0/groups/$groupId"
                 }
             }
@@ -67,9 +69,9 @@ function New-EntraBetaAgentIdentityBlueprint {
         }
 
         # Add owners if provided
-        if ($OwnerUserIds) {
+        if ($UpdatedOwnerUserIds.Count -gt 0) {
             $ownerBindings = @()
-            foreach ($userId in $OwnerUserIds) {
+            foreach ($userId in $UpdatedOwnerUserIds) {
                 $ownerBindings += "https://graph.microsoft.com/v1.0/users/$userId"
             }
             $Body | Add-Member -MemberType NoteProperty -Name "owners@odata.bind" -Value $ownerBindings

@@ -12,7 +12,10 @@ function New-EntraBetaAgentIDUserForAgentId {
 
         [Parameter(Mandatory = $false, HelpMessage = "The user principal name (email) for the Agent User e.g: username@domain.onmicrosoft.com.")]
         [ValidatePattern('^[#a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', ErrorMessage = "UserPrincipalName must be a valid email address (e.g., user@domain.com)")]
-        [string]$UserPrincipalName
+        [string]$UserPrincipalName,
+
+        [Parameter(Mandatory = $false, HelpMessage = "The Agent Identity ID to associate with this user. If not provided, uses the stored value from New-EntraBetaAgentIDForAgentIdentityBlueprint.")]
+        [string]$AgentIdentityId
     )
 
     begin {
@@ -29,10 +32,14 @@ function New-EntraBetaAgentIDUserForAgentId {
             return
         }
 
-        # Validate that we have a current Agent Identity ID (from New-EntraBetaAgentIDForAgentIdentityBlueprint)
-        if (-not $script:CurrentAgentIdentityId) {
-            Write-Error "No Agent Identity ID found. Please run New-EntraBetaAgentIDForAgentIdentityBlueprint first to create an Agent Identity."
-            return
+        # Validate that we have a current Agent Identity ID (from parameter or stored value)
+        if (-not $AgentIdentityId) {
+            $storedAgentIdentityId = Get-Variable -Name 'CurrentAgentIdentityId' -Scope Script -ValueOnly -ErrorAction SilentlyContinue
+            if (-not $storedAgentIdentityId) {
+                Write-Error "No Agent Identity ID found. Please provide -AgentIdentityId parameter or run New-EntraBetaAgentIDForAgentIdentityBlueprint first to create an Agent Identity." -ErrorAction Stop
+                return
+            }
+            $AgentIdentityId = $storedAgentIdentityId
         }
     }
 
@@ -48,14 +55,14 @@ function New-EntraBetaAgentIDUserForAgentId {
             "@odata.type" = "microsoft.graph.agentUser"
             displayName = $DisplayName
             userPrincipalName = $UserPrincipalName
-            identityParentId = $script:CurrentAgentIdentityId
+            identityParentId = $AgentIdentityId
             mailNickname = $mailNickname
             accountEnabled = $true
         }
 
         try {
             Write-Verbose "Creating Agent User '$DisplayName' with UPN '$UserPrincipalName'..."
-            Write-Verbose "Using Agent Identity ID: $script:CurrentAgentIdentityId"
+            Write-Verbose "Using Agent Identity ID: $AgentIdentityId"
 
             # Convert the body to JSON
             $JsonBody = $Body | ConvertTo-Json -Depth 5

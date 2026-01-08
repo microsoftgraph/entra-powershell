@@ -66,6 +66,7 @@ function Invoke-EntraBetaAgentIdInteractive {
         # Step 1: Create Agent Identity Blueprint with all parameters (no prompting)
         try {
             if ($useSponsor) {
+                Write-Debug "Creating blueprint with sponsor user ID: $($SponsorUserIds -join ', ')"
                 $blueprint1 = New-EntraBetaAgentIdentityBlueprint -DisplayName $bluePrintDisplayName -SponsorUserIds $SponsorUserIds
             } else {
                 $blueprint1 = New-EntraBetaAgentIdentityBlueprint -DisplayName $bluePrintDisplayName
@@ -116,7 +117,12 @@ function Invoke-EntraBetaAgentIdInteractive {
 
             # Step 3: Configure scopes for interactive agent functionality (prompts user for all parameters)
             $interactiveScope = Add-EntraBetaScopeToAgentIdentityBlueprint
-            Write-Host "Configured interactive scope: $($interactiveScope.ScopeId)" -ForegroundColor Green
+            if ($null -ne $interactiveScope) {
+                Write-Debug "Interactive Scope: `n $($interactiveScope | ConvertTo-Json -Depth 5)"
+                Write-Host "Configured interactive scope: $($interactiveScope.ScopeId)" -ForegroundColor Green
+            } else {
+                Write-Warning "Failed to configure interactive scope"
+            }
         }
         else {
             Write-Host "Skipping interactive agent scope configuration." -ForegroundColor Gray
@@ -327,7 +333,7 @@ function Invoke-EntraBetaAgentIdInteractive {
                     }
 
                     $agentUser = New-EntraBetaAgentIDUserForAgentId -DisplayName $agentUserDisplayName `
-                        -UserPrincipalName $agentUserUpn
+                        -UserPrincipalName $agentUserUpn -AgentIdentityId $agentIdentity.id
                     Write-Host "Created Agent User ID: $($agentUser.id)" -ForegroundColor Cyan
                     Write-Verbose "Agent User UPN: $($agentUser.userPrincipalName)"
                     $allAgentUsers += $agentUser

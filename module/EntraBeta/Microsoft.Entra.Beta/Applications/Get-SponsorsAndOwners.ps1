@@ -69,10 +69,14 @@ function Get-SponsorsAndOwners {
             }
         }
 
+        $resultSponsorUserIds = if ($SponsorUserIds) { @($SponsorUserIds) } else { @() }
+        $resultSponsorGroupIds = if ($SponsorGroupIds) { @($SponsorGroupIds) } else { @() }
+        $resultOwnerUserIds = if ($OwnerUserIds) { @($OwnerUserIds) } else { @() }
+
         return @{
-            SponsorUserIds  = $SponsorUserIds
-            SponsorGroupIds = $SponsorGroupIds
-            OwnerUserIds    = $OwnerUserIds
+            SponsorUserIds  = $resultSponsorUserIds
+            SponsorGroupIds = $resultSponsorGroupIds
+            OwnerUserIds    = $resultOwnerUserIds
         }
     }
 }

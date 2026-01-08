@@ -34,7 +34,7 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
         # Use stored blueprint ID if not provided
         if (-not $AgentBlueprintId) {
             if (-not $script:CurrentAgentBlueprintId) {
-                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."
+                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter." -ErrorAction Stop
                 return
             }
             $AgentBlueprintId = $script:CurrentAgentBlueprintId
@@ -94,7 +94,7 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
             Write-Verbose "  Value: $Value"
 
             # Generate a new GUID for the scope ID
-            $scopeId = [System.Guid]::NewGuid().ToString()
+            $generatedScopeId = [System.Guid]::NewGuid().ToString()
 
             # Build the request body
             $Body = [PSCustomObject]@{
@@ -104,7 +104,7 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
                         [PSCustomObject]@{
                             adminConsentDescription = $AdminConsentDescription
                             adminConsentDisplayName = $AdminConsentDisplayName
-                            id = $scopeId
+                            id = $generatedScopeId
                             isEnabled = $true
                             type = "User"
                             value = $Value
@@ -130,7 +130,7 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
                 }
 
                 try {
-                    Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "$baseUri/$AgentBlueprintId" -Body $JsonBody -ErrorAction Stop
+                    Invoke-MgGraphRequest -Headers $customHeaders -Method PATCH -Uri "$baseUri/$AgentBlueprintId" -Body $JsonBody -ErrorAction Stop | Out-Null
                     $success = $true
                 }
                 catch {
@@ -148,12 +148,12 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
             }
 
             Write-Host "Successfully added OAuth2 permission scope to Agent Blueprint" -ForegroundColor Green
-            Write-Verbose "Scope ID: $scopeId"
+            Write-Verbose "Generated Scope ID: $generatedScopeId"
             Write-Verbose "Identifier URI: api://$AgentBlueprintId"
 
             # Create a result object with scope information
             $result = [PSCustomObject]@{
-                ScopeId = $scopeId
+                ScopeId = $generatedScopeId
                 AdminConsentDescription = $AdminConsentDescription
                 AdminConsentDisplayName = $AdminConsentDisplayName
                 Value = $Value

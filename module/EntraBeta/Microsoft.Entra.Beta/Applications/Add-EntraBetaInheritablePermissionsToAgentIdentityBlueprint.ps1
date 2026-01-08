@@ -50,6 +50,13 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             }
         }
 
+        # Determine resource name for display
+        $resourceName = switch ($ResourceAppId.ToString()) {
+            "00000003-0000-0000-c000-000000000000" { "Microsoft Graph" }
+            "00000002-0000-0000-c000-000000000000" { "Azure Active Directory Graph" }
+            default { "Custom Resource ($ResourceAppId)" }
+        }
+
         # Prompt for scopes if not provided
         if (-not $Scopes) {
             Write-Host "Enter permission scopes to make inheritable for $resourceName." -ForegroundColor Cyan
@@ -71,13 +78,6 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
         $customHeaders = $null
         $baseUri = '/beta/applications'
         $Method = "POST"
-
-        # Determine resource name for display
-        $resourceName = switch ($ResourceAppId.ToString()) {
-            "00000003-0000-0000-c000-000000000000" { "Microsoft Graph" }
-            "00000002-0000-0000-c000-000000000000" { "Azure Active Directory Graph" }
-            default { "Custom Resource ($ResourceAppId)" }
-        }
 
         try {
             Write-Verbose "Adding inheritable permissions to Agent Identity Blueprint..."
