@@ -12,7 +12,7 @@ function New-EntraBetaInvitation {
         [System.String] $InvitedUserDisplayName,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo] $InvitedUserMessageInfo,
+        [Microsoft.Graph.Beta.PowerShell.Models.IMicrosoftGraphInvitedUserMessageInfo] $InvitedUserMessageInfo,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl", Mandatory = $true)]
         [System.String] $InvitedUserEmailAddress,
@@ -21,7 +21,7 @@ function New-EntraBetaInvitation {
         [switch] $ResetRedemption,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
-        [Microsoft.Open.MSGraph.Model.User] $InvitedUser,
+        [Microsoft.Graph.Beta.PowerShell.Models.IMicrosoftGraphUser] $InvitedUser,
                 
         [Parameter(ParameterSetName = "ByEmailAndRedirectUrl")]
         [System.String] $InvitedUserType,
