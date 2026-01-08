@@ -59,6 +59,79 @@ Describe "Set-EntraBetaApplication" {
                 $DebugPreference = $originalDebugPreference        
             }
         }
+        It "Should set PreAuthorizedApplications parameter and create Api object with correct structure" {
+            Mock -CommandName Update-MgBetaApplication -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            $preAuthApp = New-Object Microsoft.Open.MSGraph.Model.PreAuthorizedApplication
+            $preAuthApp.AppId = "bbbbbbbb-2222-2222-2222-000000000000"
+            $preAuthApp.PermissionIds = @("cccccccc-3333-3333-3333-000000000000")
+            
+            $result = Set-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -PreAuthorizedApplications @($preAuthApp)
+            $params = Get-Parameters -data $result
+            
+            $params.Api | Should -Not -BeNullOrEmpty
+            $params.Api.PreAuthorizedApplications | Should -Not -BeNullOrEmpty
+            $params.Api.PreAuthorizedApplications.Count | Should -Be 1
+            $preAuthEntry = $params.Api.PreAuthorizedApplications[0]
+            $preAuthEntry.AppId | Should -Be "bbbbbbbb-2222-2222-2222-000000000000"
+            $preAuthEntry.PermissionIds | Should -Contain "cccccccc-3333-3333-3333-000000000000"
+        }
+
+        It "Should handle multiple PreAuthorizedApplications with correct structure" {
+            Mock -CommandName Update-MgBetaApplication -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            $preAuthApp1 = New-Object Microsoft.Open.MSGraph.Model.PreAuthorizedApplication
+            $preAuthApp1.AppId = "bbbbbbbb-2222-2222-2222-000000000000"
+            $preAuthApp1.PermissionIds = @("cccccccc-3333-3333-3333-000000000000")
+            
+            $preAuthApp2 = New-Object Microsoft.Open.MSGraph.Model.PreAuthorizedApplication
+            $preAuthApp2.AppId = "dddddddd-4444-4444-4444-000000000000"
+            $preAuthApp2.PermissionIds = @("eeeeeeee-5555-5555-5555-000000000000")
+            
+            $result = Set-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -PreAuthorizedApplications @($preAuthApp1, $preAuthApp2)
+            $params = Get-Parameters -data $result
+            
+            $params.Api | Should -Not -BeNullOrEmpty
+            $params.Api.PreAuthorizedApplications | Should -Not -BeNullOrEmpty
+            $params.Api.PreAuthorizedApplications.Count | Should -Be 2
+            $params.Api.PreAuthorizedApplications[0].AppId | Should -Be "bbbbbbbb-2222-2222-2222-000000000000"
+            $params.Api.PreAuthorizedApplications[1].AppId | Should -Be "dddddddd-4444-4444-4444-000000000000"
+        }
+
+        It "Should merge PreAuthorizedApplications with existing Api parameter" {
+            Mock -CommandName Update-MgBetaApplication -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            $apiApp = New-Object Microsoft.Open.MSGraph.Model.ApiApplication
+            $apiApp.RequestedAccessTokenVersion = 2
+            
+            $preAuthApp = New-Object Microsoft.Open.MSGraph.Model.PreAuthorizedApplication
+            $preAuthApp.AppId = "bbbbbbbb-2222-2222-2222-000000000000"
+            $preAuthApp.PermissionIds = @("cccccccc-3333-3333-3333-000000000000")
+            
+            $result = Set-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -Api $apiApp -PreAuthorizedApplications @($preAuthApp)
+            $params = Get-Parameters -data $result
+            
+            $params.Api | Should -Not -BeNullOrEmpty
+            $params.Api.RequestedAccessTokenVersion | Should -Be 2
+            $params.Api.PreAuthorizedApplications | Should -Not -BeNullOrEmpty
+            $params.Api.PreAuthorizedApplications[0].AppId | Should -Be "bbbbbbbb-2222-2222-2222-000000000000"
+        }
+
+        It "Should handle PreAuthorizedApplications with multiple permissions" {
+            Mock -CommandName Update-MgBetaApplication -MockWith { $args } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            $preAuthApp = New-Object Microsoft.Open.MSGraph.Model.PreAuthorizedApplication
+            $preAuthApp.AppId = "bbbbbbbb-2222-2222-2222-000000000000"
+            $preAuthApp.PermissionIds = @("cccccccc-3333-3333-3333-000000000000", "dddddddd-4444-4444-4444-000000000000")
+            
+            $result = Set-EntraBetaApplication -ApplicationId "aaaaaaaa-1111-1111-1111-000000000000" -PreAuthorizedApplications @($preAuthApp)
+            $params = Get-Parameters -data $result
+            
+            $preAuthEntry = $params.Api.PreAuthorizedApplications[0]
+            $preAuthEntry.PermissionIds.Count | Should -Be 2
+            $preAuthEntry.PermissionIds | Should -Contain "cccccccc-3333-3333-3333-000000000000"
+            $preAuthEntry.PermissionIds | Should -Contain "dddddddd-4444-4444-4444-000000000000"
+        }
     }
 }
 
