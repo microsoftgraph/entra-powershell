@@ -96,7 +96,8 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
 
             # Store the secret in module-level variables for use by other functions
             $script:CurrentAgentBlueprintSecret = $secretResult
-            $script:LastClientSecret = ConvertTo-SecureString $secretResult.SecretText -AsPlainText -Force
+            $script:LastClientSecret = New-Object System.Security.SecureString
+            $secretResult.SecretText.ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
 
             return $secretResult
         }

@@ -182,7 +182,10 @@ function Get-EntraBetaAgentIdentityToken {
             }
 
             Write-Host "Agent identity token acquired successfully" -ForegroundColor Green
-            return ConvertTo-SecureString $agentToken -AsPlainText
+            
+            $secureAgentToken = New-Object System.Security.SecureString
+            $agentToken.ToCharArray() | ForEach-Object { $secureAgentToken.AppendChar($_) }
+            return $secureAgentToken
         }
         catch {
             Write-Error "Failed to acquire agent identity token: $_"

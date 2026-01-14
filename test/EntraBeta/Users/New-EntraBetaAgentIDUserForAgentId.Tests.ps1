@@ -38,7 +38,8 @@ Describe "Tests for New-EntraBetaAgentIDUserForAgentId" {
             $script:CurrentAgentIdentityId = "agent-id-guid"
             $script:CurrentAgentBlueprintId = "blueprint-id-guid"
             $script:CurrentAgentBlueprintAppId = "blueprint-app-id-guid"
-            $script:LastClientSecret = ConvertTo-SecureString "secret-value" -AsPlainText -Force
+            $script:LastClientSecret = New-Object System.Security.SecureString
+            "secret-value".ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
             $script:CurrentTenantId = "tenant-id-guid"
         }
         
