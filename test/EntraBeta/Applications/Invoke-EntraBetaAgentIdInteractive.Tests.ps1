@@ -103,7 +103,8 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
             
             Mock -CommandName Add-EntraBetaClientSecretToAgentIdentityBlueprint -MockWith {
                 InModuleScope Microsoft.Entra.Beta.Applications {
-                    $script:LastClientSecret = ConvertTo-SecureString "test-secret-value" -AsPlainText -Force
+                    $script:LastClientSecret = New-Object System.Security.SecureString
+                    "test-secret-value".ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
                 }
                 return @{ KeyId = "secret-id"; EndDateTime = (Get-Date).AddYears(1) }
             } -ModuleName Microsoft.Entra.Beta.Applications
