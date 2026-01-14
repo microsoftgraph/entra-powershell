@@ -25,7 +25,8 @@ Describe "Tests for Get-EntraBetaAgentIdentityToken" {
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintAppId = "blueprint-app-id-guid"
             $script:CurrentAgentIdentityAppId = "agent-identity-app-id-guid"
-            $script:LastClientSecret = ConvertTo-SecureString "secret-value" -AsPlainText -Force
+            $script:LastClientSecret = New-Object System.Security.SecureString
+            "secret-value".ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
         }
         
         # Define variables for use across tests
