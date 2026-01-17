@@ -244,6 +244,7 @@ function Get-EntraUser {
                     $propertyValue = $_.Value
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $userType.PSTypeNames.Insert(0, "Microsoft.Entra.User.Simple")
                 $userList += $userType
             }
             $userList 

@@ -89,6 +89,7 @@ function Get-EntraUserDirectReport {
                     $propertyValue = $_.Value
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $userType.PSTypeNames.Insert(0, "Microsoft.Entra.User.Manager")
                 $userList += $userType
             }
             $userList

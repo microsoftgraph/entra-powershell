@@ -77,11 +77,27 @@ Set-StrictMode -Version 5
         Log-Message "[EntraModuleBuilder] Creating .psm1 file: $psm1FilePath"
 
         $psm1Content = $this.headerText + "`n"  # Add a newline after the header
+        $ps1xmlContent = ""  # Xml content to be appended later
 
         # Get-ChildItem returns different types depending on the number of items it finds.
-        # When there is only one item, it returns a single object rather than an array
-        # Using @() we force the result to be treated as an array, even if there is only one item.
-        $ps1Files = @(Get-ChildItem -Path $currentDirPath -Filter "*.ps1")
+        $ps1Files = @(Get-ChildItem -Path $currentDirPath -Include "*.ps1" -Recurse:$true)
+
+        $ps1xmlFiles = @(Get-ChildItem -Path $currentDirPath -Filter "*.format.ps1xml")
+        if ($ps1xmlFiles.Count -gt 0) {
+            foreach ($ps1xmlFile in $ps1xmlFiles) {
+            Log-Message "[EntraModuleBuilder] Appending formmatting content from file: $($ps1xmlFile.Name)" -ForegroundColor Cyan
+            $ps1xmlContent = Get-Content -Path $ps1xmlFile.FullName -Raw
+
+            $ps1xmlFilePath = Join-Path -Path $destDirectory -ChildPath $ps1xmlFile.Name
+            Log-Message "[EntraModuleBuilder] Writing .ps1xml file to disk: $ps1xmlFilePath"
+
+            # Use UTF-8 with BOM for PowerShell 5.1 compatibility
+            $utf8WithBom = New-Object System.Text.UTF8Encoding($true)
+            [System.IO.File]::WriteAllText($ps1xmlFilePath, $ps1xmlContent, $utf8WithBom)
+
+            Log-Message "[EntraModuleBuilder] Module Formating file created: $ps1xmlFilePath" -Level 'SUCCESS'
+        }
+    }
 
         if ($ps1Files.Count -eq 0) {
             Log-Message "[EntraModuleBuilder] Warning: No .ps1 files found in directory $currentDirPath" -Level 'ERROR'
@@ -236,8 +252,6 @@ Set-StrictMode -Version 5
             return $subModules | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
         }
     }
-
- 
 
     # Main function to create the root module
     [void] CreateRootModule([string] $Module) {
@@ -511,10 +525,15 @@ $($requiredModulesEntries -join ",`n")
                 exit
             }
 
-            # Get all files in the specified directory and its subdirectories, without extensions
-            $allFunctions = @(Get-ChildItem -Path $subDir.FullName -Recurse -File | ForEach-Object { $_.BaseName })
+            # Get all files in the specified directory and its subdirectories
+            $allFiles = @(Get-ChildItem -Path $subDir.FullName -Recurse -File)
+            $filteredFunctions = $allFiles | Where-Object { $_.Extension -eq ".ps1"}
+            $functions = @($filteredFunctions | ForEach-Object { $_.BaseName }) + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
 
-            $functions = $allFunctions + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
+            # Get formatting file for submodule
+            $filteredFormattingFiles = $allFiles | Where-Object { $_.Extension -eq ".ps1xml"}
+            $formattingFiles = @($filteredFormattingFiles | ForEach-Object { $_.Name })
+            
 
             #QuickFix: TODO: Generalize to use this with any sub-module, by auto-extracting the alias
             $aliasesToExport = $this.ExtractSubModuleAliases($subDir.FullName, $moduleName)
@@ -548,7 +567,7 @@ $($requiredModulesEntries -join ",`n")
                 AliasesToExport        = $aliasesToExport
                 Author                 = $($content.authors)
                 CompanyName            = $($content.owners)
-                FileList               = @("$manifestFileName", "$moduleFileName", "$helpFileName")
+                FileList               = @("$manifestFileName", "$moduleFileName", "$helpFileName", "$formattingFiles")
                 RootModule             = "$moduleFileName"
                 Description            = $content.moduleName
                 DotNetFrameworkVersion = $([System.Version]::Parse($content.dotNetVersion))
@@ -556,6 +575,7 @@ $($requiredModulesEntries -join ",`n")
                 CompatiblePSEditions   = @('Desktop', 'Core')
                 RequiredModules        = $requiredModules
                 NestedModules          = @()
+                FormatsToProcess       = $formattingFiles
             }
 		
 
