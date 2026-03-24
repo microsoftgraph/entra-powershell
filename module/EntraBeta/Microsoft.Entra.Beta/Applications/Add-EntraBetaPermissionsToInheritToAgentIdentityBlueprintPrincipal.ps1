@@ -27,7 +27,7 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
         # Ensure connection to Microsoft Entra
         $context = Get-EntraContext
         if (-not $context) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.UpdateAuthProperties.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }

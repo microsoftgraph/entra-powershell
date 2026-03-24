@@ -38,7 +38,7 @@ The `Add-EntraBetaScopeToAgentIdentityBlueprint` cmdlet adds a custom OAuth2 per
 ### Example 1: Add scope with prompts
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 Add-EntraBetaScopeToAgentIdentityBlueprint
 ```
@@ -48,7 +48,7 @@ This example adds an OAuth2 permission scope to the Agent Identity Blueprint. Th
 ### Example 2: Add scope with all parameters
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 Add-EntraBetaScopeToAgentIdentityBlueprint -AdminConsentDescription "Allow agent access" -AdminConsentDisplayName "Agent Access" -Value "agent_access"
 ```
 
@@ -57,7 +57,7 @@ This example adds an OAuth2 permission scope with specified parameters to the cu
 ### Example 3: Add scope with specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 Add-EntraBetaScopeToAgentIdentityBlueprint -AgentBlueprintId "12345678-1234-1234-1234-123456789012" -AdminConsentDescription "Custom agent permission" -AdminConsentDisplayName "Custom Access" -Value "custom.access"
 ```
 
@@ -154,5 +154,3 @@ The scope is created with type "User" and is enabled by default.
 ## RELATED LINKS
 
 [New-EntraBetaAgentIdentityBlueprint](New-EntraBetaAgentIdentityBlueprint.md)
-
-[Add-EntraBetaRedirectURIToAgentIdentityBlueprint](Add-EntraBetaRedirectURIToAgentIdentityBlueprint.md)

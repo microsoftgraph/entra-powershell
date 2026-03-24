@@ -6,10 +6,6 @@
 function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $false, HelpMessage = "Array of Microsoft Graph permission scopes to make inheritable.")]
-        [ValidateNotNullOrEmpty()]
-        [string[]]$Scopes,
-
         [Parameter(Mandatory = $false, HelpMessage = "The resource application ID.")]
         [ValidateNotNullOrEmpty()]
         [guid]$ResourceAppId = "00000003-0000-0000-c000-000000000000"
@@ -18,7 +14,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes AgentIdentityBlueprint.UpdateAuthProperties.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -29,12 +25,9 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             return
         }
 
-        # Prompt for ResourceAppId if not provided
-        if ($ResourceAppId -eq [guid]::Empty) {
-            Write-Host "Enter the Resource Application ID for the permissions." -ForegroundColor Cyan
-            Write-Host "Default: 00000003-0000-0000-c000-000000000000 (Microsoft Graph)" -ForegroundColor Gray
-
-            $resourceInput = Read-Host "Resource App ID (press Enter for Microsoft Graph default)"
+        # Prompt for ResourceAppId if not provided via parameter
+        if (-not $PSBoundParameters.ContainsKey('ResourceAppId')) {
+            $resourceInput = Read-Host "Enter the Resource Application ID (press Enter for Microsoft Graph default: 00000003-0000-0000-c000-000000000000)"
             if ($resourceInput -and $resourceInput.Trim() -ne "") {
                 try {
                     $ResourceAppId = [guid]$resourceInput.Trim()
@@ -44,10 +37,6 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     return
                 }
             }
-            else {
-                $ResourceAppId = [guid]"00000003-0000-0000-c000-000000000000"
-                Write-Host "Using default: Microsoft Graph" -ForegroundColor Cyan
-            }
         }
 
         # Determine resource name for display
@@ -56,81 +45,100 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             "00000002-0000-0000-c000-000000000000" { "Azure Active Directory Graph" }
             default { "Custom Resource ($ResourceAppId)" }
         }
-
-        # Prompt for scopes if not provided
-        if (-not $Scopes) {
-            Write-Host "Enter permission scopes to make inheritable for $resourceName." -ForegroundColor Cyan
-            if ($ResourceAppId -eq [guid]"00000003-0000-0000-c000-000000000000") {
-                Write-Host "Common Microsoft Graph scopes: User.Read, Mail.Read, Calendars.Read, Files.Read, etc." -ForegroundColor Gray
-            }
-            Write-Host "Enter multiple scopes separated by commas." -ForegroundColor Gray
-
-            do {
-                $scopeInput = Read-Host "Enter permission scopes (comma-separated)"
-                if ($scopeInput -and $scopeInput.Trim() -ne "") {
-                    $Scopes = $scopeInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
-                }
-            } while (-not $Scopes -or $Scopes.Count -eq 0)
-        }
     }
 
     process {
-        $customHeaders = $null
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = '/beta/applications'
-        $Method = "POST"
+        $apiUrl = "$baseUri/microsoft.graph.agentIdentityBlueprint/$($script:CurrentAgentBlueprintId)/inheritablePermissions"
 
         try {
             Write-Verbose "Adding inheritable permissions to Agent Identity Blueprint..."
             Write-Verbose "Agent Blueprint ID: $($script:CurrentAgentBlueprintId)"
             Write-Verbose "Resource App ID: $ResourceAppId ($resourceName)"
-            Write-Verbose "Scopes to make inheritable:"
-            foreach ($scope in $Scopes) {
-                Write-Verbose "  - $scope"
+            Write-Verbose "Inheritable scopes: All allowed"
+
+            # Check for existing inheritable permissions on the blueprint
+            Write-Verbose "Retrieving existing inheritable permissions..."
+            $existingPermissions = $null
+            try {
+                $existingPermissions = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri $apiUrl -ErrorAction Stop
+                $customHeaders = $null
+            }
+            catch {
+                Write-Verbose "Could not retrieve existing permissions (may be none yet): $_"
+                $existingPermissions = $null
+                $customHeaders = $null
             }
 
-            # Build the request body
+            # Build the inheritable scopes body
+            $inheritableScopesBody = [PSCustomObject]@{
+                "@odata.type" = "#microsoft.graph.allAllowedScopes"
+                kind          = "allAllowed"
+            }
+
+            # Determine if an entry for this resourceAppId already exists
+            $existingEntry = $null
+            if ($existingPermissions -and $existingPermissions.value) {
+                $existingEntry = $existingPermissions.value | Where-Object { $_.resourceAppId -eq $ResourceAppId.ToString() } | Select-Object -First 1
+            }
+
             $Body = [PSCustomObject]@{
                 resourceAppId     = $ResourceAppId.ToString()
-                inheritableScopes = [PSCustomObject]@{
-                    "@odata.type" = "microsoft.graph.enumeratedScopes"
-                    scopes        = $Scopes
-                }
+                inheritableScopes = $inheritableScopesBody
             }
-
             $JsonBody = $Body | ConvertTo-Json -Depth 5
             Write-Debug "Request Body: $JsonBody"
 
-            # Use Invoke-MgRestMethod to make the API call with the stored Agent Blueprint ID with retry logic
-            $apiUrl = "$baseUri/microsoft.graph.agentIdentityBlueprint/$($script:CurrentAgentBlueprintId)/inheritablePermissions"
-            Write-Debug "API URL: $apiUrl"
-
-            $retryCount = 0
-            $maxRetries = 10
             $result = $null
             $success = $false
+            $retryCount = 0
+            $maxRetries = 10
 
-            while ($retryCount -lt $maxRetries -and -not $success) {
-                if ($retryCount -eq 0) {
-                    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-                } 
-                else {
-                    $customHeaders = $null
-                }
+            if ($existingEntry) {
+                # Overwrite the existing entry for this resourceAppId
+                Write-Verbose "Existing inheritable permissions found for resource '$resourceName' — overwriting..."
+                $patchUrl = "$apiUrl/$($ResourceAppId.ToString())"
+                Write-Debug "PATCH URL: $patchUrl"
 
-                try {
-                    $result = Invoke-MgGraphRequest -Headers $customHeaders -Method $Method -Uri $apiUrl -Body $JsonBody -ErrorAction Stop
-                    $success = $true
-                }
-                catch {
-                    $retryCount++
-                    if ($retryCount -lt $maxRetries) {
-                        Write-Verbose "Waiting for propagation..."
-                        Write-Verbose "Attempt $retryCount failed. Waiting 10 seconds before retry..."
-                        Start-Sleep -Seconds 10
+                while ($retryCount -lt $maxRetries -and -not $success) {
+                    try {
+                        $result = Invoke-MgGraphRequest -Method PATCH -Uri $patchUrl -Body $JsonBody -ErrorAction Stop
+                        $success = $true
                     }
-                    else {
-                        Write-Error "Failed to add inheritable permissions after $maxRetries attempts: $_"
-                        throw
+                    catch {
+                        $retryCount++
+                        if ($retryCount -lt $maxRetries) {
+                            Write-Verbose "Attempt $retryCount failed. Waiting 10 seconds before retry..."
+                            Start-Sleep -Seconds 10
+                        }
+                        else {
+                            Write-Error "Failed to update inheritable permissions after $maxRetries attempts: $_"
+                            throw
+                        }
+                    }
+                }
+            }
+            else {
+                # No existing entry for this resourceAppId — add it (preserves other resources' permissions)
+                Write-Verbose "No existing inheritable permissions for resource '$resourceName' — adding..."
+                Write-Debug "POST URL: $apiUrl"
+
+                while ($retryCount -lt $maxRetries -and -not $success) {
+                    try {
+                        $result = Invoke-MgGraphRequest -Method POST -Uri $apiUrl -Body $JsonBody -ErrorAction Stop
+                        $success = $true
+                    }
+                    catch {
+                        $retryCount++
+                        if ($retryCount -lt $maxRetries) {
+                            Write-Verbose "Attempt $retryCount failed. Waiting 10 seconds before retry..."
+                            Start-Sleep -Seconds 10
+                        }
+                        else {
+                            Write-Error "Failed to add inheritable permissions after $maxRetries attempts: $_"
+                            throw
+                        }
                     }
                 }
             }
@@ -138,16 +146,12 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             Write-Host "Successfully added inheritable permissions to Agent Identity Blueprints." -ForegroundColor Green
             Write-Host "Permissions are now available for inheritance by agent blueprints." -ForegroundColor Green
 
-            # Store the scopes for use in other functions
-            $script:LastConfiguredInheritableScopes = $Scopes
-
             # Create a result object with permission information
             $permissionResult = [PSCustomObject]@{
                 AgentBlueprintId  = $script:CurrentAgentBlueprintId
                 ResourceAppId     = $ResourceAppId
                 ResourceAppName   = $resourceName
-                InheritableScopes = $Scopes
-                ScopeCount        = $Scopes.Count
+                InheritableScopes = "allAllowed"
                 ConfiguredAt      = Get-Date
                 ApiResponse       = $result
             }
@@ -156,7 +160,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
         }
         catch {
             Write-Error "Failed to add inheritable permissions: $_"
-            if ($_.Exception.Response) {
+            if ($_.Exception.PSObject.Properties.Match('Response').Count -gt 0 -and $_.Exception.Response) {
                 Write-Debug "Response Status: $($_.Exception.Response.StatusCode)"
                 if ($_.Exception.Response.Content) {
                     Write-Debug "Response Content: $($_.Exception.Response.Content)"
