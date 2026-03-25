@@ -107,15 +107,6 @@ Describe "Tests for Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint"
         { Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes @("user.read") -ErrorAction Stop } | Should -Throw "*No Agent Blueprint ID*"
     }
 
-    It "Should store scopes in script variable" {
-        $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-        $testScopes = @("user.read", "mail.read")
-        $result = Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -Scopes $testScopes
-        InModuleScope Microsoft.Entra.Beta.Applications {
-            $script:LastConfiguredInheritableScopes | Should -Be @("user.read", "mail.read")
-        }
-    }
-
     It "Should execute successfully without throwing an error" {
         $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $originalDebugPreference = $DebugPreference

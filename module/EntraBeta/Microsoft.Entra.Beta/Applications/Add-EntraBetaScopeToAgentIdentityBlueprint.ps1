@@ -47,37 +47,31 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
         # Prompt for missing parameters
         if (-not $AdminConsentDescription -or $AdminConsentDescription.Trim() -eq "") {
             $defaultDescription = "Allow the agent to act on behalf of the signed-in user"
-            Write-Host "Default: $defaultDescription" -ForegroundColor Gray
-            $userInput = Read-Host "Enter the admin consent description for the scope (press Enter for default)"
+            $userInput = Read-Host "Enter the admin consent description for the scope (press Enter to use '$defaultDescription')"
             if ($userInput -and $userInput.Trim() -ne "") {
                 $AdminConsentDescription = $userInput.Trim()
             } else {
                 $AdminConsentDescription = $defaultDescription
-                Write-Host "Using default: $AdminConsentDescription" -ForegroundColor Cyan
             }
         }
 
         if (-not $AdminConsentDisplayName -or $AdminConsentDisplayName.Trim() -eq "") {
             $defaultDisplayName = "Access agent on behalf of user"
-            Write-Host "Default: $defaultDisplayName" -ForegroundColor Gray
-            $userInput = Read-Host "Enter the admin consent display name for the scope (press Enter for default)"
+            $userInput = Read-Host "Enter the admin consent display name for the scope (press Enter to use '$defaultDisplayName')"
             if ($userInput -and $userInput.Trim() -ne "") {
                 $AdminConsentDisplayName = $userInput.Trim()
             } else {
                 $AdminConsentDisplayName = $defaultDisplayName
-                Write-Host "Using default: $AdminConsentDisplayName" -ForegroundColor Cyan
             }
         }
 
         if (-not $Value -or $Value.Trim() -eq "") {
             $defaultValue = "access_agent_as_user"
-            Write-Host "Default: $defaultValue" -ForegroundColor Gray
-            $userInput = Read-Host "Enter the scope value (used in token claims, press Enter for default)"
+            $userInput = Read-Host "Enter the scope value (used in token claims, press Enter to use '$defaultValue')"
             if ($userInput -and $userInput.Trim() -ne "") {
                 $Value = $userInput.Trim()
             } else {
                 $Value = $defaultValue
-                Write-Host "Using default: $Value" -ForegroundColor Cyan
             }
         }
     }

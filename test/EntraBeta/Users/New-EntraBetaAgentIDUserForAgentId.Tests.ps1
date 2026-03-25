@@ -22,42 +22,20 @@ Describe "Tests for New-EntraBetaAgentIDUserForAgentId" {
         }
 
         Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Users
-        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("User.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Users
+        Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdUser.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Users
         Mock -CommandName Connect-Entra -MockWith { } -ModuleName Microsoft.Entra.Beta.Users
-        
-        # Mock Connect-AgentIdentityBlueprint to set the required script variable in Applications module
-        Mock -CommandName Connect-AgentIdentityBlueprint -MockWith {
-            InModuleScope Microsoft.Entra.Beta.Applications {
-                $script:LastSuccessfulConnection = "AgentIdentityBlueprint"
-            }
-            return $true
-        } -ModuleName Microsoft.Entra.Beta.Users
-        
-        # Set up required stored values for testing in the Applications module scope (where Connect-AgentIdentityBlueprint function lives)
-        InModuleScope Microsoft.Entra.Beta.Applications {
-            $script:CurrentAgentIdentityId = "agent-id-guid"
-            $script:CurrentAgentBlueprintId = "blueprint-id-guid"
-            $script:CurrentAgentBlueprintAppId = "blueprint-app-id-guid"
-            $script:LastClientSecret = New-Object System.Security.SecureString
-            "secret-value".ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
-            $script:CurrentTenantId = "tenant-id-guid"
-        }
-        
-        # Also set CurrentAgentIdentityId in the Users module scope (where the cmdlet runs)
-        InModuleScope Microsoft.Entra.Beta.Users {
-            $script:CurrentAgentIdentityId = "agent-id-guid"
-        }
+
+        # Set the global workflow state variable (crosses module boundaries — set by New-EntraBetaAgentIDForAgentIdentityBlueprint)
+        $global:EntraBetaCurrentAgentIdentityId = "agent-id-guid"
         
         # Define variables for use across tests
         $script:userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAgentIDUserForAgentId"
     }
     
     AfterEach {
-        # Restore BeforeAll values after tests that might have cleared them in Applications module
-        InModuleScope Microsoft.Entra.Beta.Applications {
-            if (-not $script:CurrentAgentIdentityId) {
-                $script:CurrentAgentIdentityId = "agent-id-guid"
-            }
+        # Restore global workflow state variable
+        if (-not $global:EntraBetaCurrentAgentIdentityId) {
+            $global:EntraBetaCurrentAgentIdentityId = "agent-id-guid"
         }
     }
 

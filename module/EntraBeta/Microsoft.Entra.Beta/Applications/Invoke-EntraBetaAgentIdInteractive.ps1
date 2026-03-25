@@ -11,7 +11,7 @@ function Invoke-EntraBetaAgentIdInteractive {
         # Ensure connection to Microsoft Entra
         $context = Get-EntraContext
         if (-not $context) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Organization.Read.All, AgentIdentityBlueprint.Create, AgentIdentityBlueprintPrincipal.Create, AppRoleAssignment.ReadWrite.All, AgentIdentityBlueprint.UpdateAuthProperties.All, User.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes Organization.Read.All, AgentIdentityBlueprint.Create, AgentIdentityBlueprintPrincipal.Create, AgentIdentity.Create.All, AgentIdentityBlueprint.UpdateAuthProperties.All, AgentIdUser.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
@@ -28,10 +28,10 @@ function Invoke-EntraBetaAgentIdInteractive {
         $october1_2025 = [DateTime]::new(2025, 10, 1, 0, 0, 0)
         $blueprintNumber = [int]((Get-Date) - $october1_2025).TotalSeconds
 
-        $bluePrintDisplayName = Read-Host "Enter a display name for the Agent Identity Blueprint (or press Enter for default)"
+        $defaultBlueprintName = "Agent Identity Blueprint Example $blueprintNumber"
+        $bluePrintDisplayName = Read-Host "Enter a display name for the Agent Identity Blueprint (press Enter to use '$defaultBlueprintName')"
         if (-not $bluePrintDisplayName -or $bluePrintDisplayName.Trim() -eq "") {
-            $bluePrintDisplayName = "Agent Identity Blueprint Example $blueprintNumber"
-            Write-Host "Using default display name: $bluePrintDisplayName" -ForegroundColor Gray
+            $bluePrintDisplayName = $defaultBlueprintName
         }
 
         # Get current user to suggest as sponsor
@@ -51,9 +51,9 @@ function Invoke-EntraBetaAgentIdInteractive {
         }
 
         if ($currentUserUpn) {
-            $useCurrentUserId = Read-Host "Use current user ($currentUserUpn) as sponsor? (y/n)"
+            $useCurrentUserId = Read-Host "Use current user ($currentUserUpn) as sponsor and owner? (y/n)"
             if ($null -eq $useCurrentUserId -or $useCurrentUserId -eq "y") {
-                Write-Host "Using current user as default sponsor: $currentUserUpn" -ForegroundColor Gray
+                Write-Host "Using current user as default sponsor and owner: $currentUserUpn" -ForegroundColor Gray
                 $SponsorUserIds = @($currentUserId)
                 $useSponsor = $true
             } else {
@@ -67,7 +67,7 @@ function Invoke-EntraBetaAgentIdInteractive {
         try {
             if ($useSponsor) {
                 Write-Debug "Creating blueprint with sponsor user ID: $($SponsorUserIds -join ', ')"
-                $blueprint1 = New-EntraBetaAgentIdentityBlueprint -DisplayName $bluePrintDisplayName -SponsorUserIds $SponsorUserIds
+                $blueprint1 = New-EntraBetaAgentIdentityBlueprint -DisplayName $bluePrintDisplayName -SponsorUserIds $SponsorUserIds -OwnerUserIds $SponsorUserIds
             } else {
                 $blueprint1 = New-EntraBetaAgentIdentityBlueprint -DisplayName $bluePrintDisplayName
             }
@@ -287,7 +287,7 @@ function Invoke-EntraBetaAgentIdInteractive {
             if ($useSponsor) {
                 Write-Host "Using current user as sponsor for Agent Identity." -ForegroundColor Gray
                 $agentIdentity = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName $agentIdentityDisplayName `
-                    -SponsorUserIds $SponsorUserIds
+                    -SponsorUserIds $SponsorUserIds -OwnerUserIds $SponsorUserIds
             }
             else {
                 Write-Host "No sponsor specified for Agent Identity." -ForegroundColor Gray

@@ -46,17 +46,11 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
 
         # Prompt for scopes if not provided or if using defaults
         if (-not $Scopes) {
-            $suggestedScopes = @("user.read", "mail.read")  # Default fallback
-
-            # Use previously configured inheritable scopes as suggestion if available
-            if ($script:LastConfiguredInheritableScopes -and $script:LastConfiguredInheritableScopes.Count -gt 0) {
-                $suggestedScopes = $script:LastConfiguredInheritableScopes
-                Write-Host "Found previously configured inheritable scopes from Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint" -ForegroundColor Gray
-            }
+            $suggestedScopes = @("user.read")  # Default fallback
 
             Write-Host "Enter permission scopes for admin consent." -ForegroundColor Cyan
             Write-Host "These scopes will be requested during the admin consent flow." -ForegroundColor Gray
-            Write-Host "Suggested (from inheritable permissions): $($suggestedScopes -join ', ')" -ForegroundColor Cyan
+            Write-Host "Suggested: $($suggestedScopes -join ', ')" -ForegroundColor Cyan
             Write-Host "You can edit these scopes before submitting." -ForegroundColor Gray
 
             # Pre-populate with suggested scopes and allow editing

@@ -16,7 +16,6 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
         # Set up required stored values for testing in the module scope
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = "blueprint-app-id-guid"
-            $script:LastConfiguredInheritableScopes = @("user.read", "mail.read")
         }
         
         # Define variables for use across tests
@@ -63,12 +62,6 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
             $script:CurrentAgentBlueprintId = $null
         }
         { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Throw "*No Agent Blueprint ID*"
-    }
-
-    It "Should use suggested scopes from LastConfiguredInheritableScopes" {
-        $script:CurrentAgentBlueprintId = "blueprint-app-id-guid"
-        $script:LastConfiguredInheritableScopes = @("custom.scope1", "custom.scope2")
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Not -Throw
     }
 
     It "Should execute successfully without throwing an error" {

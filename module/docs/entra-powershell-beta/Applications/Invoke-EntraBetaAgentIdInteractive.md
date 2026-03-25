@@ -46,7 +46,7 @@ The cmdlet maintains state between operations, automatically passing Blueprint I
 ### Example 1: Start the interactive Agent Identity configuration workflow
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All', 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'Organization.Read.All', 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 Invoke-EntraBetaAgentIdInteractive
 ```
 
@@ -73,9 +73,9 @@ This cmdlet requires the following Microsoft Graph permissions:
 - Organization.Read.All
 - AgentIdentityBlueprint.Create
 - AgentIdentityBlueprintPrincipal.Create
-- AppRoleAssignment.ReadWrite.All
-- Application.ReadWrite.All
-- User.ReadWrite.All
+- AgentIdentity.Create.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
+- AgentIdUser.ReadWrite.All
 
 The cmdlet will automatically connect to Microsoft Graph with these permissions if not already connected.
 
@@ -85,4 +85,16 @@ The cmdlet will automatically connect to Microsoft Graph with these permissions 
 
 [Add-EntraBetaClientSecretToAgentIdentityBlueprint](Add-EntraBetaClientSecretToAgentIdentityBlueprint.md)
 
+[Add-EntraBetaScopeToAgentIdentityBlueprint](Add-EntraBetaScopeToAgentIdentityBlueprint.md)
+
+[Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint](Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint.md)
+
 [New-EntraBetaAgentIdentityBlueprintPrincipal](New-EntraBetaAgentIdentityBlueprintPrincipal.md)
+
+[Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal](Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal.md)
+
+[Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal](Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal.md)
+
+[New-EntraBetaAgentIDForAgentIdentityBlueprint](New-EntraBetaAgentIDForAgentIdentityBlueprint.md)
+
+[New-EntraBetaAgentIDUserForAgentId](../Users/New-EntraBetaAgentIDUserForAgentId.md)

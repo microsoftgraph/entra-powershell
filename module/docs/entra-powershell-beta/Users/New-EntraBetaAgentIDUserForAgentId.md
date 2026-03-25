@@ -37,7 +37,7 @@ The `New-EntraBetaAgentIDUserForAgentId` cmdlet creates a new Agent User by post
 ### Example 1: Create an Agent User with all parameters
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent Identity 26192008" -UserPrincipalName "AgentIdentity26192008@contoso.onmicrosoft.com"
@@ -48,7 +48,7 @@ This example creates an Agent User with the specified display name and user prin
 ### Example 2: Create an Agent User with prompts
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 # Assumes Agent Identity Blueprint and Agent Identity are already created
 New-EntraBetaAgentIDUserForAgentId -DisplayName "HR Agent User"
 ```
@@ -58,7 +58,7 @@ This example creates an Agent User. The cmdlet will prompt for the user principa
 ### Example 3: Create multiple Agent Users for the same Agent Identity
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUserIds @("finance-admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Finance Agent" -SponsorUserIds @("finance-user@contoso.com")
 
@@ -74,7 +74,7 @@ This example creates multiple Agent Users associated with the same Agent Identit
 ### Example 4: Create an Agent User with explicit Agent Identity ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 $agentIdentity = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity"
 New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent User" -UserPrincipalName "agentuser@contoso.onmicrosoft.com" -AgentIdentityId $agentIdentity.id
 ```
@@ -152,9 +152,9 @@ Requires an Agent Identity ID, either provided via the -AgentIdentityId paramete
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprint.Create
 - AgentIdentityBlueprintPrincipal.Create
-- AppRoleAssignment.ReadWrite.All
+- AgentIdentity.Create.All
 - AgentIdentityBlueprint.UpdateAuthProperties.All
-- User.ReadWrite.All
+- AgentIdUser.ReadWrite.All
 
 ## RELATED LINKS
 

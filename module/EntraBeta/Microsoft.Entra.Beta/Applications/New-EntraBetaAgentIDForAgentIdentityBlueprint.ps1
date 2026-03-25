@@ -26,14 +26,8 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'User.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
-            return
-        }
-
-        # Connect using Agent Identity Blueprint credentials
-        if (!(Connect-AgentIdentityBlueprint)) {
-            Write-Error "Failed to connect using Agent Identity Blueprint credentials. Cannot create Agent Identity."
             return
         }
 
@@ -87,7 +81,7 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
                 }
             }
             # Allow adding more sponsor users
-            while ($SponsorUserIds.Count -gt 0) {
+            while ($SponsorUserIds -and $SponsorUserIds.Count -gt 0) {
                 $more = Read-Host "Add more sponsor users? (comma-separated IDs or UPNs, or press Enter to continue)"
                 if (-not $more -or $more.Trim() -eq "") { break }
                 $SponsorUserIds += $more.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
@@ -131,7 +125,7 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
                 }
             }
             # Allow adding more owner users
-            while ($OwnerUserIds.Count -gt 0) {
+            while ($OwnerUserIds -and $OwnerUserIds.Count -gt 0) {
                 $more = Read-Host "Add more owner users? (comma-separated IDs or UPNs, or press Enter to continue)"
                 if (-not $more -or $more.Trim() -eq "") { break }
                 $OwnerUserIds += $more.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
@@ -298,6 +292,8 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
             # Store the Agent Identity ID in module state
             $script:CurrentAgentIdentityId = $agentIdentity.id
             $script:CurrentAgentIdentityAppId = $agentIdentity.appId
+            # Also store as global so other modules (e.g. Users) can read it cross-module
+            $global:EntraBetaCurrentAgentIdentityId = $agentIdentity.id
 
             Write-Host "Agent Identity created successfully!" -ForegroundColor Green
             Write-Verbose "Agent Identity ID: $($agentIdentity.id)"
