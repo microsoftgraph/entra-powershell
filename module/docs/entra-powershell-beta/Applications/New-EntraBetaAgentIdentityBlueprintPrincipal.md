@@ -85,11 +85,12 @@ Returns the service principal response object from Microsoft Graph with properti
 
 ## NOTES
 
-This cmdlet requires an Agent Identity Blueprint to be created first. The cmdlet stores the service principal ID in a module-level variable for use by other related cmdlets.
+This cmdlet requires an Agent Identity Blueprint to be created first. The cmdlet stores the created service principal ID in a module-level variable (`CurrentAgentBlueprintServicePrincipalId`) for use by other related cmdlets such as consent and permission configuration cmdlets.
+
+The cmdlet includes retry logic (up to 10 attempts with 10-second waits) to handle propagation delays after blueprint creation.
 
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprintPrincipal.Create
-- Application.ReadWrite.All
 
 ## RELATED LINKS
 

@@ -1,26 +1,29 @@
 ---
-author: msewaweru
-description: This article provides details on the Get-EntraAccountSku command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraAccountSku
-schema: 2.0.0
 title: Get-EntraAccountSku
+description: This article provides details on the Get-EntraAccountSku command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAccountSku
+
+schema: 2.0.0
 ---
 
 # Get-EntraAccountSku
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves all the SKUs for a company.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -37,24 +40,18 @@ Get-EntraAccountSku
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraAccountSku` retrieves the list of commercial subscriptions acquired by an organization.
 
 For a list of license names in the Microsoft Entra or Microsoft 365 admin centers and their corresponding Microsoft Graph `skuId` and `skuPartNumber` properties, refer to the [mapping information](https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference).
 
-In delegated scenarios with work or school accounts, when acting on another user, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles support this operation:
-
-- Dynamics 365 Business Central Administrator (read-only access to standard properties)  
-- Global Reader  
-- Directory Readers
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Gets a list of SKUs
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All', 'LicenseAssignment.Read.All'
+Connect-Entra -Scopes 'Organization.Read.All'
 Get-EntraAccountSku
 ```
 
@@ -71,9 +68,8 @@ This command returns a list of SKUs.
 ### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All','LicenseAssignment.Read.All'
-$tenantId = (Get-EntraContext).TenantId
-Get-EntraAccountSku -TenantId $tenantId
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
 ```Output
@@ -88,11 +84,13 @@ This command returns a list of SKUs for a specified tenant.
 
 - `-TenantId` parameter specifies the unique ID of the tenant.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 
-The unique tenant ID for the operation. This parameter provides compatibility with Azure AD and MSOnline for partner scenarios. TenantID is the signed-in user's tenant ID.
+The unique ID of the tenant to perform the operation on.
+If this isn't provided, then the value will default to the tenant of the current user.
+This parameter is only applicable to partner users.
 
 ```yaml
 Type: System.String
@@ -110,10 +108,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

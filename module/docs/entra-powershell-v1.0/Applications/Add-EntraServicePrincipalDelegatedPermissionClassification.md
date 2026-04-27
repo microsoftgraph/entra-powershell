@@ -1,28 +1,29 @@
 ---
-author: msewaweru
-description: This article provides details on the Add-EntraServicePrincipalDelegatedPermissionClassification command.
-external help file: Microsoft.Entra.Applications-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Applications
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Add-EntraServicePrincipalDelegatedPermissionClassification
-schema: 2.0.0
 title: Add-EntraServicePrincipalDelegatedPermissionClassification
+description: This article provides details on the Add-EntraServicePrincipalDelegatedPermissionClassification command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraServicePrincipalDelegatedPermissionClassification
+
+schema: 2.0.0
 ---
 
 # Add-EntraServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 
 Add a classification for a delegated permission.
 
-## SYNTAX
-
-### ByServicePrincipalAndPermissionInfo
+## Syntax
 
 ```powershell
 Add-EntraServicePrincipalDelegatedPermissionClassification
@@ -33,11 +34,11 @@ Add-EntraServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraServicePrincipalDelegatedPermissionClassification` cmdlet creates a delegated permission classification for the given permission on service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create Delegated Permission Classification
 
@@ -70,7 +71,7 @@ This command creates a delegated permission classification for the given permiss
 - `-Classification` parameter specifies the classification for a delegated permission.
 - `-PermissionName` parameter specifies the name for a delegated permission.
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 
@@ -79,7 +80,7 @@ The unique identifier of a service principal object in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -147,15 +148,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipalDelegatedPermissionClassification](Get-EntraServicePrincipalDelegatedPermissionClassification.md)
 

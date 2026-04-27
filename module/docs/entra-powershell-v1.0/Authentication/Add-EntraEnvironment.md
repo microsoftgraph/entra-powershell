@@ -1,62 +1,69 @@
 ---
-description: This article provides details on the Add-EntraEnvironment command.
-external help file: Microsoft.Entra.Authentication-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Authentication
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Add-EntraEnvironment
-schema: 2.0.0
 title: Add-EntraEnvironment
+description: This article provides details on the Add-EntraEnvironment command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraEnvironment
+
+schema: 2.0.0
 ---
 
 # Add-EntraEnvironment
 
-## SYNOPSIS
+## Synopsis
 
 Adds Microsoft Entra environment to the settings file.
 
-## SYNTAX
+## Syntax
 
 ### Add Entra Environment Name
 
 ```powershell
 Add-EntraEnvironment
- [-Name] <String>
- [-AzureADEndpoint] <String>
- [-GraphEndpoint] <String>
- [-WhatIf]
- [-Confirm]
- [<CommonParameters>]
+   [-Name] <String>
+   [-AzureADEndpoint] <String>
+   [-GraphEndpoint] <String>
+   [-ProgressAction <ActionPreference>]
+   [-WhatIf]
+   [-Confirm]
+   [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Adds Microsoft Entra environment to the settings file.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user defined environment
 
 ```powershell
-$name = 'Canary'
-$graphEndpoint = 'https://canary.graph.microsoft.com'
-$azureADEndpoint = 'https://login.microsoftonline.com'
-Add-EntraEnvironment -Name $name -GraphEndpoint $graphEndpoint -AzureADEndpoint $azureADEndpoint
+$params = @{
+    Name = 'Canary'
+    GraphEndpoint = 'https://canary.graph.microsoft.com'
+    AzureADEndpoint = 'https://login.microsoftonline.com'
+}
+
+Add-EntraEnvironment @params
 ```
 
 ```Output
-Name       AzureADEndpoint                      GraphEndpoint                 Type
-----       ---------------                      -------------                 ----
-Canary     https://login.microsoftonline.com    https://microsoftgraph.com    User-defined
+Name     AzureADEndpoint                      GraphEndpoint                 Type
+----     ---------------                      -------------                 ----
+Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
 ```
 
 Adds a user-defined Entra environment to the settings file.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -101,12 +108,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraEnvironment](Get-EntraEnvironment.md)

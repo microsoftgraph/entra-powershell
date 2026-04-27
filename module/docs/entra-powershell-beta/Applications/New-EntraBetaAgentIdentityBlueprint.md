@@ -152,15 +152,15 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.String
 
-Returns the Agent Blueprint ID.
+Returns the Agent Identity Blueprint ID.
 
 ## NOTES
 
-At least one owner or sponsor (user or group) must be specified. The cmdlet stores the blueprint ID in a module-level variable for use by other related cmdlets.
+At least one sponsor (user or group) must be specified. Owners are optional. If sponsors or owners are not provided as parameters, the cmdlet prompts interactively and suggests the current user as a default. The cmdlet validates all user and group IDs against the tenant before creating the blueprint. The blueprint ID is stored in a module-level variable for use by other related cmdlets.
 
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprint.Create
-- Application.ReadWrite.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
 
 ## RELATED LINKS
 

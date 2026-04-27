@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -19,16 +19,21 @@ function New-EntraBetaAgentIdentityBlueprintPrincipal {
             return
         }
 
-        # Use provided ID or fall back to stored ID
-        if (-not $AgentBlueprintId) {
-            if (-not $script:CurrentAgentBlueprintId) {
-                throw "No Agent Blueprint ID provided and no stored ID available. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
+        # Use provided ID or fall back to stored ID, then prompt if still missing
+        if ([string]::IsNullOrEmpty($AgentBlueprintId)) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentBlueprintId"
             }
-            $AgentBlueprintId = $script:CurrentAgentBlueprintId
-            Write-Verbose "Using stored Agent Blueprint ID: $AgentBlueprintId"
+            else {
+                $AgentBlueprintId = Read-Host "Enter the Agent Identity Blueprint Application ID (AppId)"
+                if ([string]::IsNullOrEmpty($AgentBlueprintId)) {
+                    throw "No Agent Identity Blueprint ID provided. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
+                }
+            }
         }
         else {
-            Write-Verbose "Using provided Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentBlueprintId"
         }
     }
 

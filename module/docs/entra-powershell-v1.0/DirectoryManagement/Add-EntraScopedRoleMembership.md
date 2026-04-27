@@ -1,25 +1,27 @@
 ---
-description: This article provides details on the Add-EntraScopedRoleMembership command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraScopedRoleMembership
-schema: 2.0.0
 title: Add-EntraScopedRoleMembership
+description: This article provides details on the Add-EntraScopedRoleMembership command.
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraScopedRoleMembership
+
+schema: 2.0.0
 ---
 
 # Add-EntraScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 
 Assign a Microsoft Entra role with an administrative unit scope.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraScopedRoleMembership
@@ -29,24 +31,29 @@ Add-EntraScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `AdministrativeUnitId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a scoped role membership to an administrative unit
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$role = Get-EntraDirectoryRole -Filter "DisplayName eq 'Helpdesk Administrator'" 
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'Pacific Administrative Unit'"
-$roleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRoleMemberInfo
-$roleMember.Id = $user.Id
-Add-EntraScopedRoleMembership -AdministrativeUnitId $administrativeUnit.Id -RoleObjectId $role.Id -RoleMemberInfo $roleMember
+$User = Get-EntraUser -SearchString 'MarkWood'
+$Role = Get-EntraDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectId
+$params = @{
+    AdministrativeUnitId = $Unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraScopedRoleMembership @params
 ```
 
 ```Output
@@ -61,7 +68,7 @@ The example shows how to add a user to the specified role within the specified a
 - `-RoleObjectId` Parameter specifies the ID of a directory role.
 - `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitId
 
@@ -115,13 +122,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraScopedRoleMembership](Get-EntraScopedRoleMembership.md)
 

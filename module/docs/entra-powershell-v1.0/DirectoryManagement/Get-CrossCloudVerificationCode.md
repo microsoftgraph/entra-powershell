@@ -1,26 +1,29 @@
 ---
-author: msewaweru
-description: This article provides details on the Get-CrossCloudVerificationCode command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-CrossCloudVerificationCode
-schema: 2.0.0
 title: Get-CrossCloudVerificationCode
+description: This article provides details on the Get-CrossCloudVerificationCode command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-CrossCloudVerificationCode
+
+schema: 2.0.0
 ---
 
 # Get-CrossCloudVerificationCode
 
-## SYNOPSIS
+## Synopsis
+Gets the verification code used to validate the ownership of the domain in another connected cloud.
+Important: Only applies to a verified domain.
 
-Retrieves the verification code to confirm domain ownership in another connected cloud.
-
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-CrossCloudVerificationCode
@@ -28,28 +31,24 @@ Get-CrossCloudVerificationCode
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Retrieves the verification code to confirm domain ownership in another connected cloud. Applies only to verified domains.
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the cross cloud verification code
-
 ```powershell
-Get-CrossCloudVerificationCode -Name Contoso.com
+PS C:\>Get-CrossCloudVerificationCode -Name Contoso.com
 ```
 
-This command returns a string to enable cross-cloud federation.
+This command returns a string that can be used to enable cross cloud federation scenarios.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
-
 Specifies the name of a domain.
 
 ```yaml
-Type: System.String
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,15 +60,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+## Inputs
 
-## INPUTS
-
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.GetCrossCloudVerificationCodeResponse
-
-## NOTES
+## Notes
 
 ## RELATED LINKS

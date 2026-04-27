@@ -4,11 +4,15 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraBetaAgentIdentity {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
-        [Parameter(Mandatory = $true, HelpMessage = "The ID of the Agent Identity to retrieve.")]
+        [Parameter(Mandatory = $true, ParameterSetName = "GetById", HelpMessage = "The ID of the Agent Identity to retrieve.")]
         [ValidateNotNullOrEmpty()]
-        [string]$AgentId
+        [string]$AgentId,
+
+        [Parameter(Mandatory = $false, ParameterSetName = "GetByBlueprint", HelpMessage = "The ID of the Agent Identity Blueprint to list child agent identities for.")]
+        [ValidateNotNullOrEmpty()]
+        [string]$AgentIdentityBlueprintId
     )
 
     begin {
@@ -18,26 +22,64 @@ function Get-EntraBetaAgentIdentity {
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
+
+        # Resolve BlueprintId when using GetByBlueprint parameter set
+        if ($PSCmdlet.ParameterSetName -eq 'GetByBlueprint' -and -not $AgentIdentityBlueprintId) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentIdentityBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentIdentityBlueprintId"
+            } else {
+                $AgentIdentityBlueprintId = Read-Host "Enter the Agent Identity Blueprint ID"
+                if (-not $AgentIdentityBlueprintId -or $AgentIdentityBlueprintId.Trim() -eq "") {
+                    Write-Error "No Agent Identity Blueprint ID provided. Please provide a blueprint ID or create one first using New-EntraBetaAgentIdentityBlueprint." -ErrorAction Stop
+                    return
+                }
+                $AgentIdentityBlueprintId = $AgentIdentityBlueprintId.Trim()
+            }
+        }
     }
 
     process {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUri = '/beta/servicePrincipals'
-        
+
         try {
-            Write-Verbose "Retrieving Agent Identity: $AgentId"
-            
-            # Call the Graph API to get the agent identity
-            $uri = "$baseUri/microsoft.graph.agentIdentity/$AgentId"
-            $result = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri $uri -ErrorAction Stop
-            
-            Write-Verbose "Successfully retrieved Agent Identity"
-            return $result
+            if ($PSCmdlet.ParameterSetName -eq 'GetByBlueprint') {
+                Write-Verbose "Retrieving Agent Identities for Blueprint: $AgentIdentityBlueprintId"
+
+                $uri = "/beta/servicePrincipals/microsoft.graph.agentIdentity?`$filter=agentIdentityBlueprintId eq '$AgentIdentityBlueprintId'"
+                $allResults = @()
+
+                do {
+                    $response = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri $uri -ErrorAction Stop
+                    $customHeaders = $null
+
+                    if ($response.value) {
+                        $allResults += $response.value
+                    }
+
+                    $uri = if ($response.ContainsKey('@odata.nextLink')) { $response.'@odata.nextLink' } else { $null }
+                } while ($uri)
+
+                Write-Verbose "Retrieved $($allResults.Count) Agent Identities for Blueprint"
+                return $allResults
+            }
+            else {
+                Write-Verbose "Retrieving Agent Identity: $AgentId"
+
+                $uri = "/beta/servicePrincipals/microsoft.graph.agentIdentity/$AgentId"
+                $result = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri $uri -ErrorAction Stop
+
+                Write-Verbose "Successfully retrieved Agent Identity"
+                return $result
+            }
         }
         catch {
-            # Check if it's a 404 (not found) error
             if ($_.Exception.Message -like "*404*" -or $_.Exception.Message -like "*NotFound*") {
-                Write-Error "Agent Identity with ID '$AgentId' not found."
+                if ($PSCmdlet.ParameterSetName -eq 'GetByBlueprint') {
+                    Write-Error "Agent Identity Blueprint with ID '$AgentIdentityBlueprintId' not found, or it has no agent identities."
+                } else {
+                    Write-Error "Agent Identity with ID '$AgentId' not found."
+                }
             }
             else {
                 Write-Error "Failed to retrieve Agent Identity: $_"

@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -20,7 +20,11 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
 
         [Parameter(Mandatory = $false, HelpMessage = "Array of user IDs or UPNs to set as owners.")]
         [ValidateNotNullOrEmpty()]
-        [string[]]$OwnerUserIds
+        [string[]]$OwnerUserIds,
+
+        [Parameter(Mandatory = $false, HelpMessage = "The Agent Identity Blueprint ID (application object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [string]$AgentIdentityBlueprintId
     )
 
     begin {
@@ -31,11 +35,25 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
             return
         }
 
-        # Validate that we have a current Agent Identity Blueprint ID
-        if (-not $script:CurrentAgentBlueprintId) {
-            Write-Error "No Agent Identity Blueprint ID found. Please run New-EntraBetaAgentIdentityBlueprint first."
-            return
+        # Resolve Agent Identity Blueprint ID: explicit parameter > stored value > interactive prompt
+        if (-not $PSBoundParameters.ContainsKey('AgentIdentityBlueprintId')) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentIdentityBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentIdentityBlueprintId"
+            }
+            else {
+                $AgentIdentityBlueprintId = Read-Host "Enter the Agent Identity Blueprint ID"
+                if ([string]::IsNullOrEmpty($AgentIdentityBlueprintId)) {
+                    throw "No Agent Identity Blueprint ID provided. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentIdentityBlueprintId parameter."
+                }
+            }
         }
+        else {
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentIdentityBlueprintId"
+        }
+
+        # Store the resolved blueprint ID for use in process block
+        $script:CurrentAgentBlueprintId = $AgentIdentityBlueprintId
     }
 
     process {

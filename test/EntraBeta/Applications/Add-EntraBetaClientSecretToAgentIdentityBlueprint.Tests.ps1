@@ -35,7 +35,7 @@ Describe "Tests for Add-EntraBetaClientSecretToAgentIdentityBlueprint" {
         # Restore BeforeAll values after tests that might have cleared them
         InModuleScope Microsoft.Entra.Beta.Applications {
             if (-not $script:CurrentAgentBlueprintId) {
-                $script:CurrentAgentBlueprintId = "blueprint-id-guid"
+                $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             }
         }
     }
@@ -50,13 +50,17 @@ Describe "Tests for Add-EntraBetaClientSecretToAgentIdentityBlueprint" {
     It "Should use stored blueprint ID when not provided" {
         $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $Uri -like "*aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb/addPassword"
+        }
     }
 
     It "Should accept explicit AgentBlueprintId parameter" {
         $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint -AgentBlueprintId "explicit-blueprint-id"
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $Uri -like "*explicit-blueprint-id/addPassword"
+        }
     }
 
     It "Should fail when not connected" {
@@ -69,21 +73,18 @@ Describe "Tests for Add-EntraBetaClientSecretToAgentIdentityBlueprint" {
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = $null
         }
-        { Add-EntraBetaClientSecretToAgentIdentityBlueprint -ErrorAction Stop } | Should -Throw "*No Agent Blueprint ID*"
+        { Add-EntraBetaClientSecretToAgentIdentityBlueprint -ErrorAction Stop } | Should -Throw "*No Agent Identity Blueprint ID*"
     }
 
     It "Should contain 'User-Agent' header" {
-        $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint
         $result | Should -Not -BeNullOrEmpty
-        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $script:userAgentHeaderValue
-            $true
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $null -ne $Headers -and $Headers.ContainsKey('User-Agent') -and $Headers['User-Agent'] -like "*Add-EntraBetaClientSecretToAgentIdentityBlueprint*"
         }
     }
 
     It "Should store secret in script variable" {
-        $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintSecret | Should -Not -BeNullOrEmpty
@@ -91,8 +92,21 @@ Describe "Tests for Add-EntraBetaClientSecretToAgentIdentityBlueprint" {
         }
     }
 
+    It "Should use correct API endpoint" {
+        $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint -AgentBlueprintId "test-id"
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $Uri -like "/beta/applications/test-id/addPassword" -and $Method -eq "POST"
+        }
+    }
+
+    It "Should return result with expected properties" {
+        $result = Add-EntraBetaClientSecretToAgentIdentityBlueprint
+        $result.secretText | Should -Be "secretValue123456"
+        $result.AgentBlueprintId | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
+        $result.Description | Should -Not -BeNullOrEmpty
+    }
+
     It "Should execute successfully without throwing an error" {
-        $script:CurrentAgentBlueprintId = "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         $originalDebugPreference = $DebugPreference
         $DebugPreference = 'Continue'
 

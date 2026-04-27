@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -32,16 +32,22 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
         }
 
         # Use stored blueprint ID if not provided
-        if (-not $AgentBlueprintId) {
-            if (-not $script:CurrentAgentBlueprintId) {
-                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter." -ErrorAction Stop
-                return
+        if ([string]::IsNullOrEmpty($AgentBlueprintId)) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentBlueprintId"
             }
-            $AgentBlueprintId = $script:CurrentAgentBlueprintId
-            Write-Verbose "Using stored Agent Blueprint ID: $AgentBlueprintId"
+            else {
+                $AgentBlueprintId = Read-Host "Enter the Agent Identity Blueprint ID"
+                if (-not $AgentBlueprintId -or $AgentBlueprintId.Trim() -eq "") {
+                    Write-Error "No Agent Identity Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter." -ErrorAction Stop
+                    return
+                }
+                $AgentBlueprintId = $AgentBlueprintId.Trim()
+            }
         }
         else {
-            Write-Verbose "Using provided Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentBlueprintId"
         }
 
         # Prompt for missing parameters
@@ -87,23 +93,49 @@ function Add-EntraBetaScopeToAgentIdentityBlueprint {
             Write-Verbose "  Display Name: $AdminConsentDisplayName"
             Write-Verbose "  Value: $Value"
 
+            # Fetch existing application to preserve current scopes
+            $existingApp = Invoke-MgGraphRequest -Method GET -Uri "$baseUri/$AgentBlueprintId" -ErrorAction Stop
+            $existingScopes = @()
+            if ($existingApp.api -and $existingApp.api.oauth2PermissionScopes) {
+                $existingScopes = @($existingApp.api.oauth2PermissionScopes)
+                Write-Verbose "Found $($existingScopes.Count) existing OAuth2 permission scope(s)"
+            }
+
+            # Check if a scope with the same value already exists
+            $duplicateScope = $existingScopes | Where-Object { $_.value -eq $Value }
+            if ($duplicateScope) {
+                Write-Warning "A scope with value '$Value' already exists (ID: $($duplicateScope.id)). Skipping."
+                $result = [PSCustomObject]@{
+                    ScopeId = $duplicateScope.id
+                    AdminConsentDescription = $duplicateScope.adminConsentDescription
+                    AdminConsentDisplayName = $duplicateScope.adminConsentDisplayName
+                    Value = $duplicateScope.value
+                    IdentifierUri = "api://$AgentBlueprintId"
+                    AgentBlueprintId = $AgentBlueprintId
+                    FullScopeReference = "api://$AgentBlueprintId/$($duplicateScope.value)"
+                }
+                return $result
+            }
+
             # Generate a new GUID for the scope ID
             $generatedScopeId = [System.Guid]::NewGuid().ToString()
 
-            # Build the request body
+            # Build the new scope and merge with existing scopes
+            $newScope = [PSCustomObject]@{
+                adminConsentDescription = $AdminConsentDescription
+                adminConsentDisplayName = $AdminConsentDisplayName
+                id = $generatedScopeId
+                isEnabled = $true
+                type = "User"
+                value = $Value
+            }
+            $mergedScopes = @($existingScopes) + @($newScope)
+
+            # Build the request body with merged scopes
             $Body = [PSCustomObject]@{
                 identifierUris = @("api://$AgentBlueprintId")
                 api = [PSCustomObject]@{
-                    oauth2PermissionScopes = @(
-                        [PSCustomObject]@{
-                            adminConsentDescription = $AdminConsentDescription
-                            adminConsentDisplayName = $AdminConsentDisplayName
-                            id = $generatedScopeId
-                            isEnabled = $true
-                            type = "User"
-                            value = $Value
-                        }
-                    )
+                    oauth2PermissionScopes = $mergedScopes
                 }
             }
 

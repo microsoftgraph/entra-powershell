@@ -1,26 +1,29 @@
 ---
-author: msewaweru
-description: This article provides details on the Get-EntraAdministrativeUnitMember command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 02/05/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraAdministrativeUnitMember
-schema: 2.0.0
 title: Get-EntraAdministrativeUnitMember
+description: This article provides details on the Get-EntraAdministrativeUnitMember command.
+
+
+ms.topic: reference
+ms.date: 07/30/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnitMember
+
+schema: 2.0.0
 ---
 
 # Get-EntraAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 
 Gets a member of an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraAdministrativeUnitMember
@@ -31,7 +34,7 @@ Get-EntraAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameters to retrieve an administrative unit member.
 
@@ -41,24 +44,24 @@ In delegated scenarios with work or school accounts, the signed-in user must eit
 - Global Reader: Read all properties of administrative units, including members
 - Privileged Role Administrator: Create and manage administrative units (including members)
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an administrative unit member by AdministrativeUnitId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id |
-Select-Object Id, DisplayName, '@odata.type', createdDateTime
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id
 ```
 
 ```Output
-id                                   DisplayName         @odata.type              CreatedDateTime
---                                   -----------         -----------              ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
-cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
-dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Contoso Global     #microsoft.graph.group   10/27/2024 6:48:09 AM
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
 This example returns the list of administrative unit members from specified administrative unit AdministrativeUnitId.
@@ -69,18 +72,18 @@ This example returns the list of administrative unit members from specified admi
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -All |
-Select-Object Id, DisplayName, '@odata.type', createdDateTime
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -All
 ```
 
 ```Output
-id                                   DisplayName         @odata.type              CreatedDateTime
---                                   -----------         -----------              ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
-cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
-dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Contoso Global     #microsoft.graph.group   10/27/2024 6:48:09 AM
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
 This example returns the list of all administrative unit members from specified administrative unit AdministrativeUnitId.
@@ -91,24 +94,23 @@ This example returns the list of all administrative unit members from specified 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-Get-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -Top 3 |
-Select-Object Id, DisplayName, '@odata.type', createdDateTime
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -AdministrativeUnitId $AdministrativeUnit.Id -Top 3
 ```
 
 ```Output
-id                                   DisplayName         @odata.type              CreatedDateTime
---                                   -----------         -----------              ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Alex Wilber        #microsoft.graph.user    10/7/2024 12:31:51 AM
-cccccccc-2222-3333-4444-dddddddddddd Adele Miller      #microsoft.graph.user    10/7/2024 12:32:17 AM
-dddddddd-3333-4444-5555-eeeeeeeeeeee Sales and Marketing #microsoft.graph.group  10/7/2024 12:43:47 AM
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example returns top three administrative unit members from specified administrative unit ID. You can use `-Limit` as an alias for `-Top`.
+This example returns top three administrative unit members from specified administrative unit AdministrativeUnitId.
 
 - `-AdministrativeUnitId` parameter specifies the ID of an administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitId
 
@@ -149,7 +151,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -165,7 +167,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -178,13 +180,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
 

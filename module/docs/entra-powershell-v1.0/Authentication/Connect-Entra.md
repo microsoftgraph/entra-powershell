@@ -1,26 +1,27 @@
 ---
-author: msewaweru
-description: This article provides details on the Connect-Entra Command.
-external help file: Microsoft.Entra.Authentication-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Authentication
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi254
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Connect-Entra
-schema: 2.0.0
 title: Connect-Entra
+description: This article provides details on the Connect-Entra Command.
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi254
+manager: mwongerapk
+author: msewaweru
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Connect-Entra
+
+schema: 2.0.0
 ---
 
 # Connect-Entra
 
-## SYNOPSIS
+## Synopsis
 
 Connect to Microsoft Entra ID with an authenticated account.
 
-## SYNTAX
+## Syntax
 
 ### UserParameterSet (Default)
 
@@ -44,7 +45,6 @@ Connect-Entra
 [-ClientId] <String>
 [[-CertificateSubjectName] <String>]
 [[-CertificateThumbprint] <String>]
-[-SendCertificateChain <Boolean>]
 [-Certificate <X509Certificate2>]
 [-TenantId <String>]
 [-ContextScope <ContextScope>]
@@ -70,23 +70,23 @@ Connect-Entra
 ### AppSecretCredentialParameterSet
 
 ```powershell
-Connect-Entra
-[-ClientSecretCredential <PSCredential>]
-[-TenantId <String>]
+Connect-Entra 
+[-ClientSecretCredential <PSCredential>] 
+[-TenantId <String>] 
 [-ContextScope <ContextScope>]
-[-Environment <String>]
-[-ClientTimeout <Double>]
-[-NoWelcome]
+[-Environment <String>] 
+[-ClientTimeout <Double>] 
+[-NoWelcome] 
 [<CommonParameters>]
 ```
 
 ### AccessTokenParameterSet
 
 ```powershell
-Connect-Entra
-[-AccessToken] <SecureString>
-[-Environment <String>]
-[-ClientTimeout <Double>]
+Connect-Entra 
+[-AccessToken] <SecureString> 
+[-Environment <String>] 
+[-ClientTimeout <Double>] 
 [-NoWelcome]
 [<CommonParameters>]
 ```
@@ -94,16 +94,16 @@ Connect-Entra
 ### EnvironmentVariableParameterSet
 
 ```powershell
-Connect-Entra
-[-ContextScope <ContextScope>]
-[-Environment <String>]
+Connect-Entra 
+[-ContextScope <ContextScope>] 
+[-Environment <String>] 
 [-ClientTimeout <Double>]
-[-EnvironmentVariable]
-[-NoWelcome]
+[-EnvironmentVariable] 
+[-NoWelcome] 
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
 
@@ -111,7 +111,7 @@ Several authentication scenarios are supported based on your use case, such as d
 
 `Connect-Entra` is an alias for `Connect-MgGraph`.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Delegated access: Connect a PowerShell session to a tenant
 
@@ -255,7 +255,7 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
-For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/get-entracontext) command.
+For more information on how to get the current context, see [Get-EntraContext](https://learn.microsoft.com/powershell/module/microsoft.graph.entra/get-entracontext) command.
 
 ### Example 12: Connecting to an environment or cloud
 
@@ -306,7 +306,7 @@ Connect-Entra -EnvironmentVariable
 
 This example allows for authentication using environment variables.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateThumbprint
 
@@ -330,10 +330,22 @@ Specifies the application ID of the service principal.
 
 ```yaml
 Type:  System.String
-Parameter Sets: UserParameterSet, IdentityParameterSet, AppCertificateParameterSet
+Parameter Sets: UserParameterSet, IdentityParameterSet
 Aliases: AppId, ApplicationId
 
 Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type:  System.String
+Parameter Sets: AppCertificateParameterSet
+Aliases: AppId, ApplicationId
+
+Required: True
 Position: 1
 Default value: None
 Accept pipeline input: False
@@ -367,7 +379,7 @@ Specifies a bearer token for Microsoft Entra service. Access tokens do time out 
 ```yaml
 Type: SecureString
 Parameter Sets: AccessTokenParameterSet
-Aliases:
+Aliases: 
 Required: True
 Position: Named
 Default value: None
@@ -382,7 +394,7 @@ Sets the HTTP client timeout in seconds.
 ```yaml
 Type: System.Double
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 Required: False
 Position: Named
 Default value: None
@@ -398,7 +410,7 @@ Determines the scope of authentication context. This ContextScope accepts `Proce
 Type: ContextScope
 Accepted values: Process, CurrentUser
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, IdentityParameterSet, AppSecretCredentialParameterSet, EnvironmentVariableParameterSet
-Aliases:
+Aliases: 
 Required: False
 Position: Named
 Default value: None
@@ -428,7 +440,7 @@ Hides the welcome message.
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 Required: False
 Position: Named
 Default value: None
@@ -443,7 +455,7 @@ An array of delegated permissions to consent to.
 ```yaml
 Type:  System.String[]
 Parameter Sets: UserParameterSet
-Aliases:
+Aliases: 
 Required: False
 Position: 1
 Default value: None
@@ -473,7 +485,7 @@ An X.509 certificate supplied during invocation.
 ```yaml
 Type: X509Certificate2
 Parameter Sets: AppCertificateParameterSet
-Aliases:
+Aliases: 
 Required: False
 Position: Named
 Default value: None
@@ -518,7 +530,7 @@ Allows for authentication using environment variables configured on the host mac
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: EnvironmentVariableParameterSet
-Aliases:
+Aliases: 
 Required: False
 Position: Named
 Default value: None
@@ -541,14 +553,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SendCertificateChain
+### -ProgressAction
 
-Include x5c header in client claims when acquiring a token to enable subject name / issuer based authentication using given certificate.
+The ProgressAction parameter takes one of the ActionPreference enumeration values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend, or Break.
 
 ```yaml
-Type: Boolean
-Parameter Sets: AppCertificateParameterSet
-Aliases:
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 Required: False
 Position: Named
 Default value: None
@@ -560,12 +572,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Disconnect-Entra](Disconnect-Entra.md)

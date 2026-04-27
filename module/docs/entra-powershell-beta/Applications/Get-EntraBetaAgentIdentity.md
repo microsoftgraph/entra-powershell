@@ -5,7 +5,7 @@ external help file: Microsoft.Entra.Beta.Applications-Help.xml
 Locale: en-US
 Module Name: Microsoft.Entra.Beta.Applications
 ms.author: giomachar
-ms.date: 12/17/2024
+ms.date: 04/25/2026
 ms.topic: reference
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Applications/Get-EntraBetaAgentIdentity
 schema: 2.0.0
@@ -16,9 +16,11 @@ title: Get-EntraBetaAgentIdentity
 
 ## SYNOPSIS
 
-Gets an Agent Identity by its ID.
+Gets an Agent Identity by its ID, or lists all Agent Identities for an Agent Identity Blueprint.
 
 ## SYNTAX
+
+### GetById (Default)
 
 ```powershell
 Get-EntraBetaAgentIdentity
@@ -26,9 +28,17 @@ Get-EntraBetaAgentIdentity
  [<CommonParameters>]
 ```
 
+### GetByBlueprint
+
+```powershell
+Get-EntraBetaAgentIdentity
+ [-AgentIdentityBlueprintId <String>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
-The `Get-EntraBetaAgentIdentity` cmdlet retrieves an Agent Identity from Microsoft Graph using the provided Agent ID. Returns the agent identity object if found, or throws an error if not found.
+The `Get-EntraBetaAgentIdentity` cmdlet retrieves an Agent Identity from Microsoft Graph. When used with `-AgentId`, it returns a single agent identity. When used with `-AgentIdentityBlueprintId`, it returns all agent identities that are children of the specified blueprint. If no blueprint ID is provided, uses the stored blueprint ID from the current session or prompts for one.
 
 ## EXAMPLES
 
@@ -41,7 +51,28 @@ Get-EntraBetaAgentIdentity -AgentId "27a3cf14-5bdc-4814-bb13-8f1740ca9a4f"
 
 This example retrieves the Agent Identity with the specified ID.
 
-### Example 2: Get an Agent Identity with error handling
+### Example 2: List all Agent Identities for a Blueprint
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$agents = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+$agents | ForEach-Object { Write-Host "$($_.displayName) ($($_.id))" }
+```
+
+This example retrieves all Agent Identities that are children of the specified Agent Identity Blueprint.
+
+### Example 3: List Agent Identities for the current session Blueprint
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("admin@contoso.com")
+$agents = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId
+$agents | ForEach-Object { Write-Host "$($_.displayName)" }
+```
+
+This example lists all Agent Identities for the blueprint created in the current session using the stored blueprint ID.
+
+### Example 4: Get an Agent Identity with error handling
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -59,14 +90,30 @@ This example demonstrates how to retrieve an Agent Identity with error handling 
 
 ### -AgentId
 
-The ID of the Agent Identity to retrieve.
+The ID of the Agent Identity to retrieve. Used with the GetById parameter set.
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: GetById
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AgentIdentityBlueprintId
+
+The ID of the Agent Identity Blueprint to list child agent identities for. If not provided, uses the stored blueprint ID from the current session or prompts for one. Used with the GetByBlueprint parameter set.
+
+```yaml
+Type: System.String
+Parameter Sets: GetByBlueprint
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -85,14 +132,19 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Object
 
-Returns the Agent Identity object with properties including id, displayName, appId, and other agent identity details.
+When using `-AgentId`, returns a single Agent Identity object. When using `-AgentIdentityBlueprintId`, returns an array of Agent Identity objects. Each object includes properties such as id, displayName, appId, and servicePrincipalType.
 
 ## NOTES
 
-If the Agent Identity with the specified ID is not found, the cmdlet will throw an error.
+If the Agent Identity or Blueprint with the specified ID is not found, the cmdlet will throw an error. When listing by blueprint, supports pagination to retrieve all results.
+
+This cmdlet requires the following Microsoft Graph permissions:
+- Application.Read.All
 
 ## RELATED LINKS
 
 [New-EntraBetaAgentIDForAgentIdentityBlueprint](New-EntraBetaAgentIDForAgentIdentityBlueprint.md)
 
 [New-EntraBetaAgentIdentityBlueprint](New-EntraBetaAgentIdentityBlueprint.md)
+
+[Get-EntraBetaAgentIdentityBlueprint](Get-EntraBetaAgentIdentityBlueprint.md)

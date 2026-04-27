@@ -1,25 +1,27 @@
 ---
-description: This article provides details on the Get-EntraAttributeSet command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 07/19/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraAttributeSet
-schema: 2.0.0
 title: Get-EntraAttributeSet
+description: This article provides details on the Get-EntraAttributeSet command.
+
+ms.topic: reference
+ms.date: 07/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAttributeSet
+
+schema: 2.0.0
 ---
 
 # Get-EntraAttributeSet
 
-## SYNOPSIS
+## Synopsis
 
 Gets a list of attribute sets.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -36,7 +38,7 @@ Get-EntraAttributeSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraAttributeSet` cmdlet gets a list of Microsoft Entra ID attribute sets.
 
@@ -49,7 +51,7 @@ In delegated scenarios with work or school accounts, the signed-in user must hav
 
 By default, other administrator roles cannot read, define, or assign custom security attributes.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an all attribute sets
 
@@ -84,7 +86,7 @@ This example demonstrates how to retrieve an attribute set by Id.
 
 - `AttributeSetId` parameter specifies the unique identifier for the attribute set within a tenant.
 
-## PARAMETERS
+## Parameters
 
 ### -AttributeSetId
 
@@ -111,7 +113,7 @@ Specifies properties to be returned
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -124,17 +126,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraAttributeSet](New-EntraAttributeSet.md)
 

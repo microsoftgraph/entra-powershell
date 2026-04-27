@@ -31,7 +31,7 @@ Add-EntraBetaScopeToAgentIdentityBlueprint
 
 ## DESCRIPTION
 
-The `Add-EntraBetaScopeToAgentIdentityBlueprint` cmdlet adds a custom OAuth2 permission scope to the Agent Identity Blueprint, allowing applications to request specific permissions when accessing the agent. Uses the stored AgentBlueprintId from the last New-EntraBetaAgentIdentityBlueprint call.
+The `Add-EntraBetaScopeToAgentIdentityBlueprint` cmdlet adds a custom OAuth2 permission scope to an Agent Identity Blueprint. The cmdlet first retrieves the existing scopes from the blueprint, checks for duplicates by value, and merges the new scope with any existing scopes before updating. If a scope with the same value already exists, it is returned without modification. If no blueprint ID is provided, it uses the stored ID from the most recent `New-EntraBetaAgentIdentityBlueprint` call. If scope parameters are not provided, the cmdlet prompts interactively with sensible defaults.
 
 ## EXAMPLES
 
@@ -141,16 +141,18 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Object
 
-Returns the updated scope configuration.
+Returns a PSCustomObject with the following properties: ScopeId, AdminConsentDescription, AdminConsentDisplayName, Value, IdentifierUri, AgentBlueprintId, and FullScopeReference (e.g., `api://{id}/{value}`).
 
 ## NOTES
 
 This cmdlet requires the following Microsoft Graph permission:
 
-- Application.ReadWrite.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
 
-The scope is created with type "User" and is enabled by default.
+The scope is created with type "User" and is enabled by default. The cmdlet merges new scopes with any existing scopes on the blueprint rather than overwriting them. If a scope with the same `Value` already exists, it is returned without making any changes. The cmdlet includes retry logic (up to 10 attempts with 10-second intervals) to handle propagation delays.
 
 ## RELATED LINKS
 
 [New-EntraBetaAgentIdentityBlueprint](New-EntraBetaAgentIdentityBlueprint.md)
+
+[Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint](Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint.md)

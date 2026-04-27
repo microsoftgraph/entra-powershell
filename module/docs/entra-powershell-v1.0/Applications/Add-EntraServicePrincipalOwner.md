@@ -1,70 +1,60 @@
 ---
-description: This article provides details on the Add-EntraServicePrincipalOwner command.
-external help file: Microsoft.Entra.Applications-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Applications
-ms.author: eunicewaweru
-ms.date: 02/08/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Add-EntraServicePrincipalOwner
-schema: 2.0.0
 title: Add-EntraServicePrincipalOwner
+description: This article provides details on the Add-EntraServicePrincipalOwner command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner
+
+schema: 2.0.0
 ---
 
 # Add-EntraServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 
-Add an owner (user or service principal) to a service principal.
+Adds an owner to a service principal.
 
-## SYNTAX
-
-### ByServicePrincipalIdAndOwnerId
+## Syntax
 
 ```powershell
 Add-EntraServicePrincipalOwner
  -ServicePrincipalId <String>
- -OwnerId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Add-EntraServicePrincipalOwner` cmdlet adds an owner to a service principal in Microsoft Entra ID. The owner can be a user, the service principal itself, or another service principal.
+The `Add-EntraServicePrincipalOwner` cmdlet adds an owner to a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as an owner to a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All', 'Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$owner = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+$OwnerId = (Get-EntraUser -Top 1).ObjectId
+$Params = @{
+    ServicePrincipalId = $ServicePrincipalId 
+    RefObjectId = $OwnerId  
+}
+Add-EntraServicePrincipalOwner @Params
 ```
 
 This example demonstrates how to add an owner to a service principal.
 
 - `-ServicePrincipalId` parameter specifies the service principal ID.
-- `-OwnerId` parameter specifies the unique ID of the owner, which can be a user, the service principal itself, or another service principal.
+- `-RefObjectId` parameter specifies the user object ID.
 
-### Example 2: Add a service principal as an owner
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All', 'Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -Filter "displayName eq 'Helpdesk Application'"
-$owner = Get-EntraServicePrincipal -Filter "displayName eq 'IT Department'"
-Add-EntraServicePrincipalOwner -ServicePrincipalId $servicePrincipal.Id -OwnerId $owner.Id
-```
-
-This example demonstrates how to add an owner to a service principal.
-
-- `-ServicePrincipalId` parameter specifies the service principal ID.
-- `-OwnerId` parameter specifies the unique ID of the owner, which can be a user, the service principal itself, or another service principal.
-
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 
@@ -82,14 +72,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -OwnerId
+### -RefObjectId
 
-Specifies the unique ID of the owner, which can be a user, the service principal itself, or another service principal.
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: RefObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -102,18 +92,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
 [Get-EntraServicePrincipalOwner](Get-EntraServicePrincipalOwner.md)
 
-[Get-EntraUser](../Users/Get-EntraUser.md)
+[Get-EntraUser](Get-EntraUser.md)
 
 [Remove-EntraServicePrincipalOwner](Remove-EntraServicePrincipalOwner.md)

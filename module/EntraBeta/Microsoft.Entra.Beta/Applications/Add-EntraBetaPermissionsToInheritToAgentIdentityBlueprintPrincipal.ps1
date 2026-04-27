@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -10,9 +10,13 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
         [ValidateNotNullOrEmpty()]
         [string]$AgentBlueprintId,
 
-        [Parameter(Mandatory=$false, HelpMessage = "The permission scopes to request consent for.")]
+        [Parameter(Mandatory=$false, HelpMessage = "The delegated permission scopes to request consent for.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Scopes,
+
+        [Parameter(Mandatory=$false, HelpMessage = "The application roles (app permissions) to request consent for.")]
+        [ValidateNotNullOrEmpty()]
+        [string[]]$Roles,
 
         [Parameter(Mandatory=$false, HelpMessage = "The redirect URI after consent.")]
         [ValidateNotNullOrEmpty()]
@@ -33,19 +37,21 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
         }
 
         # Use provided ID or fall back to stored ID
-        if (-not $AgentBlueprintId) {
-            if (-not $script:CurrentAgentBlueprintId) {
-                throw "No Agent Blueprint ID provided and no stored ID available. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
+        if ([string]::IsNullOrEmpty($AgentBlueprintId)) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentBlueprintId"
             }
-            $AgentBlueprintId = $script:CurrentAgentBlueprintId
-            Write-Verbose "Using stored Agent Blueprint ID: $AgentBlueprintId"
+            else {
+                throw "No Agent Identity Blueprint ID provided and no stored ID available. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentBlueprintId parameter."
+            }
         }
         else {
-            Write-Verbose "Using provided Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentBlueprintId"
         }
 
-        # Prompt for scopes if not provided or if using defaults
-        if (-not $Scopes) {
+        # Prompt for scopes only if neither Scopes nor Roles were provided (fully interactive mode)
+        if (-not $Scopes -and -not $Roles) {
             $suggestedScopes = @("user.read")  # Default fallback
 
             Write-Host "Enter permission scopes for admin consent." -ForegroundColor Cyan
@@ -76,31 +82,38 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
 
         try {
             Write-Host "Preparing admin consent page for Agent Identity Blueprint Principal..." -ForegroundColor Cyan
-            # Convert array to space-separated string and make lowercase for consistency (OAuth requires space-separated scopes)
-            $stringifiedScopes = ($Scopes | ForEach-Object { $_.ToLower() }) -join " "
-
-            # URL encode the parameters
+            # Build scope parameter from delegated scopes
             $encodedClientId = [System.Web.HttpUtility]::UrlEncode($AgentBlueprintId)
-            $encodedScope = [System.Web.HttpUtility]::UrlEncode($stringifiedScopes)
             $encodedRedirectUri = [System.Web.HttpUtility]::UrlEncode($RedirectUri)
             $encodedState = [System.Web.HttpUtility]::UrlEncode($State)
 
             # Build the admin consent URL
             $requestUri = "https://login.microsoftonline.com/$tenantId/v2.0/adminconsent" +
-                "?client_id=$encodedClientId" +
-                "&scope=$encodedScope" +
-                "&redirect_uri=$encodedRedirectUri" +
+                "?client_id=$encodedClientId"
+
+            if ($Scopes) {
+                $stringifiedScopes = ($Scopes | ForEach-Object { $_.ToLower() }) -join " "
+                $encodedScope = [System.Web.HttpUtility]::UrlEncode($stringifiedScopes)
+                $requestUri += "&scope=$encodedScope"
+            }
+
+            if ($Roles) {
+                $stringifiedRoles = ($Roles | ForEach-Object { $_.ToLower() }) -join " "
+                $encodedRoles = [System.Web.HttpUtility]::UrlEncode($stringifiedRoles)
+                $requestUri += "&role=$encodedRoles"
+            }
+
+            $requestUri += "&redirect_uri=$encodedRedirectUri" +
                 "&state=$encodedState"
 
             Write-Verbose "Admin Consent Request Details:"
             Write-Verbose "  Client ID (Agent Blueprint): $AgentBlueprintId"
             Write-Verbose "  Tenant ID: $tenantId"
-            Write-Verbose "  Requested Scopes: $Scopes"
+            Write-Verbose "  Requested Scopes: $($Scopes -join ', ')"
+            Write-Verbose "  Requested Roles: $($Roles -join ', ')"
             Write-Verbose "  Redirect URI: $RedirectUri"
             Write-Verbose "  State: $State"
             Write-Verbose "  Consent URL: $requestUri"
-            Write-Verbose "Admin Consent URL:"
-            Write-Verbose $requestUri
             Write-Verbose ""
 
             # Launch the system browser with the consent URL
@@ -123,6 +136,7 @@ function Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal {
                 AgentBlueprintId = $AgentBlueprintId
                 TenantId = $tenantId
                 RequestedScopes = $Scopes
+                RequestedRoles = $Roles
                 RedirectUri = $RedirectUri
                 State = $State
                 ConsentUrl = $requestUri

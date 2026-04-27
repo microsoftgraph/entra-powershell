@@ -1,49 +1,45 @@
 ---
-description: This article explains the Add-EntraGroupOwner command.
-external help file: Microsoft.Entra.Groups-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Groups
-ms.author: eunicewaweru
-ms.date: 02/08/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Add-EntraGroupOwner
-schema: 2.0.0
 title: Add-EntraGroupOwner
+description: This article explains the Add-EntraGroupOwner command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraGroupOwner
+
+schema: 2.0.0
 ---
 
 # Add-EntraGroupOwner
 
-## SYNOPSIS
+## Synopsis
 
-Add a user or service principal as an owner of a Microsoft 365 or security group.
+Adds an owner to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraGroupOwner
  -GroupId <String>
- -OwnerId <String>
- [-WhatIf]
- [-Confirm]
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Add-EntraGroupOwner` cmdlet adds a user or service principal as an owner of a Microsoft 365 or security group. Owners can modify the group.
+The `Add-EntraGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `GroupId` and `RefObjectId` parameters to add an owner to a group.
 
-`New-EntraGroupOwner` is an alias of `Add-EntraGroupOwner`.
+`-GroupId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
 
-In delegated scenarios, the signed-in user must have either a supported Microsoft Entra role or a custom role with the necessary permissions. The minimum roles required for this operation are:
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
 
-- Group owners
-- User Administrator
-- Directory Writers
-- Groups Administrator
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Add an owner to a group
 
@@ -51,15 +47,17 @@ In delegated scenarios, the signed-in user must have either a supported Microsof
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
 $user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraGroupOwner -GroupId $group.Id -OwnerId $user.Id
+$params = @{
+    GroupId = $group.ObjectId
+    RefObjectId = $user.ObjectId
+}
+
+Add-EntraGroupOwner @params
 ```
 
 This example demonstrates how to add an owner to a group.
 
-- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add an owner.
-- `-OwnerId` - Specifies the unique identifier (Object ID) of the owner to be added to the group.
-
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 
@@ -68,7 +66,7 @@ Specifies the ID of a group in Microsoft Entra ID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: ObjectId
+Aliases: ObjectId 
 
 Required: True
 Position: Named
@@ -77,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -OwnerId
+### -RefObjectId
 
-Specifies the Object ID of a user or service principal to assign as a group owner.
+Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: RefObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -97,13 +95,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupOwner](Get-EntraGroupOwner.md)
 

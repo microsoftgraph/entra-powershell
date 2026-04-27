@@ -1,25 +1,28 @@
 ---
-description: This article provides details on the Find-EntraPermission command.
-external help file: Microsoft.Entra.Authentication-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Authentication
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Authentication/Find-EntraPermission
-schema: 2.0.0
 title: Find-EntraPermission
+description: This article provides details on the Find-EntraPermission command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Find-EntraPermission
+
+schema: 2.0.0
 ---
 
 # Find-EntraPermission
 
-## SYNOPSIS
+## Synopsis
 
 Helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
-## SYNTAX
+## Syntax
 
 ### Search
 
@@ -29,6 +32,7 @@ Find-EntraPermission
  [-ExactMatch]
  [-PermissionType <String>]
  [-Online]
+ [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -39,14 +43,15 @@ Find-EntraPermission
  [-PermissionType <String>]
  [-Online]
  [-All]
+ [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Find-EntraPermission` cmdlet helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of all Application permissions
 
@@ -135,7 +140,7 @@ e4aa47b9-9a69-4109-82ed-36ec70d85ff1 Admin   AccessReview.ReadWrite.All         
 
 This example shows how to get all permissions of a specified type, for example, `Delegated` or `Application` permissions.
 
-## PARAMETERS
+## Parameters
 
 ### -SearchString
 
@@ -207,14 +212,28 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ProgressAction
+
+Specifics the progra option.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Aliases: progra
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

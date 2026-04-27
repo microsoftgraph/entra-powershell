@@ -106,7 +106,7 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
                     $script:LastClientSecret = New-Object System.Security.SecureString
                     "test-secret-value".ToCharArray() | ForEach-Object { $script:LastClientSecret.AppendChar($_) }
                 }
-                return @{ KeyId = "secret-id"; EndDateTime = (Get-Date).AddYears(1) }
+                return @{ KeyId = "secret-id"; SecretText = "test-secret-value"; EndDateTime = (Get-Date).AddYears(1) }
             } -ModuleName Microsoft.Entra.Beta.Applications
             
             Mock -CommandName New-EntraBetaAgentIdentityBlueprintPrincipal -MockWith {
@@ -163,6 +163,7 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
                 }
                 return @{ 
                     KeyId = "secret-id"
+                    SecretText = "test-secret-value"
                     EndDateTime = (Get-Date).AddYears(1)
                 }
             } -ModuleName Microsoft.Entra.Beta.Applications
@@ -191,7 +192,7 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
                 return @{ id = "agent-id-$(Get-Random)"; displayName = $DisplayName }
             } -ModuleName Microsoft.Entra.Beta.Applications
             
-            Mock -CommandName New-EntraBetaAgentIDUserForAgentId -MockWith {
+            Mock -CommandName New-EntraBetaAgentUserForAgentId -MockWith {
                 return @{ id = "agent-user-id"; userPrincipalName = $UserPrincipalName }
             } -ModuleName Microsoft.Entra.Beta.Applications
             
@@ -204,13 +205,16 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
             Mock -CommandName Read-Host -MockWith {
                 $script:readHostCallCount++
                 switch ($script:readHostCallCount) {
-                    1 { return "Test Blueprint" }  # Blueprint name
-                    2 { return "n" }                # Don't use current user as sponsor
-                    3 { return "n" }                # No interactive agents
-                    4 { return "n" }                # No inheritable permissions
-                    5 { return "n" }                # No Agent ID users
-                    6 { return "y" }                # Use example names
-                    7 { return "n" }                # Don't create another
+                    1 { return "Test Blueprint" }  # Phase 1: Blueprint name
+                    2 { return "n" }                # Phase 1: Don't use current user as sponsor
+                    3 { return "n" }                # Phase 3: No interactive agents
+                    4 { return "n" }                # Phase 4: No agent users
+                    5 { return "n" }                # Phase 5: No inheritable permissions
+                    # Phase 6: skipped (no inheritable permissions)
+                    # Phase 7: no consent needed, creates SP directly
+                    6 { return "y" }                # Phase 8: Yes, create agents
+                    7 { return "y" }                # Phase 8: Use example names
+                    8 { return "n" }                # Phase 8: Don't create another
                     default { return "n" }
                 }
             } -ModuleName Microsoft.Entra.Beta.Applications
@@ -220,39 +224,77 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
             # Verify optional cmdlets were NOT called
             Should -Invoke -CommandName Add-EntraBetaScopeToAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 0
             Should -Invoke -CommandName Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 0
-            Should -Invoke -CommandName Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 0
-            Should -Invoke -CommandName New-EntraBetaAgentIDUserForAgentId -ModuleName Microsoft.Entra.Beta.Applications -Times 0
+            Should -Invoke -CommandName New-EntraBetaAgentUserForAgentId -ModuleName Microsoft.Entra.Beta.Applications -Times 0
             
-            # But essential cmdlets should be called
+            # Service principal created directly (no consent needed)
+            Should -Invoke -CommandName New-EntraBetaAgentIdentityBlueprintPrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            
+            # Essential cmdlets should be called
             Should -Invoke -CommandName New-EntraBetaAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
             Should -Invoke -CommandName New-EntraBetaAgentIDForAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should enable optional features when user answers 'yes'" {
+            # Add mock for Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint (Phase 6 static permissions)
+            Mock -CommandName Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint -MockWith {
+                return @{ id = "rra-id" }
+            } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            # Override Invoke-MgGraphRequest to return appRoles for servicePrincipals filter query
+            Mock -CommandName Invoke-MgGraphRequest -MockWith {
+                if ($Uri -like "*users?*filter=userPrincipalName*") {
+                    return @{ value = @(@{ id = "user-id"; userPrincipalName = "test@example.com" }) }
+                }
+                if ($Uri -like "*organization*") {
+                    return @{ value = @(@{ verifiedDomains = @(@{ name = "example.com"; isDefault = $true }) }) }
+                }
+                if ($Uri -like "*servicePrincipals?*filter*appId*") {
+                    return @{ value = @(@{
+                        appRoles = @(@{
+                            id = "role-guid-123"
+                            value = "AgentIdUser.ReadWrite.IdentityParentedBy"
+                        })
+                    }) }
+                }
+                if ($Uri -like "*servicePrincipals/*") {
+                    return @{ id = "sp-id"; appId = "app-id" }
+                }
+                return @{}
+            } -ModuleName Microsoft.Entra.Beta.Applications
+
             $script:readHostCallCount = 0
             Mock -CommandName Read-Host -MockWith {
                 $script:readHostCallCount++
                 switch ($script:readHostCallCount) {
-                    1 { return "" }             # Blueprint name (default)
-                    2 { return "y" }            # Use current user as sponsor
-                    3 { return "y" }            # Yes to interactive agents
-                    4 { return "y" }            # Yes to inheritable permissions
-                    5 { return "y" }            # Yes to Agent ID users
-                    6 { return "" }             # Admin consent pause
-                    7 { return "y" }            # Use example names
-                    8 { return "y" }            # Agent ID needs user
-                    9 { return "n" }            # Don't create another
+                    1 { return "" }             # Phase 1: Blueprint name (default)
+                    2 { return "y" }            # Phase 1: Use current user as sponsor
+                    3 { return "y" }            # Phase 3: Yes to interactive agents
+                    4 { return "y" }            # Phase 4: Yes to agent users
+                    5 { return "y" }            # Phase 5: Yes to inheritable permissions
+                    6 { return "y" }            # Phase 6: Yes to static permissions
+                    # Phase 6: auto-adds AgentIdUser role via -Silent, then interactive call (mocked)
+                    # Phase 7: static → .default consent via Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal
+                    7 { return "" }             # Phase 7: Press Enter after admin consent
+                    8 { return "y" }            # Phase 8: Yes, create agents
+                    9 { return "y" }            # Phase 8: Use example names
+                    10 { return "y" }           # Phase 8: Agent ID needs user
+                    11 { return "n" }           # Phase 8: Don't create another
                     default { return "n" }
                 }
             } -ModuleName Microsoft.Entra.Beta.Applications
             
             Invoke-EntraBetaAgentIdInteractive
             
-            # Verify all optional cmdlets were called
+            # Verify optional cmdlets were called
             Should -Invoke -CommandName Add-EntraBetaScopeToAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
             Should -Invoke -CommandName Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
-            Should -Invoke -CommandName Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
-            Should -Invoke -CommandName New-EntraBetaAgentIDUserForAgentId -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            # Phase 6: static permissions adds required resource access (Silent for auto role + interactive)
+            Should -Invoke -CommandName Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 2
+            # Phase 7: consent via .default scope
+            Should -Invoke -CommandName Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            # Phase 8: agent and user creation
+            Should -Invoke -CommandName New-EntraBetaAgentIDForAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+            Should -Invoke -CommandName New-EntraBetaAgentUserForAgentId -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
 
         It "Should create multiple Agent Identities when user continues" {
@@ -260,15 +302,21 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
             Mock -CommandName Read-Host -MockWith {
                 $script:readHostCallCount++
                 switch ($script:readHostCallCount) {
-                    1 { return "" }             # Blueprint name (default)
-                    2 { return "n" }            # Don't use sponsor
-                    3 { return "n" }            # No interactive agents
-                    4 { return "n" }            # No inheritable permissions
-                    5 { return "n" }            # No Agent ID users
-                    6 { return "y" }            # Use example names
-                    7 { return "y" }            # Create another (Agent #2)
-                    8 { return "y" }            # Create another (Agent #3)
-                    9 { return "n" }            # Don't create another
+                    1 { return "" }             # Phase 1: Blueprint name (default)
+                    2 { return "n" }            # Phase 1: Don't use sponsor
+                    3 { return "n" }            # Phase 3: No interactive agents
+                    4 { return "n" }            # Phase 4: No agent users
+                    5 { return "n" }            # Phase 5: No inheritable permissions
+                    # Phase 6: skipped (no inheritable permissions)
+                    # Phase 7: no consent needed, creates SP directly
+                    6 { return "y" }            # Phase 8: Yes, create agents
+                    7 { return "y" }            # Phase 8: Use example names
+                    # Agent #1 created
+                    8 { return "y" }            # Phase 8: Create another
+                    # Agent #2 created
+                    9 { return "y" }            # Phase 8: Create another
+                    # Agent #3 created
+                    10 { return "n" }           # Phase 8: Don't create another
                     default { return "n" }
                 }
             } -ModuleName Microsoft.Entra.Beta.Applications
@@ -277,6 +325,31 @@ Describe "Tests for Invoke-EntraBetaAgentIdInteractive" {
             
             # Should create 3 Agent Identities
             Should -Invoke -CommandName New-EntraBetaAgentIDForAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 3
+        }
+
+        It "Should skip agent creation when user declines in Phase 8" {
+            $script:readHostCallCount = 0
+            Mock -CommandName Read-Host -MockWith {
+                $script:readHostCallCount++
+                switch ($script:readHostCallCount) {
+                    1 { return "Test Blueprint" }  # Phase 1: Blueprint name
+                    2 { return "n" }                # Phase 1: Don't use sponsor
+                    3 { return "n" }                # Phase 3: No interactive agents
+                    4 { return "n" }                # Phase 4: No agent users
+                    5 { return "n" }                # Phase 5: No inheritable permissions
+                    6 { return "n" }                # Phase 8: No, don't create agents
+                    default { return "n" }
+                }
+            } -ModuleName Microsoft.Entra.Beta.Applications
+            
+            Invoke-EntraBetaAgentIdInteractive
+            
+            # Agent creation cmdlets should NOT be called
+            Should -Invoke -CommandName New-EntraBetaAgentIDForAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 0
+            Should -Invoke -CommandName New-EntraBetaAgentUserForAgentId -ModuleName Microsoft.Entra.Beta.Applications -Times 0
+            
+            # But blueprint should still be created
+            Should -Invoke -CommandName New-EntraBetaAgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
     }
 }

@@ -1,60 +1,63 @@
 ---
-author: msewaweru
-description: This article provides details on the Add-EntraDeviceRegisteredUser command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 02/05/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraDeviceRegisteredUser
-schema: 2.0.0
 title: Add-EntraDeviceRegisteredUser
+description: This article provides details on the Add-EntraDeviceRegisteredUser command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraDeviceRegisteredUser
+
+schema: 2.0.0
 ---
 
 # Add-EntraDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 
 Adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraDeviceRegisteredUser
  -DeviceId <String>
- -UserId <String>
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
 
-In delegated scenarios involving work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the required permissions. The following least privileged roles are supported for this operation:
-
-- Intune Administrator
-- Windows 365 Administrator
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as a registered user
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-$device = Get-EntraDevice -SearchString '<device-display-name>'
-Add-EntraDeviceRegisteredUser -DeviceId $device.Id -UserId $user.Id
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$Device = Get-EntraDevice -SearchString '<device-display-name>'
+$params = @{
+    DeviceId = $Device.ObjectId 
+    RefObjectId = $User.ObjectId
+}
+Add-EntraDeviceRegisteredUser @params
 ```
 
 This example shows how to add a registered user to a device.
 
-- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. You can use the command `Get-EntraDevice` to get device Id.
-- `-UserId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. You can use the command `Get-EntraUser` to get user Id.
+- `-DeviceId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraDevice` to get device Id.
 
-## PARAMETERS
+- `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraUser` to get user Id.
+
+## Parameters
 
 ### -DeviceId
 
@@ -72,14 +75,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -UserId
+### -RefObjectId
 
 Specifies the ID of the user.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: RefObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -92,18 +95,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 
 [Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
 
-[Get-EntraUser](../Users/Get-EntraUser.md)
+[Get-EntraUser](Get-EntraUser.md)
 
 [Remove-EntraDeviceRegisteredUser](Remove-EntraDeviceRegisteredUser.md)

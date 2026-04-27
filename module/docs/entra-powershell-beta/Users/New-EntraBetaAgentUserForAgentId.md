@@ -1,18 +1,18 @@
 ---
 author: givinalis
-description: This article provides details on the New-EntraBetaAgentIDUserForAgentId command.
+description: This article provides details on the New-EntraBetaAgentUserForAgentId command.
 external help file: Microsoft.Entra.Beta.Users-Help.xml
 Locale: en-US
 Module Name: Microsoft.Entra.Beta.Users
 ms.author: giomachar
 ms.date: 12/17/2024
 ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/New-EntraBetaAgentIDUserForAgentId
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Beta.Users/New-EntraBetaAgentUserForAgentId
 schema: 2.0.0
-title: New-EntraBetaAgentIDUserForAgentId
+title: New-EntraBetaAgentUserForAgentId
 ---
 
-# New-EntraBetaAgentIDUserForAgentId
+# New-EntraBetaAgentUserForAgentId
 
 ## SYNOPSIS
 
@@ -21,16 +21,17 @@ Creates a new Agent User using an Agent Identity.
 ## SYNTAX
 
 ```powershell
-New-EntraBetaAgentIDUserForAgentId
+New-EntraBetaAgentUserForAgentId
  -DisplayName <String>
  [-UserPrincipalName <String>]
+ [-MailNickname <String>]
  [-AgentIdentityId <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `New-EntraBetaAgentIDUserForAgentId` cmdlet creates a new Agent User by posting to the Microsoft Graph users endpoint using the current Agent Identity ID as the identity parent. The mailNickname is automatically derived from the userPrincipalName.
+The `New-EntraBetaAgentUserForAgentId` cmdlet creates a new Agent User by posting to the Microsoft Graph users endpoint using an Agent Identity ID as the identity parent. The mailNickname is derived from the UserPrincipalName prefix by default but can be overridden with the `-MailNickname` parameter or interactively. If `-UserPrincipalName` is not provided, the cmdlet looks up the tenant's default domain and prompts interactively with a suggested UPN.
 
 ## EXAMPLES
 
@@ -40,7 +41,7 @@ The `New-EntraBetaAgentIDUserForAgentId` cmdlet creates a new Agent User by post
 Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("admin@contoso.com")
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity" -SponsorUserIds @("user1@contoso.com")
-New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent Identity 26192008" -UserPrincipalName "AgentIdentity26192008@contoso.onmicrosoft.com"
+New-EntraBetaAgentUserForAgentId -DisplayName "Agent Identity 26192008" -UserPrincipalName "AgentIdentity26192008@contoso.onmicrosoft.com"
 ```
 
 This example creates an Agent User with the specified display name and user principal name, using the Agent Identity created in the current session.
@@ -50,7 +51,7 @@ This example creates an Agent User with the specified display name and user prin
 ```powershell
 Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 # Assumes Agent Identity Blueprint and Agent Identity are already created
-New-EntraBetaAgentIDUserForAgentId -DisplayName "HR Agent User"
+New-EntraBetaAgentUserForAgentId -DisplayName "HR Agent User"
 ```
 
 This example creates an Agent User. The cmdlet will prompt for the user principal name if not provided.
@@ -63,10 +64,10 @@ New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUse
 New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Finance Agent" -SponsorUserIds @("finance-user@contoso.com")
 
 # Create first Agent User
-New-EntraBetaAgentIDUserForAgentId -DisplayName "Finance Agent User 1" -UserPrincipalName "financeagent1@contoso.onmicrosoft.com"
+New-EntraBetaAgentUserForAgentId -DisplayName "Finance Agent User 1" -UserPrincipalName "financeagent1@contoso.onmicrosoft.com"
 
 # Create second Agent User for the same Agent Identity
-New-EntraBetaAgentIDUserForAgentId -DisplayName "Finance Agent User 2" -UserPrincipalName "financeagent2@contoso.onmicrosoft.com"
+New-EntraBetaAgentUserForAgentId -DisplayName "Finance Agent User 2" -UserPrincipalName "financeagent2@contoso.onmicrosoft.com"
 ```
 
 This example creates multiple Agent Users associated with the same Agent Identity.
@@ -76,7 +77,7 @@ This example creates multiple Agent Users associated with the same Agent Identit
 ```powershell
 Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All'
 $agentIdentity = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "My Agent Identity"
-New-EntraBetaAgentIDUserForAgentId -DisplayName "Agent User" -UserPrincipalName "agentuser@contoso.onmicrosoft.com" -AgentIdentityId $agentIdentity.id
+New-EntraBetaAgentUserForAgentId -DisplayName "Agent User" -UserPrincipalName "agentuser@contoso.onmicrosoft.com" -AgentIdentityId $agentIdentity.id
 ```
 
 This example creates an Agent User by explicitly providing the Agent Identity ID, which is useful when calling from different module scopes or scripts.
@@ -101,7 +102,23 @@ Accept wildcard characters: False
 
 ### -UserPrincipalName
 
-The user principal name (email) for the Agent User (e.g., username@domain.onmicrosoft.com). Must be a valid email address format.
+The user principal name (email) for the Agent User (e.g., username@domain.onmicrosoft.com). Must be a valid email address format. If not provided, the cmdlet looks up the tenant's default domain and prompts interactively with a suggested UPN derived from the display name.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MailNickname
+
+The mail nickname (alias) for the Agent User. If not provided, it is derived from the UserPrincipalName prefix (the part before the @ symbol) and the user is prompted to confirm or override it.
 
 ```yaml
 Type: System.String
@@ -143,18 +160,37 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Object
 
-Returns the Agent User object with properties including id, displayName, userPrincipalName, mailNickname, and accountEnabled.
+Returns the Agent User object from the Microsoft Graph API response with the following properties:
+
+- **@odata.type** — `microsoft.graph.agentUser`
+- **id** — The unique identifier of the created Agent User.
+- **displayName** — The display name of the Agent User.
+- **userPrincipalName** — The user principal name of the Agent User.
+- **mailNickname** — The mail nickname (alias) of the Agent User.
+- **accountEnabled** — Whether the account is enabled (always `true`).
+- **identityParentId** — The ID of the parent Agent Identity.
+
+Additional properties from the Graph API response may also be included.
 
 ## NOTES
 
-Requires an Agent Identity ID, either provided via the -AgentIdentityId parameter or stored from a previous call to New-EntraBetaAgentIDForAgentIdentityBlueprint. The mailNickname is automatically derived from the userPrincipalName by extracting the part before the @ symbol. The Agent User is created with accountEnabled set to true.
+This cmdlet requires the following Microsoft Graph permission:
 
-This cmdlet requires the following Microsoft Graph permissions:
-- AgentIdentityBlueprint.Create
-- AgentIdentityBlueprintPrincipal.Create
-- AgentIdentity.Create.All
-- AgentIdentityBlueprint.UpdateAuthProperties.All
-- AgentIdUser.ReadWrite.All
+- `AgentIdUser.ReadWrite.All`
+
+The Agent Identity ID can be provided via the `-AgentIdentityId` parameter or is automatically retrieved from the global variable `$global:EntraBetaCurrentAgentIdentityId` set by `New-EntraBetaAgentIDForAgentIdentityBlueprint`. The global variable is used because this cmdlet is in a different module (`Microsoft.Entra.Beta.Users`) than the blueprint cmdlets (`Microsoft.Entra.Beta.Applications`).
+
+The cmdlet stores the created Agent User ID in `$script:CurrentAgentUserId` for use by subsequent cmdlets.
+
+The cmdlet includes retry logic (up to 10 attempts with 10-second waits) to handle propagation delays.
+
+When `-UserPrincipalName` is not provided, the cmdlet:
+
+- Queries the tenant's default domain via the organization API
+- Suggests a UPN by concatenating the display name words as a prefix with the tenant domain
+- Validates the UPN against a regex pattern and re-prompts if invalid
+
+The `-UserPrincipalName` parameter validates input against the pattern `^[#a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`.
 
 ## RELATED LINKS
 

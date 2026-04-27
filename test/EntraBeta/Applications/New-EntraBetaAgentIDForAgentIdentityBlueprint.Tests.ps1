@@ -21,14 +21,8 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
         Mock -CommandName Invoke-MgGraphRequest -MockWith $scriptblock -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("AgentIdentityBlueprint.Create", "AgentIdentityBlueprint.UpdateAuthProperties.All", "AgentIdUser.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Connect-Entra -MockWith { } -ModuleName Microsoft.Entra.Beta.Applications
-        
-        # Mock Connect-AgentIdentityBlueprint to set the required script variable
-        Mock -CommandName Connect-AgentIdentityBlueprint -MockWith {
-            InModuleScope Microsoft.Entra.Beta.Applications {
-                $script:LastSuccessfulConnection = "AgentIdentityBlueprint"
-            }
-            return $true
-        } -ModuleName Microsoft.Entra.Beta.Applications
+        # Catch-all Read-Host mock to prevent interactive prompts
+        Mock -CommandName Read-Host -MockWith { "" } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Set up required stored values for testing in the module scope
         InModuleScope Microsoft.Entra.Beta.Applications {
@@ -85,7 +79,7 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
 
     It "Should create Agent Identity with explicit sponsor groups" {
         $sponsorGroupIds = @("group-1", "group-2")
-        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorGroupIds $sponsorGroupIds
+        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorGroupIds $sponsorGroupIds -OwnerUserIds @("owner-1")
         $result | Should -Not -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter { $Method -eq "POST" }
     }
@@ -124,6 +118,11 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
         }
     }
 
+    It "Should store Agent Identity ID in global variable" {
+        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorUserIds @("user-1")
+        $global:EntraBetaCurrentAgentIdentityId | Should -Be "agent-id-guid"
+    }
+
     It "Should use stored blueprint ID" {
         $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorUserIds @("user-1")
         $result | Should -Not -BeNullOrEmpty
@@ -131,11 +130,6 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId | Should -Be "blueprint-id-guid"
         }
-    }
-
-    It "Should call Connect-AgentIdentityBlueprint before creation" {
-        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorUserIds @("user-1")
-        Should -Invoke -CommandName Connect-AgentIdentityBlueprint -ModuleName Microsoft.Entra.Beta.Applications -Times 1
     }
 
     It "Should contain 'User-Agent' header" {
@@ -168,15 +162,30 @@ Describe "Tests for New-EntraBetaAgentIDForAgentIdentityBlueprint" {
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 0
     }
 
-    It "Should fail when Connect-AgentIdentityBlueprint fails" {
-        Mock -CommandName Connect-AgentIdentityBlueprint -MockWith { return $false } -ModuleName Microsoft.Entra.Beta.Applications
-        { New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent Identity" -ErrorAction Stop } | Should -Throw "*Failed to connect using Agent Identity Blueprint credentials*"
+    It "Should accept explicit AgentIdentityBlueprintId parameter" {
+        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -AgentIdentityBlueprintId "explicit-blueprint-id" -SponsorUserIds @("user-1")
+        $result | Should -Not -BeNullOrEmpty
+        InModuleScope Microsoft.Entra.Beta.Applications {
+            $script:CurrentAgentBlueprintId | Should -Be "explicit-blueprint-id"
+        }
     }
 
-    It "Should fail when no blueprint ID is available" {
+    It "Should prompt when no blueprint ID is available" {
+        Mock -CommandName Read-Host -MockWith { "prompted-blueprint-id" } -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter { $Prompt -like "*Agent Identity Blueprint*" }
+        Mock -CommandName Read-Host -MockWith { "" } -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter { $Prompt -notlike "*Agent Identity Blueprint*" }
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = $null
         }
-        { New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent Identity" -ErrorAction Stop } | Should -Throw "*No Agent Identity Blueprint ID found*"
+        $result = New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent" -SponsorUserIds @("user-1")
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Read-Host -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter { $Prompt -like "*Agent Identity Blueprint*" }
+    }
+
+    It "Should fail when prompt is dismissed with empty input" {
+        Mock -CommandName Read-Host -MockWith { "" } -ModuleName Microsoft.Entra.Beta.Applications
+        InModuleScope Microsoft.Entra.Beta.Applications {
+            $script:CurrentAgentBlueprintId = $null
+        }
+        { New-EntraBetaAgentIDForAgentIdentityBlueprint -DisplayName "Test Agent Identity" } | Should -Throw
     }
 }

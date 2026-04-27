@@ -1,89 +1,66 @@
 ---
-author: msewaweru
-description: This article provides details on the Add-EntraAdministrativeUnitMember command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 02/05/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Add-EntraAdministrativeUnitMember
-schema: 2.0.0
 title: Add-EntraAdministrativeUnitMember
+description: This article provides details on the Add-EntraAdministrativeUnitMember command.
+
+
+ms.topic: reference
+ms.date: 07/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraAdministrativeUnitMember
+
+schema: 2.0.0
 ---
 
 # Add-EntraAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 
 Adds an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraAdministrativeUnitMember
- -MemberId <String>
+ -RefObjectId <String>
  -AdministrativeUnitId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
 
 Administrative units enable more granular management of permissions and access, particularly in large organizations or where administrative responsibilities are divided across departments or regions.
 
-In delegated scenarios, adding a user, group, or device to an administrative unit requires:
+To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
 
-- Privileged Role Administrator
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $user.Id
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
+$params = @{
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
+    RefObjectId = $User.ObjectId
+}
+Add-EntraAdministrativeUnitMember @params
 ```
 
-This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraUser` to find the user ID.
+This example shows how to add an administrative unit member. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraUser` to get user ID.
 
 - `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
+- `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
-### Example 2: Add a group to an administrative unit
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$group = Get-EntraGroup -SearchString 'Sales and Marketing'
-Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $group.Id
-```
-
-This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraGroup` to find the group ID.
-
-- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `MemberId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
-
-### Example 3: Add a device to an administrative unit
-
-```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$administrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$device = Get-EntraDevice -SearchString 'ContosoDesktop01'
-Add-EntraAdministrativeUnitMember -AdministrativeUnitId $administrativeUnit.Id -MemberId $device.Id
-```
-
-This example demonstrates adding an administrative unit member. Use `Get-EntraAdministrativeUnit` to find the administrative unit ID and `Get-EntraDevice` to find the device ID.
-
-- `AdministrativeUnitId` parameter specifies the ID of an administrative unit.
-- `MemberId` parameter specifies the ID of the device you want to add as a member of the administrative unit.
-
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitId
 
@@ -101,14 +78,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -MemberId
+### -RefObjectId
 
 Specifies the unique ID of the specific Microsoft Entra ID object that are as owner/manager/member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: RefObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -121,16 +98,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
 
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
-
-[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)

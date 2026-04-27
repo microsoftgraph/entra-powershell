@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -19,9 +19,9 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
             return
         }
 
-        # Check if we have a stored Agent Blueprint ID
-        if (-not $script:CurrentAgentBlueprintId) {
-            Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint."
+        # Check if we have a stored Agent Identity Blueprint ID
+        if (-not (Test-Path variable:script:CurrentAgentBlueprintId) -or -not $script:CurrentAgentBlueprintId) {
+            Write-Error "No Agent Identity Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint."
             return
         }
     }
@@ -61,11 +61,22 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                 default { "Custom Resource ($currentResourceAppId)" }
             }
 
+            # Ask what to make inheritable: scopes, roles, or both
+            do {
+                $permChoice = Read-Host "For '$resourceName', make inheritable: (S)copes, (R)oles, or (B)oth? [B]"
+                $permChoice = if ($permChoice -and $permChoice.Trim() -ne "") { $permChoice.Trim().ToLower() } else { "b" }
+            } while ($permChoice -notin @("s", "scopes", "r", "roles", "b", "both"))
+            $includeScopes = $permChoice -in @("s", "scopes", "b", "both")
+            $includeRoles  = $permChoice -in @("r", "roles", "b", "both")
+
             try {
+                $permDescription = @()
+                if ($includeScopes) { $permDescription += "scopes" }
+                if ($includeRoles)  { $permDescription += "roles" }
                 Write-Verbose "Adding inheritable permissions to Agent Identity Blueprint..."
-                Write-Verbose "Agent Blueprint ID: $($script:CurrentAgentBlueprintId)"
+                Write-Verbose "Agent Identity Blueprint ID: $($script:CurrentAgentBlueprintId)"
                 Write-Verbose "Resource App ID: $currentResourceAppId ($resourceName)"
-                Write-Verbose "Inheritable scopes: All allowed"
+                Write-Verbose "Inheritable: $($permDescription -join ' and ') (all allowed)"
 
                 # Check for existing inheritable permissions on the blueprint
                 Write-Verbose "Retrieving existing inheritable permissions..."
@@ -80,10 +91,25 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     $customHeaders = $null
                 }
 
-                # Build the inheritable scopes body
-                $inheritableScopesBody = [PSCustomObject]@{
-                    "@odata.type" = "#microsoft.graph.allAllowedScopes"
-                    kind          = "allAllowed"
+                # Build the body based on user's choice
+                $Body = [PSCustomObject]@{
+                    resourceAppId = $currentResourceAppId.ToString()
+                }
+
+                if ($includeScopes) {
+                    $inheritableScopesBody = [PSCustomObject]@{
+                        "@odata.type" = "#microsoft.graph.allAllowedScopes"
+                        kind          = "allAllowed"
+                    }
+                    $Body | Add-Member -MemberType NoteProperty -Name "inheritableScopes" -Value $inheritableScopesBody
+                }
+
+                if ($includeRoles) {
+                    $inheritableRolesBody = [PSCustomObject]@{
+                        "@odata.type" = "#microsoft.graph.allAllowedRoles"
+                        kind          = "allAllowed"
+                    }
+                    $Body | Add-Member -MemberType NoteProperty -Name "inheritableRoles" -Value $inheritableRolesBody
                 }
 
                 # Determine if an entry for this resourceAppId already exists
@@ -92,10 +118,6 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     $existingEntry = $existingPermissions.value | Where-Object { $_.resourceAppId -eq $currentResourceAppId.ToString() } | Select-Object -First 1
                 }
 
-                $Body = [PSCustomObject]@{
-                    resourceAppId     = $currentResourceAppId.ToString()
-                    inheritableScopes = $inheritableScopesBody
-                }
                 $JsonBody = $Body | ConvertTo-Json -Depth 5
                 Write-Debug "Request Body: $JsonBody"
 
@@ -158,7 +180,8 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     AgentBlueprintId  = $script:CurrentAgentBlueprintId
                     ResourceAppId     = $currentResourceAppId
                     ResourceAppName   = $resourceName
-                    InheritableScopes = "allAllowed"
+                    InheritableScopes = if ($includeScopes) { "allAllowed" } else { "none" }
+                    InheritableRoles  = if ($includeRoles) { "allAllowed" } else { "none" }
                     ConfiguredAt      = Get-Date
                     ApiResponse       = $result
                 }

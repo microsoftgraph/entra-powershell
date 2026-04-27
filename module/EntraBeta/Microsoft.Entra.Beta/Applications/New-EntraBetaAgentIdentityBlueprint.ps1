@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -36,14 +36,16 @@ function New-EntraBetaAgentIdentityBlueprint {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = '/beta/applications'
 
+        Write-Host "Creating Agent Identity Blueprint: $DisplayName" -ForegroundColor Cyan
+
         # Look up the current user to suggest as default sponsor/owner
         $currentUserId = $null
         $currentUserDisplay = $null
         try {
+            Write-Host "Retrieving current user information for helpful prompts..." -ForegroundColor Cyan
             $context = Get-EntraContext
             if ($context -and $context.Account) {
-                $meResponse = Invoke-MgGraphRequest -Headers $customHeaders -Method GET -Uri "v1.0/users?`$filter=userPrincipalName eq '$($context.Account)'&`$select=id,displayName,userPrincipalName" -ErrorAction Stop
-                $customHeaders = $null
+                $meResponse = Invoke-MgGraphRequest -Method GET -Uri "v1.0/users?`$filter=userPrincipalName eq '$($context.Account)'&`$select=id,displayName,userPrincipalName" -ErrorAction Stop
                 if ($meResponse.value -and $meResponse.value.Count -gt 0) {
                     $currentUserId = $meResponse.value[0].id
                     $currentUserDisplay = "$($meResponse.value[0].displayName) ($($meResponse.value[0].userPrincipalName))"
@@ -51,6 +53,7 @@ function New-EntraBetaAgentIdentityBlueprint {
             }
         }
         catch {
+            Write-Host "Could not retrieve current user information. Sponsor/owner prompts will not have a default suggestion." -ForegroundColor Yellow
             Write-Verbose "Could not retrieve current user details: $_"
             $customHeaders = $null
         }
@@ -259,7 +262,7 @@ function New-EntraBetaAgentIdentityBlueprint {
             # Extract and store the blueprint ID
             $AgentBlueprintId = $BlueprintRes.id
             Write-Host "Successfully created Agent Identity Blueprint" -ForegroundColor Green
-            Write-Verbose "Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Agent Identity Blueprint ID: $AgentBlueprintId"
 
             # Store the ID in module-level variable for use by other functions
             $script:CurrentAgentBlueprintId = $AgentBlueprintId

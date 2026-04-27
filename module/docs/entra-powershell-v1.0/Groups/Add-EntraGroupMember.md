@@ -1,92 +1,57 @@
 ---
-author: msewaweru
-description: This article explains the Add-EntraGroupMember command.
-external help file: Microsoft.Entra.Groups-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Groups
-ms.author: eunicewaweru
-ms.date: 02/08/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Groups/Add-EntraGroupMember
-schema: 2.0.0
 title: Add-EntraGroupMember
+description: This article explains the Add-EntraGroupMember command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraGroupMember
+
+schema: 2.0.0
 ---
 
 # Add-EntraGroupMember
 
-## SYNOPSIS
+## Synopsis
 
-Add a member to a security or Microsoft 365 group.
+Adds a member to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraGroupMember
  -GroupId <String>
- -MemberId <String>
- [-WhatIf]
- [-Confirm]
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Add-EntraGroupMember` cmdlet adds a member to a security or Microsoft 365 group.
+The Add-EntraGroupMember cmdlet adds a member to a group.
 
-`New-EntraGroupMember` and `Add-EntraGroupMembership` are aliases of `Add-EntraGroupMember`.
-
-In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/members/update` permission. The minimum roles required for this operation, excluding role-assignable groups, are:
-
-- Group owners
-- Directory Writers
-- Groups Administrator
-- User Administrator
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a group
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Contoso Marketing Group'"
-$user = Get-EntraUser -UserId 'SawyerM@contoso.com'
-Add-EntraGroupMember -GroupId $group.Id -MemberId $user.Id
+$params = @{
+    GroupId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+
+Add-EntraGroupMember @params
 ```
 
 This example demonstrates how to add a member to a group.
 
-- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
-- `-MemberId` - Specifies the unique identifier (Object ID) of the member to be added to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.
-
-### Example 2: Add members based on search results to a group
-
-```powershell
-Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraUser -Filter "startsWith(displayName,'Updated User')" | 
-    Add-EntraGroupMember -GroupId $group.Id
-```
-
-This example demonstrates how to add members based on a search result to a group.
-
-- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
-
-### Example 3: Sync users from one group to another
-
-```powershell
-Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-$group = Get-EntraGroup -Filter "DisplayName eq 'Sales and Marketing'"
-Get-EntraGroupMember -GroupId "source-group-id" | 
-    Add-EntraGroupMember -GroupId $group.Id
-```
-
-This example demonstrates how to sync group members from source target group to a new group.
-
-- `-GroupId` - Specifies the unique identifier (Object ID) of the group to which you want to add a member.
-
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 
@@ -104,14 +69,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -MemberId
+### -RefObjectId
 
-Specifies the unique identifier (Object ID) of the member to be added to the group. You can add users, security groups, Microsoft 365 groups, devices, service principals, and organizational contacts to security groups. Only users can be added to Microsoft 365 groups.
+Specifies the ID of the Microsoft Entra ID object that is assigned as an owner, manager, or member.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: RefObjectId
+Aliases:
 
 Required: True
 Position: Named
@@ -124,13 +89,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
 

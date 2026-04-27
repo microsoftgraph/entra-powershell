@@ -1,25 +1,28 @@
 ---
-description: This article provides details on the Confirm-EntraDomain command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 02/08/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Confirm-EntraDomain
-schema: 2.0.0
 title: Confirm-EntraDomain
+description: This article provides details on the Confirm-EntraDomain command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Confirm-EntraDomain
+
+schema: 2.0.0
 ---
 
 # Confirm-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 
 Validate the ownership of a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Confirm-EntraDomain
@@ -28,15 +31,13 @@ Confirm-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Confirm-EntraDomain` cmdlet validates the ownership of a Microsoft Entra ID domain.
 
-For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
+The work or school account needs to belong to at least the **Domain Name Administrator** Microsoft Entra role.
 
-- Domain Name Administrator
-
-## EXAMPLES
+## Examples
 
 ### Example 1: Confirm the domain
 
@@ -56,7 +57,7 @@ Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 
 This example confirms a domain in dual federation scenarios.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -94,13 +95,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDomain](Get-EntraDomain.md)
 

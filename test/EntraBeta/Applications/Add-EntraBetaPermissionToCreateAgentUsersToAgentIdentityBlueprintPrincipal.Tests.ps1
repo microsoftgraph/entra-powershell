@@ -139,7 +139,7 @@ Describe "Tests for Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlue
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = $null
         }
-        { Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -ErrorAction Stop } | Should -Throw "*No Agent Blueprint ID*"
+        { Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -ErrorAction Stop } | Should -Throw "*No Agent Identity Blueprint ID*"
     }
 
     It "Should contain 'User-Agent' header" {
@@ -148,6 +148,20 @@ Describe "Tests for Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlue
         # Verify that at least one call (the POST call) contains the custom User-Agent header
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
             $null -ne $Headers -and $Headers.ContainsKey('User-Agent') -and $Headers['User-Agent'] -like "*EntraPowershell*Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal*"
+        }
+    }
+
+    It "Should POST to the correct appRoleAssignments endpoint" {
+        $result = Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $Method -eq 'POST' -and $Uri -like "*/servicePrincipals/*/appRoleAssignments"
+        }
+    }
+
+    It "Should store blueprint service principal ID in module variable" {
+        $result = Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal
+        InModuleScope Microsoft.Entra.Beta.Applications {
+            $script:CurrentAgentBlueprintServicePrincipalId | Should -Be "sp-aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
     }
 }

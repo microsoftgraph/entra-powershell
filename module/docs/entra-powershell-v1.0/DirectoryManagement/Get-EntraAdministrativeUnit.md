@@ -1,25 +1,27 @@
 ---
-description: This article provides details on the Get-EntraAdministrativeUnit command.
-external help file: Microsoft.Entra.DirectoryManagement-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.DirectoryManagement
-ms.author: eunicewaweru
-ms.date: 06/26/2024
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.DirectoryManagement/Get-EntraAdministrativeUnit
-schema: 2.0.0
 title: Get-EntraAdministrativeUnit
+description: This article provides details on the Get-EntraAdministrativeUnit command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnit
+schema: 2.0.0
 ---
 
 # Get-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
 Gets an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -42,11 +44,11 @@ Get-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `AdministrativeUnitId` parameter to get a specific administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all administrative units
 
@@ -71,7 +73,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -All
+Get-EntraAdministrativeUnit -All 
 ```
 
 ```Output
@@ -131,9 +133,9 @@ DeletedDateTime Id                                   Description            Disp
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
 ```
 
-This example returns the specified top administrative units. You can use `-Limit` as an alias for `-Top`.
+This example returns the specified top administrative units.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -191,7 +193,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: GetQuery
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -207,7 +209,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -220,13 +222,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 

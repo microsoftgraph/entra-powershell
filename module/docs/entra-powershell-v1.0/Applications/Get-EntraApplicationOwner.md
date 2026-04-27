@@ -1,26 +1,29 @@
 ---
-author: msewaweru
-description: This article provides details on the Get-EntraApplicationOwner command.
-external help file: Microsoft.Entra.Applications-Help.xml
-Locale: en-US
-manager: mwongerapk
-Module Name: Microsoft.Entra.Applications
-ms.author: eunicewaweru
-ms.date: 02/05/2025
-ms.reviewer: stevemutungi
-ms.topic: reference
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Entra.Applications/Get-EntraApplicationOwner
-schema: 2.0.0
 title: Get-EntraApplicationOwner
+description: This article provides details on the Get-EntraApplicationOwner command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: mwongerapk
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplicationOwner
+
+schema: 2.0.0
 ---
 
 # Get-EntraApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Gets the owner of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationOwner
@@ -31,76 +34,102 @@ Get-EntraApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraApplicationOwner` cmdlet get an owner of an Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owner of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id |
-Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
-Format-Table -AutoSize
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId
 ```
 
 ```Output
-id                                   DisplayName   UserPrincipalName                CreatedDateTime       UserType AccountEnabled
---                                   -----------   -----------------                ---------------       -------- --------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance   AdeleV@contoso.com               10/7/2024 12:33:36 AM Member   True
-dddddddd-3333-4444-5555-eeeeeeeeeeee Cameron White CameronW@contoso.com            10/7/2024 12:34:47 AM Member   True
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This example demonstrates how to get the owners of an application in Microsoft Entra ID.
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-### Example 2: Get all owners of an application
+### Example 2: Get the details about the owner of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id -All |
-Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
-Format-Table -AutoSize
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -SearchString '<application-name>'
+$applicationOwners = Get-EntraApplicationOwner -ObjectId $application.ObjectId
+$ownerDetails = $applicationOwners | ForEach-Object {
+    $ownerDetail = Get-EntraObjectByObjectId -ObjectIds $_.Id
+    [PSCustomObject]@{
+        displayName      = $ownerDetail.displayName
+        Id               = $ownerDetail.Id
+        UserPrincipalName = $ownerDetail.UserPrincipalName
+        UserType         = $ownerDetail.UserType
+        accountEnabled   = $ownerDetail.accountEnabled
+    }
+}
+$ownerDetails | Format-Table -Property displayName, Id, UserPrincipalName, UserType, accountEnabled -AutoSize
 ```
 
 ```Output
-id                                   DisplayName   UserPrincipalName                CreatedDateTime       UserType AccountEnabled
---                                   -----------   -----------------                ---------------       -------- --------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance   AdeleV@contoso.com               10/7/2024 12:33:36 AM Member   True
-dddddddd-3333-4444-5555-eeeeeeeeeeee Cameron White CameronW@contoso.com            10/7/2024 12:34:47 AM Member   True
+displayName    Id                                   UserPrincipalName             UserType accountEnabled
+-----------    --                                   -----------------             -------- --------------
+Sawyer Miller  bbbbbbbb-1111-2222-3333-cccccccccccc SawyerM@contoso.com           Member   True
+Adele Vance    ec5813fb-346e-4a33-a014-b55ffee3662b AdeleV@contoso.com            Member   True
+```
+
+This example demonstrates how to get the owners of an application in Microsoft Entra ID with more owner lookup details.
+
+### Example 3: Get all owners of an application
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-### Example 3: Get top two owners of an application
+### Example 4: Get top two owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.Read.All'
-$application = Get-EntraApplication -Filter "DisplayName eq 'Helpdesk Application'"
-Get-EntraApplicationOwner -ApplicationId $application.Id -Top 2 |
-Select-Object Id, displayName, UserPrincipalName, createdDateTime, userType, accountEnabled |
-Format-Table -AutoSize
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ApplicationId $Application.ObjectId -Top 2
 ```
 
 ```Output
-id                                   DisplayName   UserPrincipalName                CreatedDateTime       UserType AccountEnabled
---                                   -----------   -----------------                ---------------       -------- --------------
-bbbbbbbb-1111-2222-3333-cccccccccccc Adele Vance   AdeleV@contoso.com               10/7/2024 12:33:36 AM Member   True
-dddddddd-3333-4444-5555-eeeeeeeeeeee Cameron White CameronW@contoso.com            10/7/2024 12:34:47 AM Member   True
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID. You can use `-Limit` as an alias for `-Top`.
+This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
 - `-ApplicationId` parameter specifies the unique identifier of an application.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -141,7 +170,7 @@ Specifies the maximum number of records to return.
 ```yaml
 Type: System.Int32
 Parameter Sets: (All)
-Aliases: Limit
+Aliases:
 
 Required: False
 Position: Named
@@ -157,7 +186,7 @@ Specifies properties to be returned.
 ```yaml
 Type: System.String[]
 Parameter Sets: (All)
-Aliases: Select
+Aliases:
 
 Required: False
 Position: Named
@@ -170,13 +199,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 

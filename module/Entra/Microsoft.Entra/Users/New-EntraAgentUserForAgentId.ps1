@@ -1,9 +1,9 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function New-EntraBetaAgentIDUserForAgentId {
+function New-EntraAgentUserForAgentId {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, HelpMessage = "The display name for the Agent User.")]
@@ -17,7 +17,7 @@ function New-EntraBetaAgentIDUserForAgentId {
         [Parameter(Mandatory = $false, HelpMessage = "The mail nickname (alias) for the Agent User. Derived from UserPrincipalName prefix if not provided.")]
         [string]$MailNickname,
 
-        [Parameter(Mandatory = $false, HelpMessage = "The Agent Identity ID to associate with this user. If not provided, uses the stored value from New-EntraBetaAgentIDForAgentIdentityBlueprint.")]
+        [Parameter(Mandatory = $false, HelpMessage = "The Agent Identity ID to associate with this user. If not provided, uses the stored value from New-EntraAgentIDForAgentIdentityBlueprint.")]
         [string]$AgentIdentityId
     )
 
@@ -31,10 +31,10 @@ function New-EntraBetaAgentIDUserForAgentId {
 
         # Validate that we have a current Agent Identity ID (from parameter or stored value)
         if (-not $AgentIdentityId) {
-            # Use global variable to cross module boundaries (set by New-EntraBetaAgentIDForAgentIdentityBlueprint)
-            $storedAgentIdentityId = $global:EntraBetaCurrentAgentIdentityId
+            # Use global variable to cross module boundaries (set by New-EntraAgentIDForAgentIdentityBlueprint)
+            $storedAgentIdentityId = $global:EntraCurrentAgentIdentityId
             if (-not $storedAgentIdentityId) {
-                Write-Error "No Agent Identity ID found. Please provide -AgentIdentityId parameter or run New-EntraBetaAgentIDForAgentIdentityBlueprint first to create an Agent Identity." -ErrorAction Stop
+                Write-Error "No Agent Identity ID found. Please provide -AgentIdentityId parameter or run New-EntraAgentIDForAgentIdentityBlueprint first to create an Agent Identity." -ErrorAction Stop
                 return
             }
             $AgentIdentityId = $storedAgentIdentityId
@@ -43,7 +43,7 @@ function New-EntraBetaAgentIDUserForAgentId {
 
     process {
         $customHeaders = $null
-        $baseUri = '/beta/users/'
+        $baseUri = '/v1.0/users/'
 
         # Prompt for UserPrincipalName if not provided
         if (-not $UserPrincipalName -or $UserPrincipalName.Trim() -eq "") {
@@ -125,7 +125,7 @@ function New-EntraBetaAgentIDUserForAgentId {
 
             while ($retryCount -lt $maxRetries -and -not $success) {
                 if ($retryCount -eq 0) {
-                    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+                    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
                 }
                 else {
                     $customHeaders = $null
