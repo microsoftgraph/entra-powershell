@@ -35,7 +35,7 @@ The `New-EntraBetaAgentIdentityBlueprintPrincipal` cmdlet creates a service prin
 ### Example 1: Create service principal using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIdentityBlueprintPrincipal
 ```
@@ -45,7 +45,7 @@ This example creates a service principal for the Agent Identity Blueprint that w
 ### Example 2: Create service principal with specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprintPrincipal -AgentBlueprintId "021fe0d0-d128-4769-950c-fcfbf7b87def"
 ```
 
@@ -85,11 +85,12 @@ Returns the service principal response object from Microsoft Graph with properti
 
 ## NOTES
 
-This cmdlet requires an Agent Identity Blueprint to be created first. The cmdlet stores the service principal ID in a module-level variable for use by other related cmdlets.
+This cmdlet requires an Agent Identity Blueprint to be created first. The cmdlet stores the created service principal ID in a module-level variable (`CurrentAgentBlueprintServicePrincipalId`) for use by other related cmdlets such as consent and permission configuration cmdlets.
+
+The cmdlet includes retry logic (up to 10 attempts with 10-second waits) to handle propagation delays after blueprint creation.
 
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprintPrincipal.Create
-- Application.ReadWrite.All
 
 ## RELATED LINKS
 

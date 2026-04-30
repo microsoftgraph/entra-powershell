@@ -31,13 +31,14 @@ The `Invoke-EntraBetaAgentIdInteractive` cmdlet demonstrates the full workflow o
 
 This interactive cmdlet guides you through the complete Agent Identity setup process with prompts at key decision points:
 
-- Blueprint creation with optional sponsors
-- Client secret generation for API authentication
-- Interactive agent scope configuration
-- Inheritable permissions setup
-- Service principal creation and permissions
-- Admin consent flow (when applicable)
-- Agent Identity and Agent User creation
+1. **Blueprint creation** — Create an Agent Identity Blueprint with optional sponsors
+2. **Security configuration** — Add a client secret for API authentication
+3. **Interactive agent support** — Configure scopes for agents acting on behalf of users
+4. **Agent user creation** — Configure the blueprint to allow creating Agent ID users without a user
+5. **Inheritable permissions** — Set up permissions that agent identities inherit from the blueprint
+6. **Permission model** — Choose between static (recommended for Agent 365) or dynamic permissions
+7. **Admin consent** — Obtain tenant admin consent for the blueprint's permissions
+8. **Agent Identity and User creation** — Create one or more Agent Identities and Agent Users
 
 The cmdlet maintains state between operations, automatically passing Blueprint IDs and other required values to subsequent operations. You can create multiple Agent Identities and Users in a single session.
 
@@ -46,7 +47,7 @@ The cmdlet maintains state between operations, automatically passing Blueprint I
 ### Example 1: Start the interactive Agent Identity configuration workflow
 
 ```powershell
-Connect-Entra -Scopes 'Organization.Read.All', 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'Application.ReadWrite.All', 'User.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All', 'User.ReadBasic.All', 'AgentIdentityBlueprint.AddRemoveCreds.All', 'AgentIdentityBlueprint.ReadWrite.All' -TenantId <tenant ID>
 Invoke-EntraBetaAgentIdInteractive
 ```
 
@@ -70,14 +71,16 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 This cmdlet requires the following Microsoft Graph permissions:
 
-- Organization.Read.All
-- AgentIdentityBlueprint.Create
-- AgentIdentityBlueprintPrincipal.Create
-- AppRoleAssignment.ReadWrite.All
-- Application.ReadWrite.All
-- User.ReadWrite.All
+- AgentIdentity.Create.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
+- AgentIdUser.ReadWrite.All
+- User.ReadBasic.All
+- AgentIdentityBlueprint.AddRemoveCreds.All
+- AgentIdentityBlueprint.ReadWrite.All
 
-The cmdlet will automatically connect to Microsoft Graph with these permissions if not already connected.
+The cmdlet requires an active Microsoft Graph connection with the above permissions before running. Use `Connect-Entra -Scopes` to connect first. The cmdlet checks for an active connection at startup and throws an error if not connected.
+
+The cmdlet stores state in module-scoped variables (such as `$script:CurrentAgentBlueprintId`) that are passed automatically to subsequent operations within the session.
 
 ## RELATED LINKS
 
@@ -85,4 +88,18 @@ The cmdlet will automatically connect to Microsoft Graph with these permissions 
 
 [Add-EntraBetaClientSecretToAgentIdentityBlueprint](Add-EntraBetaClientSecretToAgentIdentityBlueprint.md)
 
+[Add-EntraBetaScopeToAgentIdentityBlueprint](Add-EntraBetaScopeToAgentIdentityBlueprint.md)
+
+[Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint](Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint.md)
+
+[Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint](Add-EntraBetaRequiredResourceAccessToAgentIdentityBlueprint.md)
+
 [New-EntraBetaAgentIdentityBlueprintPrincipal](New-EntraBetaAgentIdentityBlueprintPrincipal.md)
+
+[Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal](Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal.md)
+
+[Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal](Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal.md)
+
+[New-EntraBetaAgentIDForAgentIdentityBlueprint](New-EntraBetaAgentIDForAgentIdentityBlueprint.md)
+
+[New-EntraBetaAgentUserForAgentId](../Users/New-EntraBetaAgentUserForAgentId.md)

@@ -28,14 +28,14 @@ Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal
 
 ## DESCRIPTION
 
-The `Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal` cmdlet adds the AgentIdUser.ReadWrite.IdentityParentedBy permission to the Agent Identity Blueprint Service Principal. This permission allows the blueprint to create agent users that are parented to agent identities. Uses the stored AgentBlueprintId from the last New-AgentIdentityBlueprint call and the cached Microsoft Graph Service Principal ID.
+The `Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal` cmdlet adds the AgentIdUser.ReadWrite.IdentityParentedBy permission to the Agent Identity Blueprint Service Principal. This permission allows the blueprint to create agent users that are parented to agent identities. The cmdlet looks up the blueprint's service principal and the Microsoft Graph service principal in the tenant, then creates an app role assignment linking them. Uses the stored AgentBlueprintId from the last `New-EntraBetaAgentIdentityBlueprint` call if no explicit ID is provided.
 
 ## EXAMPLES
 
 ### Example 1: Grant permission using stored blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com")
 New-EntraBetaAgentIdentityBlueprintPrincipal
 Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal
@@ -46,7 +46,7 @@ This example grants the AgentIdUser.ReadWrite.IdentityParentedBy permission to t
 ### Example 2: Grant permission using specific blueprint ID
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.ReadWrite.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.IdentityParentedBy'
 Add-EntraBetaPermissionToCreateAgentUsersToAgentIdentityBlueprintPrincipal -AgentBlueprintId "7c0c1226-1e81-41a5-ad6c-532c95504443"
 ```
 
@@ -82,16 +82,28 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Object
 
-Returns the app role assignment response object from Microsoft Graph.
+Returns the app role assignment response object from Microsoft Graph, enriched with the following additional properties:
+
+- **AgentBlueprintId** - The Application ID of the Agent Identity Blueprint.
+- **AgentBlueprintServicePrincipalId** - The object ID of the blueprint's service principal.
+- **PermissionName** - The permission name (`AgentIdUser.ReadWrite.IdentityParentedBy`).
+- **PermissionDescription** - A description of what the permission allows.
+- **MSGraphServicePrincipalId** - The object ID of the Microsoft Graph service principal in the tenant.
+
+The base response includes `id`, `principalId`, `resourceId`, and `appRoleId`.
 
 ## NOTES
 
 This cmdlet requires the following Microsoft Graph permissions:
 
-- Application.ReadWrite.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
 - AgentIdUser.ReadWrite.IdentityParentedBy
 
-This cmdlet requires the Agent Identity Blueprint Service Principal to be created first using New-EntraBetaAgentIdentityBlueprintPrincipal.
+This cmdlet requires the Agent Identity Blueprint Service Principal to be created first using `New-EntraBetaAgentIdentityBlueprintPrincipal`. The cmdlet looks up the blueprint's service principal by filtering on `appId`, so the blueprint must already have a service principal in the tenant.
+
+The Microsoft Graph Service Principal ID is cached after the first lookup for performance. The cmdlet also stores the blueprint service principal ID in a module-level variable (`CurrentAgentBlueprintServicePrincipalId`) for use by other cmdlets.
+
+The specific app role assigned is `AgentIdUser.ReadWrite.IdentityParentedBy` (ID: `4aa6e624-eee0-40ab-bdd8-f9639038a614`).
 
 ## RELATED LINKS
 
