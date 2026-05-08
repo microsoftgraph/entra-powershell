@@ -10,13 +10,9 @@ function Get-MissingCmds {
     )
 
     PROCESS {
-        Import-Module $ModuleName -Force | Out-Null
-
-        $names = @()
-        $module = Get-Module -Name $ModuleName
-        $names += $module.ExportedCmdlets.Keys
-        $names += $module.ExportedFunctions.Keys
-
+        # AzureAD and AzureADPreview modules have been deprecated and removed from
+        # PowerShell Gallery. Use the static mapping files as the source of truth
+        # for the complete list of commands instead of importing the module.
         if($ModuleName -eq 'AzureAD'){
             $mappingFile = (Join-Path $PSScriptRoot './AzureADToEntraMapping.json')
         }
@@ -25,15 +21,11 @@ function Get-MissingCmds {
         }
 
         $content = Get-Content -Path $mappingFile | ConvertFrom-Json
+        $names = @($content.PSObject.Properties.Name)
 
         $missingCmdletsToExport = @()
 
         foreach ($cmd in $names) {
-            if (-not ($content.PSObject.Properties.Name -contains $cmd)) {
-                $missingCmdletsToExport += $cmd
-                continue
-            }
-
             if(-not ($content.$cmd)){
                 $missingCmdletsToExport += $cmd
             }
