@@ -18,8 +18,11 @@ param(
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 if ($ModuleSettingsPath) { $settingPath = $ModuleSettingsPath }
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
-Write-Verbose("Installing Module $($content.sourceModule)")
-Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
+
+# The AzureAD and AzureADPreview modules have been deprecated and removed from
+# PowerShell Gallery. The source module is no longer installed as a dependency.
+# Command lists are now derived from the static mapping files instead.
+Write-Verbose("Skipping deprecated source module '$($content.sourceModule)' - no longer available on PowerShell Gallery")
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
