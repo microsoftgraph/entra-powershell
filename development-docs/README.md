@@ -9,6 +9,7 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
 - [Prerequisites](#prerequisites)
 - [Environment Setup](#environment-setup)
   - [GitHub Basics](#github-basics)
+- [Local Build and Testing](#local-build-and-testing)
 - [Creating Cmdlets](#creating-cmdlets)
   - [PowerShell Cmdlet Design Guidelines](#powershell-cmdlet-design-guidelines)
   - [Design Review](#design-review)
@@ -89,6 +90,33 @@ git pull upstream main
 ```
 
 > _The `main` branch is for the next feature release and is actively developed with new features, documentation changes, performance improvements, and bug fixes._
+
+## Local Build and Testing
+
+Before submitting a pull request, you must build and test your changes locally. We provide detailed guides to help:
+
+- **[Local Build and Validation Guide](./LOCAL-BUILD-AND-VALIDATION.md)** — Step-by-step instructions for building the module, importing it, running tests, and performing static analysis.
+- **[Testing Guide](./TESTING.md)** — How to write unit tests with Pester, use mocks, and achieve code coverage targets.
+
+### Quick Validation
+
+```powershell
+# Build the module (use a fresh PowerShell session)
+.\build\Install-Dependencies.ps1 -ModuleName Entra
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
+
+# Run all tests
+Invoke-Pester -Path .\test\Entra\ -Output Detailed
+
+# Run static analysis
+Invoke-ScriptAnalyzer -Path .\module\Entra\ -Recurse -Severity Warning
+```
+
+For the Beta module, replace `Entra` with `EntraBeta` in the commands above.
 
 ## Creating Cmdlets
 

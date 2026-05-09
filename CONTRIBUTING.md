@@ -90,6 +90,36 @@ The following guidelines must be followed in **every** pull request that is open
 - Changes made have corresponding test coverage.
 - Tests shouldn't include any hardcoded values, such as DisplayName, resource ID, etc.
 - No existing tests should be skipped.
+- All API calls in tests must be mocked — never call the real Microsoft Graph API in unit tests.
+- Tests must pass both locally and in CI before a PR is reviewed.
+
+For detailed instructions on writing and running tests, see the [Testing Guide](development-docs/TESTING.md).
+
+#### Building and testing locally
+
+Before submitting a PR, build and validate your changes locally:
+
+1. **Build the module** — see the [Local Build and Validation Guide](development-docs/LOCAL-BUILD-AND-VALIDATION.md) or [BUILD.md](build/BUILD.md).
+2. **Run unit tests** — use Pester to run all tests and ensure zero failures.
+3. **Run static analysis** — use PSScriptAnalyzer on your changed files.
+
+```powershell
+# Quick validation workflow
+.\build\Install-Dependencies.ps1 -ModuleName Entra
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
+
+# Run tests
+Invoke-Pester -Path .\test\Entra\ -Output Detailed
+
+# Static analysis
+Invoke-ScriptAnalyzer -Path .\module\Entra\ -Recurse -Severity Warning
+```
+
+For the full guide, including safe testing practices and troubleshooting, see the [Local Build and Validation Guide](development-docs/LOCAL-BUILD-AND-VALIDATION.md).
 
 ## Microsoft Entra PowerShell documentation contributions
 
