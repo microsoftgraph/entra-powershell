@@ -239,6 +239,8 @@ Before creating a pull request, verify the following:
   Invoke-ScriptAnalyzer -Path .\module\Entra\<YourCmdlet>.ps1 -Severity Warning
   ```
 
+Once all checks pass and your PR is ready, add the **Ready For Review** label to signal the team for review.
+
 ## Troubleshooting
 
 ### Common Issues

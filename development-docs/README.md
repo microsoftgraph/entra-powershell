@@ -67,26 +67,31 @@ The following prerequisites should be completed before contributing to the Entra
 
 If you don't have experience with Git and GitHub, some of the terminology and process can be confusing. [Here is a guide to understanding the GitHub flow][git-workflow] and [here is a guide to understanding the basic Git commands][git-cheat-sheet].
 
-To develop in the Entra PowerShell repository locally, you first need to create your own fork. For more information on how to fork, click [here][git-forking].
+To contribute code to the Entra PowerShell repository, clone the repository directly and create a feature branch. Pull requests from forks are **not supported** for code contributions because the CI/CD pipeline requires access to internal build resources that are not available to fork-based PRs.
 
-Once your fork of the Entra PowerShell repository has been created, you need to clone your fork to your local machine. To do so, run the following command:
+Clone the repository to your local machine:
 
 ```git
-git clone https://github.com/<YOUR GITHUB USERNAME>/entra-powershell.git
+git clone https://github.com/microsoftgraph/entra-powershell.git
 ```
 
-You now be able to create your own branches, commit changes, and push commits to your fork.
-
-**Note**: we recommend adding the _microsoftgraph/entra-powershell_ repository to your list of tracked repositories in Git. This allows you to easily pull changes from the `microsoftgraph/entra-powershell` repository. To do this, run the following command:
+Create a feature branch for your changes:
 
 ```git
-git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
+cd entra-powershell
+git checkout -b feature/your-change-description
 ```
 
-Then, to pull changes from the **main** branch in _microsoftgraph/entra-powershell_ into your local working branch, run the following command:
+You can now make changes, commit, and push your branch:
 
 ```git
-git pull upstream main
+git push origin feature/your-change-description
+```
+
+To keep your branch up to date with the latest changes from **main**:
+
+```git
+git pull origin main
 ```
 
 > _The `main` branch is for the next feature release and is actively developed with new features, documentation changes, performance improvements, and bug fixes._
@@ -200,7 +205,6 @@ Significant contributions are credited in the [misc/acknowledgements](./../misc/
 [git-download]: https://git-scm.com/downloads
 [vscode]: https://code.visualstudio.com/docs/setup/setup-overview
 [git-workflow]: https://guides.github.com/introduction/flow/
-[git-forking]: https://guides.github.com/activities/forking/
 [pull-request]: https://github.com/microsoftgraph/entra-powershell/pulls
 [release-cadence]: https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence
 [powershell-gallery]: https://aka.ms/EntraPSGallery

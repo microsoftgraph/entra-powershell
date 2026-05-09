@@ -50,18 +50,17 @@ Invoke-Pester -Path .\test\Entra\ -Output Detailed
 
 ### Step 1: Clone and Set Up
 
-Fork the repository on GitHub, then clone your fork:
+Clone the repository directly (do not fork — fork-based PRs cannot run the CI pipeline):
 
 ```powershell
-git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+git clone https://github.com/microsoftgraph/entra-powershell.git
 cd entra-powershell
 ```
 
-Add the upstream remote to keep your fork in sync:
+Create a feature branch for your changes:
 
 ```powershell
-git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
-git pull upstream main
+git checkout -b feature/your-change-description
 ```
 
 Create a feature branch for your changes:
@@ -324,3 +323,7 @@ git diff --cached --name-only  # Review staged files
 ```
 
 > **Tip**: The PR review SLA is **three business days**. Complete the [PR template checklist](../CONTRIBUTING.md#pull-request-guidelines) to avoid delays.
+
+> **Important**: Once your PR is complete and all checks pass, add the **Ready For Review** label to signal the team for review.
+
+> **Note**: Pull requests from forks cannot run the CI pipeline because it requires access to internal build resources. Always clone the repository directly and push branches to the upstream repository.

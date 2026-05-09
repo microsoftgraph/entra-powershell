@@ -35,13 +35,20 @@ GitHub.
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 
-#### Forking the microsoftgraph/entra-powershell repository
+#### Cloning the microsoftgraph/entra-powershell repository
 
-Unless you're working with multiple contributors on the same file, we ask that you fork the
-repository and submit your pull request from there. The following guide explains how to fork a
-GitHub repo.
+To contribute code changes, clone the repository directly and create a feature branch. Pull requests
+from forks are **not supported** for code contributions because the CI/CD pipeline requires access
+to internal build resources that are not available to fork-based PRs.
 
-- [Contributing to GitHub projects](https://guides.github.com/activities/forking/).
+```git
+git clone https://github.com/microsoftgraph/entra-powershell.git
+cd entra-powershell
+git checkout -b feature/your-change-description
+```
+
+> **Note**: Forking is acceptable for documentation-only contributions where CI pipeline
+> validation is not required.
 
 ## Filing Issues
 
@@ -68,13 +75,14 @@ You can find all of the pull requests that opened in the
 
 When creating a pull request, keep the following in mind:
 
-- Verify you're pointing to the fork and branch that your changes were made in.
+- Verify you're pointing to the branch that your changes were made in.
 - Choose the correct branch you want your pull request to be merged into.
   - The **main** branch is for active development; changes in this branch will be in the next Entra
     PowerShell release.
 - The pull request template that is provided **must be filled out**. Don't delete or ignore it when
   the pull request is created.
   - **_IMPORTANT:_** Deleting or ignoring the pull request template delays the PR review process.
+- Once your PR is complete and ready for review, add the **Ready For Review** label to signal the team.
 - The SLA for reviewing pull requests is **three business days**.
 
 ### Pull Request Guidelines
