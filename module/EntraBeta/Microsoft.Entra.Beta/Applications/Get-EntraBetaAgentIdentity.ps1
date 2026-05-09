@@ -11,7 +11,7 @@ function Get-EntraBetaAgentIdentity {
         [string]$AgentId,
 
         [Parameter(Mandatory = $false, ParameterSetName = "GetByBlueprint", HelpMessage = "The ID of the Agent Identity Blueprint to list child agent identities for.")]
-        [ValidateNotNullOrEmpty()]
+        [AllowEmptyString()]
         [string]$AgentIdentityBlueprintId
     )
 

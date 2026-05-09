@@ -106,11 +106,25 @@ Describe "Tests for Add-EntraBetaScopeToAgentIdentityBlueprint" {
         Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter { $Method -eq 'PATCH' } -Times 0
     }
 
-    It "Should fail when no blueprint ID is available" {
+    It "Should prompt for blueprint ID when none is stored" {
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = $null
         }
-        { Add-EntraBetaScopeToAgentIdentityBlueprint -AdminConsentDescription "Test description" -AdminConsentDisplayName "Test display name" -Value "test_scope" -ErrorAction Stop } | Should -Throw "*No Agent Identity Blueprint ID*"
+        Mock -CommandName Read-Host -MockWith { return "prompted-blueprint-id" } -ModuleName Microsoft.Entra.Beta.Applications
+        $result = Add-EntraBetaScopeToAgentIdentityBlueprint -AdminConsentDescription "Test description" -AdminConsentDisplayName "Test display name" -Value "test_scope"
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Read-Host -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
+            $Uri -like "*prompted-blueprint-id"
+        }
+    }
+
+    It "Should fail when no blueprint ID is available and prompt is empty" {
+        InModuleScope Microsoft.Entra.Beta.Applications {
+            $script:CurrentAgentBlueprintId = $null
+        }
+        Mock -CommandName Read-Host -MockWith { return "" } -ModuleName Microsoft.Entra.Beta.Applications
+        { Add-EntraBetaScopeToAgentIdentityBlueprint -AdminConsentDescription "Test description" -AdminConsentDisplayName "Test display name" -Value "test_scope" -ErrorAction Stop } | Should -Throw
     }
 
     It "Should execute successfully without throwing an error" {

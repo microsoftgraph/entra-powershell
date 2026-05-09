@@ -120,7 +120,7 @@ Describe "Tests for Get-EntraBetaAgentIdentity" {
         }
 
         It "Should use stored blueprint ID when no parameter provided" {
-            $result = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId
+            $result = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId ""
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Entra.Beta.Applications -ParameterFilter {
                 $Uri -like "*stored-blueprint-id-guid*"
@@ -132,7 +132,7 @@ Describe "Tests for Get-EntraBetaAgentIdentity" {
                 $script:CurrentAgentBlueprintId = $null
             }
             Mock -CommandName Read-Host -MockWith { "prompted-blueprint-id" } -ModuleName Microsoft.Entra.Beta.Applications
-            $result = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId
+            $result = Get-EntraBetaAgentIdentity -AgentIdentityBlueprintId ""
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Read-Host -ModuleName Microsoft.Entra.Beta.Applications -Times 1
         }
