@@ -10,13 +10,12 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
         Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
         # No API call is made in this function - it generates a URL
-        Mock -CommandName Get-EntraContext -MockWith { @{TenantId = "tenant-id-guid"; Scopes = @("AgentIdentityBlueprint.ReadWrite.All") } } -ModuleName Microsoft.Entra.Beta.Applications
+        Mock -CommandName Get-EntraContext -MockWith { @{TenantId = "tenant-id-guid"; Scopes = @("AgentIdentityBlueprint.UpdateAuthProperties.All") } } -ModuleName Microsoft.Entra.Beta.Applications
         Mock -CommandName Start-Process -MockWith { } -ModuleName Microsoft.Entra.Beta.Applications
         
         # Set up required stored values for testing in the module scope
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = "blueprint-app-id-guid"
-            $script:LastConfiguredInheritableScopes = @("user.read", "mail.read")
         }
         
         # Define variables for use across tests
@@ -32,25 +31,49 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
         }
     }
 
-    It "Should generate consent URL" {
+    It "Should generate consent URL with scopes" {
         $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read")
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Not -Throw
+        $result | Should -Not -BeNullOrEmpty
+        $result.ConsentUrl | Should -Not -BeNullOrEmpty
+        $result.ConsentUrl | Should -BeLike "*adminconsent*"
+        $result.ConsentUrl | Should -BeLike "*scope=*"
     }
 
     It "Should use stored blueprint ID when not provided" {
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Not -Throw
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read")
+        $result.AgentBlueprintId | Should -Be "blueprint-app-id-guid"
     }
 
     It "Should accept explicit AgentBlueprintId parameter" {
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -AgentBlueprintId "explicit-blueprint-id" -Scopes @("user.read") } | Should -Not -Throw
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -AgentBlueprintId "explicit-blueprint-id" -Scopes @("user.read")
+        $result.AgentBlueprintId | Should -Be "explicit-blueprint-id"
     }
 
     It "Should accept custom redirect URI" {
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") -RedirectUri "https://custom-uri.com/callback" } | Should -Not -Throw
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") -RedirectUri "https://custom-uri.com/callback"
+        $result.RedirectUri | Should -Be "https://custom-uri.com/callback"
+        $result.ConsentUrl | Should -BeLike "*custom-uri*"
     }
 
     It "Should accept custom state parameter" {
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") -State "custom-state-123" } | Should -Not -Throw
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") -State "custom-state-123"
+        $result.State | Should -Be "custom-state-123"
+        $result.ConsentUrl | Should -BeLike "*custom-state-123*"
+    }
+
+    It "Should accept Roles parameter" {
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Roles @("Mail.Read", "User.Read.All")
+        $result | Should -Not -BeNullOrEmpty
+        $result.RequestedRoles | Should -HaveCount 2
+        $result.ConsentUrl | Should -BeLike "*role=*"
+    }
+
+    It "Should accept both Scopes and Roles together" {
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") -Roles @("Mail.Read")
+        $result.RequestedScopes | Should -HaveCount 1
+        $result.RequestedRoles | Should -HaveCount 1
+        $result.ConsentUrl | Should -BeLike "*scope=*"
+        $result.ConsentUrl | Should -BeLike "*role=*"
     }
 
     It "Should fail when not connected" {
@@ -62,25 +85,33 @@ Describe "Tests for Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPri
         InModuleScope Microsoft.Entra.Beta.Applications {
             $script:CurrentAgentBlueprintId = $null
         }
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Throw "*No Agent Blueprint ID*"
-    }
-
-    It "Should use suggested scopes from LastConfiguredInheritableScopes" {
-        $script:CurrentAgentBlueprintId = "blueprint-app-id-guid"
-        $script:LastConfiguredInheritableScopes = @("custom.scope1", "custom.scope2")
-        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Not -Throw
+        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read") } | Should -Throw "*No Agent Identity Blueprint ID*"
     }
 
     It "Should execute successfully without throwing an error" {
-        $script:CurrentAgentBlueprintId = "blueprint-app-id-guid"
-        $originalDebugPreference = $DebugPreference
-        $DebugPreference = 'Continue'
+        { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read", "mail.read") } | Should -Not -Throw
+    }
 
-        try {
-            { Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read", "mail.read") } | Should -Not -Throw
-        }
-        finally {
-            $DebugPreference = $originalDebugPreference
-        }
+    It "Should call Start-Process to open the browser" {
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read")
+        Should -Invoke -CommandName Start-Process -ModuleName Microsoft.Entra.Beta.Applications -Times 1
+        $result.Action | Should -Be "Browser Launched"
+    }
+
+    It "Should include tenant ID in consent URL" {
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read")
+        $result.TenantId | Should -Be "tenant-id-guid"
+        $result.ConsentUrl | Should -BeLike "*tenant-id-guid*"
+    }
+
+    It "Should return all expected properties" {
+        $result = Add-EntraBetaPermissionsToInheritToAgentIdentityBlueprintPrincipal -Scopes @("user.read")
+        $result.AgentBlueprintId | Should -Not -BeNullOrEmpty
+        $result.TenantId | Should -Not -BeNullOrEmpty
+        $result.RequestedScopes | Should -Not -BeNullOrEmpty
+        $result.RedirectUri | Should -Not -BeNullOrEmpty
+        $result.ConsentUrl | Should -Not -BeNullOrEmpty
+        $result.Action | Should -Not -BeNullOrEmpty
+        $result.Timestamp | Should -Not -BeNullOrEmpty
     }
 }

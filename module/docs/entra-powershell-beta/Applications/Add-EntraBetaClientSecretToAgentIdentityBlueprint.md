@@ -28,7 +28,7 @@ Add-EntraBetaClientSecretToAgentIdentityBlueprint
 
 ## DESCRIPTION
 
-The `Add-EntraBetaClientSecretToAgentIdentityBlueprint` cmdlet creates an application password for the most recently created Agent Identity Blueprint using New-MgApplicationPassword. Uses the stored AgentBlueprintId from the last New-AgentIdentityBlueprint call.
+The `Add-EntraBetaClientSecretToAgentIdentityBlueprint` cmdlet adds a client secret (application password) to an Agent Identity Blueprint by calling the Microsoft Graph `/addPassword` endpoint. If no blueprint ID is provided, it uses the stored ID from the most recent `New-EntraBetaAgentIdentityBlueprint` call. The cmdlet includes retry logic (up to 10 attempts) to handle propagation delays after blueprint creation. The secret is valid for 90 days and is stored in module-level variables for use by other cmdlets.
 
 ## EXAMPLES
 
@@ -87,9 +87,9 @@ Returns the secret result object with KeyId, EndDateTime, and SecretText propert
 
 This cmdlet requires the following Microsoft Graph permission:
 
-- Application.ReadWrite.All
+- AgentIdentityBlueprint.AddRemoveCreds.All
 
-The client secret is valid for 90 days by default. The secret is returned only once and should be stored securely.
+The client secret is valid for 90 days by default. The secret text (`SecretText`) is returned only once and should be stored securely. The cmdlet also stores the secret in module-level variables (`$script:CurrentAgentBlueprintSecret` and `$script:LastClientSecret`) for use by other cmdlets in the same session. The result object includes additional `Description` and `AgentBlueprintId` properties for convenience.
 
 ## RELATED LINKS
 

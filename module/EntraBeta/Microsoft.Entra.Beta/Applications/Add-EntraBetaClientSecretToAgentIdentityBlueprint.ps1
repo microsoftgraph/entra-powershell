@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -20,16 +20,16 @@ function Add-EntraBetaClientSecretToAgentIdentityBlueprint {
         }
 
         # Use stored blueprint ID if not provided
-        if (-not $AgentBlueprintId) {
-            if (-not $script:CurrentAgentBlueprintId) {
-                Write-Error "No Agent Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter."  -ErrorAction Stop
+        if ([string]::IsNullOrEmpty($AgentBlueprintId)) {
+            if (-not (Test-Path variable:script:CurrentAgentBlueprintId) -or [string]::IsNullOrEmpty($script:CurrentAgentBlueprintId)) {
+                Write-Error "No Agent Identity Blueprint ID available. Please create a blueprint first using New-EntraBetaAgentIdentityBlueprint or provide an explicit AgentBlueprintId parameter." -ErrorAction Stop
                 return
             }
             $AgentBlueprintId = $script:CurrentAgentBlueprintId
-            Write-Verbose "Using stored Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentBlueprintId"
         }
         else {
-            Write-Verbose "Using provided Agent Blueprint ID: $AgentBlueprintId"
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentBlueprintId"
         }
     }
 
