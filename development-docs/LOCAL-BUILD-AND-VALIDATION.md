@@ -299,9 +299,9 @@ Import-Module .\bin\Microsoft.Entra.Beta.psd1 -Force
 Invoke-Pester -Path .\test\EntraBeta\ -Output Detailed
 ```
 
-## CI/CD Pipeline Expectations
+## PR Pipeline Expectations
 
-When you open a pull request, the CI pipeline automatically:
+When you open a pull request, the PR pipeline automatically:
 
 1. **Builds the module** — using Azure Pipelines on Windows.
 2. **Runs PSScriptAnalyzer** — static analysis for code quality.
