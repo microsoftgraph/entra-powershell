@@ -164,7 +164,7 @@ Run PSScriptAnalyzer on your changed files to catch common issues:
 Invoke-ScriptAnalyzer -Path .\module\Entra\<YourFile>.ps1 -Severity Warning
 
 # Analyze an entire sub-module
-Invoke-ScriptAnalyzer -Path .\module\Entra\AdditionalFunctions\ -Recurse -Severity Warning
+Invoke-ScriptAnalyzer -Path .\module\Entra\Users\ -Recurse -Severity Warning
 ```
 
 ## Safe Testing Practices
