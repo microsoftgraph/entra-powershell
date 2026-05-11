@@ -38,7 +38,7 @@ The `New-EntraBetaAgentIdentityBlueprint` cmdlet creates a new Agent Identity Bl
 ### Example 1: Create a blueprint with sponsors and owners
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "My Blueprint" -SponsorUserIds @("user1@contoso.com") -OwnerUserIds @("owner1@contoso.com")
 ```
 
@@ -51,7 +51,7 @@ This example creates an Agent Identity Blueprint with the specified display name
 ### Example 2: Create a blueprint with user and group sponsors
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "HR Blueprint" -SponsorUserIds @("hr-admin@contoso.com") -SponsorGroupIds @("aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb")
 ```
 
@@ -64,7 +64,7 @@ This example creates an Agent Identity Blueprint with both user and group sponso
 ### Example 3: Create a blueprint with only user sponsors
 
 ```powershell
-Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.ReadWrite.All'
+Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprint.UpdateAuthProperties.All'
 New-EntraBetaAgentIdentityBlueprint -DisplayName "Finance Blueprint" -SponsorUserIds @("finance-admin@contoso.com", "finance-manager@contoso.com")
 ```
 
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 
 ### -SponsorUserIds
 
-Array of user IDs to set as sponsors.
+Array of user IDs or UPNs to set as sponsors.
 
 ```yaml
 Type: System.String[]
@@ -126,7 +126,7 @@ Accept wildcard characters: False
 
 ### -OwnerUserIds
 
-Array of user IDs to set as owners.
+Array of user IDs or UPNs to set as owners.
 
 ```yaml
 Type: System.String[]
@@ -152,15 +152,15 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.String
 
-Returns the Agent Blueprint ID.
+Returns the Agent Identity Blueprint ID.
 
 ## NOTES
 
-At least one owner or sponsor (user or group) must be specified. The cmdlet stores the blueprint ID in a module-level variable for use by other related cmdlets.
+At least one sponsor (user or group) must be specified. Owners are optional. If sponsors or owners are not provided as parameters, the cmdlet prompts interactively and suggests the current user as a default. The cmdlet validates all user and group IDs against the tenant before creating the blueprint. The blueprint ID is stored in a module-level variable for use by other related cmdlets.
 
 This cmdlet requires the following Microsoft Graph permissions:
 - AgentIdentityBlueprint.Create
-- Application.ReadWrite.All
+- AgentIdentityBlueprint.UpdateAuthProperties.All
 
 ## RELATED LINKS
 

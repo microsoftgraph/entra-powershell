@@ -1,4 +1,4 @@
-﻿# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  
 #  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
@@ -10,7 +10,7 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
         [ValidateNotNullOrEmpty()]
         [string]$DisplayName,
 
-        [Parameter(Mandatory = $false, HelpMessage = "Array of user IDs to set as sponsors.")]
+        [Parameter(Mandatory = $false, HelpMessage = "Array of user IDs or UPNs to set as sponsors.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$SponsorUserIds,
 
@@ -18,43 +18,222 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
         [ValidateNotNullOrEmpty()]
         [string[]]$SponsorGroupIds,
 
-        [Parameter(Mandatory = $false, HelpMessage = "Array of user IDs to set as owners.")]
+        [Parameter(Mandatory = $false, HelpMessage = "Array of user IDs or UPNs to set as owners.")]
         [ValidateNotNullOrEmpty()]
-        [string[]]$OwnerUserIds
+        [string[]]$OwnerUserIds,
+
+        [Parameter(Mandatory = $false, HelpMessage = "The Agent Identity Blueprint ID (application object ID).")]
+        [ValidateNotNullOrEmpty()]
+        [string]$AgentIdentityBlueprintId
     )
 
     begin {
         # Ensure connection to Microsoft Entra
         if (-not (Get-EntraContext)) {
-            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AppRoleAssignment.ReadWrite.All', 'AgentIdentityBlueprint.ReadWrite.All', 'User.ReadWrite.All' to authenticate."
+            $errorMessage = "Not connected to Microsoft Graph. Use 'Connect-Entra -Scopes 'AgentIdentityBlueprint.Create', 'AgentIdentityBlueprintPrincipal.Create', 'AgentIdentity.Create.All', 'AgentIdentityBlueprint.UpdateAuthProperties.All', 'AgentIdUser.ReadWrite.All' to authenticate."
             Write-Error -Message $errorMessage -ErrorAction Stop
             return
         }
 
-        # Connect using Agent Identity Blueprint credentials
-        if (!(Connect-AgentIdentityBlueprint)) {
-            Write-Error "Failed to connect using Agent Identity Blueprint credentials. Cannot create Agent Identity."
-            return
+        # Resolve Agent Identity Blueprint ID: explicit parameter > stored value > interactive prompt
+        if (-not $PSBoundParameters.ContainsKey('AgentIdentityBlueprintId')) {
+            if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
+                $AgentIdentityBlueprintId = $script:CurrentAgentBlueprintId
+                Write-Verbose "Using stored Agent Identity Blueprint ID: $AgentIdentityBlueprintId"
+            }
+            else {
+                $AgentIdentityBlueprintId = Read-Host "Enter the Agent Identity Blueprint ID"
+                if ([string]::IsNullOrEmpty($AgentIdentityBlueprintId)) {
+                    throw "No Agent Identity Blueprint ID provided. Please run New-EntraBetaAgentIdentityBlueprint first or provide the AgentIdentityBlueprintId parameter."
+                }
+            }
+        }
+        else {
+            Write-Verbose "Using provided Agent Identity Blueprint ID: $AgentIdentityBlueprintId"
         }
 
-        # Validate that we have a current Agent Identity Blueprint ID
-        if (-not $script:CurrentAgentBlueprintId) {
-            Write-Error "No Agent Identity Blueprint ID found. Please run New-EntraBetaAgentIdentityBlueprint first."
-            return
-        }
+        # Store the resolved blueprint ID for use in process block
+        $script:CurrentAgentBlueprintId = $AgentIdentityBlueprintId
     }
 
     process {
         $customHeaders = $null
         $baseUri = '/beta/servicePrincipals'
 
-        # Get sponsors and owners (prompt if not provided)
-        $sponsorsAndOwners = Get-SponsorsAndOwners -SponsorUserIds $SponsorUserIds -SponsorGroupIds $SponsorGroupIds -OwnerUserIds $OwnerUserIds
-        Write-Debug ("Sponsors and Owners: $($sponsorsAndOwners | ConvertTo-Json -Depth 5)")
+        # Look up the current user to suggest as default sponsor/owner
+        $currentUserId = $null
+        $currentUserDisplay = $null
+        try {
+            $context = Get-EntraContext
+            if ($context -and $context.Account) {
+                $meResponse = Invoke-MgGraphRequest -Method GET -Uri "v1.0/users?`$filter=userPrincipalName eq '$($context.Account)'&`$select=id,displayName,userPrincipalName" -ErrorAction Stop
+                if ($meResponse.value -and $meResponse.value.Count -gt 0) {
+                    $currentUserId = $meResponse.value[0].id
+                    $currentUserDisplay = "$($meResponse.value[0].displayName) ($($meResponse.value[0].userPrincipalName))"
+                }
+            }
+        }
+        catch {
+            Write-Verbose "Could not retrieve current user details: $_"
+        }
 
-        $UpdatedSponsorUserIds = @($sponsorsAndOwners.SponsorUserIds)
-        $UpdatedSponsorGroupIds = @($sponsorsAndOwners.SponsorGroupIds)
-        $UpdatedOwnerUserIds = @($sponsorsAndOwners.OwnerUserIds)
+        # Sponsors are always required — prompt until at least one is provided
+        $hasSponsors = (($SponsorUserIds -and $SponsorUserIds.Count -gt 0) -or
+            ($SponsorGroupIds -and $SponsorGroupIds.Count -gt 0))
+
+        while (-not $hasSponsors) {
+            # --- Sponsor users ---
+            if ($currentUserId) {
+                $sponsorUserInput = Read-Host "Enter sponsor user IDs or UPNs (comma-separated, or press Enter to use current user: $currentUserDisplay)"
+                if (-not $sponsorUserInput -or $sponsorUserInput.Trim() -eq "") {
+                    $SponsorUserIds = @($currentUserId)
+                }
+                else {
+                    $SponsorUserIds = $sponsorUserInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                }
+            }
+            else {
+                $sponsorUserInput = Read-Host "Enter sponsor user IDs or UPNs (comma-separated, or press Enter to skip)"
+                if ($sponsorUserInput -and $sponsorUserInput.Trim() -ne "") {
+                    $SponsorUserIds = $sponsorUserInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                }
+            }
+            # Allow adding more sponsor users
+            while ($SponsorUserIds -and $SponsorUserIds.Count -gt 0) {
+                $more = Read-Host "Add more sponsor users? (comma-separated IDs or UPNs, or press Enter to continue)"
+                if (-not $more -or $more.Trim() -eq "") { break }
+                $SponsorUserIds += $more.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+            }
+
+            # --- Sponsor groups ---
+            $sponsorGroupInput = Read-Host "Enter sponsor group IDs (comma-separated, or press Enter to skip)"
+            if ($sponsorGroupInput -and $sponsorGroupInput.Trim() -ne "") {
+                $SponsorGroupIds = $sponsorGroupInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                # Allow adding more sponsor groups
+                while ($true) {
+                    $more = Read-Host "Add more sponsor groups? (comma-separated IDs, or press Enter to continue)"
+                    if (-not $more -or $more.Trim() -eq "") { break }
+                    $SponsorGroupIds += $more.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                }
+            }
+
+            $hasSponsors = (($SponsorUserIds -and $SponsorUserIds.Count -gt 0) -or
+                ($SponsorGroupIds -and $SponsorGroupIds.Count -gt 0))
+
+            if (-not $hasSponsors) {
+                Write-Warning "At least one sponsor (user or group) is required. Please provide a sponsor user ID or group ID."
+            }
+        }
+
+        # Owners are always optional
+        if (-not ($OwnerUserIds -and $OwnerUserIds.Count -gt 0)) {
+            if ($currentUserId) {
+                $ownerUserInput = Read-Host "Enter owner user IDs or UPNs (comma-separated, press Enter to use current user: $currentUserDisplay, or type 'skip' to skip)"
+                if (-not $ownerUserInput -or $ownerUserInput.Trim() -eq "") {
+                    $OwnerUserIds = @($currentUserId)
+                }
+                elseif ($ownerUserInput.Trim().ToLower() -ne "skip") {
+                    $OwnerUserIds = $ownerUserInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                }
+            }
+            else {
+                $ownerUserInput = Read-Host "Enter owner user IDs or UPNs (comma-separated, or press Enter to skip)"
+                if ($ownerUserInput -and $ownerUserInput.Trim() -ne "") {
+                    $OwnerUserIds = $ownerUserInput.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+                }
+            }
+            # Allow adding more owner users
+            while ($OwnerUserIds -and $OwnerUserIds.Count -gt 0) {
+                $more = Read-Host "Add more owner users? (comma-separated IDs or UPNs, or press Enter to continue)"
+                if (-not $more -or $more.Trim() -eq "") { break }
+                $OwnerUserIds += $more.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+            }
+        }
+
+        # Deduplicate inputs (case-insensitive) before validation
+        if ($SponsorUserIds) { $SponsorUserIds = @($SponsorUserIds | Select-Object -Unique) }
+        if ($SponsorGroupIds) { $SponsorGroupIds = @($SponsorGroupIds | Select-Object -Unique) }
+        if ($OwnerUserIds) { $OwnerUserIds = @($OwnerUserIds | Select-Object -Unique) }
+
+        # Validate sponsor user IDs against the tenant
+        $UpdatedSponsorUserIds = @()
+        foreach ($id in $SponsorUserIds) {
+            $currentId = $id
+            $resolved = $false
+            while (-not $resolved) {
+                try {
+                    $user = Invoke-MgGraphRequest -Method GET -Uri "v1.0/users/$currentId`?`$select=id,displayName,userPrincipalName" -ErrorAction Stop
+                    if ($UpdatedSponsorUserIds -notcontains $user.id) {
+                        Write-Host "  Validated sponsor user: $($user.displayName) ($($user.userPrincipalName))" -ForegroundColor Green
+                        $UpdatedSponsorUserIds += $user.id
+                    }
+                    else {
+                        Write-Verbose "  Skipping duplicate sponsor user: $($user.displayName) ($($user.userPrincipalName))"
+                    }
+                    $resolved = $true
+                }
+                catch {
+                    Write-Host "  '$currentId' could not be found in the tenant." -ForegroundColor Yellow
+                    $retry = Read-Host "  Enter a valid user ID or UPN, or press Enter to skip"
+                    if ([string]::IsNullOrWhiteSpace($retry)) {
+                        $resolved = $true
+                    }
+                    else {
+                        $currentId = $retry.Trim()
+                    }
+                }
+            }
+        }
+
+        # Validate sponsor group IDs against the tenant
+        $UpdatedSponsorGroupIds = @()
+        foreach ($id in $SponsorGroupIds) {
+            try {
+                $group = Invoke-MgGraphRequest -Method GET -Uri "v1.0/groups/$id`?`$select=id,displayName" -ErrorAction Stop
+                if ($UpdatedSponsorGroupIds -notcontains $group.id) {
+                    Write-Host "  Validated sponsor group: $($group.displayName)" -ForegroundColor Green
+                    $UpdatedSponsorGroupIds += $group.id
+                }
+                else {
+                    Write-Verbose "  Skipping duplicate sponsor group: $($group.displayName)"
+                }
+            }
+            catch {
+                Write-Warning "Sponsor group ID '$id' could not be found in the tenant and will be skipped."
+            }
+        }
+
+        # Validate owner user IDs against the tenant
+        $UpdatedOwnerUserIds = @()
+        foreach ($id in $OwnerUserIds) {
+            $currentId = $id
+            $resolved = $false
+            while (-not $resolved) {
+                try {
+                    $user = Invoke-MgGraphRequest -Method GET -Uri "v1.0/users/$currentId`?`$select=id,displayName,userPrincipalName" -ErrorAction Stop
+                    if ($UpdatedOwnerUserIds -notcontains $user.id) {
+                        Write-Host "  Validated owner user: $($user.displayName) ($($user.userPrincipalName))" -ForegroundColor Green
+                        $UpdatedOwnerUserIds += $user.id
+                    }
+                    else {
+                        Write-Verbose "  Skipping duplicate owner user: $($user.displayName) ($($user.userPrincipalName))"
+                    }
+                    $resolved = $true
+                }
+                catch {
+                    Write-Host "  '$currentId' could not be found in the tenant." -ForegroundColor Yellow
+                    $retry = Read-Host "  Enter a valid user ID or UPN, or press Enter to skip"
+                    if ([string]::IsNullOrWhiteSpace($retry)) {
+                        $resolved = $true
+                    }
+                    else {
+                        $currentId = $retry.Trim()
+                    }
+                }
+            }
+        }
+
+        Write-Debug "Sponsors and Owners: SponsorUsers=$($UpdatedSponsorUserIds -join ','), SponsorGroups=$($UpdatedSponsorGroupIds -join ','), OwnerUsers=$($UpdatedOwnerUserIds -join ',')"
 
         # Build the request body
         $Body = [PSCustomObject]@{
@@ -131,6 +310,8 @@ function New-EntraBetaAgentIDForAgentIdentityBlueprint {
             # Store the Agent Identity ID in module state
             $script:CurrentAgentIdentityId = $agentIdentity.id
             $script:CurrentAgentIdentityAppId = $agentIdentity.appId
+            # Also store as global so other modules (e.g. Users) can read it cross-module
+            $global:EntraBetaCurrentAgentIdentityId = $agentIdentity.id
 
             Write-Host "Agent Identity created successfully!" -ForegroundColor Green
             Write-Verbose "Agent Identity ID: $($agentIdentity.id)"
