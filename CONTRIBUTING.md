@@ -35,11 +35,14 @@ GitHub.
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 
-#### Cloning the microsoftgraph/entra-powershell repository
+#### Getting the code
 
-To contribute code changes, clone the repository directly and create a feature branch. Pull requests
-from forks are **not supported** for code contributions because the CI/CD pipeline requires access
-to internal build resources that are not available to fork-based PRs.
+There are two ways to contribute code changes:
+
+**Option 1: Clone directly (recommended for regular contributors)**
+
+Clone the repository directly and create a feature branch. Pull requests created from branches pushed
+directly to the repository will have the CI/CD pipeline run **automatically**.
 
 ```git
 git clone https://github.com/microsoftgraph/entra-powershell.git
@@ -47,8 +50,23 @@ cd entra-powershell
 git checkout -b feature/your-change-description
 ```
 
-> **Note**: Forking is acceptable for documentation-only contributions where CI pipeline
-> validation is not required.
+**Option 2: Fork the repository**
+
+External contributors can fork the repository and submit pull requests from their fork. Note that
+pull requests from forks **will not** trigger the CI/CD pipeline automatically — an internal
+reviewer must manually trigger the pipeline run after reviewing the changes.
+
+```git
+# Fork via GitHub UI, then clone your fork
+git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+cd entra-powershell
+git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
+git checkout -b feature/your-change-description
+```
+
+> **Note**: Regardless of which option you choose, ensure all tests pass locally before submitting
+> your PR. For fork-based PRs, the pipeline will be triggered by an internal reviewer once the
+> changes are reviewed.
 
 ## Filing Issues
 

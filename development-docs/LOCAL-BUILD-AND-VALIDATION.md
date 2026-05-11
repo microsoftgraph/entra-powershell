@@ -23,8 +23,8 @@ This guide walks you through the complete process of building, validating, and t
 For contributors who want the shortest path to building and testing:
 
 ```powershell
-# Clone and enter the repository
-git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+# Clone the repository (use your fork URL if contributing via fork)
+git clone https://github.com/microsoftgraph/entra-powershell.git
 cd entra-powershell
 
 # Install dependencies
@@ -50,24 +50,25 @@ Invoke-Pester -Path .\test\Entra\ -Output Detailed
 
 ### Step 1: Clone and Set Up
 
-Clone the repository directly (do not fork — fork-based PRs cannot run the CI pipeline):
+**Option A: Clone directly (recommended)**
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
 cd entra-powershell
-```
-
-Create a feature branch for your changes:
-
-```powershell
 git checkout -b feature/your-change-description
 ```
 
-Create a feature branch for your changes:
+**Option B: Fork and clone**
 
 ```powershell
+# Fork via GitHub UI first, then:
+git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+cd entra-powershell
+git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
 git checkout -b feature/your-change-description
 ```
+
+> **Note**: PRs from direct clones trigger the CI/CD pipeline automatically. PRs from forks require an internal reviewer to manually trigger the pipeline.
 
 > **Important**: Always use a **fresh PowerShell session** when building. If a different version of the module dependencies is already loaded in your session, the build will fail.
 
@@ -326,4 +327,4 @@ git diff --cached --name-only  # Review staged files
 
 > **Important**: Once your PR is complete and all checks pass, add the **Ready For Review** label to signal the team for review.
 
-> **Note**: Pull requests from forks cannot run the CI pipeline because it requires access to internal build resources. Always clone the repository directly and push branches to the upstream repository.
+> **Note**: Pull requests from direct branches trigger the CI pipeline automatically. Pull requests from forks require an internal reviewer to manually trigger the pipeline after reviewing the changes. In both cases, ensure all tests pass locally before submitting your PR.

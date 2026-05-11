@@ -67,22 +67,37 @@ The following prerequisites should be completed before contributing to the Entra
 
 If you don't have experience with Git and GitHub, some of the terminology and process can be confusing. [Here is a guide to understanding the GitHub flow][git-workflow] and [here is a guide to understanding the basic Git commands][git-cheat-sheet].
 
-To contribute code to the Entra PowerShell repository, clone the repository directly and create a feature branch. Pull requests from forks are **not supported** for code contributions because the CI/CD pipeline requires access to internal build resources that are not available to fork-based PRs.
+There are two ways to get the code and contribute:
 
-Clone the repository to your local machine:
+**Option 1: Clone directly (recommended)**
+
+Clone the repository directly and create a feature branch. PRs from direct branches will have the CI/CD pipeline run **automatically**.
 
 ```git
 git clone https://github.com/microsoftgraph/entra-powershell.git
-```
-
-Create a feature branch for your changes:
-
-```git
 cd entra-powershell
 git checkout -b feature/your-change-description
 ```
 
-You can now make changes, commit, and push your branch:
+Push your branch and create a PR:
+
+```git
+git push origin feature/your-change-description
+```
+
+**Option 2: Fork the repository**
+
+External contributors can fork the repo and submit PRs from their fork. Note that the CI/CD pipeline **will not** run automatically for fork-based PRs — an internal reviewer will manually trigger it after reviewing the changes.
+
+```git
+# Fork via GitHub UI, then clone your fork
+git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+cd entra-powershell
+git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
+git checkout -b feature/your-change-description
+```
+
+Push your branch and create a PR against the upstream repository:
 
 ```git
 git push origin feature/your-change-description
