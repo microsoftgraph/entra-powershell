@@ -9,6 +9,7 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
 - [Prerequisites](#prerequisites)
 - [Environment Setup](#environment-setup)
   - [GitHub Basics](#github-basics)
+- [Local Build and Testing](#local-build-and-testing)
 - [Creating Cmdlets](#creating-cmdlets)
   - [PowerShell Cmdlet Design Guidelines](#powershell-cmdlet-design-guidelines)
   - [Design Review](#design-review)
@@ -66,29 +67,76 @@ The following prerequisites should be completed before contributing to the Entra
 
 If you don't have experience with Git and GitHub, some of the terminology and process can be confusing. [Here is a guide to understanding the GitHub flow][git-workflow] and [here is a guide to understanding the basic Git commands][git-cheat-sheet].
 
-To develop in the Entra PowerShell repository locally, you first need to create your own fork. For more information on how to fork, click [here][git-forking].
+There are two ways to get the code and contribute:
 
-Once your fork of the Entra PowerShell repository has been created, you need to clone your fork to your local machine. To do so, run the following command:
+**Option 1: Clone directly (recommended)**
+
+Clone the repository directly and create a feature branch. PRs from direct branches will have the CI/CD pipeline run **automatically**.
 
 ```git
-git clone https://github.com/<YOUR GITHUB USERNAME>/entra-powershell.git
+git clone https://github.com/microsoftgraph/entra-powershell.git
+cd entra-powershell
+git checkout -b feature/your-change-description
 ```
 
-You now be able to create your own branches, commit changes, and push commits to your fork.
-
-**Note**: we recommend adding the _microsoftgraph/entra-powershell_ repository to your list of tracked repositories in Git. This allows you to easily pull changes from the `microsoftgraph/entra-powershell` repository. To do this, run the following command:
+Push your branch and create a PR:
 
 ```git
+git push origin feature/your-change-description
+```
+
+**Option 2: Fork the repository**
+
+External contributors can fork the repo and submit PRs from their fork. Note that the CI/CD pipeline **will not** run automatically for fork-based PRs — an internal reviewer will manually trigger it after reviewing the changes.
+
+```git
+# Fork via GitHub UI, then clone your fork
+git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+cd entra-powershell
 git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
+git checkout -b feature/your-change-description
 ```
 
-Then, to pull changes from the **main** branch in _microsoftgraph/entra-powershell_ into your local working branch, run the following command:
+Push your branch and create a PR against the upstream repository:
 
 ```git
-git pull upstream main
+git push origin feature/your-change-description
+```
+
+To keep your branch up to date with the latest changes from **main**:
+
+```git
+git pull origin main
 ```
 
 > _The `main` branch is for the next feature release and is actively developed with new features, documentation changes, performance improvements, and bug fixes._
+
+## Local Build and Testing
+
+Before submitting a pull request, you must build and test your changes locally. We provide detailed guides to help:
+
+- **[Local Build and Validation Guide](./LOCAL-BUILD-AND-VALIDATION.md)** — Step-by-step instructions for building the module, importing it, running tests, and performing static analysis.
+- **[Testing Guide](./TESTING.md)** — How to write unit tests with Pester, use mocks, and achieve code coverage targets.
+
+### Quick Validation
+
+```powershell
+# Build the module (use a fresh PowerShell session)
+.\build\Install-Dependencies.ps1 -ModuleName Entra
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
+
+# Run all tests
+Invoke-Pester -Path .\test\Entra\ -Output Detailed
+
+# Run static analysis
+Invoke-ScriptAnalyzer -Path .\module\Entra\ -Recurse -Severity Warning
+```
+
+For the Beta module, replace `Entra` with `EntraBeta` in the commands above.
 
 ## Creating Cmdlets
 
@@ -172,7 +220,6 @@ Significant contributions are credited in the [misc/acknowledgements](./../misc/
 [git-download]: https://git-scm.com/downloads
 [vscode]: https://code.visualstudio.com/docs/setup/setup-overview
 [git-workflow]: https://guides.github.com/introduction/flow/
-[git-forking]: https://guides.github.com/activities/forking/
 [pull-request]: https://github.com/microsoftgraph/entra-powershell/pulls
 [release-cadence]: https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence
 [powershell-gallery]: https://aka.ms/EntraPSGallery

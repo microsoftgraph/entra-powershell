@@ -35,13 +35,38 @@ GitHub.
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 
-#### Forking the microsoftgraph/entra-powershell repository
+#### Getting the code
 
-Unless you're working with multiple contributors on the same file, we ask that you fork the
-repository and submit your pull request from there. The following guide explains how to fork a
-GitHub repo.
+There are two ways to contribute code changes:
 
-- [Contributing to GitHub projects](https://guides.github.com/activities/forking/).
+**Option 1: Clone directly (recommended for regular contributors)**
+
+Clone the repository directly and create a feature branch. Pull requests created from branches pushed
+directly to the repository will have the CI/CD pipeline run **automatically**.
+
+```git
+git clone https://github.com/microsoftgraph/entra-powershell.git
+cd entra-powershell
+git checkout -b feature/your-change-description
+```
+
+**Option 2: Fork the repository**
+
+External contributors can fork the repository and submit pull requests from their fork. Note that
+pull requests from forks **will not** trigger the CI/CD pipeline automatically — an internal
+reviewer must manually trigger the pipeline run after reviewing the changes.
+
+```git
+# Fork via GitHub UI, then clone your fork
+git clone https://github.com/<YOUR-USERNAME>/entra-powershell.git
+cd entra-powershell
+git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
+git checkout -b feature/your-change-description
+```
+
+> **Note**: Regardless of which option you choose, ensure all tests pass locally before submitting
+> your PR. For fork-based PRs, the pipeline will be triggered by an internal reviewer once the
+> changes are reviewed.
 
 ## Filing Issues
 
@@ -68,13 +93,14 @@ You can find all of the pull requests that opened in the
 
 When creating a pull request, keep the following in mind:
 
-- Verify you're pointing to the fork and branch that your changes were made in.
+- Verify you're pointing to the branch that your changes were made in.
 - Choose the correct branch you want your pull request to be merged into.
   - The **main** branch is for active development; changes in this branch will be in the next Entra
     PowerShell release.
 - The pull request template that is provided **must be filled out**. Don't delete or ignore it when
   the pull request is created.
   - **_IMPORTANT:_** Deleting or ignoring the pull request template delays the PR review process.
+- Once your PR is complete and ready for review, add the **Ready For Review** label to signal the team.
 - The SLA for reviewing pull requests is **three business days**.
 
 ### Pull Request Guidelines
@@ -90,6 +116,36 @@ The following guidelines must be followed in **every** pull request that is open
 - Changes made have corresponding test coverage.
 - Tests shouldn't include any hardcoded values, such as DisplayName, resource ID, etc.
 - No existing tests should be skipped.
+- All API calls in tests must be mocked — never call the real Microsoft Graph API in unit tests.
+- Tests must pass both locally and in CI before a PR is reviewed.
+
+For detailed instructions on writing and running tests, see the [Testing Guide](development-docs/TESTING.md).
+
+#### Building and testing locally
+
+Before submitting a PR, build and validate your changes locally:
+
+1. **Build the module** — see the [Local Build and Validation Guide](development-docs/LOCAL-BUILD-AND-VALIDATION.md) or [BUILD.md](build/BUILD.md).
+2. **Run unit tests** — use Pester to run all tests and ensure zero failures.
+3. **Run static analysis** — use PSScriptAnalyzer on your changed files.
+
+```powershell
+# Quick validation workflow
+.\build\Install-Dependencies.ps1 -ModuleName Entra
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module Entra
+.\build\Create-EntraModule.ps1 -Module 'Entra'
+.\build\Create-EntraModule.ps1 -Module 'Entra' -Root
+Import-Module .\bin\Microsoft.Entra.psd1 -Force
+
+# Run tests
+Invoke-Pester -Path .\test\Entra\ -Output Detailed
+
+# Static analysis
+Invoke-ScriptAnalyzer -Path .\module\Entra\ -Recurse -Severity Warning
+```
+
+For the full guide, including safe testing practices and troubleshooting, see the [Local Build and Validation Guide](development-docs/LOCAL-BUILD-AND-VALIDATION.md).
 
 ## Microsoft Entra PowerShell documentation contributions
 

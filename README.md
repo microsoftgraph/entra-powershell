@@ -33,9 +33,9 @@ The following table contains a list of the Microsoft Entra PowerShell modules.
 | [`Microsoft.Entra`][entrapsgallery]           | [![mg]][entrapsgallery]        | v1.0 Module  |
 | [`Microsoft.Entra.Beta`][entrapsgallerybeta]  | [![mgbeta]][entrapsgallerybeta] | Beta Module  |
 
-## Roadmap
+## Suggestions
 
-Explore what's coming next on our [public roadmap][public-roadmap] ✨ and [share your suggestions][suggestions] with us!
+Have ideas for improvement? [Share your suggestions][suggestions] with us!
 
 ## Learn more
 
@@ -52,7 +52,14 @@ Explore what's coming next on our [public roadmap][public-roadmap] ✨ and [shar
 
 ## Contribute
 
-To contribute, see [contribution guide](CONTRIBUTING.md). By the way, our documentation ([cmdlet references](./module/docs/) and [conceptual articles][docs-repo]) 🤓 are open source!
+To contribute, see the [contribution guide](CONTRIBUTING.md). For local development, these guides will help you get started:
+
+- **[Local Build and Validation Guide](development-docs/LOCAL-BUILD-AND-VALIDATION.md)** — How to build the module, run tests, and validate your changes locally.
+- **[Testing Guide](development-docs/TESTING.md)** — How to write and run unit tests using Pester.
+- **[Developer Guide](development-docs/README.md)** — Complete guide for creating cmdlets, design guidelines, and code review process.
+- **[Build Instructions](build/BUILD.md)** — Detailed module build steps and FAQs.
+
+By the way, our documentation ([cmdlet references](./module/docs/) and [conceptual articles][docs-repo]) 🤓 are open source!
 
 ## Known Issues
 
@@ -86,6 +93,5 @@ Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT
 [entraPowershellIssues]: htts://aka.ms/entra/ps/issues
 [azureADRetirement]: https://techcommunity.microsoft.com/blog/microsoft-entra-blog/action-required-msonline-and-azuread-powershell-retirement---2025-info-and-resou/4364991
 [learn.microsoft]: https://aka.ms/entra/ps/docs
-[public-roadmap]: https://github.com/orgs/microsoftgraph/projects/69/views/1
 [suggestions]: https://github.com/microsoftgraph/entra-powershell/discussions
 [docs-repo]: https://github.com/MicrosoftDocs/entra-powershell-docs/tree/main/docs/conceptual
