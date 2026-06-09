@@ -118,6 +118,7 @@ function New-EntraBetaServicePrincipal {
             $Value = $null
             
             if (-not [bool]::TryParse($TmpValue, [ref]$Value)) {
+                Write-EntraInputValidationLog -CmdletName 'New-EntraBetaServicePrincipal' -ParameterName 'AccountEnabled' -InvalidValue "$TmpValue" -ExpectedPattern 'Boolean (true/false)' -Message 'Invalid input for AccountEnabled'
                 throw 'Invalid input for AccountEnabled'
                 return
             }

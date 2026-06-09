@@ -169,6 +169,7 @@ function Revoke-EntraBetaMcpServerPermission {
             $scopesToRevoke = @($Scopes) | Sort-Object -Unique
             $invalidScopes = $scopesToRevoke | Where-Object { $_ -notin $currentScopes }
             if ($invalidScopes) {
+                Write-EntraInputValidationLog -CmdletName 'Revoke-EntraBetaMCPServerPermission' -ParameterName 'Scopes' -InvalidValue ($invalidScopes -join ', ') -ExpectedPattern 'Currently granted scopes' -Message "The following scopes are not currently granted: $($invalidScopes -join ', ')"
                 Write-Warning "The following scopes are not currently granted: $($invalidScopes -join ', ')"
             }
 

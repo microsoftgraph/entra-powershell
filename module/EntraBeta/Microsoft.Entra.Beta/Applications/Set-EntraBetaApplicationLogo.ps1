@@ -58,6 +58,7 @@ function Set-EntraBetaApplicationLogo {
                     $logoBytes = [System.IO.File]::ReadAllBytes($($params.FilePath))
                 }
                 else {
+                    Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaApplicationLogo' -ParameterName 'FilePath' -InvalidValue $params.FilePath -ExpectedPattern 'Valid local file path or URL' -Message 'FilePath is invalid'
                     Write-Error -Message "FilePath is invalid" -ErrorAction Stop
                 }
             }
@@ -69,6 +70,7 @@ function Set-EntraBetaApplicationLogo {
             Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ContentType "image/*" -Body $logoBytes
         }
         catch [System.Net.WebException] {
+            Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaApplicationLogo' -ParameterName 'FilePath' -InvalidValue $params.FilePath -ExpectedPattern 'Valid URL' -Message 'FilePath is invalid. Invalid or malformed url'
             Write-Error -Message "FilePath is invalid. Invalid or malformed url" -ErrorAction Stop
         }
     }    

@@ -17,6 +17,9 @@ function Set-EntraBetaDirSyncFeature {
 
             foreach ($item in $inputArray) {
                 if ([string]::IsNullOrWhiteSpace($item)) {
+                    if (Get-Command Write-EntraInputValidationLog -ErrorAction SilentlyContinue) {
+                        Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaDirSyncFeature' -ParameterName 'Features' -InvalidValue "$item" -ExpectedPattern 'Non-empty string' -Message "Each feature must be a non-empty string. Invalid item: '$item'"
+                    }
                     throw "Each feature must be a non-empty string. Invalid item: '$item'"
                 }
             }
