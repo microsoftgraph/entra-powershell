@@ -10,13 +10,11 @@ BeforeAll {
 Describe "Write-EntraInputValidationLog" {
     Context "Parameter validation" {
         It "Should require CmdletName parameter" {
-            $param = (Get-Command Write-EntraInputValidationLog).Parameters['CmdletName']
-            $param.Attributes.Where({ $_ -is [System.Management.Automation.ParameterAttribute] }).Mandatory | Should -Contain $true
+            { Write-EntraInputValidationLog -ParameterName 'Test' } | Should -Throw
         }
 
         It "Should require ParameterName parameter" {
-            $param = (Get-Command Write-EntraInputValidationLog).Parameters['ParameterName']
-            $param.Attributes.Where({ $_ -is [System.Management.Automation.ParameterAttribute] }).Mandatory | Should -Contain $true
+            { Write-EntraInputValidationLog -CmdletName 'Test' } | Should -Throw
         }
 
         It "Should accept all parameters without throwing" {
