@@ -3,9 +3,9 @@
 # ------------------------------------------------------------------------------
 
 BeforeAll {
-    $binPath = Join-Path $PSScriptRoot "..\..\..\bin"
-    Import-Module (Join-Path $binPath "Microsoft.Entra.Authentication.psd1") -Force
-    Import-Module (Join-Path $binPath "Microsoft.Entra.DirectoryManagement.psd1") -Force
+    if ($null -eq (Get-Module -Name Microsoft.Entra.DirectoryManagement)) {
+        Import-Module Microsoft.Entra.DirectoryManagement
+    }
     Import-Module (Join-Path $PSScriptRoot "..\..\Common-Functions.ps1") -Force
 
     Mock -CommandName Get-EntraContext -MockWith { @{Scopes = @("Directory.ReadWrite.All") } } -ModuleName Microsoft.Entra.DirectoryManagement
