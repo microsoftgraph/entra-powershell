@@ -45,6 +45,7 @@ function Get-EntraApplicationLogo {
             $imageExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp")
 
             if (-not (Test-Path $($params.FilePath) -PathType Leaf) -and $imageExtensions -notcontains [System.IO.Path]::GetExtension($($params.FilePath))) {
+                Write-EntraInputValidationLog -CmdletName 'Get-EntraApplicationLogo' -ParameterName 'FilePath' -InvalidValue $params.FilePath -ExpectedPattern 'Valid file path with image extension (.jpg, .jpeg, .png, .gif, .bmp)' -Message 'FilePath is invalid'
                 Write-Error -Message "Get-EntraApplicationLogo : FilePath is invalid"
                 break;
             }

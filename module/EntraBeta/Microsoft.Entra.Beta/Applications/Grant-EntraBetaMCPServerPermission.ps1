@@ -156,6 +156,7 @@ function Grant-EntraBetaMcpServerPermission {
                     }
                 }
                 else {
+                    Write-EntraInputValidationLog -CmdletName 'Grant-EntraBetaMCPServerPermission' -ParameterName 'PredefinedAppName' -InvalidValue "$PredefinedAppName" -ExpectedPattern 'Valid predefined MCP client name' -Message "Invalid MCP client: $PredefinedAppName"
                     throw "Invalid MCP client: $PredefinedAppName"
                 }
             }
@@ -205,6 +206,7 @@ function Grant-EntraBetaMcpServerPermission {
             # Validate specified scopes
             $invalidScopes = $Scopes | Where-Object { $_ -notin $availableScopes }
             if ($invalidScopes) {
+                Write-EntraInputValidationLog -CmdletName 'Grant-EntraBetaMCPServerPermission' -ParameterName 'Scopes' -InvalidValue ($invalidScopes -join ', ') -ExpectedPattern "Valid scopes available on resource" -Message "Invalid scopes (not available on resource): $($invalidScopes -join ', ')"
                 throw "Invalid scopes (not available on resource): $($invalidScopes -join ', ')"
             }
             $targetScopes = $Scopes | Sort-Object -Unique

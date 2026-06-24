@@ -83,6 +83,7 @@ function Get-EntraUserExtension {
             if ($Property) {
                 $invalidProperties = $Property | Where-Object { $_ -notin $allProperties }
                 if ($invalidProperties) {
+                    Write-EntraInputValidationLog -CmdletName 'Get-EntraUserExtension' -ParameterName 'Property' -InvalidValue ($invalidProperties -join ', ') -ExpectedPattern 'Valid user extension property names' -Message "Invalid property/properties specified: $($invalidProperties -join ', ')"
                     throw "Invalid property/properties specified: $($invalidProperties -join ', ')"
                 }
                 $selectedProperties = $Property

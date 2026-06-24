@@ -365,6 +365,7 @@ function New-EntraApplication {
                         if ($_.Name -eq 'legalAgeGroupRule') {
                             $validValues = @('Allow', 'RequireConsentForMinors', 'RequireConsentForKids', 'RequireConsentForPrivacyServices', 'BlockMinors')
                             if ($validValues -notcontains $_.Value) {
+                                Write-EntraInputValidationLog -CmdletName 'New-EntraApplication' -ParameterName 'legalAgeGroupRule' -InvalidValue "$($_.Value)" -ExpectedPattern "One of: $($validValues -join ', ')" -Message "Invalid value specified for property 'legalAgeGroupRule'"
                                 Write-Error "Invalid value specified for property 'legalAgeGroupRule'. Valid values are: $($validValues -join ', ')"
                                 return
                             }

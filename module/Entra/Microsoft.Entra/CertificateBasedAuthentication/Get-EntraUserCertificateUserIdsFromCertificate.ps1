@@ -39,6 +39,7 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
             return $certificate
         }
         else {
+            Write-EntraInputValidationLog -CmdletName 'Get-EntraUserCertificateUserIdsFromCertificate' -ParameterName 'CertificatePath' -InvalidValue $CertificatePath -ExpectedPattern 'File with .cer or .pem extension' -Message 'Unsupported certificate format'
             throw "Unsupported certificate format. Please provide a .cer or .pem file."
         }
     }

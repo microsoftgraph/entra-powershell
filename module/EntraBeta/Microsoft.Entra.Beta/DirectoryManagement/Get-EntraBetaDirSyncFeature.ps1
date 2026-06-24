@@ -83,6 +83,7 @@ function Get-EntraBetaDirSyncFeature {
         else {
             $output = $table | Where-Object { $_.dirsyncFeature -eq $Feature }
             if ($null -eq $output) {
+                Write-EntraInputValidationLog -CmdletName 'Get-EntraBetaDirSyncFeature' -ParameterName 'Feature' -InvalidValue $Feature -ExpectedPattern 'Valid DirSync feature name' -Message 'Invalid value for parameter Feature'
                 Write-Error "Get-EntraBetaDirSyncFeature : Invalid value for parameter.  Parameter Name: Feature."
             }
             else {

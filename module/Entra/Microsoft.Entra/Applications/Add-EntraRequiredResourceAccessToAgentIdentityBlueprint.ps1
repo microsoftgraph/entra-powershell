@@ -73,6 +73,7 @@ function Add-EntraRequiredResourceAccessToAgentIdentityBlueprint {
                     try {
                         $currentResourceAppId = [guid]$resourceInput.Trim()
                     } catch {
+                        Write-EntraInputValidationLog -CmdletName 'Add-EntraRequiredResourceAccessToAgentIdentityBlueprint' -ParameterName 'ResourceAppId' -InvalidValue $resourceInput -ExpectedPattern 'GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)' -Message 'Invalid GUID format for Resource Application ID'
                         Write-Warning "Invalid GUID format. Skipping this entry."
                         $firstIteration = $false
                         continue
@@ -205,6 +206,7 @@ function Add-EntraRequiredResourceAccessToAgentIdentityBlueprint {
                                 if ($matchedPerm) { $displayName = $matchedPerm.value }
                                 Write-Host "Added $permTypeName permission: $displayName ($($validGuid.ToString()))" -ForegroundColor Green
                             } catch {
+                                Write-EntraInputValidationLog -CmdletName 'Add-EntraRequiredResourceAccessToAgentIdentityBlueprint' -ParameterName 'PermissionId' -InvalidValue $permId -ExpectedPattern 'GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)' -Message "Invalid GUID format: $permId"
                                 Write-Warning "Invalid GUID format: $permId"
                             }
                         }

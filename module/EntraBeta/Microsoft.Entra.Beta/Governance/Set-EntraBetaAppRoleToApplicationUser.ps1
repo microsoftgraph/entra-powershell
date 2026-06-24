@@ -471,6 +471,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
                     Write-ColoredVerbose "UPN : $($cleanUserPrincipalName)" -Color "Green"
 
                     if (-not $cleanUserPrincipalName) { 
+                        Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaAppRoleToApplicationUser' -ParameterName 'userPrincipalName' -InvalidValue "$($user.$sourceMatchPropertyName)" -ExpectedPattern 'Valid UPN format (user@domain.com)' -Message "Skipping user due to invalid userPrincipalName"
                         Write-Warning "Skipping user due to invalid userPrincipalName: $($user.$sourceMatchPropertyName)"
                         continue 
                     }
@@ -479,6 +480,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
                     Write-ColoredVerbose "DisplayName : $($cleanDisplayName)" -Color "Green"
 
                     if (-not $cleanDisplayName) { 
+                        Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaAppRoleToApplicationUser' -ParameterName 'displayName' -InvalidValue "$($user.DisplayName)" -ExpectedPattern 'Non-empty string' -Message "Skipping user due to invalid displayName"
                         Write-Warning "Skipping user due to invalid displayName: $($user.DisplayName)"
                         continue 
                     }
@@ -486,6 +488,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
                     Write-ColoredVerbose "Mail nickname : $($cleanMailNickname)" -Color "Green"
     
                     if (-not $cleanMailNickname) { 
+                        Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaAppRoleToApplicationUser' -ParameterName 'mailNickname' -InvalidValue "$($user.MailNickname)" -ExpectedPattern 'Non-empty string' -Message "Skipping user due to invalid mailNickname"
                         Write-Warning "Skipping user due to invalid mailNickname: $($user.MailNickname)"
                         continue 
                     }
@@ -495,6 +498,7 @@ function Set-EntraBetaAppRoleToApplicationUser {
                     $userRoleType = SanitizeInput -Value $user.memberType
                     Write-ColoredVerbose "Role : $($userRole)" -Color "Green"
                     if (-not $userRole) {
+                        Write-EntraInputValidationLog -CmdletName 'Set-EntraBetaAppRoleToApplicationUser' -ParameterName 'Role' -InvalidValue "$($user.Role)" -ExpectedPattern 'Valid role name' -Message "Skipping user due to invalid Role"
                         Write-Warning "Skipping user due to invalid Role: $($user.Role)"
                         continue
                     }

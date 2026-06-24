@@ -44,6 +44,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     try {
                         $currentResourceAppId = [guid]$resourceInput.Trim()
                     } catch {
+                        Write-EntraInputValidationLog -CmdletName 'Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint' -ParameterName 'ResourceAppId' -InvalidValue $resourceInput -ExpectedPattern 'GUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)' -Message 'Invalid GUID format for Resource Application ID'
                         Write-Warning "Invalid GUID format. Skipping this entry."
                         $firstIteration = $false
                         continue

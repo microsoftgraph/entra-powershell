@@ -42,6 +42,7 @@ function Get-EntraBetaPolicy {
             "permissionGrantPolicies")
         
         if ($PSBoundParameters.ContainsKey("Top") -and ($null -eq $Top -or $Top -eq 0)) {
+            Write-EntraInputValidationLog -CmdletName 'Get-EntraBetaPolicy' -ParameterName 'Top' -InvalidValue '0' -ExpectedPattern 'Integer between 1 and 999' -Message 'Invalid page size specified'
             Write-Error "Invalid page size specified: '0'. Must be between 1 and 999 inclusive.  
 Status: 400 (BadRequest) 
 ErrorCode: Request_UnsupportedQuery"

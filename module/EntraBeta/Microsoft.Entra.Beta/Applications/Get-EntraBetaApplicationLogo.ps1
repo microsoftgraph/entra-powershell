@@ -42,6 +42,7 @@ function Get-EntraBetaApplicationLogo {
             $params["FilePath"] = $PSBoundParameters["FilePath"]  
             $imageExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp")
             if (-not (Test-Path $($params.FilePath) -PathType Leaf) -and $imageExtensions -notcontains [System.IO.Path]::GetExtension($($params.FilePath))) {
+                Write-EntraInputValidationLog -CmdletName 'Get-EntraBetaApplicationLogo' -ParameterName 'FilePath' -InvalidValue $params.FilePath -ExpectedPattern 'Valid file path with image extension (.jpg, .jpeg, .png, .gif, .bmp)' -Message 'FilePath is invalid'
                 Write-Error -Message "Get-EntraBetaApplicationLogo : FilePath is invalid"
                 break;
             }
