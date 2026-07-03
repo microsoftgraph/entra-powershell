@@ -55,6 +55,11 @@ extends:
           - template: .azure-pipelines/generation-templates/generate_adapter-1es.yml@self
             parameters:
               Sign: ${{ parameters.Sign }}
+              # 1ES network isolation (CFSClean/CFSClean2) blocks the public
+              # PowerShell Gallery. Install dependencies from the CFS feed instead.
+              DependencyRepository: 'EntraCFS'
+              # TODO: replace with the onboarded CFS feed v2 index URL (see https://aka.ms/cfs).
+              CfsFeedUrl: 'https://pkgs.dev.azure.com/msazure/One/_packaging/REPLACE_WITH_CFS_FEED/nuget/v2'
 
           - ${{ if and(eq(parameters.Pack, true), eq(parameters.Sign, true)) }}:
               - template: .azure-pipelines/common-templates/esrp/codesign-nuget.yml@self

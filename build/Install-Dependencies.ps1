@@ -10,7 +10,14 @@ param(
 
 	[ValidateScript({ Test-Path $_ })]
 	[string]
-    $ModuleSettingsPath
+    $ModuleSettingsPath,
+
+	# PowerShell repository to install dependencies from. Defaults to the public
+	# PowerShell Gallery for local development. CI pipelines running under 1ES
+	# network isolation set DEPENDENCY_PS_REPO to a CFS-backed feed to satisfy the
+	# CFSClean/CFSClean2 policies. See build/Install-GalleryModule.ps1.
+	[string]
+	$Repository = $(if ($env:DEPENDENCY_PS_REPO) { $env:DEPENDENCY_PS_REPO } else { 'PSGallery' })
 )
 
 . "$psscriptroot/common-functions.ps1"
@@ -26,5 +33,5 @@ Write-Verbose("Skipping deprecated source module '$($content.sourceModule)' - no
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+    & "$PSScriptRoot/Install-GalleryModule.ps1" -Name $moduleName -RequiredVersion $content.destinationModuleVersion -Repository $Repository -AllowClobber -Verbose:($VerbosePreference -eq 'Continue')
 }

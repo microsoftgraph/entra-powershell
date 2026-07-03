@@ -27,3 +27,8 @@ stages:
         parameters:
           Integration: true
           Sign: false
+          # Install dependencies from the CFS feed to stay consistent with the
+          # 1ES CI/PR pipelines (CFSClean/CFSClean2 network-isolation policies).
+          DependencyRepository: 'EntraCFS'
+          # TODO: replace with the onboarded CFS feed v2 index URL (see https://aka.ms/cfs).
+          CfsFeedUrl: 'https://pkgs.dev.azure.com/msazure/One/_packaging/REPLACE_WITH_CFS_FEED/nuget/v2'
