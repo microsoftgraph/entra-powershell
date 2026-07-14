@@ -30,6 +30,8 @@ param(
 
     [string] $RequiredVersion,
 
+    [string] $MaximumVersion,
+
     [string] $Repository = $(if ($env:DEPENDENCY_PS_REPO) { $env:DEPENDENCY_PS_REPO } else { 'PSGallery' }),
 
     [string] $FeedUrl = $env:DEPENDENCY_PS_FEED_URL,
@@ -70,6 +72,7 @@ foreach ($module in $Name) {
         Force      = $true
     }
     if ($RequiredVersion)    { $install['RequiredVersion']    = $RequiredVersion }
+    if ($MaximumVersion)     { $install['MaximumVersion']     = $MaximumVersion }
     if ($SkipPublisherCheck) { $install['SkipPublisherCheck'] = $true }
     if ($AllowClobber)       { $install['AllowClobber']       = $true }
     if ($credential)         { $install['Credential']         = $credential }

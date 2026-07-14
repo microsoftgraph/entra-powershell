@@ -194,7 +194,7 @@ steps:
   displayName: 'Install Pester'
   inputs:
     targetType: inline
-    script: ./build/Install-GalleryModule.ps1 -Name Pester -SkipPublisherCheck
+    script: ./build/Install-GalleryModule.ps1 -Name Pester -MaximumVersion 5.99.99 -SkipPublisherCheck
     pwsh: true
   env:
     DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
