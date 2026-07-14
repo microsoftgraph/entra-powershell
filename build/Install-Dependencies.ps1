@@ -31,13 +31,6 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 # Command lists are now derived from the static mapping files instead.
 Write-Verbose("Skipping deprecated source module '$($content.sourceModule)' - no longer available on PowerShell Gallery")
 
-# Microsoft.Graph.Authentication is the shared transitive dependency of every
-# Microsoft.Graph.* submodule (pinned to the same version). Install it explicitly
-# first so the submodule installs below find it already satisfied: PowerShellGet
-# does not propagate credentials to transitive dependency installs from a private
-# (CFS) feed, which would otherwise leave this module missing at publish time.
-& "$PSScriptRoot/Install-GalleryModule.ps1" -Name 'Microsoft.Graph.Authentication' -RequiredVersion $content.destinationModuleVersion -Repository $Repository -AllowClobber
-
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
     & "$PSScriptRoot/Install-GalleryModule.ps1" -Name $moduleName -RequiredVersion $content.destinationModuleVersion -Repository $Repository -AllowClobber

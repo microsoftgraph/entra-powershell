@@ -8,13 +8,13 @@
 
 .DESCRIPTION
     The 1ES CI/PR pipelines run under network isolation (CFSClean/CFSClean2), which
-    blocks the public PowerShell Gallery. Pipelines set DEPENDENCY_PS_REPO and
-    DEPENDENCY_PS_FEED_URL (and expose SYSTEM_ACCESSTOKEN) so modules are restored
-    from that feed; local development uses the public PowerShell Gallery by default.
-    See https://aka.ms/1es/netiso/pipelinetemplates.
+    blocks the public PowerShell Gallery. Those pipelines run NuGetAuthenticate and
+    set DEPENDENCY_PS_REPO / DEPENDENCY_PS_FEED_URL so modules (and their transitive
+    dependencies) are restored from that feed; the Azure Artifacts credential
+    provider handles authentication. Local development uses the public PowerShell
+    Gallery by default. See https://aka.ms/1es/netiso/pipelinetemplates.
 #>
 [CmdletBinding()]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingConvertToSecureStringWithPlainText', '', Justification = 'The pipeline access token is only available as plain text and must be converted to a SecureString to build a PSCredential for the CFS feed.')]
 param(
     [Parameter(Mandatory)]
     [string[]] $Name,
@@ -25,8 +25,6 @@ param(
 
     [string] $FeedUrl = $env:DEPENDENCY_PS_FEED_URL,
 
-    [string] $Token = $env:SYSTEM_ACCESSTOKEN,
-
     [switch] $SkipPublisherCheck,
 
     [switch] $AllowClobber
@@ -34,30 +32,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$credential = $null
-
 if ($Repository -ne 'PSGallery') {
     if (-not $FeedUrl) {
         throw "Repository '$Repository' requires a feed URL. Set DEPENDENCY_PS_FEED_URL (or pass -FeedUrl)."
     }
 
-    if ($Token) {
-        $securePat = ConvertTo-SecureString $Token -AsPlainText -Force
-        $credential = [System.Management.Automation.PSCredential]::new('cfs', $securePat)
-    }
-
-    # Registration persists across pipeline steps but the credential does not, so
-    # the feed is registered once here and the credential is supplied again at
-    # install time below.
     if (-not (Get-PSRepository -Name $Repository -ErrorAction SilentlyContinue)) {
         Write-Verbose "Registering PSRepository '$Repository' -> $FeedUrl"
-        $register = @{
-            Name               = $Repository
-            SourceLocation     = $FeedUrl
-            InstallationPolicy = 'Trusted'
-        }
-        if ($credential) { $register['Credential'] = $credential }
-        Register-PSRepository @register
+        Register-PSRepository -Name $Repository -SourceLocation $FeedUrl -InstallationPolicy Trusted
     }
 }
 
@@ -72,7 +54,6 @@ foreach ($module in $Name) {
     if ($RequiredVersion)    { $install['RequiredVersion']    = $RequiredVersion }
     if ($SkipPublisherCheck) { $install['SkipPublisherCheck'] = $true }
     if ($AllowClobber)       { $install['AllowClobber']       = $true }
-    if ($credential)         { $install['Credential']         = $credential }
 
     Install-Module @install
 }

@@ -21,11 +21,10 @@ parameters:
     default: ''
 
 steps:
-# Required for installing dependencies from the private CFS feed: PowerShellGet
-# does not propagate -Credential to transitive dependency installs, so those
-# requests fall back to the Azure Artifacts credential provider, which needs the
-# token this task provides. Without it, dependencies (e.g. Microsoft.Graph.Authentication)
-# fail to install.
+# Authenticate to the private CFS feed. PowerShellGet uses the Azure Artifacts
+# credential provider to authenticate every request to the feed - including
+# transitive dependency installs (e.g. Microsoft.Graph.Authentication) - so this
+# token setup is required for dependencies to resolve.
 - ${{ if ne(parameters.CfsFeedUrl, '') }}:
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to CFS feed'
@@ -51,7 +50,6 @@ steps:
   env:
     DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
     DEPENDENCY_PS_FEED_URL: ${{ parameters.CfsFeedUrl }}
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 - task: powershell@2
   displayName: 'Install PlatyPS'
   inputs:
@@ -61,7 +59,6 @@ steps:
   env:
     DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
     DEPENDENCY_PS_FEED_URL: ${{ parameters.CfsFeedUrl }}
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 - task: powershell@2
   displayName: 'Build Entra'
   inputs:
@@ -131,7 +128,6 @@ steps:
   env:
     DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
     DEPENDENCY_PS_FEED_URL: ${{ parameters.CfsFeedUrl }}
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 - task: powershell@2
   displayName: 'Build EntraBeta'
   inputs:
@@ -192,7 +188,6 @@ steps:
   env:
     DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
     DEPENDENCY_PS_FEED_URL: ${{ parameters.CfsFeedUrl }}
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 - task: powershell@2
   displayName: 'Run tests Entra'
   inputs:
