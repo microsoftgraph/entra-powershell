@@ -33,5 +33,5 @@ Write-Verbose("Skipping deprecated source module '$($content.sourceModule)' - no
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    & "$PSScriptRoot/Install-GalleryModule.ps1" -Name $moduleName -RequiredVersion $content.destinationModuleVersion -Repository $Repository -AllowClobber -Verbose:($VerbosePreference -eq 'Continue')
+    & "$PSScriptRoot/Install-GalleryModule.ps1" -Name $moduleName -RequiredVersion $content.destinationModuleVersion -Repository $Repository -AllowClobber
 }

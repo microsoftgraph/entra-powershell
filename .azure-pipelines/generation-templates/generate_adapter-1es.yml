@@ -21,9 +21,6 @@ parameters:
     default: ''
 
 steps:
-- ${{ if ne(parameters.CfsFeedUrl, '') }}:
-  - task: NuGetAuthenticate@1
-    displayName: 'Authenticate to CFS feed'
 - task: powershell@2
   displayName: 'Show current PowerShell version information'
   inputs:
