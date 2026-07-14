@@ -21,6 +21,14 @@ parameters:
     default: ''
 
 steps:
+# Required for installing dependencies from the private CFS feed: PowerShellGet
+# does not propagate -Credential to transitive dependency installs, so those
+# requests fall back to the Azure Artifacts credential provider, which needs the
+# token this task provides. Without it, dependencies (e.g. Microsoft.Graph.Authentication)
+# fail to install.
+- ${{ if ne(parameters.CfsFeedUrl, '') }}:
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate to CFS feed'
 - task: powershell@2
   displayName: 'Show current PowerShell version information'
   inputs:
