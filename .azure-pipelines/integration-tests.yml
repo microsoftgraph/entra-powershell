@@ -27,3 +27,8 @@ stages:
         parameters:
           Integration: true
           Sign: false
+          # Install dependencies from the CFS feed to stay consistent with the
+          # 1ES CI/PR pipelines (CFSClean/CFSClean2 network-isolation policies).
+          DependencyRepository: 'EntraPowerShellFeed'
+          # Org-scoped feed with the PowerShell Gallery configured as an upstream source.
+          CfsFeedUrl: 'https://pkgs.dev.azure.com/msazure/One/_packaging/EntraPowerShellFeed/nuget/v2'

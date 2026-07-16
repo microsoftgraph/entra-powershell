@@ -47,4 +47,9 @@ extends:
           - template: .azure-pipelines/generation-templates/generate_adapter-1es.yml@self
             parameters:
               Sign: false
+              # 1ES network isolation (CFSClean/CFSClean2) blocks the public
+              # PowerShell Gallery. Install dependencies from the CFS feed instead.
+              DependencyRepository: 'EntraPowerShellFeed'
+              # Org-scoped feed with the PowerShell Gallery configured as an upstream source.
+              CfsFeedUrl: 'https://pkgs.dev.azure.com/msazure/One/_packaging/EntraPowerShellFeed/nuget/v2'
               
