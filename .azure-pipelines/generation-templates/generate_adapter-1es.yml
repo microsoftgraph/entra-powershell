@@ -28,6 +28,18 @@ steps:
 - ${{ if ne(parameters.CfsFeedUrl, '') }}:
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to CFS feed'
+  # Under network isolation the public PowerShell Gallery must never be contacted
+  # (CFSClean2). Even with every install/publish targeting the feed, PowerShellGet
+  # still probes the default PSGallery source while resolving dependencies. Removing
+  # it leaves the feed and local gallery as the only sources for the rest of the job.
+  - task: powershell@2
+    displayName: 'Remove public PowerShell Gallery'
+    inputs:
+      targetType: inline
+      script: ./build/Remove-PublicPSGallery.ps1
+      pwsh: true
+    env:
+      DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
 - task: powershell@2
   displayName: 'Show current PowerShell version information'
   inputs:
