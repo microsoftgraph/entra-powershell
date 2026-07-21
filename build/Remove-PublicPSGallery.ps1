@@ -37,6 +37,57 @@ if (-not $Repository -or $Repository -eq 'PSGallery') {
     return
 }
 
+function Write-SourceInventory {
+    param([string] $Label)
+
+    Write-Host "===== Package source inventory ($Label) ====="
+
+    Write-Host '--- PowerShellGet PSRepositories ---'
+    try { Get-PSRepository -ErrorAction Stop | Format-Table Name, SourceLocation, InstallationPolicy -AutoSize | Out-String | Write-Host }
+    catch { Write-Host "  (Get-PSRepository failed: $($_.Exception.Message))" }
+
+    Write-Host '--- PackageManagement sources ---'
+    try { Get-PackageSource -ErrorAction Stop | Format-Table Name, ProviderName, Location, IsTrusted -AutoSize | Out-String | Write-Host }
+    catch { Write-Host "  (Get-PackageSource failed: $($_.Exception.Message))" }
+
+    if (Get-Command -Name 'Get-PSResourceRepository' -ErrorAction SilentlyContinue) {
+        Write-Host '--- PSResourceGet repositories ---'
+        try { Get-PSResourceRepository -ErrorAction Stop | Format-Table Name, Uri, Trusted -AutoSize | Out-String | Write-Host }
+        catch { Write-Host "  (Get-PSResourceRepository failed: $($_.Exception.Message))" }
+    }
+
+    # NuGet.config files that the NuGet client / credential provider read. A
+    # powershellgallery source configured here would be probed by pwsh outside of
+    # the PowerShellGet repository store.
+    Write-Host '--- NuGet.config files referencing powershellgallery ---'
+    $configPaths = @(
+        (Join-Path $env:APPDATA 'NuGet\NuGet.Config'),
+        (Join-Path $env:ProgramData 'NuGet\NuGet.Config'),
+        (Join-Path ${env:ProgramFiles(x86)} 'NuGet\Config')
+    ) | Where-Object { $_ -and (Test-Path $_) }
+    $found = $false
+    foreach ($p in $configPaths) {
+        $files = @()
+        if (Test-Path $p -PathType Container) {
+            $files = Get-ChildItem -Path $p -Filter '*.config' -File -Recurse -ErrorAction SilentlyContinue
+        }
+        elseif (Test-Path $p -PathType Leaf) {
+            $files = Get-Item -Path $p -ErrorAction SilentlyContinue
+        }
+        foreach ($f in $files) {
+            if (Select-String -Path $f.FullName -Pattern 'powershellgallery' -SimpleMatch -ErrorAction SilentlyContinue) {
+                Write-Host "  $($f.FullName) references powershellgallery"
+                $found = $true
+            }
+        }
+    }
+    if (-not $found) { Write-Host '  (none)' }
+
+    Write-Host "===== End inventory ($Label) ====="
+}
+
+Write-SourceInventory -Label 'before'
+
 # PowerShellGet v2
 if (Get-PSRepository -Name 'PSGallery' -ErrorAction SilentlyContinue) {
     Write-Host 'Unregistering public PSGallery from PowerShellGet.'
@@ -44,6 +95,22 @@ if (Get-PSRepository -Name 'PSGallery' -ErrorAction SilentlyContinue) {
 }
 else {
     Write-Host 'PSGallery is not registered with PowerShellGet; nothing to remove.'
+}
+
+# PackageManagement / OneGet: Install-Module ultimately resolves through the
+# PackageManagement source list, which can retain a powershellgallery-backed
+# source even after the PowerShellGet PSRepository is unregistered.
+if (Get-Command -Name 'Get-PackageSource' -ErrorAction SilentlyContinue) {
+    $publicSources = Get-PackageSource -ErrorAction SilentlyContinue |
+        Where-Object { $_.Location -and $_.Location -match 'powershellgallery\.com' }
+    foreach ($source in $publicSources) {
+        Write-Host "Unregistering PackageManagement source '$($source.Name)' ($($source.Location))."
+        try { Unregister-PackageSource -Name $source.Name -Force -ErrorAction Stop }
+        catch { Write-Host "  (Unregister-PackageSource failed: $($_.Exception.Message))" }
+    }
+    if (-not $publicSources) {
+        Write-Host 'No powershellgallery-backed PackageManagement sources registered; nothing to remove.'
+    }
 }
 
 # PSResourceGet (v3)
@@ -56,3 +123,5 @@ if (Get-Command -Name 'Get-PSResourceRepository' -ErrorAction SilentlyContinue) 
         Write-Host 'PSGallery is not registered with PSResourceGet; nothing to remove.'
     }
 }
+
+Write-SourceInventory -Label 'after'
