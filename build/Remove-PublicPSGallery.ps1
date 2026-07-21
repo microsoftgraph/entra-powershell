@@ -4,20 +4,27 @@
 
 <#
 .SYNOPSIS
-    Removes the public PowerShell Gallery from the build agent under network isolation.
+    Hardens the build agent against the public PowerShell Gallery under network isolation.
 
 .DESCRIPTION
     The 1ES CI/PR pipelines run under network isolation, where the CFSClean2 SFI
-    policy flags any connection to www.powershellgallery.com. Even though every
-    Install-Module / Publish-Module in the build targets the CFS-backed feed
-    (or the build's local gallery) via -Repository, PowerShellGet still probes the
-    default 'PSGallery' source while resolving package sources and module
-    dependencies (e.g. the Microsoft.Graph.* RequiredModules check during
-    Publish-Module). Those probes are the residual CFSClean2 violations.
+    policy flags any connection to www.powershellgallery.com. Every Install-Module /
+    Publish-Module in the build already targets the CFS-backed feed (or the build's
+    local gallery) via -Repository, and this script also unregisters the public
+    PSGallery from PowerShellGet, PackageManagement and PSResourceGet.
 
-    Unregistering PSGallery from both PowerShellGet and PSResourceGet leaves the
-    feed and the local gallery as the only sources, so no PowerShell step can reach
-    the public gallery. The change persists on the agent for the rest of the job.
+    However, the residual CFSClean2 violations are NOT caused by a registered
+    PSGallery source: an instrumented run proved that after unregistering PSGallery
+    from every subsystem, pwsh still opened 3 connections to www.powershellgallery.com.
+    Those come from the hard-coded default gallery endpoint baked into the
+    PowerShellGet / PSResourceGet module stack (used opportunistically while
+    resolving module metadata), which cannot be removed by repository management.
+
+    To make the build genuinely never reach the public gallery, this script also
+    null-routes www.powershellgallery.com in the agent hosts file for the duration
+    of the job. Because every dependency is installed from the private feed, these
+    probes are non-essential, so resolving the host locally to 0.0.0.0 is safe and
+    eliminates the CFSClean2 violations for the PR, CI and release pipelines.
 
     Local development is unaffected: this only acts when the pipeline configures a
     private dependency repository (DEPENDENCY_PS_REPO set to something other than
@@ -125,3 +132,47 @@ if (Get-Command -Name 'Get-PSResourceRepository' -ErrorAction SilentlyContinue) 
 }
 
 Write-SourceInventory -Label 'after'
+
+# Null-route the public gallery host. Repository management alone does not stop the
+# hard-coded default gallery endpoint in the PowerShellGet / PSResourceGet stack, so
+# resolve www.powershellgallery.com to a dead address locally. The DNS lookup is then
+# satisfied by the hosts file (no query leaves the agent) and any stray connection
+# goes to 0.0.0.0, so the CFSClean2 policy records no connection to the domain.
+$galleryHosts = @('www.powershellgallery.com', 'psg-prod-eastus.azureedge.net')
+$hostsPath = if ($IsWindows -or $env:OS -eq 'Windows_NT') {
+    Join-Path $env:SystemRoot 'System32\drivers\etc\hosts'
+}
+else {
+    '/etc/hosts'
+}
+
+Write-Host "Null-routing public gallery hosts via '$hostsPath'."
+try {
+    if (-not (Test-Path $hostsPath)) {
+        New-Item -Path $hostsPath -ItemType File -Force | Out-Null
+    }
+
+    $existing = Get-Content -Path $hostsPath -ErrorAction SilentlyContinue
+    $newLines = New-Object System.Collections.Generic.List[string]
+    foreach ($galleryHost in $galleryHosts) {
+        if ($existing -match ("(?i)\s" + [regex]::Escape($galleryHost) + "\s*$")) {
+            Write-Host "  $galleryHost already present in hosts file."
+        }
+        else {
+            $newLines.Add("0.0.0.0`t$galleryHost")
+        }
+    }
+
+    if ($newLines.Count -gt 0) {
+        Add-Content -Path $hostsPath -Value $newLines -ErrorAction Stop
+        $newLines | ForEach-Object { Write-Host "  Added: $_" }
+    }
+
+    # Best-effort: clear any cached DNS entry so the hosts file takes effect immediately.
+    if (Get-Command -Name 'Clear-DnsClientCache' -ErrorAction SilentlyContinue) {
+        Clear-DnsClientCache -ErrorAction SilentlyContinue
+    }
+}
+catch {
+    Write-Host "  (Unable to update hosts file: $($_.Exception.Message))"
+}
