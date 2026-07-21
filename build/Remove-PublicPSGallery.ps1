@@ -22,11 +22,15 @@
     netiso HostsFileStabilizer manages the hosts file and records the DNS query name
     regardless of how it resolves.
 
-    To attribute the residual queries to a specific build step, this script also
-    enables and clears the Windows DNS-Client Operational event log immediately after
-    network isolation starts. Report-GalleryDns.ps1 then dumps every matching query
-    (name, timestamp, PID) at the end of the job, so the query timestamps can be
-    correlated against the pipeline timeline to pinpoint the offending step.
+    To attribute the residual connections to a specific build step, this script also
+    enables Windows Filtering Platform (WFP) connection auditing immediately after
+    network isolation starts. Report-GalleryNetwork.ps1 then dumps every blocked
+    outbound connection (process, PID, destination address/port, timestamp) at the
+    end of the job, so the connection timestamps can be correlated against the
+    pipeline timeline to pinpoint the offending step. DNS-layer logging cannot be
+    used because netiso's HostsFileStabilizer pre-populates the gallery hostname in
+    the hosts file, so the name resolves with no DNS query while the blocked TCP
+    connection still fires.
 
     Local development is unaffected: this only acts when the pipeline configures a
     private dependency repository (DEPENDENCY_PS_REPO set to something other than
@@ -136,22 +140,22 @@ if (Get-Command -Name 'Get-PSResourceRepository' -ErrorAction SilentlyContinue) 
 Write-SourceInventory -Label 'after'
 
 # The residual CFSClean2 violations are NOT caused by a registered PSGallery source
-# (proven: they persist after every source above is removed) and cannot be hidden
-# with a hosts-file null-route (the 1ES netiso HostsFileStabilizer manages the hosts
-# file and captures the DNS query name regardless of how it resolves). To attribute
-# the 3 www.powershellgallery.com queries to a specific build step, enable the
-# Windows DNS-Client Operational log here (right after network isolation starts);
-# Report-GalleryDns.ps1 dumps the matching queries at the end of the job so their
-# timestamps can be correlated against the pipeline timeline.
-$dnsLog = 'Microsoft-Windows-DNS-Client/Operational'
-Write-Host "Enabling DNS query logging via '$dnsLog' for gallery-connection attribution."
+# (proven: they persist after every source above is removed). DNS-layer attribution
+# also fails, because the 1ES netiso HostsFileStabilizer pre-populates
+# www.powershellgallery.com in the hosts file: the name resolves from hosts with NO
+# DNS query (nothing in the DNS-Client Operational log), yet the outbound TCP
+# connection to the gallery IP still fires and trips the WFP violation. The reliable
+# attribution source is Windows Filtering Platform connection auditing: a blocked
+# egress produces Security event 5157 with the process image, PID, destination
+# address/port and timestamp. Enable it here (right after isolation starts);
+# Report-GalleryDns.ps1 dumps the matching blocked connections at the end of the job
+# so their timestamps can be correlated against the pipeline timeline.
+Write-Host 'Enabling Windows Filtering Platform connection auditing for gallery-connection attribution.'
 try {
-    & wevtutil.exe set-log $dnsLog /enabled:false 2>$null
-    & wevtutil.exe set-log $dnsLog /maxsize:33554432 2>$null
-    & wevtutil.exe clear-log $dnsLog 2>$null
-    & wevtutil.exe set-log $dnsLog /enabled:true 2>$null
-    Write-Host "  DNS-Client Operational log enabled and cleared."
+    & auditpol.exe /set /subcategory:'Filtering Platform Connection' /success:enable /failure:enable | Out-Null
+    & auditpol.exe /set /subcategory:'Filtering Platform Packet Drop' /success:enable /failure:enable | Out-Null
+    Write-Host '  WFP connection/packet-drop auditing enabled (Security events 5157/5152).'
 }
 catch {
-    Write-Host "  (Unable to enable DNS query logging: $($_.Exception.Message))"
+    Write-Host "  (Unable to enable WFP auditing: $($_.Exception.Message))"
 }

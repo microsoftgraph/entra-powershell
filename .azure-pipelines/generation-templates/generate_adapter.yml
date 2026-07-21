@@ -280,17 +280,18 @@ steps:
     Settings: required
     IgnorePattern: .gdn
     Recurse: true
-# Diagnostic: under network isolation, dump any DNS queries to the public PowerShell
-# Gallery captured since 'Remove public PowerShell Gallery' enabled DNS logging, so
-# the residual CFSClean2 connections can be attributed to a specific step via their
-# timestamps. No-op outside the CFS-backed pipelines.
+# Diagnostic: under network isolation, dump any blocked outbound connections to the
+# public PowerShell Gallery captured via the WFP auditing that 'Remove public
+# PowerShell Gallery' enabled, so the residual CFSClean2 connections can be
+# attributed to a specific step via their timestamps. No-op outside the CFS-backed
+# pipelines.
 - ${{ if ne(parameters.CfsFeedUrl, '') }}:
   - task: powershell@2
-    displayName: 'Report public gallery DNS queries'
+    displayName: 'Report public gallery connections'
     condition: always()
     inputs:
       targetType: inline
-      script: ./build/Report-GalleryDns.ps1
+      script: ./build/Report-GalleryNetwork.ps1
       pwsh: true
     env:
       DEPENDENCY_PS_REPO: ${{ parameters.DependencyRepository }}
