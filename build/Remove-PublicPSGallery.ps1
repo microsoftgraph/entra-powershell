@@ -16,15 +16,17 @@
     However, the residual CFSClean2 violations are NOT caused by a registered
     PSGallery source: an instrumented run proved that after unregistering PSGallery
     from every subsystem, pwsh still opened 3 connections to www.powershellgallery.com.
-    Those come from the hard-coded default gallery endpoint baked into the
-    PowerShellGet / PSResourceGet module stack (used opportunistically while
-    resolving module metadata), which cannot be removed by repository management.
+    Those come from a hard-coded default gallery endpoint baked into the
+    PowerShellGet / PSResourceGet module stack, which cannot be removed by repository
+    management, and cannot be hidden with a hosts-file null-route because the 1ES
+    netiso HostsFileStabilizer manages the hosts file and records the DNS query name
+    regardless of how it resolves.
 
-    To make the build genuinely never reach the public gallery, this script also
-    null-routes www.powershellgallery.com in the agent hosts file for the duration
-    of the job. Because every dependency is installed from the private feed, these
-    probes are non-essential, so resolving the host locally to 0.0.0.0 is safe and
-    eliminates the CFSClean2 violations for the PR, CI and release pipelines.
+    To attribute the residual queries to a specific build step, this script also
+    enables and clears the Windows DNS-Client Operational event log immediately after
+    network isolation starts. Report-GalleryDns.ps1 then dumps every matching query
+    (name, timestamp, PID) at the end of the job, so the query timestamps can be
+    correlated against the pipeline timeline to pinpoint the offending step.
 
     Local development is unaffected: this only acts when the pipeline configures a
     private dependency repository (DEPENDENCY_PS_REPO set to something other than
@@ -133,46 +135,23 @@ if (Get-Command -Name 'Get-PSResourceRepository' -ErrorAction SilentlyContinue) 
 
 Write-SourceInventory -Label 'after'
 
-# Null-route the public gallery host. Repository management alone does not stop the
-# hard-coded default gallery endpoint in the PowerShellGet / PSResourceGet stack, so
-# resolve www.powershellgallery.com to a dead address locally. The DNS lookup is then
-# satisfied by the hosts file (no query leaves the agent) and any stray connection
-# goes to 0.0.0.0, so the CFSClean2 policy records no connection to the domain.
-$galleryHosts = @('www.powershellgallery.com', 'psg-prod-eastus.azureedge.net')
-$hostsPath = if ($IsWindows -or $env:OS -eq 'Windows_NT') {
-    Join-Path $env:SystemRoot 'System32\drivers\etc\hosts'
-}
-else {
-    '/etc/hosts'
-}
-
-Write-Host "Null-routing public gallery hosts via '$hostsPath'."
+# The residual CFSClean2 violations are NOT caused by a registered PSGallery source
+# (proven: they persist after every source above is removed) and cannot be hidden
+# with a hosts-file null-route (the 1ES netiso HostsFileStabilizer manages the hosts
+# file and captures the DNS query name regardless of how it resolves). To attribute
+# the 3 www.powershellgallery.com queries to a specific build step, enable the
+# Windows DNS-Client Operational log here (right after network isolation starts);
+# Report-GalleryDns.ps1 dumps the matching queries at the end of the job so their
+# timestamps can be correlated against the pipeline timeline.
+$dnsLog = 'Microsoft-Windows-DNS-Client/Operational'
+Write-Host "Enabling DNS query logging via '$dnsLog' for gallery-connection attribution."
 try {
-    if (-not (Test-Path $hostsPath)) {
-        New-Item -Path $hostsPath -ItemType File -Force | Out-Null
-    }
-
-    $existing = Get-Content -Path $hostsPath -ErrorAction SilentlyContinue
-    $newLines = New-Object System.Collections.Generic.List[string]
-    foreach ($galleryHost in $galleryHosts) {
-        if ($existing -match ("(?i)\s" + [regex]::Escape($galleryHost) + "\s*$")) {
-            Write-Host "  $galleryHost already present in hosts file."
-        }
-        else {
-            $newLines.Add("0.0.0.0`t$galleryHost")
-        }
-    }
-
-    if ($newLines.Count -gt 0) {
-        Add-Content -Path $hostsPath -Value $newLines -ErrorAction Stop
-        $newLines | ForEach-Object { Write-Host "  Added: $_" }
-    }
-
-    # Best-effort: clear any cached DNS entry so the hosts file takes effect immediately.
-    if (Get-Command -Name 'Clear-DnsClientCache' -ErrorAction SilentlyContinue) {
-        Clear-DnsClientCache -ErrorAction SilentlyContinue
-    }
+    & wevtutil.exe set-log $dnsLog /enabled:false 2>$null
+    & wevtutil.exe set-log $dnsLog /maxsize:33554432 2>$null
+    & wevtutil.exe clear-log $dnsLog 2>$null
+    & wevtutil.exe set-log $dnsLog /enabled:true 2>$null
+    Write-Host "  DNS-Client Operational log enabled and cleared."
 }
 catch {
-    Write-Host "  (Unable to update hosts file: $($_.Exception.Message))"
+    Write-Host "  (Unable to enable DNS query logging: $($_.Exception.Message))"
 }
