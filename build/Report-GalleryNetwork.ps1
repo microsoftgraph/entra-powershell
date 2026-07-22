@@ -4,27 +4,29 @@
 
 <#
 .SYNOPSIS
-    Attributes blocked public-gallery network connections to a build step for
-    CFSClean2 investigation.
+    Attributes public-gallery network connections to a build step for CFSClean2
+    investigation.
 
 .DESCRIPTION
     The 1ES network-isolation CFSClean2 policy flags connections to
     www.powershellgallery.com, but its report gives no timestamp, command line or
-    step attribution. DNS-layer attribution also fails, because the netiso
+    step attribution. DNS-layer attribution fails, because the netiso
     HostsFileStabilizer pre-populates the gallery hostname in the hosts file, so the
-    name resolves with NO DNS query while the blocked TCP connection still fires.
+    name resolves with NO DNS query while the connection still fires.
 
     Remove-PublicPSGallery.ps1 enables Windows Filtering Platform (WFP) connection
-    auditing at the start of the isolated job. A blocked egress produces Security
-    event 5157 (and packet drops produce 5152) containing the process image name,
-    PID, destination address/port and timestamp. This script reads the Security log
-    at the end of the job and prints every blocked outbound connection to port 443
-    from pwsh.exe (the process the CFSClean2 report attributes the violation to),
-    including the event time (local and UTC).
+    auditing at the start of the isolated job. Each connection that WFP inspects
+    produces a Security event: 5156 (permitted) or 5157 (blocked); 5152 covers
+    dropped packets. Every event carries the process image, PID, destination
+    address/port and timestamp. netiso frequently runs in *audit* mode, where the
+    connection is permitted (5156) but still reported as a violation, so this script
+    reads 5156, 5157 and 5152.
 
-    Correlate the UTC timestamps below against the pipeline timeline's per-step
-    start/finish times (each build step runs in its own pwsh process with a distinct
-    startTime/finishTime) to identify which step issued the connection, then
+    It prints the effective audit setting, total event counts, and a grouped
+    summary of outbound port-443/80 destinations (with process, count and first/last
+    timestamp) so the public-gallery IP surfaces even when the initiating process is
+    not pwsh.exe. Correlate the UTC timestamps against the pipeline timeline's
+    per-step start/finish times to identify which step issued the connection, then
     eliminate it at its source.
 
     Runs only when a private dependency repository is configured (DEPENDENCY_PS_REPO
@@ -37,9 +39,9 @@ param(
     # Destination ports of interest (gallery is HTTPS/443).
     [int[]] $Ports = @(443, 80),
 
-    # Process image names of interest; the CFSClean2 report attributes the
-    # violation to pwsh.exe.
-    [string[]] $Process = @('pwsh.exe', 'powershell.exe', 'dotnet.exe', 'nuget.exe')
+    # Known public-gallery front-door IP(s) from the CFSClean2 report, highlighted
+    # in the output when seen.
+    [string[]] $GalleryIp = @('150.171.109.114', '150.171.108.114')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -50,27 +52,38 @@ if (-not $Repository -or $Repository -eq 'PSGallery') {
 }
 
 Write-Host '===== Public gallery network-connection attribution ====='
-Write-Host "Reading Security log for blocked WFP connections (event 5157/5152) on ports: $($Ports -join ', ')"
 
-# WFP audit event 5157 = "The Windows Filtering Platform has blocked a connection".
-# Event 5152 = "blocked a packet". Both carry Application, ProcessID, and the
-# Source/Destination address + port fields.
-$events = $null
+# Show the effective audit policy so we can tell whether auditing was actually on.
 try {
-    $events = Get-WinEvent -FilterHashtable @{ LogName = 'Security'; Id = @(5157, 5152) } -ErrorAction Stop
+    Write-Host '--- Effective WFP audit policy ---'
+    & auditpol.exe /get /subcategory:'Filtering Platform Connection' 2>&1 | ForEach-Object { Write-Host "  $_" }
 }
 catch {
-    Write-Host "  (Unable to read Security log for WFP events: $($_.Exception.Message))"
-    Write-Host '  Ensure the build agent is elevated and auditpol enabled the subcategory.'
+    Write-Host "  (auditpol /get failed: $($_.Exception.Message))"
+}
+
+$events = $null
+# Filter on the destination port inside the query (XPath) so we do not have to
+# materialise every 5156 permit event the agent generates.
+$portPredicate = ($Ports | ForEach-Object { "Data[@Name='DestPort']='$_'" }) -join ' or '
+$filterXml = @"
+<QueryList>
+  <Query Id="0" Path="Security">
+    <Select Path="Security">*[System[(EventID=5156 or EventID=5157 or EventID=5152)]] and (*[EventData[$portPredicate]])</Select>
+  </Query>
+</QueryList>
+"@
+try {
+    $events = Get-WinEvent -FilterXml ([xml]$filterXml) -ErrorAction Stop
+}
+catch {
+    Write-Host "  (No matching Security events, or unable to read the Security log: $($_.Exception.Message))"
+    Write-Host '  This means WFP connection auditing produced no events on this agent.'
     Write-Host '===== End network-connection attribution ====='
     return
 }
 
-if (-not $events) {
-    Write-Host '  No blocked WFP connection events were recorded.'
-    Write-Host '===== End network-connection attribution ====='
-    return
-}
+Write-Host "Total WFP connection/drop events on ports $($Ports -join ','): $($events.Count)"
 
 function Get-EventField {
     param($EventXml, [string] $Name)
@@ -79,7 +92,7 @@ function Get-EventField {
     return ''
 }
 
-$rows = foreach ($e in ($events | Sort-Object TimeCreated)) {
+$rows = foreach ($e in $events) {
     $xml = [xml]$e.ToXml()
     $app = Get-EventField $xml 'Application'
     $destPort = Get-EventField $xml 'DestPort'
@@ -89,13 +102,11 @@ $rows = foreach ($e in ($events | Sort-Object TimeCreated)) {
 
     $imageName = if ($app) { [System.IO.Path]::GetFileName(($app -replace '\\device\\harddiskvolume\d+', '')) } else { '' }
     $portInt = 0; [void][int]::TryParse($destPort, [ref]$portInt)
-
     if ($Ports -notcontains $portInt) { continue }
-    if ($Process -and $imageName -and ($Process -notcontains $imageName)) { continue }
 
     [PSCustomObject]@{
+        Time      = $e.TimeCreated
         UtcTime   = $e.TimeCreated.ToUniversalTime().ToString('o')
-        LocalTime = $e.TimeCreated.ToString('o')
         EventId   = $e.Id
         Pid       = $procId
         Image     = $imageName
@@ -106,15 +117,36 @@ $rows = foreach ($e in ($events | Sort-Object TimeCreated)) {
 }
 
 if (-not $rows) {
-    Write-Host '  No blocked outbound connections on the configured ports/processes were recorded.'
-    Write-Host '  (If CFSClean2 still reports violations, widen -Ports/-Process or inspect all 5157 events.)'
+    Write-Host "  No outbound connections on ports $($Ports -join ',') were audited."
     Write-Host '===== End network-connection attribution ====='
     return
 }
 
-$rows | Format-Table UtcTime, LocalTime, EventId, Pid, Image, DestAddr, DestPort, Direction -AutoSize |
-    Out-String -Width 4096 | Write-Host
+Write-Host ''
+Write-Host '--- Outbound destinations grouped by image + address + port ---'
+$rows | Group-Object Image, DestAddr, DestPort |
+    Sort-Object Count -Descending |
+    ForEach-Object {
+        $first = ($_.Group | Sort-Object Time | Select-Object -First 1)
+        $last = ($_.Group | Sort-Object Time | Select-Object -Last 1)
+        $flag = if ($GalleryIp -contains $first.DestAddr) { '  <== PUBLIC GALLERY' } else { '' }
+        '{0,4}x  {1,-16} {2,-16}:{3,-5} first={4} last={5}{6}' -f `
+            $_.Count, $first.Image, $first.DestAddr, $first.DestPort, `
+            $first.UtcTime, $last.UtcTime, $flag | Write-Host
+    }
 
-Write-Host "Total matching blocked connections: $($rows.Count)"
-Write-Host 'Correlate UtcTime values against the pipeline timeline (step startTime/finishTime) to attribute each connection.'
+Write-Host ''
+Write-Host '--- Individual connections to the known public-gallery IP(s) ---'
+$galleryRows = $rows | Where-Object { $GalleryIp -contains $_.DestAddr } | Sort-Object Time
+if ($galleryRows) {
+    $galleryRows | Format-Table UtcTime, EventId, Pid, Image, DestAddr, DestPort, Direction -AutoSize |
+        Out-String -Width 4096 | Write-Host
+    Write-Host "Total connections to public-gallery IP(s): $($galleryRows.Count)"
+    Write-Host 'Correlate the UtcTime values above against the pipeline timeline (step startTime/finishTime) to attribute each connection.'
+}
+else {
+    Write-Host '  No connections to the known public-gallery IP were audited on ports of interest.'
+    Write-Host '  Review the grouped destination list above for the gallery front-door address.'
+}
+
 Write-Host '===== End network-connection attribution ====='
