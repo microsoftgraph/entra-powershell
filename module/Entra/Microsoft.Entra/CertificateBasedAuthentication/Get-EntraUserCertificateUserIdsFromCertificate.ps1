@@ -66,7 +66,6 @@ function Get-EntraUserCertificateUserIdsFromCertificate {
             return ""
         }
 
-        [System.Array]::Reverse($littleEndianSerialNumber)
         $hexString = -join ($littleEndianSerialNumber | ForEach-Object { $_.ToString("x2") })
         return $hexString
     }
