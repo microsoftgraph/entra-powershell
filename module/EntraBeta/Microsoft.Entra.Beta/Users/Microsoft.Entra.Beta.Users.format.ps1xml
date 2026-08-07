@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+    <!-- Standard User View -->
+    <View>
+      <Name>EntraBetaUserStandardView</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Entra.Beta.User</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <AutoSize/>
+        <TableHeaders>
+          <TableColumnHeader><Label>Id</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Display Name</Label></TableColumnHeader>
+          <TableColumnHeader><Label>UPN</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Type</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Status</Label></TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem><PropertyName>id</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>displayName</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>userPrincipalName</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>userType</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>accountEnabled</PropertyName></TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+
+    <!-- Simplified User View -->
+    <View>
+      <Name>EntraBetaUserSimpleView</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Entra.Beta.User.Simple</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <AutoSize/>
+        <TableHeaders>
+          <TableColumnHeader><Label>Id</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Display Name</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Type</Label></TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem><PropertyName>id</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>displayName</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>userType</PropertyName></TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+
+     <!-- User Manager View -->
+    <View>
+      <Name>EntraUserManagerView</Name>
+      <ViewSelectedBy>
+        <TypeName>Microsoft.Entra.Beta.User.Manager</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <AutoSize/>
+        <TableHeaders>
+          <TableColumnHeader><Label>Id</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Display Name</Label></TableColumnHeader>
+          <TableColumnHeader><Label>UPN</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Created</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Enabled</Label></TableColumnHeader>
+          <TableColumnHeader><Label>Type</Label></TableColumnHeader>
+          <TableColumnHeader><Label>SID</Label></TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem><PropertyName>id</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>displayName</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>userPrincipalName</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>createdDateTime</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>accountEnabled</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>userType</PropertyName></TableColumnItem>
+              <TableColumnItem><PropertyName>securityIdentifier</PropertyName></TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

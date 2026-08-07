@@ -83,7 +83,6 @@ function Get-EntraBetaUserSponsor {
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $directoryObjectList = @()
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
 
@@ -112,6 +111,7 @@ function Get-EntraBetaUserSponsor {
                     $propertyValue = $_.Value
                     $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $memberType.PSTypeNames.Insert(0, "Microsoft.Entra.Beta.User.Simple")
                 $memberList += $memberType
             }
             return $memberList
