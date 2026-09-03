@@ -19,7 +19,7 @@ function Get-EntraAgentIdentityBlueprint {
             return
         }
 
-        # Resolve BlueprintId: explicit param → stored → prompt → error
+        # Resolve BlueprintId: explicit param -> stored -> prompt -> error
         if (-not $BlueprintId) {
             if ((Test-Path variable:script:CurrentAgentBlueprintId) -and $script:CurrentAgentBlueprintId) {
                 $BlueprintId = $script:CurrentAgentBlueprintId
