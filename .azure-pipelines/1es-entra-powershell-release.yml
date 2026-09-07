@@ -9,6 +9,10 @@ parameters:
   displayName: Publish to PowerShell Gallery
   type: boolean
   default: true
+- name: ValidatePSGalleryNetworkAccess
+  displayName: Validate PowerShell Gallery network access
+  type: boolean
+  default: false
 
 resources:
   pipelines:
@@ -64,6 +68,17 @@ extends:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
             targetPath: '$(System.ArtifactsDirectory)/drop'
+        - ${{ if eq(parameters.ValidatePSGalleryNetworkAccess, true) }}:
+          - task: powershell@2
+            displayName: Validate PowerShell Gallery network access
+            inputs:
+              targetType: inline
+              pwsh: true
+              script: |
+                curl.exe --silent --show-error --output NUL --write-out 'PowerShell Gallery probe returned HTTP %{http_code}.\n' --request HEAD --connect-timeout 30 --max-time 60 https://www.powershellgallery.com/api/v2/package/
+                if ($LASTEXITCODE -ne 0) {
+                    throw "PowerShell Gallery network probe failed with curl exit code $LASTEXITCODE."
+                }
         - ${{ if eq(parameters.PublishToPSGallery, true) }}:
           - task: 1ES.PublishNuget@1
             displayName: Publish Nuget package
