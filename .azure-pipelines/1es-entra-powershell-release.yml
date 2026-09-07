@@ -4,6 +4,12 @@ name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 trigger: none
 pr: none
 
+parameters:
+- name: PublishToPSGallery
+  displayName: Publish to PowerShell Gallery
+  type: boolean
+  default: true
+
 resources:
   pipelines:
   - pipeline: _1es-EntraPowerShell-CI
@@ -19,6 +25,8 @@ extends:
   parameters:
     settings:
       networkIsolationPolicy: Permissive, CFSClean, CFSClean2
+      networkIsolationAdditionalDomainAllowList:
+      - www.powershellgallery.com
     pool:
       name: MSSecurity-1ES-Build-Agents-Pool
       image: MSSecurity-1ES-Windows-2022
@@ -56,11 +64,12 @@ extends:
             pipeline: _1es-EntraPowerShell-CI
             artifactName: drop
             targetPath: '$(System.ArtifactsDirectory)/drop'
-        - task: 1ES.PublishNuget@1
-          displayName: Publish Nuget package
-          inputs:
-            useDotNetTask: false
-            packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra*.nupkg'
-            packageParentPath: '$(System.ArtifactsDirectory)'
-            nuGetFeedType: external
-            publishFeedCredentials: EntraPowerShell_PSGallery
+        - ${{ if eq(parameters.PublishToPSGallery, true) }}:
+          - task: 1ES.PublishNuget@1
+            displayName: Publish Nuget package
+            inputs:
+              useDotNetTask: false
+              packagesToPush: '$(System.ArtifactsDirectory)/drop/Microsoft.Entra*.nupkg'
+              packageParentPath: '$(System.ArtifactsDirectory)'
+              nuGetFeedType: external
+              publishFeedCredentials: EntraPowerShell_PSGallery
