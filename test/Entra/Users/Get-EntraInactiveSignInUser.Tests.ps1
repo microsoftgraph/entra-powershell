@@ -83,6 +83,13 @@ Describe 'Get-EntraInactiveSignInUser' {
             $result[2].UserID | Should -Be "user3"
         }
 
+        It "Should allow LastSignInBeforeDaysAgo above 30" {
+            $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 90 -UserType "All"
+
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Users -Times 1
+        }
+
         It "Should return only inactive Member users" {
             $result = Get-EntraInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Member"
             
