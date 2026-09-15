@@ -79,6 +79,7 @@ function Get-EntraBetaUserDirectReport {
                 $propertyValue = $_.Value
                 $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
             }
+            $targetType.PSTypeNames.Insert(0, "Microsoft.Entra.Beta.User.Manager")
             $targetList += $targetType
         }
         $targetList 
