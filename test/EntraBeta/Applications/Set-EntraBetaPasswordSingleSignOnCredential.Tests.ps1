@@ -193,7 +193,45 @@ Describe "Set-EntraBetaPasswordSingleSignOnCredential" {
                 $DebugPreference = $originalDebugPreference        
             }
         } 
-    }    
+
+        It "Should redact PasswordSSOCredential from debug output without changing the Graph request" {
+            $userName = "nightwatch-user@contoso.com"
+            $password = "Nightwatch-Secret-2420"
+            $params = @{
+                id          = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+                credentials = @(
+                    @{
+                        fieldId = "param_emailOrUserName"
+                        type    = "text"
+                        value   = $userName
+                    }
+                    @{
+                        fieldId = "param_password"
+                        type    = "password"
+                        value   = $password
+                    }
+                )
+            }
+
+            $output = Set-EntraBetaPasswordSingleSignOnCredential `
+                -ServicePrincipalId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" `
+                -PasswordSSOCredential $params `
+                -Debug 5>&1
+            $debugOutput = ($output | Where-Object { $_ -is [System.Management.Automation.DebugRecord] }) -join "`n"
+
+            $debugOutput | Should -Match "BodyParameter : \[REDACTED\]"
+            $debugOutput | Should -Not -Match ([regex]::Escape($userName))
+            $debugOutput | Should -Not -Match ([regex]::Escape($password))
+            Should -Invoke -CommandName Update-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+                $credentials = if ($BodyParameter -is [System.String]) {
+                    ($BodyParameter | ConvertFrom-Json).credentials
+                }
+                else {
+                    $BodyParameter.Credentials
+                }
+                ($credentials | Where-Object FieldId -eq "param_emailOrUserName").Value -eq $userName -and
+                ($credentials | Where-Object FieldId -eq "param_password").Value -eq $password
+            }
+        }
+    }
 }
-
-

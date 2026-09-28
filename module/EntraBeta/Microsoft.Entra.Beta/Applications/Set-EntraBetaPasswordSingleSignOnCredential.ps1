@@ -65,7 +65,10 @@ function Set-EntraBetaPasswordSingleSignOnCredential {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object {
+            $value = if ($_ -eq "BodyParameter") { "[REDACTED]" } else { $params[$_] }
+            "$_ : $value"
+        } | Write-Debug
         Write-Debug("=========================================================================`n")
     
         $response = Update-MgBetaServicePrincipalPasswordSingleSignOnCredential @params -Headers $customHeaders
@@ -78,4 +81,3 @@ function Set-EntraBetaPasswordSingleSignOnCredential {
         $response
     }
 }
-
