@@ -68,6 +68,25 @@ Describe "New-EntraBetaServicePrincipalKeyCredential" {
                 $DebugPreference = $originalDebugPreference
             }
         }
+
+        It "Should redact Proof from debug output without changing the Graph request" {
+            $proof = "eyJhbGciOiJSUzI1NiJ9.sensitive-proof.signature"
+
+            $output = New-EntraBetaServicePrincipalKeyCredential `
+                -ServicePrincipalId "aaaaaaaa-2222-1111-1111-cccccccccccc" `
+                -Value "U29mdHdhcmU=" `
+                -Type "AsymmetricX509Cert" `
+                -Usage "Verify" `
+                -Proof $proof `
+                -Debug 5>&1
+            $debugOutput = ($output | Where-Object { $_ -is [System.Management.Automation.DebugRecord] }) -join "`n"
+
+            $debugOutput | Should -Match "proof : \[REDACTED\]"
+            $debugOutput | Should -Not -Match ([regex]::Escape($proof))
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Applications -Times 1 -ParameterFilter {
+                ($Body | ConvertFrom-Json).proof -eq $proof
+            }
+        }
     }
 
 }

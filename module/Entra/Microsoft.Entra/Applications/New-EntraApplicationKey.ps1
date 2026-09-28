@@ -85,7 +85,10 @@ function New-EntraApplicationKey {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object {
+            $value = if ($_ -eq "Proof") { "[REDACTED]" } else { $params[$_] }
+            "$_ : $value"
+        } | Write-Debug
         Write-Debug("=========================================================================`n")
     
         $response = Add-MgApplicationKey @params -Headers $customHeaders
@@ -98,4 +101,3 @@ function New-EntraApplicationKey {
         $response
     }
 }
-
