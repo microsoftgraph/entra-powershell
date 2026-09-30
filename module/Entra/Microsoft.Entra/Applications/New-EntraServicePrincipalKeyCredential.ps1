@@ -66,7 +66,10 @@ function New-EntraServicePrincipalKeyCredential {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object {
+            $value = if ($_ -eq "proof") { "[REDACTED]" } else { $params[$_] }
+            "$_ : $value"
+        } | Write-Debug
         Write-Debug("=========================================================================`n")
         $tesy = ($params | ConvertTo-Json -Depth 4)
 

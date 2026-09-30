@@ -66,7 +66,10 @@ function New-EntraBetaServicePrincipalKeyCredential {
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object {
+            $value = if ($_ -eq "proof") { "[REDACTED]" } else { $params[$_] }
+            "$_ : $value"
+        } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         try {
