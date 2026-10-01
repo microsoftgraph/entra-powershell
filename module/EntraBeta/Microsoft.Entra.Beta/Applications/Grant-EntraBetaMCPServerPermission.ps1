@@ -98,7 +98,7 @@ function Grant-EntraBetaMcpServerPermission {
             $incomingScopes = $targetScopes | Where-Object { $_ } | Sort-Object -Unique
 
             if (-not $grant) {
-                # No existing grant – create with provided scopes (already additive by definition)
+                # No existing grant - create with provided scopes (already additive by definition)
                 $targetString = ($incomingScopes) -join ' '
                 Write-Verbose "Creating new permission grant with scopes: $targetString"
                 $body = @{

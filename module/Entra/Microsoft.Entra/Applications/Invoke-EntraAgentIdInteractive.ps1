@@ -609,44 +609,44 @@ function Invoke-EntraAgentIdInteractive {
         # ===================================================================
 
         Write-Host "=== Complete Workflow Summary ===" -ForegroundColor Green
-        Write-Host "✓ 1. Agent Identity Blueprint created and configured" -ForegroundColor Green
-        Write-Host "✓ 2. Client secret added for API authentication" -ForegroundColor Green
+        Write-Host "[OK] 1. Agent Identity Blueprint created and configured" -ForegroundColor Green
+        Write-Host "[OK] 2. Client secret added for API authentication" -ForegroundColor Green
 
         if ($hasInteractiveAgents) {
-            Write-Host "✓ 3. Interactive agent scopes configured with user prompts" -ForegroundColor Green
+            Write-Host "[OK] 3. Interactive agent scopes configured with user prompts" -ForegroundColor Green
         }
         else {
             Write-Host "- 3. Interactive agent scopes (skipped by user choice)" -ForegroundColor Gray
         }
 
         if ($blueprintWillCreateAgentUsers) {
-            Write-Host "✓ 4. Blueprint configured to create Agent ID users" -ForegroundColor Green
+            Write-Host "[OK] 4. Blueprint configured to create Agent ID users" -ForegroundColor Green
         }
         else {
             Write-Host "- 4. Blueprint configured to create Agent ID users (skipped by user choice)" -ForegroundColor Gray
         }
 
         if ($hasInheritablePermissions) {
-            Write-Host "✓ 5. Inheritable permissions configured for agent users" -ForegroundColor Green
+            Write-Host "[OK] 5. Inheritable permissions configured for agent users" -ForegroundColor Green
         }
         else {
             Write-Host "- 5. Inheritable permissions (skipped by user choice)" -ForegroundColor Gray
         }
 
         if ($hasInheritablePermissions -and $useStaticPermissions) {
-            Write-Host "✓ 6. Static permissions configured via required resource access" -ForegroundColor Green
+            Write-Host "[OK] 6. Static permissions configured via required resource access" -ForegroundColor Green
         }
         elseif ($hasInheritablePermissions -and -not $useStaticPermissions) {
-            Write-Host "✓ 6. Dynamic permissions selected (resolved at runtime)" -ForegroundColor Green
+            Write-Host "[OK] 6. Dynamic permissions selected (resolved at runtime)" -ForegroundColor Green
         }
         else {
             Write-Host "- 6. Permission model selection (skipped - no inheritable permissions)" -ForegroundColor Gray
         }
 
-        Write-Host "✓ 7. Consent obtained for the blueprint in this tenant" -ForegroundColor Green
+        Write-Host "[OK] 7. Consent obtained for the blueprint in this tenant" -ForegroundColor Green
 
         if ($allAgentIdentities.Count -gt 0) {
-            Write-Host "✓ 8. Agent Identity and User Creation completed" -ForegroundColor Green
+            Write-Host "[OK] 8. Agent Identity and User Creation completed" -ForegroundColor Green
             Write-Host "    - Created $($allAgentIdentities.Count) Agent $(if ($allAgentIdentities.Count -eq 1) { 'Identity' } else { 'Identities' })" -ForegroundColor Green
             if ($blueprintWillCreateAgentUsers) {
                 Write-Host "    - Created $($allAgentUsers.Count) Agent $(if ($allAgentUsers.Count -eq 1) { 'User' } else { 'Users' })" -ForegroundColor Green

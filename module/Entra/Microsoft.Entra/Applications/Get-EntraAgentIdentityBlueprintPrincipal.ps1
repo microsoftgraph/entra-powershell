@@ -19,7 +19,7 @@ function Get-EntraAgentIdentityBlueprintPrincipal {
             return
         }
 
-        # Resolve ServicePrincipalId: explicit param → stored → prompt → error
+        # Resolve ServicePrincipalId: explicit param -> stored -> prompt -> error
         if (-not $ServicePrincipalId) {
             if ((Test-Path variable:script:CurrentAgentBlueprintServicePrincipalId) -and $script:CurrentAgentBlueprintServicePrincipalId) {
                 $ServicePrincipalId = $script:CurrentAgentBlueprintServicePrincipalId
