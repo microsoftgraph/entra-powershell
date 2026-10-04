@@ -84,6 +84,13 @@ Describe 'Get-EntraBetaInactiveSignInUser' {
             $result[2].UserID | Should -Be "user3"
         }
 
+        It "Should allow LastSignInBeforeDaysAgo above 30" {
+            $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 90 -UserType "All"
+
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Entra.Beta.Users -Times 1
+        }
+
         It "Should return only inactive Member users" {
             $result = Get-EntraBetaInactiveSignInUser -LastSignInBeforeDaysAgo 30 -UserType "Member"
             

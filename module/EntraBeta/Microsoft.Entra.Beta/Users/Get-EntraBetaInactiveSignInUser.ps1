@@ -9,7 +9,7 @@ function Get-EntraBetaInactiveSignInUser {
         # User Last Sign In Activity is before Days ago
         [Parameter(ValueFromPipeline = $true, Position = 1)]
         [Alias("BeforeDaysAgo")]
-        [ValidateRange(0,30)]
+        [ValidateRange(0, [int]::MaxValue)]
         [int] $LastSignInBeforeDaysAgo = 30,
         # Return results for All, Member, or Guest userTypes
         [ValidateSet("All", "Member", "Guest")]
@@ -107,5 +107,3 @@ function Get-EntraBetaInactiveSignInUser {
         }
     }
 }
-
-
