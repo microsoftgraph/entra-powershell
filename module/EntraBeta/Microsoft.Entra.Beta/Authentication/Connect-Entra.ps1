@@ -45,7 +45,12 @@ function Connect-Entra {
         [Parameter(ParameterSetName = 'UserParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
         [Parameter(ParameterSetName = 'IdentityParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
         [Parameter(ParameterSetName = 'EnvironmentVariableParameterSet', HelpMessage = 'Determines the scope of authentication context. This accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.')]
-        [Microsoft.Graph.PowerShell.Authentication.ContextScope] $ContextScope,
+        # Deliberately a string rather than [Microsoft.Graph.PowerShell.Authentication.ContextScope]: since
+        # Microsoft.Graph.Authentication 2.41.0 that enum lives in a private AssemblyLoadContext on PowerShell 7,
+        # so a type literal for it fails to resolve and every Connect-Entra call throws "Unable to find type".
+        # Connect-MgGraph converts the string itself; ValidateSet keeps validation and tab completion.
+        [ValidateSet('Process', 'CurrentUser')]
+        [string] $ContextScope,
 
         [Parameter(ParameterSetName = 'AppCertificateParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]
         [Parameter(ParameterSetName = 'AppSecretCredentialParameterSet', HelpMessage = 'The name of the national cloud environment to connect to. By default global cloud is used.')]

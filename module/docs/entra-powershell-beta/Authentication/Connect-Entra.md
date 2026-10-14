@@ -395,7 +395,7 @@ Accept wildcard characters: False
 Determines the scope of authentication context. This ContextScope accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.
 
 ```yaml
-Type: ContextScope
+Type: System.String
 Accepted values: Process, CurrentUser
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, IdentityParameterSet, AppSecretCredentialParameterSet, EnvironmentVariableParameterSet
 Aliases:
