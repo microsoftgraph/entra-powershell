@@ -191,10 +191,10 @@ function Revoke-EntraBetaMcpServerPermission {
             $updatedGrant = Update-GrantScopes -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -targetScopes $remainingScopes
 
             if (@($remainingScopes).Count -eq 0) {
-                Write-Host "✓ All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                Write-Host "[OK] All permissions revoked from $($resolvedClient.Name)" -ForegroundColor Green
                 return $null
             } else {
-                Write-Host "✓ Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
+                Write-Host "[OK] Permissions partially revoked from $($resolvedClient.Name)" -ForegroundColor Green
                 Write-Verbose "  Revoked scopes:" 
                 $validScopesToRevoke | ForEach-Object { Write-Verbose "    - $_"}
                 Write-Verbose "  Remaining scopes:"

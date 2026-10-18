@@ -77,7 +77,7 @@ function New-EntraAgentIDForAgentIdentityBlueprint {
             Write-Verbose "Could not retrieve current user details: $_"
         }
 
-        # Sponsors are always required — prompt until at least one is provided
+        # Sponsors are always required - prompt until at least one is provided
         $hasSponsors = (($SponsorUserIds -and $SponsorUserIds.Count -gt 0) -or
             ($SponsorGroupIds -and $SponsorGroupIds.Count -gt 0))
 

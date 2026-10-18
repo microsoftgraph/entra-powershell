@@ -129,7 +129,7 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
 
                 if ($existingEntry) {
                     # Overwrite the existing entry for this resourceAppId
-                    Write-Verbose "Existing inheritable permissions found for resource '$resourceName' — overwriting..."
+                    Write-Verbose "Existing inheritable permissions found for resource '$resourceName' - overwriting..."
                     $patchUrl = "$apiUrl/$($currentResourceAppId.ToString())"
                     Write-Debug "PATCH URL: $patchUrl"
 
@@ -152,8 +152,8 @@ function Add-EntraBetaInheritablePermissionsToAgentIdentityBlueprint {
                     }
                 }
                 else {
-                    # No existing entry for this resourceAppId — add it (preserves other resources' permissions)
-                    Write-Verbose "No existing inheritable permissions for resource '$resourceName' — adding..."
+                    # No existing entry for this resourceAppId - add it (preserves other resources' permissions)
+                    Write-Verbose "No existing inheritable permissions for resource '$resourceName' - adding..."
                     Write-Debug "POST URL: $apiUrl"
 
                     while ($retryCount -lt $maxRetries -and -not $success) {

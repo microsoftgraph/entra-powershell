@@ -83,7 +83,7 @@ function New-EntraUser {
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's surname (last name). Maximum length: 64 characters.")]
         [System.String] $Surname,
                 
-        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "A list of the user’s additional email addresses (e.g., ['bob@contoso.com', 'Robert@fabrikam.com']). Supports up to 250 entries, each up to 250 characters.")]
+        [Parameter(ParameterSetName = "CreateUser", HelpMessage = "A list of the user's additional email addresses (e.g., ['bob@contoso.com', 'Robert@fabrikam.com']). Supports up to 250 entries, each up to 250 characters.")]
         [System.Collections.Generic.List`1[System.String]] $OtherMails,
                 
         [Parameter(ParameterSetName = "CreateUser", HelpMessage = "The user's sign-in name (UPN) in the format alias@domain. It should match the user's email and use a verified domain in the tenant.")]
